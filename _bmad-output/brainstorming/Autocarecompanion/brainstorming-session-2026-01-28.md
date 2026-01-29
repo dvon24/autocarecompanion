@@ -5,7 +5,7 @@ session_topic: 'Redeveloping AutoCare Companion outside of Bubble using BMAD met
 session_goals: 'Achieve true agility - enabling rapid changes without developer dependency or significant time investment, maintain/enhance current functionality while gaining flexibility, position for easier feature additions'
 selected_approach: 'AI-Recommended Techniques'
 techniques_used: ['SCAMPER Method']
-scamper_progress: 'Completed S and C, continuing with A (Adapt)'
+scamper_progress: 'Completed S, C, and A - moving to M (Modify)'
 ideas_generated: []
 context_file: ''
 ---
@@ -198,15 +198,35 @@ After completing Substitute and Combine, the architecture achieves:
 - **Impact:** Helps users who don't know how to articulate their car problems, while maintaining the same proven architecture
 - **Decision:** **APPROVED** - adds value without scope creep
 
+**Adapt #A5: Lightweight Version History (from Google Docs)**
+- **Concept:** Guides evolve based on user feedback without manual curation
+- **Novelty:** Most static guides never improve. AutoCare's guides get **progressively better** through AI-driven auto-regeneration based on real friction points.
+- **Pattern:**
+  - Logged-in users can flag issues: "This step was unclear" or "This part link was wrong"
+  - AI uses feedback to **regenerate that specific step** for next user
+  - No manual review needed - AI handles improvement cycle
+- **Visual Indicator:**
+  - "Guide updated Jan 2026" badge (shows living content)
+  - Optional: "See what changed" for returning users
+- **Impact:** Zero-maintenance guide improvement - aligns perfectly with progressive intelligence philosophy
+- **Decision:** **APPROVED** - reinforces zero-maintenance goal while continuously improving quality
+
 **Adaptations Explored but Rejected:**
 
 **Template + User Customization Pattern (from Notion/Airtable)**
 - **Reason for rejection:** Fights against the core "progressive intelligence" philosophy. AI should generate the RIGHT guide from the start, not require users to customize generic templates. Adds maintenance complexity Devon wants to avoid.
+
+**Confidence Badges from Gaming/Fitness Apps**
+- **Reason for rejection:** Feels gimmicky for automotive maintenance context. Users want competence, not gamification. Achievement systems don't align with "stunning but simple" UI philosophy.
+
+**Smart Defaults from E-commerce Checkout**
+- **Reason for rejection:** Adds complexity to MVP. Preference learning introduces decision points that fight against "instant value" goal. Better to focus on AI generating the right experience rather than asking users to configure it.
 
 **Key Insights from Adapt Phase:**
 - Offline-first isn't just a feature - it's a **trust builder** (works when you need it most)
 - Symptom-based generation **extends the spine** without rebuilding it
 - User customization patterns work for productivity tools but fight against AutoCare's "instant value" philosophy
 - The best adaptations respect the checklist-centric architecture established in Combine
+- **User feedback for AI improvement ≠ user customization** - feedback drives progressive intelligence, customization creates maintenance burden
 
 ---
