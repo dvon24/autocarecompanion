@@ -158,3 +158,55 @@ After completing Substitute and Combine, the architecture achieves:
 **Most Importantly:** The same checklist system supports DIY users, first-timers, power users, logged-out visitors, and future subscribers **without redesign**.
 
 ---
+
+### A — ADAPT
+
+**Goal:** Adapt existing solutions, patterns, or approaches from other successful domains to enhance AutoCare Companion's agility and user experience.
+
+**Core Adaptation Philosophy:**
+> "Borrow battle-tested patterns from other domains, but adapt them to fit the checklist-centric spine and zero-maintenance architecture."
+
+**Key Adaptation Decisions:**
+
+**Adapt #A1: Offline-First PWA Pattern (from Recipe Apps)**
+- **Concept:** Automatic offline capability for all generated guides, adapted from progressive web apps like Paprika and Mela
+- **Novelty:** AI-generated guides that work seamlessly offline - addressing the reality of spotty internet in garages and driveways. Most car guides are static PDFs; this combines "always current" AI intelligence with "works anywhere" reliability.
+- **Implementation Pattern:**
+  - First visit (online): User selects task + enters vehicle → AI generates complete guide → **Auto-cached locally**
+  - Going offline: Guide + checklist + parts links all work seamlessly
+  - Back online: Progress syncs, updated pricing refreshes
+- **UI Approach:** Stunning but simple - subtle "Available offline" indicator (no complex sync settings)
+- **Impact:** Users can follow guides in their garage without worrying about connectivity, while still getting fresh content when online
+- **Decision:** **AUTOMATIC** - all generated guides work offline by default
+
+**Adapt #A2: AI Symptom-Based Task Generation (from Health Diagnostic Apps)**
+- **Concept:** Adapt the diagnostic pattern from health apps like Ada or WebMD for automotive symptoms
+- **Novelty:** Extends the task discovery pattern established in Combine. Creates dynamic tasks that don't exist in the core 9 tasks, using the same checklist spine.
+- **Pattern:**
+  - User describes symptom: "weird noise when braking" or "check engine light on"
+  - AI asks 2-3 clarifying questions (leverages the confidence layer pattern from Substitute #4)
+  - AI generates a **custom task sequence** with full guide + parts + checklist
+- **Example Flow:**
+  ```
+  User: "My brakes are making a grinding sound"
+  AI: "Does it happen when you first start driving, or after driving for a while?"
+  User: "After driving"
+  AI generates: Custom Task "Inspect Brake Pads and Rotors"
+  → Complete with guide, parts, and checklist (same spine as 9 core tasks)
+  ```
+- **Scope Positioning:** Not replacing the curated 9 tasks - **extending** discovery for users who don't know what to look for
+- **Impact:** Helps users who don't know how to articulate their car problems, while maintaining the same proven architecture
+- **Decision:** **APPROVED** - adds value without scope creep
+
+**Adaptations Explored but Rejected:**
+
+**Template + User Customization Pattern (from Notion/Airtable)**
+- **Reason for rejection:** Fights against the core "progressive intelligence" philosophy. AI should generate the RIGHT guide from the start, not require users to customize generic templates. Adds maintenance complexity Devon wants to avoid.
+
+**Key Insights from Adapt Phase:**
+- Offline-first isn't just a feature - it's a **trust builder** (works when you need it most)
+- Symptom-based generation **extends the spine** without rebuilding it
+- User customization patterns work for productivity tools but fight against AutoCare's "instant value" philosophy
+- The best adaptations respect the checklist-centric architecture established in Combine
+
+---
