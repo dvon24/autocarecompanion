@@ -230,3 +230,36 @@ After completing Substitute and Combine, the architecture achieves:
 - **User feedback for AI improvement ≠ user customization** - feedback drives progressive intelligence, customization creates maintenance burden
 
 ---
+
+### M — MODIFY (In Progress)
+
+**Goal:** What could you modify, magnify, minify, or change about existing features to enhance AutoCare Companion's effectiveness?
+
+**Core Modification Philosophy:**
+> "Dial up what works, dial down what distracts, and reshape what doesn't quite fit."
+
+**Modifications Under Exploration:**
+
+**Modify #M1: Magnify Checklist Progress Visualization**
+- **Concept:** Amplify progress feedback to build psychological momentum
+- **Proposal:** Visual progress bar, estimated time remaining, subtle completion celebration
+- **Question:** Does this align with "stunning but simple" or risk UI clutter?
+
+**Modify #M2: Minify Vehicle Entry Experience**
+- **Concept:** Reduce friction in initial vehicle entry
+- **Proposals:**
+  - VIN barcode scan via mobile camera → instant YMMT auto-fill
+  - License plate + state → API lookup → VIN → YMMT
+- **Question:** Does VIN-first reduce friction or feel intrusive? Should manual YMMT remain primary?
+
+**Modify #M3: Change Parts Display Density**
+- **Concept:** Adjust how much parts information shows by default
+- **Option A (Minify):** Parts as collapsed cards - "🔧 3 parts needed" - click to expand
+- **Option B (Magnify):** First part expanded with image, alternatives collapsed
+- **Question:** Which serves users better - minimal distraction or helpful guidance?
+
+**Status:** Awaiting decisions on M1-M3 before continuing with additional modification angles.
+
+**Next Steps:** Complete Modify phase, then continue to P (Put to other uses), E (Eliminate), and R (Reverse).
+
+---
