@@ -463,3 +463,65 @@ After completing Substitute and Combine, the architecture achieves:
 - Collaboration is tempting but not core to V1
 
 ---
+
+### R — REVERSE
+
+**Goal:** What if we flipped assumptions, reversed the flow, or inverted the user experience?
+
+**Core Reverse Philosophy:**
+> "What if we did the opposite? What assumptions are we making that could be challenged?"
+
+**Reversals Explored:**
+
+**Reverse #R1: Flip Payment Model - Pay Per Task**
+- **Concept:** $0.99 per AI-generated guide instead of monthly subscription
+- **Analysis:** Lower barrier than $10/month, but doesn't align with continuous maintenance tracking needs
+- **Decision:** **REJECTED** - Subscription better for ongoing utility (notifications, dashboard)
+
+**Reverse #R2: Reverse Task Flow - Start with Parts**
+- **Concept:** User picks part → gets tasks that need it ("I bought brake pads, now what?")
+- **Analysis:** Interesting edge case, but most users have problem first, not parts first
+- **Decision:** **DEFERRED** - Task-first is primary flow, could add part-first as alternative entry later
+
+**Reverse #R3: Invert AI Role - User Teaches AI**
+- **Concept:** Users document their process, AI learns and improves for everyone (community-sourced)
+- **Analysis:** Creates network effects but introduces quality control nightmare
+- **Decision:** **REJECTED** - Fights zero-maintenance philosophy, already deferred community features
+
+**Reverse #R4: Flip Data Privacy - Public Maintenance Ledger**
+- **Concept:** Users publish maintenance to vehicle VIN, creates public trust record (blockchain concept)
+- **Analysis:** Massive value for used car transparency, but privacy/legal/verification complexity
+- **Decision:** **DEFERRED** - Interesting long-term vision, stick with exportable PDFs (P2) for MVP
+
+**Reverse #R5: Reverse Subscription Value - Free Gets More**
+- **Concept:** Free tier gets full features but slower/rate-limited, paid is about speed/convenience
+- **Analysis:** Removes feature gate psychology, but doesn't align with dashboard/notifications premium features
+- **Decision:** **PARTIALLY ADOPTED** - Already planned full guide access free, premium adds ongoing utility
+
+**Key Insights from Reverse Phase:**
+- Payment model reversal doesn't fit maintenance tracking use case
+- Part-first flow is edge case, not primary
+- Community contribution fights zero-maintenance goal
+- Public ledger is compelling long-term vision but too complex for MVP
+- Free tier already generous - premium is about ongoing value, not paywalls
+
+---
+
+## SCAMPER Completion Summary
+
+**S (Substitute):** ✅ Progressive intelligence, zero-maintenance architecture
+**C (Combine):** ✅ Checklist-centric spine - guide + parts + progress
+**A (Adapt):** ✅ Offline-first PWA, symptom-based AI, version history
+**M (Modify):** ✅ Magnified progress, minified friction, balanced parts display
+**P (Put to Other Uses):** ✅ Service history export, AI confidence for decisions
+**E (Eliminate):** ✅ No forced onboarding, frictionless signup, no feature bloat
+**R (Reverse):** ✅ Challenged assumptions, validated core approach
+
+**Total Ideas Generated:** 50+ decisions across 7 creative lenses
+
+**Next Steps:**
+- Continue to Resource Constraints technique (if desired)
+- Continue to What If Scenarios technique (if desired)
+- Or conclude brainstorming session
+
+---
