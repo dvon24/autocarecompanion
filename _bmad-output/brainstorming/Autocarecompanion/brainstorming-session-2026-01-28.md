@@ -273,6 +273,131 @@ After completing Substitute and Combine, the architecture achieves:
 - Showing ONE specific part builds more trust than hiding ALL parts
 - "Stunning but simple" means strategic visibility, not minimalism for its own sake
 
-**Next Steps:** Continue to P (Put to other uses), E (Eliminate), and R (Reverse) to complete SCAMPER.
+---
+
+### P — PUT TO OTHER USES
+
+**Goal:** Explore how AutoCare Companion's features, data, or patterns could serve entirely different purposes or audiences.
+
+**Core "Put to Other Uses" Philosophy:**
+> "What else could this do? Who else could this serve? What hidden value exists in what we're already building?"
+
+**Context Shift:** Initially considered expanding to home appliances, but Devon's subscription model clarifies the strategy: **deepen automotive experience, don't dilute it**. P2 and P3 become core premium features, not alternative uses.
+
+**Key "Put to Other Uses" Decisions:**
+
+**Put to Other Uses #P2: Service History as Value-Add Export** ✅
+- **Concept:** Completed checklists serve purposes beyond personal tracking
+- **Implementation:**
+  - **Resale value documentation:** "This car has verified maintenance history" - increases resale value
+  - **Insurance discount proof:** Export PDF with timestamps, completed tasks, parts used
+  - **Pre-mechanic communication:** "Here's what I've already done" before shop visit
+- **Novelty:** Your checklist data becomes a portable asset, not trapped in the app
+- **Impact:** Transforms maintenance tracking into financial benefit (better resale, insurance discounts)
+- **Decision:** **APPROVED** - Core premium feature for subscribers
+
+**Put to Other Uses #P3: AI Confidence Layer for Adjacent Decisions** ✅
+- **Concept:** 2-3 question pattern solves other automotive decision-making problems
+- **Implementation:**
+  - **DIY vs Mechanic decision:**
+    - Q1: "Have you done similar repairs before?"
+    - Q2: "Do you have the required tools?"
+    - Output: "DIY Recommended / Consider Professional / Definitely Mechanic"
+  - **Parts quality decision (OEM vs Aftermarket):**
+    - Q1: "How long do you plan to keep this car?"
+    - Q2: "Is this a safety-critical part?"
+    - **CRITICAL:** AI must recommend aftermarket when it's genuinely better
+    - **Example:** Fluidyne radiator (aftermarket) > Dodge OEM for Challenger
+    - Output: Specific recommendation with rationale
+- **Novelty:** Confidence layer becomes general-purpose automotive advisor
+- **Impact:** Helps users make informed decisions beyond just task selection
+- **Decision:** **APPROVED** - Extends AI advisor to purchase and complexity decisions
+
+**Put to Other Uses Deferred:**
+
+**P1: Guide Generation for Home Appliances**
+- **Reason for deferral:** Focus on deepening automotive subscription value, not expanding to new markets. Maintain category leadership before horizontal expansion.
+
+**Key Insights from Put to Other Uses:**
+- Service history as exportable asset creates tangible value beyond app usage
+- AI confidence pattern is reusable for multiple decision types
+- **Aftermarket can be superior to OEM** - AI must be honest, not brand-loyal
+- Subscription model clarifies strategy: depth over breadth
+
+---
+
+## Design System Requirements
+
+**Design Inspiration Sources:**
+- [reflect.app](https://reflect.app/) - Networked thinking, backlinks, minimalist note-taking
+- [huly.io](https://huly.io/) - Modular blocks, task sync, premium feel
+
+**Comprehensive Design Specification:**
+
+### Core HCI Principles
+
+**1. Minimalist Minimalism + Cognitive Flow**
+- Bento-style layout (card-based modular design)
+- Neutral palette with dark mode as primary
+- High-contrast accents for action items only
+
+**2. Speed as a Feature**
+- Command-palette-first navigation (reduces motor effort)
+- Keyboard shortcuts for all primary actions
+- Instant task efficiency - no unnecessary clicks
+
+**3. Visual Feedback Loops**
+- Micro-interactions for every user action
+- Smooth transitions using spring physics
+- Immediate system status confirmation
+
+**4. Information Architecture**
+- Networked thinking patterns (Reflect-style backlinks)
+- Modular blocks (Huly-style task sync)
+- Visualize complexity without overwhelming
+
+**5. Emotional Design ("Zen Workspace")**
+- Generous white space
+- Soft gradients
+- Rounded corners
+- Minimize user anxiety, promote focus
+
+### Visual Polish Standards
+
+**Glassmorphism:**
+- Frosted glass effects for layered UI elements
+- Depth through subtle shadows
+- Premium, modern aesthetic
+
+**Typography:**
+- Primary: Inter or San Francisco
+- Crisp, readable, tool-centric
+
+**Overall Feel:**
+- High-performance web interface
+- Premium, not consumer-grade
+- Tool you want to spend time in
+
+---
+
+## Subscription Model Context
+
+**Free Tier (localStorage):**
+- Access to all 9 core tasks
+- Guide generation with offline capability
+- Basic progress tracking
+
+**Premium Tier (cloud sync + features):**
+- Vehicle dashboard with mileage-based tracking
+- Service interval notifications from owner's manual
+- Service history export (P2)
+- AI decision advisor - DIY vs Mechanic, OEM vs Aftermarket (P3)
+- One-click cart building
+- Multi-vehicle garage
+
+**Monetization Alignment:**
+- Free tier demonstrates value
+- Premium tier delivers ongoing utility
+- Subscription justified by time savings + cost savings (insurance, resale)
 
 ---
