@@ -401,3 +401,65 @@ After completing Substitute and Combine, the architecture achieves:
 - Subscription justified by time savings + cost savings (insurance, resale)
 
 ---
+
+### E — ELIMINATE
+
+**Goal:** What features, steps, or complexity can we remove to make AutoCare Companion simpler, faster, or more focused?
+
+**Core Elimination Philosophy:**
+> "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away." — Antoine de Saint-Exupéry
+
+**Key Elimination Decisions:**
+
+**Eliminate #E1: Remove Forced Onboarding** ✅
+- **What's eliminated:** Tutorial walkthroughs, product tours, mandatory intro screens
+- **Replace with:** Subtle contextual hints (e.g., "Press ⌘K for quick navigation" appears once, then fades)
+- **Rationale:** "Stunning but simple" UI should be self-explanatory. First task completion teaches the pattern better than any tutorial.
+- **Impact:** Users reach value immediately, no delay
+- **Decision:** **APPROVED** - No forced onboarding
+
+**Eliminate #E2: Remove Separate "Parts Page"** ✅
+- **What's eliminated:** Parts catalog browsing, standalone parts discovery pages
+- **Keep:** Parts only appear inline with tasks (already decided in Combine)
+- **Rationale:** Reinforces checklist-centric spine
+- **Impact:** Maintains focus on task completion, not parts browsing
+- **Decision:** **APPROVED** - Already eliminated in Combine phase
+
+**Eliminate #E3: Remove Multi-Step Account Creation** ✅
+- **What's eliminated:** Email → Password → Confirm Email → Profile Setup flow
+- **Replace with:**
+  - Default: Guest mode (localStorage)
+  - Optional: One-step signup (email-only magic link or social login)
+  - Motivation-driven: "Save Your Data" or "Upgrade to Premium" triggers account creation
+- **User Journeys:**
+  - Guest → Premium: Email + Payment in ONE step
+  - Guest → Free Account: Email-only (magic link), save data across devices
+  - Guest Forever: Full functionality with localStorage only
+- **Rationale:** Aligns with "instant value" philosophy. Account creation is allowed anytime, never forced, never multi-step.
+- **Impact:** Zero friction to start using, signup only when motivated
+- **Decision:** **APPROVED** - Frictionless optional signup
+
+**Eliminate #E4: Remove "Browse All Tasks" Overload** ✅
+- **What's eliminated:** Alphabetical task lists, category taxonomy, filtering/sorting UI
+- **Keep:**
+  - 9 core tasks always visible (curated)
+  - AI search for symptoms (generates custom task)
+  - Recent/suggested tasks for logged-in users
+- **Rationale:** Resist the urge to add task browse/filter features. Keep it simple.
+- **Impact:** Prevents UI bloat, maintains focus
+- **Decision:** **APPROVED** - No task browsing features
+
+**Eliminate #E5: Remove Real-Time Collaboration (for MVP)** ✅
+- **What's eliminated:** "Share this guide with a friend," live co-editing, collaborative features
+- **Reason:** Adds massive complexity (conflict resolution, permissions, live sync). Not core to solo DIY maintenance.
+- **Future:** Can add post-PMF if demand exists
+- **Impact:** Maintains MVP focus, avoids architectural complexity
+- **Decision:** **APPROVED** - Deferred to post-PMF
+
+**Key Insights from Eliminate Phase:**
+- Onboarding tutorials delay value - eliminate them
+- Account creation should be motivated by desire to save, not forced
+- Feature restraint maintains "stunning but simple" philosophy
+- Collaboration is tempting but not core to V1
+
+---
