@@ -238,28 +238,41 @@ After completing Substitute and Combine, the architecture achieves:
 **Core Modification Philosophy:**
 > "Dial up what works, dial down what distracts, and reshape what doesn't quite fit."
 
-**Modifications Under Exploration:**
+**Key Modification Decisions:**
 
-**Modify #M1: Magnify Checklist Progress Visualization**
+**Modify #M1: Magnify Checklist Progress Visualization** ✅
 - **Concept:** Amplify progress feedback to build psychological momentum
-- **Proposal:** Visual progress bar, estimated time remaining, subtle completion celebration
-- **Question:** Does this align with "stunning but simple" or risk UI clutter?
+- **Implementation:** Visual progress bar showing % complete, estimated time remaining, subtle celebration on task completion
+- **Novelty:** Most guides are static lists. Dynamic progress creates psychological momentum especially valuable for first-timers who feel overwhelmed.
+- **Impact:** Enhances "stunning but simple" UI with motivational feedback without clutter
+- **Decision:** **APPROVED** - builds confidence and momentum
 
-**Modify #M2: Minify Vehicle Entry Experience**
-- **Concept:** Reduce friction in initial vehicle entry
-- **Proposals:**
-  - VIN barcode scan via mobile camera → instant YMMT auto-fill
-  - License plate + state → API lookup → VIN → YMMT
-- **Question:** Does VIN-first reduce friction or feel intrusive? Should manual YMMT remain primary?
+**Modify #M2: Minify Vehicle Entry Experience (with User Choice)** ✅
+- **Concept:** Reduce friction while respecting user preference
+- **Implementation:**
+  - **Primary path:** Manual YMMT entry (familiar, always works, no privacy concerns)
+  - **Quick alternative:** "📱 Scan VIN for faster entry" button
+  - VIN scan → auto-fills YMMT → user can edit if needed
+- **Novelty:** Best of both worlds - speed for tech-savvy users, reliability for everyone
+- **Impact:** Reduces friction without forcing intrusive data collection
+- **Decision:** **APPROVED** - VIN scan as convenience option, not replacement
 
-**Modify #M3: Change Parts Display Density**
-- **Concept:** Adjust how much parts information shows by default
-- **Option A (Minify):** Parts as collapsed cards - "🔧 3 parts needed" - click to expand
-- **Option B (Magnify):** First part expanded with image, alternatives collapsed
-- **Question:** Which serves users better - minimal distraction or helpful guidance?
+**Modify #M3: Magnify First Part, Minify Alternatives** ✅
+- **Concept:** Balance helpful guidance with clean UI
+- **Implementation:**
+  - First part suggestion shown expanded with image and "Best match for your 2015 Honda Civic"
+  - Additional alternatives stay collapsed
+  - Total: "🔧 3 parts available" with first one visible
+- **Novelty:** Immediate visual confirmation builds trust ("Yes, that's the right part") without overwhelming
+- **Impact:** Aligns with "AI as advisor" philosophy - helpful guidance, not aggressive selling
+- **Decision:** **APPROVED** - Option B provides trust-building visibility without clutter
 
-**Status:** Awaiting decisions on M1-M3 before continuing with additional modification angles.
+**Key Insights from Modify Phase:**
+- Progress visualization creates momentum without gamification
+- User choice beats forced convenience (VIN optional, not required)
+- Showing ONE specific part builds more trust than hiding ALL parts
+- "Stunning but simple" means strategic visibility, not minimalism for its own sake
 
-**Next Steps:** Complete Modify phase, then continue to P (Put to other uses), E (Eliminate), and R (Reverse).
+**Next Steps:** Continue to P (Put to other uses), E (Eliminate), and R (Reverse) to complete SCAMPER.
 
 ---
