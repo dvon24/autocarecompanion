@@ -1,5 +1,5 @@
 ---
-stepsCompleted: ['step-01-init', 'step-02-discovery', 'step-03-success', 'step-04-journeys', 'step-05-domain', 'step-06-innovation']
+stepsCompleted: ['step-01-init', 'step-02-discovery', 'step-03-success', 'step-04-journeys', 'step-05-domain', 'step-06-innovation', 'step-07-project-type']
 classification:
   projectType: web_app
   domain: automotive
@@ -388,3 +388,85 @@ Each innovation has a specific signal that proves it's working:
 | AI-maintainable product | AI makes a bad deploy without human review | All deploys go through regression harness + adversarial tests. Devon reviews deploy output. Enables feedback loop closure in hours vs. sprint cycles — response speed is the compounding advantage |
 
 **Future consideration:** Automated Known Issues gathering agent(s) — architecture decision (data flow, validation, YMMT keying) at MVP. Automation ships at Growth.
+
+## Web App Specific Requirements
+
+### Project-Type Overview
+
+AutoCare Companion is a Next.js PWA targeting mobile-first garage use. The product lives at the intersection of two technical needs: SEO-crawlable vehicle/task pages that rank for maintenance queries, and an app-like guide experience that works offline. Next.js App Router handles both natively — server components for SEO pages, client components for the interactive guide experience. No architectural tension to resolve.
+
+### Technical Architecture Considerations
+
+- **Next.js App Router** — hybrid rendering by default. Server Components for landing and SEO pages. Client Components for guide UI, inline chat, progress tracking.
+- **Service Worker** — handles offline caching. Atomic guide caching (all-or-nothing). Cache-first for guides, network-first for AI API calls.
+- **State:** localStorage for MVP (progress, dismissed Known Issues). IndexedDB for larger cached data at Growth.
+- **External dependencies at MVP:** OpenAI API only. AI calls routed server-side via Next.js API routes — key never touches client code.
+- **Hosting:** Vercel free tier. Zero-config deploys from GitHub. Claude Code can trigger deploys via git push.
+
+### Browser Matrix
+
+| Browser | Platform | Support Level | Notes |
+|---|---|---|---|
+| Chrome | Android | Full | Best PWA support. Install prompt appears automatically. Primary target. |
+| Safari | iOS | Partial | Service Worker works. Install prompt does NOT auto-appear — requires manual Share → Add to Home Screen. Push notifications limited on older iOS. |
+| Edge | Windows / Android | Full | Chromium-based. Same PWA behavior as Chrome. |
+| Firefox | Desktop | Full | Desktop is secondary. No PWA install prompt but full site functionality. |
+
+**Safari iOS mitigation:** Onboarding flow includes an explicit "Add to Home Screen" instruction with a visual guide. This is the single biggest PWA friction point for the target audience — worth the UX investment. Detect iOS Safari on first visit, show the prompt once, make it dismissible.
+
+### Responsive Design
+
+- **Mobile-first:** Phone in garage is the primary use case. All layouts designed mobile-first, scaled up for desktop.
+- **Touch targets:** Minimum 44×44px. Garage use means gloved hands, greasy fingers, varying light. No small tappables.
+- **Single-column guide layout:** Checklist steps, inline tips, parts cards, and inline chat all flow vertically. No horizontal scrolling in the guide experience.
+- **Desktop as secondary:** Dashboard and monitoring views benefit from wider layouts. Guide experience stays single-column even on desktop — consistency across devices supports the Remote Helper journey (Journey 6).
+
+### Performance Targets
+
+| Metric | Target | Why |
+|---|---|---|
+| Time to Interactive (TTI) | <3s on 4G mobile | Guide must be usable before patience runs out in a driveway |
+| Cached guide load | <1s | No network dependency. Instant in the garage. |
+| AI pipeline end-to-end | <8s | Full pipeline: Mechanic AI → Safety Officer → Parts Specialist → Content Quality Reviewer. Loading state sets expectations. Low-risk guides skip Safety Officer blocking gate — faster. |
+| Initial JS bundle | <150KB gzipped | Next.js code splitting handles this. Guide pages are the hot path. |
+
+### SEO Strategy
+
+- **Target queries:** Vehicle-specific maintenance. "2015 Dodge Challenger SRT 392 oil change", "Challenger known issues radiator", "how to replace brake pads Challenger".
+- **URL structure:** `/guides/[task]/[year]-[make]-[model]-[trim]` — clean, crawlable, human-readable. Each guide is a unique indexable URL.
+- **Server rendering:** Next.js server-renders all SEO-facing pages. Google indexes full content, not a blank JS shell.
+- **Structured data:** JSON-LD on guide pages — vehicle, task type, estimated difficulty. Helps Google categorize the content.
+- **Internal linking:** Known Issues briefing links to relevant guides. Parts sections link to related tasks. Builds topical authority in automotive maintenance.
+
+### Accessibility Level
+
+- **Target: WCAG AA**
+- **Color contrast:** Minimum 4.5:1. Garage use in variable light — phone in sunlight, dim garage, night work.
+- **Screen reader support:** Semantic HTML. Guide steps as ordered lists. Safety callouts use `role="alert"` for high-risk warnings. Parts cards have descriptive labels.
+- **Touch and keyboard:** Full keyboard traversability for desktop. Visible focus rings on all interactive elements. System font sizing respected — no fixed pixel sizes that break on accessibility zoom.
+- **Error messages:** Descriptive text, not just color. "Part not found for your vehicle" — not a red highlight with no explanation.
+
+### Design Direction & Micro-Interactions
+
+- **UI inspiration:** huly.io and reflect.app — polished, subtle micro-interactions and smooth visual transitions.
+- **Scoped to index/landing page only.** Chat and guide experiences are clean and focused — their built-in dynamism (step expand/collapse, inline chat open/close, progress updates) IS the interaction layer. No background animations added on top.
+
+| Surface | Micro-Interactions | Rationale |
+|---|---|---|
+| Index / landing page | Full treatment — ambient background motion, floating elements, gradient shifts | First impression. No competing UI elements. Polish earns trust before the user touches a guide. |
+| Chat interface | None | Typing indicator and AI response appearing are already dynamic. Background motion competes with text the user is reading. |
+| Guide experience | None | Step expand/collapse, inline chat, progress bar — the UI itself is the micro-interaction. Background motion distracts from an active task. |
+
+**Implementation constraints (Performance Profiler Panel):**
+- CSS `@keyframes` only. `transform` and `opacity` properties exclusively — no layout or paint triggers.
+- No animation libraries at MVP. Zero JS bundle cost for animations.
+- Max 3–4 animated elements on screen simultaneously.
+- `prefers-reduced-motion` disables ALL animations completely. Product is visually complete and intentional without them.
+- Animations are enhancement, never structure. Test with animations disabled as the baseline.
+
+### Implementation Considerations
+
+- **PWA manifest:** App name, icons, theme color, standalone display mode. Configured for mobile install.
+- **Service Worker strategy:** Cache-first for guide content (atomic). Network-first for AI API calls (each guide is unique — can't cache). Stale-while-revalidate for static assets.
+- **Environment variables:** OpenAI API key in Vercel environment only. Server-side AI calls via Next.js API routes or Server Actions.
+- **Safari PWA workaround:** iOS Safari detection on first visit → onboarding prompt with visual "Add to Home Screen" guide. Shown once, dismissible.
