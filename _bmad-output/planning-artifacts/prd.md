@@ -1,5 +1,5 @@
 ---
-stepsCompleted: ['step-01-init', 'step-02-discovery', 'step-03-success', 'step-04-journeys', 'step-05-domain']
+stepsCompleted: ['step-01-init', 'step-02-discovery', 'step-03-success', 'step-04-journeys', 'step-05-domain', 'step-06-innovation']
 classification:
   projectType: web_app
   domain: automotive
@@ -307,3 +307,84 @@ The table below documents **which journeys validate the need for each capability
 | Partial cache in garage | Medium | High | Atomic caching; cache status badge |
 | AI Validation Agent approves bad data | Low | High | Adversarial test cases fed through validator; human review escalation on rejections |
 | Inline chat fails silently offline | Medium | Medium | Explicit UX indicator: inline chat unavailable offline; inline tips remain |
+
+## Innovation & Novel Patterns
+
+### Detected Innovation Areas
+
+**1. Six-Agent AI Validation Pipeline for Consumer Software**
+Consumer apps use a single AI model end-to-end. AutoCare Companion introduces a multi-agent pipeline where specialized agents (Safety Officer, Parts Specialist, Content Quality Reviewer) each own a validation domain and run silently before output reaches the user. Enterprise-grade validation, first in this category. Value compounds through operational learnings — tuning adversarial test cases, latency optimization, and severity gating. Proves itself in retention (guide accuracy correlates with 30-day return rate), not in feature metrics.
+
+**2. Proactive Known Issues Registry**
+The maintenance app category is entirely reactive: user has a problem → looks it up. AutoCare Companion flips the paradigm: surface known design issues *before* the user encounters them, based on real owner experience. The product knows what's coming for your car. Transforms maintenance from break-fix to preventive. Strongest innovation — data moat compounds over time. Ships first, feeds first. Architecture decision on automated gathering path made at MVP; automation ships at Growth.
+
+**3. Step-Scoped Inline AI Chat (New Interaction Pattern)**
+Guides are static checklists in every competing product. AutoCare Companion introduces: tap any step → expands with a contextual AI dialogue scoped to that step and vehicle → collapses when done → checklist continues. The AI assistant is embedded *in* the workflow, not beside it. A completion accelerator — users who engage with inline chat have measurably higher guide completion rates. Don't overstate in positioning: table stakes within 12–18 months. 3-question limit on free tier with counter visible from first tap ("AI Help: 3 questions remaining").
+
+**4. Vehicle Onboarding Briefing as First Value Delivery**
+No maintenance app delivers value before the user has a problem. AutoCare Companion's first interaction after YMMT selection: *"Here's what owners of your car have reported."* Immediate, community-powered, zero-task value. Real value from a single input, in a category where no one does this. Forms a retention loop with Known Issues: the briefing plants the seed; the Known Issues entry harvests it when the issue surfaces in the user's workflow.
+
+**5. Offline-First as Trust Architecture**
+Offline capability in consumer apps is typically a connectivity fallback. AutoCare Companion positions it as a trust signal: the guide is yours, on your device, works when you need it. Cache status badge and atomic caching aren't reliability features — they're trust features. First-mover advantage — competitors will copy once they see it. Ship fast and lock the narrative. Cache badge is the highest-conversion UX surface in the product — design priority equivalent to YMMT selector and parts card. Users who proactively cache guides are the highest-engagement segment.
+
+**6. AI-Maintainable Product for Solo Sustainability**
+The entire product is architected so an AI agent (Claude Code) can read, understand, modify, and deploy without human developer intervention. Agent prompts are version-controlled. Codebase designed for AI readability. Bus factor 1 — one person, ≤1 hour/week. Operational moat only — never market it. Real competitive advantage is response speed: feedback loop closure in hours vs. sprint cycles. That speed compounds — users who see issues fixed come back.
+
+### Market Context & Competitive Landscape
+
+The automotive maintenance app market is dominated by three categories — none of which compete on any of AutoCare Companion's innovation axes:
+
+| Competitor Category | Examples | What They Do | What They Don't Do |
+|---|---|---|---|
+| OBD-II Scanner Apps | Torque Pro, CarScanner | Read error codes from vehicle | No guides, no parts, no AI assistance |
+| Dealer/Manufacturer Apps | MyDodge, MyFord | Brand-locked service scheduling | OEM-only, no aftermarket intelligence, no community knowledge |
+| Generic How-To | YouTube, forums | Unstructured vehicle-specific content | No offline, no AI, no structure, buried in noise |
+
+**Innovation whitespace:** No competitor has proactive known issues, multi-agent AI validation, step-scoped inline AI, offline-first trust architecture, or community-powered reliability data at the product level. The product enters a market with no direct competitor on any of these axes.
+
+### Innovation Tiers & Durability
+
+| Tier | Innovation | Score | Durability | Window |
+|---|---|---|---|---|
+| Lead differentiator | Known Issues Registry | 4.55 | Compounds over time | Open — data moat grows |
+| Lead differentiator | Onboarding Briefing | 3.95 | Tied to Known Issues data | Open while data grows |
+| UX delight | Step-Scoped Inline Chat | 3.55 | Table stakes by 2027 | 12–18 months |
+| Invisible enabler | Six-Agent Pipeline | 3.45 | Operational learnings compound | Open — tuning advantage grows |
+| Trust foundation | Offline-First | 3.25 | Table stakes by 2027 | 6–12 months for positioning |
+| Operational moat | AI-Maintainable Product | 3.25 | Compounds passively | Open — no action needed |
+
+**Marketing headline:** "Your car already knows what's going to break. AutoCare Companion tells you before it does."
+
+### Validation Approach
+
+Each innovation has a specific signal that proves it's working:
+
+| Innovation | Validation Signal | Timeframe |
+|---|---|---|
+| Six-agent pipeline | Zero safety-critical errors reach users in first 100 guides generated | Month 1–2 |
+| Proactive Known Issues | Onboarding briefing open rate >40%; return visit within 7 days after a briefed Known Issue becomes relevant (loop closing signal) | Month 1–2 |
+| Step-scoped inline chat | Step-help tap rate >20% of guides; completion rate lift: guides with chat engagement vs. without | Month 2 |
+| Onboarding Briefing | First-session: user completes YMMT + reads briefing before leaving | Month 1 |
+| Offline-first trust | Users cache guides proactively; cache badge viewed >50% of guides | Month 2 |
+| AI-maintainable product | Bug fixes and deploys via Claude Code without manual developer intervention | Ongoing |
+
+**Cross-innovation validation signals:**
+
+| Innovation Loop | Validation Signal | Timeframe |
+|---|---|---|
+| Known Issues + Onboarding Briefing (retention loop) | Return visit within 7 days after a briefed Known Issue surfaces in user's workflow | Month 2–3 |
+| Pipeline accuracy + trust (invisible retention driver) | Guide accuracy correlated with 30-day return rate | Month 2–3 |
+| Inline chat + guide completion (engagement accelerator) | Completion rate lift: guides with chat engagement vs. without | Month 2 |
+
+### Risk Mitigation
+
+| Innovation | Risk | Mitigation |
+|---|---|---|
+| Six-agent pipeline | Pipeline latency makes guide generation feel slow | Agents run in parallel where dependencies allow; loading state sets expectations ("Building your guide...") |
+| Proactive Known Issues | Curated data is wrong — damages trust before user starts a task | AI Validation Agent + adversarial test cases gate all Known Issues before publish |
+| Step-scoped inline chat | Inline chat pulls users out of checklist mode, slows them down | Chat is opt-in (tap to expand). Default is the static checklist. Users who don't need help never see it |
+| Onboarding Briefing | Briefing feels like a sales pitch, not genuine help | Framed as owner-reported experience. Tone matches "experienced friend" model. No editorial endorsement |
+| Offline-first trust | Users don't realize guide isn't cached until they're in the garage | Cache status badge always visible. Cache badge is highest-conversion UX surface — design priority equivalent to YMMT selector and parts card |
+| AI-maintainable product | AI makes a bad deploy without human review | All deploys go through regression harness + adversarial tests. Devon reviews deploy output. Enables feedback loop closure in hours vs. sprint cycles — response speed is the compounding advantage |
+
+**Future consideration:** Automated Known Issues gathering agent(s) — architecture decision (data flow, validation, YMMT keying) at MVP. Automation ships at Growth.
