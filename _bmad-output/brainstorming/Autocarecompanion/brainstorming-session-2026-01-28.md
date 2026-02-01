@@ -8,7 +8,7 @@ techniques_used: ['SCAMPER Method', 'Resource Constraints', 'What If Scenarios']
 scamper_progress: 'Complete - all 7 lenses explored'
 resource_constraints_progress: 'Complete - Path C selected (full migration off Bubble)'
 what_if_scenarios_progress: 'Complete - all 7 scenarios explored and approved'
-rebrand: 'Auto.io'
+rebrand: 'AutoCare Companion (autocarecompanion.com) - Auto.io domain unavailable, final name TBD'
 launch_strategy: 'Challenger-first, zero backend PWA, Next.js + Vercel + OpenAI'
 tech_stack: 'Next.js, Vercel, OpenAI API, localStorage/IndexedDB (MVP), Supabase (Premium later)'
 ideas_generated: []
@@ -556,7 +556,7 @@ See detailed analysis in: [brainstorming-session-2026-01-28-resource-constraints
 See detailed analysis in: [brainstorming-session-2026-01-28-what-if-scenarios.md](brainstorming-session-2026-01-28-what-if-scenarios.md)
 
 **Key Decisions:**
-- Rebrand to **Auto.io**
+- Brand: **AutoCare Companion** (autocarecompanion.com) — Auto.io unavailable, final name TBD
 - Challenger-first launch (subtle silhouette design, not branded)
 - Zero backend PWA for MVP
 - Tech stack: Next.js + Vercel + OpenAI API

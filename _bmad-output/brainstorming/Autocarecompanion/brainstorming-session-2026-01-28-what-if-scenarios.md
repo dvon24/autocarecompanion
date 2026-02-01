@@ -56,16 +56,17 @@ The cascading selector (Year → Make → Model → Trim) needs structured vehic
 ### Scenario #4: What if you launched with just ONE car first?
 **Devon's Response:** "That's the goal and advertise strictly on Challenger Forums and SEO as I discussed this with a colleague and about 800,000 consumers bought challengers, so that's a good base to work from. But with AI I feel like I can generalize."
 
-**Branding Decision:** REBRAND TO **Auto.io** ✅
+**Branding Decision:** Stay with **AutoCare Companion** (autocarecompanion.com) ✅
+- Auto.io domain was unavailable — reverting to autocarecompanion.com
+- Final name TBD (can revisit at launch)
 - Will NOT brand specifically to Challengers
-- Keep Auto.io branding general
 - Subtle Challenger silhouette somewhere in background design (inspired by Huly.io / Reflect.app design language)
 - Challenger is the launch vehicle, not the identity
 
 **Decision:** ✅ APPROVED — Challenger-first launch strategy with Auto.io branding
 
 **Launch Strategy:**
-- Brand: Auto.io
+- Brand: AutoCare Companion (autocarecompanion.com, final name TBD)
 - Marketing: Challenger forums + SEO targeting Challenger-specific maintenance queries
 - Design: Subtle Challenger silhouette as background design element (Easter egg feel)
 - Market size: ~800,000 Challengers sold — viable niche
@@ -141,7 +142,7 @@ The cascading selector (Year → Make → Model → Trim) needs structured vehic
 | 1 | AI writes the app | ✅ Core strategy | Optimize everything for AI maintainability |
 | 2 | No YMMT database | ✅ Reframed | Cascading selector UX, not a database. AI populates data. |
 | 3 | PWA zero backend | ✅ MVP architecture | Client-side everything until premium tier |
-| 4 | One car first | ✅ Launch strategy | Challenger-first, Auto.io brand, subtle silhouette design |
+| 4 | One car first | ✅ Launch strategy | Challenger-first, AutoCare Companion brand, subtle silhouette design |
 | 5 | Redirect $134 to AI | ✅ Major savings | $5-15/mo vs $134/mo. Budget freed for scale. |
 | 6 | Hallucination risk | ✅ Guardrails in place | Disclaimers + spec flagging layer |
 | 7 | 2-week launch | ✅ Realistic target | Next.js + Vercel + OpenAI, zero backend |
