@@ -176,15 +176,41 @@
 - Design for "bus factor 1" sustainability from ground up
 - Automate or eliminate YMMT database dependency
 
-**Status:** Awaiting Devon's direction on which path aligns with actual constraints.
+**Status:** PATH C SELECTED ✅
 
 ---
 
-**Resource Constraints Technique: IN PROGRESS**
+## Path C Decision — Full Migration (2026-01-31)
 
-**Next Steps:**
-- Devon to decide on Path A, B, or C
-- Continue to What If Scenarios technique (if desired)
-- Or conclude brainstorming session
+**Devon's Decision:** Path C - Full Migration with KM Architecture
+
+**Devon's Rationale:**
+- Bubble costs $134/month - migration eliminates this recurring cost
+- Feels more agile and custom with own website
+- Wants to host own domain and database
+- Believes custom build is probably cheaper long-term
+
+**What This Means:**
+- Migrate entirely off Bubble.io
+- Own domain + own database (self-hosted)
+- Apply Knowledge Manager expertise to architecture design
+- Design for bus factor 1 sustainability
+- Eliminate or automate YMMT database dependency
+- Full control over stack, AI integration, and feature velocity
+
+**Key Questions for What If Scenarios:**
+- What tech stack best serves a solo KM-architect building an AI-first automotive app?
+- How to handle YMMT data without a manual database?
+- What hosting/database options make sense at this scale?
+- How to structure the app so AI agents (Claude, ChatGPT) can maintain it effectively?
+- What does "zero maintenance" look like on a custom stack?
+
+---
+
+**Resource Constraints Technique: COMPLETE ✅**
+
+**Outcome:** Path C selected - full migration off Bubble to self-hosted custom build
+
+**Next:** What If Scenarios technique to explore the possibilities and risks of Path C
 
 ---

@@ -4,9 +4,13 @@ inputDocuments: []
 session_topic: 'Redeveloping AutoCare Companion outside of Bubble using BMAD methodology'
 session_goals: 'Achieve true agility - enabling rapid changes without developer dependency or significant time investment, maintain/enhance current functionality while gaining flexibility, position for easier feature additions'
 selected_approach: 'AI-Recommended Techniques'
-techniques_used: ['SCAMPER Method', 'Resource Constraints']
+techniques_used: ['SCAMPER Method', 'Resource Constraints', 'What If Scenarios']
 scamper_progress: 'Complete - all 7 lenses explored'
-resource_constraints_progress: 'In progress'
+resource_constraints_progress: 'Complete - Path C selected (full migration off Bubble)'
+what_if_scenarios_progress: 'Complete - all 7 scenarios explored and approved'
+rebrand: 'Auto.io'
+launch_strategy: 'Challenger-first, zero backend PWA, Next.js + Vercel + OpenAI'
+tech_stack: 'Next.js, Vercel, OpenAI API, localStorage/IndexedDB (MVP), Supabase (Premium later)'
 ideas_generated: []
 context_file: ''
 session_continued: true
@@ -539,8 +543,34 @@ Additional reversals explored (R6-R10):
 
 ## RESOURCE CONSTRAINTS TECHNIQUE
 
-**Status:** IN PROGRESS
+**Status:** COMPLETE ✅ — Path C selected (full migration off Bubble)
 
 See detailed analysis in: [brainstorming-session-2026-01-28-resource-constraints.md](brainstorming-session-2026-01-28-resource-constraints.md)
+
+---
+
+## WHAT IF SCENARIOS TECHNIQUE
+
+**Status:** COMPLETE ✅ — All 7 scenarios explored and approved
+
+See detailed analysis in: [brainstorming-session-2026-01-28-what-if-scenarios.md](brainstorming-session-2026-01-28-what-if-scenarios.md)
+
+**Key Decisions:**
+- Rebrand to **Auto.io**
+- Challenger-first launch (subtle silhouette design, not branded)
+- Zero backend PWA for MVP
+- Tech stack: Next.js + Vercel + OpenAI API
+- YMMT reframed as cascading selector UX (not a database)
+- $134/month Bubble → $5-15/month AI APIs
+- 2-week launch target is realistic
+
+---
+
+## BRAINSTORMING SESSION COMPLETE ✅
+
+All 3 AI-recommended techniques finished:
+1. ✅ SCAMPER Method — 50+ decisions across 7 creative lenses
+2. ✅ Resource Constraints — Path C selected, constraints ranked
+3. ✅ What If Scenarios — Architecture, stack, and launch strategy defined
 
 ---
