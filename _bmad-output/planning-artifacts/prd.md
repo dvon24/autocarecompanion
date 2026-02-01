@@ -1,5 +1,5 @@
 ---
-stepsCompleted: ['step-01-init', 'step-02-discovery', 'step-03-success', 'step-04-journeys']
+stepsCompleted: ['step-01-init', 'step-02-discovery', 'step-03-success', 'step-04-journeys', 'step-05-domain']
 classification:
   projectType: web_app
   domain: automotive
@@ -224,3 +224,86 @@ The table below documents **which journeys validate the need for each capability
 | Consistent cross-device layout | 6 |
 
 **Global Product Principle:** Parts recommendations always present balanced consumer feedback — both the strengths and the reported issues — so users make informed decisions. This applies to every parts interaction across the product, not just aftermarket alternatives.
+
+## Domain-Specific Requirements
+
+### Compliance & Regulatory
+
+- **Consumer maintenance guidance product:** AutoCare Companion is closer to a cooking recipe app than to vehicle-embedded software. Cars are the subject; consumer software is the regulatory context. Future requirements evaluated against this framing — not against what the broader automotive industry demands.
+- No automotive safety certification required. ISO 26262, V2X, and safety certification standards do not apply.
+- **Disclaimer requirement:** Surfaced contextually before safety-critical steps — not as a static footer. Covers liability without breaking the "experienced friend" trust model.
+- **Parts compatibility obligation:** Recommendations must match exact vehicle (YMMT). Trim is critical — it determines equipment and which fixes apply. A fix for the SRT 392 does not apply to the base V6.
+- **Parts data is crowdsourced owner experience, not app endorsement:** Known Issues reliability ratings and aftermarket recommendations are sourced from real owner feedback. The app reports what owners have found — it does not editorially endorse any product. Disclaimer must cover this explicitly.
+- **US Market-First, GDPR-Compatible by Architecture:** Product targets the US market. Operator is a contractor based in Germany. GDPR compliance at MVP is achieved through data minimization:
+  - **Free tier:** localStorage only. No server-side storage. No user identification. No personal data processed. No GDPR obligation.
+  - **Analytics:** Cookie-free analytics only (e.g., Plausible). No tracking cookies. No consent banner needed.
+  - **Ads:** Contextual ad networks (non-cookie-based targeting) preferred. If cookie-based ad networks are used, a cookie consent banner is required for EU visitors.
+  - **Parts feedback loop:** Anonymous by default. No user identification required to flag an incorrect recommendation.
+  - **Premium tier (Growth phase):** User accounts introduce personal data. Before Premium launches: full privacy policy, data processing agreement with Supabase, and right-to-erasure support required.
+  - **Risk framing:** A solo contractor in Germany marketing to the US has minimal GDPR exposure IF the free tier genuinely processes no personal data and uses no tracking cookies. This architecture achieves that. Liability surface is near-zero at MVP.
+
+### Technical Constraints
+
+- **Content severity classification:** All guides and Known Issues entries are classified at generation:
+  - **High-risk** (brakes, electrical, drivetrain, steering): Safety Officer blocks if issues found. Safety warning is first element rendered. Complex repairs routed to mechanic.
+  - **Medium-risk** (coolant, transmission fluid, battery): Safety Officer reviews, flags warnings where relevant. Does not block.
+  - **Low-risk** (oil change, air filter, wipers): Safety Officer passes through. Standard disclaimer only.
+  - Severity calibration prevents warning fatigue — uniform high-alert across all content trains users to ignore warnings.
+- **AI accuracy:** Safety-relevant guidance cross-referenced against known-good vehicle data. Confidence level defined — not self-reported by AI. Basis: consistency across multiple prompts or match against known vehicle data.
+- **AI regression test harness:** Known vehicle/symptom pairs with expected outputs run pre-deploy. Includes adversarial test cases — intentionally wrong part numbers, mismatched trims, bad cost data — to verify the validation agent catches them.
+- **AI Agent Architecture — six-agent pipeline:**
+  1. **Mechanic AI (Core Specialist):** Only user-facing agent. Handles task identification, vehicle extraction, symptom diagnosis, guide generation.
+  2. **Safety Officer:** Reviews all content before it reaches users. Blocking gate for high-risk content. Severity-calibrated. Core product requirement — not a compliance add-on. Maintains the trust that makes the product valuable.
+  3. **Parts Specialist:** Validates parts recommendations — compatibility, discontinued parts, OEM vs aftermarket accuracy, cost estimates.
+  4. **AI Validation Agent:** Quality gate on curated Known Issues data before publishing. Validated by adversarial test cases.
+  5. **Privacy & Compliance Manager:** Reviews data flows and new features for GDPR compliance. Runs pre-deploy on anything that touches user data.
+  6. **Content Quality Reviewer:** Final gate before user sees output. Owns tone ("experienced friend"), completeness, and consistency.
+  - **Real-time pipeline:** Mechanic AI → Safety Officer → Parts Specialist → Content Quality Reviewer → User
+  - **Pre-publish pipeline:** Human-curated Known Issues → AI Validation Agent → Privacy & Compliance Manager → Published
+  - **Pre-deploy pipeline:** New feature → Privacy & Compliance Manager → Safety Officer → Deploy
+  - Agents are pre-publish quality gates — only Mechanic AI faces the user. Validation is seamless and behind the scenes.
+  - **Agent prompts are version-controlled:** Each agent's system prompt lives in the codebase. Changes go through the same deploy cycle. Claude Code can read, modify, and test agent prompts without manual intervention.
+- **Known Issues data is curated, not AI-generated:** Verified fixes, predicted costs, and reliability comparisons stored per vehicle. Includes: predicted repair cost range, OEM part + price, aftermarket alternative + price, reliability rating from owner feedback. Cost figures labeled as estimates with last-updated date and "verify before purchasing" callout.
+- **Known Issues keyed to full YMMT:** A fix valid for one trim is not valid for another. Trim determines equipment. AI Validation Agent confirms full YMMT match before surfacing.
+- **Known Issues resolution tracking is Premium:** Free tier sees all Known Issues warnings and can dismiss with a basic "I've addressed this" — prevents warning fatigue from eroding trust in safety callouts. Premium adds full tracking: installed parts history, resolution notes, service timeline. Upgrade path is depth of tracking, not the ability to dismiss.
+- **Priority cache invalidation for safety-relevant Known Issues:** Safety issues checked and pushed before any other content when online. On first reconnection after a safety recall, update surfaces as a blocking modal — not an inline update that can be scrolled past. Acknowledges inherent offline-first limitation: priority invalidation reduces the window, does not eliminate it.
+- **Atomic caching:** Guides cache as a complete unit or not at all. No partial state. A half-cached guide in a garage is worse than no guide.
+- **Cache status badge:** Every guide shows explicit cached/not-cached indicator. No ambiguity before the user leaves for the garage.
+- **Offline-first is trust architecture:** A guide that lives on the device, works without internet, is the user's in a way cloud-dependent products aren't. Cache badge, atomic caching, "last verified" date are trust features — not just reliability features. Competitive moat online-only products can't match.
+- **Step-scoped inline AI assistance:** Within a guide, users can tap any step to open an inline AI dialogue scoped to that step. Example: "Can you explain more on step 5?" Step expands with contextual chat below it — AI responds with context scoped to vehicle, guide, and that specific step. Other steps unaffected. Dialogue collapses when user is done. Inline AI chat requires API call — unavailable offline. Existing inline tips (baked into guide at generation) remain available offline. UX makes this clear — no silent failure.
+- **"Not sure?" trim helper:** If a user doesn't know their trim, clarifying questions narrow it down (engine size, package features). No one stuck at YMMT selection.
+- **Human review escalation:** If AI Validation Agent rejects curated data, escalates to solo operator for review before blocking. Prevents false negatives from locking out correct information.
+- **Rate-limited anonymous parts flagging:** One-tap flag inline with parts. Zero friction. Anonymous — no account required. Rate-limited to prevent spam. Multiple flags trigger AI Validation Agent review.
+- **Cascading YMMT data:** Accepts all vehicles from day one. AI generates guides for any vehicle. Known Issues curated for Challenger at launch, expanding over time. Architected for data-source swap without restructuring.
+- **Parts linking strategy:** MVP uses Google/Bing search links. Growth phase: affiliate partnerships with automotive retailers (RockAuto, Amazon Auto, O'Reilly) as a third revenue stream. Architecture supports swapping search links for direct retailer links without restructuring.
+- **Parts feedback loop:** Users flag incorrect recommendations inline. Anonymous — no account required. Feeds accuracy tracking.
+
+### Domain Patterns
+
+- **Known Issues Registry (proactive, cost-aware, owner-reported):** Recurring problems surfaced before the user hits them — with predicted costs, OEM vs aftermarket comparison, and reliability ratings. Design issues, not mileage predictions. Driving style and conditions vary; mileage is not a reliable indicator. Example: Dodge used plastic end-tanked radiators on the Challenger — owners reported repeated failures regardless of mileage. Briefing framed as: "Owners of your [YMMT] have reported [issue]. Here's what they found and how they fixed it."
+- **Vehicle Onboarding Briefing:** Immediately after YMMT selection, the full AI-powered experience is available for any vehicle — diagnosis, guides, parts. For vehicles with curated Known Issues (Challenger at launch): briefing also surfaces owner-reported issues with costs and fixes. For other vehicles: "Owner-reported issues for this vehicle will appear here as they're reported." All vehicles fully supported from day one. Known Issues is a bonus layer that expands as the community contributes.
+- **Progressive disclosure on Known Issues briefing:** Most critical issues surfaced first. Full list expandable. Doesn't overwhelm new owners.
+- **Guides are the primary product. Chat is the entry point.** User describes symptom via AI chat → guide generates → user enters checklist mode. The agent pipeline, offline caching, Safety Officer review — all optimized for the guide experience. Chat UX matters for the first 30 seconds. Guide UX matters for the next hour.
+- **Safety callouts are structural, not optional:** First element rendered in any high-risk guide. Undismissable. Severity-calibrated — present on High-risk content, contextual on Medium-risk.
+- Scheduled maintenance follows predictable mileage/time-based intervals. Known Issues are separate — design-specific, not interval-based.
+- Forum-sourced aftermarket feedback is the most reliable consumer signal for parts quality.
+- The **"experienced friend" mental model** is the core domain pattern.
+
+### Risk Mitigations
+
+| Risk | Likelihood | Impact | Agent(s) / Mitigation |
+|---|---|---|---|
+| AI hallucinates incorrect part numbers | Medium | High | Parts Specialist + Safety Officer + regression harness with adversarial test cases |
+| User follows guide for wrong vehicle | Medium | High | Mechanic AI (YMMT gate) + Parts Specialist + "Not sure?" trim helper |
+| Known Issue fix is wrong for trim | Medium | High | AI Validation Agent + adversarial tests + keyed to full YMMT |
+| Cost estimates erode trust | Medium | Medium | Parts Specialist labels as estimates; freshness indicator; "verify before purchasing" |
+| Aftermarket recommendation damages trust | Low | High | Parts Specialist + Safety Officer; disclaimer: crowdsourced experience, not endorsement |
+| Liability for mechanical advice | Medium | Medium | Safety Officer (blocking gate on high-risk); contextual disclaimer; mechanic routing |
+| Offline guide becomes stale | Low | Medium | Priority cache invalidation; safety recalls as blocking modal on reconnection |
+| Community trust destruction | Medium | High | Regression harness; rapid deploy cycle; anonymous parts feedback loop |
+| GDPR liability | Low | High | Privacy & Compliance Manager; free tier processes no personal data by architecture |
+| Warning fatigue undermines safety | Medium | High | Severity classification; progressive disclosure; free-tier dismiss; safety callouts undismissable |
+| Incomplete guide shipped | Medium | High | Content Quality Reviewer (step completeness check) |
+| Partial cache in garage | Medium | High | Atomic caching; cache status badge |
+| AI Validation Agent approves bad data | Low | High | Adversarial test cases fed through validator; human review escalation on rejections |
+| Inline chat fails silently offline | Medium | Medium | Explicit UX indicator: inline chat unavailable offline; inline tips remain |
