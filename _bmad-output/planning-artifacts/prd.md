@@ -425,10 +425,13 @@ AutoCare Companion is a Next.js PWA targeting mobile-first garage use. The produ
 
 | Metric | Target | Why |
 |---|---|---|
-| Time to Interactive (TTI) | <3s on 4G mobile | Guide must be usable before patience runs out in a driveway |
+| Time to Interactive (TTI) — Mid-range devices | <3s on 4G mobile | Guide must be usable before patience runs out in a driveway. Target: iPhone 12, Pixel 5, similar. |
+| Time to Interactive (TTI) — Low-end devices | <5s on 3G | Older devices with slower processors. Performance Profiler Panel identified this as real-world constraint. |
 | Cached guide load | <1s | No network dependency. Instant in the garage. |
 | AI pipeline end-to-end | <8s | Full pipeline: Mechanic AI → Safety Officer → Parts Specialist → Content Quality Reviewer. Loading state sets expectations. Low-risk guides skip Safety Officer blocking gate — faster. |
 | Initial JS bundle | <150KB gzipped | Next.js code splitting handles this. Guide pages are the hot path. |
+
+**Stratified TTI targets (Performance Profiler Panel):** Mid-range devices (<3s) are the primary target. Low-end device detection triggers simplified UI — fewer animations, reduced bundle. Low battery mode detection uses same simplified path.
 
 ### SEO Strategy
 
@@ -440,29 +443,73 @@ AutoCare Companion is a Next.js PWA targeting mobile-first garage use. The produ
 
 ### Accessibility Level
 
-- **Target: WCAG AA**
-- **Color contrast:** Minimum 4.5:1. Garage use in variable light — phone in sunlight, dim garage, night work.
+- **Target: WCAG AA (AA for general UI, AAA for safety callouts)**
+- **Color contrast:**
+  - General UI: Minimum 4.5:1 (WCAG AA). Garage use in variable light — phone in sunlight, dim garage, night work.
+  - Safety callouts: 7:1 contrast ratio (WCAG AAA). Chaos Monkey Scenarios validated this for dark garage visibility with low phone brightness.
 - **Screen reader support:** Semantic HTML. Guide steps as ordered lists. Safety callouts use `role="alert"` for high-risk warnings. Parts cards have descriptive labels.
 - **Touch and keyboard:** Full keyboard traversability for desktop. Visible focus rings on all interactive elements. System font sizing respected — no fixed pixel sizes that break on accessibility zoom.
 - **Error messages:** Descriptive text, not just color. "Part not found for your vehicle" — not a red highlight with no explanation.
 
 ### Design Direction & Micro-Interactions
 
-- **UI inspiration:** huly.io and reflect.app — polished, subtle micro-interactions and smooth visual transitions.
-- **Scoped to index/landing page only.** Chat and guide experiences are clean and focused — their built-in dynamism (step expand/collapse, inline chat open/close, progress updates) IS the interaction layer. No background animations added on top.
+- **UI inspiration:** [Next.js showcase](https://nextjs.org/showcase), [huly.io](https://huly.io), [reflect.app](https://reflect.app) — polished, subtle micro-interactions and smooth visual transitions.
+
+#### Two-Phase Design Language (Genre Mashup)
+
+AutoCare Companion uses different visual treatments for different product phases:
+
+**Discovery Phase (index, briefing, chat):**
+- Calm, polished aesthetics from productivity apps (huly.io, reflect.app, Next.js showcase)
+- Ambient background motion, floating elements, gradient shifts
+- Builds trust and confidence before the user commits to a task
+- Goal: "This product knows what it's doing."
+
+**Execution Phase (guides, checklists):**
+- High-contrast, task-focused automotive maintenance context
+- Clean, stripped-down UI with no decorative motion
+- Safety callouts use AAA contrast (7:1) for visibility in dark garages
+- Goal: "I can read this with grease on my hands in dim light."
+
+This phase shift mirrors the user's mental state: browsing → confident task execution.
+
+**Micro-Interactions Scope:**
 
 | Surface | Micro-Interactions | Rationale |
 |---|---|---|
 | Index / landing page | Full treatment — ambient background motion, floating elements, gradient shifts | First impression. No competing UI elements. Polish earns trust before the user touches a guide. |
-| Chat interface | None | Typing indicator and AI response appearing are already dynamic. Background motion competes with text the user is reading. |
-| Guide experience | None | Step expand/collapse, inline chat, progress bar — the UI itself is the micro-interaction. Background motion distracts from an active task. |
+| Briefing page | Subtle — smooth card reveals, gentle transitions | Still in Discovery Phase but moving toward task focus. |
+| Chat interface | None | Typing indicator and AI response appearing are already dynamic. Background motion competes with text the user is reading. Entering Execution Phase. |
+| Guide experience | None | Step expand/collapse, inline chat, progress bar — the UI itself is the micro-interaction. Background motion distracts from an active task. Full Execution Phase. |
 
-**Implementation constraints (Performance Profiler Panel):**
+**Implementation constraints (Performance Profiler Panel + Architecture Decision Records):**
 - CSS `@keyframes` only. `transform` and `opacity` properties exclusively — no layout or paint triggers.
 - No animation libraries at MVP. Zero JS bundle cost for animations.
 - Max 3–4 animated elements on screen simultaneously.
 - `prefers-reduced-motion` disables ALL animations completely. Product is visually complete and intentional without them.
 - Animations are enhancement, never structure. Test with animations disabled as the baseline.
+
+**Animation Architecture (ADR):**
+- File organization: `/styles/animations/discovery.css` (index, briefing), `/styles/animations/execution.css` (guides — currently empty, reserved for future)
+- Server Component rendering: animations load inline via `<style>` tags, not separate CSS files — eliminates FOUC (flash of unstyled content)
+- CSS fallbacks: all animations wrapped in `@media (prefers-reduced-motion: no-preference)` — baseline UX is motion-free
+- Inline loading strategy: Discovery Phase animations inline in page `<head>`, Execution Phase has no animations to load
+
+### Inline Tips vs. Inline Chat (User Persona Focus Group)
+
+**Inline Tips (static, offline):**
+- Baked into the guide at generation time by Content Quality Reviewer
+- Available offline — part of the cached guide
+- Examples: "Seized drain plugs are common on older models. Try penetrating oil and wait 15 minutes."
+- Rendered as expandable step details — no AI call required
+
+**Inline Chat (dynamic, online-only):**
+- User taps "Ask AI" on a step → opens scoped dialogue
+- Requires network connection — makes real-time API call
+- Clarifying questions, troubleshooting, "explain more about step 5"
+- UX makes online requirement clear — "AI Help (requires connection)" label, disabled state when offline
+
+This separation ensures the core guide experience (static tips) works offline while preserving the option for deeper help when connected.
 
 ### Implementation Considerations
 
@@ -470,3 +517,56 @@ AutoCare Companion is a Next.js PWA targeting mobile-first garage use. The produ
 - **Service Worker strategy:** Cache-first for guide content (atomic). Network-first for AI API calls (each guide is unique — can't cache). Stale-while-revalidate for static assets.
 - **Environment variables:** OpenAI API key in Vercel environment only. Server-side AI calls via Next.js API routes or Server Actions.
 - **Safari PWA workaround:** iOS Safari detection on first visit → onboarding prompt with visual "Add to Home Screen" guide. Shown once, dismissible.
+
+### Resilience Testing (Chaos Monkey Scenarios)
+
+The following stress tests and hardenings were identified to ensure the product works in real-world failure modes:
+
+#### Safari iOS PWA Gaps
+**Scenario:** Install prompt doesn't auto-appear. Push notifications limited. Service Worker has iOS-specific quirks.
+
+**Hardenings:**
+- Explicit onboarding flow with "Add to Home Screen" visual guide (iOS Safari detection)
+- Push notifications marked as "Premium feature — limited on iOS" in settings
+- Service Worker tested on iOS Safari specifically — cache eviction behavior differs from Chrome
+- Fallback: if Service Worker fails to register, show "Offline mode unavailable on this browser" and disable cache badge
+
+#### Low Battery Mode
+**Scenario:** Phone detects low battery → disables animations, throttles JS, reduces background tasks.
+
+**Hardenings:**
+- CSS animations wrapped in `@media (prefers-reduced-motion)` — respects system battery saver
+- Low-end device detection (from Performance Profiler Panel) applies same constraints as low battery mode
+- Simplified UI path: reduced bundle, no Discovery Phase animations, Execution Phase baseline only
+
+#### Dark Garage Lighting
+**Scenario:** User opens guide in dim garage. Phone brightness at 30%. Safety callouts must remain visible.
+
+**Hardenings:**
+- Safety callouts use 7:1 contrast ratio (WCAG AAA) — validated for low-light visibility
+- Two-Phase Design Language uses high-contrast Execution Phase for guides
+- Dark mode support (system `prefers-color-scheme`) with inverted safety callout colors tested for same 7:1 ratio
+
+#### Offline Navigation Edge Cases
+**Scenario:** User starts guide online, loses connection mid-task, taps back/forward, or navigates to uncached page.
+
+**Hardenings:**
+- Atomic guide caching: entire guide cached or nothing — no partial state
+- Service Worker serves offline fallback page for uncached routes: "This page requires connection. Cached guides: [list]"
+- Navigation within cached guide works fully offline (all steps, inline tips, progress tracking)
+- Inline chat shows "Requires connection" label and disabled state when offline — no silent failure
+
+#### Low-End Device Performance
+**Scenario:** Older Android phone (3GB RAM, slower CPU). Animations cause jank. Large JS bundle delays interactivity.
+
+**Hardenings:**
+- Device detection based on `navigator.hardwareConcurrency` and `navigator.deviceMemory` (where available)
+- Low-end path: skip Discovery Phase animations, reduce JS bundle via dynamic imports, simplify DOM
+- TTI target stratified: <5s for low-end devices (vs. <3s for mid-range)
+- Guide experience prioritized over index polish — low-end users get full guide functionality, simplified landing page
+
+**Testing Protocol:**
+- Manual testing on real devices: iPhone SE (iOS Safari), Pixel 3a (low-end Android), desktop Firefox
+- Network throttling: Fast 3G, offline mode
+- Battery saver mode enabled during testing
+- Dark environment testing with screen brightness at 30%
