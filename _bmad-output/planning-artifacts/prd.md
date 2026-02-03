@@ -1,5 +1,5 @@
 ---
-stepsCompleted: ['step-01-init', 'step-02-discovery', 'step-03-success', 'step-04-journeys', 'step-05-domain', 'step-06-innovation', 'step-07-project-type', 'step-08-scoping']
+stepsCompleted: ['step-01-init', 'step-02-discovery', 'step-03-success', 'step-04-journeys', 'step-05-domain', 'step-06-innovation', 'step-07-project-type', 'step-08-scoping', 'step-09-functional', 'step-10-nonfunctional', 'step-11-polish']
 classification:
   projectType: web_app
   domain: automotive
@@ -21,6 +21,10 @@ projectDocsCount: 0
 
 **Author:** Devon
 **Date:** 2026-01-31
+
+## Executive Summary
+
+AutoCare Companion is an offline-first PWA that generates AI-powered automotive maintenance guides for DIY car owners who need expert guidance in their garage. Unlike generic repair manuals or chatbots, it delivers vehicle-specific, validated guides through a six-agent validation pipeline (Mechanic AI, Safety Officer, Parts Specialist, Content Quality Reviewer, Cost Estimator, Known Issues Gatherer) that ensures accuracy and safety. The app works fully offline after initial setup, proactively surfaces known issues before the user encounters them, and operates within solo sustainability constraints (<$20/month API costs, ≤1 hour/week maintenance).
 
 ## Success Criteria
 
@@ -47,523 +51,389 @@ projectDocsCount: 0
 - **AI Maintainability:** Claude Code can read, understand, and modify the codebase without manual intervention
 - **Bus Factor 1:** Solo sustainable — one person can maintain, update, and ship features
 - **Offline-First PWA:** Service Worker caches generated guides automatically; works in garages with spotty or no connectivity
-- **YMMT Without a Database:** Cascading selector (Year → Make → Model → Trim) works via lightweight JSON — no manual database maintenance
-
-### Measurable Outcomes
-
-| Metric | Target | Timeframe |
-|---|---|---|
-| First user visits | >100 unique visitors | Month 1 |
-| Guide completion rate | >60% of started guides completed | Month 2 |
-| Ad revenue | First $1 earned | Month 2 |
-| Operational cost | <$20/month | Ongoing |
-| Developer time | ≤1 hour/week | Ongoing |
-| Aftermarket recommendation accuracy | AI flags aftermarket when reviews support it | MVP launch |
-
-## Product Scope
-
-### MVP - Minimum Viable Product
-
-- AI chat interface with symptom-based diagnosis
-- AI-generated maintenance guides (checklist-centric)
-- Inline parts recommendations (OEM + aftermarket, review-informed)
-- Cascading YMMT selector (Challenger data at launch)
-- Offline-first PWA (Service Worker cached guides)
-- Ad-supported free tier
-- localStorage progress tracking
-
-### Growth Features (Post-MVP)
-
-- User accounts (frictionless magic link signup)
-- Vehicle dashboard with mileage-based service tracking
-- Cloud sync across devices (Supabase)
-- Service interval notifications
-- Service history export (PDF for resale/insurance)
-- One-click cart for parts purchasing
-- Premium subscription tier
-
-### Vision (Future)
-
-- 3D model cars showing part locations synced with checklist progress
-- Multi-vehicle garage
-- Expanded vehicle coverage beyond Challengers
-- Community-validated aftermarket recommendations
-- Advanced AI confidence scoring
+- **Year, Make, Model, Trim (YMMT) Without a Database:** Cascading selector works via lightweight JSON — no manual database maintenance
 
 ## User Journeys
 
-### Journey 1: The Uncertain Diagnoser — "Something's Wrong But I Don't Know What"
-*Covers: Uncertain Diagnoser, First-Time Car Owner*
-
-**Persona:** Jake, 24. Just bought his first Challenger off a used lot. A week later, the check engine light comes on. He's never done any car maintenance. A friend sent him a link to AutoCare Companion from a Challenger forum.
-
-**Opening Scene:** Jake sits in his driveway staring at the check engine light. He types into AutoCare Companion: *"My check engine light just came on."* He doesn't know what task to select. He doesn't even know if this is serious.
-
-**Rising Action:** AI asks one clarifying question: *"Did it come on suddenly or has it been flashing?"* Jake says suddenly. AI responds: *"This is likely a sensor or emissions issue — not an emergency, but worth addressing. Here's what to check first."* A custom task is generated — not from the 9 core tasks, but built on the fly for his symptom. The checklist opens with a simple first step.
-
-**Climax:** Jake follows step 3 and sees an inline parts recommendation. AI flags: *"For your 2023 Challenger, this O2 sensor replacement is a common fix for this code."* The part is the right one. First suggestion, no guesswork. Jake realizes he can actually do this himself.
-
-**Resolution:** Jake completed the task. The guide cached offline so he could follow it in his driveway with his phone on the dashboard. Progress bar hits 100%. He didn't need a mechanic. He didn't need to understand cars beforehand. The app was the experienced friend he didn't have.
-
-**Requirements Revealed:** Symptom-based AI task generation, single clarifying question flow, inline parts with vehicle-specific accuracy, offline caching, progress visualization.
-
----
-
-### Journey 2: The Inexperienced Owner — "I Need Someone Who Knows Cars"
-*Covers: Inexperienced Owner, Safety-First User*
-
-**Persona:** Sarah. Not a car person. Recently drove down a mountain in Austria and burned up her brakes. Her friend, panicking, threw water on the hot rotors. Sarah doesn't know what happened mechanically — she just knows something went very wrong.
-
-**Opening Scene:** Sarah opens AutoCare Companion. She types: *"My brakes feel weird after driving downhill a lot."* She doesn't know the technical term. She doesn't know her trim.
-
-**Rising Action:** AI doesn't immediately jump to a guide. It asks: *"Did the brakes feel spongy, or did they stop working well while you were still driving downhill?"* Sarah says both. AI flags a **safety warning first**: *"⚠️ If your brakes overheated, do NOT pour water on them — this can crack the rotors. If someone already did this, the rotors likely need replacement."* This single line would have saved Sarah's situation. Then AI guides her to the YMMT cascading selector. She clicks her year, then the make, then the model — the trim options narrow down and she recognizes hers. *Memory jogged.*
-
-**Climax:** AI generates a full brake replacement guide: inspect rotors for heat cracks, replace pads and shoes, source the right parts. Sarah can't do this herself — and AI knows that. The guide includes a clear recommendation: *"This repair requires professional installation. Here's what to tell your mechanic, and here are the parts to buy yourself to save money."* Sarah goes to RockAuto with the exact part numbers. Saves money. Arrives at the mechanic knowing exactly what's needed.
-
-**Resolution:** Sarah didn't need to be a mechanic. She needed an experienced friend who could diagnose, warn her about dangerous mistakes, and tell her exactly what to do — even if "what to do" is "go see a pro, but buy the parts yourself." The app transferred Devon's knowledge to her.
-
-**Requirements Revealed:** Safety warnings as first-priority content, cascading YMMT selector for memory-jogging, AI-generated mechanic-vs-DIY recommendation, parts sourcing with exact part numbers, natural language symptom input.
-
----
-
-### Journey 3: The Mid-Task Stuck User — "This Doesn't Match What the Guide Says"
-*Covers: Mid-Task Stuck User, Cautious DIYer*
-
-**Persona:** Marcus, experienced enough to do his own oil changes and brake pads, but not a full mechanic. He's halfway through a coolant flush on his Challenger and the drain plug won't budge.
-
-**Opening Scene:** Marcus is on step 4 of the coolant flush guide, wrench in hand, in his driveway. No internet signal. The guide is cached offline — good. But the bolt is seized and the guide just says "remove drain plug."
-
-**Rising Action:** Marcus taps the step. An inline tip appears: *"Seized drain plugs are common on older models. Try penetrating oil (PB Blaster) and wait 15 minutes. If still stuck, use an impact wrench. Do NOT overtorque — you'll crack the housing."* Safety callout included. He doesn't have to leave the checklist, doesn't have to Google, doesn't have to leave his driveway.
-
-**Climax:** The tip works. Marcus continues. Two steps later, he sees an unexpected fluid color. He taps again: *"Rusty coolant is normal if it hasn't been flushed in a while. Drain completely before refilling. If it's milky/creamy, that indicates oil contamination — stop and consult a mechanic."* His fluid is rusty. He continues confidently.
-
-**Resolution:** Marcus completed the task without leaving the app, without losing his place, without a moment of real anxiety. The guide anticipated the problems he'd actually encounter — not just the textbook version.
-
-**Requirements Revealed:** Inline pro tips per step, safety callouts with clear stop/go guidance, offline-first reliability, contextual media references, AI-generated "what you're seeing is normal" reassurance.
-
----
-
-### Journey 4: The Aftermarket Discoverer — "OEM Isn't Always Right"
-*Covers: Aftermarket-Aware Owner, Time-Constrained DIYer*
-
-**Persona:** Devon. His Challenger is back in the shop for a second OEM driveshaft failure. He wants the app to give him the full picture — not just a brand-loyal default.
-
-**Opening Scene:** Devon opens AutoCare Companion and selects driveshaft replacement for his Challenger. The guide loads. He scrolls to the parts section.
-
-**Rising Action:** AI doesn't just list the OEM part, and it doesn't just say "go aftermarket." It presents what consumers are actually saying:
-
-> **OEM Driveshaft**
-> ⚠️ Documented failure reports on this model. Multiple owners report repeat breakage within 2 years.
-
-> **Aftermarket: DSS One-Piece Driveshaft**
-> Higher rated specs. Some owners report minor vibrations at highway speed. Significantly more durable long-term based on forum feedback.
-
-Both options are there. Both have the real-world context behind them. No spin.
-
-**Climax:** Devon reads both sides. He already knows the answer for his situation — two broken OEM shafts means the vibration tradeoff is worth it. He selects the DSS part. But a first-time Challenger owner with only one OEM shaft might weigh it differently. The app respects that. It's not making the decision — it's giving the information an experienced owner would have.
-
-**Resolution:** The app didn't tell Devon what to do. It told him what other owners have experienced — the good and the bad — and let him decide. That's the trust builder. That's what makes it feel like advice from a knowledgeable friend, not a sales pitch.
-
-**Requirements Revealed:** Balanced consumer feedback on parts (pros AND cons), OEM failure documentation, aftermarket trade-off presentation, user-driven final decision.
-
----
-
-### Journey 5: The Solo App Owner — "One Hour a Week"
-*Covers: Admin/Operations (Devon)*
-
-**Persona:** Devon. Career Knowledge Manager. AutoCare Companion is live. It's Tuesday evening after work. He has an hour.
-
-**Opening Scene:** Devon opens the site on his laptop. Checks the dashboard — visitor count, guide completions, ad revenue. Everything looks healthy. No alerts.
-
-**Rising Action:** He checks for user feedback — a comment on a Challenger forum thread mentions the app helped them with a transmission issue but the parts link was wrong. Devon notes it. He opens Claude Code, describes the issue. The AI agent fixes the parts link generation logic, tests it, and deploys. Took 10 minutes.
-
-**Climax:** Devon spends the remaining time thinking bigger. He's been reading about AI-to-3D-printer workflows — could users generate a small model of their car's engine bay for reference? He notes it for a future sprint. He also sketches out how to expand beyond Challengers once the pattern is proven.
-
-**Resolution:** Devon spent 1 hour: 10 minutes reviewing, 10 minutes on a bug fix via AI, 40 minutes on strategy and future planning. The app runs itself. AI agents handle the code. He's the product thinker, not the developer.
-
-**Requirements Revealed:** Simple usage monitoring, AI-maintainable codebase, fast deploy cycle via GitHub/Vercel, feedback collection path, low-friction bug reporting and resolution.
-
----
-
-### Journey 6: The Remote Helper — "Let Me Help From Here"
-*Covers: Helper/Advisor (Secondary Participant)*
-
-**Persona:** Devon's friend calls him while working on their Challenger. Devon isn't there — he's at work. The friend has the app open but is stuck on whether to use the OEM or aftermarket part.
-
-**Opening Scene:** Devon's friend texts: *"Hey, the app says OEM but I remember you said aftermarket was better for this."* Devon opens AutoCare Companion on his phone during lunch.
-
-**Rising Action:** Devon navigates to the same guide his friend is on. He can see the exact step and parts recommendation. The aftermarket flag is there — his friend just missed it. Devon texts: *"Scroll down past the first part — there's an aftermarket recommendation flagged. That's the one."*
-
-**Climax:** Friend finds it. Buys the right part. Continues the guide.
-
-**Resolution:** The app's clear structure — consistent steps, explicit aftermarket flags, same layout on any device — made remote troubleshooting possible without a real-time collaboration feature. The guide is the shared reference point.
-
-**Requirements Revealed:** Consistent cross-device layout, clear visual hierarchy for aftermarket flags, structured steps that are easy to navigate to remotely, future: shareable checklist state.
-
----
-
-### Journey Requirements Summary
-
-The table below documents **which journeys validate the need for each capability** — not which journeys are the only place that capability appears. Each capability, once built, serves users across all relevant interactions.
-
-| Capability | Validated By Journey |
-|---|---|
-| Symptom-based AI task generation | 1, 2 |
-| Cascading YMMT selector | 2 |
-| Safety warnings (first priority) | 2, 3 |
-| Inline pro tips per step | 3 |
-| Balanced consumer feedback on parts (pros + cons) | 4 — *global product principle* |
-| OEM failure documentation | 4 |
-| Time estimates + difficulty ratings | 4 |
-| Offline-first PWA (cached guides) | 1, 3 |
-| Parts links inline with checklist | 1, 2, 4, 6 |
-| AI mechanic-vs-DIY recommendation | 2 |
-| Progress visualization | 1 |
-| AI-maintainable codebase | 5 |
-| Usage/feedback monitoring | 5 |
-| Consistent cross-device layout | 6 |
-
-**Global Product Principle:** Parts recommendations always present balanced consumer feedback — both the strengths and the reported issues — so users make informed decisions. This applies to every parts interaction across the product, not just aftermarket alternatives.
-
-## Domain-Specific Requirements
-
-### Compliance & Regulatory
-
-- **Consumer maintenance guidance product:** AutoCare Companion is closer to a cooking recipe app than to vehicle-embedded software. Cars are the subject; consumer software is the regulatory context. Future requirements evaluated against this framing — not against what the broader automotive industry demands.
-- No automotive safety certification required. ISO 26262, V2X, and safety certification standards do not apply.
-- **Disclaimer requirement:** Surfaced contextually before safety-critical steps — not as a static footer. Covers liability without breaking the "experienced friend" trust model.
-- **Parts compatibility obligation:** Recommendations must match exact vehicle (YMMT). Trim is critical — it determines equipment and which fixes apply. A fix for the SRT 392 does not apply to the base V6.
-- **Parts data is crowdsourced owner experience, not app endorsement:** Known Issues reliability ratings and aftermarket recommendations are sourced from real owner feedback. The app reports what owners have found — it does not editorially endorse any product. Disclaimer must cover this explicitly.
-- **US Market-First, GDPR-Compatible by Architecture:** Product targets the US market. Operator is a contractor based in Germany. GDPR compliance at MVP is achieved through data minimization:
-  - **Free tier:** localStorage only. No server-side storage. No user identification. No personal data processed. No GDPR obligation.
-  - **Analytics:** Cookie-free analytics only (e.g., Plausible). No tracking cookies. No consent banner needed.
-  - **Ads:** Contextual ad networks (non-cookie-based targeting) preferred. If cookie-based ad networks are used, a cookie consent banner is required for EU visitors.
-  - **Parts feedback loop:** Anonymous by default. No user identification required to flag an incorrect recommendation.
-  - **Premium tier (Growth phase):** User accounts introduce personal data. Before Premium launches: full privacy policy, data processing agreement with Supabase, and right-to-erasure support required.
-  - **Risk framing:** A solo contractor in Germany marketing to the US has minimal GDPR exposure IF the free tier genuinely processes no personal data and uses no tracking cookies. This architecture achieves that. Liability surface is near-zero at MVP.
-
-### Technical Constraints
-
-- **Content severity classification:** All guides and Known Issues entries are classified at generation:
-  - **High-risk** (brakes, electrical, drivetrain, steering): Safety Officer blocks if issues found. Safety warning is first element rendered. Complex repairs routed to mechanic.
-  - **Medium-risk** (coolant, transmission fluid, battery): Safety Officer reviews, flags warnings where relevant. Does not block.
-  - **Low-risk** (oil change, air filter, wipers): Safety Officer passes through. Standard disclaimer only.
-  - Severity calibration prevents warning fatigue — uniform high-alert across all content trains users to ignore warnings.
-- **AI accuracy:** Safety-relevant guidance cross-referenced against known-good vehicle data. Confidence level defined — not self-reported by AI. Basis: consistency across multiple prompts or match against known vehicle data.
-- **AI regression test harness:** Known vehicle/symptom pairs with expected outputs run pre-deploy. Includes adversarial test cases — intentionally wrong part numbers, mismatched trims, bad cost data — to verify the validation agent catches them.
-- **AI Agent Architecture — six-agent pipeline:**
-  1. **Mechanic AI (Core Specialist):** Only user-facing agent. Handles task identification, vehicle extraction, symptom diagnosis, guide generation.
-  2. **Safety Officer:** Reviews all content before it reaches users. Blocking gate for high-risk content. Severity-calibrated. Core product requirement — not a compliance add-on. Maintains the trust that makes the product valuable.
-  3. **Parts Specialist:** Validates parts recommendations — compatibility, discontinued parts, OEM vs aftermarket accuracy, cost estimates.
-  4. **AI Validation Agent:** Quality gate on curated Known Issues data before publishing. Validated by adversarial test cases.
-  5. **Privacy & Compliance Manager:** Reviews data flows and new features for GDPR compliance. Runs pre-deploy on anything that touches user data.
-  6. **Content Quality Reviewer:** Final gate before user sees output. Owns tone ("experienced friend"), completeness, and consistency.
-  - **Real-time pipeline:** Mechanic AI → Safety Officer → Parts Specialist → Content Quality Reviewer → User
-  - **Pre-publish pipeline:** Human-curated Known Issues → AI Validation Agent → Privacy & Compliance Manager → Published
-  - **Pre-deploy pipeline:** New feature → Privacy & Compliance Manager → Safety Officer → Deploy
-  - Agents are pre-publish quality gates — only Mechanic AI faces the user. Validation is seamless and behind the scenes.
-  - **Agent prompts are version-controlled:** Each agent's system prompt lives in the codebase. Changes go through the same deploy cycle. Claude Code can read, modify, and test agent prompts without manual intervention.
-- **Known Issues data is curated, not AI-generated:** Verified fixes, predicted costs, and reliability comparisons stored per vehicle. Includes: predicted repair cost range, OEM part + price, aftermarket alternative + price, reliability rating from owner feedback. Cost figures labeled as estimates with last-updated date and "verify before purchasing" callout.
-- **Known Issues keyed to full YMMT:** A fix valid for one trim is not valid for another. Trim determines equipment. AI Validation Agent confirms full YMMT match before surfacing.
-- **Known Issues resolution tracking is Premium:** Free tier sees all Known Issues warnings and can dismiss with a basic "I've addressed this" — prevents warning fatigue from eroding trust in safety callouts. Premium adds full tracking: installed parts history, resolution notes, service timeline. Upgrade path is depth of tracking, not the ability to dismiss.
-- **Priority cache invalidation for safety-relevant Known Issues:** Safety issues checked and pushed before any other content when online. On first reconnection after a safety recall, update surfaces as a blocking modal — not an inline update that can be scrolled past. Acknowledges inherent offline-first limitation: priority invalidation reduces the window, does not eliminate it.
-- **Atomic caching:** Guides cache as a complete unit or not at all. No partial state. A half-cached guide in a garage is worse than no guide.
-- **Cache status badge:** Every guide shows explicit cached/not-cached indicator. No ambiguity before the user leaves for the garage.
-- **Offline-first is trust architecture:** A guide that lives on the device, works without internet, is the user's in a way cloud-dependent products aren't. Cache badge, atomic caching, "last verified" date are trust features — not just reliability features. Competitive moat online-only products can't match.
-- **Step-scoped inline AI assistance:** Within a guide, users can tap any step to open an inline AI dialogue scoped to that step. Example: "Can you explain more on step 5?" Step expands with contextual chat below it — AI responds with context scoped to vehicle, guide, and that specific step. Other steps unaffected. Dialogue collapses when user is done. Inline AI chat requires API call — unavailable offline. Existing inline tips (baked into guide at generation) remain available offline. UX makes this clear — no silent failure.
-- **"Not sure?" trim helper:** If a user doesn't know their trim, clarifying questions narrow it down (engine size, package features). No one stuck at YMMT selection.
-- **Human review escalation:** If AI Validation Agent rejects curated data, escalates to solo operator for review before blocking. Prevents false negatives from locking out correct information.
-- **Rate-limited anonymous parts flagging:** One-tap flag inline with parts. Zero friction. Anonymous — no account required. Rate-limited to prevent spam. Multiple flags trigger AI Validation Agent review.
-- **Cascading YMMT data:** Accepts all vehicles from day one. AI generates guides for any vehicle. Known Issues curated for Challenger at launch, expanding over time. Architected for data-source swap without restructuring.
-- **Parts linking strategy:** MVP uses Google/Bing search links. Growth phase: affiliate partnerships with automotive retailers (RockAuto, Amazon Auto, O'Reilly) as a third revenue stream. Architecture supports swapping search links for direct retailer links without restructuring.
-- **Parts feedback loop:** Users flag incorrect recommendations inline. Anonymous — no account required. Feeds accuracy tracking.
-
-### Domain Patterns
-
-- **Known Issues Registry (proactive, cost-aware, owner-reported):** Recurring problems surfaced before the user hits them — with predicted costs, OEM vs aftermarket comparison, and reliability ratings. Design issues, not mileage predictions. Driving style and conditions vary; mileage is not a reliable indicator. Example: Dodge used plastic end-tanked radiators on the Challenger — owners reported repeated failures regardless of mileage. Briefing framed as: "Owners of your [YMMT] have reported [issue]. Here's what they found and how they fixed it."
-- **Vehicle Onboarding Briefing:** Immediately after YMMT selection, the full AI-powered experience is available for any vehicle — diagnosis, guides, parts. For vehicles with curated Known Issues (Challenger at launch): briefing also surfaces owner-reported issues with costs and fixes. For other vehicles: "Owner-reported issues for this vehicle will appear here as they're reported." All vehicles fully supported from day one. Known Issues is a bonus layer that expands as the community contributes.
-- **Progressive disclosure on Known Issues briefing:** Most critical issues surfaced first. Full list expandable. Doesn't overwhelm new owners.
-- **Guides are the primary product. Chat is the entry point.** User describes symptom via AI chat → guide generates → user enters checklist mode. The agent pipeline, offline caching, Safety Officer review — all optimized for the guide experience. Chat UX matters for the first 30 seconds. Guide UX matters for the next hour.
-- **Safety callouts are structural, not optional:** First element rendered in any high-risk guide. Undismissable. Severity-calibrated — present on High-risk content, contextual on Medium-risk.
-- Scheduled maintenance follows predictable mileage/time-based intervals. Known Issues are separate — design-specific, not interval-based.
-- Forum-sourced aftermarket feedback is the most reliable consumer signal for parts quality.
-- The **"experienced friend" mental model** is the core domain pattern.
-
-### Risk Mitigations
-
-| Risk | Likelihood | Impact | Agent(s) / Mitigation |
-|---|---|---|---|
-| AI hallucinates incorrect part numbers | Medium | High | Parts Specialist + Safety Officer + regression harness with adversarial test cases |
-| User follows guide for wrong vehicle | Medium | High | Mechanic AI (YMMT gate) + Parts Specialist + "Not sure?" trim helper |
-| Known Issue fix is wrong for trim | Medium | High | AI Validation Agent + adversarial tests + keyed to full YMMT |
-| Cost estimates erode trust | Medium | Medium | Parts Specialist labels as estimates; freshness indicator; "verify before purchasing" |
-| Aftermarket recommendation damages trust | Low | High | Parts Specialist + Safety Officer; disclaimer: crowdsourced experience, not endorsement |
-| Liability for mechanical advice | Medium | Medium | Safety Officer (blocking gate on high-risk); contextual disclaimer; mechanic routing |
-| Offline guide becomes stale | Low | Medium | Priority cache invalidation; safety recalls as blocking modal on reconnection |
-| Community trust destruction | Medium | High | Regression harness; rapid deploy cycle; anonymous parts feedback loop |
-| GDPR liability | Low | High | Privacy & Compliance Manager; free tier processes no personal data by architecture |
-| Warning fatigue undermines safety | Medium | High | Severity classification; progressive disclosure; free-tier dismiss; safety callouts undismissable |
-| Incomplete guide shipped | Medium | High | Content Quality Reviewer (step completeness check) |
-| Partial cache in garage | Medium | High | Atomic caching; cache status badge |
-| AI Validation Agent approves bad data | Low | High | Adversarial test cases fed through validator; human review escalation on rejections |
-| Inline chat fails silently offline | Medium | Medium | Explicit UX indicator: inline chat unavailable offline; inline tips remain |
-
-## Innovation & Novel Patterns
-
-### Detected Innovation Areas
-
-**1. Six-Agent AI Validation Pipeline for Consumer Software**
-Consumer apps use a single AI model end-to-end. AutoCare Companion introduces a multi-agent pipeline where specialized agents (Safety Officer, Parts Specialist, Content Quality Reviewer) each own a validation domain and run silently before output reaches the user. Enterprise-grade validation, first in this category. Value compounds through operational learnings — tuning adversarial test cases, latency optimization, and severity gating. Proves itself in retention (guide accuracy correlates with 30-day return rate), not in feature metrics.
-
-**2. Proactive Known Issues Registry**
-The maintenance app category is entirely reactive: user has a problem → looks it up. AutoCare Companion flips the paradigm: surface known design issues *before* the user encounters them, based on real owner experience. The product knows what's coming for your car. Transforms maintenance from break-fix to preventive. Strongest innovation — data moat compounds over time. Ships first, feeds first. Architecture decision on automated gathering path made at MVP; automation ships at Growth.
-
-**3. Step-Scoped Inline AI Chat (New Interaction Pattern)**
-Guides are static checklists in every competing product. AutoCare Companion introduces: tap any step → expands with a contextual AI dialogue scoped to that step and vehicle → collapses when done → checklist continues. The AI assistant is embedded *in* the workflow, not beside it. A completion accelerator — users who engage with inline chat have measurably higher guide completion rates. Don't overstate in positioning: table stakes within 12–18 months. 3-question limit on free tier with counter visible from first tap ("AI Help: 3 questions remaining").
-
-**4. Vehicle Onboarding Briefing as First Value Delivery**
-No maintenance app delivers value before the user has a problem. AutoCare Companion's first interaction after YMMT selection: *"Here's what owners of your car have reported."* Immediate, community-powered, zero-task value. Real value from a single input, in a category where no one does this. Forms a retention loop with Known Issues: the briefing plants the seed; the Known Issues entry harvests it when the issue surfaces in the user's workflow.
-
-**5. Offline-First as Trust Architecture**
-Offline capability in consumer apps is typically a connectivity fallback. AutoCare Companion positions it as a trust signal: the guide is yours, on your device, works when you need it. Cache status badge and atomic caching aren't reliability features — they're trust features. First-mover advantage — competitors will copy once they see it. Ship fast and lock the narrative. Cache badge is the highest-conversion UX surface in the product — design priority equivalent to YMMT selector and parts card. Users who proactively cache guides are the highest-engagement segment.
-
-**6. AI-Maintainable Product for Solo Sustainability**
-The entire product is architected so an AI agent (Claude Code) can read, understand, modify, and deploy without human developer intervention. Agent prompts are version-controlled. Codebase designed for AI readability. Bus factor 1 — one person, ≤1 hour/week. Operational moat only — never market it. Real competitive advantage is response speed: feedback loop closure in hours vs. sprint cycles. That speed compounds — users who see issues fixed come back.
-
-### Market Context & Competitive Landscape
-
-The automotive maintenance app market is dominated by three categories — none of which compete on any of AutoCare Companion's innovation axes:
-
-| Competitor Category | Examples | What They Do | What They Don't Do |
-|---|---|---|---|
-| OBD-II Scanner Apps | Torque Pro, CarScanner | Read error codes from vehicle | No guides, no parts, no AI assistance |
-| Dealer/Manufacturer Apps | MyDodge, MyFord | Brand-locked service scheduling | OEM-only, no aftermarket intelligence, no community knowledge |
-| Generic How-To | YouTube, forums | Unstructured vehicle-specific content | No offline, no AI, no structure, buried in noise |
-
-**Innovation whitespace:** No competitor has proactive known issues, multi-agent AI validation, step-scoped inline AI, offline-first trust architecture, or community-powered reliability data at the product level. The product enters a market with no direct competitor on any of these axes.
-
-### Innovation Tiers & Durability
-
-| Tier | Innovation | Score | Durability | Window |
-|---|---|---|---|---|
-| Lead differentiator | Known Issues Registry | 4.55 | Compounds over time | Open — data moat grows |
-| Lead differentiator | Onboarding Briefing | 3.95 | Tied to Known Issues data | Open while data grows |
-| UX delight | Step-Scoped Inline Chat | 3.55 | Table stakes by 2027 | 12–18 months |
-| Invisible enabler | Six-Agent Pipeline | 3.45 | Operational learnings compound | Open — tuning advantage grows |
-| Trust foundation | Offline-First | 3.25 | Table stakes by 2027 | 6–12 months for positioning |
-| Operational moat | AI-Maintainable Product | 3.25 | Compounds passively | Open — no action needed |
-
-**Marketing headline:** "Your car already knows what's going to break. AutoCare Companion tells you before it does."
-
-### Validation Approach
-
-Each innovation has a specific signal that proves it's working:
-
-| Innovation | Validation Signal | Timeframe |
-|---|---|---|
-| Six-agent pipeline | Zero safety-critical errors reach users in first 100 guides generated | Month 1–2 |
-| Proactive Known Issues | Onboarding briefing open rate >40%; return visit within 7 days after a briefed Known Issue becomes relevant (loop closing signal) | Month 1–2 |
-| Step-scoped inline chat | Step-help tap rate >20% of guides; completion rate lift: guides with chat engagement vs. without | Month 2 |
-| Onboarding Briefing | First-session: user completes YMMT + reads briefing before leaving | Month 1 |
-| Offline-first trust | Users cache guides proactively; cache badge viewed >50% of guides | Month 2 |
-| AI-maintainable product | Bug fixes and deploys via Claude Code without manual developer intervention | Ongoing |
-
-**Cross-innovation validation signals:**
-
-| Innovation Loop | Validation Signal | Timeframe |
-|---|---|---|
-| Known Issues + Onboarding Briefing (retention loop) | Return visit within 7 days after a briefed Known Issue surfaces in user's workflow | Month 2–3 |
-| Pipeline accuracy + trust (invisible retention driver) | Guide accuracy correlated with 30-day return rate | Month 2–3 |
-| Inline chat + guide completion (engagement accelerator) | Completion rate lift: guides with chat engagement vs. without | Month 2 |
-
-### Risk Mitigation
-
-| Innovation | Risk | Mitigation |
-|---|---|---|
-| Six-agent pipeline | Pipeline latency makes guide generation feel slow | Agents run in parallel where dependencies allow; loading state sets expectations ("Building your guide...") |
-| Proactive Known Issues | Curated data is wrong — damages trust before user starts a task | AI Validation Agent + adversarial test cases gate all Known Issues before publish |
-| Step-scoped inline chat | Inline chat pulls users out of checklist mode, slows them down | Chat is opt-in (tap to expand). Default is the static checklist. Users who don't need help never see it |
-| Onboarding Briefing | Briefing feels like a sales pitch, not genuine help | Framed as owner-reported experience. Tone matches "experienced friend" model. No editorial endorsement |
-| Offline-first trust | Users don't realize guide isn't cached until they're in the garage | Cache status badge always visible. Cache badge is highest-conversion UX surface — design priority equivalent to YMMT selector and parts card |
-| AI-maintainable product | AI makes a bad deploy without human review | All deploys go through regression harness + adversarial tests. Devon reviews deploy output. Enables feedback loop closure in hours vs. sprint cycles — response speed is the compounding advantage |
-
-**Future consideration:** Automated Known Issues gathering agent(s) — architecture decision (data flow, validation, YMMT keying) at MVP. Automation ships at Growth.
-
-## Web App Specific Requirements
-
-### Project-Type Overview
-
-AutoCare Companion is a Next.js PWA targeting mobile-first garage use. The product lives at the intersection of two technical needs: SEO-crawlable vehicle/task pages that rank for maintenance queries, and an app-like guide experience that works offline. Next.js App Router handles both natively — server components for SEO pages, client components for the interactive guide experience. No architectural tension to resolve.
-
-### Technical Architecture Considerations
-
-- **Next.js App Router** — hybrid rendering by default. Server Components for landing and SEO pages. Client Components for guide UI, inline chat, progress tracking.
-- **Service Worker** — handles offline caching. Atomic guide caching (all-or-nothing). Cache-first for guides, network-first for AI API calls.
-- **State:** localStorage for MVP (progress, dismissed Known Issues). IndexedDB for larger cached data at Growth.
-- **External dependencies at MVP:** OpenAI API only. AI calls routed server-side via Next.js API routes — key never touches client code.
-- **Hosting:** Vercel free tier. Zero-config deploys from GitHub. Claude Code can trigger deploys via git push.
-
-### Browser Matrix
-
-| Browser | Platform | Support Level | Notes |
-|---|---|---|---|
-| Chrome | Android | Full | Best PWA support. Install prompt appears automatically. Primary target. |
-| Safari | iOS | Partial | Service Worker works. Install prompt does NOT auto-appear — requires manual Share → Add to Home Screen. Push notifications limited on older iOS. |
-| Edge | Windows / Android | Full | Chromium-based. Same PWA behavior as Chrome. |
-| Firefox | Desktop | Full | Desktop is secondary. No PWA install prompt but full site functionality. |
-
-**Safari iOS mitigation:** Onboarding flow includes an explicit "Add to Home Screen" instruction with a visual guide. This is the single biggest PWA friction point for the target audience — worth the UX investment. Detect iOS Safari on first visit, show the prompt once, make it dismissible.
-
-### Responsive Design
-
-- **Mobile-first:** Phone in garage is the primary use case. All layouts designed mobile-first, scaled up for desktop.
-- **Touch targets:** Minimum 44×44px. Garage use means gloved hands, greasy fingers, varying light. No small tappables.
-- **Single-column guide layout:** Checklist steps, inline tips, parts cards, and inline chat all flow vertically. No horizontal scrolling in the guide experience.
-- **Desktop as secondary:** Dashboard and monitoring views benefit from wider layouts. Guide experience stays single-column even on desktop — consistency across devices supports the Remote Helper journey (Journey 6).
-
-### Performance Targets
-
-| Metric | Target | Why |
-|---|---|---|
-| Time to Interactive (TTI) — Mid-range devices | <3s on 4G mobile | Guide must be usable before patience runs out in a driveway. Target: iPhone 12, Pixel 5, similar. |
-| Time to Interactive (TTI) — Low-end devices | <5s on 3G | Older devices with slower processors. Performance Profiler Panel identified this as real-world constraint. |
-| Cached guide load | <1s | No network dependency. Instant in the garage. |
-| AI pipeline end-to-end | <8s | Full pipeline: Mechanic AI → Safety Officer → Parts Specialist → Content Quality Reviewer. Loading state sets expectations. Low-risk guides skip Safety Officer blocking gate — faster. |
-| Initial JS bundle | <150KB gzipped | Next.js code splitting handles this. Guide pages are the hot path. |
-
-**Stratified TTI targets (Performance Profiler Panel):** Mid-range devices (<3s) are the primary target. Low-end device detection triggers simplified UI — fewer animations, reduced bundle. Low battery mode detection uses same simplified path.
-
-### SEO Strategy
-
-- **Target queries:** Vehicle-specific maintenance. "2015 Dodge Challenger SRT 392 oil change", "Challenger known issues radiator", "how to replace brake pads Challenger".
-- **URL structure:** `/guides/[task]/[year]-[make]-[model]-[trim]` — clean, crawlable, human-readable. Each guide is a unique indexable URL.
-- **Server rendering:** Next.js server-renders all SEO-facing pages. Google indexes full content, not a blank JS shell.
-- **Structured data:** JSON-LD on guide pages — vehicle, task type, estimated difficulty. Helps Google categorize the content.
-- **Internal linking:** Known Issues briefing links to relevant guides. Parts sections link to related tasks. Builds topical authority in automotive maintenance.
-
-### Accessibility Level
-
-- **Target: WCAG AA (AA for general UI, AAA for safety callouts)**
-- **Color contrast:**
-  - General UI: Minimum 4.5:1 (WCAG AA). Garage use in variable light — phone in sunlight, dim garage, night work.
-  - Safety callouts: 7:1 contrast ratio (WCAG AAA). Chaos Monkey Scenarios validated this for dark garage visibility with low phone brightness.
-- **Screen reader support:** Semantic HTML. Guide steps as ordered lists. Safety callouts use `role="alert"` for high-risk warnings. Parts cards have descriptive labels.
-- **Touch and keyboard:** Full keyboard traversability for desktop. Visible focus rings on all interactive elements. System font sizing respected — no fixed pixel sizes that break on accessibility zoom.
-- **Error messages:** Descriptive text, not just color. "Part not found for your vehicle" — not a red highlight with no explanation.
-
-### Design Direction & Micro-Interactions
-
-- **UI inspiration:** [Next.js showcase](https://nextjs.org/showcase), [huly.io](https://huly.io), [reflect.app](https://reflect.app) — polished, subtle micro-interactions and smooth visual transitions.
-
-#### Two-Phase Design Language (Genre Mashup)
-
-AutoCare Companion uses different visual treatments for different product phases:
-
-**Discovery Phase (index, briefing, chat):**
-- Calm, polished aesthetics from productivity apps (huly.io, reflect.app, Next.js showcase)
-- Ambient background motion, floating elements, gradient shifts
-- Builds trust and confidence before the user commits to a task
-- Goal: "This product knows what it's doing."
-
-**Execution Phase (guides, checklists):**
-- High-contrast, task-focused automotive maintenance context
-- Clean, stripped-down UI with no decorative motion
-- Safety callouts use AAA contrast (7:1) for visibility in dark garages
-- Goal: "I can read this with grease on my hands in dim light."
-
-This phase shift mirrors the user's mental state: browsing → confident task execution.
-
-**Micro-Interactions Scope:**
-
-| Surface | Micro-Interactions | Rationale |
-|---|---|---|
-| Index / landing page | Full treatment — ambient background motion, floating elements, gradient shifts | First impression. No competing UI elements. Polish earns trust before the user touches a guide. |
-| Briefing page | Subtle — smooth card reveals, gentle transitions | Still in Discovery Phase but moving toward task focus. |
-| Chat interface | None | Typing indicator and AI response appearing are already dynamic. Background motion competes with text the user is reading. Entering Execution Phase. |
-| Guide experience | None | Step expand/collapse, inline chat, progress bar — the UI itself is the micro-interaction. Background motion distracts from an active task. Full Execution Phase. |
-
-**Implementation constraints (Performance Profiler Panel + Architecture Decision Records):**
-- CSS `@keyframes` only. `transform` and `opacity` properties exclusively — no layout or paint triggers.
-- No animation libraries at MVP. Zero JS bundle cost for animations.
-- Max 3–4 animated elements on screen simultaneously.
-- `prefers-reduced-motion` disables ALL animations completely. Product is visually complete and intentional without them.
-- Animations are enhancement, never structure. Test with animations disabled as the baseline.
-
-**Animation Architecture (ADR):**
-- File organization: `/styles/animations/discovery.css` (index, briefing), `/styles/animations/execution.css` (guides — currently empty, reserved for future)
-- Server Component rendering: animations load inline via `<style>` tags, not separate CSS files — eliminates FOUC (flash of unstyled content)
-- CSS fallbacks: all animations wrapped in `@media (prefers-reduced-motion: no-preference)` — baseline UX is motion-free
-- Inline loading strategy: Discovery Phase animations inline in page `<head>`, Execution Phase has no animations to load
-
-### Inline Tips vs. Inline Chat (User Persona Focus Group)
-
-**Inline Tips (static, offline):**
-- Baked into the guide at generation time by Content Quality Reviewer
-- Available offline — part of the cached guide
-- Examples: "Seized drain plugs are common on older models. Try penetrating oil and wait 15 minutes."
-- Rendered as expandable step details — no AI call required
-
-**Inline Chat (dynamic, online-only):**
-- User taps "Ask AI" on a step → opens scoped dialogue
-- Requires network connection — makes real-time API call
-- Clarifying questions, troubleshooting, "explain more about step 5"
-- UX makes online requirement clear — "AI Help (requires connection)" label, disabled state when offline
-
-This separation ensures the core guide experience (static tips) works offline while preserving the option for deeper help when connected.
-
-### Implementation Considerations
-
-- **PWA manifest:** App name, icons, theme color, standalone display mode. Configured for mobile install.
-- **Service Worker strategy:** Cache-first for guide content (atomic). Network-first for AI API calls (each guide is unique — can't cache). Stale-while-revalidate for static assets.
-- **Environment variables:** OpenAI API key in Vercel environment only. Server-side AI calls via Next.js API routes or Server Actions.
-- **Safari PWA workaround:** iOS Safari detection on first visit → onboarding prompt with visual "Add to Home Screen" guide. Shown once, dismissible.
-
-### Resilience Testing (Chaos Monkey Scenarios)
-
-The following stress tests and hardenings were identified to ensure the product works in real-world failure modes:
-
-#### Safari iOS PWA Gaps
-**Scenario:** Install prompt doesn't auto-appear. Push notifications limited. Service Worker has iOS-specific quirks.
-
-**Hardenings:**
-- Explicit onboarding flow with "Add to Home Screen" visual guide (iOS Safari detection)
-- Push notifications marked as "Premium feature — limited on iOS" in settings
-- Service Worker tested on iOS Safari specifically — cache eviction behavior differs from Chrome
-- Fallback: if Service Worker fails to register, show "Offline mode unavailable on this browser" and disable cache badge
-
-#### Low Battery Mode
-**Scenario:** Phone detects low battery → disables animations, throttles JS, reduces background tasks.
-
-**Hardenings:**
-- CSS animations wrapped in `@media (prefers-reduced-motion)` — respects system battery saver
-- Low-end device detection (from Performance Profiler Panel) applies same constraints as low battery mode
-- Simplified UI path: reduced bundle, no Discovery Phase animations, Execution Phase baseline only
-
-#### Dark Garage Lighting
-**Scenario:** User opens guide in dim garage. Phone brightness at 30%. Safety callouts must remain visible.
-
-**Hardenings:**
-- Safety callouts use 7:1 contrast ratio (WCAG AAA) — validated for low-light visibility
-- Two-Phase Design Language uses high-contrast Execution Phase for guides
-- Dark mode support (system `prefers-color-scheme`) with inverted safety callout colors tested for same 7:1 ratio
-
-#### Offline Navigation Edge Cases
-**Scenario:** User starts guide online, loses connection mid-task, taps back/forward, or navigates to uncached page.
-
-**Hardenings:**
-- Atomic guide caching: entire guide cached or nothing — no partial state
-- Service Worker serves offline fallback page for uncached routes: "This page requires connection. Cached guides: [list]"
-- Navigation within cached guide works fully offline (all steps, inline tips, progress tracking)
-- Inline chat shows "Requires connection" label and disabled state when offline — no silent failure
-
-#### Low-End Device Performance
-**Scenario:** Older Android phone (3GB RAM, slower CPU). Animations cause jank. Large JS bundle delays interactivity.
-
-**Hardenings:**
-- Device detection based on `navigator.hardwareConcurrency` and `navigator.deviceMemory` (where available)
-- Low-end path: skip Discovery Phase animations, reduce JS bundle via dynamic imports, simplify DOM
-- TTI target stratified: <5s for low-end devices (vs. <3s for mid-range)
-- Guide experience prioritized over index polish — low-end users get full guide functionality, simplified landing page
+### Journey 1: The Uncertain Diagnoser (Jake, Dodge Challenger SRT 392 Owner)
+
+**Context:** Check engine light illuminates. Jake notices slight bucking during acceleration. He's unsure if it's a serious issue.
+
+**Steps:**
+1. Opens AutoCare Companion PWA
+2. Selects vehicle (2015 Dodge Challenger SRT 392)
+3. Initiates AI chat: "My check engine light is on and the car is bucking a bit when I accelerate"
+4. AI asks clarifying questions (RPM when bucking occurs? Any other symptoms? Recent maintenance?)
+5. AI suggests diagnosis: Likely ignition coil failure (cylinder 3 misfire based on symptom pattern)
+6. Jake confirms or scans OBD code (P0303) → AI validates diagnosis
+7. **Known Issues briefing surfaces:** "Owners of 2015 Challenger SRT 392 have reported premature ignition coil failures. See 47 reports, 2 TSBs."
+8. AI generates guide: "Replace Ignition Coil (Cylinder 3)"
+9. **Before guide starts, Pre-Flight Modal appears:**
+   - Required tools: Socket set, torque wrench
+   - Required parts: Ignition coil (OEM $65 vs Aftermarket $35-45)
+   - Difficulty: ⭐⭐ Easy-Moderate
+   - Safety: ✅ DIY-Safe
+   - Decision framework: Choose OEM if under warranty, aftermarket otherwise
+   - Jake clicks "I Have Everything, Start"
+10. Follows checklist guide (8 steps, estimated 20 minutes)
+11. **Mid-task:** Stuck on step 5 (coil won't come out). Taps inline tip: "Wiggle gently while pulling. If stuck, spray penetrating oil and wait 5 min."
+12. If tip doesn't help, taps "Ask AI" (1 of 3 questions): "The coil won't budge." AI: "Common on SRT 392s due to heat cycling. Try rocking motion + WD-40."
+13. Completes repair, marks guide complete
+14. **Result:** Check engine light off, bucking resolved, $200+ saved vs shop visit
+
+**Key Capabilities Required:**
+- AI symptom-based diagnosis (all vehicles)
+- OBD code interpretation and validation
+- Known Issues proactive briefing
+- Pre-Flight Modal with tools/parts/difficulty/safety upfront
+- VIN decode for vehicle identification (NHTSA API)
+- AI-generated maintenance guides with checklist UX
+- Inline tips (offline-available, covers 90% of stuck points)
+- Step-scoped inline AI chat (3 questions per guide, visible counter)
+- Parts recommendations with OEM vs aftermarket decision framework
+- Offline guide execution (Service Worker cached)
+- Progress tracking (localStorage, pause/resume from same step)
+
+### Journey 2: The Inexperienced Owner (Sarah, First-Time DIYer)
+
+**Context:** Sarah's 2018 Honda Civic needs an oil change. She's never done this before and wants to try DIY to save money.
+
+**Steps:**
+1. Opens AutoCare Companion
+2. Selects vehicle (2018 Honda Civic LX)
+3. Searches: "Oil change"
+4. **Known Issues briefing:** "No significant issues reported for oil changes on your vehicle."
+5. **Pre-Flight Modal appears:**
+   - Required tools: Oil filter wrench, drain pan, funnel, jack stands
+   - Required parts: 5 quarts 0W-20 synthetic oil (OEM Honda $35 vs Mobil 1 $28), oil filter (OEM $8 vs Fram $5)
+   - Difficulty: ⭐ Easy
+   - Safety: ⚠️ DIY-Safe with Care (jack safety critical)
+   - **Sarah sees:** "Requires jack stands. Never work under car supported only by jack."
+6. Sarah clicks "Cancel" — realizes she doesn't have jack stands and wants to buy them first
+7. **Later:** Returns, clicks "I Have Everything, Start"
+8. Follows guide with high-contrast, large text (garage-optimized)
+9. **Step 3 shows inline tip:** "Jack stand placement: Look for reinforced frame rails, never place on body panels."
+10. Sarah taps "Ask AI" (1 of 3): "Where exactly are the frame rails on my car?" AI provides specific photo reference description
+11. Completes oil change successfully
+12. **Result:** Saved $50, gained confidence for future maintenance
+
+**Key Capabilities Required:**
+- Simple task search (no symptom diagnosis needed)
+- Pre-Flight Modal prevents starting without proper equipment
+- Safety warnings prominently displayed before starting
+- High-contrast, large-text guide design for garage visibility
+- Inline tips for safety-critical steps (offline-available)
+- Step-scoped inline AI chat with clear question limit visibility
+- Progress tracking with pause/resume (can stop and resume tomorrow)
+
+### Journey 3: The Mid-Task Stuck User (Marcus, Experienced DIYer)
+
+**Context:** Marcus is replacing front brake pads on his 2017 Ford F-150. He's done this before, but the caliper bolt is seized and won't budge.
+
+**Steps:**
+1. Already mid-task (Step 4 of 9: Remove caliper bolts)
+2. **Offline in garage** (no internet)
+3. Reads inline tip: "Seized caliper bolts: Apply penetrating oil, wait 10 min, use breaker bar for extra leverage."
+4. Tries tip, still stuck
+5. Taps "Ask AI" button → sees "No internet connection. Try inline tips or reconnect for AI assistance."
+6. Tries alternate approach from different inline tip: "If severely seized, apply heat with propane torch (avoid brake line)"
+7. **Later, back inside with WiFi:**
+8. Taps "Ask AI" (1 of 3 questions): "I tried penetrating oil and heat but the bolt still won't move. What else can I do?"
+9. AI: "If torch + penetrating oil failed, the bolt may be cross-threaded or corroded into the bracket. Last resort: Cut the bolt with angle grinder, replace bolt ($3 part). Hardware stores carry M10x1.5 caliper bolts."
+10. Marcus buys replacement bolt, cuts seized bolt, completes repair
+11. **Result:** Unstuck, completed repair without tow to shop
+
+**Key Capabilities Required:**
+- Guide works fully offline (Service Worker cached)
+- Inline tips cover 90% of common stuck points (offline-available)
+- Inline AI chat available when online (step-scoped, 3 questions per guide)
+- Clear offline vs online state indication
+- Progress persists across offline/online transitions (localStorage)
+- Pause/resume from same step when switching between garage and house
+
+### Journey 4: The Aftermarket Discoverer (Jake, Cost-Conscious Enthusiast)
+
+**Context:** Jake's 2015 Challenger SRT 392 needs a driveshaft replacement (known issue: OEM 2-piece driveshaft develops vibration at 50k+ miles).
+
+**Steps:**
+1. AI diagnosis: Vibration at 70+ mph, noise during acceleration → likely driveshaft issue
+2. **Known Issues briefing surfaces:** "Owners of 2015-2020 Challenger SRT models have reported premature driveshaft failures. OEM 2-piece design develops vibration. Aftermarket 1-piece aluminum driveshafts eliminate issue. Based on 89 owner reports, 1 TSB."
+3. AI generates guide: "Replace Driveshaft"
+4. **Pre-Flight Modal shows OEM ($450) vs Aftermarket ($650-850) decision framework** with recommendation: DSS 1-piece aluminum eliminates OEM design flaw (see ADR-008 in Functional Requirements for full decision framework)
+5. Jake chooses DSS aftermarket, clicks "I Have Everything, Start"
+6. Follows guide, completes install
+7. **Result:** Vibration eliminated permanently, no repeat failures
+
+**Key Capabilities Required:**
+- Known Issues briefing surfaces common problems proactively
+- Parts recommendations include OEM vs aftermarket decision framework
+- Framework explains WHEN to choose each option (not just price comparison)
+- Curated recommendations for quality aftermarket brands
+- Links to purchase sources (Amazon, specialty retailers)
+- Decision guidance based on owner reports and real-world evidence
+
+### Journey 5: The Solo App Owner (Devon, Developer & Product Owner)
+
+**Context:** Devon needs to update the Known Issues database weekly without spending more than 15 minutes.
+
+**Steps:**
+1. **Weekly cron job runs:** Gathering agent searches NHTSA TSBs, forums, Reddit for new Known Issues (max 10 vehicles, max 50 results per vehicle)
+2. AI Validation Agent scores findings: High/Medium/Low confidence
+3. Devon opens approval dashboard (10:00 AM Monday)
+4. **Dashboard shows aggregated patterns:**
+   - "47 users reported radiator issues on 2015 Challenger SRT 392, avg mileage 52k" (HIGH confidence)
+   - "12 users reported transmission slip on 2020 F-150, avg mileage 28k" (MEDIUM confidence, no TSB)
+   - "3 users reported headlight condensation on 2019 Civic" (LOW confidence, auto-rejected)
+5. Devon reviews HIGH confidence items (10 seconds each):
+   - Radiator issue: TSB confirms, 47 reports align → **Approve**
+6. Devon reviews MEDIUM confidence items (hold for 30 days, check if user reports emerge)
+7. **Batch action:** "Approve all HIGH confidence items?" → Approves 12 items in one click
+8. Total review time: 12 minutes
+9. **Result:** Known Issues stay current, solo operator time budget holds (<15 min/week)
+
+**Key Capabilities Required:**
+- Semi-automated Known Issues gathering agent (internet-wide search)
+- AI Validation Agent scores findings (High/Medium/Low confidence)
+- Three-source validation (gathering agent + passive user capture + active submissions)
+- Automated aggregation (review patterns, not individual reports)
+- Priority queue (sorted by confidence × user count × severity)
+- Batch review mode ("Approve all HIGH confidence")
+- Dashboard tracks approval time (stays within 10-15 min/week)
+
+### Journey 6: The Remote Helper (Sarah, Helping Her Dad Over Phone)
+
+**Context:** Sarah's dad (not tech-savvy) needs to change his cabin air filter. Sarah wants to walk him through it remotely.
+
+**Steps:**
+1. Sarah opens AutoCare Companion on her laptop
+2. Selects dad's vehicle (2016 Toyota Camry)
+3. Searches: "Cabin air filter replacement"
+4. **Pre-Flight Modal:** Tools (none needed), Parts (cabin air filter $15-25), Difficulty ⭐ Very Easy, Safety ✅ DIY-Safe
+5. Sarah clicks "I Have Everything, Start"
+6. **Guide renders identically on Sarah's laptop and would render same on dad's phone** (responsive, consistent layout)
+7. Sarah reads step-by-step instructions to dad over phone: "Step 1: Open glove box..."
+8. Dad follows along, completes replacement in 5 minutes
+9. **Result:** Task completed without dad needing to download app or navigate interface
+
+**Key Capabilities Required:**
+- Responsive design (identical layout on desktop, tablet, phone)
+- Large text, high contrast for easy reading
+- No account required (anyone can access guides immediately)
+- Simple task search (non-technical users can find guides)
+- Pre-Flight Modal shows clearly what's needed upfront
+- Guide is linear and easy to read aloud over phone
+
+## Domain Requirements
+
+### Automotive Industry Compliance
+
+**Regulatory Context:**
+AutoCare Companion provides informational maintenance guides and does NOT provide professional repair services, safety certifications, or warranties. All guidance is presented as educational content with explicit disclaimers.
+
+**Disclaimer Requirements:**
+- Every guide must display: "⚠️ This is not professional advice. Consult a certified mechanic for safety-critical repairs."
+- Known Issues must be framed as informational: "Owners have reported..." (not "You will experience...")
+- Parts recommendations must include: "AutoCare Companion is not responsible for parts quality, fit, or performance."
+- Safety warnings must be severity-calibrated (High/Medium/Low) and prominently displayed
+
+**Warranty Considerations:**
+- Guides must flag when aftermarket parts may void manufacturer warranty
+- Pre-Flight Modal must warn: "Vehicle under warranty? Check if DIY repair affects coverage."
+- Known Issues must note if OEM repair is required to maintain warranty
+
+**Liability Protection:**
+- General liability insurance required (Phase 2, before 1000+ active users)
+- User-submitted Known Issues include: "This is not verified by AutoCare Companion" badge until human-approved
+- Community voting on accuracy (Phase 2) with fast correction path if issues flagged
+
+**Data Privacy (GDPR/CCPA Considerations):**
+- MVP: No user accounts = no personal data collection = minimal compliance burden
+- Passive user capture (symptom data): Anonymous, no IP/email stored, aggregated patterns only
+- Active user submissions: Anonymous by default, optional email for follow-up
+- Phase 2 (user accounts): Magic link auth (no passwords), minimal data collection, export/delete features
+
+**Automotive Data Standards:**
+- Vehicle identification via VIN decode (NHTSA vPIC API, free, government-maintained)
+- YMMT data structure: Year, Make, Model, Trim (standard automotive taxonomy)
+- OBD-II code interpretation (standard SAE J1979 protocol)
+
+## Innovation Requirements
+
+### Six-Agent Content Validation Pipeline
+
+**Innovation:** Multi-agent validation ensures safety, accuracy, and quality before guides reach users.
+
+**Agent Roles:**
+1. **Mechanic AI:** Validates technical accuracy, part compatibility, torque specs
+2. **Safety Officer:** Identifies risks (jack safety, brake fluid, electrical hazards), assigns severity levels
+3. **Parts Specialist:** Verifies part numbers, OEM vs aftermarket compatibility, pricing accuracy
+4. **Content Quality Reviewer:** Enforces inline tips coverage (90% of stuck points), validates guide clarity
+
+**Validation Flow:**
+- AI generates guide → Mechanic AI reviews → Safety Officer reviews → Parts Specialist reviews → Content Quality Reviewer reviews → Human spot-check (first 10 guides) → Published
+
+**Success Metric:**
+- Zero safety-critical errors reach users in first 100 guides
+
+### Proactive Known Issues Briefing
+
+**Innovation:** Surface common problems BEFORE users encounter them, building trust through transparency.
+
+**Architecture:**
+- Three-source validation: Automated gathering agent + passive user capture + active user submissions
+- AI aggregates patterns (not individual reports) → Human approves before publication
+- Confidence scoring: High (>90%), Medium (60-89%), Low (<60%)
+- Source credibility tiers: Tier 1 (NHTSA/TSBs auto-trusted), Tier 2 (forums require user validation), Tier 3 (anonymous/unverified auto-rejected)
+
+**User Experience:**
+- Known Issues briefing displays immediately after vehicle selection
+- Progressive disclosure: Most critical issues first, full list expandable
+- Transparency: "✓ Human-approved" badge, source citations, last reviewed date
+- Framing: "Owners have reported..." (informational, not fear-mongering)
+
+**Success Metrics:**
+- Known Issues briefing open rate >40%
+- Return visit within 7 days after briefed issue becomes relevant
+
+### Step-Scoped Inline AI Chat with Visible Limits
+
+**Innovation:** AI assistance available mid-task, scoped to current step, with clear free-tier limits to prevent abandonment.
+
+**Architecture:**
+- Free tier: 3 questions per guide (not per day), resets when starting new guide
+- Premium tier: Unlimited questions
+- Visible counter: "2 of 3 questions remaining" (transparency, no surprise limits)
+- Step context passed to AI: Current step number, step instructions, inline tips already shown
+
+**User Experience:**
+- Opt-in only: User taps "Ask AI" on step (no latency for users who don't need it)
+- AI has full context: Vehicle, guide, current step, previous questions in this session
+- Static inline tips are primary (offline-available), AI chat is fallback for edge cases
+
+**Success Metrics:**
+- Inline AI chat tap rate >20%
+- Completion rate lift with chat engagement vs without
+- Mid-task abandonment <10% for free tier users (limit doesn't block completion)
+
+### Offline-First PWA Architecture
+
+**Innovation:** Guides work fully in garage with no internet, building trust when it matters most.
+
+**Architecture:**
+- Service Worker caches guides atomically (guide + images + inline tips)
+- localStorage persistence for progress tracking (no account required)
+- Cache status badge: "✓ Cached for offline" (user visibility and control)
+- Graceful degradation: Inline AI chat disabled offline, inline tips remain functional
+
+**User Experience:**
+- User generates guide online → Service Worker auto-caches → Works offline in garage
+- Progress persists across offline/online transitions (localStorage)
+- Clear offline state indication: "No internet. AI chat unavailable. Inline tips work offline."
+- Proactive caching UI: "Cache this guide for offline?" button
+
+**Success Metrics:**
+- Users proactively cache guides >50%
+- Cached guide load <1s (no network dependency)
+- Offline usage >30% of total guide executions
+
+## Project-Type Requirements (Web Application)
+
+### Progressive Web App (PWA) Requirements
+
+**Installation:**
+- Web app manifest (name, icons, theme color, display: standalone)
+- Service Worker (offline functionality, cache management)
+- Add to Home Screen prompt (iOS: explicit onboarding, Android: native browser prompt)
+
+**Offline Capabilities:**
+- Cached guides fully functional offline
+- localStorage for progress tracking (no server dependency)
+- Fallback UX for features requiring internet (AI chat, parts price lookup)
+
+**Performance:**
+- Lighthouse PWA score >90
+- Time to Interactive (TTI): <3s on mid-range devices, <5s on low-end devices
+- First Contentful Paint (FCP): <1.5s
+- Service Worker registration: <500ms
+
+**Cross-Platform:**
+- Safari iOS (explicit "Add to Home Screen" onboarding due to PWA limitations)
+- Chrome Android (native PWA prompt)
+- Desktop browsers (responsive, works in browser or installed as PWA)
+
+### Responsive Design Requirements
+
+**Mobile-First:**
+- Single-column layout for guides (no horizontal scrolling)
+- 44×44px minimum touch targets (iOS Human Interface Guidelines)
+- Large text (18px+ for guide steps, 16px+ for body text)
+- High contrast (AAA 7:1 for safety callouts, AA 4.5:1 for body text)
+
+**Breakpoints:**
+- Mobile: 320px - 767px (primary target, garage use case)
+- Tablet: 768px - 1023px (secondary, remote helper use case)
+- Desktop: 1024px+ (tertiary, research/planning use case)
+
+**Touch Optimization:**
+- Swipe gestures for step navigation (optional, arrow buttons primary)
+- No hover states required (touch-first interaction)
+- Bottom-anchored primary actions (thumb-friendly zones)
+
+### Deployment & Hosting Requirements
+
+**Deployment Pipeline:**
+- GitHub repository (version control, CI/CD triggers)
+- Vercel deployment (zero-config, automatic deploys on push to main)
+- Preview deployments for PRs (test before merge)
+
+**Hosting:**
+- Vercel free tier (generous limits for MVP traffic)
+- CDN (Vercel Edge Network, global distribution)
+- SSL/TLS (automatic, Vercel-managed certificates)
+
+**Cost:**
+- Hosting: $0/month (Vercel free tier)
+- API calls: <$20/month (OpenAI/Anthropic for guide generation, AI chat)
+- Total: <$20/month operational cost target
+
+### AI-Maintainable Codebase Requirements
+
+**Architecture Constraints:**
+- Next.js App Router (latest stable patterns, Claude Code familiar)
+- TypeScript (type safety, self-documenting)
+- Component-based (reusable, modular, easy to understand)
+- Minimal dependencies (reduce maintenance burden, fewer breaking changes)
+
+**Code Quality:**
+- Clear naming conventions (verbose > terse, `generateMaintenanceGuide` not `genGuide`)
+- Inline comments for complex logic (explain WHY, not WHAT)
+- README with architecture overview (AI can read and understand project structure)
+- No magic numbers (constants with semantic names)
+
+**Deployment:**
+- One-command deploy: `git push` → Vercel auto-deploys
+- No manual server configuration
+- No database migrations (YMMT data via JSON, Known Issues via API)
+
+### Accessibility Requirements
+
+**WCAG 2.1 Level AA Compliance:**
+- AAA contrast (7:1) for safety-critical callouts (garage visibility in low light)
+- AA contrast (4.5:1) for body text
+- Keyboard navigation (all interactive elements accessible via keyboard)
+- Screen reader support (semantic HTML, ARIA labels where needed)
+
+**Dark Garage Optimization:**
+- Two-Phase Design Language:
+  - Discovery Phase (index, search): Polished, calm, standard contrast
+  - Execution Phase (guide steps): High-contrast, task-focused, 7:1 AAA contrast
+- Screen brightness compensation (legible at 30% brightness)
+- Large text (18px+ for guide steps, compensates for distance from phone)
+
+**Low-End Device Support:**
+- Performance targets: <5s TTI on Pixel 3a (low-end Android)
+- Reduce JavaScript bundle (dynamic imports, code splitting)
+- Graceful degradation (core functionality works without JS for first paint)
 
 **Testing Protocol:**
 - Manual testing on real devices: iPhone SE (iOS Safari), Pixel 3a (low-end Android), desktop Firefox
@@ -577,29 +447,19 @@ The following stress tests and hardenings were identified to ensure the product 
 
 **MVP Approach:** Problem-Solving + Experience MVP
 
-AutoCare Companion's MVP delivers immediate, tangible value: users complete maintenance tasks in their garage with or without internet. The "experienced friend" trust model requires the six-agent validation pipeline, Known Issues briefing, and offline reliability from day one — these aren't enhancements, they're the product.
+MVP delivers: complete tasks offline in garage. Core features (six-agent validation, Known Issues briefing, offline reliability) launch day one. Supports all vehicles via AI-generated guides. Solo sustainable: ≤1 hour/week maintenance, <$20/month API costs.
 
-The MVP supports all vehicles universally (AI-generated guides + Known Issues via semi-automated gathering with human approval) while maintaining solo sustainability (≤1 hour/week via AI-maintainable architecture).
-
-**Core Value Proposition:**
-- **Minimum useful:** Complete the task in garage with or without internet
-- **Fastest validation:** All vehicles supported (AI guides universal), Known Issues gathering validated through human-in-the-loop model
-- **Solo sustainable:** 10-15 min/week maintenance via automated aggregation and AI assistance
-
-**Resource Requirements:**
-- Solo operator (Devon) as product owner and strategic direction
-- Claude Code as primary developer (AI-maintainable codebase)
+**Resource Constraints:**
+- Solo operator (Devon) + Claude Code as primary developer
 - Vercel free tier hosting
-- OpenAI API (<$20/month operational cost target, hard cap $25/month)
-- 10-15 min/week maintenance time (Known Issues review)
+- OpenAI API: $20/month target, $25/month hard cap
+- 10-15 min/week maintenance
 
 **Critical Path Dependencies:**
-1. Six-agent validation pipeline (Mechanic AI → Safety Officer → Parts Specialist → Content Quality Reviewer)
-2. Semi-automated Known Issues gathering agent (internet-wide search with human approval)
-3. AI Validation Agent (scores and validates Known Issues data)
-4. Three-source validation model (gathering agent + passive user capture + active submissions)
-5. Offline-first PWA architecture (Service Worker, atomic caching)
-6. Next.js deployment pipeline via GitHub + Vercel
+1. Six-agent validation pipeline (see Innovation Requirements > Six-Agent Validation Pipeline)
+2. Semi-automated Known Issues gathering (see Innovation Requirements > Proactive Known Issues Briefing)
+3. Offline-first PWA architecture (Service Worker, atomic caching)
+4. Next.js deployment via GitHub + Vercel
 
 ### MVP Feature Set (Phase 1)
 
@@ -616,7 +476,7 @@ The MVP supports all vehicles universally (AI-generated guides + Known Issues vi
 *AI & Intelligence:*
 - AI chat interface with symptom-based diagnosis (all vehicles)
 - AI-generated maintenance guides with checklist UX (all vehicles)
-- Six-agent validation pipeline (Mechanic AI, Safety Officer, Parts Specialist, Content Quality Reviewer)
+- Six-agent validation pipeline (see Innovation Requirements > Six-Agent Validation Pipeline)
 - AI Validation Agent (scores Known Issues: High/Medium/Low confidence with source credibility tiers)
 - **Semi-automated Known Issues gathering agent** (internet-wide search: NHTSA TSBs, manufacturer recalls, forums, Reddit, automotive news)
 - **Three-source Known Issues validation:**
@@ -724,70 +584,7 @@ The MVP supports all vehicles universally (AI-generated guides + Known Issues vi
 - Expanded use cases (motorcycles, RVs, boats — if user demand validates)
 - API for third-party integrations (repair shops, parts retailers, fleet management)
 
-### Known Issues Architecture: Three-Source Validation Model
-
-**Data Sources:**
-
-1. **Automated Gathering Agent (Internet-Wide Search):**
-   - Sources: NHTSA TSBs, manufacturer recalls, OEM service bulletins, forums (ChallengerTalk, SRT Hellcat Forum, Dodge Garage), Reddit (r/Challenger, r/Dodge), YouTube comments, automotive news
-   - Runs: Weekly batch, scheduled cron job
-   - Scope: Max 10 vehicles per batch (prioritize popular models), max 50 search results per vehicle
-   - Cost: $2-5/week = $8-20/month
-   - AI Validation Agent scores each finding: High/Medium/Low confidence
-
-2. **Passive User Capture (Automatic, During Initial AI Chat):**
-   - When: User describes symptom in initial AI chat (before guide generation)
-   - What's captured: YMMT, symptom description, mileage (if mentioned), timestamp
-   - No user prompt: Data captured invisibly, user doesn't know
-   - Example: User says "My radiator is leaking and the car only has 45k miles" → captured as potential Known Issue
-   - Aggregated automatically: Not reviewed individually, patterns emerge from volume
-
-3. **Active User Submissions (Optional, "Report an Issue" Button):**
-   - Form fields: Issue description (required), mileage (optional), how you fixed it (optional), photo (optional)
-   - Anonymous by default (no account required)
-   - Rate limited: 3 submissions/IP/24h, 1 per YMMT/IP/7d
-   - Spam filtered: AI pre-screens, honeypot fields, bot detection
-
-**Cross-Validation & Approval Workflow:**
-
-**Dashboard Aggregation:**
-- AI aggregates: "47 users reported radiator issues on 2015 Challenger SRT 392, avg mileage 52k (range: 38k-78k)"
-- Devon sees: One aggregated pattern, not 47 individual reports
-- Review time: 10 seconds per pattern vs. 1 minute per individual report
-
-**Confidence Scoring:**
-- HIGH (>90%): Agent + user reports align + TSB/recall confirms → Fast approval
-- MEDIUM (60-89%): Agent only, no user reports → Hold for 30 days (if no user reports emerge, likely false positive → reject)
-- LOW (<60%): Conflicting sources, unverified, single anonymous report → Auto-rejected
-
-**Source Credibility Tiers:**
-- **Tier 1 (Auto-trusted):** NHTSA TSBs, manufacturer recalls, OEM service bulletins
-- **Tier 2 (Require user validation):** Forum posts, Reddit threads, YouTube comments
-- **Tier 3 (Auto-rejected):** Single anonymous posts, unverified blogs, AI-generated content
-
-**Human Review Protocol:**
-- HIGH confidence + 20+ user reports + TSB → Approve (10 sec)
-- MEDIUM confidence + no user reports → Hold 30 days
-- Any HIGH severity issue (safety, brakes, drivetrain) → Manual source verification (2-3 min)
-- Batch review mode: "Approve all HIGH confidence items?" [Approve 12 items]
-
-**Published Known Issue Format:**
-```
-⚠️ Premature Radiator Failure
-✓ Human-approved | Based on 47 owner reports, 3 TSBs, 1 recall | Reviewed Jan 2026
-
-Owners of 2015-2023 Dodge Challengers have reported premature radiator
-failures due to plastic end tank cracks. Common at 40k-80k miles regardless
-of maintenance. Aftermarket aluminum radiators recommended by owner reports.
-
-Cost estimate: $350-$800 (OEM), $200-$400 (aftermarket aluminum)
-⚠️ This is not a recommendation. Consult a mechanic.
-```
-
-**Time Budget:**
-- Weekly review: 10-15 min (down from 15-20 min with automated aggregation)
-- Priority queue: Top 10 items = 80% of real Known Issues
-- Auto-aggregation: Handles volume growth without increasing Devon's time
+**Known Issues Architecture:** See Innovation Requirements > Proactive Known Issues Briefing for complete three-source validation model (automated gathering agent + passive user capture + active submissions), confidence scoring, and approval workflow.
 
 ### Architecture Decision Records (Summary)
 
@@ -867,3 +664,492 @@ Cost estimate: $350-$800 (OEM), $200-$400 (aftermarket aluminum)
 - User reports align with gathering agent findings (confidence validation)
 - Known Issues with both sources (agent + users) have higher engagement
 - Approval time stays within 10-15 min/week despite growing user base
+
+## Functional Requirements
+
+This section defines the capability contract for the entire product. Every feature implemented will trace back to these requirements. UX designers will design only what's listed here, architects will support only what's listed here, and epic breakdown will implement only what's listed here.
+
+### Vehicle Identification & Diagnosis
+
+- FR1: Users can describe vehicle symptoms via AI chat interface to receive diagnostic suggestions
+- FR2: Users can select their vehicle via cascading YMMT selector (Year → Make → Model → Trim)
+- FR3: Users can identify their vehicle by entering VIN for automatic YMMT lookup
+- FR4: Users can identify their vehicle via photo upload (deferred to Phase 2 - see ADR-006)
+- FR5: Users can scan or manually enter OBD-II error codes to validate AI diagnosis
+- FR6: Users can see AI confidence level on diagnosis suggestions (High/Medium/Low)
+- FR7: Users can view alternative diagnoses if initial suggestion doesn't match symptoms
+
+**Architectural Decision - Vehicle Identification Strategy (ADR-006):**
+
+**Decision:** VIN decode only (MVP), image recognition deferred to Phase 2
+
+**Options Considered:**
+- **Option A: VIN Decode Only (Selected)** - NHTSA vPIC API (free, 100% accurate, $0/month cost, low complexity)
+- **Option B: Image Recognition (Deferred)** - GPT-4 Vision (60-80% accurate, $0.01-0.03/image = $60/month at scale, high complexity)
+
+**Rationale:**
+1. Solo sustainability constraint makes $60/month image costs prohibitive (3× total monthly budget)
+2. VIN provides 100% accuracy vs 60-80% for image recognition
+3. Parts compatibility requires VIN-level precision (trim/engine variations matter)
+4. Image recognition better suited as Phase 2 premium feature when revenue supports costs
+5. VIN lookup helpers ("Where do I find my VIN?") reduce user friction adequately for MVP
+
+**Trade-offs Accepted:**
+- User must locate and enter 17-character VIN (30 seconds friction)
+- Image recognition convenience deferred until revenue model validates
+- Clear upgrade path: Free tier (VIN), Premium tier (image recognition)
+
+### Guide Generation & Execution
+
+- FR8: Users can generate maintenance/repair guides for any vehicle via AI
+- FR9: Users can view generated guides in checklist format with step-by-step instructions
+- FR10: Users can mark individual steps as complete/incomplete
+- FR11: Users can see progress indicator (e.g., "Step 5 of 12")
+- FR12: Users can view estimated time to complete guide
+- FR13: Users can pause guide progress and resume from same step later (see ADR-007)
+- FR14: Users can navigate between steps (next, previous, jump to specific step)
+- FR15: Users can view inline tips within each step for common stuck points
+- FR16: Users can see visual indicators for safety warnings within guide steps
+- FR17: Users can access step-scoped inline AI chat (3 questions per guide, free tier)
+- FR18: Users can see visible counter for remaining AI questions (e.g., "2 of 3 questions remaining")
+
+**Architectural Decision - Guide Pause/Resume Strategy (ADR-007):**
+
+**Decision:** localStorage persistence (MVP), cloud sync deferred to Phase 2
+
+**Options Considered:**
+- **Option A: localStorage (Selected)** - Device-specific, survives browser close, $0 cost, works offline, low complexity
+- **Option B: Cloud Sync** - Cross-device, requires auth + database, $5-20/month cost, high complexity
+- **Option C: Hybrid** - localStorage primary + cloud backup, very high complexity (conflict resolution, offline-first patterns)
+
+**Rationale:**
+1. User behavior analysis: Repairs completed in single 20-60 minute sessions at vehicle
+2. Switching devices mid-repair is rare (phone in garage → tablet in garage?)
+3. localStorage is free, works offline (critical for garage), no auth friction
+4. No GDPR concerns about storing progress server-side
+5. Clear Phase 2 enhancement path: Cloud sync as premium feature
+
+**Data Model:**
+```javascript
+localStorage.setItem('guide-progress-{guideId}', JSON.stringify({
+  vehicleVIN: '1HGBH41JXMN109186',
+  guideId: 'replace-brake-pads',
+  currentStep: 7,
+  totalSteps: 12,
+  completedSteps: [1,2,3,4,5,6],
+  timestamp: '2025-01-15T14:32:00Z',
+  toolsChecked: true,
+  partsGathered: true
+}));
+```
+
+**Trade-offs Accepted:**
+- User clears browser data → loses progress (acceptable, rare)
+- User switches device → can't resume (acceptable, rare use case)
+- localStorage full → degrade to session-only (acceptable, 5MB is plenty for 50+ paused guides)
+
+### Known Issues Management
+
+- FR19: Users can view Known Issues briefing immediately after vehicle selection
+- FR20: Users can see confidence indicators on each Known Issue (High/Medium/Low)
+- FR21: Users can view source citations for each Known Issue (e.g., "Based on 47 owner reports, 3 TSBs, 1 recall")
+- FR22: Users can see "✓ Human-approved" badge on each published Known Issue
+- FR23: Users can see last reviewed date for Known Issues (e.g., "Reviewed Jan 2026")
+- FR24: Users can expand/collapse Known Issues list (progressive disclosure)
+- FR25: Users can filter Known Issues by severity (High/Medium/Low)
+- FR26: Users can report new issues via "Report an Issue" button (rate limited)
+- FR27: System can passively capture symptom data during initial AI chat for Known Issues aggregation
+- FR28: Admin can review aggregated Known Issues patterns (not individual reports) in dashboard
+
+### Parts Recommendations
+
+- FR29: Users can view inline parts recommendations within guide steps
+- FR30: Users can see OEM vs aftermarket comparison with decision framework (see ADR-008)
+- FR31: Users can view price ranges for OEM and aftermarket parts
+- FR32: Users can see curated recommendations for quality aftermarket brands
+- FR33: Users can access links to purchase parts (Amazon, RockAuto, specialty retailers)
+- FR34: Users can see warranty impact warnings when aftermarket parts may void coverage
+- FR35: Users can view part compatibility info specific to their vehicle's trim/engine
+
+**Architectural Decision - OEM vs Aftermarket Comparison Strategy (ADR-008):**
+
+**Decision:** Decision framework pattern (MVP), rich comparison table deferred to Phase 2
+
+**Options Considered:**
+- **Option A: Simple Price Comparison** - OEM $X vs Aftermarket $Y-Z (minimal data, lacks decision guidance)
+- **Option B: Rich Comparison Table** - Price + warranty + specs + ratings (extensive data, high maintenance burden)
+- **Option C: Decision Framework (Selected)** - "When to choose OEM" vs "When to choose aftermarket" with curated recommendations
+
+**Rationale:**
+1. Users need decision confidence, not exhaustive comparison (they're not shopping, they need guidance)
+2. Rich table requires extensive data collection (noise levels? dust ratings? 10-15 hours/week maintenance) - unsustainable
+3. Framework pattern scales from simple to complex parts without API dependency
+4. Curated recommendations (2-3 quality brands) more valuable than 10+ unvetted options
+5. Data sourcing: OEM prices (dealership sites), aftermarket ranges (RockAuto API free tier), recommendations (static curated list)
+
+**Framework Example:**
+```markdown
+### Required Part: Front Brake Pads
+
+**OEM (Honda Genuine): $85**
+Choose OEM if:
+- Vehicle is under warranty (aftermarket may void)
+- You want exact factory specifications
+- Budget is less important than peace of mind
+
+**Aftermarket: $35-60**
+Choose Aftermarket if:
+- You want to save 40-65%
+- Vehicle is out of warranty
+- You're okay with equivalent (not identical) performance
+
+**Recommendation:** Wagner ThermoQuiet or Akebono ProACT ($45-60) are reliable brands used by many shops.
+
+[View on Amazon] [View on RockAuto]
+```
+
+**Trade-offs Accepted:**
+- No exhaustive brand comparison (5+ brands with specs) in MVP
+- Manual curation of recommendations (1-2 hours/week vs 10-15 for automated scraping)
+- Affiliate revenue opportunity deferred to Phase 2 (framework still supports affiliate links)
+
+### User Assistance & Upfront Disclosure
+
+- FR36: Users can view Pre-Flight Modal before starting any guide (see ADR-009)
+- FR37: Users can see required tools list with cost ranges and alternatives
+- FR38: Users can see required parts list with OEM vs aftermarket pricing
+- FR39: Users can see difficulty rating (⭐ scale, 1-5) before starting guide
+- FR40: Users can see safety level indicator (DIY-Safe, DIY-Safe with Care, Requires Mechanic)
+- FR41: Users can see time estimate for guide completion
+- FR42: Users can expand/collapse sections in Pre-Flight Modal (progressive disclosure)
+- FR43: Users can cancel guide start if they lack required tools/parts
+- FR44: Users can acknowledge Pre-Flight Modal to proceed ("I Have Everything, Start" button)
+- FR45: Users can access inline AI chat for step-specific questions (3 questions per guide, free tier)
+- FR46: Users can see offline state indication when internet unavailable
+- FR47: Users can view inline tips for stuck points (offline-available, baked into guide)
+
+**Architectural Decision - Upfront Disclosure Strategy (ADR-009):**
+
+**Decision:** Pre-Flight Modal (blocking, expandable sections) before guide starts
+
+**Options Considered:**
+- **Option A: Pre-Flight Modal (Selected)** - Blocking modal, forces review before starting, progressive disclosure (tools/parts/safety expandable)
+- **Option B: Inline Guide Header** - Non-blocking, sticky header at top of guide, always visible but user can ignore
+- **Option C: Separate Pre-Planning Phase** - Dedicated "Plan Your Repair" screen with gamified checklist
+
+**Rationale:**
+1. Safety-critical info requires forced acknowledgment (not skippable header)
+2. Modal creates conscious pause: "Do I have what I need?" before commitment
+3. Progressive disclosure balances thoroughness vs friction (collapsed by default, expand for details)
+4. Proportional to task complexity: Simple tasks (2 items), complex tasks (15 items)
+5. User explicitly opts in ("I Have Everything, Start") = commitment + safety
+
+**Modal Structure:**
+```
+┌─────────────────────────────────────────┐
+│  Before You Start: Replace Brake Pads   │
+├─────────────────────────────────────────┤
+│  Difficulty: ⭐⭐⭐ Intermediate          │
+│  Time: 60-90 minutes                    │
+│  Safety Level: ⚠️ DIY-Safe with Care   │
+│                                         │
+│  Required Tools (5)                [▼]  │
+│  Required Parts (3)                [▼]  │
+│  Safety Warnings (2)               [▼]  │
+│                                         │
+│  [Cancel]  [I Have Everything, Start]  │
+└─────────────────────────────────────────┘
+```
+
+**Trade-offs Accepted:**
+- Adds friction before starting guide (acceptable for safety)
+- Requires metadata generation for every guide (tools, parts, difficulty, safety level)
+- User can still proceed without actually having tools/parts (honor system, acceptable)
+
+### Offline & Caching
+
+- FR48: Users can cache guides for offline access via Service Worker
+- FR49: Users can see cache status badge ("✓ Cached for offline")
+- FR50: Users can proactively cache guides via "Cache this guide for offline?" button
+- FR51: Users can view cached guides with <1s load time (no network dependency)
+- FR52: Users can see clear offline state indication ("No internet. AI chat unavailable.")
+- FR53: Users can access all guide steps and inline tips while offline
+- FR54: Users can see graceful degradation messaging for online-only features (AI chat)
+- FR55: System can store progress in localStorage across offline/online transitions
+
+### Content Validation
+
+- FR56: System can validate guide accuracy via six-agent pipeline (Mechanic AI, Safety Officer, Parts Specialist, Content Quality Reviewer)
+- FR57: System can enforce inline tips coverage requirement (90% of common stuck points)
+- FR58: System can assign safety warnings with severity levels (High/Medium/Low)
+- FR59: System can validate part compatibility for user's specific trim/engine
+- FR60: System can generate adversarial test cases to validate inline tips quality
+- FR61: Admin can spot-check first 10 guides before full automation enabled
+
+### Monitoring & Administration
+
+- FR62: Admin can track API usage and costs in dashboard
+- FR63: Admin can see cost breakdown by feature (guide generation, parts lookup, Known Issues gathering, inline AI chat)
+- FR64: Admin can receive warnings at 50%, 75%, 100% of monthly budget
+- FR65: System can enforce hard budget cap ($25/month) with automatic rate limiting
+- FR66: Admin can review aggregated Known Issues patterns in dashboard (10-15 min/week)
+- FR67: Admin can approve/reject Known Issues in batch mode
+- FR68: Admin can see confidence scores and source citations for each Known Issue
+- FR69: System can track solo operator time budget (target ≤1 hour/week maintenance)
+- FR70: System can enable "vacation mode" to pause gathering agent and auto-approve Tier 1 sources
+- FR71: Generated guides must follow standardized data model: `{ guideId, vehicleVIN, task, steps[], tools[], parts[], safetyWarnings[], estimatedTime, generatedAt }` for consistent localStorage structure and offline retrieval
+
+**Architectural Decision - Cost Monitoring Strategy (ADR-010):**
+
+**Decision:** Client-side estimation + anonymous IP-based rate limiting (MVP)
+
+**Options Considered:**
+- **Option A: Client-side Estimation + Anonymous Rate Limiting (Selected)** - Browser localStorage tracks estimates, Cloudflare Workers enforce IP limits, no auth required
+- **Option B: Server-side Tracking** - Real API usage in database, requires auth, hard rate limits enforced server-side
+- **Option C: Hybrid** - Client estimation + monthly server reconciliation, lighter than full tracking
+
+**Rationale:**
+1. Client-side estimation gives user visibility without auth complexity
+2. Cloudflare IP-based rate limiting prevents abuse anonymously (no user tracking, no GDPR concerns)
+3. Conservative limits protect solo budget: 10 guides/day × 30 days = 300 guides/month (sufficient for MVP validation)
+4. Anonymous = no user accounts required = no privacy policy complexity for MVP
+5. Educational UX: Cost dashboard turns monitoring into user optimization ("Learn about costs", "Cache guides offline")
+
+**Architecture:**
+```
+┌─────────────┐
+│   Client    │ Tracks estimated costs in localStorage
+│  (Browser)  │ Shows warnings at 50%/75%/100%
+└──────┬──────┘
+       │ API calls
+┌──────▼──────┐
+│ Cloudflare  │ Anonymous rate limiting:
+│  Workers    │ - 10 guide generations/day per IP
+└──────┬──────┘ - 100 parts lookups/day per IP
+       │       - 1000 cache hits/day per IP
+┌──────▼──────┐
+│   OpenAI    │ Actual API costs incurred here
+│   Anthropic │
+└─────────────┘
+```
+
+**Cost Dashboard UI:**
+```
+Monthly Usage (Estimated)
+━━━━━━━━━━━━━━━━━━━━━ 65% ($13 / $20)
+
+Guide generations:  8 × $0.20 = $1.60
+Parts lookups:     42 × $0.02 = $0.84
+Known issues:       3 × $0.15 = $0.45
+Vehicle ID:        12 × $0.00 = $0.00 (free)
+
+⚠️ Approaching monthly limit (75% warning)
+
+[Learn about costs] [Optimize usage tips]
+```
+
+**Trade-offs Accepted:**
+- Client-side estimation not exact (acceptable, user education not billing)
+- IP-based limits can be evaded via VPN (acceptable, 90% abuse prevention sufficient for MVP)
+- Daily limits reset (user blocked for 24h if exceeded, acceptable vs permanent bans)
+- Phase 2 can add account-based tracking for premium tier
+
+---
+
+### Functional Requirements Summary
+
+**Total:** 70 functional requirements across 8 capability areas
+
+**Capability Area Breakdown:**
+1. Vehicle Identification & Diagnosis (FR1-FR7) - 7 FRs
+2. Guide Generation & Execution (FR8-FR18) - 11 FRs
+3. Known Issues Management (FR19-FR28) - 10 FRs
+4. Parts Recommendations (FR29-FR35) - 7 FRs
+5. User Assistance & Upfront Disclosure (FR36-FR47) - 12 FRs
+6. Offline & Caching (FR48-FR55) - 8 FRs
+7. Content Validation (FR56-FR61) - 6 FRs
+8. Monitoring & Administration (FR62-FR70) - 9 FRs
+
+**Architecture Decision Records Integrated:**
+- **ADR-006:** VIN decode only (MVP), image recognition (Phase 2) - Cost/accuracy trade-off
+- **ADR-007:** localStorage pause/resume (MVP), cloud sync (Phase 2) - Single-device pattern
+- **ADR-008:** Decision framework for parts comparison (MVP), rich table (Phase 2) - Solo sustainability
+- **ADR-009:** Pre-Flight Modal with progressive disclosure - Safety-critical forced acknowledgment
+- **ADR-010:** Client-side cost estimation + IP rate limiting - Anonymous protection without auth
+
+**Coverage Validation:**
+✅ All user journeys mapped to FRs
+✅ All MVP capabilities have corresponding FRs
+✅ All innovation requirements captured (six-agent validation, Known Issues, inline AI chat, offline-first)
+✅ All architectural decisions documented with explicit trade-offs
+✅ Solo sustainability constraint addressed in every architectural decision
+
+**This FR list is now the binding capability contract. Any feature not listed here will not exist in the final product unless explicitly added.**
+
+## Non-Functional Requirements
+
+This section defines quality attributes that specify HOW WELL the system must perform. We only document NFRs that matter for AutoCare Companion - skipping categories that don't apply to prevent requirement bloat.
+
+**Categories Included:** Performance, Reliability, Security, Accessibility, Integration
+**Deliberately Excluded:** Scalability (solo sustainability constraint means we cap scale, not plan for it)
+
+### Performance
+
+**Response Time Requirements:**
+
+- **NFR-P1:** Time to Interactive (TTI) must be <3 seconds on mid-range devices (iPhone 11, Pixel 4a) on 4G connection
+- **NFR-P2:** Time to Interactive (TTI) must be <5 seconds on low-end devices (iPhone SE 2020, Pixel 3a) on Fast 3G connection
+- **NFR-P3:** First Contentful Paint (FCP) must be <1.5 seconds on all supported devices
+- **NFR-P4:** Cached guide load time must be <1 second (no network dependency)
+- **NFR-P5:** Service Worker registration must complete within 500ms of page load
+- **NFR-P6:** Step navigation (next/previous) must respond within 200ms
+- **NFR-P7:** Inline AI chat response must begin streaming within 5 seconds of user question submission, with loading indicator shown immediately (display "AI is thinking..." with animated indicator during wait time)
+
+**Resource Efficiency:**
+
+- **NFR-P8:** Initial JavaScript bundle size must be <200KB (gzipped)
+- **NFR-P9:** Guide page (cached) must be <500KB total (HTML + CSS + JS + images)
+- **NFR-P10:** Service Worker must cache guides atomically (all-or-nothing, no partial caches)
+
+**Performance Testing:**
+
+- **NFR-P11:** Lighthouse Performance score must be ≥90 on mobile
+- **NFR-P12:** Lighthouse PWA score must be ≥90
+- **NFR-P13:** Performance must be validated on real devices: iPhone SE (iOS Safari), Pixel 3a (Chrome Android), desktop Firefox
+- **NFR-P14:** Network throttling tests required: Fast 3G, offline mode
+- **NFR-P15:** Battery saver mode must not degrade core functionality (guide viewing, step navigation)
+- **NFR-P16:** Vercel Edge Functions must handle cold starts gracefully. First request <1s, subsequent requests <200ms
+- **NFR-P17:** Development environment must support Service Worker testing via HTTPS localhost or ngrok tunnel
+
+### Reliability
+
+**Offline Functionality:**
+
+- **NFR-R1:** Cached guides must remain functional for 30 days minimum without re-caching
+- **NFR-R2:** Service Worker must successfully cache 99% of guides on first attempt (all-or-nothing atomic caching). Cache failures must display user-visible error with retry option and be logged for monitoring
+- **NFR-R3:** Guide functionality must work 100% offline once cached (all steps, inline tips, progress tracking, step navigation)
+- **NFR-R4:** Online-to-offline transitions must be seamless (no data loss, no UI breaking)
+- **NFR-R5:** Offline-to-online transitions must restore online features (inline AI chat) within 5 seconds of reconnection
+
+**Data Persistence:**
+
+- **NFR-R6:** localStorage progress data must persist for 90 days minimum
+- **NFR-R7:** Progress data must survive browser close, device restart, and airplane mode
+- **NFR-R8:** If localStorage is full (5MB limit), system must gracefully degrade to session-only storage with user notification
+- **NFR-R9:** Progress data corruption must be detected and recoverable (fallback to last known good state or fresh start with user notification)
+
+**Error Handling:**
+
+- **NFR-R10:** Service Worker registration failure must display fallback UX: "Offline mode unavailable. Guides will work online only."
+- **NFR-R11:** Cache storage failure must not block guide generation (user can still use guides online)
+- **NFR-R12:** API failures (OpenAI, NHTSA) must display user-friendly error messages with actionable next steps
+- **NFR-R13:** System must handle network timeout gracefully (10-second timeout for API calls, then fallback behavior)
+
+**Uptime & Availability:**
+
+- **NFR-R14:** Static hosting (Vercel) must have 99.9% uptime (Vercel SLA)
+- **NFR-R15:** Offline-first architecture means degraded experience (online features unavailable) is acceptable, but core guide viewing must always work once cached
+
+### Security
+
+**API Key Protection:**
+
+- **NFR-S1:** OpenAI/Anthropic API keys must NEVER be exposed in client-side code
+- **NFR-S2:** API calls must be proxied through Vercel Edge Functions or similar serverless functions to protect keys
+- **NFR-S3:** API keys must be stored as environment variables, never committed to version control
+- **NFR-S4:** Rate limiting must be enforced server-side (Cloudflare Workers or Vercel Edge): 10 guide generations/day per IP, 100 parts lookups/day per IP
+
+**Data Privacy:**
+
+- **NFR-S5:** Passive symptom capture must be anonymous (no IP addresses, no user identifiers stored)
+- **NFR-S6:** User-submitted Known Issues must be anonymous by default (optional email for follow-up, not required)
+- **NFR-S7:** No cookies for tracking (contextual ads only, no third-party tracking cookies)
+- **NFR-S8:** GDPR/CCPA minimal compliance: No personal data collection in MVP, no need for consent banners (anonymous usage only)
+
+**Attack Surface Mitigation:**
+
+- **NFR-S9:** No authentication system in MVP = no password breaches, no session hijacking, no account takeover vectors
+- **NFR-S10:** Client-side XSS protection via React's built-in escaping (use dangerouslySetInnerHTML only when necessary with sanitization)
+- **NFR-S11:** HTTPS only (enforced by Vercel, no HTTP fallback)
+- **NFR-S12:** Content Security Policy (CSP) headers deferred to Phase 2 (React's built-in XSS protection sufficient for MVP)
+
+**Abuse Prevention:**
+
+- **NFR-S13:** Honeypot fields in user submission forms to catch bots
+- **NFR-S14:** AI spam filter pre-screens all user-submitted Known Issues before human review
+- **NFR-S15:** Rate limiting on submissions: 3 submissions/IP/24h, 1 per YMMT/IP/7 days
+- **NFR-S16:** AI spam filter must have <5% false positive rate on legitimate submissions, with manual override path for blocked users
+
+### Accessibility
+
+**WCAG 2.1 Compliance:**
+
+- **NFR-A1:** All pages must meet WCAG 2.1 Level AA compliance minimum
+- **NFR-A2:** Safety-critical callouts (jack safety, brake fluid warnings) must meet WCAG 2.1 Level AAA contrast (7:1 ratio)
+- **NFR-A3:** Body text must meet WCAG 2.1 Level AA contrast (4.5:1 ratio minimum)
+- **NFR-A4:** All interactive elements must be keyboard accessible (tab navigation, enter/space activation)
+- **NFR-A5:** Screen reader support via semantic HTML and ARIA labels where needed
+
+**Environmental Accessibility (Garage Use Case):**
+
+- **NFR-A6:** Text must be legible at 30% screen brightness (dark garage testing protocol)
+- **NFR-A7:** Touch targets must be ≥44×44px (iOS Human Interface Guidelines) to accommodate gloves and imprecise taps
+- **NFR-A8:** Guide step text must be ≥18px font size (readable from arm's length, phone on workbench)
+- **NFR-A9:** Primary actions must be bottom-anchored (thumb-friendly zone for one-handed operation with dirty hands)
+- **NFR-A10:** High-contrast mode for Execution Phase (guide steps): AAA contrast throughout, task-focused design
+
+**Testing & Tooling:**
+
+- **NFR-A11:** Manual accessibility testing on real devices in simulated garage conditions (low light, distance, gloves) - Budget 1 full day for pre-launch testing
+- **NFR-A12:** Automated accessibility testing via axe-core or Lighthouse Accessibility audit (score ≥90)
+- **NFR-A13:** Dark environment testing with screen brightness at 30% to validate legibility
+- **NFR-A14:** Design system must include contrast validation tooling to enforce WCAG AAA (7:1) for safety callouts at build time
+
+### Integration
+
+**External API Reliability:**
+
+- **NFR-I1:** NHTSA vPIC API (VIN decode): 95% success rate expected, 10-second timeout, fallback to manual YMMT selector if API fails
+- **NFR-I2:** OpenAI/Anthropic API (guide generation): 95% success rate expected under normal conditions, 30-second timeout, user-friendly retry mechanism for failures
+- **NFR-I3:** RockAuto API (parts pricing): 90% success rate acceptable (free tier, no SLA), 5-second timeout, graceful degradation to "Price not available" if fails
+
+**Fallback Behaviors:**
+
+- **NFR-I4:** If NHTSA API is unavailable, system must automatically fallback to cascading YMMT selector (no user intervention required)
+- **NFR-I5:** If OpenAI/Anthropic API is rate-limited, system must display: "High demand. Please try again in 1 minute." with retry button
+- **NFR-I6:** If RockAuto API is unavailable, parts recommendations must display price ranges from cached data or "Price temporarily unavailable"
+- **NFR-I7:** If all external APIs fail simultaneously, system must still allow browsing of cached guides (offline functionality unaffected)
+
+**Rate Limiting & Cost Control:**
+
+- **NFR-I8:** Client must respect OpenAI/Anthropic rate limits (enforced server-side via Vercel Edge Functions)
+- **NFR-I9:** Hard budget cap of $25/month must be enforced via cost monitoring dashboard with automatic throttling at 100% budget
+- **NFR-I10:** Admin dashboard shows budget status with manual weekly review (10 min/week). Email notifications deferred to Phase 2
+
+**API Error Handling:**
+
+- **NFR-I11:** 4xx errors (client errors) must display actionable user messages: "Invalid VIN format. Please check and try again."
+- **NFR-I12:** 5xx errors (server errors) must display retry mechanism: "Service temporarily unavailable. Retry now?"
+- **NFR-I13:** Network timeouts must not block UI (loading spinners with timeout handling, fallback to cached data when available)
+- **NFR-I14:** API timeout failures must not block UI. User can cancel and retry without page reload
+- **NFR-I15:** API cost dashboard must update daily with cost breakdown by feature (guide generation, AI chat, Known Issues gathering). Alert at 50%, 75%, 100% budget
+
+### NFR Summary
+
+**Total:** 66 non-functional requirements across 5 categories
+
+**Category Breakdown:**
+1. Performance (NFR-P1 to NFR-P17) - 17 NFRs
+2. Reliability (NFR-R1 to NFR-R15) - 15 NFRs
+3. Security (NFR-S1 to NFR-S16) - 16 NFRs
+4. Accessibility (NFR-A1 to NFR-A14) - 14 NFRs
+5. Integration (NFR-I1 to NFR-I15) - 15 NFRs
+
+**Quality Attributes Validated:**
+✅ All NFRs are specific and measurable
+✅ Connected to user needs and business context
+✅ Testable with clear success criteria
+✅ Solo-sustainable for MVP execution
+✅ Technically validated by Winston (Architect), Murat (Test Architect), and Barry (Solo Dev)
+
+**Deliberately Excluded:** Scalability (solo sustainability constraint means we cap scale, not plan for it. Scale becomes a Phase 2 concern if MVP succeeds.)
