@@ -1,5 +1,5 @@
 ---
-stepsCompleted: ['step-01-init', 'step-02-discovery', 'step-03-success', 'step-04-journeys', 'step-05-domain', 'step-06-innovation', 'step-07-project-type']
+stepsCompleted: ['step-01-init', 'step-02-discovery', 'step-03-success', 'step-04-journeys', 'step-05-domain', 'step-06-innovation', 'step-07-project-type', 'step-08-scoping']
 classification:
   projectType: web_app
   domain: automotive
@@ -570,3 +570,300 @@ The following stress tests and hardenings were identified to ensure the product 
 - Network throttling: Fast 3G, offline mode
 - Battery saver mode enabled during testing
 - Dark environment testing with screen brightness at 30%
+
+## Project Scoping & Phased Development
+
+### MVP Strategy & Philosophy
+
+**MVP Approach:** Problem-Solving + Experience MVP
+
+AutoCare Companion's MVP delivers immediate, tangible value: users complete maintenance tasks in their garage with or without internet. The "experienced friend" trust model requires the six-agent validation pipeline, Known Issues briefing, and offline reliability from day one — these aren't enhancements, they're the product.
+
+The MVP supports all vehicles universally (AI-generated guides + Known Issues via semi-automated gathering with human approval) while maintaining solo sustainability (≤1 hour/week via AI-maintainable architecture).
+
+**Core Value Proposition:**
+- **Minimum useful:** Complete the task in garage with or without internet
+- **Fastest validation:** All vehicles supported (AI guides universal), Known Issues gathering validated through human-in-the-loop model
+- **Solo sustainable:** 10-15 min/week maintenance via automated aggregation and AI assistance
+
+**Resource Requirements:**
+- Solo operator (Devon) as product owner and strategic direction
+- Claude Code as primary developer (AI-maintainable codebase)
+- Vercel free tier hosting
+- OpenAI API (<$20/month operational cost target, hard cap $25/month)
+- 10-15 min/week maintenance time (Known Issues review)
+
+**Critical Path Dependencies:**
+1. Six-agent validation pipeline (Mechanic AI → Safety Officer → Parts Specialist → Content Quality Reviewer)
+2. Semi-automated Known Issues gathering agent (internet-wide search with human approval)
+3. AI Validation Agent (scores and validates Known Issues data)
+4. Three-source validation model (gathering agent + passive user capture + active submissions)
+5. Offline-first PWA architecture (Service Worker, atomic caching)
+6. Next.js deployment pipeline via GitHub + Vercel
+
+### MVP Feature Set (Phase 1)
+
+**Core User Journeys Supported:**
+- Journey 1: Uncertain Diagnoser (AI diagnosis → guide → parts → completion)
+- Journey 2: Inexperienced Owner (YMMT selector, safety warnings, mechanic routing)
+- Journey 3: Mid-Task Stuck User (inline tips offline, inline AI chat online)
+- Journey 4: Aftermarket Discoverer (balanced OEM vs aftermarket presentation)
+- Journey 5: Solo App Owner (AI-maintainable codebase, simple monitoring)
+- Journey 6: Remote Helper (consistent cross-device layout)
+
+**Must-Have Capabilities:**
+
+*AI & Intelligence:*
+- AI chat interface with symptom-based diagnosis (all vehicles)
+- AI-generated maintenance guides with checklist UX (all vehicles)
+- Six-agent validation pipeline (Mechanic AI, Safety Officer, Parts Specialist, Content Quality Reviewer)
+- AI Validation Agent (scores Known Issues: High/Medium/Low confidence with source credibility tiers)
+- **Semi-automated Known Issues gathering agent** (internet-wide search: NHTSA TSBs, manufacturer recalls, forums, Reddit, automotive news)
+- **Three-source Known Issues validation:**
+  1. Automated gathering agent (batch/scheduled weekly)
+  2. Passive user capture (initial AI chat symptoms, automatic, anonymous)
+  3. Active user submissions ("Report an Issue" button, optional)
+- **Cross-validation & aggregation:** AI aggregates patterns (not individual reports), human approves aggregated findings
+- Step-scoped inline AI chat (free tier: 3 questions **per guide** with visible counter, Premium: unlimited)
+
+*Data & Vehicle Support:*
+- Cascading YMMT selector (all vehicle data via lightweight JSON)
+- Known Issues briefing (all vehicles via semi-automated gathering + human approval)
+- **Known Issues transparency:**
+  - "✓ Human-approved" badge on each entry
+  - Source citation: "Based on 47 owner reports, 3 TSBs, 1 recall"
+  - Last reviewed date: "Reviewed Jan 2026"
+  - Confidence framing: "Owners of your [YMMT] have reported..." (not "You will experience...")
+- Inline parts recommendations (OEM + aftermarket, review-informed, balanced presentation)
+
+*Offline & PWA:*
+- Offline-first PWA (Service Worker, atomic guide caching, cache status badge)
+- Safari iOS PWA workaround (explicit "Add to Home Screen" onboarding)
+- Cached guide load <1s (no network dependency)
+
+*Safety & Trust:*
+- Safety warnings (severity-calibrated: High/Medium/Low risk classification)
+- AAA contrast (7:1) for safety callouts (dark garage visibility)
+- **Inline tips (critical path, not nice-to-have):**
+  - Baked into guide at generation, offline-available
+  - Must cover 90% of common stuck points (validated via adversarial test cases)
+  - Content Quality Reviewer enforces coverage requirement
+  - Inline AI chat is fallback for 10% edge cases
+
+*UX & Design:*
+- Two-Phase Design Language (Discovery Phase: polished/calm; Execution Phase: high-contrast/task-focused)
+- Progress tracking (localStorage only, no account required)
+- Responsive mobile-first design (44×44px touch targets, single-column guide layout)
+- Performance targets: <3s TTI mid-range devices, <5s TTI low-end devices
+
+*Monetization & Sustainability:*
+- Ad-supported free tier (contextual ads, no cookies)
+- AI-maintainable codebase (Claude Code can read, modify, deploy)
+- Next.js App Router + Vercel deployment (zero-config, GitHub-triggered)
+
+*Chaos Monkey Hardenings (Critical MVP Requirements):*
+- **API cost protection:** Hard budget limit ($25/month cap), gathering agent cost controls (weekly batch, max 10 vehicles, max 50 results per vehicle), GPT-4o-mini for gathering agent
+- **Spam defense:** Rate limiting (3 submissions/IP/24h, 1 per YMMT/IP/7d), AI spam filter, honeypot fields, passive capture prioritized over explicit submissions
+- **Data quality gates:** 30-day cross-validation hold for MEDIUM confidence (agent-only findings without user validation), source credibility tiers (Tier 1: NHTSA/TSBs auto-trusted, Tier 2: forums require user validation, Tier 3: anonymous/unverified auto-rejected)
+- **Scale prevention:** Automated aggregation (review patterns not individual reports), priority queue (sorted by confidence × user count × severity), batch review mode
+- **Graceful degradation:** Multi-source redundancy (3-5 forums per vehicle), stable sources prioritized (NHTSA API, OEM databases), manual override always available
+
+**What's NOT in MVP:**
+- User accounts (localStorage-only for free tier at launch)
+- Cloud sync
+- Dashboard / mileage-based service tracking
+- Service interval notifications
+- Service history export
+- Multi-vehicle garage
+- Parts purchasing integration (search links only; affiliate partnerships in Phase 2)
+- 3D model visualization (Phase 2.5 showcase, Phase 3 full feature)
+- Community voting on parts quality
+- Auto-approval for HIGH confidence Known Issues (Phase 2, after learning period)
+
+### Post-MVP Features
+
+**Phase 2 (Growth) — Retention & Depth**
+
+*Goal: Users return, track history, sync across devices. Premium tier monetization.*
+
+**Key Additions:**
+- User accounts (frictionless magic link signup, no passwords)
+- Premium subscription tier ($4.99/month):
+  - Unlimited inline AI chat (vs. 3 questions per guide on free tier)
+  - Cloud sync across devices
+  - Vehicle dashboard with mileage-based service tracking
+  - Service interval notifications (push where supported, email fallback)
+  - Service history export (PDF for resale/insurance proof)
+  - **Parts discounts** (5-10% cashback from affiliate revenue share)
+  - **Priority access to new Known Issues** (Premium users see approved issues first)
+- Anonymous parts feedback loop (one-tap flag inline with parts, rate-limited to prevent spam)
+- One-click parts cart integration (affiliate partnerships: RockAuto, Amazon Auto, O'Reilly)
+- **Auto-approval for HIGH confidence Known Issues** (after 2-3 months learning period, Devon spot-checks weekly)
+- **Community voting on Known Issues accuracy** ("Is this accurate?" voting, >20% "No" triggers re-review)
+
+**Revenue Diversification:**
+- Ad revenue (already in MVP)
+- Premium subscriptions (new)
+- Affiliate partnerships for parts (new)
+
+**Phase 2.5 (Post-Growth, Pre-Vision) — 3D Model Showcase**
+- Static 3D model showcase on index page (Challenger only, existing asset)
+- Demo of future vision (builds excitement, uses existing 3D model)
+- WebGL/Three.js viewer (no guide integration yet, just showcase)
+
+**Phase 3 (Expansion) — Platform & Scale**
+
+*Goal: Advanced capabilities, platform features, expanded use cases.*
+
+**Key Additions:**
+- **3D model visualization** (part locations synced with checklist progress)
+- **AI-powered 3D model generation** (Blender integration for all vehicles)
+- Multi-vehicle garage (enthusiasts with multiple cars can track all in one dashboard)
+- Community-validated aftermarket recommendations (users vote on parts quality, reliability ratings crowd-sourced)
+- Advanced AI confidence scoring (transparent accuracy metrics, self-reported confidence on diagnoses)
+- Expanded use cases (motorcycles, RVs, boats — if user demand validates)
+- API for third-party integrations (repair shops, parts retailers, fleet management)
+
+### Known Issues Architecture: Three-Source Validation Model
+
+**Data Sources:**
+
+1. **Automated Gathering Agent (Internet-Wide Search):**
+   - Sources: NHTSA TSBs, manufacturer recalls, OEM service bulletins, forums (ChallengerTalk, SRT Hellcat Forum, Dodge Garage), Reddit (r/Challenger, r/Dodge), YouTube comments, automotive news
+   - Runs: Weekly batch, scheduled cron job
+   - Scope: Max 10 vehicles per batch (prioritize popular models), max 50 search results per vehicle
+   - Cost: $2-5/week = $8-20/month
+   - AI Validation Agent scores each finding: High/Medium/Low confidence
+
+2. **Passive User Capture (Automatic, During Initial AI Chat):**
+   - When: User describes symptom in initial AI chat (before guide generation)
+   - What's captured: YMMT, symptom description, mileage (if mentioned), timestamp
+   - No user prompt: Data captured invisibly, user doesn't know
+   - Example: User says "My radiator is leaking and the car only has 45k miles" → captured as potential Known Issue
+   - Aggregated automatically: Not reviewed individually, patterns emerge from volume
+
+3. **Active User Submissions (Optional, "Report an Issue" Button):**
+   - Form fields: Issue description (required), mileage (optional), how you fixed it (optional), photo (optional)
+   - Anonymous by default (no account required)
+   - Rate limited: 3 submissions/IP/24h, 1 per YMMT/IP/7d
+   - Spam filtered: AI pre-screens, honeypot fields, bot detection
+
+**Cross-Validation & Approval Workflow:**
+
+**Dashboard Aggregation:**
+- AI aggregates: "47 users reported radiator issues on 2015 Challenger SRT 392, avg mileage 52k (range: 38k-78k)"
+- Devon sees: One aggregated pattern, not 47 individual reports
+- Review time: 10 seconds per pattern vs. 1 minute per individual report
+
+**Confidence Scoring:**
+- HIGH (>90%): Agent + user reports align + TSB/recall confirms → Fast approval
+- MEDIUM (60-89%): Agent only, no user reports → Hold for 30 days (if no user reports emerge, likely false positive → reject)
+- LOW (<60%): Conflicting sources, unverified, single anonymous report → Auto-rejected
+
+**Source Credibility Tiers:**
+- **Tier 1 (Auto-trusted):** NHTSA TSBs, manufacturer recalls, OEM service bulletins
+- **Tier 2 (Require user validation):** Forum posts, Reddit threads, YouTube comments
+- **Tier 3 (Auto-rejected):** Single anonymous posts, unverified blogs, AI-generated content
+
+**Human Review Protocol:**
+- HIGH confidence + 20+ user reports + TSB → Approve (10 sec)
+- MEDIUM confidence + no user reports → Hold 30 days
+- Any HIGH severity issue (safety, brakes, drivetrain) → Manual source verification (2-3 min)
+- Batch review mode: "Approve all HIGH confidence items?" [Approve 12 items]
+
+**Published Known Issue Format:**
+```
+⚠️ Premature Radiator Failure
+✓ Human-approved | Based on 47 owner reports, 3 TSBs, 1 recall | Reviewed Jan 2026
+
+Owners of 2015-2023 Dodge Challengers have reported premature radiator
+failures due to plastic end tank cracks. Common at 40k-80k miles regardless
+of maintenance. Aftermarket aluminum radiators recommended by owner reports.
+
+Cost estimate: $350-$800 (OEM), $200-$400 (aftermarket aluminum)
+⚠️ This is not a recommendation. Consult a mechanic.
+```
+
+**Time Budget:**
+- Weekly review: 10-15 min (down from 15-20 min with automated aggregation)
+- Priority queue: Top 10 items = 80% of real Known Issues
+- Auto-aggregation: Handles volume growth without increasing Devon's time
+
+### Architecture Decision Records (Summary)
+
+**ADR-001: Semi-Automated Known Issues Gathering with Human-in-the-Loop**
+- Decision: Gathering agent searches internet, AI scores findings, human approves before publication
+- Rationale: Balances automation (speed, coverage) with human oversight (quality, trust)
+- Time budget: 10-15 min/week (sustainable)
+
+**ADR-002: Inline AI Chat Limit - 3 Questions Per Guide (Not Per Day)**
+- Decision: Free tier gets 3 questions per guide, resets when starting new guide
+- Rationale: Prevents mid-task abandonment (Jake persona), maintains Premium upgrade path
+- Alternative rejected: 3 per day (causes mid-task blocks)
+
+**ADR-003: Known Issues Data Sourcing Transparency**
+- Decision: Display "✓ Human-approved" badge, source citations, last reviewed date
+- Rationale: Trust signal for risk-averse users (Sarah persona)
+- Impact: Builds credibility, reduces "Is this AI guessing?" concerns
+
+**ADR-004: Inline Tips Quality Bar - Critical Path (Not Nice-to-Have)**
+- Decision: Inline tips must cover 90% of common stuck points, validated via adversarial test cases
+- Rationale: Offline-first architecture requires tips to work standalone, Marcus validated quality tips reduce AI chat need
+- Owner: Content Quality Reviewer agent enforces coverage requirement
+
+**ADR-005: MVP Phasing Rationale - Core Validation Over Feature Breadth**
+- Decision: MVP prioritizes core validation (guide completion, Known Issues accuracy, offline reliability) over feature breadth (user accounts, dashboard, 3D models)
+- Rationale: Solo sustainability, faster launch, clear validation signals
+- Deferred to Phase 2: User accounts, cloud sync, Premium tier monetization
+
+### Risk Mitigation Strategy
+
+**Technical Risks:**
+
+| Risk | Mitigation |
+|---|---|
+| Automated Known Issues gathering agent generates bad data | AI Validation Agent gates all findings. 30-day cross-validation hold for MEDIUM confidence. Source credibility tiers (NHTSA/TSBs trusted, forums require user validation). Human review for severe issues. Adversarial test cases. |
+| Gathering agent scraping breaks when sources change structure | Prioritize stable data sources (NHTSA API, OEM databases = 80% weight, forums = 20%). Multi-source redundancy (3-5 forums per vehicle). Graceful degradation UX ("Data gathering in progress" vs. "No known issues"). Manual override always available. |
+| Six-agent + gathering agent + inline AI chat = high API costs | Hard budget limit ($25/month cap). Gathering agent cost controls (weekly batch, max 10 vehicles, max 50 results, GPT-4o-mini). Inline AI chat rate limits (3 questions/guide free tier). Cost monitoring dashboard from day one. |
+| Service Worker complexity on Safari iOS | Already mitigated via explicit onboarding flow with visual "Add to Home Screen" guide. Fallback UX if Service Worker fails to register. |
+| Inline AI chat adds latency to guide experience | Opt-in only (user taps "Ask AI" on step). Static tips are default and offline-available. Chat is enhancement, not requirement. |
+| Spam attacks on user submissions | Rate limiting (3/IP/24h, 1 per YMMT/IP/7d). AI spam filter. Honeypot fields. Passive capture prioritized (requires completing AI chat flow). |
+| Approval dashboard overwhelmed at scale | Automated aggregation (review patterns not raw reports). Priority queue (sorted by confidence × user count × severity). Batch review mode. Auto-approve HIGH confidence in Phase 2. |
+
+**Market Risks:**
+
+| Risk | Mitigation |
+|---|---|
+| Users don't trust AI-generated Known Issues (vs. manually curated) | AI Validation Agent enforces quality bar. Transparency: "✓ Human-approved" badge, source citations, "Based on owner reports from [sources]". Tone framing: "Owners reported..." (not "You will experience..."). |
+| Known Issues briefing feels like fear-mongering, not help | Progressive disclosure: most critical issues first, full list expandable. Severity-calibrated warnings prevent fatigue. Disclaimers: "This is not a recommendation. Consult a mechanic." |
+| Ad revenue doesn't materialize in Month 2 | Validation path built in: if ad revenue <$1 by Month 2, pivot to Premium-first monetization. Free tier remains but Premium features expand. |
+
+**Resource Risks:**
+
+| Risk | Mitigation |
+|---|---|
+| Building gathering agent takes longer than MVP timeline allows | Architecture decision at MVP: data sources (NHTSA API priority), validation flow (human-in-the-loop), YMMT keying. If not ready: Manual Challenger Known Issues as fallback, gathering agent ships as Phase 1.5. |
+| Solo operator can't maintain gathering agent + six-agent pipeline + product | AI-maintainability is non-negotiable. Automated aggregation reduces review time to 10-15 min/week. Vacation mode: Pause gathering agent, approve all HIGH confidence items before absence. Scheduled batch reviews (flexibility for travel/illness). |
+| API costs exceed $20/month during MVP development or operation | Development uses rate-limited test keys. Production cost monitoring from day one. Hard cap at $25/month prevents runaway costs. If costs spike: Reduce gathering frequency, tighten inline chat limits, or shift to Premium-first model faster. |
+| Solo operator unavailable (vacation/illness) | Vacation mode toggle. Batch review flexibility (can review every 2 weeks for 30 min instead of weekly 15 min). Auto-approve Tier 1 sources (NHTSA/TSBs) if unavailable >7 days. Phase 2: Trusted backup reviewer. |
+| Published Known Issue causes damage (liability) | Disclaimers: "⚠️ This is not a recommendation. Consult a mechanic." Framing: "Owners have reported..." (informational, not advice). Warranty-voiding flags for modifications. General liability insurance. Phase 2: Community voting on accuracy, fast correction path. |
+
+### Validation Metrics (MVP Success Criteria)
+
+**Core Validation Signals (Month 1-2):**
+1. **Guide completion rate >60%** - Users finish tasks they start
+2. **Known Issues briefing open rate >40%** - Users engage with proactive warnings
+3. **Ad revenue >$0 by Month 2** - Monetization path validates
+4. **Operational cost <$20/month** - Sustainability proven
+5. **Solo operator maintenance ≤1 hour/week** - Time budget holds under real load
+
+**Innovation Validation Signals:**
+- Six-agent pipeline: Zero safety-critical errors reach users in first 100 guides
+- Proactive Known Issues: Return visit within 7 days after briefed issue becomes relevant
+- Inline AI chat: Tap rate >20%, completion rate lift with chat engagement
+- Offline-first: Users proactively cache guides, cache badge viewed >50%
+
+**Cross-Validation Signals (Month 2-3):**
+- User reports align with gathering agent findings (confidence validation)
+- Known Issues with both sources (agent + users) have higher engagement
+- Approval time stays within 10-15 min/week despite growing user base
