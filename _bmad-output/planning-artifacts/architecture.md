@@ -1,11 +1,14 @@
 ---
-stepsCompleted: [1, 2, 3, 4, 5, 6]
+stepsCompleted: [1, 2, 3, 4, 5, 6, 7, 8]
 inputDocuments:
   - 'c:\Users\devon\autocarecompanion\_bmad-output\planning-artifacts\prd.md'
 workflowType: 'architecture'
 project_name: 'AutoCare Companion'
 user_name: 'Devon'
 date: '2026-02-04'
+lastStep: 8
+status: 'complete'
+completedAt: '2026-02-05'
 ---
 
 # Architecture Decision Document - AutoCare Companion
@@ -2450,4 +2453,186 @@ autocarecompanion/
 ---
 
 **Party Mode Validation:** Winston (Architect), Barry (Solo Dev), Murat (Test Architect), John (PM), and Sally (UX Designer) reviewed and enhanced the project structure with 10 structural improvements: API runtime via exports, route groups retained, consistent test separation, missing admin components, phase-based component organization, Service Worker generation clarity, no barrel files, smoke test utilities, NFR utilities directory, and UI state components. The structure maps 95+ files to FR1-FR71 and NFRs with clear architectural boundaries.
+
+---
+
+## Architecture Validation Results
+
+### Coherence Validation ✅
+
+**Decision Compatibility:**
+All technology choices work together without conflicts:
+- Next.js 15 App Router + TypeScript + Tailwind CSS ✅
+- @ducanh2912/next-pwa v10.2.9 + Vercel deployment ✅
+- Headless UI + Zod + react-hook-form ✅
+- Hybrid API (Edge + Serverless) compatible with Vercel runtime ✅
+- No version conflicts identified
+
+**Pattern Consistency:**
+All 23 implementation patterns align with technology choices:
+- Naming conventions match TypeScript/React standards ✅
+- File organization matches Next.js App Router conventions ✅
+- Export patterns (named only, no barrels) compatible with tree-shaking ✅
+- Test organization (separated) works with Vitest/Playwright ✅
+
+**Structure Alignment:**
+Project structure supports all architectural decisions:
+- Route groups `(discovery)` and `(execution)` enforce Two-Phase Design Language ✅
+- API routes use `export const runtime` for Edge/Serverless declaration ✅
+- Component organization by phase prevents style conflicts ✅
+- All 95+ files mapped to specific requirements ✅
+
+---
+
+### Requirements Coverage Validation ✅
+
+**Functional Requirements (FR1-FR71):**
+
+| FR Category | Count | Coverage |
+|-------------|-------|----------|
+| Vehicle ID & Diagnosis (FR1-7) | 7 | ✅ Complete |
+| Guide Generation (FR8-18) | 11 | ✅ Complete |
+| Known Issues (FR19-28) | 10 | ✅ Complete |
+| Parts Recommendations (FR29-35) | 7 | ✅ Complete |
+| User Assistance (FR36-47) | 12 | ✅ Complete |
+| Offline & Caching (FR48-55) | 8 | ✅ Complete |
+| Content Validation (FR56-61) | 6 | ✅ Complete |
+| Monitoring & Admin (FR62-71) | 10 | ✅ Complete |
+
+**All 71 FRs mapped to specific pages, components, API routes, and lib functions.**
+
+**Non-Functional Requirements Coverage:**
+
+| NFR Category | Count | Coverage |
+|--------------|-------|----------|
+| Performance (NFR-P1 to P17) | 17 | ✅ Complete |
+| Reliability (NFR-R1 to R15) | 15 | ✅ Complete |
+| Security (NFR-S1 to S16) | 16 | ✅ Complete |
+| Accessibility (NFR-A1 to A14) | 14 | ✅ Complete |
+| Integration (NFR-I1 to I15) | 15 | ✅ Complete |
+
+**Key NFR Architectural Support:**
+- **NFR-P1/P2 (TTI <3s/<5s):** Edge Functions + bundle monitoring + Service Worker
+- **NFR-R3 (100% offline):** Service Worker atomic caching + localStorage helpers
+- **NFR-S1 (API keys protected):** Serverless Functions as proxies, env variables
+- **NFR-A2 (AAA contrast):** Two-Phase Design Language, lib/nfr/contrastChecker.ts
+- **NFR-I9 ($25 hard cap):** Budget enforcer + cost tracking + rate limiting
+
+---
+
+### Implementation Readiness Validation ✅
+
+**Decision Completeness:**
+- All critical decisions documented with specific versions ✅
+- Technology stack fully specified (Next.js 15, Tailwind, Zod, etc.) ✅
+- 23 implementation patterns with code examples ✅
+- Good examples and anti-patterns provided ✅
+
+**Structure Completeness:**
+- 95+ files and directories defined ✅
+- All API routes specified with runtime declarations ✅
+- Integration points clearly documented ✅
+- Data flows documented (symptom → guide, cost tracking) ✅
+
+**Pattern Completeness:**
+- All 23 conflict points addressed ✅
+- Naming conventions comprehensive ✅
+- Communication patterns (state updates, actions) specified ✅
+- Process patterns (error handling, retry, localStorage) complete ✅
+
+---
+
+### Gap Analysis Results
+
+**Critical Gaps:** None identified ✅
+
+**Important Gaps (All Resolved via Party Mode):**
+1. ~~API route folder structure mismatch~~ → Resolved: flat structure with runtime exports
+2. ~~Test organization inconsistency~~ → Resolved: all tests in `tests/` directory
+3. ~~Missing admin components~~ → Resolved: BudgetGauge, DailyBreakdown, VacationModeToggle added
+4. ~~NFR utilities missing~~ → Resolved: `lib/nfr/` directory added
+
+**Nice-to-Have (Future Enhancement):**
+- ESLint rules for pattern enforcement (deferred to Epic 3+)
+- Comprehensive E2E test suite expansion (deferred to Epic 3+)
+- Advanced monitoring (error tracking, analytics) (deferred to post-MVP)
+
+---
+
+### Architecture Completeness Checklist
+
+**✅ Requirements Analysis**
+- [x] Project context thoroughly analyzed (137 requirements)
+- [x] Scale and complexity assessed (Medium-High, solo sustainable)
+- [x] Technical constraints identified ($20/month, 1hr/week maintenance)
+- [x] Cross-cutting concerns mapped (8 categories)
+
+**✅ Architectural Decisions**
+- [x] Critical decisions documented with versions
+- [x] Technology stack fully specified
+- [x] Hybrid API architecture defined (Edge + Serverless)
+- [x] Performance considerations addressed (bundle size, TTI)
+
+**✅ Implementation Patterns**
+- [x] 23 naming conventions established
+- [x] Structure patterns defined (no barrels, direct imports)
+- [x] Communication patterns specified (immutable state, verb-first actions)
+- [x] Process patterns documented (retry, error handling, localStorage)
+
+**✅ Project Structure**
+- [x] Complete 95+ file directory structure defined
+- [x] Component boundaries established (discovery/execution phases)
+- [x] Integration points mapped (API, localStorage, Service Worker)
+- [x] Requirements to structure mapping complete
+
+---
+
+### Architecture Readiness Assessment
+
+**Overall Status:** ✅ READY FOR IMPLEMENTATION
+
+**Confidence Level:** HIGH
+
+**Key Strengths:**
+1. **Comprehensive FR/NFR coverage** - All 137 requirements architecturally supported
+2. **Party Mode validated** - 3 rounds of multi-agent review (Steps 4, 5, 6) caught 33 issues
+3. **Pattern completeness** - 23 patterns prevent AI agent conflicts
+4. **Solo sustainability designed-in** - $20/month budget, 1hr/week maintenance baked into decisions
+5. **Offline-first architecture** - Service Worker + localStorage helpers with Zod validation
+6. **Two-Phase Design Language** - Accessibility for garage environment built into structure
+
+**Areas for Future Enhancement:**
+1. ESLint rule automation (Epic 3+)
+2. Comprehensive E2E test suite expansion
+3. Advanced monitoring (error tracking, analytics)
+4. Cloud sync (Phase 2 premium feature)
+5. Image recognition for vehicle ID (Phase 2)
+
+---
+
+### Implementation Handoff
+
+**AI Agent Guidelines:**
+1. Follow all architectural decisions exactly as documented
+2. Use implementation patterns consistently across all components
+3. Respect project structure and boundaries (discovery vs execution)
+4. Use typed localStorage helpers with Zod validation (NEVER direct localStorage.setItem)
+5. Follow async naming convention (fetch*/load* = async, get*/calculate* = sync)
+6. Refer to this document for all architectural questions
+
+**First Implementation Priority:**
+
+```bash
+# Epic 0: Foundation
+npx create-next-app@latest autocare-companion --yes
+cd autocare-companion
+npm install @ducanh2912/next-pwa @headlessui/react zod
+```
+
+**Epic Sequence:**
+1. **Epic 0:** Foundation (project init, Vercel deploy)
+2. **Epic 0.5:** Design System (UI primitives, Two-Phase Design Language)
+3. **Epic 1:** Core Value + Smoke Tests (Journey 1: symptom → diagnosis → guide)
+4. **Epic 2:** Offline Validation (Service Worker, localStorage quota)
+5. **Epic 3+:** Scale & Perfect (E2E tests, performance optimization)
 
