@@ -1,5 +1,5 @@
 ---
-stepsCompleted: [1, 2]
+stepsCompleted: [1, 2, 3, 4]
 inputDocuments:
   - '_bmad-output/planning-artifacts/prd.md'
   - '_bmad-output/planning-artifacts/architecture.md'
@@ -320,6 +320,11 @@ This document provides the complete epic and story breakdown for AutoCare Compan
 - Epic 6: 6 FRs (FR56-FR61)
 - Epic 7: 10 FRs (FR62-FR71)
 - Phase 2: 1 FR (FR4 - photo upload)
+
+**Phase 2 Candidates (Post-MVP):**
+- FR4: Photo upload for vehicle identification (deferred per ADR-006)
+- SEO AI Agent: Meta tags, Open Graph, JSON-LD structured data, sitemap generation
+- Motorcycle support: Vehicle-agnostic architecture enables low-friction expansion
 - **Total: 70 FRs covered + 1 deferred**
 
 ## Epic List
@@ -902,4 +907,1291 @@ So that **I can follow along and track my progress through the repair**.
 **When** the final step is marked complete
 **Then** a completion message is displayed
 **And** the user can return to the home screen
+
+---
+
+## Epic 2: Offline-First Garage Mode
+
+Users can execute guides in their garage without internet. This epic validates the offline-first assumption - guides work where users need them most.
+
+### Story 2.1: Guide Caching via Service Worker
+
+As a **vehicle owner**,
+I want **my guides cached by the Service Worker**,
+So that **I can access them instantly without network dependency**.
+
+**Acceptance Criteria:**
+
+**Given** a guide has been generated and viewed
+**When** the Service Worker intercepts the guide data
+**Then** the complete guide (steps, tips, safety warnings) is cached
+**And** caching uses atomic all-or-nothing strategy (NFR-P10)
+
+**Given** a guide is cached
+**When** the user loads that guide again
+**Then** the guide loads in <1 second (NFR-P4, FR51)
+**And** no network request is made for cached content
+
+**Given** the Service Worker attempts to cache a guide
+**When** caching succeeds
+**Then** the cache success rate is ≥99% (NFR-R2)
+**And** cached data is valid for 30 days minimum (NFR-R1)
+
+**Given** caching fails partway through
+**When** the atomic cache detects incomplete data
+**Then** the partial cache is discarded
+**And** the guide remains available online
+**And** caching can be retried
+
+---
+
+### Story 2.2: Cache Status Badge & Proactive Caching
+
+As a **vehicle owner**,
+I want **to see which guides are cached and manually cache guides for offline use**,
+So that **I can prepare guides before going to the garage**.
+
+**Acceptance Criteria:**
+
+**Given** a guide is fully cached
+**When** the user views the guide list or guide header
+**Then** a "✓ Cached for offline" badge is displayed (FR49)
+**And** the badge is visually distinct (e.g., green checkmark)
+
+**Given** a guide is not cached
+**When** the user views the guide
+**Then** no cache badge is shown
+**And** a "Cache for offline" button is available (FR50)
+
+**Given** the user taps "Cache for offline"
+**When** they are online
+**Then** a loading indicator shows caching progress
+**And** on success, the cache badge appears
+**And** a confirmation message is shown
+
+**Given** the user taps "Cache for offline"
+**When** they are offline
+**Then** an error message explains caching requires internet
+**And** the button remains available for later
+
+---
+
+### Story 2.3: Offline State Detection & Indication
+
+As a **vehicle owner**,
+I want **to clearly see when I'm offline**,
+So that **I understand which features are available**.
+
+**Acceptance Criteria:**
+
+**Given** the device loses network connectivity
+**When** the app detects the offline state
+**Then** an offline indicator is displayed prominently (FR46)
+**And** the indicator uses clear messaging (e.g., "You're offline")
+
+**Given** the device regains network connectivity
+**When** the app detects the online state
+**Then** the offline indicator is removed within 5 seconds (NFR-R5)
+**And** online features become available again
+
+**Given** the user is offline
+**When** they view the app
+**Then** clear messaging indicates "No internet connection" (FR52)
+**And** available offline features are still accessible
+
+**Given** the network status changes
+**When** transitioning between online/offline
+**Then** the transition is seamless (NFR-R4)
+**And** no data is lost during the transition
+
+---
+
+### Story 2.4: Offline Guide Access
+
+As a **vehicle owner**,
+I want **to access all guide steps and tips while offline**,
+So that **I can complete repairs in my garage without internet**.
+
+**Acceptance Criteria:**
+
+**Given** the user has a cached guide
+**When** they open it while offline
+**Then** all guide steps are accessible (FR53)
+**And** all inline tips are accessible (FR53)
+**And** all safety warnings are visible
+
+**Given** the user is executing a cached guide offline
+**When** they navigate between steps
+**Then** navigation works normally
+**And** step completion can be marked
+**And** progress is tracked
+
+**Given** the user completes steps offline
+**When** they mark steps complete/incomplete
+**Then** the changes are persisted locally
+**And** the guide state is maintained
+
+**Given** a guide is cached
+**When** accessed offline
+**Then** 100% of guide content is available (NFR-R3)
+**And** the experience matches online guide execution
+
+---
+
+### Story 2.5: Graceful Degradation for Online Features
+
+As a **vehicle owner**,
+I want **clear messaging when online-only features are unavailable**,
+So that **I understand why certain features don't work offline**.
+
+**Acceptance Criteria:**
+
+**Given** the user is offline
+**When** they try to access AI chat
+**Then** a clear message displays "AI chat unavailable offline" (FR54)
+**And** the message explains internet is required
+
+**Given** the user is offline
+**When** they try to generate a new guide
+**Then** a message explains guide generation requires internet
+**And** they are directed to cached guides instead
+
+**Given** the user is offline
+**When** they view the Pre-Flight modal
+**Then** static content (tools, parts, difficulty) is available
+**And** any online-only content shows appropriate messaging
+
+**Given** the user is offline
+**When** online-only features are attempted
+**Then** error messages are user-friendly (NFR-R12)
+**And** alternative actions are suggested where possible
+
+---
+
+### Story 2.6: localStorage Persistence
+
+As a **vehicle owner**,
+I want **my guide progress saved in localStorage**,
+So that **my progress survives app restarts and offline/online transitions**.
+
+**Acceptance Criteria:**
+
+**Given** the user marks steps complete in a guide
+**When** progress is saved
+**Then** progress is stored in localStorage using typed helpers with Zod validation
+**And** data follows the standardized guide data model (FR71)
+
+**Given** the user closes the app mid-guide
+**When** they reopen the app
+**Then** their progress is restored from localStorage (FR55)
+**And** they can resume from the same step (related: FR13)
+
+**Given** the user transitions between offline and online
+**When** the network state changes
+**Then** localStorage data persists across the transition (FR55)
+**And** no progress is lost
+
+**Given** localStorage data exists
+**When** loaded by the application
+**Then** data is validated with Zod schema
+**And** corrupt data triggers recovery mechanism (NFR-R9)
+
+**Given** localStorage approaches quota limits
+**When** new data needs to be saved
+**Then** graceful degradation messaging is shown (NFR-R8)
+**And** oldest cached guides may be cleared with user consent
+
+**Given** localStorage data
+**When** stored on the device
+**Then** data persists for 90 days minimum (NFR-R6)
+**And** survives browser close, device restart, airplane mode (NFR-R7)
+
+---
+
+## Epic 3: Enhanced Guide Experience
+
+Users have a polished, full-featured guide execution experience. This epic adds time estimates, navigation controls, tips, safety indicators, and AI assistance for a delightful guide experience.
+
+### Story 3.1: Time Estimates Display
+
+As a **vehicle owner**,
+I want **to see estimated time to complete the guide**,
+So that **I can plan my repair session accordingly**.
+
+**Acceptance Criteria:**
+
+**Given** a guide has been generated
+**When** the user views the Pre-Flight modal
+**Then** a time estimate is displayed (e.g., "Estimated time: 45 minutes")
+**And** the estimate is prominent and easy to read
+
+**Given** the user is executing a guide
+**When** they view the guide header
+**Then** the total estimated time is visible
+**And** remaining time could be shown based on progress
+
+**Given** the time estimate data
+**When** displayed in the guide
+**Then** the format is user-friendly (e.g., "1-2 hours" or "30-45 min")
+**And** estimates account for skill level disclaimers if needed
+
+---
+
+### Story 3.2: Pause & Resume Guide Progress
+
+As a **vehicle owner**,
+I want **to pause my guide and resume from the exact same step later**,
+So that **I can take breaks without losing my place**.
+
+**Acceptance Criteria:**
+
+**Given** the user is partway through a guide
+**When** they leave the app or navigate away
+**Then** their current step position is saved automatically
+**And** completed steps remain marked
+
+**Given** the user returns to a previously started guide
+**When** they open the guide
+**Then** they are returned to their last active step (FR13)
+**And** a "Resume from Step X" message is shown
+
+**Given** the user has paused a guide
+**When** they choose to restart from the beginning
+**Then** an option to "Start Over" is available
+**And** selecting it resets progress with confirmation
+
+**Given** the user pauses mid-guide
+**When** they close the browser or restart their device
+**Then** progress is persisted via localStorage
+**And** resuming works correctly after reopening
+
+---
+
+### Story 3.3: Step Navigation Controls
+
+As a **vehicle owner**,
+I want **to navigate between steps using next, previous, and jump controls**,
+So that **I can move through the guide at my own pace**.
+
+**Acceptance Criteria:**
+
+**Given** the user is viewing a step
+**When** they want to proceed
+**Then** a "Next" button advances to the next step (FR14)
+**And** the button is touch-friendly (44x44px minimum)
+
+**Given** the user is viewing a step (not the first)
+**When** they want to go back
+**Then** a "Previous" button returns to the prior step (FR14)
+**And** the button is easily accessible
+
+**Given** the user wants to jump to a specific step
+**When** they tap the progress indicator or step list
+**Then** a step overview/list is shown (FR14)
+**And** they can tap any step to jump directly to it
+
+**Given** the user navigates between steps
+**When** moving forward or backward
+**Then** navigation response is within 200ms (NFR-P6)
+**And** transitions are smooth
+
+**Given** the user is on the first step
+**When** viewing navigation controls
+**Then** the "Previous" button is disabled or hidden
+**And** only "Next" is available
+
+**Given** the user is on the last step
+**When** viewing navigation controls
+**Then** the "Next" button shows "Complete" or similar
+**And** tapping it completes the guide
+
+---
+
+### Story 3.4: Inline Tips for Stuck Points
+
+As a **vehicle owner**,
+I want **to see helpful tips when I get stuck on a step**,
+So that **I can overcome common obstacles without external help**.
+
+**Acceptance Criteria:**
+
+**Given** a step has associated tips
+**When** the user views the step
+**Then** an expandable "Tips" section is visible (FR15)
+**And** the section is collapsed by default
+
+**Given** the user expands the tips section
+**When** tips are displayed
+**Then** each tip addresses a common stuck point
+**And** tips are concise and actionable
+
+**Given** the guide is cached for offline
+**When** the user accesses tips offline
+**Then** all tips are available without network (FR47)
+**And** tips function identically to online mode
+
+**Given** the AI generates the guide
+**When** tips are included
+**Then** 90% of common stuck points have tips (FR57)
+**And** tips are validated for quality
+
+**Given** a step has no tips
+**When** the user views the step
+**Then** no tips section is shown
+**And** the UI remains clean
+
+---
+
+### Story 3.5: Safety Warning Visual Indicators
+
+As a **vehicle owner**,
+I want **prominent visual indicators for safety warnings**,
+So that **I don't miss critical safety information**.
+
+**Acceptance Criteria:**
+
+**Given** a step has safety warnings
+**When** the user views the step
+**Then** safety warnings are displayed prominently (FR16)
+**And** warnings use high-contrast AAA styling (7:1 ratio per NFR-A2)
+
+**Given** a safety warning is critical
+**When** displayed to the user
+**Then** it uses distinct visual treatment (e.g., red/orange border, warning icon)
+**And** the warning text is at least 20px bold (per Architecture)
+
+**Given** multiple safety warnings exist on a step
+**When** displayed together
+**Then** each warning is clearly separated
+**And** severity is indicated if applicable
+
+**Given** the user is in a dark environment
+**When** viewing safety warnings
+**Then** warnings remain legible at 30% screen brightness (NFR-A6)
+**And** contrast meets AAA requirements
+
+**Given** a step has no safety warnings
+**When** the user views the step
+**Then** no warning section is displayed
+**And** the step appears standard
+
+---
+
+### Story 3.6: Inline AI Chat (Step-Scoped)
+
+As a **vehicle owner**,
+I want **to ask AI questions about the current step**,
+So that **I can get help when the instructions aren't clear**.
+
+**Acceptance Criteria:**
+
+**Given** the user is executing a guide online
+**When** they view a step
+**Then** an "Ask AI" button is available (FR17, FR45)
+**And** the button is clearly visible
+
+**Given** the user has questions remaining
+**When** they tap "Ask AI"
+**Then** a chat interface opens scoped to the current step
+**And** the AI has context about the step and vehicle
+
+**Given** the user sends a question
+**When** the AI responds
+**Then** the response streams in within 5 seconds (NFR-P7)
+**And** the response is relevant to the current step
+
+**Given** the user has used 3 questions on this guide
+**When** they try to ask another question
+**Then** a message indicates the limit is reached (FR17)
+**And** they cannot send additional questions
+
+**Given** the user has questions remaining
+**When** they view the chat interface
+**Then** a counter shows remaining questions (e.g., "2 of 3 remaining") (FR18)
+**And** the counter updates after each question
+
+**Given** the user is offline
+**When** they try to access AI chat
+**Then** a message indicates AI chat requires internet
+**And** the "Ask AI" button is disabled or shows offline state
+
+---
+
+## Epic 4: Known Issues Intelligence
+
+Users receive proactive briefings about known problems with their vehicle. This epic builds trust through proactive intelligence that prevents surprises.
+
+### Story 4.1: Known Issues Briefing Display
+
+As a **vehicle owner**,
+I want **to see known issues for my vehicle immediately after selection**,
+So that **I'm aware of common problems before I start diagnosing**.
+
+**Acceptance Criteria:**
+
+**Given** the user has selected their vehicle (YMMT or VIN)
+**When** the vehicle is confirmed
+**Then** a Known Issues briefing is displayed (FR19)
+**And** issues are specific to the user's year/make/model/trim
+
+**Given** known issues exist for the vehicle
+**When** the briefing is displayed
+**Then** issues are shown in a list format
+**And** the list is collapsed by default (progressive disclosure) (FR24)
+
+**Given** the user wants to see more detail
+**When** they expand an issue
+**Then** the full issue description is shown
+**And** related information (citations, confidence) is visible
+
+**Given** no known issues exist for the vehicle
+**When** the briefing would be displayed
+**Then** a message indicates "No known issues found for this vehicle"
+**And** the user can proceed to symptom chat
+
+**Given** the user wants to skip the briefing
+**When** they dismiss it
+**Then** they can proceed to the symptom chat
+**And** the briefing remains accessible later if needed
+
+---
+
+### Story 4.2: Confidence & Trust Indicators
+
+As a **vehicle owner**,
+I want **to see confidence levels, source citations, approval badges, and review dates for each issue**,
+So that **I can trust the information is accurate and current**.
+
+**Acceptance Criteria:**
+
+**Given** a known issue is displayed
+**When** the user views the issue
+**Then** a confidence indicator shows High/Medium/Low (FR20)
+**And** the indicator uses color coding (green/yellow/orange)
+
+**Given** a known issue has source citations
+**When** expanded or viewed in detail
+**Then** source citations are displayed (FR21)
+**And** citations include recognizable sources (TSBs, forums, recalls)
+
+**Given** a known issue has been human-approved
+**When** displayed to the user
+**Then** a "✓ Human-approved" badge is visible (FR22)
+**And** the badge builds trust in the information
+
+**Given** a known issue has been reviewed
+**When** the user views the issue
+**Then** a "Last reviewed" date is shown (FR23)
+**And** the date format is user-friendly (e.g., "Reviewed Jan 2026")
+
+**Given** an issue has low confidence or old review date
+**When** displayed to the user
+**Then** appropriate caveats are shown
+**And** the user understands the limitation
+
+---
+
+### Story 4.3: Severity Filtering
+
+As a **vehicle owner**,
+I want **to filter known issues by severity**,
+So that **I can focus on the most critical problems first**.
+
+**Acceptance Criteria:**
+
+**Given** multiple known issues exist for a vehicle
+**When** the user views the Known Issues list
+**Then** filter options for High/Medium/Low severity are available (FR25)
+**And** filters are easily accessible (e.g., toggle buttons or dropdown)
+
+**Given** the user selects "High" severity filter
+**When** the filter is applied
+**Then** only High severity issues are displayed
+**And** the filter state is visually indicated
+
+**Given** the user selects multiple severity levels
+**When** the filters are applied
+**Then** issues matching any selected severity are shown
+**And** the user can see a combined view
+
+**Given** no issues match the selected filter
+**When** the filter is applied
+**Then** a message indicates "No issues found with selected severity"
+**And** the user can clear or adjust filters
+
+**Given** the user clears all filters
+**When** the view resets
+**Then** all known issues are displayed again
+**And** the default view is restored
+
+---
+
+### Story 4.4: User Issue Reporting
+
+As a **vehicle owner**,
+I want **to report a new issue I've discovered with my vehicle**,
+So that **I can help other owners with the same vehicle**.
+
+**Acceptance Criteria:**
+
+**Given** the user is viewing Known Issues for their vehicle
+**When** they want to report a new issue
+**Then** a "Report an Issue" button is available (FR26)
+**And** the button is clearly visible
+
+**Given** the user taps "Report an Issue"
+**When** the report form opens
+**Then** they can describe the issue in a text field
+**And** optional fields for severity and symptoms are available
+
+**Given** the user submits an issue report
+**When** the submission is processed
+**Then** the report is queued for admin review
+**And** a confirmation message thanks the user
+
+**Given** the user has recently submitted a report
+**When** they try to submit another within the rate limit window
+**Then** a message indicates they must wait (FR26 - rate limited)
+**And** the time remaining is shown
+
+**Given** a submission attempt fails
+**When** network or server error occurs
+**Then** a user-friendly error is shown
+**And** the user can retry later
+
+---
+
+### Story 4.5: Passive Symptom Capture
+
+As a **system**,
+I want **to passively capture symptom data during AI diagnosis chat**,
+So that **I can identify emerging patterns for Known Issues**.
+
+**Acceptance Criteria:**
+
+**Given** the user is in the AI symptom chat
+**When** they describe their vehicle symptoms
+**Then** symptom data is passively captured (FR27)
+**And** the capture is anonymous (no personal data)
+
+**Given** symptom data is captured
+**When** stored for aggregation
+**Then** data includes: YMMT, symptom keywords, OBD codes if provided
+**And** no user-identifying information is stored (NFR-S5)
+
+**Given** the user's diagnosis is completed
+**When** the session ends
+**Then** captured symptoms are aggregated with similar reports
+**And** patterns can emerge over time
+
+**Given** passive capture is occurring
+**When** the user is using the app
+**Then** no explicit consent prompt is needed (anonymous data)
+**And** the app privacy policy covers this usage
+
+**Given** symptom patterns reach a threshold
+**When** multiple users report similar symptoms for same YMMT
+**Then** the pattern is flagged for admin review
+**And** it could become a new Known Issue
+
+---
+
+### Story 4.6: Admin Pattern Review
+
+As an **admin**,
+I want **to review aggregated symptom patterns in the dashboard**,
+So that **I can identify and publish new Known Issues**.
+
+**Acceptance Criteria:**
+
+**Given** symptom data has been aggregated
+**When** the admin views the dashboard
+**Then** patterns are displayed grouped by YMMT (FR28)
+**And** frequency/count of similar reports is shown
+
+**Given** a pattern shows significant frequency
+**When** the admin reviews it
+**Then** they can see: symptom descriptions, OBD codes, report count
+**And** they can decide to create a Known Issue from the pattern
+
+**Given** the admin wants to create a Known Issue
+**When** they select a pattern
+**Then** they can draft the issue with confidence level and sources
+**And** they can publish it to the Known Issues database
+
+**Given** the admin dismisses a pattern
+**When** they mark it as not actionable
+**Then** the pattern is archived
+**And** it won't appear in the review queue again
+
+**Given** vacation mode is enabled (FR70)
+**When** the gathering agent would capture data
+**Then** symptom capture continues but admin review is paused
+**And** patterns queue up for later review
+
+---
+
+## Epic 5: Parts Decision Support
+
+Users can confidently choose parts with OEM vs aftermarket guidance. This epic delivers confident parts purchasing without leaving the app.
+
+### Story 5.1: Inline Parts Recommendations
+
+As a **vehicle owner**,
+I want **to see parts recommendations inline within guide steps**,
+So that **I know exactly which parts I need as I work through the repair**.
+
+**Acceptance Criteria:**
+
+**Given** a guide step requires specific parts
+**When** the user views the step
+**Then** parts recommendations are displayed inline (FR29)
+**And** parts are contextual to that specific step
+
+**Given** parts are displayed inline
+**When** the user views the recommendation
+**Then** the part name and basic info are shown
+**And** an expandable section provides more detail
+
+**Given** a step requires multiple parts
+**When** displayed inline
+**Then** all required parts for that step are listed
+**And** the list is organized clearly
+
+**Given** a step does not require parts
+**When** the user views the step
+**Then** no parts section is displayed
+**And** the step focuses on the instruction
+
+**Given** the user wants more part detail
+**When** they expand the parts section
+**Then** OEM vs aftermarket options are shown
+**And** pricing information is visible
+
+---
+
+### Story 5.2: OEM vs Aftermarket Decision Framework
+
+As a **vehicle owner**,
+I want **to understand OEM vs aftermarket options with a decision framework**,
+So that **I can make informed choices based on my priorities**.
+
+**Acceptance Criteria:**
+
+**Given** a part has OEM and aftermarket options
+**When** the user views the parts detail
+**Then** a decision framework is displayed (FR30)
+**And** both options are clearly compared
+
+**Given** the decision framework is displayed
+**When** the user reviews it
+**Then** OEM benefits are listed (exact fit, warranty safe, OE quality)
+**And** aftermarket benefits are listed (lower cost, variety, availability)
+
+**Given** the part comparison
+**When** different scenarios apply
+**Then** guidance is provided (e.g., "For warranty concerns, consider OEM")
+**And** the user understands trade-offs
+
+**Given** a part only has one option
+**When** displayed to the user
+**Then** available option is shown
+**And** explanation for limited options if relevant
+
+**Given** the user is viewing on mobile
+**When** the framework is displayed
+**Then** information is readable and well-formatted
+**And** touch targets meet 44x44px minimum
+
+---
+
+### Story 5.3: Price Ranges & Brand Recommendations
+
+As a **vehicle owner**,
+I want **to see price ranges and curated brand recommendations**,
+So that **I can find quality parts within my budget**.
+
+**Acceptance Criteria:**
+
+**Given** a part has price information available
+**When** the user views parts detail
+**Then** price ranges are displayed for OEM and aftermarket (FR31)
+**And** prices are presented as ranges (e.g., "$15-25")
+
+**Given** aftermarket options exist
+**When** the user views recommendations
+**Then** curated quality brands are listed (FR32)
+**And** brands are vetted for reliability
+
+**Given** brand recommendations are shown
+**When** the user reviews them
+**Then** 2-4 recommended brands are listed
+**And** brief reasoning may be included (e.g., "Known for durability")
+
+**Given** price data is unavailable
+**When** the part is displayed
+**Then** a message indicates "Price varies by retailer"
+**And** the user is directed to purchase links
+
+**Given** the user's vehicle trim affects pricing
+**When** specific trim data is available
+**Then** prices reflect that trim's requirements
+**And** compatibility is noted
+
+---
+
+### Story 5.4: Purchase Links Integration
+
+As a **vehicle owner**,
+I want **to access links to purchase parts from retailers**,
+So that **I can buy parts without leaving the app**.
+
+**Acceptance Criteria:**
+
+**Given** a part is displayed
+**When** the user wants to purchase
+**Then** links to retailers are available (FR33)
+**And** links open in a new tab/browser
+
+**Given** purchase links are shown
+**When** the user views options
+**Then** Amazon link is available (if part exists)
+**And** RockAuto link is available (if part exists)
+**And** specialty retailer links may be included
+
+**Given** the user taps a purchase link
+**When** the link opens
+**Then** it directs to the correct part listing
+**And** the part matches the user's YMMT where possible
+
+**Given** a purchase link fails or part is unavailable
+**When** the user follows the link
+**Then** they land on a relevant search page
+**And** can find alternatives
+
+**Given** the user is offline
+**When** they view purchase links
+**Then** links are visible but noted as requiring internet
+**And** tapping shows offline messaging
+
+---
+
+### Story 5.5: Warranty & Compatibility Warnings
+
+As a **vehicle owner**,
+I want **to see warranty impact and compatibility warnings**,
+So that **I don't accidentally void my warranty or buy incompatible parts**.
+
+**Acceptance Criteria:**
+
+**Given** a part choice may affect warranty
+**When** the user views the part
+**Then** a warranty warning is displayed (FR34)
+**And** the warning is prominent but not alarmist
+
+**Given** a warranty warning exists
+**When** displayed to the user
+**Then** specific concern is explained (e.g., "Aftermarket may affect powertrain warranty")
+**And** the user can make an informed decision
+
+**Given** a part has vehicle-specific compatibility requirements
+**When** the user views the part
+**Then** compatibility info for their trim/engine is shown (FR35)
+**And** any fitment notes are included
+
+**Given** a compatibility concern exists
+**When** displayed to the user
+**Then** the concern is clearly stated (e.g., "Verify engine code before ordering")
+**And** how to verify is explained if possible
+
+**Given** no warranty or compatibility concerns exist
+**When** the user views the part
+**Then** no warnings are displayed
+**And** the part appears standard
+
+**Given** the user's vehicle has a known compatibility issue
+**When** parts are recommended
+**Then** incompatible parts are flagged
+**And** compatible alternatives are suggested
+
+---
+
+## Epic 6: Content Quality & Validation
+
+System ensures guide accuracy through six-agent validation pipeline. This epic delivers trustworthy, validated content users can rely on.
+
+### Story 6.1: Six-Agent Validation Pipeline
+
+As a **system**,
+I want **to validate guide accuracy through a six-agent AI pipeline**,
+So that **generated guides are accurate, complete, and safe before users see them**.
+
+**Acceptance Criteria:**
+
+**Given** a guide has been generated
+**When** it enters the validation pipeline
+**Then** six specialized agents review the guide (FR56)
+**And** each agent validates their domain
+
+**Given** the validation pipeline runs
+**When** agents are invoked
+**Then** Mechanic AI validates technical accuracy
+**And** Safety Officer validates safety warnings
+**And** Parts Specialist validates part recommendations
+**And** Content Quality validates readability/completeness
+**And** remaining agents cover additional domains
+
+**Given** an agent finds issues
+**When** validation completes
+**Then** issues are flagged for correction
+**And** the guide can be regenerated or fixed
+
+**Given** all agents approve the guide
+**When** validation passes
+**Then** the guide is marked validated
+**And** it becomes available to users
+
+**Given** the validation pipeline fails
+**When** an error occurs
+**Then** the error is logged for debugging
+**And** the guide remains in draft state
+
+---
+
+### Story 6.2: Inline Tips Coverage Validation
+
+As a **system**,
+I want **to validate that 90%+ of common stuck points have inline tips**,
+So that **users don't get stuck without help**.
+
+**Acceptance Criteria:**
+
+**Given** a guide has steps with known stuck points
+**When** tips coverage is validated
+**Then** the system checks that 90% of stuck points have tips (FR57)
+**And** coverage percentage is calculated
+
+**Given** tips coverage is below 90%
+**When** validation runs
+**Then** the guide fails validation
+**And** missing tip areas are identified
+
+**Given** tips coverage meets 90% threshold
+**When** validation passes
+**Then** the guide can proceed in the pipeline
+**And** coverage metric is recorded
+
+**Given** a step has no common stuck points
+**When** coverage is calculated
+**Then** that step doesn't penalize overall coverage
+**And** tips are optional for simple steps
+
+**Given** the system identifies missing tips
+**When** regeneration is needed
+**Then** the AI is prompted to add tips for uncovered stuck points
+**And** coverage is re-validated
+
+---
+
+### Story 6.3: Safety Warning Assignment
+
+As a **system**,
+I want **to assign safety warnings with severity levels**,
+So that **users understand the risk level of each warning**.
+
+**Acceptance Criteria:**
+
+**Given** a guide step has safety concerns
+**When** the safety agent reviews it
+**Then** safety warnings are assigned (FR58)
+**And** each warning has a severity level (High/Medium/Low)
+
+**Given** a High severity warning
+**When** assigned to a step
+**Then** it covers critical safety risks (e.g., fire, injury, vehicle damage)
+**And** the warning requires prominent display
+
+**Given** a Medium severity warning
+**When** assigned to a step
+**Then** it covers moderate risks (e.g., minor injury, component damage)
+**And** the warning is clearly visible
+
+**Given** a Low severity warning
+**When** assigned to a step
+**Then** it covers advisory information (e.g., best practices, tips)
+**And** the warning is informational
+
+**Given** no safety concerns exist for a step
+**When** the safety agent reviews it
+**Then** no warnings are assigned
+**And** the step proceeds without safety markup
+
+---
+
+### Story 6.4: Part Compatibility Validation
+
+As a **system**,
+I want **to validate part compatibility for the user's specific trim and engine**,
+So that **recommended parts actually fit their vehicle configuration**.
+
+**Acceptance Criteria:**
+
+**Given** a guide recommends specific parts
+**When** compatibility is validated
+**Then** parts are checked against the user's YMMT + engine (FR59)
+**And** incompatible parts are flagged
+
+**Given** a part has trim-specific part numbers
+**When** the user's trim is known
+**Then** the correct part number for their trim is recommended
+**And** other trim part numbers are excluded (e.g., Sport vs Base brake rotors)
+
+**Given** a part differs by transmission type
+**When** part names include transmission fitment (e.g., "f/ manual transmission", "f/ automatic transmission")
+**Then** both variants are displayed with clear labeling
+**And** the user can select the correct variant for their vehicle
+
+**Given** a part has engine-specific variants
+**When** the user's engine code is known (turbo, displacement, fuel type)
+**Then** the correct engine-specific part is recommended
+**And** incompatible variants are excluded
+
+**Given** a part is compatible
+**When** validation passes
+**Then** the part recommendation includes the correct part number
+**And** no compatibility warning is added
+
+**Given** a part may have compatibility issues
+**When** detected by validation
+**Then** a compatibility warning is added
+**And** the warning specifies what to verify (e.g., "Confirm your transmission type before ordering")
+
+**Given** trim/engine data is unavailable
+**When** validation runs
+**Then** generic part recommendations are used
+**And** the user is advised to verify fitment with their specific configuration
+
+---
+
+### Story 6.5: Adversarial Test Cases
+
+As a **system**,
+I want **to generate adversarial test cases to validate tips quality**,
+So that **tips actually help when users are stuck**.
+
+**Acceptance Criteria:**
+
+**Given** a guide has inline tips
+**When** adversarial testing runs
+**Then** test cases simulate common stuck scenarios (FR60)
+**And** each tip is evaluated against relevant scenarios
+
+**Given** a tip is tested
+**When** the adversarial agent simulates a stuck user
+**Then** the tip is evaluated for helpfulness
+**And** unclear or unhelpful tips are flagged
+
+**Given** a tip fails adversarial testing
+**When** flagged for improvement
+**Then** the issue is described (e.g., "Too vague", "Missing key detail")
+**And** the tip can be regenerated
+
+**Given** all tips pass adversarial testing
+**When** validation completes
+**Then** the guide proceeds in the pipeline
+**And** tips quality is confirmed
+
+**Given** new stuck points are discovered during adversarial testing
+**When** patterns emerge
+**Then** additional tips can be suggested
+**And** coverage improves
+
+---
+
+### Story 6.6: Admin Spot-Check Gate
+
+As an **admin**,
+I want **to manually spot-check the first 10 guides before full automation**,
+So that **I can verify the validation pipeline works correctly**.
+
+**Acceptance Criteria:**
+
+**Given** the system is newly deployed
+**When** guides are generated
+**Then** the first 10 guides require manual admin approval (FR61)
+**And** they don't auto-publish
+
+**Given** a guide is queued for spot-check
+**When** the admin reviews it
+**Then** they can see: full guide content, validation results, agent feedback
+**And** they can approve or reject the guide
+
+**Given** the admin approves a guide
+**When** approval is confirmed
+**Then** the guide is published and available to users
+**And** the spot-check count increments
+
+**Given** the admin rejects a guide
+**When** rejection is confirmed
+**Then** the guide returns to draft state
+**And** issues are logged for pipeline improvement
+
+**Given** 10 guides have been successfully spot-checked
+**When** the threshold is met
+**Then** full automation can be enabled
+**And** future guides auto-publish after pipeline validation
+
+---
+
+## Epic 7: Admin Dashboard & Monitoring
+
+Solo operator can sustainably manage costs and content (≤1 hour/week). This epic delivers complete admin functionality for solo-sustainable operations.
+
+### Story 7.1: API Usage & Cost Dashboard
+
+As an **admin**,
+I want **to see API usage and costs broken down by feature**,
+So that **I can monitor spending and identify expensive operations**.
+
+**Acceptance Criteria:**
+
+**Given** the admin accesses the dashboard
+**When** the cost overview loads
+**Then** total API costs for the current month are displayed (FR62)
+**And** a daily/weekly trend chart is shown
+
+**Given** cost data is available
+**When** the admin views breakdown
+**Then** costs are grouped by feature (FR63): guide generation, AI chat, validation pipeline, VIN decode
+**And** each feature shows its percentage of total cost
+
+**Given** the dashboard displays cost data
+**When** updated daily
+**Then** data refreshes within 24 hours (NFR-I15)
+**And** the admin sees current spending status
+
+**Given** API calls are made
+**When** costs are tracked
+**Then** each call's cost is logged by feature category
+**And** aggregation is accurate
+
+**Given** the admin wants to drill down
+**When** they select a feature
+**Then** detailed usage stats are shown (call count, avg cost per call)
+**And** patterns are identifiable
+
+---
+
+### Story 7.2: Budget Warnings & Alerts
+
+As an **admin**,
+I want **to receive warnings at 50%, 75%, and 100% of my monthly budget**,
+So that **I can take action before exceeding my budget**.
+
+**Acceptance Criteria:**
+
+**Given** the monthly budget is set ($25)
+**When** spending reaches 50% ($12.50)
+**Then** a warning notification is displayed (FR64)
+**And** the dashboard shows "50% of budget used"
+
+**Given** spending reaches 75% ($18.75)
+**When** the threshold is crossed
+**Then** a more urgent warning is displayed (FR64)
+**And** the admin is alerted to review usage
+
+**Given** spending reaches 100% ($25)
+**When** the threshold is crossed
+**Then** a critical warning is displayed (FR64)
+**And** the admin knows rate limiting is active
+
+**Given** warnings are generated
+**When** displayed to the admin
+**Then** warnings are visible on the dashboard
+**And** include remaining budget and days left in month
+
+**Given** the admin dismisses a warning
+**When** they acknowledge it
+**Then** the warning is marked as seen
+**And** won't re-alert until next threshold
+
+---
+
+### Story 7.3: Hard Budget Cap & Rate Limiting
+
+As a **system**,
+I want **to enforce a hard $25/month budget cap with automatic rate limiting**,
+So that **costs never exceed the budget even if the admin is unavailable**.
+
+**Acceptance Criteria:**
+
+**Given** the hard budget cap is $25/month
+**When** spending approaches or reaches the cap
+**Then** automatic rate limiting activates (FR65)
+**And** expensive operations are throttled
+
+**Given** rate limiting is active
+**When** a user requests guide generation
+**Then** requests are queued or delayed
+**And** users see a friendly message about high demand
+
+**Given** rate limiting is active
+**When** the admin views the dashboard
+**Then** rate limiting status is prominently shown
+**And** current throttle level is displayed
+
+**Given** a new month begins
+**When** the budget resets
+**Then** rate limiting is automatically lifted
+**And** normal operations resume
+
+**Given** the admin wants to adjust the cap
+**When** they modify the budget setting
+**Then** the cap updates (must stay ≤$25 for free tier sustainability)
+**And** rate limiting thresholds adjust accordingly
+
+---
+
+### Story 7.4: Known Issues Batch Management
+
+As an **admin**,
+I want **to batch approve or reject Known Issues with confidence scores visible**,
+So that **I can efficiently manage content in minimal time**.
+
+**Acceptance Criteria:**
+
+**Given** Known Issues are pending review
+**When** the admin views the queue
+**Then** issues are listed with confidence scores (FR68)
+**And** source citations are visible (FR68)
+
+**Given** the review queue is displayed
+**When** the admin selects multiple issues
+**Then** batch selection is available
+**And** multiple issues can be selected at once
+
+**Given** issues are selected
+**When** the admin clicks "Approve Selected"
+**Then** all selected issues are approved in batch (FR67)
+**And** they become visible to users
+
+**Given** issues are selected
+**When** the admin clicks "Reject Selected"
+**Then** all selected issues are rejected in batch (FR67)
+**And** they are removed from the queue
+
+**Given** the admin reviews patterns
+**When** aggregated symptom data is shown (FR66)
+**Then** patterns are grouped by YMMT
+**And** frequency counts help prioritize review
+
+**Given** the admin has limited time
+**When** using batch management
+**Then** typical review session takes <15 minutes
+**And** supports ≤1 hour/week maintenance goal
+
+---
+
+### Story 7.5: Solo Operator Time Tracking
+
+As an **admin**,
+I want **to track time spent on maintenance tasks**,
+So that **I can ensure I'm staying within my ≤1 hour/week goal**.
+
+**Acceptance Criteria:**
+
+**Given** the admin performs maintenance tasks
+**When** time tracking is enabled
+**Then** session time is tracked automatically (FR69)
+**And** cumulative weekly time is displayed
+
+**Given** the admin completes a session
+**When** they log out or close the dashboard
+**Then** session time is recorded
+**And** weekly total updates
+
+**Given** weekly maintenance time is tracked
+**When** the admin views the dashboard
+**Then** current week's time is displayed
+**And** comparison to 1-hour target is shown
+
+**Given** the admin approaches 1 hour
+**When** 45 minutes have been used
+**Then** a gentle reminder is shown
+**And** suggestions for efficiency may be offered
+
+**Given** historical data exists
+**When** the admin reviews trends
+**Then** weekly averages are shown
+**And** the admin can identify patterns
+
+---
+
+### Story 7.6: Vacation Mode
+
+As an **admin**,
+I want **to enable vacation mode to pause the gathering agent**,
+So that **content doesn't pile up while I'm away**.
+
+**Acceptance Criteria:**
+
+**Given** the admin is planning time away
+**When** they enable vacation mode
+**Then** the gathering agent pauses data collection (FR70)
+**And** a vacation mode indicator is displayed
+
+**Given** vacation mode is active
+**When** the system would normally gather data
+**Then** passive symptom capture continues (maintains data integrity)
+**And** admin review tasks are paused
+
+**Given** vacation mode is active
+**When** users submit issue reports
+**Then** submissions are queued for later review
+**And** users see normal confirmation (no change to UX)
+
+**Given** the admin returns
+**When** they disable vacation mode
+**Then** gathering agent resumes
+**And** queued items appear in review queue
+
+**Given** vacation mode is enabled
+**When** the dashboard is viewed
+**Then** a clear indicator shows "Vacation Mode Active"
+**And** queued item count is displayed
+
+---
+
+### Story 7.7: Standardized Guide Data Model
+
+As a **system**,
+I want **generated guides to follow a standardized data model**,
+So that **localStorage structure is consistent and predictable**.
+
+**Acceptance Criteria:**
+
+**Given** a guide is generated
+**When** the data is structured
+**Then** it follows the standardized data model (FR71)
+**And** all required fields are present
+
+**Given** the data model specification
+**When** a guide is created
+**Then** it includes: id, title, vehicle (YMMT), steps[], tools[], parts[], difficulty, safetyLevel, timeEstimate, createdAt
+**And** optional fields are handled gracefully
+
+**Given** steps are in the guide
+**When** structured per data model
+**Then** each step includes: number, instruction, tips[], safetyWarnings[]
+**And** arrays can be empty if not applicable
+
+**Given** the guide is stored in localStorage
+**When** using typed helpers with Zod validation
+**Then** the data model is enforced
+**And** invalid data is rejected with clear errors
+
+**Given** the data model needs to evolve
+**When** future changes are needed
+**Then** versioning is included in the model
+**And** migrations can be handled gracefully
 
