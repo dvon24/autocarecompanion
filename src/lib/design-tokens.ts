@@ -17,7 +17,7 @@ export const DISCOVERY_COLORS = {
   secondary: '#60A5FA',    // Blue-400
   background: '#EBF4FF',   // Blue-50
   text: '#1E3A5F',         // Dark blue-gray
-  muted: '#64748B',        // Slate-500
+  muted: '#475569',        // Slate-600 - darker for better mobile contrast
 } as const;
 
 // Execution Phase Colors - High-contrast AAA (7:1 ratio)

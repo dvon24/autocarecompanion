@@ -62,17 +62,13 @@ async function fetchYMMTData(): Promise<YMMTData> {
 }
 
 /**
- * Get years from current year down to 1990 (sorted descending)
- * Per AC #1: "Year dropdown displays years from current year down to 1990"
- * Years are generated programmatically to satisfy AC requirement
+ * Get years from YMMT data (sorted descending - newest first)
+ * Only shows years that have vehicle data available
  */
-function getAvailableYears(): number[] {
-  const currentYear = new Date().getFullYear();
-  const years: number[] = [];
-  for (let year = currentYear; year >= 1990; year--) {
-    years.push(year);
-  }
-  return years;
+function getAvailableYears(ymmtData: YMMTData): number[] {
+  return Object.keys(ymmtData)
+    .map((year) => parseInt(year, 10))
+    .sort((a, b) => b - a);
 }
 
 /**
@@ -164,10 +160,11 @@ export function useVehicle(): UseVehicleReturn {
   }, [loadYMMTData]);
 
   // Compute available options based on current selections
-  // Years are always available (1990 to current year) per AC #1
+  // Years are derived from YMMT data (only shows years with vehicle data)
   const availableYears = useMemo(() => {
-    return getAvailableYears();
-  }, []);
+    if (!ymmtData) return [];
+    return getAvailableYears(ymmtData);
+  }, [ymmtData]);
 
   const availableMakes = useMemo(() => {
     if (!ymmtData) return [];
