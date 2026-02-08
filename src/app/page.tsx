@@ -12,7 +12,7 @@ export default function LandingPage() {
           background: 'radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%)',
           filter: 'blur(60px)',
           transform: 'translate(20%, -30%)',
-          opacity: 0.35,
+          opacity: 0.4,
         }}
       />
       <div
@@ -21,7 +21,7 @@ export default function LandingPage() {
           background: 'radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%)',
           filter: 'blur(60px)',
           transform: 'translate(-50%, 0%)',
-          opacity: 0.35,
+          opacity: 0.4,
         }}
       />
       <div
@@ -30,7 +30,7 @@ export default function LandingPage() {
           background: 'radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%)',
           filter: 'blur(80px)',
           transform: 'translate(0%, 40%)',
-          opacity: 0.35,
+          opacity: 0.4,
         }}
       />
 
