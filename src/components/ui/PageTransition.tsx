@@ -3,19 +3,33 @@
 import { useEffect, useState, type ReactNode } from 'react';
 
 /**
- * PageTransition - Simple fade-in wrapper for page content
+ * PageTransition - Enhanced fade-in wrapper with "The Breath" animation
  *
- * Provides a smooth fade-in animation when pages mount.
- * Per AC #5: "screen fades into the AI symptom chat interface"
+ * UX Spec: "The Breath" phase transition creates a distinctive, memorable
+ * UX moment that communicates "now we're getting serious"
+ *
+ * Variants:
+ * - 'fade': Simple fade-in (default, 300ms)
+ * - 'breath': "The Breath" transition for phase changes (400ms with scale)
  */
+
+type TransitionVariant = 'fade' | 'breath';
 
 type PageTransitionProps = {
   children: ReactNode;
-  duration?: number; // Duration in milliseconds (default 300ms per story)
+  variant?: TransitionVariant;
+  duration?: number;
 };
 
-export function PageTransition({ children, duration = 300 }: PageTransitionProps) {
+export function PageTransition({
+  children,
+  variant = 'fade',
+  duration,
+}: PageTransitionProps) {
   const [isVisible, setIsVisible] = useState(false);
+
+  // Duration defaults based on variant (UX Spec: 400ms for breath)
+  const transitionDuration = duration ?? (variant === 'breath' ? 400 : 300);
 
   useEffect(() => {
     // Small delay to ensure CSS transition triggers
@@ -26,15 +40,38 @@ export function PageTransition({ children, duration = 300 }: PageTransitionProps
     return () => clearTimeout(timer);
   }, []);
 
+  // "The Breath" uses scale + opacity for premium feel
+  const breathStyle = {
+    opacity: isVisible ? 1 : 0,
+    transform: isVisible ? 'scale(1)' : 'scale(0.995)',
+    transitionProperty: 'opacity, transform',
+    transitionDuration: `${transitionDuration}ms`,
+    transitionTimingFunction: 'ease-out',
+  };
+
+  // Simple fade uses opacity only
+  const fadeStyle = {
+    opacity: isVisible ? 1 : 0,
+    transitionProperty: 'opacity',
+    transitionDuration: `${transitionDuration}ms`,
+    transitionTimingFunction: 'ease-out',
+  };
+
   return (
-    <div
-      className="transition-opacity ease-out"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transitionDuration: `${duration}ms`,
-      }}
-    >
+    <div style={variant === 'breath' ? breathStyle : fadeStyle}>
       {children}
     </div>
+  );
+}
+
+/**
+ * PhaseTransition - Wrapper specifically for Discovery→Execution transitions
+ * Uses "The Breath" animation pattern from UX spec
+ */
+export function PhaseTransition({ children }: { children: ReactNode }) {
+  return (
+    <PageTransition variant="breath" duration={400}>
+      {children}
+    </PageTransition>
   );
 }

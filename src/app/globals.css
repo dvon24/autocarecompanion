@@ -17,12 +17,21 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Discovery Phase Colors - Calming, exploratory */
+  /* Discovery Phase Colors - Light Mode (Calming, exploratory) */
   --color-discovery-primary: #3B82F6;      /* Blue-500 */
   --color-discovery-secondary: #60A5FA;    /* Blue-400 */
   --color-discovery-background: #EBF4FF;   /* Blue-50 */
   --color-discovery-text: #1E3A5F;         /* Dark blue-gray */
   --color-discovery-muted: #475569;        /* Slate-600 - darker for better contrast */
+  --color-discovery-surface: #FFFFFF;      /* White card surface */
+  --color-discovery-border: #DBEAFE;       /* Blue-100 subtle borders */
+
+  /* Discovery Phase Colors - Dark Mode (UX Spec compliant) */
+  --color-discovery-dark-background: #0F172A;  /* Deep navy */
+  --color-discovery-dark-text: #E2E8F0;        /* Soft white */
+  --color-discovery-dark-muted: #94A3B8;       /* Slate-400 */
+  --color-discovery-dark-surface: #1E293B;     /* Slate-800 */
+  --color-discovery-dark-border: #334155;      /* Slate-700 */
 
   /* Execution Phase Colors - High-contrast AAA (7:1 ratio) */
   --color-execution-primary: #FFFFFF;      /* White on black */
@@ -91,14 +100,144 @@ body {
   font-weight: 700;
 }
 
-/* Discovery Phase Container */
+/* Discovery Phase Container - Light Mode */
 .phase-discovery {
   background-color: var(--color-discovery-background);
   color: var(--color-discovery-text);
+}
+
+/* Discovery Phase Container - Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .phase-discovery {
+    background-color: var(--color-discovery-dark-background);
+    color: var(--color-discovery-dark-text);
+  }
 }
 
 /* Execution Phase Container */
 .phase-execution {
   background-color: var(--color-execution-background);
   color: var(--color-execution-text);
+}
+
+/* ==========================================
+   BREATHING GRADIENT ANIMATIONS - UX Spec
+   "Soft, subtle tones and gentle gradients create
+   a cohesive visual layer where interactions feel
+   like natural extensions of the environment"
+   ========================================== */
+
+/* Discovery Phase Breathing Gradient - Light Mode */
+@keyframes breathing-gradient-light {
+  0%, 100% {
+    background-position: 0% 50%;
+    opacity: 1;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.92;
+  }
+}
+
+/* Discovery Phase Breathing Gradient - Dark Mode */
+@keyframes breathing-gradient-dark {
+  0%, 100% {
+    background-position: 0% 50%;
+    opacity: 1;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.88;
+  }
+}
+
+/* "The Breath" Phase Transition Animation - 400ms */
+@keyframes phase-breath {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* GPU-accelerated breathing container */
+.breathing-gradient {
+  background: linear-gradient(
+    135deg,
+    #EBF4FF 0%,
+    #DBEAFE 25%,
+    #BFDBFE 50%,
+    #DBEAFE 75%,
+    #EBF4FF 100%
+  );
+  background-size: 400% 400%;
+  animation: breathing-gradient-light 8s ease-in-out infinite;
+  will-change: background-position, opacity;
+}
+
+/* Dark mode breathing gradient */
+@media (prefers-color-scheme: dark) {
+  .breathing-gradient {
+    background: linear-gradient(
+      135deg,
+      #0F172A 0%,
+      #1E293B 25%,
+      #334155 50%,
+      #1E293B 75%,
+      #0F172A 100%
+    );
+    background-size: 400% 400%;
+    animation: breathing-gradient-dark 10s ease-in-out infinite;
+  }
+}
+
+/* Phase transition wrapper */
+.phase-transition {
+  animation: phase-breath 400ms ease-in-out;
+}
+
+/* Hero text gradient shimmer - Premium aesthetic */
+@keyframes text-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-discovery-text) 0%,
+    var(--color-discovery-primary) 50%,
+    var(--color-discovery-text) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer 3s linear infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  .text-shimmer {
+    background: linear-gradient(
+      90deg,
+      #E2E8F0 0%,
+      #60A5FA 50%,
+      #E2E8F0 100%
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
