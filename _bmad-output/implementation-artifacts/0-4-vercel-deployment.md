@@ -1,6 +1,6 @@
 # Story 0.4: Vercel Deployment
 
-Status: review
+Status: done
 
 ## Story
 
@@ -251,10 +251,32 @@ Claude Opus 4.5 (claude-opus-4-5-20251101)
 - `.vercelignore` - Excludes node_modules, .next, .git from Vercel CLI uploads
 - `.vercel/project.json` - Vercel project configuration (auto-generated, gitignored)
 
+**Modified Files:**
+- `.gitignore` - Added .vercel to exclusions (auto-generated Vercel config)
+
 **Production URLs:**
 - Primary: https://autocarecompanion.vercel.app
 - Git branch: https://autocarecompanion-git-main-devons-projects-cdc8ace2.vercel.app
 
+### Senior Developer Review (AI)
+
+**Reviewer:** Claude Opus 4.5 | **Date:** 2026-02-08
+
+**Issues Found:** 0 High, 1 Medium, 2 Low
+
+**Fixes Applied:**
+- MEDIUM-1: Committed .gitignore change (added .vercel to exclusions)
+
+**Deferred (LOW - acceptable):**
+- LOW-1: .vercelignore has redundant entries (Vercel defaults) - harmless
+- LOW-2: File List mentions gitignored file - documentation note only
+
+**AC Verification:** All 3 Acceptance Criteria PASS
+- AC1: GitHub connected, auto-deploy active
+- AC2: Build succeeds (44s), site accessible at https://autocarecompanion.vercel.app
+- AC3: SW registered, manifest loaded, PWA ready
+
 ### Change Log
 
+- 2026-02-08: Code review complete - 1 issue fixed (.gitignore), story marked done
 - 2026-02-08: Story 0.4 implementation complete - Vercel deployment successful, PWA verified in production
