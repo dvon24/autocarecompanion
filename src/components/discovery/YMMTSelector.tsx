@@ -38,7 +38,7 @@ function Dropdown<T extends string | number>({
   return (
     <div className="w-full">
       <Listbox value={value} onChange={onChange} disabled={disabled}>
-        <Listbox.Label className="block text-sm font-medium text-discovery-text mb-1">
+        <Listbox.Label className="block text-sm font-medium text-white/80 mb-1">
           {label}
         </Listbox.Label>
         <div className="relative">
@@ -47,19 +47,20 @@ function Dropdown<T extends string | number>({
               relative w-full min-h-[44px] py-3 px-4
               text-left rounded-lg border
               ${disabled
-                ? 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed'
-                : 'bg-white border-gray-300 text-discovery-text hover:border-discovery-primary cursor-pointer'
+                ? 'bg-white/5 border-white/10 text-white/30 cursor-not-allowed'
+                : 'bg-white/10 border-white/20 text-white hover:border-blue-400/50 cursor-pointer'
               }
-              focus:outline-none focus:ring-2 focus:ring-discovery-primary focus:border-transparent
+              focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent
               transition-colors duration-150
+              backdrop-blur-sm
             `}
           >
-            <span className={`block truncate ${!value ? 'text-gray-400' : ''}`}>
+            <span className={`block truncate ${!value ? 'text-white/40' : ''}`}>
               {value ? displayValue(value) : placeholder}
             </span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
               <ChevronDownIcon
-                className={`h-5 w-5 ${disabled ? 'text-gray-300' : 'text-gray-400'}`}
+                className={`h-5 w-5 ${disabled ? 'text-white/20' : 'text-white/40'}`}
                 aria-hidden={true}
               />
             </span>
@@ -74,13 +75,14 @@ function Dropdown<T extends string | number>({
             <Listbox.Options
               className="
                 absolute z-10 mt-1 w-full max-h-60
-                overflow-auto rounded-lg bg-white
-                py-1 shadow-lg ring-1 ring-black ring-opacity-5
+                overflow-auto rounded-lg
+                bg-[#1a1a2e] border border-white/10
+                py-1 shadow-lg backdrop-blur-xl
                 focus:outline-none
               "
             >
               {options.length === 0 ? (
-                <div className="px-4 py-3 text-gray-400 text-sm">
+                <div className="px-4 py-3 text-white/40 text-sm">
                   No options available
                 </div>
               ) : (
@@ -90,8 +92,8 @@ function Dropdown<T extends string | number>({
                     value={option}
                     className={({ active, selected }) =>
                       `relative cursor-pointer select-none py-3 px-4 min-h-[44px]
-                       ${active ? 'bg-discovery-background text-discovery-text' : 'text-gray-900'}
-                       ${selected ? 'font-medium' : 'font-normal'}
+                       ${active ? 'bg-blue-500/20 text-white' : 'text-white/80'}
+                       ${selected ? 'font-medium bg-blue-500/10' : 'font-normal'}
                       `
                     }
                   >
@@ -162,7 +164,7 @@ export function YMMTSelector({ onComplete }: YMMTSelectorProps) {
   if (isLoading) {
     return (
       <div className="w-full max-w-md mx-auto p-6">
-        <div className="flex items-center justify-center space-x-2 text-discovery-muted">
+        <div className="flex items-center justify-center space-x-2 text-white/60">
           <LoadingSpinner />
           <span>Loading vehicle data...</span>
         </div>
@@ -173,18 +175,18 @@ export function YMMTSelector({ onComplete }: YMMTSelectorProps) {
   if (error) {
     return (
       <div className="w-full max-w-md mx-auto p-6">
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
+        <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 text-red-300">
           <p className="font-medium">Failed to load vehicle data</p>
-          <p className="text-sm mt-1">{error}</p>
+          <p className="text-sm mt-1 text-red-300/80">{error}</p>
           <button
             type="button"
             onClick={retry}
             className="
               mt-3 min-h-[44px] px-4 py-2
-              bg-red-600 hover:bg-red-700 text-white
+              bg-red-500 hover:bg-red-400 text-white
               rounded-lg font-medium
               transition-colors duration-150
-              focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2
+              focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-[#030014]
             "
           >
             Try Again
@@ -245,13 +247,13 @@ export function YMMTSelector({ onComplete }: YMMTSelectorProps) {
             disabled={!isComplete}
             className={`
               w-full min-h-[44px] py-3 px-6
-              rounded-lg font-medium text-white
+              rounded-lg font-semibold text-white
               transition-all duration-200
               ${isComplete
-                ? 'bg-discovery-primary hover:bg-blue-600 cursor-pointer shadow-md hover:shadow-lg'
-                : 'bg-gray-300 cursor-not-allowed'
+                ? 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-400 hover:to-purple-400 cursor-pointer shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40'
+                : 'bg-white/10 text-white/40 cursor-not-allowed'
               }
-              focus:outline-none focus:ring-2 focus:ring-discovery-primary focus:ring-offset-2
+              focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#030014]
             `}
           >
             {isComplete ? 'Continue' : 'Complete all selections to continue'}
@@ -260,9 +262,9 @@ export function YMMTSelector({ onComplete }: YMMTSelectorProps) {
 
         {/* Selection Preview */}
         {isComplete && (
-          <div className="mt-4 p-4 bg-discovery-background rounded-lg border border-blue-200">
-            <p className="text-sm font-medium text-discovery-text">Selected Vehicle:</p>
-            <p className="text-lg text-discovery-text mt-1">
+          <div className="mt-4 p-4 bg-white/5 rounded-lg border border-white/10 backdrop-blur-sm">
+            <p className="text-sm font-medium text-white/60">Selected Vehicle:</p>
+            <p className="text-lg text-white mt-1">
               {selectedYear} {selectedMake} {selectedModel} {selectedTrim}
             </p>
           </div>
