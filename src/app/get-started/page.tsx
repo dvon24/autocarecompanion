@@ -1,16 +1,29 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { PhaseProvider } from '@/contexts/PhaseContext';
 import { YMMTSelector } from '@/components/discovery/YMMTSelector';
+import { VINInput } from '@/components/discovery/VINInput';
 import { PageTransition } from '@/components/ui/PageTransition';
+
+type SelectionMode = 'vin' | 'manual';
 
 export default function GetStartedPage() {
   const router = useRouter();
+  const [mode, setMode] = useState<SelectionMode>('vin');
 
   const handleVehicleSelected = () => {
     router.push('/symptom-chat');
+  };
+
+  const handleSwitchToManual = () => {
+    setMode('manual');
+  };
+
+  const handleSwitchToVin = () => {
+    setMode('vin');
   };
 
   return (
@@ -32,18 +45,57 @@ export default function GetStartedPage() {
             <section className="flex-1 flex flex-col items-center justify-center px-6 py-12">
               <div className="w-full max-w-md">
                 {/* Title */}
-                <div className="text-center mb-10">
+                <div className="text-center mb-8">
                   <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
-                    Select Your Vehicle
+                    {mode === 'vin' ? 'Enter Your VIN' : 'Select Your Vehicle'}
                   </h1>
                   <p className="text-gray-500">
-                    We'll find the right guides for your exact make and model.
+                    {mode === 'vin'
+                      ? 'We\'ll automatically identify your vehicle from its VIN.'
+                      : 'We\'ll find the right guides for your exact make and model.'}
                   </p>
+                </div>
+
+                {/* Mode Toggle */}
+                <div className="flex rounded-lg bg-gray-100 p-1 mb-6">
+                  <button
+                    type="button"
+                    onClick={handleSwitchToVin}
+                    className={`
+                      flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all
+                      ${mode === 'vin'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-500 hover:text-gray-700'
+                      }
+                    `}
+                  >
+                    Enter VIN
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleSwitchToManual}
+                    className={`
+                      flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all
+                      ${mode === 'manual'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-500 hover:text-gray-700'
+                      }
+                    `}
+                  >
+                    Manual Selection
+                  </button>
                 </div>
 
                 {/* Vehicle Selection Card */}
                 <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                  <YMMTSelector onComplete={handleVehicleSelected} variant="light" />
+                  {mode === 'vin' ? (
+                    <VINInput
+                      onComplete={handleVehicleSelected}
+                      onSwitchToManual={handleSwitchToManual}
+                    />
+                  ) : (
+                    <YMMTSelector onComplete={handleVehicleSelected} variant="light" />
+                  )}
                 </div>
 
                 {/* Privacy note */}

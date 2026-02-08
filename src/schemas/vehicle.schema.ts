@@ -71,3 +71,33 @@ export function formatVehicleDisplay(vehicle: Vehicle): string {
 export function formatVehicleShort(vehicle: Vehicle): string {
   return `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
 }
+
+/**
+ * VIN Schema
+ * Validates a 17-character Vehicle Identification Number
+ * VINs contain only alphanumeric characters (excluding I, O, Q)
+ */
+export const VINSchema = z
+  .string()
+  .length(17, 'VIN must be exactly 17 characters')
+  .regex(
+    /^[A-HJ-NPR-Z0-9]{17}$/i,
+    'VIN can only contain letters (except I, O, Q) and numbers'
+  )
+  .transform((val) => val.toUpperCase());
+
+export type VIN = z.infer<typeof VINSchema>;
+
+/**
+ * NHTSA VIN Decode Response Schema
+ * Validates the decoded vehicle data from NHTSA API
+ */
+export const VINDecodeResultSchema = z.object({
+  year: z.number().min(1990).max(currentYear + 1),
+  make: z.string().min(1),
+  model: z.string().min(1),
+  trim: z.string().nullable(), // Trim may not always be available from VIN
+  possibleTrims: z.array(z.string()).optional(), // When trim is ambiguous
+});
+
+export type VINDecodeResult = z.infer<typeof VINDecodeResultSchema>;
