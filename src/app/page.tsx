@@ -4,9 +4,19 @@ import Link from 'next/link';
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white font-[system-ui,sans-serif]">
+    <div className="min-h-screen bg-white font-[system-ui,sans-serif] relative overflow-hidden">
+      {/* Subtle gradient blob - faded blue */}
+      <div
+        className="absolute top-0 right-0 w-[500px] h-[500px] opacity-30 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+          transform: 'translate(20%, -30%)',
+        }}
+      />
+
       {/* Main content */}
-      <main className="flex flex-col">
+      <main className="relative flex flex-col">
         {/* Hero Section */}
         <section className="flex-1 flex flex-col items-center justify-center px-6 py-24 lg:py-32">
           {/* Feature pills */}
