@@ -16,6 +16,8 @@ import { useVehicle } from '@/hooks/useVehicle';
  * - Named exports only
  */
 
+type Variant = 'light' | 'dark';
+
 type DropdownProps<T> = {
   label: string;
   value: T | null;
@@ -24,6 +26,7 @@ type DropdownProps<T> = {
   disabled?: boolean;
   placeholder?: string;
   displayValue?: (value: T) => string;
+  variant?: Variant;
 };
 
 function Dropdown<T extends string | number>({
@@ -34,11 +37,14 @@ function Dropdown<T extends string | number>({
   disabled = false,
   placeholder = 'Select...',
   displayValue = (v) => String(v),
+  variant = 'light',
 }: DropdownProps<T>) {
+  const isLight = variant === 'light';
+
   return (
     <div className="w-full">
       <Listbox value={value} onChange={onChange} disabled={disabled}>
-        <Listbox.Label className="block text-sm font-medium text-white/80 mb-1">
+        <Listbox.Label className={`block text-sm font-medium mb-1 ${isLight ? 'text-gray-700' : 'text-white/80'}`}>
           {label}
         </Listbox.Label>
         <div className="relative">
@@ -47,20 +53,23 @@ function Dropdown<T extends string | number>({
               relative w-full min-h-[44px] py-3 px-4
               text-left rounded-lg border
               ${disabled
-                ? 'bg-white/5 border-white/10 text-white/30 cursor-not-allowed'
-                : 'bg-white/10 border-white/20 text-white hover:border-blue-400/50 cursor-pointer'
+                ? isLight
+                  ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
+                  : 'bg-white/5 border-white/10 text-white/30 cursor-not-allowed'
+                : isLight
+                  ? 'bg-white border-gray-300 text-gray-900 hover:border-gray-400 cursor-pointer'
+                  : 'bg-white/10 border-white/20 text-white hover:border-blue-400/50 cursor-pointer'
               }
-              focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent
+              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
               transition-colors duration-150
-              backdrop-blur-sm
             `}
           >
-            <span className={`block truncate ${!value ? 'text-white/40' : ''}`}>
+            <span className={`block truncate ${!value ? (isLight ? 'text-gray-400' : 'text-white/40') : ''}`}>
               {value ? displayValue(value) : placeholder}
             </span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
               <ChevronDownIcon
-                className={`h-5 w-5 ${disabled ? 'text-white/20' : 'text-white/40'}`}
+                className={`h-5 w-5 ${disabled ? (isLight ? 'text-gray-300' : 'text-white/20') : (isLight ? 'text-gray-400' : 'text-white/40')}`}
                 aria-hidden={true}
               />
             </span>
@@ -73,16 +82,19 @@ function Dropdown<T extends string | number>({
             leaveTo="opacity-0"
           >
             <Listbox.Options
-              className="
+              className={`
                 absolute z-10 mt-1 w-full max-h-60
                 overflow-auto rounded-lg
-                bg-[#1a1a2e] border border-white/10
-                py-1 shadow-lg backdrop-blur-xl
+                py-1 shadow-lg
                 focus:outline-none
-              "
+                ${isLight
+                  ? 'bg-white border border-gray-200'
+                  : 'bg-[#1a1a2e] border border-white/10 backdrop-blur-xl'
+                }
+              `}
             >
               {options.length === 0 ? (
-                <div className="px-4 py-3 text-white/40 text-sm">
+                <div className={`px-4 py-3 text-sm ${isLight ? 'text-gray-400' : 'text-white/40'}`}>
                   No options available
                 </div>
               ) : (
@@ -92,8 +104,14 @@ function Dropdown<T extends string | number>({
                     value={option}
                     className={({ active, selected }) =>
                       `relative cursor-pointer select-none py-3 px-4 min-h-[44px]
-                       ${active ? 'bg-blue-500/20 text-white' : 'text-white/80'}
-                       ${selected ? 'font-medium bg-blue-500/10' : 'font-normal'}
+                       ${active
+                         ? isLight ? 'bg-blue-50 text-gray-900' : 'bg-blue-500/20 text-white'
+                         : isLight ? 'text-gray-700' : 'text-white/80'
+                       }
+                       ${selected
+                         ? isLight ? 'font-medium bg-blue-50' : 'font-medium bg-blue-500/10'
+                         : 'font-normal'
+                       }
                       `
                     }
                   >
@@ -133,9 +151,10 @@ function ChevronDownIcon({ className, ...props }: { className?: string; 'aria-hi
 
 type YMMTSelectorProps = {
   onComplete?: () => void;
+  variant?: Variant;
 };
 
-export function YMMTSelector({ onComplete }: YMMTSelectorProps) {
+export function YMMTSelector({ onComplete, variant = 'light' }: YMMTSelectorProps) {
   const {
     selectedYear,
     selectedMake,
@@ -156,6 +175,8 @@ export function YMMTSelector({ onComplete }: YMMTSelectorProps) {
     retry,
   } = useVehicle();
 
+  const isLight = variant === 'light';
+
   const handleContinue = () => {
     confirmVehicle();
     onComplete?.();
@@ -164,7 +185,7 @@ export function YMMTSelector({ onComplete }: YMMTSelectorProps) {
   if (isLoading) {
     return (
       <div className="w-full max-w-md mx-auto p-6">
-        <div className="flex items-center justify-center space-x-2 text-white/60">
+        <div className={`flex items-center justify-center space-x-2 ${isLight ? 'text-gray-500' : 'text-white/60'}`}>
           <LoadingSpinner />
           <span>Loading vehicle data...</span>
         </div>
@@ -175,19 +196,19 @@ export function YMMTSelector({ onComplete }: YMMTSelectorProps) {
   if (error) {
     return (
       <div className="w-full max-w-md mx-auto p-6">
-        <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 text-red-300">
+        <div className={`rounded-lg p-4 ${isLight ? 'bg-red-50 border border-red-200 text-red-700' : 'bg-red-500/10 border border-red-500/30 text-red-300'}`}>
           <p className="font-medium">Failed to load vehicle data</p>
-          <p className="text-sm mt-1 text-red-300/80">{error}</p>
+          <p className={`text-sm mt-1 ${isLight ? 'text-red-600' : 'text-red-300/80'}`}>{error}</p>
           <button
             type="button"
             onClick={retry}
-            className="
+            className={`
               mt-3 min-h-[44px] px-4 py-2
-              bg-red-500 hover:bg-red-400 text-white
-              rounded-lg font-medium
+              rounded-lg font-medium text-white
               transition-colors duration-150
-              focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-[#030014]
-            "
+              focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2
+              ${isLight ? 'bg-red-600 hover:bg-red-700' : 'bg-red-500 hover:bg-red-400'}
+            `}
           >
             Try Again
           </button>
@@ -207,6 +228,7 @@ export function YMMTSelector({ onComplete }: YMMTSelectorProps) {
           onChange={setYear}
           placeholder="Select Year"
           displayValue={(year) => year.toString()}
+          variant={variant}
         />
 
         {/* Make Selection */}
@@ -217,6 +239,7 @@ export function YMMTSelector({ onComplete }: YMMTSelectorProps) {
           onChange={setMake}
           disabled={!selectedYear}
           placeholder={selectedYear ? 'Select Make' : 'Select Year first'}
+          variant={variant}
         />
 
         {/* Model Selection */}
@@ -227,6 +250,7 @@ export function YMMTSelector({ onComplete }: YMMTSelectorProps) {
           onChange={setModel}
           disabled={!selectedMake}
           placeholder={selectedMake ? 'Select Model' : 'Select Make first'}
+          variant={variant}
         />
 
         {/* Trim Selection */}
@@ -237,6 +261,7 @@ export function YMMTSelector({ onComplete }: YMMTSelectorProps) {
           onChange={setTrim}
           disabled={!selectedModel}
           placeholder={selectedModel ? 'Select Trim' : 'Select Model first'}
+          variant={variant}
         />
 
         {/* Continue Button */}
@@ -249,11 +274,13 @@ export function YMMTSelector({ onComplete }: YMMTSelectorProps) {
               w-full min-h-[44px] py-3 px-6
               rounded-lg font-semibold text-white
               transition-all duration-200
+              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
               ${isComplete
-                ? 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-400 hover:to-purple-400 cursor-pointer shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40'
-                : 'bg-white/10 text-white/40 cursor-not-allowed'
+                ? 'bg-gray-900 hover:bg-gray-800 cursor-pointer'
+                : isLight
+                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  : 'bg-white/10 text-white/40 cursor-not-allowed'
               }
-              focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#030014]
             `}
           >
             {isComplete ? 'Continue' : 'Complete all selections to continue'}
@@ -262,9 +289,9 @@ export function YMMTSelector({ onComplete }: YMMTSelectorProps) {
 
         {/* Selection Preview */}
         {isComplete && (
-          <div className="mt-4 p-4 bg-white/5 rounded-lg border border-white/10 backdrop-blur-sm">
-            <p className="text-sm font-medium text-white/60">Selected Vehicle:</p>
-            <p className="text-lg text-white mt-1">
+          <div className={`mt-4 p-4 rounded-lg border ${isLight ? 'bg-blue-50 border-blue-100' : 'bg-white/5 border-white/10'}`}>
+            <p className={`text-sm font-medium ${isLight ? 'text-gray-600' : 'text-white/60'}`}>Selected Vehicle:</p>
+            <p className={`text-lg mt-1 ${isLight ? 'text-gray-900' : 'text-white'}`}>
               {selectedYear} {selectedMake} {selectedModel} {selectedTrim}
             </p>
           </div>
