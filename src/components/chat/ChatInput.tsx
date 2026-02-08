@@ -3,12 +3,12 @@
 import { useRef, useEffect, type KeyboardEvent } from 'react';
 
 /**
- * ChatInput - Message input component with send button
+ * ChatInput - Clean message input inspired by chat-sdk.dev
  *
- * Follows Architecture patterns:
+ * Features:
+ * - Minimal, borderless design
+ * - Auto-resizing textarea
  * - Touch targets 44x44px minimum (NFR-A7)
- * - Discovery phase styling
- * - Named exports only
  */
 
 type ChatInputProps = {
@@ -24,7 +24,7 @@ export function ChatInput({
   onChange,
   onSend,
   disabled = false,
-  placeholder = "Describe your vehicle's symptoms...",
+  placeholder = "Send a message...",
 }: ChatInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -33,7 +33,7 @@ export function ChatInput({
     const textarea = textareaRef.current;
     if (textarea) {
       textarea.style.height = 'auto';
-      textarea.style.height = `${Math.min(textarea.scrollHeight, 150)}px`;
+      textarea.style.height = `${Math.min(textarea.scrollHeight, 200)}px`;
     }
   }, [value]);
 
@@ -51,35 +51,32 @@ export function ChatInput({
   const canSend = value.trim().length > 0 && !disabled;
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
-      <div className="flex items-end gap-3">
-        <div className="flex-1">
-          <textarea
-            ref={textareaRef}
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder={placeholder}
-            disabled={disabled}
-            rows={1}
-            className={`
-              w-full px-4 py-3 rounded-lg border border-gray-300
-              text-gray-900 placeholder-gray-400
-              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
-              resize-none transition-colors
-              ${disabled ? 'bg-gray-50 cursor-not-allowed' : 'bg-white'}
-            `}
-            style={{ minHeight: '44px' }}
-          />
-        </div>
+    <div className="relative">
+      <div className="flex items-end gap-2 p-3 bg-gray-50 rounded-2xl border border-gray-200 focus-within:border-gray-300 focus-within:bg-white transition-colors">
+        <textarea
+          ref={textareaRef}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder={placeholder}
+          disabled={disabled}
+          rows={1}
+          className={`
+            flex-1 bg-transparent text-gray-900 text-[15px]
+            placeholder-gray-500 resize-none
+            focus:outline-none
+            ${disabled ? 'cursor-not-allowed opacity-50' : ''}
+          `}
+          style={{ minHeight: '24px', maxHeight: '200px' }}
+        />
         <button
           type="button"
           onClick={onSend}
           disabled={!canSend}
           className={`
-            min-h-[44px] min-w-[44px] px-4
-            rounded-lg font-medium transition-all
-            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+            flex-shrink-0 w-8 h-8 rounded-lg
+            flex items-center justify-center
+            transition-all duration-200
             ${canSend
               ? 'bg-gray-900 text-white hover:bg-gray-800'
               : 'bg-gray-200 text-gray-400 cursor-not-allowed'
@@ -88,25 +85,22 @@ export function ChatInput({
           aria-label="Send message"
         >
           <svg
-            className="w-5 h-5"
+            className="w-4 h-4"
+            viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            viewBox="0 0 24 24"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-            />
+            <line x1="22" y1="2" x2="11" y2="13" />
+            <polygon points="22 2 15 22 11 13 2 9 22 2" />
           </svg>
         </button>
       </div>
-      {!disabled && (
-        <p className="text-xs text-gray-400 mt-2 text-center">
-          Press Enter to send, Shift+Enter for new line
-        </p>
-      )}
+      <p className="text-xs text-gray-400 mt-2 text-center">
+        Press Enter to send
+      </p>
     </div>
   );
 }

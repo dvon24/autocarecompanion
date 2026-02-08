@@ -3,11 +3,12 @@
 import { type ChatMessage as ChatMessageType } from '@/schemas/chat.schema';
 
 /**
- * ChatMessage - Individual chat message bubble
+ * ChatMessage - Individual chat message
  *
- * Follows Architecture patterns:
- * - Discovery phase styling (calm, exploratory)
- * - Named exports only
+ * Clean, minimal design inspired by chat-sdk.dev
+ * - No excessive borders or shadows
+ * - Clean typography
+ * - Subtle visual distinction between user/AI
  */
 
 type ChatMessageProps = {
@@ -17,29 +18,32 @@ type ChatMessageProps = {
 export function ChatMessage({ message }: ChatMessageProps) {
   const isUser = message.role === 'user';
 
+  if (isUser) {
+    return (
+      <div className="flex justify-end mb-6">
+        <div className="max-w-[80%] bg-gray-100 rounded-3xl px-5 py-3">
+          <p className="text-gray-900 text-[15px] leading-relaxed whitespace-pre-wrap">
+            {message.content}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div
-      className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`}
-    >
-      <div
-        className={`
-          max-w-[85%] rounded-2xl px-4 py-3
-          ${isUser
-            ? 'bg-gray-900 text-white rounded-br-md'
-            : 'bg-white border border-gray-200 text-gray-900 rounded-bl-md shadow-sm'
-          }
-        `}
-      >
-        {!isUser && (
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs font-bold">AI</span>
-            </div>
-            <span className="text-xs text-gray-500">Au7o Assistant</span>
+    <div className="mb-6">
+      <div className="flex items-start gap-3">
+        {/* AI Avatar */}
+        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
+          <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+        </div>
+        {/* Message Content */}
+        <div className="flex-1 min-w-0">
+          <div className="text-[15px] text-gray-900 leading-relaxed">
+            {formatMessageContent(message.content)}
           </div>
-        )}
-        <div className="whitespace-pre-wrap text-sm leading-relaxed">
-          {formatMessageContent(message.content)}
         </div>
       </div>
     </div>
@@ -48,7 +52,6 @@ export function ChatMessage({ message }: ChatMessageProps) {
 
 /**
  * Format message content for display
- * Handles line breaks and basic formatting
  */
 function formatMessageContent(content: string): React.ReactNode {
   // Check if this is a diagnosis message
@@ -56,117 +59,140 @@ function formatMessageContent(content: string): React.ReactNode {
     return formatDiagnosisMessage(content);
   }
 
-  // Regular message - just handle line breaks
-  return content;
-}
-
-/**
- * Format diagnosis message with styling
- */
-function formatDiagnosisMessage(content: string): React.ReactNode {
-  const parts = content.split(/(DIAGNOSIS:|CONFIDENCE:|DESCRIPTION:|POSSIBLE CAUSES:|RECOMMENDATION:)/);
-
+  // Regular message - render with line breaks
   return (
-    <div className="space-y-2">
-      {parts.map((part, index) => {
-        const trimmed = part.trim();
-
-        if (trimmed === 'DIAGNOSIS:') {
-          return (
-            <div key={index} className="font-semibold text-blue-600 text-xs uppercase tracking-wide mt-2">
-              Diagnosis
-            </div>
-          );
-        }
-
-        if (trimmed === 'CONFIDENCE:') {
-          return (
-            <div key={index} className="font-semibold text-gray-500 text-xs uppercase tracking-wide mt-3">
-              Confidence
-            </div>
-          );
-        }
-
-        if (trimmed === 'DESCRIPTION:') {
-          return (
-            <div key={index} className="font-semibold text-gray-500 text-xs uppercase tracking-wide mt-3">
-              Description
-            </div>
-          );
-        }
-
-        if (trimmed === 'POSSIBLE CAUSES:') {
-          return (
-            <div key={index} className="font-semibold text-gray-500 text-xs uppercase tracking-wide mt-3">
-              Possible Causes
-            </div>
-          );
-        }
-
-        if (trimmed === 'RECOMMENDATION:') {
-          return (
-            <div key={index} className="font-semibold text-gray-500 text-xs uppercase tracking-wide mt-3">
-              Recommendation
-            </div>
-          );
-        }
-
-        if (!trimmed) return null;
-
-        // Format the content after labels
-        const prevPart = parts[index - 1]?.trim();
-
-        if (prevPart === 'DIAGNOSIS:') {
-          return (
-            <div key={index} className="text-lg font-medium text-gray-900">
-              {trimmed}
-            </div>
-          );
-        }
-
-        if (prevPart === 'CONFIDENCE:') {
-          const confidence = trimmed.toLowerCase();
-          const colorClass =
-            confidence === 'high'
-              ? 'bg-green-100 text-green-800'
-              : confidence === 'medium'
-              ? 'bg-yellow-100 text-yellow-800'
-              : 'bg-orange-100 text-orange-800';
-
-          return (
-            <span
-              key={index}
-              className={`inline-block px-2 py-1 rounded text-xs font-medium capitalize ${colorClass}`}
-            >
-              {trimmed}
-            </span>
-          );
-        }
-
-        return (
-          <div key={index} className="text-gray-700">
-            {trimmed}
-          </div>
-        );
-      })}
+    <div className="whitespace-pre-wrap">
+      {content}
     </div>
   );
 }
 
 /**
- * ChatMessageLoading - Loading indicator for AI response
+ * Format diagnosis message with clean styling
+ */
+function formatDiagnosisMessage(content: string): React.ReactNode {
+  // Split before the diagnosis section to get intro text
+  const [introText, ...rest] = content.split('DIAGNOSIS:');
+  const diagnosisContent = rest.join('DIAGNOSIS:');
+
+  // Parse diagnosis sections
+  const sections: { label: string; content: string }[] = [];
+  const sectionRegex = /(DIAGNOSIS|CONFIDENCE|DESCRIPTION|POSSIBLE CAUSES|RECOMMENDATION):\s*([\s\S]*?)(?=(?:DIAGNOSIS|CONFIDENCE|DESCRIPTION|POSSIBLE CAUSES|RECOMMENDATION):|$)/g;
+
+  let match;
+  while ((match = sectionRegex.exec('DIAGNOSIS:' + diagnosisContent)) !== null) {
+    sections.push({
+      label: match[1],
+      content: match[2].trim(),
+    });
+  }
+
+  return (
+    <div className="space-y-4">
+      {introText.trim() && (
+        <p className="whitespace-pre-wrap">{introText.trim()}</p>
+      )}
+
+      <div className="bg-gray-50 rounded-xl p-4 space-y-3">
+        {sections.map((section, index) => {
+          if (section.label === 'DIAGNOSIS') {
+            return (
+              <div key={index}>
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
+                  Diagnosis
+                </p>
+                <p className="text-lg font-semibold text-gray-900">
+                  {section.content}
+                </p>
+              </div>
+            );
+          }
+
+          if (section.label === 'CONFIDENCE') {
+            const confidence = section.content.toLowerCase();
+            const badgeClass =
+              confidence === 'high'
+                ? 'bg-green-100 text-green-700'
+                : confidence === 'medium'
+                ? 'bg-amber-100 text-amber-700'
+                : 'bg-orange-100 text-orange-700';
+
+            return (
+              <div key={index} className="flex items-center gap-2">
+                <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                  Confidence:
+                </span>
+                <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${badgeClass}`}>
+                  {section.content}
+                </span>
+              </div>
+            );
+          }
+
+          if (section.label === 'DESCRIPTION') {
+            return (
+              <div key={index}>
+                <p className="text-gray-700">{section.content}</p>
+              </div>
+            );
+          }
+
+          if (section.label === 'POSSIBLE CAUSES') {
+            const causes = section.content
+              .split('\n')
+              .map((line) => line.replace(/^[-•]\s*/, '').trim())
+              .filter((line) => line.length > 0);
+
+            return (
+              <div key={index}>
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+                  Possible Causes
+                </p>
+                <ul className="space-y-1">
+                  {causes.map((cause, i) => (
+                    <li key={i} className="flex items-start gap-2 text-gray-700">
+                      <span className="text-gray-400 mt-1">•</span>
+                      <span>{cause}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          }
+
+          if (section.label === 'RECOMMENDATION') {
+            return (
+              <div key={index} className="pt-2 border-t border-gray-200">
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
+                  Recommendation
+                </p>
+                <p className="text-gray-700">{section.content}</p>
+              </div>
+            );
+          }
+
+          return null;
+        })}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * ChatMessageLoading - Typing indicator
  */
 export function ChatMessageLoading() {
   return (
-    <div className="flex justify-start mb-4">
-      <div className="max-w-[85%] rounded-2xl rounded-bl-md px-4 py-3 bg-white border border-gray-200 shadow-sm">
-        <div className="flex items-center gap-2 mb-2">
-          <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-            <span className="text-white text-xs font-bold">AI</span>
-          </div>
-          <span className="text-xs text-gray-500">Au7o Assistant</span>
+    <div className="mb-6">
+      <div className="flex items-start gap-3">
+        {/* AI Avatar */}
+        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
+          <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
         </div>
-        <div className="flex items-center gap-1">
+        {/* Loading dots */}
+        <div className="flex items-center gap-1 py-3">
           <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
           <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
           <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />

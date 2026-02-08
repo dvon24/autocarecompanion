@@ -13,6 +13,12 @@ const nextConfig: NextConfig = {
   // @ducanh2912/next-pwa uses webpack, so we need to build with webpack
   // Empty turbopack config silences the warning but still uses webpack for PWA
   turbopack: {},
+
+  // Enable View Transitions API for smooth page transitions
+  // See: https://nextjs.org/docs/app/api-reference/config/next-config-js/viewTransition
+  experimental: {
+    viewTransition: true,
+  },
 };
 
 export default withPWA(nextConfig);

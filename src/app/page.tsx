@@ -2,6 +2,40 @@
 
 import Link from 'next/link';
 
+// Feature card data
+const features = [
+  {
+    id: 'pre-flight',
+    title: 'Pre-Flight Check',
+    description: 'See every tool and part you need before starting. No surprises mid-repair.',
+    icon: (
+      <svg className="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+      </svg>
+    ),
+  },
+  {
+    id: 'step-by-step',
+    title: 'Step-by-Step Guides',
+    description: "Large text, high contrast. Designed to read at arm's length with dirty hands.",
+    icon: (
+      <svg className="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+  },
+  {
+    id: 'offline-first',
+    title: 'Works Offline',
+    description: 'Download guides before you start. No wifi in your garage? No problem.',
+    icon: (
+      <svg className="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+      </svg>
+    ),
+  },
+];
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white font-[system-ui,sans-serif] relative overflow-hidden">
@@ -106,65 +140,43 @@ export default function LandingPage() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Feature 1: Pre-Flight Check */}
-              <div
-                className="group rounded-lg overflow-hidden border border-gray-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
-                style={{ background: 'linear-gradient(to bottom, #f3f4f6 0%, #f3f4f6 40%, #ffffff 70%, #ffffff 100%)' }}
-              >
-                {/* Icon area */}
-                <div className="h-40 flex items-center justify-center">
-                  <svg className="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                  </svg>
-                </div>
-                {/* Content */}
-                <div className="px-5 pb-5">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Pre-Flight Check</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">
-                    See every tool and part you need before starting. No surprises mid-repair.
-                  </p>
-                </div>
-              </div>
-
-              {/* Feature 2: Step-by-Step */}
-              <div
-                className="group rounded-lg overflow-hidden border border-gray-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
-                style={{ background: 'linear-gradient(to bottom, #f3f4f6 0%, #f3f4f6 40%, #ffffff 70%, #ffffff 100%)' }}
-              >
-                {/* Icon area */}
-                <div className="h-40 flex items-center justify-center">
-                  <svg className="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                {/* Content */}
-                <div className="px-5 pb-5">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Step-by-Step Guides</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">
-                    Large text, high contrast. Designed to read at arm's length with dirty hands.
-                  </p>
-                </div>
-              </div>
-
-              {/* Feature 3: Offline First */}
-              <div
-                className="group rounded-lg overflow-hidden border border-gray-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
-                style={{ background: 'linear-gradient(to bottom, #f3f4f6 0%, #f3f4f6 40%, #ffffff 70%, #ffffff 100%)' }}
-              >
-                {/* Icon area */}
-                <div className="h-40 flex items-center justify-center">
-                  <svg className="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
-                  </svg>
-                </div>
-                {/* Content */}
-                <div className="px-5 pb-5">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Works Offline</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">
-                    Download guides before you start. No wifi in your garage? No problem.
-                  </p>
-                </div>
-              </div>
+              {features.map((feature) => (
+                <Link
+                  key={feature.id}
+                  href={`/features/${feature.id}`}
+                  className="group rounded-lg overflow-hidden border border-gray-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
+                  style={{
+                    background: 'linear-gradient(to bottom, #f3f4f6 0%, #f3f4f6 40%, #ffffff 70%, #ffffff 100%)',
+                    viewTransitionName: `feature-card-${feature.id}`,
+                  }}
+                >
+                  {/* Icon area */}
+                  <div
+                    className="h-40 flex items-center justify-center"
+                    style={{ viewTransitionName: `feature-icon-${feature.id}` }}
+                  >
+                    {feature.icon}
+                  </div>
+                  {/* Content */}
+                  <div className="px-5 pb-5">
+                    <h3
+                      className="text-lg font-semibold text-gray-900 mb-2"
+                      style={{ viewTransitionName: `feature-title-${feature.id}` }}
+                    >
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm leading-relaxed mb-3">
+                      {feature.description}
+                    </p>
+                    <span className="inline-flex items-center text-sm text-gray-600 font-medium group-hover:text-gray-900 transition-colors">
+                      Learn more
+                      <svg className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
