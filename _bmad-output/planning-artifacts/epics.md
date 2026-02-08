@@ -4,14 +4,14 @@ inputDocuments:
   - '_bmad-output/planning-artifacts/prd.md'
   - '_bmad-output/planning-artifacts/architecture.md'
 workflowType: 'epics-and-stories'
-project_name: 'AutoCare Companion'
+project_name: 'Au7o'
 ---
 
-# AutoCare Companion - Epic Breakdown
+# Au7o - Epic Breakdown
 
 ## Overview
 
-This document provides the complete epic and story breakdown for AutoCare Companion, decomposing the requirements from the PRD and Architecture requirements into implementable stories.
+This document provides the complete epic and story breakdown for Au7o, decomposing the requirements from the PRD and Architecture requirements into implementable stories.
 
 ## Requirements Inventory
 
