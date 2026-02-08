@@ -1,0 +1,119 @@
+# generated: 2026-02-08
+# project: Au7o
+# tracking_system: file-system
+# story_location: _bmad-output/implementation-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: 2026-02-08
+project: Au7o
+tracking_system: file-system
+story_location: _bmad-output/implementation-artifacts
+
+development_status:
+  # Epic 0: Foundation
+  epic-0: backlog
+  0-1-project-initialization-core-dependencies: backlog
+  0-2-two-phase-design-language-setup: backlog
+  0-3-pwa-configuration: backlog
+  0-4-vercel-deployment: backlog
+  epic-0-retrospective: optional
+
+  # Epic 1: Core Diagnostic Journey
+  epic-1: backlog
+  1-1-vehicle-selection-via-ymmt: backlog
+  1-2-vin-decode-integration: backlog
+  1-3-ai-symptom-chat-interface: backlog
+  1-4-obd-code-entry-validation: backlog
+  1-5-diagnosis-results-display: backlog
+  1-6-guide-generation-via-ai: backlog
+  1-7-pre-flight-modal: backlog
+  1-8-guide-execution-interface: backlog
+  epic-1-retrospective: optional
+
+  # Epic 2: Offline-First Garage Mode
+  epic-2: backlog
+  2-1-guide-caching-via-service-worker: backlog
+  2-2-cache-status-badge-proactive-caching: backlog
+  2-3-offline-state-detection-indication: backlog
+  2-4-offline-guide-access: backlog
+  2-5-graceful-degradation-for-online-features: backlog
+  2-6-localstorage-persistence: backlog
+  epic-2-retrospective: optional
+
+  # Epic 3: Enhanced Guide Experience
+  epic-3: backlog
+  3-1-time-estimates-display: backlog
+  3-2-pause-resume-guide-progress: backlog
+  3-3-step-navigation-controls: backlog
+  3-4-inline-tips-for-stuck-points: backlog
+  3-5-safety-warning-visual-indicators: backlog
+  3-6-inline-ai-chat-step-scoped: backlog
+  epic-3-retrospective: optional
+
+  # Epic 4: Known Issues Intelligence
+  epic-4: backlog
+  4-1-known-issues-briefing-display: backlog
+  4-2-confidence-trust-indicators: backlog
+  4-3-severity-filtering: backlog
+  4-4-user-issue-reporting: backlog
+  4-5-passive-symptom-capture: backlog
+  4-6-admin-pattern-review: backlog
+  epic-4-retrospective: optional
+
+  # Epic 5: Parts Decision Support
+  epic-5: backlog
+  5-1-inline-parts-recommendations: backlog
+  5-2-oem-vs-aftermarket-decision-framework: backlog
+  5-3-price-ranges-brand-recommendations: backlog
+  5-4-purchase-links-integration: backlog
+  5-5-warranty-compatibility-warnings: backlog
+  epic-5-retrospective: optional
+
+  # Epic 6: Content Quality & Validation
+  epic-6: backlog
+  6-1-six-agent-validation-pipeline: backlog
+  6-2-inline-tips-coverage-validation: backlog
+  6-3-safety-warning-assignment: backlog
+  6-4-part-compatibility-validation: backlog
+  6-5-adversarial-test-cases: backlog
+  6-6-admin-spot-check-gate: backlog
+  epic-6-retrospective: optional
+
+  # Epic 7: Admin Dashboard & Monitoring
+  epic-7: backlog
+  7-1-api-usage-cost-dashboard: backlog
+  7-2-budget-warnings-alerts: backlog
+  7-3-hard-budget-cap-rate-limiting: backlog
+  7-4-known-issues-batch-management: backlog
+  7-5-solo-operator-time-tracking: backlog
+  7-6-vacation-mode: backlog
+  7-7-standardized-guide-data-model: backlog
+  epic-7-retrospective: optional
