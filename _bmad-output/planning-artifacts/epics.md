@@ -640,6 +640,12 @@ So that **I receive accurate guides specific to my exact vehicle configuration**
 **And** the screen fades into the AI symptom chat interface
 **And** the selected vehicle is displayed as context at the top of the chat
 
+**Implementation Note - YMMT Data Source Strategy:**
+- **Year/Make/Model**: NHTSA vPIC API provides comprehensive data (free, government-maintained)
+- **Trim**: NHTSA does not include trim data. Requires AI Gathering Agent to research and curate trim levels per model from manufacturer sites, Edmunds, KBB, etc.
+- **MVP**: Static JSON with sample data (2020-2025, major makes) for UI validation
+- **Production**: Hybrid approach - NHTSA API for YMM + AI-gathered trim data stored in database
+
 ---
 
 ### Story 1.2: VIN Decode Integration
