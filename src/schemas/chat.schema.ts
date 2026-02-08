@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { obdCodeEntrySchema } from './obd.schema';
 
 /**
  * Chat Schema - Zod schemas for AI chat validation
@@ -73,6 +74,7 @@ export const ChatRequestSchema = z.object({
     model: z.string(),
     trim: z.string(),
   }),
+  obdCodes: z.array(obdCodeEntrySchema).optional(),
 });
 
 export type ChatRequest = z.infer<typeof ChatRequestSchema>;

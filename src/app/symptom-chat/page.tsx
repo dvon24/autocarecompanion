@@ -1,15 +1,16 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { PhaseProvider } from '@/contexts/PhaseContext';
 import { useVehicleContext } from '@/contexts/AppContext';
-import { formatVehicleDisplay } from '@/schemas/vehicle.schema';
 import { ChatMessage, ChatMessageLoading } from '@/components/chat/ChatMessage';
 import { ChatInput } from '@/components/chat/ChatInput';
 import { DiagnosisCard } from '@/components/chat/DiagnosisCard';
 import { useSymptomChat } from '@/hooks/useSymptomChat';
+import { useOBDCodes } from '@/hooks/useOBDCodes';
+import { OBDCodeInput } from '@/components/discovery/OBDCodeInput';
 
 /**
  * Symptom Chat Page - AI Symptom Diagnosis Interface
@@ -23,6 +24,15 @@ function SymptomChatContent() {
   const { selectedVehicle, isVehicleSelected } = useVehicleContext();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [showOBDInput, setShowOBDInput] = useState(false);
+
+  // OBD codes state
+  const {
+    codes: obdCodes,
+    addCode: addOBDCode,
+    removeCode: removeOBDCode,
+    hasOBDCodes,
+  } = useOBDCodes();
 
   const {
     messages,
@@ -34,7 +44,7 @@ function SymptomChatContent() {
     hasDiagnosis,
     sendMessage,
     clearChat,
-  } = useSymptomChat(selectedVehicle);
+  } = useSymptomChat({ vehicle: selectedVehicle, obdCodes });
 
   // Redirect to home if no vehicle is selected
   useEffect(() => {
@@ -141,8 +151,67 @@ function SymptomChatContent() {
                       </button>
                     ))}
                   </div>
+
+                  {/* OBD Code Entry Option */}
+                  <div className="mt-6 pt-4 border-t border-gray-100">
+                    <button
+                      type="button"
+                      onClick={() => setShowOBDInput(true)}
+                      className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                      </svg>
+                      Have OBD codes? Add them for better diagnosis
+                    </button>
+                  </div>
                 </div>
               </div>
+            </div>
+          )}
+
+          {/* OBD Code Input Panel */}
+          {showOBDInput && (
+            <div className="mb-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-medium text-gray-900">Enter OBD Codes</h3>
+                <button
+                  type="button"
+                  onClick={() => setShowOBDInput(false)}
+                  className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                  aria-label="Close"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <OBDCodeInput
+                codes={obdCodes}
+                onAddCode={addOBDCode}
+                onRemoveCode={removeOBDCode}
+                onSkip={() => setShowOBDInput(false)}
+                onContinue={() => setShowOBDInput(false)}
+              />
+            </div>
+          )}
+
+          {/* OBD Codes Badge (if codes are entered) */}
+          {hasOBDCodes && !showOBDInput && (
+            <div className="mb-4">
+              <button
+                type="button"
+                onClick={() => setShowOBDInput(true)}
+                className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm hover:bg-blue-100 transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                </svg>
+                {obdCodes.length} OBD Code{obdCodes.length > 1 ? 's' : ''} Added
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+              </button>
             </div>
           )}
 

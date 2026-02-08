@@ -7,6 +7,7 @@ import {
   createChatMessage,
 } from '@/schemas/chat.schema';
 import { type Vehicle } from '@/schemas/vehicle.schema';
+import { type OBDCodeEntry } from '@/schemas/obd.schema';
 
 /**
  * useSymptomChat Hook - Symptom Chat State Management
@@ -40,7 +41,13 @@ type UseSymptomChatReturn = {
   clearChat: () => void;
 };
 
-export function useSymptomChat(vehicle: Vehicle | null): UseSymptomChatReturn {
+type UseSymptomChatOptions = {
+  vehicle: Vehicle | null;
+  obdCodes?: OBDCodeEntry[];
+};
+
+export function useSymptomChat(options: UseSymptomChatOptions): UseSymptomChatReturn {
+  const { vehicle, obdCodes = [] } = options;
   // Message state
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
@@ -81,6 +88,7 @@ export function useSymptomChat(vehicle: Vehicle | null): UseSymptomChatReturn {
             model: vehicle.model,
             trim: vehicle.trim,
           },
+          obdCodes: obdCodes.length > 0 ? obdCodes : undefined,
         }),
       });
 
@@ -112,7 +120,7 @@ export function useSymptomChat(vehicle: Vehicle | null): UseSymptomChatReturn {
       setStatus('error');
       setError(err instanceof Error ? err.message : 'Something went wrong');
     }
-  }, [currentMessage, messages, vehicle, status]);
+  }, [currentMessage, messages, vehicle, status, obdCodes]);
 
   // Clear chat and start over
   const clearChat = useCallback(() => {

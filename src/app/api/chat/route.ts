@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import {
   ChatRequestSchema,
   createChatMessage,
-  generateMessageId,
   type ChatMessage,
   type Diagnosis,
 } from '@/schemas/chat.schema';
+import type { OBDCodeEntry } from '@/schemas/obd.schema';
 
 /**
  * AI Symptom Chat API Route
@@ -23,8 +23,18 @@ const TIMEOUT_MS = 30000; // 30 second timeout per NFR-I2
 /**
  * System prompt for automotive diagnosis
  */
-function getSystemPrompt(vehicle: { year: number; make: string; model: string; trim: string }) {
-  return `You are an expert automotive diagnostic assistant helping a vehicle owner diagnose issues with their ${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}.
+function getSystemPrompt(
+  vehicle: { year: number; make: string; model: string; trim: string },
+  obdCodes?: OBDCodeEntry[]
+) {
+  const obdSection = obdCodes && obdCodes.length > 0
+    ? `\n\nThe user has provided the following OBD-II diagnostic codes from their scanner:
+${obdCodes.map((c) => `- ${c.code}: ${c.description || 'Unknown code'}`).join('\n')}
+
+Use these codes to help inform your diagnosis. OBD codes provide valuable diagnostic information and can increase your confidence in the diagnosis when they align with the reported symptoms.`
+    : '';
+
+  return `You are an expert automotive diagnostic assistant helping a vehicle owner diagnose issues with their ${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}.${obdSection}
 
 Your role is to:
 1. Ask clarifying questions to understand the symptoms
@@ -38,6 +48,7 @@ Guidelines:
 - Consider common issues for this specific vehicle
 - Always prioritize safety warnings when relevant
 - When ready to diagnose, clearly state your diagnosis with confidence level
+- If OBD codes are provided, reference them in your diagnosis
 
 When you're ready to provide a diagnosis, format it as:
 
@@ -137,8 +148,58 @@ async function callOpenAI(
  */
 function generateMockResponse(
   message: string,
-  conversationLength: number
+  conversationLength: number,
+  obdCodes?: OBDCodeEntry[]
 ): { content: string; diagnosis: Diagnosis | null } {
+  const hasObdCodes = obdCodes && obdCodes.length > 0;
+
+  // If OBD codes are provided, provide a faster diagnosis
+  if (hasObdCodes && conversationLength <= 2) {
+    const codeList = obdCodes.map((c) => c.code).join(', ');
+    const firstCode = obdCodes[0];
+
+    // Check for misfire codes
+    if (firstCode.code.startsWith('P030')) {
+      return {
+        content: `I see you've provided OBD codes: ${codeList}. Combined with your symptoms, I can provide a diagnosis.
+
+DIAGNOSIS: Engine Misfire
+CONFIDENCE: high
+DESCRIPTION: The ${firstCode.code} code indicates ${firstCode.description || 'a misfire condition'}. This means one or more cylinders are not firing correctly, which explains the rough running and check engine light.
+POSSIBLE CAUSES:
+- Worn or fouled spark plugs
+- Faulty ignition coils
+- Fuel injector problems
+- Vacuum leaks
+RECOMMENDATION: Start by checking and replacing the spark plugs if worn. If the problem persists, test the ignition coils. This can be a DIY repair with basic tools, but if you're not comfortable, a mechanic can diagnose it quickly with the codes you've provided.`,
+        diagnosis: {
+          id: `diag_${Date.now()}`,
+          title: 'Engine Misfire',
+          confidence: 'high',
+          description: `The ${firstCode.code} code indicates a misfire condition. This means one or more cylinders are not firing correctly.`,
+          possibleCauses: [
+            'Worn or fouled spark plugs',
+            'Faulty ignition coils',
+            'Fuel injector problems',
+            'Vacuum leaks',
+          ],
+          recommendedAction: 'Start by checking and replacing the spark plugs if worn. If the problem persists, test the ignition coils.',
+        },
+      };
+    }
+
+    // Generic OBD code response
+    return {
+      content: `I see you've provided the following OBD codes: ${codeList}. This helps significantly with the diagnosis.
+
+Based on the ${firstCode.code} code (${firstCode.description || 'diagnostic trouble code'}), combined with your symptoms, I have a few follow-up questions:
+
+1. When did the check engine light first come on?
+2. Have you noticed any changes in fuel economy or performance?`,
+      diagnosis: null,
+    };
+  }
+
   // First message - ask clarifying questions
   if (conversationLength <= 1) {
     return {
@@ -206,7 +267,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { message, conversationHistory = [], vehicle } = parseResult.data;
+    const { message, conversationHistory = [], vehicle, obdCodes } = parseResult.data;
 
     // Get API key from environment
     const apiKey = process.env.OPENAI_API_KEY;
@@ -217,7 +278,7 @@ export async function POST(request: NextRequest) {
     if (apiKey) {
       // Build messages for AI
       const messages: { role: string; content: string }[] = [
-        { role: 'system', content: getSystemPrompt(vehicle) },
+        { role: 'system', content: getSystemPrompt(vehicle, obdCodes) },
         ...conversationHistory.map((msg) => ({
           role: msg.role,
           content: msg.content,
@@ -231,7 +292,7 @@ export async function POST(request: NextRequest) {
     } else {
       // Use mock response for development
       console.log('[Chat API] No OPENAI_API_KEY configured, using mock response');
-      const mock = generateMockResponse(message, conversationHistory.length);
+      const mock = generateMockResponse(message, conversationHistory.length, obdCodes);
       responseContent = mock.content;
       diagnosis = mock.diagnosis;
     }
