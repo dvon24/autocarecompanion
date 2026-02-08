@@ -5,13 +5,32 @@ import Link from 'next/link';
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white font-[system-ui,sans-serif] relative overflow-hidden">
-      {/* Subtle gradient blob - faded blue */}
+      {/* Gradient blobs - subtle blue accents */}
       <div
-        className="absolute top-0 right-0 w-[500px] h-[500px] opacity-30 pointer-events-none"
+        className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%)',
           filter: 'blur(60px)',
           transform: 'translate(20%, -30%)',
+          opacity: 0.35,
+        }}
+      />
+      <div
+        className="absolute top-1/4 left-0 w-[400px] h-[400px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+          transform: 'translate(-50%, 0%)',
+          opacity: 0.35,
+        }}
+      />
+      <div
+        className="absolute bottom-0 right-1/4 w-[500px] h-[500px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%)',
+          filter: 'blur(80px)',
+          transform: 'translate(0%, 40%)',
+          opacity: 0.35,
         }}
       />
 
