@@ -107,7 +107,6 @@ export default function FeaturePage() {
           className="rounded-2xl p-8 mb-12"
           style={{
             background: 'linear-gradient(to bottom, #f3f4f6 0%, #f3f4f6 60%, #ffffff 100%)',
-            viewTransitionName: `feature-card-${feature.id}`,
           }}
         >
           <div className="flex flex-col md:flex-row items-start gap-8">

@@ -147,7 +147,6 @@ export default function LandingPage() {
                   className="group rounded-lg overflow-hidden border border-gray-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
                   style={{
                     background: 'linear-gradient(to bottom, #f3f4f6 0%, #f3f4f6 40%, #ffffff 70%, #ffffff 100%)',
-                    viewTransitionName: `feature-card-${feature.id}`,
                   }}
                 >
                   {/* Icon area */}
