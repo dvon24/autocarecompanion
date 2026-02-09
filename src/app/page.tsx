@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { UserMenu } from '@/components/auth/UserMenu';
 
 // Feature card data
 const features = [
@@ -70,8 +71,26 @@ export default function LandingPage() {
 
       {/* Main content */}
       <main className="relative flex flex-col">
+        {/* Header */}
+        <header className="px-6 py-4">
+          <div className="max-w-5xl mx-auto flex items-center justify-between">
+            <span className="text-2xl font-bold text-gray-900 tracking-tight">
+              Au<span className="text-blue-600">7</span>o
+            </span>
+            <div className="flex items-center gap-4">
+              <Link
+                href="/get-started"
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              >
+                Get Started
+              </Link>
+              <UserMenu />
+            </div>
+          </div>
+        </header>
+
         {/* Hero Section */}
-        <section className="flex-1 flex flex-col items-center justify-center px-6 py-24 lg:py-32">
+        <section className="flex-1 flex flex-col items-center justify-center px-6 py-20 lg:py-28">
           {/* Feature pills */}
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full text-sm text-gray-600 font-medium">

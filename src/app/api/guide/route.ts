@@ -1,0 +1,421 @@
+import { NextRequest, NextResponse } from 'next/server';
+import {
+  GuideGenerationRequestSchema,
+  generateGuideId,
+  type Guide,
+  type GuideStep,
+  type Tool,
+  type Part,
+} from '@/schemas/guide.schema';
+
+/**
+ * Guide Generation API Route
+ *
+ * Generates repair guides using AI based on diagnosis and vehicle info.
+ * Per Architecture: Server-side API calls, 30s timeout (NFR-I2).
+ *
+ * Story 1.6: Guide Generation via AI
+ */
+
+const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
+const TIMEOUT_MS = 60000; // 60 second timeout for guide generation (complex content)
+
+/**
+ * System prompt for guide generation
+ */
+function getGuideSystemPrompt(
+  vehicle: { year: number; make: string; model: string; trim: string },
+  diagnosis: { title: string; description?: string }
+) {
+  return `You are an expert automotive repair guide writer with deep knowledge of OEM part numbers. Generate a detailed, step-by-step repair guide for the following:
+
+Vehicle: ${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}
+Diagnosis: ${diagnosis.title}
+${diagnosis.description ? `Description: ${diagnosis.description}` : ''}
+
+Create a comprehensive repair guide in the following JSON format. Be SPECIFIC to this exact vehicle.
+
+{
+  "title": "Guide title",
+  "description": "Brief overview of the repair",
+  "difficulty": 1-5 (1=beginner, 5=expert),
+  "safetyLevel": "diy-safe" | "diy-safe-with-care" | "requires-mechanic",
+  "timeEstimate": "estimated time range (e.g., '30-45 minutes')",
+  "tools": [
+    {
+      "name": "Tool name (include size, e.g., '10mm Socket')",
+      "purpose": "What it's used for in this repair",
+      "costRange": "$X-$Y",
+      "alternatives": ["alternative tool if any"],
+      "required": true/false
+    }
+  ],
+  "parts": [
+    {
+      "name": "Part name (specific to vehicle)",
+      "partNumber": "JUST the part number, nothing else (e.g., 'FL-500S' or '04152-YZZA1' - NO extra text, descriptions, or notes in this field)",
+      "oemPrice": "$X-$Y",
+      "aftermarketPrice": "$X-$Y",
+      "notes": "Compatibility notes, alternate brands"
+    }
+  ],
+  "steps": [
+    {
+      "number": 1,
+      "instruction": "Clear, detailed instruction",
+      "tips": [
+        { "content": "Helpful tip for this step" }
+      ],
+      "safetyWarnings": [
+        { "severity": "high|medium|low", "message": "Safety warning" }
+      ],
+      "estimatedMinutes": 5
+    }
+  ]
+}
+
+CRITICAL GUIDELINES FOR PARTS:
+- partNumber field must contain ONLY the part number itself (e.g., "FL-500S", "04152-YZZA1", "15400-PLM-A02")
+- NO descriptions, notes, or extra text in the partNumber field - put those in the "notes" field
+- ALWAYS include real OEM part numbers when known
+- Be specific to the exact year/make/model/trim - part numbers vary by engine and trim level
+
+General Guidelines:
+- Write clear, concise instructions a DIY mechanic can follow
+- Include safety warnings where relevant (battery disconnect, jack stands, hot components, etc.)
+- Add tips for common stuck points
+- Be specific about bolt sizes, torque specs when applicable
+- Consider the skill level indicated by the difficulty rating
+- For "requires-mechanic" repairs, explain why professional help is needed
+- Include 5-15 steps depending on complexity
+
+Return ONLY valid JSON, no additional text.`;
+}
+
+/**
+ * Call OpenAI API for guide generation
+ */
+async function callOpenAI(
+  systemPrompt: string,
+  apiKey: string
+): Promise<string> {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+  try {
+    const response = await fetch(OPENAI_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: 'gpt-5.2',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: 'Generate the repair guide now.' },
+        ],
+        max_completion_tokens: 4000,
+        temperature: 0.3,
+        response_format: { type: 'json_object' },
+      }),
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(error.error?.message || `API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.choices[0]?.message?.content || '';
+  } catch (error) {
+    clearTimeout(timeoutId);
+    throw error;
+  }
+}
+
+/**
+ * Parse AI response into Guide structure
+ */
+function parseGuideResponse(
+  content: string,
+  vehicle: { year: number; make: string; model: string; trim: string },
+  diagnosis: { id: string; title: string }
+): Guide {
+  const parsed = JSON.parse(content);
+  const guideId = generateGuideId();
+  const now = Date.now();
+
+  // Process steps with IDs
+  const steps: GuideStep[] = (parsed.steps || []).map((step: Record<string, unknown>, idx: number) => ({
+    number: step.number || idx + 1,
+    instruction: step.instruction || '',
+    tips: ((step.tips || []) as Array<{ content?: string }>).map((tip, tipIdx) => ({
+      id: `tip_${guideId}_${idx}_${tipIdx}`,
+      content: tip.content || '',
+    })),
+    safetyWarnings: ((step.safetyWarnings || []) as Array<{ severity?: string; message?: string }>).map((warn, warnIdx) => ({
+      id: `warn_${guideId}_${idx}_${warnIdx}`,
+      severity: warn.severity || 'medium',
+      message: warn.message || '',
+    })),
+    estimatedMinutes: step.estimatedMinutes,
+  }));
+
+  // Process tools with IDs
+  const tools: Tool[] = (parsed.tools || []).map((tool: Record<string, unknown>, idx: number) => ({
+    id: `tool_${guideId}_${idx}`,
+    name: tool.name || '',
+    purpose: tool.purpose,
+    costRange: tool.costRange,
+    alternatives: tool.alternatives,
+    required: tool.required !== false,
+  }));
+
+  // Process parts with IDs
+  const parts: Part[] = (parsed.parts || []).map((part: Record<string, unknown>, idx: number) => ({
+    id: `part_${guideId}_${idx}`,
+    name: part.name || '',
+    partNumber: part.partNumber,
+    oemPrice: part.oemPrice,
+    aftermarketPrice: part.aftermarketPrice,
+    notes: part.notes,
+  }));
+
+  return {
+    id: guideId,
+    title: parsed.title || `${diagnosis.title} Repair Guide`,
+    description: parsed.description,
+    vehicle,
+    diagnosis: {
+      id: diagnosis.id,
+      title: diagnosis.title,
+    },
+    difficulty: Math.min(5, Math.max(1, parsed.difficulty || 3)),
+    safetyLevel: parsed.safetyLevel || 'diy-safe-with-care',
+    timeEstimate: parsed.timeEstimate || '30-60 minutes',
+    steps,
+    tools,
+    parts,
+    createdAt: now,
+    version: 1,
+  };
+}
+
+/**
+ * Generate mock guide for development/testing
+ */
+function generateMockGuide(
+  vehicle: { year: number; make: string; model: string; trim: string },
+  diagnosis: { id: string; title: string; description?: string }
+): Guide {
+  const guideId = generateGuideId();
+  const now = Date.now();
+
+  return {
+    id: guideId,
+    title: `${diagnosis.title} Repair Guide`,
+    description: `Step-by-step guide to repair ${diagnosis.title.toLowerCase()} on your ${vehicle.year} ${vehicle.make} ${vehicle.model}.`,
+    vehicle,
+    diagnosis: {
+      id: diagnosis.id,
+      title: diagnosis.title,
+    },
+    difficulty: 2,
+    safetyLevel: 'diy-safe-with-care',
+    timeEstimate: '45-60 minutes',
+    steps: [
+      {
+        number: 1,
+        instruction: 'Park the vehicle on a level surface and engage the parking brake. Allow the engine to cool if it was recently running.',
+        tips: [
+          { id: `tip_${guideId}_0_0`, content: 'Wait at least 30 minutes after driving for components to cool down.' },
+        ],
+        safetyWarnings: [
+          { id: `warn_${guideId}_0_0`, severity: 'medium', message: 'Ensure the vehicle is in Park (automatic) or in gear (manual) before working.' },
+        ],
+        estimatedMinutes: 2,
+      },
+      {
+        number: 2,
+        instruction: 'Open the hood and locate the component related to the repair. Consult your owner\'s manual if needed.',
+        tips: [
+          { id: `tip_${guideId}_1_0`, content: 'Take a photo of the engine bay before starting for reference.' },
+        ],
+        safetyWarnings: [],
+        estimatedMinutes: 3,
+      },
+      {
+        number: 3,
+        instruction: 'Disconnect the negative battery terminal to prevent electrical shorts during the repair.',
+        tips: [
+          { id: `tip_${guideId}_2_0`, content: 'Use a 10mm wrench for most battery terminals.' },
+          { id: `tip_${guideId}_2_1`, content: 'Tuck the cable away from the battery to prevent accidental reconnection.' },
+        ],
+        safetyWarnings: [
+          { id: `warn_${guideId}_2_0`, severity: 'high', message: 'Always disconnect the negative terminal first to prevent sparks.' },
+        ],
+        estimatedMinutes: 5,
+      },
+      {
+        number: 4,
+        instruction: 'Remove any covers or components blocking access to the repair area. Keep track of all bolts and screws.',
+        tips: [
+          { id: `tip_${guideId}_3_0`, content: 'Use a magnetic tray to keep small parts organized.' },
+        ],
+        safetyWarnings: [],
+        estimatedMinutes: 10,
+      },
+      {
+        number: 5,
+        instruction: 'Perform the main repair procedure according to your specific diagnosis. Replace worn or damaged parts as needed.',
+        tips: [
+          { id: `tip_${guideId}_4_0`, content: 'Compare old and new parts side-by-side to ensure correct replacement.' },
+        ],
+        safetyWarnings: [
+          { id: `warn_${guideId}_4_0`, severity: 'medium', message: 'Do not force parts into place. If they don\'t fit, verify you have the correct part.' },
+        ],
+        estimatedMinutes: 20,
+      },
+      {
+        number: 6,
+        instruction: 'Reinstall any components removed during disassembly in reverse order.',
+        tips: [
+          { id: `tip_${guideId}_5_0`, content: 'Refer to your photos from Step 2 if unsure about component placement.' },
+        ],
+        safetyWarnings: [],
+        estimatedMinutes: 10,
+      },
+      {
+        number: 7,
+        instruction: 'Reconnect the negative battery terminal and ensure it\'s secure.',
+        tips: [],
+        safetyWarnings: [],
+        estimatedMinutes: 2,
+      },
+      {
+        number: 8,
+        instruction: 'Start the engine and verify the repair was successful. Check for any warning lights or unusual behavior.',
+        tips: [
+          { id: `tip_${guideId}_7_0`, content: 'Let the engine idle for 2-3 minutes and check for leaks or unusual sounds.' },
+        ],
+        safetyWarnings: [
+          { id: `warn_${guideId}_7_0`, severity: 'medium', message: 'Do not drive the vehicle until you\'ve verified the repair is complete.' },
+        ],
+        estimatedMinutes: 5,
+      },
+    ],
+    tools: [
+      { id: `tool_${guideId}_0`, name: 'Socket Set', purpose: 'For removing bolts and fasteners', costRange: '$30-$80', required: true },
+      { id: `tool_${guideId}_1`, name: 'Wrench Set', purpose: 'For various nuts and bolts', costRange: '$20-$50', required: true },
+      { id: `tool_${guideId}_2`, name: 'Screwdriver Set', purpose: 'For screws and clips', costRange: '$15-$30', required: true },
+      { id: `tool_${guideId}_3`, name: 'Work Light', purpose: 'For visibility in the engine bay', costRange: '$15-$40', required: false },
+    ],
+    parts: [
+      {
+        id: `part_${guideId}_0`,
+        name: `Oil Filter - ${vehicle.make}`,
+        partNumber: vehicle.make === 'Toyota' ? '04152-YZZA1' : vehicle.make === 'Honda' ? '15400-PLM-A02' : vehicle.make === 'Ford' ? 'FL-500S' : 'PF48',
+        oemPrice: '$8-$15',
+        aftermarketPrice: '$5-$10',
+        notes: 'Also compatible: Fram XG7317, Mobil 1 M1-110A, K&N HP-1010'
+      },
+      {
+        id: `part_${guideId}_1`,
+        name: 'Engine Oil 5W-30 (5 Quarts)',
+        partNumber: 'Mobil 1 120764',
+        oemPrice: '$35-$45',
+        aftermarketPrice: '$25-$35',
+        notes: 'Check owner\'s manual for correct viscosity. Synthetic recommended.'
+      },
+      {
+        id: `part_${guideId}_2`,
+        name: 'Drain Plug Gasket',
+        partNumber: vehicle.make === 'Toyota' ? '90430-12031' : vehicle.make === 'Honda' ? '94109-14000' : 'Generic',
+        oemPrice: '$2-$5',
+        aftermarketPrice: '$1-$3',
+        notes: 'Replace with every oil change to prevent leaks'
+      },
+    ],
+    createdAt: now,
+    version: 1,
+  };
+}
+
+export async function POST(request: NextRequest) {
+  const startTime = Date.now();
+
+  try {
+    // Parse and validate request
+    const body = await request.json();
+    const parseResult = GuideGenerationRequestSchema.safeParse(body);
+
+    if (!parseResult.success) {
+      return NextResponse.json(
+        {
+          error: 'Invalid request',
+          details: parseResult.error.issues.map((i) => i.message),
+        },
+        { status: 400 }
+      );
+    }
+
+    const { vehicle, diagnosis } = parseResult.data;
+
+    // Get API key from environment
+    const apiKey = process.env.OPENAI_API_KEY;
+
+    let guide: Guide;
+
+    if (apiKey) {
+      // Generate guide via AI
+      const systemPrompt = getGuideSystemPrompt(vehicle, diagnosis);
+      const content = await callOpenAI(systemPrompt, apiKey);
+      guide = parseGuideResponse(content, vehicle, {
+        id: diagnosis.id,
+        title: diagnosis.title,
+      });
+    } else {
+      // Use mock guide for development
+      console.log('[Guide API] No OPENAI_API_KEY configured, using mock guide');
+      // Simulate generation delay
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      guide = generateMockGuide(vehicle, {
+        id: diagnosis.id,
+        title: diagnosis.title,
+        description: diagnosis.description,
+      });
+    }
+
+    const generationTimeMs = Date.now() - startTime;
+
+    return NextResponse.json({
+      guide,
+      generationTimeMs,
+    });
+  } catch (error) {
+    console.error('Guide API error:', error);
+
+    if (error instanceof Error && error.name === 'AbortError') {
+      return NextResponse.json(
+        { error: 'Guide generation timed out. Please try again.' },
+        { status: 504 }
+      );
+    }
+
+    if (error instanceof SyntaxError) {
+      return NextResponse.json(
+        { error: 'Failed to parse guide data. Please try again.' },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json(
+      { error: 'Failed to generate guide. Please try again.' },
+      { status: 500 }
+    );
+  }
+}
