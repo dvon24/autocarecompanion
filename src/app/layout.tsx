@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AppProvider } from "@/contexts/AppContext";
 import { OfflineIndicator } from "@/components/offline/OfflineIndicator";
-import { SessionProvider } from "@/components/auth/SessionProvider";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,13 +16,58 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Au7o",
-  description: "AI-powered automotive maintenance guides",
-  manifest: "/manifest.json",
+  metadataBase: new URL('https://au7o.io'),
+  title: {
+    default: 'Au7o - AI-Powered Automotive Repair Guides',
+    template: '%s | Au7o',
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/icons/icon-192.png',
+  },
+  description: 'Expert DIY car repair guides powered by AI. Step-by-step instructions tailored to your exact vehicle. Works offline. Free to start.',
+  keywords: ['car repair', 'DIY mechanic', 'auto repair guide', 'vehicle maintenance', 'automotive', 'repair tutorial', 'oil change', 'brake pads'],
+  authors: [{ name: 'Au7o' }],
+  creator: 'Au7o',
+  publisher: 'Au7o',
+  manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
-    title: "Au7o",
+    statusBarStyle: 'default',
+    title: 'Au7o',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://au7o.io',
+    siteName: 'Au7o',
+    title: 'Au7o - AI-Powered Automotive Repair Guides',
+    description: 'Expert DIY car repair guides powered by AI. Step-by-step instructions tailored to your exact vehicle. Works offline.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Au7o - AI-Powered Automotive Repair Guides',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Au7o - AI-Powered Automotive Repair Guides',
+    description: 'Expert DIY car repair guides powered by AI. Step-by-step instructions tailored to your exact vehicle.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -44,12 +89,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider>
-          <AppProvider>
-            <OfflineIndicator position="top" showFeatures />
-            {children}
-          </AppProvider>
-        </SessionProvider>
+        <GoogleAnalytics />
+        <AppProvider>
+          <OfflineIndicator position="top" showFeatures />
+          {children}
+        </AppProvider>
       </body>
     </html>
   );

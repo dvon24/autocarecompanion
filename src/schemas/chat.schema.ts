@@ -85,6 +85,7 @@ export type ChatRequest = z.infer<typeof ChatRequestSchema>;
 export const ChatResponseSchema = z.object({
   message: ChatMessageSchema,
   diagnosis: DiagnosisSchema.nullable().optional(),
+  alternativeDiagnoses: z.array(DiagnosisSchema).optional(),
   needsMoreInfo: z.boolean().optional(),
   suggestedQuestions: z.array(z.string()).optional(),
 });

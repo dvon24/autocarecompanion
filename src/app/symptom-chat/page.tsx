@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { PhaseProvider } from '@/contexts/PhaseContext';
 import { useVehicleContext } from '@/contexts/AppContext';
 import { ChatMessage, ChatMessageLoading } from '@/components/chat/ChatMessage';
@@ -10,6 +11,7 @@ import { ChatInput } from '@/components/chat/ChatInput';
 import { DiagnosisCard } from '@/components/chat/DiagnosisCard';
 import { useSymptomChat } from '@/hooks/useSymptomChat';
 import { useOBDCodes } from '@/hooks/useOBDCodes';
+import { useGuide } from '@/hooks/useGuide';
 import { OBDCodeInput } from '@/components/discovery/OBDCodeInput';
 
 /**
@@ -24,6 +26,7 @@ function SymptomChatContent() {
   const { selectedVehicle, isVehicleSelected } = useVehicleContext();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const prevMessageCountRef = useRef(0);
   const [showOBDInput, setShowOBDInput] = useState(false);
 
   // OBD codes state
@@ -41,10 +44,22 @@ function SymptomChatContent() {
     isLoading,
     error,
     diagnosis,
+    alternativeDiagnoses,
     hasDiagnosis,
     sendMessage,
     clearChat,
+    selectAlternative,
   } = useSymptomChat({ vehicle: selectedVehicle, obdCodes });
+
+  // Guide generation state
+  const {
+    guide,
+    isGenerating,
+    hasGuide,
+    error: guideError,
+    generateGuide,
+    clearGuide,
+  } = useGuide();
 
   // Redirect to home if no vehicle is selected
   useEffect(() => {
@@ -53,16 +68,44 @@ function SymptomChatContent() {
     }
   }, [isVehicleSelected, router]);
 
-  // Scroll to bottom when new messages arrive
+  // Scroll to bottom only when NEW messages are added (not on every render)
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, isLoading]);
+    if (messages.length > prevMessageCountRef.current) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+    prevMessageCountRef.current = messages.length;
+  }, [messages.length]);
 
   // Handle generate guide action
-  const handleGenerateGuide = () => {
-    // TODO: Navigate to guide generation with diagnosis context
-    console.log('Generate guide for:', diagnosis);
-    alert('Guide generation will be implemented in Story 1.6');
+  const handleGenerateGuide = async () => {
+    if (!selectedVehicle || !diagnosis) return;
+    await generateGuide(selectedVehicle, diagnosis);
+  };
+
+  // Navigate directly to guide when generated (pre-flight is now integrated into guide page)
+  useEffect(() => {
+    if (hasGuide && guide) {
+      sessionStorage.setItem('currentGuide', JSON.stringify(guide));
+      router.push('/guide');
+    }
+  }, [hasGuide, guide, router]);
+
+  // Handle common maintenance task - generates guide directly (skips chat)
+  const handleCommonTask = async (taskName: string) => {
+    if (!selectedVehicle || isGenerating) return;
+
+    // Create a diagnosis for the common task
+    const taskDiagnosis = {
+      id: `task_${Date.now()}`,
+      title: taskName,
+      description: `Routine ${taskName.toLowerCase()} maintenance`,
+      confidence: 'high' as const,
+      possibleCauses: [],
+      recommendedAction: `Perform ${taskName.toLowerCase()} following manufacturer specifications`,
+    };
+
+    // Generate guide directly
+    await generateGuide(selectedVehicle, taskDiagnosis);
   };
 
   // Show loading state while checking vehicle
@@ -75,9 +118,29 @@ function SymptomChatContent() {
   }
 
   return (
-    <main className="h-screen bg-white flex flex-col overflow-hidden">
-      {/* Minimal Header */}
-      <header className="flex-shrink-0 border-b border-gray-100">
+    <main className="h-screen bg-white flex flex-col overflow-hidden relative">
+      {/* Gradient blobs - subtle blue accents */}
+      <div
+        className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%)',
+          filter: 'blur(80px)',
+          transform: 'translate(30%, -40%)',
+          zIndex: 1,
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%)',
+          filter: 'blur(80px)',
+          transform: 'translate(-40%, 30%)',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Header */}
+      <header className="flex-shrink-0 border-b border-gray-100 bg-white/80 backdrop-blur-sm relative z-10">
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link
@@ -89,6 +152,20 @@ function SymptomChatContent() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </Link>
+            {/* Au7o Logo */}
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src="/og-image.png"
+                alt="Au7o mascot"
+                width={24}
+                height={24}
+                className="rounded-lg"
+              />
+              <span className="text-xl font-bold text-gray-900 tracking-tight">
+                Au<span className="text-blue-600">7</span>o
+              </span>
+            </Link>
+            <div className="h-5 w-px bg-gray-200" />
             <div>
               <h1 className="font-medium text-gray-900">
                 {selectedVehicle.year} {selectedVehicle.make} {selectedVehicle.model}
@@ -111,7 +188,7 @@ function SymptomChatContent() {
       {/* Chat Messages */}
       <div
         ref={scrollContainerRef}
-        className="flex-1 overflow-y-auto"
+        className="flex-1 overflow-y-auto relative z-10"
       >
         <div className="max-w-3xl mx-auto px-4 py-6">
           {/* Welcome Message */}
@@ -126,31 +203,76 @@ function SymptomChatContent() {
                 </div>
                 <div className="flex-1">
                   <p className="text-[15px] text-gray-900 leading-relaxed">
-                    Hi! I&apos;m here to help diagnose issues with your{' '}
+                    Hi! I&apos;m here to help with your{' '}
                     <span className="font-medium">
                       {selectedVehicle.year} {selectedVehicle.make} {selectedVehicle.model}
                     </span>
-                    . Describe what&apos;s happening and I&apos;ll help figure out the problem.
+                    . What would you like help with?
                   </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {[
-                      "Squealing when braking",
-                      "Engine runs rough",
-                      "Check engine light on",
-                      "Car won't start",
-                    ].map((suggestion) => (
-                      <button
-                        key={suggestion}
-                        type="button"
-                        onClick={() => {
-                          setCurrentMessage(suggestion);
-                        }}
-                        className="px-3 py-1.5 text-sm text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
-                      >
-                        {suggestion}
-                      </button>
-                    ))}
+
+                  {/* Common Maintenance Tasks - Generate guides directly */}
+                  <div className="mt-4">
+                    <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Common Tasks</p>
+                    <div className="flex flex-wrap gap-2">
+                      {[
+                        "Oil change",
+                        "Battery replacement",
+                        "Wiper blade replacement",
+                        "Brake pad replacement",
+                        "Air filter replacement",
+                        "Tire rotation",
+                      ].map((task) => (
+                        <button
+                          key={task}
+                          type="button"
+                          onClick={() => handleCommonTask(task)}
+                          disabled={isGenerating}
+                          className={`px-3 py-1.5 text-sm rounded-full transition-colors ${
+                            isGenerating
+                              ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                              : 'text-gray-600 bg-gray-100 hover:bg-gray-200'
+                          }`}
+                        >
+                          {task}
+                        </button>
+                      ))}
+                    </div>
                   </div>
+
+                  {/* Problem Symptoms - Go through chat for diagnosis */}
+                  <div className="mt-4">
+                    <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Describe a Problem</p>
+                    <div className="flex flex-wrap gap-2">
+                      {[
+                        "Squealing when braking",
+                        "Engine runs rough",
+                        "Check engine light on",
+                        "Car won't start",
+                      ].map((suggestion) => (
+                        <button
+                          key={suggestion}
+                          type="button"
+                          onClick={() => setCurrentMessage(suggestion)}
+                          className="px-3 py-1.5 text-sm text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
+                        >
+                          {suggestion}
+                        </button>
+                    ))}
+                    </div>
+                  </div>
+
+                  {/* Guide Generation Loading */}
+                  {isGenerating && (
+                    <div className="mt-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
+                      <div className="flex items-center gap-3">
+                        <svg className="animate-spin h-5 w-5 text-blue-600" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        <span className="text-blue-700 font-medium">Generating your repair guide...</span>
+                      </div>
+                    </div>
+                  )}
 
                   {/* OBD Code Entry Option */}
                   <div className="mt-6 pt-4 border-t border-gray-100">
@@ -242,8 +364,16 @@ function SymptomChatContent() {
             <div className="mb-6">
               <DiagnosisCard
                 diagnosis={diagnosis}
+                alternativeDiagnoses={alternativeDiagnoses}
                 onGenerateGuide={handleGenerateGuide}
+                onSelectAlternative={selectAlternative}
+                isGeneratingGuide={isGenerating}
               />
+              {guideError && (
+                <div className="mt-3 p-3 bg-red-50 rounded-lg">
+                  <p className="text-red-700 text-sm">{guideError}</p>
+                </div>
+              )}
             </div>
           )}
 

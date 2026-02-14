@@ -34,11 +34,13 @@ type UseSymptomChatReturn = {
 
   // Diagnosis state
   diagnosis: Diagnosis | null;
+  alternativeDiagnoses: Diagnosis[];
   hasDiagnosis: boolean;
 
   // Actions
-  sendMessage: () => Promise<void>;
+  sendMessage: (overrideMessage?: string) => Promise<void>;
   clearChat: () => void;
+  selectAlternative: (alternative: Diagnosis) => void;
 };
 
 type UseSymptomChatOptions = {
@@ -58,16 +60,19 @@ export function useSymptomChat(options: UseSymptomChatOptions): UseSymptomChatRe
 
   // Diagnosis state
   const [diagnosis, setDiagnosis] = useState<Diagnosis | null>(null);
+  const [alternativeDiagnoses, setAlternativeDiagnoses] = useState<Diagnosis[]>([]);
 
   // Ref to track if component is mounted
   const isMountedRef = useRef(true);
 
   // Send message to AI
-  const sendMessage = useCallback(async () => {
-    if (!currentMessage.trim() || !vehicle) return;
+  const sendMessage = useCallback(async (overrideMessage?: string) => {
+    // Handle case where event object is passed instead of string
+    const messageToSend = typeof overrideMessage === 'string' ? overrideMessage : currentMessage;
+    if (!messageToSend.trim() || !vehicle) return;
     if (status === 'sending') return;
 
-    const userMessage = createChatMessage('user', currentMessage.trim());
+    const userMessage = createChatMessage('user', messageToSend.trim());
 
     // Add user message immediately
     setMessages((prev) => [...prev, userMessage]);
@@ -113,6 +118,11 @@ export function useSymptomChat(options: UseSymptomChatOptions): UseSymptomChatRe
         setDiagnosis(data.diagnosis);
       }
 
+      // Check for alternatives
+      if (data.alternativeDiagnoses && data.alternativeDiagnoses.length > 0) {
+        setAlternativeDiagnoses(data.alternativeDiagnoses);
+      }
+
       setStatus('idle');
     } catch (err) {
       if (!isMountedRef.current) return;
@@ -122,6 +132,20 @@ export function useSymptomChat(options: UseSymptomChatOptions): UseSymptomChatRe
     }
   }, [currentMessage, messages, vehicle, status, obdCodes]);
 
+  // Select an alternative diagnosis as the primary
+  const selectAlternative = useCallback((alternative: Diagnosis) => {
+    // Move current diagnosis to alternatives (if exists) and set new primary
+    setAlternativeDiagnoses((prev) => {
+      const newAlternatives = prev.filter((d) => d.id !== alternative.id);
+      if (diagnosis) {
+        // Add current diagnosis to alternatives
+        newAlternatives.unshift(diagnosis);
+      }
+      return newAlternatives.slice(0, 3); // Keep max 3 alternatives
+    });
+    setDiagnosis(alternative);
+  }, [diagnosis]);
+
   // Clear chat and start over
   const clearChat = useCallback(() => {
     setMessages([]);
@@ -129,6 +153,7 @@ export function useSymptomChat(options: UseSymptomChatOptions): UseSymptomChatRe
     setStatus('idle');
     setError(null);
     setDiagnosis(null);
+    setAlternativeDiagnoses([]);
   }, []);
 
   return {
@@ -144,10 +169,12 @@ export function useSymptomChat(options: UseSymptomChatOptions): UseSymptomChatRe
 
     // Diagnosis
     diagnosis,
+    alternativeDiagnoses,
     hasDiagnosis: diagnosis !== null,
 
     // Actions
     sendMessage,
     clearChat,
+    selectAlternative,
   };
 }

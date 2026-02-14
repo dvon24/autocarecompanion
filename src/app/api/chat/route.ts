@@ -60,6 +60,19 @@ POSSIBLE CAUSES:
 - [Cause 2]
 RECOMMENDATION: [What to do next]
 
+ALTERNATIVE 1: [Alternative diagnosis title]
+ALT1_CONFIDENCE: [high/medium/low]
+ALT1_DESCRIPTION: [Brief explanation]
+
+ALTERNATIVE 2: [Another alternative diagnosis title]
+ALT2_CONFIDENCE: [high/medium/low]
+ALT2_DESCRIPTION: [Brief explanation]
+
+ALTERNATIVE 3: [Third alternative diagnosis title]
+ALT3_CONFIDENCE: [high/medium/low]
+ALT3_DESCRIPTION: [Brief explanation]
+
+Include up to 3 alternative diagnoses if applicable (fewer if the primary diagnosis is very certain).
 Otherwise, continue the conversation naturally to gather more information.`;
 }
 
@@ -75,8 +88,8 @@ function parseDiagnosis(content: string): Diagnosis | null {
     const diagnosisMatch = content.match(/DIAGNOSIS:\s*([\s\S]+?)(?:\n|CONFIDENCE)/);
     const confidenceMatch = content.match(/CONFIDENCE:\s*(high|medium|low)/i);
     const descriptionMatch = content.match(/DESCRIPTION:\s*([\s\S]+?)(?:\n|POSSIBLE CAUSES)/);
-    const causesMatch = content.match(/POSSIBLE CAUSES:\s*([\s\S]+?)(?:RECOMMENDATION|$)/);
-    const recommendationMatch = content.match(/RECOMMENDATION:\s*([\s\S]+?)$/);
+    const causesMatch = content.match(/POSSIBLE CAUSES:\s*([\s\S]+?)(?:RECOMMENDATION|ALTERNATIVE|$)/);
+    const recommendationMatch = content.match(/RECOMMENDATION:\s*([\s\S]+?)(?:\n\nALTERNATIVE|$)/);
 
     if (!diagnosisMatch || !confidenceMatch) {
       return null;
@@ -103,6 +116,40 @@ function parseDiagnosis(content: string): Diagnosis | null {
 }
 
 /**
+ * Parse alternative diagnoses from AI response
+ */
+function parseAlternatives(content: string): Diagnosis[] {
+  const alternatives: Diagnosis[] = [];
+
+  try {
+    for (let i = 1; i <= 3; i++) {
+      const titlePattern = new RegExp(`ALTERNATIVE ${i}:\\s*([\\s\\S]+?)(?:\\n|ALT${i}_CONFIDENCE)`, 'i');
+      const confidencePattern = new RegExp(`ALT${i}_CONFIDENCE:\\s*(high|medium|low)`, 'i');
+      const descriptionPattern = new RegExp(`ALT${i}_DESCRIPTION:\\s*([\\s\\S]+?)(?:\\n\\n|ALTERNATIVE|$)`, 'i');
+
+      const titleMatch = content.match(titlePattern);
+      const confidenceMatch = content.match(confidencePattern);
+      const descriptionMatch = content.match(descriptionPattern);
+
+      if (titleMatch && confidenceMatch) {
+        alternatives.push({
+          id: `diag_alt${i}_${Date.now()}`,
+          title: titleMatch[1].trim(),
+          description: descriptionMatch ? descriptionMatch[1].trim() : '',
+          confidence: confidenceMatch[1].toLowerCase() as 'high' | 'medium' | 'low',
+          possibleCauses: [],
+          recommendedAction: undefined,
+        });
+      }
+    }
+  } catch {
+    // Return what we have
+  }
+
+  return alternatives;
+}
+
+/**
  * Call OpenAI API
  */
 async function callOpenAI(
@@ -120,10 +167,10 @@ async function callOpenAI(
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'gpt-4o-mini',
+        model: 'gpt-5.2',
         messages,
-        max_tokens: 1000,
-        temperature: 0.7,
+        max_completion_tokens: 1000,
+        temperature: 0.3,
       }),
       signal: controller.signal,
     });
@@ -150,7 +197,7 @@ function generateMockResponse(
   message: string,
   conversationLength: number,
   obdCodes?: OBDCodeEntry[]
-): { content: string; diagnosis: Diagnosis | null } {
+): { content: string; diagnosis: Diagnosis | null; alternatives: Diagnosis[] } {
   const hasObdCodes = obdCodes && obdCodes.length > 0;
 
   // If OBD codes are provided, provide a faster diagnosis
@@ -185,6 +232,22 @@ RECOMMENDATION: Start by checking and replacing the spark plugs if worn. If the 
           ],
           recommendedAction: 'Start by checking and replacing the spark plugs if worn. If the problem persists, test the ignition coils.',
         },
+        alternatives: [
+          {
+            id: `diag_alt1_${Date.now()}`,
+            title: 'Fuel System Issue',
+            confidence: 'medium',
+            description: 'Clogged fuel injectors or failing fuel pump can cause similar misfire symptoms.',
+            possibleCauses: [],
+          },
+          {
+            id: `diag_alt2_${Date.now()}`,
+            title: 'Vacuum Leak',
+            confidence: 'low',
+            description: 'A vacuum leak can cause lean fuel mixture and misfires.',
+            possibleCauses: [],
+          },
+        ],
       };
     }
 
@@ -197,6 +260,7 @@ Based on the ${firstCode.code} code (${firstCode.description || 'diagnostic trou
 1. When did the check engine light first come on?
 2. Have you noticed any changes in fuel economy or performance?`,
       diagnosis: null,
+      alternatives: [],
     };
   }
 
@@ -209,6 +273,7 @@ Based on the ${firstCode.code} code (${firstCode.description || 'diagnostic trou
 2. Does it happen consistently or intermittently?
 3. Are there any other symptoms you've noticed (unusual sounds, smells, or warning lights)?`,
       diagnosis: null,
+      alternatives: [],
     };
   }
 
@@ -237,6 +302,29 @@ RECOMMENDATION: This is a common DIY repair if you're comfortable with basic too
         ],
         recommendedAction: 'This is a common DIY repair. Replace the brake pads soon to prevent damage to the rotors.',
       },
+      alternatives: [
+        {
+          id: `diag_alt1_${Date.now()}`,
+          title: 'Warped Brake Rotors',
+          confidence: 'medium',
+          description: 'Rotors can warp from heat cycling, causing vibration and noise during braking.',
+          possibleCauses: [],
+        },
+        {
+          id: `diag_alt2_${Date.now()}`,
+          title: 'Sticking Brake Caliper',
+          confidence: 'low',
+          description: 'A caliper that does not release fully can cause noise and uneven pad wear.',
+          possibleCauses: [],
+        },
+        {
+          id: `diag_alt3_${Date.now()}`,
+          title: 'Brake Dust Buildup',
+          confidence: 'low',
+          description: 'Accumulated brake dust between pad and rotor can sometimes cause squealing without indicating wear.',
+          possibleCauses: [],
+        },
+      ],
     };
   }
 
@@ -248,6 +336,7 @@ Can you tell me:
 - Does the issue occur at a specific speed or temperature?
 - Have you checked if there are any dashboard warning lights on?`,
     diagnosis: null,
+    alternatives: [],
   };
 }
 
@@ -274,6 +363,7 @@ export async function POST(request: NextRequest) {
 
     let responseContent: string;
     let diagnosis: Diagnosis | null = null;
+    let alternativeDiagnoses: Diagnosis[] = [];
 
     if (apiKey) {
       // Build messages for AI
@@ -289,12 +379,14 @@ export async function POST(request: NextRequest) {
       // Call OpenAI API
       responseContent = await callOpenAI(messages, apiKey);
       diagnosis = parseDiagnosis(responseContent);
+      alternativeDiagnoses = parseAlternatives(responseContent);
     } else {
       // Use mock response for development
       console.log('[Chat API] No OPENAI_API_KEY configured, using mock response');
       const mock = generateMockResponse(message, conversationHistory.length, obdCodes);
       responseContent = mock.content;
       diagnosis = mock.diagnosis;
+      alternativeDiagnoses = mock.alternatives;
     }
 
     // Create response message
@@ -303,6 +395,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       message: assistantMessage,
       diagnosis,
+      alternativeDiagnoses: alternativeDiagnoses.length > 0 ? alternativeDiagnoses : undefined,
       needsMoreInfo: !diagnosis,
     });
   } catch (error) {

@@ -117,19 +117,29 @@ function extractBrandFromName(partName: string): string | null {
 
 /**
  * Generate Google search URL for a part
- * Uses brand + part number if valid, otherwise falls back to vehicle + part name
+ * ALWAYS includes full vehicle specification for accurate results
+ * e.g., "2015 Dodge Challenger SRT 392 Wiper Blades"
  */
-function getPartSearchUrl(part: Part, vehicle: { year: number; make: string; model: string }): string {
+function getPartSearchUrl(part: Part, vehicle: { year: number; make: string; model: string; trim?: string }): string {
   const validPartNum = getValidPartNumber(part.partNumber);
   const brand = extractBrandFromName(part.name);
 
-  // If we have a valid part number, search for it (with brand if available)
-  // Otherwise, search by vehicle + part name
+  // Build vehicle string - always include for accurate results
+  const vehicleStr = vehicle.trim
+    ? `${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}`
+    : `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
+
+  // Build search query with vehicle info + part details
   let query: string;
-  if (validPartNum) {
-    query = brand ? `${brand} ${validPartNum}` : validPartNum;
+  if (validPartNum && brand) {
+    // Best case: have brand and part number, include vehicle for accuracy
+    query = `${vehicleStr} ${brand} ${validPartNum}`;
+  } else if (validPartNum) {
+    // Have part number but no brand
+    query = `${vehicleStr} ${validPartNum}`;
   } else {
-    query = `${vehicle.year} ${vehicle.make} ${vehicle.model} ${part.name}`;
+    // No valid part number, search by vehicle + part name
+    query = `${vehicleStr} ${part.name}`;
   }
 
   return `https://www.google.com/search?q=${encodeURIComponent(query)}&tbm=shop`;
@@ -145,7 +155,7 @@ function getToolSearchUrl(tool: Tool): string {
 /**
  * Part card with search button
  */
-function PartCard({ part, vehicle }: { part: Part; vehicle: { year: number; make: string; model: string } }) {
+function PartCard({ part, vehicle }: { part: Part; vehicle: { year: number; make: string; model: string; trim?: string } }) {
   // Only display part number if it's a valid, real part number (not "Motorcraft", "Varies", etc.)
   const displayPartNum = getValidPartNumber(part.partNumber);
 

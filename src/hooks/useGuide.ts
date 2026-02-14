@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react';
 import { type Guide } from '@/schemas/guide.schema';
 import { type Vehicle } from '@/schemas/vehicle.schema';
 import { type Diagnosis } from '@/schemas/chat.schema';
+import { trackEvent } from '@/components/analytics/GoogleAnalytics';
 
 /**
  * useGuide Hook - Guide Generation & State Management
@@ -72,6 +73,13 @@ export function useGuide(): UseGuideReturn {
       const data = await response.json();
       setGuide(data.guide);
       setStatus('success');
+
+      // Track guide generation in analytics
+      trackEvent('guide_generated', {
+        vehicle: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
+        diagnosis: diagnosis.title,
+        difficulty: data.guide?.difficulty || 0,
+      });
     } catch (err) {
       setStatus('error');
       setError(err instanceof Error ? err.message : 'Something went wrong');
