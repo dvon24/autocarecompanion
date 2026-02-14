@@ -17,7 +17,9 @@ function isMobileDevice(): boolean {
   // Check for reduced motion preference
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  return hasTouch || isSmallScreen || prefersReducedMotion;
+  // Only disable completely for reduced motion preference
+  // For mobile touch devices, we'll show a lighter version
+  return prefersReducedMotion || (hasTouch && isSmallScreen);
 }
 
 /**
@@ -30,6 +32,7 @@ function isMobileDevice(): boolean {
  * - Engine blocks (abstract rectangular shapes)
  *
  * All shapes are minimalist, geometric, and abstract.
+ * On mobile: Shows fewer shapes with simpler animations.
  */
 
 type ShapeType = 'piston' | 'rotor' | 'gear' | 'engineBlock' | 'sparkPlug';
@@ -61,48 +64,10 @@ export function AnimatedBackground() {
   const mouseRef = useRef<MousePosition>({ x: 0.5, y: 0.5, targetX: 0.5, targetY: 0.5 });
   const frameRef = useRef<number>(0);
   const timeRef = useRef<number>(0);
-  const [isMobile, setIsMobile] = useState(true); // Default to mobile (no animation) until checked
+  const [isMobile, setIsMobile] = useState(true); // Default to mobile until checked
 
-  // Check for mobile on mount
-  useEffect(() => {
-    setIsMobile(isMobileDevice());
-  }, []);
-
-  // Don't render anything on mobile - improves performance significantly
-  if (isMobile) {
-    return null;
-  }
-
-  // Initialize shapes
-  const initShapes = useCallback((width: number, height: number) => {
-    const shapes: Shape[] = [];
-    const shapeTypes: ShapeType[] = ['piston', 'rotor', 'gear', 'engineBlock', 'sparkPlug'];
-
-    // Create 15-20 shapes distributed across the canvas
-    const shapeCount = Math.max(15, Math.floor((width * height) / 80000));
-
-    for (let i = 0; i < shapeCount; i++) {
-      const type = shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
-      shapes.push({
-        id: i,
-        type,
-        x: 0.05 + Math.random() * 0.9, // Keep away from edges
-        y: 0.05 + Math.random() * 0.9,
-        size: type === 'engineBlock' ? 60 + Math.random() * 40 : 30 + Math.random() * 50,
-        rotation: Math.random() * Math.PI * 2,
-        opacity: 0.25 + Math.random() * 0.15, // Much more visible: 25-40% opacity
-        speed: 0.00008 + Math.random() * 0.00012, // Much slower for smooth motion
-        depth: 0.3 + Math.random() * 0.7,
-        phase: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.0002, // Slower rotation
-      });
-    }
-
-    shapesRef.current = shapes;
-  }, []);
-
-  // Draw piston shape
-  const drawPiston = (ctx: CanvasRenderingContext2D, size: number) => {
+  // Draw piston shape (defined before useCallback that uses it)
+  const drawPiston = useCallback((ctx: CanvasRenderingContext2D, size: number) => {
     const headWidth = size * 0.6;
     const headHeight = size * 0.3;
     const rodWidth = size * 0.15;
@@ -125,10 +90,10 @@ export function AnimatedBackground() {
     ctx.beginPath();
     ctx.arc(0, rodHeight / 2, size * 0.1, 0, Math.PI * 2);
     ctx.stroke();
-  };
+  }, []);
 
   // Draw brake rotor shape
-  const drawRotor = (ctx: CanvasRenderingContext2D, size: number) => {
+  const drawRotor = useCallback((ctx: CanvasRenderingContext2D, size: number) => {
     const outerRadius = size / 2;
     const innerRadius = size * 0.25;
     const slotCount = 6;
@@ -164,10 +129,10 @@ export function AnimatedBackground() {
       ctx.arc(Math.cos(angle) * holeDistance, Math.sin(angle) * holeDistance, holeRadius, 0, Math.PI * 2);
       ctx.stroke();
     }
-  };
+  }, []);
 
   // Draw gear shape
-  const drawGear = (ctx: CanvasRenderingContext2D, size: number) => {
+  const drawGear = useCallback((ctx: CanvasRenderingContext2D, size: number) => {
     const outerRadius = size / 2;
     const innerRadius = size * 0.35;
     const teethCount = 12;
@@ -200,10 +165,10 @@ export function AnimatedBackground() {
     ctx.beginPath();
     ctx.arc(0, 0, size * 0.1, 0, Math.PI * 2);
     ctx.stroke();
-  };
+  }, []);
 
   // Draw engine block shape (abstract)
-  const drawEngineBlock = (ctx: CanvasRenderingContext2D, size: number) => {
+  const drawEngineBlock = useCallback((ctx: CanvasRenderingContext2D, size: number) => {
     const width = size * 0.8;
     const height = size * 0.6;
 
@@ -237,10 +202,10 @@ export function AnimatedBackground() {
       ctx.arc(x, y, boltRadius, 0, Math.PI * 2);
       ctx.stroke();
     });
-  };
+  }, []);
 
   // Draw spark plug shape
-  const drawSparkPlug = (ctx: CanvasRenderingContext2D, size: number) => {
+  const drawSparkPlug = useCallback((ctx: CanvasRenderingContext2D, size: number) => {
     const bodyHeight = size * 0.5;
     const bodyWidth = size * 0.2;
     const hexHeight = size * 0.15;
@@ -275,7 +240,36 @@ export function AnimatedBackground() {
     ctx.lineTo(-bodyWidth / 2 - size * 0.1, bodyHeight / 2 + electrodeLength * 0.5);
     ctx.lineTo(-bodyWidth / 2 - size * 0.1, bodyHeight / 2 + electrodeLength);
     ctx.stroke();
-  };
+  }, []);
+
+  // Initialize shapes
+  const initShapes = useCallback((width: number, height: number, mobile: boolean) => {
+    const shapes: Shape[] = [];
+    const shapeTypes: ShapeType[] = ['piston', 'rotor', 'gear', 'engineBlock', 'sparkPlug'];
+
+    // Fewer shapes on mobile for better performance
+    const baseCount = mobile ? 6 : 15;
+    const shapeCount = Math.max(baseCount, Math.floor((width * height) / (mobile ? 150000 : 80000)));
+
+    for (let i = 0; i < shapeCount; i++) {
+      const type = shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
+      shapes.push({
+        id: i,
+        type,
+        x: 0.05 + Math.random() * 0.9,
+        y: 0.05 + Math.random() * 0.9,
+        size: type === 'engineBlock' ? 60 + Math.random() * 40 : 30 + Math.random() * 50,
+        rotation: Math.random() * Math.PI * 2,
+        opacity: mobile ? 0.15 + Math.random() * 0.1 : 0.25 + Math.random() * 0.15,
+        speed: 0.00008 + Math.random() * 0.00012,
+        depth: 0.3 + Math.random() * 0.7,
+        phase: Math.random() * Math.PI * 2,
+        rotationSpeed: (Math.random() - 0.5) * 0.0002,
+      });
+    }
+
+    shapesRef.current = shapes;
+  }, []);
 
   // Draw a single shape
   const drawShape = useCallback((
@@ -284,7 +278,8 @@ export function AnimatedBackground() {
     width: number,
     height: number,
     time: number,
-    mouse: MousePosition
+    mouse: MousePosition,
+    mobile: boolean
   ) => {
     const { type, x, y, size, rotation, opacity, depth, phase, speed, rotationSpeed } = shape;
 
@@ -292,8 +287,8 @@ export function AnimatedBackground() {
     const driftX = Math.sin(time * speed * 0.5 + phase) * 15;
     const driftY = Math.cos(time * speed * 0.4 + phase * 1.3) * 12;
 
-    // Mouse parallax effect (gentler)
-    const parallaxStrength = depth * 25;
+    // Mouse parallax effect - disabled on mobile
+    const parallaxStrength = mobile ? 0 : depth * 25;
     const mouseOffsetX = (mouse.x - 0.5) * parallaxStrength;
     const mouseOffsetY = (mouse.y - 0.5) * parallaxStrength;
 
@@ -303,7 +298,7 @@ export function AnimatedBackground() {
     // Very slow continuous rotation for gears and rotors
     let currentRotation = rotation + time * rotationSpeed * 0.5;
     if (type === 'gear' || type === 'rotor') {
-      currentRotation += time * 0.00008; // Very slow continuous spin
+      currentRotation += time * 0.00008;
     }
 
     // Subtle pulsing opacity (gentler)
@@ -339,10 +334,10 @@ export function AnimatedBackground() {
     }
 
     ctx.restore();
-  }, []);
+  }, [drawPiston, drawRotor, drawGear, drawEngineBlock, drawSparkPlug]);
 
   // Animation loop
-  const animate = useCallback(() => {
+  const animate = useCallback((mobile: boolean) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -354,27 +349,36 @@ export function AnimatedBackground() {
     const height = canvas.height / dpr;
     const time = performance.now();
 
-    // Smooth mouse interpolation (gentler for less jitter)
+    // Smooth mouse interpolation (disabled on mobile)
     const mouse = mouseRef.current;
-    mouse.x += (mouse.targetX - mouse.x) * 0.02;
-    mouse.y += (mouse.targetY - mouse.y) * 0.02;
+    if (!mobile) {
+      mouse.x += (mouse.targetX - mouse.x) * 0.02;
+      mouse.y += (mouse.targetY - mouse.y) * 0.02;
+    }
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw all shapes
     shapesRef.current.forEach((shape) => {
-      drawShape(ctx, shape, width, height, time, mouse);
+      drawShape(ctx, shape, width, height, time, mouse, mobile);
     });
 
     timeRef.current = time;
-    frameRef.current = requestAnimationFrame(animate);
+    frameRef.current = requestAnimationFrame(() => animate(mobile));
   }, [drawShape]);
+
+  // Check for mobile on mount
+  useEffect(() => {
+    setIsMobile(isMobileDevice());
+  }, []);
 
   // Setup canvas and start animation
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    const mobile = isMobile;
 
     const handleResize = () => {
       const dpr = window.devicePixelRatio || 1;
@@ -385,27 +389,35 @@ export function AnimatedBackground() {
       if (ctx) {
         ctx.scale(dpr, dpr);
       }
-      initShapes(rect.width, rect.height);
+      initShapes(rect.width, rect.height, mobile);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
+      // Skip mouse tracking on mobile
+      if (mobile) return;
       mouseRef.current.targetX = e.clientX / window.innerWidth;
       mouseRef.current.targetY = e.clientY / window.innerHeight;
     };
 
     handleResize();
     window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove);
+
+    // Only add mouse listener on desktop
+    if (!mobile) {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
 
     timeRef.current = performance.now();
-    frameRef.current = requestAnimationFrame(animate);
+    frameRef.current = requestAnimationFrame(() => animate(mobile));
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
+      if (!mobile) {
+        window.removeEventListener('mousemove', handleMouseMove);
+      }
       cancelAnimationFrame(frameRef.current);
     };
-  }, [animate, initShapes]);
+  }, [animate, initShapes, isMobile]);
 
   return (
     <canvas

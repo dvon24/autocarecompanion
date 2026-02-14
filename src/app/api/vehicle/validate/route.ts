@@ -79,13 +79,22 @@ function generateMockValidation(input: string): { valid: boolean; vehicle?: Pars
     return { valid: false, error: 'Could not identify the model. Please include the model name.' };
   }
 
-  // Extract trim (word after model, if present)
+  // Extract trim (everything after model, excluding engine specs)
   const afterModel = afterMake.slice(model.length).trim();
-  const trimMatch = afterModel.match(/^([A-Z]{1,4}|[A-Za-z]+)\b/);
+  // Remove common engine patterns to get clean trim
+  const trimText = afterModel
+    .replace(/\b\d+\.\d+[LT]?\b/gi, '') // Remove "1.8L", "2.0T"
+    .replace(/\bV\d+\b/gi, '') // Remove "V6", "V8"
+    .replace(/\b\d{3,4}cc\b/gi, '') // Remove "2000cc"
+    .replace(/\bEcoBoost\b/gi, '') // Remove standalone engine names
+    .replace(/\bHEMI\b/gi, '')
+    .trim();
+  // Get first 1-3 words as trim (handles "SRT 392", "Type R", etc.)
+  const trimMatch = trimText.match(/^([\w]+(?:\s+[\w]+){0,2})/);
   const trim = trimMatch ? trimMatch[1] : undefined;
 
-  // Extract engine (look for patterns like "1.8L", "2.0T", "V6", "V8")
-  const engineMatch = input.match(/\b(\d+\.\d+[LT]?|\d+L|V\d|[A-Z]\d+|\d{3,4}cc)\b/i);
+  // Extract engine (look for patterns like "1.8L", "2.0T", "V6", "V8", "EcoBoost", "HEMI")
+  const engineMatch = input.match(/\b(\d+\.\d+[LT]?\s*(?:HEMI|EcoBoost)?|\d+L|V\d+|EcoBoost|HEMI|\d{3,4}cc)\b/i);
   const engine = engineMatch ? engineMatch[1].toUpperCase() : undefined;
 
   return {
@@ -152,6 +161,14 @@ Rules:
 - If information is ambiguous or incomplete, try to infer the most likely interpretation
 - Common abbreviations are acceptable (e.g., "Chevy" = "Chevrolet")
 - Normalize make names to proper capitalization
+- IMPORTANT: Keep full trim names together, including numbers that are part of the trim designation. Examples:
+  * "SRT 392" is one trim (not "SRT" trim + "392" engine)
+  * "Hellcat Redeye" is one trim
+  * "GT350" is one trim (for Mustang)
+  * "RS 6" or "RS6" is one trim (for Audi)
+  * "M3 Competition" is one trim
+  * "Type R" is one trim
+- Only put standalone engine specs in the engine field (e.g., "5.7L HEMI", "2.0T", "EcoBoost")
 - Trim and engine are optional`,
       },
     ];

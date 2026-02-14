@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, useRef, FormEvent } from 'react';
 import { useVehicleContext } from '@/contexts/AppContext';
 
 interface CustomVehicleInputProps {
@@ -21,16 +21,27 @@ export function CustomVehicleInput({ onComplete }: CustomVehicleInputProps) {
   const [status, setStatus] = useState<'idle' | 'validating' | 'success' | 'error'>('idle');
   const [parsedVehicle, setParsedVehicle] = useState<ParsedVehicle | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Feedback state
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [correction, setCorrection] = useState('');
+  const [feedbackStatus, setFeedbackStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (!input.trim()) {
+    // Get the actual value from the DOM element (more reliable on mobile)
+    const actualValue = textareaRef.current?.value || input;
+
+    if (!actualValue.trim()) {
       setStatus('error');
       setErrorMessage('Please enter your vehicle information');
       return;
     }
 
+    // Update state with the actual value in case it wasn't synced
+    setInput(actualValue);
     setStatus('validating');
     setErrorMessage('');
 
@@ -38,7 +49,7 @@ export function CustomVehicleInput({ onComplete }: CustomVehicleInputProps) {
       const response = await fetch('/api/vehicle/validate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ input: input.trim() }),
+        body: JSON.stringify({ input: actualValue.trim() }),
       });
 
       const data = await response.json();
@@ -72,17 +83,49 @@ export function CustomVehicleInput({ onComplete }: CustomVehicleInputProps) {
     setStatus('idle');
     setParsedVehicle(null);
     setErrorMessage('');
+    setShowFeedback(false);
+    setCorrection('');
+    setFeedbackStatus('idle');
+  };
+
+  const handleSubmitFeedback = async () => {
+    if (!correction.trim() || !parsedVehicle) return;
+
+    setFeedbackStatus('sending');
+
+    try {
+      await fetch('/api/feedback/vehicle', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userInput: input,
+          aiParsed: parsedVehicle,
+          userCorrection: correction.trim(),
+        }),
+      });
+      setFeedbackStatus('sent');
+    } catch {
+      // Silent fail - don't block user flow for feedback
+      setFeedbackStatus('sent');
+    }
+  };
+
+  // Handle input changes - use onInput for more reliable mobile behavior
+  const handleInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
+    const value = e.currentTarget.value;
+    setInput(value);
+    if (status === 'error') setStatus('idle');
   };
 
   if (status === 'success' && parsedVehicle) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-4">
         <div className="bg-green-50 border border-green-200 rounded-lg p-4">
           <div className="flex items-start gap-3">
             <svg className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            <div>
+            <div className="flex-1">
               <p className="font-medium text-green-800">Vehicle Validated</p>
               <p className="text-green-700 mt-1">
                 {parsedVehicle.year} {parsedVehicle.make} {parsedVehicle.model}
@@ -95,7 +138,66 @@ export function CustomVehicleInput({ onComplete }: CustomVehicleInputProps) {
           </div>
         </div>
 
-        <div className="flex gap-3">
+        {/* Feedback section */}
+        {!showFeedback && feedbackStatus !== 'sent' && (
+          <button
+            type="button"
+            onClick={() => setShowFeedback(true)}
+            className="text-sm text-gray-500 hover:text-gray-700 transition-colors flex items-center gap-1"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            Not quite right? Help us improve
+          </button>
+        )}
+
+        {showFeedback && feedbackStatus !== 'sent' && (
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 space-y-3">
+            <p className="text-sm text-amber-800 font-medium">
+              What should it be instead?
+            </p>
+            <input
+              type="text"
+              value={correction}
+              onChange={(e) => setCorrection(e.target.value)}
+              placeholder="e.g., 2015 Dodge Challenger SRT 392"
+              className="w-full px-3 py-2 border border-amber-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm"
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="words"
+              spellCheck={false}
+            />
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setShowFeedback(false)}
+                className="flex-1 py-2 px-3 text-sm text-gray-600 hover:text-gray-800 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleSubmitFeedback}
+                disabled={!correction.trim() || feedbackStatus === 'sending'}
+                className="flex-1 py-2 px-3 bg-amber-600 text-white text-sm font-medium rounded-lg hover:bg-amber-700 transition-colors disabled:opacity-50"
+              >
+                {feedbackStatus === 'sending' ? 'Sending...' : 'Submit Feedback'}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {feedbackStatus === 'sent' && (
+          <p className="text-sm text-green-600 flex items-center gap-1">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            Thanks for your feedback!
+          </p>
+        )}
+
+        <div className="flex gap-3 pt-2">
           <button
             type="button"
             onClick={handleReset}
@@ -122,21 +224,37 @@ export function CustomVehicleInput({ onComplete }: CustomVehicleInputProps) {
           Describe your vehicle
         </label>
         <textarea
+          ref={textareaRef}
           id="vehicle-input"
+          name="vehicle-description"
           value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
-            if (status === 'error') setStatus('idle');
-          }}
+          onInput={handleInput}
+          onChange={(e) => setInput(e.target.value)}
           placeholder="e.g., 2015 Honda Civic LX 1.8L&#10;or 2019 Ford F-150 XLT EcoBoost"
           rows={3}
-          className={`w-full px-4 py-3 border rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-colors ${
+          className={`w-full px-4 py-3 border rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-colors text-base ${
             status === 'error' ? 'border-red-300' : 'border-gray-300'
           }`}
           disabled={status === 'validating'}
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck={false}
+          data-form-type="other"
+          data-lpignore="true"
+          data-1p-ignore="true"
+          inputMode="text"
+          enterKeyHint="done"
         />
         {status === 'error' && (
           <p className="mt-2 text-sm text-red-600">{errorMessage}</p>
+        )}
+
+        {/* Show what will be sent - helps users verify on mobile */}
+        {input.trim() && status === 'idle' && (
+          <p className="mt-2 text-xs text-gray-400">
+            Will validate: &quot;{input.trim()}&quot;
+          </p>
         )}
       </div>
 

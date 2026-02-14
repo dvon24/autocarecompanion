@@ -121,6 +121,11 @@ export function VINInput({ onComplete, onSwitchToManual }: VINInputProps) {
               placeholder="e.g., EX, Sport, Limited"
               className="w-full min-h-[44px] py-3 px-4 rounded-lg border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               onChange={(e) => selectTrim(e.target.value)}
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="words"
+              spellCheck={false}
+              data-form-type="other"
             />
           </div>
 
@@ -162,8 +167,10 @@ export function VINInput({ onComplete, onSwitchToManual }: VINInputProps) {
             placeholder="Enter 17-character VIN"
             maxLength={17}
             autoComplete="off"
+            autoCorrect="off"
             autoCapitalize="characters"
             spellCheck={false}
+            data-form-type="other"
             disabled={isDecoding}
             className={`
               w-full min-h-[44px] py-3 px-4 rounded-lg border text-gray-900
