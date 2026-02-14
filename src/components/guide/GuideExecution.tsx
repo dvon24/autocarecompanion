@@ -465,7 +465,7 @@ export function GuideExecution({
   } = useGuideProgress({
     guideId: guide.id,
     guideTitle: guide.title,
-    vehicleInfo: `${guide.vehicle.year} ${guide.vehicle.make} ${guide.vehicle.model}`,
+    vehicleInfo: `${guide.vehicle.year} ${guide.vehicle.make} ${guide.vehicle.model}${guide.vehicle.trim ? ` ${guide.vehicle.trim}` : ''}`,
     totalSteps,
   });
 
@@ -854,7 +854,7 @@ export function GuideExecution({
           <div className="max-w-4xl mx-auto px-6 py-6">
             <ScrollReveal delay={0} duration={600}>
               <div className="flex items-center gap-3 text-sm text-gray-500 mb-2">
-                <span>{guide.vehicle.year} {guide.vehicle.make} {guide.vehicle.model}</span>
+                <span>{guide.vehicle.year} {guide.vehicle.make} {guide.vehicle.model}{guide.vehicle.trim && ` ${guide.vehicle.trim}`}</span>
                 <span className="text-gray-300">•</span>
                 <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
                   safety.color === 'green' ? 'bg-green-100 text-green-700' :
@@ -891,7 +891,7 @@ export function GuideExecution({
                   <span className="text-yellow-500">{'★'.repeat(guide.difficulty)}{'☆'.repeat(5 - guide.difficulty)}</span>
                 </div>
                 <a
-                  href={`https://www.youtube.com/results?search_query=${encodeURIComponent(`${guide.vehicle.year} ${guide.vehicle.make} ${guide.vehicle.model} ${guide.title} tutorial`)}`}
+                  href={`https://www.youtube.com/results?search_query=${encodeURIComponent(`${guide.vehicle.year} ${guide.vehicle.make} ${guide.vehicle.model}${guide.vehicle.trim ? ` ${guide.vehicle.trim}` : ''} ${guide.title} tutorial`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-red-600 hover:text-red-700 transition-colors"

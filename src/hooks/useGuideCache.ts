@@ -129,7 +129,7 @@ export function useGuideCache(): UseGuideCacheReturn {
       const entry: CachedGuideEntry = {
         id: guide.id,
         title: guide.title,
-        vehicleInfo: `${guide.vehicle.year} ${guide.vehicle.make} ${guide.vehicle.model}`,
+        vehicleInfo: `${guide.vehicle.year} ${guide.vehicle.make} ${guide.vehicle.model}${guide.vehicle.trim ? ` ${guide.vehicle.trim}` : ''}`,
         cachedAt: now,
         expiresAt,
       };

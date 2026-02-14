@@ -76,7 +76,7 @@ export function useGuide(): UseGuideReturn {
 
       // Track guide generation in analytics
       trackEvent('guide_generated', {
-        vehicle: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
+        vehicle: `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ` ${vehicle.trim}` : ''}`,
         diagnosis: diagnosis.title,
         difficulty: data.guide?.difficulty || 0,
       });

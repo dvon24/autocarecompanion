@@ -23,6 +23,7 @@ const HelpRequestSchema = z.object({
       year: z.number(),
       make: z.string(),
       model: z.string(),
+      trim: z.string().optional(),
     }),
     toolsRequired: z.array(z.string()).optional(),
     safetyWarnings: z.array(z.string()).optional(),
@@ -38,7 +39,7 @@ function getSystemPrompt(context: z.infer<typeof HelpRequestSchema>['context']) 
     ? `\nSafety warnings for this step:\n${context.safetyWarnings.map(w => `- ${w}`).join('\n')}`
     : '';
 
-  return `You are a helpful automotive repair assistant embedded in a maintenance guide app. The user is currently performing maintenance on their ${context.vehicle.year} ${context.vehicle.make} ${context.vehicle.model}.
+  return `You are a helpful automotive repair assistant embedded in a maintenance guide app. The user is currently performing maintenance on their ${context.vehicle.year} ${context.vehicle.make} ${context.vehicle.model}${context.vehicle.trim ? ` ${context.vehicle.trim}` : ''}.
 
 They are working on: "${context.guideTitle}"
 Current step ${context.stepNumber}: "${context.stepInstruction}"${toolsSection}${safetySection}
@@ -116,7 +117,7 @@ function generateMockResponse(question: string, context: z.infer<typeof HelpRequ
   }
 
   if (q.includes('where') || q.includes('find') || q.includes('locate')) {
-    return `On your ${context.vehicle.year} ${context.vehicle.make} ${context.vehicle.model}, this component is typically located in the engine bay. Check your owner's manual for exact location, or look for labels under the hood.`;
+    return `On your ${context.vehicle.year} ${context.vehicle.make} ${context.vehicle.model}${context.vehicle.trim ? ` ${context.vehicle.trim}` : ''}, this component is typically located in the engine bay. Check your owner's manual for exact location, or look for labels under the hood.`;
   }
 
   return `For step ${context.stepNumber}, take your time and follow the instruction carefully. If something doesn't look right or feels wrong, it's better to stop and verify before continuing. Feel free to ask a more specific question about this step.`;

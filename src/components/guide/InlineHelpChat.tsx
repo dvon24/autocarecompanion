@@ -21,6 +21,7 @@ type InlineHelpChatProps = {
     year: number;
     make: string;
     model: string;
+    trim?: string;
   };
   toolsRequired?: string[];
   safetyWarnings?: string[];
