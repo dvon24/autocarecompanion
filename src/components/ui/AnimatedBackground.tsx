@@ -1,6 +1,24 @@
 'use client';
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
+
+/**
+ * Check if device is mobile/low-power
+ */
+function isMobileDevice(): boolean {
+  if (typeof window === 'undefined') return true; // SSR - assume mobile for safety
+
+  // Check for touch device
+  const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+  // Check screen width
+  const isSmallScreen = window.innerWidth < 768;
+
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  return hasTouch || isSmallScreen || prefersReducedMotion;
+}
 
 /**
  * AnimatedBackground - Engine-themed animated background
@@ -43,6 +61,17 @@ export function AnimatedBackground() {
   const mouseRef = useRef<MousePosition>({ x: 0.5, y: 0.5, targetX: 0.5, targetY: 0.5 });
   const frameRef = useRef<number>(0);
   const timeRef = useRef<number>(0);
+  const [isMobile, setIsMobile] = useState(true); // Default to mobile (no animation) until checked
+
+  // Check for mobile on mount
+  useEffect(() => {
+    setIsMobile(isMobileDevice());
+  }, []);
+
+  // Don't render anything on mobile - improves performance significantly
+  if (isMobile) {
+    return null;
+  }
 
   // Initialize shapes
   const initShapes = useCallback((width: number, height: number) => {
