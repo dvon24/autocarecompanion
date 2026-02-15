@@ -86,14 +86,14 @@ function SymptomChatContent() {
   }, [isVehicleSelected, router]);
 
   // Load acknowledged known issues from sessionStorage
+  // Keep them in sessionStorage so they persist when navigating back from guides
   useEffect(() => {
     const storedIssues = sessionStorage.getItem('acknowledgedKnownIssues');
     if (storedIssues) {
       try {
         const issues = JSON.parse(storedIssues) as KnownIssue[];
         setAcknowledgedIssues(issues);
-        // Clear after reading so it doesn't persist across sessions
-        sessionStorage.removeItem('acknowledgedKnownIssues');
+        // Don't clear - keep issues available during the session
       } catch {
         // Invalid JSON, ignore
       }
@@ -464,6 +464,28 @@ function SymptomChatContent() {
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                         </svg>
                         <span className="text-blue-700 font-medium">Generating your repair guide...</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Guide Generation Error */}
+                  {guideError && !isGenerating && (
+                    <div className="mt-4 p-4 bg-red-50 rounded-xl border border-red-100">
+                      <div className="flex items-start gap-3">
+                        <svg className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                        </svg>
+                        <div>
+                          <p className="text-red-700 font-medium">Guide generation failed</p>
+                          <p className="text-red-600 text-sm mt-1">{guideError}</p>
+                          <button
+                            type="button"
+                            onClick={clearGuide}
+                            className="mt-2 text-sm text-red-700 hover:text-red-800 underline"
+                          >
+                            Dismiss
+                          </button>
+                        </div>
                       </div>
                     </div>
                   )}
