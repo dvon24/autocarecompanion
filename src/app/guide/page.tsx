@@ -43,6 +43,14 @@ function GuideContent() {
     router.push('/symptom-chat');
   };
 
+  // Handle selecting a next task after completion
+  const handleNextTask = (taskName: string) => {
+    // Store the next task in sessionStorage so symptom-chat can auto-generate the guide
+    sessionStorage.setItem('pendingTask', taskName);
+    sessionStorage.removeItem('currentGuide');
+    router.push('/symptom-chat');
+  };
+
   if (!guide) {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
@@ -56,6 +64,7 @@ function GuideContent() {
       guide={guide}
       onComplete={handleComplete}
       onExit={handleExit}
+      onNextTask={handleNextTask}
     />
   );
 }

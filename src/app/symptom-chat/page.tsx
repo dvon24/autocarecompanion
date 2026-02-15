@@ -31,6 +31,21 @@ function SymptomChatContent() {
   const [showOBDInput, setShowOBDInput] = useState(false);
   const [acknowledgedIssues, setAcknowledgedIssues] = useState<KnownIssue[]>([]);
 
+  // Collapsible section states - all collapsed by default
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
+
+  const toggleSection = (section: string) => {
+    setExpandedSections(prev => {
+      const next = new Set(prev);
+      if (next.has(section)) {
+        next.delete(section);
+      } else {
+        next.add(section);
+      }
+      return next;
+    });
+  };
+
   // OBD codes state
   const {
     codes: obdCodes,
@@ -85,6 +100,16 @@ function SymptomChatContent() {
     }
   }, []);
 
+  // Check for pending task (from "What's next?" on guide completion)
+  useEffect(() => {
+    const pendingTask = sessionStorage.getItem('pendingTask');
+    if (pendingTask && selectedVehicle && !isGenerating) {
+      sessionStorage.removeItem('pendingTask');
+      // Auto-trigger guide generation for the pending task
+      handleCommonTask(pendingTask);
+    }
+  }, [selectedVehicle]); // eslint-disable-line react-hooks/exhaustive-deps
+
   // Scroll to bottom only when NEW messages are added (not on every render)
   useEffect(() => {
     if (messages.length > prevMessageCountRef.current) {
@@ -123,6 +148,24 @@ function SymptomChatContent() {
 
     // Generate guide directly
     await generateGuide(selectedVehicle, taskDiagnosis);
+  };
+
+  // Handle known issue - generates guide directly (skips chat)
+  const handleKnownIssue = async (issue: KnownIssue) => {
+    if (!selectedVehicle || isGenerating) return;
+
+    // Create a diagnosis from the known issue
+    const issueDiagnosis = {
+      id: `issue_${issue.id}_${Date.now()}`,
+      title: issue.title,
+      description: issue.description,
+      confidence: issue.confidence,
+      possibleCauses: issue.symptoms, // symptoms are already strings
+      recommendedAction: issue.solution,
+    };
+
+    // Generate guide directly
+    await generateGuide(selectedVehicle, issueDiagnosis);
   };
 
   // Show loading state while checking vehicle
@@ -229,98 +272,187 @@ function SymptomChatContent() {
 
                   {/* Known Issues Section - shown when user acknowledged issues */}
                   {acknowledgedIssues.length > 0 && (
-                    <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-xl">
-                      <div className="flex items-center gap-2 mb-3">
-                        <svg className="w-5 h-5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                    <div className="mt-4 bg-amber-50 border border-amber-200 rounded-xl overflow-hidden">
+                      <button
+                        type="button"
+                        onClick={() => toggleSection('known-issues')}
+                        className="w-full p-4 flex items-center justify-between hover:bg-amber-100/50 transition-colors"
+                      >
+                        <div className="flex items-center gap-2">
+                          <svg className="w-5 h-5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                          </svg>
+                          <p className="text-sm font-medium text-amber-800">
+                            Known issues for your vehicle
+                          </p>
+                          <span className="px-1.5 py-0.5 text-xs bg-amber-200 text-amber-800 rounded-full">
+                            {acknowledgedIssues.length}
+                          </span>
+                        </div>
+                        <svg
+                          className={`w-5 h-5 text-amber-600 transition-transform ${expandedSections.has('known-issues') ? 'rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
-                        <p className="text-sm font-medium text-amber-800">
-                          Known issues for your vehicle
-                        </p>
-                      </div>
-                      <p className="text-sm text-amber-700 mb-3">
-                        Click an issue below to discuss it or get a repair guide:
-                      </p>
-                      <div className="space-y-2">
-                        {acknowledgedIssues.slice(0, 5).map((issue) => (
-                          <button
-                            key={issue.id}
-                            type="button"
-                            onClick={() => setCurrentMessage(`I'd like help with: ${issue.title}`)}
-                            className="w-full text-left p-3 bg-white rounded-lg border border-amber-200 hover:border-amber-300 hover:bg-amber-50/50 transition-colors"
-                          >
-                            <div className="flex items-start gap-2">
-                              <span className={`flex-shrink-0 px-1.5 py-0.5 text-xs font-medium rounded ${
-                                issue.severity === 'high'
-                                  ? 'bg-red-100 text-red-700'
-                                  : issue.severity === 'medium'
-                                  ? 'bg-yellow-100 text-yellow-700'
-                                  : 'bg-gray-100 text-gray-600'
-                              }`}>
-                                {issue.severity === 'high' ? 'Critical' : issue.severity === 'medium' ? 'Moderate' : 'Minor'}
-                              </span>
-                              <span className="text-sm text-gray-900">{issue.title}</span>
-                            </div>
-                          </button>
-                        ))}
-                      </div>
-                      {acknowledgedIssues.length > 5 && (
-                        <p className="text-xs text-amber-600 mt-2">
-                          +{acknowledgedIssues.length - 5} more issues
-                        </p>
+                      </button>
+                      {expandedSections.has('known-issues') && (
+                        <div className="px-4 pb-4">
+                          <p className="text-sm text-amber-700 mb-3">
+                            Get a repair guide for any known issue:
+                          </p>
+                          <div className="space-y-2">
+                            {acknowledgedIssues.slice(0, 5).map((issue) => (
+                              <div
+                                key={issue.id}
+                                className="w-full p-3 bg-white rounded-lg border border-amber-200"
+                              >
+                                <div className="flex items-start gap-2 mb-2">
+                                  <span className={`flex-shrink-0 px-1.5 py-0.5 text-xs font-medium rounded ${
+                                    issue.severity === 'high'
+                                      ? 'bg-red-100 text-red-700'
+                                      : issue.severity === 'medium'
+                                      ? 'bg-yellow-100 text-yellow-700'
+                                      : 'bg-gray-100 text-gray-600'
+                                  }`}>
+                                    {issue.severity === 'high' ? 'Critical' : issue.severity === 'medium' ? 'Moderate' : 'Minor'}
+                                  </span>
+                                  <span className="text-sm text-gray-900 font-medium">{issue.title}</span>
+                                </div>
+                                <div className="flex gap-2">
+                                  <button
+                                    type="button"
+                                    onClick={() => handleKnownIssue(issue)}
+                                    disabled={isGenerating}
+                                    className={`flex-1 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-1.5 ${
+                                      isGenerating
+                                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                        : 'bg-blue-600 text-white hover:bg-blue-700'
+                                    }`}
+                                  >
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                    </svg>
+                                    Get Guide
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => setCurrentMessage(`I'd like help with: ${issue.title}`)}
+                                    className="px-3 py-1.5 text-sm text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                                  >
+                                    Discuss
+                                  </button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                          {acknowledgedIssues.length > 5 && (
+                            <p className="text-xs text-amber-600 mt-2">
+                              +{acknowledgedIssues.length - 5} more issues
+                            </p>
+                          )}
+                        </div>
                       )}
                     </div>
                   )}
 
                   {/* Common Maintenance Tasks - Generate guides directly */}
-                  <div className="mt-4">
-                    <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Common Tasks</p>
-                    <div className="flex flex-wrap gap-2">
-                      {[
-                        "Oil change",
-                        "Battery replacement",
-                        "Wiper blade replacement",
-                        "Brake pad replacement",
-                        "Air filter replacement",
-                        "Tire rotation",
-                      ].map((task) => (
-                        <button
-                          key={task}
-                          type="button"
-                          onClick={() => handleCommonTask(task)}
-                          disabled={isGenerating}
-                          className={`px-3 py-1.5 text-sm rounded-full transition-colors ${
-                            isGenerating
-                              ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                              : 'text-gray-600 bg-gray-100 hover:bg-gray-200'
-                          }`}
-                        >
-                          {task}
-                        </button>
-                      ))}
-                    </div>
+                  <div className="mt-4 bg-gray-50 border border-gray-200 rounded-xl overflow-hidden">
+                    <button
+                      type="button"
+                      onClick={() => toggleSection('common-tasks')}
+                      className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-100 transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                        </svg>
+                        <p className="text-sm font-medium text-gray-700">Common Tasks</p>
+                      </div>
+                      <svg
+                        className={`w-4 h-4 text-gray-400 transition-transform ${expandedSections.has('common-tasks') ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {expandedSections.has('common-tasks') && (
+                      <div className="px-4 pb-4">
+                        <div className="flex flex-wrap gap-2">
+                          {[
+                            "Oil change",
+                            "Battery replacement",
+                            "Wiper blade replacement",
+                            "Brake pad replacement",
+                            "Air filter replacement",
+                            "Tire rotation",
+                          ].map((task) => (
+                            <button
+                              key={task}
+                              type="button"
+                              onClick={() => handleCommonTask(task)}
+                              disabled={isGenerating}
+                              className={`px-3 py-1.5 text-sm rounded-full transition-colors ${
+                                isGenerating
+                                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                  : 'text-gray-600 bg-white border border-gray-200 hover:bg-gray-100 hover:border-gray-300'
+                              }`}
+                            >
+                              {task}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Problem Symptoms - Go through chat for diagnosis */}
-                  <div className="mt-4">
-                    <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Describe a Problem</p>
-                    <div className="flex flex-wrap gap-2">
-                      {[
-                        "Squealing when braking",
-                        "Engine runs rough",
-                        "Check engine light on",
-                        "Car won't start",
-                      ].map((suggestion) => (
-                        <button
-                          key={suggestion}
-                          type="button"
-                          onClick={() => setCurrentMessage(suggestion)}
-                          className="px-3 py-1.5 text-sm text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
-                        >
-                          {suggestion}
-                        </button>
-                    ))}
-                    </div>
+                  <div className="mt-3 bg-gray-50 border border-gray-200 rounded-xl overflow-hidden">
+                    <button
+                      type="button"
+                      onClick={() => toggleSection('describe-problem')}
+                      className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-100 transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p className="text-sm font-medium text-gray-700">Describe a Problem</p>
+                      </div>
+                      <svg
+                        className={`w-4 h-4 text-gray-400 transition-transform ${expandedSections.has('describe-problem') ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {expandedSections.has('describe-problem') && (
+                      <div className="px-4 pb-4">
+                        <div className="flex flex-wrap gap-2">
+                          {[
+                            "Squealing when braking",
+                            "Engine runs rough",
+                            "Check engine light on",
+                            "Car won't start",
+                          ].map((suggestion) => (
+                            <button
+                              key={suggestion}
+                              type="button"
+                              onClick={() => setCurrentMessage(suggestion)}
+                              className="px-3 py-1.5 text-sm text-gray-600 bg-white border border-gray-200 hover:bg-gray-100 hover:border-gray-300 rounded-full transition-colors"
+                            >
+                              {suggestion}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Guide Generation Loading */}

@@ -12,13 +12,16 @@ import {
  * Guide Generation API Route
  *
  * Generates repair guides using AI based on diagnosis and vehicle info.
- * Per Architecture: Server-side API calls, 30s timeout (NFR-I2).
+ * Per Architecture: Server-side API calls, 60s timeout for complex guides.
  *
  * Story 1.6: Guide Generation via AI
  */
 
+// Vercel serverless function config - extend timeout to 60 seconds
+export const maxDuration = 60;
+
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
-const TIMEOUT_MS = 60000; // 60 second timeout for guide generation (complex content)
+const TIMEOUT_MS = 55000; // 55 second timeout (leave 5s buffer for Vercel)
 
 /**
  * System prompt for guide generation

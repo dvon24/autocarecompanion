@@ -39,11 +39,15 @@ export function useGuide(): UseGuideReturn {
   const [status, setStatus] = useState<GuideStatus>('idle');
   const [error, setError] = useState<string | null>(null);
 
-  const generateGuide = useCallback(async (vehicle: Vehicle, diagnosis: Diagnosis) => {
+  const generateGuide = useCallback(async (vehicle: Vehicle, diagnosis: Diagnosis, retryCount = 0) => {
     if (status === 'generating') return;
 
     setStatus('generating');
     setError(null);
+
+    // AbortController with 65 second timeout (slightly longer than server's 60s)
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 65000);
 
     try {
       const response = await fetch('/api/guide', {
@@ -63,10 +67,21 @@ export function useGuide(): UseGuideReturn {
             confidence: diagnosis.confidence,
           },
         }),
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         const data = await response.json().catch(() => ({}));
+
+        // Auto-retry once for timeout errors
+        if (response.status === 504 && retryCount < 1) {
+          console.log('[useGuide] Retrying after timeout...');
+          setStatus('idle');
+          return generateGuide(vehicle, diagnosis, retryCount + 1);
+        }
+
         throw new Error(data.error || 'Failed to generate guide');
       }
 
@@ -81,8 +96,14 @@ export function useGuide(): UseGuideReturn {
         difficulty: data.guide?.difficulty || 0,
       });
     } catch (err) {
+      clearTimeout(timeoutId);
       setStatus('error');
-      setError(err instanceof Error ? err.message : 'Something went wrong');
+
+      if (err instanceof Error && err.name === 'AbortError') {
+        setError('Guide generation timed out. Please try again.');
+      } else {
+        setError(err instanceof Error ? err.message : 'Something went wrong');
+      }
     }
   }, [status]);
 

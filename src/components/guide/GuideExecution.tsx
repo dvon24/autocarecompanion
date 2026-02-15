@@ -106,6 +106,7 @@ type GuideExecutionProps = {
   guide: Guide;
   onComplete: () => void;
   onExit: () => void;
+  onNextTask?: (taskName: string) => void;
 };
 
 /**
@@ -438,6 +439,7 @@ export function GuideExecution({
   guide,
   onComplete,
   onExit,
+  onNextTask,
 }: GuideExecutionProps) {
   const totalSteps = guide.steps.length;
   const stepsRef = useRef<HTMLDivElement>(null);
@@ -728,6 +730,41 @@ export function GuideExecution({
                 </button>
               </div>
             </ScrollReveal>
+
+            {/* What's Next Section */}
+            {onNextTask && (
+              <ScrollReveal delay={400} duration={800}>
+                <div className="mt-10 pt-8 border-t border-gray-200">
+                  <h2 className="text-lg font-semibold text-gray-900 mb-4 text-center">What&apos;s next?</h2>
+                  <p className="text-sm text-gray-500 mb-4 text-center">
+                    Keep your {guide.vehicle.year} {guide.vehicle.make} {guide.vehicle.model} running great
+                  </p>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { name: 'Oil change', icon: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z' },
+                      { name: 'Tire rotation', icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' },
+                      { name: 'Air filter replacement', icon: 'M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z' },
+                      { name: 'Battery check', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
+                    ]
+                      .filter(task => task.name.toLowerCase() !== guide.title.toLowerCase())
+                      .slice(0, 4)
+                      .map((task) => (
+                        <button
+                          key={task.name}
+                          type="button"
+                          onClick={() => onNextTask(task.name)}
+                          className="flex flex-col items-center gap-2 p-4 bg-gray-50 hover:bg-gray-100 rounded-xl border border-gray-200 hover:border-gray-300 transition-all hover:scale-[1.02]"
+                        >
+                          <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={task.icon} />
+                          </svg>
+                          <span className="text-sm font-medium text-gray-700 text-center">{task.name}</span>
+                        </button>
+                      ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+            )}
           </div>
         </div>
       </div>
