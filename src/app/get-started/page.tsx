@@ -5,17 +5,32 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PhaseProvider } from '@/contexts/PhaseContext';
+import { useVehicleContext } from '@/contexts/AppContext';
 import { YMMTSelector } from '@/components/discovery/YMMTSelector';
 import { VINInput } from '@/components/discovery/VINInput';
 import { CustomVehicleInput } from '@/components/discovery/CustomVehicleInput';
+import { KnownIssuesBriefing } from '@/components/known-issues/KnownIssuesBriefing';
 
 type SelectionMode = 'vin' | 'manual' | 'custom';
 
 export default function GetStartedPage() {
   const router = useRouter();
+  const { selectedVehicle } = useVehicleContext();
   const [mode, setMode] = useState<SelectionMode>('vin');
+  const [showBriefing, setShowBriefing] = useState(false);
 
   const handleVehicleSelected = () => {
+    // Show the known issues briefing before navigating
+    setShowBriefing(true);
+  };
+
+  const handleBriefingDismiss = () => {
+    setShowBriefing(false);
+    router.push('/symptom-chat');
+  };
+
+  const handleBriefingContinue = () => {
+    setShowBriefing(false);
     router.push('/symptom-chat');
   };
 
@@ -126,6 +141,25 @@ export default function GetStartedPage() {
                 )}
               </div>
 
+              {/* Can't find vehicle hint - shown in manual mode */}
+              {mode === 'manual' && (
+                <div className="mt-4 text-center">
+                  <p className="text-sm text-gray-500">
+                    Can&apos;t find your vehicle?{' '}
+                    <button
+                      type="button"
+                      onClick={() => handleModeChange('custom')}
+                      className="text-blue-600 hover:text-blue-700 font-medium underline-offset-2 hover:underline"
+                    >
+                      Describe it instead
+                    </button>
+                  </p>
+                  <p className="text-xs text-gray-400 mt-1">
+                    Works with any year, make, model, or specialty vehicle
+                  </p>
+                </div>
+              )}
+
               {/* Privacy note */}
               <p className="text-center text-gray-400 text-sm mt-6 flex items-center justify-center gap-2">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -136,6 +170,20 @@ export default function GetStartedPage() {
             </div>
           </section>
         </main>
+
+        {/* Known Issues Briefing Modal */}
+        {showBriefing && selectedVehicle && (
+          <KnownIssuesBriefing
+            vehicle={{
+              year: selectedVehicle.year,
+              make: selectedVehicle.make,
+              model: selectedVehicle.model,
+              trim: selectedVehicle.trim,
+            }}
+            onDismiss={handleBriefingDismiss}
+            onContinue={handleBriefingContinue}
+          />
+        )}
       </div>
     </PhaseProvider>
   );

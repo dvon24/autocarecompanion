@@ -893,6 +893,7 @@ export function GuideExecution({
                   <span>{totalSteps} steps</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-600">
+                  <span className="text-gray-500">Difficulty:</span>
                   <span className="text-yellow-500">{'★'.repeat(guide.difficulty)}{'☆'.repeat(5 - guide.difficulty)}</span>
                 </div>
                 <a
