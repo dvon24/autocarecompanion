@@ -209,7 +209,7 @@ export function InlineHelpChat({
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask a question..."
             disabled={isLoading}
-            className="flex-1 px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent disabled:bg-gray-50"
+            className="flex-1 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent disabled:bg-gray-50"
           />
           <button
             type="submit"
