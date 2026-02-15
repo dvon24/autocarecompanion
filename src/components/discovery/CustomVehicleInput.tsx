@@ -2,6 +2,7 @@
 
 import { useState, useRef, FormEvent } from 'react';
 import { useVehicleContext } from '@/contexts/AppContext';
+import { triggerHaptic } from '@/hooks/useHaptic';
 
 interface CustomVehicleInputProps {
   onComplete?: () => void;
@@ -68,6 +69,7 @@ export function CustomVehicleInput({ onComplete }: CustomVehicleInputProps) {
   };
 
   const handleConfirm = () => {
+    triggerHaptic('success');
     if (parsedVehicle) {
       setVehicle({
         year: parsedVehicle.year,
@@ -80,6 +82,7 @@ export function CustomVehicleInput({ onComplete }: CustomVehicleInputProps) {
   };
 
   const handleReset = () => {
+    triggerHaptic('light');
     setStatus('idle');
     setParsedVehicle(null);
     setErrorMessage('');

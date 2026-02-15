@@ -1,432 +1,105 @@
 'use client';
 
-import { useEffect, useRef, useCallback, useState } from 'react';
-
 /**
- * Check if device is mobile/low-power
- */
-function isMobileDevice(): boolean {
-  if (typeof window === 'undefined') return true; // SSR - assume mobile for safety
-
-  // Check for touch device
-  const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-  // Check screen width
-  const isSmallScreen = window.innerWidth < 768;
-
-  // Check for reduced motion preference
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Only disable completely for reduced motion preference
-  // For mobile touch devices, we'll show a lighter version
-  return prefersReducedMotion || (hasTouch && isSmallScreen);
-}
-
-/**
- * AnimatedBackground - Engine-themed animated background
+ * AnimatedBackground - Static automotive-themed background
  *
- * Creates an elegant animation system with automotive/mechanical elements:
- * - Pistons (rectangular with connecting rod)
- * - Brake rotors (circles with slots)
- * - Gears (circles with teeth)
- * - Engine blocks (abstract rectangular shapes)
- *
- * All shapes are minimalist, geometric, and abstract.
- * On mobile: Shows fewer shapes with simpler animations.
+ * Lightweight static background with subtle automotive shapes.
+ * No animations to ensure smooth performance on all devices.
  */
-
-type ShapeType = 'piston' | 'rotor' | 'gear' | 'engineBlock' | 'sparkPlug';
-
-type Shape = {
-  id: number;
-  type: ShapeType;
-  x: number;
-  y: number;
-  size: number;
-  rotation: number;
-  opacity: number;
-  speed: number;
-  depth: number;
-  phase: number;
-  rotationSpeed: number;
-};
-
-type MousePosition = {
-  x: number;
-  y: number;
-  targetX: number;
-  targetY: number;
-};
 
 export function AnimatedBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const shapesRef = useRef<Shape[]>([]);
-  const mouseRef = useRef<MousePosition>({ x: 0.5, y: 0.5, targetX: 0.5, targetY: 0.5 });
-  const frameRef = useRef<number>(0);
-  const timeRef = useRef<number>(0);
-  const [isMobile, setIsMobile] = useState(true); // Default to mobile until checked
-
-  // Draw piston shape (defined before useCallback that uses it)
-  const drawPiston = useCallback((ctx: CanvasRenderingContext2D, size: number) => {
-    const headWidth = size * 0.6;
-    const headHeight = size * 0.3;
-    const rodWidth = size * 0.15;
-    const rodHeight = size * 0.5;
-
-    // Piston head (rounded rectangle)
-    ctx.beginPath();
-    ctx.roundRect(-headWidth / 2, -headHeight - rodHeight / 2, headWidth, headHeight, 4);
-    ctx.stroke();
-
-    // Connecting rod
-    ctx.beginPath();
-    ctx.rect(-rodWidth / 2, -rodHeight / 2, rodWidth, rodHeight);
-    ctx.stroke();
-
-    // Wrist pin circles
-    ctx.beginPath();
-    ctx.arc(0, -headHeight / 2 - rodHeight / 2, size * 0.08, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(0, rodHeight / 2, size * 0.1, 0, Math.PI * 2);
-    ctx.stroke();
-  }, []);
-
-  // Draw brake rotor shape
-  const drawRotor = useCallback((ctx: CanvasRenderingContext2D, size: number) => {
-    const outerRadius = size / 2;
-    const innerRadius = size * 0.25;
-    const slotCount = 6;
-
-    // Outer circle
-    ctx.beginPath();
-    ctx.arc(0, 0, outerRadius, 0, Math.PI * 2);
-    ctx.stroke();
-
-    // Inner circle
-    ctx.beginPath();
-    ctx.arc(0, 0, innerRadius, 0, Math.PI * 2);
-    ctx.stroke();
-
-    // Ventilation slots
-    for (let i = 0; i < slotCount; i++) {
-      const angle = (i / slotCount) * Math.PI * 2;
-      const startR = innerRadius + (outerRadius - innerRadius) * 0.2;
-      const endR = outerRadius * 0.85;
-      ctx.beginPath();
-      ctx.moveTo(Math.cos(angle) * startR, Math.sin(angle) * startR);
-      ctx.lineTo(Math.cos(angle) * endR, Math.sin(angle) * endR);
-      ctx.stroke();
-    }
-
-    // Center hub holes
-    const holeCount = 5;
-    const holeRadius = size * 0.04;
-    const holeDistance = innerRadius * 0.6;
-    for (let i = 0; i < holeCount; i++) {
-      const angle = (i / holeCount) * Math.PI * 2;
-      ctx.beginPath();
-      ctx.arc(Math.cos(angle) * holeDistance, Math.sin(angle) * holeDistance, holeRadius, 0, Math.PI * 2);
-      ctx.stroke();
-    }
-  }, []);
-
-  // Draw gear shape
-  const drawGear = useCallback((ctx: CanvasRenderingContext2D, size: number) => {
-    const outerRadius = size / 2;
-    const innerRadius = size * 0.35;
-    const teethCount = 12;
-    const toothDepth = size * 0.12;
-
-    // Draw gear teeth
-    ctx.beginPath();
-    for (let i = 0; i < teethCount; i++) {
-      const angle1 = (i / teethCount) * Math.PI * 2;
-      const angle2 = ((i + 0.3) / teethCount) * Math.PI * 2;
-      const angle3 = ((i + 0.5) / teethCount) * Math.PI * 2;
-      const angle4 = ((i + 0.8) / teethCount) * Math.PI * 2;
-
-      if (i === 0) {
-        ctx.moveTo(Math.cos(angle1) * (outerRadius - toothDepth), Math.sin(angle1) * (outerRadius - toothDepth));
-      }
-      ctx.lineTo(Math.cos(angle2) * outerRadius, Math.sin(angle2) * outerRadius);
-      ctx.lineTo(Math.cos(angle3) * outerRadius, Math.sin(angle3) * outerRadius);
-      ctx.lineTo(Math.cos(angle4) * (outerRadius - toothDepth), Math.sin(angle4) * (outerRadius - toothDepth));
-    }
-    ctx.closePath();
-    ctx.stroke();
-
-    // Inner circle
-    ctx.beginPath();
-    ctx.arc(0, 0, innerRadius, 0, Math.PI * 2);
-    ctx.stroke();
-
-    // Center hole
-    ctx.beginPath();
-    ctx.arc(0, 0, size * 0.1, 0, Math.PI * 2);
-    ctx.stroke();
-  }, []);
-
-  // Draw engine block shape (abstract)
-  const drawEngineBlock = useCallback((ctx: CanvasRenderingContext2D, size: number) => {
-    const width = size * 0.8;
-    const height = size * 0.6;
-
-    // Main block
-    ctx.beginPath();
-    ctx.roundRect(-width / 2, -height / 2, width, height, 3);
-    ctx.stroke();
-
-    // Cylinder bores (circles on top)
-    const cylinderCount = 4;
-    const cylinderRadius = width / (cylinderCount * 2.5);
-    const cylinderY = -height / 2 - cylinderRadius * 0.3;
-    for (let i = 0; i < cylinderCount; i++) {
-      const x = -width / 2 + (width / cylinderCount) * (i + 0.5);
-      ctx.beginPath();
-      ctx.arc(x, cylinderY, cylinderRadius, 0, Math.PI * 2);
-      ctx.stroke();
-    }
-
-    // Bolt holes in corners
-    const boltOffset = 6;
-    const boltRadius = 2;
-    const corners = [
-      [-width / 2 + boltOffset, -height / 2 + boltOffset],
-      [width / 2 - boltOffset, -height / 2 + boltOffset],
-      [-width / 2 + boltOffset, height / 2 - boltOffset],
-      [width / 2 - boltOffset, height / 2 - boltOffset],
-    ];
-    corners.forEach(([x, y]) => {
-      ctx.beginPath();
-      ctx.arc(x, y, boltRadius, 0, Math.PI * 2);
-      ctx.stroke();
-    });
-  }, []);
-
-  // Draw spark plug shape
-  const drawSparkPlug = useCallback((ctx: CanvasRenderingContext2D, size: number) => {
-    const bodyHeight = size * 0.5;
-    const bodyWidth = size * 0.2;
-    const hexHeight = size * 0.15;
-    const hexWidth = size * 0.3;
-    const electrodeLength = size * 0.25;
-
-    // Ceramic body (rectangle)
-    ctx.beginPath();
-    ctx.rect(-bodyWidth / 2, -bodyHeight / 2, bodyWidth, bodyHeight);
-    ctx.stroke();
-
-    // Hex nut (hexagon shape simplified as rectangle)
-    ctx.beginPath();
-    ctx.rect(-hexWidth / 2, -bodyHeight / 2 - hexHeight, hexWidth, hexHeight);
-    ctx.stroke();
-
-    // Terminal on top
-    ctx.beginPath();
-    ctx.moveTo(0, -bodyHeight / 2 - hexHeight);
-    ctx.lineTo(0, -bodyHeight / 2 - hexHeight - size * 0.15);
-    ctx.stroke();
-
-    // Electrode at bottom
-    ctx.beginPath();
-    ctx.moveTo(0, bodyHeight / 2);
-    ctx.lineTo(0, bodyHeight / 2 + electrodeLength);
-    ctx.stroke();
-
-    // Ground electrode (L-shaped)
-    ctx.beginPath();
-    ctx.moveTo(-bodyWidth / 2, bodyHeight / 2 + electrodeLength * 0.5);
-    ctx.lineTo(-bodyWidth / 2 - size * 0.1, bodyHeight / 2 + electrodeLength * 0.5);
-    ctx.lineTo(-bodyWidth / 2 - size * 0.1, bodyHeight / 2 + electrodeLength);
-    ctx.stroke();
-  }, []);
-
-  // Initialize shapes
-  const initShapes = useCallback((width: number, height: number, mobile: boolean) => {
-    const shapes: Shape[] = [];
-    const shapeTypes: ShapeType[] = ['piston', 'rotor', 'gear', 'engineBlock', 'sparkPlug'];
-
-    // Fewer shapes on mobile for better performance
-    const baseCount = mobile ? 6 : 15;
-    const shapeCount = Math.max(baseCount, Math.floor((width * height) / (mobile ? 150000 : 80000)));
-
-    for (let i = 0; i < shapeCount; i++) {
-      const type = shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
-      shapes.push({
-        id: i,
-        type,
-        x: 0.05 + Math.random() * 0.9,
-        y: 0.05 + Math.random() * 0.9,
-        size: type === 'engineBlock' ? 60 + Math.random() * 40 : 30 + Math.random() * 50,
-        rotation: Math.random() * Math.PI * 2,
-        opacity: mobile ? 0.15 + Math.random() * 0.1 : 0.25 + Math.random() * 0.15,
-        speed: 0.00008 + Math.random() * 0.00012,
-        depth: 0.3 + Math.random() * 0.7,
-        phase: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.0002,
-      });
-    }
-
-    shapesRef.current = shapes;
-  }, []);
-
-  // Draw a single shape
-  const drawShape = useCallback((
-    ctx: CanvasRenderingContext2D,
-    shape: Shape,
-    width: number,
-    height: number,
-    time: number,
-    mouse: MousePosition,
-    mobile: boolean
-  ) => {
-    const { type, x, y, size, rotation, opacity, depth, phase, speed, rotationSpeed } = shape;
-
-    // Calculate position with very gentle idle drift (slower, smoother motion)
-    const driftX = Math.sin(time * speed * 0.5 + phase) * 15;
-    const driftY = Math.cos(time * speed * 0.4 + phase * 1.3) * 12;
-
-    // Mouse parallax effect - disabled on mobile
-    const parallaxStrength = mobile ? 0 : depth * 25;
-    const mouseOffsetX = (mouse.x - 0.5) * parallaxStrength;
-    const mouseOffsetY = (mouse.y - 0.5) * parallaxStrength;
-
-    const posX = x * width + driftX + mouseOffsetX;
-    const posY = y * height + driftY + mouseOffsetY;
-
-    // Very slow continuous rotation for gears and rotors
-    let currentRotation = rotation + time * rotationSpeed * 0.5;
-    if (type === 'gear' || type === 'rotor') {
-      currentRotation += time * 0.00008;
-    }
-
-    // Subtle pulsing opacity (gentler)
-    const pulseOpacity = opacity * (0.92 + Math.sin(time * 0.0003 + phase) * 0.08);
-
-    ctx.save();
-    ctx.translate(posX, posY);
-    ctx.rotate(currentRotation);
-    ctx.globalAlpha = pulseOpacity;
-
-    // Blue/gray color palette
-    ctx.strokeStyle = 'rgba(100, 130, 170, 1)';
-    ctx.lineWidth = 1.5;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-
-    switch (type) {
-      case 'piston':
-        drawPiston(ctx, size);
-        break;
-      case 'rotor':
-        drawRotor(ctx, size);
-        break;
-      case 'gear':
-        drawGear(ctx, size);
-        break;
-      case 'engineBlock':
-        drawEngineBlock(ctx, size);
-        break;
-      case 'sparkPlug':
-        drawSparkPlug(ctx, size);
-        break;
-    }
-
-    ctx.restore();
-  }, [drawPiston, drawRotor, drawGear, drawEngineBlock, drawSparkPlug]);
-
-  // Animation loop
-  const animate = useCallback((mobile: boolean) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const dpr = window.devicePixelRatio || 1;
-    const width = canvas.width / dpr;
-    const height = canvas.height / dpr;
-    const time = performance.now();
-
-    // Smooth mouse interpolation (disabled on mobile)
-    const mouse = mouseRef.current;
-    if (!mobile) {
-      mouse.x += (mouse.targetX - mouse.x) * 0.02;
-      mouse.y += (mouse.targetY - mouse.y) * 0.02;
-    }
-
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw all shapes
-    shapesRef.current.forEach((shape) => {
-      drawShape(ctx, shape, width, height, time, mouse, mobile);
-    });
-
-    timeRef.current = time;
-    frameRef.current = requestAnimationFrame(() => animate(mobile));
-  }, [drawShape]);
-
-  // Check for mobile on mount
-  useEffect(() => {
-    setIsMobile(isMobileDevice());
-  }, []);
-
-  // Setup canvas and start animation
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const mobile = isMobile;
-
-    const handleResize = () => {
-      const dpr = window.devicePixelRatio || 1;
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        ctx.scale(dpr, dpr);
-      }
-      initShapes(rect.width, rect.height, mobile);
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      // Skip mouse tracking on mobile
-      if (mobile) return;
-      mouseRef.current.targetX = e.clientX / window.innerWidth;
-      mouseRef.current.targetY = e.clientY / window.innerHeight;
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    // Only add mouse listener on desktop
-    if (!mobile) {
-      window.addEventListener('mousemove', handleMouseMove);
-    }
-
-    timeRef.current = performance.now();
-    frameRef.current = requestAnimationFrame(() => animate(mobile));
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      if (!mobile) {
-        window.removeEventListener('mousemove', handleMouseMove);
-      }
-      cancelAnimationFrame(frameRef.current);
-    };
-  }, [animate, initShapes, isMobile]);
-
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none"
-      style={{
-        zIndex: 0,
-      }}
+    <div
+      className="fixed inset-0 pointer-events-none overflow-hidden"
+      style={{ zIndex: 0 }}
       aria-hidden="true"
-    />
+    >
+      {/* Subtle gradient base */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
+
+      {/* Static decorative shapes */}
+      <svg
+        className="absolute inset-0 w-full h-full opacity-[0.03]"
+        viewBox="0 0 1000 1000"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        {/* Gear shape - top left */}
+        <g transform="translate(100, 150)">
+          <circle cx="0" cy="0" r="60" fill="none" stroke="currentColor" strokeWidth="8" className="text-gray-900" />
+          <circle cx="0" cy="0" r="20" fill="currentColor" className="text-gray-900" />
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+            <rect
+              key={angle}
+              x="-6"
+              y="-75"
+              width="12"
+              height="20"
+              fill="currentColor"
+              className="text-gray-900"
+              transform={`rotate(${angle})`}
+            />
+          ))}
+        </g>
+
+        {/* Piston shape - right side */}
+        <g transform="translate(850, 400)">
+          <rect x="-30" y="-50" width="60" height="80" rx="4" fill="currentColor" className="text-gray-900" />
+          <rect x="-8" y="30" width="16" height="60" fill="currentColor" className="text-gray-900" />
+          <circle cx="0" cy="90" r="12" fill="none" stroke="currentColor" strokeWidth="4" className="text-gray-900" />
+        </g>
+
+        {/* Rotor shape - bottom left */}
+        <g transform="translate(200, 800)">
+          <circle cx="0" cy="0" r="70" fill="none" stroke="currentColor" strokeWidth="6" className="text-gray-900" />
+          <circle cx="0" cy="0" r="25" fill="currentColor" className="text-gray-900" />
+          {[0, 60, 120, 180, 240, 300].map((angle) => (
+            <rect
+              key={angle}
+              x="-2"
+              y="-65"
+              width="4"
+              height="35"
+              fill="currentColor"
+              className="text-gray-900"
+              transform={`rotate(${angle})`}
+            />
+          ))}
+        </g>
+
+        {/* Engine block - center right */}
+        <g transform="translate(750, 700)">
+          <rect x="-40" y="-60" width="80" height="100" rx="4" fill="none" stroke="currentColor" strokeWidth="4" className="text-gray-900" />
+          <rect x="-30" y="-50" width="25" height="25" rx="2" fill="currentColor" className="text-gray-900" />
+          <rect x="5" y="-50" width="25" height="25" rx="2" fill="currentColor" className="text-gray-900" />
+          <rect x="-30" y="-15" width="25" height="25" rx="2" fill="currentColor" className="text-gray-900" />
+          <rect x="5" y="-15" width="25" height="25" rx="2" fill="currentColor" className="text-gray-900" />
+        </g>
+
+        {/* Small gear - top right */}
+        <g transform="translate(900, 100)">
+          <circle cx="0" cy="0" r="35" fill="none" stroke="currentColor" strokeWidth="5" className="text-gray-900" />
+          <circle cx="0" cy="0" r="12" fill="currentColor" className="text-gray-900" />
+          {[0, 60, 120, 180, 240, 300].map((angle) => (
+            <rect
+              key={angle}
+              x="-4"
+              y="-45"
+              width="8"
+              height="14"
+              fill="currentColor"
+              className="text-gray-900"
+              transform={`rotate(${angle})`}
+            />
+          ))}
+        </g>
+
+        {/* Spark plug - bottom center */}
+        <g transform="translate(500, 900)">
+          <rect x="-12" y="-40" width="24" height="50" rx="3" fill="currentColor" className="text-gray-900" />
+          <rect x="-8" y="10" width="16" height="30" fill="none" stroke="currentColor" strokeWidth="3" className="text-gray-900" />
+          <path d="M-4 45 L0 55 L4 45" stroke="currentColor" strokeWidth="3" fill="none" className="text-gray-900" />
+        </g>
+      </svg>
+    </div>
   );
 }

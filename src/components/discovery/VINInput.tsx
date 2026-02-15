@@ -1,6 +1,7 @@
 'use client';
 
 import { useVinDecode } from '@/hooks/useVinDecode';
+import { triggerHaptic } from '@/hooks/useHaptic';
 
 /**
  * VINInput - VIN Entry and Decode Component
@@ -47,11 +48,13 @@ export function VINInput({ onComplete, onSwitchToManual }: VINInputProps) {
   };
 
   const handleConfirm = () => {
+    triggerHaptic('success');
     confirmVehicle();
     onComplete?.();
   };
 
   const handleTryAgain = () => {
+    triggerHaptic('light');
     reset();
   };
 

@@ -11,6 +11,7 @@ import { CacheStatusBadge } from '@/components/offline/CacheStatusBadge';
 import { InlineHelpChat } from '@/components/guide/InlineHelpChat';
 import { AnimatedBackground } from '@/components/ui/AnimatedBackground';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { triggerHaptic } from '@/hooks/useHaptic';
 import partDictionary from '@/data/part-dictionary.json';
 
 /**
@@ -555,6 +556,10 @@ export function GuideExecution({
   const toggleStepComplete = useCallback((index: number) => {
     const stepNumber = guide.steps[index].number;
     const wasComplete = completedSteps.has(stepNumber);
+
+    // Haptic feedback
+    triggerHaptic(wasComplete ? 'light' : 'medium');
+
     persistToggle(stepNumber);
 
     // Auto-expand next step when completing current
