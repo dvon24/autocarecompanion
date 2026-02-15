@@ -60,11 +60,11 @@ Create a comprehensive repair guide in the following JSON format. Be SPECIFIC to
   ],
   "parts": [
     {
-      "name": "Part name/type (e.g., 'Radiator', 'Oil Filter', 'Brake Pads')",
-      "partNumber": null,
+      "name": "Part name (e.g., 'Oil Filter', 'Brake Pads')",
+      "partNumber": "OEM part number for this vehicle (e.g., '04152-YZZA1', 'FL-500S')",
       "oemPrice": "$X-$Y (estimated range)",
       "aftermarketPrice": "$X-$Y (estimated range)",
-      "notes": "What to look for when shopping (size, specs, popular brands)"
+      "notes": "Specs, compatible aftermarket brands (Fram, Mobil 1, etc.)"
     }
   ],
   "steps": [
@@ -82,10 +82,10 @@ Create a comprehensive repair guide in the following JSON format. Be SPECIFIC to
   ]
 }
 
-CRITICAL GUIDELINES FOR PARTS:
-- DO NOT include specific part numbers - they vary too much by VIN/production date
-- Set partNumber to null for all parts
-- In "notes", include helpful shopping info: specs to look for, popular aftermarket brands, what size/type fits this vehicle
+PART NUMBER GUIDELINES:
+- ALWAYS include OEM part numbers for common parts (oil filters, air filters, spark plugs, brake pads, etc.)
+- Use the correct part number for this exact year/make/model/trim
+- In "notes", include compatible aftermarket brands and any fitment notes
 - Price ranges should be rough estimates
 
 General Guidelines:
