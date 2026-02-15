@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
-
-interface KnownIssuesData {
-  issues: KnownIssue[];
-}
+import knownIssuesData from '@/data/known-issues.json';
 
 /**
  * Check if a vehicle matches an issue's vehicle criteria
@@ -81,13 +76,8 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Load known issues data
-    const dataPath = path.join(process.cwd(), 'data', 'known-issues.json');
-    const fileContent = await fs.readFile(dataPath, 'utf-8');
-    const data: KnownIssuesData = JSON.parse(fileContent);
-
-    // Filter issues by vehicle match
-    let matchingIssues = data.issues.filter(issue =>
+    // Filter issues by vehicle match (using statically imported data for Vercel compatibility)
+    let matchingIssues = (knownIssuesData.issues as KnownIssue[]).filter(issue =>
       vehicleMatchesIssue(issue, yearNum, make, model, trim)
     );
 

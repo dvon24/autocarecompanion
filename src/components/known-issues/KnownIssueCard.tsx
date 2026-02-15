@@ -114,6 +114,40 @@ export function KnownIssueCard({ issue }: KnownIssueCardProps) {
             <p className="text-sm text-green-700 leading-relaxed">{issue.solution}</p>
           </div>
 
+          {/* Community Recommendations */}
+          {issue.communityRecommendations && issue.communityRecommendations.length > 0 && (
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+              <h4 className="text-sm font-medium text-blue-800 mb-2 flex items-center gap-2">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                </svg>
+                Community Tips
+              </h4>
+              <ul className="space-y-2">
+                {issue.communityRecommendations.map((rec, index) => (
+                  <li key={index} className="text-sm text-blue-700 flex items-start gap-2">
+                    <span className={`flex-shrink-0 px-1.5 py-0.5 text-xs font-medium rounded ${
+                      rec.type === 'part' ? 'bg-purple-100 text-purple-700' :
+                      rec.type === 'warning' ? 'bg-red-100 text-red-700' :
+                      'bg-blue-100 text-blue-700'
+                    }`}>
+                      {rec.type === 'part' ? 'Part' : rec.type === 'warning' ? 'Note' : 'Tip'}
+                    </span>
+                    <span>
+                      {rec.content}
+                      {rec.partBrand && rec.partNumber && (
+                        <span className="font-medium"> ({rec.partBrand} #{rec.partNumber})</span>
+                      )}
+                      {rec.upvotes > 0 && (
+                        <span className="ml-2 text-xs text-blue-500">+{rec.upvotes} helpful</span>
+                      )}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {/* Estimated cost */}
           {issue.estimatedCost && (
             <div className="flex items-center gap-2 text-sm">

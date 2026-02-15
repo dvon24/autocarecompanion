@@ -1,0 +1,522 @@
+{
+  "issues": [
+    {
+      "id": "honda-civic-oil-dilution-2016",
+      "vehicleMatch": {
+        "years": [2016, 2017, 2018, 2019, 2020],
+        "make": "Honda",
+        "model": "Civic",
+        "engines": ["1.5L Turbo"]
+      },
+      "category": "engine",
+      "title": "Engine Oil Dilution from Fuel",
+      "description": "The 1.5L turbo engine can experience fuel mixing with engine oil during cold weather operation or short trips. This raises oil levels and reduces lubrication effectiveness. Honda extended the powertrain warranty and released software updates to address this.",
+      "solution": "Visit a Honda dealer for the free ECU software update that adjusts fuel injection timing. Check oil level regularly and change oil more frequently (every 3,000-5,000 miles). Avoid short trips in cold weather when possible, or let the engine fully warm up before shutting off.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "Oil level rising above full mark",
+        "Fuel smell in oil",
+        "Oil appears thin or diluted",
+        "Check engine light for misfire codes"
+      ],
+      "affectedSystems": ["Engine", "Fuel System"],
+      "estimatedCost": { "low": 0, "high": 150 },
+      "citations": [
+        {
+          "type": "tsb",
+          "title": "Honda Service Bulletin 19-056",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10164689-0001.pdf"
+        },
+        {
+          "type": "recall",
+          "title": "Honda Warranty Extension - Powertrain",
+          "url": "https://www.nhtsa.gov/vehicle/2018/HONDA/CIVIC"
+        }
+      ],
+      "humanApproved": true,
+      "lastReviewedAt": "2024-01-15",
+      "reportCount": 847,
+      "status": "published"
+    },
+    {
+      "id": "toyota-camry-dashboard-2018",
+      "vehicleMatch": {
+        "years": [2018, 2019, 2020, 2021, 2022],
+        "make": "Toyota",
+        "model": "Camry"
+      },
+      "category": "interior",
+      "title": "Dashboard Melting/Stickiness",
+      "description": "Dashboard surface can become sticky or appear to melt in hot climates. This is a cosmetic issue that doesn't affect vehicle operation but can be unsightly and cause reflections on the windshield.",
+      "solution": "Use a quality dashboard cover or sunshade to prevent UV damage. For existing stickiness, clean with isopropyl alcohol and apply a matte dashboard protectant. Severe cases may require dealer dashboard replacement under goodwill warranty or out-of-pocket.",
+      "severity": "low",
+      "confidence": "medium",
+      "symptoms": [
+        "Sticky dashboard surface",
+        "Dashboard appears shiny or melted",
+        "Reflection on windshield from dashboard",
+        "Residue transfers to cleaning cloth"
+      ],
+      "affectedSystems": ["Interior"],
+      "estimatedCost": { "low": 200, "high": 800 },
+      "citations": [
+        {
+          "type": "forum",
+          "title": "Toyota Nation Forum - Dashboard Issues",
+          "url": "https://www.toyotanation.com/threads/sticky-dashboard.1234567/"
+        }
+      ],
+      "humanApproved": true,
+      "lastReviewedAt": "2024-02-01",
+      "reportCount": 234,
+      "status": "published"
+    },
+    {
+      "id": "ford-f150-spark-plug-blowout",
+      "vehicleMatch": {
+        "years": [1997, 1998, 1999, 2000, 2001, 2002, 2003],
+        "make": "Ford",
+        "model": "F-150",
+        "engines": ["4.6L V8", "5.4L V8"]
+      },
+      "category": "engine",
+      "title": "Spark Plug Thread Blowout",
+      "description": "The aluminum cylinder heads on Triton V8 engines have only 4 threads for spark plugs instead of the standard 8-10. This can cause spark plugs to blow out of the head, damaging threads. Helicoil repair kits are available.",
+      "solution": "If not yet blown out: Use anti-seize compound on spark plug threads, torque to spec (11-15 ft-lbs), and change plugs every 30k miles. If blown out: Install a Helicoil or Time-Sert thread repair kit ($50-150 DIY, $150-500 at shop). Preventive repair kits are also available to reinforce threads before failure.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Loud popping noise from engine",
+        "Sudden loss of power",
+        "Engine misfire on one cylinder",
+        "Spark plug ejected from engine"
+      ],
+      "affectedSystems": ["Engine", "Ignition"],
+      "estimatedCost": { "low": 150, "high": 500 },
+      "citations": [
+        {
+          "type": "tsb",
+          "title": "Ford TSB 08-7-6",
+          "url": "https://www.nhtsa.gov/vehicle/2002/FORD/F-150"
+        },
+        {
+          "type": "forum",
+          "title": "F150 Forum - Spark Plug Blowout Prevention",
+          "url": "https://www.f150forum.com/f4/spark-plug-blowout-fix-123456/"
+        }
+      ],
+      "humanApproved": true,
+      "lastReviewedAt": "2024-01-20",
+      "reportCount": 1523,
+      "status": "published"
+    },
+    {
+      "id": "dodge-challenger-lifter-tick",
+      "vehicleMatch": {
+        "years": [2015, 2016, 2017, 2018, 2019, 2020, 2021],
+        "make": "Dodge",
+        "model": "Challenger",
+        "engines": ["5.7L HEMI", "6.4L HEMI"],
+        "trims": ["R/T", "Scat Pack", "SRT 392"]
+      },
+      "category": "engine",
+      "title": "HEMI Lifter/MDS Tick",
+      "description": "HEMI engines with Multi-Displacement System (MDS) can develop a ticking noise from the hydraulic lifters. This is often related to the MDS deactivation system. Some owners disable MDS via tuner to eliminate the issue.",
+      "solution": "Try a high-quality synthetic oil (0W-40 or 5W-40) with ZDDP additive. An MDS delete kit ($200-400) permanently keeps all 8 cylinders active and eliminates the tick. Alternatively, a performance tuner ($400-600) can disable MDS via software. For severe cases, lifter replacement ($1,500-2,500) may be needed.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "Ticking noise at idle",
+        "Tick goes away when engine warms up",
+        "Tick more prominent on cold start",
+        "Noise from top of engine"
+      ],
+      "affectedSystems": ["Engine", "Valvetrain"],
+      "estimatedCost": { "low": 100, "high": 2500 },
+      "citations": [
+        {
+          "type": "tsb",
+          "title": "Chrysler TSB 09-002-14 REV. E",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10167722-0001.pdf"
+        },
+        {
+          "type": "forum",
+          "title": "Challenger Talk - MDS Tick Discussion",
+          "url": "https://www.challengertalk.com/threads/hemi-tick.123456/"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "Many owners switched to Pennzoil Ultra Platinum 0W-40 and reported the tick went away",
+          "partBrand": "Pennzoil",
+          "partName": "Ultra Platinum 0W-40",
+          "upvotes": 234
+        },
+        {
+          "type": "part",
+          "content": "DiabloSport Predator tuner lets you disable MDS without hardware changes",
+          "partBrand": "DiabloSport",
+          "partName": "Predator P2",
+          "partNumber": "P2030",
+          "upvotes": 156
+        },
+        {
+          "type": "tip",
+          "content": "Let the engine fully warm up before hard driving - the tick usually disappears once oil pressure stabilizes",
+          "upvotes": 89
+        },
+        {
+          "type": "warning",
+          "content": "Don't ignore severe ticking - it can lead to lifter collapse and engine damage if left untreated",
+          "upvotes": 312
+        }
+      ],
+      "humanApproved": true,
+      "lastReviewedAt": "2024-01-25",
+      "reportCount": 678,
+      "status": "published"
+    },
+    {
+      "id": "dodge-challenger-radiator-failure",
+      "vehicleMatch": {
+        "years": [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021],
+        "make": "Dodge",
+        "model": "Challenger",
+        "trims": ["R/T", "Scat Pack", "SRT 392", "Hellcat"]
+      },
+      "category": "cooling",
+      "title": "OEM Radiator Premature Failure",
+      "description": "The factory plastic-tank radiators on HEMI Challengers are prone to cracking and leaking, especially under track use or in hot climates. The crimped plastic end tanks can fail at the seams. Many owners report needing multiple radiator replacements.",
+      "solution": "Replace with an all-aluminum aftermarket radiator for long-term reliability. Mishimoto, Champion, and CSF offer direct-fit aluminum radiators with lifetime warranties. Also inspect radiator hoses and clamps during replacement. Consider adding a larger fan or oil cooler if tracking the car.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "Coolant leak at radiator seams",
+        "Overheating during spirited driving",
+        "Low coolant warnings",
+        "Green or orange puddles under front of car",
+        "Steam from engine bay"
+      ],
+      "affectedSystems": ["Cooling", "Engine"],
+      "estimatedCost": { "low": 200, "high": 800 },
+      "citations": [
+        {
+          "type": "forum",
+          "title": "Challenger Talk - Radiator Replacement Thread",
+          "url": "https://www.challengertalk.com/threads/radiator-replacement.789012/"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "Mishimoto all-aluminum radiator - direct fit, never have to replace again",
+          "partBrand": "Mishimoto",
+          "partName": "Performance Aluminum Radiator",
+          "partNumber": "MMRAD-CHA-08",
+          "upvotes": 445
+        },
+        {
+          "type": "part",
+          "content": "CSF Racing Radiator - excellent for track use, high flow design",
+          "partBrand": "CSF",
+          "partName": "High Performance Radiator",
+          "partNumber": "7210",
+          "upvotes": 287
+        },
+        {
+          "type": "tip",
+          "content": "Skip the OEM replacement - the plastic tanks will fail again. Go aluminum once and forget about it",
+          "upvotes": 523
+        },
+        {
+          "type": "warning",
+          "content": "If tracking your car, add a transmission cooler too - the trans runs hot with the stock setup",
+          "upvotes": 178
+        }
+      ],
+      "humanApproved": true,
+      "lastReviewedAt": "2024-02-10",
+      "reportCount": 412,
+      "status": "published"
+    },
+    {
+      "id": "chevy-silverado-afm-lifter",
+      "vehicleMatch": {
+        "years": [2014, 2015, 2016, 2017, 2018, 2019],
+        "make": "Chevrolet",
+        "model": "Silverado 1500",
+        "engines": ["5.3L V8", "6.2L V8"]
+      },
+      "category": "engine",
+      "title": "Active Fuel Management Lifter Failure",
+      "description": "GM's Active Fuel Management (AFM) system deactivates cylinders to improve fuel economy, but can cause premature lifter wear and failure. Symptoms include rough idle, misfires, and valve train noise. GM released updated lifters.",
+      "solution": "Install an AFM disabler device ($100-200) to keep all cylinders active. For failed lifters: replace with updated GM lifters and consider AFM delete kit ($300-500) which includes non-AFM lifters, valley cover, and plug. Complete repair with AFM delete runs $2,000-3,500 at a shop.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Engine misfire codes P0300-P0308",
+        "Rough idle",
+        "Ticking or knocking noise",
+        "Reduced power",
+        "Check engine light"
+      ],
+      "affectedSystems": ["Engine", "Valvetrain"],
+      "estimatedCost": { "low": 2000, "high": 4500 },
+      "citations": [
+        {
+          "type": "tsb",
+          "title": "GM PIP5713 - Lifter Failure",
+          "url": "https://www.nhtsa.gov/vehicle/2017/CHEVROLET/SILVERADO%201500"
+        }
+      ],
+      "humanApproved": true,
+      "lastReviewedAt": "2024-02-10",
+      "reportCount": 2341,
+      "status": "published"
+    },
+    {
+      "id": "subaru-head-gasket-2000",
+      "vehicleMatch": {
+        "years": [1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010],
+        "make": "Subaru",
+        "model": "Outback",
+        "engines": ["2.5L H4"]
+      },
+      "category": "engine",
+      "title": "Head Gasket Failure",
+      "description": "The 2.5L non-turbo engine is known for external head gasket leaks. Oil seeps past the gasket and can contaminate the coolant. Subaru extended warranties and improved gasket design in later years.",
+      "solution": "Replace head gaskets with updated MLS (multi-layer steel) gaskets. Ensure the machine shop resurfaces cylinder heads to proper flatness. Replace timing belt, water pump, and thermostat while engine is apart. Use Subaru coolant conditioner to help prevent future failures. Budget $1,500-2,500 for a quality repair.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Oil leaking externally from engine",
+        "Coolant mixing with oil (milky appearance)",
+        "Overheating",
+        "Sweet smell from engine bay",
+        "Bubbles in coolant reservoir"
+      ],
+      "affectedSystems": ["Engine", "Cooling"],
+      "estimatedCost": { "low": 1500, "high": 2500 },
+      "citations": [
+        {
+          "type": "tsb",
+          "title": "Subaru of America Customer Support Program",
+          "url": "https://www.nhtsa.gov/vehicle/2005/SUBARU/OUTBACK"
+        }
+      ],
+      "humanApproved": true,
+      "lastReviewedAt": "2024-01-18",
+      "reportCount": 4521,
+      "status": "published"
+    },
+    {
+      "id": "nissan-cvt-2013",
+      "vehicleMatch": {
+        "years": [2013, 2014, 2015, 2016, 2017, 2018],
+        "make": "Nissan",
+        "model": "Altima"
+      },
+      "category": "transmission",
+      "title": "CVT Transmission Failure",
+      "description": "Nissan's Continuously Variable Transmission (CVT) in this generation can experience premature failure. Symptoms include shuddering, hesitation, and complete transmission failure. Nissan extended CVT warranty to 10 years/120,000 miles.",
+      "solution": "Check if your vehicle is covered under Nissan's extended CVT warranty (10 years/120,000 miles). Change CVT fluid every 30,000 miles with Nissan NS-3 fluid only. Avoid aggressive driving and heavy towing. If warranty expired, rebuilt CVT costs $2,500-3,500, new unit $4,000-5,000.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Shuddering during acceleration",
+        "Hesitation when accelerating",
+        "Whining noise from transmission",
+        "Loss of power",
+        "Check engine light with transmission codes"
+      ],
+      "affectedSystems": ["Transmission"],
+      "estimatedCost": { "low": 3000, "high": 5000 },
+      "citations": [
+        {
+          "type": "recall",
+          "title": "Nissan CVT Warranty Extension",
+          "url": "https://www.nhtsa.gov/vehicle/2015/NISSAN/ALTIMA"
+        }
+      ],
+      "humanApproved": true,
+      "lastReviewedAt": "2024-02-05",
+      "reportCount": 3876,
+      "status": "published"
+    },
+    {
+      "id": "jeep-grand-cherokee-tipm",
+      "vehicleMatch": {
+        "years": [2011, 2012, 2013, 2014, 2015, 2016, 2017],
+        "make": "Jeep",
+        "model": "Grand Cherokee"
+      },
+      "category": "electrical",
+      "title": "TIPM (Fuse Box) Failure",
+      "description": "The Totally Integrated Power Module (TIPM) can fail, causing various electrical issues including fuel pump relay problems (no start), random horn honking, and erratic behavior of lights and accessories.",
+      "solution": "For fuel pump relay failure: Install an external bypass relay kit ($30-50 DIY) to power fuel pump directly. For complete fix: Replace TIPM unit with remanufactured unit ($400-600) or new OEM ($800-1,200). Some electrical shops can repair/rebuild existing TIPM for $200-400.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "No start condition",
+        "Fuel pump not priming",
+        "Random horn honking",
+        "Headlights flickering",
+        "Wipers activating randomly",
+        "Battery drain"
+      ],
+      "affectedSystems": ["Electrical", "Fuel System"],
+      "estimatedCost": { "low": 800, "high": 1500 },
+      "citations": [
+        {
+          "type": "recall",
+          "title": "NHTSA Investigation EA14-001",
+          "url": "https://www.nhtsa.gov/vehicle/2014/JEEP/GRAND%20CHEROKEE"
+        }
+      ],
+      "humanApproved": true,
+      "lastReviewedAt": "2024-01-22",
+      "reportCount": 1892,
+      "status": "published"
+    },
+    {
+      "id": "bmw-n54-hpfp",
+      "vehicleMatch": {
+        "years": [2007, 2008, 2009, 2010],
+        "make": "BMW",
+        "model": "335i",
+        "engines": ["3.0L Twin Turbo N54"]
+      },
+      "category": "fuel",
+      "title": "High Pressure Fuel Pump (HPFP) Failure",
+      "description": "The N54 twin-turbo engine's high pressure fuel pump can fail, causing long cranking, rough idle, and power loss. BMW extended warranty coverage and released updated pump designs.",
+      "solution": "Check VIN with BMW dealer for extended warranty coverage (10 years/120,000 miles on HPFP). Replace with updated revision HPFP (part numbers ending in higher revision letters). Use only Top Tier gasoline. DIY replacement possible with special tools ($500-800 parts), shop labor adds $200-400.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Long crank time before starting",
+        "Engine stalling",
+        "Loss of power under acceleration",
+        "Check engine light with fuel pressure codes",
+        "Rough idle"
+      ],
+      "affectedSystems": ["Fuel System", "Engine"],
+      "estimatedCost": { "low": 500, "high": 1200 },
+      "citations": [
+        {
+          "type": "tsb",
+          "title": "BMW SI B13 04 09",
+          "url": "https://www.nhtsa.gov/vehicle/2008/BMW/335I"
+        }
+      ],
+      "humanApproved": true,
+      "lastReviewedAt": "2024-01-28",
+      "reportCount": 987,
+      "status": "published"
+    },
+    {
+      "id": "vw-timing-chain-2008",
+      "vehicleMatch": {
+        "years": [2008, 2009, 2010, 2011, 2012, 2013, 2014],
+        "make": "Volkswagen",
+        "model": "Jetta",
+        "engines": ["2.0L TSI"]
+      },
+      "category": "engine",
+      "title": "Timing Chain Tensioner Failure",
+      "description": "The timing chain tensioner can fail, causing the chain to skip timing. VW updated the tensioner design in later production. A failed tensioner can lead to catastrophic engine damage if not addressed.",
+      "solution": "Replace timing chain, tensioner, and guides with updated parts (revision K or later tensioner). Check for stretched chain using VW diagnostic tool. Repair should include chain, tensioner, guides, and related seals. Cost is $1,500-3,000 depending on shop. Catch it early - a skipped chain can destroy the engine.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Rattling noise on cold start",
+        "Check engine light",
+        "Engine running rough",
+        "Noise from front of engine"
+      ],
+      "affectedSystems": ["Engine", "Timing"],
+      "estimatedCost": { "low": 1500, "high": 3000 },
+      "citations": [
+        {
+          "type": "tsb",
+          "title": "VW Technical Service Bulletin",
+          "url": "https://www.nhtsa.gov/vehicle/2012/VOLKSWAGEN/JETTA"
+        }
+      ],
+      "humanApproved": true,
+      "lastReviewedAt": "2024-02-08",
+      "reportCount": 1234,
+      "status": "published"
+    },
+    {
+      "id": "hyundai-theta2-engine",
+      "vehicleMatch": {
+        "years": [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
+        "make": "Hyundai",
+        "model": "Sonata",
+        "engines": ["2.0L Turbo", "2.4L"]
+      },
+      "category": "engine",
+      "title": "Theta II Engine Seizure/Failure",
+      "description": "The Theta II engine can seize due to metal debris blocking oil flow to connecting rod bearings. Hyundai issued recalls and extended warranties. Affected engines may need replacement.",
+      "solution": "Check VIN for active recalls - Hyundai provides free engine replacement for affected vehicles. Install the knock sensor detection system (KSDS) software update that monitors for bearing wear. Change oil every 5,000 miles. If engine fails and under warranty, replacement is free. Out of warranty replacement: $4,000-8,000.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Knocking noise from engine",
+        "Engine stalling",
+        "Check engine light",
+        "Loss of power",
+        "Engine seizure"
+      ],
+      "affectedSystems": ["Engine"],
+      "estimatedCost": { "low": 0, "high": 8000 },
+      "citations": [
+        {
+          "type": "recall",
+          "title": "NHTSA Recall 17V-224",
+          "url": "https://www.nhtsa.gov/vehicle/2015/HYUNDAI/SONATA"
+        }
+      ],
+      "humanApproved": true,
+      "lastReviewedAt": "2024-02-12",
+      "reportCount": 5632,
+      "status": "published"
+    },
+    {
+      "id": "mazda-cx5-carbon-buildup",
+      "vehicleMatch": {
+        "years": [2013, 2014, 2015, 2016, 2017, 2018, 2019],
+        "make": "Mazda",
+        "model": "CX-5",
+        "engines": ["2.5L Skyactiv"]
+      },
+      "category": "engine",
+      "title": "Carbon Buildup on Intake Valves",
+      "description": "Direct injection engines like the Skyactiv can develop carbon buildup on intake valves since fuel doesn't wash over them. This can cause rough idle and reduced performance. Walnut blasting is the common fix.",
+      "solution": "Have intake valves walnut blasted every 60,000-80,000 miles ($300-600). Use a quality intake cleaner like CRC GDI IVD Intake Valve Cleaner periodically. Consider adding a catch can to reduce oil vapor entering the intake. Use Top Tier gasoline for better detergent content.",
+      "severity": "low",
+      "confidence": "medium",
+      "symptoms": [
+        "Rough idle",
+        "Hesitation during acceleration",
+        "Reduced fuel economy",
+        "Check engine light for misfire codes"
+      ],
+      "affectedSystems": ["Engine", "Intake"],
+      "estimatedCost": { "low": 300, "high": 600 },
+      "citations": [
+        {
+          "type": "forum",
+          "title": "Mazda CX-5 Forum - Carbon Buildup Discussion",
+          "url": "https://www.mazdaforum.com/threads/carbon-buildup.123456/"
+        }
+      ],
+      "humanApproved": true,
+      "lastReviewedAt": "2024-01-30",
+      "reportCount": 456,
+      "status": "published"
+    }
+  ]
+}

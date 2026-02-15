@@ -10,6 +10,18 @@ export const citationSchema = z.object({
 });
 
 /**
+ * Community recommendation for parts/fixes
+ */
+export const communityRecommendationSchema = z.object({
+  type: z.enum(['part', 'tip', 'warning']),
+  content: z.string(),
+  partName: z.string().optional(),
+  partBrand: z.string().optional(),
+  partNumber: z.string().optional(),
+  upvotes: z.number().default(0),
+});
+
+/**
  * Vehicle matching criteria
  */
 export const vehicleMatchSchema = z.object({
@@ -55,6 +67,7 @@ export const knownIssueSchema = z.object({
     high: z.number(),
   }).optional(),
   citations: z.array(citationSchema),
+  communityRecommendations: z.array(communityRecommendationSchema).optional(),
   humanApproved: z.boolean(),
   lastReviewedAt: z.string(),
   reportCount: z.number(),
@@ -94,6 +107,7 @@ export const symptomCaptureSchema = z.object({
 
 // TypeScript types
 export type Citation = z.infer<typeof citationSchema>;
+export type CommunityRecommendation = z.infer<typeof communityRecommendationSchema>;
 export type VehicleMatch = z.infer<typeof vehicleMatchSchema>;
 export type IssueCategory = z.infer<typeof issueCategorySchema>;
 export type KnownIssue = z.infer<typeof knownIssueSchema>;
