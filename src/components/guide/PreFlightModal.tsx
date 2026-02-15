@@ -165,7 +165,7 @@ function PartCard({ part, vehicle }: { part: Part; vehicle: { year: number; make
         <div className="flex-1 min-w-0">
           <h4 className="font-medium text-gray-900">{part.name}</h4>
           {displayPartNum && (
-            <p className="text-sm text-blue-600 font-mono mt-1">#{displayPartNum}</p>
+            <p className="text-sm text-blue-600 font-mono mt-1">Part #: {displayPartNum}</p>
           )}
           <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-sm">
             {part.oemPrice && (

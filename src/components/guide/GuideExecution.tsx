@@ -981,7 +981,7 @@ export function GuideExecution({
                       <ScrollReveal key={part.id} delay={150 + index * 50} duration={500}>
                         <PreFlightItem
                           name={part.name}
-                          detail={part.partNumber ? `#${part.partNumber}` : undefined}
+                          detail={part.partNumber ? `Part #: ${part.partNumber}` : undefined}
                           isChecked={checkedParts.has(part.id)}
                           onToggle={() => togglePartChecked(part.id)}
                           searchUrls={getPartSearchUrls(part, guide.vehicle)}
