@@ -30,11 +30,16 @@ function getGuideSystemPrompt(
   vehicle: { year: number; make: string; model: string; trim: string },
   diagnosis: { title: string; description?: string }
 ) {
-  return `You are an expert automotive repair guide writer with deep knowledge of OEM part numbers. Generate a detailed, step-by-step repair guide for the following:
+  // Trim description to avoid overly long prompts that slow down generation
+  const trimmedDescription = diagnosis.description
+    ? diagnosis.description.slice(0, 300)
+    : '';
+
+  return `You are an expert automotive repair guide writer. Generate a concise, step-by-step repair guide.
 
 Vehicle: ${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}
-Diagnosis: ${diagnosis.title}
-${diagnosis.description ? `Description: ${diagnosis.description}` : ''}
+Issue: ${diagnosis.title}
+${trimmedDescription ? `Context: ${trimmedDescription}` : ''}
 
 Create a comprehensive repair guide in the following JSON format. Be SPECIFIC to this exact vehicle.
 
@@ -90,7 +95,7 @@ General Guidelines:
 - Be specific about bolt sizes, torque specs when applicable
 - Consider the skill level indicated by the difficulty rating
 - For "requires-mechanic" repairs, explain why professional help is needed
-- Include 5-15 steps depending on complexity
+- Include 5-10 steps (be concise, not exhaustive)
 
 Return ONLY valid JSON, no additional text.`;
 }
@@ -113,12 +118,12 @@ async function callOpenAI(
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'gpt-5.2',
+        model: 'gpt-4o',
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: 'Generate the repair guide now.' },
         ],
-        max_completion_tokens: 4000,
+        max_completion_tokens: 3000,
         temperature: 0.3,
         response_format: { type: 'json_object' },
       }),
