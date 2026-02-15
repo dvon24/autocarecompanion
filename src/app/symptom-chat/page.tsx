@@ -150,24 +150,6 @@ function SymptomChatContent() {
     await generateGuide(selectedVehicle, taskDiagnosis);
   };
 
-  // Handle known issue - generates guide directly (skips chat)
-  const handleKnownIssue = async (issue: KnownIssue) => {
-    if (!selectedVehicle || isGenerating) return;
-
-    // Create a diagnosis from the known issue
-    const issueDiagnosis = {
-      id: `issue_${issue.id}_${Date.now()}`,
-      title: issue.title,
-      description: issue.description,
-      confidence: issue.confidence,
-      possibleCauses: issue.symptoms, // symptoms are already strings
-      recommendedAction: issue.solution,
-    };
-
-    // Generate guide directly
-    await generateGuide(selectedVehicle, issueDiagnosis);
-  };
-
   // Show loading state while checking vehicle
   if (!isVehicleSelected || !selectedVehicle) {
     return (
@@ -301,15 +283,17 @@ function SymptomChatContent() {
                       {expandedSections.has('known-issues') && (
                         <div className="px-4 pb-4">
                           <p className="text-sm text-amber-700 mb-3">
-                            Get a repair guide for any known issue:
+                            Tap an issue to discuss it:
                           </p>
                           <div className="space-y-2">
                             {acknowledgedIssues.slice(0, 5).map((issue) => (
-                              <div
+                              <button
                                 key={issue.id}
-                                className="w-full p-3 bg-white rounded-lg border border-amber-200"
+                                type="button"
+                                onClick={() => setCurrentMessage(`I'd like help with: ${issue.title}`)}
+                                className="w-full p-3 bg-white rounded-lg border border-amber-200 hover:border-amber-300 hover:bg-amber-50/50 transition-colors text-left"
                               >
-                                <div className="flex items-start gap-2 mb-2">
+                                <div className="flex items-start gap-2">
                                   <span className={`flex-shrink-0 px-1.5 py-0.5 text-xs font-medium rounded ${
                                     issue.severity === 'high'
                                       ? 'bg-red-100 text-red-700'
@@ -321,31 +305,7 @@ function SymptomChatContent() {
                                   </span>
                                   <span className="text-sm text-gray-900 font-medium">{issue.title}</span>
                                 </div>
-                                <div className="flex gap-2">
-                                  <button
-                                    type="button"
-                                    onClick={() => handleKnownIssue(issue)}
-                                    disabled={isGenerating}
-                                    className={`flex-1 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-1.5 ${
-                                      isGenerating
-                                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                                        : 'bg-blue-600 text-white hover:bg-blue-700'
-                                    }`}
-                                  >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                                    </svg>
-                                    Get Guide
-                                  </button>
-                                  <button
-                                    type="button"
-                                    onClick={() => setCurrentMessage(`I'd like help with: ${issue.title}`)}
-                                    className="px-3 py-1.5 text-sm text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
-                                  >
-                                    Discuss
-                                  </button>
-                                </div>
-                              </div>
+                              </button>
                             ))}
                           </div>
                           {acknowledgedIssues.length > 5 && (
