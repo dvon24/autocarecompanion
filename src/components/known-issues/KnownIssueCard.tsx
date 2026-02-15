@@ -114,15 +114,16 @@ export function KnownIssueCard({ issue }: KnownIssueCardProps) {
             <p className="text-sm text-green-700 leading-relaxed">{issue.solution}</p>
           </div>
 
-          {/* Community Recommendations */}
+          {/* Common Fixes & Upgrades */}
           {issue.communityRecommendations && issue.communityRecommendations.length > 0 && (
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <h4 className="text-sm font-medium text-blue-800 mb-2 flex items-center gap-2">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                  <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
                 </svg>
-                Community Tips
+                Common Fixes & Upgrades
               </h4>
+              <p className="text-xs text-blue-600 mb-2">Based on common solutions for this issue</p>
               <ul className="space-y-2">
                 {issue.communityRecommendations.map((rec, index) => (
                   <li key={index} className="text-sm text-blue-700 flex items-start gap-2">
@@ -131,15 +132,19 @@ export function KnownIssueCard({ issue }: KnownIssueCardProps) {
                       rec.type === 'warning' ? 'bg-red-100 text-red-700' :
                       'bg-blue-100 text-blue-700'
                     }`}>
-                      {rec.type === 'part' ? 'Part' : rec.type === 'warning' ? 'Note' : 'Tip'}
+                      {rec.type === 'part' ? 'Upgrade' : rec.type === 'warning' ? 'Note' : 'Tip'}
                     </span>
                     <span>
                       {rec.content}
                       {rec.partBrand && rec.partNumber && (
-                        <span className="font-medium"> ({rec.partBrand} #{rec.partNumber})</span>
-                      )}
-                      {rec.upvotes > 0 && (
-                        <span className="ml-2 text-xs text-blue-500">+{rec.upvotes} helpful</span>
+                        <a
+                          href={`https://www.google.com/search?q=${encodeURIComponent(rec.partBrand + ' ' + (rec.partNumber || rec.partName || ''))}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-medium text-purple-600 hover:underline"
+                        >
+                          {' '}({rec.partBrand} {rec.partNumber ? `#${rec.partNumber}` : rec.partName})
+                        </a>
                       )}
                     </span>
                   </li>
@@ -158,38 +163,54 @@ export function KnownIssueCard({ issue }: KnownIssueCardProps) {
             </div>
           )}
 
-          {/* Citations */}
-          {issue.citations.length > 0 && (
-            <div>
-              <h4 className="text-sm font-medium text-gray-900 mb-2">Sources</h4>
-              <div className="space-y-1">
-                {issue.citations.map((citation, index) => (
-                  <div key={index} className="flex items-center gap-2 text-sm">
-                    <span className={`px-1.5 py-0.5 rounded text-xs font-medium uppercase ${
-                      citation.type === 'recall' ? 'bg-red-100 text-red-700' :
-                      citation.type === 'tsb' ? 'bg-blue-100 text-blue-700' :
-                      citation.type === 'manual' ? 'bg-green-100 text-green-700' :
-                      'bg-gray-100 text-gray-600'
-                    }`}>
-                      {citation.type}
-                    </span>
-                    {citation.url ? (
-                      <a
-                        href={citation.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:underline truncate"
-                      >
-                        {citation.title}
-                      </a>
-                    ) : (
-                      <span className="text-gray-700">{citation.title}</span>
-                    )}
-                  </div>
-                ))}
+          {/* Citations & Search */}
+          <div>
+            <h4 className="text-sm font-medium text-gray-900 mb-2">Research This Issue</h4>
+            <div className="space-y-1">
+              {/* Google search link - always show */}
+              <div className="flex items-center gap-2 text-sm">
+                <span className="px-1.5 py-0.5 rounded text-xs font-medium uppercase bg-gray-100 text-gray-600">
+                  search
+                </span>
+                <a
+                  href={`https://www.google.com/search?q=${encodeURIComponent(issue.title + ' ' + issue.vehicleMatch.make + ' ' + issue.vehicleMatch.model)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  Search Google for more info
+                </a>
+              </div>
+              {/* Forum search */}
+              <div className="flex items-center gap-2 text-sm">
+                <span className="px-1.5 py-0.5 rounded text-xs font-medium uppercase bg-gray-100 text-gray-600">
+                  forums
+                </span>
+                <a
+                  href={`https://www.google.com/search?q=${encodeURIComponent(issue.title + ' ' + issue.vehicleMatch.make + ' ' + issue.vehicleMatch.model + ' forum')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  Search owner forums
+                </a>
+              </div>
+              {/* NHTSA complaints search */}
+              <div className="flex items-center gap-2 text-sm">
+                <span className="px-1.5 py-0.5 rounded text-xs font-medium uppercase bg-red-100 text-red-700">
+                  nhtsa
+                </span>
+                <a
+                  href={`https://www.nhtsa.gov/vehicle/${issue.vehicleMatch.years[0]}/${issue.vehicleMatch.make.toUpperCase()}/${issue.vehicleMatch.model.toUpperCase()}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  Check NHTSA complaints & recalls
+                </a>
               </div>
             </div>
-          )}
+          </div>
 
           {/* Trust indicators */}
           <div className="pt-2 border-t border-gray-100">
