@@ -60,11 +60,11 @@ Create a comprehensive repair guide in the following JSON format. Be SPECIFIC to
   ],
   "parts": [
     {
-      "name": "Part name (specific to vehicle)",
-      "partNumber": "JUST the part number, nothing else (e.g., 'FL-500S' or '04152-YZZA1' - NO extra text, descriptions, or notes in this field)",
-      "oemPrice": "$X-$Y",
-      "aftermarketPrice": "$X-$Y",
-      "notes": "Compatibility notes, alternate brands"
+      "name": "Part name/type (e.g., 'Radiator', 'Oil Filter', 'Brake Pads')",
+      "partNumber": null,
+      "oemPrice": "$X-$Y (estimated range)",
+      "aftermarketPrice": "$X-$Y (estimated range)",
+      "notes": "What to look for when shopping (size, specs, popular brands)"
     }
   ],
   "steps": [
@@ -83,10 +83,10 @@ Create a comprehensive repair guide in the following JSON format. Be SPECIFIC to
 }
 
 CRITICAL GUIDELINES FOR PARTS:
-- partNumber field must contain ONLY the part number itself (e.g., "FL-500S", "04152-YZZA1", "15400-PLM-A02")
-- NO descriptions, notes, or extra text in the partNumber field - put those in the "notes" field
-- ALWAYS include real OEM part numbers when known
-- Be specific to the exact year/make/model/trim - part numbers vary by engine and trim level
+- DO NOT include specific part numbers - they vary too much by VIN/production date
+- Set partNumber to null for all parts
+- In "notes", include helpful shopping info: specs to look for, popular aftermarket brands, what size/type fits this vehicle
+- Price ranges should be rough estimates
 
 General Guidelines:
 - Write clear, concise instructions a DIY mechanic can follow
