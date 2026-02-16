@@ -14,6 +14,7 @@ import { useOBDCodes } from '@/hooks/useOBDCodes';
 import { useGuide } from '@/hooks/useGuide';
 import { OBDCodeInput } from '@/components/discovery/OBDCodeInput';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
+import { CommunityResourcesFallback } from '@/components/chat/CommunityResourcesFallback';
 
 /**
  * Symptom Chat Page - AI Symptom Diagnosis Interface
@@ -160,29 +161,9 @@ function SymptomChatContent() {
   }
 
   return (
-    <main className="h-screen bg-white flex flex-col overflow-hidden relative">
-      {/* Gradient blobs - subtle blue accents */}
-      <div
-        className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%)',
-          filter: 'blur(80px)',
-          transform: 'translate(30%, -40%)',
-          zIndex: 1,
-        }}
-      />
-      <div
-        className="absolute bottom-0 left-0 w-[400px] h-[400px] pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%)',
-          filter: 'blur(80px)',
-          transform: 'translate(-40%, 30%)',
-          zIndex: 1,
-        }}
-      />
-
-      {/* Header */}
-      <header className="flex-shrink-0 border-b border-gray-100 bg-white/80 backdrop-blur-sm relative z-10">
+    <main className="min-h-screen bg-white flex flex-col">
+      {/* Header - Fixed at top */}
+      <header className="fixed top-0 left-0 right-0 border-b border-gray-100 bg-white z-50">
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link
@@ -218,7 +199,12 @@ function SymptomChatContent() {
           {messages.length > 0 && (
             <button
               type="button"
-              onClick={clearChat}
+              onClick={() => {
+                clearChat();
+                clearGuide();
+                setAcknowledgedIssues([]);
+                sessionStorage.removeItem('acknowledgedKnownIssues');
+              }}
               className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
             >
               New chat
@@ -227,10 +213,10 @@ function SymptomChatContent() {
         </div>
       </header>
 
-      {/* Chat Messages */}
+      {/* Chat Messages - with padding for fixed header and input */}
       <div
         ref={scrollContainerRef}
-        className="flex-1 overflow-y-auto relative z-10"
+        className="flex-1 overflow-y-auto pt-16 pb-24"
       >
         <div className="max-w-3xl mx-auto px-4 py-6">
           {/* Welcome Message */}
@@ -428,25 +414,18 @@ function SymptomChatContent() {
                     </div>
                   )}
 
-                  {/* Guide Generation Error */}
-                  {guideError && !isGenerating && (
-                    <div className="mt-4 p-4 bg-red-50 rounded-xl border border-red-100">
-                      <div className="flex items-start gap-3">
-                        <svg className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                        </svg>
-                        <div>
-                          <p className="text-red-700 font-medium">Guide generation failed</p>
-                          <p className="text-red-600 text-sm mt-1">{guideError}</p>
-                          <button
-                            type="button"
-                            onClick={clearGuide}
-                            className="mt-2 text-sm text-red-700 hover:text-red-800 underline"
-                          >
-                            Dismiss
-                          </button>
-                        </div>
-                      </div>
+                  {/* Guide Generation Error - Show Community Resources Fallback */}
+                  {guideError && !isGenerating && selectedVehicle && (
+                    <div className="mt-4">
+                      <CommunityResourcesFallback
+                        vehicle={{
+                          year: selectedVehicle.year,
+                          make: selectedVehicle.make,
+                          model: selectedVehicle.model,
+                        }}
+                        problem={typeof diagnosis === 'string' ? diagnosis : (diagnosis?.title || 'repair issue')}
+                        onDismiss={clearGuide}
+                      />
                     </div>
                   )}
 
@@ -545,9 +524,17 @@ function SymptomChatContent() {
                 onSelectAlternative={selectAlternative}
                 isGeneratingGuide={isGenerating}
               />
-              {guideError && (
-                <div className="mt-3 p-3 bg-red-50 rounded-lg">
-                  <p className="text-red-700 text-sm">{guideError}</p>
+              {guideError && selectedVehicle && (
+                <div className="mt-4">
+                  <CommunityResourcesFallback
+                    vehicle={{
+                      year: selectedVehicle.year,
+                      make: selectedVehicle.make,
+                      model: selectedVehicle.model,
+                    }}
+                    problem={typeof diagnosis === 'string' ? diagnosis : (diagnosis?.title || 'repair issue')}
+                    onDismiss={clearGuide}
+                  />
                 </div>
               )}
             </div>
@@ -559,7 +546,7 @@ function SymptomChatContent() {
       </div>
 
       {/* Input Area - Fixed at bottom */}
-      <div className="flex-shrink-0 border-t border-gray-100 bg-white">
+      <div className="fixed bottom-0 left-0 right-0 border-t border-gray-100 bg-white z-50">
         <div className="max-w-3xl mx-auto px-4 py-4">
           <ChatInput
             value={currentMessage}

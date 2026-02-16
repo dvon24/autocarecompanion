@@ -11,6 +11,7 @@ import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 const categoryConfig: Record<IssueCategory, { label: string; icon: string }> = {
   engine: { label: 'Engine', icon: '⚙️' },
   transmission: { label: 'Transmission', icon: '🔄' },
+  drivetrain: { label: 'Drivetrain', icon: '🔗' },
   electrical: { label: 'Electrical', icon: '⚡' },
   brakes: { label: 'Brakes', icon: '🛑' },
   suspension: { label: 'Suspension', icon: '🔧' },

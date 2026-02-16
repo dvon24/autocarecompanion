@@ -38,6 +38,7 @@ export const vehicleMatchSchema = z.object({
 export const issueCategorySchema = z.enum([
   'engine',
   'transmission',
+  'drivetrain',
   'electrical',
   'brakes',
   'suspension',
