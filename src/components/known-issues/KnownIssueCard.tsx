@@ -50,6 +50,10 @@ export function KnownIssueCard({ issue }: KnownIssueCardProps) {
 
   const config = severityConfig[issue.severity];
 
+  // Determine if this is a highly community-reported issue (50+ reports)
+  const isCommunityReported = issue.reportCount >= 50;
+  const hasPartRecommendations = issue.communityRecommendations?.some(rec => rec.type === 'part');
+
   const handleToggle = () => {
     triggerHaptic('light');
     setExpanded(!expanded);
@@ -57,6 +61,21 @@ export function KnownIssueCard({ issue }: KnownIssueCardProps) {
 
   return (
     <div className={`border rounded-lg overflow-hidden transition-all ${config.borderColor}`}>
+      {/* Community Reported Banner - shows for highly reported issues */}
+      {isCommunityReported && (
+        <div className="px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+            </svg>
+            <span className="text-white text-xs font-semibold">Community Reported</span>
+          </div>
+          <span className="text-white/90 text-xs">
+            {issue.reportCount.toLocaleString()} owners
+          </span>
+        </div>
+      )}
+
       {/* Header - always visible */}
       <button
         type="button"
@@ -65,10 +84,15 @@ export function KnownIssueCard({ issue }: KnownIssueCardProps) {
       >
         {config.icon}
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex items-center gap-2 mb-1 flex-wrap">
             <span className={`text-xs font-medium px-2 py-0.5 rounded ${config.bgColor} ${config.textColor}`}>
               {config.label}
             </span>
+            {hasPartRecommendations && (
+              <span className="text-xs font-medium px-2 py-0.5 rounded bg-purple-100 text-purple-700">
+                Upgrades Available
+              </span>
+            )}
           </div>
           <h3 className={`font-medium ${config.textColor}`}>{issue.title}</h3>
         </div>
@@ -116,14 +140,16 @@ export function KnownIssueCard({ issue }: KnownIssueCardProps) {
 
           {/* Common Fixes & Upgrades */}
           {issue.communityRecommendations && issue.communityRecommendations.length > 0 && (
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-              <h4 className="text-sm font-medium text-blue-800 mb-2 flex items-center gap-2">
+            <div className={`rounded-lg p-3 ${hasPartRecommendations ? 'bg-purple-50 border border-purple-200' : 'bg-blue-50 border border-blue-200'}`}>
+              <h4 className={`text-sm font-medium mb-2 flex items-center gap-2 ${hasPartRecommendations ? 'text-purple-800' : 'text-blue-800'}`}>
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
                 </svg>
-                Common Fixes & Upgrades
+                What Owners Are Using
               </h4>
-              <p className="text-xs text-blue-600 mb-2">Based on common solutions for this issue</p>
+              <p className={`text-xs mb-2 ${hasPartRecommendations ? 'text-purple-600' : 'text-blue-600'}`}>
+                Parts and tips from {issue.reportCount.toLocaleString()}+ owners who fixed this issue
+              </p>
               <ul className="space-y-2">
                 {issue.communityRecommendations.map((rec, index) => (
                   <li key={index} className="text-sm text-blue-700 flex items-start gap-2">
