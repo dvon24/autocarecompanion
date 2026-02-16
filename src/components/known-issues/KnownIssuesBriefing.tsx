@@ -25,9 +25,15 @@ interface CategorySectionProps {
   category: IssueCategory;
   issues: KnownIssue[];
   defaultExpanded?: boolean;
+  vehicleInfo?: {
+    year: number;
+    make: string;
+    model: string;
+    trim?: string;
+  };
 }
 
-function CategorySection({ category, issues, defaultExpanded = false }: CategorySectionProps) {
+function CategorySection({ category, issues, defaultExpanded = false, vehicleInfo }: CategorySectionProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
   const config = categoryConfig[category];
   const highCount = issues.filter(i => i.severity === 'high').length;
@@ -64,7 +70,7 @@ function CategorySection({ category, issues, defaultExpanded = false }: Category
       {expanded && (
         <div className="p-3 space-y-2 bg-white">
           {issues.map(issue => (
-            <KnownIssueCard key={issue.id} issue={issue} />
+            <KnownIssueCard key={issue.id} issue={issue} vehicleInfo={vehicleInfo} />
           ))}
         </div>
       )}
@@ -245,6 +251,7 @@ export function KnownIssuesBriefing({
               category={category}
               issues={catIssues}
               defaultExpanded={index === 0}
+              vehicleInfo={vehicle}
             />
           ))}
         </div>
