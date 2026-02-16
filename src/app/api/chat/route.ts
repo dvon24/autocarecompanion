@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import crypto from 'crypto';
 import {
   ChatRequestSchema,
   createChatMessage,
@@ -15,6 +16,8 @@ import type { OBDCodeEntry } from '@/schemas/obd.schema';
  *
  * Uses OpenAI API (configurable to Anthropic).
  * Falls back to mock responses when API key not configured.
+ *
+ * Story 4.5: Includes passive symptom capture for pattern analysis.
  */
 
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
@@ -340,6 +343,98 @@ Can you tell me:
   };
 }
 
+/**
+ * Common automotive symptom keywords for extraction
+ */
+const SYMPTOM_KEYWORDS = [
+  // Sounds
+  'squealing', 'squeaking', 'grinding', 'clicking', 'knocking', 'rattling',
+  'humming', 'buzzing', 'whining', 'hissing', 'ticking', 'clunking', 'popping',
+  // Visual
+  'smoke', 'leak', 'leaking', 'fluid', 'oil', 'coolant', 'steam', 'rust',
+  // Performance
+  'stalling', 'hesitation', 'rough idle', 'misfiring', 'overheating', 'vibration',
+  'shaking', 'pulling', 'drifting', 'hard start', 'won\'t start', 'dead battery',
+  // Brakes
+  'brake', 'braking', 'pedal soft', 'pedal hard', 'abs light',
+  // Transmission
+  'shifting', 'slipping', 'jerking', 'transmission', 'clutch',
+  // Engine
+  'engine light', 'check engine', 'power loss', 'acceleration', 'throttle',
+  // Electrical
+  'lights flickering', 'electrical', 'dashboard', 'warning light',
+  // Climate
+  'ac not working', 'heat not working', 'blower', 'defrost',
+  // Steering
+  'steering', 'power steering', 'alignment',
+];
+
+/**
+ * Extract symptom keywords from user message
+ */
+function extractSymptoms(message: string): string[] {
+  const lowerMessage = message.toLowerCase();
+  const found: string[] = [];
+
+  for (const keyword of SYMPTOM_KEYWORDS) {
+    if (lowerMessage.includes(keyword.toLowerCase())) {
+      found.push(keyword);
+    }
+  }
+
+  return found;
+}
+
+/**
+ * Generate anonymous session hash
+ */
+function generateSessionHash(): string {
+  return crypto.createHash('sha256')
+    .update(`${Date.now()}-${Math.random()}`)
+    .digest('hex')
+    .substring(0, 12);
+}
+
+/**
+ * Capture symptom data anonymously for pattern analysis
+ * Non-blocking - fires and forgets
+ *
+ * Story 4.5: Passive Symptom Capture
+ */
+function captureSymptoms(data: {
+  vehicle: { year: number; make: string; model: string; trim: string };
+  message: string;
+  obdCodes?: OBDCodeEntry[];
+  diagnosis?: Diagnosis | null;
+  sessionHash: string;
+}): void {
+  // Extract symptom keywords
+  const symptoms = extractSymptoms(data.message);
+
+  // Only capture if there's meaningful data
+  if (symptoms.length === 0 && !data.obdCodes?.length && !data.diagnosis) {
+    return;
+  }
+
+  const capture = {
+    timestamp: new Date().toISOString(),
+    sessionHash: data.sessionHash,
+    vehicle: {
+      year: data.vehicle.year,
+      make: data.vehicle.make,
+      model: data.vehicle.model,
+      trim: data.vehicle.trim,
+    },
+    symptoms,
+    obdCodes: data.obdCodes?.map(c => c.code) || [],
+    diagnosisTitle: data.diagnosis?.title || null,
+    diagnosisConfidence: data.diagnosis?.confidence || null,
+  };
+
+  // Log capture (in production, this would go to analytics/database)
+  console.log('[Symptom Capture]', JSON.stringify(capture));
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Parse and validate request
@@ -391,6 +486,17 @@ export async function POST(request: NextRequest) {
 
     // Create response message
     const assistantMessage: ChatMessage = createChatMessage('assistant', responseContent);
+
+    // Passive symptom capture (non-blocking)
+    // Story 4.5: Capture symptoms for pattern analysis
+    const sessionHash = generateSessionHash();
+    captureSymptoms({
+      vehicle,
+      message,
+      obdCodes,
+      diagnosis,
+      sessionHash,
+    });
 
     return NextResponse.json({
       message: assistantMessage,
