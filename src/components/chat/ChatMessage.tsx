@@ -51,6 +51,28 @@ export function ChatMessage({ message }: ChatMessageProps) {
 }
 
 /**
+ * Strip markdown formatting from text
+ */
+function stripMarkdown(text: string): string {
+  return text
+    // Remove headers (# ## ### etc)
+    .replace(/^#{1,6}\s+/gm, '')
+    // Remove bold/italic markers but keep the text
+    .replace(/\*\*\*(.+?)\*\*\*/g, '$1')
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/\*(.+?)\*/g, '$1')
+    .replace(/___(.+?)___/g, '$1')
+    .replace(/__(.+?)__/g, '$1')
+    .replace(/_(.+?)_/g, '$1')
+    // Remove inline code backticks
+    .replace(/`([^`]+)`/g, '$1')
+    // Clean up any remaining standalone asterisks at line starts (bullet points)
+    .replace(/^\*\s+/gm, '• ')
+    // Clean up hyphen bullet points
+    .replace(/^-\s+/gm, '• ');
+}
+
+/**
  * Format message content for display
  */
 function formatMessageContent(content: string): React.ReactNode {
@@ -59,10 +81,11 @@ function formatMessageContent(content: string): React.ReactNode {
     return formatDiagnosisMessage(content);
   }
 
-  // Regular message - render with line breaks
+  // Regular message - strip markdown and render with line breaks
+  const cleanedContent = stripMarkdown(content);
   return (
     <div className="whitespace-pre-wrap">
-      {content}
+      {cleanedContent}
     </div>
   );
 }
