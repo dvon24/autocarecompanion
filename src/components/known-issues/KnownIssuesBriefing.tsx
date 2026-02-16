@@ -96,6 +96,7 @@ export function KnownIssuesBriefing({
 }: KnownIssuesBriefingProps) {
   const {
     issues,
+    allIssues,
     loading,
     error,
     severityFilter,
@@ -177,8 +178,8 @@ export function KnownIssuesBriefing({
     );
   }
 
-  // No issues found
-  if (issues.length === 0) {
+  // No issues found for this vehicle at all
+  if (allIssues.length === 0) {
     return (
       <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
         <div className="bg-white rounded-xl max-w-lg w-full p-6">
@@ -245,15 +246,22 @@ export function KnownIssuesBriefing({
 
         {/* Issues list - grouped by category */}
         <div className="flex-1 overflow-y-auto p-6 space-y-3">
-          {groupedIssues.map(({ category, issues: catIssues }, index) => (
-            <CategorySection
-              key={category}
-              category={category}
-              issues={catIssues}
-              defaultExpanded={index === 0}
-              vehicleInfo={vehicle}
-            />
-          ))}
+          {groupedIssues.length === 0 && issues.length === 0 ? (
+            <div className="text-center py-8 text-gray-500">
+              <p>No issues match your selected filters.</p>
+              <p className="text-sm mt-1">Try selecting different severity levels above.</p>
+            </div>
+          ) : (
+            groupedIssues.map(({ category, issues: catIssues }, index) => (
+              <CategorySection
+                key={category}
+                category={category}
+                issues={catIssues}
+                defaultExpanded={index === 0}
+                vehicleInfo={vehicle}
+              />
+            ))
+          )}
         </div>
 
         {/* Footer */}

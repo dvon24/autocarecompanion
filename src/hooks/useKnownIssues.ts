@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 
 interface UseKnownIssuesParams {
@@ -12,6 +12,7 @@ interface UseKnownIssuesParams {
 
 interface UseKnownIssuesResult {
   issues: KnownIssue[];
+  allIssues: KnownIssue[];
   loading: boolean;
   error: string | null;
   total: number;
@@ -26,16 +27,16 @@ export function useKnownIssues({
   model,
   trim,
 }: UseKnownIssuesParams): UseKnownIssuesResult {
-  const [issues, setIssues] = useState<KnownIssue[]>([]);
+  const [allIssues, setAllIssues] = useState<KnownIssue[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [total, setTotal] = useState(0);
   const [severityFilter, setSeverityFilter] = useState<('high' | 'medium' | 'low')[]>([
     'high',
     'medium',
     'low',
   ]);
 
+  // Fetch all issues once (no severity filter in API call)
   const fetchIssues = useCallback(async () => {
     if (!year || !make || !model) return;
 
@@ -48,7 +49,6 @@ export function useKnownIssues({
         make,
         model,
         ...(trim && { trim }),
-        severity: severityFilter.join(','),
       });
 
       const response = await fetch(`/api/known-issues?${params}`);
@@ -58,26 +58,30 @@ export function useKnownIssues({
         throw new Error(data.error || 'Failed to fetch known issues');
       }
 
-      setIssues(data.issues);
-      setTotal(data.total);
+      setAllIssues(data.issues);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
-      setIssues([]);
-      setTotal(0);
+      setAllIssues([]);
     } finally {
       setLoading(false);
     }
-  }, [year, make, model, trim, severityFilter]);
+  }, [year, make, model, trim]);
 
   useEffect(() => {
     fetchIssues();
   }, [fetchIssues]);
 
+  // Filter issues client-side based on severity
+  const issues = useMemo(() => {
+    return allIssues.filter(issue => severityFilter.includes(issue.severity));
+  }, [allIssues, severityFilter]);
+
   return {
     issues,
+    allIssues,
     loading,
     error,
-    total,
+    total: allIssues.length,
     severityFilter,
     setSeverityFilter,
     refetch: fetchIssues,
