@@ -2,12 +2,27 @@
 
 import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { type Guide, type Part, type Tool } from '@/schemas/guide.schema';
+
+// Dynamically import 3D component to avoid SSR issues
+const RepairVisualizer = dynamic(
+  () => import('@/components/3d/RepairVisualizer').then(mod => mod.RepairVisualizer),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full aspect-[16/9] bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl animate-pulse flex items-center justify-center">
+        <div className="text-gray-500 text-sm">Loading 3D view...</div>
+      </div>
+    ),
+  }
+);
 import { useGuideProgress } from '@/hooks/useGuideProgress';
 import { useGuideCache } from '@/hooks/useGuideCache';
 import { trackEvent } from '@/components/analytics/GoogleAnalytics';
 import { OfflineBadge } from '@/components/offline/OfflineIndicator';
 import { CacheStatusBadge } from '@/components/offline/CacheStatusBadge';
+import { OfflineFeatureGuard } from '@/components/offline/OfflineFeatureGuard';
 import { InlineHelpChat } from '@/components/guide/InlineHelpChat';
 import { AnimatedBackground } from '@/components/ui/AnimatedBackground';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
@@ -966,6 +981,18 @@ export function GuideExecution({
                 </div>
               </div>
             </ScrollReveal>
+
+            {/* 3D Repair Location Visualizer */}
+            <ScrollReveal delay={200} duration={600}>
+              <div className="mt-6">
+                <RepairVisualizer
+                  guideTitle={guide.title}
+                  bodyType="sedan"
+                  color="#374151"
+                  showLabel={true}
+                />
+              </div>
+            </ScrollReveal>
           </div>
         </div>
 
@@ -1298,16 +1325,22 @@ export function GuideExecution({
                           </div>
                         )}
 
-                        {/* Inline Help Chat */}
+                        {/* Inline Help Chat - Disabled when offline (Story 2.5) */}
                         <div className="mt-5 pt-5 border-t border-gray-100">
-                          <InlineHelpChat
-                            guideTitle={guide.title}
-                            stepNumber={step.number}
-                            stepInstruction={step.instruction}
-                            vehicle={guide.vehicle}
-                            toolsRequired={guide.tools?.map(t => t.name)}
-                            safetyWarnings={step.safetyWarnings?.map(w => w.message)}
-                          />
+                          <OfflineFeatureGuard
+                            featureName="AI Help"
+                            offlineAlternative="Review the tips above or check YouTube tutorials"
+                            showDisabled
+                          >
+                            <InlineHelpChat
+                              guideTitle={guide.title}
+                              stepNumber={step.number}
+                              stepInstruction={step.instruction}
+                              vehicle={guide.vehicle}
+                              toolsRequired={guide.tools?.map(t => t.name)}
+                              safetyWarnings={step.safetyWarnings?.map(w => w.message)}
+                            />
+                          </OfflineFeatureGuard>
                         </div>
                       </div>
                     )}
