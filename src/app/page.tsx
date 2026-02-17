@@ -59,6 +59,7 @@ export default function LandingPage() {
                 </span>
               </Link>
             </ScrollReveal>
+{/* My Garage button hidden until Epic 5 launch
             <ScrollReveal delay={100} duration={800} direction="down" distance={20}>
               <Link
                 href="/garage"
@@ -67,6 +68,7 @@ export default function LandingPage() {
                 My Garage
               </Link>
             </ScrollReveal>
+*/}
           </div>
         </header>
 
