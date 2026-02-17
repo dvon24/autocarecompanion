@@ -52,6 +52,8 @@ export default function TermsPage() {
               <li><strong>&quot;Affiliate Links&quot;</strong> means hyperlinks or referrals to third-party retailers and services, including but not limited to Amazon, AutoZone, RockAuto, O&apos;Reilly Auto Parts, Advance Auto Parts, and YouTube, for which we may receive compensation when you make purchases through such links.</li>
               <li><strong>&quot;Content&quot;</strong> means all text, images, data, software, graphics, audio, video, and other materials available through the Services, whether provided by us, you, or third parties.</li>
               <li><strong>&quot;User Data&quot;</strong> means any information, including personal information, vehicle details (VIN, year, make, model, mileage), or usage history, that you provide or that is collected in connection with your use of the Services.</li>
+              <li><strong>&quot;Subscription&quot;</strong> means the recurring paid membership that provides access to premium features of the Services, including but not limited to unlimited AI diagnoses, vehicle garage management, maintenance tracking, 3D visualization tools, and build showcase profiles.</li>
+              <li><strong>&quot;Payment Processor&quot;</strong> means Stripe, Inc., the third-party service provider that processes all payment transactions for the Services.</li>
             </ul>
           </section>
 
@@ -92,7 +94,54 @@ export default function TermsPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">5. User Conduct and Prohibited Activities</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">5. Subscription and Billing</h2>
+
+            <h3 className="text-lg font-medium text-gray-800 mb-2">5.1 Subscription Plans and Pricing</h3>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Access to premium features of the Services requires a paid Subscription. The current Subscription fee is $9.99 per month (USD), subject to change with reasonable notice. Premium features include, but are not limited to: unlimited AI symptom diagnoses, vehicle garage with mileage tracking, maintenance schedule and reminders, 3D car visualization, modification previews, and build showcase profiles.
+            </p>
+
+            <h3 className="text-lg font-medium text-gray-800 mb-2">5.2 Payment Processing</h3>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              All payment transactions are processed securely by Stripe, Inc. (&quot;Stripe&quot;), our third-party Payment Processor. By subscribing to the Services, you agree to Stripe&apos;s{' '}
+              <a href="https://stripe.com/legal/consumer" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Terms of Service</a>{' '}
+              and{' '}
+              <a href="https://stripe.com/privacy" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+              We do not store your complete credit card number, CVV, or other sensitive payment credentials on our servers. Such information is transmitted directly to and securely stored by Stripe in compliance with Payment Card Industry Data Security Standards (PCI-DSS).
+            </p>
+
+            <h3 className="text-lg font-medium text-gray-800 mb-2">5.3 Billing Cycle and Automatic Renewal</h3>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Subscriptions are billed on a monthly recurring basis. Your Subscription will automatically renew at the end of each billing period unless you cancel before the renewal date. The renewal charge will be processed using the payment method on file. You authorize us to charge your payment method on file for all applicable fees. If a payment fails, we may retry the charge or suspend your access to premium features until payment is successfully processed.
+            </p>
+
+            <h3 className="text-lg font-medium text-gray-800 mb-2">5.4 Cancellation</h3>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              You may cancel your Subscription at any time through your Account settings or by contacting us at{' '}
+              <a href="mailto:dvoninvestllc@yahoo.com" className="text-blue-600 hover:underline">dvoninvestllc@yahoo.com</a>.
+              Upon cancellation, your Subscription will remain active until the end of the current billing period, after which you will lose access to premium features. You will not be charged for subsequent billing periods following cancellation.
+            </p>
+
+            <h3 className="text-lg font-medium text-gray-800 mb-2">5.5 Refund Policy</h3>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Subscription fees are generally non-refundable. However, if you believe you are entitled to a refund due to technical issues, billing errors, or other extenuating circumstances, you may submit a refund request within seven (7) days of the charge by contacting us at{' '}
+              <a href="mailto:dvoninvestllc@yahoo.com" className="text-blue-600 hover:underline">dvoninvestllc@yahoo.com</a>.
+              Refund requests will be evaluated on a case-by-case basis at our sole discretion. Approved refunds will be processed to your original payment method within five to ten (5-10) business days.
+            </p>
+
+            <h3 className="text-lg font-medium text-gray-800 mb-2">5.6 Price Changes</h3>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              We reserve the right to modify Subscription pricing at any time. Any price changes will be communicated to you at least thirty (30) days in advance via email to the address associated with your Account. The new pricing will apply to your next billing cycle following the effective date of the change. If you do not agree with the price change, you may cancel your Subscription before the new pricing takes effect.
+            </p>
+
+            <h3 className="text-lg font-medium text-gray-800 mb-2">5.7 Free Trial (If Applicable)</h3>
+            <p className="text-gray-600 leading-relaxed">
+              We may offer free trial periods for new subscribers at our discretion. At the end of the trial period, your Subscription will automatically convert to a paid Subscription unless you cancel before the trial ends. Trial offers are subject to specific terms that will be communicated at the time of enrollment.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">6. User Conduct and Prohibited Activities</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               You agree to use the Services only for lawful purposes and in compliance with these Terms. Prohibited activities include, but are not limited to:
             </p>
@@ -111,21 +160,21 @@ export default function TermsPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">6. Intellectual Property Rights</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">7. Intellectual Property Rights</h2>
             <p className="text-gray-600 leading-relaxed">
               All Content, including but not limited to the AI algorithms, software, trademarks, logos, and designs associated with the Services, is owned by us or our licensors and protected by United States and international copyright, trademark, patent, and other intellectual property laws. You are granted a limited, non-exclusive, non-transferable, revocable license to access and use the Services for personal, non-commercial purposes only. Any unauthorized use, reproduction, or distribution of our intellectual property is strictly prohibited and may result in severe civil and criminal penalties.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">7. User-Generated Content</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">8. User-Generated Content</h2>
             <p className="text-gray-600 leading-relaxed">
               If you submit any Content to the Services (e.g., vehicle details, feedback), you grant us a worldwide, perpetual, irrevocable, royalty-free license to use, reproduce, modify, distribute, and display such Content in connection with the Services. You represent that you own or have rights to such Content and that it does not infringe third-party rights. We are not responsible for User-Generated Content and may remove it at our discretion.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">8. Third-Party Links and Affiliate Disclosure</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">9. Third-Party Links and Affiliate Disclosure</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               The Services contain links to third-party websites and retailers. These third-party sites have their own terms and privacy policies, and we are not responsible for their content, practices, or any transactions you conduct with them.
             </p>
@@ -138,7 +187,7 @@ export default function TermsPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">9. Disclaimers for AI Services</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">10. Disclaimers for AI Services</h2>
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
               <p className="text-gray-800 font-medium mb-2">IMPORTANT DISCLAIMER</p>
               <p className="text-gray-700 text-sm leading-relaxed">
@@ -151,49 +200,49 @@ export default function TermsPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">10. General Disclaimers</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">11. General Disclaimers</h2>
             <p className="text-gray-600 leading-relaxed">
               THE SERVICES ARE PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SERVICES WILL BE UNINTERRUPTED, ERROR-FREE, OR SECURE.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">11. Limitation of Liability</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">12. Limitation of Liability</h2>
             <p className="text-gray-600 leading-relaxed">
               TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOSS OF PROFITS, DATA, OR USE, ARISING FROM YOUR USE OF THE SERVICES, EVEN IF ADVISED OF THE POSSIBILITY THEREOF. THIS INCLUDES, WITHOUT LIMITATION, ANY DAMAGES ARISING FROM VEHICLE REPAIRS PERFORMED USING INFORMATION FROM THE SERVICES, PURCHASES MADE THROUGH AFFILIATE LINKS, OR RELIANCE ON AI-GENERATED CONTENT.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">12. Indemnification</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">13. Indemnification</h2>
             <p className="text-gray-600 leading-relaxed">
               You agree to indemnify, defend, and hold harmless the Company, its affiliates, officers, directors, employees, and agents from any claims, liabilities, damages, losses, or expenses (including reasonable attorneys&apos; fees) arising from your use of the Services, violation of these Terms, or infringement of third-party rights.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">13. Termination</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">14. Termination</h2>
             <p className="text-gray-600 leading-relaxed">
               We may terminate or suspend your access to the Services at any time, without notice or liability, for any reason, including breach of these Terms. Upon termination, your rights to use the Services cease, and you must destroy any downloaded Content. Sections that by their nature survive termination (e.g., disclaimers, liability limitations) shall remain in effect.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">14. Changes to Terms</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">15. Changes to Terms</h2>
             <p className="text-gray-600 leading-relaxed">
               We may modify these Terms at any time by posting the revised version on the Website. Your continued use of the Services after such changes constitutes acceptance. It is your responsibility to review these Terms periodically.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">15. Governing Law</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">16. Governing Law</h2>
             <p className="text-gray-600 leading-relaxed">
               These Terms shall be governed by and construed in accordance with the laws of the State of California, without regard to its conflict of laws principles. You consent to the exclusive jurisdiction and venue of the state and federal courts located in California for any disputes arising hereunder.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">16. Dispute Resolution</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">17. Dispute Resolution</h2>
 
             <h3 className="text-lg font-medium text-gray-800 mb-2">16.1 Informal Good-Faith Negotiation</h3>
             <p className="text-gray-600 leading-relaxed mb-4">
@@ -212,21 +261,21 @@ export default function TermsPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">17. Severability</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">18. Severability</h2>
             <p className="text-gray-600 leading-relaxed">
               If any provision of these Terms is held invalid or unenforceable, the remaining provisions shall remain in full force and effect. The invalid provision shall be reformed to the minimum extent necessary to achieve its original intent.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">18. Entire Agreement</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">19. Entire Agreement</h2>
             <p className="text-gray-600 leading-relaxed">
               These Terms, together with the Policies, constitute the entire agreement between you and us regarding the Services, superseding all prior agreements, understandings, or representations.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">19. Contact Information</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">20. Contact Information</h2>
             <p className="text-gray-600 leading-relaxed">
               For questions or notices regarding these Terms, contact us at:
             </p>
@@ -249,6 +298,7 @@ export default function TermsPage() {
             <Link href="/terms" className="hover:text-gray-900">Terms and Conditions</Link>
             <Link href="/privacy" className="hover:text-gray-900">Privacy Policy</Link>
             <Link href="/cookies" className="hover:text-gray-900">Cookie Policy</Link>
+            <Link href="/copyright" className="hover:text-gray-900">Copyright Policy</Link>
           </div>
         </div>
       </footer>

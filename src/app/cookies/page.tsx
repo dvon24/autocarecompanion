@@ -309,6 +309,7 @@ export default function CookiesPage() {
             <Link href="/terms" className="hover:text-gray-900">Terms and Conditions</Link>
             <Link href="/privacy" className="hover:text-gray-900">Privacy Policy</Link>
             <Link href="/cookies" className="hover:text-gray-900">Cookie Policy</Link>
+            <Link href="/copyright" className="hover:text-gray-900">Copyright Policy</Link>
           </div>
         </div>
       </footer>

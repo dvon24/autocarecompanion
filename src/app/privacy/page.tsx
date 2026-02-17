@@ -63,10 +63,9 @@ export default function PrivacyPage() {
               <li><strong>Geolocation Data:</strong> General location derived from your IP address or timezone for region-specific retailer prioritization</li>
               <li><strong>Inferences:</strong> Maintenance preferences derived from your usage patterns</li>
               <li><strong>Voluntarily Provided Information:</strong> Feedback, symptom descriptions, or other information you provide</li>
+              <li><strong>Payment Information:</strong> When you subscribe to premium features, our payment processor (Stripe) collects your payment card details. We receive and store limited payment information including: your email address, billing name, the last four digits of your card number, card expiration date, card brand (e.g., Visa, Mastercard), and billing address. We do not receive or store your full card number, CVV, or other sensitive payment credentials.</li>
+              <li><strong>Subscription Data:</strong> Subscription status, billing history, subscription start/end dates, and transaction IDs</li>
             </ul>
-            <p className="text-gray-600 leading-relaxed mt-4">
-              We do not collect sensitive personal information (e.g., Social Security numbers, financial account details) as we do not process any transactions directly.
-            </p>
           </section>
 
           <section className="mb-8">
@@ -80,11 +79,63 @@ export default function PrivacyPage() {
               <li><strong>From authentication providers:</strong> If you sign in using Google, GitHub, or other OAuth providers</li>
               <li><strong>From public online sources:</strong> Used by our AI to provide vehicle maintenance information</li>
               <li><strong>From service providers:</strong> Analytics providers assisting with usage statistics</li>
+              <li><strong>From our payment processor:</strong> Stripe provides us with limited payment and subscription information when you subscribe to premium features</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">4. Purposes for Collecting and Using Personal Information</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">4. Payment Information and Processing</h2>
+
+            <h3 className="text-lg font-medium text-gray-800 mb-2">4.1 Payment Processor</h3>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              We use Stripe, Inc. (&quot;Stripe&quot;) as our third-party payment processor for all subscription transactions. When you provide payment information to subscribe to our Services, that information is collected and processed directly by Stripe, not by us. Stripe is certified as a PCI Level 1 Service Provider, the most stringent level of certification available in the payment industry.
+            </p>
+
+            <h3 className="text-lg font-medium text-gray-800 mb-2">4.2 What Payment Data We Receive</h3>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              While Stripe processes your full payment details, we only receive and store the following limited information:
+            </p>
+            <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
+              <li>Your email address associated with the payment</li>
+              <li>Billing name and address</li>
+              <li>Last four digits of your payment card</li>
+              <li>Card brand (e.g., Visa, Mastercard, American Express)</li>
+              <li>Card expiration date</li>
+              <li>Stripe customer ID and subscription ID</li>
+              <li>Transaction history and invoice records</li>
+              <li>Subscription status (active, canceled, past due)</li>
+            </ul>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              <strong>We never receive, access, or store:</strong> Your full card number, CVV/security code, or PIN.
+            </p>
+
+            <h3 className="text-lg font-medium text-gray-800 mb-2">4.3 How Payment Data Is Used</h3>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              We use the limited payment information we receive to:
+            </p>
+            <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
+              <li>Verify and manage your subscription status</li>
+              <li>Send payment receipts and billing notifications</li>
+              <li>Process refunds when applicable</li>
+              <li>Prevent fraud and unauthorized transactions</li>
+              <li>Respond to billing inquiries and disputes</li>
+              <li>Comply with tax and legal obligations</li>
+            </ul>
+
+            <h3 className="text-lg font-medium text-gray-800 mb-2">4.4 Stripe&apos;s Privacy Practices</h3>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Stripe&apos;s collection and use of your payment information is governed by Stripe&apos;s own privacy policy. We encourage you to review Stripe&apos;s privacy practices at{' '}
+              <a href="https://stripe.com/privacy" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">https://stripe.com/privacy</a>.
+            </p>
+
+            <h3 className="text-lg font-medium text-gray-800 mb-2">4.5 Payment Data Retention</h3>
+            <p className="text-gray-600 leading-relaxed">
+              We retain payment-related information for as long as you maintain an active subscription, plus an additional period as required by tax laws and financial regulations (typically seven years for transaction records). Upon your request to delete your account, we will anonymize or delete payment data except where retention is required by law.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">5. Purposes for Collecting and Using Personal Information</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               We use your personal information to:
             </p>
@@ -115,11 +166,12 @@ export default function PrivacyPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">5. Disclosure of Personal Information to Third Parties</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">6. Disclosure of Personal Information to Third Parties</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               We may disclose your personal information to:
             </p>
             <ul className="list-disc pl-6 text-gray-600 space-y-2">
+              <li><strong>Payment processor:</strong> Stripe, Inc. processes all subscription payments. See Section 4 for details on payment data handling.</li>
               <li><strong>Service providers:</strong> Analytics firms and hosting providers, bound by contractual obligations to protect your data</li>
               <li><strong>Authentication providers:</strong> Google, GitHub, or other OAuth providers if you choose to sign in with them</li>
               <li><strong>Legal authorities:</strong> If required by law, subpoena, or to protect our rights</li>
@@ -132,7 +184,7 @@ export default function PrivacyPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">6. Sale or Sharing of Personal Information Under CCPA</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">7. Sale or Sharing of Personal Information Under CCPA</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               In the past twelve (12) months, we have not &quot;sold&quot; personal information as defined under the California Consumer Privacy Act (CCPA), as amended by the California Privacy Rights Act (CPRA).
             </p>
@@ -142,7 +194,7 @@ export default function PrivacyPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">7. Local Storage and Data on Your Device</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">8. Local Storage and Data on Your Device</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               Most of your data stays on your device. We use browser localStorage to save:
             </p>
@@ -157,21 +209,21 @@ export default function PrivacyPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">8. Data Security Measures</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">9. Data Security Measures</h2>
             <p className="text-gray-600 leading-relaxed">
               We implement reasonable administrative, technical, and physical safeguards to protect your personal information from unauthorized access, disclosure, alteration, or destruction. These include secure servers, access controls, and regular security reviews. However, no method of transmission over the internet or electronic storage is completely secure, and we cannot guarantee absolute security. You are responsible for maintaining the confidentiality of your Account credentials.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">9. Data Retention Practices</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">10. Data Retention Practices</h2>
             <p className="text-gray-600 leading-relaxed">
               We retain your personal information only as long as necessary to fulfill the purposes outlined in this Policy, including for the duration of your Account, to comply with legal requirements, or resolve disputes. When no longer needed, we securely delete or anonymize data. Analytics data may be aggregated and retained indefinitely in anonymized form.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">10. Cookies and Similar Tracking Technologies</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">11. Cookies and Similar Tracking Technologies</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               We use cookies, pixels, local storage, and similar technologies to enhance functionality, analyze trends, and deliver targeted content. These include essential cookies for site operation and performance cookies for analytics.
             </p>
@@ -185,7 +237,7 @@ export default function PrivacyPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">11. Third-Party Services and Affiliate Links</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">12. Third-Party Services and Affiliate Links</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               The Services provide links to third-party websites including:
             </p>
@@ -200,14 +252,14 @@ export default function PrivacyPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">12. Children&apos;s Privacy</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">13. Children&apos;s Privacy</h2>
             <p className="text-gray-600 leading-relaxed">
               The Services are not intended for children under thirteen (13) years of age, and we do not knowingly collect personal information from them. If you are under eighteen (18), you must have parental consent to use the Services. In compliance with the Children&apos;s Online Privacy Protection Act (COPPA), if we learn we have collected data from a child under thirteen (13) without verifiable parental consent, we will delete it promptly. Parents may contact us to review or delete such data.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">13. International Users and Data Transfers</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">14. International Users and Data Transfers</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               While the Services are designed for global use, individuals located in the European Union (EU), United Kingdom (UK), or other regions should be aware that their data may be transferred to and processed in the United States, which may have different data protection standards.
             </p>
@@ -220,7 +272,7 @@ export default function PrivacyPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">14. Your Privacy Rights Under Applicable Laws</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">15. Your Privacy Rights Under Applicable Laws</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               Depending on your location, you may have rights such as:
             </p>
@@ -251,7 +303,7 @@ export default function PrivacyPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">15. How to Exercise Your Privacy Rights</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">16. How to Exercise Your Privacy Rights</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               To exercise rights, submit a verifiable request via email to{' '}
               <a href="mailto:dvoninvestllc@yahoo.com" className="text-blue-600 hover:underline">dvoninvestllc@yahoo.com</a>{' '}
@@ -263,28 +315,28 @@ export default function PrivacyPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">16. Non-Discrimination for Exercising Rights</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">17. Non-Discrimination for Exercising Rights</h2>
             <p className="text-gray-600 leading-relaxed">
               We will not discriminate against you for exercising privacy rights, including by denying Services, charging different prices, or providing lesser quality.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">17. Changes to This Privacy Policy</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">18. Changes to This Privacy Policy</h2>
             <p className="text-gray-600 leading-relaxed">
               We may update this Policy periodically to reflect changes in our practices or legal requirements. Revised versions will be posted on the Website with an updated Effective Date. Material changes will be notified via email or prominent notice. Your continued use constitutes acceptance. Review this Policy regularly.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">18. Governing Law and Dispute Resolution</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">19. Governing Law and Dispute Resolution</h2>
             <p className="text-gray-600 leading-relaxed">
               This Policy is governed by California law, without regard to conflicts principles. Disputes shall be resolved through binding arbitration in California under American Arbitration Association rules, except for small claims or injunctive relief. You waive class actions.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">19. Contact Information</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">20. Contact Information</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               For privacy inquiries, requests, or complaints, contact:
             </p>
@@ -310,6 +362,7 @@ export default function PrivacyPage() {
             <Link href="/terms" className="hover:text-gray-900">Terms and Conditions</Link>
             <Link href="/privacy" className="hover:text-gray-900">Privacy Policy</Link>
             <Link href="/cookies" className="hover:text-gray-900">Cookie Policy</Link>
+            <Link href="/copyright" className="hover:text-gray-900">Copyright Policy</Link>
           </div>
         </div>
       </footer>
