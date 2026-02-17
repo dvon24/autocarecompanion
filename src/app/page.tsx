@@ -59,17 +59,16 @@ export default function LandingPage() {
                 </span>
               </Link>
             </ScrollReveal>
-{/* My Garage button - only visible in development until Epic 5 launch */}
-            {process.env.NODE_ENV === 'development' && (
-              <ScrollReveal delay={100} duration={800} direction="down" distance={20}>
-                <Link
-                  href="/garage"
-                  className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  My Garage
-                </Link>
-              </ScrollReveal>
-            )}
+{/* TODO: Uncomment My Garage button when Epic 5 launches
+            <ScrollReveal delay={100} duration={800} direction="down" distance={20}>
+              <Link
+                href="/garage"
+                className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                My Garage
+              </Link>
+            </ScrollReveal>
+*/}
           </div>
         </header>
 
