@@ -2,21 +2,7 @@
 
 import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 import { type Guide, type Part, type Tool } from '@/schemas/guide.schema';
-
-// Dynamically import 3D component to avoid SSR issues
-const RepairVisualizer = dynamic(
-  () => import('@/components/3d/RepairVisualizer').then(mod => mod.RepairVisualizer),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full aspect-[16/9] bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl animate-pulse flex items-center justify-center">
-        <div className="text-gray-500 text-sm">Loading 3D view...</div>
-      </div>
-    ),
-  }
-);
 import { useGuideProgress } from '@/hooks/useGuideProgress';
 import { useGuideCache } from '@/hooks/useGuideCache';
 import { trackEvent } from '@/components/analytics/GoogleAnalytics';
@@ -982,17 +968,6 @@ export function GuideExecution({
               </div>
             </ScrollReveal>
 
-            {/* 3D Repair Location Visualizer */}
-            <ScrollReveal delay={200} duration={600}>
-              <div className="mt-6">
-                <RepairVisualizer
-                  guideTitle={guide.title}
-                  bodyType="sedan"
-                  color="#374151"
-                  showLabel={true}
-                />
-              </div>
-            </ScrollReveal>
           </div>
         </div>
 
