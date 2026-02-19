@@ -19,6 +19,8 @@ const categoryConfig: Record<IssueCategory, { label: string; icon: string }> = {
   fuel: { label: 'Fuel System', icon: '⛽' },
   interior: { label: 'Interior', icon: '🪑' },
   exterior: { label: 'Exterior', icon: '🚗' },
+  body: { label: 'Body/Panels', icon: '🚙' },
+  safety: { label: 'Safety/Recalls', icon: '🛡️' },
   other: { label: 'Other', icon: '📋' },
 };
 

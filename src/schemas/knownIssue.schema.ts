@@ -46,6 +46,8 @@ export const issueCategorySchema = z.enum([
   'fuel',
   'interior',
   'exterior',
+  'body',
+  'safety',
   'other',
 ]);
 
