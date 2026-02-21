@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 import { ConfidenceBadge } from './ConfidenceBadge';
 import { ReportIssueModal } from './ReportIssueModal';
+import { FixIssueModal } from './FixIssueModal';
 import { triggerHaptic } from '@/hooks/useHaptic';
+import { IssueFix } from '@/hooks/useIssueFixes';
 
 interface KnownIssueCardProps {
   issue: KnownIssue;
@@ -14,11 +16,15 @@ interface KnownIssueCardProps {
     model: string;
     trim?: string;
   };
+  vehicleId?: string;
+  userFix?: IssueFix;
+  onFixUpdated?: () => void;
 }
 
-export function KnownIssueCard({ issue, vehicleInfo }: KnownIssueCardProps) {
+export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUpdated }: KnownIssueCardProps) {
   const [expanded, setExpanded] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
+  const [showFixModal, setShowFixModal] = useState(false);
 
   const severityConfig = {
     high: {
@@ -69,8 +75,41 @@ export function KnownIssueCard({ issue, vehicleInfo }: KnownIssueCardProps) {
 
   return (
     <div className={`border rounded-lg overflow-hidden transition-all ${config.borderColor}`}>
+      {/* User Fix Status Banner - shows when user has reported fixing this */}
+      {userFix && (
+        <div className={`px-4 py-2 flex items-center justify-between ${
+          userFix.status === 'fixed'
+            ? 'bg-gradient-to-r from-green-600 to-emerald-600'
+            : userFix.status === 'in_progress'
+            ? 'bg-gradient-to-r from-blue-600 to-cyan-600'
+            : 'bg-gradient-to-r from-gray-500 to-gray-600'
+        }`}>
+          <div className="flex items-center gap-2">
+            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {userFix.status === 'fixed' ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              ) : userFix.status === 'in_progress' ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+              )}
+            </svg>
+            <span className="text-white text-xs font-semibold">
+              {userFix.status === 'fixed' ? 'You fixed this' :
+               userFix.status === 'in_progress' ? 'Working on it' :
+               'Living with it'}
+            </span>
+          </div>
+          {userFix.cost && (
+            <span className="text-white/90 text-xs">
+              ${userFix.cost.toLocaleString()}
+            </span>
+          )}
+        </div>
+      )}
+
       {/* Community Reported Banner - shows for highly reported issues */}
-      {isCommunityReported && (
+      {isCommunityReported && !userFix && (
         <div className="px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -258,31 +297,101 @@ export function KnownIssueCard({ issue, vehicleInfo }: KnownIssueCardProps) {
             </div>
           </div>
 
+          {/* User's Fix Details - show if user has submitted a fix */}
+          {userFix && (
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+              <h4 className="text-sm font-medium text-green-800 mb-2 flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                Your Fix
+              </h4>
+              {userFix.solution && (
+                <p className="text-sm text-green-700 leading-relaxed mb-2">{userFix.solution}</p>
+              )}
+              <div className="flex flex-wrap gap-3 text-xs text-green-600">
+                {userFix.cost && (
+                  <span className="flex items-center gap-1">
+                    <span className="font-medium">Cost:</span> ${userFix.cost.toLocaleString()}
+                  </span>
+                )}
+                {userFix.difficultyRating && (
+                  <span className="flex items-center gap-1">
+                    <span className="font-medium">Difficulty:</span> {userFix.difficultyRating}/5
+                  </span>
+                )}
+                {userFix.shopUsed && (
+                  <span className="flex items-center gap-1">
+                    <span className="font-medium">Shop:</span> {userFix.shopUsed}
+                  </span>
+                )}
+              </div>
+              {userFix.partsUsed && (
+                <p className="text-xs text-green-600 mt-2">
+                  <span className="font-medium">Parts:</span> {userFix.partsUsed}
+                </p>
+              )}
+              {userFix.tips && (
+                <p className="text-xs text-green-600 mt-2 italic">
+                  <span className="font-medium">Tip:</span> {userFix.tips}
+                </p>
+              )}
+            </div>
+          )}
+
           {/* Trust indicators */}
           <div className="pt-2 border-t border-gray-100">
             <ConfidenceBadge
               confidence={issue.confidence}
               humanApproved={issue.humanApproved}
-              lastReviewedAt={issue.lastReviewedAt}
+              lastReportedByOwners={issue.lastReportedByOwners}
+              reviewedOn={issue.reviewedOn}
               reportCount={issue.reportCount}
             />
           </div>
 
-          {/* Report button */}
+          {/* Action buttons */}
           {vehicleInfo && (
-            <button
-              type="button"
-              onClick={() => {
-                triggerHaptic('light');
-                setShowReportModal(true);
-              }}
-              className="w-full mt-3 py-2.5 px-4 border border-gray-200 text-gray-600 text-sm font-medium rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-colors flex items-center justify-center gap-2"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-              I have this issue too
-            </button>
+            <div className="flex gap-2 mt-3">
+              {!userFix && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    triggerHaptic('light');
+                    setShowReportModal(true);
+                  }}
+                  className="flex-1 py-2.5 px-4 border border-gray-200 text-gray-600 text-sm font-medium rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-colors flex items-center justify-center gap-2"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  I have this
+                </button>
+              )}
+              {vehicleId && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    triggerHaptic('light');
+                    setShowFixModal(true);
+                  }}
+                  className={`flex-1 py-2.5 px-4 text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-2 ${
+                    userFix
+                      ? 'border border-green-300 text-green-700 hover:bg-green-50'
+                      : 'bg-green-600 text-white hover:bg-green-700'
+                  }`}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {userFix ? (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    ) : (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    )}
+                  </svg>
+                  {userFix ? 'Edit my fix' : 'I fixed this'}
+                </button>
+              )}
+            </div>
           )}
         </div>
       )}
@@ -294,6 +403,18 @@ export function KnownIssueCard({ issue, vehicleInfo }: KnownIssueCardProps) {
           existingIssueId={issue.id}
           existingIssueTitle={issue.title}
           onClose={() => setShowReportModal(false)}
+        />
+      )}
+
+      {/* Fix Modal */}
+      {showFixModal && vehicleId && (
+        <FixIssueModal
+          issueId={issue.id}
+          issueTitle={issue.title}
+          vehicleId={vehicleId}
+          existingFix={userFix}
+          onClose={() => setShowFixModal(false)}
+          onSuccess={onFixUpdated}
         />
       )}
     </div>

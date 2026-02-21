@@ -3,14 +3,16 @@
 interface ConfidenceBadgeProps {
   confidence: 'high' | 'medium' | 'low';
   humanApproved: boolean;
-  lastReviewedAt: string;
+  lastReportedByOwners: string;
+  reviewedOn: string;
   reportCount: number;
 }
 
 export function ConfidenceBadge({
   confidence,
   humanApproved,
-  lastReviewedAt,
+  lastReportedByOwners,
+  reviewedOn,
   reportCount,
 }: ConfidenceBadgeProps) {
   const confidenceConfig = {
@@ -48,9 +50,15 @@ export function ConfidenceBadge({
 
   const config = confidenceConfig[confidence];
 
-  // Format date
-  const reviewDate = new Date(lastReviewedAt);
-  const formattedDate = reviewDate.toLocaleDateString('en-US', {
+  // Format dates
+  const ownerReportDate = new Date(lastReportedByOwners);
+  const formattedOwnerDate = ownerReportDate.toLocaleDateString('en-US', {
+    month: 'short',
+    year: 'numeric',
+  });
+
+  const reviewDate = new Date(reviewedOn);
+  const formattedReviewDate = reviewDate.toLocaleDateString('en-US', {
     month: 'short',
     year: 'numeric',
   });
@@ -78,9 +86,14 @@ export function ConfidenceBadge({
         {reportCount.toLocaleString()} reports
       </span>
 
-      {/* Last reviewed */}
+      {/* Last reported by owners */}
+      <span className="text-gray-500">
+        Last reported by owners {formattedOwnerDate}
+      </span>
+
+      {/* Reviewed by us */}
       <span className="text-gray-400">
-        Updated {formattedDate}
+        Reviewed {formattedReviewDate}
       </span>
     </div>
   );

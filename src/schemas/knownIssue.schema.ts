@@ -72,7 +72,8 @@ export const knownIssueSchema = z.object({
   citations: z.array(citationSchema),
   communityRecommendations: z.array(communityRecommendationSchema).optional(),
   humanApproved: z.boolean(),
-  lastReviewedAt: z.string(),
+  lastReportedByOwners: z.string(), // When owners last reported this issue
+  reviewedOn: z.string(), // When we verified/reviewed the issue
   reportCount: z.number(),
   status: z.enum(['published', 'pending_review', 'archived']),
 });
