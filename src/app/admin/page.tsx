@@ -60,15 +60,59 @@ interface IssueReport {
   existingIssueId?: string;
 }
 
+interface CostEntry {
+  timestamp: string;
+  feature: string;
+  inputTokens: number;
+  outputTokens: number;
+  estimatedCost: number;
+  model?: string;
+}
+
+interface CostData {
+  summary: {
+    totalCost: number;
+    byFeature: Record<string, number>;
+    byDay: Record<string, number>;
+    budgetUsedPercent: number;
+    warningLevel: string;
+    remainingBudget: number;
+    isRateLimited: boolean;
+  };
+  budgetStatus: {
+    used: number;
+    total: number;
+    percent: number;
+    level: string;
+    daysRemaining: number;
+    monthName: string;
+  };
+  warning: {
+    warning: boolean;
+    level: string;
+    message: string | null;
+  };
+  stats: {
+    totalCalls: number;
+    avgCostPerCall: number;
+    dailyAverage: number;
+    projectedMonthly: number;
+    uniqueDays: number;
+  };
+  recentEntries: CostEntry[];
+}
+
 export default function AdminPage() {
   const [emails, setEmails] = useState<EmailEntry[]>([]);
   const [feedback, setFeedback] = useState<FeedbackEntry[]>([]);
   const [vehicleFeedback, setVehicleFeedback] = useState<VehicleFeedback[]>([]);
   const [symptomPatterns, setSymptomPatterns] = useState<SymptomPattern[]>([]);
   const [issueReports, setIssueReports] = useState<IssueReport[]>([]);
+  const [costData, setCostData] = useState<CostData | null>(null);
+  const [reviewRecommendations, setReviewRecommendations] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'emails' | 'feedback' | 'vehicle' | 'patterns' | 'reports'>('emails');
+  const [activeTab, setActiveTab] = useState<'emails' | 'feedback' | 'vehicle' | 'patterns' | 'reports' | 'costs' | 'review'>('emails');
 
   useEffect(() => {
     async function fetchData() {
@@ -100,6 +144,20 @@ export default function AdminPage() {
         if (reportsResponse.ok) {
           const reportsData = await reportsResponse.json();
           setIssueReports(reportsData.reports || []);
+        }
+
+        // Fetch cost data
+        const costsResponse = await fetch('/api/admin/costs');
+        if (costsResponse.ok) {
+          const costsData = await costsResponse.json();
+          setCostData(costsData);
+        }
+
+        // Fetch recommendations needing review
+        const reviewResponse = await fetch('/api/admin/recommendations');
+        if (reviewResponse.ok) {
+          const reviewData = await reviewResponse.json();
+          setReviewRecommendations(reviewData.issues || []);
         }
       } catch {
         setError('Failed to connect to server');
@@ -186,6 +244,26 @@ export default function AdminPage() {
             }`}
           >
             Issue Reports ({issueReports.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('costs')}
+            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              activeTab === 'costs'
+                ? 'bg-green-600 text-white'
+                : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+            }`}
+          >
+            API Costs {costData ? `($${costData.summary.totalCost.toFixed(2)})` : ''}
+          </button>
+          <button
+            onClick={() => setActiveTab('review')}
+            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              activeTab === 'review'
+                ? 'bg-orange-600 text-white'
+                : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+            }`}
+          >
+            Review Recommendations ({reviewRecommendations.length})
           </button>
         </div>
 
@@ -437,6 +515,222 @@ export default function AdminPage() {
                         Related to existing issue
                       </span>
                     )}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        )}
+
+        {!loading && !error && activeTab === 'costs' && (
+          <div className="space-y-6">
+            {/* Budget Warning Banner */}
+            {costData?.warning.warning && (
+              <div className={`rounded-lg p-4 ${
+                costData.warning.level === 'exceeded' ? 'bg-red-50 border border-red-200' :
+                costData.warning.level === 'high' ? 'bg-orange-50 border border-orange-200' :
+                costData.warning.level === 'medium' ? 'bg-yellow-50 border border-yellow-200' :
+                'bg-blue-50 border border-blue-200'
+              }`}>
+                <p className={`text-sm font-medium ${
+                  costData.warning.level === 'exceeded' ? 'text-red-800' :
+                  costData.warning.level === 'high' ? 'text-orange-800' :
+                  costData.warning.level === 'medium' ? 'text-yellow-800' :
+                  'text-blue-800'
+                }`}>
+                  {costData.warning.message}
+                </p>
+              </div>
+            )}
+
+            {/* Budget Overview */}
+            {costData && (
+              <div className="bg-white rounded-xl border border-gray-200 p-6">
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">
+                  {costData.budgetStatus.monthName} Budget
+                </h2>
+                <div className="space-y-3">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Used</span>
+                    <span className="font-medium text-gray-900">
+                      ${costData.budgetStatus.used.toFixed(2)} / ${costData.budgetStatus.total.toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-4">
+                    <div
+                      className={`h-4 rounded-full ${
+                        costData.budgetStatus.percent >= 100 ? 'bg-red-500' :
+                        costData.budgetStatus.percent >= 75 ? 'bg-orange-500' :
+                        costData.budgetStatus.percent >= 50 ? 'bg-yellow-500' :
+                        'bg-green-500'
+                      }`}
+                      style={{ width: `${Math.min(100, costData.budgetStatus.percent)}%` }}
+                    />
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-500">{costData.budgetStatus.percent.toFixed(1)}% used</span>
+                    <span className="text-gray-500">{costData.budgetStatus.daysRemaining} days remaining</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Stats Grid */}
+            {costData && (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-white rounded-xl border border-gray-200 p-4">
+                  <p className="text-sm text-gray-500">Total Calls</p>
+                  <p className="text-2xl font-semibold text-gray-900">{costData.stats.totalCalls}</p>
+                </div>
+                <div className="bg-white rounded-xl border border-gray-200 p-4">
+                  <p className="text-sm text-gray-500">Avg Cost/Call</p>
+                  <p className="text-2xl font-semibold text-gray-900">${costData.stats.avgCostPerCall.toFixed(4)}</p>
+                </div>
+                <div className="bg-white rounded-xl border border-gray-200 p-4">
+                  <p className="text-sm text-gray-500">Daily Avg</p>
+                  <p className="text-2xl font-semibold text-gray-900">${costData.stats.dailyAverage.toFixed(2)}</p>
+                </div>
+                <div className="bg-white rounded-xl border border-gray-200 p-4">
+                  <p className="text-sm text-gray-500">Projected</p>
+                  <p className={`text-2xl font-semibold ${
+                    costData.stats.projectedMonthly > costData.budgetStatus.total ? 'text-red-600' : 'text-gray-900'
+                  }`}>
+                    ${costData.stats.projectedMonthly.toFixed(2)}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Cost by Feature */}
+            {costData && (
+              <div className="bg-white rounded-xl border border-gray-200 p-6">
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">Cost by Feature</h2>
+                <div className="space-y-3">
+                  {Object.entries(costData.summary.byFeature)
+                    .filter(([, cost]) => cost > 0)
+                    .sort(([, a], [, b]) => b - a)
+                    .map(([feature, cost]) => (
+                      <div key={feature} className="flex items-center justify-between">
+                        <span className="text-gray-700 capitalize">{feature.replace(/_/g, ' ')}</span>
+                        <span className="font-medium text-gray-900">${cost.toFixed(2)}</span>
+                      </div>
+                    ))}
+                  {Object.values(costData.summary.byFeature).every(v => v === 0) && (
+                    <p className="text-gray-500 text-center py-4">No API costs recorded yet</p>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Recent API Calls */}
+            {costData && costData.recentEntries.length > 0 && (
+              <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div className="px-6 py-4 border-b border-gray-200">
+                  <h2 className="text-lg font-semibold text-gray-900">Recent API Calls</h2>
+                </div>
+                <table className="w-full">
+                  <thead className="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Time</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Feature</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tokens</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {costData.recentEntries.map((entry, i) => (
+                      <tr key={i} className="hover:bg-gray-50">
+                        <td className="px-6 py-3 text-sm text-gray-500">
+                          {new Date(entry.timestamp).toLocaleString()}
+                        </td>
+                        <td className="px-6 py-3 text-sm text-gray-900 capitalize">
+                          {entry.feature.replace(/_/g, ' ')}
+                        </td>
+                        <td className="px-6 py-3 text-sm text-gray-500">
+                          {entry.inputTokens + entry.outputTokens}
+                        </td>
+                        <td className="px-6 py-3 text-sm font-medium text-gray-900">
+                          ${entry.estimatedCost.toFixed(4)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {!costData && (
+              <div className="bg-white rounded-xl border border-gray-200 p-8 text-center text-gray-500">
+                Unable to load cost data
+              </div>
+            )}
+          </div>
+        )}
+
+        {!loading && !error && activeTab === 'review' && (
+          <div className="space-y-4">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+              <p className="text-sm text-orange-800">
+                <strong>Review AI-Generated Recommendations</strong> - These were auto-generated from issue descriptions.
+                Click &quot;Approve&quot; to remove the needsReview flag and make them production-ready.
+              </p>
+            </div>
+            {reviewRecommendations.length === 0 ? (
+              <div className="bg-white rounded-xl border border-gray-200 p-8 text-center text-gray-500">
+                No recommendations needing review. All recommendations have been approved!
+              </div>
+            ) : (
+              reviewRecommendations.map((item) => (
+                <div key={item.id} className="bg-white rounded-xl border border-gray-200 p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
+                      <p className="text-sm text-gray-600">{item.vehicle}</p>
+                      <span className="inline-block mt-2 px-2 py-0.5 bg-gray-100 text-gray-700 text-xs rounded">
+                        {item.category}
+                      </span>
+                    </div>
+                    <button
+                      onClick={async () => {
+                        try {
+                          const response = await fetch('/api/admin/recommendations', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ issueId: item.id }),
+                          });
+                          if (response.ok) {
+                            // Remove from local state
+                            setReviewRecommendations(prev => prev.filter(i => i.id !== item.id));
+                          }
+                        } catch (error) {
+                          console.error('Error approving:', error);
+                        }
+                      }}
+                      className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
+                    >
+                      Approve All
+                    </button>
+                  </div>
+
+                  <div className="space-y-2">
+                    <p className="text-xs font-medium text-gray-500 uppercase">Recommendations ({item.recommendations.length} needing review)</p>
+                    {item.recommendations.map((rec: any, idx: number) => (
+                      <div key={idx} className="bg-gray-50 p-3 rounded-lg">
+                        <div className="flex items-start gap-2">
+                          <span className={`flex-shrink-0 px-1.5 py-0.5 text-xs font-medium rounded ${
+                            rec.type === 'part' ? 'bg-purple-100 text-purple-700' :
+                            rec.type === 'warning' ? 'bg-red-100 text-red-700' :
+                            'bg-blue-100 text-blue-700'
+                          }`}>
+                            {rec.type === 'part' ? 'Part' : rec.type === 'warning' ? 'Warning' : 'Tip'}
+                          </span>
+                          <span className="text-sm text-gray-700">{rec.content}</span>
+                        </div>
+                        {rec.partBrand && (
+                          <p className="text-xs text-gray-500 mt-1 ml-16">Brand: {rec.partBrand}</p>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))
