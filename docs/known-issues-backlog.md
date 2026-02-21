@@ -3,8 +3,8 @@
 Track progress on adding Known Issues to the database. Goal: 5-10 issues per day.
 
 ## Current Coverage Summary
-- **Total Issues:** 328
-- **Vehicles Covered:** Honda Civic, Honda CR-V, Honda Accord, Toyota Camry, Toyota Tundra, Toyota RAV4, Toyota Corolla, Ford F-150, Ford Mustang, Ford Explorer, Ford Bronco, Ford Ranger, Dodge Challenger, Dodge Charger, Dodge Durango, Chevy Silverado, Chevy Equinox, Chevy Camaro, Chevy Colorado, GMC Sierra, Subaru Outback, Subaru Forester, Subaru WRX/STI, Nissan Altima, Nissan Rogue, Nissan 370Z, Jeep Grand Cherokee, Jeep Wrangler, BMW 335i, BMW 328i, BMW M3, VW Jetta/Golf/GTI, Audi A3, Audi A4, Hyundai Sonata, Hyundai Elantra, Kia Optima/K5, Mazda CX-5, Toyota Tacoma, RAM 1500, Toyota 4Runner, Volvo XC90, Chrysler Sebring
+- **Total Issues:** 383
+- **Vehicles Covered:** Honda Civic, Honda CR-V, Honda Accord, Toyota Camry, Toyota Tundra, Toyota RAV4, Toyota Corolla, Ford F-150, Ford Mustang, Ford Explorer, Ford Bronco, Ford Ranger, Dodge Challenger, Dodge Charger, Dodge Durango, Chevy Silverado, Chevy Equinox, Chevy Camaro, Chevy Colorado, GMC Sierra, Subaru Outback, Subaru Forester, Subaru WRX/STI, Nissan Altima, Nissan Rogue, Nissan 370Z, Jeep Grand Cherokee, Jeep Wrangler, Jeep Cherokee, BMW 335i, BMW 328i, BMW M3, VW Jetta/Golf/GTI, Audi A3, Audi A4, Hyundai Sonata, Hyundai Elantra, Kia Optima/K5, Mazda CX-5, Toyota Tacoma, RAM 1500, Toyota 4Runner, Volvo XC90, Chrysler Sebring, Chrysler 300, Dodge Journey
 
 ---
 
@@ -149,4 +149,7 @@ For each issue provide:
 | 2024-02-19 | Chevy Colorado, Dodge Charger+, Jeep Grand Cherokee+, Jeep Wrangler+, Honda Civic+, Toyota Camry+ | +38 (244 total) |
 | 2024-02-19 | Ford F-150+, Chevy Silverado+, Toyota Tacoma+, Nissan Altima+, Hyundai Sonata+ | +30 (274 total) |
 | 2024-02-19 | Nissan Rogue, VW 2.0T, Audi 2.0T, Audi A3 TDI, BMW N55, Subaru FB25, Dodge Durango | +54 (328 total) |
+| 2026-02-21 | Schema Update (dual-date system) | Migrated 332 issues |
+| 2026-02-21 | Jeep Cherokee KL, Chrysler 300, Dodge Journey | +39 (371 total) |
+| 2026-02-21 | Mazda CX-5 | +12 (383 total) |
 
