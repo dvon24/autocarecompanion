@@ -64,10 +64,11 @@ Track progress on completing all vehicle makes with deep research.
 ---
 
 ### 🚧 BMW (IN PROGRESS)
-**Models Covered (11):**
+**Models Covered (12):**
 - 3 Series (E90/F30/G20) - 4 issues
 - 4 Series (F32/F33/F36/G22/G23/G26) - 6 issues
 - 5 Series (E60/F10/G30) - 8 issues
+- 7 Series (E65/E66/F01/F02/G11/G12) - 5 issues
 - X1 (E84/F48) - 5 issues
 - X3 (E83/F25/G01) - 8 issues
 - X5 (E53/E70/F15/G05) - 10 issues
@@ -77,7 +78,7 @@ Track progress on completing all vehicle makes with deep research.
 - 328i (already in DB)
 - M3 (already in DB)
 
-**Issues Added:** 53 issues (plus existing 335i, 328i, M3)
+**Issues Added:** 58 issues (plus existing 335i, 328i, M3)
 
 **Still Need to Add:**
 - M2 (F87/G87)
