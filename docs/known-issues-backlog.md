@@ -3,7 +3,7 @@
 Track progress on adding Known Issues to the database. Goal: 5-10 issues per day.
 
 ## Current Coverage Summary
-- **Total Issues:** 394
+- **Total Issues:** 393
 - **Vehicles Covered:** Honda Civic, Honda CR-V, Honda Accord, Honda Pilot, Toyota Camry, Toyota Tundra, Toyota RAV4, Toyota Corolla, Ford F-150, Ford Mustang, Ford Explorer, Ford Bronco, Ford Ranger, Dodge Challenger, Dodge Charger, Dodge Durango, Chevy Silverado, Chevy Equinox, Chevy Camaro, Chevy Colorado, GMC Sierra, Subaru Outback, Subaru Forester, Subaru WRX/STI, Nissan Altima, Nissan Rogue, Nissan 370Z, Jeep Grand Cherokee, Jeep Wrangler, Jeep Cherokee, BMW 335i, BMW 328i, BMW M3, VW Jetta/Golf/GTI, Audi A3, Audi A4, Hyundai Sonata, Hyundai Elantra, Kia Optima/K5, Mazda CX-5, Toyota Tacoma, RAM 1500, Toyota 4Runner, Volvo XC90, Chrysler Sebring, Chrysler 300, Dodge Journey
 
 ---
