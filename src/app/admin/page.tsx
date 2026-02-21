@@ -110,9 +110,11 @@ export default function AdminPage() {
   const [issueReports, setIssueReports] = useState<IssueReport[]>([]);
   const [costData, setCostData] = useState<CostData | null>(null);
   const [reviewRecommendations, setReviewRecommendations] = useState<any[]>([]);
+  const [researchingIssue, setResearchingIssue] = useState<string | null>(null);
+  const [affiliateStats, setAffiliateStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'emails' | 'feedback' | 'vehicle' | 'patterns' | 'reports' | 'costs' | 'review'>('emails');
+  const [activeTab, setActiveTab] = useState<'emails' | 'feedback' | 'vehicle' | 'patterns' | 'reports' | 'costs' | 'review' | 'affiliates'>('emails');
 
   useEffect(() => {
     async function fetchData() {
@@ -158,6 +160,13 @@ export default function AdminPage() {
         if (reviewResponse.ok) {
           const reviewData = await reviewResponse.json();
           setReviewRecommendations(reviewData.issues || []);
+        }
+
+        // Fetch affiliate stats
+        const affiliateResponse = await fetch('/api/admin/affiliates/track');
+        if (affiliateResponse.ok) {
+          const affiliateData = await affiliateResponse.json();
+          setAffiliateStats(affiliateData);
         }
       } catch {
         setError('Failed to connect to server');
@@ -264,6 +273,16 @@ export default function AdminPage() {
             }`}
           >
             Review Recommendations ({reviewRecommendations.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('affiliates')}
+            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              activeTab === 'affiliates'
+                ? 'bg-purple-600 text-white'
+                : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+            }`}
+          >
+            🛒 Affiliate Stats {affiliateStats ? `(${affiliateStats.totalClicks} clicks)` : ''}
           </button>
         </div>
 
@@ -690,26 +709,63 @@ export default function AdminPage() {
                         {item.category}
                       </span>
                     </div>
-                    <button
-                      onClick={async () => {
-                        try {
-                          const response = await fetch('/api/admin/recommendations', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ issueId: item.id }),
-                          });
-                          if (response.ok) {
-                            // Remove from local state
-                            setReviewRecommendations(prev => prev.filter(i => i.id !== item.id));
+                    <div className="flex gap-2">
+                      <button
+                        onClick={async () => {
+                          setResearchingIssue(item.id);
+                          try {
+                            const response = await fetch('/api/admin/recommendations/research', {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({
+                                issueId: item.id,
+                                title: item.title,
+                                vehicle: item.vehicle,
+                                category: item.category,
+                                description: item.description
+                              }),
+                            });
+                            if (response.ok) {
+                              const data = await response.json();
+                              // Refresh the recommendations list
+                              const reviewResponse = await fetch('/api/admin/recommendations');
+                              if (reviewResponse.ok) {
+                                const reviewData = await reviewResponse.json();
+                                setReviewRecommendations(reviewData.issues || []);
+                              }
+                            }
+                          } catch (error) {
+                            console.error('Error researching:', error);
+                          } finally {
+                            setResearchingIssue(null);
                           }
-                        } catch (error) {
-                          console.error('Error approving:', error);
-                        }
-                      }}
-                      className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
-                    >
-                      Approve All
-                    </button>
+                        }}
+                        disabled={researchingIssue === item.id}
+                        className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {researchingIssue === item.id ? '🔍 Researching...' : '🔍 Deep Research'}
+                      </button>
+                      <button
+                        onClick={async () => {
+                          try {
+                            const response = await fetch('/api/admin/recommendations', {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({ issueId: item.id }),
+                            });
+                            if (response.ok) {
+                              // Remove from local state
+                              setReviewRecommendations(prev => prev.filter(i => i.id !== item.id));
+                            }
+                          } catch (error) {
+                            console.error('Error approving:', error);
+                          }
+                        }}
+                        className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
+                      >
+                        ✓ Approve All
+                      </button>
+                    </div>
                   </div>
 
                   <div className="space-y-2">
@@ -724,16 +780,150 @@ export default function AdminPage() {
                           }`}>
                             {rec.type === 'part' ? 'Part' : rec.type === 'warning' ? 'Warning' : 'Tip'}
                           </span>
-                          <span className="text-sm text-gray-700">{rec.content}</span>
+                          <span className="text-sm text-gray-700 flex-1">{rec.content}</span>
                         </div>
-                        {rec.partBrand && (
-                          <p className="text-xs text-gray-500 mt-1 ml-16">Brand: {rec.partBrand}</p>
-                        )}
+                        <div className="ml-16 mt-1 space-y-1">
+                          {rec.partBrand && (
+                            <p className="text-xs text-gray-500">Brand: <span className="font-medium">{rec.partBrand}</span></p>
+                          )}
+                          {rec.partName && (
+                            <p className="text-xs text-gray-500">Product: <span className="font-medium">{rec.partName}</span></p>
+                          )}
+                          {rec.partNumber && (
+                            <p className="text-xs text-gray-500">Part #: <span className="font-mono font-medium">{rec.partNumber}</span></p>
+                          )}
+                          {rec.amazonLink && (
+                            <a
+                              href={rec.amazonLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-xs text-blue-600 hover:text-blue-700 hover:underline"
+                            >
+                              🛒 Amazon Link {rec.clickCount !== undefined && `(${rec.clickCount} clicks)`}
+                            </a>
+                          )}
+                          {rec.sourceUrl && (
+                            <a
+                              href={rec.sourceUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-xs text-gray-600 hover:text-gray-700 hover:underline ml-3"
+                            >
+                              📄 Source
+                            </a>
+                          )}
+                        </div>
                       </div>
                     ))}
                   </div>
                 </div>
               ))
+            )}
+          </div>
+        )}
+
+        {!loading && !error && activeTab === 'affiliates' && (
+          <div className="space-y-4">
+            {/* Stats Overview */}
+            <div className="grid grid-cols-3 gap-4">
+              <div className="bg-white rounded-xl border border-gray-200 p-4">
+                <p className="text-sm text-gray-500 mb-1">Total Clicks</p>
+                <p className="text-2xl font-bold text-gray-900">{affiliateStats?.totalClicks || 0}</p>
+              </div>
+              <div className="bg-white rounded-xl border border-gray-200 p-4">
+                <p className="text-sm text-gray-500 mb-1">Unique Parts</p>
+                <p className="text-2xl font-bold text-gray-900">{affiliateStats?.uniqueParts || 0}</p>
+              </div>
+              <div className="bg-white rounded-xl border border-gray-200 p-4">
+                <p className="text-sm text-gray-500 mb-1">Top Part</p>
+                <p className="text-sm font-semibold text-gray-900">
+                  {affiliateStats?.topParts?.[0]?.name || 'None yet'}
+                </p>
+                <p className="text-xs text-gray-500">
+                  {affiliateStats?.topParts?.[0]?.clicks || 0} clicks
+                </p>
+              </div>
+            </div>
+
+            {/* Top Parts Table */}
+            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-lg font-semibold text-gray-900">Top Affiliate Links</h2>
+                <p className="text-sm text-gray-500 mt-1">Track which parts users are most interested in</p>
+              </div>
+              {affiliateStats?.topParts && affiliateStats.topParts.length > 0 ? (
+                <table className="w-full">
+                  <thead className="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rank</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Part</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Brand</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Clicks</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Last Clicked</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {affiliateStats.topParts.map((part: any, index: number) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                          #{index + 1}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-900">
+                          {part.name}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {part.brand}
+                        </td>
+                        <td className="px-6 py-4">
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-700">
+                            {part.clicks} clicks
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-500">
+                          {new Date(part.lastClicked).toLocaleDateString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <div className="p-8 text-center text-gray-500">
+                  No affiliate clicks tracked yet
+                </div>
+              )}
+            </div>
+
+            {/* Recent Clicks */}
+            {affiliateStats?.recentClicks && affiliateStats.recentClicks.length > 0 && (
+              <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div className="px-6 py-4 border-b border-gray-200">
+                  <h2 className="text-lg font-semibold text-gray-900">Recent Clicks</h2>
+                </div>
+                <table className="w-full">
+                  <thead className="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Time</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Part</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Brand</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {affiliateStats.recentClicks.map((click: any, index: number) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        <td className="px-6 py-3 text-sm text-gray-500">
+                          {new Date(click.timestamp).toLocaleString()}
+                        </td>
+                        <td className="px-6 py-3 text-sm text-gray-900">
+                          {click.partName}
+                        </td>
+                        <td className="px-6 py-3 text-sm text-gray-600">
+                          {click.partBrand}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             )}
           </div>
         )}

@@ -199,27 +199,58 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               </p>
               <ul className="space-y-2">
                 {issue.communityRecommendations.map((rec, index) => (
-                  <li key={index} className="text-sm text-blue-700 flex items-start gap-2">
-                    <span className={`flex-shrink-0 px-1.5 py-0.5 text-xs font-medium rounded ${
-                      rec.type === 'part' ? 'bg-purple-100 text-purple-700' :
-                      rec.type === 'warning' ? 'bg-red-100 text-red-700' :
-                      'bg-blue-100 text-blue-700'
-                    }`}>
-                      {rec.type === 'part' ? 'Upgrade' : rec.type === 'warning' ? 'Note' : 'Tip'}
-                    </span>
-                    <span>
-                      {rec.content}
-                      {rec.partBrand && rec.partNumber && (
+                  <li key={index} className="text-sm text-blue-700">
+                    <div className="flex items-start gap-2">
+                      <span className={`flex-shrink-0 px-1.5 py-0.5 text-xs font-medium rounded ${
+                        rec.type === 'part' ? 'bg-purple-100 text-purple-700' :
+                        rec.type === 'warning' ? 'bg-red-100 text-red-700' :
+                        'bg-blue-100 text-blue-700'
+                      }`}>
+                        {rec.type === 'part' ? 'Upgrade' : rec.type === 'warning' ? 'Note' : 'Tip'}
+                      </span>
+                      <span className="flex-1">
+                        {rec.content}
+                        {rec.partBrand && (rec.partNumber || rec.partName) && (
+                          <span className="font-medium text-purple-700">
+                            {' '}({rec.partBrand} {rec.partNumber ? `#${rec.partNumber}` : rec.partName})
+                          </span>
+                        )}
+                      </span>
+                    </div>
+                    {/* Affiliate links for parts */}
+                    {rec.type === 'part' && (rec.affiliateLink || rec.amazonLink) && (
+                      <div className="ml-6 mt-1">
                         <a
-                          href={`https://www.google.com/search?q=${encodeURIComponent(rec.partBrand + ' ' + (rec.partNumber || rec.partName || ''))}`}
+                          href={rec.affiliateLink || rec.amazonLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-medium text-purple-600 hover:underline"
+                          onClick={async () => {
+                            // Track click for affiliate metrics
+                            try {
+                              await fetch('/api/admin/affiliates/track', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                  issueId: issue.id,
+                                  recommendationIndex: index,
+                                  link: rec.affiliateLink || rec.amazonLink,
+                                  partBrand: rec.partBrand,
+                                  partName: rec.partName || rec.partNumber
+                                })
+                              });
+                            } catch (e) {
+                              console.error('Failed to track affiliate click:', e);
+                            }
+                          }}
+                          className="inline-flex items-center gap-1 text-xs bg-purple-600 text-white px-2 py-1 rounded-md hover:bg-purple-700 transition-colors"
                         >
-                          {' '}({rec.partBrand} {rec.partNumber ? `#${rec.partNumber}` : rec.partName})
+                          🛒 View on Amazon
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
                         </a>
-                      )}
-                    </span>
+                      </div>
+                    )}
                   </li>
                 ))}
               </ul>
