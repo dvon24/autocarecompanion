@@ -106,9 +106,48 @@ Since you own a Challenger, expand Mopar coverage:
    - Write description + solution
    - Add symptoms list
    - Find TSB/recall citations if available
-   - Add community recommendations (parts, tips)
+   - **REQUIRED: Add structured community recommendations** (see format below)
 4. **Add to known-issues.json**
 5. **Update this backlog** (mark as complete)
+
+### Community Recommendations Format (REQUIRED)
+
+Every issue MUST include `communityRecommendations` as an array of structured objects to enable the "What Owners Are Using" section:
+
+```javascript
+communityRecommendations: [
+  {
+    type: 'part',           // 'part' | 'tip' | 'warning'
+    content: 'Many owners switched to Pennzoil Ultra Platinum 0W-40 and reported the tick went away',
+    partBrand: 'Pennzoil', // Optional: for 'part' type
+    partName: 'Ultra Platinum 0W-40', // Optional: for 'part' type
+    partNumber: 'P2030',   // Optional: specific part number
+    upvotes: 0
+  },
+  {
+    type: 'tip',
+    content: 'Let the engine fully warm up before hard driving - the tick usually disappears once oil pressure stabilizes',
+    upvotes: 0
+  },
+  {
+    type: 'warning',
+    content: 'Don\'t ignore severe ticking - it can lead to lifter collapse and engine damage if left untreated',
+    upvotes: 0
+  }
+]
+```
+
+**Recommendation Types:**
+- **part**: Specific parts, products, or upgrades owners recommend (oil, tuners, aftermarket parts)
+- **tip**: General advice, DIY tips, maintenance practices
+- **warning**: Important cautions, things to avoid, safety notes
+
+**Best Practices:**
+- Include 3-6 recommendations per issue
+- Focus on actionable, specific advice
+- Include brand names and part numbers when possible
+- Balance parts, tips, and warnings
+- Draw from forum threads, owner communities, and expert mechanics
 
 ---
 
