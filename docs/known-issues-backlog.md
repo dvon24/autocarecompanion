@@ -3,8 +3,8 @@
 Track progress on adding Known Issues to the database. Goal: 5-10 issues per day.
 
 ## Current Coverage Summary
-- **Total Issues:** 493
-- **Vehicles Covered:** Honda Civic, Honda CR-V, Honda Accord, Honda Pilot, Honda Odyssey, Honda Ridgeline, Honda S2000, Honda Fit, Honda Element, Honda HR-V, Honda Passport, Honda Insight, Honda Crosstour, Toyota Camry, Toyota Tundra, Toyota RAV4, Toyota Corolla, Ford F-150, Ford Mustang, Ford Explorer, Ford Bronco, Ford Ranger, Dodge Challenger, Dodge Charger, Dodge Durango, Chevy Silverado, Chevy Equinox, Chevy Camaro, Chevy Colorado, GMC Sierra, Subaru Outback, Subaru Forester, Subaru WRX/STI, Nissan Altima, Nissan Rogue, Nissan 370Z, Jeep Grand Cherokee, Jeep Wrangler, Jeep Cherokee, BMW 335i, BMW 328i, BMW M3, VW Jetta/Golf/GTI, Audi A3, Audi A4, Hyundai Sonata, Hyundai Elantra, Kia Optima/K5, Mazda CX-5, Toyota Tacoma, RAM 1500, Toyota 4Runner, Volvo XC90, Chrysler Sebring, Chrysler 300, Dodge Journey
+- **Total Issues:** 500
+- **Vehicles Covered:** Audi A3, Audi A4, Audi Q5, BMW 335i, BMW 328i, BMW M3, Chevy Silverado, Chevy Equinox, Chevy Camaro, Chevy Colorado, Chrysler Sebring, Chrysler 300, Dodge Challenger, Dodge Charger, Dodge Durango, Dodge Journey, Ford F-150, Ford Mustang, Ford Explorer, Ford Bronco, Ford Ranger, GMC Sierra, Honda Civic, Honda CR-V, Honda Accord, Honda Pilot, Honda Odyssey, Honda Ridgeline, Honda S2000, Honda Fit, Honda Element, Honda HR-V, Honda Passport, Honda Insight, Honda Crosstour, Hyundai Sonata, Hyundai Elantra, Jeep Grand Cherokee, Jeep Wrangler, Jeep Cherokee, Kia Optima/K5, Mazda CX-5, Nissan Altima, Nissan Rogue, Nissan 370Z, RAM 1500, Subaru Outback, Subaru Forester, Subaru WRX/STI, Toyota Camry, Toyota Tundra, Toyota RAV4, Toyota Corolla, Toyota Tacoma, Toyota 4Runner, VW Jetta/Golf/GTI, Volvo XC90
 
 ---
 
@@ -202,4 +202,5 @@ For each issue provide:
 | 2026-02-21 | Honda Passport | +11 (476 total) |
 | 2026-02-21 | Honda Insight (3 gens) | +10 (486 total) |
 | 2026-02-21 | Honda Crosstour | +7 (493 total) |
+| 2026-02-21 | Audi Q5 | +7 (500 total) |
 
