@@ -3,8 +3,8 @@
 Track progress on adding Known Issues to the database. Goal: 5-10 issues per day.
 
 ## Current Coverage Summary
-- **Total Issues:** 408
-- **Vehicles Covered:** Honda Civic, Honda CR-V, Honda Accord, Honda Pilot, Honda Odyssey, Toyota Camry, Toyota Tundra, Toyota RAV4, Toyota Corolla, Ford F-150, Ford Mustang, Ford Explorer, Ford Bronco, Ford Ranger, Dodge Challenger, Dodge Charger, Dodge Durango, Chevy Silverado, Chevy Equinox, Chevy Camaro, Chevy Colorado, GMC Sierra, Subaru Outback, Subaru Forester, Subaru WRX/STI, Nissan Altima, Nissan Rogue, Nissan 370Z, Jeep Grand Cherokee, Jeep Wrangler, Jeep Cherokee, BMW 335i, BMW 328i, BMW M3, VW Jetta/Golf/GTI, Audi A3, Audi A4, Hyundai Sonata, Hyundai Elantra, Kia Optima/K5, Mazda CX-5, Toyota Tacoma, RAM 1500, Toyota 4Runner, Volvo XC90, Chrysler Sebring, Chrysler 300, Dodge Journey
+- **Total Issues:** 419
+- **Vehicles Covered:** Honda Civic, Honda CR-V, Honda Accord, Honda Pilot, Honda Odyssey, Honda Ridgeline, Toyota Camry, Toyota Tundra, Toyota RAV4, Toyota Corolla, Ford F-150, Ford Mustang, Ford Explorer, Ford Bronco, Ford Ranger, Dodge Challenger, Dodge Charger, Dodge Durango, Chevy Silverado, Chevy Equinox, Chevy Camaro, Chevy Colorado, GMC Sierra, Subaru Outback, Subaru Forester, Subaru WRX/STI, Nissan Altima, Nissan Rogue, Nissan 370Z, Jeep Grand Cherokee, Jeep Wrangler, Jeep Cherokee, BMW 335i, BMW 328i, BMW M3, VW Jetta/Golf/GTI, Audi A3, Audi A4, Hyundai Sonata, Hyundai Elantra, Kia Optima/K5, Mazda CX-5, Toyota Tacoma, RAM 1500, Toyota 4Runner, Volvo XC90, Chrysler Sebring, Chrysler 300, Dodge Journey
 
 ---
 
@@ -194,4 +194,5 @@ For each issue provide:
 | 2026-02-21 | Honda Pilot | +12 (394 total) |
 | 2026-02-21 | Duplicate Removal (toyota-rav4-transmission-hesitation-2019) | -1 (393 total) |
 | 2026-02-21 | Honda Odyssey | +15 (408 total) |
+| 2026-02-21 | Honda Ridgeline | +11 (419 total) |
 
