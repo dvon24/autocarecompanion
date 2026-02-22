@@ -136,12 +136,12 @@ export default function GetStartedPage() {
                     Describe
                   </button>
                   {' '}instead, or{' '}
-                  <a
-                    href="mailto:support@autocarecompanion.com?subject=Vehicle%20Request"
+                  <Link
+                    href="/feedback"
                     className="text-amber-700 hover:text-amber-900 font-semibold underline-offset-2 hover:underline"
                   >
                     let us know
-                  </a>
+                  </Link>
                   {' '}what you&apos;d like added.
                 </p>
               </div>
