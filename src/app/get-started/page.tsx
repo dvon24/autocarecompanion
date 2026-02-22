@@ -146,23 +146,6 @@ export default function GetStartedPage() {
                 </p>
               </div>
 
-              {/* Can't find vehicle hint - shown in manual mode, ABOVE the card */}
-              {mode === 'manual' && (
-                <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-100">
-                  <p className="text-sm text-blue-800 text-center">
-                    Can&apos;t find your vehicle?{' '}
-                    <button
-                      type="button"
-                      onClick={() => handleModeChange('custom')}
-                      className="text-blue-600 hover:text-blue-700 font-semibold underline-offset-2 hover:underline"
-                    >
-                      Tap &quot;Describe&quot; above
-                    </button>
-                    {' '}to type it in
-                  </p>
-                </div>
-              )}
-
               {/* Vehicle Selection Card */}
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
                 {mode === 'vin' && (
