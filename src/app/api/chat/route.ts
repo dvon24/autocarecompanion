@@ -7,6 +7,7 @@ import {
   type Diagnosis,
 } from '@/schemas/chat.schema';
 import type { OBDCodeEntry } from '@/schemas/obd.schema';
+import { logApiCost, isBudgetExceeded } from '@/lib/costs';
 
 /**
  * AI Symptom Chat API Route
@@ -154,11 +155,12 @@ function parseAlternatives(content: string): Diagnosis[] {
 
 /**
  * Call OpenAI API
+ * Returns content and token usage for cost tracking
  */
 async function callOpenAI(
   messages: { role: string; content: string }[],
   apiKey: string
-): Promise<string> {
+): Promise<{ content: string; usage: { promptTokens: number; completionTokens: number } }> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
@@ -186,7 +188,13 @@ async function callOpenAI(
     }
 
     const data = await response.json();
-    return data.choices[0]?.message?.content || '';
+    const content = data.choices[0]?.message?.content || '';
+    const usage = {
+      promptTokens: data.usage?.prompt_tokens || 0,
+      completionTokens: data.usage?.completion_tokens || 0,
+    };
+
+    return { content, usage };
   } catch (error) {
     clearTimeout(timeoutId);
     throw error;
@@ -437,6 +445,17 @@ function captureSymptoms(data: {
 
 export async function POST(request: NextRequest) {
   try {
+    // Story 7.3: Check budget before making API call
+    if (isBudgetExceeded()) {
+      return NextResponse.json(
+        {
+          error: 'Monthly API budget exceeded. Chat is temporarily limited.',
+          budgetExceeded: true,
+        },
+        { status: 429 }
+      );
+    }
+
     // Parse and validate request
     const body = await request.json();
     const parseResult = ChatRequestSchema.safeParse(body);
@@ -472,7 +491,12 @@ export async function POST(request: NextRequest) {
       ];
 
       // Call OpenAI API
-      responseContent = await callOpenAI(messages, apiKey);
+      const { content, usage } = await callOpenAI(messages, apiKey);
+      responseContent = content;
+
+      // Story 7.1: Log API cost
+      logApiCost('symptom_chat', usage.promptTokens, usage.completionTokens, 'gpt-5.2');
+
       diagnosis = parseDiagnosis(responseContent);
       alternativeDiagnoses = parseAlternatives(responseContent);
     } else {

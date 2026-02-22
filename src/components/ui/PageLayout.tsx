@@ -77,7 +77,7 @@ export function PageLayout({
       <main className="relative flex flex-col min-h-screen" style={{ zIndex: 2 }}>
         {/* Header */}
         {showHeader && (
-          <header className="px-6 py-4 border-b border-gray-100/50 backdrop-blur-sm bg-white/50">
+          <header className="px-6 py-4 border-b border-gray-100/50 backdrop-blur-sm bg-white/50 relative z-40">
             <div className="max-w-5xl mx-auto flex items-center justify-between">
               {headerContent || (
                 <>

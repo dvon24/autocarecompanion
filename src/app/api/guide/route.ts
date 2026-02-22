@@ -7,6 +7,7 @@ import {
   type Tool,
   type Part,
 } from '@/schemas/guide.schema';
+import { logApiCost, isBudgetExceeded } from '@/lib/costs';
 
 /**
  * Guide Generation API Route
@@ -15,6 +16,7 @@ import {
  * Per Architecture: Server-side API calls, 60s timeout for complex guides.
  *
  * Story 1.6: Guide Generation via AI
+ * Story 7.1-7.3: Cost tracking and budget management
  */
 
 // Vercel serverless function config - extend timeout to 60 seconds
@@ -102,11 +104,12 @@ Return ONLY valid JSON, no additional text.`;
 
 /**
  * Call OpenAI API for guide generation
+ * Returns content and token usage for cost tracking
  */
 async function callOpenAI(
   systemPrompt: string,
   apiKey: string
-): Promise<string> {
+): Promise<{ content: string; usage: { promptTokens: number; completionTokens: number } }> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
@@ -138,7 +141,13 @@ async function callOpenAI(
     }
 
     const data = await response.json();
-    return data.choices[0]?.message?.content || '';
+    const content = data.choices[0]?.message?.content || '';
+    const usage = {
+      promptTokens: data.usage?.prompt_tokens || 0,
+      completionTokens: data.usage?.completion_tokens || 0,
+    };
+
+    return { content, usage };
   } catch (error) {
     clearTimeout(timeoutId);
     throw error;
@@ -357,6 +366,17 @@ export async function POST(request: NextRequest) {
   const startTime = Date.now();
 
   try {
+    // Story 7.3: Check budget before making API call
+    if (isBudgetExceeded()) {
+      return NextResponse.json(
+        {
+          error: 'Monthly API budget exceeded. Guide generation is temporarily limited.',
+          budgetExceeded: true,
+        },
+        { status: 429 }
+      );
+    }
+
     // Parse and validate request
     const body = await request.json();
     const parseResult = GuideGenerationRequestSchema.safeParse(body);
@@ -381,7 +401,11 @@ export async function POST(request: NextRequest) {
     if (apiKey) {
       // Generate guide via AI
       const systemPrompt = getGuideSystemPrompt(vehicle, diagnosis);
-      const content = await callOpenAI(systemPrompt, apiKey);
+      const { content, usage } = await callOpenAI(systemPrompt, apiKey);
+
+      // Story 7.1: Log API cost
+      logApiCost('guide_generation', usage.promptTokens, usage.completionTokens, 'gpt-5.2');
+
       guide = parseGuideResponse(content, vehicle, {
         id: diagnosis.id,
         title: diagnosis.title,

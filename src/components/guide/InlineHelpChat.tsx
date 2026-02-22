@@ -1,17 +1,20 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 
 /**
  * InlineHelpChat - Quick AI assistance during guide execution
  *
- * Story 3.4: Inline AI Help Chat
+ * Story 3.6: Inline AI Help Chat (Step-Scoped)
  *
  * Features:
  * - Contextual questions about the current step
  * - Quick suggested questions
  * - Minimizable interface
+ * - 3 question limit per step to manage API costs
  */
+
+const MAX_QUESTIONS_PER_STEP = 3;
 
 type InlineHelpChatProps = {
   guideTitle: string;
@@ -52,8 +55,16 @@ export function InlineHelpChat({
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  // Count user questions for limit enforcement (Story 3.6)
+  const questionCount = useMemo(() =>
+    messages.filter(m => m.role === 'user').length,
+    [messages]
+  );
+  const remainingQuestions = MAX_QUESTIONS_PER_STEP - questionCount;
+  const hasReachedLimit = remainingQuestions <= 0;
+
   const sendMessage = useCallback(async (question: string) => {
-    if (!question.trim() || isLoading) return;
+    if (!question.trim() || isLoading || hasReachedLimit) return;
 
     const userMessage: ChatMessage = { role: 'user', content: question };
     setMessages(prev => [...prev, userMessage]);
@@ -101,7 +112,7 @@ export function InlineHelpChat({
     } finally {
       setIsLoading(false);
     }
-  }, [guideTitle, stepNumber, stepInstruction, vehicle, toolsRequired, safetyWarnings, isLoading]);
+  }, [guideTitle, stepNumber, stepInstruction, vehicle, toolsRequired, safetyWarnings, isLoading, hasReachedLimit]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -134,6 +145,16 @@ export function InlineHelpChat({
             </svg>
           </div>
           <span className="font-medium text-gray-900 text-sm">Step {stepNumber} Help</span>
+          {/* Question limit indicator */}
+          <span className={`text-xs px-2 py-0.5 rounded-full ${
+            hasReachedLimit
+              ? 'bg-red-100 text-red-600'
+              : remainingQuestions === 1
+              ? 'bg-amber-100 text-amber-600'
+              : 'bg-gray-100 text-gray-500'
+          }`}>
+            {remainingQuestions} left
+          </span>
         </div>
         <button
           type="button"
@@ -160,7 +181,7 @@ export function InlineHelpChat({
                   key={q}
                   type="button"
                   onClick={() => sendMessage(q)}
-                  disabled={isLoading}
+                  disabled={isLoading || hasReachedLimit}
                   className="px-3 py-1.5 text-xs bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors disabled:opacity-50"
                 >
                   {q}
@@ -201,27 +222,38 @@ export function InlineHelpChat({
       </div>
 
       {/* Input */}
-      <form onSubmit={handleSubmit} className="p-3 border-t border-gray-100">
-        <div className="flex gap-2">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask a question..."
-            disabled={isLoading}
-            className="flex-1 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent disabled:bg-gray-50"
-          />
-          <button
-            type="submit"
-            disabled={isLoading || !input.trim()}
-            className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-            </svg>
-          </button>
-        </div>
-      </form>
+      <div className="p-3 border-t border-gray-100">
+        {hasReachedLimit ? (
+          <div className="text-center py-2">
+            <p className="text-sm text-gray-500">
+              You&apos;ve used all {MAX_QUESTIONS_PER_STEP} questions for this step.
+            </p>
+            <p className="text-xs text-gray-400 mt-1">
+              Try checking YouTube tutorials or move to the next step.
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex gap-2">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask a question..."
+              disabled={isLoading}
+              className="flex-1 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent disabled:bg-gray-50"
+            />
+            <button
+              type="submit"
+              disabled={isLoading || !input.trim()}
+              className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   );
 }

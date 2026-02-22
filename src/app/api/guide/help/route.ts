@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { logApiCost, isBudgetExceeded } from '@/lib/costs';
 
 /**
  * Guide Help API Route
  *
  * Story 3.4: Inline AI Help Chat
+ * Story 7.1-7.3: Cost tracking and budget management
  *
  * Provides contextual help for users during guide execution.
  * Answers questions about the current step, tool usage, safety, etc.
@@ -62,7 +64,7 @@ Guidelines:
 async function callOpenAI(
   messages: { role: string; content: string }[],
   apiKey: string
-): Promise<string> {
+): Promise<{ content: string; usage: { promptTokens: number; completionTokens: number } }> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
@@ -90,7 +92,13 @@ async function callOpenAI(
     }
 
     const data = await response.json();
-    return data.choices[0]?.message?.content || '';
+    const content = data.choices[0]?.message?.content || '';
+    const usage = {
+      promptTokens: data.usage?.prompt_tokens || 0,
+      completionTokens: data.usage?.completion_tokens || 0,
+    };
+
+    return { content, usage };
   } catch (error) {
     clearTimeout(timeoutId);
     throw error;
@@ -125,6 +133,17 @@ function generateMockResponse(question: string, context: z.infer<typeof HelpRequ
 
 export async function POST(request: NextRequest) {
   try {
+    // Story 7.3: Check budget before making API call
+    if (isBudgetExceeded()) {
+      return NextResponse.json(
+        {
+          error: 'Monthly API budget exceeded. Help chat is temporarily limited.',
+          budgetExceeded: true,
+        },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const parseResult = HelpRequestSchema.safeParse(body);
 
@@ -145,7 +164,11 @@ export async function POST(request: NextRequest) {
         { role: 'system', content: getSystemPrompt(context) },
         { role: 'user', content: question },
       ];
-      responseContent = await callOpenAI(messages, apiKey);
+      const { content, usage } = await callOpenAI(messages, apiKey);
+      responseContent = content;
+
+      // Story 7.1: Log API cost
+      logApiCost('inline_help', usage.promptTokens, usage.completionTokens, 'gpt-4.1-mini');
     } else {
       console.log('[Guide Help API] No OPENAI_API_KEY configured, using mock response');
       responseContent = generateMockResponse(question, context);

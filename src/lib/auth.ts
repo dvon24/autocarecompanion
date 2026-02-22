@@ -1,16 +1,17 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
+import Google from 'next-auth/providers/google';
+import { PrismaAdapter } from '@auth/prisma-adapter';
 import { z } from 'zod';
+import bcrypt from 'bcryptjs';
+import { prisma } from './db';
 
 /**
  * Auth Configuration
  *
- * Epic 4: User Accounts & Sync
- * Story 4.1: Authentication Setup
- *
- * Uses NextAuth.js v5 (Auth.js) with credentials provider.
- * In production, this would connect to a real database.
- * For now, uses localStorage-based mock authentication.
+ * Epic 5: User Accounts & Monetization
+ * Uses NextAuth.js v5 with Prisma adapter for database sessions.
+ * Supports Google OAuth and email/password authentication.
  */
 
 const LoginSchema = z.object({
@@ -19,7 +20,19 @@ const LoginSchema = z.object({
 });
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  adapter: PrismaAdapter(prisma),
   providers: [
+    // Google OAuth (optional - only if credentials are set)
+    ...(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
+      ? [
+          Google({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+          }),
+        ]
+      : []),
+
+    // Email/Password
     Credentials({
       name: 'credentials',
       credentials: {
@@ -35,25 +48,40 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         const { email, password } = parsed.data;
 
-        // In production, this would:
-        // 1. Query database for user by email
-        // 2. Verify password hash
-        // 3. Return user object or null
+        // Find user by email
+        const user = await prisma.user.findUnique({
+          where: { email: email.toLowerCase() },
+          select: {
+            id: true,
+            email: true,
+            name: true,
+            passwordHash: true,
+            subscriptionStatus: true,
+          },
+        });
 
-        // For development/demo, accept any valid email/password combo
-        // Password must be at least 6 characters
-        if (password.length >= 6) {
-          // Generate a consistent user ID based on email
-          const userId = `user_${Buffer.from(email).toString('base64').slice(0, 12)}`;
-
-          return {
-            id: userId,
-            email: email,
-            name: email.split('@')[0],
-          };
+        if (!user) {
+          return null;
         }
 
-        return null;
+        // If user has no password hash, they signed up via OAuth
+        if (!user.passwordHash) {
+          return null;
+        }
+
+        // Verify password
+        const passwordValid = await bcrypt.compare(password, user.passwordHash);
+
+        if (!passwordValid) {
+          return null;
+        }
+
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          subscriptionStatus: user.subscriptionStatus,
+        };
       },
     }),
   ],
@@ -62,15 +90,36 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     error: '/auth/error',
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
+      // Initial sign in
       if (user) {
         token.id = user.id;
+        token.subscriptionStatus = user.subscriptionStatus;
       }
+
+      // Update session when triggered
+      if (trigger === 'update' && session) {
+        token.subscriptionStatus = session.subscriptionStatus;
+      }
+
+      // Refresh subscription status from database periodically
+      if (token.id && !user) {
+        const dbUser = await prisma.user.findUnique({
+          where: { id: token.id as string },
+          select: { subscriptionStatus: true },
+        });
+        if (dbUser) {
+          token.subscriptionStatus = dbUser.subscriptionStatus;
+        }
+      }
+
       return token;
     },
     async session({ session, token }) {
       if (session.user && token.id) {
         session.user.id = token.id as string;
+        session.user.subscriptionStatus = token.subscriptionStatus as string | null;
+        session.user.isPremium = token.subscriptionStatus === 'active';
       }
       return session;
     },
@@ -90,6 +139,8 @@ declare module 'next-auth' {
       id: string;
       email: string;
       name?: string | null;
+      subscriptionStatus?: string | null;
+      isPremium?: boolean;
     };
   }
 
@@ -97,5 +148,13 @@ declare module 'next-auth' {
     id: string;
     email: string;
     name?: string | null;
+    subscriptionStatus?: string | null;
+  }
+}
+
+declare module '@auth/core/jwt' {
+  interface JWT {
+    id?: string;
+    subscriptionStatus?: string | null;
   }
 }

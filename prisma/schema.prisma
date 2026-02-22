@@ -1,0 +1,288 @@
+// AutoCare Companion Database Schema
+// Epic 5: User Accounts & Monetization
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================
+// AUTH MODELS (NextAuth.js compatible)
+// ============================================
+
+model User {
+  id                 String    @id @default(cuid())
+  email              String    @unique
+  name               String?
+  emailVerified      DateTime?
+  image              String?
+  passwordHash       String?
+
+  // Stripe subscription
+  stripeCustomerId   String?   @unique
+  subscriptionId     String?
+  subscriptionStatus String?   // active, canceled, past_due, trialing
+
+  // Notification preferences
+  emailNotifications Boolean   @default(true)
+  pushNotifications  Boolean   @default(true)
+
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  // Relations
+  accounts           Account[]
+  sessions           Session[]
+  vehicles           Vehicle[]
+  chatSessions       ChatSession[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ============================================
+// VEHICLE MODELS
+// ============================================
+
+model Vehicle {
+  id                String    @id @default(cuid())
+  userId            String
+
+  // Vehicle info
+  year              Int
+  make              String
+  model             String
+  trim              String?
+  vin               String?
+  color             String?
+
+  // Mileage tracking
+  currentMileage    Int?
+  lastMileageUpdate DateTime?
+  annualMileage     Int?      // Estimated miles driven per year (for maintenance predictions)
+
+  // User customization
+  nickname          String?
+  isPrimary         Boolean   @default(false)
+  imageUrl          String?
+
+  // Showcase settings
+  isPublic          Boolean   @default(false)
+  showcaseSlug      String?   @unique
+
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  // Relations
+  user               User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  maintenanceRecords MaintenanceRecord[]
+  modifications      Modification[]
+  mileageHistory     MileageLog[]
+  chatSessions       ChatSession[]
+
+  @@index([userId])
+}
+
+model MileageLog {
+  id        String   @id @default(cuid())
+  vehicleId String
+  mileage   Int
+  source    String?  // manual, obd, estimated
+  date      DateTime @default(now())
+
+  vehicle Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  @@index([vehicleId])
+}
+
+// ============================================
+// MAINTENANCE MODELS
+// ============================================
+
+model MaintenanceRecord {
+  id             String    @id @default(cuid())
+  vehicleId      String
+
+  // Maintenance details
+  type           String    // oil_change, tire_rotation, brake_service, etc.
+  description    String?
+  mileage        Int
+  cost           Float?
+  date           DateTime
+
+  // Next service tracking
+  nextDueMileage Int?
+  nextDueDate    DateTime?
+
+  // Additional info
+  notes          String?   @db.Text
+  receiptUrl     String?
+  shopName       String?
+
+  createdAt      DateTime  @default(now())
+
+  vehicle Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  @@index([vehicleId])
+  @@index([type])
+}
+
+// ============================================
+// MODIFICATION MODELS (for 3D visualizer & showcase)
+// ============================================
+
+model Modification {
+  id          String    @id @default(cuid())
+  vehicleId   String
+
+  // Mod details
+  category    String    // wheels, tires, suspension, exhaust, body, interior, performance
+  name        String
+  brand       String?
+  partNumber  String?
+  description String?   @db.Text
+  cost        Float?
+  installDate DateTime?
+
+  // Media
+  imageUrl    String?
+
+  // 3D visualization data
+  modelData   Json?     // wheel diameter, offset, width, color, etc.
+
+  // Display order
+  sortOrder   Int       @default(0)
+
+  createdAt   DateTime  @default(now())
+
+  vehicle Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  @@index([vehicleId])
+  @@index([category])
+}
+
+// ============================================
+// CHAT MODELS
+// ============================================
+
+model ChatSession {
+  id        String   @id @default(cuid())
+  userId    String?  // null for anonymous users
+  vehicleId String?
+
+  // Chat data
+  messages  Json     // Array of { role, content, timestamp }
+  diagnosis Json?    // Final diagnosis if generated
+
+  // Anonymous tracking (for rate limiting)
+  anonymousId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user    User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  vehicle Vehicle? @relation(fields: [vehicleId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([anonymousId])
+}
+
+// ============================================
+// NOTIFICATION MODELS
+// ============================================
+
+model NotificationLog {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String   // maintenance_due, maintenance_overdue, weekly_summary
+  channel   String   // email, push
+  title     String
+  body      String
+  sentAt    DateTime @default(now())
+  readAt    DateTime?
+
+  @@index([userId])
+}
+
+model PushSubscription {
+  id        String   @id @default(cuid())
+  userId    String
+  endpoint  String   @unique
+  p256dh    String
+  auth      String
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+// ============================================
+// KNOWN ISSUE USER REPORTS
+// ============================================
+
+model UserIssueFix {
+  id            String   @id @default(cuid())
+  userId        String
+  vehicleId     String
+
+  // Link to the known issue (from static JSON by issue ID)
+  knownIssueId  String
+
+  // Fix details
+  status        String   // fixed, in_progress, wont_fix
+  solution      String?  @db.Text  // User's description of how they fixed it
+  cost          Float?             // How much they spent
+  difficultyRating Int?            // 1-5 how hard was it
+  partsUsed     String?  @db.Text  // Parts they used (freeform text)
+  shopUsed      String?            // Shop name if they had it done professionally
+
+  // Helpful for others
+  tips          String?  @db.Text  // Any tips for others
+  wouldRecommend Boolean @default(true)  // Would they recommend this fix to others
+
+  // Visibility
+  isPublic      Boolean  @default(true)  // Share with community
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([userId, vehicleId, knownIssueId])
+  @@index([knownIssueId])
+  @@index([userId])
+  @@index([vehicleId])
+}
