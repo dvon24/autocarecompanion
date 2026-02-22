@@ -3,7 +3,7 @@
 Track progress on adding Known Issues to the database. Goal: 5-10 issues per day.
 
 ## Current Coverage Summary
-- **Total Issues:** 726
+- **Total Issues:** 742
 - **Vehicles Covered:** Audi A3, Audi A4, Audi A5/S5, Audi A6, Audi A7/S7, Audi A8, Audi Q3, Audi Q5, Audi Q7, Audi Q8, Audi RS3, Audi RS4, Audi RS5, Audi RS6, Audi RS7, Audi RS Q8, Audi TT, BMW 1 Series, BMW 2 Series, BMW 3 Series, BMW 4 Series, BMW 5 Series, BMW 6 Series, BMW 7 Series, BMW 8 Series, BMW X1, BMW X2, BMW X3, BMW X3 M, BMW X4, BMW X4 M, BMW X5, BMW X5 M, BMW X6, BMW X6 M, BMW X7, BMW Z4, BMW M2, BMW M4, BMW M5, BMW M6, BMW M8, BMW i3, BMW i4, BMW i8, BMW iX, BMW 335i, BMW 328i, BMW M3, Chevy Silverado, Chevy Equinox, Chevy Camaro, Chevy Colorado, Chrysler Sebring, Chrysler 300, Dodge Challenger, Dodge Charger, Dodge Durango, Dodge Journey, Ford F-150, Ford Mustang, Ford Explorer, Ford Bronco, Ford Ranger, GMC Sierra, Honda Civic, Honda CR-V, Honda Accord, Honda Pilot, Honda Odyssey, Honda Ridgeline, Honda S2000, Honda Fit, Honda Element, Honda HR-V, Honda Passport, Honda Insight, Honda Crosstour, Hyundai Sonata, Hyundai Elantra, Jeep Grand Cherokee, Jeep Wrangler, Jeep Cherokee, Kia Optima/K5, Mazda CX-5, Nissan Altima, Nissan Rogue, Nissan 370Z, RAM 1500, Subaru Outback, Subaru Forester, Subaru WRX/STI, Toyota Camry, Toyota Tundra, Toyota RAV4, Toyota Corolla, Toyota Tacoma, Toyota 4Runner, VW Jetta/Golf/GTI, Volvo XC90
 
 ---
@@ -234,4 +234,6 @@ For each issue provide:
 | 2026-02-22 | BMW X6 + X6 M (E71/F16/G06) | +7 (719 total) |
 | 2026-02-22 | BMW X7 (G07) | +7 (726 total) |
 | 2026-02-22 | BMW Deep Research Pass | Verified all 171 BMW issues, 743 community recs, 119 with part numbers |
+| 2026-02-22 | BMW M3 (4 gens: E46/E9x/F80/G80) | +16 (742 total) |
+| 2026-02-22 | Audi Deep Research Pass | Verified all 62 Audi issues, 263 community recs, 61 with part numbers |
 
