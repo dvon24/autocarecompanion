@@ -26,7 +26,6 @@ export default function GetStartedPage() {
 
   const handleBriefingDismiss = () => {
     setShowBriefing(false);
-    router.push('/symptom-chat');
   };
 
   const handleBriefingContinue = () => {
@@ -123,6 +122,28 @@ export default function GetStartedPage() {
                 >
                   Describe
                 </button>
+              </div>
+
+              {/* Database coverage notice */}
+              <div className="mb-4 p-3 bg-amber-50 rounded-lg border border-amber-100">
+                <p className="text-sm text-amber-800 text-center">
+                  We&apos;re actively adding more vehicles to our database. Don&apos;t see yours? Try{' '}
+                  <button
+                    type="button"
+                    onClick={() => handleModeChange('custom')}
+                    className="text-amber-700 hover:text-amber-900 font-semibold underline-offset-2 hover:underline"
+                  >
+                    Describe
+                  </button>
+                  {' '}instead, or{' '}
+                  <a
+                    href="mailto:support@autocarecompanion.com?subject=Vehicle%20Request"
+                    className="text-amber-700 hover:text-amber-900 font-semibold underline-offset-2 hover:underline"
+                  >
+                    let us know
+                  </a>
+                  {' '}what you&apos;d like added.
+                </p>
               </div>
 
               {/* Can't find vehicle hint - shown in manual mode, ABOVE the card */}
