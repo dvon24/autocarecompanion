@@ -3,16 +3,42 @@ import { KnownIssue } from '@/schemas/knownIssue.schema';
 import knownIssuesData from '@/data/known-issues.json';
 
 /**
- * Check if a vehicle matches an issue's vehicle criteria
+ * Check if a vehicle matches an issue's vehicle criteria.
+ * Handles both legacy format (vehicleMatch.years array) and
+ * new format (top-level make/model with years.start/end range).
  */
 function vehicleMatchesIssue(
-  issue: KnownIssue,
+  issue: any,
   year: number,
   make: string,
   model: string,
   trim?: string
 ): boolean {
+  // New format: make/model/years at top level with years as {start, end}
+  if (!issue.vehicleMatch && issue.make && issue.model && issue.years) {
+    const issueMake = issue.make as string;
+    const issueModel = issue.model as string;
+    const years = issue.years as { start: number; end: number };
+
+    // Check year range
+    if (year < years.start || year > years.end) return false;
+
+    // Check make (case-insensitive)
+    if (issueMake.toLowerCase() !== make.toLowerCase()) return false;
+
+    // Check model (case-insensitive, partial match)
+    const modelLower = model.toLowerCase();
+    const issueModelLower = issueModel.toLowerCase();
+    if (!modelLower.includes(issueModelLower) && !issueModelLower.includes(modelLower)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  // Legacy format: vehicleMatch with years array
   const match = issue.vehicleMatch;
+  if (!match) return false;
 
   // Check year
   if (!match.years.includes(year)) return false;
@@ -30,7 +56,7 @@ function vehicleMatchesIssue(
   // If trim is specified in match criteria, check it
   if (match.trims && match.trims.length > 0 && trim) {
     const trimLower = trim.toLowerCase();
-    const hasMatchingTrim = match.trims.some(t =>
+    const hasMatchingTrim = match.trims.some((t: string) =>
       trimLower.includes(t.toLowerCase()) || t.toLowerCase().includes(trimLower)
     );
     if (!hasMatchingTrim) return false;
@@ -76,10 +102,50 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    // Normalize new-format issues to match the KnownIssue shape expected by frontend
+    function normalizeIssue(issue: any): KnownIssue {
+      // Already in legacy format
+      if (issue.vehicleMatch) return issue as KnownIssue;
+
+      // Convert new format to legacy format
+      const years = issue.years as { start: number; end: number };
+      const yearArray: number[] = [];
+      for (let y = years.start; y <= years.end; y++) {
+        yearArray.push(y);
+      }
+
+      return {
+        id: issue.id,
+        vehicleMatch: {
+          years: yearArray,
+          make: issue.make,
+          model: issue.model,
+        },
+        category: issue.category || 'other',
+        title: issue.title,
+        description: issue.description,
+        solution: issue.solution || '',
+        severity: issue.severity,
+        confidence: issue.confidence || 'medium',
+        symptoms: issue.symptoms || [],
+        affectedSystems: issue.affectedSystems,
+        estimatedCost: issue.estimatedCost
+          ? { low: issue.estimatedCost.min ?? issue.estimatedCost.low ?? 0, high: issue.estimatedCost.max ?? issue.estimatedCost.high ?? 0 }
+          : undefined,
+        citations: issue.citations || [],
+        communityRecommendations: issue.communityRecommendations,
+        humanApproved: issue.humanApproved ?? false,
+        lastReportedByOwners: issue.lastReportedByOwners || issue.reviewedOn || '',
+        reviewedOn: issue.reviewedOn || '',
+        reportCount: issue.reportCount || 0,
+        status: issue.status || 'published',
+      } as KnownIssue;
+    }
+
     // Filter issues by vehicle match (using statically imported data for Vercel compatibility)
-    let matchingIssues = (knownIssuesData.issues as KnownIssue[]).filter(issue =>
-      vehicleMatchesIssue(issue, yearNum, make, model, trim)
-    );
+    let matchingIssues = (knownIssuesData.issues as any[])
+      .filter(issue => vehicleMatchesIssue(issue, yearNum, make, model, trim))
+      .map(normalizeIssue);
 
     // Filter by status
     if (status) {
