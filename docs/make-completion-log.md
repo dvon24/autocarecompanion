@@ -36,7 +36,7 @@ Track progress on completing all vehicle makes with deep research.
 | GMC | ✅ COMPLETE | 10 | 35 | 2026-02-22 | All models + deep research done, 0 needsReview |
 | Honda | ✅ COMPLETE | 14 | 172 | 2026-02-22 | All models + deep research done, 0 needsReview, 101 YMMT entries added |
 | Hyundai | ✅ COMPLETE | 12 | 58 | 2026-02-23 | All models + EVs (Ioniq 5/6) + deep research done, 0 needsReview, 155 YMMT entries |
-| Jeep | ⏳ PENDING | 3 (partial) | - | - | Grand Cherokee, Wrangler, Cherokee already done |
+| Jeep | ✅ COMPLETE | 11 | 60 | 2026-02-23 | All models incl. Gladiator, Wagoneer/Grand Wagoneer, 0 needsReview, 118 YMMT entries |
 | Kia | ⏳ PENDING | 1 (partial) | - | - | Optima/K5 already done |
 | Mazda | ⏳ PENDING | 1 (partial) | - | - | CX-5 already done |
 | Nissan | ⏳ PENDING | 3 (partial) | - | - | Altima, Rogue, 370Z already done |
