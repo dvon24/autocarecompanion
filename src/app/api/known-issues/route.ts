@@ -102,10 +102,47 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Normalize new-format issues to match the KnownIssue shape expected by frontend
+    // Valid categories for the frontend
+    const validCategories = ['engine','transmission','drivetrain','electrical','brakes','suspension','cooling','fuel','interior','exterior','body','safety','other'];
+    const categoryMap: Record<string, string> = {
+      'steering': 'suspension', 'Steering': 'suspension',
+      'hvac': 'cooling', 'Climate Control': 'cooling',
+      'fuel_system': 'fuel', 'Fuel System': 'fuel',
+      'exhaust': 'engine', 'emissions': 'engine',
+    };
+
+    function normalizeCategory(cat: string | undefined): string {
+      if (!cat) return 'other';
+      // Handle case-insensitive match
+      const lower = cat.toLowerCase();
+      if (validCategories.includes(lower)) return lower;
+      // Try mapped categories
+      if (categoryMap[cat]) return categoryMap[cat];
+      return 'other';
+    }
+
+    // Normalize all issues to match the KnownIssue shape expected by frontend
     function normalizeIssue(issue: any): KnownIssue {
+      // Normalize estimatedCost for ALL issues (min/max -> low/high)
+      const ec = issue.estimatedCost;
+      const normalizedCost = ec
+        ? { low: ec.low ?? ec.min ?? 0, high: ec.high ?? ec.max ?? 0 }
+        : undefined;
+
       // Already in legacy format
-      if (issue.vehicleMatch) return issue as KnownIssue;
+      if (issue.vehicleMatch) {
+        return {
+          ...issue,
+          category: normalizeCategory(issue.category),
+          estimatedCost: normalizedCost,
+          symptoms: issue.symptoms || [],
+          citations: issue.citations || [],
+          solution: issue.solution || '',
+          confidence: issue.confidence || 'medium',
+          reportCount: issue.reportCount || 0,
+          status: issue.status || 'published',
+        } as KnownIssue;
+      }
 
       // Convert new format to legacy format
       const years = issue.years as { start: number; end: number };
@@ -121,7 +158,7 @@ export async function GET(request: NextRequest) {
           make: issue.make,
           model: issue.model,
         },
-        category: issue.category || 'other',
+        category: normalizeCategory(issue.category),
         title: issue.title,
         description: issue.description,
         solution: issue.solution || '',
@@ -129,9 +166,7 @@ export async function GET(request: NextRequest) {
         confidence: issue.confidence || 'medium',
         symptoms: issue.symptoms || [],
         affectedSystems: issue.affectedSystems,
-        estimatedCost: issue.estimatedCost
-          ? { low: issue.estimatedCost.min ?? issue.estimatedCost.low ?? 0, high: issue.estimatedCost.max ?? issue.estimatedCost.high ?? 0 }
-          : undefined,
+        estimatedCost: normalizedCost,
         citations: issue.citations || [],
         communityRecommendations: issue.communityRecommendations,
         humanApproved: issue.humanApproved ?? false,
