@@ -39,7 +39,7 @@ Track progress on completing all vehicle makes with deep research.
 | Jeep | ✅ COMPLETE | 11 | 60 | 2026-02-23 | All models incl. Gladiator, Wagoneer/Grand Wagoneer, 0 needsReview, 118 YMMT entries |
 | Kia | ✅ COMPLETE | 14 | 53 | 2026-02-23 | All models incl. EVs (EV6, Niro EV), Stinger, Telluride, 0 needsReview, 183 YMMT entries |
 | Mazda | ✅ COMPLETE | 11 | 52 | 2026-02-24 | All models incl. CX-50/CX-90/CX-70, MX-5, RX-8, 0 needsReview, 150 YMMT entries |
-| Nissan | ⏳ PENDING | 3 (partial) | - | - | Altima, Rogue, 370Z already done |
+| Nissan | ✅ COMPLETE | 18 | 68 | 2026-02-24 | All models incl. 350Z/370Z/Z, GT-R, EVs (Leaf, Ariya), 0 needsReview, 293 YMMT entries |
 | RAM | ⏳ PENDING | 1 (partial) | - | - | 1500 already done |
 | Subaru | ⏳ PENDING | 3 (partial) | - | - | Outback, Forester, WRX/STI already done |
 | Toyota | ⏳ PENDING | 7 (partial) | - | - | Camry, Tundra, RAV4, Corolla, Tacoma, 4Runner already done |
@@ -228,6 +228,22 @@ Track progress on completing all vehicle makes with deep research.
 **YMMT Entries:** 150 year/model combinations (+ 11 existing CX-5 = 161 total)
 **Deep Research Completed:** 2026-02-24
 **Notes:** Complete coverage of all Mazda models sold in US market. Key issues: SkyActiv-G 2.5 carbon buildup, SkyActiv-D 2.2 DPF regen, CX-5 infotainment reboot (CMU freeze), CX-9 turbo actuator, CX-50/CX-90 inline-6 3.3T turbo lag/hesitation, MX-5 ND soft top wear, RX-8 Renesis rotary apex seal failure, Mazda3 TCM failure, CX-30 AWD coupling.
+
+---
+
+### ✅ Nissan (COMPLETE)
+**Models Covered (18):**
+- Cars: Altima, Sentra, Maxima, Versa
+- Sports: 370Z, 350Z, Z (400Z), GT-R
+- SUVs: Rogue, Pathfinder, Murano, Armada, Kicks, Juke, Xterra, Rogue Sport
+- Trucks: Frontier, Titan
+- Minivan: Quest
+- EVs: Leaf, Ariya
+
+**Issues Added:** 68 total (23 existing + 45 new)
+**YMMT Entries:** 293 new + 31 existing = 324 total
+**Deep Research Completed:** 2026-02-24
+**Notes:** Complete coverage of all Nissan models. Key issues: Jatco CVT failures (CVT7/CVT8 across Sentra, Versa, Murano, Pathfinder, Maxima, Rogue), VQ35DE/HR oil consumption, VK56DE timing chain guides (Titan), VQ40DE timing chain (Frontier), SMOD radiator/trans cooler failure (Xterra), Frontier frame rust (Recall R1601), Leaf battery degradation, GT-R GR6 DCT judder, Z 400Z VR30DDTT wastegate, Armada VVEL solenoid. Forum sources: NissanClub.com, NICOclub.com, TitanTalk.com, ClubFrontier.org, TheNewX.org, My350Z.com, GT-RLife.com, NissanLeaf.com.
 
 ---
 
