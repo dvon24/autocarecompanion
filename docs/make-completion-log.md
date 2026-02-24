@@ -42,7 +42,7 @@ Track progress on completing all vehicle makes with deep research.
 | Nissan | ✅ COMPLETE | 18 | 68 | 2026-02-24 | All models incl. 350Z/370Z/Z, GT-R, EVs (Leaf, Ariya), 0 needsReview, 293 YMMT entries |
 | RAM | ✅ COMPLETE | 6 | 26 | 2026-02-24 | All models incl. HD trucks, ProMaster vans, 0 needsReview, 79 YMMT entries |
 | Subaru | ✅ COMPLETE | 12 | 51 | 2026-02-24 | All models incl. BRZ, Solterra EV, Baja, Tribeca, 0 needsReview, 139 YMMT entries |
-| Toyota | ⏳ PENDING | 7 (partial) | - | - | Camry, Tundra, RAV4, Corolla, Tacoma, 4Runner already done |
+| Toyota | ✅ COMPLETE | 22 | 102 | 2026-02-24 | All models incl. GR lineup, EVs (bZ4X), Land Cruiser, 0 needsReview, 283 YMMT entries |
 | Volkswagen | ⏳ PENDING | 1 (partial) | - | - | Jetta/Golf/GTI already done |
 | Volvo | ⏳ PENDING | 1 (partial) | - | - | XC90 already done |
 
@@ -270,6 +270,22 @@ Track progress on completing all vehicle makes with deep research.
 **YMMT Entries:** 139 new + 56 existing = 195 total
 **Deep Research Completed:** 2026-02-24
 **Notes:** Complete coverage of all Subaru models. Key issues: EJ25 head gasket failure (Legacy, Impreza, Baja), FB25 oil consumption (Forester, Outback, Legacy), CVT failures across lineup (Jatco TR690/TR580), WRX ringland/rod bearing failure, BRZ FA20 valve spring recall (WQG-66), windshield cracking (Ascent, Forester), Solterra hub bolt recall, Tribeca EZ36 oil leaks, Xterra SMOD equivalent. Forum sources: NASIOC.com, SubaruOutback.org, SubaruForester.org, FT86Club.com, ClubWRX.net.
+
+---
+
+### ✅ Toyota (COMPLETE)
+**Models Covered (22):**
+- Cars: Camry, Corolla, Avalon, Prius, Yaris, Matrix, Crown
+- SUVs: RAV4, Highlander, 4Runner, Sequoia, Land Cruiser, Venza, C-HR, Corolla Cross, Grand Highlander
+- Trucks: Tacoma, Tundra
+- Minivan: Sienna
+- Sports: Supra, GR86, GR Corolla, 86, FJ Cruiser
+- EVs: bZ4X
+
+**Issues Added:** 102 total (53 existing + 49 new)
+**YMMT Entries:** 283 new + 63 existing = 346 total
+**Deep Research Completed:** 2026-02-24
+**Notes:** Complete coverage of all Toyota models. Key issues: 2AR-FE oil consumption (RAV4, Camry, Venza), 2GR-FE oil leaks, Prius hybrid battery failure (Gen 2/3), Sienna power sliding door, 4Runner/Tacoma frame rust (Recall E0Z), Tundra secondary air injection pump, bZ4X hub bolt recall (22V-651), GR Corolla G16E-GTS head gasket, GR86 FA24 valve spring recall, Supra B58 coolant loss, Land Cruiser 100 frame rust, KDSS hydraulic leaks. Forum sources: ToyotaNation.com, Tacoma World, TundraTalk.net, RAV4World.com, PriusChat.com, GR86.club, SupraMKV.com, ToyotaCrown.club.
 
 ---
 
