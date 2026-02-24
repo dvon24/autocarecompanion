@@ -43,8 +43,8 @@ Track progress on completing all vehicle makes with deep research.
 | RAM | ✅ COMPLETE | 6 | 26 | 2026-02-24 | All models incl. HD trucks, ProMaster vans, 0 needsReview, 79 YMMT entries |
 | Subaru | ✅ COMPLETE | 12 | 51 | 2026-02-24 | All models incl. BRZ, Solterra EV, Baja, Tribeca, 0 needsReview, 139 YMMT entries |
 | Toyota | ✅ COMPLETE | 22 | 102 | 2026-02-24 | All models incl. GR lineup, EVs (bZ4X), Land Cruiser, 0 needsReview, 283 YMMT entries |
-| Volkswagen | ⏳ PENDING | 1 (partial) | - | - | Jetta/Golf/GTI already done |
-| Volvo | ⏳ PENDING | 1 (partial) | - | - | XC90 already done |
+| Volkswagen | ✅ COMPLETE | 13 | 46 | 2026-02-24 | All models incl. ID.4 EV, ID. Buzz, Atlas, 0 needsReview, 122 YMMT entries |
+| Volvo | ✅ COMPLETE | 13 | 40 | 2026-02-24 | All models incl. EVs (C40, EX30, EX90), legacy (S40, XC70, S80), 0 needsReview, 155 YMMT entries |
 
 ---
 
@@ -286,6 +286,33 @@ Track progress on completing all vehicle makes with deep research.
 **YMMT Entries:** 283 new + 63 existing = 346 total
 **Deep Research Completed:** 2026-02-24
 **Notes:** Complete coverage of all Toyota models. Key issues: 2AR-FE oil consumption (RAV4, Camry, Venza), 2GR-FE oil leaks, Prius hybrid battery failure (Gen 2/3), Sienna power sliding door, 4Runner/Tacoma frame rust (Recall E0Z), Tundra secondary air injection pump, bZ4X hub bolt recall (22V-651), GR Corolla G16E-GTS head gasket, GR86 FA24 valve spring recall, Supra B58 coolant loss, Land Cruiser 100 frame rust, KDSS hydraulic leaks. Forum sources: ToyotaNation.com, Tacoma World, TundraTalk.net, RAV4World.com, PriusChat.com, GR86.club, SupraMKV.com, ToyotaCrown.club.
+
+---
+
+### ✅ Volkswagen (COMPLETE)
+**Models Covered (13):**
+- Cars: Jetta, Golf/GTI, Passat, CC, Beetle, Eos, Rabbit, Arteon
+- SUVs: Tiguan, Atlas, Atlas Cross Sport, Taos, Touareg
+- EVs: ID.4, ID. Buzz
+
+**Issues Added:** 46 total (9 existing + 37 new)
+**YMMT Entries:** 122 new + 46 existing = 168 total
+**Deep Research Completed:** 2026-02-24
+**Notes:** Complete coverage of all VW models sold in US. Key issues: EA888 2.0T timing chain tensioner (06K109467K), water pump (Pierburg CWA400), carbon buildup (GDI), DSG mechatronic unit (02E325025AE), Passat timing chain stretch, Atlas VR6 timing chain, Tiguan panoramic sunroof, ID.4 12V battery drain, Touareg air suspension, Beetle 2.5L timing chain, Eos convertible top hydraulics. Forum sources: VWVortex.com, GolfMK7.com, TDIClub.com, MQBForum.com.
+
+---
+
+### ✅ Volvo (COMPLETE)
+**Models Covered (13):**
+- Sedans: S60, S90, S40, S80
+- Wagons: V60, V90, XC70, V50
+- SUVs: XC90, XC60, XC40
+- EVs: C40 Recharge, EX30, EX90
+
+**Issues Added:** 40 total (7 existing + 33 new)
+**YMMT Entries:** 155 new (from scratch)
+**Deep Research Completed:** 2026-02-24
+**Notes:** Complete coverage of all Volvo models. Key issues: T5/T6 oil consumption, PCV/oil trap failure (S40, S60, XC70), Aisin 8-speed transmission shudder, air suspension failure (XC90, S90, V90), Sensus/Google infotainment issues, AWD angle gear seal (XC70), ETM failure (S40/V50), T6 supercharger/turbo compound charging, EX30/EX90 software maturity, C40 Recharge 12V battery drain. Forum sources: SwedeSpeed.com, VolvoForums.com, MatthewsVolvoSite.com, VolvoXC40Forum.com.
 
 ---
 
