@@ -41,7 +41,7 @@ Track progress on completing all vehicle makes with deep research.
 | Mazda | ✅ COMPLETE | 11 | 52 | 2026-02-24 | All models incl. CX-50/CX-90/CX-70, MX-5, RX-8, 0 needsReview, 150 YMMT entries |
 | Nissan | ✅ COMPLETE | 18 | 68 | 2026-02-24 | All models incl. 350Z/370Z/Z, GT-R, EVs (Leaf, Ariya), 0 needsReview, 293 YMMT entries |
 | RAM | ✅ COMPLETE | 6 | 26 | 2026-02-24 | All models incl. HD trucks, ProMaster vans, 0 needsReview, 79 YMMT entries |
-| Subaru | ⏳ PENDING | 3 (partial) | - | - | Outback, Forester, WRX/STI already done |
+| Subaru | ✅ COMPLETE | 12 | 51 | 2026-02-24 | All models incl. BRZ, Solterra EV, Baja, Tribeca, 0 needsReview, 139 YMMT entries |
 | Toyota | ⏳ PENDING | 7 (partial) | - | - | Camry, Tundra, RAV4, Corolla, Tacoma, 4Runner already done |
 | Volkswagen | ⏳ PENDING | 1 (partial) | - | - | Jetta/Golf/GTI already done |
 | Volvo | ⏳ PENDING | 1 (partial) | - | - | XC90 already done |
@@ -256,6 +256,20 @@ Track progress on completing all vehicle makes with deep research.
 **YMMT Entries:** 79 new + 3 existing = 82 total
 **Deep Research Completed:** 2026-02-24
 **Notes:** Complete coverage of all RAM models. Key issues: 5.7L HEMI exhaust manifold bolt failure, eTorque mild hybrid system failure, four-corner air suspension (2019+ DT), ZF 8HP75 harsh shifting, 6.7L Cummins CP4.2 catastrophic failure (S&S CP3 conversion), DEF system failures, front end death wobble (track bar, steering stabilizer), Aisin AS69RC overheating, 68RFE transmission failure when towing, ProMaster Pentastar oil filter housing, ProMaster City ZF 9HP issues. Forum sources: RAMForumz.com, Cummins Forum, DodgeTalk.com, 5thGenRams.com.
+
+---
+
+### ✅ Subaru (COMPLETE)
+**Models Covered (12):**
+- Cars: Impreza, Legacy, WRX, WRX STI, BRZ
+- SUVs: Forester, Outback, Crosstrek, Ascent, Tribeca
+- Utility: Baja
+- EVs: Solterra
+
+**Issues Added:** 51 total (17 existing + 34 new)
+**YMMT Entries:** 139 new + 56 existing = 195 total
+**Deep Research Completed:** 2026-02-24
+**Notes:** Complete coverage of all Subaru models. Key issues: EJ25 head gasket failure (Legacy, Impreza, Baja), FB25 oil consumption (Forester, Outback, Legacy), CVT failures across lineup (Jatco TR690/TR580), WRX ringland/rod bearing failure, BRZ FA20 valve spring recall (WQG-66), windshield cracking (Ascent, Forester), Solterra hub bolt recall, Tribeca EZ36 oil leaks, Xterra SMOD equivalent. Forum sources: NASIOC.com, SubaruOutback.org, SubaruForester.org, FT86Club.com, ClubWRX.net.
 
 ---
 
