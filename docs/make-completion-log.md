@@ -38,7 +38,7 @@ Track progress on completing all vehicle makes with deep research.
 | Hyundai | ✅ COMPLETE | 12 | 58 | 2026-02-23 | All models + EVs (Ioniq 5/6) + deep research done, 0 needsReview, 155 YMMT entries |
 | Jeep | ✅ COMPLETE | 11 | 60 | 2026-02-23 | All models incl. Gladiator, Wagoneer/Grand Wagoneer, 0 needsReview, 118 YMMT entries |
 | Kia | ✅ COMPLETE | 14 | 53 | 2026-02-23 | All models incl. EVs (EV6, Niro EV), Stinger, Telluride, 0 needsReview, 183 YMMT entries |
-| Mazda | ⏳ PENDING | 1 (partial) | - | - | CX-5 already done |
+| Mazda | ✅ COMPLETE | 11 | 52 | 2026-02-24 | All models incl. CX-50/CX-90/CX-70, MX-5, RX-8, 0 needsReview, 150 YMMT entries |
 | Nissan | ⏳ PENDING | 3 (partial) | - | - | Altima, Rogue, 370Z already done |
 | RAM | ⏳ PENDING | 1 (partial) | - | - | 1500 already done |
 | Subaru | ⏳ PENDING | 3 (partial) | - | - | Outback, Forester, WRX/STI already done |
@@ -155,6 +155,79 @@ Track progress on completing all vehicle makes with deep research.
 **YMMT Entries:** 173 year/model combinations + 9 for 2026
 **Deep Research Completed:** 2026-02-22
 **Notes:** Complete coverage of all major GMC models. Heavy platform sharing with Chevrolet - same engines (5.3L/6.2L V8, 3.6L V6, 6.6L Duramax, 2.7T), same transmissions (8L90/10L80, 6T40/6T45, 9T65, Allison 1000). Key cross-cutting issues: AFM/DFM lifter failure (GM 12639516 VLOM, Range RA003B disabler), 8L90/10L80 transmission shudder (Mobil 1 LV ATF HP 19417577, TSB 18-NA-355/22-NA-080), Duramax CP4.2 HPFP catastrophic failure (Fleece FPE-CP3K CP3 conversion, FASS lift pump), 3.6L timing chain stretch (Cloyes 9-0753S, ACDelco 251-749 water pump), Autoride air suspension failure (Arnott P-2793, Strutmasters conversion), brake line corrosion recall 17V-449, 9T65 transmission issues (TSB 20-NA-136). Forum sources: GM-Trucks.com, SierraDenali.com, YukonXLForum.com, GMCForum.com, AcadiaForum.net, duramaxforum.com, coloradofans.com.
+
+---
+
+### ✅ Honda (COMPLETE)
+**Models Covered (14):**
+- Cars: Civic, Accord, Fit, Insight, Clarity
+- SUVs: CR-V, HR-V, Pilot, Passport
+- Trucks: Ridgeline
+- Minivan: Odyssey
+- Sports: S2000
+- EVs: Prologue
+- Luxury: Crosstour
+
+**Issues Added:** 172 total (11 existing + 161 new)
+**YMMT Entries:** 101 year/model combinations
+**Deep Research Completed:** 2026-02-22
+**Notes:** Complete coverage of all Honda models. Key issues: 1.5T L15B oil dilution (CR-V/Civic, TSB 18-095), ZF 9-speed transmission (Pilot/Passport/Ridgeline, TSB 18-023), VCM cylinder deactivation oil burn (J35 V6, S-VCM Controller muzzler), A/C condenser leak (2016+ Civic), 2.4L starter recall, i-VTEC solenoid leak.
+
+---
+
+### ✅ Hyundai (COMPLETE)
+**Models Covered (12):**
+- Cars: Sonata, Elantra, Accent, Veloster
+- SUVs: Tucson, Santa Fe, Kona, Palisade, Venue
+- Trucks: Santa Cruz
+- Sports: Genesis Coupe
+- EVs: Ioniq 5, Ioniq 6
+
+**Issues Added:** 58 total (15 existing + 43 new)
+**YMMT Entries:** 155 year/model combinations
+**Deep Research Completed:** 2026-02-23
+**Notes:** Complete coverage of all Hyundai models. Key issues: Theta II 2.0T/2.4L engine failure (class action, recall 20V-700), DCT shudder (7-speed dry clutch), 8-speed wet DCT (Tucson/Santa Fe), Smart Stream CVT issues, 800V architecture E-GMP battery conditioning, Palisade oil leak (valve cover gasket), Genesis Coupe BK2 3.8L GDI carbon buildup.
+
+---
+
+### ✅ Jeep (COMPLETE)
+**Models Covered (11):**
+- Core: Wrangler, Grand Cherokee, Cherokee, Gladiator
+- Crossover: Compass, Renegade
+- Full-size: Wagoneer, Grand Wagoneer, Grand Cherokee L
+- Legacy: Commander, Liberty, Patriot
+
+**Issues Added:** 60 total (26 existing + 34 new)
+**YMMT Entries:** 118 year/model combinations
+**Deep Research Completed:** 2026-02-23
+**Notes:** Complete coverage of all Jeep models. Key issues: 3.6L Pentastar oil filter housing leak (Dorman 926-959), ZF 9-speed hesitation (2015+ Cherokee/Compass/Renegade), Dana 44/35 axle seal leak, death wobble (track bar, Synergy 8069-01), 3.0L EcoDiesel EGR cooler, eTorque mild hybrid starter generator, ESS auto start-stop failure.
+
+---
+
+### ✅ Kia (COMPLETE)
+**Models Covered (14):**
+- Cars: Optima, K5, Forte, Rio, Stinger
+- SUVs: Sorento, Sportage, Telluride, Seltos
+- Crossover: Niro, Soul
+- Minivan: Sedona, Carnival
+- EVs: EV6, EV9
+
+**Issues Added:** 53 total (8 existing + 45 new)
+**YMMT Entries:** 183 year/model combinations (from scratch)
+**Deep Research Completed:** 2026-02-23
+**Notes:** Complete coverage of all Kia models. Key issues: Theta II 2.0T/2.4L engine seizure (recall 20V-700, shared with Hyundai), DCT shudder (Forte/Soul), 8-speed transmission (Sorento/Telluride), Sportage 2.5T oil consumption, EV6 800V charging issues, Stinger 3.3T wastegate rattle, Carnival sliding door motor.
+
+---
+
+### ✅ Mazda (COMPLETE)
+**Models Covered (11):**
+- Cars: Mazda3, Mazda6, MX-5 Miata, RX-8, Mazda5
+- SUVs: CX-5, CX-9, CX-30, CX-50, CX-90, CX-3
+
+**Issues Added:** 52 total (12 existing CX-5 + 40 new)
+**YMMT Entries:** 150 year/model combinations (+ 11 existing CX-5 = 161 total)
+**Deep Research Completed:** 2026-02-24
+**Notes:** Complete coverage of all Mazda models sold in US market. Key issues: SkyActiv-G 2.5 carbon buildup, SkyActiv-D 2.2 DPF regen, CX-5 infotainment reboot (CMU freeze), CX-9 turbo actuator, CX-50/CX-90 inline-6 3.3T turbo lag/hesitation, MX-5 ND soft top wear, RX-8 Renesis rotary apex seal failure, Mazda3 TCM failure, CX-30 AWD coupling.
 
 ---
 
