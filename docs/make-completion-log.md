@@ -38,6 +38,7 @@ Track progress on completing all vehicle makes with deep research.
 | Hyundai | ✅ COMPLETE | 12 | 58 | 2026-02-23 | All models + EVs (Ioniq 5/6) + deep research done, 0 needsReview, 155 YMMT entries |
 | Jeep | ✅ COMPLETE | 11 | 60 | 2026-02-23 | All models incl. Gladiator, Wagoneer/Grand Wagoneer, 0 needsReview, 118 YMMT entries |
 | Kia | ✅ COMPLETE | 14 | 53 | 2026-02-23 | All models incl. EVs (EV6, Niro EV), Stinger, Telluride, 0 needsReview, 183 YMMT entries |
+| MINI | ✅ COMPLETE | 5 | 18 | 2026-02-25 | Cooper, Cooper S, Countryman, Clubman, Convertible + DTC codes, 93 YMMT entries |
 | Mazda | ✅ COMPLETE | 11 | 52 | 2026-02-24 | All models incl. CX-50/CX-90/CX-70, MX-5, RX-8, 0 needsReview, 150 YMMT entries |
 | Nissan | ✅ COMPLETE | 18 | 68 | 2026-02-24 | All models incl. 350Z/370Z/Z, GT-R, EVs (Leaf, Ariya), 0 needsReview, 293 YMMT entries |
 | RAM | ✅ COMPLETE | 6 | 26 | 2026-02-24 | All models incl. HD trucks, ProMaster vans, 0 needsReview, 79 YMMT entries |
