@@ -177,10 +177,17 @@ export async function GET(request: NextRequest) {
       } as KnownIssue;
     }
 
+    // Normalize status values (treat 'active' as 'published')
+    function normalizeStatus(s: string | undefined): string {
+      if (!s || s === 'active') return 'published';
+      return s;
+    }
+
     // Filter issues by vehicle match (using statically imported data for Vercel compatibility)
     let matchingIssues = (knownIssuesData.issues as any[])
       .filter(issue => vehicleMatchesIssue(issue, yearNum, make, model, trim))
-      .map(normalizeIssue);
+      .map(normalizeIssue)
+      .map(issue => ({ ...issue, status: normalizeStatus(issue.status) }));
 
     // Filter by status
     if (status) {
@@ -195,8 +202,8 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Sort by severity (high first) then by report count
-    const severityOrder: Record<string, number> = { high: 0, medium: 1, low: 2 };
+    // Sort by severity (critical/high first) then by report count
+    const severityOrder: Record<string, number> = { critical: 0, high: 1, moderate: 2, medium: 3, low: 4 };
     matchingIssues.sort((a, b) => {
       const severityDiff = severityOrder[a.severity] - severityOrder[b.severity];
       if (severityDiff !== 0) return severityDiff;
