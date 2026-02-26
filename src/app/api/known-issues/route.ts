@@ -121,6 +121,16 @@ export async function GET(request: NextRequest) {
       return 'other';
     }
 
+    // Normalize severity to match frontend expectations (high/medium/low)
+    function normalizeSeverity(sev: string | undefined): 'high' | 'medium' | 'low' {
+      if (!sev) return 'medium';
+      const lower = sev.toLowerCase();
+      if (lower === 'critical' || lower === 'high') return 'high';
+      if (lower === 'moderate' || lower === 'medium') return 'medium';
+      if (lower === 'low') return 'low';
+      return 'medium';
+    }
+
     // Normalize all issues to match the KnownIssue shape expected by frontend
     function normalizeIssue(issue: any): KnownIssue {
       // Normalize estimatedCost for ALL issues (min/max -> low/high)
@@ -134,6 +144,7 @@ export async function GET(request: NextRequest) {
         return {
           ...issue,
           category: normalizeCategory(issue.category),
+          severity: normalizeSeverity(issue.severity),
           estimatedCost: normalizedCost,
           symptoms: issue.symptoms || [],
           citations: issue.citations || [],
@@ -162,7 +173,7 @@ export async function GET(request: NextRequest) {
         title: issue.title,
         description: issue.description,
         solution: issue.solution || '',
-        severity: issue.severity,
+        severity: normalizeSeverity(issue.severity),
         confidence: issue.confidence || 'medium',
         symptoms: issue.symptoms || [],
         affectedSystems: issue.affectedSystems,
