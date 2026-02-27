@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { MAINTENANCE_SCHEDULES } from '@/lib/maintenance';
+import { MAINTENANCE_SCHEDULES, getApplicableSchedules, type VehicleContext, type ResolvedSchedule } from '@/lib/maintenance';
 
 interface MaintenanceRecord {
   id: string;
@@ -20,6 +20,7 @@ interface LogMaintenanceModalProps {
   vehicleId: string;
   currentMileage?: number | null;
   preselectedType?: string | null;
+  vehicleContext?: VehicleContext;
   onClose: () => void;
   onRecordAdded: (record: MaintenanceRecord) => void;
 }
@@ -28,6 +29,7 @@ export function LogMaintenanceModal({
   vehicleId,
   currentMileage,
   preselectedType,
+  vehicleContext,
   onClose,
   onRecordAdded,
 }: LogMaintenanceModalProps) {
@@ -98,9 +100,17 @@ export function LogMaintenanceModal({
 
   const selectedType = formData.type ? MAINTENANCE_SCHEDULES[formData.type] : null;
 
-  // Calculate suggested next due
-  const suggestedNextMileage = selectedType && formData.mileage
-    ? parseInt(formData.mileage) + selectedType.defaultIntervalMiles
+  // Get applicable schedules for the vehicle (if context provided)
+  const applicableSchedules = vehicleContext ? getApplicableSchedules(vehicleContext) : null;
+  const applicableIds = applicableSchedules ? new Set(applicableSchedules.map(s => s.id)) : null;
+
+  // Get the resolved schedule for the selected type
+  const resolvedType = applicableSchedules?.find(s => s.id === formData.type);
+
+  // Calculate suggested next due using resolved interval
+  const intervalMiles = resolvedType?.intervalMiles ?? selectedType?.defaultIntervalMiles;
+  const suggestedNextMileage = selectedType && formData.mileage && intervalMiles
+    ? parseInt(formData.mileage) + intervalMiles
     : null;
 
   return (
@@ -141,7 +151,7 @@ export function LogMaintenanceModal({
               <option value="">Select service type</option>
               <optgroup label="Routine">
                 {Object.entries(MAINTENANCE_SCHEDULES)
-                  .filter(([, t]) => t.category === 'routine')
+                  .filter(([id, t]) => t.category === 'routine' && (!applicableIds || applicableIds.has(id)))
                   .map(([id, t]) => (
                     <option key={id} value={id}>
                       {t.name}
@@ -150,7 +160,7 @@ export function LogMaintenanceModal({
               </optgroup>
               <optgroup label="Periodic">
                 {Object.entries(MAINTENANCE_SCHEDULES)
-                  .filter(([, t]) => t.category === 'periodic')
+                  .filter(([id, t]) => t.category === 'periodic' && (!applicableIds || applicableIds.has(id)))
                   .map(([id, t]) => (
                     <option key={id} value={id}>
                       {t.name}
@@ -159,7 +169,7 @@ export function LogMaintenanceModal({
               </optgroup>
               <optgroup label="Major">
                 {Object.entries(MAINTENANCE_SCHEDULES)
-                  .filter(([, t]) => t.category === 'major')
+                  .filter(([id, t]) => t.category === 'major' && (!applicableIds || applicableIds.has(id)))
                   .map(([id, t]) => (
                     <option key={id} value={id}>
                       {t.name}

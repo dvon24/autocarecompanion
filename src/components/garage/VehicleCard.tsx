@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { MaintenanceOverview } from '@/components/maintenance/MaintenanceStatusBar';
 import { useGuide } from '@/hooks/useGuide';
 import { useKnownIssues } from '@/hooks/useKnownIssues';
-import { MAINTENANCE_SCHEDULES } from '@/lib/maintenance';
+import { MAINTENANCE_SCHEDULES, type VehicleContext } from '@/lib/maintenance';
 
 interface Vehicle {
   id: string;
@@ -69,6 +69,13 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
 
   const displayName = vehicle.nickname || `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
   const fullName = `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ` ${vehicle.trim}` : ''}`;
+
+  // Build vehicle context for vehicle-specific maintenance schedules
+  const vehicleContext: VehicleContext = {
+    make: vehicle.make,
+    model: vehicle.model,
+    year: vehicle.year,
+  };
 
   const handleGenerateGuide = async (maintenanceType: string) => {
     if (isGenerating) return;
@@ -341,6 +348,7 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
             onGenerateGuide={handleGenerateGuide}
             generatingGuideFor={generatingGuideFor}
             isGenerating={isGenerating}
+            vehicleContext={vehicleContext}
           />
         </div>
       </div>

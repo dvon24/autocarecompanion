@@ -1,0 +1,731 @@
+{
+  "makes": {
+    "Toyota": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 65 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 60, "cost": 180 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 180 },
+        "coolant_flush": { "intervalMiles": 50000, "intervalMonths": 36, "cost": 130 },
+        "cabin_filter": { "intervalMiles": 20000, "intervalMonths": 18, "cost": 30 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 25 },
+        "differential_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 120 }
+      },
+      "models": {
+        "4Runner": {
+          "timing_belt": { "intervalMiles": 90000, "intervalMonths": 84, "cost": 900, "note": "V6 models 2002 and earlier use timing belt" },
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 100 }
+        },
+        "Tacoma": {
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 100 }
+        },
+        "Tundra": {
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 100 }
+        },
+        "Prius": {
+          "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 55 },
+          "spark_plugs": { "intervalMiles": 120000, "intervalMonths": 96, "cost": 200 },
+          "serpentine_belt": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        },
+        "Camry Hybrid": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        },
+        "RAV4 Hybrid": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        },
+        "Highlander Hybrid": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        }
+      }
+    },
+    "Honda": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 7500, "intervalMonths": 12, "cost": 60 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 150 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 60, "cost": 160 },
+        "coolant_flush": { "intervalMiles": 50000, "intervalMonths": 36, "cost": 120 },
+        "cabin_filter": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 25 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 25 },
+        "differential_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 100 }
+      },
+      "models": {
+        "Odyssey": {
+          "timing_belt": { "intervalMiles": 105000, "intervalMonths": 84, "cost": 900, "note": "J35 V6 uses timing belt through 2017" }
+        },
+        "Pilot": {
+          "timing_belt": { "intervalMiles": 105000, "intervalMonths": 84, "cost": 950, "note": "J35 V6 uses timing belt through 2015" },
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 100 }
+        },
+        "Ridgeline": {
+          "timing_belt": { "intervalMiles": 105000, "intervalMonths": 84, "cost": 950, "note": "1st gen J35 uses timing belt" },
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 100 }
+        },
+        "CR-V": {
+          "oil_change": { "intervalMiles": 7500, "intervalMonths": 12, "cost": 55 }
+        },
+        "Insight": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        },
+        "CR-V Hybrid": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        },
+        "Accord Hybrid": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        }
+      }
+    },
+    "Ford": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 7500, "intervalMonths": 12, "cost": 65 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 180 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 60, "cost": 200 },
+        "coolant_flush": { "intervalMiles": 50000, "intervalMonths": 36, "cost": 130 },
+        "cabin_filter": { "intervalMiles": 20000, "intervalMonths": 18, "cost": 30 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 30 },
+        "fuel_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 80 }
+      },
+      "models": {
+        "F-150": {
+          "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 60, "cost": 250, "note": "EcoBoost engines may require special procedure" },
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 110 }
+        },
+        "F-250": {
+          "oil_change": { "intervalMiles": 7500, "intervalMonths": 12, "cost": 100, "note": "Diesel requires 15 quarts" },
+          "fuel_filter": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 100, "note": "Diesel fuel filter critical" },
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 110 }
+        },
+        "F-350": {
+          "oil_change": { "intervalMiles": 7500, "intervalMonths": 12, "cost": 100 },
+          "fuel_filter": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 100 },
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 110 }
+        },
+        "Explorer": {
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 100 }
+        },
+        "Expedition": {
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 100 }
+        },
+        "Bronco": {
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 100 }
+        },
+        "Escape Hybrid": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        },
+        "Maverick Hybrid": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        },
+        "Mustang Mach-E": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        },
+        "F-150 Lightning": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        }
+      }
+    },
+    "Chevrolet": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 7500, "intervalMonths": 12, "cost": 65 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 45000, "intervalMonths": 36, "cost": 180 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 60, "cost": 200 },
+        "coolant_flush": { "intervalMiles": 50000, "intervalMonths": 36, "cost": 130 },
+        "cabin_filter": { "intervalMiles": 20000, "intervalMonths": 18, "cost": 30 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 30 }
+      },
+      "models": {
+        "Silverado 1500": {
+          "transfer_case_fluid": { "intervalMiles": 45000, "intervalMonths": 36, "cost": 110 }
+        },
+        "Silverado 2500HD": {
+          "oil_change": { "intervalMiles": 7500, "intervalMonths": 12, "cost": 100 },
+          "fuel_filter": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 100 },
+          "transfer_case_fluid": { "intervalMiles": 45000, "intervalMonths": 36, "cost": 110 }
+        },
+        "Tahoe": {
+          "transfer_case_fluid": { "intervalMiles": 45000, "intervalMonths": 36, "cost": 110 }
+        },
+        "Suburban": {
+          "transfer_case_fluid": { "intervalMiles": 45000, "intervalMonths": 36, "cost": 110 }
+        },
+        "Colorado": {
+          "transfer_case_fluid": { "intervalMiles": 45000, "intervalMonths": 36, "cost": 100 }
+        },
+        "Bolt EV": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        },
+        "Bolt EUV": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        },
+        "Corvette": {
+          "oil_change": { "intervalMiles": 7500, "intervalMonths": 12, "cost": 100 }
+        }
+      }
+    },
+    "GMC": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 7500, "intervalMonths": 12, "cost": 70 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 45000, "intervalMonths": 36, "cost": 190 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 60, "cost": 210 },
+        "coolant_flush": { "intervalMiles": 50000, "intervalMonths": 36, "cost": 135 },
+        "cabin_filter": { "intervalMiles": 20000, "intervalMonths": 18, "cost": 35 }
+      },
+      "models": {
+        "Sierra 1500": {
+          "transfer_case_fluid": { "intervalMiles": 45000, "intervalMonths": 36, "cost": 110 }
+        },
+        "Sierra 2500HD": {
+          "oil_change": { "intervalMiles": 7500, "intervalMonths": 12, "cost": 100 },
+          "fuel_filter": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 100 },
+          "transfer_case_fluid": { "intervalMiles": 45000, "intervalMonths": 36, "cost": 110 }
+        },
+        "Yukon": {
+          "transfer_case_fluid": { "intervalMiles": 45000, "intervalMonths": 36, "cost": 110 }
+        },
+        "Canyon": {
+          "transfer_case_fluid": { "intervalMiles": 45000, "intervalMonths": 36, "cost": 100 }
+        },
+        "Acadia": {
+          "differential_fluid": { "intervalMiles": 45000, "intervalMonths": 36, "cost": 120 }
+        }
+      }
+    },
+    "RAM": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 70 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 200 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 60, "cost": 200 },
+        "coolant_flush": { "intervalMiles": 50000, "intervalMonths": 36, "cost": 140 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 30 },
+        "cabin_filter": { "intervalMiles": 20000, "intervalMonths": 18, "cost": 30 }
+      },
+      "models": {
+        "1500": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 120 }
+        },
+        "2500": {
+          "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 110 },
+          "fuel_filter": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 100 },
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 120 }
+        },
+        "3500": {
+          "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 110 },
+          "fuel_filter": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 100 },
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 120 }
+        }
+      }
+    },
+    "Dodge": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 65 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 180 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 60, "cost": 190 },
+        "coolant_flush": { "intervalMiles": 50000, "intervalMonths": 36, "cost": 130 },
+        "cabin_filter": { "intervalMiles": 20000, "intervalMonths": 18, "cost": 30 }
+      },
+      "models": {
+        "Durango": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 110 }
+        },
+        "Charger": {
+          "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 75 }
+        },
+        "Challenger": {
+          "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 75 }
+        }
+      }
+    },
+    "Chrysler": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 65 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 180 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 60, "cost": 180 },
+        "coolant_flush": { "intervalMiles": 50000, "intervalMonths": 36, "cost": 130 },
+        "cabin_filter": { "intervalMiles": 20000, "intervalMonths": 18, "cost": 30 }
+      },
+      "models": {
+        "Pacifica Hybrid": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        }
+      }
+    },
+    "Jeep": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 65 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 190 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 60, "cost": 200 },
+        "coolant_flush": { "intervalMiles": 50000, "intervalMonths": 36, "cost": 135 },
+        "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 110 },
+        "differential_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 130 },
+        "cabin_filter": { "intervalMiles": 20000, "intervalMonths": 18, "cost": 30 }
+      },
+      "models": {
+        "Wrangler": {
+          "differential_fluid": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 150, "note": "Dana axles, more frequent if off-road" },
+          "transfer_case_fluid": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 120 }
+        },
+        "Gladiator": {
+          "differential_fluid": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 150 },
+          "transfer_case_fluid": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 120 }
+        },
+        "Grand Cherokee 4xe": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        },
+        "Wrangler 4xe": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        }
+      }
+    },
+    "Nissan": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 5000, "intervalMonths": 6, "cost": 55 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 200, "note": "CVT fluid - Nissan NS-3 required" },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 60, "cost": 180 },
+        "coolant_flush": { "intervalMiles": 50000, "intervalMonths": 36, "cost": 120 },
+        "cabin_filter": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 25 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 25 }
+      },
+      "models": {
+        "Frontier": {
+          "timing_belt": { "intervalMiles": 105000, "intervalMonths": 84, "cost": 800, "note": "VQ40DE V6 uses timing chain, but 4-cyl QR25DE uses chain too" },
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 100 }
+        },
+        "Titan": {
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 110 }
+        },
+        "Pathfinder": {
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 100 }
+        },
+        "LEAF": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 0 }
+        },
+        "Ariya": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 0 }
+        }
+      }
+    },
+    "Hyundai": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 7500, "intervalMonths": 12, "cost": 55 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 160 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 170 },
+        "coolant_flush": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 120 },
+        "cabin_filter": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 25 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 25 }
+      },
+      "models": {
+        "Santa Fe": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 100 }
+        },
+        "Tucson": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 100 }
+        },
+        "Ioniq 5": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 0 }
+        },
+        "Ioniq 6": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 0 }
+        },
+        "Tucson Hybrid": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        },
+        "Santa Fe Hybrid": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        }
+      }
+    },
+    "Kia": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 7500, "intervalMonths": 12, "cost": 55 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 160 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 170 },
+        "coolant_flush": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 120 },
+        "cabin_filter": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 25 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 25 }
+      },
+      "models": {
+        "Telluride": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 100 }
+        },
+        "Sorento": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 100 }
+        },
+        "Sportage": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 100 }
+        },
+        "EV6": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 0 }
+        },
+        "EV9": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 0 }
+        },
+        "Niro EV": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 0 }
+        },
+        "Niro Hybrid": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        },
+        "Sorento Hybrid": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        }
+      }
+    },
+    "Subaru": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 6000, "intervalMonths": 6, "cost": 60 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 30000, "intervalMonths": 30, "cost": 150, "note": "CVT Lineartronic - use Subaru CVT fluid only" },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 60, "cost": 250, "note": "Boxer engine requires special procedure" },
+        "coolant_flush": { "intervalMiles": 50000, "intervalMonths": 36, "cost": 130 },
+        "cabin_filter": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 25 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 25 },
+        "differential_fluid": { "intervalMiles": 30000, "intervalMonths": 30, "cost": 120, "note": "Front and rear differentials" }
+      },
+      "models": {
+        "Outback": {
+          "timing_belt": { "intervalMiles": 105000, "intervalMonths": 84, "cost": 1000, "note": "EJ25 engines only (through 2012); FB25 uses timing chain" }
+        },
+        "Forester": {
+          "timing_belt": { "intervalMiles": 105000, "intervalMonths": 84, "cost": 1000, "note": "EJ25 turbo through 2013; FB25 uses timing chain" }
+        },
+        "Legacy": {
+          "timing_belt": { "intervalMiles": 105000, "intervalMonths": 84, "cost": 1000, "note": "EJ25 engines only" }
+        },
+        "Impreza": {
+          "timing_belt": { "intervalMiles": 105000, "intervalMonths": 84, "cost": 900, "note": "EJ25 engines only" }
+        },
+        "WRX": {
+          "oil_change": { "intervalMiles": 5000, "intervalMonths": 6, "cost": 65, "note": "Turbo engine - shorter interval recommended" }
+        },
+        "Crosstrek Hybrid": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        },
+        "Solterra": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 0 }
+        }
+      }
+    },
+    "BMW": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 130 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 350, "note": "BMW claims lifetime fill, but service recommended" },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 300 },
+        "coolant_flush": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 200 },
+        "brake_fluid": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 120 },
+        "cabin_filter": { "intervalMiles": 20000, "intervalMonths": 18, "cost": 50 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 45 },
+        "serpentine_belt": { "intervalMiles": 50000, "intervalMonths": 48, "cost": 200 }
+      },
+      "models": {
+        "X3": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 180 }
+        },
+        "X5": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 200 }
+        },
+        "X7": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 200 }
+        },
+        "iX": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 0 }
+        },
+        "i4": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 0 }
+        }
+      }
+    },
+    "Mercedes-Benz": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 150 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 400 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 350 },
+        "coolant_flush": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 220 },
+        "brake_fluid": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 130 },
+        "cabin_filter": { "intervalMiles": 20000, "intervalMonths": 18, "cost": 60 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 50 },
+        "serpentine_belt": { "intervalMiles": 50000, "intervalMonths": 48, "cost": 250 }
+      },
+      "models": {
+        "GLE": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 200 }
+        },
+        "GLC": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 180 }
+        },
+        "EQS": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 0 }
+        },
+        "EQE": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 0 }
+        }
+      }
+    },
+    "Audi": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 120 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 350 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 280 },
+        "coolant_flush": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 190 },
+        "brake_fluid": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 120 },
+        "cabin_filter": { "intervalMiles": 20000, "intervalMonths": 18, "cost": 50 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 40 }
+      },
+      "models": {
+        "Q5": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 180 }
+        },
+        "Q7": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 200 }
+        },
+        "e-tron": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 0 }
+        },
+        "e-tron GT": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 0 }
+        }
+      }
+    },
+    "Volkswagen": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 90 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 300 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 220 },
+        "coolant_flush": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 160 },
+        "brake_fluid": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 100 },
+        "cabin_filter": { "intervalMiles": 20000, "intervalMonths": 18, "cost": 40 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 35 }
+      },
+      "models": {
+        "Tiguan": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 150 }
+        },
+        "Atlas": {
+          "transfer_case_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 150 }
+        },
+        "ID.4": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 0 }
+        }
+      }
+    },
+    "Mazda": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 7500, "intervalMonths": 12, "cost": 55 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 30000, "intervalMonths": 30, "cost": 140 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 60, "cost": 160 },
+        "coolant_flush": { "intervalMiles": 50000, "intervalMonths": 36, "cost": 120 },
+        "cabin_filter": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 25 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 25 }
+      },
+      "models": {
+        "CX-50": {
+          "transfer_case_fluid": { "intervalMiles": 30000, "intervalMonths": 36, "cost": 100 }
+        },
+        "CX-90 PHEV": {
+          "ev_battery_check": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 0 }
+        }
+      }
+    },
+    "Cadillac": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 7500, "intervalMonths": 12, "cost": 90 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 45000, "intervalMonths": 36, "cost": 250 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 60, "cost": 250 },
+        "coolant_flush": { "intervalMiles": 50000, "intervalMonths": 36, "cost": 170 },
+        "cabin_filter": { "intervalMiles": 20000, "intervalMonths": 18, "cost": 40 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 35 }
+      },
+      "models": {
+        "Escalade": {
+          "transfer_case_fluid": { "intervalMiles": 45000, "intervalMonths": 36, "cost": 120 }
+        },
+        "LYRIQ": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 15000, "intervalMonths": 12, "cost": 0 }
+        }
+      }
+    },
+    "MINI": {
+      "_defaults": {
+        "oil_change": { "intervalMiles": 10000, "intervalMonths": 12, "cost": 100 },
+        "timing_belt": { "notApplicable": true },
+        "transmission_fluid": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 280 },
+        "spark_plugs": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 220 },
+        "coolant_flush": { "intervalMiles": 60000, "intervalMonths": 48, "cost": 160 },
+        "brake_fluid": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 100 },
+        "cabin_filter": { "intervalMiles": 20000, "intervalMonths": 18, "cost": 40 },
+        "air_filter": { "intervalMiles": 30000, "intervalMonths": 24, "cost": 35 }
+      },
+      "models": {
+        "Cooper SE": {
+          "oil_change": { "notApplicable": true },
+          "spark_plugs": { "notApplicable": true },
+          "serpentine_belt": { "notApplicable": true },
+          "air_filter": { "notApplicable": true },
+          "fuel_filter": { "notApplicable": true },
+          "transmission_fluid": { "notApplicable": true },
+          "ev_battery_check": { "intervalMiles": 20000, "intervalMonths": 24, "cost": 0 }
+        }
+      }
+    }
+  },
+  "evModels": {
+    "Ford": ["Mustang Mach-E", "F-150 Lightning"],
+    "Chevrolet": ["Bolt EV", "Bolt EUV"],
+    "Nissan": ["LEAF", "Ariya"],
+    "Hyundai": ["Ioniq 5", "Ioniq 6"],
+    "Kia": ["EV6", "EV9", "Niro EV"],
+    "BMW": ["iX", "i4"],
+    "Mercedes-Benz": ["EQS", "EQE"],
+    "Audi": ["e-tron", "e-tron GT"],
+    "Volkswagen": ["ID.4"],
+    "Cadillac": ["LYRIQ"],
+    "MINI": ["Cooper SE"],
+    "Subaru": ["Solterra"]
+  },
+  "hybridModels": {
+    "Toyota": ["Prius", "Camry Hybrid", "RAV4 Hybrid", "Highlander Hybrid", "Corolla Hybrid", "Venza", "RAV4 Prime", "Sienna"],
+    "Honda": ["Insight", "CR-V Hybrid", "Accord Hybrid"],
+    "Ford": ["Escape Hybrid", "Maverick Hybrid", "Explorer Hybrid"],
+    "Hyundai": ["Tucson Hybrid", "Santa Fe Hybrid", "Sonata Hybrid"],
+    "Kia": ["Niro Hybrid", "Sorento Hybrid", "Sportage Hybrid"],
+    "Chrysler": ["Pacifica Hybrid"],
+    "Jeep": ["Grand Cherokee 4xe", "Wrangler 4xe"],
+    "Subaru": ["Crosstrek Hybrid"],
+    "Mazda": ["CX-90 PHEV"]
+  }
+}

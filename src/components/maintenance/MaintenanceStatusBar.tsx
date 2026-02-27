@@ -1,6 +1,6 @@
 'use client';
 
-import { MAINTENANCE_SCHEDULES, MaintenanceStatusResult, MaintenanceType } from '@/lib/maintenance';
+import { MAINTENANCE_SCHEDULES, MaintenanceStatusResult, MaintenanceType, VehicleContext, getApplicableSchedules, type ResolvedSchedule } from '@/lib/maintenance';
 
 interface MaintenanceStatusBarProps {
   type: MaintenanceType;
@@ -35,7 +35,7 @@ export function MaintenanceStatusBar({
     // Calculate mileage-based remaining
     let mileageRemaining = 100;
     if (status.milesUntilDue !== undefined && status.milesSinceService !== undefined) {
-      const totalInterval = type.defaultIntervalMiles;
+      const totalInterval = (type as ResolvedSchedule).intervalMiles ?? type.defaultIntervalMiles;
       const used = status.milesSinceService;
       mileageRemaining = Math.max(0, 100 - (used / totalInterval) * 100);
     }
@@ -43,7 +43,7 @@ export function MaintenanceStatusBar({
     // Calculate time-based remaining
     let timeRemaining = 100;
     if (status.daysSinceService !== undefined) {
-      const totalDays = type.defaultIntervalMonths * 30;
+      const totalDays = ((type as ResolvedSchedule).intervalMonths ?? type.defaultIntervalMonths) * 30;
       timeRemaining = Math.max(0, 100 - (status.daysSinceService / totalDays) * 100);
     }
 
@@ -282,6 +282,7 @@ interface MaintenanceOverviewProps {
   showAll?: boolean;
   generatingGuideFor?: string | null;
   isGenerating?: boolean;
+  vehicleContext?: VehicleContext;
 }
 
 /**
@@ -296,6 +297,7 @@ export function MaintenanceOverview({
   showAll = false,
   generatingGuideFor,
   isGenerating = false,
+  vehicleContext,
 }: MaintenanceOverviewProps) {
   // Convert records to the format expected by the status calculation
   const records = maintenanceRecords.map(r => ({
@@ -304,13 +306,19 @@ export function MaintenanceOverview({
     nextDueDate: r.nextDueDate ? new Date(r.nextDueDate) : null,
   }));
 
+  // Get applicable schedules for this vehicle, or fall back to defaults
+  const applicableSchedules = vehicleContext ? getApplicableSchedules(vehicleContext) : null;
+
   // Get status for key maintenance items (routine ones for quick view)
   const keyTypes = showAll
-    ? Object.keys(MAINTENANCE_SCHEDULES)
-    : ['oil_change', 'tire_rotation', 'brake_inspection', 'air_filter'];
+    ? (applicableSchedules ? applicableSchedules.map(s => s.id) : Object.keys(MAINTENANCE_SCHEDULES))
+    : ['oil_change', 'tire_rotation', 'brake_inspection', 'air_filter'].filter(id =>
+        applicableSchedules ? applicableSchedules.some(s => s.id === id) : true
+      );
 
   const statuses = keyTypes.map(typeId => {
-    const type = MAINTENANCE_SCHEDULES[typeId];
+    const type = (applicableSchedules?.find(s => s.id === typeId) ?? MAINTENANCE_SCHEDULES[typeId]) as MaintenanceType & { intervalMiles?: number; intervalMonths?: number };
+    if (!type) return null;
     const typeRecords = records.filter(r => r.type === typeId);
 
     // Calculate status considering both mileage AND time
@@ -320,7 +328,8 @@ export function MaintenanceOverview({
       status = { status: 'unknown', message: 'Enter mileage to see status' };
     } else if (typeRecords.length === 0) {
       // No service history - assume due at default interval from 0
-      const dueAtMileage = type.defaultIntervalMiles;
+      const effectiveIntervalMiles = type.intervalMiles ?? type.defaultIntervalMiles;
+      const dueAtMileage = effectiveIntervalMiles;
       const milesUntilDue = dueAtMileage - currentMileage;
 
       // Estimate when due by time if we have annual mileage
@@ -364,13 +373,15 @@ export function MaintenanceOverview({
       );
 
       // Due calculations
-      const dueAtMileage = lastRecord.nextDueMileage ?? lastRecord.mileage + type.defaultIntervalMiles;
+      const effectiveIntervalMiles = type.intervalMiles ?? type.defaultIntervalMiles;
+      const effectiveIntervalMonths = type.intervalMonths ?? type.defaultIntervalMonths;
+      const dueAtMileage = lastRecord.nextDueMileage ?? lastRecord.mileage + effectiveIntervalMiles;
       const milesUntilDue = dueAtMileage - currentMileage;
 
       // Time-based due date
       const dueAtDate = lastRecord.nextDueDate
         ? new Date(lastRecord.nextDueDate)
-        : new Date(lastRecord.date.getTime() + type.defaultIntervalMonths * 30 * 24 * 60 * 60 * 1000);
+        : new Date(lastRecord.date.getTime() + effectiveIntervalMonths * 30 * 24 * 60 * 60 * 1000);
       const daysUntilDue = Math.floor((dueAtDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
 
       // Determine status: overdue if EITHER condition is met
@@ -432,7 +443,7 @@ export function MaintenanceOverview({
     }
 
     return { type, status };
-  });
+  }).filter((s): s is { type: MaintenanceType & { intervalMiles?: number; intervalMonths?: number }; status: MaintenanceStatusResult } => s !== null);
 
   // Sort by urgency (overdue first, then due_soon, then by whichever is closer: miles or days)
   const sortedStatuses = [...statuses].sort((a, b) => {
@@ -442,13 +453,17 @@ export function MaintenanceOverview({
     if (aOrder !== bOrder) return aOrder - bOrder;
 
     // For same status, compare by the closer due metric (normalized)
+    const aIntervalMiles = a.type.intervalMiles ?? a.type.defaultIntervalMiles;
+    const aIntervalMonths = a.type.intervalMonths ?? a.type.defaultIntervalMonths;
+    const bIntervalMiles = b.type.intervalMiles ?? b.type.defaultIntervalMiles;
+    const bIntervalMonths = b.type.intervalMonths ?? b.type.defaultIntervalMonths;
     const aProgress = Math.max(
-      (a.status.milesSinceService ?? 0) / a.type.defaultIntervalMiles,
-      (a.status.daysSinceService ?? 0) / (a.type.defaultIntervalMonths * 30)
+      (a.status.milesSinceService ?? 0) / aIntervalMiles,
+      (a.status.daysSinceService ?? 0) / (aIntervalMonths * 30)
     );
     const bProgress = Math.max(
-      (b.status.milesSinceService ?? 0) / b.type.defaultIntervalMiles,
-      (b.status.daysSinceService ?? 0) / (b.type.defaultIntervalMonths * 30)
+      (b.status.milesSinceService ?? 0) / bIntervalMiles,
+      (b.status.daysSinceService ?? 0) / (bIntervalMonths * 30)
     );
 
     return bProgress - aProgress; // Higher progress = more urgent

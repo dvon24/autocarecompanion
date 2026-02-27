@@ -56,13 +56,21 @@ export interface CostSummary {
 
 /**
  * Get the path to the costs data file
+ * Uses /tmp on serverless (Vercel) since the main filesystem is read-only
  */
-function getCostsFilePath(): string {
-  const dataDir = join(process.cwd(), 'data');
-  if (!existsSync(dataDir)) {
-    mkdirSync(dataDir, { recursive: true });
+function getCostsFilePath(): string | null {
+  try {
+    // On Vercel/serverless, use /tmp; locally use project data dir
+    const isServerless = process.env.VERCEL === '1' || process.env.AWS_LAMBDA_FUNCTION_NAME;
+    const dataDir = isServerless ? '/tmp' : join(process.cwd(), 'data');
+    if (!existsSync(dataDir)) {
+      mkdirSync(dataDir, { recursive: true });
+    }
+    return join(dataDir, 'api-costs.jsonl');
+  } catch {
+    // Filesystem not writable - return null to signal no-op
+    return null;
   }
-  return join(dataDir, 'api-costs.jsonl');
 }
 
 /**
@@ -94,7 +102,9 @@ export function logApiCost(
 
   try {
     const filePath = getCostsFilePath();
-    appendFileSync(filePath, JSON.stringify(entry) + '\n');
+    if (filePath) {
+      appendFileSync(filePath, JSON.stringify(entry) + '\n');
+    }
   } catch (error) {
     console.error('Failed to log API cost:', error);
   }
@@ -115,7 +125,7 @@ function getMonthStart(): Date {
  */
 export function getMonthlyEntries(): CostEntry[] {
   const filePath = getCostsFilePath();
-  if (!existsSync(filePath)) {
+  if (!filePath || !existsSync(filePath)) {
     return [];
   }
 

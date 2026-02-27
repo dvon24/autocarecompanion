@@ -15,7 +15,10 @@ import { KnownIssueCard } from '@/components/known-issues/KnownIssueCard';
 import {
   MAINTENANCE_SCHEDULES,
   getAllMaintenanceStatuses,
+  getApplicableSchedules,
   type MaintenanceStatusResult,
+  type VehicleContext,
+  type ResolvedSchedule,
 } from '@/lib/maintenance';
 
 interface MaintenanceRecord {
@@ -265,21 +268,31 @@ export default function MaintenancePage() {
   const displayName = vehicle.nickname || `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
   const totalSpent = records.reduce((sum, r) => sum + (r.cost || 0), 0);
 
-  // Get maintenance statuses
+  // Build vehicle context for vehicle-specific schedules
+  const vehicleContext: VehicleContext = {
+    make: vehicle.make,
+    model: vehicle.model,
+    year: vehicle.year,
+  };
+
+  // Get applicable schedules for this vehicle
+  const applicableSchedules = getApplicableSchedules(vehicleContext);
+
+  // Get maintenance statuses using vehicle-specific intervals
   const statuses = getAllMaintenanceStatuses(
     { currentMileage: vehicle.currentMileage },
     records.map((r) => ({
       ...r,
       date: new Date(r.date),
       nextDueDate: r.nextDueDate ? new Date(r.nextDueDate) : null,
-    }))
+    })),
+    vehicleContext
   );
 
-  // Filter maintenance types
-  const filteredTypes = Object.entries(MAINTENANCE_SCHEDULES).filter(([, type]) => {
-    if (filter === 'all') return true;
-    return type.category === filter;
-  });
+  // Filter applicable schedules by category
+  const filteredTypes: [string, ResolvedSchedule][] = applicableSchedules
+    .filter((s) => filter === 'all' || s.category === filter)
+    .map((s) => [s.id, s] as [string, ResolvedSchedule]);
 
   const getStatusIcon = (status: MaintenanceStatusResult['status']) => {
     switch (status) {
@@ -535,16 +548,23 @@ export default function MaintenancePage() {
                         <span className="text-xl">
                           {type.icon === 'droplet' && '🛢️'}
                           {type.icon === 'refresh-cw' && '🔄'}
+                          {type.icon === 'cloud-rain' && '🧹'}
                           {type.icon === 'disc' && '🛑'}
                           {type.icon === 'wind' && '💨'}
                           {type.icon === 'air-vent' && '🌬️'}
+                          {type.icon === 'crosshair' && '🎯'}
                           {type.icon === 'settings' && '⚙️'}
                           {type.icon === 'thermometer' && '❄️'}
                           {type.icon === 'droplets' && '💧'}
+                          {type.icon === 'filter' && '⛽'}
+                          {type.icon === 'git-branch' && '🔀'}
+                          {type.icon === 'box' && '📦'}
+                          {type.icon === 'navigation' && '🧭'}
                           {type.icon === 'zap' && '⚡'}
                           {type.icon === 'link' && '🔗'}
                           {type.icon === 'repeat' && '🔁'}
                           {type.icon === 'battery-charging' && '🔋'}
+                          {type.icon === 'battery-full' && '🔌'}
                         </span>
                         <span className="font-semibold text-gray-900">{type.name}</span>
                       </div>
@@ -572,7 +592,7 @@ export default function MaintenancePage() {
                         }
                       </p>
                       <p className="text-xs text-gray-500 mt-0.5">
-                        Every {type.defaultIntervalMiles.toLocaleString()} mi or {type.defaultIntervalMonths} mo
+                        Every {(type as ResolvedSchedule).intervalMiles?.toLocaleString() ?? type.defaultIntervalMiles.toLocaleString()} mi or {(type as ResolvedSchedule).intervalMonths ?? type.defaultIntervalMonths} mo
                       </p>
                     </div>
 
@@ -659,16 +679,23 @@ export default function MaintenancePage() {
                           <span className="text-lg">
                             {maintenanceType?.icon === 'droplet' && '🛢️'}
                             {maintenanceType?.icon === 'refresh-cw' && '🔄'}
+                            {maintenanceType?.icon === 'cloud-rain' && '🧹'}
                             {maintenanceType?.icon === 'disc' && '🛑'}
                             {maintenanceType?.icon === 'wind' && '💨'}
                             {maintenanceType?.icon === 'air-vent' && '🌬️'}
+                            {maintenanceType?.icon === 'crosshair' && '🎯'}
                             {maintenanceType?.icon === 'settings' && '⚙️'}
                             {maintenanceType?.icon === 'thermometer' && '❄️'}
                             {maintenanceType?.icon === 'droplets' && '💧'}
+                            {maintenanceType?.icon === 'filter' && '⛽'}
+                            {maintenanceType?.icon === 'git-branch' && '🔀'}
+                            {maintenanceType?.icon === 'box' && '📦'}
+                            {maintenanceType?.icon === 'navigation' && '🧭'}
                             {maintenanceType?.icon === 'zap' && '⚡'}
                             {maintenanceType?.icon === 'link' && '🔗'}
                             {maintenanceType?.icon === 'repeat' && '🔁'}
                             {maintenanceType?.icon === 'battery-charging' && '🔋'}
+                            {maintenanceType?.icon === 'battery-full' && '🔌'}
                             {!maintenanceType && '🔧'}
                           </span>
                         </div>
@@ -741,6 +768,7 @@ export default function MaintenancePage() {
             vehicleId={vehicleId}
             currentMileage={vehicle.currentMileage}
             preselectedType={selectedType}
+            vehicleContext={vehicleContext}
             onClose={() => setShowLogModal(false)}
             onRecordAdded={handleRecordAdded}
           />

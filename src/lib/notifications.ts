@@ -10,6 +10,7 @@ import {
   MAINTENANCE_SCHEDULES,
   getUpcomingMaintenance,
   type MaintenanceStatusResult,
+  type VehicleContext,
 } from './maintenance';
 
 // Types
@@ -100,6 +101,13 @@ export async function getUsersWithDueMaintenance(): Promise<
       const vehicleName =
         vehicle.nickname || `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
 
+      // Build vehicle context for vehicle-specific schedules
+      const vehicleCtx: VehicleContext = {
+        make: vehicle.make,
+        model: vehicle.model,
+        year: vehicle.year,
+      };
+
       const upcoming = getUpcomingMaintenance(
         {
           currentMileage: vehicle.currentMileage,
@@ -109,7 +117,8 @@ export async function getUsersWithDueMaintenance(): Promise<
           ...r,
           date: new Date(r.date),
           nextDueDate: r.nextDueDate ? new Date(r.nextDueDate) : null,
-        }))
+        })),
+        vehicleCtx
       );
 
       for (const { type, status } of upcoming) {

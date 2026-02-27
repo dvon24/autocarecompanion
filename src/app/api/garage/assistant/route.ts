@@ -456,7 +456,7 @@ export async function POST(request: Request) {
       { role: 'user', content: message },
     ];
 
-    // Call OpenAI with tools (GPT-5.2 format)
+    // Call OpenAI with tools
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
