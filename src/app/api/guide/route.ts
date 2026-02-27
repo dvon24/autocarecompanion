@@ -181,6 +181,9 @@ PART NUMBER GUIDELINES:
 - Use the correct part number for this exact year/make/model/trim
 - In "notes", include compatible aftermarket brands and any fitment notes
 - Price ranges should be rough estimates
+- For engine oil: the "name" MUST include the exact weight/viscosity AND total capacity, e.g. "Mobil 1 5W-30 Full Synthetic (10.0 quarts)" NOT just "Engine Oil (Full Synthetic)"
+- For engine oil: use a real product name as "partNumber" (e.g., "Mobil 1 120764" or "Castrol Edge 5W-30"), NOT "N/A"
+- For fluids (coolant, brake fluid, trans fluid): always include brand, spec, and quantity in the name
 
 General Guidelines:
 - Write clear, concise instructions a DIY mechanic can follow
