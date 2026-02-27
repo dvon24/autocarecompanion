@@ -660,6 +660,146 @@
           "Dexos1 Gen 3 oil required for DFM system"
         ]
       }
+    },
+    "Camaro": {
+      "2016+ SS/LT1": {
+        "years": [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+        "engine": "6.2L V8 NA (LT1) - SS, 1SS, 2SS",
+        "oil": {
+          "type": "5W-30 Full Synthetic (Dexos1 Gen 2+)",
+          "capacity": "10.0 qt with filter",
+          "filterPartNumber": "PF48 (AC Delco)",
+          "drainPlugSize": "15mm",
+          "drainPlugTorque": "18 ft-lbs",
+          "filterLocation": "Passenger side of engine, accessible from underneath - may need to remove belly pan"
+        },
+        "coolant": {
+          "type": "Dex-Cool (orange, extended life)",
+          "capacity": "10.6 qt total system"
+        },
+        "transmission": {
+          "type": "Dexron HP (10L80 10-speed auto) or Tremec TR-6060 manual (Dexron VI)",
+          "capacity": "5.5 qt (auto drain/fill), 2.4 qt (manual)"
+        },
+        "brakeFluid": { "type": "DOT 4" },
+        "sparkPlugs": {
+          "partNumber": "41-162 (AC Delco Iridium)",
+          "gap": "0.040 in",
+          "torque": "11 ft-lbs",
+          "quantity": 8
+        },
+        "lugNuts": { "size": "22mm", "torque": "100 ft-lbs" },
+        "differentials": {
+          "rear": { "type": "75W-90 GL-5 Synthetic", "capacity": "1.7 qt" }
+        },
+        "jackPoints": {
+          "front": "Reinforced pinch weld behind front wheel - look for triangle stamp on rocker panel",
+          "rear": "Reinforced pinch weld in front of rear wheel - look for triangle stamp",
+          "frontLift": "Front subframe cradle center crossmember",
+          "rearLift": "Rear differential housing or rear subframe"
+        },
+        "safety": [
+          "LT1 holds 10 QUARTS of oil - do NOT use typical V8 assumption of 6-8 quarts",
+          "Dexos1 certified oil required - check bottle label",
+          "Belly pan (undertray) must be removed for oil drain access - 7mm and 10mm fasteners",
+          "Oil filter is vertical on passenger side - will spill when removing, have rags ready",
+          "22mm lug nuts - check torque after first 50 miles on re-install",
+          "Jack stands on pinch welds ONLY - not on rocker panels or control arms",
+          "Brembo brakes (SS 1LE): DOT 4 fluid only, bleed with scan tool for ABS"
+        ]
+      },
+      "2017+ ZL1/LT4": {
+        "years": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+        "engine": "6.2L Supercharged V8 (LT4) - ZL1, ZL1 1LE",
+        "oil": {
+          "type": "5W-30 Full Synthetic (Dexos1 Gen 2+, Mobil 1 recommended)",
+          "capacity": "10.0 qt with filter",
+          "filterPartNumber": "PF48 (AC Delco)",
+          "drainPlugSize": "15mm",
+          "drainPlugTorque": "18 ft-lbs",
+          "filterLocation": "Passenger side of engine under supercharger, accessible from underneath - remove belly pan first"
+        },
+        "coolant": {
+          "type": "Dex-Cool (orange, extended life)",
+          "capacity": "10.6 qt total system (plus intercooler circuit: 0.9 qt)"
+        },
+        "transmission": {
+          "type": "Dexron HP (10L90 10-speed auto) or Tremec TR-6060 manual (Dexron VI)",
+          "capacity": "5.5 qt (auto drain/fill), 2.4 qt (manual)"
+        },
+        "brakeFluid": { "type": "DOT 4 (Brembo system)" },
+        "sparkPlugs": {
+          "partNumber": "41-162 (AC Delco Iridium)",
+          "gap": "0.035 in (tighter than NA LT1 due to supercharger boost)",
+          "torque": "11 ft-lbs",
+          "quantity": 8
+        },
+        "lugNuts": { "size": "22mm", "torque": "100 ft-lbs" },
+        "differentials": {
+          "rear": { "type": "75W-90 GL-5 Synthetic (electronic limited slip)", "capacity": "1.7 qt" }
+        },
+        "supercharger": {
+          "intercoolerFluid": "50/50 Dex-Cool or distilled water/coolant mix",
+          "intercoolerCapacity": "0.9 qt",
+          "beltSize": "Gates K061031 or equivalent"
+        },
+        "jackPoints": {
+          "front": "Reinforced pinch weld behind front wheel - look for triangle stamp on rocker panel",
+          "rear": "Reinforced pinch weld in front of rear wheel - look for triangle stamp",
+          "frontLift": "Front subframe cradle center crossmember",
+          "rearLift": "Rear differential housing or rear subframe"
+        },
+        "safety": [
+          "LT4 SUPERCHARGED engine holds 10 QUARTS of oil - do NOT underfill",
+          "Underfilling oil on LT4 can cause oil starvation under boost and destroy the engine",
+          "Dexos1 certified oil required - Mobil 1 5W-30 recommended",
+          "Belly pan (undertray) must be removed for oil drain access - 7mm and 10mm fasteners",
+          "Supercharger intercooler has SEPARATE coolant circuit - do not mix with main coolant",
+          "ZL1 1LE: Multimatic DSSV shocks are NOT serviceable - dealer only",
+          "22mm lug nuts at 100 ft-lbs - overtorque risk on carbon ceramic brakes (1LE)",
+          "Jack stands on pinch welds ONLY - 1LE splitter sits very low, use caution",
+          "Brembo 6-piston front brakes require DOT 4 fluid, bleed with scan tool"
+        ]
+      },
+      "2016+ 4cyl/V6": {
+        "years": [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+        "engine": "2.0L Turbo 4-cyl (LTG) or 3.6L V6 (LGX) - LT, RS, 1LT, 2LT",
+        "oil": {
+          "type": "5W-30 Full Synthetic (Dexos1 Gen 2+)",
+          "capacity": "5.5 qt (2.0T), 6.0 qt (3.6L V6) with filter",
+          "filterPartNumber": "PF64 (2.0T), PF48 (3.6L V6) - AC Delco",
+          "drainPlugSize": "15mm",
+          "drainPlugTorque": "18 ft-lbs",
+          "filterLocation": "Bottom of engine, accessible from underneath"
+        },
+        "coolant": {
+          "type": "Dex-Cool (orange)",
+          "capacity": "7.4 qt (2.0T), 10.6 qt (V6) total system"
+        },
+        "transmission": {
+          "type": "Hydra-Matic 8L45 8-speed auto (Dexron HP)",
+          "capacity": "5.3 qt drain and fill"
+        },
+        "brakeFluid": { "type": "DOT 3" },
+        "sparkPlugs": {
+          "partNumber": "41-125 (2.0T), 41-162 (3.6 V6) - AC Delco",
+          "gap": "0.028 in (2.0T), 0.040 in (V6)",
+          "torque": "11 ft-lbs",
+          "quantity": "4 (2.0T) or 6 (V6)"
+        },
+        "lugNuts": { "size": "22mm", "torque": "100 ft-lbs" },
+        "jackPoints": {
+          "front": "Reinforced pinch weld behind front wheel",
+          "rear": "Reinforced pinch weld in front of rear wheel",
+          "frontLift": "Front subframe crossmember",
+          "rearLift": "Rear subframe or differential"
+        },
+        "safety": [
+          "2.0T and V6 oil capacities differ - check your engine",
+          "Dexos1 certified oil required",
+          "Belly pan removal required for oil access"
+        ]
+      }
     }
   },
   "BMW": {

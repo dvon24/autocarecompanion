@@ -8,6 +8,96 @@ import {
   type Part,
 } from '@/schemas/guide.schema';
 import { logApiCost, isBudgetExceeded } from '@/lib/costs';
+import vehicleSpecsData from '@/data/vehicle-specs.json';
+
+/**
+ * Look up vehicle-specific specs (oil capacity, filter, jack points, etc.)
+ * Returns formatted string to inject into AI prompt, or empty string if no match.
+ */
+function getVehicleSpecsForPrompt(vehicle: { year: number; make: string; model: string; trim: string }): string {
+  const makeData = (vehicleSpecsData as unknown as Record<string, Record<string, Record<string, any>>>)[vehicle.make];
+  if (!makeData) return '';
+
+  // Try exact model match first, then partial match
+  let modelData = makeData[vehicle.model];
+  if (!modelData) {
+    // Try partial match (e.g., "Camaro" matches user searching "Camaro ZL1")
+    const modelKey = Object.keys(makeData).find(k =>
+      vehicle.model.toLowerCase().includes(k.toLowerCase()) ||
+      k.toLowerCase().includes(vehicle.model.toLowerCase())
+    );
+    if (modelKey) modelData = makeData[modelKey];
+  }
+  if (!modelData) return '';
+
+  // Find the right generation/trim variant
+  let specs: any = null;
+  const trim = (vehicle.trim || '').toLowerCase();
+
+  for (const [genKey, genData] of Object.entries(modelData) as [string, any][]) {
+    if (!genData.years || !genData.years.includes(vehicle.year)) continue;
+
+    // For trim-specific entries (e.g., "ZL1/LT4", "SS/LT1"), check trim match
+    const genKeyLower = genKey.toLowerCase();
+    if (genKeyLower.includes('zl1') && (trim.includes('zl1') || trim.includes('1le'))) {
+      specs = genData;
+      break;
+    }
+    if (genKeyLower.includes('ss') && (trim.includes('ss') || trim.includes('1ss') || trim.includes('2ss'))) {
+      specs = genData;
+      break;
+    }
+    // Default/fallback: use the first matching year entry
+    if (!specs) specs = genData;
+  }
+
+  if (!specs) return '';
+
+  // Build formatted specs string
+  const sections: string[] = [];
+  sections.push(`\n\nVEHICLE-SPECIFIC REFERENCE DATA for ${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}:`);
+  if (specs.engine) sections.push(`Engine: ${specs.engine}`);
+
+  if (specs.oil) {
+    sections.push(`Oil: ${specs.oil.type}, Capacity: ${specs.oil.capacity}, Filter: ${specs.oil.filterPartNumber}`);
+    if (specs.oil.drainPlugSize) sections.push(`  Drain plug: ${specs.oil.drainPlugSize}, Torque: ${specs.oil.drainPlugTorque}`);
+    if (specs.oil.filterLocation) sections.push(`  Filter location: ${specs.oil.filterLocation}`);
+  }
+
+  if (specs.coolant) sections.push(`Coolant: ${specs.coolant.type}, Capacity: ${specs.coolant.capacity}`);
+  if (specs.transmission) sections.push(`Transmission fluid: ${specs.transmission.type}, Capacity: ${specs.transmission.capacity}`);
+  if (specs.brakeFluid) sections.push(`Brake fluid: ${specs.brakeFluid.type}`);
+
+  if (specs.sparkPlugs) {
+    sections.push(`Spark plugs: ${specs.sparkPlugs.partNumber}, Gap: ${specs.sparkPlugs.gap}, Qty: ${specs.sparkPlugs.quantity}`);
+  }
+
+  if (specs.lugNuts) sections.push(`Lug nuts: ${specs.lugNuts.size}, Torque: ${specs.lugNuts.torque}`);
+
+  if (specs.differentials) {
+    if (specs.differentials.rear) sections.push(`Rear diff: ${specs.differentials.rear.type}, ${specs.differentials.rear.capacity}`);
+    if (specs.differentials.front) sections.push(`Front diff: ${specs.differentials.front.type}, ${specs.differentials.front.capacity}`);
+  }
+
+  if (specs.supercharger) {
+    sections.push(`Supercharger intercooler: ${specs.supercharger.intercoolerFluid}, Capacity: ${specs.supercharger.intercoolerCapacity}`);
+  }
+
+  if (specs.jackPoints) {
+    sections.push(`Jack points - Front: ${specs.jackPoints.front}`);
+    sections.push(`Jack points - Rear: ${specs.jackPoints.rear}`);
+    if (specs.jackPoints.frontLift) sections.push(`Lift point front: ${specs.jackPoints.frontLift}`);
+    if (specs.jackPoints.rearLift) sections.push(`Lift point rear: ${specs.jackPoints.rearLift}`);
+  }
+
+  if (specs.safety && specs.safety.length > 0) {
+    sections.push(`CRITICAL SAFETY NOTES:\n${specs.safety.map((s: string) => `- ${s}`).join('\n')}`);
+  }
+
+  sections.push(`\nIMPORTANT: Use the exact specs above in your guide. Do NOT guess capacities or part numbers - use the reference data provided.`);
+
+  return sections.join('\n');
+}
 
 /**
  * Guide Generation API Route
@@ -37,11 +127,13 @@ function getGuideSystemPrompt(
     ? diagnosis.description.slice(0, 300)
     : '';
 
+  const vehicleSpecs = getVehicleSpecsForPrompt(vehicle);
+
   return `You are an expert automotive repair guide writer. Generate a concise, step-by-step repair guide.
 
 Vehicle: ${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}
 Issue: ${diagnosis.title}
-${trimmedDescription ? `Context: ${trimmedDescription}` : ''}
+${trimmedDescription ? `Context: ${trimmedDescription}` : ''}${vehicleSpecs}
 
 Create a comprehensive repair guide in the following JSON format. Be SPECIFIC to this exact vehicle.
 
