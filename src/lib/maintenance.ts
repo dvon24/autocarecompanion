@@ -7,6 +7,245 @@
  */
 
 import maintenanceOverrides from '@/data/maintenance-overrides.json';
+import vehicleSpecsData from '@/data/vehicle-specs.json';
+
+// ─── Vehicle Specs Types ───────────────────────────────────────────────
+
+export interface OilSpecs {
+  type: string;
+  capacity: string;
+  filterPartNumber: string;
+  drainPlugSize?: string;
+  drainPlugTorque?: string;
+  filterLocation?: string;
+  recommendedProducts?: string;
+  oilNotes?: string;
+}
+
+export interface CoolantSpecs {
+  type: string;
+  capacity: string;
+}
+
+export interface TransmissionSpecs {
+  type: string;
+  capacity: string;
+}
+
+export interface BrakeFluidSpecs {
+  type: string;
+}
+
+export interface SparkPlugSpecs {
+  partNumber: string;
+  gap: string;
+  torque: string;
+  quantity: number;
+}
+
+export interface LugSpecs {
+  size: string;
+  torque: string;
+  useBolts: boolean; // German brands use lug bolts, not nuts
+}
+
+export interface DifferentialSpecs {
+  type: string;
+  capacity: string;
+}
+
+export interface TransferCaseSpecs {
+  fluidType: string;
+  capacity: string;
+}
+
+export interface SuperchargerSpecs {
+  intercoolerFluid: string;
+  intercoolerCapacity: string;
+  beltSize?: string;
+}
+
+export interface JackPointSpecs {
+  front: string;
+  rear: string;
+  frontLift?: string;
+  rearLift?: string;
+}
+
+export interface VehicleSpecs {
+  engine: string;
+  oil?: OilSpecs;
+  coolant?: CoolantSpecs;
+  transmission?: TransmissionSpecs;
+  brakeFluid?: BrakeFluidSpecs;
+  sparkPlugs?: SparkPlugSpecs;
+  lug?: LugSpecs;
+  differentials?: {
+    front?: DifferentialSpecs;
+    rear?: DifferentialSpecs;
+  };
+  transferCase?: TransferCaseSpecs;
+  supercharger?: SuperchargerSpecs;
+  jackPoints?: JackPointSpecs;
+  safety?: string[];
+}
+
+// ─── Maintenance Specs Map ─────────────────────────────────────────────
+
+/** Maps maintenance type IDs to the spec fields relevant for display on that card */
+export const MAINTENANCE_SPECS_MAP: Record<string, (specs: VehicleSpecs) => Record<string, string> | null> = {
+  oil_change: (s) => {
+    if (!s.oil) return null;
+    const r: Record<string, string> = {};
+    r['Oil'] = s.oil.type;
+    r['Capacity'] = s.oil.capacity;
+    r['Filter'] = s.oil.filterPartNumber;
+    if (s.oil.drainPlugSize) r['Drain Plug'] = `${s.oil.drainPlugSize}${s.oil.drainPlugTorque ? ` @ ${s.oil.drainPlugTorque}` : ''}`;
+    return r;
+  },
+  transmission_fluid: (s) => {
+    if (!s.transmission) return null;
+    return { 'Fluid': s.transmission.type, 'Capacity': s.transmission.capacity };
+  },
+  coolant_flush: (s) => {
+    if (!s.coolant) return null;
+    return { 'Coolant': s.coolant.type, 'Capacity': s.coolant.capacity };
+  },
+  brake_fluid: (s) => {
+    if (!s.brakeFluid) return null;
+    const r: Record<string, string> = { 'Fluid': s.brakeFluid.type };
+    if (s.lug) r['Lug'] = `${s.lug.size} @ ${s.lug.torque}`;
+    return r;
+  },
+  brake_inspection: (s) => {
+    if (!s.brakeFluid && !s.lug) return null;
+    const r: Record<string, string> = {};
+    if (s.brakeFluid) r['Fluid'] = s.brakeFluid.type;
+    if (s.lug) r['Lug'] = `${s.lug.size} @ ${s.lug.torque}`;
+    return r;
+  },
+  spark_plugs: (s) => {
+    if (!s.sparkPlugs) return null;
+    return {
+      'Part #': s.sparkPlugs.partNumber,
+      'Gap': s.sparkPlugs.gap,
+      'Qty': String(s.sparkPlugs.quantity),
+    };
+  },
+  tire_rotation: (s) => {
+    if (!s.lug) return null;
+    return { 'Lug': `${s.lug.size} @ ${s.lug.torque}` };
+  },
+  differential_fluid: (s) => {
+    if (!s.differentials) return null;
+    const r: Record<string, string> = {};
+    if (s.differentials.rear) r['Rear'] = `${s.differentials.rear.type}, ${s.differentials.rear.capacity}`;
+    if (s.differentials.front) r['Front'] = `${s.differentials.front.type}, ${s.differentials.front.capacity}`;
+    return r;
+  },
+  transfer_case_fluid: (s) => {
+    if (!s.transferCase) return null;
+    return { 'Fluid': s.transferCase.fluidType, 'Capacity': s.transferCase.capacity };
+  },
+};
+
+// ─── Vehicle Specs Lookup ──────────────────────────────────────────────
+
+/**
+ * Look up vehicle-specific specs from vehicle-specs.json.
+ * Supports trim-aware matching (e.g., ZL1/LT4 vs SS/LT1).
+ * Returns null if no specs found for this vehicle.
+ */
+export function getVehicleSpecs(vehicle: { year: number; make: string; model: string; trim?: string }): VehicleSpecs | null {
+  const allSpecs = vehicleSpecsData as unknown as Record<string, Record<string, Record<string, any>>>;
+  const makeData = allSpecs[vehicle.make];
+  if (!makeData) return null;
+
+  // Try exact model match first, then partial match
+  let modelData = makeData[vehicle.model];
+  if (!modelData) {
+    const modelKey = Object.keys(makeData).find(k =>
+      vehicle.model.toLowerCase().includes(k.toLowerCase()) ||
+      k.toLowerCase().includes(vehicle.model.toLowerCase())
+    );
+    if (modelKey) modelData = makeData[modelKey];
+  }
+  if (!modelData) return null;
+
+  // Find the right generation/trim variant
+  let rawSpecs: any = null;
+  const trim = (vehicle.trim || '').toLowerCase();
+
+  for (const [genKey, genData] of Object.entries(modelData) as [string, any][]) {
+    if (!genData.years || !genData.years.includes(vehicle.year)) continue;
+
+    // For trim-specific entries, check trim match
+    const genKeyLower = genKey.toLowerCase();
+    const hasTrimMatch =
+      (trim && genKeyLower.split(/[\/,]/).some((part: string) => trim.includes(part.trim()))) ||
+      (trim && trim.split(/[\s,]/).some((part: string) => part.length > 1 && genKeyLower.includes(part)));
+
+    if (hasTrimMatch) {
+      rawSpecs = genData;
+      break;
+    }
+    // Default/fallback: use the first matching year entry
+    if (!rawSpecs) rawSpecs = genData;
+  }
+
+  if (!rawSpecs) return null;
+
+  // Normalize lug nuts/bolts into unified lug field
+  let lug: LugSpecs | undefined;
+  if (rawSpecs.lugBolts) {
+    lug = { size: rawSpecs.lugBolts.size, torque: rawSpecs.lugBolts.torque, useBolts: true };
+  } else if (rawSpecs.lugNuts) {
+    lug = { size: rawSpecs.lugNuts.size, torque: rawSpecs.lugNuts.torque, useBolts: false };
+  }
+
+  // Normalize transferCase field
+  let transferCase: TransferCaseSpecs | undefined;
+  if (rawSpecs.transferCase) {
+    transferCase = {
+      fluidType: rawSpecs.transferCase.fluidType || rawSpecs.transferCase.type,
+      capacity: rawSpecs.transferCase.capacity,
+    };
+  }
+
+  return {
+    engine: rawSpecs.engine,
+    oil: rawSpecs.oil,
+    coolant: rawSpecs.coolant,
+    transmission: rawSpecs.transmission,
+    brakeFluid: rawSpecs.brakeFluid,
+    sparkPlugs: rawSpecs.sparkPlugs,
+    lug,
+    differentials: rawSpecs.differentials,
+    transferCase,
+    supercharger: rawSpecs.supercharger,
+    jackPoints: rawSpecs.jackPoints,
+    safety: rawSpecs.safety,
+  };
+}
+
+/**
+ * Get specs relevant to a specific maintenance type for a given vehicle.
+ * Returns key-value pairs suitable for display on a maintenance card.
+ */
+export function getSpecsForMaintenanceType(
+  typeId: string,
+  vehicle: { year: number; make: string; model: string; trim?: string }
+): Record<string, string> | null {
+  const specs = getVehicleSpecs(vehicle);
+  if (!specs) return null;
+
+  const mapper = MAINTENANCE_SPECS_MAP[typeId];
+  if (!mapper) return null;
+
+  return mapper(specs);
+}
+
+// ─── Core Maintenance Types ────────────────────────────────────────────
 
 export interface MaintenanceType {
   id: string;

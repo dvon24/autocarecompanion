@@ -8,52 +8,13 @@ import {
   type Part,
 } from '@/schemas/guide.schema';
 import { logApiCost, isBudgetExceeded } from '@/lib/costs';
-import vehicleSpecsData from '@/data/vehicle-specs.json';
+import { getVehicleSpecs, type VehicleSpecs } from '@/lib/maintenance';
 
 /**
- * Look up vehicle-specific specs (oil capacity, filter, jack points, etc.)
- * Returns formatted string to inject into AI prompt, or empty string if no match.
+ * Format vehicle specs into a string for injection into the AI prompt.
+ * Uses the shared getVehicleSpecs() lookup from maintenance.ts.
  */
-function getVehicleSpecsForPrompt(vehicle: { year: number; make: string; model: string; trim: string }): string {
-  const makeData = (vehicleSpecsData as unknown as Record<string, Record<string, Record<string, any>>>)[vehicle.make];
-  if (!makeData) return '';
-
-  // Try exact model match first, then partial match
-  let modelData = makeData[vehicle.model];
-  if (!modelData) {
-    // Try partial match (e.g., "Camaro" matches user searching "Camaro ZL1")
-    const modelKey = Object.keys(makeData).find(k =>
-      vehicle.model.toLowerCase().includes(k.toLowerCase()) ||
-      k.toLowerCase().includes(vehicle.model.toLowerCase())
-    );
-    if (modelKey) modelData = makeData[modelKey];
-  }
-  if (!modelData) return '';
-
-  // Find the right generation/trim variant
-  let specs: any = null;
-  const trim = (vehicle.trim || '').toLowerCase();
-
-  for (const [genKey, genData] of Object.entries(modelData) as [string, any][]) {
-    if (!genData.years || !genData.years.includes(vehicle.year)) continue;
-
-    // For trim-specific entries (e.g., "ZL1/LT4", "SS/LT1"), check trim match
-    const genKeyLower = genKey.toLowerCase();
-    if (genKeyLower.includes('zl1') && (trim.includes('zl1') || trim.includes('1le'))) {
-      specs = genData;
-      break;
-    }
-    if (genKeyLower.includes('ss') && (trim.includes('ss') || trim.includes('1ss') || trim.includes('2ss'))) {
-      specs = genData;
-      break;
-    }
-    // Default/fallback: use the first matching year entry
-    if (!specs) specs = genData;
-  }
-
-  if (!specs) return '';
-
-  // Build formatted specs string
+function formatSpecsForPrompt(vehicle: { year: number; make: string; model: string; trim: string }, specs: VehicleSpecs): string {
   const sections: string[] = [];
   sections.push(`\n\nVEHICLE-SPECIFIC REFERENCE DATA for ${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}:`);
   if (specs.engine) sections.push(`Engine: ${specs.engine}`);
@@ -74,7 +35,7 @@ function getVehicleSpecsForPrompt(vehicle: { year: number; make: string; model: 
     sections.push(`Spark plugs: ${specs.sparkPlugs.partNumber}, Gap: ${specs.sparkPlugs.gap}, Qty: ${specs.sparkPlugs.quantity}`);
   }
 
-  if (specs.lugNuts) sections.push(`Lug nuts: ${specs.lugNuts.size}, Torque: ${specs.lugNuts.torque}`);
+  if (specs.lug) sections.push(`Lug ${specs.lug.useBolts ? 'bolts' : 'nuts'}: ${specs.lug.size}, Torque: ${specs.lug.torque}`);
 
   if (specs.differentials) {
     if (specs.differentials.rear) sections.push(`Rear diff: ${specs.differentials.rear.type}, ${specs.differentials.rear.capacity}`);
@@ -99,6 +60,16 @@ function getVehicleSpecsForPrompt(vehicle: { year: number; make: string; model: 
   sections.push(`\nIMPORTANT: Use the exact specs above in your guide. Do NOT guess capacities or part numbers - use the reference data provided.`);
 
   return sections.join('\n');
+}
+
+/**
+ * Get vehicle specs formatted for AI prompt injection.
+ * Returns empty string if no specs found.
+ */
+function getVehicleSpecsForPrompt(vehicle: { year: number; make: string; model: string; trim: string }): string {
+  const specs = getVehicleSpecs(vehicle);
+  if (!specs) return '';
+  return formatSpecsForPrompt(vehicle, specs);
 }
 
 /**

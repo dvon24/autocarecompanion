@@ -16,6 +16,8 @@ import {
   MAINTENANCE_SCHEDULES,
   getAllMaintenanceStatuses,
   getApplicableSchedules,
+  getVehicleSpecs,
+  getSpecsForMaintenanceType,
   type MaintenanceStatusResult,
   type VehicleContext,
   type ResolvedSchedule,
@@ -65,6 +67,7 @@ export default function MaintenancePage() {
   const [savingMileage, setSavingMileage] = useState(false);
   const [generatingGuideFor, setGeneratingGuideFor] = useState<string | null>(null);
   const [showKnownIssues, setShowKnownIssues] = useState(false);
+  const [showJackPoints, setShowJackPoints] = useState(false);
 
   const vehicleId = params.id as string;
 
@@ -278,6 +281,14 @@ export default function MaintenancePage() {
   // Get applicable schedules for this vehicle
   const applicableSchedules = getApplicableSchedules(vehicleContext);
 
+  // Look up vehicle specs for display
+  const vehicleSpecs = getVehicleSpecs({
+    year: vehicle.year,
+    make: vehicle.make,
+    model: vehicle.model,
+    trim: vehicle.trim || undefined,
+  });
+
   // Get maintenance statuses using vehicle-specific intervals
   const statuses = getAllMaintenanceStatuses(
     { currentMileage: vehicle.currentMileage },
@@ -431,6 +442,129 @@ export default function MaintenancePage() {
             </ContentCard>
           </div>
         </ScrollReveal>
+
+        {/* Vehicle Specs Section */}
+        {vehicleSpecs && (
+          <ScrollReveal delay={60} duration={500}>
+            <ContentCard className="p-6 mb-8">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                  <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h2 className="text-lg font-semibold text-gray-900">Vehicle Specs</h2>
+                  <p className="text-sm text-gray-500">{vehicleSpecs.engine}</p>
+                </div>
+              </div>
+
+              {/* Safety Warnings */}
+              {vehicleSpecs.safety && vehicleSpecs.safety.length > 0 && (
+                <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <svg className="w-5 h-5 text-amber-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-sm font-semibold text-amber-800">Safety Notes</span>
+                  </div>
+                  <ul className="space-y-1">
+                    {vehicleSpecs.safety.map((note, i) => (
+                      <li key={i} className="text-sm text-amber-800 flex gap-2">
+                        <span className="text-amber-400 flex-shrink-0">&#8226;</span>
+                        <span>{note}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Quick reference specs */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                {vehicleSpecs.oil && (
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <p className="text-xs font-medium text-gray-500 mb-1">Oil</p>
+                    <p className="text-sm font-semibold text-gray-900">{vehicleSpecs.oil.type}</p>
+                    <p className="text-xs text-gray-600">{vehicleSpecs.oil.capacity} &middot; Filter: {vehicleSpecs.oil.filterPartNumber}</p>
+                  </div>
+                )}
+                {vehicleSpecs.coolant && (
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <p className="text-xs font-medium text-gray-500 mb-1">Coolant</p>
+                    <p className="text-sm font-semibold text-gray-900">{vehicleSpecs.coolant.type}</p>
+                    <p className="text-xs text-gray-600">{vehicleSpecs.coolant.capacity}</p>
+                  </div>
+                )}
+                {vehicleSpecs.transmission && (
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <p className="text-xs font-medium text-gray-500 mb-1">Transmission</p>
+                    <p className="text-sm font-semibold text-gray-900">{vehicleSpecs.transmission.type}</p>
+                    <p className="text-xs text-gray-600">{vehicleSpecs.transmission.capacity}</p>
+                  </div>
+                )}
+                {vehicleSpecs.sparkPlugs && (
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <p className="text-xs font-medium text-gray-500 mb-1">Spark Plugs</p>
+                    <p className="text-sm font-semibold text-gray-900">{vehicleSpecs.sparkPlugs.partNumber}</p>
+                    <p className="text-xs text-gray-600">Gap: {vehicleSpecs.sparkPlugs.gap} &middot; Qty: {vehicleSpecs.sparkPlugs.quantity}</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Lug spec line */}
+              {vehicleSpecs.lug && (
+                <div className="flex items-center gap-2 text-sm text-gray-700 mb-3">
+                  <span className="font-medium">Lug {vehicleSpecs.lug.useBolts ? 'Bolts' : 'Nuts'}:</span>
+                  <span>{vehicleSpecs.lug.size} @ {vehicleSpecs.lug.torque}</span>
+                </div>
+              )}
+
+              {/* Jack Points - collapsible */}
+              {vehicleSpecs.jackPoints && (
+                <div className="border border-gray-200 rounded-xl overflow-hidden">
+                  <button
+                    onClick={() => setShowJackPoints(!showJackPoints)}
+                    className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                  >
+                    <span className="text-sm font-medium text-gray-700">Jack Points</span>
+                    <svg
+                      className={`w-4 h-4 text-gray-400 transition-transform ${showJackPoints ? 'rotate-180' : ''}`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {showJackPoints && (
+                    <div className="px-4 pb-4 space-y-2 border-t border-gray-100 pt-3">
+                      <div>
+                        <p className="text-xs font-medium text-gray-500">Front</p>
+                        <p className="text-sm text-gray-800">{vehicleSpecs.jackPoints.front}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-medium text-gray-500">Rear</p>
+                        <p className="text-sm text-gray-800">{vehicleSpecs.jackPoints.rear}</p>
+                      </div>
+                      {vehicleSpecs.jackPoints.frontLift && (
+                        <div>
+                          <p className="text-xs font-medium text-gray-500">Front Lift Point</p>
+                          <p className="text-sm text-gray-800">{vehicleSpecs.jackPoints.frontLift}</p>
+                        </div>
+                      )}
+                      {vehicleSpecs.jackPoints.rearLift && (
+                        <div>
+                          <p className="text-xs font-medium text-gray-500">Rear Lift Point</p>
+                          <p className="text-sm text-gray-800">{vehicleSpecs.jackPoints.rearLift}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+            </ContentCard>
+          </ScrollReveal>
+        )}
 
         {/* Known Issues Section */}
         {!knownIssuesLoading && knownIssues.length > 0 && (
@@ -595,6 +729,33 @@ export default function MaintenancePage() {
                         Every {(type as ResolvedSchedule).intervalMiles?.toLocaleString() ?? type.defaultIntervalMiles.toLocaleString()} mi or {(type as ResolvedSchedule).intervalMonths ?? type.defaultIntervalMonths} mo
                       </p>
                     </div>
+
+                    {/* Per-card vehicle specs */}
+                    {(() => {
+                      const cardSpecs = vehicleSpecs ? getSpecsForMaintenanceType(typeId, {
+                        year: vehicle.year,
+                        make: vehicle.make,
+                        model: vehicle.model,
+                        trim: vehicle.trim || undefined,
+                      }) : null;
+                      if (!cardSpecs) return null;
+                      const entries = Object.entries(cardSpecs);
+                      const shown = entries.slice(0, 3);
+                      const extra = entries.length - 3;
+                      return (
+                        <div className="mb-3 px-2 py-1.5 bg-white/60 rounded-lg border border-gray-100">
+                          <p className="text-xs text-gray-700">
+                            {shown.map(([k, v], i) => (
+                              <span key={k}>
+                                {i > 0 && <span className="text-gray-300"> &middot; </span>}
+                                <span className="font-medium">{v}</span>
+                              </span>
+                            ))}
+                            {extra > 0 && <span className="text-gray-400"> +{extra} more</span>}
+                          </p>
+                        </div>
+                      );
+                    })()}
 
                     {/* Action buttons */}
                     <div className="flex gap-2">
