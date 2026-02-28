@@ -452,6 +452,19 @@ export const MAINTENANCE_SCHEDULES: Record<string, MaintenanceType> = {
   },
 };
 
+/**
+ * Reverse lookup: find maintenance type ID by display name.
+ * "Oil Change" -> "oil_change", "Spark Plugs" -> "spark_plugs"
+ * Returns null if no match found.
+ */
+export function getMaintenanceTypeByName(name: string): string | null {
+  const normalized = name.toLowerCase().trim();
+  for (const [id, type] of Object.entries(MAINTENANCE_SCHEDULES)) {
+    if (type.name.toLowerCase() === normalized) return id;
+  }
+  return null;
+}
+
 // Default costs for each maintenance type (used when no override exists)
 const DEFAULT_COSTS: Record<string, number> = {
   oil_change: 75,

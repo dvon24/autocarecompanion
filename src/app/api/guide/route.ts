@@ -9,6 +9,12 @@ import {
 } from '@/schemas/guide.schema';
 import { logApiCost, isBudgetExceeded } from '@/lib/costs';
 import { getVehicleSpecs, type VehicleSpecs } from '@/lib/maintenance';
+import {
+  extractMaintenanceType,
+  getCachedGuide,
+  storeCachedGuide,
+  recordCacheEvent,
+} from '@/lib/guide-cache';
 
 /**
  * Format vehicle specs into a string for injection into the AI prompt.
@@ -461,10 +467,34 @@ export async function POST(request: NextRequest) {
 
     const { vehicle, diagnosis } = parseResult.data;
 
-    // Get API key from environment
+    // Extract maintenance type for cache key
+    const maintenanceType = extractMaintenanceType(diagnosis);
+
+    // Check cache first
+    const cachedGuide = await getCachedGuide(
+      vehicle.year,
+      vehicle.make,
+      vehicle.model,
+      vehicle.trim,
+      maintenanceType
+    );
+
+    if (cachedGuide) {
+      const generationTimeMs = Date.now() - startTime;
+      // Record cache hit (fire-and-forget)
+      recordCacheEvent(true, 0.21).catch(() => {});
+      return NextResponse.json({
+        guide: cachedGuide,
+        generationTimeMs,
+        cacheHit: true,
+      });
+    }
+
+    // Cache MISS - generate via AI
     const apiKey = process.env.OPENAI_API_KEY;
 
     let guide: Guide;
+    let costUsd: number | undefined;
 
     if (apiKey) {
       // Generate guide via AI
@@ -473,6 +503,9 @@ export async function POST(request: NextRequest) {
 
       // Story 7.1: Log API cost
       logApiCost('guide_generation', usage.promptTokens, usage.completionTokens, 'gpt-5.2');
+
+      // Estimate cost for cache stats
+      costUsd = ((usage.promptTokens * 10) + (usage.completionTokens * 30)) / 1_000_000;
 
       guide = parseGuideResponse(content, vehicle, {
         id: diagnosis.id,
@@ -490,11 +523,18 @@ export async function POST(request: NextRequest) {
       });
     }
 
+    // Store in cache (fire-and-forget - don't block response)
+    storeCachedGuide(guide, maintenanceType, costUsd).catch(() => {});
+
+    // Record cache miss
+    recordCacheEvent(false).catch(() => {});
+
     const generationTimeMs = Date.now() - startTime;
 
     return NextResponse.json({
       guide,
       generationTimeMs,
+      cacheHit: false,
     });
   } catch (error) {
     console.error('Guide API error:', error);

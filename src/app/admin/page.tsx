@@ -60,6 +60,39 @@ interface IssueReport {
   existingIssueId?: string;
 }
 
+interface CachedGuideEntry {
+  id: string;
+  cacheKey: string;
+  year: number;
+  make: string;
+  model: string;
+  trim: string;
+  maintenanceType: string;
+  title: string;
+  status: string;
+  version: number;
+  hitCount: number;
+  lastHitAt: string | null;
+  generationCostUsd: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface GuideCacheData {
+  guides: CachedGuideEntry[];
+  total: number;
+  page: number;
+  pageSize: number;
+  stats: {
+    totalCached: number;
+    totalHits: number;
+    totalMisses: number;
+    hitRate: number;
+    totalSavings: number;
+    pendingReview: number;
+  };
+}
+
 interface CostEntry {
   timestamp: string;
   feature: string;
@@ -112,9 +145,17 @@ export default function AdminPage() {
   const [reviewRecommendations, setReviewRecommendations] = useState<any[]>([]);
   const [researchingIssue, setResearchingIssue] = useState<string | null>(null);
   const [affiliateStats, setAffiliateStats] = useState<any>(null);
+  const [guideCacheData, setGuideCacheData] = useState<GuideCacheData | null>(null);
+  const [guideCachePage, setGuideCachePage] = useState(1);
+  const [guideCacheFilter, setGuideCacheFilter] = useState<{ status: string; make: string; type: string }>({ status: '', make: '', type: '' });
+  const [editingGuide, setEditingGuide] = useState<CachedGuideEntry | null>(null);
+  const [editGuideJson, setEditGuideJson] = useState('');
+  const [editGuideStatus, setEditGuideStatus] = useState('');
+  const [editGuideNotes, setEditGuideNotes] = useState('');
+  const [savingGuide, setSavingGuide] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'emails' | 'feedback' | 'vehicle' | 'patterns' | 'reports' | 'costs' | 'review' | 'affiliates'>('emails');
+  const [activeTab, setActiveTab] = useState<'emails' | 'feedback' | 'vehicle' | 'patterns' | 'reports' | 'costs' | 'review' | 'affiliates' | 'guides'>('emails');
 
   useEffect(() => {
     async function fetchData() {
@@ -167,6 +208,13 @@ export default function AdminPage() {
         if (affiliateResponse.ok) {
           const affiliateData = await affiliateResponse.json();
           setAffiliateStats(affiliateData);
+        }
+
+        // Fetch guide cache data
+        const guidesResponse = await fetch('/api/admin/guides');
+        if (guidesResponse.ok) {
+          const guidesData = await guidesResponse.json();
+          setGuideCacheData(guidesData);
         }
       } catch {
         setError('Failed to connect to server');
@@ -283,6 +331,16 @@ export default function AdminPage() {
             }`}
           >
             🛒 Affiliate Stats {affiliateStats ? `(${affiliateStats.totalClicks} clicks)` : ''}
+          </button>
+          <button
+            onClick={() => setActiveTab('guides')}
+            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              activeTab === 'guides'
+                ? 'bg-teal-600 text-white'
+                : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+            }`}
+          >
+            Guide Cache {guideCacheData ? `(${guideCacheData.stats.totalCached})` : ''}
           </button>
         </div>
 
@@ -923,6 +981,338 @@ export default function AdminPage() {
                     ))}
                   </tbody>
                 </table>
+              </div>
+            )}
+          </div>
+        )}
+        {!loading && !error && activeTab === 'guides' && (
+          <div className="space-y-6">
+            {/* Stats Banner */}
+            {guideCacheData && (
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div className="bg-white rounded-xl border border-gray-200 p-4">
+                  <p className="text-sm text-gray-500">Cached</p>
+                  <p className="text-2xl font-semibold text-gray-900">{guideCacheData.stats.totalCached}</p>
+                </div>
+                <div className="bg-white rounded-xl border border-gray-200 p-4">
+                  <p className="text-sm text-gray-500">Hit Rate</p>
+                  <p className="text-2xl font-semibold text-green-600">{guideCacheData.stats.hitRate.toFixed(1)}%</p>
+                </div>
+                <div className="bg-white rounded-xl border border-gray-200 p-4">
+                  <p className="text-sm text-gray-500">Hits / Misses</p>
+                  <p className="text-2xl font-semibold text-gray-900">
+                    {guideCacheData.stats.totalHits} / {guideCacheData.stats.totalMisses}
+                  </p>
+                </div>
+                <div className="bg-white rounded-xl border border-gray-200 p-4">
+                  <p className="text-sm text-gray-500">$ Saved</p>
+                  <p className="text-2xl font-semibold text-green-600">${guideCacheData.stats.totalSavings.toFixed(2)}</p>
+                </div>
+                <div className="bg-white rounded-xl border border-gray-200 p-4">
+                  <p className="text-sm text-gray-500">Pending Review</p>
+                  <p className="text-2xl font-semibold text-orange-600">{guideCacheData.stats.pendingReview}</p>
+                </div>
+              </div>
+            )}
+
+            {/* Filter Bar */}
+            <div className="bg-white rounded-xl border border-gray-200 p-4 flex gap-4 flex-wrap">
+              <select
+                value={guideCacheFilter.status}
+                onChange={(e) => setGuideCacheFilter(prev => ({ ...prev, status: e.target.value }))}
+                className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
+              >
+                <option value="">All Statuses</option>
+                <option value="auto-generated">Auto-generated</option>
+                <option value="reviewed">Reviewed</option>
+                <option value="verified">Verified</option>
+              </select>
+              <input
+                type="text"
+                placeholder="Filter by make..."
+                value={guideCacheFilter.make}
+                onChange={(e) => setGuideCacheFilter(prev => ({ ...prev, make: e.target.value }))}
+                className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
+              />
+              <input
+                type="text"
+                placeholder="Filter by type..."
+                value={guideCacheFilter.type}
+                onChange={(e) => setGuideCacheFilter(prev => ({ ...prev, type: e.target.value }))}
+                className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
+              />
+              <button
+                onClick={async () => {
+                  const params = new URLSearchParams();
+                  if (guideCacheFilter.status) params.set('status', guideCacheFilter.status);
+                  if (guideCacheFilter.make) params.set('make', guideCacheFilter.make);
+                  if (guideCacheFilter.type) params.set('type', guideCacheFilter.type);
+                  params.set('page', String(guideCachePage));
+                  const res = await fetch(`/api/admin/guides?${params.toString()}`);
+                  if (res.ok) {
+                    setGuideCacheData(await res.json());
+                  }
+                }}
+                className="px-4 py-2 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-700"
+              >
+                Filter
+              </button>
+            </div>
+
+            {/* Guide List Table */}
+            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+              {guideCacheData && guideCacheData.guides.length > 0 ? (
+                <>
+                  <table className="w-full">
+                    <thead className="bg-gray-50 border-b border-gray-200">
+                      <tr>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Title</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">YMMT</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Hits</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {guideCacheData.guides.map((g) => (
+                        <tr key={g.id} className="hover:bg-gray-50">
+                          <td className="px-4 py-3 text-sm text-gray-900 max-w-[200px] truncate">{g.title}</td>
+                          <td className="px-4 py-3 text-sm text-gray-600">
+                            {g.year} {g.make} {g.model}{g.trim ? ` ${g.trim}` : ''}
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-600">{g.maintenanceType.replace(/_/g, ' ')}</td>
+                          <td className="px-4 py-3">
+                            <span className={`px-2 py-0.5 text-xs font-medium rounded ${
+                              g.status === 'verified' ? 'bg-green-100 text-green-700' :
+                              g.status === 'reviewed' ? 'bg-blue-100 text-blue-700' :
+                              'bg-yellow-100 text-yellow-700'
+                            }`}>
+                              {g.status}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-600">{g.hitCount}</td>
+                          <td className="px-4 py-3 flex gap-2">
+                            <button
+                              onClick={async () => {
+                                // Fetch full guide JSON for editing
+                                const res = await fetch(`/api/admin/guides?status=&make=&type=&page=1`);
+                                // We need the full guideJson - fetch the specific guide
+                                setEditingGuide(g);
+                                setEditGuideStatus(g.status);
+                                setEditGuideNotes('');
+                                // Fetch full guide to get JSON
+                                const fullRes = await fetch(`/api/admin/guides?make=${g.make}&type=${g.maintenanceType}`);
+                                if (fullRes.ok) {
+                                  const fullData = await fullRes.json();
+                                  const fullGuide = fullData.guides.find((fg: CachedGuideEntry) => fg.id === g.id);
+                                  if (fullGuide) {
+                                    setEditGuideJson(JSON.stringify(fullGuide, null, 2));
+                                  }
+                                }
+                              }}
+                              className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded hover:bg-gray-200"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              onClick={async () => {
+                                if (confirm(`Delete cached guide "${g.title}"?`)) {
+                                  const res = await fetch('/api/admin/guides', {
+                                    method: 'DELETE',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ ids: [g.id] }),
+                                  });
+                                  if (res.ok) {
+                                    setGuideCacheData(prev => prev ? {
+                                      ...prev,
+                                      guides: prev.guides.filter(x => x.id !== g.id),
+                                      total: prev.total - 1,
+                                      stats: { ...prev.stats, totalCached: prev.stats.totalCached - 1 },
+                                    } : null);
+                                  }
+                                }
+                              }}
+                              className="px-3 py-1 text-xs font-medium bg-red-50 text-red-700 rounded hover:bg-red-100"
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+
+                  {/* Pagination */}
+                  {guideCacheData.total > guideCacheData.pageSize && (
+                    <div className="px-4 py-3 border-t border-gray-200 flex items-center justify-between">
+                      <span className="text-sm text-gray-500">
+                        Page {guideCacheData.page} of {Math.ceil(guideCacheData.total / guideCacheData.pageSize)}
+                        {' '}({guideCacheData.total} total)
+                      </span>
+                      <div className="flex gap-2">
+                        <button
+                          disabled={guideCacheData.page <= 1}
+                          onClick={async () => {
+                            const newPage = guideCachePage - 1;
+                            setGuideCachePage(newPage);
+                            const params = new URLSearchParams();
+                            if (guideCacheFilter.status) params.set('status', guideCacheFilter.status);
+                            if (guideCacheFilter.make) params.set('make', guideCacheFilter.make);
+                            if (guideCacheFilter.type) params.set('type', guideCacheFilter.type);
+                            params.set('page', String(newPage));
+                            const res = await fetch(`/api/admin/guides?${params.toString()}`);
+                            if (res.ok) setGuideCacheData(await res.json());
+                          }}
+                          className="px-3 py-1 text-sm border rounded disabled:opacity-50"
+                        >
+                          Prev
+                        </button>
+                        <button
+                          disabled={guideCacheData.page >= Math.ceil(guideCacheData.total / guideCacheData.pageSize)}
+                          onClick={async () => {
+                            const newPage = guideCachePage + 1;
+                            setGuideCachePage(newPage);
+                            const params = new URLSearchParams();
+                            if (guideCacheFilter.status) params.set('status', guideCacheFilter.status);
+                            if (guideCacheFilter.make) params.set('make', guideCacheFilter.make);
+                            if (guideCacheFilter.type) params.set('type', guideCacheFilter.type);
+                            params.set('page', String(newPage));
+                            const res = await fetch(`/api/admin/guides?${params.toString()}`);
+                            if (res.ok) setGuideCacheData(await res.json());
+                          }}
+                          className="px-3 py-1 text-sm border rounded disabled:opacity-50"
+                        >
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="p-8 text-center text-gray-500">
+                  No cached guides yet. Guides are cached automatically when users generate them.
+                </div>
+              )}
+            </div>
+
+            {/* Edit Modal */}
+            {editingGuide && (
+              <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-lg font-semibold text-gray-900">Edit Cached Guide</h2>
+                    <button onClick={() => setEditingGuide(null)} className="text-gray-400 hover:text-gray-600 text-xl">
+                      &times;
+                    </button>
+                  </div>
+
+                  {/* Metadata (read-only) */}
+                  <div className="bg-gray-50 rounded-lg p-3 mb-4 text-sm text-gray-600 space-y-1">
+                    <p><strong>Cache Key:</strong> {editingGuide.cacheKey}</p>
+                    <p><strong>Hits:</strong> {editingGuide.hitCount} | <strong>Version:</strong> {editingGuide.version}</p>
+                    <p><strong>Created:</strong> {new Date(editingGuide.createdAt).toLocaleString()}</p>
+                  </div>
+
+                  {/* Status */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                    <select
+                      value={editGuideStatus}
+                      onChange={(e) => setEditGuideStatus(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                    >
+                      <option value="auto-generated">Auto-generated</option>
+                      <option value="reviewed">Reviewed</option>
+                      <option value="verified">Verified</option>
+                    </select>
+                  </div>
+
+                  {/* Review Notes */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Review Notes</label>
+                    <textarea
+                      value={editGuideNotes}
+                      onChange={(e) => setEditGuideNotes(e.target.value)}
+                      rows={2}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                      placeholder="Notes about changes made..."
+                    />
+                  </div>
+
+                  {/* Guide JSON Editor */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Guide JSON</label>
+                    <textarea
+                      value={editGuideJson}
+                      onChange={(e) => setEditGuideJson(e.target.value)}
+                      rows={16}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-xs font-mono"
+                    />
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex gap-3 justify-end">
+                    <button
+                      onClick={() => setEditingGuide(null)}
+                      className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      disabled={savingGuide}
+                      onClick={async () => {
+                        setSavingGuide(true);
+                        try {
+                          let parsedJson;
+                          try {
+                            parsedJson = JSON.parse(editGuideJson);
+                          } catch {
+                            alert('Invalid JSON. Please fix syntax errors.');
+                            setSavingGuide(false);
+                            return;
+                          }
+
+                          const res = await fetch('/api/admin/guides', {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                              id: editingGuide.id,
+                              guideJson: parsedJson,
+                              status: editGuideStatus,
+                              reviewNotes: editGuideNotes || null,
+                            }),
+                          });
+
+                          if (res.ok) {
+                            const data = await res.json();
+                            // Update local state
+                            setGuideCacheData(prev => prev ? {
+                              ...prev,
+                              guides: prev.guides.map(g =>
+                                g.id === editingGuide.id
+                                  ? { ...g, status: editGuideStatus, version: data.guide.version, title: data.guide.title }
+                                  : g
+                              ),
+                            } : null);
+                            setEditingGuide(null);
+                          } else {
+                            const errData = await res.json();
+                            alert(`Save failed: ${errData.error}${errData.details ? '\n' + errData.details.join('\n') : ''}`);
+                          }
+                        } catch (err) {
+                          alert('Save failed. Check console for details.');
+                          console.error(err);
+                        } finally {
+                          setSavingGuide(false);
+                        }
+                      }}
+                      className="px-4 py-2 text-sm bg-teal-600 text-white rounded-lg hover:bg-teal-700 disabled:opacity-50"
+                    >
+                      {savingGuide ? 'Saving...' : 'Save Changes'}
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
           </div>

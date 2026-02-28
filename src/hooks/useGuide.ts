@@ -94,6 +94,7 @@ export function useGuide(): UseGuideReturn {
         vehicle: `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ` ${vehicle.trim}` : ''}`,
         diagnosis: diagnosis.title,
         difficulty: data.guide?.difficulty || 0,
+        cacheHit: data.cacheHit || false,
       });
     } catch (err) {
       clearTimeout(timeoutId);

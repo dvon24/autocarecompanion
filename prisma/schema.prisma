@@ -286,3 +286,40 @@ model UserIssueFix {
   @@index([userId])
   @@index([vehicleId])
 }
+
+// ============================================
+// GUIDE CACHE MODELS
+// ============================================
+
+model CachedGuide {
+  id                String    @id @default(cuid())
+  cacheKey          String    @unique  // "2019_chevrolet_camaro_zl1_oil_change"
+  year              Int
+  make              String
+  model             String
+  trim              String    @default("")
+  maintenanceType   String               // "oil_change", "spark_plugs", etc.
+  guideJson         Json                 // Full Guide object
+  title             String               // Denormalized for admin list
+  status            String    @default("auto-generated") // auto-generated | reviewed | verified
+  reviewNotes       String?   @db.Text
+  version           Int       @default(1)
+  hitCount          Int       @default(0)
+  lastHitAt         DateTime?
+  generationCostUsd Float?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([make, model, maintenanceType])
+  @@index([status])
+}
+
+model GuideCacheStats {
+  id       String @id @default(cuid())
+  date     String // YYYY-MM-DD
+  hits     Int    @default(0)
+  misses   Int    @default(0)
+  savings  Float  @default(0)
+
+  @@unique([date])
+}
