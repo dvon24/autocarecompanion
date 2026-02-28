@@ -60,6 +60,8 @@ function getVehicleSpecsForPrompt(vehicle: { year: number; make: string; model: 
 
   if (specs.oil) {
     sections.push(`Oil: ${specs.oil.type}, Capacity: ${specs.oil.capacity}, Filter: ${specs.oil.filterPartNumber}`);
+    if (specs.oil.recommendedProducts) sections.push(`  Recommended oil products: ${specs.oil.recommendedProducts}`);
+    if (specs.oil.oilNotes) sections.push(`  Oil notes: ${specs.oil.oilNotes}`);
     if (specs.oil.drainPlugSize) sections.push(`  Drain plug: ${specs.oil.drainPlugSize}, Torque: ${specs.oil.drainPlugTorque}`);
     if (specs.oil.filterLocation) sections.push(`  Filter location: ${specs.oil.filterLocation}`);
   }
