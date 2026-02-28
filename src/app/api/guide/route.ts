@@ -524,10 +524,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Store in cache (fire-and-forget - don't block response)
-    storeCachedGuide(guide, maintenanceType, costUsd).catch(() => {});
+    storeCachedGuide(guide, maintenanceType, costUsd).catch((e) => {
+      console.error('[guide-cache] store failed:', e);
+    });
 
     // Record cache miss
-    recordCacheEvent(false).catch(() => {});
+    recordCacheEvent(false).catch((e) => {
+      console.error('[guide-cache] recordCacheEvent failed:', e);
+    });
 
     const generationTimeMs = Date.now() - startTime;
 
