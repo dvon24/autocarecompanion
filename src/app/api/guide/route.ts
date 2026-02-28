@@ -481,8 +481,8 @@ export async function POST(request: NextRequest) {
 
     if (cachedGuide) {
       const generationTimeMs = Date.now() - startTime;
-      // Record cache hit (fire-and-forget)
-      recordCacheEvent(true, 0.21).catch(() => {});
+      // Record cache hit before returning (Vercel freezes after response)
+      await recordCacheEvent(true, 0.21).catch(() => {});
       return NextResponse.json({
         guide: cachedGuide,
         generationTimeMs,
@@ -523,17 +523,14 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Store in cache (fire-and-forget - don't block response)
-    storeCachedGuide(guide, maintenanceType, costUsd).catch((e) => {
-      console.error('[guide-cache] store failed:', e);
-    });
-
-    // Record cache miss
-    recordCacheEvent(false).catch((e) => {
-      console.error('[guide-cache] recordCacheEvent failed:', e);
-    });
-
     const generationTimeMs = Date.now() - startTime;
+
+    // Store in cache and record miss before returning response
+    // (Vercel freezes functions after response - fire-and-forget won't complete)
+    await Promise.allSettled([
+      storeCachedGuide(guide, maintenanceType, costUsd),
+      recordCacheEvent(false),
+    ]);
 
     return NextResponse.json({
       guide,
