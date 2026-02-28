@@ -1,0 +1,1671 @@
+{
+  "_comment": "Maps multi-engine models to their engine-trim relationships. Used by scripts/add-engine-trim-restrictions.js to add trims arrays to engine-specific known issues. Only models with multiple engine options are listed — single-engine models are omitted (script skips them, leaving issues unrestricted which is correct).",
+  "Chevrolet": {
+    "Camaro": {
+      "engines": {
+        "2.0L Turbo I4 (LTG)": {
+          "trims": ["LS", "LT", "1LS", "1LT", "2LT", "3LT"],
+          "aliases": ["2.0L", "LTG", "2.0T", "turbo four", "turbocharged four", "four-cylinder turbo", "4-cylinder turbo", "I4 turbo"]
+        },
+        "3.6L V6 (LGX)": {
+          "trims": ["LS", "LT", "1LS", "1LT", "2LT", "3LT", "RS"],
+          "aliases": ["3.6L", "LGX", "V6"]
+        },
+        "6.2L V8 (LT1)": {
+          "trims": ["SS", "1SS", "2SS"],
+          "aliases": ["LT1", "6.2L V8", "small block"]
+        },
+        "6.2L SC V8 (LT4)": {
+          "trims": ["ZL1"],
+          "aliases": ["LT4", "supercharged"]
+        },
+        "7.0L V8 (LS7)": {
+          "trims": ["Z/28", "Z28"],
+          "aliases": ["LS7", "7.0L"]
+        }
+      }
+    },
+    "Silverado 1500": {
+      "engines": {
+        "2.7L Turbo I4 (L3B)": {
+          "trims": ["WT", "LS", "LT", "Custom", "RST", "LT Trail Boss", "Custom Trail Boss"],
+          "aliases": ["2.7L", "L3B", "turbo four", "four-cylinder"]
+        },
+        "5.3L V8 (L83/L84)": {
+          "trims": ["WT", "LS", "LT", "Custom", "RST", "LTZ", "High Country", "LT Trail Boss", "Custom Trail Boss", "Z71"],
+          "aliases": ["5.3L", "L83", "L84", "AFM", "DFM"]
+        },
+        "6.2L V8 (L87)": {
+          "trims": ["LTZ", "High Country", "RST", "ZR2"],
+          "aliases": ["6.2L", "L87"]
+        },
+        "3.0L Duramax Diesel": {
+          "trims": ["LT", "RST", "LTZ", "High Country"],
+          "aliases": ["Duramax", "diesel", "3.0L diesel", "LM2"]
+        }
+      }
+    },
+    "Colorado": {
+      "engines": {
+        "2.5L I4": {
+          "trims": ["Base", "LS", "WT"],
+          "aliases": ["2.5L", "I4", "four-cylinder"]
+        },
+        "3.6L V6": {
+          "trims": ["LT", "Z71", "ZR2"],
+          "aliases": ["3.6L", "V6"]
+        },
+        "2.8L Duramax Diesel": {
+          "trims": ["LT", "Z71", "ZR2"],
+          "aliases": ["2.8L", "Duramax", "diesel"]
+        },
+        "2.7L Turbo": {
+          "trims": ["WT", "LT", "Z71", "ZR2", "Trail Boss"],
+          "aliases": ["2.7L turbo", "turbo"]
+        }
+      }
+    },
+    "Equinox": {
+      "engines": {
+        "1.5L Turbo": {
+          "trims": ["L", "LS", "LT", "Premier", "RS", "Activ"],
+          "aliases": ["1.5L", "1.5T"]
+        },
+        "2.0L Turbo": {
+          "trims": ["Premier", "LTZ"],
+          "aliases": ["2.0L", "2.0T"]
+        },
+        "2.4L I4": {
+          "trims": ["L", "LS", "LT"],
+          "aliases": ["2.4L"]
+        }
+      }
+    },
+    "Tahoe": {
+      "engines": {
+        "5.3L V8": {
+          "trims": ["LS", "LT", "RST", "Z71", "Premier", "High Country", "PPV"],
+          "aliases": ["5.3L", "V8", "AFM", "DFM"]
+        },
+        "6.2L V8": {
+          "trims": ["RST", "Premier", "High Country"],
+          "aliases": ["6.2L"]
+        },
+        "3.0L Duramax Diesel": {
+          "trims": ["LT", "RST", "Premier", "High Country", "Z71"],
+          "aliases": ["Duramax", "diesel", "3.0L diesel"]
+        }
+      }
+    },
+    "Suburban": {
+      "engines": {
+        "5.3L V8": {
+          "trims": ["LS", "LT", "RST", "Z71", "Premier", "High Country", "1500", "1500 LS", "1500 LT", "1500 LTZ"],
+          "aliases": ["5.3L", "V8", "AFM", "DFM"]
+        },
+        "6.2L V8": {
+          "trims": ["RST", "Premier", "High Country"],
+          "aliases": ["6.2L"]
+        },
+        "3.0L Duramax Diesel": {
+          "trims": ["LT", "RST", "Premier", "High Country", "Z71"],
+          "aliases": ["Duramax", "diesel", "3.0L diesel"]
+        }
+      }
+    },
+    "Corvette": {
+      "engines": {
+        "6.2L V8 LT1/LT2": {
+          "trims": ["1LT", "2LT", "3LT", "1LZ", "2LZ", "3LZ", "Stingray", "Base"],
+          "aliases": ["LT1", "LT2", "6.2L"]
+        },
+        "5.5L V8 LT6": {
+          "trims": ["Z06", "1LZ", "2LZ", "3LZ"],
+          "aliases": ["LT6", "5.5L", "flat-plane"]
+        },
+        "6.2L SC V8 LT4": {
+          "trims": ["Z06", "Grand Sport", "ZR-1", "ZR1"],
+          "aliases": ["LT4", "supercharged"]
+        },
+        "6.2L V8 LS3": {
+          "trims": ["1LT", "2LT", "3LT", "Base", "Grand Sport"],
+          "aliases": ["LS3"]
+        },
+        "7.0L V8 LS7": {
+          "trims": ["Z06"],
+          "aliases": ["LS7", "7.0L"]
+        },
+        "E-Ray Hybrid": {
+          "trims": ["E-Ray"],
+          "aliases": ["E-Ray", "hybrid", "eRay"]
+        }
+      }
+    },
+    "Malibu": {
+      "engines": {
+        "1.5L Turbo": {
+          "trims": ["L", "LS", "LT", "RS", "Hybrid"],
+          "aliases": ["1.5L", "1.5T"]
+        },
+        "2.0L Turbo": {
+          "trims": ["Premier"],
+          "aliases": ["2.0L", "2.0T"]
+        }
+      }
+    }
+  },
+  "Ford": {
+    "Mustang": {
+      "engines": {
+        "2.3L EcoBoost I4": {
+          "trims": ["EcoBoost", "EcoBoost Premium"],
+          "aliases": ["2.3L", "EcoBoost", "turbo four", "I4"]
+        },
+        "5.0L Coyote V8": {
+          "trims": ["GT", "GT Premium", "Bullitt", "Mach 1", "Dark Horse", "Boss 302"],
+          "aliases": ["5.0L", "Coyote", "V8"]
+        },
+        "5.2L Voodoo V8": {
+          "trims": ["Shelby GT350"],
+          "aliases": ["5.2L", "Voodoo", "flat-plane", "GT350"]
+        },
+        "5.2L SC Predator V8": {
+          "trims": ["Shelby GT500"],
+          "aliases": ["Predator", "GT500", "supercharged"]
+        },
+        "3.7L V6": {
+          "trims": ["V6", "V6 Deluxe", "V6 Premium", "Base"],
+          "aliases": ["3.7L", "V6"]
+        }
+      }
+    },
+    "F-150": {
+      "engines": {
+        "2.7L EcoBoost V6": {
+          "trims": ["XL", "XLT", "Lariat", "STX"],
+          "aliases": ["2.7L", "2.7 EcoBoost", "EcoBoost"]
+        },
+        "3.5L EcoBoost V6": {
+          "trims": ["XL", "XLT", "Lariat", "King Ranch", "Platinum", "Limited", "Raptor", "Tremor"],
+          "aliases": ["3.5L EcoBoost", "3.5L twin-turbo", "3.5 EcoBoost", "EcoBoost"]
+        },
+        "5.0L Coyote V8": {
+          "trims": ["XL", "XLT", "Lariat", "King Ranch", "Platinum", "Limited", "STX"],
+          "aliases": ["5.0L", "Coyote", "V8"]
+        },
+        "3.3L V6": {
+          "trims": ["XL", "XLT"],
+          "aliases": ["3.3L", "base V6"]
+        },
+        "3.0L Power Stroke Diesel": {
+          "trims": ["XLT", "Lariat", "King Ranch", "Platinum", "Limited"],
+          "aliases": ["Power Stroke", "diesel", "3.0L diesel"]
+        }
+      }
+    },
+    "Bronco": {
+      "engines": {
+        "2.3L EcoBoost I4": {
+          "trims": ["Base", "Big Bend", "Black Diamond", "Outer Banks", "XL", "XLT"],
+          "aliases": ["2.3L", "EcoBoost", "four-cylinder", "I4"]
+        },
+        "2.7L EcoBoost V6": {
+          "trims": ["Badlands", "Wildtrak", "Raptor", "Eddie Bauer"],
+          "aliases": ["2.7L", "V6", "twin-turbo"]
+        }
+      }
+    },
+    "Bronco Sport": {
+      "engines": {
+        "1.5L EcoBoost I3": {
+          "trims": ["Base", "Big Bend", "Outer Banks", "Heritage"],
+          "aliases": ["1.5L", "three-cylinder", "3-cylinder", "I3"]
+        },
+        "2.0L EcoBoost I4": {
+          "trims": ["Badlands"],
+          "aliases": ["2.0L", "2.0T"]
+        }
+      }
+    },
+    "Edge": {
+      "engines": {
+        "2.0L EcoBoost I4": {
+          "trims": ["SE", "SEL", "Titanium", "ST-Line", "Limited"],
+          "aliases": ["2.0L", "EcoBoost", "I4", "four-cylinder"]
+        },
+        "2.7L EcoBoost V6": {
+          "trims": ["Sport", "ST"],
+          "aliases": ["2.7L", "V6", "twin-turbo"]
+        }
+      }
+    },
+    "Escape": {
+      "engines": {
+        "1.5L EcoBoost I3": {
+          "trims": ["S", "SE", "SEL", "Active", "ST-Line", "Base"],
+          "aliases": ["1.5L", "three-cylinder", "3-cylinder", "I3"]
+        },
+        "2.0L EcoBoost I4": {
+          "trims": ["SEL", "Titanium", "Platinum", "ST-Line"],
+          "aliases": ["2.0L", "2.0T"]
+        },
+        "2.5L Hybrid/PHEV": {
+          "trims": ["SE", "SEL", "Titanium", "PHEV", "Platinum"],
+          "aliases": ["2.5L", "hybrid", "PHEV", "plug-in"]
+        }
+      }
+    },
+    "Explorer": {
+      "engines": {
+        "2.3L EcoBoost I4": {
+          "trims": ["Base", "XLT", "Limited"],
+          "aliases": ["2.3L", "EcoBoost", "four-cylinder", "I4"]
+        },
+        "3.0L EcoBoost V6": {
+          "trims": ["ST", "Platinum", "King Ranch"],
+          "aliases": ["3.0L", "V6", "twin-turbo"]
+        },
+        "3.3L V6": {
+          "trims": ["Base", "XLT", "Limited"],
+          "aliases": ["3.3L", "base V6"]
+        },
+        "3.5L EcoBoost V6": {
+          "trims": ["Sport", "Platinum", "Limited"],
+          "aliases": ["3.5L", "3.5 EcoBoost"]
+        }
+      }
+    },
+    "Expedition": {
+      "engines": {
+        "3.5L EcoBoost V6": {
+          "trims": ["XL", "XLT", "XL STX", "XLS", "Limited", "King Ranch", "Platinum", "Timberline", "Eddie Bauer"],
+          "aliases": ["3.5L", "EcoBoost", "V6", "twin-turbo"]
+        }
+      }
+    },
+    "Ranger": {
+      "engines": {
+        "2.3L EcoBoost I4": {
+          "trims": ["XL", "XLT", "Lariat", "FX4", "Sport"],
+          "aliases": ["2.3L", "EcoBoost", "I4"]
+        },
+        "2.7L EcoBoost V6": {
+          "trims": ["Raptor", "Lariat"],
+          "aliases": ["2.7L", "V6"]
+        }
+      }
+    },
+    "Maverick": {
+      "engines": {
+        "2.5L Hybrid": {
+          "trims": ["XL", "XLT", "Lariat"],
+          "aliases": ["2.5L", "hybrid"]
+        },
+        "2.0L EcoBoost I4": {
+          "trims": ["XL", "XLT", "Lariat", "Tremor"],
+          "aliases": ["2.0L", "EcoBoost", "turbo"]
+        }
+      }
+    },
+    "F-250 Super Duty": {
+      "engines": {
+        "6.2L V8 Gas": {
+          "trims": ["XL", "XLT", "Lariat"],
+          "aliases": ["6.2L", "gas V8"]
+        },
+        "7.3L V8 Godzilla": {
+          "trims": ["XL", "XLT", "Lariat", "King Ranch", "Platinum", "Tremor", "Limited"],
+          "aliases": ["7.3L", "Godzilla"]
+        },
+        "6.7L Power Stroke Diesel": {
+          "trims": ["XL", "XLT", "Lariat", "King Ranch", "Platinum", "Tremor", "Limited"],
+          "aliases": ["6.7L", "Power Stroke", "PowerStroke", "diesel"]
+        }
+      }
+    },
+    "Transit": {
+      "engines": {
+        "3.5L EcoBoost V6": {
+          "trims": ["Cargo Van", "Crew Van", "Passenger Wagon", "Cutaway"],
+          "aliases": ["3.5L EcoBoost", "EcoBoost"]
+        },
+        "3.5L V6 N/A": {
+          "trims": ["Cargo Van", "Crew Van", "Passenger Wagon", "Cutaway"],
+          "aliases": ["3.5L", "V6"]
+        }
+      }
+    }
+  },
+  "Dodge": {
+    "Challenger": {
+      "engines": {
+        "3.6L Pentastar V6": {
+          "trims": ["SXT", "GT", "SE"],
+          "aliases": ["3.6L", "Pentastar", "V6"]
+        },
+        "5.7L HEMI V8": {
+          "trims": ["R/T"],
+          "aliases": ["5.7L", "HEMI", "MDS"]
+        },
+        "6.4L HEMI V8": {
+          "trims": ["Scat Pack", "SRT 392", "SRT8"],
+          "aliases": ["6.4L", "392", "HEMI", "MDS"]
+        },
+        "6.2L Supercharged HEMI": {
+          "trims": ["SRT Hellcat"],
+          "aliases": ["6.2L", "supercharged", "Hellcat", "HEMI"]
+        }
+      }
+    },
+    "Charger": {
+      "engines": {
+        "3.6L Pentastar V6": {
+          "trims": ["SE", "SXT", "GT"],
+          "aliases": ["3.6L", "Pentastar", "V6"]
+        },
+        "5.7L HEMI V8": {
+          "trims": ["R/T", "Daytona R/T"],
+          "aliases": ["5.7L", "HEMI", "MDS"]
+        },
+        "6.4L HEMI V8": {
+          "trims": ["Scat Pack", "SRT 392", "SRT8", "Daytona 392", "Daytona Scat Pack"],
+          "aliases": ["6.4L", "392", "HEMI", "MDS"]
+        },
+        "6.2L Supercharged HEMI": {
+          "trims": ["SRT Hellcat"],
+          "aliases": ["6.2L", "supercharged", "Hellcat", "HEMI"]
+        }
+      }
+    },
+    "Durango": {
+      "engines": {
+        "3.6L Pentastar V6": {
+          "trims": ["SXT", "GT", "Citadel", "Express", "Base", "Crew", "Limited", "Heat", "Adventurer", "ST", "SLT", "SLT Plus"],
+          "aliases": ["3.6L", "Pentastar", "V6"]
+        },
+        "5.7L HEMI V8": {
+          "trims": ["R/T", "Citadel", "Limited"],
+          "aliases": ["5.7L", "HEMI", "MDS"]
+        },
+        "6.4L HEMI V8": {
+          "trims": ["SRT", "SRT 392"],
+          "aliases": ["6.4L", "392", "HEMI", "MDS"]
+        },
+        "6.2L Supercharged HEMI": {
+          "trims": ["SRT Hellcat"],
+          "aliases": ["6.2L", "supercharged", "Hellcat", "HEMI"]
+        }
+      }
+    }
+  },
+  "RAM": {
+    "1500": {
+      "engines": {
+        "3.6L Pentastar V6": {
+          "trims": ["Express", "Tradesman", "SLT", "Big Horn", "Lone Star", "Sport"],
+          "aliases": ["3.6L", "Pentastar", "V6"]
+        },
+        "5.7L HEMI V8": {
+          "trims": ["Express", "Tradesman", "SLT", "Big Horn", "Lone Star", "Sport", "Rebel", "Laramie", "Laramie Longhorn", "Limited", "Limited Longhorn"],
+          "aliases": ["5.7L", "HEMI", "MDS"]
+        },
+        "3.0L EcoDiesel V6": {
+          "trims": ["Big Horn", "Lone Star", "Rebel", "Laramie", "Laramie Longhorn", "Limited", "Limited Longhorn"],
+          "aliases": ["EcoDiesel", "diesel", "3.0L diesel"]
+        },
+        "6.2L Supercharged HEMI": {
+          "trims": ["TRX"],
+          "aliases": ["6.2L", "supercharged", "Hellcat", "TRX", "HEMI"]
+        }
+      }
+    },
+    "2500": {
+      "engines": {
+        "6.4L HEMI V8": {
+          "trims": ["Tradesman", "SLT", "Big Horn", "Lone Star", "Rebel", "Laramie", "Laramie Longhorn", "Limited", "Limited Longhorn", "Power Wagon"],
+          "aliases": ["6.4L", "HEMI", "gas", "MDS"]
+        },
+        "6.7L Cummins Turbo Diesel": {
+          "trims": ["Tradesman", "SLT", "Big Horn", "Lone Star", "Rebel", "Laramie", "Laramie Longhorn", "Limited", "Limited Longhorn"],
+          "aliases": ["6.7L", "Cummins", "diesel", "turbo diesel"]
+        }
+      }
+    },
+    "3500": {
+      "engines": {
+        "6.4L HEMI V8": {
+          "trims": ["Tradesman", "SLT", "Big Horn", "Lone Star", "Laramie", "Laramie Longhorn", "Limited", "Limited Longhorn"],
+          "aliases": ["6.4L", "HEMI", "gas", "MDS"]
+        },
+        "6.7L Cummins Turbo Diesel": {
+          "trims": ["Tradesman", "SLT", "Big Horn", "Lone Star", "Laramie", "Laramie Longhorn", "Limited", "Limited Longhorn"],
+          "aliases": ["6.7L", "Cummins", "diesel", "turbo diesel"]
+        }
+      }
+    }
+  },
+  "Chrysler": {
+    "300": {
+      "engines": {
+        "3.6L Pentastar V6": {
+          "trims": ["Base", "Touring", "Touring L", "Limited", "S"],
+          "aliases": ["3.6L", "Pentastar", "V6"]
+        },
+        "5.7L HEMI V8": {
+          "trims": ["300C", "C", "S"],
+          "aliases": ["5.7L", "HEMI", "V8", "MDS"]
+        },
+        "6.4L HEMI V8": {
+          "trims": ["SRT8"],
+          "aliases": ["6.4L", "SRT", "392", "HEMI", "MDS"]
+        }
+      }
+    },
+    "Pacifica": {
+      "engines": {
+        "3.6L Pentastar V6": {
+          "trims": ["LX", "Touring", "Touring L", "Touring L Plus", "Limited", "Pinnacle"],
+          "aliases": ["3.6L", "Pentastar", "V6"]
+        },
+        "3.6L Hybrid": {
+          "trims": ["Hybrid"],
+          "aliases": ["hybrid", "PHEV", "plug-in"]
+        }
+      }
+    }
+  },
+  "Jeep": {
+    "Grand Cherokee": {
+      "engines": {
+        "3.6L Pentastar V6": {
+          "trims": ["Laredo", "Altitude", "Limited", "Overland", "Summit", "Summit Reserve", "Trailhawk", "TSi"],
+          "aliases": ["3.6L", "Pentastar", "V6"]
+        },
+        "5.7L HEMI V8": {
+          "trims": ["Limited", "Overland", "Summit", "Summit Reserve"],
+          "aliases": ["5.7L", "HEMI", "MDS"]
+        },
+        "6.4L HEMI V8": {
+          "trims": ["SRT", "SRT8", "Trackhawk"],
+          "aliases": ["6.4L", "SRT", "392", "HEMI", "MDS"]
+        },
+        "6.2L Supercharged HEMI": {
+          "trims": ["Trackhawk"],
+          "aliases": ["6.2L", "supercharged", "Hellcat", "Trackhawk", "HEMI"]
+        },
+        "3.0L EcoDiesel V6": {
+          "trims": ["Limited", "Overland", "Summit"],
+          "aliases": ["EcoDiesel", "diesel", "3.0L diesel"]
+        },
+        "2.0L Turbo I4 (4xe)": {
+          "trims": ["4xe"],
+          "aliases": ["2.0L", "turbo four", "4xe", "plug-in"]
+        }
+      }
+    },
+    "Wrangler": {
+      "engines": {
+        "3.6L Pentastar V6": {
+          "trims": ["Sport", "Sport S", "Sahara", "Rubicon", "Willys", "Willys Wheeler", "Unlimited", "X", "S", "SE"],
+          "aliases": ["3.6L", "Pentastar", "V6"]
+        },
+        "2.0L Turbo I4": {
+          "trims": ["Sport", "Sport S", "Sahara", "Rubicon", "Willys"],
+          "aliases": ["2.0L", "2.0T", "turbo four", "eTorque"]
+        },
+        "3.0L EcoDiesel V6": {
+          "trims": ["Sport", "Sahara", "Rubicon"],
+          "aliases": ["EcoDiesel", "diesel", "3.0L diesel"]
+        },
+        "6.4L HEMI V8": {
+          "trims": ["Rubicon 392"],
+          "aliases": ["6.4L", "HEMI", "V8", "392", "MDS"]
+        },
+        "2.0L Turbo 4xe": {
+          "trims": ["4xe"],
+          "aliases": ["4xe", "plug-in", "hybrid"]
+        }
+      }
+    },
+    "Cherokee": {
+      "engines": {
+        "2.4L Tigershark I4": {
+          "trims": ["Sport", "Latitude", "Latitude Plus", "Altitude"],
+          "aliases": ["2.4L", "Tigershark", "four-cylinder", "I4"]
+        },
+        "3.2L Pentastar V6": {
+          "trims": ["Latitude", "Latitude Plus", "Latitude Lux", "Limited", "Overland", "Trailhawk", "Altitude"],
+          "aliases": ["3.2L", "V6", "Pentastar"]
+        },
+        "2.0L Turbo I4": {
+          "trims": ["Limited", "Overland"],
+          "aliases": ["2.0L turbo", "2.0T"]
+        }
+      }
+    },
+    "Gladiator": {
+      "engines": {
+        "3.6L Pentastar V6": {
+          "trims": ["Sport", "Sport S", "Overland", "Rubicon", "Mojave", "Willys"],
+          "aliases": ["3.6L", "Pentastar", "V6"]
+        },
+        "3.0L EcoDiesel V6": {
+          "trims": ["Overland", "Rubicon", "Mojave"],
+          "aliases": ["EcoDiesel", "diesel", "3.0L diesel"]
+        }
+      }
+    }
+  },
+  "BMW": {
+    "1 Series": {
+      "engines": {
+        "3.0L N52 I6 NA": {
+          "trims": ["128i"],
+          "aliases": ["N52", "naturally aspirated"]
+        },
+        "3.0L N54/N55 I6 Turbo": {
+          "trims": ["135i", "1M"],
+          "aliases": ["N54", "N55", "twin-turbo", "turbo"]
+        }
+      }
+    },
+    "2 Series": {
+      "engines": {
+        "2.0L N20/B46 I4 Turbo": {
+          "trims": ["228i", "230i"],
+          "aliases": ["N20", "B46", "2.0L", "four-cylinder"]
+        },
+        "3.0L N55/B58 I6 Turbo": {
+          "trims": ["M235i", "M240i"],
+          "aliases": ["N55", "B58", "3.0L", "inline-six"]
+        }
+      }
+    },
+    "3 Series": {
+      "engines": {
+        "2.0L I4 Turbo (N20/B46/B48)": {
+          "trims": ["318i", "320i", "325i", "328i", "330i"],
+          "aliases": ["N20", "B46", "B48", "2.0L", "four-cylinder", "4-cylinder"]
+        },
+        "3.0L I6 Turbo (N54/N55/B58)": {
+          "trims": ["335i", "335d", "340i", "M340i"],
+          "aliases": ["N54", "N55", "B58", "3.0L", "inline-six", "straight-six"]
+        },
+        "S55/S58 M Engine": {
+          "trims": ["M3"],
+          "aliases": ["S55", "S58", "M engine"]
+        }
+      }
+    },
+    "4 Series": {
+      "engines": {
+        "2.0L I4 Turbo (N20/B46/B48)": {
+          "trims": ["428i", "430i"],
+          "aliases": ["N20", "B46", "B48", "2.0L", "four-cylinder"]
+        },
+        "3.0L I6 Turbo (N55/B58)": {
+          "trims": ["435i", "440i", "M440i"],
+          "aliases": ["N55", "B58", "3.0L", "inline-six"]
+        }
+      }
+    },
+    "5 Series": {
+      "engines": {
+        "2.0L I4 Turbo (N20/B46/B48)": {
+          "trims": ["525i", "528i", "530i"],
+          "aliases": ["N20", "B46", "B48", "2.0L", "four-cylinder"]
+        },
+        "3.0L I6 Turbo (N54/N55/B58)": {
+          "trims": ["535i", "540i", "M550i"],
+          "aliases": ["N54", "N55", "B58", "3.0L", "inline-six"]
+        },
+        "4.4L N63 V8 Turbo": {
+          "trims": ["545i", "550i", "M550i"],
+          "aliases": ["N63", "4.4L", "V8", "twin-turbo V8"]
+        }
+      }
+    },
+    "6 Series": {
+      "engines": {
+        "3.0L I6 (N55/B58)": {
+          "trims": ["640i"],
+          "aliases": ["N55", "B58", "3.0L", "inline-six"]
+        },
+        "4.4L/4.8L V8 (N62/N63)": {
+          "trims": ["645Ci", "650i"],
+          "aliases": ["N62", "N63", "4.4L", "4.8L", "V8"]
+        }
+      }
+    },
+    "7 Series": {
+      "engines": {
+        "3.0L I6 Turbo (N54/N55/B58)": {
+          "trims": ["740i", "740Li", "740e xDrive", "740iL", "745i", "745Li", "745e xDrive", "ActiveHybrid 7"],
+          "aliases": ["N54", "N55", "B58", "3.0L", "inline-six"]
+        },
+        "4.4L N63 V8 Turbo": {
+          "trims": ["750i", "750Li", "750iL"],
+          "aliases": ["N63", "4.4L", "V8", "twin-turbo V8"]
+        },
+        "6.6L N74 V12": {
+          "trims": ["760i", "760Li", "M760i xDrive"],
+          "aliases": ["N74", "V12", "6.6L"]
+        }
+      }
+    },
+    "8 Series": {
+      "engines": {
+        "3.0L B58 I6 Turbo": {
+          "trims": ["840i"],
+          "aliases": ["B58", "3.0L", "inline-six"]
+        },
+        "4.4L N63 V8 Turbo": {
+          "trims": ["M850i", "850Ci", "850CSi", "840Ci"],
+          "aliases": ["N63", "4.4L", "V8"]
+        }
+      }
+    },
+    "X1": {
+      "engines": {
+        "2.0L I4 Turbo (N20/B46/B48)": {
+          "trims": ["sDrive28i", "xDrive28i"],
+          "aliases": ["N20", "B46", "B48", "2.0L", "four-cylinder"]
+        },
+        "2.0L B48 Tuned": {
+          "trims": ["M35i"],
+          "aliases": ["B48", "M35i"]
+        }
+      }
+    },
+    "X2": {
+      "engines": {
+        "2.0L I4 Turbo (B46/B48)": {
+          "trims": ["sDrive28i", "xDrive28i"],
+          "aliases": ["B46", "B48", "2.0L"]
+        },
+        "2.0L B48 Tuned": {
+          "trims": ["M35i"],
+          "aliases": ["M35i"]
+        }
+      }
+    },
+    "X3": {
+      "engines": {
+        "3.0L I6 NA (M54)": {
+          "trims": ["2.5i", "3.0i", "3.0si"],
+          "aliases": ["M54", "naturally aspirated", "3.0L NA"]
+        },
+        "2.0L I4 Turbo (N20/B46/B48)": {
+          "trims": ["xDrive28i", "xDrive30i", "sDrive30i"],
+          "aliases": ["N20", "B46", "B48", "2.0L", "four-cylinder"]
+        },
+        "3.0L I6 Turbo (N55/B58)": {
+          "trims": ["xDrive35i", "M40i", "M50"],
+          "aliases": ["N55", "B58", "3.0L turbo", "inline-six turbo"]
+        }
+      }
+    },
+    "X4": {
+      "engines": {
+        "2.0L I4 Turbo (N20/B46)": {
+          "trims": ["xDrive28i", "xDrive30i"],
+          "aliases": ["N20", "B46", "2.0L", "four-cylinder"]
+        },
+        "3.0L I6 Turbo (N55/B58)": {
+          "trims": ["xDrive35i", "M40i"],
+          "aliases": ["N55", "B58", "3.0L", "inline-six"]
+        }
+      }
+    },
+    "X5": {
+      "engines": {
+        "3.0L I6 NA (M54)": {
+          "trims": ["3.0i"],
+          "aliases": ["M54", "3.0i"]
+        },
+        "4.4L/4.6L/4.8L V8 NA (N62)": {
+          "trims": ["4.4i", "4.6is", "4.8is", "xDrive48i"],
+          "aliases": ["N62", "4.4L", "4.6L", "4.8L"]
+        },
+        "3.0L I6 Turbo (N55/B58)": {
+          "trims": ["xDrive35i", "xDrive30i", "xDrive40i", "sDrive40i"],
+          "aliases": ["N55", "B58", "3.0L turbo", "inline-six turbo"]
+        },
+        "4.4L V8 Turbo (N63)": {
+          "trims": ["xDrive50i", "M50i", "M60i", "xDrive50e"],
+          "aliases": ["N63", "4.4L turbo", "V8 turbo", "twin-turbo V8"]
+        }
+      }
+    },
+    "X6": {
+      "engines": {
+        "3.0L I6 Turbo (N55/B58)": {
+          "trims": ["xDrive35i", "xDrive40i"],
+          "aliases": ["N55", "B58", "3.0L", "inline-six"]
+        },
+        "4.4L V8 Turbo (N63)": {
+          "trims": ["xDrive50i", "M50i"],
+          "aliases": ["N63", "4.4L", "V8"]
+        }
+      }
+    },
+    "X7": {
+      "engines": {
+        "3.0L B58 I6 Turbo": {
+          "trims": ["xDrive40i"],
+          "aliases": ["B58", "3.0L", "inline-six"]
+        },
+        "4.4L N63 V8 Turbo": {
+          "trims": ["xDrive50i", "M50i", "M60i"],
+          "aliases": ["N63", "4.4L", "V8"]
+        }
+      }
+    },
+    "Z4": {
+      "engines": {
+        "2.0L I4 Turbo (N20/B46)": {
+          "trims": ["sDrive28i", "sDrive30i"],
+          "aliases": ["N20", "B46", "2.0L"]
+        },
+        "3.0L I6 Turbo (N54/B58)": {
+          "trims": ["sDrive35i", "sDrive35is", "M40i"],
+          "aliases": ["N54", "B58", "3.0L", "inline-six"]
+        },
+        "3.0L I6 NA (M54)": {
+          "trims": ["2.5i", "3.0i", "3.0si"],
+          "aliases": ["M54", "naturally aspirated"]
+        },
+        "S54 M Engine": {
+          "trims": ["M Roadster"],
+          "aliases": ["S54", "M Roadster"]
+        }
+      }
+    }
+  },
+  "Audi": {
+    "A3": {
+      "engines": {
+        "2.0L TFSI Turbo": {
+          "trims": ["2.0T", "Premium", "Premium Plus", "Prestige", "Base", "S3"],
+          "aliases": ["2.0T", "TFSI", "EA888", "turbo"]
+        },
+        "3.2L VR6": {
+          "trims": ["3.2"],
+          "aliases": ["3.2L", "VR6", "V6"]
+        },
+        "2.0L TDI Diesel": {
+          "trims": ["TDI", "TDI Premium", "TDI Premium Plus", "TDI Prestige"],
+          "aliases": ["TDI", "diesel"]
+        }
+      }
+    },
+    "A4": {
+      "engines": {
+        "1.8L/2.0L Turbo I4": {
+          "trims": ["1.8T", "2.8", "Base", "Premium", "Premium Plus", "Prestige"],
+          "aliases": ["1.8T", "2.0T", "TFSI", "EA888", "turbo", "four-cylinder"]
+        },
+        "3.0L/3.2L V6": {
+          "trims": ["3.0", "S4"],
+          "aliases": ["3.0L", "3.2L", "V6", "supercharged"]
+        }
+      }
+    },
+    "A5": {
+      "engines": {
+        "2.0L TFSI Turbo I4": {
+          "trims": ["2.0T", "Premium", "Premium Plus", "Prestige", "S line"],
+          "aliases": ["2.0T", "TFSI", "EA888", "turbo", "four-cylinder"]
+        },
+        "3.2L V6 NA": {
+          "trims": ["3.2"],
+          "aliases": ["3.2L", "V6"]
+        },
+        "3.0L TFSI Supercharged V6": {
+          "trims": ["S5"],
+          "aliases": ["3.0T", "supercharged", "V6 supercharged"]
+        }
+      }
+    },
+    "A6": {
+      "engines": {
+        "2.0L TFSI Turbo I4": {
+          "trims": ["2.0T", "Premium", "Premium Plus"],
+          "aliases": ["2.0T", "TFSI", "EA888", "four-cylinder"]
+        },
+        "3.0L/3.2L V6": {
+          "trims": ["3.0T", "3.2 Quattro", "Premium", "Premium Plus", "Prestige", "Competition", "S line"],
+          "aliases": ["3.0L", "3.0T", "3.2L", "V6", "supercharged"]
+        },
+        "4.2L V8": {
+          "trims": ["4.2", "4.2 Quattro", "S6"],
+          "aliases": ["4.2L", "V8"]
+        },
+        "3.0L TDI Diesel": {
+          "trims": ["TDI"],
+          "aliases": ["TDI", "diesel", "3.0L diesel"]
+        }
+      }
+    },
+    "A7": {
+      "engines": {
+        "3.0L TFSI Supercharged V6": {
+          "trims": ["Premium Plus", "Prestige", "Competition", "S line"],
+          "aliases": ["3.0T", "TFSI", "supercharged", "V6"]
+        },
+        "4.0L TFSI Twin-Turbo V8": {
+          "trims": ["S7"],
+          "aliases": ["4.0T", "V8", "twin-turbo"]
+        }
+      }
+    },
+    "A8": {
+      "engines": {
+        "3.0L TFSI V6": {
+          "trims": ["3.0T", "55 TFSI", "Base", "L"],
+          "aliases": ["3.0T", "TFSI", "V6", "supercharged"]
+        },
+        "4.0L TFSI V8": {
+          "trims": ["4.0T", "60 TFSI", "L S8"],
+          "aliases": ["4.0T", "V8", "twin-turbo"]
+        },
+        "4.2L V8": {
+          "trims": ["4.2"],
+          "aliases": ["4.2L"]
+        },
+        "3.0L TDI Diesel": {
+          "trims": ["TDI"],
+          "aliases": ["TDI", "diesel"]
+        }
+      }
+    },
+    "Q5": {
+      "engines": {
+        "2.0L TFSI Turbo I4": {
+          "trims": ["Premium", "Premium Plus", "Prestige", "S line"],
+          "aliases": ["2.0T", "TFSI", "EA888", "turbo", "four-cylinder"]
+        },
+        "3.0L TFSI Supercharged V6": {
+          "trims": ["3.0T", "SQ5"],
+          "aliases": ["3.0T", "supercharged", "V6"]
+        }
+      }
+    },
+    "Q7": {
+      "engines": {
+        "3.6L VR6": {
+          "trims": ["Premium", "Premium Plus"],
+          "aliases": ["3.6L", "VR6"]
+        },
+        "3.0L TFSI Supercharged V6": {
+          "trims": ["Premium", "Premium Plus", "Prestige", "S line", "SQ7"],
+          "aliases": ["3.0T", "TFSI", "supercharged", "V6"]
+        },
+        "3.0L TDI Diesel": {
+          "trims": ["TDI"],
+          "aliases": ["TDI", "diesel", "3.0L diesel"]
+        }
+      }
+    },
+    "TT": {
+      "engines": {
+        "1.8L/2.0L TFSI Turbo I4": {
+          "trims": ["1.8T", "2.0T", "Base", "Coupe", "Roadster"],
+          "aliases": ["1.8T", "2.0T", "TFSI", "EA888", "turbo"]
+        },
+        "3.2L VR6": {
+          "trims": ["3.2"],
+          "aliases": ["3.2L", "VR6", "V6"]
+        },
+        "2.5L TFSI I5 Turbo": {
+          "trims": ["TT RS", "TTS"],
+          "aliases": ["2.5L", "five-cylinder", "I5", "RS"]
+        }
+      }
+    }
+  },
+  "Volkswagen": {
+    "Jetta": {
+      "engines": {
+        "1.4L TSI Turbo I4": {
+          "trims": ["S", "SE", "SEL", "SEL Premium", "Wolfsburg"],
+          "aliases": ["1.4L", "1.4T", "TSI"]
+        },
+        "1.8L TSI Turbo I4": {
+          "trims": ["S", "SE", "SEL", "Sport", "Wolfsburg"],
+          "aliases": ["1.8L", "1.8T"]
+        },
+        "2.0L TSI Turbo I4 (GLI)": {
+          "trims": ["GLI", "GLI Autobahn", "GLI S"],
+          "aliases": ["2.0L", "2.0T", "GLI", "EA888"]
+        },
+        "2.5L I5": {
+          "trims": ["2.5 S", "2.5 SE", "S", "SE", "Base", "GL", "GLS"],
+          "aliases": ["2.5L", "five-cylinder", "I5"]
+        },
+        "2.0L TDI Diesel": {
+          "trims": ["TDI", "TDI S", "TDI SE", "TDI SEL"],
+          "aliases": ["TDI", "diesel"]
+        }
+      }
+    },
+    "Golf": {
+      "engines": {
+        "1.4L/1.8L TSI Turbo I4": {
+          "trims": ["S", "SE", "TSI", "SportWagen", "Alltrack", "2.5", "Base", "GL", "GLS"],
+          "aliases": ["1.4L", "1.4T", "1.8L", "1.8T", "TSI"]
+        },
+        "2.0L TSI Turbo I4 (GTI/R)": {
+          "trims": ["GTI", "GTI Autobahn", "GTI S", "GTI SE", "Golf R", "R", "R32"],
+          "aliases": ["2.0L", "2.0T", "GTI", "EA888"]
+        },
+        "2.8L/3.2L VR6": {
+          "trims": ["GTI VR6", "R32"],
+          "aliases": ["VR6", "V6", "3.2L"]
+        },
+        "2.0L TDI Diesel": {
+          "trims": ["TDI", "TDI S", "TDI SE"],
+          "aliases": ["TDI", "diesel"]
+        }
+      }
+    },
+    "Tiguan": {
+      "engines": {
+        "2.0L TSI Turbo I4": {
+          "trims": ["S", "SE", "SEL", "SEL Premium", "R-Line", "SE R-Line", "SEL R-Line"],
+          "aliases": ["2.0L", "2.0T", "TSI", "EA888"]
+        }
+      }
+    },
+    "Atlas": {
+      "engines": {
+        "2.0L TSI Turbo I4": {
+          "trims": ["S", "SE", "SE w/ Technology", "SEL"],
+          "aliases": ["2.0L", "2.0T", "TSI", "four-cylinder"]
+        },
+        "3.6L VR6": {
+          "trims": ["SE", "SEL", "SEL Premium R-Line", "SEL R-Line"],
+          "aliases": ["3.6L", "VR6", "V6"]
+        }
+      }
+    },
+    "Passat": {
+      "engines": {
+        "1.8L/2.0L TSI Turbo I4": {
+          "trims": ["2.0T", "S", "SE", "SEL", "SEL Premium", "R-Line", "Komfort", "Lux", "Limited Edition", "Base"],
+          "aliases": ["1.8T", "2.0T", "TSI", "turbo"]
+        },
+        "3.6L VR6": {
+          "trims": ["3.6L", "GLX", "SEL Premium"],
+          "aliases": ["3.6L", "VR6", "V6"]
+        },
+        "2.0L TDI Diesel": {
+          "trims": ["TDI"],
+          "aliases": ["TDI", "diesel"]
+        }
+      }
+    }
+  },
+  "Honda": {
+    "Civic": {
+      "engines": {
+        "1.5L Turbo I4": {
+          "trims": ["LX", "EX", "EX-L", "EX-T", "Sport", "Touring"],
+          "aliases": ["1.5L", "1.5T", "turbo"]
+        },
+        "2.0L Turbo I4 (Type R)": {
+          "trims": ["Type R"],
+          "aliases": ["2.0L turbo", "Type R", "K20C1"]
+        },
+        "2.0L NA I4": {
+          "trims": ["LX", "Sport"],
+          "aliases": ["2.0L NA", "naturally aspirated"]
+        },
+        "1.8L NA I4": {
+          "trims": ["LX", "EX", "EX-L", "DX", "CX", "HX", "Hybrid"],
+          "aliases": ["1.8L"]
+        }
+      }
+    },
+    "Accord": {
+      "engines": {
+        "1.5L Turbo I4": {
+          "trims": ["LX", "Sport", "Sport SE", "EX", "EX-L"],
+          "aliases": ["1.5L", "1.5T"]
+        },
+        "2.0L Turbo I4": {
+          "trims": ["Sport 2.0T", "EX-L 2.0T", "Touring 2.0T", "Touring", "Sport-L"],
+          "aliases": ["2.0L", "2.0T"]
+        },
+        "3.5L V6 (J35)": {
+          "trims": ["EX-L V6", "V6 AT", "V6 MT", "Touring", "EX-L"],
+          "aliases": ["3.5L", "V6", "J35", "VCM", "i-VTEC"]
+        },
+        "2.4L I4": {
+          "trims": ["LX", "EX", "EX-L", "Sport", "SE", "LX-S", "LX-P", "DX"],
+          "aliases": ["2.4L", "K24"]
+        },
+        "2.0L Hybrid": {
+          "trims": ["Hybrid"],
+          "aliases": ["hybrid"]
+        }
+      }
+    },
+    "CR-V": {
+      "engines": {
+        "1.5L Turbo I4": {
+          "trims": ["EX", "EX-L", "Touring", "Sport", "Sport Touring", "Sport-L"],
+          "aliases": ["1.5L", "1.5T", "turbo"]
+        },
+        "2.4L I4": {
+          "trims": ["LX", "EX", "EX-L", "SE", "Touring"],
+          "aliases": ["2.4L", "K24"]
+        },
+        "2.0L Hybrid": {
+          "trims": ["Hybrid", "Sport Touring"],
+          "aliases": ["hybrid", "2.0L hybrid"]
+        }
+      }
+    }
+  },
+  "Toyota": {
+    "Tundra": {
+      "engines": {
+        "5.7L V8 (3UR-FE)": {
+          "trims": ["SR", "SR5", "Limited", "Platinum", "1794 Edition", "TRD Pro", "Base"],
+          "aliases": ["5.7L", "V8", "3UR"]
+        },
+        "4.6L V8 (1UR-FE)": {
+          "trims": ["SR", "SR5", "Limited"],
+          "aliases": ["4.6L", "1UR"]
+        },
+        "3.5L Twin-Turbo V6 (V35A-FTS)": {
+          "trims": ["SR", "SR5", "Limited", "Platinum", "1794 Edition", "TRD Pro", "Capstone", "i-FORCE MAX"],
+          "aliases": ["3.5L", "twin-turbo", "V35A", "i-FORCE"]
+        }
+      }
+    },
+    "Tacoma": {
+      "engines": {
+        "2.7L I4 (2TR-FE)": {
+          "trims": ["SR", "Base"],
+          "aliases": ["2.7L", "I4", "four-cylinder", "2TR"]
+        },
+        "4.0L V6 (1GR-FE)": {
+          "trims": ["SR", "SR5", "TRD Sport", "TRD Off-Road", "Limited", "PreRunner"],
+          "aliases": ["4.0L", "V6", "1GR"]
+        },
+        "3.5L V6 (2GR-FKS)": {
+          "trims": ["SR", "SR5", "TRD Sport", "TRD Off-Road", "TRD Pro", "Limited"],
+          "aliases": ["3.5L", "2GR"]
+        },
+        "2.4L Turbo I4 (i-FORCE)": {
+          "trims": ["SR", "SR5", "TRD Sport", "TRD Off-Road", "TRD Pro", "Limited", "Trailhunter"],
+          "aliases": ["2.4L", "turbo", "i-FORCE"]
+        }
+      }
+    },
+    "Camry": {
+      "engines": {
+        "2.5L I4": {
+          "trims": ["L", "LE", "SE", "XLE", "XSE", "TRD", "SE Nightshade", "Base", "DX"],
+          "aliases": ["2.5L", "I4", "four-cylinder"]
+        },
+        "3.5L V6": {
+          "trims": ["SE", "XLE", "XSE", "TRD"],
+          "aliases": ["3.5L", "V6", "2GR"]
+        },
+        "2.5L Hybrid": {
+          "trims": ["Hybrid", "LE Hybrid", "SE Hybrid", "XLE Hybrid", "XSE Hybrid"],
+          "aliases": ["hybrid"]
+        }
+      }
+    },
+    "4Runner": {
+      "engines": {
+        "4.0L V6 (1GR-FE)": {
+          "trims": ["SR5", "SR5 Premium", "Trail", "TRD Off-Road", "TRD Off-Road Premium", "TRD Pro", "TRD Sport", "Limited", "Sport Edition"],
+          "aliases": ["4.0L", "V6", "1GR"]
+        },
+        "2.4L Turbo I4 (i-FORCE)": {
+          "trims": ["SR5", "TRD Off-Road", "TRD Pro", "Limited", "Trailhunter"],
+          "aliases": ["2.4L", "turbo", "i-FORCE"]
+        }
+      }
+    }
+  },
+  "GMC": {
+    "Sierra 1500": {
+      "engines": {
+        "2.7L Turbo I4 (L3B)": {
+          "trims": ["Pro", "SL", "SLE", "Elevation"],
+          "aliases": ["2.7L", "L3B", "turbo four", "four-cylinder"]
+        },
+        "5.3L V8 (L84)": {
+          "trims": ["Pro", "SL", "SLE", "SLT", "Elevation", "AT4", "All Terrain"],
+          "aliases": ["5.3L", "L84", "AFM", "DFM"]
+        },
+        "6.2L V8 (L87)": {
+          "trims": ["SLT", "AT4", "AT4X", "Denali", "Denali Ultimate"],
+          "aliases": ["6.2L", "L87"]
+        },
+        "3.0L Duramax Diesel": {
+          "trims": ["SLE", "SLT", "Elevation", "AT4", "Denali"],
+          "aliases": ["Duramax", "diesel", "3.0L diesel", "LM2"]
+        }
+      }
+    },
+    "Canyon": {
+      "engines": {
+        "2.5L I4": {
+          "trims": ["Base", "SL"],
+          "aliases": ["2.5L", "I4", "four-cylinder"]
+        },
+        "3.6L V6": {
+          "trims": ["SLE", "SLT", "All Terrain", "Denali"],
+          "aliases": ["3.6L", "V6"]
+        },
+        "2.8L Duramax Diesel": {
+          "trims": ["SLE", "SLT", "All Terrain", "Denali"],
+          "aliases": ["2.8L", "Duramax", "diesel"]
+        },
+        "2.7L Turbo": {
+          "trims": ["Elevation", "AT4", "AT4X", "Denali"],
+          "aliases": ["2.7L turbo", "turbo"]
+        }
+      }
+    },
+    "Yukon": {
+      "engines": {
+        "5.3L V8": {
+          "trims": ["SLE", "SLT", "AT4", "Base"],
+          "aliases": ["5.3L", "V8", "AFM", "DFM"]
+        },
+        "6.2L V8": {
+          "trims": ["AT4", "Denali", "Denali Ultimate"],
+          "aliases": ["6.2L"]
+        },
+        "3.0L Duramax Diesel": {
+          "trims": ["SLT", "AT4", "Denali"],
+          "aliases": ["Duramax", "diesel", "3.0L diesel"]
+        }
+      }
+    }
+  },
+  "Hyundai": {
+    "Sonata": {
+      "engines": {
+        "2.4L GDI I4 (Theta II)": {
+          "trims": ["SE", "SEL", "SEL Plus", "Limited", "GL", "GLS", "LX", "Sport", "Base"],
+          "aliases": ["2.4L", "Theta II", "GDI", "Theta"]
+        },
+        "2.0L Turbo I4": {
+          "trims": ["Sport", "Limited", "N Line", "SEL Plus"],
+          "aliases": ["2.0T", "turbo"]
+        },
+        "1.6L Turbo I4": {
+          "trims": ["SEL", "ECO"],
+          "aliases": ["1.6L", "1.6T"]
+        },
+        "2.5L I4": {
+          "trims": ["SE", "SEL", "SEL Plus"],
+          "aliases": ["2.5L"]
+        },
+        "2.0L Hybrid": {
+          "trims": ["Hybrid"],
+          "aliases": ["hybrid"]
+        }
+      }
+    },
+    "Tucson": {
+      "engines": {
+        "2.0L I4 (Nu/Theta)": {
+          "trims": ["SE", "Sport", "Value", "GL", "GLS", "Base"],
+          "aliases": ["2.0L"]
+        },
+        "2.4L GDI I4 (Theta II)": {
+          "trims": ["SEL", "Sport", "Limited", "Ultimate", "Value", "GLS"],
+          "aliases": ["2.4L", "Theta II", "GDI", "Theta"]
+        },
+        "1.6L Turbo I4": {
+          "trims": ["Sport", "Limited", "Ultimate", "N Line"],
+          "aliases": ["1.6L", "1.6T", "turbo"]
+        },
+        "2.5L I4": {
+          "trims": ["SE", "SEL", "N Line", "XRT", "Night"],
+          "aliases": ["2.5L"]
+        },
+        "2.5L Hybrid/PHEV": {
+          "trims": ["Hybrid", "PHEV"],
+          "aliases": ["hybrid", "PHEV", "plug-in"]
+        }
+      }
+    },
+    "Santa Fe": {
+      "engines": {
+        "2.4L GDI I4 (Theta II)": {
+          "trims": ["SE", "Sport", "GLS", "LX", "Base"],
+          "aliases": ["2.4L", "Theta II", "GDI", "Theta"]
+        },
+        "2.0L Turbo I4": {
+          "trims": ["Sport", "Limited", "Ultimate", "Calligraphy", "SEL"],
+          "aliases": ["2.0T", "turbo"]
+        },
+        "3.3L V6 (Lambda II)": {
+          "trims": ["SE", "Limited", "Ultimate", "GLS"],
+          "aliases": ["3.3L", "V6", "Lambda"]
+        },
+        "2.5L Turbo I4": {
+          "trims": ["SEL", "Limited", "Calligraphy", "XRT"],
+          "aliases": ["2.5L turbo", "2.5T"]
+        },
+        "2.5L Hybrid/PHEV": {
+          "trims": ["Hybrid", "PHEV"],
+          "aliases": ["hybrid", "PHEV"]
+        }
+      }
+    },
+    "Elantra": {
+      "engines": {
+        "2.0L I4 (Nu)": {
+          "trims": ["SE", "SEL", "Value Edition", "GL", "GLS", "Base", "Blue"],
+          "aliases": ["2.0L", "Nu"]
+        },
+        "1.6L Turbo I4": {
+          "trims": ["Sport", "Limited", "N Line"],
+          "aliases": ["1.6L", "1.6T", "turbo"]
+        },
+        "2.0L Turbo I4 (N)": {
+          "trims": ["N", "GT"],
+          "aliases": ["2.0T", "Elantra N"]
+        },
+        "1.8L I4": {
+          "trims": ["SE", "GLS", "Limited", "GL", "Base"],
+          "aliases": ["1.8L"]
+        },
+        "Hybrid": {
+          "trims": ["Hybrid"],
+          "aliases": ["hybrid"]
+        }
+      }
+    }
+  },
+  "Kia": {
+    "Stinger": {
+      "engines": {
+        "2.0L Turbo I4": {
+          "trims": ["GT-Line"],
+          "aliases": ["2.0L", "2.0T", "four-cylinder"]
+        },
+        "3.3L Twin-Turbo V6": {
+          "trims": ["GT", "GT1", "GT2", "Scorpion"],
+          "aliases": ["3.3L", "V6", "twin-turbo"]
+        }
+      }
+    },
+    "Sorento": {
+      "engines": {
+        "2.4L GDI I4 (Theta II)": {
+          "trims": ["L", "LX", "S", "EX"],
+          "aliases": ["2.4L", "Theta II", "GDI", "Theta", "four-cylinder"]
+        },
+        "3.3L V6 (Lambda II)": {
+          "trims": ["EX", "SX", "SXL", "SX Prestige"],
+          "aliases": ["3.3L", "V6", "Lambda"]
+        },
+        "2.5L Turbo I4": {
+          "trims": ["EX", "SX", "SX Prestige", "X-Line"],
+          "aliases": ["2.5L turbo", "2.5T"]
+        },
+        "3.5L V6": {
+          "trims": ["LX", "EX", "SX"],
+          "aliases": ["3.5L"]
+        },
+        "Hybrid/PHEV": {
+          "trims": ["Hybrid", "PHEV"],
+          "aliases": ["hybrid", "PHEV"]
+        }
+      }
+    },
+    "Optima": {
+      "engines": {
+        "2.4L GDI I4 (Theta II)": {
+          "trims": ["LX", "EX", "S"],
+          "aliases": ["2.4L", "Theta II", "GDI", "Theta"]
+        },
+        "1.6L Turbo I4": {
+          "trims": ["S", "EX"],
+          "aliases": ["1.6L", "1.6T", "turbo"]
+        },
+        "2.0L Turbo I4": {
+          "trims": ["SX", "SXL"],
+          "aliases": ["2.0T", "2.0L turbo"]
+        },
+        "Hybrid/PHEV": {
+          "trims": ["Hybrid", "PHEV"],
+          "aliases": ["hybrid", "PHEV"]
+        }
+      }
+    },
+    "K5": {
+      "engines": {
+        "1.6L Turbo I4": {
+          "trims": ["LX", "LXS", "EX"],
+          "aliases": ["1.6L", "1.6T"]
+        },
+        "2.5L Turbo I4": {
+          "trims": ["GT", "GT-Line"],
+          "aliases": ["2.5L", "2.5T", "turbo"]
+        }
+      }
+    },
+    "Forte": {
+      "engines": {
+        "2.0L I4": {
+          "trims": ["FE", "LX", "LXS", "S"],
+          "aliases": ["2.0L", "I4"]
+        },
+        "1.6L Turbo I4": {
+          "trims": ["EX", "GT-Line", "GT"],
+          "aliases": ["1.6L", "1.6T", "turbo"]
+        }
+      }
+    }
+  },
+  "Nissan": {
+    "Altima": {
+      "engines": {
+        "2.5L I4 (QR25DE)": {
+          "trims": ["2.5", "2.5 S", "2.5 SL", "2.5 SR", "2.5 SV", "S", "SV", "SL", "SR", "SE", "Base", "GLE", "GXE", "XE"],
+          "aliases": ["2.5L", "QR25", "four-cylinder"]
+        },
+        "3.5L V6 (VQ35DE)": {
+          "trims": ["3.5 SE", "3.5 SL", "3.5 SR", "3.5 SV", "SR", "SL", "Platinum"],
+          "aliases": ["3.5L", "V6", "VQ35"]
+        },
+        "2.0L VC-Turbo": {
+          "trims": ["SR", "Platinum"],
+          "aliases": ["VC-Turbo", "variable compression", "2.0L turbo"]
+        }
+      }
+    },
+    "Titan": {
+      "engines": {
+        "5.6L V8 (VK56VD)": {
+          "trims": ["S", "SV", "SL", "PRO-4X", "Platinum Reserve"],
+          "aliases": ["5.6L", "V8", "VK56"]
+        },
+        "5.0L Cummins Diesel": {
+          "trims": ["XD", "S", "SV", "SL", "PRO-4X", "Platinum Reserve"],
+          "aliases": ["5.0L", "Cummins", "diesel"]
+        }
+      }
+    },
+    "Pathfinder": {
+      "engines": {
+        "3.5L V6 (VQ35DE)": {
+          "trims": ["S", "SV", "SL", "Platinum", "Rock Creek", "LE", "SE", "Silver Edition", "XE"],
+          "aliases": ["3.5L", "V6", "VQ35"]
+        }
+      }
+    },
+    "Frontier": {
+      "engines": {
+        "2.5L I4 (QR25DE)": {
+          "trims": ["S", "SV", "XE"],
+          "aliases": ["2.5L", "I4", "four-cylinder", "QR25"]
+        },
+        "4.0L V6 (VQ40DE)": {
+          "trims": ["S", "SV", "SL", "PRO-4X", "Desert Runner", "SE", "SC", "XE"],
+          "aliases": ["4.0L", "V6", "VQ40"]
+        },
+        "3.8L V6": {
+          "trims": ["S", "SV", "PRO-4X", "PRO-X"],
+          "aliases": ["3.8L"]
+        }
+      }
+    }
+  },
+  "Subaru": {
+    "WRX": {
+      "engines": {
+        "2.0L Turbo Boxer (FA20)": {
+          "trims": ["Base", "Premium", "Limited"],
+          "aliases": ["2.0L", "FA20", "turbo"]
+        },
+        "2.5L Turbo Boxer (EJ257)": {
+          "trims": ["STI"],
+          "aliases": ["2.5L", "EJ257", "EJ25", "STI"]
+        },
+        "2.4L Turbo Boxer (FA24)": {
+          "trims": ["Base", "Premium", "Limited", "GT", "tS"],
+          "aliases": ["2.4L", "FA24"]
+        }
+      }
+    },
+    "Forester": {
+      "engines": {
+        "2.5L NA Boxer (FB25)": {
+          "trims": ["2.5X", "2.5X Premium", "2.5X Limited", "2.5i", "2.5i Limited", "2.5i Premium", "2.5i Touring", "Premium", "Limited", "Touring", "Sport", "Wilderness", "Base", "L", "S"],
+          "aliases": ["2.5L", "FB25", "naturally aspirated"]
+        },
+        "2.0L/2.5L Turbo Boxer (FA20/EJ255)": {
+          "trims": ["2.5 XT", "2.5 XT Touring", "2.5XT"],
+          "aliases": ["2.0T", "turbo", "XT", "FA20 turbo", "EJ255"]
+        }
+      }
+    },
+    "Outback": {
+      "engines": {
+        "2.5L NA Boxer (FB25)": {
+          "trims": ["2.5i", "2.5i Limited", "2.5i Premium", "2.5i Touring", "Premium", "Limited", "Touring", "Base"],
+          "aliases": ["2.5L", "FB25", "naturally aspirated", "2.5i"]
+        },
+        "3.6L H6 (EZ36)": {
+          "trims": ["3.6R", "3.6R Limited", "3.6R Premium", "3.6R Touring", "H6"],
+          "aliases": ["3.6L", "H6", "EZ36", "3.6R", "six-cylinder"]
+        },
+        "2.4L Turbo Boxer (FA24)": {
+          "trims": ["Onyx Edition XT", "Limited XT", "Touring XT", "Wilderness"],
+          "aliases": ["2.4L turbo", "FA24", "XT"]
+        }
+      }
+    },
+    "Impreza": {
+      "engines": {
+        "2.0L NA Boxer (FB20)": {
+          "trims": ["2.0i", "2.0i Limited", "2.0i Premium", "2.0i Sport Premium", "Base", "Limited", "Premium", "Sport"],
+          "aliases": ["2.0L", "FB20"]
+        },
+        "2.5L NA Boxer": {
+          "trims": ["2.5 RS", "2.5 TS", "RS", "Outback Sport"],
+          "aliases": ["2.5L", "RS"]
+        },
+        "2.0L/2.5L Turbo (WRX/STI)": {
+          "trims": ["WRX", "WRX STI"],
+          "aliases": ["turbo", "WRX", "STI"]
+        }
+      }
+    }
+  },
+  "MINI": {
+    "Cooper": {
+      "engines": {
+        "1.5L Turbo I3 (B38)": {
+          "trims": ["Base", "Classic"],
+          "aliases": ["1.5L", "three-cylinder", "3-cylinder", "B38"]
+        },
+        "2.0L Turbo I4 (B48)": {
+          "trims": ["S", "John Cooper Works"],
+          "aliases": ["2.0L", "B48", "Cooper S", "JCW"]
+        },
+        "Electric": {
+          "trims": ["SE"],
+          "aliases": ["electric", "SE", "EV"]
+        }
+      }
+    },
+    "Countryman": {
+      "engines": {
+        "1.5L Turbo I3 (B38)": {
+          "trims": ["Base", "Classic"],
+          "aliases": ["1.5L", "three-cylinder", "3-cylinder", "B38"]
+        },
+        "2.0L Turbo I4 (B48)": {
+          "trims": ["S", "S ALL4", "John Cooper Works ALL4"],
+          "aliases": ["2.0L", "B48", "Cooper S", "JCW"]
+        },
+        "PHEV": {
+          "trims": ["SE ALL4"],
+          "aliases": ["PHEV", "plug-in", "hybrid", "SE"]
+        }
+      }
+    },
+    "Clubman": {
+      "engines": {
+        "1.5L Turbo I3 (B38)": {
+          "trims": ["Base", "Classic"],
+          "aliases": ["1.5L", "three-cylinder", "3-cylinder", "B38"]
+        },
+        "2.0L Turbo I4 (B48)": {
+          "trims": ["S", "S ALL4", "John Cooper Works", "John Cooper Works ALL4"],
+          "aliases": ["2.0L", "B48", "Cooper S", "JCW"]
+        }
+      }
+    }
+  },
+  "Mazda": {
+    "Mazda3": {
+      "engines": {
+        "2.0L Skyactiv-G I4": {
+          "trims": ["i Sport", "i Touring", "i Grand Touring", "i SV", "Base", "Select", "Preferred"],
+          "aliases": ["2.0L", "Skyactiv-G 2.0"]
+        },
+        "2.5L Skyactiv-G I4": {
+          "trims": ["s Sport", "s Touring", "s Grand Touring", "Select", "Preferred", "Premium", "Carbon Edition"],
+          "aliases": ["2.5L", "Skyactiv-G 2.5"]
+        },
+        "2.5L Skyactiv-G Turbo I4": {
+          "trims": ["Turbo", "Turbo Premium Plus"],
+          "aliases": ["2.5T", "turbo"]
+        }
+      }
+    },
+    "CX-5": {
+      "engines": {
+        "2.5L Skyactiv-G I4 NA": {
+          "trims": ["Sport", "Touring", "Grand Touring", "Grand Touring Reserve", "Signature", "S Select", "S Preferred", "S Premium", "S Carbon Edition"],
+          "aliases": ["2.5L", "Skyactiv-G", "naturally aspirated"]
+        },
+        "2.5L Skyactiv-G Turbo I4": {
+          "trims": ["Turbo", "Turbo Signature", "S", "Grand Touring Reserve", "Signature"],
+          "aliases": ["2.5T", "turbo"]
+        }
+      }
+    }
+  },
+  "Volvo": {
+    "S60": {
+      "engines": {
+        "2.0L T5 Turbo I4": {
+          "trims": ["T5", "T5 Drive-E", "T5 Momentum", "T5 R-Design"],
+          "aliases": ["T5", "2.0L turbo"]
+        },
+        "2.0L T6 Twin-Charged I4": {
+          "trims": ["T6", "T6 Inscription", "T6 Momentum", "T6 Polestar", "T6 R-Design"],
+          "aliases": ["T6", "twin-charged", "supercharged and turbo"]
+        },
+        "2.0L T8 PHEV": {
+          "trims": ["T8 Recharge", "Polestar Engineered"],
+          "aliases": ["T8", "PHEV", "Recharge", "plug-in"]
+        },
+        "2.5L Turbo I5": {
+          "trims": ["2.5T", "R"],
+          "aliases": ["2.5L", "I5", "five-cylinder", "2.5T"]
+        },
+        "2.4L I5": {
+          "trims": ["2.4"],
+          "aliases": ["2.4L"]
+        }
+      }
+    },
+    "XC60": {
+      "engines": {
+        "2.0L T5 Turbo I4": {
+          "trims": ["T5", "T5 Momentum", "T5 R-Design"],
+          "aliases": ["T5", "2.0L turbo"]
+        },
+        "2.0L T6 Twin-Charged I4": {
+          "trims": ["T6", "T6 Inscription", "T6 Momentum", "T6 R-Design"],
+          "aliases": ["T6", "twin-charged"]
+        },
+        "2.0L T8 PHEV": {
+          "trims": ["T8 Recharge", "Ultimate"],
+          "aliases": ["T8", "PHEV", "Recharge", "plug-in"]
+        },
+        "3.2L I6": {
+          "trims": ["3.2"],
+          "aliases": ["3.2L", "I6", "six-cylinder"]
+        }
+      }
+    },
+    "XC90": {
+      "engines": {
+        "2.0L T5 Turbo I4": {
+          "trims": ["T5 Momentum", "T5 R-Design"],
+          "aliases": ["T5", "2.0L turbo"]
+        },
+        "2.0L T6 Twin-Charged I4": {
+          "trims": ["T6", "T6 Inscription", "T6 Momentum", "T6 R-Design"],
+          "aliases": ["T6", "twin-charged"]
+        },
+        "2.0L T8 PHEV": {
+          "trims": ["T8 Recharge", "Ultimate"],
+          "aliases": ["T8", "PHEV", "Recharge", "plug-in"]
+        },
+        "2.5L Turbo I5": {
+          "trims": ["2.5T"],
+          "aliases": ["2.5L", "I5", "five-cylinder"]
+        },
+        "4.4L V8": {
+          "trims": ["V8"],
+          "aliases": ["4.4L", "V8"]
+        }
+      }
+    }
+  },
+  "Cadillac": {
+    "CTS": {
+      "engines": {
+        "2.0L Turbo I4": {
+          "trims": ["Base", "Luxury", "Performance", "Premium"],
+          "aliases": ["2.0L", "2.0T", "turbo four", "four-cylinder"]
+        },
+        "3.6L V6": {
+          "trims": ["Base", "Luxury", "Performance", "Premium", "Vsport"],
+          "aliases": ["3.6L", "V6", "LGX"]
+        },
+        "3.6L Twin-Turbo V6 (Vsport)": {
+          "trims": ["Vsport"],
+          "aliases": ["3.6TT", "twin-turbo", "Vsport"]
+        },
+        "6.2L V8 (CTS-V)": {
+          "trims": ["V"],
+          "aliases": ["6.2L", "V8", "LT4", "supercharged", "CTS-V"]
+        }
+      }
+    },
+    "Escalade": {
+      "engines": {
+        "6.2L V8": {
+          "trims": ["Base", "Premium", "Luxury", "Platinum", "Sport", "Premium Luxury"],
+          "aliases": ["6.2L", "V8"]
+        },
+        "3.0L Duramax Diesel": {
+          "trims": ["Premium Luxury", "Sport", "Platinum"],
+          "aliases": ["Duramax", "diesel", "3.0L diesel"]
+        }
+      }
+    }
+  }
+}

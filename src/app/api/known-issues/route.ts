@@ -33,6 +33,15 @@ function vehicleMatchesIssue(
       return false;
     }
 
+    // Check trims for new-format issues
+    if (issue.trims && issue.trims.length > 0 && trim) {
+      const trimLower = trim.toLowerCase();
+      const hasMatchingTrim = issue.trims.some((t: string) =>
+        trimLower.includes(t.toLowerCase()) || t.toLowerCase().includes(trimLower)
+      );
+      if (!hasMatchingTrim) return false;
+    }
+
     return true;
   }
 
@@ -168,6 +177,7 @@ export async function GET(request: NextRequest) {
           years: yearArray,
           make: issue.make,
           model: issue.model,
+          ...(issue.trims ? { trims: issue.trims } : {}),
         },
         category: normalizeCategory(issue.category),
         title: issue.title,
