@@ -8,7 +8,7 @@ import {
   type Part,
 } from '@/schemas/guide.schema';
 import { logApiCost, isBudgetExceeded } from '@/lib/costs';
-import { getVehicleSpecs, type VehicleSpecs } from '@/lib/maintenance';
+import { getVehicleSpecs, type VehicleSpecs, type ProcedureHints } from '@/lib/maintenance';
 import {
   extractMaintenanceType,
   getCachedGuide,
@@ -79,6 +79,38 @@ function getVehicleSpecsForPrompt(vehicle: { year: number; make: string; model: 
 }
 
 /**
+ * Get procedure hints for a specific vehicle + maintenance type.
+ * Returns prompt text to inject and whether the procedure is verified.
+ */
+function getProcedureHintsForPrompt(
+  vehicle: { year: number; make: string; model: string; trim: string },
+  maintenanceType: string
+): { promptText: string; isVerified: boolean } {
+  const specs = getVehicleSpecs(vehicle);
+  if (!specs?.procedures?.[maintenanceType]) return { promptText: '', isVerified: false };
+
+  const proc = specs.procedures[maintenanceType];
+  const sections: string[] = [];
+  sections.push('\n\nVERIFIED PROCEDURE NOTES for this specific vehicle:');
+  sections.push('You MUST incorporate each of these into your step-by-step instructions:');
+
+  if (proc.stepHints?.length) {
+    sections.push('\nProcedure-specific instructions (incorporate IN ORDER into your steps):');
+    proc.stepHints.forEach((hint: string, i: number) => sections.push(`  ${i + 1}. ${hint}`));
+  }
+  if (proc.specialTools?.length) {
+    sections.push('\nRequired special tools (MUST include in your tools list):');
+    proc.specialTools.forEach((t: string) => sections.push(`  - ${t}`));
+  }
+  if (proc.commonMistakes?.length) {
+    sections.push('\nCommon mistakes to WARN about (include as tips or safety warnings):');
+    proc.commonMistakes.forEach((m: string) => sections.push(`  - WARNING: ${m}`));
+  }
+
+  return { promptText: sections.join('\n'), isVerified: proc.verified === true };
+}
+
+/**
  * Guide Generation API Route
  *
  * Generates repair guides using AI based on diagnosis and vehicle info.
@@ -99,7 +131,8 @@ const TIMEOUT_MS = 55000; // 55 second timeout (leave 5s buffer for Vercel)
  */
 function getGuideSystemPrompt(
   vehicle: { year: number; make: string; model: string; trim: string },
-  diagnosis: { title: string; description?: string }
+  diagnosis: { title: string; description?: string },
+  procedureHints?: string
 ) {
   // Trim description to avoid overly long prompts that slow down generation
   const trimmedDescription = diagnosis.description
@@ -172,7 +205,7 @@ General Guidelines:
 - Consider the skill level indicated by the difficulty rating
 - For "requires-mechanic" repairs, explain why professional help is needed
 - Include 5-10 steps (be concise, not exhaustive)
-
+${procedureHints || ''}
 Return ONLY valid JSON, no additional text.`;
 }
 
@@ -234,7 +267,8 @@ async function callOpenAI(
 function parseGuideResponse(
   content: string,
   vehicle: { year: number; make: string; model: string; trim: string },
-  diagnosis: { id: string; title: string }
+  diagnosis: { id: string; title: string },
+  isVerified?: boolean
 ): Guide {
   const parsed = JSON.parse(content);
   const guideId = generateGuideId();
@@ -291,6 +325,7 @@ function parseGuideResponse(
     steps,
     tools,
     parts,
+    source: isVerified ? 'verified-procedure' : 'ai-generated',
     createdAt: now,
     version: 1,
   };
@@ -431,6 +466,7 @@ function generateMockGuide(
         notes: 'Replace with every oil change to prevent leaks'
       },
     ],
+    source: 'ai-generated',
     createdAt: now,
     version: 1,
   };
@@ -467,8 +503,11 @@ export async function POST(request: NextRequest) {
 
     const { vehicle, diagnosis } = parseResult.data;
 
-    // Extract maintenance type for cache key
+    // Extract maintenance type for cache key + procedure lookup
     const maintenanceType = extractMaintenanceType(diagnosis);
+
+    // Get procedure hints for this vehicle + maintenance type
+    const { promptText: procedureHints, isVerified } = getProcedureHintsForPrompt(vehicle, maintenanceType);
 
     // Check cache first
     const cachedGuide = await getCachedGuide(
@@ -487,6 +526,7 @@ export async function POST(request: NextRequest) {
         guide: cachedGuide,
         generationTimeMs,
         cacheHit: true,
+        isVerified: cachedGuide.source === 'verified-procedure',
       });
     }
 
@@ -497,8 +537,8 @@ export async function POST(request: NextRequest) {
     let costUsd: number | undefined;
 
     if (apiKey) {
-      // Generate guide via AI
-      const systemPrompt = getGuideSystemPrompt(vehicle, diagnosis);
+      // Generate guide via AI (with procedure hints if available)
+      const systemPrompt = getGuideSystemPrompt(vehicle, diagnosis, procedureHints);
       const { content, usage } = await callOpenAI(systemPrompt, apiKey);
 
       // Story 7.1: Log API cost
@@ -510,7 +550,7 @@ export async function POST(request: NextRequest) {
       guide = parseGuideResponse(content, vehicle, {
         id: diagnosis.id,
         title: diagnosis.title,
-      });
+      }, isVerified);
     } else {
       // Use mock guide for development
       console.log('[Guide API] No OPENAI_API_KEY configured, using mock guide');
@@ -528,7 +568,7 @@ export async function POST(request: NextRequest) {
     // Store in cache and record miss before returning response
     // (Vercel freezes functions after response - fire-and-forget won't complete)
     await Promise.allSettled([
-      storeCachedGuide(guide, maintenanceType, costUsd),
+      storeCachedGuide(guide, maintenanceType, costUsd, isVerified ? 'verified' : 'auto-generated'),
       recordCacheEvent(false),
     ]);
 
@@ -536,6 +576,7 @@ export async function POST(request: NextRequest) {
       guide,
       generationTimeMs,
       cacheHit: false,
+      isVerified,
     });
   } catch (error) {
     console.error('Guide API error:', error);

@@ -72,6 +72,13 @@ export interface JackPointSpecs {
   rearLift?: string;
 }
 
+export interface ProcedureHints {
+  stepHints: string[];
+  specialTools?: string[];
+  commonMistakes?: string[];
+  verified?: boolean;
+}
+
 export interface VehicleSpecs {
   engine: string;
   oil?: OilSpecs;
@@ -88,6 +95,7 @@ export interface VehicleSpecs {
   supercharger?: SuperchargerSpecs;
   jackPoints?: JackPointSpecs;
   safety?: string[];
+  procedures?: Record<string, ProcedureHints>;
 }
 
 // ─── Maintenance Specs Map ─────────────────────────────────────────────
@@ -225,6 +233,7 @@ export function getVehicleSpecs(vehicle: { year: number; make: string; model: st
     supercharger: rawSpecs.supercharger,
     jackPoints: rawSpecs.jackPoints,
     safety: rawSpecs.safety,
+    procedures: rawSpecs.procedures,
   };
 }
 

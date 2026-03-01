@@ -114,6 +114,7 @@ export const GuideSchema = z.object({
   steps: z.array(GuideStepSchema),
   tools: z.array(ToolSchema).default([]),
   parts: z.array(PartSchema).default([]),
+  source: z.enum(['ai-generated', 'verified-procedure']).optional(),
   createdAt: z.number(),
   version: z.number().default(1),
 });

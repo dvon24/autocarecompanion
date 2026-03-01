@@ -132,7 +132,8 @@ export async function getCachedGuide(
 export async function storeCachedGuide(
   guide: Guide,
   maintenanceType: string,
-  costUsd?: number
+  costUsd?: number,
+  status?: string
 ): Promise<void> {
   try {
     const vehicle = guide.vehicle;
@@ -155,7 +156,7 @@ export async function storeCachedGuide(
         maintenanceType,
         guideJson: guide as any,
         title: guide.title,
-        status: 'auto-generated',
+        status: status || 'auto-generated',
         version: 1,
         hitCount: 0,
         generationCostUsd: costUsd ?? null,

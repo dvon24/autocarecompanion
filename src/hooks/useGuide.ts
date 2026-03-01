@@ -86,7 +86,12 @@ export function useGuide(): UseGuideReturn {
       }
 
       const data = await response.json();
-      setGuide(data.guide);
+      const guideData = data.guide;
+      // Set source based on isVerified flag from API
+      if (data.isVerified && guideData) {
+        guideData.source = 'verified-procedure';
+      }
+      setGuide(guideData);
       setStatus('success');
 
       // Track guide generation in analytics
@@ -95,6 +100,7 @@ export function useGuide(): UseGuideReturn {
         diagnosis: diagnosis.title,
         difficulty: data.guide?.difficulty || 0,
         cacheHit: data.cacheHit || false,
+        verified: data.isVerified || false,
       });
     } catch (err) {
       clearTimeout(timeoutId);
