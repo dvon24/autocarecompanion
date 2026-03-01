@@ -675,6 +675,522 @@ function generateTireRotation(genData, make, model, genKey) {
 }
 
 // ────────────────────────────────────────────────────────────────────────
+// Phase 2 generators: air_filter, cabin_filter, serpentine_belt, battery,
+// wiper_blades, plus shop-service types
+// ────────────────────────────────────────────────────────────────────────
+
+function getCabinFilterLocation(make, model) {
+  // BMW/MINI: cowl panel area (under windshield wipers)
+  if (/bmw|mini/i.test(make)) return 'cowl';
+  // Mercedes: cowl panel or behind glove box depending on model
+  if (/mercedes/i.test(make)) return 'cowl';
+  // Some Audis use cowl, some glove box
+  if (/audi/i.test(make)) return 'cowl';
+  // Wrangler has it under the cowl
+  if (/wrangler/i.test(model)) return 'cowl';
+  // Most trucks: behind glove box or under dash
+  if (/f-150|f-250|f-350|silverado|sierra|ram|tacoma|tundra|frontier|titan|colorado|canyon|ranger/i.test(model)) return 'glovebox';
+  // Default: behind glove box (most common for Japanese/Korean/American sedans/SUVs)
+  return 'glovebox';
+}
+
+function getBatteryLocation(make, model, genData) {
+  const e = (genData.engine || '').toLowerCase();
+  const safety = (genData.safety || []).join(' ').toLowerCase();
+  // BMW: trunk (most models)
+  if (/bmw/i.test(make)) return 'trunk';
+  // Mercedes: some in trunk (E/S-Class), some under hood (C-Class, SUVs)
+  if (/mercedes/i.test(make)) {
+    if (/e-class|s-class|cls|sl/i.test(model)) return 'trunk';
+    return 'hood';
+  }
+  // Chrysler 300, Dodge Challenger/Charger: trunk
+  if (/300/i.test(model) && /chrysler/i.test(make)) return 'trunk';
+  if (/challenger|charger/i.test(model)) return 'trunk';
+  // Hybrids: 12V battery may be in trunk or under rear seat
+  if (/hybrid|atkinson.*electric/i.test(e) || /hybrid/i.test(safety)) return 'trunk';
+  // EVs: 12V auxiliary under hood or trunk
+  if (isEV(genData)) return 'hood-aux';
+  // Default: under hood
+  return 'hood';
+}
+
+function hasPowerSteering(genData) {
+  const e = (genData.engine || '').toLowerCase();
+  // Most modern vehicles (2012+) use EPS. Exceptions: heavy trucks, some older models
+  // We'll generate for trucks and older platforms that likely still use hydraulic
+  if (/f-250|f-350|super duty/i.test(e)) return true;
+  // Most modern vehicles use EPS - no fluid to change
+  return false;
+}
+
+function generateAirFilter(genData, make, model, genKey) {
+  if (isEV(genData)) return null;
+
+  const turbo = isTurbo(genData);
+  const diesel = isDiesel(genData);
+  const isTruck = /f-150|f-250|f-350|silverado|sierra|ram|tacoma|tundra|frontier|titan|colorado|canyon|ranger|ridgeline|gladiator/i.test(model);
+
+  const stepHints = [];
+
+  stepHints.push('Open the hood and locate the air filter box - it is a large plastic housing connected to the intake tube, typically on one side of the engine bay');
+
+  if (/bmw|audi|volkswagen|mercedes|volvo|mini/i.test(make)) {
+    stepHints.push('Release the clips or unscrew the Torx/hex fasteners on the air box lid. European vehicles often use T25 Torx screws instead of simple clips');
+  } else if (/toyota|honda|subaru|nissan|mazda|hyundai|kia/i.test(make)) {
+    stepHints.push('Release the metal clips (usually 2-4) on the air box lid. Japanese/Korean vehicles typically use simple spring clips that flip open by hand');
+  } else {
+    stepHints.push('Release the clips or fasteners on the air box lid. Most have 2-4 spring clips that unsnap by hand');
+  }
+
+  if (turbo) {
+    stepHints.push('TURBOCHARGED ENGINE: You may need to disconnect the MAF sensor electrical connector and/or loosen the intake tube clamp before fully removing the air box lid');
+  }
+
+  stepHints.push('Lift the lid and remove the old air filter. Note the orientation (airflow direction arrow) for installing the new one');
+  stepHints.push('Inspect the air box interior for debris, leaves, or rodent nesting material. Wipe clean if needed');
+  stepHints.push('Install the new air filter with the airflow arrow pointing toward the engine (downstream). Ensure it seats flat with no gaps around the edges');
+  stepHints.push('Close the air box lid and secure all clips/fasteners. Ensure a tight seal - any air leak bypasses the filter');
+
+  if (turbo) {
+    stepHints.push('Reconnect MAF sensor connector and tighten intake tube clamp if disconnected');
+  }
+
+  const specialTools = ['No tools required for most vehicles (hand-release clips)'];
+  if (/bmw|audi|volkswagen|mercedes|volvo|mini/i.test(make)) {
+    specialTools[0] = 'T25 Torx screwdriver (European vehicles often use Torx fasteners on air box)';
+  }
+
+  const commonMistakes = [
+    'Installing filter upside down or backwards - check airflow direction arrow',
+    'Not seating filter fully in the air box - gaps allow unfiltered air into engine',
+    'Not closing all clips/fasteners on air box lid - causes unmetered air leak and possible check engine light',
+  ];
+  if (turbo) {
+    commonMistakes.push('Forgetting to reconnect MAF sensor connector - causes check engine light and poor running');
+  }
+  if (diesel || isTruck) {
+    commonMistakes.push('Going too long between changes in dusty conditions - trucks and diesels should change filter more frequently in dusty environments');
+  }
+
+  return { stepHints, specialTools, commonMistakes, verified: false };
+}
+
+function generateCabinFilter(genData, make, model, genKey) {
+  const location = getCabinFilterLocation(make, model);
+
+  const stepHints = [];
+
+  if (location === 'cowl') {
+    stepHints.push('The cabin air filter on this vehicle is accessed from the cowl area (exterior, under the windshield wiper area)');
+    stepHints.push('Turn off the ignition and lift the windshield wipers away from the windshield. Remove the cowl panel cover (usually plastic clips or screws)');
+    stepHints.push('Locate the cabin filter housing underneath the cowl panel. Open the cover (clips or screws) and slide out the old filter');
+    stepHints.push('Note the airflow direction arrow on the old filter before removing. Install new filter with arrow pointing in the same direction (typically downward/into the vehicle)');
+    stepHints.push('Reinstall the filter housing cover, cowl panel, and lower windshield wipers');
+  } else {
+    // Behind glove box (most common)
+    stepHints.push('The cabin air filter is accessed behind the glove box');
+    stepHints.push('Open the glove box and empty its contents. Squeeze the sides of the glove box inward to release the stop tabs, then lower it fully to reveal the filter housing');
+
+    if (/toyota|lexus/i.test(make)) {
+      stepHints.push('On Toyota/Lexus: the damper arm on the right side of the glove box unhooks easily - squeeze the clip to detach');
+    } else if (/honda|acura/i.test(make)) {
+      stepHints.push('On Honda/Acura: remove the glove box damper arm (right side) by pushing the pin inward, then squeeze sides and lower');
+    }
+
+    stepHints.push('Open the cabin filter housing cover (usually 1-2 tabs). Slide out the old filter, noting the airflow direction arrow');
+    stepHints.push('Install the new cabin filter with the airflow direction arrow pointing downward (toward the floor). Ensure it slides in fully and seats flat');
+    stepHints.push('Close the filter housing cover, raise the glove box back into position, and re-engage the stop tabs by pushing the sides inward');
+  }
+
+  const specialTools = ['No special tools required for most vehicles'];
+  if (location === 'cowl') {
+    specialTools[0] = 'Phillips screwdriver or T20 Torx (for cowl panel screws)';
+    specialTools.push('Plastic trim removal tool (to avoid breaking cowl panel clips)');
+  }
+
+  const commonMistakes = [
+    'Installing filter with airflow arrow pointing the wrong direction - check arrow before removing old filter',
+    'Forgetting to reinstall glove box stop tabs (glove box hangs open and dumps contents)',
+    'Not replacing cabin filter often enough - a clogged filter reduces HVAC airflow and can cause musty odor',
+  ];
+  if (location === 'cowl') {
+    commonMistakes[1] = 'Breaking plastic cowl panel clips during removal - use a trim tool, not a screwdriver, to pry clips';
+  }
+
+  return { stepHints, specialTools, commonMistakes, verified: false };
+}
+
+function generateSerpentineBelt(genData, make, model, genKey) {
+  if (isEV(genData)) return null;
+
+  const layout = getLayout(genData);
+  const turbo = isTurbo(genData);
+  const isGermanMake = isGerman(make);
+  const isTruck = /f-150|f-250|f-350|silverado|sierra|ram|tacoma|tundra|titan|expedition|tahoe|suburban|sequoia/i.test(model);
+
+  const stepHints = [];
+
+  stepHints.push('Before starting: take a photo of the belt routing or find the belt routing diagram (usually on a sticker in the engine bay or in the owner\'s manual). This is CRITICAL for reinstallation');
+
+  if (isGermanMake) {
+    stepHints.push('European vehicles may use a stretch-fit belt without a traditional tensioner. If your vehicle uses a stretch belt, a special installation tool is required and the belt cannot be reused once removed');
+  }
+
+  stepHints.push('Locate the automatic belt tensioner - it is spring-loaded with a smooth (unpainted) idler pulley. Use a 15mm wrench, 3/8" square drive ratchet, or vehicle-specific tensioner tool to rotate the tensioner and release belt tension');
+
+  if (layout === 'V6' || layout === 'V8') {
+    stepHints.push('On V6/V8 engines, the belt route is complex and wraps around many pulleys (alternator, A/C, power steering, water pump, idler, tensioner). Work from the top of the engine and reference your routing diagram');
+  }
+
+  stepHints.push('Slip the old belt off while holding the tensioner. Inspect all pulleys for smooth spinning and wobble - replace any noisy or rough bearings now while the belt is off');
+  stepHints.push('Route the new belt according to the diagram, leaving one pulley for last (usually the tensioner idler or alternator). Rotate tensioner, slip belt onto final pulley, and slowly release tensioner');
+  stepHints.push('Verify the belt is properly seated in ALL pulley grooves - a misaligned belt will be thrown off immediately. Start engine briefly to confirm belt tracks correctly');
+
+  const specialTools = [
+    'Serpentine belt tool or 15mm wrench or 3/8" square drive ratchet (for tensioner)',
+    'Flashlight (to inspect belt routing and pulley condition)',
+  ];
+  if (isGermanMake) {
+    specialTools.push('Stretch belt installation tool (if applicable to this model)');
+  }
+  if (isTruck || layout === 'V8') {
+    specialTools.push('Long-handle breaker bar (truck/V8 tensioners require more force)');
+  }
+
+  const commonMistakes = [
+    'Not photographing/documenting belt routing before removal - reinstallation without the diagram is very difficult',
+    'Belt not fully seated in a pulley groove - causes squealing, belt damage, or belt being thrown off',
+    'Not inspecting idler and tensioner pulleys while belt is off - a failing bearing will destroy the new belt quickly',
+    'Releasing tensioner too quickly - let it return slowly to avoid damaging the new belt',
+  ];
+  if (isGermanMake) {
+    commonMistakes.push('Attempting to reuse a stretch-fit belt - these belts are one-time use and must be replaced with new');
+  }
+
+  return { stepHints, specialTools, commonMistakes, verified: false };
+}
+
+function generateBattery(genData, make, model, genKey) {
+  const location = getBatteryLocation(make, model, genData);
+  const ev = isEV(genData);
+  const hybrid = isHybrid(genData);
+  const lug = getLugInfo(genData);
+
+  const stepHints = [];
+
+  if (ev) {
+    // EV 12V auxiliary battery
+    stepHints.push('This is an EV - the 12V AUXILIARY battery powers electronics (not the drive motor). The high-voltage traction battery is NOT owner-serviceable');
+    stepHints.push('Locate the 12V auxiliary battery (typically under the hood or in the trunk). Consult owner\'s manual for exact location');
+    stepHints.push('IMPORTANT: Follow manufacturer procedures for 12V battery replacement on EVs - incorrect procedure can trigger fault codes');
+    stepHints.push('Disconnect negative (-) terminal first, then positive (+). Remove battery hold-down clamp. Install new battery, connect positive first, then negative');
+    stepHints.push('After replacement: the vehicle may need systems to reinitialize. Drive for 15+ minutes to allow adaptation');
+
+    return {
+      stepHints,
+      specialTools: ['10mm wrench (terminal bolts)', '13mm socket (hold-down clamp)', 'Memory saver tool (optional, to preserve settings)'],
+      commonMistakes: [
+        'Confusing the 12V auxiliary battery with the high-voltage traction battery - NEVER attempt to service the HV battery',
+        'Disconnecting positive terminal first - always disconnect NEGATIVE first to avoid short circuits',
+      ],
+      verified: false,
+    };
+  }
+
+  // Location-specific instructions
+  if (location === 'trunk') {
+    stepHints.push(`The battery on this vehicle is located in the TRUNK (not under the hood). ${/bmw/i.test(make) ? 'Look under the trunk floor panel on the right side' : /challenger|charger/i.test(model) ? 'Battery is in the trunk, passenger side' : /300/i.test(model) ? 'Battery is in the trunk' : 'Check trunk floor or side panel'}`);
+    stepHints.push('NOTE: There may be a remote positive terminal under the hood for jump-starting - this is NOT where the battery is located');
+  } else {
+    stepHints.push('Open the hood and locate the battery (typically on one side of the engine bay)');
+  }
+
+  // Safety
+  stepHints.push('SAFETY: Remove any metal jewelry before working on the battery. A wrench bridging positive to ground can cause severe burns or fire');
+
+  // Disconnect
+  stepHints.push('Disconnect the NEGATIVE (-) terminal first (usually 10mm bolt). Move the cable aside so it cannot accidentally contact the terminal');
+  stepHints.push('Disconnect the POSITIVE (+) terminal next');
+
+  // Remove
+  stepHints.push('Remove the battery hold-down clamp or bracket (typically 10mm, 12mm, or 13mm bolt). Lift the battery out - batteries are heavy (30-50 lbs for cars, 50-75 lbs for trucks)');
+
+  // Clean
+  stepHints.push('Clean the battery tray and terminal connectors with baking soda/water solution if there is corrosion. Dry thoroughly');
+
+  // Install
+  stepHints.push('Set new battery in tray and secure hold-down clamp. Connect POSITIVE (+) terminal first, then NEGATIVE (-) last');
+  stepHints.push('Apply battery terminal protectant spray or thin layer of dielectric grease to terminals to prevent future corrosion');
+
+  if (hybrid) {
+    stepHints.push('HYBRID NOTE: This vehicle also has a high-voltage traction battery. Only service the 12V starter/accessory battery. The HV battery is dealer-service only');
+  }
+
+  // Post-install
+  stepHints.push('After connecting: you may need to reset clock, radio presets, and power windows. Some vehicles require an idle relearn procedure - let engine idle for 10 minutes');
+
+  const specialTools = [
+    '10mm wrench or socket (terminal bolts)',
+    '10mm, 12mm, or 13mm socket (hold-down clamp)',
+    'Wire brush or battery terminal cleaner',
+    'Memory saver tool (optional - preserves radio, clock, ECU settings during battery swap)',
+  ];
+
+  const commonMistakes = [
+    'Disconnecting positive terminal first - always disconnect NEGATIVE first to prevent short circuits',
+    'Connecting negative terminal first during installation - always connect POSITIVE first',
+    'Not securing hold-down clamp - an unsecured battery can shift and short against the hood',
+    'Not cleaning corroded terminals - corrosion on terminals causes voltage drops and starting problems',
+  ];
+  if (location === 'trunk') {
+    commonMistakes.push('Looking for the battery under the hood - this vehicle\'s battery is in the trunk');
+  }
+
+  return { stepHints, specialTools, commonMistakes, verified: false };
+}
+
+function generateWiperBlades(genData, make, model, genKey) {
+  const isGermanMake = isGerman(make);
+  const isSUVorHatch = /4runner|rav4|cr-v|cx-5|tucson|sportage|wrangler|grand cherokee|tahoe|suburban|expedition|explorer|highlander|outback|crosstrek|forester|rogue|escape|bronco|prius|impreza|golf|gti/i.test(model);
+
+  const stepHints = [];
+
+  stepHints.push('Check your owner\'s manual or measure your current wiper blades for the correct sizes. Driver and passenger sides are often DIFFERENT lengths');
+
+  if (isGermanMake) {
+    stepHints.push('European vehicles often use a specific wiper arm attachment style (pinch tab, push button, or side pin). Verify the connector type before purchasing replacement blades');
+  }
+
+  stepHints.push('Lift the wiper arm away from the windshield until it locks in the upright position. Place a folded towel on the windshield under the arm in case it snaps back');
+  stepHints.push('Press the release tab on the wiper blade where it connects to the arm. Slide the old blade off the hook (most modern vehicles use a J-hook or push-button adapter)');
+  stepHints.push('Attach the new blade by sliding it onto the wiper arm hook until it clicks into place. Gently lower the arm back to the windshield and verify it sits flat');
+  stepHints.push('Repeat for the other side. Test both wipers with washer fluid to verify proper sweep and no streaking');
+
+  if (isSUVorHatch) {
+    stepHints.push('This vehicle may have a REAR wiper blade as well. Check if the rear wiper needs replacement - it often uses a different size and attachment style');
+  }
+
+  const specialTools = ['No tools required - wiper blades are a tool-free replacement on most vehicles'];
+
+  const commonMistakes = [
+    'Buying wrong blade size - driver and passenger sides are usually different lengths',
+    'Letting wiper arm snap back against windshield without a blade on it - can crack the glass',
+    'Not testing new blades with washer fluid - streaking indicates incorrect installation or defective blade',
+    'Buying wrong adapter type - verify J-hook, push-button, pin, or bayonet style before purchasing',
+  ];
+
+  return { stepHints, specialTools, commonMistakes, verified: false };
+}
+
+// ── Shop-service / dealer-only types ──────────────────────────────────
+
+function generateWheelAlignment(genData, make, model, genKey) {
+  const lug = getLugInfo(genData);
+  const isTruck = /f-150|f-250|f-350|silverado|sierra|ram|tacoma|tundra|titan|expedition|tahoe|suburban|sequoia|4runner|wrangler|grand cherokee/i.test(model);
+  const isLowered = isPerformanceCar(model, genKey);
+
+  const stepHints = [
+    'Wheel alignment requires specialized equipment (alignment rack with laser/camera sensors) and should be performed by a qualified shop',
+    'Signs you need alignment: vehicle pulls to one side, steering wheel is off-center, uneven tire wear patterns',
+    'Before alignment: ensure tire pressures are at specification, suspension components are not worn, and ride height is stock (or inform shop of modifications)',
+  ];
+
+  if (isTruck) {
+    stepHints.push('Trucks/SUVs with lift kits or leveling kits: inform the alignment shop of any suspension modifications as this affects alignment specs');
+  }
+  if (isLowered) {
+    stepHints.push('Performance/lowered vehicles: inform the shop of any coilover or lowering spring modifications. May need custom alignment specs for modified ride height');
+  }
+
+  stepHints.push('After alignment: the shop should provide a printout showing before/after measurements for camber, caster, and toe. Keep this for your records');
+  stepHints.push('Typical cost: $80-150 for a 4-wheel alignment. Get alignment checked after any suspension work, hitting a major pothole, or if tire wear appears uneven');
+
+  return {
+    stepHints,
+    specialTools: ['Professional alignment rack (shop service only)'],
+    commonMistakes: [
+      'Skipping alignment after suspension work or tire replacement - misalignment causes rapid uneven tire wear',
+      'Getting alignment with worn suspension components (ball joints, tie rods, bushings) - alignment will not hold',
+      'Not checking tire pressures before alignment - incorrect pressures throw off alignment readings',
+    ],
+    verified: false,
+  };
+}
+
+function generateFuelFilter(genData, make, model, genKey) {
+  if (isEV(genData)) return null;
+
+  const diesel = isDiesel(genData);
+
+  // Diesel trucks have external/serviceable fuel filters
+  if (diesel) {
+    return {
+      stepHints: [
+        'Diesel vehicles have an external, owner-serviceable fuel filter (unlike most modern gas vehicles with in-tank filters)',
+        'Relieve fuel system pressure before starting - refer to service manual for your specific fuel system pressure relief procedure',
+        'Locate the fuel filter housing (typically on the engine or frame rail). Drain any water from the water separator first',
+        'Remove old filter element and install new one. Prime the fuel system by cycling the key to ON (not start) several times to build fuel pressure',
+        'Start engine and check for leaks at all fuel filter connections. Diesel fuel leaks are a fire hazard',
+        'Some diesel trucks have DUAL fuel filters (primary and secondary) - replace both at the same time',
+      ],
+      specialTools: [
+        'Fuel filter wrench (vehicle-specific)',
+        'Drain pan for fuel',
+        'Rags and safety glasses (pressurized fuel)',
+      ],
+      commonMistakes: [
+        'Not priming the fuel system after filter replacement - engine will crank but not start until air is purged',
+        'Not draining water separator before and after filter change',
+        'Forgetting to replace the second fuel filter on dual-filter systems',
+        'Not relieving fuel system pressure before disconnecting - pressurized fuel spray is dangerous',
+      ],
+      verified: false,
+    };
+  }
+
+  // Gas vehicles - most modern gas vehicles have in-tank filters
+  return {
+    stepHints: [
+      'Most modern gasoline vehicles (2006+) have the fuel filter integrated into the fuel pump assembly INSIDE the fuel tank. This is not a routine owner-serviceable item',
+      'If your vehicle has an external inline fuel filter (typically older vehicles or some trucks), it is usually located along the fuel line under the vehicle or in the engine bay',
+      'Fuel filter replacement involves working with pressurized fuel - consider having a professional handle this service',
+      'If fuel delivery issues are suspected (sputtering at high RPM, hard starting, loss of power), have the fuel system professionally diagnosed before assuming the filter is clogged',
+    ],
+    specialTools: ['Professional service recommended for most modern vehicles'],
+    commonMistakes: [
+      'Trying to locate an external fuel filter on a vehicle with an in-tank integrated filter/pump assembly',
+      'Not relieving fuel system pressure before disconnecting fuel lines',
+    ],
+    verified: false,
+  };
+}
+
+function generatePowerSteeringFluid(genData, make, model, genKey) {
+  if (isEV(genData)) return null;
+
+  const engine = (genData.engine || '').toLowerCase();
+  // Most modern vehicles (2012+) use Electric Power Steering (EPS) - no fluid
+  // Heavy trucks and some older platforms still use hydraulic
+  const isHeavyTruck = /f-250|f-350|super duty|2500|3500/i.test(model);
+
+  if (!isHeavyTruck) {
+    return {
+      stepHints: [
+        'Most modern vehicles use Electric Power Steering (EPS) which has NO power steering fluid to change',
+        'If your steering feels stiff or makes noise, it is likely an EPS motor or sensor issue - not a fluid problem',
+        'Consult your owner\'s manual to confirm whether your vehicle has hydraulic or electric power steering',
+      ],
+      specialTools: [],
+      commonMistakes: [
+        'Looking for a power steering fluid reservoir on a vehicle with EPS - there is no fluid to check or change',
+        'Attempting to add fluid to a system that does not use hydraulic fluid',
+      ],
+      verified: false,
+    };
+  }
+
+  return {
+    stepHints: [
+      'This heavy-duty vehicle uses hydraulic power steering with serviceable fluid',
+      'Locate the power steering fluid reservoir (usually on or near the power steering pump, driver side of engine)',
+      'Check fluid level on dipstick - should be between MIN and MAX marks when fluid is at operating temperature',
+      'To flush: use a turkey baster to remove old fluid from reservoir. Refill with correct specification fluid',
+      'Turn steering wheel lock-to-lock several times to circulate new fluid through the system',
+      'Repeat drain-and-fill process 2-3 times for a thorough fluid exchange',
+      'Top off reservoir to proper level and check for leaks at pump, hoses, and rack connections',
+    ],
+    specialTools: [
+      'Turkey baster or fluid transfer syringe',
+      'Correct power steering fluid (check owner\'s manual - ATF, Mercon, or specific PS fluid)',
+    ],
+    commonMistakes: [
+      'Using wrong power steering fluid type - different vehicles require different specifications',
+      'Overfilling the reservoir - fluid expands when hot and will overflow',
+      'Not turning steering lock-to-lock during flush - old fluid remains trapped in rack and lines',
+    ],
+    verified: false,
+  };
+}
+
+function generateTimingBelt(genData, make, model, genKey) {
+  if (isEV(genData)) return null;
+
+  const engine = (genData.engine || '').toLowerCase();
+  // Most modern engines use timing CHAINS (not belts) - they don't need regular replacement
+  // Notable belt exceptions: some Subaru, some Kia/Hyundai, some older Honda/Toyota
+  const likelyChain = /chain|direct injection|gdi|tsi|fsi|ecoboost|skyactiv|lt1|lt2|lt4|ls|hemi|pentastar|coyote|voodoo|boxer.*fa2|b48|n20|n55|b58/i.test(engine);
+
+  if (likelyChain) {
+    return {
+      stepHints: [
+        'This engine most likely uses a timing CHAIN, not a timing belt. Timing chains are designed to last the life of the engine under normal conditions',
+        'Timing chain replacement is NOT a routine maintenance item - it is only needed if the chain stretches (causes rattling noise at startup or timing-related codes)',
+        'If timing chain replacement is needed, it is a major engine service requiring professional disassembly - not a DIY job for most owners',
+        'Keep up with oil changes - proper lubrication is critical for timing chain longevity. Skipped oil changes are the #1 cause of premature chain wear',
+      ],
+      specialTools: ['Professional service required if chain replacement is needed'],
+      commonMistakes: [
+        'Replacing a timing chain unnecessarily - chains rarely need replacement if oil changes are maintained',
+        'Ignoring a rattling noise at cold startup - this can indicate chain stretch and should be inspected before it jumps timing',
+      ],
+      verified: false,
+    };
+  }
+
+  // Vehicles that may actually use timing belts
+  return {
+    stepHints: [
+      'Timing belt replacement is a MAJOR service - typically recommended every 60,000-105,000 miles depending on the engine',
+      'This is NOT a DIY job for most owners - it requires significant engine disassembly, specialized tools, and precise timing alignment',
+      'IMPORTANT: Many timing belt engines are "interference" designs - if the belt breaks, valves contact pistons causing catastrophic engine damage',
+      'When replacing the timing belt, also replace the water pump, tensioner, and idler pulleys (they share the same service life)',
+      'Have a qualified mechanic perform this service. Typical cost is $500-1,200 depending on the vehicle',
+      'Verify your engine\'s replacement interval in the owner\'s manual - do NOT exceed the recommended mileage',
+    ],
+    specialTools: ['Professional service strongly recommended'],
+    commonMistakes: [
+      'Exceeding the timing belt replacement interval - a snapped belt on an interference engine destroys the engine',
+      'Replacing only the belt and not the water pump/tensioner/idler - these components share the same service life and failing any one of them ruins the new belt',
+      'Attempting as a DIY project without proper training - incorrect timing will cause the engine to run poorly or not at all',
+    ],
+    verified: false,
+  };
+}
+
+function generateEVBatteryCheck(genData, make, model, genKey) {
+  if (!isEV(genData) && !isHybrid(genData)) return null;
+
+  const ev = isEV(genData);
+
+  const stepHints = [
+    `${ev ? 'EV' : 'Hybrid'} high-voltage battery health monitoring should be performed by a dealer or qualified EV technician with proper diagnostic equipment`,
+    'Owner monitoring: check your vehicle\'s battery health display/app regularly. Most EVs and hybrids show State of Health (SoH) percentage',
+    'Signs of battery degradation: noticeably reduced range (EV), reduced electric-only driving distance (hybrid), or battery-related warning lights',
+  ];
+
+  if (ev) {
+    stepHints.push('Maintain battery health by: avoiding frequent DC fast charging (Level 3), not storing at 100% charge for extended periods, and keeping charge between 20-80% for daily use');
+    stepHints.push('Extreme temperatures affect battery performance and longevity. If possible, park in a garage during extreme heat or cold');
+    stepHints.push('Most EV batteries are warrantied for 8 years/100,000 miles (federal mandate). Check your specific warranty coverage');
+  } else {
+    stepHints.push('Hybrid batteries are designed to last 8-10+ years under normal driving conditions. The vehicle\'s battery management system handles charge cycling automatically');
+    stepHints.push('If you notice the gas engine running more frequently or reduced fuel economy, have the hybrid battery system scanned for fault codes');
+  }
+
+  return {
+    stepHints,
+    specialTools: ['Dealer or qualified EV technician with manufacturer diagnostic tools'],
+    commonMistakes: [
+      'Attempting to service or open the high-voltage battery pack - this is LETHAL without proper training and equipment',
+      'Ignoring battery warning lights or significant range loss - early diagnosis can sometimes address individual cell issues',
+      `${ev ? 'Consistently charging to 100% for daily driving - this accelerates battery degradation' : 'Ignoring reduced fuel economy - may indicate hybrid battery degradation'}`,
+    ],
+    verified: false,
+  };
+}
+
+// ────────────────────────────────────────────────────────────────────────
 // Main
 // ────────────────────────────────────────────────────────────────────────
 
@@ -688,6 +1204,16 @@ const generators = {
   brake_fluid: generateBrakeFluid,
   brake_inspection: generateBrakeInspection,
   tire_rotation: generateTireRotation,
+  air_filter: generateAirFilter,
+  cabin_filter: generateCabinFilter,
+  serpentine_belt: generateSerpentineBelt,
+  battery: generateBattery,
+  wiper_blades: generateWiperBlades,
+  wheel_alignment: generateWheelAlignment,
+  fuel_filter: generateFuelFilter,
+  power_steering_fluid: generatePowerSteeringFluid,
+  timing_belt: generateTimingBelt,
+  ev_battery_check: generateEVBatteryCheck,
 };
 
 const stats = { total: 0, generated: {}, preserved: 0, skipped: 0, entries: 0 };

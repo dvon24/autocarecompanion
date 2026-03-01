@@ -90,31 +90,37 @@ for (const tc of oilTestCases) {
 // ─── Part 2: Multi-type coverage ───────────────────────────────────────
 
 const multiTypeTests = [
-  // Vehicle with all 9 types (truck with 4WD)
+  // 4WD truck/SUV - all 18 ICE types (no ev_battery_check)
   { year: 2022, make: 'Jeep', model: 'Wrangler', trim: 'Sport',
     expectedTypes: ['oil_change', 'spark_plugs', 'coolant_flush', 'transmission_fluid',
-                    'differential_fluid', 'transfer_case_fluid', 'brake_fluid', 'brake_inspection', 'tire_rotation'],
-    unexpectedTypes: [] },
-  // Sedan - no differential/transfer case
+                    'differential_fluid', 'transfer_case_fluid', 'brake_fluid', 'brake_inspection', 'tire_rotation',
+                    'air_filter', 'cabin_filter', 'serpentine_belt', 'battery', 'wiper_blades',
+                    'wheel_alignment', 'fuel_filter', 'power_steering_fluid', 'timing_belt'],
+    unexpectedTypes: ['ev_battery_check'] },
+  // Sedan - no differential/transfer case, has all other types
   { year: 2020, make: 'Toyota', model: 'Camry', trim: 'LE',
     expectedTypes: ['oil_change', 'spark_plugs', 'coolant_flush', 'transmission_fluid',
-                    'brake_fluid', 'brake_inspection', 'tire_rotation'],
-    unexpectedTypes: ['differential_fluid', 'transfer_case_fluid'] },
-  // Diesel - no spark plugs
+                    'brake_fluid', 'brake_inspection', 'tire_rotation',
+                    'air_filter', 'cabin_filter', 'serpentine_belt', 'battery', 'wiper_blades'],
+    unexpectedTypes: ['differential_fluid', 'transfer_case_fluid', 'ev_battery_check'] },
+  // Diesel - no spark plugs, has diesel fuel_filter
   { year: 2021, make: 'RAM', model: '2500', trim: 'Cummins',
     expectedTypes: ['oil_change', 'coolant_flush', 'transmission_fluid',
-                    'differential_fluid', 'transfer_case_fluid', 'brake_fluid', 'brake_inspection', 'tire_rotation'],
-    unexpectedTypes: ['spark_plugs'] },
-  // BMW - should have lug BOLTS in brake_inspection
+                    'differential_fluid', 'transfer_case_fluid', 'brake_fluid', 'brake_inspection', 'tire_rotation',
+                    'air_filter', 'cabin_filter', 'fuel_filter', 'battery'],
+    unexpectedTypes: ['spark_plugs', 'ev_battery_check'] },
+  // BMW - lug BOLTS, trunk battery, cowl cabin filter
   { year: 2020, make: 'BMW', model: '3 Series', trim: '330i',
     expectedTypes: ['oil_change', 'spark_plugs', 'coolant_flush', 'transmission_fluid',
-                    'brake_fluid', 'brake_inspection', 'tire_rotation'],
-    unexpectedTypes: ['differential_fluid', 'transfer_case_fluid'] },
+                    'brake_fluid', 'brake_inspection', 'tire_rotation',
+                    'air_filter', 'cabin_filter', 'serpentine_belt', 'battery', 'wiper_blades'],
+    unexpectedTypes: ['differential_fluid', 'transfer_case_fluid', 'ev_battery_check'] },
   // Sports car with differential
   { year: 2021, make: 'Chevrolet', model: 'Corvette', trim: 'Stingray',
     expectedTypes: ['oil_change', 'spark_plugs', 'coolant_flush', 'transmission_fluid',
-                    'differential_fluid', 'brake_fluid', 'brake_inspection', 'tire_rotation'],
-    unexpectedTypes: ['transfer_case_fluid'] },
+                    'differential_fluid', 'brake_fluid', 'brake_inspection', 'tire_rotation',
+                    'air_filter', 'serpentine_belt', 'battery', 'wiper_blades'],
+    unexpectedTypes: ['transfer_case_fluid', 'ev_battery_check'] },
 ];
 
 console.log('='.repeat(70));
@@ -185,6 +191,33 @@ const qualityChecks = [
   // RAM 2500 Cummins should NOT have spark_plugs
   { year: 2021, make: 'RAM', model: '2500', trim: 'Cummins',
     type: 'spark_plugs', mustContain: null, label: 'RAM diesel no spark plugs' },
+  // BMW battery should mention trunk
+  { year: 2020, make: 'BMW', model: '3 Series', trim: '330i',
+    type: 'battery', mustContain: 'TRUNK', label: 'BMW trunk battery' },
+  // BMW cabin filter should mention cowl
+  { year: 2020, make: 'BMW', model: '3 Series', trim: '330i',
+    type: 'cabin_filter', mustContain: 'cowl', label: 'BMW cowl cabin filter' },
+  // Camry air filter should mention Japanese clips
+  { year: 2020, make: 'Toyota', model: 'Camry', trim: 'LE',
+    type: 'air_filter', mustContain: 'spring clips', label: 'Camry spring clips' },
+  // RAM diesel fuel filter should mention diesel
+  { year: 2021, make: 'RAM', model: '2500', trim: 'Cummins',
+    type: 'fuel_filter', mustContain: 'Diesel', label: 'RAM diesel fuel filter' },
+  // Challenger battery should mention trunk
+  { year: 2020, make: 'Dodge', model: 'Challenger', trim: 'R/T',
+    type: 'battery', mustContain: 'TRUNK', label: 'Challenger trunk battery' },
+  // Leaf should have ev_battery_check
+  { year: 2020, make: 'Nissan', model: 'Leaf', trim: '',
+    type: 'ev_battery_check', mustContain: 'EV', label: 'Leaf EV battery check' },
+  // Leaf should NOT have serpentine_belt
+  { year: 2020, make: 'Nissan', model: 'Leaf', trim: '',
+    type: 'serpentine_belt', mustContain: null, label: 'Leaf no serpentine belt' },
+  // BMW air filter should mention Torx
+  { year: 2020, make: 'BMW', model: '3 Series', trim: '330i',
+    type: 'air_filter', mustContain: 'Torx', label: 'BMW Torx air filter' },
+  // Wrangler cabin filter should mention cowl
+  { year: 2022, make: 'Jeep', model: 'Wrangler', trim: 'Sport',
+    type: 'cabin_filter', mustContain: 'cowl', label: 'Wrangler cowl cabin filter' },
 ];
 
 for (const qc of qualityChecks) {
