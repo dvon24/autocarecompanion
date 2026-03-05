@@ -59,16 +59,22 @@ export default function LandingPage() {
                 </span>
               </Link>
             </ScrollReveal>
-{/* TODO: Uncomment My Garage button when Epic 5 launches
             <ScrollReveal delay={100} duration={800} direction="down" distance={20}>
-              <Link
-                href="/garage"
-                className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                My Garage
-              </Link>
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/known-issues"
+                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  Known Issues
+                </Link>
+                <Link
+                  href="/get-started"
+                  className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+                >
+                  Get Started
+                </Link>
+              </div>
             </ScrollReveal>
-*/}
           </div>
         </header>
 
