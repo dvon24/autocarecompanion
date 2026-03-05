@@ -62,6 +62,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // Known issues index page
+  const knownIssuesIndex: MetadataRoute.Sitemap = [{
+    url: `${baseUrl}/known-issues`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }];
+
   // Known issues article pages
   const knownIssuesPages: MetadataRoute.Sitemap = getAllKnownIssueSlugs().map(s => ({
     url: `${baseUrl}/known-issues/${s.slug}`,
@@ -70,5 +78,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...knownIssuesPages];
+  return [...staticPages, ...knownIssuesIndex, ...knownIssuesPages];
 }

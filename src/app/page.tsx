@@ -158,6 +158,32 @@ export default function LandingPage() {
           <ScrollSyncedFeatures />
         </div>
 
+        {/* Known Issues Section */}
+        <section
+          className="px-6 py-16 relative bg-gray-50"
+          style={{ zIndex: 3 }}
+        >
+          <div className="max-w-5xl mx-auto text-center">
+            <ScrollReveal delay={0} duration={800}>
+              <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-3">
+                Know your car&apos;s weak spots
+              </h2>
+              <p className="text-gray-500 mb-8 max-w-lg mx-auto">
+                Browse 1,600+ documented problems across 386 models. Symptoms, repair costs, and solutions from real owner reports.
+              </p>
+              <Link
+                href="/known-issues"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white border border-gray-200 text-gray-700 font-medium rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 text-lg hover:scale-[1.02] shadow-sm"
+              >
+                Browse Known Issues
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </ScrollReveal>
+          </div>
+        </section>
+
         {/* Footer */}
         <footer
           className="px-6 py-12 border-t border-gray-200 relative bg-white"
@@ -193,6 +219,7 @@ export default function LandingPage() {
 
             {/* Legal Links */}
             <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400 mb-8">
+              <Link href="/known-issues" className="hover:text-gray-600 transition-colors">Known Issues</Link>
               <Link href="/terms" className="hover:text-gray-600 transition-colors">Terms of Service</Link>
               <Link href="/privacy" className="hover:text-gray-600 transition-colors">Privacy Policy</Link>
               <Link href="/cookies" className="hover:text-gray-600 transition-colors">Cookie Policy</Link>
