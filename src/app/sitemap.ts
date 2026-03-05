@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { getAllKnownIssueSlugs } from '@/lib/known-issues';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://au7o.io';
@@ -61,5 +62,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return staticPages;
+  // Known issues article pages
+  const knownIssuesPages: MetadataRoute.Sitemap = getAllKnownIssueSlugs().map(s => ({
+    url: `${baseUrl}/known-issues/${s.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...knownIssuesPages];
 }

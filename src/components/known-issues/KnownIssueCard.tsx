@@ -19,10 +19,11 @@ interface KnownIssueCardProps {
   vehicleId?: string;
   userFix?: IssueFix;
   onFixUpdated?: () => void;
+  defaultExpanded?: boolean;
 }
 
-export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUpdated }: KnownIssueCardProps) {
-  const [expanded, setExpanded] = useState(false);
+export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUpdated, defaultExpanded = false }: KnownIssueCardProps) {
+  const [expanded, setExpanded] = useState(defaultExpanded);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showFixModal, setShowFixModal] = useState(false);
 
@@ -62,7 +63,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
     },
   };
 
-  const config = severityConfig[issue.severity];
+  const config = severityConfig[issue.severity] || severityConfig.medium;
 
   // Determine if this is a highly community-reported issue (50+ reports)
   const isCommunityReported = issue.reportCount >= 50;
@@ -142,6 +143,22 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
             )}
           </div>
           <h3 className={`font-medium ${config.textColor}`}>{issue.title}</h3>
+          {/* Year range and applicable trims */}
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mt-1">
+            <span className="text-xs text-gray-500">
+              {issue.vehicleMatch.years.length === 1
+                ? issue.vehicleMatch.years[0]
+                : `${issue.vehicleMatch.years[0]}–${issue.vehicleMatch.years[issue.vehicleMatch.years.length - 1]}`}
+            </span>
+            {issue.vehicleMatch.trims && issue.vehicleMatch.trims.length > 0 && (
+              <span className="text-xs text-gray-400">
+                {issue.vehicleMatch.trims.join(', ')}
+              </span>
+            )}
+            {(!issue.vehicleMatch.trims || issue.vehicleMatch.trims.length === 0) && (
+              <span className="text-xs text-gray-400">All trims</span>
+            )}
+          </div>
         </div>
         <svg
           className={`w-5 h-5 text-gray-400 transition-transform ${expanded ? 'rotate-180' : ''}`}

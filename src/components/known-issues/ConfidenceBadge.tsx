@@ -48,7 +48,7 @@ export function ConfidenceBadge({
     },
   };
 
-  const config = confidenceConfig[confidence];
+  const config = confidenceConfig[confidence] || confidenceConfig.medium;
 
   // Format dates
   const ownerReportDate = new Date(lastReportedByOwners);

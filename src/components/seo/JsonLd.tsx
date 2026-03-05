@@ -6,6 +6,8 @@
  * - WebSite: Site-level search
  * - SoftwareApplication: App store listings
  * - HowTo: Step-by-step guides (used on guide pages)
+ * - TechnicalArticle: Known issues article pages (SEO/GEO)
+ * - FAQ: FAQ sections on article pages
  */
 
 export function OrganizationJsonLd() {
@@ -148,6 +150,57 @@ export function HowToJsonLd({
       name: item,
     }));
   }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+interface TechnicalArticleJsonLdProps {
+  title: string;
+  description: string;
+  url: string;
+  datePublished: string;
+  dateModified: string;
+}
+
+export function TechnicalArticleJsonLd({
+  title,
+  description,
+  url,
+  datePublished,
+  dateModified,
+}: TechnicalArticleJsonLdProps) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: title,
+    description,
+    url,
+    datePublished,
+    dateModified,
+    author: {
+      '@type': 'Organization',
+      name: 'Au7o',
+      url: 'https://au7o.io',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Au7o',
+      url: 'https://au7o.io',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://au7o.io/icons/icon-512.png',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
+  };
 
   return (
     <script
