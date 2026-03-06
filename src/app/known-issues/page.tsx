@@ -53,7 +53,7 @@ function buildDirectory() {
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([make, vehicles]) => ({
       make,
-      vehicles: vehicles.sort((a, b) => b.issueCount - a.issueCount),
+      vehicles: vehicles.sort((a, b) => a.model.localeCompare(b.model)),
       totalIssues: vehicles.reduce((sum, v) => sum + v.issueCount, 0),
     }));
 
