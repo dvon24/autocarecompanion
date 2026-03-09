@@ -1,20 +1,29 @@
 'use client';
 
-import { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { AnimatedBackground } from '@/components/ui/AnimatedBackground';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { ScrollSyncedFeatures } from '@/components/ui/ScrollSyncedFeatures';
 import { EmailCapture } from '@/components/ui/EmailCapture';
+import { HeroVehicleSearch } from '@/components/discovery/HeroVehicleSearch';
+
+const popularIssues = [
+  { vehicle: 'Ford F-150', issue: '5.0L Coyote Cam Phaser Tick/Rattle', severity: 'high' as const, slug: 'ford-f-150' },
+  { vehicle: 'Honda Civic', issue: 'AC Condenser Premature Failure', severity: 'high' as const, slug: 'honda-civic' },
+  { vehicle: 'Dodge Challenger', issue: 'Rear Differential Whine/Clunk', severity: 'high' as const, slug: 'dodge-challenger' },
+  { vehicle: 'Toyota RAV4', issue: 'Transmission Hesitation on Acceleration', severity: 'medium' as const, slug: 'toyota-rav4' },
+  { vehicle: 'Chevrolet Camaro', issue: '8-Speed Transmission Shudder (8L90)', severity: 'high' as const, slug: 'chevrolet-camaro' },
+  { vehicle: 'BMW 3 Series', issue: 'VANOS Solenoid Seal Oil Leak', severity: 'medium' as const, slug: 'bmw-3-series' },
+];
+
+const severityColors = {
+  high: 'bg-red-100 text-red-700',
+  medium: 'bg-amber-100 text-amber-700',
+  low: 'bg-blue-100 text-blue-700',
+};
 
 export default function LandingPage() {
-  const featuresRef = useRef<HTMLDivElement>(null);
-
-  const scrollToFeatures = () => {
-    featuresRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div className="min-h-screen bg-white font-[system-ui,sans-serif] relative overflow-hidden">
       {/* Animated Engine Background - Only visible in hero section */}
@@ -78,79 +87,63 @@ export default function LandingPage() {
           </div>
         </header>
 
-        {/* Hero Section - Where the engine parts float */}
-        <section className="flex-1 flex flex-col items-center justify-center px-6 py-20 lg:py-28 relative">
-          {/* Feature pills */}
+        {/* Hero Section */}
+        <section className="flex-1 flex flex-col items-center justify-center px-6 py-16 lg:py-24 relative">
+          {/* Stats pills — above headline */}
           <ScrollReveal delay={200} duration={800}>
-            <div className="flex flex-wrap justify-center gap-3 mb-10">
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
               <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-gray-100 rounded-full text-sm text-gray-600 font-medium shadow-sm">
                 <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
-                Works Offline
+                1,900+ Issues
               </span>
               <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-gray-100 rounded-full text-sm text-gray-600 font-medium shadow-sm">
                 <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
-                AI-Validated
+                20 Makes
               </span>
               <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-gray-100 rounded-full text-sm text-gray-600 font-medium shadow-sm">
                 <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
-                Free to Start
+                6M+ Owner Reports
               </span>
             </div>
           </ScrollReveal>
 
           {/* Main headline */}
           <ScrollReveal delay={300} duration={1000} distance={40}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-center leading-[1.1] tracking-tight text-gray-900 mb-6 max-w-4xl">
-              Expert guidance
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-center leading-[1.1] tracking-tight text-gray-900 mb-4 max-w-4xl">
+              Know your car&apos;s
               <br />
-              in your garage.
+              weak spots.
             </h1>
           </ScrollReveal>
 
           {/* Subheadline */}
           <ScrollReveal delay={400} duration={1000} distance={30}>
-            <p className="text-lg sm:text-xl text-gray-500 text-center max-w-2xl mb-10 leading-relaxed">
-              AI-powered repair guides that work offline. Know what you need before you start.
-              Complete repairs with confidence.
+            <p className="text-lg sm:text-xl text-gray-500 text-center max-w-2xl mb-8 leading-relaxed">
+              1,900+ documented problems across 490+ models. Symptoms, repair costs, and real solutions — before you get to the shop.
             </p>
           </ScrollReveal>
 
-          {/* CTA buttons */}
+          {/* Vehicle Search */}
           <ScrollReveal delay={500} duration={800}>
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Link
-                href="/get-started"
-                className="group inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-all duration-200 text-lg hover:scale-[1.02] hover:shadow-lg"
-              >
-                Get Started
-                <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-              <button
-                onClick={scrollToFeatures}
-                className="inline-flex items-center justify-center px-8 py-4 bg-white/80 backdrop-blur-sm border border-gray-200 text-gray-700 font-medium rounded-lg hover:border-gray-300 hover:bg-white transition-all duration-200 text-lg hover:scale-[1.02] shadow-sm"
-              >
-                See How It Works
-              </button>
+            <div className="w-full max-w-3xl mb-4">
+              <HeroVehicleSearch />
             </div>
-          </ScrollReveal>
-
-          {/* Social proof */}
-          <ScrollReveal delay={600} duration={800}>
-            <p className="text-gray-400 text-sm">
-              No account required. Your data stays on your device.
+            <p className="text-center text-gray-400 text-sm mb-6">
+              or{' '}
+              <Link href="/get-started" className="text-blue-600 hover:text-blue-700 font-medium hover:underline">
+                get a step-by-step repair guide
+              </Link>
             </p>
           </ScrollReveal>
         </section>
 
-        {/* Gradient separator - eclipses the floating engine parts */}
+        {/* Gradient separator */}
         <div
           className="relative h-32 -mt-16 pointer-events-none"
           style={{
@@ -159,36 +152,64 @@ export default function LandingPage() {
           }}
         />
 
-        {/* Scroll-Synced Feature Section - BMAD Style */}
-        <div ref={featuresRef} style={{ zIndex: 3 }} className="relative">
-          <ScrollSyncedFeatures />
-        </div>
-
-        {/* Known Issues Section */}
+        {/* Recently Documented Issues — Social Proof */}
         <section
           className="px-6 py-16 relative bg-gray-50"
           style={{ zIndex: 3 }}
         >
-          <div className="max-w-5xl mx-auto text-center">
+          <div className="max-w-5xl mx-auto">
             <ScrollReveal delay={0} duration={800}>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-3">
-                Know your car&apos;s weak spots
-              </h2>
-              <p className="text-gray-500 mb-8 max-w-lg mx-auto">
-                Browse 1,600+ documented problems across 386 models. Symptoms, repair costs, and solutions from real owner reports.
-              </p>
-              <Link
-                href="/known-issues"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white border border-gray-200 text-gray-700 font-medium rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 text-lg hover:scale-[1.02] shadow-sm"
-              >
-                Browse Known Issues
-                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+              <div className="text-center mb-10">
+                <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-3">
+                  Real problems. Real solutions.
+                </h2>
+                <p className="text-gray-500 max-w-lg mx-auto">
+                  Every issue includes symptoms, estimated repair costs, and community-verified solutions from real owner reports.
+                </p>
+              </div>
+
+              {/* Issue preview cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
+                {popularIssues.map((item) => (
+                  <Link
+                    key={item.slug + item.issue}
+                    href={`/known-issues/${item.slug}`}
+                    className="bg-white border border-gray-200 rounded-xl p-4 hover:border-gray-300 hover:shadow-md transition-all duration-200 group"
+                  >
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <span className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                        {item.vehicle}
+                      </span>
+                      <span className={`text-xs font-medium px-2 py-0.5 rounded-full whitespace-nowrap ${severityColors[item.severity]}`}>
+                        {item.severity}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-500 leading-snug">
+                      {item.issue}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+
+              <div className="text-center">
+                <Link
+                  href="/known-issues"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-all duration-200 text-lg hover:scale-[1.02] hover:shadow-lg"
+                >
+                  Browse All Known Issues
+                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </div>
             </ScrollReveal>
           </div>
         </section>
+
+        {/* Scroll-Synced Feature Section - BMAD Style */}
+        <div style={{ zIndex: 3 }} className="relative">
+          <ScrollSyncedFeatures />
+        </div>
 
         {/* Footer */}
         <footer

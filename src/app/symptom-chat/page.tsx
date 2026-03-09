@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { Suspense, useEffect, useRef, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PhaseProvider } from '@/contexts/PhaseContext';
@@ -25,7 +25,8 @@ import { CommunityResourcesFallback } from '@/components/chat/CommunityResources
 
 function SymptomChatContent() {
   const router = useRouter();
-  const { selectedVehicle, isVehicleSelected } = useVehicleContext();
+  const searchParams = useSearchParams();
+  const { selectedVehicle, isVehicleSelected, setVehicle } = useVehicleContext();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const prevMessageCountRef = useRef(0);
@@ -79,12 +80,48 @@ function SymptomChatContent() {
     clearGuide,
   } = useGuide();
 
+  // Track whether we arrived with partial vehicle info (make/model only, no year/trim)
+  const [needsYearTrim, setNeedsYearTrim] = useState(false);
+
+  // Override vehicle context from URL params (e.g., coming from known issues page)
+  useEffect(() => {
+    const make = searchParams.get('make');
+    const model = searchParams.get('model');
+    const year = searchParams.get('year');
+    const trim = searchParams.get('trim');
+    if (make && model && year && trim) {
+      // Full YMMT provided — set it directly
+      setVehicle({
+        year: parseInt(year, 10),
+        make,
+        model,
+        trim,
+      });
+      setNeedsYearTrim(false);
+    } else if (make && model) {
+      // Only make/model from article page — check if stored vehicle matches
+      const storedMakeMatch = selectedVehicle?.make?.toLowerCase() === make.toLowerCase();
+      const storedModelMatch = selectedVehicle?.model?.toLowerCase() === model.toLowerCase();
+      if (!storedMakeMatch || !storedModelMatch) {
+        // Stored vehicle doesn't match article — override with article's make/model
+        // Use placeholder year/trim so the header shows the right car
+        setVehicle({
+          year: new Date().getFullYear(),
+          make,
+          model,
+          trim: '',
+        });
+        setNeedsYearTrim(true);
+      }
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   // Redirect to home if no vehicle is selected
   useEffect(() => {
-    if (!isVehicleSelected) {
+    if (!isVehicleSelected && !searchParams.get('make')) {
       router.push('/');
     }
-  }, [isVehicleSelected, router]);
+  }, [isVehicleSelected, searchParams, router]);
 
   // Load acknowledged known issues from sessionStorage
   // Keep them in sessionStorage so they persist when navigating back from guides
@@ -166,15 +203,15 @@ function SymptomChatContent() {
       <header className="fixed top-0 left-0 right-0 border-b border-gray-100 bg-white z-50">
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Link
-              href="/get-started"
+            <button
+              onClick={() => router.back()}
               className="p-2 -ml-2 text-gray-400 hover:text-gray-600 transition-colors"
               aria-label="Back"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-            </Link>
+            </button>
             {/* Au7o Logo */}
             <Link href="/" className="flex items-center gap-2">
               <Image
@@ -189,12 +226,20 @@ function SymptomChatContent() {
               </span>
             </Link>
             <div className="h-5 w-px bg-gray-200" />
-            <div>
-              <h1 className="font-medium text-gray-900">
-                {selectedVehicle.year} {selectedVehicle.make} {selectedVehicle.model}
+            <Link href="/" className="group">
+              <h1 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
+                {needsYearTrim ? '' : `${selectedVehicle.year} `}{selectedVehicle.make} {selectedVehicle.model}
+                <svg className="inline-block w-3.5 h-3.5 ml-1 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
               </h1>
-              <p className="text-xs text-gray-500">{selectedVehicle.trim}</p>
-            </div>
+              {!needsYearTrim && selectedVehicle.trim && (
+                <p className="text-xs text-gray-500 group-hover:text-blue-500 transition-colors">{selectedVehicle.trim}</p>
+              )}
+              {needsYearTrim && (
+                <p className="text-xs text-amber-600">Tap to select year & trim</p>
+              )}
+            </Link>
           </div>
           {messages.length > 0 && (
             <button
@@ -202,8 +247,7 @@ function SymptomChatContent() {
               onClick={() => {
                 clearChat();
                 clearGuide();
-                setAcknowledgedIssues([]);
-                sessionStorage.removeItem('acknowledgedKnownIssues');
+                // Keep known issues — user may want to reference them in a new chat
               }}
               className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
             >
@@ -231,11 +275,20 @@ function SymptomChatContent() {
                 </div>
                 <div className="flex-1">
                   <p className="text-[15px] text-gray-900 leading-relaxed">
-                    Hi! I&apos;m here to help with your{' '}
-                    <span className="font-medium">
-                      {selectedVehicle.year} {selectedVehicle.make} {selectedVehicle.model}
-                    </span>
-                    . What would you like help with?
+                    {needsYearTrim ? (
+                      <>
+                        Hi! I see you&apos;re looking at <span className="font-medium">{selectedVehicle.make} {selectedVehicle.model}</span> issues.
+                        What year and trim is your {selectedVehicle.model}? This helps me give you more accurate advice.
+                      </>
+                    ) : (
+                      <>
+                        Hi! I&apos;m here to help with your{' '}
+                        <span className="font-medium">
+                          {selectedVehicle.year} {selectedVehicle.make} {selectedVehicle.model}
+                        </span>
+                        . What would you like help with?
+                      </>
+                    )}
                   </p>
 
                   {/* Known Issues Section - shown when user acknowledged issues */}
@@ -567,8 +620,10 @@ function SymptomChatContent() {
 
 export default function SymptomChatPage() {
   return (
-    <PhaseProvider defaultPhase="discovery">
-      <SymptomChatContent />
-    </PhaseProvider>
+    <Suspense>
+      <PhaseProvider defaultPhase="discovery">
+        <SymptomChatContent />
+      </PhaseProvider>
+    </Suspense>
   );
 }

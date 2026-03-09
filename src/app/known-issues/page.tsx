@@ -1,15 +1,16 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getAllKnownIssueSlugs, getKnownIssuesForArticle, getYearRange } from '@/lib/known-issues';
 
 export const metadata: Metadata = {
   title: 'Known Vehicle Issues & Problems | Au7o',
   description:
-    'Browse 1,600+ documented vehicle problems across 20 makes and 386 models. Symptoms, repair costs, and solutions from real owner reports.',
+    'Browse 1,900+ documented vehicle problems across 20 makes and 490+ models. Symptoms, repair costs, and solutions from real owner reports.',
   openGraph: {
     title: 'Known Vehicle Issues & Problems | Au7o',
     description:
-      'Browse 1,600+ documented vehicle problems across 20 makes and 386 models.',
+      'Browse 1,900+ documented vehicle problems across 20 makes and 490+ models.',
     url: 'https://au7o.io/known-issues',
     siteName: 'Au7o',
   },
@@ -67,6 +68,32 @@ export default function KnownIssuesIndexPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="px-6 py-4 border-b border-gray-100">
+        <div className="max-w-5xl mx-auto flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/og-image.png"
+              alt="Au7o mascot"
+              width={32}
+              height={32}
+              className="rounded-lg"
+            />
+            <span className="text-2xl font-bold text-gray-900 tracking-tight">
+              Au<span className="text-blue-600">7</span>o
+            </span>
+          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/get-started"
+              className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+            >
+              Get Started
+            </Link>
+          </div>
+        </div>
+      </header>
+
       <article className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
         <nav className="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">

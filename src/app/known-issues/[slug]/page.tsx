@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   parseSlug,
   getAllKnownIssueSlugs,
@@ -9,6 +10,7 @@ import {
 } from '@/lib/known-issues';
 import { categoryConfig } from '@/lib/issue-categories';
 import { ArticleIssuesList } from '@/components/known-issues/ArticleIssuesList';
+import { VehicleChatLink } from '@/components/known-issues/VehicleChatLink';
 import { TechnicalArticleJsonLd, FAQJsonLd } from '@/components/seo/JsonLd';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 
@@ -163,6 +165,38 @@ export default async function KnownIssuesArticlePage({
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="px-6 py-4 border-b border-gray-100">
+        <div className="max-w-5xl mx-auto flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/og-image.png"
+              alt="Au7o mascot"
+              width={32}
+              height={32}
+              className="rounded-lg"
+            />
+            <span className="text-2xl font-bold text-gray-900 tracking-tight">
+              Au<span className="text-blue-600">7</span>o
+            </span>
+          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/known-issues"
+              className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              Known Issues
+            </Link>
+            <Link
+              href="/get-started"
+              className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+            >
+              Get Started
+            </Link>
+          </div>
+        </div>
+      </header>
+
       {/* JSON-LD Structured Data */}
       <TechnicalArticleJsonLd
         title={title}
@@ -242,6 +276,25 @@ export default async function KnownIssuesArticlePage({
             <div className="text-2xl font-bold text-gray-700">{lowCount}</div>
             <div className="text-xs text-gray-600 font-medium">Minor</div>
           </div>
+        </div>
+
+        {/* Quick action — Chat with AI (visible near top) */}
+        <div className="flex items-center gap-3 mb-8 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl">
+          <div className="flex-1">
+            <p className="text-sm font-medium text-gray-900">Have a specific problem with your {vehicleName}?</p>
+            <p className="text-xs text-gray-500 mt-0.5">Describe your symptoms and get an AI-powered diagnosis.</p>
+          </div>
+          <VehicleChatLink
+            make={make}
+            model={model}
+            issues={issues}
+            className="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-4 py-2.5 rounded-lg hover:bg-blue-700 transition-colors text-sm whitespace-nowrap"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            Chat with AI
+          </VehicleChatLink>
         </div>
 
         {/* Mobile-only Table of Contents (hidden on lg+) */}
@@ -333,6 +386,38 @@ export default async function KnownIssuesArticlePage({
               </h2>
               <ArticleIssuesList issues={issues} make={make} model={model} />
             </section>
+
+            {/* Fallthrough CTA — user doesn't see their issue */}
+            <div className="mt-8 bg-blue-50 border border-blue-200 rounded-xl p-5 sm:p-6 text-center">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Don&apos;t see your problem?
+              </h3>
+              <p className="text-gray-600 text-sm mb-4 max-w-md mx-auto">
+                Describe your symptoms to our AI and get a diagnosis with step-by-step repair guidance for your {vehicleName}.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <VehicleChatLink
+                  make={make}
+                  model={model}
+                  issues={issues}
+                  className="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                  Chat with Our AI
+                </VehicleChatLink>
+                <Link
+                  href="/get-started"
+                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium text-sm"
+                >
+                  or get a full repair guide
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
 
             {/* FAQ Section */}
             <section id="faq" className="mt-12 scroll-mt-16">

@@ -63,7 +63,7 @@ export function ArticleIssuesList({ issues, make, model }: ArticleIssuesListProp
                 category={category}
                 issues={catIssues}
                 defaultExpanded={true}
-                defaultCardExpanded={true}
+                defaultCardExpanded={false}
                 vehicleInfo={vehicleInfo}
               />
             </div>
