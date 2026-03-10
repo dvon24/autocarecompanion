@@ -248,7 +248,7 @@ function getPartSearchUrls(part: Part, vehicle: { year: number; make: string; mo
     },
     {
       name: 'Amazon',
-      url: `https://www.amazon.com/s?k=${encodedQuery}`,
+      url: `https://www.amazon.com/s?k=${encodedQuery}&tag=au7o-20`,
       color: 'bg-orange-500 hover:bg-orange-600',
       region: 'Global',
     },
@@ -294,7 +294,7 @@ function getToolSearchUrls(tool: Tool): {
   return [
     {
       name: 'Amazon',
-      url: `https://www.amazon.com/s?k=${encodedQuery}`,
+      url: `https://www.amazon.com/s?k=${encodedQuery}&tag=au7o-20`,
       color: 'bg-orange-500 hover:bg-orange-600',
     },
     {

@@ -20,6 +20,7 @@ export const communityRecommendationSchema = z.object({
   partNumber: z.string().optional(),
   upvotes: z.number().default(0),
   needsReview: z.boolean().optional(),
+  affiliateUrl: z.string().url().optional(),
   affiliateLink: z.string().url().optional(),
   amazonLink: z.string().url().optional(),
 });

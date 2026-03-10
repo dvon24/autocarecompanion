@@ -228,40 +228,33 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                       <span className="flex-1">
                         {rec.content}
                         {rec.partBrand && (rec.partNumber || rec.partName) && (
-                          <span className="font-medium text-purple-700">
-                            {' '}({rec.partBrand} {rec.partNumber ? `#${rec.partNumber}` : rec.partName})
-                          </span>
+                          rec.affiliateUrl ? (
+                            <a
+                              href={rec.affiliateUrl}
+                              target="_blank"
+                              rel="noopener noreferrer sponsored"
+                              className="font-medium text-purple-700 hover:text-purple-900 underline decoration-purple-300 hover:decoration-purple-500 transition-colors"
+                            >
+                              {' '}({rec.partBrand} {rec.partNumber ? `#${rec.partNumber}` : rec.partName})
+                            </a>
+                          ) : (
+                            <span className="font-medium text-purple-700">
+                              {' '}({rec.partBrand} {rec.partNumber ? `#${rec.partNumber}` : rec.partName})
+                            </span>
+                          )
                         )}
                       </span>
                     </div>
                     {/* Affiliate links for parts */}
-                    {rec.type === 'part' && (rec.affiliateLink || rec.amazonLink) && (
+                    {rec.affiliateUrl && (
                       <div className="ml-6 mt-1">
                         <a
-                          href={rec.affiliateLink || rec.amazonLink}
+                          href={rec.affiliateUrl}
                           target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={async () => {
-                            // Track click for affiliate metrics
-                            try {
-                              await fetch('/api/admin/affiliates/track', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
-                                  issueId: issue.id,
-                                  recommendationIndex: index,
-                                  link: rec.affiliateLink || rec.amazonLink,
-                                  partBrand: rec.partBrand,
-                                  partName: rec.partName || rec.partNumber
-                                })
-                              });
-                            } catch (e) {
-                              console.error('Failed to track affiliate click:', e);
-                            }
-                          }}
+                          rel="noopener noreferrer sponsored"
                           className="inline-flex items-center gap-1 text-xs bg-purple-600 text-white px-2 py-1 rounded-md hover:bg-purple-700 transition-colors"
                         >
-                          🛒 View on Amazon
+                          View on Amazon
                           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>

@@ -191,7 +191,7 @@ Create a comprehensive repair guide in the following JSON format. Be SPECIFIC to
 PART NUMBER GUIDELINES:
 - ALWAYS include OEM part numbers for common parts (oil filters, air filters, spark plugs, brake pads, etc.)
 - Use the correct part number for this exact year/make/model/trim
-- In "notes", include compatible aftermarket brands and any fitment notes
+- In "notes", include compatible aftermarket brands, fitment notes, and an Amazon search link in the format: https://www.amazon.com/s?k=BRAND+PART_NUMBER&tag=au7o-20 (e.g., https://www.amazon.com/s?k=Mobil+1+120764&tag=au7o-20)
 - Price ranges should be rough estimates
 - For engine oil: the "name" MUST include the exact weight/viscosity AND total capacity, e.g. "Mobil 1 5W-30 Full Synthetic (10.0 quarts)" NOT just "Engine Oil (Full Synthetic)"
 - For engine oil: use a real product name as "partNumber" (e.g., "Mobil 1 120764" or "Castrol Edge 5W-30"), NOT "N/A"

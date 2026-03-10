@@ -7,6 +7,7 @@ import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { SessionProvider } from "@/components/auth/SessionProvider";
 import { AdSenseScript } from "@/components/ads/AdSenseScript";
 import { OrganizationJsonLd, WebSiteJsonLd, SoftwareApplicationJsonLd } from "@/components/seo/JsonLd";
+import { GoogleTranslate } from "@/components/shared/GoogleTranslate";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -90,6 +91,7 @@ export default function RootLayout({
       >
         <GoogleAnalytics />
         <AdSenseScript />
+        <GoogleTranslate />
         <SessionProvider>
           <AppProvider>
             <OfflineIndicator position="top" showFeatures />
