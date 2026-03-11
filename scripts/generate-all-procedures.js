@@ -1190,6 +1190,74 @@ function generateEVBatteryCheck(genData, make, model, genKey) {
   };
 }
 
+// ─── Bulb Replacement ─────────────────────────────────────────────────
+
+function generateBulbReplacement(genData, make, model, genKey) {
+  const bulbs = genData.bulbs;
+  if (!bulbs) return null;
+
+  const isAllLED = bulbs.headlightLow === 'LED Module' && bulbs.headlightHigh === 'LED Module';
+  const german = isGerman(make);
+
+  const stepHints = [];
+  stepHints.push('Identify which bulb needs replacement — check all exterior lights with the vehicle running and someone outside to confirm');
+
+  if (isAllLED) {
+    stepHints.push('This vehicle uses LED modules for headlights — these are not user-serviceable bulbs. If an LED headlight fails, the entire module or assembly must be replaced by a dealer or specialist');
+  } else {
+    stepHints.push(`Low beam bulb: ${bulbs.headlightLow}. High beam bulb: ${bulbs.headlightHigh || bulbs.headlightLow}. Access from behind the headlight housing in the engine bay`);
+    stepHints.push('Turn the bulb socket counterclockwise to remove it from the housing. Pull the old bulb straight out of the socket');
+    stepHints.push('Do NOT touch the glass of halogen bulbs with bare fingers — skin oils cause hot spots and premature failure. Use gloves or a clean cloth');
+    stepHints.push('Insert the new bulb into the socket, align the tabs, and twist clockwise to lock into the housing');
+  }
+
+  if (bulbs.fogLight && bulbs.fogLight !== 'LED Module') {
+    stepHints.push(`Fog light bulb: ${bulbs.fogLight}. Access from underneath the bumper or through the wheel well liner — may need to remove fasteners`);
+  }
+
+  if (bulbs.taillight && bulbs.taillight !== 'LED Module') {
+    stepHints.push(`Tail/brake light bulb: ${bulbs.taillight || bulbs.brakeLight}. Remove the tail light assembly from inside the trunk/hatch (2-3 nuts or plastic fasteners)`);
+  } else {
+    stepHints.push('Tail lights use LED modules — if one fails, the entire tail light assembly must be replaced');
+  }
+
+  if (bulbs.frontTurnSignal && bulbs.frontTurnSignal !== 'LED Module') {
+    stepHints.push(`Turn signal bulbs: Front ${bulbs.frontTurnSignal}, Rear ${bulbs.rearTurnSignal || bulbs.frontTurnSignal}. If turn signals flash rapidly (hyperflash), a bulb is burnt out`);
+  }
+
+  if (bulbs.reverseLight) {
+    stepHints.push(`Reverse light: ${bulbs.reverseLight}. License plate light: ${bulbs.licensePlate || '194/168'}. Access through the trunk or hatch interior`);
+  }
+
+  stepHints.push('After replacement, test all lights: low beam, high beam, turn signals (both sides), brake lights, reverse, fog lights, and running lights');
+
+  if (bulbs.notes) {
+    stepHints.push(`Note: ${bulbs.notes}`);
+  }
+
+  const specialTools = ['Gloves (nitrile or cotton — do not touch halogen bulbs with bare skin)'];
+  if (german) {
+    specialTools.push('T20 or T25 Torx bit (for headlight housing access on some German vehicles)');
+  }
+  specialTools.push('Flat-head screwdriver or trim removal tool (for accessing some housings)');
+  specialTools.push('Flashlight (to see inside the headlight housing area)');
+
+  const commonMistakes = [
+    'Touching halogen bulb glass with bare fingers — causes premature failure from oil deposits',
+    'Forcing the bulb socket — if it does not turn easily, check alignment of the tabs',
+    'Not testing all lights after replacement — always verify both sides and all functions',
+    'Buying the wrong bulb size — double-check the owner\'s manual or the old bulb before purchasing',
+  ];
+
+  if (isAllLED) {
+    commonMistakes.push('Attempting to replace individual LEDs in an LED module — the entire unit must be replaced as an assembly');
+  } else {
+    commonMistakes.push('Mixing halogen and LED bulbs without proper resistors — causes hyperflash on turn signals and may trigger warnings');
+  }
+
+  return { stepHints, specialTools, commonMistakes, verified: false };
+}
+
 // ────────────────────────────────────────────────────────────────────────
 // Main
 // ────────────────────────────────────────────────────────────────────────
@@ -1214,6 +1282,7 @@ const generators = {
   power_steering_fluid: generatePowerSteeringFluid,
   timing_belt: generateTimingBelt,
   ev_battery_check: generateEVBatteryCheck,
+  bulb_replacement: generateBulbReplacement,
 };
 
 const stats = { total: 0, generated: {}, preserved: 0, skipped: 0, entries: 0 };

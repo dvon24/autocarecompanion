@@ -79,6 +79,20 @@ export interface ProcedureHints {
   verified?: boolean;
 }
 
+export interface BulbSpecs {
+  headlightLow?: string;
+  headlightHigh?: string;
+  frontTurnSignal?: string;
+  rearTurnSignal?: string;
+  taillight?: string;
+  brakeLight?: string;
+  fogLight?: string;
+  reverseLight?: string;
+  licensePlate?: string;
+  drl?: string;
+  notes?: string;
+}
+
 export interface VehicleSpecs {
   engine: string;
   oil?: OilSpecs;
@@ -94,6 +108,7 @@ export interface VehicleSpecs {
   transferCase?: TransferCaseSpecs;
   supercharger?: SuperchargerSpecs;
   jackPoints?: JackPointSpecs;
+  bulbs?: BulbSpecs;
   safety?: string[];
   procedures?: Record<string, ProcedureHints>;
 }
@@ -154,6 +169,18 @@ export const MAINTENANCE_SPECS_MAP: Record<string, (specs: VehicleSpecs) => Reco
   transfer_case_fluid: (s) => {
     if (!s.transferCase) return null;
     return { 'Fluid': s.transferCase.fluidType, 'Capacity': s.transferCase.capacity };
+  },
+  bulb_replacement: (s) => {
+    if (!s.bulbs) return null;
+    const r: Record<string, string> = {};
+    if (s.bulbs.headlightLow) r['Low Beam'] = s.bulbs.headlightLow;
+    if (s.bulbs.headlightHigh) r['High Beam'] = s.bulbs.headlightHigh;
+    if (s.bulbs.fogLight) r['Fog Light'] = s.bulbs.fogLight;
+    if (s.bulbs.taillight) r['Tail Light'] = s.bulbs.taillight;
+    if (s.bulbs.brakeLight) r['Brake Light'] = s.bulbs.brakeLight;
+    if (s.bulbs.frontTurnSignal) r['Front Turn'] = s.bulbs.frontTurnSignal;
+    if (s.bulbs.rearTurnSignal) r['Rear Turn'] = s.bulbs.rearTurnSignal;
+    return r;
   },
 };
 
@@ -459,6 +486,15 @@ export const MAINTENANCE_SCHEDULES: Record<string, MaintenanceType> = {
     icon: 'battery-full',
     category: 'major',
   },
+  bulb_replacement: {
+    id: 'bulb_replacement',
+    name: 'Light Bulb Replacement',
+    description: 'Replace headlights, taillights, turn signals, or fog lights',
+    defaultIntervalMiles: 50000,
+    defaultIntervalMonths: 36,
+    icon: 'lightbulb',
+    category: 'routine',
+  },
 };
 
 /**
@@ -495,6 +531,7 @@ const DEFAULT_COSTS: Record<string, number> = {
   serpentine_belt: 150,
   battery: 200,
   ev_battery_check: 0,
+  bulb_replacement: 25,
 };
 
 // ICE-only types that should be hidden for EVs
