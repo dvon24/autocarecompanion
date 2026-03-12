@@ -389,6 +389,8 @@ function SymptomChatContent() {
                             "Brake pad replacement",
                             "Air filter replacement",
                             "Tire rotation",
+                            "Light bulb replacement",
+                            "Cabin air filter",
                           ].map((task) => (
                             <button
                               key={task}
@@ -439,6 +441,7 @@ function SymptomChatContent() {
                             "Engine runs rough",
                             "Check engine light on",
                             "Car won't start",
+                            "Help me find a part",
                           ].map((suggestion) => (
                             <button
                               key={suggestion}

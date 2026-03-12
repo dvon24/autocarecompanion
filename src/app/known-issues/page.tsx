@@ -6,11 +6,11 @@ import { getAllKnownIssueSlugs, getKnownIssuesForArticle, getYearRange } from '@
 export const metadata: Metadata = {
   title: 'Known Vehicle Issues & Problems | Au7o',
   description:
-    'Browse 1,900+ documented vehicle problems across 20 makes and 490+ models. Symptoms, repair costs, and solutions from real owner reports.',
+    'Browse 2,000+ documented vehicle problems across 20 makes and 490+ models. Symptoms, repair costs, and solutions from real owner reports.',
   openGraph: {
     title: 'Known Vehicle Issues & Problems | Au7o',
     description:
-      'Browse 1,900+ documented vehicle problems across 20 makes and 490+ models.',
+      'Browse 2,000+ documented vehicle problems across 20 makes and 490+ models.',
     url: 'https://au7o.io/known-issues',
     siteName: 'Au7o',
   },
