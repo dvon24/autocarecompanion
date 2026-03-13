@@ -96,7 +96,7 @@ export default function LandingPage() {
                 <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
-                2,000+ Issues
+                2,200+ Issues
               </span>
               <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-gray-100 rounded-full text-sm text-gray-600 font-medium shadow-sm">
                 <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
@@ -125,7 +125,7 @@ export default function LandingPage() {
           {/* Subheadline */}
           <ScrollReveal delay={400} duration={1000} distance={30}>
             <p className="text-lg sm:text-xl text-gray-500 text-center max-w-2xl mb-8 leading-relaxed">
-              2,000+ documented problems across 490+ models. Symptoms, repair costs, and real solutions — before you get to the shop.
+              2,200+ documented problems across 490+ models. Symptoms, repair costs, and real solutions — before you get to the shop.
             </p>
           </ScrollReveal>
 
