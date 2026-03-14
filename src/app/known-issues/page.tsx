@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getAllKnownIssueSlugs, getKnownIssuesForArticle, getYearRange } from '@/lib/known-issues';
 import { getAllDTCSlugs, getDTCInfo } from '@/lib/dtc-codes';
+import { CollapsibleMakeDirectory } from '@/components/known-issues/CollapsibleMakeDirectory';
 
 export const metadata: Metadata = {
   title: 'Known Vehicle Issues & Problems | Au7o',
@@ -146,87 +147,53 @@ export default function KnownIssuesIndexPage() {
           </div>
         </nav>
 
+        {/* Vehicle directory by make */}
+        <div className="space-y-3">
+          {directory.map(({ make, vehicles, totalIssues: makeTotal }) => (
+            <CollapsibleMakeDirectory
+              key={make}
+              make={make}
+              vehicles={vehicles}
+              totalIssues={makeTotal}
+            />
+          ))}
+        </div>
+
         {/* Common DTC Codes Section */}
-        <section className="mb-10 bg-gray-50 border border-gray-200 rounded-xl p-5 sm:p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-2">Common OBD-II Error Codes</h2>
-          <p className="text-gray-500 text-sm mb-4">
+        <section className="mt-12 mb-10">
+          <h3 className="text-lg font-semibold text-gray-700 mb-2">Common OBD-II Error Codes</h3>
+          <p className="text-gray-400 text-sm mb-4">
             Pulled a code with your scanner? Find out what it means and which vehicles are affected.
           </p>
           <div className="flex flex-wrap gap-2">
-            {getAllDTCSlugs().slice(0, 30).map(({ code }) => {
+            {getAllDTCSlugs().slice(0, 15).map(({ code }) => {
               const info = getDTCInfo(code);
               return (
                 <Link
                   key={code}
                   href={`/known-issues/dtc/${code}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-sm hover:border-blue-300 hover:bg-blue-50 transition-colors group"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gray-50 border border-gray-200 rounded-lg text-sm hover:border-blue-300 hover:bg-blue-50 transition-colors group"
                 >
-                  <span className="font-mono font-bold text-gray-900 group-hover:text-blue-700">{code.toUpperCase()}</span>
+                  <span className="font-mono font-bold text-gray-700 group-hover:text-blue-700 text-xs">{code.toUpperCase()}</span>
                   {info && (
-                    <span className="text-gray-400 text-xs hidden sm:inline truncate max-w-[180px]">{info.name}</span>
+                    <span className="text-gray-400 text-xs hidden sm:inline truncate max-w-[160px]">{info.name}</span>
                   )}
                 </Link>
               );
             })}
-            {getAllDTCSlugs().length > 30 && (
-              <span className="inline-flex items-center px-3 py-1.5 text-sm text-gray-400">
-                +{getAllDTCSlugs().length - 30} more codes
-              </span>
-            )}
           </div>
-        </section>
-
-        {/* Vehicle directory by make */}
-        <div className="space-y-10">
-          {directory.map(({ make, vehicles, totalIssues: makeTotal }) => (
-            <section
-              key={make}
-              id={make.toLowerCase().replace(/\s+/g, '-')}
-              className="scroll-mt-16"
+          {getAllDTCSlugs().length > 15 && (
+            <Link
+              href="/known-issues/dtc/p0300"
+              className="inline-flex items-center gap-1 mt-3 text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors"
             >
-              <div className="flex items-baseline gap-3 mb-4 border-b border-gray-200 pb-2">
-                <h2 className="text-xl font-bold text-gray-900">{make}</h2>
-                <span className="text-sm text-gray-400">
-                  {vehicles.length} models &middot; {makeTotal} issues
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {vehicles.map((vehicle) => (
-                  <Link
-                    key={vehicle.slug}
-                    href={`/known-issues/${vehicle.slug}`}
-                    className="group flex items-center justify-between p-3 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 transition-colors"
-                  >
-                    <div className="min-w-0">
-                      <div className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors truncate">
-                        {vehicle.model}
-                      </div>
-                      {vehicle.yearRange && (
-                        <div className="text-xs text-gray-400">
-                          {vehicle.yearRange.min}-{vehicle.yearRange.max}
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-2 flex-shrink-0 ml-2">
-                      {vehicle.highCount > 0 && (
-                        <span className="text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded-full">
-                          {vehicle.highCount} critical
-                        </span>
-                      )}
-                      <span className="text-sm text-gray-400">
-                        {vehicle.issueCount}
-                      </span>
-                      <svg className="w-4 h-4 text-gray-300 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
+              Browse all error codes
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          )}
+        </section>
 
         {/* CTA */}
         <section className="mt-16 bg-gray-900 text-white rounded-xl p-6 sm:p-8 text-center">

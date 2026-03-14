@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getAllDTCSlugs, getDTCWithIssues } from '@/lib/dtc-codes';
 import { TechnicalArticleJsonLd, FAQJsonLd } from '@/components/seo/JsonLd';
+import { CollapsibleMakeSection } from '@/components/known-issues/CollapsibleMakeSection';
 
 // --- Static generation ---
 
@@ -253,59 +254,14 @@ export default async function DTCCodePage({
             </div>
           </nav>
 
-          <div className="space-y-8">
+          <div className="space-y-3">
             {sortedMakes.map(([make, issues]) => (
-              <div
+              <CollapsibleMakeSection
                 key={make}
-                id={`dtc-${make.toLowerCase().replace(/\s+/g, '-')}`}
-                className="scroll-mt-16"
-              >
-                <h3 className="text-lg font-bold text-gray-900 mb-3 border-b border-gray-200 pb-2">
-                  {make}
-                </h3>
-                <div className="space-y-3">
-                  {issues.map((issue) => {
-                    const yearRange = issue.vehicleMatch.years;
-                    const minYear = Math.min(...yearRange);
-                    const maxYear = Math.max(...yearRange);
-                    const issueSeverityColor = issue.severity === 'high'
-                      ? 'bg-red-100 text-red-700'
-                      : issue.severity === 'medium'
-                      ? 'bg-yellow-100 text-yellow-700'
-                      : 'bg-gray-100 text-gray-700';
-
-                    return (
-                      <Link
-                        key={issue.id}
-                        href={`/known-issues/${issue.slug}`}
-                        className="group flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 transition-colors"
-                      >
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center gap-2 mb-1 flex-wrap">
-                            <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
-                              {issue.vehicleMatch.model}
-                            </span>
-                            <span className={`text-xs font-medium px-1.5 py-0.5 rounded ${issueSeverityColor}`}>
-                              {issue.severity === 'high' ? 'Critical' : issue.severity === 'medium' ? 'Moderate' : 'Minor'}
-                            </span>
-                          </div>
-                          <p className="text-sm text-gray-600 truncate">{issue.title}</p>
-                          <div className="flex items-center gap-3 mt-1 text-xs text-gray-400">
-                            <span>{minYear === maxYear ? minYear : `${minYear}-${maxYear}`}</span>
-                            {issue.estimatedCost && (
-                              <span>${issue.estimatedCost.low.toLocaleString()}-${issue.estimatedCost.high.toLocaleString()}</span>
-                            )}
-                            <span>{issue.reportCount.toLocaleString()} reports</span>
-                          </div>
-                        </div>
-                        <svg className="w-5 h-5 text-gray-300 group-hover:text-blue-500 transition-colors flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
+                make={make}
+                issues={issues}
+                dtcCode={data.code}
+              />
             ))}
           </div>
         </section>

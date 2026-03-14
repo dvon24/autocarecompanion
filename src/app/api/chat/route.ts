@@ -79,7 +79,13 @@ ALT3_CONFIDENCE: [high/medium/low]
 ALT3_DESCRIPTION: [Brief explanation]
 
 Include up to 3 alternative diagnoses if applicable (fewer if the primary diagnosis is very certain).
-Otherwise, continue the conversation naturally to gather more information.`;
+Otherwise, continue the conversation naturally to gather more information.
+
+DTC Code Awareness:
+- If the user mentions an OBD-II diagnostic trouble code (P0xxx, B0xxx, C0xxx, U0xxx format), explain what the code means in plain language.
+- Direct them to the Au7o DTC reference page for that code: https://au7o.io/known-issues/dtc/CODE (lowercase, e.g., https://au7o.io/known-issues/dtc/p0300).
+- If you know their vehicle (from the context above), mention any vehicle-specific causes that are common for that code on their ${vehicle.year} ${vehicle.make} ${vehicle.model}.
+- Common codes to be aware of: P0300-P0312 (misfires), P0171/P0174 (lean), P0420/P0430 (catalytic converter), P0442/P0456 (EVAP leaks), P0128 (thermostat), P0507 (idle control).`;
 }
 
 /**

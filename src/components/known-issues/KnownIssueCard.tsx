@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 import { ConfidenceBadge } from './ConfidenceBadge';
 import { ReportIssueModal } from './ReportIssueModal';
@@ -27,6 +27,13 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   const [expanded, setExpanded] = useState(defaultExpanded);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showFixModal, setShowFixModal] = useState(false);
+
+  // Auto-expand when navigating to this issue via hash anchor (e.g. from DTC page)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash === `#${issue.id}`) {
+      setExpanded(true);
+    }
+  }, [issue.id]);
 
   const severityConfig = {
     high: {
@@ -76,7 +83,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   };
 
   return (
-    <div className={`border rounded-lg overflow-hidden transition-all ${config.borderColor}`}>
+    <div id={issue.id} className={`border rounded-lg overflow-hidden transition-all scroll-mt-20 ${config.borderColor}`}>
       {/* User Fix Status Banner - shows when user has reported fixing this */}
       {userFix && (
         <div className={`px-4 py-2 flex items-center justify-between ${
@@ -159,6 +166,22 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
             {(!issue.vehicleMatch.trims || issue.vehicleMatch.trims.length === 0) && (
               <span className="text-xs text-gray-400">All trims</span>
             )}
+            {/* DTC codes in header */}
+            {(issue as any).dtcCodes && (issue as any).dtcCodes.length > 0 && (
+              <span className="inline-flex items-center gap-1 flex-wrap">
+                <span className="text-[10px] text-gray-400 font-medium">Error Codes:</span>
+                {(issue as any).dtcCodes.map((code: string) => (
+                  <Link
+                    key={code}
+                    href={`/known-issues/dtc/${code.toLowerCase()}`}
+                    className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-medium bg-gray-200/70 text-gray-600 rounded hover:bg-blue-100 hover:text-blue-700 transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {code}
+                  </Link>
+                ))}
+              </span>
+            )}
           </div>
         </div>
         <svg
@@ -191,25 +214,6 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               ))}
             </ul>
           </div>
-
-          {/* DTC Codes */}
-          {(issue as any).dtcCodes && (issue as any).dtcCodes.length > 0 && (
-            <div>
-              <h4 className="text-sm font-medium text-gray-900 mb-2">Related OBD-II Codes</h4>
-              <div className="flex flex-wrap gap-1.5">
-                {(issue as any).dtcCodes.map((code: string) => (
-                  <Link
-                    key={code}
-                    href={`/known-issues/dtc/${code.toLowerCase()}`}
-                    className="inline-flex items-center px-2 py-1 text-xs font-mono font-medium bg-gray-100 text-gray-700 rounded hover:bg-blue-100 hover:text-blue-700 transition-colors"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {code}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* Solution/Fix */}
           <div className="bg-green-50 border border-green-200 rounded-lg p-3">
