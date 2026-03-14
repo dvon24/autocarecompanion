@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
-import fs from 'fs';
-import path from 'path';
+import prisma from '@/lib/db';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -95,31 +94,29 @@ Return as JSON array of 5-10 highly specific recommendations.`,
       }
     }
 
-    // Update known-issues.json with new recommendations
-    const dataPath = path.join(process.cwd(), 'src', 'data', 'known-issues.json');
-    const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-
-    const issueIndex = data.issues.findIndex((i: any) => i.id === issueId);
-    if (issueIndex !== -1) {
-      // Replace community recommendations with researched ones
-      data.issues[issueIndex].communityRecommendations = recommendations.map(rec => ({
-        ...rec,
-        upvotes: 0,
-        clickCount: rec.amazonLink ? 0 : undefined,
-        // Don't mark as needing review since this is deep research
-        needsReview: false
-      }));
-
-      fs.writeFileSync(dataPath, JSON.stringify(data, null, 2), 'utf-8');
-
-      return NextResponse.json({
-        success: true,
-        recommendationsCount: recommendations.length,
-        issueId
-      });
+    // Update known issue in database with new recommendations
+    const issue = await prisma.knownIssue.findUnique({ where: { id: issueId } });
+    if (!issue) {
+      return NextResponse.json({ error: 'Issue not found' }, { status: 404 });
     }
 
-    return NextResponse.json({ error: 'Issue not found' }, { status: 404 });
+    const updatedRecs = recommendations.map(rec => ({
+      ...rec,
+      upvotes: 0,
+      clickCount: rec.amazonLink ? 0 : undefined,
+      needsReview: false,
+    }));
+
+    await prisma.knownIssue.update({
+      where: { id: issueId },
+      data: { communityRecommendations: updatedRecs },
+    });
+
+    return NextResponse.json({
+      success: true,
+      recommendationsCount: recommendations.length,
+      issueId,
+    });
   } catch (error) {
     console.error('Error researching recommendations:', error);
     return NextResponse.json(

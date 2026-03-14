@@ -1,53 +1,43 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import prisma from '@/lib/db';
 
 export async function POST(request: Request) {
   try {
     const { issueId, recommendationIndex, link, partBrand, partName } = await request.json();
 
-    // Update click count in known-issues.json
-    const dataPath = path.join(process.cwd(), 'src', 'data', 'known-issues.json');
-    const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+    // Record click in AffiliateClick table
+    await prisma.affiliateClick.create({
+      data: {
+        knownIssueId: issueId,
+        recommendationIdx: recommendationIndex,
+        partBrand,
+        partName,
+        link,
+      },
+    });
 
-    const issueIndex = data.issues.findIndex((i: any) => i.id === issueId);
-    if (issueIndex !== -1) {
-      const recommendations = data.issues[issueIndex].communityRecommendations;
-      if (recommendations && recommendations[recommendationIndex]) {
-        // Increment click count
-        if (recommendations[recommendationIndex].clickCount === undefined) {
-          recommendations[recommendationIndex].clickCount = 0;
-        }
-        recommendations[recommendationIndex].clickCount++;
+    // Update clickCount in the communityRecommendations JSON
+    const issue = await prisma.knownIssue.findUnique({ where: { id: issueId } });
+    if (!issue) {
+      return NextResponse.json({ error: 'Issue not found' }, { status: 404 });
+    }
 
-        // Save updated data
-        fs.writeFileSync(dataPath, JSON.stringify(data, null, 2), 'utf-8');
-
-        // Also log to affiliate tracking file for analytics
-        const logPath = path.join(process.cwd(), 'data', 'affiliate-clicks.log');
-        const logEntry = {
-          timestamp: new Date().toISOString(),
-          issueId,
-          partBrand,
-          partName,
-          link,
-          clickCount: recommendations[recommendationIndex].clickCount
-        };
-
-        // Ensure data directory exists
-        const dataDir = path.join(process.cwd(), 'data');
-        if (!fs.existsSync(dataDir)) {
-          fs.mkdirSync(dataDir, { recursive: true });
-        }
-
-        // Append to log file
-        fs.appendFileSync(logPath, JSON.stringify(logEntry) + '\n', 'utf-8');
-
-        return NextResponse.json({
-          success: true,
-          clickCount: recommendations[recommendationIndex].clickCount
-        });
+    const recs = issue.communityRecommendations as any[];
+    if (recs && recs[recommendationIndex]) {
+      if (recs[recommendationIndex].clickCount === undefined) {
+        recs[recommendationIndex].clickCount = 0;
       }
+      recs[recommendationIndex].clickCount++;
+
+      await prisma.knownIssue.update({
+        where: { id: issueId },
+        data: { communityRecommendations: recs },
+      });
+
+      return NextResponse.json({
+        success: true,
+        clickCount: recs[recommendationIndex].clickCount,
+      });
     }
 
     return NextResponse.json({ error: 'Recommendation not found' }, { status: 404 });
@@ -60,37 +50,30 @@ export async function POST(request: Request) {
   }
 }
 
-// GET endpoint to retrieve affiliate stats
 export async function GET() {
   try {
-    const logPath = path.join(process.cwd(), 'data', 'affiliate-clicks.log');
-
-    if (!fs.existsSync(logPath)) {
-      return NextResponse.json({ clicks: [], totalClicks: 0 });
-    }
-
-    const logContent = fs.readFileSync(logPath, 'utf-8');
-    const clicks = logContent
-      .split('\n')
-      .filter(line => line.trim())
-      .map(line => JSON.parse(line));
+    const clicks = await prisma.affiliateClick.findMany({
+      orderBy: { clickedAt: 'desc' },
+      take: 1000,
+    });
 
     // Aggregate stats
     const partStats: Record<string, { brand: string; name: string; clicks: number; lastClicked: string }> = {};
 
     clicks.forEach(click => {
-      const key = `${click.partBrand}-${click.partName}`;
+      const key = `${click.partBrand || 'unknown'}-${click.partName || 'unknown'}`;
       if (!partStats[key]) {
         partStats[key] = {
-          brand: click.partBrand,
-          name: click.partName,
+          brand: click.partBrand || 'unknown',
+          name: click.partName || 'unknown',
           clicks: 0,
-          lastClicked: click.timestamp
+          lastClicked: click.clickedAt.toISOString(),
         };
       }
       partStats[key].clicks++;
-      if (click.timestamp > partStats[key].lastClicked) {
-        partStats[key].lastClicked = click.timestamp;
+      const ts = click.clickedAt.toISOString();
+      if (ts > partStats[key].lastClicked) {
+        partStats[key].lastClicked = ts;
       }
     });
 
@@ -102,7 +85,13 @@ export async function GET() {
       totalClicks: clicks.length,
       uniqueParts: Object.keys(partStats).length,
       topParts,
-      recentClicks: clicks.slice(-10).reverse()
+      recentClicks: clicks.slice(0, 10).map(c => ({
+        timestamp: c.clickedAt.toISOString(),
+        issueId: c.knownIssueId,
+        partBrand: c.partBrand,
+        partName: c.partName,
+        link: c.link,
+      })),
     });
   } catch (error) {
     console.error('Error fetching affiliate stats:', error);

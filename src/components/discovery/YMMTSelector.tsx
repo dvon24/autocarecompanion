@@ -263,6 +263,7 @@ export function YMMTSelector({ onComplete, variant = 'light' }: YMMTSelectorProp
           placeholder={selectedModel ? 'Select Trim' : 'Select Model first'}
           variant={variant}
         />
+      </div>
 
         {/* Continue Button */}
         <div className="pt-4">
@@ -289,14 +290,13 @@ export function YMMTSelector({ onComplete, variant = 'light' }: YMMTSelectorProp
 
         {/* Selection Preview */}
         {isComplete && (
-          <div className={`mt-4 p-4 rounded-lg border ${isLight ? 'bg-blue-50 border-blue-100' : 'bg-white/5 border-white/10'}`}>
-            <p className={`text-sm font-medium ${isLight ? 'text-gray-600' : 'text-white/60'}`}>Selected Vehicle:</p>
-            <p className={`text-lg mt-1 ${isLight ? 'text-gray-900' : 'text-white'}`}>
-              {selectedYear} {selectedMake} {selectedModel} {selectedTrim}
-            </p>
-          </div>
-        )}
-      </div>
+        <div className={`mt-4 p-4 rounded-lg border ${isLight ? 'bg-blue-50 border-blue-100' : 'bg-white/5 border-white/10'}`}>
+          <p className={`text-sm font-medium ${isLight ? 'text-gray-600' : 'text-white/60'}`}>Selected Vehicle:</p>
+          <p className={`text-lg mt-1 ${isLight ? 'text-gray-900' : 'text-white'}`}>
+            {selectedYear} {selectedMake} {selectedModel} {selectedTrim}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

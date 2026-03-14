@@ -1,9 +1,10 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getAllKnownIssueSlugs, getKnownIssuesForArticle, getYearRange } from '@/lib/known-issues';
+import { makeSlug } from '@/lib/known-issues';
 import { getAllDTCSlugs, getDTCInfo } from '@/lib/dtc-codes';
 import { CollapsibleMakeDirectory } from '@/components/known-issues/CollapsibleMakeDirectory';
+import prisma from '@/lib/db';
 
 export const metadata: Metadata = {
   title: 'Known Vehicle Issues & Problems | Au7o',
@@ -30,43 +31,65 @@ interface VehicleEntry {
   yearRange: { min: number; max: number } | null;
 }
 
-function buildDirectory() {
-  const slugs = getAllKnownIssueSlugs();
-  const grouped: Record<string, VehicleEntry[]> = {};
+async function buildDirectory() {
+  // Single query: aggregate all published issues by make+model
+  const rows = await prisma.knownIssue.findMany({
+    where: { status: 'published' },
+    select: { make: true, model: true, severity: true, years: true },
+  });
 
-  for (const { slug, make, model } of slugs) {
-    const issues = getKnownIssuesForArticle(make, model);
-    if (issues.length === 0) continue;
+  // Group by make+model
+  const vehicleMap: Record<string, { make: string; model: string; count: number; highCount: number; minYear: number; maxYear: number }> = {};
 
-    const entry: VehicleEntry = {
-      slug,
-      make,
-      model,
-      issueCount: issues.length,
-      highCount: issues.filter(i => i.severity === 'high').length,
-      yearRange: getYearRange(issues),
-    };
-
-    if (!grouped[make]) grouped[make] = [];
-    grouped[make].push(entry);
+  for (const row of rows) {
+    const key = `${row.make}|${row.model}`;
+    if (!vehicleMap[key]) {
+      vehicleMap[key] = { make: row.make, model: row.model, count: 0, highCount: 0, minYear: Infinity, maxYear: -Infinity };
+    }
+    vehicleMap[key].count++;
+    if (row.severity === 'high') vehicleMap[key].highCount++;
+    for (const y of row.years) {
+      if (y < vehicleMap[key].minYear) vehicleMap[key].minYear = y;
+      if (y > vehicleMap[key].maxYear) vehicleMap[key].maxYear = y;
+    }
   }
 
-  // Sort makes alphabetically, models by issue count descending
-  const sorted = Object.entries(grouped)
+  // Group by make
+  const grouped: Record<string, VehicleEntry[]> = {};
+  for (const v of Object.values(vehicleMap)) {
+    const entry: VehicleEntry = {
+      slug: makeSlug(v.make, v.model),
+      make: v.make,
+      model: v.model,
+      issueCount: v.count,
+      highCount: v.highCount,
+      yearRange: v.minYear === Infinity ? null : { min: v.minYear, max: v.maxYear },
+    };
+    if (!grouped[v.make]) grouped[v.make] = [];
+    grouped[v.make].push(entry);
+  }
+
+  return Object.entries(grouped)
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([make, vehicles]) => ({
       make,
       vehicles: vehicles.sort((a, b) => a.model.localeCompare(b.model)),
       totalIssues: vehicles.reduce((sum, v) => sum + v.issueCount, 0),
     }));
-
-  return sorted;
 }
 
-export default function KnownIssuesIndexPage() {
-  const directory = buildDirectory();
+export default async function KnownIssuesIndexPage() {
+  const directory = await buildDirectory();
   const totalVehicles = directory.reduce((sum, g) => sum + g.vehicles.length, 0);
   const totalIssues = directory.reduce((sum, g) => sum + g.totalIssues, 0);
+
+  // Pre-fetch DTC data for the bottom section
+  const allDtcSlugs = await getAllDTCSlugs();
+  const dtcSlice = allDtcSlugs.slice(0, 15);
+  const dtcInfoMap: Record<string, { name: string } | null> = {};
+  for (const { code } of dtcSlice) {
+    dtcInfoMap[code] = await getDTCInfo(code);
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -166,8 +189,8 @@ export default function KnownIssuesIndexPage() {
             Pulled a code with your scanner? Find out what it means and which vehicles are affected.
           </p>
           <div className="flex flex-wrap gap-2">
-            {getAllDTCSlugs().slice(0, 15).map(({ code }) => {
-              const info = getDTCInfo(code);
+            {dtcSlice.map(({ code }) => {
+              const info = dtcInfoMap[code];
               return (
                 <Link
                   key={code}
@@ -182,7 +205,7 @@ export default function KnownIssuesIndexPage() {
               );
             })}
           </div>
-          {getAllDTCSlugs().length > 15 && (
+          {allDtcSlugs.length > 15 && (
             <Link
               href="/known-issues/dtc/p0300"
               className="inline-flex items-center gap-1 mt-3 text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors"

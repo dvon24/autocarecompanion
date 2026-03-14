@@ -260,8 +260,9 @@ model UserIssueFix {
   userId        String
   vehicleId     String
 
-  // Link to the known issue (from static JSON by issue ID)
+  // Link to the known issue
   knownIssueId  String
+  knownIssue    KnownIssue? @relation(fields: [knownIssueId], references: [id], onDelete: SetNull)
 
   // Fix details
   status        String   // fixed, in_progress, wont_fix
@@ -322,4 +323,78 @@ model GuideCacheStats {
   savings  Float  @default(0)
 
   @@unique([date])
+}
+
+// ============================================
+// KNOWN ISSUES (migrated from static JSON)
+// ============================================
+
+model KnownIssue {
+  id                       String   @id  // e.g. "honda-civic-oil-dilution-2016"
+  make                     String
+  model                    String
+  years                    Int[]
+  trims                    String[]  @default([])
+  engines                  String[]  @default([])
+  category                 String
+  title                    String
+  description              String   @db.Text
+  solution                 String   @db.Text
+  severity                 String
+  confidence               String   @default("medium")
+  symptoms                 String[]  @default([])
+  affectedSystems          String[]  @default([])
+  dtcCodes                 String[]  @default([])
+  estimatedCostLow         Int?
+  estimatedCostHigh        Int?
+  citations                Json      @default("[]")
+  communityRecommendations Json      @default("[]")
+  humanApproved            Boolean   @default(false)
+  reportCount              Int       @default(0)
+  status                   String    @default("published")
+  lastReportedByOwners     String    @default("")
+  reviewedOn               String    @default("")
+  createdAt                DateTime  @default(now())
+  updatedAt                DateTime  @updatedAt
+
+  userFixes                UserIssueFix[]
+
+  @@index([make, model])
+  @@index([severity])
+  @@index([status])
+  @@index([category])
+}
+
+// ============================================
+// OBD-II DTC CODE REFERENCE
+// ============================================
+
+model DTCCode {
+  code         String   @id  // e.g. "P0300"
+  name         String
+  system       String
+  description  String   @db.Text
+  commonCauses String[]  @default([])
+  severity     String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([system])
+}
+
+// ============================================
+// AFFILIATE CLICK TRACKING
+// ============================================
+
+model AffiliateClick {
+  id                String   @id @default(cuid())
+  knownIssueId      String
+  recommendationIdx Int
+  partBrand         String?
+  partName          String?
+  link              String?
+  clickedAt         DateTime @default(now())
+
+  @@index([knownIssueId])
+  @@index([clickedAt])
 }

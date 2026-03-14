@@ -1,24 +1,24 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import prisma from '@/lib/db';
 
 export async function GET() {
   try {
-    const dataPath = path.join(process.cwd(), 'src', 'data', 'known-issues.json');
-    const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+    const issues = await prisma.knownIssue.findMany({
+      where: { status: 'published' },
+    });
 
-    // Find issues with recommendations needing review
-    const needsReview = data.issues
-      .filter((issue: any) =>
-        issue.communityRecommendations?.some((rec: any) => rec.needsReview === true)
-      )
-      .map((issue: any) => ({
+    const needsReview = issues
+      .filter(issue => {
+        const recs = issue.communityRecommendations as any[];
+        return recs?.some((r: any) => r.needsReview === true);
+      })
+      .map(issue => ({
         id: issue.id,
-        vehicle: `${issue.vehicleMatch.years[0]}-${issue.vehicleMatch.years[issue.vehicleMatch.years.length - 1]} ${issue.vehicleMatch.make} ${issue.vehicleMatch.model}`,
+        vehicle: `${issue.years[0]}-${issue.years[issue.years.length - 1]} ${issue.make} ${issue.model}`,
         title: issue.title,
         category: issue.category,
-        recommendations: issue.communityRecommendations.filter((rec: any) => rec.needsReview === true),
-        totalRecommendations: issue.communityRecommendations.length,
+        recommendations: (issue.communityRecommendations as any[]).filter((r: any) => r.needsReview === true),
+        totalRecommendations: (issue.communityRecommendations as any[]).length,
       }));
 
     return NextResponse.json({ issues: needsReview, total: needsReview.length });
@@ -32,25 +32,17 @@ export async function POST(request: Request) {
   try {
     const { issueId } = await request.json();
 
-    const dataPath = path.join(process.cwd(), 'src', 'data', 'known-issues.json');
-    const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-
-    // Find and update the issue
-    const issueIndex = data.issues.findIndex((i: any) => i.id === issueId);
-    if (issueIndex === -1) {
+    const issue = await prisma.knownIssue.findUnique({ where: { id: issueId } });
+    if (!issue) {
       return NextResponse.json({ error: 'Issue not found' }, { status: 404 });
     }
 
     // Remove needsReview flag from all recommendations
-    if (data.issues[issueIndex].communityRecommendations) {
-      data.issues[issueIndex].communityRecommendations = data.issues[issueIndex].communityRecommendations.map((rec: any) => {
-        const { needsReview, ...rest } = rec;
-        return rest;
-      });
-    }
-
-    // Write back to file
-    fs.writeFileSync(dataPath, JSON.stringify(data, null, 2), 'utf-8');
+    const recs = (issue.communityRecommendations as any[]).map(({ needsReview, ...rest }: any) => rest);
+    await prisma.knownIssue.update({
+      where: { id: issueId },
+      data: { communityRecommendations: recs },
+    });
 
     return NextResponse.json({ success: true, issueId });
   } catch (error) {

@@ -17,7 +17,8 @@ import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 // --- Static generation ---
 
 export async function generateStaticParams() {
-  return getAllKnownIssueSlugs().map(s => ({ slug: s.slug }));
+  const slugs = await getAllKnownIssueSlugs();
+  return slugs.map(s => ({ slug: s.slug }));
 }
 
 // --- Dynamic metadata ---
@@ -28,10 +29,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const parsed = parseSlug(slug);
+  const parsed = await parseSlug(slug);
   if (!parsed) return { title: 'Not Found' };
 
-  const issues = getKnownIssuesForArticle(parsed.make, parsed.model);
+  const issues = await getKnownIssuesForArticle(parsed.make, parsed.model);
   const yearRange = getYearRange(issues);
   const highCount = issues.filter(i => i.severity === 'high').length;
   const totalReports = issues.reduce((sum, i) => sum + i.reportCount, 0);
@@ -139,11 +140,11 @@ export default async function KnownIssuesArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const parsed = parseSlug(slug);
+  const parsed = await parseSlug(slug);
   if (!parsed) notFound();
 
   const { make, model } = parsed;
-  const issues = getKnownIssuesForArticle(make, model);
+  const issues = await getKnownIssuesForArticle(make, model);
   if (issues.length === 0) notFound();
 
   const yearRange = getYearRange(issues);

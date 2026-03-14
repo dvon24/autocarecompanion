@@ -9,7 +9,7 @@ import { CollapsibleMakeSection } from '@/components/known-issues/CollapsibleMak
 // --- Static generation ---
 
 export async function generateStaticParams() {
-  return getAllDTCSlugs();
+  return await getAllDTCSlugs();
 }
 
 // --- Dynamic metadata ---
@@ -20,7 +20,7 @@ export async function generateMetadata({
   params: Promise<{ code: string }>;
 }): Promise<Metadata> {
   const { code } = await params;
-  const data = getDTCWithIssues(code);
+  const data = await getDTCWithIssues(code);
   if (!data) return { title: 'Not Found' };
 
   const title = `${data.code}: ${data.name} | OBD-II Code Guide`;
@@ -51,7 +51,7 @@ export default async function DTCCodePage({
   params: Promise<{ code: string }>;
 }) {
   const { code } = await params;
-  const data = getDTCWithIssues(code);
+  const data = await getDTCWithIssues(code);
   if (!data) notFound();
 
   const articleUrl = `https://au7o.io/known-issues/dtc/${code.toLowerCase()}`;

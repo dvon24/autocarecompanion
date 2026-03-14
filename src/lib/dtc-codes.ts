@@ -1,7 +1,6 @@
-import dtcData from '@/data/dtc-codes.json';
-import knownIssuesData from '@/data/known-issues.json';
-import { normalizeIssue } from './known-issues';
+import prisma from '@/lib/db';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
+import { makeSlug } from './known-issues';
 
 export interface DTCCodeInfo {
   code: string;
@@ -18,25 +17,63 @@ export interface DTCWithIssues extends DTCCodeInfo {
   makes: string[];
 }
 
-const dtcRef = dtcData as Record<string, Omit<DTCCodeInfo, 'code'>>;
-
-function makeSlug(make: string, model: string): string {
-  return `${make} ${model}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+function dbRowToKnownIssue(row: any): KnownIssue {
+  return {
+    id: row.id,
+    vehicleMatch: {
+      years: row.years,
+      make: row.make,
+      model: row.model,
+      ...(row.trims.length > 0 ? { trims: row.trims } : {}),
+      ...(row.engines.length > 0 ? { engines: row.engines } : {}),
+    },
+    category: row.category,
+    title: row.title,
+    description: row.description,
+    solution: row.solution,
+    severity: row.severity,
+    confidence: row.confidence,
+    symptoms: row.symptoms,
+    affectedSystems: row.affectedSystems,
+    estimatedCost: row.estimatedCostLow != null
+      ? { low: row.estimatedCostLow, high: row.estimatedCostHigh }
+      : undefined,
+    citations: row.citations as any[],
+    communityRecommendations: row.communityRecommendations as any[],
+    humanApproved: row.humanApproved,
+    lastReportedByOwners: row.lastReportedByOwners,
+    reviewedOn: row.reviewedOn,
+    reportCount: row.reportCount,
+    status: row.status,
+    dtcCodes: row.dtcCodes,
+  } as KnownIssue;
 }
 
 /** Get info for a single DTC code. Returns null if code isn't in our reference. */
-export function getDTCInfo(code: string): DTCCodeInfo | null {
-  const upper = code.toUpperCase();
-  const info = dtcRef[upper];
-  if (!info) return null;
-  return { code: upper, ...info };
+export async function getDTCInfo(code: string): Promise<DTCCodeInfo | null> {
+  const row = await prisma.dTCCode.findUnique({
+    where: { code: code.toUpperCase() },
+  });
+  if (!row) return null;
+  return {
+    code: row.code,
+    name: row.name,
+    system: row.system,
+    description: row.description,
+    commonCauses: row.commonCauses,
+    severity: row.severity,
+  };
 }
 
 /** Get all DTC codes that appear in our known issues data. */
-export function getAllDTCCodes(): string[] {
+export async function getAllDTCCodes(): Promise<string[]> {
+  const rows = await prisma.knownIssue.findMany({
+    where: { status: 'published' },
+    select: { dtcCodes: true },
+  });
   const codes = new Set<string>();
-  for (const issue of (knownIssuesData.issues as any[])) {
-    for (const code of (issue.dtcCodes || [])) {
+  for (const row of rows) {
+    for (const code of row.dtcCodes) {
       codes.add(code.toUpperCase());
     }
   }
@@ -44,42 +81,49 @@ export function getAllDTCCodes(): string[] {
 }
 
 /** Get all DTC codes that have reference data (for static generation). */
-export function getAllDTCSlugs(): { code: string }[] {
-  const codesInIssues = getAllDTCCodes();
-  return codesInIssues
-    .filter(code => dtcRef[code])
-    .map(code => ({ code: code.toLowerCase() }));
+export async function getAllDTCSlugs(): Promise<{ code: string }[]> {
+  const codesInIssues = await getAllDTCCodes();
+
+  const existingDTCs = await prisma.dTCCode.findMany({
+    where: { code: { in: codesInIssues } },
+    select: { code: true },
+  });
+
+  return existingDTCs
+    .map(d => ({ code: d.code.toLowerCase() }))
+    .sort((a, b) => a.code.localeCompare(b.code));
 }
 
 /** Get full DTC data including all related vehicle issues. */
-export function getDTCWithIssues(code: string): DTCWithIssues | null {
+export async function getDTCWithIssues(code: string): Promise<DTCWithIssues | null> {
   const upper = code.toUpperCase();
-  const info = dtcRef[upper];
-  if (!info) return null;
+  const dtc = await prisma.dTCCode.findUnique({ where: { code: upper } });
+  if (!dtc) return null;
 
-  const matchingIssues: (KnownIssue & { slug: string })[] = [];
-  const makeSet = new Set<string>();
+  const rows = await prisma.knownIssue.findMany({
+    where: {
+      dtcCodes: { has: upper },
+      status: 'published',
+    },
+    orderBy: { reportCount: 'desc' },
+  });
 
-  for (const raw of (knownIssuesData.issues as any[])) {
-    if (!raw.dtcCodes || !raw.dtcCodes.includes(upper)) continue;
-    const issue = normalizeIssue(raw);
-    if (issue.status !== 'published') continue;
-    const make = issue.vehicleMatch.make;
-    const model = issue.vehicleMatch.model;
-    makeSet.add(make);
-    matchingIssues.push({ ...issue, slug: makeSlug(make, model) });
-  }
+  const issues = rows.map(r => ({
+    ...dbRowToKnownIssue(r),
+    slug: makeSlug(r.make, r.model),
+  }));
 
-  // Sort by report count descending
-  matchingIssues.sort((a, b) => b.reportCount - a.reportCount);
-
-  // Count unique vehicle models
-  const vehicleSet = new Set(matchingIssues.map(i => `${i.vehicleMatch.make}|${i.vehicleMatch.model}`));
+  const makeSet = new Set(rows.map(r => r.make));
+  const vehicleSet = new Set(rows.map(r => `${r.make}|${r.model}`));
 
   return {
     code: upper,
-    ...info,
-    issues: matchingIssues,
+    name: dtc.name,
+    system: dtc.system,
+    description: dtc.description,
+    commonCauses: dtc.commonCauses,
+    severity: dtc.severity,
+    issues,
     vehicleCount: vehicleSet.size,
     makes: Array.from(makeSet).sort(),
   };
