@@ -2,11 +2,12 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllKnownIssueSlugs, getKnownIssuesForArticle, getYearRange } from '@/lib/known-issues';
+import { getAllDTCSlugs, getDTCInfo } from '@/lib/dtc-codes';
 
 export const metadata: Metadata = {
   title: 'Known Vehicle Issues & Problems | Au7o',
   description:
-    'Browse 2,300+ documented vehicle problems across 20 makes and 490+ models. Symptoms, repair costs, and solutions from real owner reports.',
+    'Browse 2,300+ documented vehicle problems across 20 makes and 500+ models, plus 59 common OBD-II error codes. Symptoms, repair costs, and solutions from real owner reports.',
   openGraph: {
     title: 'Known Vehicle Issues & Problems | Au7o',
     description:
@@ -144,6 +145,36 @@ export default function KnownIssuesIndexPage() {
             ))}
           </div>
         </nav>
+
+        {/* Common DTC Codes Section */}
+        <section className="mb-10 bg-gray-50 border border-gray-200 rounded-xl p-5 sm:p-6">
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Common OBD-II Error Codes</h2>
+          <p className="text-gray-500 text-sm mb-4">
+            Pulled a code with your scanner? Find out what it means and which vehicles are affected.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {getAllDTCSlugs().slice(0, 30).map(({ code }) => {
+              const info = getDTCInfo(code);
+              return (
+                <Link
+                  key={code}
+                  href={`/known-issues/dtc/${code}`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-sm hover:border-blue-300 hover:bg-blue-50 transition-colors group"
+                >
+                  <span className="font-mono font-bold text-gray-900 group-hover:text-blue-700">{code.toUpperCase()}</span>
+                  {info && (
+                    <span className="text-gray-400 text-xs hidden sm:inline truncate max-w-[180px]">{info.name}</span>
+                  )}
+                </Link>
+              );
+            })}
+            {getAllDTCSlugs().length > 30 && (
+              <span className="inline-flex items-center px-3 py-1.5 text-sm text-gray-400">
+                +{getAllDTCSlugs().length - 30} more codes
+              </span>
+            )}
+          </div>
+        </section>
 
         {/* Vehicle directory by make */}
         <div className="space-y-10">

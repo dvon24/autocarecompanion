@@ -65,6 +65,7 @@ export function normalizeIssue(issue: any): KnownIssue {
       confidence: normalizeConfidence(issue.confidence),
       reportCount: issue.reportCount || 0,
       status: normalizeStatus(issue.status),
+      dtcCodes: issue.dtcCodes || [],
     } as KnownIssue;
   }
 
@@ -99,6 +100,7 @@ export function normalizeIssue(issue: any): KnownIssue {
     reviewedOn: issue.reviewedOn || '',
     reportCount: issue.reportCount || 0,
     status: normalizeStatus(issue.status),
+    dtcCodes: issue.dtcCodes || [],
   } as KnownIssue;
 }
 

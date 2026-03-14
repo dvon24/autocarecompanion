@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllKnownIssueSlugs } from '@/lib/known-issues';
+import { getAllDTCSlugs } from '@/lib/dtc-codes';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://au7o.io';
@@ -78,5 +79,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...knownIssuesIndex, ...knownIssuesPages];
+  // DTC code pages
+  const dtcPages: MetadataRoute.Sitemap = getAllDTCSlugs().map(s => ({
+    url: `${baseUrl}/known-issues/dtc/${s.code}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...knownIssuesIndex, ...knownIssuesPages, ...dtcPages];
 }

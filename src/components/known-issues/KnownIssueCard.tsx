@@ -5,6 +5,7 @@ import { KnownIssue } from '@/schemas/knownIssue.schema';
 import { ConfidenceBadge } from './ConfidenceBadge';
 import { ReportIssueModal } from './ReportIssueModal';
 import { FixIssueModal } from './FixIssueModal';
+import Link from 'next/link';
 import { triggerHaptic } from '@/hooks/useHaptic';
 import { IssueFix } from '@/hooks/useIssueFixes';
 
@@ -190,6 +191,25 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               ))}
             </ul>
           </div>
+
+          {/* DTC Codes */}
+          {(issue as any).dtcCodes && (issue as any).dtcCodes.length > 0 && (
+            <div>
+              <h4 className="text-sm font-medium text-gray-900 mb-2">Related OBD-II Codes</h4>
+              <div className="flex flex-wrap gap-1.5">
+                {(issue as any).dtcCodes.map((code: string) => (
+                  <Link
+                    key={code}
+                    href={`/known-issues/dtc/${code.toLowerCase()}`}
+                    className="inline-flex items-center px-2 py-1 text-xs font-mono font-medium bg-gray-100 text-gray-700 rounded hover:bg-blue-100 hover:text-blue-700 transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {code}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Solution/Fix */}
           <div className="bg-green-50 border border-green-200 rounded-lg p-3">

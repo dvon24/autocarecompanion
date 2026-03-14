@@ -80,6 +80,7 @@ export const knownIssueSchema = z.object({
   reviewedOn: z.string(), // When we verified/reviewed the issue
   reportCount: z.number(),
   status: z.enum(['published', 'pending_review', 'archived']),
+  dtcCodes: z.array(z.string()).optional(),
 });
 
 /**
