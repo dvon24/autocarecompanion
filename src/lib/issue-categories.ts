@@ -13,5 +13,9 @@ export const categoryConfig: Record<IssueCategory, { label: string; icon: string
   exterior: { label: 'Exterior', icon: '\uD83D\uDE97' },
   body: { label: 'Body/Panels', icon: '\uD83D\uDE99' },
   safety: { label: 'Safety/Recalls', icon: '\uD83D\uDEE1\uFE0F' },
+  exhaust: { label: 'Exhaust', icon: '\uD83D\uDCA8' },
+  steering: { label: 'Steering', icon: '\u2B55' },
+  hvac: { label: 'HVAC', icon: '\uD83C\uDF21\uFE0F' },
+  emissions: { label: 'Emissions', icon: '\uD83C\uDF3F' },
   other: { label: 'Other', icon: '\uD83D\uDCCB' },
 };

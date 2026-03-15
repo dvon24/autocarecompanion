@@ -52,6 +52,10 @@ export const issueCategorySchema = z.enum([
   'exterior',
   'body',
   'safety',
+  'exhaust',
+  'steering',
+  'hvac',
+  'emissions',
   'other',
 ]);
 
