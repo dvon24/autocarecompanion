@@ -2,11 +2,12 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { makeSlug } from '@/lib/known-issues';
-import { getAllDTCSlugs, getDTCInfo } from '@/lib/dtc-codes';
+// DTC data now fetched directly via prisma in buildDirectory
 import { categoryConfig } from '@/lib/issue-categories';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
 import { CollapsibleMakeDirectory } from '@/components/known-issues/CollapsibleMakeDirectory';
-import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { IssueSearch } from '@/components/known-issues/IssueSearch';
+import { BreadcrumbJsonLd, CollectionPageJsonLd } from '@/components/seo/JsonLd';
 import prisma from '@/lib/db';
 
 export const metadata: Metadata = {
@@ -86,13 +87,25 @@ export default async function KnownIssuesIndexPage() {
   const totalVehicles = directory.reduce((sum, g) => sum + g.vehicles.length, 0);
   const totalIssues = directory.reduce((sum, g) => sum + g.totalIssues, 0);
 
-  // Pre-fetch DTC data for the bottom section
-  const allDtcSlugs = await getAllDTCSlugs();
+  // Single query to get all DTC codes with names (for search + bottom section)
+  const allDtcRows = await prisma.dTCCode.findMany({
+    select: { code: true, name: true },
+    orderBy: { code: 'asc' },
+  });
+  const allDtcSlugs = allDtcRows.map(r => ({ code: r.code.toLowerCase() }));
   const dtcSlice = allDtcSlugs.slice(0, 15);
   const dtcInfoMap: Record<string, { name: string } | null> = {};
+  const dtcNameLookup = new Map(allDtcRows.map(r => [r.code.toLowerCase(), r.name]));
   for (const { code } of dtcSlice) {
-    dtcInfoMap[code] = await getDTCInfo(code);
+    const name = dtcNameLookup.get(code);
+    dtcInfoMap[code] = name ? { name } : null;
   }
+
+  // Prepare flat lists for client-side search
+  const searchVehicles = directory.flatMap(({ vehicles }) =>
+    vehicles.map(v => ({ slug: v.slug, make: v.make, model: v.model, issueCount: v.issueCount }))
+  );
+  const searchDtcCodes = allDtcRows.map(r => ({ code: r.code.toLowerCase(), name: r.name }));
 
   return (
     <div className="min-h-screen bg-white">
@@ -100,6 +113,17 @@ export default async function KnownIssuesIndexPage() {
         { name: 'Au7o', url: 'https://au7o.io' },
         { name: 'Known Issues', url: 'https://au7o.io/known-issues' },
       ]} />
+      <CollectionPageJsonLd
+        name="Known Vehicle Issues & Problems"
+        description={`Browse ${totalIssues.toLocaleString()}+ documented vehicle problems across ${directory.length} makes and ${totalVehicles} models. Symptoms, repair costs, and solutions from real owner reports.`}
+        url="https://au7o.io/known-issues"
+        numberOfItems={directory.length}
+        itemListElement={directory.map(({ make, totalIssues: makeTotal }) => ({
+          name: `${make} Issues`,
+          url: `https://au7o.io/known-issues?make=${encodeURIComponent(make.toLowerCase())}`,
+          description: `${makeTotal} known issues for ${make} vehicles`,
+        }))}
+      />
 
       {/* Header */}
       <header className="px-6 py-4 border-b border-gray-100">
@@ -146,6 +170,9 @@ export default async function KnownIssuesIndexPage() {
             Browse {totalIssues.toLocaleString()}+ documented problems across {directory.length} makes and {totalVehicles} models. Every issue includes symptoms, repair costs, and solutions from real owner reports.
           </p>
         </header>
+
+        {/* Search */}
+        <IssueSearch vehicles={searchVehicles} dtcCodes={searchDtcCodes} />
 
         {/* Quick stats */}
         <div className="grid grid-cols-3 gap-3 mb-10">

@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getAllKnownIssueSlugsWithDates } from '@/lib/known-issues';
 import { getAllDTCSlugsWithDates } from '@/lib/dtc-codes';
+import prisma from '@/lib/db';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://au7o.io';
@@ -87,5 +88,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...knownIssuesIndex, ...knownIssuesPages, ...dtcPages];
+  // Category landing pages
+  const categories = await prisma.knownIssue.findMany({
+    where: { status: 'published' },
+    select: { category: true },
+    distinct: ['category'],
+  });
+  const categoryPages: MetadataRoute.Sitemap = categories.map(c => ({
+    url: `${baseUrl}/known-issues/category/${c.category}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }));
+
+  // Make landing pages
+  const makes = await prisma.knownIssue.findMany({
+    where: { status: 'published' },
+    select: { make: true },
+    distinct: ['make'],
+  });
+  const makePages: MetadataRoute.Sitemap = makes.map(m => ({
+    url: `${baseUrl}/known-issues/make/${m.make.toLowerCase().replace(/\s+/g, '-')}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...knownIssuesIndex, ...knownIssuesPages, ...dtcPages, ...categoryPages, ...makePages];
 }

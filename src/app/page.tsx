@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import LandingPage from '@/components/landing/LandingPage';
+import prisma from '@/lib/db';
+import { makeSlug } from '@/lib/known-issues';
 
 export const metadata: Metadata = {
   title: 'Au7o - Know Your Car\'s Weak Spots | 2,300+ Documented Vehicle Problems',
@@ -21,6 +23,50 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HomePage() {
-  return <LandingPage />;
+export const revalidate = 3600; // revalidate every hour
+
+async function getTrendingIssues() {
+  try {
+    const issues = await prisma.knownIssue.findMany({
+      where: {
+        status: 'published',
+        severity: 'high',
+      },
+      orderBy: {
+        reportCount: 'desc',
+      },
+      take: 6,
+      select: {
+        id: true,
+        make: true,
+        model: true,
+        title: true,
+        category: true,
+        severity: true,
+        reportCount: true,
+        years: true,
+      },
+    });
+
+    return issues.map((issue) => ({
+      id: issue.id,
+      make: issue.make,
+      model: issue.model,
+      title: issue.title,
+      category: issue.category,
+      severity: issue.severity,
+      reportCount: issue.reportCount,
+      yearRange: issue.years.length > 0
+        ? `${Math.min(...issue.years)}–${Math.max(...issue.years)}`
+        : '',
+      slug: makeSlug(issue.make, issue.model),
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export default async function HomePage() {
+  const trendingIssues = await getTrendingIssues();
+  return <LandingPage trendingIssues={trendingIssues} />;
 }

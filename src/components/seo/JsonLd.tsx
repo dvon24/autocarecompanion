@@ -224,6 +224,48 @@ export function BreadcrumbJsonLd({ items }: { items: { name: string; url: string
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
 
+interface CollectionPageJsonLdProps {
+  name: string;
+  description: string;
+  url: string;
+  numberOfItems: number;
+  itemListElement: { name: string; url: string; description?: string }[];
+}
+
+export function CollectionPageJsonLd({
+  name,
+  description,
+  url,
+  numberOfItems,
+  itemListElement,
+}: CollectionPageJsonLdProps) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name,
+    description,
+    url,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems,
+      itemListElement: itemListElement.map((item, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: item.name,
+        url: item.url,
+        ...(item.description && { description: item.description }),
+      })),
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
 export function FAQJsonLd({
   questions,
 }: {

@@ -8,22 +8,50 @@ import { ScrollSyncedFeatures } from '@/components/ui/ScrollSyncedFeatures';
 import { EmailCapture } from '@/components/ui/EmailCapture';
 import { HeroVehicleSearch } from '@/components/discovery/HeroVehicleSearch';
 
-const popularIssues = [
-  { vehicle: 'Ford F-150', issue: '5.0L Coyote Cam Phaser Tick/Rattle', severity: 'high' as const, slug: 'ford-f-150' },
-  { vehicle: 'Honda Civic', issue: 'AC Condenser Premature Failure', severity: 'high' as const, slug: 'honda-civic' },
-  { vehicle: 'Dodge Challenger', issue: 'Rear Differential Whine/Clunk', severity: 'high' as const, slug: 'dodge-challenger' },
-  { vehicle: 'Toyota RAV4', issue: 'Transmission Hesitation on Acceleration', severity: 'medium' as const, slug: 'toyota-rav4' },
-  { vehicle: 'Chevrolet Camaro', issue: '8-Speed Transmission Shudder (8L90)', severity: 'high' as const, slug: 'chevrolet-camaro' },
-  { vehicle: 'BMW 3 Series', issue: 'VANOS Solenoid Seal Oil Leak', severity: 'medium' as const, slug: 'bmw-3-series' },
+interface TrendingIssue {
+  id: string;
+  make: string;
+  model: string;
+  title: string;
+  category: string;
+  severity: string;
+  reportCount: number;
+  yearRange: string;
+  slug: string;
+}
+
+const fallbackIssues: TrendingIssue[] = [
+  { id: 'ford-f150-cam-phaser', make: 'Ford', model: 'F-150', title: '5.0L Coyote Cam Phaser Tick/Rattle', category: 'Engine', severity: 'high', reportCount: 0, yearRange: '2018–2023', slug: 'ford-f-150' },
+  { id: 'honda-civic-ac', make: 'Honda', model: 'Civic', title: 'AC Condenser Premature Failure', category: 'HVAC', severity: 'high', reportCount: 0, yearRange: '2016–2021', slug: 'honda-civic' },
+  { id: 'dodge-challenger-diff', make: 'Dodge', model: 'Challenger', title: 'Rear Differential Whine/Clunk', category: 'Drivetrain', severity: 'high', reportCount: 0, yearRange: '2015–2023', slug: 'dodge-challenger' },
+  { id: 'toyota-rav4-trans', make: 'Toyota', model: 'RAV4', title: 'Transmission Hesitation on Acceleration', category: 'Transmission', severity: 'high', reportCount: 0, yearRange: '2019–2023', slug: 'toyota-rav4' },
+  { id: 'chevy-camaro-shudder', make: 'Chevrolet', model: 'Camaro', title: '8-Speed Transmission Shudder (8L90)', category: 'Transmission', severity: 'high', reportCount: 0, yearRange: '2016–2023', slug: 'chevrolet-camaro' },
+  { id: 'bmw-3-vanos', make: 'BMW', model: '3 Series', title: 'VANOS Solenoid Seal Oil Leak', category: 'Engine', severity: 'high', reportCount: 0, yearRange: '2012–2019', slug: 'bmw-3-series' },
 ];
 
-const severityColors = {
+const severityColors: Record<string, string> = {
   high: 'bg-red-100 text-red-700',
   medium: 'bg-amber-100 text-amber-700',
   low: 'bg-blue-100 text-blue-700',
 };
 
-export default function LandingPage() {
+const categoryColors: Record<string, string> = {
+  Engine: 'bg-orange-50 text-orange-700 border-orange-200',
+  Transmission: 'bg-purple-50 text-purple-700 border-purple-200',
+  Electrical: 'bg-yellow-50 text-yellow-700 border-yellow-200',
+  Suspension: 'bg-green-50 text-green-700 border-green-200',
+  Brakes: 'bg-red-50 text-red-700 border-red-200',
+  Drivetrain: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+  HVAC: 'bg-cyan-50 text-cyan-700 border-cyan-200',
+  Fuel: 'bg-amber-50 text-amber-700 border-amber-200',
+};
+
+function getCategoryStyle(category: string): string {
+  return categoryColors[category] || 'bg-gray-50 text-gray-700 border-gray-200';
+}
+
+export default function LandingPage({ trendingIssues = [] }: { trendingIssues?: TrendingIssue[] }) {
+  const issues = trendingIssues.length > 0 ? trendingIssues : fallbackIssues;
   return (
     <div className="min-h-screen bg-white font-[system-ui,sans-serif] relative overflow-hidden">
       {/* Animated Engine Background - Only visible in hero section */}
@@ -152,7 +180,7 @@ export default function LandingPage() {
           }}
         />
 
-        {/* Recently Documented Issues — Social Proof */}
+        {/* Trending Issues — Social Proof */}
         <section
           className="px-6 py-16 relative bg-gray-50"
           style={{ zIndex: 3 }}
@@ -161,32 +189,50 @@ export default function LandingPage() {
             <ScrollReveal delay={0} duration={800}>
               <div className="text-center mb-10">
                 <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-3">
-                  Real problems. Real solutions.
+                  Common Vehicle Problems
                 </h2>
                 <p className="text-gray-500 max-w-lg mx-auto">
-                  Every issue includes symptoms, estimated repair costs, and community-verified solutions from real owner reports.
+                  The most-reported high-severity issues across all makes — with symptoms, repair costs, and community-verified solutions.
                 </p>
               </div>
 
-              {/* Issue preview cards */}
+              {/* Trending issue cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
-                {popularIssues.map((item) => (
+                {issues.map((item) => (
                   <Link
-                    key={item.slug + item.issue}
+                    key={item.id}
                     href={`/known-issues/${item.slug}`}
                     className="bg-white border border-gray-200 rounded-xl p-4 hover:border-gray-300 hover:shadow-md transition-all duration-200 group"
                   >
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <span className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                        {item.vehicle}
+                        {item.make} {item.model}
                       </span>
-                      <span className={`text-xs font-medium px-2 py-0.5 rounded-full whitespace-nowrap ${severityColors[item.severity]}`}>
+                      <span className={`text-xs font-medium px-2 py-0.5 rounded-full whitespace-nowrap ${severityColors[item.severity] || severityColors.medium}`}>
                         {item.severity}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-500 leading-snug">
-                      {item.issue}
+                    <p className="text-sm text-gray-600 leading-snug mb-3">
+                      {item.title}
                     </p>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className={`text-xs font-medium px-2 py-0.5 rounded border ${getCategoryStyle(item.category)}`}>
+                        {item.category}
+                      </span>
+                      {item.yearRange && (
+                        <span className="text-xs text-gray-400">
+                          {item.yearRange}
+                        </span>
+                      )}
+                      {item.reportCount > 0 && (
+                        <span className="text-xs text-gray-400 ml-auto flex items-center gap-1">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          {item.reportCount.toLocaleString()}
+                        </span>
+                      )}
+                    </div>
                   </Link>
                 ))}
               </div>
