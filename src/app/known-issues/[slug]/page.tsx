@@ -8,11 +8,13 @@ import {
   getKnownIssuesForArticle,
   getYearRange,
   getArticleDates,
+  getRelatedVehicles,
 } from '@/lib/known-issues';
 import { categoryConfig } from '@/lib/issue-categories';
 import { ArticleIssuesList } from '@/components/known-issues/ArticleIssuesList';
 import { VehicleChatLink } from '@/components/known-issues/VehicleChatLink';
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { ShareButtons } from '@/components/shared/ShareButtons';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 
 // --- Static generation ---
@@ -145,9 +147,10 @@ export default async function KnownIssuesArticlePage({
   if (!parsed) notFound();
 
   const { make, model } = parsed;
-  const [issues, articleDates] = await Promise.all([
+  const [issues, articleDates, related] = await Promise.all([
     getKnownIssuesForArticle(make, model),
     getArticleDates(make, model),
+    getRelatedVehicles(make, model),
   ]);
   if (issues.length === 0) notFound();
 
@@ -234,9 +237,12 @@ export default async function KnownIssuesArticlePage({
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
             {title}
           </h1>
-          <p className="text-gray-500 text-sm">
-            {yearStr && `${yearStr} model years`} &middot; Based on {totalReports.toLocaleString()}+ owner reports &middot; Last updated March 2026
-          </p>
+          <div className="flex items-center justify-between flex-wrap gap-2">
+            <p className="text-gray-500 text-sm">
+              {yearStr && `${yearStr} model years`} &middot; Based on {totalReports.toLocaleString()}+ owner reports &middot; Last updated March 2026
+            </p>
+            <ShareButtons url={articleUrl} title={title} />
+          </div>
         </header>
 
         {/* GEO Summary — the citation target for AI engines */}
@@ -428,6 +434,29 @@ export default async function KnownIssuesArticlePage({
                 </Link>
               </div>
             </div>
+
+            {/* Related Vehicles */}
+            {related.length > 0 && (
+              <section className="mt-10 mb-10">
+                <h2 className="text-xl font-bold text-gray-900 mb-4">
+                  Other {make} Models
+                </h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {related.map(v => (
+                    <Link
+                      key={v.slug}
+                      href={`/known-issues/${v.slug}`}
+                      className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors group"
+                    >
+                      <span className="text-sm font-medium text-gray-900 group-hover:text-blue-700">
+                        {v.make} {v.model}
+                      </span>
+                      <span className="text-xs text-gray-500">{v.issueCount} issues</span>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* FAQ Section */}
             <section id="faq" className="mt-12 scroll-mt-16">

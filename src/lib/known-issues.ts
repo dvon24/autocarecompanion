@@ -141,6 +141,40 @@ export function getYearRange(issues: KnownIssue[]): { min: number; max: number }
   return { min, max };
 }
 
+// --- Related vehicles (for internal cross-linking) ---
+
+export async function getRelatedVehicles(make: string, model: string, limit = 6): Promise<{ slug: string; make: string; model: string; issueCount: number }[]> {
+  // Get same-make vehicles (siblings)
+  const sameMake = await prisma.knownIssue.findMany({
+    where: {
+      make: { equals: make, mode: 'insensitive' },
+      NOT: { model: { equals: model, mode: 'insensitive' } },
+      status: 'published',
+    },
+    select: { make: true, model: true },
+  });
+
+  // Group by model and count
+  const modelCounts: Record<string, { make: string; model: string; count: number }> = {};
+  for (const row of sameMake) {
+    const key = `${row.make}|${row.model}`;
+    if (!modelCounts[key]) modelCounts[key] = { make: row.make, model: row.model, count: 0 };
+    modelCounts[key].count++;
+  }
+
+  const siblings = Object.values(modelCounts)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, limit)
+    .map(v => ({
+      slug: makeSlug(v.make, v.model),
+      make: v.make,
+      model: v.model,
+      issueCount: v.count,
+    }));
+
+  return siblings;
+}
+
 // --- Normalization (kept for seed script and API compatibility) ---
 
 const validCategories = ['engine','transmission','drivetrain','electrical','brakes','suspension','cooling','fuel','interior','exterior','body','safety','other'];

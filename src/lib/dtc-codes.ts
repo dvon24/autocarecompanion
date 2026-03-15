@@ -120,6 +120,51 @@ export async function getAllDTCSlugsWithDates(): Promise<{ code: string; lastMod
     .sort((a, b) => a.code.localeCompare(b.code));
 }
 
+/** Get related DTC codes for cross-linking (same series + same system). */
+export async function getRelatedDTCCodes(code: string, limit = 8): Promise<{ code: string; name: string; system: string }[]> {
+  const upper = code.toUpperCase();
+
+  // Get the current code's info for system matching
+  const current = await prisma.dTCCode.findUnique({ where: { code: upper }, select: { system: true } });
+  if (!current) return [];
+
+  // Strategy 1: Same prefix codes (e.g., P030x for P0300)
+  const prefix = upper.slice(0, 4); // e.g., "P030"
+  const sameSeries = await prisma.dTCCode.findMany({
+    where: {
+      code: { startsWith: prefix, not: upper },
+    },
+    select: { code: true, name: true, system: true },
+    take: 4,
+  });
+
+  // Strategy 2: Same system, different series
+  const sameSystem = await prisma.dTCCode.findMany({
+    where: {
+      system: current.system,
+      NOT: [
+        { code: upper },
+        { code: { startsWith: prefix } },
+      ],
+    },
+    select: { code: true, name: true, system: true },
+    take: limit - sameSeries.length,
+  });
+
+  // Combine, deduplicate, and limit
+  const seen = new Set<string>([upper]);
+  const results: { code: string; name: string; system: string }[] = [];
+
+  for (const item of [...sameSeries, ...sameSystem]) {
+    if (!seen.has(item.code) && results.length < limit) {
+      seen.add(item.code);
+      results.push(item);
+    }
+  }
+
+  return results;
+}
+
 /** Get full DTC data including all related vehicle issues. */
 export async function getDTCWithIssues(code: string): Promise<DTCWithIssues | null> {
   const upper = code.toUpperCase();

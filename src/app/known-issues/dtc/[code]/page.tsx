@@ -2,9 +2,10 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getAllDTCSlugs, getDTCWithIssues, getDTCDates } from '@/lib/dtc-codes';
+import { getAllDTCSlugs, getDTCWithIssues, getDTCDates, getRelatedDTCCodes } from '@/lib/dtc-codes';
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { CollapsibleMakeSection } from '@/components/known-issues/CollapsibleMakeSection';
+import { ShareButtons } from '@/components/shared/ShareButtons';
 
 // --- Static generation ---
 
@@ -51,9 +52,10 @@ export default async function DTCCodePage({
   params: Promise<{ code: string }>;
 }) {
   const { code } = await params;
-  const [data, dtcDates] = await Promise.all([
+  const [data, dtcDates, relatedCodes] = await Promise.all([
     getDTCWithIssues(code),
     getDTCDates(code),
+    getRelatedDTCCodes(code),
   ]);
   if (!data) notFound();
 
@@ -175,9 +177,12 @@ export default async function DTCCodePage({
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
             {data.code}: {data.name}
           </h1>
-          <p className="text-gray-500 text-sm">
-            Found on {data.vehicleCount} vehicle models across {data.makes.length} makes
-          </p>
+          <div className="flex items-center justify-between flex-wrap gap-2">
+            <p className="text-gray-500 text-sm">
+              Found on {data.vehicleCount} vehicle models across {data.makes.length} makes
+            </p>
+            <ShareButtons url={articleUrl} title={`${data.code}: ${data.name}`} />
+          </div>
         </header>
 
         {/* GEO Summary */}
@@ -273,6 +278,27 @@ export default async function DTCCodePage({
             ))}
           </div>
         </section>
+
+        {/* Related DTC Codes */}
+        {relatedCodes.length > 0 && (
+          <section className="mb-10">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">Related Codes</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {relatedCodes.map(rc => (
+                <Link
+                  key={rc.code}
+                  href={`/known-issues/dtc/${rc.code.toLowerCase()}`}
+                  className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors group"
+                >
+                  <span className="font-mono font-bold text-sm text-gray-700 group-hover:text-blue-700 bg-white px-2 py-0.5 rounded border border-gray-200">
+                    {rc.code}
+                  </span>
+                  <span className="text-sm text-gray-600 truncate">{rc.name}</span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* FAQ Section */}
         <section className="mb-10">
