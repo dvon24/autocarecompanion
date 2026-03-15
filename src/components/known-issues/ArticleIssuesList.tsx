@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 import { CategorySection } from './CategorySection';
 import { SeverityFilter } from './SeverityFilter';
+import { AdSlot } from '@/components/ads/AdSlot';
 
 interface ArticleIssuesListProps {
   issues: KnownIssue[];
@@ -57,15 +58,21 @@ export function ArticleIssuesList({ issues, make, model }: ArticleIssuesListProp
             <p className="text-sm mt-1">Try selecting different severity levels above.</p>
           </div>
         ) : (
-          groupedIssues.map(({ category, issues: catIssues }) => (
-            <div key={category} id={category} className="scroll-mt-16">
-              <CategorySection
-                category={category}
-                issues={catIssues}
-                defaultExpanded={true}
-                defaultCardExpanded={false}
-                vehicleInfo={vehicleInfo}
-              />
+          groupedIssues.map(({ category, issues: catIssues }, index) => (
+            <div key={category}>
+              <div id={category} className="scroll-mt-16">
+                <CategorySection
+                  category={category}
+                  issues={catIssues}
+                  defaultExpanded={true}
+                  defaultCardExpanded={false}
+                  vehicleInfo={vehicleInfo}
+                />
+              </div>
+              {/* Mid-content ad after 3rd category when there are 4+ categories */}
+              {index === 2 && groupedIssues.length > 3 && (
+                <AdSlot slotId="1234567890" format="rectangle" className="my-6 flex justify-center" />
+              )}
             </div>
           ))
         )}

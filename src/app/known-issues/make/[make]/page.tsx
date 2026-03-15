@@ -8,6 +8,11 @@ import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
 import prisma from '@/lib/db';
 
+// --- ISR + dynamic params ---
+
+export const revalidate = 3600; // Re-generate cached pages every 1 hour
+export const dynamicParams = true; // Allow on-demand rendering of new makes
+
 // --- Make name utilities ---
 
 /** Map of URL slugs to proper display names for makes that need special casing. */

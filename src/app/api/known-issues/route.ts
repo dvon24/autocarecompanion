@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
+import { knownIssuesLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
 
 function dbRowToKnownIssue(row: any): KnownIssue {
   return {
@@ -46,6 +47,13 @@ function dbRowToKnownIssue(row: any): KnownIssue {
  * - status: Filter by status (default: published)
  */
 export async function GET(request: NextRequest) {
+  // Rate limit: 60 requests per minute per IP
+  const ip = getClientIp(request);
+  const rateCheck = knownIssuesLimiter.check(ip);
+  if (!rateCheck.success) {
+    return rateLimitResponse(rateCheck.reset);
+  }
+
   try {
     const { searchParams } = new URL(request.url);
     const year = searchParams.get('year');

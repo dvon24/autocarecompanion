@@ -10,6 +10,10 @@ import { IssueSearch } from '@/components/known-issues/IssueSearch';
 import { BreadcrumbJsonLd, CollectionPageJsonLd } from '@/components/seo/JsonLd';
 import prisma from '@/lib/db';
 
+// --- ISR ---
+
+export const revalidate = 1800; // Re-generate cached page every 30 minutes
+
 export const metadata: Metadata = {
   title: 'Known Vehicle Issues & Problems | Au7o',
   description:

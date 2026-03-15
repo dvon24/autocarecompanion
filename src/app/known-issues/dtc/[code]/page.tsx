@@ -7,6 +7,12 @@ import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/component
 import { CollapsibleMakeSection } from '@/components/known-issues/CollapsibleMakeSection';
 import { OBDScannerRecommendations } from '@/components/known-issues/OBDScannerRecommendations';
 import { ShareButtons } from '@/components/shared/ShareButtons';
+import { AdSlot } from '@/components/ads/AdSlot';
+
+// --- ISR + dynamic params ---
+
+export const revalidate = 3600; // Re-generate cached pages every 1 hour
+export const dynamicParams = true; // Allow on-demand rendering of new DTC codes
 
 // --- Static generation ---
 
@@ -195,6 +201,9 @@ export default async function DTCCodePage({
             {' '}Full vehicle-specific causes and solutions at <strong>au7o.io</strong>.
           </p>
         </div>
+
+        {/* Ad slot — horizontal banner after description */}
+        <AdSlot slotId="1234567890" format="horizontal" className="mb-8" />
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-3 mb-8">

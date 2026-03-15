@@ -15,7 +15,13 @@ import { ArticleIssuesList } from '@/components/known-issues/ArticleIssuesList';
 import { VehicleChatLink } from '@/components/known-issues/VehicleChatLink';
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
+import { AdSlot } from '@/components/ads/AdSlot';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
+
+// --- ISR + dynamic params ---
+
+export const revalidate = 3600; // Re-generate cached pages every 1 hour
+export const dynamicParams = true; // Allow on-demand rendering of new slugs
 
 // --- Static generation ---
 
@@ -296,6 +302,9 @@ export default async function KnownIssuesArticlePage({
             <div className="text-xs text-gray-600 font-medium">Minor</div>
           </div>
         </div>
+
+        {/* Top ad slot — horizontal banner after stats */}
+        <AdSlot slotId="1234567890" format="horizontal" className="mb-8" />
 
         {/* Quick action — Chat with AI (visible near top) */}
         <div className="flex items-center gap-3 mb-8 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl">

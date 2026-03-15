@@ -15,6 +15,7 @@ import {
   storeCachedGuide,
   recordCacheEvent,
 } from '@/lib/guide-cache';
+import { guideLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
 
 /**
  * Format vehicle specs into a string for injection into the AI prompt.
@@ -473,6 +474,13 @@ function generateMockGuide(
 }
 
 export async function POST(request: NextRequest) {
+  // Rate limit: 10 requests per minute per IP (expensive AI calls)
+  const ip = getClientIp(request);
+  const rateCheck = guideLimiter.check(ip);
+  if (!rateCheck.success) {
+    return rateLimitResponse(rateCheck.reset);
+  }
+
   const startTime = Date.now();
 
   try {
