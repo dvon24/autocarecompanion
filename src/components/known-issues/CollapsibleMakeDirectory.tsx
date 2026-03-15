@@ -18,6 +18,10 @@ interface CollapsibleMakeDirectoryProps {
   totalIssues: number;
 }
 
+function makeToSlug(make: string): string {
+  return make.toLowerCase().replace(/\s+/g, '-');
+}
+
 export function CollapsibleMakeDirectory({ make, vehicles, totalIssues }: CollapsibleMakeDirectoryProps) {
   const [expanded, setExpanded] = useState(false);
 
@@ -34,7 +38,15 @@ export function CollapsibleMakeDirectory({ make, vehicles, totalIssues }: Collap
         className="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors text-left"
       >
         <div className="flex items-center gap-3">
-          <h2 className="text-lg font-bold text-gray-900">{make}</h2>
+          <h2 className="text-lg font-bold text-gray-900">
+            <Link
+              href={`/known-issues/make/${makeToSlug(make)}`}
+              className="hover:text-blue-700 transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {make}
+            </Link>
+          </h2>
           <span className="text-sm text-gray-500">
             {vehicles.length} models &middot; {totalIssues} issues
           </span>

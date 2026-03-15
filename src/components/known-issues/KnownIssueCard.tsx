@@ -8,6 +8,7 @@ import { FixIssueModal } from './FixIssueModal';
 import Link from 'next/link';
 import { triggerHaptic } from '@/hooks/useHaptic';
 import { IssueFix } from '@/hooks/useIssueFixes';
+import { trackAffiliateClick } from '@/lib/analytics';
 
 interface KnownIssueCardProps {
   issue: KnownIssue;
@@ -260,6 +261,16 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                               target="_blank"
                               rel="noopener noreferrer sponsored"
                               className="font-medium text-purple-700 hover:text-purple-900 underline decoration-purple-300 hover:decoration-purple-500 transition-colors"
+                              onClick={() => trackAffiliateClick({
+                                issueId: issue.id,
+                                partBrand: rec.partBrand,
+                                partName: rec.partName,
+                                partNumber: rec.partNumber,
+                                linkUrl: rec.affiliateUrl!,
+                                recommendationIndex: index,
+                                vehicleMake: issue.vehicleMatch.make,
+                                vehicleModel: issue.vehicleMatch.model,
+                              })}
                             >
                               {' '}({rec.partBrand} {rec.partNumber ? `#${rec.partNumber}` : rec.partName})
                             </a>
@@ -279,6 +290,16 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                           target="_blank"
                           rel="noopener noreferrer sponsored"
                           className="inline-flex items-center gap-1 text-xs bg-purple-600 text-white px-2 py-1 rounded-md hover:bg-purple-700 transition-colors"
+                          onClick={() => trackAffiliateClick({
+                            issueId: issue.id,
+                            partBrand: rec.partBrand,
+                            partName: rec.partName,
+                            partNumber: rec.partNumber,
+                            linkUrl: rec.affiliateUrl!,
+                            recommendationIndex: index,
+                            vehicleMake: issue.vehicleMatch.make,
+                            vehicleModel: issue.vehicleMatch.model,
+                          })}
                         >
                           View on Amazon
                           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

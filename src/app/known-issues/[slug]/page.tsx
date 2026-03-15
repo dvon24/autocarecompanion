@@ -217,6 +217,7 @@ export default async function KnownIssuesArticlePage({
       <BreadcrumbJsonLd items={[
         { name: 'Au7o', url: 'https://au7o.io' },
         { name: 'Known Issues', url: 'https://au7o.io/known-issues' },
+        { name: make, url: `https://au7o.io/known-issues/make/${make.toLowerCase().replace(/\s+/g, '-')}` },
         { name: vehicleName, url: articleUrl },
       ]} />
 
@@ -228,7 +229,9 @@ export default async function KnownIssuesArticlePage({
             <li>/</li>
             <li><Link href="/known-issues" className="hover:text-gray-700">Known Issues</Link></li>
             <li>/</li>
-            <li className="text-gray-900 font-medium">{vehicleName}</li>
+            <li><Link href={`/known-issues/make/${make.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-gray-700">{make}</Link></li>
+            <li>/</li>
+            <li className="text-gray-900 font-medium">{model}</li>
           </ol>
         </nav>
 

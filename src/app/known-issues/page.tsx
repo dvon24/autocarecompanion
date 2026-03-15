@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { makeSlug } from '@/lib/known-issues';
 import { getAllDTCSlugs, getDTCInfo } from '@/lib/dtc-codes';
+import { categoryConfig } from '@/lib/issue-categories';
+import { IssueCategory } from '@/schemas/knownIssue.schema';
 import { CollapsibleMakeDirectory } from '@/components/known-issues/CollapsibleMakeDirectory';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import prisma from '@/lib/db';
@@ -187,6 +189,29 @@ export default async function KnownIssuesIndexPage() {
             />
           ))}
         </div>
+
+        {/* Browse by Category */}
+        <section className="mt-12 mb-10">
+          <h3 className="text-lg font-semibold text-gray-700 mb-2">Browse by Category</h3>
+          <p className="text-gray-500 text-sm mb-4">
+            Explore known issues organized by vehicle system.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {(Object.keys(categoryConfig) as IssueCategory[]).map(cat => {
+              const config = categoryConfig[cat];
+              return (
+                <Link
+                  key={cat}
+                  href={`/known-issues/category/${cat}`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-sm font-medium text-gray-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-colors"
+                >
+                  <span>{config.icon}</span>
+                  <span>{config.label}</span>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
 
         {/* Common DTC Codes Section */}
         <section className="mt-12 mb-10">

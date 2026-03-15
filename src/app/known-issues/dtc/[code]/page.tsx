@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { getAllDTCSlugs, getDTCWithIssues, getDTCDates, getRelatedDTCCodes } from '@/lib/dtc-codes';
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { CollapsibleMakeSection } from '@/components/known-issues/CollapsibleMakeSection';
+import { OBDScannerRecommendations } from '@/components/known-issues/OBDScannerRecommendations';
 import { ShareButtons } from '@/components/shared/ShareButtons';
 
 // --- Static generation ---
@@ -242,6 +243,9 @@ export default async function DTCCodePage({
             </div>
           </section>
         )}
+
+        {/* OBD-II Scanner Recommendations */}
+        <OBDScannerRecommendations dtcCode={data.code} />
 
         {/* Vehicle-Specific Issues by Make */}
         <section className="mb-10">
