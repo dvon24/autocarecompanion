@@ -6,6 +6,7 @@ import { OfflineIndicator } from "@/components/offline/OfflineIndicator";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { SessionProvider } from "@/components/auth/SessionProvider";
 import { AdSenseScript } from "@/components/ads/AdSenseScript";
+import { GoogleConsentScript } from "@/components/ads/GoogleConsentScript";
 import { OrganizationJsonLd, WebSiteJsonLd, SoftwareApplicationJsonLd } from "@/components/seo/JsonLd";
 import { GoogleTranslate } from "@/components/shared/GoogleTranslate";
 
@@ -90,6 +91,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <GoogleConsentScript />
         <AdSenseScript />
         <GoogleTranslate />
         <SessionProvider>
