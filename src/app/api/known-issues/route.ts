@@ -103,11 +103,14 @@ export async function GET(request: NextRequest) {
 
     const issues = filtered.map(dbRowToKnownIssue);
 
-    return NextResponse.json({
-      vehicle: { year: yearNum, make, model, trim },
-      issues,
-      total: issues.length,
-    });
+    return NextResponse.json(
+      { vehicle: { year: yearNum, make, model, trim }, issues, total: issues.length },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+        },
+      }
+    );
   } catch (error) {
     console.error('Error fetching known issues:', error);
     return NextResponse.json(

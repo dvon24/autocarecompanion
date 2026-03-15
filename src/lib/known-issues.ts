@@ -61,6 +61,47 @@ export async function getAllKnownIssueSlugs(): Promise<{ slug: string; make: str
   }));
 }
 
+// --- Article / sitemap dates ---
+
+/** Get the earliest createdAt and latest updatedAt for a make+model's published issues. */
+export async function getArticleDates(make: string, model: string): Promise<{ published: string; modified: string }> {
+  const result = await prisma.knownIssue.aggregate({
+    where: {
+      make: { equals: make, mode: 'insensitive' },
+      model: { equals: model, mode: 'insensitive' },
+      status: 'published',
+    },
+    _min: { createdAt: true },
+    _max: { updatedAt: true },
+  });
+  return {
+    published: (result._min.createdAt || new Date()).toISOString().split('T')[0],
+    modified: (result._max.updatedAt || new Date()).toISOString().split('T')[0],
+  };
+}
+
+/** Get all slugs with their latest updatedAt date (for sitemap). */
+export async function getAllKnownIssueSlugsWithDates(): Promise<{ slug: string; make: string; model: string; lastModified: Date }[]> {
+  const rows = await prisma.knownIssue.findMany({
+    where: { status: 'published' },
+    select: { make: true, model: true, updatedAt: true },
+  });
+
+  const map = new Map<string, { make: string; model: string; lastModified: Date }>();
+  for (const row of rows) {
+    const slug = makeSlug(row.make, row.model);
+    const existing = map.get(slug);
+    if (!existing || row.updatedAt > existing.lastModified) {
+      map.set(slug, { make: row.make, model: row.model, lastModified: row.updatedAt });
+    }
+  }
+
+  return Array.from(map.entries()).map(([slug, data]) => ({
+    slug,
+    ...data,
+  }));
+}
+
 // --- Article data loading ---
 
 const severityOrder: Record<string, number> = { high: 0, medium: 1, low: 2 };

@@ -29,6 +29,8 @@ export function CollapsibleMakeDirectory({ make, vehicles, totalIssues }: Collap
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
+        aria-expanded={expanded}
+        aria-label={`${expanded ? 'Collapse' : 'Expand'} ${make} issues`}
         className="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors text-left"
       >
         <div className="flex items-center gap-3">
@@ -61,7 +63,7 @@ export function CollapsibleMakeDirectory({ make, vehicles, totalIssues }: Collap
                     {vehicle.model}
                   </div>
                   {vehicle.yearRange && (
-                    <div className="text-xs text-gray-400">
+                    <div className="text-xs text-gray-500">
                       {vehicle.yearRange.min}-{vehicle.yearRange.max}
                     </div>
                   )}

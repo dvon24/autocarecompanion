@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getAllDTCSlugs, getDTCWithIssues } from '@/lib/dtc-codes';
-import { TechnicalArticleJsonLd, FAQJsonLd } from '@/components/seo/JsonLd';
+import { getAllDTCSlugs, getDTCWithIssues, getDTCDates } from '@/lib/dtc-codes';
+import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { CollapsibleMakeSection } from '@/components/known-issues/CollapsibleMakeSection';
 
 // --- Static generation ---
@@ -51,7 +51,10 @@ export default async function DTCCodePage({
   params: Promise<{ code: string }>;
 }) {
   const { code } = await params;
-  const data = await getDTCWithIssues(code);
+  const [data, dtcDates] = await Promise.all([
+    getDTCWithIssues(code),
+    getDTCDates(code),
+  ]);
   if (!data) notFound();
 
   const articleUrl = `https://au7o.io/known-issues/dtc/${code.toLowerCase()}`;
@@ -136,10 +139,15 @@ export default async function DTCCodePage({
         title={`${data.code}: ${data.name}`}
         description={data.description}
         url={articleUrl}
-        datePublished="2026-03-14"
-        dateModified="2026-03-14"
+        datePublished={dtcDates.published}
+        dateModified={dtcDates.modified}
       />
       <FAQJsonLd questions={faqs} />
+      <BreadcrumbJsonLd items={[
+        { name: 'Au7o', url: 'https://au7o.io' },
+        { name: 'Known Issues', url: 'https://au7o.io/known-issues' },
+        { name: data.code, url: articleUrl },
+      ]} />
 
       <article className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
@@ -162,7 +170,7 @@ export default async function DTCCodePage({
             <span className={`text-xs font-medium px-2 py-0.5 rounded ${severityColor}`}>
               {severityLabel}
             </span>
-            <span className="text-xs text-gray-400 font-medium">{data.system}</span>
+            <span className="text-xs text-gray-500 font-medium">{data.system}</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
             {data.code}: {data.name}
@@ -310,7 +318,7 @@ export default async function DTCCodePage({
             Data sourced from owner reports, TSBs, recalls, and automotive forums.
             Always consult a professional mechanic for diagnosis. OBD-II codes should be interpreted alongside symptoms and vehicle history.
           </p>
-          <p className="text-xs text-gray-400 mt-2">
+          <p className="text-xs text-gray-500 mt-2">
             &copy; {new Date().getFullYear()} Au7o. All rights reserved.
           </p>
         </footer>

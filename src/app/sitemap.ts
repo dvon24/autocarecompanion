@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
-import { getAllKnownIssueSlugs } from '@/lib/known-issues';
-import { getAllDTCSlugs } from '@/lib/dtc-codes';
+import { getAllKnownIssueSlugsWithDates } from '@/lib/known-issues';
+import { getAllDTCSlugsWithDates } from '@/lib/dtc-codes';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://au7o.io';
@@ -72,17 +72,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }];
 
   // Known issues article pages
-  const knownIssuesPages: MetadataRoute.Sitemap = (await getAllKnownIssueSlugs()).map(s => ({
+  const knownIssuesPages: MetadataRoute.Sitemap = (await getAllKnownIssueSlugsWithDates()).map(s => ({
     url: `${baseUrl}/known-issues/${s.slug}`,
-    lastModified: new Date(),
+    lastModified: s.lastModified,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
 
   // DTC code pages
-  const dtcPages: MetadataRoute.Sitemap = (await getAllDTCSlugs()).map(s => ({
+  const dtcPages: MetadataRoute.Sitemap = (await getAllDTCSlugsWithDates()).map(s => ({
     url: `${baseUrl}/known-issues/dtc/${s.code}`,
-    lastModified: new Date(),
+    lastModified: s.lastModified,
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }));

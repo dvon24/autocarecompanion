@@ -94,6 +94,32 @@ export async function getAllDTCSlugs(): Promise<{ code: string }[]> {
     .sort((a, b) => a.code.localeCompare(b.code));
 }
 
+/** Get the createdAt/updatedAt dates for a single DTC code (for JSON-LD). */
+export async function getDTCDates(code: string): Promise<{ published: string; modified: string }> {
+  const dtc = await prisma.dTCCode.findUnique({
+    where: { code: code.toUpperCase() },
+    select: { createdAt: true, updatedAt: true },
+  });
+  return {
+    published: (dtc?.createdAt || new Date()).toISOString().split('T')[0],
+    modified: (dtc?.updatedAt || new Date()).toISOString().split('T')[0],
+  };
+}
+
+/** Get all DTC slugs with their updatedAt date (for sitemap). */
+export async function getAllDTCSlugsWithDates(): Promise<{ code: string; lastModified: Date }[]> {
+  const codesInIssues = await getAllDTCCodes();
+
+  const existingDTCs = await prisma.dTCCode.findMany({
+    where: { code: { in: codesInIssues } },
+    select: { code: true, updatedAt: true },
+  });
+
+  return existingDTCs
+    .map(d => ({ code: d.code.toLowerCase(), lastModified: d.updatedAt }))
+    .sort((a, b) => a.code.localeCompare(b.code));
+}
+
 /** Get full DTC data including all related vehicle issues. */
 export async function getDTCWithIssues(code: string): Promise<DTCWithIssues | null> {
   const upper = code.toUpperCase();

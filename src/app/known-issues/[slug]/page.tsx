@@ -7,11 +7,12 @@ import {
   getAllKnownIssueSlugs,
   getKnownIssuesForArticle,
   getYearRange,
+  getArticleDates,
 } from '@/lib/known-issues';
 import { categoryConfig } from '@/lib/issue-categories';
 import { ArticleIssuesList } from '@/components/known-issues/ArticleIssuesList';
 import { VehicleChatLink } from '@/components/known-issues/VehicleChatLink';
-import { TechnicalArticleJsonLd, FAQJsonLd } from '@/components/seo/JsonLd';
+import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 
 // --- Static generation ---
@@ -144,7 +145,10 @@ export default async function KnownIssuesArticlePage({
   if (!parsed) notFound();
 
   const { make, model } = parsed;
-  const issues = await getKnownIssuesForArticle(make, model);
+  const [issues, articleDates] = await Promise.all([
+    getKnownIssuesForArticle(make, model),
+    getArticleDates(make, model),
+  ]);
   if (issues.length === 0) notFound();
 
   const yearRange = getYearRange(issues);
@@ -203,10 +207,15 @@ export default async function KnownIssuesArticlePage({
         title={title}
         description={`${issues.length} documented problems for the ${yearStr} ${vehicleName} with symptoms, repair costs, and solutions.`}
         url={articleUrl}
-        datePublished="2026-03-05"
-        dateModified="2026-03-05"
+        datePublished={articleDates.published}
+        dateModified={articleDates.modified}
       />
       <FAQJsonLd questions={faqs} />
+      <BreadcrumbJsonLd items={[
+        { name: 'Au7o', url: 'https://au7o.io' },
+        { name: 'Known Issues', url: 'https://au7o.io/known-issues' },
+        { name: vehicleName, url: articleUrl },
+      ]} />
 
       <article id="top" className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
@@ -466,7 +475,7 @@ export default async function KnownIssuesArticlePage({
             Data sourced from {totalReports.toLocaleString()}+ owner reports, TSBs, recalls, and automotive forums.
             Issues are verified where possible. Always consult a professional mechanic for diagnosis.
           </p>
-          <p className="text-xs text-gray-400 mt-2">
+          <p className="text-xs text-gray-500 mt-2">
             &copy; {new Date().getFullYear()} Au7o. All rights reserved.
           </p>
         </footer>

@@ -136,6 +136,8 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
       <button
         type="button"
         onClick={handleToggle}
+        aria-expanded={expanded}
+        aria-label={`${expanded ? 'Collapse' : 'Expand'} details for ${issue.title}`}
         className={`w-full p-4 text-left flex items-start gap-3 ${config.bgColor} hover:opacity-90 transition-opacity`}
       >
         {config.icon}
@@ -159,17 +161,17 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                 : `${issue.vehicleMatch.years[0]}–${issue.vehicleMatch.years[issue.vehicleMatch.years.length - 1]}`}
             </span>
             {issue.vehicleMatch.trims && issue.vehicleMatch.trims.length > 0 && (
-              <span className="text-xs text-gray-400">
+              <span className="text-xs text-gray-500">
                 {issue.vehicleMatch.trims.join(', ')}
               </span>
             )}
             {(!issue.vehicleMatch.trims || issue.vehicleMatch.trims.length === 0) && (
-              <span className="text-xs text-gray-400">All trims</span>
+              <span className="text-xs text-gray-500">All trims</span>
             )}
             {/* DTC codes in header */}
             {(issue as any).dtcCodes && (issue as any).dtcCodes.length > 0 && (
               <span className="inline-flex items-center gap-1 flex-wrap">
-                <span className="text-[10px] text-gray-400 font-medium">Error Codes:</span>
+                <span className="text-[10px] text-gray-500 font-medium">Error Codes:</span>
                 {(issue as any).dtcCodes.map((code: string) => (
                   <Link
                     key={code}

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { makeSlug } from '@/lib/known-issues';
 import { getAllDTCSlugs, getDTCInfo } from '@/lib/dtc-codes';
 import { CollapsibleMakeDirectory } from '@/components/known-issues/CollapsibleMakeDirectory';
+import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import prisma from '@/lib/db';
 
 export const metadata: Metadata = {
@@ -93,6 +94,11 @@ export default async function KnownIssuesIndexPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <BreadcrumbJsonLd items={[
+        { name: 'Au7o', url: 'https://au7o.io' },
+        { name: 'Known Issues', url: 'https://au7o.io/known-issues' },
+      ]} />
+
       {/* Header */}
       <header className="px-6 py-4 border-b border-gray-100">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
@@ -185,7 +191,7 @@ export default async function KnownIssuesIndexPage() {
         {/* Common DTC Codes Section */}
         <section className="mt-12 mb-10">
           <h3 className="text-lg font-semibold text-gray-700 mb-2">Common OBD-II Error Codes</h3>
-          <p className="text-gray-400 text-sm mb-4">
+          <p className="text-gray-500 text-sm mb-4">
             Pulled a code with your scanner? Find out what it means and which vehicles are affected.
           </p>
           <div className="flex flex-wrap gap-2">
@@ -199,7 +205,7 @@ export default async function KnownIssuesIndexPage() {
                 >
                   <span className="font-mono font-bold text-gray-700 group-hover:text-blue-700 text-xs">{code.toUpperCase()}</span>
                   {info && (
-                    <span className="text-gray-400 text-xs hidden sm:inline truncate max-w-[160px]">{info.name}</span>
+                    <span className="text-gray-500 text-xs hidden sm:inline truncate max-w-[160px]">{info.name}</span>
                   )}
                 </Link>
               );
@@ -243,7 +249,7 @@ export default async function KnownIssuesIndexPage() {
             Data sourced from owner reports, TSBs, recalls, and automotive forums.
             Issues are verified where possible. Always consult a professional mechanic for diagnosis.
           </p>
-          <p className="text-xs text-gray-400 mt-2">
+          <p className="text-xs text-gray-500 mt-2">
             &copy; {new Date().getFullYear()} Au7o. All rights reserved.
           </p>
         </footer>

@@ -34,6 +34,8 @@ export function CollapsibleMakeSection({ make, issues, dtcCode }: CollapsibleMak
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
+        aria-expanded={expanded}
+        aria-label={`${expanded ? 'Collapse' : 'Expand'} ${make} issues`}
         className="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors text-left"
       >
         <div className="flex items-center gap-3">
@@ -103,7 +105,7 @@ export function CollapsibleMakeSection({ make, issues, dtcCode }: CollapsibleMak
                     </span>
                   </div>
                   <p className="text-sm text-gray-600 truncate">{issue.title}</p>
-                  <div className="flex items-center gap-3 mt-1 text-xs text-gray-400">
+                  <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
                     <span>{minYear === maxYear ? minYear : `${minYear}-${maxYear}`}</span>
                     {issue.estimatedCost && (
                       <span>${issue.estimatedCost.low.toLocaleString()}-${issue.estimatedCost.high.toLocaleString()}</span>
