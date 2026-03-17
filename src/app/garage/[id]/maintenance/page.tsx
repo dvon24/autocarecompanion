@@ -276,6 +276,7 @@ export default function MaintenancePage() {
     make: vehicle.make,
     model: vehicle.model,
     year: vehicle.year,
+    trim: vehicle.trim || undefined,
   };
 
   // Get applicable schedules for this vehicle

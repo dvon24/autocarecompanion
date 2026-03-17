@@ -297,6 +297,7 @@ export interface VehicleContext {
   make: string;
   model: string;
   year: number;
+  trim?: string;
 }
 
 export interface ResolvedSchedule extends MaintenanceType {
@@ -548,24 +549,88 @@ const DRIVETRAIN_TYPES = new Set(['transfer_case_fluid', 'differential_fluid']);
 
 /**
  * Look up the override for a specific maintenance type on a vehicle.
- * Resolution order: model-level > make-level > null (use global default).
+ * Resolution order: trim+year > model _defaults > make _defaults > null (use global default).
+ *
+ * Trim-level entries in the JSON look like:
+ *   "Camaro": {
+ *     "_defaults": { "oil_change": { ... } },
+ *     "trims": {
+ *       "ZL1": { "years": [2017,...,2024], "engine": "6.2L SC V8 LT4", "oil_change": { ... } }
+ *     }
+ *   }
+ * The trim key is slash-separated for aliases: "SS/1SS/2SS".
  */
 function getOverride(typeId: string, vehicle: VehicleContext): OverrideEntry | null {
   const makes = maintenanceOverrides.makes as Record<string, {
     _defaults?: Record<string, OverrideEntry>;
-    models?: Record<string, Record<string, OverrideEntry>>;
+    models?: Record<string, any>;
   }>;
 
   const makeData = makes[vehicle.make];
   if (!makeData) return null;
 
-  // Check model-level override first
-  const modelOverrides = makeData.models?.[vehicle.model];
-  if (modelOverrides?.[typeId] !== undefined) {
-    return modelOverrides[typeId];
+  const modelData = makeData.models?.[vehicle.model];
+
+  // 1. Check trim-level override (highest priority)
+  // Score each trim entry and pick the best match
+  if (modelData?.trims && vehicle.trim) {
+    const trimLower = vehicle.trim.toLowerCase();
+    let bestMatch: { key: string; data: any; score: number } | null = null;
+
+    for (const [trimKey, trimData] of Object.entries(modelData.trims) as [string, any][]) {
+      // If trim entry has a years array, check year match first
+      if (trimData.years && !trimData.years.includes(vehicle.year)) continue;
+
+      const aliases = trimKey.toLowerCase().split('/').map((s: string) => s.trim());
+      let score = 0;
+
+      for (const alias of aliases) {
+        if (!alias) continue;
+        // Exact match (trim === alias)
+        if (trimLower === alias) { score = Math.max(score, 100); continue; }
+        // Trim contains the full alias as a word boundary match
+        // e.g. "ZL1 1LE" contains "zl1", "SRT Hellcat Redeye" contains "srt hellcat"
+        if (trimLower.includes(alias)) {
+          score = Math.max(score, 50 + alias.length);
+          continue;
+        }
+        // Alias contains the full trim
+        if (alias.includes(trimLower)) {
+          score = Math.max(score, 40 + trimLower.length);
+          continue;
+        }
+        // Check if any word in the trim matches any word in the alias
+        const trimWords = trimLower.split(/[\s\-_,]+/).filter(Boolean);
+        const aliasWords = alias.split(/[\s\-_,]+/).filter(Boolean);
+        const wordMatches = trimWords.filter(tw => aliasWords.some(aw => tw === aw || aw === tw));
+        if (wordMatches.length > 0) {
+          score = Math.max(score, 20 + wordMatches.length * 5 + wordMatches.join('').length);
+        }
+      }
+
+      if (score > 0 && (!bestMatch || score > bestMatch.score)) {
+        bestMatch = { key: trimKey, data: trimData, score };
+      }
+    }
+
+    if (bestMatch && bestMatch.data[typeId] !== undefined) {
+      return bestMatch.data[typeId];
+    }
   }
 
-  // Fall back to make-level defaults
+  // 2. Check model-level _defaults (or flat model overrides for backward compat)
+  if (modelData) {
+    // New structure: model._defaults
+    if (modelData._defaults?.[typeId] !== undefined) {
+      return modelData._defaults[typeId];
+    }
+    // Legacy flat structure: model.oil_change directly
+    if (modelData[typeId] !== undefined && typeId !== 'trims' && typeId !== '_defaults' && typeId !== 'engine') {
+      return modelData[typeId];
+    }
+  }
+
+  // 3. Fall back to make-level defaults
   const makeDefaults = makeData._defaults;
   if (makeDefaults?.[typeId] !== undefined) {
     return makeDefaults[typeId];
