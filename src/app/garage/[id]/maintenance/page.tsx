@@ -10,6 +10,7 @@ import { LogMaintenanceModal } from '@/components/maintenance/LogMaintenanceModa
 import { GarageAssistant } from '@/components/garage/GarageAssistant';
 import { useGuide } from '@/hooks/useGuide';
 import { useKnownIssues } from '@/hooks/useKnownIssues';
+import { useRecalls } from '@/hooks/useRecalls';
 import { useIssueFixes } from '@/hooks/useIssueFixes';
 import { KnownIssueCard } from '@/components/known-issues/KnownIssueCard';
 import {
@@ -42,6 +43,7 @@ interface Vehicle {
   make: string;
   model: string;
   trim?: string | null;
+  vin?: string | null;
   nickname?: string | null;
   currentMileage?: number | null;
   annualMileage?: number | null;
@@ -90,6 +92,20 @@ export default function MaintenancePage() {
     model: vehicle?.model ?? '',
     trim: vehicle?.trim ?? undefined,
   });
+
+  // NHTSA recall alerts
+  const {
+    recalls,
+    loading: recallsLoading,
+    criticalCount: recallCriticalCount,
+  } = useRecalls({
+    year: vehicle?.year ?? 0,
+    make: vehicle?.make ?? '',
+    model: vehicle?.model ?? '',
+    vin: vehicle?.vin,
+  });
+
+  const [showRecalls, setShowRecalls] = useState(false);
 
   // User's fixes for known issues
   const {
@@ -625,6 +641,114 @@ export default function MaintenancePage() {
                         onFixUpdated={refetchFixes}
                       />
                     ))}
+                </div>
+              )}
+            </ContentCard>
+          </ScrollReveal>
+        )}
+
+        {/* NHTSA Recall Alerts */}
+        {!recallsLoading && recalls.length > 0 && (
+          <ScrollReveal delay={80} duration={500}>
+            <ContentCard className="p-0 mb-8 overflow-hidden">
+              <button
+                onClick={() => setShowRecalls(!showRecalls)}
+                className="w-full px-6 py-4 flex items-center justify-between hover:bg-red-50/50 transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                    recallCriticalCount > 0 ? 'bg-red-100' : 'bg-orange-100'
+                  }`}>
+                    <svg className={`w-5 h-5 ${recallCriticalCount > 0 ? 'text-red-600' : 'text-orange-600'}`} fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="text-left">
+                    <h2 className="text-lg font-semibold text-gray-900">NHTSA Recall Alerts</h2>
+                    <p className="text-sm text-gray-500">
+                      {recallCriticalCount > 0 && (
+                        <span className="text-red-600 font-medium">
+                          {recallCriticalCount} safety-critical
+                        </span>
+                      )}
+                      {recallCriticalCount > 0 && recalls.length > recallCriticalCount && ' · '}
+                      {recalls.length} recall{recalls.length !== 1 ? 's' : ''} found
+                    </p>
+                  </div>
+                </div>
+                <svg
+                  className={`w-5 h-5 text-gray-400 transition-transform ${showRecalls ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {showRecalls && (
+                <div className="px-6 pb-6 space-y-3 border-t border-gray-100 pt-4">
+                  {recalls.map((recall) => (
+                    <div
+                      key={recall.campaignNumber}
+                      className={`rounded-lg border p-4 ${
+                        recall.severity === 'critical'
+                          ? 'border-red-200 bg-red-50'
+                          : recall.severity === 'high'
+                          ? 'border-orange-200 bg-orange-50'
+                          : 'border-yellow-200 bg-yellow-50'
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-3 mb-2">
+                        <div className="flex items-center gap-2">
+                          <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
+                            recall.severity === 'critical'
+                              ? 'bg-red-100 text-red-800'
+                              : recall.severity === 'high'
+                              ? 'bg-orange-100 text-orange-800'
+                              : 'bg-yellow-100 text-yellow-800'
+                          }`}>
+                            {recall.severity === 'critical' ? 'DO NOT DRIVE' : recall.severity.toUpperCase()}
+                          </span>
+                          {recall.parkIt && (
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-200 text-red-900">
+                              PARK IT
+                            </span>
+                          )}
+                        </div>
+                        <span className="text-xs text-gray-500 whitespace-nowrap">
+                          {new Date(recall.reportDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                        </span>
+                      </div>
+                      <h3 className="font-medium text-gray-900 text-sm mb-1">{recall.component}</h3>
+                      <p className="text-sm text-gray-700 mb-2">{recall.summary}</p>
+                      {recall.consequence && (
+                        <div className="mb-2">
+                          <span className="text-xs font-medium text-gray-500 uppercase">Risk: </span>
+                          <span className="text-sm text-gray-700">{recall.consequence}</span>
+                        </div>
+                      )}
+                      {recall.remedy && (
+                        <div className="mb-2">
+                          <span className="text-xs font-medium text-gray-500 uppercase">Remedy: </span>
+                          <span className="text-sm text-gray-700">{recall.remedy}</span>
+                        </div>
+                      )}
+                      <div className="flex items-center justify-between mt-3 pt-2 border-t border-gray-200/60">
+                        <span className="text-xs text-gray-400">Campaign #{recall.campaignNumber}</span>
+                        <a
+                          href={`https://www.nhtsa.gov/recalls?nhtsaId=${recall.campaignNumber}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-blue-600 hover:text-blue-800 font-medium"
+                        >
+                          View on NHTSA.gov
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                  <p className="text-xs text-gray-400 mt-2">
+                    Recall data from NHTSA. Contact your dealer to verify recall status and schedule repairs. Recalls are typically repaired at no cost.
+                  </p>
                 </div>
               )}
             </ContentCard>
