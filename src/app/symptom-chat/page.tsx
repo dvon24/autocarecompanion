@@ -384,13 +384,19 @@ function SymptomChatContent() {
                         <div className="flex flex-wrap gap-2">
                           {[
                             "Oil change",
-                            "Battery replacement",
-                            "Wiper blade replacement",
                             "Brake pad replacement",
+                            "Spark plug replacement",
+                            "Battery replacement",
                             "Air filter replacement",
-                            "Tire rotation",
-                            "Light bulb replacement",
                             "Cabin air filter",
+                            "Tire rotation",
+                            "Coolant flush",
+                            "Transmission fluid change",
+                            "Wiper blade replacement",
+                            "Light bulb replacement",
+                            "Serpentine belt replacement",
+                            "Power steering fluid",
+                            "Wheel alignment check",
                           ].map((task) => (
                             <button
                               key={task}
