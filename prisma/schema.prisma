@@ -347,6 +347,8 @@ model KnownIssue {
   dtcCodes                 String[]  @default([])
   estimatedCostLow         Int?
   estimatedCostHigh        Int?
+  typicalMileageLow        Int?      // Mileage range when issue typically appears
+  typicalMileageHigh       Int?
   citations                Json      @default("[]")
   communityRecommendations Json      @default("[]")
   humanApproved            Boolean   @default(false)

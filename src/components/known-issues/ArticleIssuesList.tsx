@@ -81,6 +81,58 @@ export function ArticleIssuesList({ issues, make, model, initialYear }: ArticleI
         </div>
       </div>
 
+      {/* Mileage Timeline — shows when issues typically appear */}
+      {(() => {
+        const withMileage = filteredIssues.filter(i => i.typicalMileage);
+        if (withMileage.length < 3) return null;
+        const maxMileage = Math.max(...withMileage.map(i => i.typicalMileage!.high));
+        const scale = Math.ceil(maxMileage / 50000) * 50000; // Round up to nearest 50K
+        const severityColors = { high: 'bg-red-400', medium: 'bg-yellow-400', low: 'bg-gray-300' };
+        return (
+          <div className="mt-4 mb-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+            <h3 className="text-sm font-semibold text-gray-700 mb-3">When Issues Typically Appear</h3>
+            <div className="space-y-1.5">
+              {withMileage
+                .sort((a, b) => a.typicalMileage!.low - b.typicalMileage!.low)
+                .slice(0, 12)
+                .map(issue => {
+                  const left = (issue.typicalMileage!.low / scale) * 100;
+                  const width = ((issue.typicalMileage!.high - issue.typicalMileage!.low) / scale) * 100;
+                  return (
+                    <div key={issue.id} className="flex items-center gap-2">
+                      <div className="w-32 sm:w-48 text-xs text-gray-600 truncate flex-shrink-0" title={issue.title}>
+                        {issue.title}
+                      </div>
+                      <div className="flex-1 h-4 bg-gray-100 rounded-full relative overflow-hidden">
+                        <div
+                          className={`absolute h-full rounded-full ${severityColors[issue.severity]} opacity-80`}
+                          style={{ left: `${left}%`, width: `${Math.max(width, 2)}%` }}
+                          title={`${(issue.typicalMileage!.low / 1000).toFixed(0)}K - ${(issue.typicalMileage!.high / 1000).toFixed(0)}K miles`}
+                        />
+                      </div>
+                      <span className="text-[10px] text-gray-400 w-20 text-right flex-shrink-0">
+                        {(issue.typicalMileage!.low / 1000).toFixed(0)}K-{(issue.typicalMileage!.high / 1000).toFixed(0)}K
+                      </span>
+                    </div>
+                  );
+                })}
+            </div>
+            {/* Axis labels */}
+            <div className="flex items-center gap-2 mt-2">
+              <div className="w-32 sm:w-48 flex-shrink-0" />
+              <div className="flex-1 flex justify-between text-[10px] text-gray-400">
+                <span>0</span>
+                <span>{(scale / 4000).toFixed(0)}K</span>
+                <span>{(scale / 2000).toFixed(0)}K</span>
+                <span>{(scale * 3 / 4000).toFixed(0)}K</span>
+                <span>{(scale / 1000).toFixed(0)}K mi</span>
+              </div>
+              <div className="w-20 flex-shrink-0" />
+            </div>
+          </div>
+        );
+      })()}
+
       <div className="space-y-4 mt-4">
         {groupedIssues.length === 0 ? (
           <div className="text-center py-8 text-gray-500">

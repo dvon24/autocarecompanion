@@ -77,6 +77,10 @@ export const knownIssueSchema = z.object({
     low: z.number(),
     high: z.number(),
   }).optional(),
+  typicalMileage: z.object({
+    low: z.number(),
+    high: z.number(),
+  }).optional(),
   citations: z.array(citationSchema),
   communityRecommendations: z.array(communityRecommendationSchema).optional(),
   humanApproved: z.boolean(),

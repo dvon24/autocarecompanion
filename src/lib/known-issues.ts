@@ -24,6 +24,9 @@ function dbRowToKnownIssue(row: any): KnownIssue {
     estimatedCost: row.estimatedCostLow != null
       ? { low: row.estimatedCostLow, high: row.estimatedCostHigh }
       : undefined,
+    typicalMileage: row.typicalMileageLow != null
+      ? { low: row.typicalMileageLow, high: row.typicalMileageHigh }
+      : undefined,
     citations: row.citations as any[],
     communityRecommendations: row.communityRecommendations as any[],
     humanApproved: row.humanApproved,
