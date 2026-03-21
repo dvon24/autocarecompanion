@@ -310,23 +310,40 @@ export default async function KnownIssuesArticlePage({
         {/* Top ad slot — horizontal banner after stats */}
         <AdSlot slotId="1234567890" format="horizontal" className="mb-8" />
 
-        {/* Quick action — Chat with AI (visible near top) */}
-        <div className="flex items-center gap-3 mb-8 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl">
-          <div className="flex-1">
-            <p className="text-sm font-medium text-gray-900">Have a specific problem with your {vehicleName}?</p>
-            <p className="text-xs text-gray-500 mt-0.5">Describe your symptoms and get an AI-powered diagnosis.</p>
+        {/* Quick actions — Symptom Chat + Parts Lookup */}
+        <div className="grid sm:grid-cols-2 gap-3 mb-8">
+          <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl">
+            <div className="flex-1">
+              <p className="text-sm font-medium text-gray-900">Experiencing a symptom?</p>
+              <p className="text-xs text-gray-500 mt-0.5">Describe it and get a diagnosis with repair steps.</p>
+            </div>
+            <VehicleChatLink
+              make={make}
+              model={model}
+              issues={issues}
+              className="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-4 py-2.5 rounded-lg hover:bg-blue-700 transition-colors text-sm whitespace-nowrap"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              Symptom Chat
+            </VehicleChatLink>
           </div>
-          <VehicleChatLink
-            make={make}
-            model={model}
-            issues={issues}
-            className="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-4 py-2.5 rounded-lg hover:bg-blue-700 transition-colors text-sm whitespace-nowrap"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
-            Chat with AI
-          </VehicleChatLink>
+          <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 rounded-xl">
+            <div className="flex-1">
+              <p className="text-sm font-medium text-gray-900">Need parts for your {model}?</p>
+              <p className="text-xs text-gray-500 mt-0.5">Get a repair guide with direct links to parts.</p>
+            </div>
+            <Link
+              href="/get-started"
+              className="inline-flex items-center gap-2 bg-emerald-600 text-white font-semibold px-4 py-2.5 rounded-lg hover:bg-emerald-700 transition-colors text-sm whitespace-nowrap"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              Find Parts
+            </Link>
+          </div>
         </div>
 
         {/* Mobile-only Table of Contents (hidden on lg+) */}

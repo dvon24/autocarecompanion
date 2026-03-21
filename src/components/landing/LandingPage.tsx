@@ -164,8 +164,12 @@ export default function LandingPage({ trendingIssues = [] }: { trendingIssues?: 
             </div>
             <p className="text-center text-gray-400 text-sm mb-6">
               or{' '}
+              <Link href="/symptom-chat" className="text-blue-600 hover:text-blue-700 font-medium hover:underline">
+                describe a symptom to our AI
+              </Link>
+              {' '}&middot;{' '}
               <Link href="/get-started" className="text-blue-600 hover:text-blue-700 font-medium hover:underline">
-                get a step-by-step repair guide
+                find parts &amp; repair guides
               </Link>
             </p>
           </ScrollReveal>
