@@ -145,10 +145,14 @@ function generateFAQs(make: string, model: string, issues: KnownIssue[], yearRan
 
 export default async function KnownIssuesArticlePage({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ year?: string }>;
 }) {
   const { slug } = await params;
+  const { year: yearParam } = await searchParams;
+  const initialYear = yearParam ? parseInt(yearParam, 10) : undefined;
   const parsed = await parseSlug(slug);
   if (!parsed) notFound();
 
@@ -412,7 +416,7 @@ export default async function KnownIssuesArticlePage({
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
                 All {issues.length} Known Issues
               </h2>
-              <ArticleIssuesList issues={issues} make={make} model={model} />
+              <ArticleIssuesList issues={issues} make={make} model={model} initialYear={initialYear} />
             </section>
 
             {/* Fallthrough CTA — user doesn't see their issue */}

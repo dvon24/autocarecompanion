@@ -10,14 +10,31 @@ interface ArticleIssuesListProps {
   issues: KnownIssue[];
   make: string;
   model: string;
+  initialYear?: number;
 }
 
-export function ArticleIssuesList({ issues, make, model }: ArticleIssuesListProps) {
+export function ArticleIssuesList({ issues, make, model, initialYear }: ArticleIssuesListProps) {
   const [severityFilter, setSeverityFilter] = useState<('high' | 'medium' | 'low')[]>(['high', 'medium', 'low']);
+  const [yearFilter, setYearFilter] = useState<number | null>(initialYear ?? null);
+
+  // Get all unique years from issues, sorted descending
+  const availableYears = useMemo(() => {
+    const years = new Set<number>();
+    for (const issue of issues) {
+      for (const y of issue.vehicleMatch.years) {
+        years.add(y);
+      }
+    }
+    return [...years].sort((a, b) => b - a);
+  }, [issues]);
 
   const filteredIssues = useMemo(() =>
-    issues.filter(i => severityFilter.includes(i.severity)),
-    [issues, severityFilter]
+    issues.filter(i => {
+      if (severityFilter.includes(i.severity) === false) return false;
+      if (yearFilter !== null && i.vehicleMatch.years.includes(yearFilter) === false) return false;
+      return true;
+    }),
+    [issues, severityFilter, yearFilter]
   );
 
   const groupedIssues = useMemo(() => {
@@ -38,17 +55,30 @@ export function ArticleIssuesList({ issues, make, model }: ArticleIssuesListProp
     return sortedCategories.map(cat => ({ category: cat, issues: groups[cat]! }));
   }, [filteredIssues]);
 
-  // Build vehicleInfo using the first issue's year range midpoint for display
+  // Build vehicleInfo using selected year or max year
   const vehicleInfo = useMemo(() => {
-    const years = issues.flatMap(i => i.vehicleMatch.years);
-    const maxYear = Math.max(...years);
-    return { year: maxYear, make, model };
-  }, [issues, make, model]);
+    const year = yearFilter ?? Math.max(...issues.flatMap(i => i.vehicleMatch.years));
+    return { year, make, model };
+  }, [issues, make, model, yearFilter]);
 
   return (
     <>
       <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm border-b border-gray-200 px-4 py-3 -mx-4 sm:-mx-6 sm:px-6">
-        <SeverityFilter selected={severityFilter} onChange={setSeverityFilter} />
+        <div className="flex items-center gap-3 flex-wrap">
+          <SeverityFilter selected={severityFilter} onChange={setSeverityFilter} />
+          <select
+            value={yearFilter ?? ''}
+            onChange={e => setYearFilter(e.target.value ? parseInt(e.target.value, 10) : null)}
+            className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          >
+            <option value="">All Years ({issues.length})</option>
+            {availableYears.map(y => (
+              <option key={y} value={y}>
+                {y} ({issues.filter(i => i.vehicleMatch.years.includes(y)).length})
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className="space-y-4 mt-4">
