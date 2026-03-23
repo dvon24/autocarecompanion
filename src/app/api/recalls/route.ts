@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 
 const NHTSA_RECALLS_API = 'https://api.nhtsa.gov/recalls/recallsByVehicle';
-const NHTSA_VIN_API = 'https://api.nhtsa.gov/recalls/recallsByVin';
+const NHTSA_VIN_DECODE_API = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues';
 const TIMEOUT_MS = 10000;
 
 interface NHTSARecall {
@@ -87,18 +87,44 @@ export async function GET(request: NextRequest) {
     const model = searchParams.get('model');
     const vin = searchParams.get('vin');
 
-    // VIN-based lookup takes priority
-    let url: string;
+    // Resolve year/make/model — either from params or by decoding VIN
+    let resolvedYear = year;
+    let resolvedMake = make;
+    let resolvedModel = model;
+
     if (vin && vin.length === 17) {
-      url = `${NHTSA_VIN_API}?vin=${encodeURIComponent(vin)}`;
-    } else if (year && make && model) {
-      url = `${NHTSA_RECALLS_API}?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}&modelYear=${encodeURIComponent(year)}`;
-    } else {
+      // VIN decode via NHTSA VPIC API to get year/make/model
+      const decodeController = new AbortController();
+      const decodeTimeout = setTimeout(() => decodeController.abort(), TIMEOUT_MS);
+      try {
+        const decodeRes = await fetch(
+          `${NHTSA_VIN_DECODE_API}/${encodeURIComponent(vin)}?format=json`,
+          { signal: decodeController.signal, headers: { Accept: 'application/json' } }
+        );
+        clearTimeout(decodeTimeout);
+        if (decodeRes.ok) {
+          const decodeData = await decodeRes.json();
+          const result = decodeData.Results?.[0];
+          if (result?.Make && result?.Model && result?.ModelYear) {
+            resolvedYear = result.ModelYear;
+            resolvedMake = result.Make;
+            resolvedModel = result.Model;
+          }
+        }
+      } catch {
+        clearTimeout(decodeTimeout);
+        // Fall through — if VIN decode fails, try year/make/model params
+      }
+    }
+
+    if (!resolvedYear || !resolvedMake || !resolvedModel) {
       return NextResponse.json(
-        { error: 'Provide year/make/model or vin' },
+        { error: 'Provide year/make/model or a valid 17-character VIN' },
         { status: 400 }
       );
     }
+
+    const url = `${NHTSA_RECALLS_API}?make=${encodeURIComponent(resolvedMake)}&model=${encodeURIComponent(resolvedModel)}&modelYear=${encodeURIComponent(resolvedYear)}`;
 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
@@ -130,6 +156,7 @@ export async function GET(request: NextRequest) {
       count: recalls.length,
       recalls,
       source: vin ? 'vin' : 'ymm',
+      vehicle: { year: resolvedYear, make: resolvedMake, model: resolvedModel },
     });
   } catch (error) {
     if (error instanceof Error && error.name === 'AbortError') {
