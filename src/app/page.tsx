@@ -4,11 +4,11 @@ import prisma from '@/lib/db';
 import { makeSlug } from '@/lib/known-issues';
 
 export const metadata: Metadata = {
-  title: 'Au7o - Know Your Car\'s Weak Spots | 2,300+ Documented Vehicle Problems',
-  description: 'Browse 2,300+ documented vehicle problems across 500+ models and 20 makes. Symptoms, repair costs, and real solutions from 6M+ owner reports. Free AI-powered DIY repair guides.',
+  title: 'Au7o - Know Your Car\'s Weak Spots | 3,600+ Documented Vehicle Problems',
+  description: 'Browse 3,600+ documented vehicle problems across 640+ models and 34 makes. Symptoms, repair costs, and real solutions from owner reports. Free AI-powered DIY repair guides.',
   openGraph: {
     title: 'Au7o - Know Your Car\'s Weak Spots',
-    description: 'Browse 2,300+ documented vehicle problems across 500+ models. Symptoms, repair costs, and solutions from real owner reports.',
+    description: 'Browse 3,600+ documented vehicle problems across 640+ models and 34 makes. Symptoms, repair costs, and solutions from real owner reports.',
     url: 'https://au7o.io',
     siteName: 'Au7o',
     type: 'website',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Au7o - Know Your Car\'s Weak Spots',
-    description: '2,300+ documented vehicle problems with symptoms, costs, and DIY solutions.',
+    description: '3,600+ documented vehicle problems with symptoms, costs, and DIY solutions.',
   },
   alternates: {
     canonical: 'https://au7o.io',

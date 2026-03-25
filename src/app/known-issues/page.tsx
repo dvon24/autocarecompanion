@@ -17,11 +17,11 @@ export const revalidate = 1800; // Re-generate cached page every 30 minutes
 export const metadata: Metadata = {
   title: 'Known Vehicle Issues & Problems | Au7o',
   description:
-    'Browse 2,300+ documented vehicle problems across 20 makes and 500+ models, plus 59 common OBD-II error codes. Symptoms, repair costs, and solutions from real owner reports.',
+    'Browse 3,600+ documented vehicle problems across 34 makes and 640+ models, plus 323 OBD-II error codes. Symptoms, repair costs, and solutions from real owner reports.',
   openGraph: {
     title: 'Known Vehicle Issues & Problems | Au7o',
     description:
-      'Browse 2,300+ documented vehicle problems across 20 makes and 490+ models.',
+      'Browse 3,600+ documented vehicle problems across 34 makes and 640+ models.',
     url: 'https://au7o.io/known-issues',
     siteName: 'Au7o',
   },

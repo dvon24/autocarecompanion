@@ -90,6 +90,8 @@ export function HeroVehicleSearch() {
     setSelectedTrim(e.target.value);
   }, []);
 
+  const [dtcQuery, setDtcQuery] = useState('');
+
   const isComplete = selectedYear && selectedMake && selectedModel && selectedTrim;
 
   const handleSubmit = useCallback(() => {
@@ -190,6 +192,44 @@ export function HeroVehicleSearch() {
           `}
         >
           {isComplete ? 'Show My Car\'s Issues' : 'Select your vehicle above'}
+        </button>
+      </div>
+
+      {/* DTC Code Quick Lookup */}
+      <div className="mt-4 flex items-center gap-2">
+        <div className="h-px flex-1 bg-gray-200" />
+        <span className="text-xs text-gray-400 uppercase tracking-wide">or look up an error code</span>
+        <div className="h-px flex-1 bg-gray-200" />
+      </div>
+      <div className="mt-3 flex gap-2">
+        <input
+          type="text"
+          value={dtcQuery}
+          onChange={(e) => setDtcQuery(e.target.value.toUpperCase())}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && dtcQuery.match(/^[PBCU]\d{4}$/)) {
+              router.push(`/known-issues/dtc/${dtcQuery}`);
+            }
+          }}
+          placeholder="Enter code (e.g. P0300)"
+          maxLength={5}
+          className="flex-1 min-h-[44px] px-4 py-2 rounded-lg border border-gray-300 bg-white text-base font-mono uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:normal-case placeholder:tracking-normal placeholder:font-sans"
+        />
+        <button
+          type="button"
+          onClick={() => {
+            if (dtcQuery.match(/^[PBCU]\d{4}$/)) {
+              router.push(`/known-issues/dtc/${dtcQuery}`);
+            }
+          }}
+          disabled={!dtcQuery.match(/^[PBCU]\d{4}$/)}
+          className={`min-h-[44px] px-5 rounded-lg font-semibold text-sm transition-colors ${
+            dtcQuery.match(/^[PBCU]\d{4}$/)
+              ? 'bg-blue-600 text-white hover:bg-blue-700 cursor-pointer'
+              : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+          }`}
+        >
+          Look Up
         </button>
       </div>
     </div>
