@@ -7,6 +7,7 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { ScrollSyncedFeatures } from '@/components/ui/ScrollSyncedFeatures';
 import { EmailCapture } from '@/components/ui/EmailCapture';
 import { HeroVehicleSearch } from '@/components/discovery/HeroVehicleSearch';
+import { ShareButtons } from '@/components/shared/ShareButtons';
 
 interface TrendingIssue {
   id: string;
@@ -50,8 +51,17 @@ function getCategoryStyle(category: string): string {
   return categoryColors[category] || 'bg-gray-50 text-gray-700 border-gray-200';
 }
 
-export default function LandingPage({ trendingIssues = [] }: { trendingIssues?: TrendingIssue[] }) {
+interface SiteStats {
+  totalIssues: number;
+  totalMakes: number;
+  totalModels: number;
+}
+
+export default function LandingPage({ trendingIssues = [], stats }: { trendingIssues?: TrendingIssue[]; stats?: SiteStats }) {
   const issues = trendingIssues.length > 0 ? trendingIssues : fallbackIssues;
+  const totalIssues = stats?.totalIssues ?? 3600;
+  const totalMakes = stats?.totalMakes ?? 34;
+  const totalModels = stats?.totalModels ?? 640;
   return (
     <div className="min-h-screen bg-white font-[system-ui,sans-serif] relative overflow-hidden">
       {/* Animated Engine Background - Only visible in hero section */}
@@ -105,6 +115,12 @@ export default function LandingPage({ trendingIssues = [] }: { trendingIssues?: 
                   Known Issues
                 </Link>
                 <Link
+                  href="/parts"
+                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  Parts Finder
+                </Link>
+                <Link
                   href="/get-started"
                   className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
                 >
@@ -124,19 +140,19 @@ export default function LandingPage({ trendingIssues = [] }: { trendingIssues?: 
                 <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
-                2,300+ Issues
+                {totalIssues.toLocaleString()}+ Issues
               </span>
               <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-gray-100 rounded-full text-sm text-gray-600 font-medium shadow-sm">
                 <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
-                20 Makes
+                {totalMakes} Makes
               </span>
               <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-gray-100 rounded-full text-sm text-gray-600 font-medium shadow-sm">
                 <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
-                6M+ Owner Reports
+                {totalModels}+ Models
               </span>
             </div>
           </ScrollReveal>
@@ -153,7 +169,7 @@ export default function LandingPage({ trendingIssues = [] }: { trendingIssues?: 
           {/* Subheadline */}
           <ScrollReveal delay={400} duration={1000} distance={30}>
             <p className="text-lg sm:text-xl text-gray-500 text-center max-w-2xl mb-8 leading-relaxed">
-              2,300+ documented problems across 500+ models. Symptoms, repair costs, and real solutions — before you get to the shop.
+              {totalIssues.toLocaleString()}+ documented problems across {totalModels}+ models. Symptoms, repair costs, and real solutions — before you get to the shop.
             </p>
           </ScrollReveal>
 
@@ -297,11 +313,28 @@ export default function LandingPage({ trendingIssues = [] }: { trendingIssues?: 
             {/* Legal Links */}
             <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400 mb-8">
               <Link href="/known-issues" className="hover:text-gray-600 transition-colors">Known Issues</Link>
+              <Link href="/parts" className="hover:text-gray-600 transition-colors">Parts Finder</Link>
+              <Link href="/about" className="hover:text-gray-600 transition-colors">About</Link>
               <Link href="/terms" className="hover:text-gray-600 transition-colors">Terms of Service</Link>
               <Link href="/privacy" className="hover:text-gray-600 transition-colors">Privacy Policy</Link>
               <Link href="/cookies" className="hover:text-gray-600 transition-colors">Cookie Policy</Link>
               <Link href="/copyright" className="hover:text-gray-600 transition-colors">Copyright Policy</Link>
               <Link href="/feedback" className="hover:text-gray-600 transition-colors">Send Feedback</Link>
+            </div>
+
+            {/* Share + Follow */}
+            <div className="flex justify-center mb-8">
+              <ShareButtons url="https://au7o.io" title="Au7o - Know Your Car's Weak Spots" />
+            </div>
+
+            {/* AI content disclaimer */}
+            <div className="flex items-start gap-2 px-4 py-3 bg-gray-50 border border-gray-100 rounded-lg max-w-2xl mx-auto mb-8">
+              <svg className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-xs text-gray-400 leading-relaxed">
+                Vehicle data and repair guidance on this site are compiled with AI assistance and may contain errors. Always verify with your service manual or a qualified mechanic.
+              </p>
             </div>
 
             {/* Footer bottom */}
@@ -319,7 +352,7 @@ export default function LandingPage({ trendingIssues = [] }: { trendingIssues?: 
                 </span>
               </div>
               <p className="text-gray-400 text-sm">
-                Built for DIY mechanics. Privacy-first. No data leaves your device.
+                Built for DIY mechanics. Your vehicle selections are stored locally in your browser.
               </p>
             </div>
           </div>

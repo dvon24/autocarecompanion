@@ -364,7 +364,7 @@ export default async function KnownIssuesArticlePage({
         )}
 
         {/* Top ad slot — horizontal banner after stats */}
-        <AdSlot slotId="1234567890" format="horizontal" className="mb-8" />
+        <AdSlot slotId="auto" format="horizontal" className="mb-8" />
 
         {/* Quick actions — Symptom Chat + Parts Lookup */}
         <div className="grid sm:grid-cols-2 gap-3 mb-8">
@@ -586,6 +586,16 @@ export default async function KnownIssuesArticlePage({
             </svg>
           </Link>
         </section>
+
+        {/* AI content disclaimer */}
+        <div className="mt-10 flex items-start gap-2 px-4 py-3 bg-gray-50 border border-gray-100 rounded-lg">
+          <svg className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p className="text-xs text-gray-400 leading-relaxed">
+            Content on this page was compiled with AI assistance using NHTSA complaints, TSBs, owner reports, and public automotive data. While we strive for accuracy, this information may contain errors. Always verify repair procedures and specifications with your vehicle&apos;s service manual or a qualified mechanic.
+          </p>
+        </div>
 
         {/* Footer attribution */}
         <footer className="mt-8 pt-6 border-t border-gray-200 text-center">

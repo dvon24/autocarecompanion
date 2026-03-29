@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 import { ConfidenceBadge } from './ConfidenceBadge';
+import { VerificationBadge } from './VerificationBadge';
 import { ReportIssueModal } from './ReportIssueModal';
 import { FixIssueModal } from './FixIssueModal';
 import Link from 'next/link';
@@ -428,7 +429,8 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
           )}
 
           {/* Trust indicators */}
-          <div className="pt-2 border-t border-gray-100">
+          <div className="pt-2 border-t border-gray-100 flex items-center gap-2 flex-wrap">
+            <VerificationBadge source={issue.source} />
             <ConfidenceBadge
               confidence={issue.confidence}
               humanApproved={issue.humanApproved}

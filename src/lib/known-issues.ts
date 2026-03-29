@@ -33,6 +33,7 @@ function dbRowToKnownIssue(row: any): KnownIssue {
     lastReportedByOwners: row.lastReportedByOwners,
     reviewedOn: row.reviewedOn,
     reportCount: row.reportCount,
+    source: row.source || 'ai-researched',
     status: row.status,
     dtcCodes: row.dtcCodes,
   } as KnownIssue;

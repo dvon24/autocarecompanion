@@ -4,7 +4,7 @@ import { z } from 'zod';
  * Citation source for known issue evidence
  */
 export const citationSchema = z.object({
-  type: z.enum(['tsb', 'recall', 'forum', 'manual']),
+  type: z.enum(['tsb', 'recall', 'forum', 'manual', 'nhtsa']),
   title: z.string(),
   url: z.string().url().optional(),
 });
@@ -83,6 +83,7 @@ export const knownIssueSchema = z.object({
   }).optional(),
   citations: z.array(citationSchema),
   communityRecommendations: z.array(communityRecommendationSchema).optional(),
+  source: z.enum(['nhtsa-verified', 'recall-related', 'ai-researched', 'manual']).optional(),
   humanApproved: z.boolean(),
   lastReportedByOwners: z.string(), // When owners last reported this issue
   reviewedOn: z.string(), // When we verified/reviewed the issue

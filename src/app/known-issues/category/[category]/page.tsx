@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { makeSlug } from '@/lib/known-issues';
 import { categoryConfig } from '@/lib/issue-categories';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { ShareButtons } from '@/components/shared/ShareButtons';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
 import prisma from '@/lib/db';
 
@@ -144,7 +145,7 @@ async function getCategoryData(category: string) {
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([make, vehs]) => ({
       make,
-      vehicles: vehs.sort((a, b) => b.issueCount - a.issueCount),
+      vehicles: vehs.sort((a, b) => a.model.localeCompare(b.model)),
       totalIssues: vehs.reduce((sum, v) => sum + v.issueCount, 0),
     }));
 
@@ -232,6 +233,9 @@ export default async function CategoryPage({
           <p className="text-gray-500 text-lg max-w-2xl">
             {description}
           </p>
+          <div className="mt-4">
+            <ShareButtons url={`https://au7o.io/known-issues/category/${category}`} title={`${label} Problems & Known Issues | Au7o`} />
+          </div>
         </header>
 
         {/* Quick stats */}

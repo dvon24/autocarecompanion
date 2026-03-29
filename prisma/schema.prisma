@@ -353,6 +353,7 @@ model KnownIssue {
   communityRecommendations Json      @default("[]")
   humanApproved            Boolean   @default(false)
   reportCount              Int       @default(0)
+  source                   String    @default("ai-researched")  // "nhtsa-verified", "ai-researched", "manual"
   status                   String    @default("published")
   lastReportedByOwners     String    @default("")
   reviewedOn               String    @default("")
@@ -399,4 +400,20 @@ model AffiliateClick {
 
   @@index([knownIssueId])
   @@index([clickedAt])
+}
+
+model VehiclePartLookup {
+  id        String   @id @default(cuid())
+  year      Int
+  make      String
+  model     String
+  trim      String
+  task      String   // e.g. "oil_change", "spark_plugs"
+  parts     Json     // Array of { name, spec, detail?, partNumber?, searchQuery }
+  source    String   @default("ai") // "static" | "ai"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([year, make, model, trim, task])
+  @@index([make, model])
 }

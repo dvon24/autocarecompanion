@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { makeSlug } from '@/lib/known-issues';
 import { categoryConfig } from '@/lib/issue-categories';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { ShareButtons } from '@/components/shared/ShareButtons';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
 import prisma from '@/lib/db';
 
@@ -118,7 +119,7 @@ async function getMakePageData(makeSlugParam: string): Promise<MakePageData | nu
       highCount: v.highCount,
       yearRange: v.minYear === Infinity ? null : { min: v.minYear, max: v.maxYear },
     }))
-    .sort((a, b) => b.issueCount - a.issueCount);
+    .sort((a, b) => a.model.localeCompare(b.model));
 
   // Build category breakdown sorted by count descending
   const categoryBreakdown = Object.entries(categoryCounts)
@@ -267,6 +268,9 @@ export default async function MakeLandingPage({
           <p className="text-gray-500 text-lg max-w-2xl">
             {totalIssues.toLocaleString()} documented problems across {models.length} {make} models. Every issue includes symptoms, repair costs, and solutions from real owner reports.
           </p>
+          <div className="mt-4">
+            <ShareButtons url={makeUrl} title={`${make} Known Issues & Problems | Au7o`} />
+          </div>
         </header>
 
         {/* Stats row */}
