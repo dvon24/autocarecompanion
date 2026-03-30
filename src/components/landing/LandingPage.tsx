@@ -318,6 +318,7 @@ export default function LandingPage({ trendingIssues = [], stats }: { trendingIs
               <Link href="/terms" className="hover:text-gray-600 transition-colors">Terms of Service</Link>
               <Link href="/privacy" className="hover:text-gray-600 transition-colors">Privacy Policy</Link>
               <Link href="/cookies" className="hover:text-gray-600 transition-colors">Cookie Policy</Link>
+              <a href="#" className="termly-display-preferences hover:text-gray-600 transition-colors">Consent Preferences</a>
               <Link href="/copyright" className="hover:text-gray-600 transition-colors">Copyright Policy</Link>
               <Link href="/feedback" className="hover:text-gray-600 transition-colors">Send Feedback</Link>
             </div>
