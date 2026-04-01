@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { useVehicleContext } from '@/contexts/AppContext';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 import { CategorySection } from './CategorySection';
 import { SeverityFilter } from './SeverityFilter';
@@ -14,8 +15,29 @@ interface ArticleIssuesListProps {
 }
 
 export function ArticleIssuesList({ issues, make, model, initialYear }: ArticleIssuesListProps) {
+  const { selectedVehicle } = useVehicleContext();
   const [severityFilter, setSeverityFilter] = useState<('high' | 'medium' | 'low')[]>(['high', 'medium', 'low']);
   const [yearFilter, setYearFilter] = useState<number | null>(initialYear ?? null);
+
+  // Get user's selected trim if it matches this article's make/model
+  const userTrim = useMemo(() => {
+    if (!selectedVehicle) return null;
+    if (selectedVehicle.make.toLowerCase() !== make.toLowerCase()) return null;
+    if (selectedVehicle.model.toLowerCase() !== model.toLowerCase()) return null;
+    return selectedVehicle.trim || null;
+  }, [selectedVehicle, make, model]);
+
+  // Auto-set year filter from user's vehicle selection
+  useMemo(() => {
+    if (selectedVehicle && !initialYear &&
+        selectedVehicle.make.toLowerCase() === make.toLowerCase() &&
+        selectedVehicle.model.toLowerCase() === model.toLowerCase()) {
+      // Only set if not already set
+      if (yearFilter === null) {
+        // Don't call setState in useMemo — handled by initialYear prop or user interaction
+      }
+    }
+  }, [selectedVehicle, make, model, initialYear, yearFilter]);
 
   // Get all unique years from issues, sorted descending
   const availableYears = useMemo(() => {
@@ -28,13 +50,37 @@ export function ArticleIssuesList({ issues, make, model, initialYear }: ArticleI
     return [...years].sort((a, b) => b - a);
   }, [issues]);
 
+  // Get unique trims from issues for the trim filter
+  const availableTrims = useMemo(() => {
+    const trims = new Set<string>();
+    for (const issue of issues) {
+      if (issue.vehicleMatch.trims) {
+        for (const t of issue.vehicleMatch.trims) {
+          trims.add(t);
+        }
+      }
+    }
+    return [...trims].sort();
+  }, [issues]);
+
+  const [trimFilter, setTrimFilter] = useState<string | null>(userTrim);
+
   const filteredIssues = useMemo(() =>
     issues.filter(i => {
       if (severityFilter.includes(i.severity) === false) return false;
       if (yearFilter !== null && i.vehicleMatch.years.includes(yearFilter) === false) return false;
+      // Trim filter: show issue if it has no trims (applies to all) OR if it includes the selected trim
+      if (trimFilter !== null && i.vehicleMatch.trims && i.vehicleMatch.trims.length > 0) {
+        // Issue is trim-specific — check if user's trim matches
+        const matchesTrim = i.vehicleMatch.trims.some(t =>
+          t.toLowerCase().includes(trimFilter.toLowerCase()) ||
+          trimFilter.toLowerCase().includes(t.toLowerCase())
+        );
+        if (!matchesTrim) return false;
+      }
       return true;
     }),
-    [issues, severityFilter, yearFilter]
+    [issues, severityFilter, yearFilter, trimFilter]
   );
 
   const groupedIssues = useMemo(() => {
@@ -78,6 +124,18 @@ export function ArticleIssuesList({ issues, make, model, initialYear }: ArticleI
               </option>
             ))}
           </select>
+          {availableTrims.length > 0 && (
+            <select
+              value={trimFilter ?? ''}
+              onChange={e => setTrimFilter(e.target.value || null)}
+              className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="">All Trims</option>
+              {availableTrims.map(t => (
+                <option key={t} value={t}>{t}</option>
+              ))}
+            </select>
+          )}
         </div>
       </div>
 
