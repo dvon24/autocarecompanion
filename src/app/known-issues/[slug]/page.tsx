@@ -366,22 +366,19 @@ export default async function KnownIssuesArticlePage({
             {/* Single ad slot — after issues, before recalls */}
             <AdSlot slotId="auto" format="horizontal" className="my-10" />
 
-            {/* NHTSA Recalls Section — collapsible */}
+            {/* NHTSA Recalls Section — same style as category dropdowns */}
             {recalls.length > 0 && (
-              <section id="recalls" className="scroll-mt-16 mb-10">
+              <div id="recalls" className="scroll-mt-16 border border-gray-200 rounded-lg overflow-hidden mb-4">
                 <details className="group">
-                  <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
-                    <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                      <svg className="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                      </svg>
-                      NHTSA Recalls ({recalls.length})
-                    </h2>
+                  <summary className="w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-3 cursor-pointer list-none">
+                    <span className="text-lg">⚠️</span>
+                    <span className="font-medium text-gray-900 flex-1 text-left">NHTSA Recalls</span>
+                    <span className="text-sm text-gray-500">{recalls.length} recall{recalls.length !== 1 ? 's' : ''}</span>
                     <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </summary>
-                  <div className="pt-4 space-y-3">
+                  <div className="p-3 space-y-2 bg-white">
                     {recalls.slice(0, 5).map(recall => (
                       <div
                         key={recall.campaignNumber}
@@ -407,21 +404,21 @@ export default async function KnownIssuesArticlePage({
                       </div>
                     ))}
                     {recalls.length > 5 && (
-                      <p className="text-sm text-gray-500 mt-3">
+                      <p className="text-sm text-gray-500 mt-3 pl-4">
                         + {recalls.length - 5} more recalls.{' '}
                         <a href="https://www.nhtsa.gov/recalls" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">
-                          Check all recalls on NHTSA.gov
+                          Check all on NHTSA.gov
                         </a>
                       </p>
                     )}
-                    <p className="text-xs text-gray-400 mt-3">
-                      Recall data from NHTSA. Enter your VIN at{' '}
+                    <p className="text-xs text-gray-400 mt-2 pl-4">
+                      Enter your VIN at{' '}
                       <a href="https://www.nhtsa.gov/recalls" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">NHTSA.gov</a>{' '}
                       to check recalls specific to your vehicle.
                     </p>
                   </div>
                 </details>
-              </section>
+              </div>
             )}
 
             {/* Fallthrough CTA — simplified */}
