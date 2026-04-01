@@ -43,18 +43,10 @@ const POPULAR_MAKES = [
   'Jeep', 'Nissan', 'Hyundai', 'Kia', 'Mercedes-Benz', 'Subaru',
 ];
 
-// Make icons — simple emoji/text representations
-const makeIcons: Record<string, string> = {
-  'Acura': '🅰️', 'Alfa Romeo': '🏎️', 'Audi': '🔵', 'BMW': '🔷',
-  'Cadillac': '👑', 'Chevrolet': '🏁', 'Chrysler': '⭐', 'Citroën': '🇫🇷',
-  'Dodge': '🐏', 'Fiat': '🇮🇹', 'Ford': '🔵', 'Genesis': '💎',
-  'GMC': '🔴', 'Honda': '🔴', 'Hyundai': '🔷', 'Infiniti': '♾️',
-  'Jaguar': '🐆', 'Jeep': '🏔️', 'Kia': '🔴', 'Land Rover': '🟢',
-  'Lexus': '🔷', 'Mazda': '🔴', 'Mercedes-Benz': '⭐', 'MINI': '🇬🇧',
-  'Mitsubishi': '🔺', 'Nissan': '🔴', 'Peugeot': '🦁', 'Porsche': '🏎️',
-  'RAM': '🐏', 'Renault': '🇫🇷', 'Subaru': '⭐', 'Toyota': '🔴',
-  'Volkswagen': '🔵', 'Volvo': '🔵',
-};
+// Map make names to logo filenames in /public/logos/
+function makeLogoSlug(make: string): string {
+  return make.toLowerCase().replace(/\s+/g, '-').replace(/ë/g, 'e');
+}
 
 async function buildDirectory() {
   const rows = await prisma.knownIssue.findMany({
@@ -203,7 +195,7 @@ export default async function KnownIssuesIndexPage() {
                 href={`/known-issues/make/${make.toLowerCase().replace(/\s+/g, '-')}`}
                 className="group flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-gray-300 hover:shadow-sm transition-all"
               >
-                <span className="text-2xl flex-shrink-0 mt-0.5">{makeIcons[make] || '🚗'}</span>
+                <Image src={`/logos/${makeLogoSlug(make)}.png`} alt={`${make} logo`} width={36} height={36} className="flex-shrink-0 object-contain" />
                 <div className="min-w-0">
                   <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{make}</h3>
                   <p className="text-xs text-gray-400 mt-0.5">
@@ -215,80 +207,101 @@ export default async function KnownIssuesIndexPage() {
           </div>
         </section>
 
-        {/* All Makes — compact grid */}
+        {/* All Makes — collapsible compact grid */}
         <section className="mb-12">
-          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">All Makes</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
-            {directory.map(({ make, vehicles, totalIssues: makeTotal }) => (
+          <details className="group">
+            <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
+              <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">All Makes ({directory.length})</h2>
+              <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 pt-4">
+              {directory.map(({ make, vehicles }) => (
+                <Link
+                  key={make}
+                  href={`/known-issues/make/${make.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="group flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <Image src={`/logos/${makeLogoSlug(make)}.png`} alt={`${make} logo`} width={24} height={24} className="flex-shrink-0 object-contain" />
+                  <div className="min-w-0 flex-1">
+                    <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900 truncate block">{make}</span>
+                    <span className="text-xs text-gray-400">{vehicles.length} models</span>
+                  </div>
+                  <svg className="w-4 h-4 text-gray-300 group-hover:text-gray-500 transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              ))}
+            </div>
+          </details>
+        </section>
+
+        {/* Browse by Category — collapsible */}
+        <section className="mb-12">
+          <details className="group">
+            <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
+              <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Browse by Category</h2>
+              <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 pt-4">
+              {(Object.keys(categoryConfig) as IssueCategory[]).map(cat => {
+                const config = categoryConfig[cat];
+                return (
+                  <Link
+                    key={cat}
+                    href={`/known-issues/category/${cat}`}
+                    className="group flex items-center gap-2 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    <span className="text-lg">{config.icon}</span>
+                    <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">{config.label}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          </details>
+        </section>
+
+        {/* Common DTC Codes — collapsible */}
+        <section className="mb-12">
+          <details className="group">
+            <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
+              <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Common Error Codes</h2>
+              <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 pt-4">
+              {dtcSlice.map(({ code }) => {
+                const info = dtcInfoMap[code.toLowerCase()];
+                return (
+                  <Link
+                    key={code}
+                    href={`/known-issues/dtc/${code.toLowerCase()}`}
+                    className="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    <span className="font-mono font-bold text-gray-500 group-hover:text-blue-600 text-xs w-14 flex-shrink-0">{code.toUpperCase()}</span>
+                    {info && (
+                      <span className="text-sm text-gray-500 truncate">{info.name}</span>
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+            {allDtcRows.length > 15 && (
               <Link
-                key={make}
-                href={`/known-issues/make/${make.toLowerCase().replace(/\s+/g, '-')}`}
-                className="group flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
+                href="/known-issues/dtc/p0300"
+                className="inline-flex items-center gap-1 mt-3 text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors"
               >
-                <span className="text-lg flex-shrink-0">{makeIcons[make] || '🚗'}</span>
-                <div className="min-w-0 flex-1">
-                  <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900 truncate block">{make}</span>
-                  <span className="text-xs text-gray-400">{vehicles.length} models</span>
-                </div>
-                <svg className="w-4 h-4 text-gray-300 group-hover:text-gray-500 transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                Browse all {allDtcRows.length} error codes
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* Browse by Category */}
-        <section className="mb-12">
-          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Browse by Category</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-            {(Object.keys(categoryConfig) as IssueCategory[]).map(cat => {
-              const config = categoryConfig[cat];
-              return (
-                <Link
-                  key={cat}
-                  href={`/known-issues/category/${cat}`}
-                  className="group flex items-center gap-2 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <span className="text-lg">{config.icon}</span>
-                  <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">{config.label}</span>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* Common DTC Codes */}
-        <section className="mb-12">
-          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Common Error Codes</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-            {dtcSlice.map(({ code }) => {
-              const info = dtcInfoMap[code.toLowerCase()];
-              return (
-                <Link
-                  key={code}
-                  href={`/known-issues/dtc/${code.toLowerCase()}`}
-                  className="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <span className="font-mono font-bold text-gray-500 group-hover:text-blue-600 text-xs w-14 flex-shrink-0">{code.toUpperCase()}</span>
-                  {info && (
-                    <span className="text-sm text-gray-500 truncate">{info.name}</span>
-                  )}
-                </Link>
-              );
-            })}
-          </div>
-          {allDtcRows.length > 15 && (
-            <Link
-              href="/known-issues/dtc/p0300"
-              className="inline-flex items-center gap-1 mt-3 text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors"
-            >
-              Browse all {allDtcRows.length} error codes
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          )}
+            )}
+          </details>
         </section>
 
         {/* AI disclaimer */}

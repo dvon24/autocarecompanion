@@ -146,7 +146,7 @@ export function ArticleIssuesList({ issues, make, model, initialYear }: ArticleI
                 <CategorySection
                   category={category}
                   issues={catIssues}
-                  defaultExpanded={index === 0}
+                  defaultExpanded={false}
                   defaultCardExpanded={false}
                   vehicleInfo={vehicleInfo}
                 />
