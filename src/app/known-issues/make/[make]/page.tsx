@@ -358,16 +358,17 @@ export default async function MakeLandingPage({
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {categoryBreakdown.map(({ category, label, icon, count }) => (
-              <div
+              <Link
                 key={category}
-                className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg"
+                href={`/known-issues/category/${category}`}
+                className="group flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50/50 transition-colors"
               >
                 <span className="text-lg flex-shrink-0">{icon}</span>
                 <div className="min-w-0">
-                  <div className="text-sm font-medium text-gray-900 truncate">{label}</div>
+                  <div className="text-sm font-medium text-gray-900 group-hover:text-blue-700 truncate">{label}</div>
                   <div className="text-xs text-gray-500">{count} issues</div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>
