@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef } from 'react';
+import { Suspense, useEffect, useMemo, useRef } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 const SCRIPT_SRC_BASE = 'https://app.termly.io';
@@ -18,7 +18,7 @@ declare global {
  * Handles GDPR/CCPA cookie consent banner.
  * Re-initializes on route changes for SPA navigation.
  */
-export default function TermlyCMP() {
+function TermlyCMPInner() {
   const scriptSrc = useMemo(() => {
     const src = new URL(SCRIPT_SRC_BASE);
     src.pathname = `/resource-blocker/${WEBSITE_UUID}`;
@@ -44,4 +44,12 @@ export default function TermlyCMP() {
   }, [pathname, searchParams]);
 
   return null;
+}
+
+export default function TermlyCMP() {
+  return (
+    <Suspense fallback={null}>
+      <TermlyCMPInner />
+    </Suspense>
+  );
 }

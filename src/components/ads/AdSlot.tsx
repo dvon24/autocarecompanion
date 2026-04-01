@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // Window.adsbygoogle type is declared in AdBanner.tsx
 
@@ -13,24 +13,16 @@ interface AdSlotProps {
   className?: string;
 }
 
-const formatStyles: Record<AdSlotProps['format'], React.CSSProperties> = {
-  horizontal: { display: 'block', minHeight: '90px' },
-  rectangle: { display: 'block', minHeight: '250px', minWidth: '250px' },
-  vertical: { display: 'block', minHeight: '600px', minWidth: '120px' },
-};
-
 /**
  * AdSense Ad Slot Component
  *
  * Renders a Google AdSense ad unit. Completely invisible when
- * NEXT_PUBLIC_ADSENSE_ID is not set (no DOM output at all).
- *
- * Usage:
- *   <AdSlot slotId="1234567890" format="horizontal" />
- *   <AdSlot slotId="1234567890" format="rectangle" className="my-6" />
+ * NEXT_PUBLIC_ADSENSE_ID is not set or when no ad fills the slot.
  */
 export function AdSlot({ slotId, format, className }: AdSlotProps) {
   const isInitialized = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [hasFilled, setHasFilled] = useState(false);
   const clientId = process.env.NEXT_PUBLIC_ADSENSE_ID;
 
   useEffect(() => {
@@ -42,6 +34,18 @@ export function AdSlot({ slotId, format, className }: AdSlotProps) {
     } catch (err) {
       console.error('AdSense push error:', err);
     }
+
+    // Check if ad filled after a delay
+    const timer = setTimeout(() => {
+      if (containerRef.current) {
+        const ins = containerRef.current.querySelector('ins');
+        if (ins && ins.childElementCount > 0) {
+          setHasFilled(true);
+        }
+      }
+    }, 3000);
+
+    return () => clearTimeout(timer);
   }, [clientId]);
 
   // Render absolutely nothing when AdSense is not configured
@@ -50,10 +54,10 @@ export function AdSlot({ slotId, format, className }: AdSlotProps) {
   }
 
   return (
-    <div className={className}>
+    <div ref={containerRef} className={className} style={hasFilled ? undefined : { overflow: 'hidden', maxHeight: hasFilled ? undefined : 0 }}>
       <ins
         className="adsbygoogle"
-        style={formatStyles[format]}
+        style={{ display: 'block' }}
         data-ad-client={clientId}
         data-ad-slot={slotId}
         data-ad-format={format === 'horizontal' ? 'horizontal' : format === 'rectangle' ? 'rectangle' : 'vertical'}
