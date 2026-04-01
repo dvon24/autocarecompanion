@@ -29,10 +29,13 @@ export function AdSlot({ slotId, format, className }: AdSlotProps) {
     if (!clientId || isInitialized.current) return;
     isInitialized.current = true;
 
+    // Wait for container to have width before pushing ad
+    if (containerRef.current && containerRef.current.offsetWidth === 0) return;
+
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (err) {
-      console.error('AdSense push error:', err);
+      // Silently ignore — ad may not fill
     }
 
     // Check if ad filled after a delay

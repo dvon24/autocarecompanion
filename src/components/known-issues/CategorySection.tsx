@@ -24,18 +24,26 @@ interface CategorySectionProps {
 export function CategorySection({ category, issues, defaultExpanded = false, defaultCardExpanded = false, vehicleInfo }: CategorySectionProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
 
-  // Auto-expand when navigating to this category via hash anchor
+  // Auto-expand when navigating to this category or a child issue via hash anchor
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const checkHash = () => {
-      if (window.location.hash === `#${category}`) {
+      const hash = window.location.hash.slice(1);
+      if (!hash) return;
+      // Expand if hash matches category name
+      if (hash === category) {
+        setExpanded(true);
+        return;
+      }
+      // Expand if hash matches any child issue ID
+      if (issues.some(i => i.id === hash)) {
         setExpanded(true);
       }
     };
     checkHash();
     window.addEventListener('hashchange', checkHash);
     return () => window.removeEventListener('hashchange', checkHash);
-  }, [category]);
+  }, [category, issues]);
   const config = categoryConfig[category];
   const highCount = issues.filter(i => i.severity === 'high').length;
 
