@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { KnownIssueCard } from './KnownIssueCard';
 import { triggerHaptic } from '@/hooks/useHaptic';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
@@ -23,6 +23,19 @@ interface CategorySectionProps {
 
 export function CategorySection({ category, issues, defaultExpanded = false, defaultCardExpanded = false, vehicleInfo }: CategorySectionProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
+
+  // Auto-expand when navigating to this category via hash anchor
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const checkHash = () => {
+      if (window.location.hash === `#${category}`) {
+        setExpanded(true);
+      }
+    };
+    checkHash();
+    window.addEventListener('hashchange', checkHash);
+    return () => window.removeEventListener('hashchange', checkHash);
+  }, [category]);
   const config = categoryConfig[category];
   const highCount = issues.filter(i => i.severity === 'high').length;
 
