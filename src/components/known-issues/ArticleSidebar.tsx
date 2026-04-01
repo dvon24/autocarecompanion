@@ -14,26 +14,26 @@ interface ArticleSidebarProps {
 
 export function ArticleSidebar({ grouped, hasRecalls, recallCount, make, model }: ArticleSidebarProps) {
   return (
-    <aside className="hidden lg:block lg:w-56 xl:w-64 flex-shrink-0">
+    <aside className="hidden lg:block lg:w-56 xl:w-64 flex-shrink-0 border-r border-gray-200 pr-8 mr-8">
       <nav className="sticky top-8 space-y-6" aria-label="Article navigation">
         {/* TOC */}
         <div>
           <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">In This Article</h2>
-          <ul className="space-y-1">
+          <ul className="space-y-0.5">
             {grouped.map(({ category, count, highCount }) => {
               const config = categoryConfig[category];
               return (
                 <li key={category}>
                   <a
                     href={`#${category}`}
-                    className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors py-1"
+                    className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors py-1.5 rounded-md hover:bg-gray-50 px-2 -mx-2"
                   >
                     <span className="flex-shrink-0 w-5 text-center">{config.icon}</span>
                     <span className="truncate">{config.label}</span>
-                    <span className="text-gray-400 text-xs ml-auto">{count}</span>
+                    <span className="text-gray-300 text-xs ml-auto">{count}</span>
                     {highCount > 0 && (
                       <span
-                        className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"
+                        className="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0"
                         title={`${highCount} critical`}
                       />
                     )}
@@ -45,20 +45,20 @@ export function ArticleSidebar({ grouped, hasRecalls, recallCount, make, model }
               <li>
                 <a
                   href="#recalls"
-                  className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors py-1"
+                  className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors py-1.5 rounded-md hover:bg-gray-50 px-2 -mx-2"
                 >
                   <span className="flex-shrink-0 w-5 text-center">&#9888;&#65039;</span>
                   <span>Recalls</span>
-                  <span className="text-gray-400 text-xs ml-auto">{recallCount}</span>
+                  <span className="text-gray-300 text-xs ml-auto">{recallCount}</span>
                 </a>
               </li>
             )}
-            <li className="pt-1 border-t border-gray-100 mt-1">
+            <li className="pt-1.5 border-t border-gray-100 mt-1.5">
               <a
                 href="#faq"
-                className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors py-1"
+                className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors py-1.5 rounded-md hover:bg-gray-50 px-2 -mx-2"
               >
-                <span className="flex-shrink-0 w-5 text-center">?</span>
+                <span className="flex-shrink-0 w-5 text-center">&#10067;</span>
                 <span>FAQ</span>
               </a>
             </li>

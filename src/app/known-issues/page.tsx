@@ -2,12 +2,9 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { makeSlug } from '@/lib/known-issues';
-// DTC data now fetched directly via prisma in buildDirectory
 import { categoryConfig } from '@/lib/issue-categories';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
-import { CollapsibleMakeDirectory } from '@/components/known-issues/CollapsibleMakeDirectory';
 import { IssueSearch } from '@/components/known-issues/IssueSearch';
-import { ShareButtons } from '@/components/shared/ShareButtons';
 import { BreadcrumbJsonLd, CollectionPageJsonLd } from '@/components/seo/JsonLd';
 import prisma from '@/lib/db';
 
@@ -18,11 +15,11 @@ export const revalidate = 1800; // Re-generate cached page every 30 minutes
 export const metadata: Metadata = {
   title: 'Known Vehicle Issues & Problems | Au7o',
   description:
-    'Browse 3,600+ documented vehicle problems across 34 makes and 640+ models, plus 323 OBD-II error codes. Symptoms, repair costs, and solutions from real owner reports.',
+    'Browse 4,100+ documented vehicle problems across 34 makes and 640+ models, plus 323 OBD-II error codes. Symptoms, repair costs, and solutions from real owner reports.',
   openGraph: {
     title: 'Known Vehicle Issues & Problems | Au7o',
     description:
-      'Browse 3,600+ documented vehicle problems across 34 makes and 640+ models.',
+      'Browse 4,100+ documented vehicle problems across 34 makes and 640+ models.',
     url: 'https://au7o.io/known-issues',
     siteName: 'Au7o',
   },
@@ -40,14 +37,31 @@ interface VehicleEntry {
   yearRange: { min: number; max: number } | null;
 }
 
+// Popular makes — shown as featured cards at top
+const POPULAR_MAKES = [
+  'Toyota', 'Honda', 'Ford', 'Chevrolet', 'BMW', 'Dodge',
+  'Jeep', 'Nissan', 'Hyundai', 'Kia', 'Mercedes-Benz', 'Subaru',
+];
+
+// Make icons — simple emoji/text representations
+const makeIcons: Record<string, string> = {
+  'Acura': '🅰️', 'Alfa Romeo': '🏎️', 'Audi': '🔵', 'BMW': '🔷',
+  'Cadillac': '👑', 'Chevrolet': '🏁', 'Chrysler': '⭐', 'Citroën': '🇫🇷',
+  'Dodge': '🐏', 'Fiat': '🇮🇹', 'Ford': '🔵', 'Genesis': '💎',
+  'GMC': '🔴', 'Honda': '🔴', 'Hyundai': '🔷', 'Infiniti': '♾️',
+  'Jaguar': '🐆', 'Jeep': '🏔️', 'Kia': '🔴', 'Land Rover': '🟢',
+  'Lexus': '🔷', 'Mazda': '🔴', 'Mercedes-Benz': '⭐', 'MINI': '🇬🇧',
+  'Mitsubishi': '🔺', 'Nissan': '🔴', 'Peugeot': '🦁', 'Porsche': '🏎️',
+  'RAM': '🐏', 'Renault': '🇫🇷', 'Subaru': '⭐', 'Toyota': '🔴',
+  'Volkswagen': '🔵', 'Volvo': '🔵',
+};
+
 async function buildDirectory() {
-  // Single query: aggregate all published issues by make+model
   const rows = await prisma.knownIssue.findMany({
     where: { status: 'published' },
     select: { make: true, model: true, severity: true, years: true },
   });
 
-  // Group by make+model
   const vehicleMap: Record<string, { make: string; model: string; count: number; highCount: number; minYear: number; maxYear: number }> = {};
 
   for (const row of rows) {
@@ -63,7 +77,6 @@ async function buildDirectory() {
     }
   }
 
-  // Group by make
   const grouped: Record<string, VehicleEntry[]> = {};
   for (const v of Object.values(vehicleMap)) {
     const entry: VehicleEntry = {
@@ -92,25 +105,26 @@ export default async function KnownIssuesIndexPage() {
   const totalVehicles = directory.reduce((sum, g) => sum + g.vehicles.length, 0);
   const totalIssues = directory.reduce((sum, g) => sum + g.totalIssues, 0);
 
-  // Single query to get all DTC codes with names (for search + bottom section)
   const allDtcRows = await prisma.dTCCode.findMany({
     select: { code: true, name: true },
     orderBy: { code: 'asc' },
   });
-  const allDtcSlugs = allDtcRows.map(r => ({ code: r.code.toLowerCase() }));
-  const dtcSlice = allDtcSlugs.slice(0, 15);
+  const dtcSlice = allDtcRows.slice(0, 15);
   const dtcInfoMap: Record<string, { name: string } | null> = {};
   const dtcNameLookup = new Map(allDtcRows.map(r => [r.code.toLowerCase(), r.name]));
   for (const { code } of dtcSlice) {
-    const name = dtcNameLookup.get(code);
-    dtcInfoMap[code] = name ? { name } : null;
+    const name = dtcNameLookup.get(code.toLowerCase());
+    dtcInfoMap[code.toLowerCase()] = name ? { name } : null;
   }
 
-  // Prepare flat lists for client-side search
   const searchVehicles = directory.flatMap(({ vehicles }) =>
     vehicles.map(v => ({ slug: v.slug, make: v.make, model: v.model, issueCount: v.issueCount }))
   );
   const searchDtcCodes = allDtcRows.map(r => ({ code: r.code.toLowerCase(), name: r.name }));
+
+  // Split directory into popular and rest
+  const popularMakes = directory.filter(d => POPULAR_MAKES.includes(d.make));
+  const otherMakes = directory.filter(d => !POPULAR_MAKES.includes(d.make));
 
   return (
     <div className="min-h-screen bg-white">
@@ -120,7 +134,7 @@ export default async function KnownIssuesIndexPage() {
       ]} />
       <CollectionPageJsonLd
         name="Known Vehicle Issues & Problems"
-        description={`Browse ${totalIssues.toLocaleString()}+ documented vehicle problems across ${directory.length} makes and ${totalVehicles} models. Symptoms, repair costs, and solutions from real owner reports.`}
+        description={`Browse ${totalIssues.toLocaleString()}+ documented vehicle problems across ${directory.length} makes and ${totalVehicles} models.`}
         url="https://au7o.io/known-issues"
         numberOfItems={directory.length}
         itemListElement={directory.map(({ make, totalIssues: makeTotal }) => ({
@@ -131,8 +145,8 @@ export default async function KnownIssuesIndexPage() {
       />
 
       {/* Header */}
-      <header className="px-6 py-4 border-b border-gray-100">
-        <div className="max-w-5xl mx-auto flex items-center justify-between">
+      <header className="px-6 py-4 border-b border-gray-200">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image
               src="/og-image.png"
@@ -156,156 +170,130 @@ export default async function KnownIssuesIndexPage() {
         </div>
       </header>
 
-      <article className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        {/* Breadcrumb */}
-        <nav className="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-          <ol className="flex items-center gap-1.5">
-            <li><Link href="/" className="hover:text-gray-700">Au7o</Link></li>
-            <li>/</li>
-            <li className="text-gray-900 font-medium">Known Issues</li>
-          </ol>
-        </nav>
-
-        {/* Header */}
-        <header className="mb-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Hero */}
+        <div className="py-10 sm:py-14">
+          <nav className="text-sm text-gray-400 mb-4" aria-label="Breadcrumb">
+            <ol className="flex items-center gap-1.5">
+              <li><Link href="/" className="hover:text-gray-600">Au7o</Link></li>
+              <li className="text-gray-300">/</li>
+              <li className="text-gray-700 font-medium">Known Issues</li>
+            </ol>
+          </nav>
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
-            Known Vehicle Issues & Problems
+            Known Vehicle Issues
           </h1>
-          <p className="text-gray-500 text-lg max-w-2xl">
-            Browse {totalIssues.toLocaleString()}+ documented problems across {directory.length} makes and {totalVehicles} models. Every issue includes symptoms, repair costs, and solutions from real owner reports.
+          <p className="text-gray-500 max-w-xl">
+            {totalIssues.toLocaleString()}+ documented problems across {directory.length} makes and {totalVehicles} models. Symptoms, costs, and solutions from real owner reports.
           </p>
-          <div className="mt-4">
-            <ShareButtons url="https://au7o.io/known-issues" title="Known Vehicle Issues & Problems | Au7o" />
-          </div>
-        </header>
+        </div>
 
         {/* Search */}
-        <IssueSearch vehicles={searchVehicles} dtcCodes={searchDtcCodes} />
-
-        {/* Quick stats */}
-        <div className="grid grid-cols-3 gap-3 mb-10">
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-gray-900">{directory.length}</div>
-            <div className="text-sm text-gray-500">Makes</div>
-          </div>
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-gray-900">{totalVehicles}</div>
-            <div className="text-sm text-gray-500">Models</div>
-          </div>
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-gray-900">{totalIssues.toLocaleString()}</div>
-            <div className="text-sm text-gray-500">Issues Documented</div>
-          </div>
+        <div className="mb-10">
+          <IssueSearch vehicles={searchVehicles} dtcCodes={searchDtcCodes} />
         </div>
 
-        {/* Make quick-jump nav */}
-        <nav className="mb-10" aria-label="Jump to make">
-          <div className="flex flex-wrap gap-2">
-            {directory.map(({ make }) => (
-              <a
+        {/* Popular Makes — featured cards */}
+        <section className="mb-12">
+          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Popular Makes</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {popularMakes.map(({ make, vehicles, totalIssues: makeTotal }) => (
+              <Link
                 key={make}
-                href={`#${make.toLowerCase().replace(/\s+/g, '-')}`}
-                className="px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-700 rounded-full hover:bg-blue-100 hover:text-blue-700 transition-colors"
+                href={`/known-issues/make/${make.toLowerCase().replace(/\s+/g, '-')}`}
+                className="group flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-gray-300 hover:shadow-sm transition-all"
               >
-                {make}
-              </a>
+                <span className="text-2xl flex-shrink-0 mt-0.5">{makeIcons[make] || '🚗'}</span>
+                <div className="min-w-0">
+                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{make}</h3>
+                  <p className="text-xs text-gray-400 mt-0.5">
+                    {vehicles.length} models &middot; {makeTotal} issues
+                  </p>
+                </div>
+              </Link>
             ))}
           </div>
-        </nav>
+        </section>
 
-        {/* Vehicle directory by make */}
-        <div className="space-y-3">
-          {directory.map(({ make, vehicles, totalIssues: makeTotal }) => (
-            <CollapsibleMakeDirectory
-              key={make}
-              make={make}
-              vehicles={vehicles}
-              totalIssues={makeTotal}
-            />
-          ))}
-        </div>
+        {/* All Makes — compact grid */}
+        <section className="mb-12">
+          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">All Makes</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+            {directory.map(({ make, vehicles, totalIssues: makeTotal }) => (
+              <Link
+                key={make}
+                href={`/known-issues/make/${make.toLowerCase().replace(/\s+/g, '-')}`}
+                className="group flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <span className="text-lg flex-shrink-0">{makeIcons[make] || '🚗'}</span>
+                <div className="min-w-0 flex-1">
+                  <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900 truncate block">{make}</span>
+                  <span className="text-xs text-gray-400">{vehicles.length} models</span>
+                </div>
+                <svg className="w-4 h-4 text-gray-300 group-hover:text-gray-500 transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            ))}
+          </div>
+        </section>
 
         {/* Browse by Category */}
-        <section className="mt-12 mb-10">
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">Browse by Category</h3>
-          <p className="text-gray-500 text-sm mb-4">
-            Explore known issues organized by vehicle system.
-          </p>
-          <div className="flex flex-wrap gap-2">
+        <section className="mb-12">
+          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Browse by Category</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
             {(Object.keys(categoryConfig) as IssueCategory[]).map(cat => {
               const config = categoryConfig[cat];
               return (
                 <Link
                   key={cat}
                   href={`/known-issues/category/${cat}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-sm font-medium text-gray-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-colors"
+                  className="group flex items-center gap-2 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  <span>{config.icon}</span>
-                  <span>{config.label}</span>
+                  <span className="text-lg">{config.icon}</span>
+                  <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">{config.label}</span>
                 </Link>
               );
             })}
           </div>
         </section>
 
-        {/* Common DTC Codes Section */}
-        <section className="mt-12 mb-10">
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">Common OBD-II Error Codes</h3>
-          <p className="text-gray-500 text-sm mb-4">
-            Pulled a code with your scanner? Find out what it means and which vehicles are affected.
-          </p>
-          <div className="flex flex-wrap gap-2">
+        {/* Common DTC Codes */}
+        <section className="mb-12">
+          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Common Error Codes</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
             {dtcSlice.map(({ code }) => {
-              const info = dtcInfoMap[code];
+              const info = dtcInfoMap[code.toLowerCase()];
               return (
                 <Link
                   key={code}
-                  href={`/known-issues/dtc/${code}`}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gray-50 border border-gray-200 rounded-lg text-sm hover:border-blue-300 hover:bg-blue-50 transition-colors group"
+                  href={`/known-issues/dtc/${code.toLowerCase()}`}
+                  className="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-mono font-bold text-gray-700 group-hover:text-blue-700 text-xs">{code.toUpperCase()}</span>
+                  <span className="font-mono font-bold text-gray-500 group-hover:text-blue-600 text-xs w-14 flex-shrink-0">{code.toUpperCase()}</span>
                   {info && (
-                    <span className="text-gray-500 text-xs hidden sm:inline truncate max-w-[160px]">{info.name}</span>
+                    <span className="text-sm text-gray-500 truncate">{info.name}</span>
                   )}
                 </Link>
               );
             })}
           </div>
-          {allDtcSlugs.length > 15 && (
+          {allDtcRows.length > 15 && (
             <Link
               href="/known-issues/dtc/p0300"
               className="inline-flex items-center gap-1 mt-3 text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors"
             >
-              Browse all error codes
+              Browse all {allDtcRows.length} error codes
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </Link>
           )}
         </section>
 
-        {/* CTA */}
-        <section className="mt-16 bg-gray-900 text-white rounded-xl p-6 sm:p-8 text-center">
-          <h2 className="text-xl sm:text-2xl font-bold mb-3">
-            Get DIY Repair Guides for Your Vehicle
-          </h2>
-          <p className="text-gray-300 mb-6 max-w-lg mx-auto">
-            AI-powered step-by-step repair and maintenance guides tailored to your exact vehicle.
-          </p>
-          <Link
-            href="/get-started"
-            className="inline-flex items-center gap-2 bg-white text-gray-900 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            Get Started Free
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
-        </section>
-
-        {/* AI content disclaimer */}
-        <div className="mt-10 flex items-start gap-2 px-4 py-3 bg-gray-50 border border-gray-100 rounded-lg max-w-2xl mx-auto">
-          <svg className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {/* AI disclaimer */}
+        <div className="flex items-start gap-2 py-3 mb-6">
+          <svg className="w-4 h-4 text-gray-300 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <p className="text-xs text-gray-400 leading-relaxed">
@@ -314,16 +302,12 @@ export default async function KnownIssuesIndexPage() {
         </div>
 
         {/* Footer */}
-        <footer className="mt-8 pt-6 border-t border-gray-200 text-center">
-          <p className="text-xs text-gray-500">
-            Data sourced from owner reports, TSBs, recalls, and automotive forums.
-            Issues are verified where possible. Always consult a professional mechanic for diagnosis.
-          </p>
-          <p className="text-xs text-gray-500 mt-2">
+        <footer className="py-6 border-t border-gray-100 text-center">
+          <p className="text-xs text-gray-400">
             &copy; {new Date().getFullYear()} Au7o. All rights reserved.
           </p>
         </footer>
-      </article>
+      </div>
     </div>
   );
 }
