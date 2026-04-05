@@ -217,7 +217,7 @@ export function getVehicleSpecs(vehicle: { year: number; make: string; model: st
     // For trim-specific entries, check trim match
     const genKeyLower = genKey.toLowerCase();
     const hasTrimMatch =
-      (trim && genKeyLower.split(/[\/,]/).some((part: string) => trim.includes(part.trim()))) ||
+      (trim && genKeyLower.split(/[\/,]/).some((part: string) => part.trim().length > 1 && trim.includes(part.trim()))) ||
       (trim && trim.split(/[\s,]/).some((part: string) => part.length > 1 && genKeyLower.includes(part)));
 
     if (hasTrimMatch) {
