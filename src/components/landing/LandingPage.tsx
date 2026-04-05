@@ -114,12 +114,7 @@ export default function LandingPage({ trendingIssues = [], stats }: { trendingIs
                 >
                   Known Issues
                 </Link>
-                <Link
-                  href="/parts"
-                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  Parts Finder
-                </Link>
+                {/* Parts Finder hidden until multi-agent verification is ready */}
                 <Link
                   href="/get-started"
                   className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
@@ -313,7 +308,7 @@ export default function LandingPage({ trendingIssues = [], stats }: { trendingIs
             {/* Legal Links */}
             <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400 mb-8">
               <Link href="/known-issues" className="hover:text-gray-600 transition-colors">Known Issues</Link>
-              <Link href="/parts" className="hover:text-gray-600 transition-colors">Parts Finder</Link>
+              {/* Parts Finder hidden until verified */}
               <Link href="/about" className="hover:text-gray-600 transition-colors">About</Link>
               <Link href="/terms" className="hover:text-gray-600 transition-colors">Terms of Service</Link>
               <Link href="/privacy" className="hover:text-gray-600 transition-colors">Privacy Policy</Link>
