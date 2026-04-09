@@ -260,13 +260,13 @@ const selectStyle = {
 // ─── Component ─────────────────────────────────────────────────────────
 
 export function PartsFinderClient() {
-  const { setVehicle } = useVehicleContext();
+  const { selectedVehicle, setVehicle } = useVehicleContext();
   const [ymmtData, setYmmtData] = useState<YMMTData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedMake, setSelectedMake] = useState('');
-  const [selectedModel, setSelectedModel] = useState('');
-  const [selectedTrim, setSelectedTrim] = useState('');
+  const [selectedYear, setSelectedYear] = useState(selectedVehicle?.year?.toString() || '');
+  const [selectedMake, setSelectedMake] = useState(selectedVehicle?.make || '');
+  const [selectedModel, setSelectedModel] = useState(selectedVehicle?.model || '');
+  const [selectedTrim, setSelectedTrim] = useState(selectedVehicle?.trim || '');
   const [selectedTask, setSelectedTask] = useState<string | null>(null);
   const [freeSearchQuery, setFreeSearchQuery] = useState('');
   const [activeFreeSearch, setActiveFreeSearch] = useState<string | null>(null);
