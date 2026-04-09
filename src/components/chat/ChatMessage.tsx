@@ -51,29 +51,67 @@ export function ChatMessage({ message }: ChatMessageProps) {
 }
 
 /**
- * Strip markdown formatting from text
+ * Render inline markdown: links, bold, italic, inline code
+ * Returns React nodes with clickable links and styled text
  */
-function stripMarkdown(text: string): string {
-  return text
-    // Remove headers (# ## ### etc)
-    .replace(/^#{1,6}\s+/gm, '')
-    // Remove bold/italic markers but keep the text
-    .replace(/\*\*\*(.+?)\*\*\*/g, '$1')
-    .replace(/\*\*(.+?)\*\*/g, '$1')
-    .replace(/\*(.+?)\*/g, '$1')
-    .replace(/___(.+?)___/g, '$1')
-    .replace(/__(.+?)__/g, '$1')
-    .replace(/_(.+?)_/g, '$1')
-    // Remove inline code backticks
-    .replace(/`([^`]+)`/g, '$1')
-    // Clean up any remaining standalone asterisks at line starts (bullet points)
-    .replace(/^\*\s+/gm, '• ')
-    // Clean up hyphen bullet points
-    .replace(/^-\s+/gm, '• ');
+function renderInlineMarkdown(text: string): React.ReactNode[] {
+  const nodes: React.ReactNode[] = [];
+  // Match markdown links [text](url), bold **text**, italic *text*, inline code `text`
+  const inlineRegex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|\*\*(.+?)\*\*|\*(.+?)\*|`([^`]+)`/g;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = inlineRegex.exec(text)) !== null) {
+    // Add text before the match
+    if (match.index > lastIndex) {
+      nodes.push(text.slice(lastIndex, match.index));
+    }
+
+    if (match[1] && match[2]) {
+      // Markdown link [text](url)
+      nodes.push(
+        <a
+          key={match.index}
+          href={match[2]}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 hover:text-blue-800 underline underline-offset-2 font-medium"
+        >
+          {match[1]}
+        </a>
+      );
+    } else if (match[3]) {
+      // Bold **text**
+      nodes.push(<strong key={match.index} className="font-semibold">{match[3]}</strong>);
+    } else if (match[4]) {
+      // Italic *text*
+      nodes.push(<em key={match.index}>{match[4]}</em>);
+    } else if (match[5]) {
+      // Inline code `text`
+      nodes.push(
+        <code key={match.index} className="bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono">
+          {match[5]}
+        </code>
+      );
+    }
+
+    lastIndex = match.index + match[0].length;
+  }
+
+  // Add remaining text
+  if (lastIndex < text.length) {
+    nodes.push(text.slice(lastIndex));
+  }
+
+  return nodes.length > 0 ? nodes : [text];
 }
 
 /**
- * Format message content for display
+ * Format message content for display with rich rendering
+ * - Clickable links (blue, underlined)
+ * - Bold and italic text
+ * - Bullet points
+ * - Headers
  */
 function formatMessageContent(content: string): React.ReactNode {
   // Check if this is a diagnosis message
@@ -81,13 +119,63 @@ function formatMessageContent(content: string): React.ReactNode {
     return formatDiagnosisMessage(content);
   }
 
-  // Regular message - strip markdown and render with line breaks
-  const cleanedContent = stripMarkdown(content);
-  return (
-    <div className="whitespace-pre-wrap">
-      {cleanedContent}
-    </div>
-  );
+  // Split into lines and render each with inline markdown
+  const lines = content.split('\n');
+  const elements: React.ReactNode[] = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Headers
+    const headerMatch = line.match(/^(#{1,3})\s+(.+)/);
+    if (headerMatch) {
+      const level = headerMatch[1].length;
+      const cls = level === 1 ? 'text-lg font-bold' : level === 2 ? 'text-base font-semibold' : 'text-sm font-semibold';
+      elements.push(
+        <p key={i} className={`${cls} text-gray-900 mt-3 mb-1`}>
+          {renderInlineMarkdown(headerMatch[2])}
+        </p>
+      );
+      continue;
+    }
+
+    // Bullet points (- or * or •)
+    const bulletMatch = line.match(/^\s*[-*•]\s+(.+)/);
+    if (bulletMatch) {
+      elements.push(
+        <div key={i} className="flex items-start gap-2 ml-1">
+          <span className="text-gray-400 mt-0.5 select-none">•</span>
+          <span>{renderInlineMarkdown(bulletMatch[1])}</span>
+        </div>
+      );
+      continue;
+    }
+
+    // Numbered lists
+    const numberedMatch = line.match(/^\s*(\d+)[.)]\s+(.+)/);
+    if (numberedMatch) {
+      elements.push(
+        <div key={i} className="flex items-start gap-2 ml-1">
+          <span className="text-gray-500 font-medium min-w-[1.25rem] text-right">{numberedMatch[1]}.</span>
+          <span>{renderInlineMarkdown(numberedMatch[2])}</span>
+        </div>
+      );
+      continue;
+    }
+
+    // Empty line = spacing
+    if (line.trim() === '') {
+      elements.push(<div key={i} className="h-2" />);
+      continue;
+    }
+
+    // Regular line with inline markdown
+    elements.push(
+      <p key={i}>{renderInlineMarkdown(line)}</p>
+    );
+  }
+
+  return <div className="space-y-1">{elements}</div>;
 }
 
 /**
@@ -113,7 +201,7 @@ function formatDiagnosisMessage(content: string): React.ReactNode {
   return (
     <div className="space-y-4">
       {introText.trim() && (
-        <p className="whitespace-pre-wrap">{introText.trim()}</p>
+        <div>{formatMessageContent(introText.trim())}</div>
       )}
 
       <div className="bg-gray-50 rounded-xl p-4 space-y-3">
@@ -154,8 +242,8 @@ function formatDiagnosisMessage(content: string): React.ReactNode {
 
           if (section.label === 'DESCRIPTION') {
             return (
-              <div key={index}>
-                <p className="text-gray-700">{section.content}</p>
+              <div key={index} className="text-gray-700">
+                {formatMessageContent(section.content)}
               </div>
             );
           }
@@ -175,7 +263,7 @@ function formatDiagnosisMessage(content: string): React.ReactNode {
                   {causes.map((cause, i) => (
                     <li key={i} className="flex items-start gap-2 text-gray-700">
                       <span className="text-gray-400 mt-1">•</span>
-                      <span>{cause}</span>
+                      <span>{renderInlineMarkdown(cause)}</span>
                     </li>
                   ))}
                 </ul>
@@ -189,7 +277,7 @@ function formatDiagnosisMessage(content: string): React.ReactNode {
                 <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
                   Recommendation
                 </p>
-                <p className="text-gray-700">{section.content}</p>
+                <div className="text-gray-700">{formatMessageContent(section.content)}</div>
               </div>
             );
           }
