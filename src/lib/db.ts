@@ -8,10 +8,13 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 // Create connection pool if not already created
+// Limit max connections to avoid exceeding Supabase pool limit during SSG (29 workers × N connections)
 const pool =
   globalForPrisma.pool ??
   new Pool({
     connectionString: process.env.DATABASE_URL,
+    max: 2,
+    idleTimeoutMillis: 10000,
   });
 
 // Create Prisma adapter
