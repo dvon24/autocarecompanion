@@ -138,13 +138,19 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ parts: staticParts, source: 'static' });
   }
 
-  // 2. Try database cache
+  // 2. Try database cache — exact trim match first, then any trim for this generation
   try {
-    const cached = await prisma.vehiclePartLookup.findUnique({
+    let cached = await prisma.vehiclePartLookup.findUnique({
       where: {
         year_make_model_trim_task: { year, make, model, trim, task },
       },
     });
+    // Fallback: seed script stores with generation trim (e.g. "Base"), user selects actual trim (e.g. "SE")
+    if (!cached) {
+      cached = await prisma.vehiclePartLookup.findFirst({
+        where: { year, make: { equals: make, mode: 'insensitive' }, model: { equals: model, mode: 'insensitive' }, task },
+      });
+    }
     if (cached) {
       return NextResponse.json({
         parts: cached.parts as unknown as PartResult[],

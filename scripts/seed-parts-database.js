@@ -298,7 +298,7 @@ async function seedGeneration(make, model, genKey, genData) {
   // Use middle year as representative
   const repYear = years[Math.floor(years.length / 2)];
   // Extract trim from genKey (e.g., "2015+ 6.4 SRT" → "SRT")
-  const trimParts = genKey.replace(/^\d{4}\+?\s*/, '').trim();
+  const trimParts = genKey.replace(/^\d{4}[\+\-]?\d*\s*/, '').trim();
   const trim = trimParts || 'Base';
   const vehicleStr = `${repYear} ${make} ${model} ${trim}`;
 
