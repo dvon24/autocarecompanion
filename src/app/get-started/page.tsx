@@ -33,6 +33,11 @@ export default function GetStartedPage() {
     router.push('/symptom-chat');
   };
 
+  const handlePartsLookup = () => {
+    setShowBriefing(false);
+    router.push('/parts');
+  };
+
   const handleModeChange = (newMode: SelectionMode) => {
     setMode(newMode);
   };
@@ -184,6 +189,7 @@ export default function GetStartedPage() {
             }}
             onDismiss={handleBriefingDismiss}
             onContinue={handleBriefingContinue}
+            onPartsLookup={handlePartsLookup}
           />
         )}
       </div>

@@ -179,23 +179,124 @@ function formatMessageContent(content: string): React.ReactNode {
 }
 
 /**
+ * Parse a single diagnosis block (primary or alternative)
+ */
+interface ParsedDiagnosis {
+  title: string;
+  confidence: string;
+  description: string;
+  causes: string[];
+  recommendation: string;
+}
+
+function parseSingleDiagnosis(text: string): ParsedDiagnosis {
+  const titleMatch = text.match(/^([^\n]+)/);
+  const confidenceMatch = text.match(/(?:CONFIDENCE|ALT\d+_CONFIDENCE):\s*(high|medium|low)/i);
+  const descriptionMatch = text.match(/(?:DESCRIPTION|ALT\d+_DESCRIPTION):\s*([\s\S]+?)(?=(?:POSSIBLE CAUSES|RECOMMENDATION|ALTERNATIVE|$))/i);
+  const causesMatch = text.match(/POSSIBLE CAUSES:\s*([\s\S]+?)(?=RECOMMENDATION|ALTERNATIVE|$)/i);
+  const recommendationMatch = text.match(/RECOMMENDATION:\s*([\s\S]+?)(?=ALTERNATIVE|$)/i);
+
+  const causes = causesMatch
+    ? causesMatch[1].split('\n').map(l => l.replace(/^[-•]\s*/, '').trim()).filter(l => l.length > 0)
+    : [];
+
+  return {
+    title: titleMatch ? titleMatch[1].trim() : '',
+    confidence: confidenceMatch ? confidenceMatch[1].toLowerCase() : '',
+    description: descriptionMatch ? descriptionMatch[1].trim() : '',
+    causes,
+    recommendation: recommendationMatch ? recommendationMatch[1].trim() : '',
+  };
+}
+
+/**
+ * Render a diagnosis card (used for both primary and alternatives)
+ */
+function renderDiagnosisCard(diag: ParsedDiagnosis, index: number, isPrimary: boolean): React.ReactNode {
+  const badgeClass =
+    diag.confidence === 'high'
+      ? 'bg-green-100 text-green-700'
+      : diag.confidence === 'medium'
+      ? 'bg-amber-100 text-amber-700'
+      : 'bg-orange-100 text-orange-700';
+
+  return (
+    <div key={index} className={`${isPrimary ? 'bg-gray-50' : 'bg-gray-50/60'} rounded-xl p-4 space-y-3`}>
+      <div>
+        <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
+          {isPrimary ? 'Diagnosis' : `Alternative ${index}`}
+        </p>
+        <p className={`${isPrimary ? 'text-lg' : 'text-base'} font-semibold text-gray-900`}>
+          {diag.title}
+        </p>
+      </div>
+
+      {diag.confidence && (
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+            Confidence:
+          </span>
+          <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${badgeClass}`}>
+            {diag.confidence}
+          </span>
+        </div>
+      )}
+
+      {diag.description && (
+        <div className="text-gray-700">
+          {formatMessageContent(diag.description)}
+        </div>
+      )}
+
+      {diag.causes.length > 0 && (
+        <div>
+          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+            Possible Causes
+          </p>
+          <ul className="space-y-1">
+            {diag.causes.map((cause, i) => (
+              <li key={i} className="flex items-start gap-2 text-gray-700">
+                <span className="text-gray-400 mt-1">•</span>
+                <span>{renderInlineMarkdown(cause)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {diag.recommendation && (
+        <div className="pt-2 border-t border-gray-200">
+          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
+            Recommendation
+          </p>
+          <div className="text-gray-700">{formatMessageContent(diag.recommendation)}</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/**
  * Format diagnosis message with clean styling
  */
 function formatDiagnosisMessage(content: string): React.ReactNode {
   // Split before the diagnosis section to get intro text
   const [introText, ...rest] = content.split('DIAGNOSIS:');
-  const diagnosisContent = rest.join('DIAGNOSIS:');
+  const diagnosisContent = 'DIAGNOSIS:' + rest.join('DIAGNOSIS:');
 
-  // Parse diagnosis sections
-  const sections: { label: string; content: string }[] = [];
-  const sectionRegex = /(DIAGNOSIS|CONFIDENCE|DESCRIPTION|POSSIBLE CAUSES|RECOMMENDATION):\s*([\s\S]*?)(?=(?:DIAGNOSIS|CONFIDENCE|DESCRIPTION|POSSIBLE CAUSES|RECOMMENDATION):|$)/g;
+  // Split out alternatives
+  const altSplitRegex = /ALTERNATIVE\s+\d+:\s*/g;
+  const parts = diagnosisContent.split(altSplitRegex);
+  const altMatches = diagnosisContent.match(altSplitRegex) || [];
 
-  let match;
-  while ((match = sectionRegex.exec('DIAGNOSIS:' + diagnosisContent)) !== null) {
-    sections.push({
-      label: match[1],
-      content: match[2].trim(),
-    });
+  // Parse primary diagnosis
+  const primary = parseSingleDiagnosis(parts[0].replace(/^DIAGNOSIS:\s*/, ''));
+
+  // Parse alternatives
+  const alternatives: ParsedDiagnosis[] = [];
+  for (let i = 1; i < parts.length; i++) {
+    const alt = parseSingleDiagnosis(parts[i]);
+    if (alt.title) alternatives.push(alt);
   }
 
   return (
@@ -204,87 +305,16 @@ function formatDiagnosisMessage(content: string): React.ReactNode {
         <div>{formatMessageContent(introText.trim())}</div>
       )}
 
-      <div className="bg-gray-50 rounded-xl p-4 space-y-3">
-        {sections.map((section, index) => {
-          if (section.label === 'DIAGNOSIS') {
-            return (
-              <div key={index}>
-                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
-                  Diagnosis
-                </p>
-                <p className="text-lg font-semibold text-gray-900">
-                  {section.content}
-                </p>
-              </div>
-            );
-          }
+      {renderDiagnosisCard(primary, 0, true)}
 
-          if (section.label === 'CONFIDENCE') {
-            const confidence = section.content.toLowerCase();
-            const badgeClass =
-              confidence === 'high'
-                ? 'bg-green-100 text-green-700'
-                : confidence === 'medium'
-                ? 'bg-amber-100 text-amber-700'
-                : 'bg-orange-100 text-orange-700';
-
-            return (
-              <div key={index} className="flex items-center gap-2">
-                <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
-                  Confidence:
-                </span>
-                <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${badgeClass}`}>
-                  {section.content}
-                </span>
-              </div>
-            );
-          }
-
-          if (section.label === 'DESCRIPTION') {
-            return (
-              <div key={index} className="text-gray-700">
-                {formatMessageContent(section.content)}
-              </div>
-            );
-          }
-
-          if (section.label === 'POSSIBLE CAUSES') {
-            const causes = section.content
-              .split('\n')
-              .map((line) => line.replace(/^[-•]\s*/, '').trim())
-              .filter((line) => line.length > 0);
-
-            return (
-              <div key={index}>
-                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
-                  Possible Causes
-                </p>
-                <ul className="space-y-1">
-                  {causes.map((cause, i) => (
-                    <li key={i} className="flex items-start gap-2 text-gray-700">
-                      <span className="text-gray-400 mt-1">•</span>
-                      <span>{renderInlineMarkdown(cause)}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          }
-
-          if (section.label === 'RECOMMENDATION') {
-            return (
-              <div key={index} className="pt-2 border-t border-gray-200">
-                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
-                  Recommendation
-                </p>
-                <div className="text-gray-700">{formatMessageContent(section.content)}</div>
-              </div>
-            );
-          }
-
-          return null;
-        })}
-      </div>
+      {alternatives.length > 0 && (
+        <div className="space-y-3">
+          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+            Other Possibilities
+          </p>
+          {alternatives.map((alt, i) => renderDiagnosisCard(alt, i + 1, false))}
+        </div>
+      )}
     </div>
   );
 }

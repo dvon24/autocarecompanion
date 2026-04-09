@@ -16,12 +16,14 @@ interface KnownIssuesBriefingProps {
   };
   onDismiss: () => void;
   onContinue: () => void;
+  onPartsLookup?: () => void;
 }
 
 export function KnownIssuesBriefing({
   vehicle,
   onDismiss,
   onContinue,
+  onPartsLookup,
 }: KnownIssuesBriefingProps) {
   const {
     issues,
@@ -155,13 +157,24 @@ export function KnownIssuesBriefing({
               Great news! We don&apos;t have any documented known issues for your {vehicleDisplay}.
             </p>
           </div>
-          <button
-            type="button"
-            onClick={handleContinue}
-            className="w-full py-3 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors"
-          >
-            Continue to Symptom Chat
-          </button>
+          <div className="space-y-2">
+            <button
+              type="button"
+              onClick={handleContinue}
+              className="w-full py-3 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors"
+            >
+              Continue to Symptom Chat
+            </button>
+            {onPartsLookup && (
+              <button
+                type="button"
+                onClick={onPartsLookup}
+                className="w-full py-3 bg-white text-gray-900 font-medium rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors"
+              >
+                Parts Lookup
+              </button>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -235,13 +248,24 @@ export function KnownIssuesBriefing({
 
         {/* Footer */}
         <div className="p-6 border-t border-gray-100 bg-gray-50">
-          <button
-            type="button"
-            onClick={handleContinue}
-            className="w-full py-3 px-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors"
-          >
-            Continue to Symptom Chat
-          </button>
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={handleContinue}
+              className="flex-1 py-3 px-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors"
+            >
+              Symptom Chat
+            </button>
+            {onPartsLookup && (
+              <button
+                type="button"
+                onClick={onPartsLookup}
+                className="flex-1 py-3 px-4 bg-white text-gray-900 font-medium rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors"
+              >
+                Parts Lookup
+              </button>
+            )}
+          </div>
           <p className="text-xs text-gray-500 text-center mt-3">
             These issues are documented by the community and verified where possible.
             Always consult a professional mechanic for diagnosis.
