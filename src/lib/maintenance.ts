@@ -93,6 +93,15 @@ export interface BulbSpecs {
   notes?: string;
 }
 
+export interface BrakeEndSpecs {
+  rotorSize: string;
+  rotorPartNumber: string;
+  padPartNumber: string;
+  caliperType?: string;
+  aftermarketRotors?: { brand: string; partNumber: string }[];
+  aftermarketPads?: { brand: string; partNumber: string }[];
+}
+
 export interface VehicleSpecs {
   engine: string;
   oil?: OilSpecs;
@@ -101,6 +110,10 @@ export interface VehicleSpecs {
   brakeFluid?: BrakeFluidSpecs;
   sparkPlugs?: SparkPlugSpecs;
   lug?: LugSpecs;
+  brakes?: {
+    front?: BrakeEndSpecs;
+    rear?: BrakeEndSpecs;
+  };
   differentials?: {
     front?: DifferentialSpecs;
     rear?: DifferentialSpecs;
@@ -255,6 +268,7 @@ export function getVehicleSpecs(vehicle: { year: number; make: string; model: st
     brakeFluid: rawSpecs.brakeFluid,
     sparkPlugs: rawSpecs.sparkPlugs,
     lug,
+    brakes: rawSpecs.brakes,
     differentials: rawSpecs.differentials,
     transferCase,
     supercharger: rawSpecs.supercharger,

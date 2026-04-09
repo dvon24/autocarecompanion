@@ -403,17 +403,50 @@ model AffiliateClick {
 }
 
 model VehiclePartLookup {
-  id        String   @id @default(cuid())
-  year      Int
-  make      String
-  model     String
-  trim      String
-  task      String   // e.g. "oil_change", "spark_plugs"
-  parts     Json     // Array of { name, spec, detail?, partNumber?, searchQuery }
-  source    String   @default("ai") // "static" | "ai"
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                 String    @id @default(cuid())
+  year               Int
+  make               String
+  model              String
+  trim               String
+  task               String    // e.g. "oil_change", "spark_plugs", "freetext:rocker panels"
+  generation         String?   // e.g. "2015+ 6.4 SRT" — shared across years in same gen
+  parts              Json      // Array of verified parts
+  unverifiedParts    Json?     // Parts that failed web verification (for retry/learning)
+  source             String    @default("ai") // "static" | "pipeline" | "pipeline-freetext"
+  status             String    @default("pending") // "pending" | "verified" | "partial" | "failed"
+  verifiedAt         DateTime?
+  verificationLog    Json?     // Web search results, retry history
+  webSearchConfirmed Boolean   @default(false)
+  humanApproved      Boolean   @default(false)
+  retryCount         Int       @default(0)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
 
   @@unique([year, make, model, trim, task])
   @@index([make, model])
+  @@index([status])
+  @@index([generation])
+}
+
+model VehicleInsight {
+  id          String   @id @default(cuid())
+  year        Int
+  make        String
+  model       String
+  trim        String?
+  source      String   // "symptom_chat" | "parts_search" | "known_issue" | "community"
+  insightType String   // "diagnosis" | "part_demand" | "part_confirmed" | "symptom_pattern"
+  title       String   // e.g. "Warped front rotors", "Oil filter lookup"
+  data        Json     // Flexible: { diagnosis, symptoms, partNumber, searchQuery, etc. }
+  confidence  String?  // "high" | "medium" | "low"
+  sessionHash String?
+  country     String?  // ISO country code from x-vercel-ip-country
+  occurrences Int      @default(1)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([make, model])
+  @@index([source])
+  @@index([insightType])
+  @@index([year, make, model])
 }

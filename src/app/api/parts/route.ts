@@ -2,37 +2,34 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 import { getVehicleSpecs } from '@/lib/maintenance';
 import { knownIssuesLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
+import { runPartsPipeline, runFreetextPipeline, type PipelinePart, type PipelineResult } from '@/lib/parts-pipeline';
 
-const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
-const TIMEOUT_MS = 25000;
+const TIMEOUT_MS = 180000; // Pipeline runs 6 agents + web search + retries — needs time
 
-// Tasks and what we need the AI to look up for each
-const TASK_PROMPTS: Record<string, string> = {
-  oil_change:
-    'Motor oil type and weight (e.g. 0W-20 Full Synthetic), oil capacity with filter, oil filter part number (OEM and common aftermarket like Mobil 1, Fram, Wix), drain plug socket size, drain plug torque spec.',
-  spark_plugs:
-    'Spark plug part number (OEM and aftermarket like NGK, Denso), spark plug gap, quantity needed, torque spec for installation.',
-  brake_inspection:
-    'Brake fluid type (DOT 3, DOT 4, etc.), front brake pad part number or type, rear brake pad part number or type if different, front rotor size and part number, rear rotor size and part number.',
-  coolant_flush:
-    'Coolant type (color and brand specification e.g. Dexcool, Toyota Super Long Life pink), total system capacity.',
-  transmission_fluid:
-    'Transmission fluid type/specification (e.g. Dexron VI, Toyota WS, CVT fluid), capacity for a drain and fill.',
-  air_filter:
-    'Engine air filter part number (OEM and common aftermarket like K&N, Fram).',
-  cabin_filter:
-    'Cabin air filter part number (OEM and common aftermarket).',
-  wiper_blades:
-    'Wiper blade sizes: driver side length, passenger side length, rear (if applicable). Include common brand part numbers (Bosch, Rain-X).',
-  battery:
-    'Battery group size, CCA (cold cranking amps) recommendation, battery location (under hood, trunk, under seat, etc.).',
-  differential_fluid:
-    'Rear differential fluid type and capacity. Front differential fluid type and capacity if AWD/4WD.',
-  bulb_replacement:
-    'Low beam headlight bulb number, high beam bulb number, front turn signal bulb, rear turn signal bulb, tail/brake light bulb, fog light bulb (if applicable).',
-  tire_rotation:
-    'Lug nut or lug bolt socket size, lug nut/bolt torque specification in ft-lbs. Note if vehicle uses lug bolts (European) vs lug nuts.',
-};
+// Valid predefined tasks
+const VALID_TASKS = [
+  // Fluids & Filters
+  'oil_change', 'coolant_flush', 'transmission_fluid', 'differential_fluid',
+  'power_steering_fluid', 'brake_fluid', 'transfer_case_fluid',
+  'air_filter', 'cabin_filter', 'fuel_filter',
+  // Ignition & Electrical
+  'spark_plugs', 'ignition_coils', 'battery', 'alternator', 'starter_motor',
+  'bulb_replacement', 'oxygen_sensor',
+  // Brakes & Suspension
+  'brake_inspection', 'brake_calipers', 'wheel_bearing', 'shocks_struts',
+  'ball_joints', 'tie_rods', 'control_arms', 'sway_bar_links',
+  // Drivetrain
+  'cv_axle', 'clutch_kit', 'u_joints',
+  // Engine & Cooling
+  'serpentine_belt', 'timing_belt', 'water_pump', 'thermostat',
+  'radiator', 'fuel_pump', 'ac_compressor',
+  // Gaskets & Seals
+  'valve_cover_gasket', 'oil_pan_gasket', 'head_gasket', 'intake_manifold_gasket',
+  // Exhaust & Emissions
+  'catalytic_converter', 'muffler_exhaust',
+  // Exterior & Wheels
+  'wiper_blades', 'tire_rotation', 'wheel_specs',
+];
 
 interface PartResult {
   name: string;
@@ -41,18 +38,25 @@ interface PartResult {
   partNumber?: string;
   searchQuery: string;
   crossReferences?: { brand: string; partNumber: string }[];
-  confidence: 'oem-verified' | 'high' | 'moderate';
+  confidence: 'oem-verified' | 'high' | 'moderate' | 'needs-review';
+  confidenceReason?: string;
   quantity?: number;
   oemBrand?: string;
+  summary?: string;
 }
 
 /**
  * GET /api/parts?year=2019&make=Chevrolet&model=Camaro&trim=ZL1&task=oil_change
+ * GET /api/parts?year=2015&make=Dodge&model=Challenger&trim=SRT+392&q=rocker+panels
  *
- * Resolution order:
+ * Resolution order for predefined tasks:
  * 1. Static vehicle-specs.json
  * 2. Database cache (VehiclePartLookup)
- * 3. AI lookup → saves to DB
+ * 3. Claude multi-agent pipeline → saves to DB
+ *
+ * Free-text search (?q=rocker panels):
+ * 1. Database cache
+ * 2. Claude pipeline → saves to DB
  */
 export async function GET(request: NextRequest) {
   const ip = getClientIp(request);
@@ -66,20 +70,67 @@ export async function GET(request: NextRequest) {
   const model = searchParams.get('model') || '';
   const trim = searchParams.get('trim') || '';
   const task = searchParams.get('task') || '';
+  const freeQuery = searchParams.get('q') || '';
 
-  if (!year || !make || !model || !trim || !task) {
+  // Country detection from Vercel headers
+  const country = request.headers.get('x-vercel-ip-country') || 'US';
+
+  // ─── Weekly usage limit (3 lookups/week for free users) ───────────
+  const FREE_WEEKLY_LIMIT = 3;
+  try {
+    const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    const weeklyCount = await prisma.vehicleInsight.count({
+      where: {
+        source: 'parts_search',
+        sessionHash: ip,
+        createdAt: { gte: oneWeekAgo },
+      },
+    });
+    if (weeklyCount >= FREE_WEEKLY_LIMIT) {
+      // TODO: Check if user has active subscription — skip limit for subscribers
+      return NextResponse.json(
+        {
+          error: 'Weekly limit reached',
+          message: `You\u2019ve used ${weeklyCount} of ${FREE_WEEKLY_LIMIT} free parts lookups this week. Upgrade to Pro for unlimited searches.`,
+          weeklyUsed: weeklyCount,
+          weeklyLimit: FREE_WEEKLY_LIMIT,
+          upgradeUrl: '/subscribe',
+        },
+        { status: 429 }
+      );
+    }
+  } catch {
+    // DB error — allow the request through rather than blocking
+  }
+
+  if (!year || !make || !model || !trim) {
     return NextResponse.json(
-      { error: 'Missing required params: year, make, model, trim, task' },
+      { error: 'Missing required params: year, make, model, trim' },
       { status: 400 }
     );
   }
 
-  if (!TASK_PROMPTS[task]) {
+  // Must have either a valid task or a free-text query
+  if (!task && !freeQuery) {
     return NextResponse.json(
-      { error: `Unknown task: ${task}` },
+      { error: 'Missing required param: task or q (free-text search)' },
       { status: 400 }
     );
   }
+
+  if (task && !VALID_TASKS.includes(task)) {
+    return NextResponse.json(
+      { error: `Unknown task: ${task}. Use ?q= for free-text part search.` },
+      { status: 400 }
+    );
+  }
+
+  // ─── Free-text search path ────────────────────────────────────────
+  if (freeQuery) {
+    return handleFreetextSearch(year, make, model, trim, freeQuery, country, ip);
+  }
+
+  // ─── Predefined task path ─────────────────────────────────────────
 
   // 1. Try static vehicle-specs.json
   const staticParts = getStaticParts(year, make, model, trim, task);
@@ -101,12 +152,11 @@ export async function GET(request: NextRequest) {
       });
     }
   } catch {
-    // DB error — fall through to AI
+    // DB error — fall through to pipeline
   }
 
-  // 3. AI lookup
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
+  // 3. Claude multi-agent pipeline with web verification
+  if (!process.env.ANTHROPIC_API_KEY) {
     return NextResponse.json(
       { error: 'Parts lookup unavailable — AI service not configured' },
       { status: 503 }
@@ -114,30 +164,171 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const parts = await lookupPartsWithAI(year, make, model, trim, task, apiKey);
+    const result = await Promise.race([
+      runPartsPipeline(year, make, model, trim, task),
+      new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('Pipeline timeout')), TIMEOUT_MS)
+      ),
+    ]);
 
-    // Save to DB for next time (fire-and-forget)
-    prisma.vehiclePartLookup
-      .upsert({
-        where: {
-          year_make_model_trim_task: { year, make, model, trim, task },
-        },
-        create: { year, make, model, trim, task, parts: JSON.parse(JSON.stringify(parts)), source: 'ai' },
-        update: { parts: JSON.parse(JSON.stringify(parts)), source: 'ai', updatedAt: new Date() },
-      })
-      .catch(() => {});
+    storePipelineResult(year, make, model, trim, task, result);
+    trackPartsSearch(year, make, model, trim, task, country, result.parts.length, ip);
 
-    return NextResponse.json({ parts, source: 'ai' });
-  } catch (err) {
-    console.error('[Parts API] AI lookup failed:', err);
+    return NextResponse.json({
+      parts: result.parts,
+      unverifiedParts: result.unverifiedParts,
+      source: result.source,
+      overallConfidence: result.overallConfidence,
+      vehicleNotes: result.vehicleNotes,
+      country,
+    });
+  } catch (err: any) {
+    console.error('[Parts API] Pipeline failed:', err.message, err.stack?.slice(0, 500));
     return NextResponse.json(
-      { error: 'Failed to look up parts. Please try again.' },
+      { error: 'Failed to look up parts. Please try again.', detail: err.message },
       { status: 500 }
     );
   }
 }
 
-// ─── Static Specs Extraction ───────────────────────────────────────────
+// ─── Store Pipeline Result in DB ──────────────────────────────────────
+
+// ─── Track Parts Search in VehicleInsight ─────────────────────────────
+
+function trackPartsSearch(
+  year: number, make: string, model: string, trim: string,
+  task: string, country: string, partsCount: number, ip: string
+) {
+  const title = task.startsWith('freetext:') ? task : task.replace(/_/g, ' ');
+  prisma.vehicleInsight.create({
+    data: {
+      year, make, model, trim,
+      source: 'parts_search',
+      insightType: 'part_demand',
+      title,
+      data: { task, partsReturned: partsCount, country },
+      country,
+      sessionHash: ip,
+    },
+  }).catch(() => {});
+}
+
+function storePipelineResult(
+  year: number,
+  make: string,
+  model: string,
+  trim: string,
+  task: string,
+  result: PipelineResult
+) {
+  const hasVerified = result.parts.length > 0;
+  const hasFailed = result.unverifiedParts.length > 0;
+  const status = hasVerified && !hasFailed ? 'verified'
+    : hasVerified && hasFailed ? 'partial'
+    : 'failed';
+
+  prisma.vehiclePartLookup
+    .upsert({
+      where: {
+        year_make_model_trim_task: { year, make, model, trim, task },
+      },
+      create: {
+        year,
+        make,
+        model,
+        trim,
+        task,
+        parts: JSON.parse(JSON.stringify(result.parts)),
+        unverifiedParts: JSON.parse(JSON.stringify(result.unverifiedParts)),
+        source: result.source,
+        status,
+        webSearchConfirmed: hasVerified,
+        verifiedAt: hasVerified ? new Date() : null,
+        verificationLog: JSON.parse(JSON.stringify(result.verificationLog)),
+      },
+      update: {
+        parts: JSON.parse(JSON.stringify(result.parts)),
+        unverifiedParts: JSON.parse(JSON.stringify(result.unverifiedParts)),
+        source: result.source,
+        status,
+        webSearchConfirmed: hasVerified,
+        verifiedAt: hasVerified ? new Date() : null,
+        verificationLog: JSON.parse(JSON.stringify(result.verificationLog)),
+        updatedAt: new Date(),
+      },
+    })
+    .catch(() => {});
+}
+
+// ─── Free-text Search Handler ─────────────────────────────────────────
+
+async function handleFreetextSearch(
+  year: number,
+  make: string,
+  model: string,
+  trim: string,
+  query: string,
+  country: string,
+  ip: string
+) {
+  // Normalize query for cache key
+  const cacheTask = `freetext:${query.toLowerCase().trim()}`;
+
+  // 1. Try database cache
+  try {
+    const cached = await prisma.vehiclePartLookup.findUnique({
+      where: {
+        year_make_model_trim_task: { year, make, model, trim, task: cacheTask },
+      },
+    });
+    if (cached) {
+      return NextResponse.json({
+        parts: cached.parts as unknown as PartResult[],
+        unverifiedParts: cached.unverifiedParts || [],
+        source: cached.source,
+      });
+    }
+  } catch {
+    // DB error — fall through
+  }
+
+  // 2. Claude pipeline for free-text with web verification
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return NextResponse.json(
+      { error: 'Parts search unavailable — AI service not configured' },
+      { status: 503 }
+    );
+  }
+
+  try {
+    const result = await Promise.race([
+      runFreetextPipeline(year, make, model, trim, query),
+      new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('Pipeline timeout')), TIMEOUT_MS)
+      ),
+    ]);
+
+    storePipelineResult(year, make, model, trim, cacheTask, result);
+    trackPartsSearch(year, make, model, trim, cacheTask, country, result.parts.length, ip);
+
+    return NextResponse.json({
+      parts: result.parts,
+      unverifiedParts: result.unverifiedParts,
+      source: result.source,
+      overallConfidence: result.overallConfidence,
+      vehicleNotes: result.vehicleNotes,
+      country,
+    });
+  } catch (err: any) {
+    console.error('[Parts API] Freetext pipeline failed:', err.message);
+    return NextResponse.json(
+      { error: 'Failed to find parts. Please try again.' },
+      { status: 500 }
+    );
+  }
+}
+
+// ─── Static Specs Extraction ──────────────────────────────────────────
 
 function getStaticParts(
   year: number,
@@ -184,15 +375,62 @@ function getStaticParts(
       });
       break;
 
-    case 'brake_inspection':
-      if (!specs.brakeFluid) return null;
-      parts.push({
-        name: 'Brake Fluid',
-        spec: specs.brakeFluid.type,
-        searchQuery: specs.brakeFluid.type + ' brake fluid',
-        confidence: 'oem-verified',
-      });
+    case 'brake_inspection': {
+      if (!specs.brakeFluid && !specs.brakes) return null;
+      if (specs.brakeFluid) {
+        parts.push({
+          name: 'Brake Fluid',
+          spec: specs.brakeFluid.type,
+          searchQuery: specs.brakeFluid.type + ' brake fluid',
+          confidence: 'oem-verified',
+        });
+      }
+      const brakes = specs.brakes;
+      const v = `${year} ${make} ${model} ${trim}`;
+      if (brakes?.front) {
+        parts.push({
+          name: 'Front Brake Rotors',
+          spec: brakes.front.rotorSize,
+          partNumber: brakes.front.rotorPartNumber,
+          oemBrand: 'Mopar',
+          detail: brakes.front.caliperType ? `${brakes.front.caliperType.replace(/,?\s*(yellow|red|silver|black|blue)\s*\w*\s*calipers?/i, '').trim()}` : undefined,
+          searchQuery: `Mopar ${brakes.front.rotorPartNumber} ${v} front brake rotors ${brakes.front.rotorSize.split('(')[0].trim()}`,
+          crossReferences: brakes.front.aftermarketRotors,
+          confidence: 'oem-verified',
+        });
+        parts.push({
+          name: 'Front Brake Pads',
+          spec: brakes.front.padPartNumber,
+          partNumber: brakes.front.padPartNumber,
+          oemBrand: 'Mopar',
+          searchQuery: `Mopar ${brakes.front.padPartNumber} ${v} front brake pads`,
+          crossReferences: brakes.front.aftermarketPads,
+          confidence: 'oem-verified',
+        });
+      }
+      if (brakes?.rear) {
+        parts.push({
+          name: 'Rear Brake Rotors',
+          spec: brakes.rear.rotorSize,
+          partNumber: brakes.rear.rotorPartNumber,
+          oemBrand: 'Mopar',
+          detail: brakes.rear.caliperType ? `${brakes.rear.caliperType.replace(/,?\s*(yellow|red|silver|black|blue)\s*\w*\s*calipers?/i, '').trim()}` : undefined,
+          searchQuery: `Mopar ${brakes.rear.rotorPartNumber} ${v} rear brake rotors ${brakes.rear.rotorSize.split('(')[0].trim()}`,
+          crossReferences: brakes.rear.aftermarketRotors,
+          confidence: 'oem-verified',
+        });
+        parts.push({
+          name: 'Rear Brake Pads',
+          spec: brakes.rear.padPartNumber,
+          partNumber: brakes.rear.padPartNumber,
+          oemBrand: 'Mopar',
+          searchQuery: `Mopar ${brakes.rear.padPartNumber} ${v} rear brake pads`,
+          crossReferences: brakes.rear.aftermarketPads,
+          confidence: 'oem-verified',
+        });
+      }
       break;
+    }
 
     case 'coolant_flush':
       if (!specs.coolant) return null;
@@ -263,7 +501,7 @@ function getStaticParts(
       });
       break;
 
-    // These don't have static data — always go to AI
+    // These don't have static data — always go to pipeline
     case 'air_filter':
     case 'cabin_filter':
     case 'wiper_blades':
@@ -275,111 +513,4 @@ function getStaticParts(
   }
 
   return parts.length > 0 ? parts : null;
-}
-
-// ─── AI Lookup ─────────────────────────────────────────────────────────
-
-async function lookupPartsWithAI(
-  year: number,
-  make: string,
-  model: string,
-  trim: string,
-  task: string,
-  apiKey: string
-): Promise<PartResult[]> {
-  const taskPrompt = TASK_PROMPTS[task];
-  const vehicleStr = `${year} ${make} ${model} ${trim}`;
-
-  const systemPrompt = `You are an automotive parts specialist. Look up the exact parts and specifications for a specific vehicle.
-
-Vehicle: ${vehicleStr}
-Task: ${task.replace(/_/g, ' ')}
-
-Look up: ${taskPrompt}
-
-IMPORTANT:
-- Use OEM part numbers and specifications from the owner's manual and service manual for this exact vehicle.
-- Include both OEM and popular aftermarket cross-reference part numbers.
-- Be specific to this exact year, make, model, and trim. Different trims may have different specifications.
-- If this vehicle has multiple engine options for the same trim, note the most common one.
-- All specs must be accurate — do not guess. If you are not confident about a specific spec, set confidence to "moderate".
-- For each part, include 2-4 aftermarket cross-references from brands like Mobil 1, Wix, Fram, NGK, Denso, ACDelco, Bosch, PowerStop, StopTech, Centric, K&N, etc.
-
-Respond with a JSON object:
-{
-  "parts": [
-    {
-      "name": "Part Name",
-      "spec": "Primary specification (e.g. part number, type, size)",
-      "detail": "Additional details (capacity, torque spec, quantity, etc.)",
-      "partNumber": "OEM part number",
-      "oemBrand": "OEM brand name (e.g. Mopar, Toyota, Motorcraft)",
-      "crossReferences": [
-        { "brand": "Aftermarket Brand", "partNumber": "Part Number" }
-      ],
-      "quantity": 1,
-      "confidence": "oem-verified or high or moderate",
-      "searchQuery": "Optimized search query for finding this part online"
-    }
-  ]
-}
-
-Return ONLY the JSON object, no other text.`;
-
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
-
-  try {
-    const response = await fetch(OPENAI_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-5.4',
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: `Look up the exact ${task.replace(/_/g, ' ')} parts for a ${vehicleStr}. Include OEM part numbers and aftermarket cross-references.` },
-        ],
-        max_completion_tokens: 2000,
-        temperature: 0.2,
-        response_format: { type: 'json_object' },
-      }),
-      signal: controller.signal,
-    });
-
-    clearTimeout(timeoutId);
-
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({}));
-      throw new Error(error.error?.message || `API error: ${response.status}`);
-    }
-
-    const data = await response.json();
-    const content = data.choices[0]?.message?.content || '{}';
-    const parsed = JSON.parse(content);
-
-    if (!parsed.parts || !Array.isArray(parsed.parts)) {
-      throw new Error('Invalid AI response format');
-    }
-
-    // Validate and normalize each part
-    return parsed.parts.map((p: any) => ({
-      name: String(p.name || 'Unknown Part'),
-      spec: String(p.spec || 'See details'),
-      detail: p.detail ? String(p.detail) : undefined,
-      partNumber: p.partNumber ? String(p.partNumber) : undefined,
-      oemBrand: p.oemBrand ? String(p.oemBrand) : undefined,
-      crossReferences: Array.isArray(p.crossReferences)
-        ? p.crossReferences.map((cr: any) => ({ brand: String(cr.brand), partNumber: String(cr.partNumber) }))
-        : undefined,
-      quantity: typeof p.quantity === 'number' ? p.quantity : undefined,
-      confidence: ['oem-verified', 'high', 'moderate'].includes(p.confidence) ? p.confidence : 'moderate',
-      searchQuery: String(p.searchQuery || `${vehicleStr} ${p.name || task}`),
-    }));
-  } catch (error) {
-    clearTimeout(timeoutId);
-    throw error;
-  }
 }

@@ -8,6 +8,8 @@ import {
 } from '@/schemas/chat.schema';
 import type { OBDCodeEntry } from '@/schemas/obd.schema';
 import { logApiCost, isBudgetExceeded } from '@/lib/costs';
+import prisma from '@/lib/db';
+import { getVehicleSpecs } from '@/lib/maintenance';
 
 /**
  * AI Symptom Chat API Route
@@ -25,10 +27,116 @@ const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
 const TIMEOUT_MS = 30000; // 30 second timeout per NFR-I2
 
 /**
- * System prompt for automotive diagnosis
+ * PART_KEYWORDS — words that signal the user wants a part, not a diagnosis
+ */
+const PART_KEYWORDS = [
+  'battery', 'filter', 'oil filter', 'air filter', 'cabin filter', 'fuel filter',
+  'brake pad', 'brake rotor', 'spark plug', 'wiper', 'wiper blade', 'bulb',
+  'headlight', 'taillight', 'alternator', 'starter', 'radiator', 'thermostat',
+  'water pump', 'fuel pump', 'serpentine belt', 'timing belt', 'timing chain',
+  'catalytic converter', 'oxygen sensor', 'o2 sensor', 'mass air flow', 'maf sensor',
+  'ignition coil', 'strut', 'shock', 'control arm', 'tie rod', 'wheel bearing',
+  'cv axle', 'drive shaft', 'clutch', 'flywheel', 'transmission fluid', 'coolant',
+  'antifreeze', 'power steering fluid', 'differential fluid', 'transfer case fluid',
+  'part number', 'part for', 'need a', 'replace my', 'what battery', 'what oil',
+  'what filter', 'what pads', 'which brake', 'which battery', 'looking for a',
+  'where to buy', 'how much is', 'cost of', 'price of',
+];
+
+/**
+ * Detect if the user's message is a parts lookup vs symptom diagnosis
+ */
+function detectIntent(message: string): 'parts' | 'symptom' {
+  const lower = message.toLowerCase();
+  for (const kw of PART_KEYWORDS) {
+    if (lower.includes(kw)) return 'parts';
+  }
+  return 'symptom';
+}
+
+/**
+ * Load RAG context: known issues + cached parts + vehicle specs
+ * Non-blocking — returns empty strings on failure
+ */
+async function loadRAGContext(vehicle: { year: number; make: string; model: string; trim: string }): Promise<{
+  knownIssuesContext: string;
+  partsContext: string;
+  specsContext: string;
+}> {
+  let knownIssuesContext = '';
+  let partsContext = '';
+  let specsContext = '';
+
+  try {
+    // Load known issues for this vehicle
+    const issues = await prisma.knownIssue.findMany({
+      where: {
+        make: { equals: vehicle.make, mode: 'insensitive' },
+        model: { equals: vehicle.model, mode: 'insensitive' },
+        status: 'published',
+      },
+      select: { title: true, severity: true, category: true, description: true },
+      take: 15,
+      orderBy: { reportCount: 'desc' },
+    });
+
+    if (issues.length > 0) {
+      knownIssuesContext = `\n\nKNOWN ISSUES for ${vehicle.year} ${vehicle.make} ${vehicle.model} (from our database — reference these when relevant):
+${issues.map(i => `- [${i.severity}] ${i.title}: ${(i.description || '').slice(0, 120)}`).join('\n')}`;
+    }
+  } catch { /* non-blocking */ }
+
+  try {
+    // Load cached parts for this vehicle
+    const cachedParts = await prisma.vehiclePartLookup.findMany({
+      where: {
+        year: vehicle.year,
+        make: { equals: vehicle.make, mode: 'insensitive' },
+        model: { equals: vehicle.model, mode: 'insensitive' },
+      },
+      select: { task: true, parts: true },
+      take: 20,
+    });
+
+    if (cachedParts.length > 0) {
+      const partLines = cachedParts.map(cp => {
+        const parts = cp.parts as any[];
+        const topParts = parts.slice(0, 2).map((p: any) => `${p.brand || ''} ${p.partNumber || ''} ${p.name || ''}`).join(', ');
+        return `- ${cp.task}: ${topParts}`;
+      });
+      partsContext = `\n\nCACHED PARTS for this vehicle (verified — use these directly when the user asks about these parts):
+${partLines.join('\n')}`;
+    }
+  } catch { /* non-blocking */ }
+
+  // Load vehicle specs (sync, from JSON)
+  try {
+    const specs = getVehicleSpecs(vehicle);
+    if (specs) {
+      const specLines: string[] = [];
+      if (specs.oil) specLines.push(`Oil: ${specs.oil.type}, ${specs.oil.capacity}, filter ${specs.oil.filterPartNumber}`);
+      if (specs.coolant) specLines.push(`Coolant: ${specs.coolant.type}, ${specs.coolant.capacity}`);
+      if (specs.sparkPlugs) specLines.push(`Spark plugs: ${specs.sparkPlugs.partNumber} x${specs.sparkPlugs.quantity}, gap ${specs.sparkPlugs.gap}`);
+      if (specs.brakeFluid) specLines.push(`Brake fluid: ${specs.brakeFluid.type}`);
+      if (specs.transmission) specLines.push(`Trans: ${specs.transmission.type}, ${specs.transmission.capacity}`);
+      if (specs.lug) specLines.push(`Lug: ${specs.lug.size}, ${specs.lug.torque}${specs.lug.useBolts ? ' (bolts)' : ''}`);
+      if (specLines.length > 0) {
+        specsContext = `\n\nVEHICLE SPECS (verified data):
+${specLines.join('\n')}`;
+      }
+    }
+  } catch { /* non-blocking */ }
+
+  return { knownIssuesContext, partsContext, specsContext };
+}
+
+/**
+ * System prompt for automotive diagnosis — with RAG context
  */
 function getSystemPrompt(
   vehicle: { year: number; make: string; model: string; trim: string },
+  ragContext: { knownIssuesContext: string; partsContext: string; specsContext: string },
+  intent: 'parts' | 'symptom',
   obdCodes?: OBDCodeEntry[]
 ) {
   const obdSection = obdCodes && obdCodes.length > 0
@@ -38,23 +146,27 @@ ${obdCodes.map((c) => `- ${c.code}: ${c.description || 'Unknown code'}`).join('\
 Use these codes to help inform your diagnosis. OBD codes provide valuable diagnostic information and can increase your confidence in the diagnosis when they align with the reported symptoms.`
     : '';
 
-  return `You are an expert automotive diagnostic assistant helping a vehicle owner diagnose issues with their ${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}.${obdSection}
+  const intentGuidance = intent === 'parts'
+    ? `The user is asking about a PART for their vehicle. DO NOT ask diagnostic questions. Go straight to answering:
+- Identify the exact part they need for their specific vehicle
+- If you have cached parts data below, use it directly
+- Include brand, part number, and Amazon link: [Brand PartName](https://www.amazon.com/s?k=BRAND+PART_NUMBER&tag=au7o-20)
+- Mention if Au7o has a Parts Finder for more options: https://au7o.io/parts
+- Only ask ONE clarifying question if you genuinely cannot determine which part (e.g., front vs rear brakes)`
+    : `The user is describing a symptom or problem. Be DIRECT and efficient:
+- If the symptom is clear and common, diagnose immediately — do NOT ask unnecessary questions
+- Ask at MOST one clarifying question, and only if the symptom is genuinely ambiguous
+- If you have known issues data below for this vehicle, check if the symptom matches a known problem and say so
+- Users abandon the chat if you ask too many questions — give your best answer fast`;
 
-Your role is to:
-1. Ask clarifying questions to understand the symptoms
-2. Provide a likely diagnosis when you have enough information
-3. Explain the issue in simple terms
-4. Recommend whether this is a DIY repair or needs professional help
+  return `You are an expert automotive diagnostic assistant for a ${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}.${obdSection}
 
-Guidelines:
-- Be conversational and helpful
-- Ask one or two questions at a time
-- Consider common issues for this specific vehicle
-- Always prioritize safety warnings when relevant
-- When ready to diagnose, clearly state your diagnosis with confidence level
-- If OBD codes are provided, reference them in your diagnosis
-- When recommending specific parts (filters, bulbs, sensors, pads, fluids, etc.), include the part brand, part number, and an Amazon link in this format: [Brand PartName](https://www.amazon.com/s?k=BRAND+PART_NUMBER&tag=au7o-20). For example: [Dorman 926-959 Oil Filter Housing](https://www.amazon.com/s?k=Dorman+926-959&tag=au7o-20)
-- If the user asks about finding or looking up a part, help them identify the correct part for their vehicle and provide an Amazon search link with the tag=au7o-20 parameter
+CRITICAL BEHAVIOR RULES:
+${intentGuidance}
+
+When recommending specific parts, include the part brand, part number, and an Amazon link in this format: [Brand PartName](https://www.amazon.com/s?k=BRAND+PART_NUMBER&tag=au7o-20)
+If the user asks about finding or looking up a part, identify the correct part and provide an Amazon search link with tag=au7o-20.
+${ragContext.knownIssuesContext}${ragContext.partsContext}${ragContext.specsContext}
 
 When you're ready to provide a diagnosis, format it as:
 
@@ -79,13 +191,11 @@ ALT3_CONFIDENCE: [high/medium/low]
 ALT3_DESCRIPTION: [Brief explanation]
 
 Include up to 3 alternative diagnoses if applicable (fewer if the primary diagnosis is very certain).
-Otherwise, continue the conversation naturally to gather more information.
 
 DTC Code Awareness:
-- If the user mentions an OBD-II diagnostic trouble code (P0xxx, B0xxx, C0xxx, U0xxx format), explain what the code means in plain language.
-- Direct them to the Au7o DTC reference page for that code: https://au7o.io/known-issues/dtc/CODE (lowercase, e.g., https://au7o.io/known-issues/dtc/p0300).
-- If you know their vehicle (from the context above), mention any vehicle-specific causes that are common for that code on their ${vehicle.year} ${vehicle.make} ${vehicle.model}.
-- Common codes to be aware of: P0300-P0312 (misfires), P0171/P0174 (lean), P0420/P0430 (catalytic converter), P0442/P0456 (EVAP leaks), P0128 (thermostat), P0507 (idle control).`;
+- If the user mentions an OBD-II code (P0xxx, B0xxx, C0xxx, U0xxx), explain it in plain language.
+- Direct them to: https://au7o.io/known-issues/dtc/CODE (lowercase).
+- Mention vehicle-specific causes common for that code on their ${vehicle.year} ${vehicle.make} ${vehicle.model}.`;
 }
 
 /**
@@ -447,8 +557,21 @@ function captureSymptoms(data: {
     diagnosisConfidence: data.diagnosis?.confidence || null,
   };
 
-  // Log capture (in production, this would go to analytics/database)
-  console.log('[Symptom Capture]', JSON.stringify(capture));
+  // Persist to VehicleInsight for the unified intelligence loop
+  prisma.vehicleInsight.create({
+    data: {
+      year: data.vehicle.year,
+      make: data.vehicle.make,
+      model: data.vehicle.model,
+      trim: data.vehicle.trim || null,
+      source: 'symptom_chat',
+      insightType: data.diagnosis ? 'diagnosis' : 'symptom_pattern',
+      title: data.diagnosis?.title || symptoms.slice(0, 3).join(', ') || 'Chat interaction',
+      data: capture,
+      confidence: data.diagnosis?.confidence || null,
+      sessionHash: data.sessionHash,
+    },
+  }).catch(() => {}); // Fire-and-forget, non-blocking
 }
 
 export async function POST(request: NextRequest) {
@@ -487,10 +610,14 @@ export async function POST(request: NextRequest) {
     let diagnosis: Diagnosis | null = null;
     let alternativeDiagnoses: Diagnosis[] = [];
 
+    // Detect intent and load RAG context in parallel
+    const intent = detectIntent(message);
+    const ragContext = await loadRAGContext(vehicle);
+
     if (apiKey) {
-      // Build messages for AI
+      // Build messages for AI with RAG-enriched system prompt
       const messages: { role: string; content: string }[] = [
-        { role: 'system', content: getSystemPrompt(vehicle, obdCodes) },
+        { role: 'system', content: getSystemPrompt(vehicle, ragContext, intent, obdCodes) },
         ...conversationHistory.map((msg) => ({
           role: msg.role,
           content: msg.content,
@@ -530,11 +657,30 @@ export async function POST(request: NextRequest) {
       sessionHash,
     });
 
+    // Persist full chat session for interaction analysis (non-blocking)
+    const allMessages = [
+      ...conversationHistory.map((msg: ChatMessage) => ({
+        role: msg.role,
+        content: msg.content,
+        timestamp: msg.timestamp,
+      })),
+      { role: 'user', content: message, timestamp: new Date().toISOString() },
+      { role: 'assistant', content: responseContent, timestamp: new Date().toISOString() },
+    ];
+    prisma.chatSession.create({
+      data: {
+        messages: allMessages,
+        diagnosis: diagnosis ? (diagnosis as any) : undefined,
+        anonymousId: sessionHash,
+      },
+    }).catch(() => {}); // Fire-and-forget
+
     return NextResponse.json({
       message: assistantMessage,
       diagnosis,
       alternativeDiagnoses: alternativeDiagnoses.length > 0 ? alternativeDiagnoses : undefined,
       needsMoreInfo: !diagnosis,
+      intent, // tell the client what we detected
     });
   } catch (error) {
     console.error('Chat API error:', error);
