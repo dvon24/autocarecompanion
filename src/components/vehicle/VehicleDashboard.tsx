@@ -1,63 +1,45 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useVehicleContext } from '@/contexts/AppContext';
-import { KnownIssueCard } from '@/components/known-issues/KnownIssueCard';
-import { SeverityFilter } from '@/components/known-issues/SeverityFilter';
-import { FloatingChat } from '@/components/vehicle/FloatingChat';
+import { ChatMessage, ChatMessageLoading } from '@/components/chat/ChatMessage';
+import { type ChatMessage as ChatMessageType, createChatMessage } from '@/schemas/chat.schema';
 
-// Types
+// ─── Types ─────────────────────────────────────────────────────────────
+
 interface VehicleTuple {
-  year: number;
-  make: string;
-  model: string;
-  trim: string;
+  year: number; make: string; model: string; trim: string;
 }
 
 interface KnownIssue {
-  id: string;
-  title: string;
-  description: string;
-  severity: string;
-  category: string;
-  reportCount: number;
+  id: string; title: string; description: string; severity: string;
+  category: string; reportCount: number;
   estimatedCost?: { min: number; max: number };
   vehicleMatch: { years: number[]; trims?: string[] };
-  symptoms?: string[];
-  solutions?: string[];
-  communityRecommendations?: any[];
-  dtcCodes?: string[];
+  symptoms?: string[]; solutions?: string[];
+  communityRecommendations?: any[]; dtcCodes?: string[];
   [key: string]: any;
 }
 
 interface RecallItem {
-  campaignNumber: string;
-  component: string;
-  summary: string;
-  consequence: string;
-  remedy: string;
-  reportDate: string;
-  parkIt?: boolean;
+  campaignNumber: string; component: string; summary: string;
+  consequence: string; remedy: string; reportDate: string; parkIt?: boolean;
 }
 
-interface CachedPart {
-  task: string;
-  parts: any[];
-  source: string;
-}
+interface CachedPart { task: string; parts: any[]; source: string; }
 
-type TabId = 'issues' | 'parts' | 'recalls' | 'guides';
+type SectionId = 'issues' | 'parts' | 'recalls' | 'guides' | 'chat';
 
-const TABS: { id: TabId; label: string; icon: string }[] = [
-  { id: 'issues', label: 'Known Issues', icon: '⚠️' },
-  { id: 'parts', label: 'Parts', icon: '🔧' },
-  { id: 'recalls', label: 'Recalls', icon: '🔔' },
-  { id: 'guides', label: 'Guides', icon: '📖' },
+const SIDEBAR_ITEMS: { id: SectionId; label: string; icon: React.ReactNode }[] = [
+  { id: 'issues', label: 'Known Issues', icon: <IconIssues /> },
+  { id: 'parts', label: 'Parts', icon: <IconParts /> },
+  { id: 'recalls', label: 'Recalls', icon: <IconRecalls /> },
+  { id: 'guides', label: 'Guides', icon: <IconGuides /> },
+  { id: 'chat', label: 'Chat', icon: <IconChat /> },
 ];
 
-// Task display names
 const TASK_NAMES: Record<string, string> = {
   oil_change: 'Oil Change', brake_inspection: 'Brakes', spark_plugs: 'Spark Plugs',
   air_filter: 'Air Filter', cabin_filter: 'Cabin Filter', battery: 'Battery',
@@ -72,127 +54,161 @@ const TASK_NAMES: Record<string, string> = {
   intake_manifold_gasket: 'Intake Gasket', catalytic_converter: 'Cat Converter',
   muffler_exhaust: 'Exhaust', ball_joints: 'Ball Joints', tie_rods: 'Tie Rods',
   control_arms: 'Control Arms', sway_bar_links: 'Sway Bar Links', cv_axle: 'CV Axle',
-  clutch_kit: 'Clutch Kit', u_joints: 'U-Joints', brake_fluid: 'Brake Fluid',
+  clutch_kit: 'Clutch', u_joints: 'U-Joints', brake_fluid: 'Brake Fluid',
   power_steering_fluid: 'Power Steering', transfer_case_fluid: 'Transfer Case',
   bulb_replacement: 'Bulbs', tire_rotation: 'Lug Specs', wheel_specs: 'Wheel Specs',
 };
 
 const AFFILIATE_TAG = 'au7o-20';
 
+// ─── Main Component ────────────────────────────────────────────────────
+
 export function VehicleDashboard({
-  vehicle,
-  slug,
-  issues,
-  recalls,
-  cachedParts,
-  specsSummary,
+  vehicle, slug, issues, recalls, cachedParts, specsSummary,
 }: {
-  vehicle: VehicleTuple;
-  slug: string;
-  issues: KnownIssue[];
-  recalls: RecallItem[];
-  cachedParts: CachedPart[];
-  specsSummary: Record<string, string>;
+  vehicle: VehicleTuple; slug: string;
+  issues: KnownIssue[]; recalls: RecallItem[];
+  cachedParts: CachedPart[]; specsSummary: Record<string, string>;
 }) {
   const searchParams = useSearchParams();
-  const initialTab = (searchParams.get('tab') as TabId) || 'issues';
-  const [activeTab, setActiveTab] = useState<TabId>(initialTab);
-  const [severityFilter, setSeverityFilter] = useState<string | null>(null);
-  const [chatOpen, setChatOpen] = useState(false);
-  const [chatContext, setChatContext] = useState<string>('');
+  const initialSection = (searchParams.get('tab') as SectionId) || 'issues';
+  const [activeSection, setActiveSection] = useState<SectionId>(initialSection);
+  const [sidebarExpanded, setSidebarExpanded] = useState(true);
+  const [chatMessages, setChatMessages] = useState<ChatMessageType[]>([]);
+  const [chatInput, setChatInput] = useState('');
+  const [chatLoading, setChatLoading] = useState(false);
+  const [aiContext, setAiContext] = useState('');
+  const chatEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const { setVehicle } = useVehicleContext();
 
-  // Set vehicle context on mount
-  useEffect(() => {
-    setVehicle(vehicle);
-  }, [vehicle, setVehicle]);
-
-  // Update chat context when tab changes
-  useEffect(() => {
-    setChatContext(`User is viewing the ${activeTab} tab for their ${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}.`);
-  }, [activeTab, vehicle]);
-
   const vehicleDisplay = `${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}`;
-  const criticalCount = issues.filter(i => i.severity === 'high' || i.severity === 'critical').length;
-  const filteredIssues = severityFilter
-    ? issues.filter(i => i.severity === severityFilter)
-    : issues;
-
-  // Parts grouped by category
   const standardParts = cachedParts.filter(p => !p.task.startsWith('freetext:'));
+  const criticalCount = issues.filter(i => i.severity === 'high' || i.severity === 'critical').length;
+
+  // Set vehicle context on mount
+  useEffect(() => { setVehicle(vehicle); }, [vehicle, setVehicle]);
+
+  // Auto-scroll chat
+  useEffect(() => {
+    if (activeSection === 'chat') chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [chatMessages, chatLoading, activeSection]);
+
+  // Update AI context when section changes
+  useEffect(() => {
+    const contextMap: Record<SectionId, string> = {
+      issues: `User is viewing ${issues.length} known issues for their ${vehicleDisplay}. ${criticalCount} are critical/high severity.`,
+      parts: `User is browsing cached parts for their ${vehicleDisplay}. ${standardParts.length} part categories available.`,
+      recalls: `User is viewing ${recalls.length} recall(s) for their ${vehicleDisplay}.`,
+      guides: `User wants maintenance guides for their ${vehicleDisplay}.`,
+      chat: `User is in open chat about their ${vehicleDisplay}.`,
+    };
+    setAiContext(contextMap[activeSection]);
+  }, [activeSection, vehicleDisplay, issues.length, criticalCount, standardParts.length, recalls.length]);
+
+  const handleSectionChange = (id: SectionId) => {
+    setActiveSection(id);
+    if (id === 'chat') setTimeout(() => inputRef.current?.focus(), 100);
+  };
+
+  const sendMessage = async (text?: string) => {
+    const msg = (text || chatInput).trim();
+    if (!msg || chatLoading) return;
+
+    const userMsg = createChatMessage('user', msg);
+    setChatMessages(prev => [...prev, userMsg]);
+    setChatInput('');
+    setChatLoading(true);
+    setActiveSection('chat');
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: msg,
+          conversationHistory: chatMessages.map(m => ({ role: m.role, content: m.content })),
+          vehicle,
+        }),
+      });
+      if (!res.ok) throw new Error('Failed');
+      const data = await res.json();
+      setChatMessages(prev => [...prev, data.message]);
+    } catch {
+      setChatMessages(prev => [...prev, createChatMessage('assistant', 'Sorry, something went wrong. Please try again.')]);
+    } finally {
+      setChatLoading(false);
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100">
-      {/* Sticky Header */}
-      <header className="sticky top-0 z-40 bg-gray-950/95 backdrop-blur-sm border-b border-gray-800">
-        <div className="max-w-6xl mx-auto px-4 py-3">
-          {/* Top row: Logo + Vehicle */}
-          <div className="flex items-center justify-between">
-            <Link href="/" className="text-lg font-bold text-white tracking-tight">
-              Au<span className="text-blue-400">7</span>o
-            </Link>
-            <div className="text-right">
-              <h1 className="text-base font-semibold text-white">{vehicleDisplay}</h1>
-              {specsSummary.engine && (
-                <p className="text-xs text-gray-400">{specsSummary.engine}</p>
-              )}
-            </div>
-          </div>
+    <div className="h-screen flex flex-col bg-gray-950 text-gray-100 overflow-hidden">
 
-          {/* Specs Cheat Sheet */}
-          {Object.keys(specsSummary).length > 1 && (
-            <div className="mt-2 flex gap-3 overflow-x-auto pb-1 scrollbar-hide">
-              {specsSummary.oil && (
-                <SpecChip label="Oil" value={specsSummary.oil} />
-              )}
-              {specsSummary.oilFilter && (
-                <SpecChip label="Filter" value={specsSummary.oilFilter} />
-              )}
-              {specsSummary.coolant && (
-                <SpecChip label="Coolant" value={specsSummary.coolant} />
-              )}
-              {specsSummary.lug && (
-                <SpecChip label="Lug" value={specsSummary.lug} />
-              )}
-              {specsSummary.sparkPlugs && (
-                <SpecChip label="Plugs" value={specsSummary.sparkPlugs} />
-              )}
-              {specsSummary.brakeFluid && (
-                <SpecChip label="Brake Fluid" value={specsSummary.brakeFluid} />
-              )}
-              {specsSummary.transmission && (
-                <SpecChip label="Trans" value={specsSummary.transmission} />
-              )}
-            </div>
+      {/* ─── Top Bar ─────────────────────────────────────────── */}
+      <header className="flex-shrink-0 h-14 flex items-center justify-between px-4 border-b border-gray-800 bg-gray-950">
+        <div className="flex items-center gap-3">
+          {/* Hamburger */}
+          <button
+            onClick={() => setSidebarExpanded(!sidebarExpanded)}
+            className="p-1.5 rounded-lg hover:bg-gray-800 transition-colors hidden sm:block"
+          >
+            <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button>
+          <Link href="/" className="text-lg font-bold text-white tracking-tight">
+            Au<span className="text-blue-400">7</span>o
+          </Link>
+        </div>
+
+        {/* Vehicle name */}
+        <div className="text-right">
+          <p className="text-sm font-medium text-gray-200">{vehicleDisplay}</p>
+          {specsSummary.engine && (
+            <p className="text-[11px] text-gray-500">{specsSummary.engine}</p>
           )}
         </div>
       </header>
 
-      {/* Tab Navigation */}
-      <nav className="sticky top-[72px] z-30 bg-gray-950/95 backdrop-blur-sm border-b border-gray-800">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex">
-            {TABS.map(tab => {
-              const count = tab.id === 'issues' ? issues.length
-                : tab.id === 'recalls' ? recalls.length
-                : tab.id === 'parts' ? standardParts.length
-                : 0;
+      {/* ─── Body: Sidebar + Main ─────────────────────────────── */}
+      <div className="flex flex-1 overflow-hidden">
+
+        {/* ─── Sidebar (YouTube-style) ──────────────────────── */}
+        <aside className={`hidden sm:flex flex-col flex-shrink-0 border-r border-gray-800 bg-gray-950 transition-all duration-200 ${
+          sidebarExpanded ? 'w-56' : 'w-[72px]'
+        }`}>
+          <nav className="flex-1 py-2">
+            {SIDEBAR_ITEMS.map(item => {
+              const isActive = activeSection === item.id;
+              const count = item.id === 'issues' ? issues.length
+                : item.id === 'recalls' ? recalls.length
+                : item.id === 'parts' ? standardParts.length
+                : null;
 
               return (
                 <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-1.5 px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
-                    activeTab === tab.id
-                      ? 'border-blue-400 text-blue-400'
-                      : 'border-transparent text-gray-400 hover:text-gray-200'
+                  key={item.id}
+                  onClick={() => handleSectionChange(item.id)}
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
+                    sidebarExpanded ? 'mx-2 rounded-lg' : 'flex-col gap-1 rounded-none text-[10px]'
+                  } ${
+                    isActive
+                      ? 'bg-gray-800 text-white'
+                      : 'text-gray-400 hover:bg-gray-900 hover:text-gray-200'
                   }`}
+                  title={item.label}
                 >
-                  <span className="text-xs">{tab.icon}</span>
-                  <span>{tab.label}</span>
-                  {count > 0 && (
-                    <span className={`ml-1 text-xs px-1.5 py-0.5 rounded-full ${
-                      activeTab === tab.id ? 'bg-blue-400/20 text-blue-300' : 'bg-gray-800 text-gray-500'
+                  <span className={`flex-shrink-0 ${sidebarExpanded ? '' : 'mx-auto'}`}>
+                    {item.icon}
+                  </span>
+                  {sidebarExpanded ? (
+                    <span className="flex-1 text-left truncate">{item.label}</span>
+                  ) : (
+                    <span className="truncate">{item.label.split(' ').pop()}</span>
+                  )}
+                  {sidebarExpanded && count !== null && count > 0 && (
+                    <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+                      isActive ? 'bg-gray-700 text-gray-300' : 'bg-gray-800 text-gray-500'
                     }`}>
                       {count}
                     </span>
@@ -200,199 +216,231 @@ export function VehicleDashboard({
                 </button>
               );
             })}
-          </div>
-        </div>
-      </nav>
+          </nav>
+        </aside>
 
-      {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-4 py-6">
-        {/* Issues Tab */}
-        {activeTab === 'issues' && (
-          <div>
-            {issues.length === 0 ? (
-              <EmptyState
-                icon="✅"
-                title="No Known Issues"
-                description={`We don't have any documented issues for the ${vehicleDisplay}. That's good news!`}
-              />
-            ) : (
-              <>
+        {/* ─── Main Content Area ────────────────────────────── */}
+        <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
+
+          {/* Vehicle Info Card */}
+          <div className="flex-shrink-0 px-4 sm:px-6 py-4 border-b border-gray-800 bg-gray-900/30">
+            <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-hide">
+              {specsSummary.oil && <SpecChip label="Oil" value={specsSummary.oil} />}
+              {specsSummary.oilFilter && <SpecChip label="Filter" value={specsSummary.oilFilter} />}
+              {specsSummary.lug && <SpecChip label="Lug" value={specsSummary.lug} />}
+              {specsSummary.coolant && <SpecChip label="Coolant" value={specsSummary.coolant} />}
+              {specsSummary.sparkPlugs && <SpecChip label="Plugs" value={specsSummary.sparkPlugs} />}
+              {specsSummary.transmission && <SpecChip label="Trans" value={specsSummary.transmission} />}
+              {specsSummary.brakeFluid && <SpecChip label="Brake Fluid" value={specsSummary.brakeFluid} />}
+            </div>
+          </div>
+
+          {/* Scrollable Content Area */}
+          <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4">
+
+            {/* Issues Section */}
+            {activeSection === 'issues' && (
+              <div className="space-y-3">
+                <SectionHeader title="Known Issues" count={issues.length} />
                 {criticalCount > 0 && (
-                  <div className="mb-4 p-3 bg-red-950/50 border border-red-800/50 rounded-lg">
+                  <div className="p-3 bg-red-950/40 border border-red-900/50 rounded-lg">
                     <p className="text-sm text-red-300">
-                      <span className="font-semibold">{criticalCount} critical issue{criticalCount > 1 ? 's' : ''}</span> documented for this vehicle
+                      <span className="font-semibold">{criticalCount} critical/high</span> severity issue{criticalCount > 1 ? 's' : ''}
                     </p>
                   </div>
                 )}
+                {issues.length === 0 ? (
+                  <EmptyState icon="✅" title="No Known Issues" description="No documented issues for this vehicle." />
+                ) : (
+                  issues.map(issue => <IssueCard key={issue.id} issue={issue} onAsk={(q) => sendMessage(q)} />)
+                )}
+              </div>
+            )}
 
-                {/* Severity pills */}
-                <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
-                  <FilterPill
-                    label="All"
-                    count={issues.length}
-                    active={!severityFilter}
-                    onClick={() => setSeverityFilter(null)}
-                  />
-                  {['critical', 'high', 'medium', 'low'].map(sev => {
-                    const count = issues.filter(i => i.severity === sev).length;
-                    if (count === 0) return null;
-                    return (
-                      <FilterPill
-                        key={sev}
-                        label={sev.charAt(0).toUpperCase() + sev.slice(1)}
-                        count={count}
-                        active={severityFilter === sev}
-                        onClick={() => setSeverityFilter(severityFilter === sev ? null : sev)}
-                        color={sev === 'critical' || sev === 'high' ? 'red' : sev === 'medium' ? 'amber' : 'gray'}
-                      />
-                    );
-                  })}
-                </div>
+            {/* Parts Section */}
+            {activeSection === 'parts' && (
+              <div className="space-y-3">
+                <SectionHeader title="Parts" count={standardParts.length} />
+                {standardParts.length === 0 ? (
+                  <EmptyState icon="🔧" title="No Cached Parts" description="Parts haven't been loaded yet. Ask the AI about specific parts." />
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {standardParts.map(cp => <PartCard key={cp.task} task={cp.task} parts={cp.parts} />)}
+                  </div>
+                )}
+              </div>
+            )}
 
-                <div className="space-y-3">
-                  {filteredIssues.map(issue => (
-                    <IssueCard key={issue.id} issue={issue} vehicle={vehicle} />
+            {/* Recalls Section */}
+            {activeSection === 'recalls' && (
+              <div className="space-y-3">
+                <SectionHeader title="Recalls" count={recalls.length} />
+                {recalls.length === 0 ? (
+                  <EmptyState icon="✅" title="No Active Recalls" description="No open recalls for this vehicle." />
+                ) : (
+                  recalls.map(r => <RecallCard key={r.campaignNumber} recall={r} />)
+                )}
+              </div>
+            )}
+
+            {/* Guides Section */}
+            {activeSection === 'guides' && (
+              <div className="space-y-3">
+                <SectionHeader title="Maintenance Guides" />
+                <p className="text-sm text-gray-400">Select a task to get a step-by-step guide from the AI.</p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  {['Oil Change', 'Brake Pads', 'Spark Plugs', 'Air Filter', 'Cabin Filter', 'Battery',
+                    'Coolant Flush', 'Tire Rotation', 'Wiper Blades', 'Serpentine Belt', 'Transmission Fluid', 'Brake Fluid',
+                  ].map(task => (
+                    <button
+                      key={task}
+                      onClick={() => sendMessage(`Give me a step-by-step ${task.toLowerCase()} guide for my ${vehicleDisplay}`)}
+                      className="p-3 bg-gray-900 border border-gray-800 rounded-lg text-sm text-gray-300 hover:bg-gray-800 hover:text-white transition-colors text-left"
+                    >
+                      {task}
+                    </button>
                   ))}
                 </div>
-              </>
+              </div>
             )}
-          </div>
-        )}
 
-        {/* Parts Tab */}
-        {activeTab === 'parts' && (
-          <div>
-            {standardParts.length === 0 ? (
-              <EmptyState
-                icon="🔧"
-                title="No Cached Parts Yet"
-                description="Parts data hasn't been loaded for this vehicle yet. Use the chat to ask about specific parts."
-              />
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {standardParts.map(cp => (
-                  <PartTaskCard key={cp.task} task={cp.task} parts={cp.parts} vehicle={vehicle} />
-                ))}
+            {/* Chat Section */}
+            {activeSection === 'chat' && (
+              <div className="space-y-1">
+                {chatMessages.length === 0 && (
+                  <div className="text-center py-12">
+                    <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
+                      <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                      </svg>
+                    </div>
+                    <h2 className="text-lg font-semibold text-gray-200">Ask me anything</h2>
+                    <p className="text-sm text-gray-500 mt-1">Parts, diagnostics, maintenance, costs</p>
+                  </div>
+                )}
+                {chatMessages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+                {chatLoading && <ChatMessageLoading />}
+                <div ref={chatEndRef} />
               </div>
             )}
           </div>
-        )}
 
-        {/* Recalls Tab */}
-        {activeTab === 'recalls' && (
-          <div>
-            {recalls.length === 0 ? (
-              <EmptyState
-                icon="✅"
-                title="No Active Recalls"
-                description={`No open recalls found for the ${vehicleDisplay}.`}
-              />
-            ) : (
-              <div className="space-y-3">
-                {recalls.map(recall => (
-                  <RecallCard key={recall.campaignNumber} recall={recall} />
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Guides Tab */}
-        {activeTab === 'guides' && (
-          <div>
-            <EmptyState
-              icon="📖"
-              title="Maintenance Guides"
-              description="Ask the AI assistant about any maintenance task and it will generate a step-by-step guide for your specific vehicle."
-            />
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-4">
-              {['Oil Change', 'Brake Pads', 'Spark Plugs', 'Air Filter', 'Cabin Filter', 'Battery',
-                'Coolant Flush', 'Tire Rotation', 'Wiper Blades', 'Serpentine Belt', 'Transmission Fluid', 'Brake Fluid'
-              ].map(task => (
-                <button
-                  key={task}
+          {/* ─── Bottom: Context Buttons + Chat Input ────────── */}
+          <div className="flex-shrink-0 border-t border-gray-800 bg-gray-900/50 px-4 sm:px-6 py-3">
+            {/* Context buttons */}
+            <div className="flex gap-2 mb-2 overflow-x-auto scrollbar-hide">
+              {activeSection !== 'chat' && (
+                <ContextPill
+                  label="Ask about this"
                   onClick={() => {
-                    setChatContext(`User wants a ${task.toLowerCase()} guide for their ${vehicleDisplay}.`);
-                    setChatOpen(true);
+                    setActiveSection('chat');
+                    setTimeout(() => inputRef.current?.focus(), 100);
                   }}
-                  className="p-3 bg-gray-900 border border-gray-800 rounded-lg text-sm text-gray-300 hover:bg-gray-800 hover:text-white transition-colors text-left"
-                >
-                  {task}
-                </button>
-              ))}
+                />
+              )}
+              {activeSection === 'chat' && (
+                <>
+                  <ContextPill label={`Issues (${issues.length})`} onClick={() => setActiveSection('issues')} />
+                  <ContextPill label={`Parts (${standardParts.length})`} onClick={() => setActiveSection('parts')} />
+                  <ContextPill label={`Recalls (${recalls.length})`} onClick={() => setActiveSection('recalls')} />
+                  <ContextPill label="Guides" onClick={() => setActiveSection('guides')} />
+                </>
+              )}
+            </div>
+
+            {/* Chat input (always visible) */}
+            <div className="flex gap-2">
+              <input
+                ref={inputRef}
+                type="text"
+                value={chatInput}
+                onChange={e => setChatInput(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter') sendMessage(); }}
+                onFocus={() => { if (activeSection !== 'chat') setActiveSection('chat'); }}
+                placeholder={`Ask about your ${vehicle.make} ${vehicle.model}...`}
+                className="flex-1 bg-gray-900 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              />
+              <button
+                onClick={() => sendMessage()}
+                disabled={!chatInput.trim() || chatLoading}
+                className="px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-500 disabled:opacity-40 transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                </svg>
+              </button>
             </div>
           </div>
-        )}
-      </main>
+        </main>
+      </div>
 
-      {/* Bottom Mobile Nav */}
-      <nav className="fixed bottom-0 left-0 right-0 z-40 bg-gray-950/95 backdrop-blur-sm border-t border-gray-800 sm:hidden">
-        <div className="flex justify-around py-2">
-          {TABS.map(tab => (
+      {/* ─── Mobile Bottom Nav ──────────────────────────────── */}
+      <nav className="flex-shrink-0 sm:hidden border-t border-gray-800 bg-gray-950">
+        <div className="flex justify-around py-1.5">
+          {SIDEBAR_ITEMS.map(item => (
             <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex flex-col items-center gap-0.5 px-3 py-1 text-xs ${
-                activeTab === tab.id ? 'text-blue-400' : 'text-gray-500'
+              key={item.id}
+              onClick={() => handleSectionChange(item.id)}
+              className={`flex flex-col items-center gap-0.5 px-2 py-1 ${
+                activeSection === item.id ? 'text-white' : 'text-gray-500'
               }`}
             >
-              <span className="text-base">{tab.icon}</span>
-              <span>{tab.label.split(' ').pop()}</span>
+              <span className="w-5 h-5">{item.icon}</span>
+              <span className="text-[10px]">{item.label.split(' ').pop()}</span>
             </button>
           ))}
         </div>
       </nav>
-
-      {/* Floating Chat */}
-      <FloatingChat
-        vehicle={vehicle}
-        isOpen={chatOpen}
-        onToggle={() => setChatOpen(!chatOpen)}
-        context={chatContext}
-      />
-
-      {/* Bottom padding for mobile nav */}
-      <div className="h-16 sm:hidden" />
     </div>
   );
 }
 
-// --- Sub-components ---
+// ─── Sub-components ────────────────────────────────────────────────────
 
 function SpecChip({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex-shrink-0 px-2.5 py-1 bg-gray-900 border border-gray-800 rounded-md">
+    <div className="flex-shrink-0 px-3 py-1.5 bg-gray-800/50 border border-gray-700/50 rounded-lg">
       <span className="text-[10px] text-gray-500 uppercase tracking-wider">{label}</span>
-      <p className="text-xs text-gray-200 font-medium whitespace-nowrap">{value}</p>
+      <p className="text-xs text-gray-300 font-medium whitespace-nowrap">{value}</p>
     </div>
   );
 }
 
-function FilterPill({
-  label, count, active, onClick, color = 'gray',
-}: {
-  label: string; count: number; active: boolean; onClick: () => void; color?: string;
-}) {
-  const colorMap: Record<string, string> = {
-    red: active ? 'bg-red-900/50 border-red-700 text-red-300' : 'border-gray-700 text-gray-400 hover:border-red-800',
-    amber: active ? 'bg-amber-900/50 border-amber-700 text-amber-300' : 'border-gray-700 text-gray-400 hover:border-amber-800',
-    gray: active ? 'bg-gray-800 border-gray-600 text-gray-200' : 'border-gray-700 text-gray-400 hover:border-gray-600',
-  };
+function SectionHeader({ title, count }: { title: string; count?: number }) {
+  return (
+    <div className="flex items-center gap-2 mb-1">
+      <h2 className="text-lg font-semibold text-gray-100">{title}</h2>
+      {count !== undefined && count > 0 && (
+        <span className="text-xs px-2 py-0.5 bg-gray-800 text-gray-400 rounded-full">{count}</span>
+      )}
+    </div>
+  );
+}
 
+function ContextPill({ label, onClick }: { label: string; onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border rounded-full transition-colors ${colorMap[color]}`}
+      className="flex-shrink-0 px-3 py-1.5 text-xs font-medium text-gray-300 bg-gray-800 border border-gray-700 rounded-full hover:bg-gray-700 hover:text-white transition-colors"
     >
       {label}
-      <span className="opacity-60">{count}</span>
     </button>
   );
 }
 
-function IssueCard({ issue, vehicle }: { issue: KnownIssue; vehicle: VehicleTuple }) {
+function EmptyState({ icon, title, description }: { icon: string; title: string; description: string }) {
+  return (
+    <div className="text-center py-12">
+      <span className="text-4xl">{icon}</span>
+      <h3 className="text-base font-semibold text-gray-200 mt-3">{title}</h3>
+      <p className="text-sm text-gray-500 mt-1">{description}</p>
+    </div>
+  );
+}
+
+function IssueCard({ issue, onAsk }: { issue: KnownIssue; onAsk: (q: string) => void }) {
   const [expanded, setExpanded] = useState(false);
-  const severityColors: Record<string, string> = {
+  const sevColor: Record<string, string> = {
     critical: 'bg-red-900/50 text-red-300 border-red-800',
     high: 'bg-red-900/30 text-red-400 border-red-800/50',
     medium: 'bg-amber-900/30 text-amber-400 border-amber-800/50',
@@ -401,113 +449,77 @@ function IssueCard({ issue, vehicle }: { issue: KnownIssue; vehicle: VehicleTupl
 
   return (
     <div className="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="w-full p-4 text-left"
-      >
+      <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
             <h3 className="text-sm font-medium text-gray-100">{issue.title}</h3>
             {issue.estimatedCost && (
-              <p className="text-xs text-gray-500 mt-1">
-                ${issue.estimatedCost.min} - ${issue.estimatedCost.max} to fix
-              </p>
+              <p className="text-xs text-gray-500 mt-0.5">${issue.estimatedCost.min} - ${issue.estimatedCost.max}</p>
             )}
           </div>
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <span className={`px-2 py-0.5 text-[10px] font-medium rounded-full border ${severityColors[issue.severity] || severityColors.low}`}>
-              {issue.severity}
-            </span>
-            <svg className={`w-4 h-4 text-gray-500 transition-transform ${expanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
+          <span className={`flex-shrink-0 px-2 py-0.5 text-[10px] font-medium rounded-full border ${sevColor[issue.severity] || sevColor.low}`}>
+            {issue.severity}
+          </span>
         </div>
       </button>
-
       {expanded && (
         <div className="px-4 pb-4 space-y-3 border-t border-gray-800 pt-3">
           <p className="text-sm text-gray-400">{issue.description}</p>
-
           {issue.symptoms && issue.symptoms.length > 0 && (
             <div>
               <p className="text-xs font-medium text-gray-500 uppercase mb-1">Symptoms</p>
-              <ul className="space-y-1">
-                {issue.symptoms.map((s, i) => (
-                  <li key={i} className="text-xs text-gray-400 flex gap-2">
-                    <span className="text-gray-600">-</span> {s}
-                  </li>
-                ))}
+              <ul className="space-y-0.5">
+                {issue.symptoms.map((s, i) => <li key={i} className="text-xs text-gray-400">- {s}</li>)}
               </ul>
             </div>
           )}
-
-          {issue.solutions && issue.solutions.length > 0 && (
-            <div>
-              <p className="text-xs font-medium text-gray-500 uppercase mb-1">Solutions</p>
-              <ul className="space-y-1">
-                {issue.solutions.map((s, i) => (
-                  <li key={i} className="text-xs text-gray-400 flex gap-2">
-                    <span className="text-gray-600">-</span> {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
           {issue.dtcCodes && issue.dtcCodes.length > 0 && (
             <div className="flex gap-1.5 flex-wrap">
               {issue.dtcCodes.map(code => (
-                <Link
-                  key={code}
-                  href={`/known-issues/dtc/${code.toLowerCase()}`}
-                  className="text-[10px] font-mono px-2 py-0.5 bg-blue-900/30 text-blue-400 border border-blue-800/50 rounded hover:bg-blue-900/50"
-                >
+                <Link key={code} href={`/known-issues/dtc/${code.toLowerCase()}`}
+                  className="text-[10px] font-mono px-2 py-0.5 bg-blue-900/30 text-blue-400 border border-blue-800/50 rounded hover:bg-blue-900/50">
                   {code}
                 </Link>
               ))}
             </div>
           )}
+          <button
+            onClick={() => onAsk(`Tell me about the "${issue.title}" issue. What causes it and how much does it cost to fix?`)}
+            className="text-xs text-blue-400 hover:text-blue-300 font-medium"
+          >
+            Ask AI about this issue →
+          </button>
         </div>
       )}
     </div>
   );
 }
 
-function PartTaskCard({ task, parts, vehicle }: { task: string; parts: any[]; vehicle: VehicleTuple }) {
+function PartCard({ task, parts }: { task: string; parts: any[] }) {
   const [expanded, setExpanded] = useState(false);
-  const displayName = TASK_NAMES[task] || task.replace(/_/g, ' ');
+  const name = TASK_NAMES[task] || task.replace(/_/g, ' ');
 
   return (
     <div className="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="w-full p-3 text-left flex items-center justify-between"
-      >
+      <button onClick={() => setExpanded(!expanded)} className="w-full p-3 text-left flex items-center justify-between">
         <div>
-          <h3 className="text-sm font-medium text-gray-200">{displayName}</h3>
+          <h3 className="text-sm font-medium text-gray-200">{name}</h3>
           <p className="text-xs text-gray-500">{parts.length} part{parts.length !== 1 ? 's' : ''}</p>
         </div>
-        <svg className={`w-4 h-4 text-gray-500 transition-transform ${expanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+        <svg className={`w-4 h-4 text-gray-500 transition-transform ${expanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
       </button>
-
       {expanded && (
         <div className="px-3 pb-3 space-y-2 border-t border-gray-800 pt-2">
-          {parts.map((part: any, i: number) => (
+          {parts.map((p: any, i: number) => (
             <div key={i} className="flex items-center justify-between gap-2">
               <div className="min-w-0">
-                <p className="text-xs text-gray-300 truncate">{part.brand || ''} {part.name || part.partNumber || ''}</p>
-                {part.partNumber && <p className="text-[10px] text-gray-500 font-mono">{part.partNumber}</p>}
+                <p className="text-xs text-gray-300 truncate">{p.brand || ''} {p.name || p.partNumber || ''}</p>
+                {p.partNumber && <p className="text-[10px] text-gray-500 font-mono">{p.partNumber}</p>}
               </div>
-              {part.partNumber && (
-                <a
-                  href={`https://www.amazon.com/s?k=${encodeURIComponent((part.brand || '') + ' ' + part.partNumber)}&tag=${AFFILIATE_TAG}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-shrink-0 text-[10px] px-2 py-1 bg-blue-900/30 text-blue-400 border border-blue-800/50 rounded hover:bg-blue-900/50 transition-colors"
-                >
+              {p.partNumber && (
+                <a href={`https://www.amazon.com/s?k=${encodeURIComponent((p.brand || '') + ' ' + p.partNumber)}&tag=${AFFILIATE_TAG}`}
+                  target="_blank" rel="noopener noreferrer"
+                  className="flex-shrink-0 text-[10px] px-2 py-1 bg-blue-900/30 text-blue-400 border border-blue-800/50 rounded hover:bg-blue-900/50">
                   Amazon
                 </a>
               )}
@@ -521,53 +533,44 @@ function PartTaskCard({ task, parts, vehicle }: { task: string; parts: any[]; ve
 
 function RecallCard({ recall }: { recall: RecallItem }) {
   const [expanded, setExpanded] = useState(false);
-
   return (
     <div className={`bg-gray-900 border rounded-lg overflow-hidden ${recall.parkIt ? 'border-red-800' : 'border-gray-800'}`}>
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="w-full p-4 text-left"
-      >
+      <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
             <h3 className="text-sm font-medium text-gray-100">{recall.component}</h3>
             <p className="text-xs text-gray-500 mt-0.5">{recall.campaignNumber} · {recall.reportDate}</p>
           </div>
           {recall.parkIt && (
-            <span className="flex-shrink-0 px-2 py-0.5 text-[10px] font-medium bg-red-900/50 text-red-300 border border-red-800 rounded-full">
-              PARK IT
-            </span>
+            <span className="flex-shrink-0 px-2 py-0.5 text-[10px] font-medium bg-red-900/50 text-red-300 border border-red-800 rounded-full">PARK IT</span>
           )}
         </div>
       </button>
-
       {expanded && (
         <div className="px-4 pb-4 space-y-2 border-t border-gray-800 pt-3">
           <p className="text-sm text-gray-400">{recall.summary}</p>
-          {recall.consequence && (
-            <div>
-              <p className="text-xs font-medium text-gray-500 uppercase mb-1">Risk</p>
-              <p className="text-xs text-red-400">{recall.consequence}</p>
-            </div>
-          )}
-          {recall.remedy && (
-            <div>
-              <p className="text-xs font-medium text-gray-500 uppercase mb-1">Remedy</p>
-              <p className="text-xs text-gray-400">{recall.remedy}</p>
-            </div>
-          )}
+          {recall.consequence && <div><p className="text-xs font-medium text-gray-500 uppercase mb-1">Risk</p><p className="text-xs text-red-400">{recall.consequence}</p></div>}
+          {recall.remedy && <div><p className="text-xs font-medium text-gray-500 uppercase mb-1">Remedy</p><p className="text-xs text-gray-400">{recall.remedy}</p></div>}
         </div>
       )}
     </div>
   );
 }
 
-function EmptyState({ icon, title, description }: { icon: string; title: string; description: string }) {
-  return (
-    <div className="text-center py-12">
-      <span className="text-4xl">{icon}</span>
-      <h2 className="text-lg font-semibold text-gray-200 mt-3">{title}</h2>
-      <p className="text-sm text-gray-500 mt-1 max-w-md mx-auto">{description}</p>
-    </div>
-  );
+// ─── Icons (inline SVGs) ───────────────────────────────────────────────
+
+function IconIssues() {
+  return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>;
+}
+function IconParts() {
+  return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1-5.1m0 0L3.07 12.32c-.84.84-.84 2.2 0 3.04l5.58 5.58c.84.84 2.2.84 3.04 0l2.24-2.24m-5.58-8.4l7.12-7.12c.84-.84 2.2-.84 3.04 0l1.41 1.41c.84.84.84 2.2 0 3.04L13.36 15.17" /></svg>;
+}
+function IconRecalls() {
+  return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" /></svg>;
+}
+function IconGuides() {
+  return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>;
+}
+function IconChat() {
+  return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg>;
 }
