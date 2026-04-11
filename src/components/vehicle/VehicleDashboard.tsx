@@ -8,7 +8,7 @@ import { useVehicleContext } from '@/contexts/AppContext';
 import { ChatMessage, ChatMessageLoading } from '@/components/chat/ChatMessage';
 import { type ChatMessage as ChatMessageType, createChatMessage } from '@/schemas/chat.schema';
 
-// ─── Types ─────────────────────────────────────────────────────────────
+// Types
 
 interface VehicleTuple {
   year: number; make: string; model: string; trim: string;
@@ -61,7 +61,7 @@ const TASK_NAMES: Record<string, string> = {
 
 const AFFILIATE_TAG = 'au7o-20';
 
-// ─── Main Component ────────────────────────────────────────────────────
+// Main Component
 
 export function VehicleDashboard({
   vehicle, slug, issues, recalls, cachedParts, specsSummary,
@@ -73,7 +73,6 @@ export function VehicleDashboard({
   const searchParams = useSearchParams();
   const initialSection = (searchParams.get('tab') as SectionId) || 'chat';
   const [activeSection, setActiveSection] = useState<SectionId>(initialSection);
-  const [sidebarExpanded, setSidebarExpanded] = useState(true);
   const [chatMessages, setChatMessages] = useState<ChatMessageType[]>([]);
   const [chatInput, setChatInput] = useState('');
   const [chatLoading, setChatLoading] = useState(false);
@@ -142,89 +141,21 @@ export function VehicleDashboard({
   };
 
   return (
-    <div className="h-screen flex flex-col bg-white text-gray-900 overflow-hidden">
+    <div className="h-screen flex flex-col bg-gray-100 text-gray-900 overflow-hidden">
 
-      {/* ─── Top Bar ─────────────────────────────────────────── */}
-      <header className="flex-shrink-0 h-14 flex items-center justify-between px-4 border-b border-gray-200 bg-gray-100">
-        <div className="flex items-center gap-3">
-          {/* Hamburger */}
-          <button
-            onClick={() => setSidebarExpanded(!sidebarExpanded)}
-            className="p-1.5 rounded-lg hover:bg-gray-200 transition-colors hidden sm:block"
-          >
-            <svg className="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-          </button>
-          <Link href="/" className="text-lg font-bold text-gray-900 tracking-tight">
-            Au<span className="text-blue-600">7</span>o
-          </Link>
-        </div>
-
-        {/* Vehicle name */}
-        <div className="text-right">
-          <p className="text-sm font-medium text-gray-800">{vehicleDisplay}</p>
-          {specsSummary.engine && (
-            <p className="text-[11px] text-gray-500">{specsSummary.engine}</p>
-          )}
-        </div>
+      {/* Section */}
+      <header className="flex-shrink-0 h-14 flex items-center px-4 sm:px-6 bg-blue-50 shadow-sm">
+        <Link href="/" className="text-lg font-bold text-gray-900 tracking-tight">
+          Au<span className="text-blue-600">7</span>o
+        </Link>
       </header>
 
-      {/* ─── Body: Sidebar + Main ─────────────────────────────── */}
-      <div className="flex flex-1 overflow-hidden">
-
-        {/* ─── Sidebar (YouTube-style) ──────────────────────── */}
-        <aside className={`hidden sm:flex flex-col flex-shrink-0 border-r border-gray-200 bg-gray-50 transition-all duration-200 ${
-          sidebarExpanded ? 'w-56' : 'w-[72px]'
-        }`}>
-          <nav className="flex-1 py-2">
-            {SIDEBAR_ITEMS.map(item => {
-              const isActive = activeSection === item.id;
-              const count = item.id === 'issues' ? issues.length
-                : item.id === 'recalls' ? recalls.length
-                : item.id === 'parts' ? standardParts.length
-                : null;
-
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleSectionChange(item.id)}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
-                    sidebarExpanded ? 'mx-2 rounded-lg' : 'flex-col gap-1 rounded-none text-[10px]'
-                  } ${
-                    isActive
-                      ? 'bg-white text-gray-900 shadow-sm'
-                      : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800'
-                  }`}
-                  title={item.label}
-                >
-                  <span className={`flex-shrink-0 ${sidebarExpanded ? '' : 'mx-auto'}`}>
-                    {item.icon}
-                  </span>
-                  {sidebarExpanded ? (
-                    <span className="flex-1 text-left truncate">{item.label}</span>
-                  ) : (
-                    <span className="truncate">{item.label.split(' ').pop()}</span>
-                  )}
-                  {sidebarExpanded && count !== null && count > 0 && (
-                    <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                      isActive ? 'bg-gray-200 text-gray-700' : 'bg-gray-200 text-gray-500'
-                    }`}>
-                      {count}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </nav>
-        </aside>
-
-        {/* ─── Main Content Area ────────────────────────────── */}
-        <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
+      {/* Section */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-5">
 
           {/* Vehicle Profile Card */}
-          <div className="flex-shrink-0 p-4 sm:p-6">
-            <div className="bg-white border border-gray-200 rounded-xl shadow-lg shadow-gray-200/60 p-5">
+          <div className="bg-white rounded-xl shadow p-5 mb-5">
               {/* Logo + Name row */}
               <div className="flex items-center gap-4 mb-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
@@ -263,7 +194,7 @@ export function VehicleDashboard({
               {/* Stats row */}
               <div className="flex gap-3 flex-wrap">
                 {issues.length > 0 && (
-                  <span className="text-xs px-2.5 py-1 bg-gray-100 border border-gray-200 rounded-lg text-gray-600">
+                  <span className="text-xs px-2.5 py-1 bg-gray-100 border-0 rounded-lg text-gray-600">
                     {issues.length} known issue{issues.length !== 1 ? 's' : ''}
                   </span>
                 )}
@@ -273,16 +204,47 @@ export function VehicleDashboard({
                   </span>
                 )}
                 {standardParts.length > 0 && (
-                  <span className="text-xs px-2.5 py-1 bg-gray-100 border border-gray-200 rounded-lg text-gray-600">
+                  <span className="text-xs px-2.5 py-1 bg-gray-100 border-0 rounded-lg text-gray-600">
                     {standardParts.length} parts cached
                   </span>
                 )}
               </div>
-            </div>
           </div>
 
-          {/* Scrollable Content Area */}
-          <div className="flex-1 overflow-y-auto px-4 sm:px-6 pb-4">
+          {/* Tab Container */}
+          <div className="bg-white rounded-xl shadow overflow-hidden">
+            <div className="flex">
+              {SIDEBAR_ITEMS.map(item => {
+                const isActive = activeSection === item.id;
+                const count = item.id === 'recalls' ? recalls.length
+                  : item.id === 'parts' ? standardParts.length
+                  : null;
+
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleSectionChange(item.id)}
+                    className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-3 text-sm font-medium transition-colors ${
+                      isActive
+                        ? 'text-blue-600 bg-blue-50 border-b-2 border-blue-600'
+                        : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'
+                    }`}
+                  >
+                    <span className="w-4 h-4">{item.icon}</span>
+                    <span className="hidden sm:inline">{item.label}</span>
+                    <span className="sm:hidden">{item.label.split(' ').pop()}</span>
+                    {count !== null && count > 0 && (
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
+                        isActive ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'
+                      }`}>{count}</span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Tab Content */}
+            <div className="p-4 sm:p-5">
 
             {/* Parts Section */}
             {activeSection === 'parts' && (
@@ -322,7 +284,7 @@ export function VehicleDashboard({
                     <button
                       key={task}
                       onClick={() => sendMessage(`Give me a step-by-step ${task.toLowerCase()} guide for my ${vehicleDisplay}`)}
-                      className="p-3 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 hover:shadow-sm transition-all text-left"
+                      className="p-3 bg-white rounded-lg text-sm text-gray-600 hover:bg-gray-50 shadow-sm hover:text-gray-900 hover:shadow-sm transition-all text-left"
                     >
                       {task}
                     </button>
@@ -335,77 +297,60 @@ export function VehicleDashboard({
             {activeSection === 'chat' && (
               <div className="space-y-1">
                 {chatMessages.length === 0 && (
-                  <div className="text-center py-12">
-                    <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
-                      <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                  <div className="text-center py-8">
+                    <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                       </svg>
                     </div>
-                    <h2 className="text-lg font-semibold text-gray-800">Ask me anything</h2>
-                    <p className="text-sm text-gray-500 mt-1">Parts, diagnostics, maintenance, costs</p>
+                    <h2 className="text-base font-semibold text-gray-800">Ask me anything</h2>
+                    <p className="text-sm text-gray-400 mt-1">Parts, diagnostics, maintenance, costs</p>
                   </div>
                 )}
                 {chatMessages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
                 {chatLoading && <ChatMessageLoading />}
                 <div ref={chatEndRef} />
+
+                {/* Chat Input */}
+                <div className="pt-3">
+                  <div className="flex gap-2">
+                    <input
+                      ref={inputRef}
+                      type="text"
+                      value={chatInput}
+                      onChange={e => setChatInput(e.target.value)}
+                      onKeyDown={e => { if (e.key === 'Enter') sendMessage(); }}
+                      placeholder={`Ask about your ${vehicle.make} ${vehicle.model}...`}
+                      className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+                    />
+                    <button
+                      onClick={() => sendMessage()}
+                      disabled={!chatInput.trim() || chatLoading}
+                      className="px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-500 disabled:opacity-40 transition-colors shadow-sm"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
-          </div>
 
-          {/* ─── Bottom: Context Buttons + Chat Input ────────── */}
-          <div className="flex-shrink-0 border-t border-gray-200 bg-gray-50 px-4 sm:px-6 py-3 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
-            {/* Chat input (always visible) */}
-            <div className="flex gap-2">
-              <input
-                ref={inputRef}
-                type="text"
-                value={chatInput}
-                onChange={e => setChatInput(e.target.value)}
-                onKeyDown={e => { if (e.key === 'Enter') sendMessage(); }}
-                onFocus={() => { if (activeSection !== 'chat') setActiveSection('chat'); }}
-                placeholder={`Ask about your ${vehicle.make} ${vehicle.model}...`}
-                className="flex-1 bg-white border border-gray-300 rounded-xl px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
-              />
-              <button
-                onClick={() => sendMessage()}
-                disabled={!chatInput.trim() || chatLoading}
-                className="px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-500 disabled:opacity-40 transition-colors"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                </svg>
-              </button>
             </div>
           </div>
-        </main>
-      </div>
 
-      {/* ─── Mobile Bottom Nav ──────────────────────────────── */}
-      <nav className="flex-shrink-0 sm:hidden border-t border-gray-200 bg-white">
-        <div className="flex justify-around py-1.5">
-          {SIDEBAR_ITEMS.map(item => (
-            <button
-              key={item.id}
-              onClick={() => handleSectionChange(item.id)}
-              className={`flex flex-col items-center gap-0.5 px-2 py-1 ${
-                activeSection === item.id ? 'text-white' : 'text-gray-500'
-              }`}
-            >
-              <span className="w-5 h-5">{item.icon}</span>
-              <span className="text-[10px]">{item.label.split(' ').pop()}</span>
-            </button>
-          ))}
         </div>
-      </nav>
+      </div>
     </div>
   );
 }
 
-// ─── Sub-components ────────────────────────────────────────────────────
+// Sub-components
 
 function SpecChip({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex-shrink-0 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg">
+    <div className="flex-shrink-0 px-3 py-1.5 bg-gray-50 border-0 rounded-lg">
       <span className="text-[10px] text-gray-400 uppercase tracking-wider">{label}</span>
       <p className="text-xs text-gray-700 font-medium whitespace-nowrap">{value}</p>
     </div>
@@ -438,7 +383,7 @@ function PartCard({ task, parts }: { task: string; parts: any[] }) {
   const name = TASK_NAMES[task] || task.replace(/_/g, ' ');
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl shadow-md shadow-gray-200/60 overflow-hidden">
+    <div className="bg-white border-0 rounded-xl shadow overflow-hidden">
       <button onClick={() => setExpanded(!expanded)} className="w-full p-3 text-left flex items-center justify-between">
         <div>
           <h3 className="text-sm font-medium text-gray-800">{name}</h3>
@@ -472,7 +417,7 @@ function PartCard({ task, parts }: { task: string; parts: any[] }) {
 function RecallCard({ recall }: { recall: RecallItem }) {
   const [expanded, setExpanded] = useState(false);
   return (
-    <div className={`bg-white rounded-xl shadow-md shadow-gray-200/60 overflow-hidden ${recall.parkIt ? 'border-2 border-red-400' : 'border border-gray-200'}`}>
+    <div className={`bg-white rounded-xl shadow overflow-hidden ${recall.parkIt ? 'border-2 border-red-400' : 'border-0'}`}>
       <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
@@ -495,7 +440,7 @@ function RecallCard({ recall }: { recall: RecallItem }) {
   );
 }
 
-// ─── Icons (inline SVGs) ───────────────────────────────────────────────
+// Icons
 
 function IconParts() {
   return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1-5.1m0 0L3.07 12.32c-.84.84-.84 2.2 0 3.04l5.58 5.58c.84.84 2.2.84 3.04 0l2.24-2.24m-5.58-8.4l7.12-7.12c.84-.84 2.2-.84 3.04 0l1.41 1.41c.84.84.84 2.2 0 3.04L13.36 15.17" /></svg>;
