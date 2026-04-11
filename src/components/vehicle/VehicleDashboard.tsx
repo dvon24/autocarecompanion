@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useVehicleContext } from '@/contexts/AppContext';
 import { ChatMessage, ChatMessageLoading } from '@/components/chat/ChatMessage';
 import { type ChatMessage as ChatMessageType, createChatMessage } from '@/schemas/chat.schema';
@@ -141,28 +142,28 @@ export function VehicleDashboard({
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gray-950 text-gray-100 overflow-hidden">
+    <div className="h-screen flex flex-col bg-white text-gray-900 overflow-hidden">
 
       {/* ─── Top Bar ─────────────────────────────────────────── */}
-      <header className="flex-shrink-0 h-14 flex items-center justify-between px-4 border-b border-gray-800 bg-gray-950">
+      <header className="flex-shrink-0 h-14 flex items-center justify-between px-4 border-b border-gray-200 bg-gray-100">
         <div className="flex items-center gap-3">
           {/* Hamburger */}
           <button
             onClick={() => setSidebarExpanded(!sidebarExpanded)}
-            className="p-1.5 rounded-lg hover:bg-gray-800 transition-colors hidden sm:block"
+            className="p-1.5 rounded-lg hover:bg-gray-200 transition-colors hidden sm:block"
           >
-            <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <svg className="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
           </button>
-          <Link href="/" className="text-lg font-bold text-white tracking-tight">
-            Au<span className="text-blue-400">7</span>o
+          <Link href="/" className="text-lg font-bold text-gray-900 tracking-tight">
+            Au<span className="text-blue-600">7</span>o
           </Link>
         </div>
 
         {/* Vehicle name */}
         <div className="text-right">
-          <p className="text-sm font-medium text-gray-200">{vehicleDisplay}</p>
+          <p className="text-sm font-medium text-gray-800">{vehicleDisplay}</p>
           {specsSummary.engine && (
             <p className="text-[11px] text-gray-500">{specsSummary.engine}</p>
           )}
@@ -173,7 +174,7 @@ export function VehicleDashboard({
       <div className="flex flex-1 overflow-hidden">
 
         {/* ─── Sidebar (YouTube-style) ──────────────────────── */}
-        <aside className={`hidden sm:flex flex-col flex-shrink-0 border-r border-gray-800 bg-gray-950 transition-all duration-200 ${
+        <aside className={`hidden sm:flex flex-col flex-shrink-0 border-r border-gray-200 bg-gray-50 transition-all duration-200 ${
           sidebarExpanded ? 'w-56' : 'w-[72px]'
         }`}>
           <nav className="flex-1 py-2">
@@ -192,8 +193,8 @@ export function VehicleDashboard({
                     sidebarExpanded ? 'mx-2 rounded-lg' : 'flex-col gap-1 rounded-none text-[10px]'
                   } ${
                     isActive
-                      ? 'bg-gray-800 text-white'
-                      : 'text-gray-400 hover:bg-gray-900 hover:text-gray-200'
+                      ? 'bg-white text-gray-900 shadow-sm'
+                      : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800'
                   }`}
                   title={item.label}
                 >
@@ -207,7 +208,7 @@ export function VehicleDashboard({
                   )}
                   {sidebarExpanded && count !== null && count > 0 && (
                     <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                      isActive ? 'bg-gray-700 text-gray-300' : 'bg-gray-800 text-gray-500'
+                      isActive ? 'bg-gray-200 text-gray-700' : 'bg-gray-200 text-gray-500'
                     }`}>
                       {count}
                     </span>
@@ -221,21 +222,67 @@ export function VehicleDashboard({
         {/* ─── Main Content Area ────────────────────────────── */}
         <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
 
-          {/* Vehicle Info Card */}
-          <div className="flex-shrink-0 px-4 sm:px-6 py-4 border-b border-gray-800 bg-gray-900/30">
-            <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-hide">
-              {specsSummary.oil && <SpecChip label="Oil" value={specsSummary.oil} />}
-              {specsSummary.oilFilter && <SpecChip label="Filter" value={specsSummary.oilFilter} />}
-              {specsSummary.lug && <SpecChip label="Lug" value={specsSummary.lug} />}
-              {specsSummary.coolant && <SpecChip label="Coolant" value={specsSummary.coolant} />}
-              {specsSummary.sparkPlugs && <SpecChip label="Plugs" value={specsSummary.sparkPlugs} />}
-              {specsSummary.transmission && <SpecChip label="Trans" value={specsSummary.transmission} />}
-              {specsSummary.brakeFluid && <SpecChip label="Brake Fluid" value={specsSummary.brakeFluid} />}
+          {/* Vehicle Profile Card */}
+          <div className="flex-shrink-0 p-4 sm:p-6">
+            <div className="bg-white border border-gray-200 rounded-xl shadow-lg shadow-gray-200/60 p-5">
+              {/* Logo + Name row */}
+              <div className="flex items-center gap-4 mb-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                  <Image
+                    src={`/logos/${vehicle.make.toLowerCase().replace(/\s+/g, '-')}.png`}
+                    alt={vehicle.make}
+                    width={40}
+                    height={40}
+                    className="object-contain"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                </div>
+                <div>
+                  <h2 className="text-lg font-bold text-gray-900">{vehicleDisplay}</h2>
+                  {specsSummary.engine && (
+                    <p className="text-sm text-gray-500">{specsSummary.engine}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Quick Brief */}
+              <div className="mb-4 text-sm text-gray-500 leading-relaxed">
+                {criticalCount > 0 && (
+                  <p className="text-red-600 font-medium mb-1">
+                    {criticalCount} known critical/high severity issue{criticalCount > 1 ? 's' : ''} for this vehicle.
+                  </p>
+                )}
+                {specsSummary.oil && <p>Oil: <span className="text-gray-800 font-medium">{specsSummary.oil}</span>{specsSummary.oilFilter ? ` · Filter: ${specsSummary.oilFilter}` : ''}</p>}
+                {specsSummary.coolant && <p>Coolant: <span className="text-gray-800 font-medium">{specsSummary.coolant}</span></p>}
+                {specsSummary.transmission && <p>Transmission: <span className="text-gray-800 font-medium">{specsSummary.transmission}</span></p>}
+                {specsSummary.lug && <p>Lug: <span className="text-gray-800 font-medium">{specsSummary.lug}</span></p>}
+                {specsSummary.sparkPlugs && <p>Spark Plugs: <span className="text-gray-800 font-medium">{specsSummary.sparkPlugs}</span></p>}
+                {specsSummary.brakeFluid && <p>Brake Fluid: <span className="text-gray-800 font-medium">{specsSummary.brakeFluid}</span></p>}
+              </div>
+
+              {/* Stats row */}
+              <div className="flex gap-3 flex-wrap">
+                {issues.length > 0 && (
+                  <span className="text-xs px-2.5 py-1 bg-gray-100 border border-gray-200 rounded-lg text-gray-600">
+                    {issues.length} known issue{issues.length !== 1 ? 's' : ''}
+                  </span>
+                )}
+                {recalls.length > 0 && (
+                  <span className="text-xs px-2.5 py-1 bg-red-50 border border-red-200 rounded-lg text-red-600">
+                    {recalls.length} recall{recalls.length !== 1 ? 's' : ''}
+                  </span>
+                )}
+                {standardParts.length > 0 && (
+                  <span className="text-xs px-2.5 py-1 bg-gray-100 border border-gray-200 rounded-lg text-gray-600">
+                    {standardParts.length} parts cached
+                  </span>
+                )}
+              </div>
             </div>
           </div>
 
           {/* Scrollable Content Area */}
-          <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4">
+          <div className="flex-1 overflow-y-auto px-4 sm:px-6 pb-4">
 
             {/* Parts Section */}
             {activeSection === 'parts' && (
@@ -267,7 +314,7 @@ export function VehicleDashboard({
             {activeSection === 'guides' && (
               <div className="space-y-3">
                 <SectionHeader title="Maintenance Guides" />
-                <p className="text-sm text-gray-400">Select a task to get a step-by-step guide from the AI.</p>
+                <p className="text-sm text-gray-500">Select a task to get a step-by-step guide from the AI.</p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {['Oil Change', 'Brake Pads', 'Spark Plugs', 'Air Filter', 'Cabin Filter', 'Battery',
                     'Coolant Flush', 'Tire Rotation', 'Wiper Blades', 'Serpentine Belt', 'Transmission Fluid', 'Brake Fluid',
@@ -275,7 +322,7 @@ export function VehicleDashboard({
                     <button
                       key={task}
                       onClick={() => sendMessage(`Give me a step-by-step ${task.toLowerCase()} guide for my ${vehicleDisplay}`)}
-                      className="p-3 bg-gray-900 border border-gray-800 rounded-lg text-sm text-gray-300 hover:bg-gray-800 hover:text-white transition-colors text-left"
+                      className="p-3 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 hover:shadow-sm transition-all text-left"
                     >
                       {task}
                     </button>
@@ -294,7 +341,7 @@ export function VehicleDashboard({
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                       </svg>
                     </div>
-                    <h2 className="text-lg font-semibold text-gray-200">Ask me anything</h2>
+                    <h2 className="text-lg font-semibold text-gray-800">Ask me anything</h2>
                     <p className="text-sm text-gray-500 mt-1">Parts, diagnostics, maintenance, costs</p>
                   </div>
                 )}
@@ -306,7 +353,7 @@ export function VehicleDashboard({
           </div>
 
           {/* ─── Bottom: Context Buttons + Chat Input ────────── */}
-          <div className="flex-shrink-0 border-t border-gray-800 bg-gray-900/50 px-4 sm:px-6 py-3">
+          <div className="flex-shrink-0 border-t border-gray-200 bg-gray-50 px-4 sm:px-6 py-3 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
             {/* Chat input (always visible) */}
             <div className="flex gap-2">
               <input
@@ -317,7 +364,7 @@ export function VehicleDashboard({
                 onKeyDown={e => { if (e.key === 'Enter') sendMessage(); }}
                 onFocus={() => { if (activeSection !== 'chat') setActiveSection('chat'); }}
                 placeholder={`Ask about your ${vehicle.make} ${vehicle.model}...`}
-                className="flex-1 bg-gray-900 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                className="flex-1 bg-white border border-gray-300 rounded-xl px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
               />
               <button
                 onClick={() => sendMessage()}
@@ -334,7 +381,7 @@ export function VehicleDashboard({
       </div>
 
       {/* ─── Mobile Bottom Nav ──────────────────────────────── */}
-      <nav className="flex-shrink-0 sm:hidden border-t border-gray-800 bg-gray-950">
+      <nav className="flex-shrink-0 sm:hidden border-t border-gray-200 bg-white">
         <div className="flex justify-around py-1.5">
           {SIDEBAR_ITEMS.map(item => (
             <button
@@ -358,9 +405,9 @@ export function VehicleDashboard({
 
 function SpecChip({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex-shrink-0 px-3 py-1.5 bg-gray-800/50 border border-gray-700/50 rounded-lg">
-      <span className="text-[10px] text-gray-500 uppercase tracking-wider">{label}</span>
-      <p className="text-xs text-gray-300 font-medium whitespace-nowrap">{value}</p>
+    <div className="flex-shrink-0 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg">
+      <span className="text-[10px] text-gray-400 uppercase tracking-wider">{label}</span>
+      <p className="text-xs text-gray-700 font-medium whitespace-nowrap">{value}</p>
     </div>
   );
 }
@@ -368,9 +415,9 @@ function SpecChip({ label, value }: { label: string; value: string }) {
 function SectionHeader({ title, count }: { title: string; count?: number }) {
   return (
     <div className="flex items-center gap-2 mb-1">
-      <h2 className="text-lg font-semibold text-gray-100">{title}</h2>
+      <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
       {count !== undefined && count > 0 && (
-        <span className="text-xs px-2 py-0.5 bg-gray-800 text-gray-400 rounded-full">{count}</span>
+        <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-500 rounded-full">{count}</span>
       )}
     </div>
   );
@@ -380,7 +427,7 @@ function EmptyState({ icon, title, description }: { icon: string; title: string;
   return (
     <div className="text-center py-12">
       <span className="text-4xl">{icon}</span>
-      <h3 className="text-base font-semibold text-gray-200 mt-3">{title}</h3>
+      <h3 className="text-base font-semibold text-gray-800 mt-3">{title}</h3>
       <p className="text-sm text-gray-500 mt-1">{description}</p>
     </div>
   );
@@ -391,26 +438,26 @@ function PartCard({ task, parts }: { task: string; parts: any[] }) {
   const name = TASK_NAMES[task] || task.replace(/_/g, ' ');
 
   return (
-    <div className="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
+    <div className="bg-white border border-gray-200 rounded-xl shadow-md shadow-gray-200/60 overflow-hidden">
       <button onClick={() => setExpanded(!expanded)} className="w-full p-3 text-left flex items-center justify-between">
         <div>
-          <h3 className="text-sm font-medium text-gray-200">{name}</h3>
+          <h3 className="text-sm font-medium text-gray-800">{name}</h3>
           <p className="text-xs text-gray-500">{parts.length} part{parts.length !== 1 ? 's' : ''}</p>
         </div>
         <svg className={`w-4 h-4 text-gray-500 transition-transform ${expanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
       </button>
       {expanded && (
-        <div className="px-3 pb-3 space-y-2 border-t border-gray-800 pt-2">
+        <div className="px-3 pb-3 space-y-2 border-t border-gray-200 pt-2">
           {parts.map((p: any, i: number) => (
             <div key={i} className="flex items-center justify-between gap-2">
               <div className="min-w-0">
-                <p className="text-xs text-gray-300 truncate">{p.brand || ''} {p.name || p.partNumber || ''}</p>
-                {p.partNumber && <p className="text-[10px] text-gray-500 font-mono">{p.partNumber}</p>}
+                <p className="text-xs text-gray-700 truncate">{p.brand || ''} {p.name || p.partNumber || ''}</p>
+                {p.partNumber && <p className="text-[10px] text-gray-400 font-mono">{p.partNumber}</p>}
               </div>
               {p.partNumber && (
                 <a href={`https://www.amazon.com/s?k=${encodeURIComponent((p.brand || '') + ' ' + p.partNumber)}&tag=${AFFILIATE_TAG}`}
                   target="_blank" rel="noopener noreferrer"
-                  className="flex-shrink-0 text-[10px] px-2 py-1 bg-blue-900/30 text-blue-400 border border-blue-800/50 rounded hover:bg-blue-900/50">
+                  className="flex-shrink-0 text-[10px] px-2 py-1 bg-blue-50 text-blue-400 border border-blue-200 rounded hover:bg-blue-100">
                   Amazon
                 </a>
               )}
@@ -425,22 +472,22 @@ function PartCard({ task, parts }: { task: string; parts: any[] }) {
 function RecallCard({ recall }: { recall: RecallItem }) {
   const [expanded, setExpanded] = useState(false);
   return (
-    <div className={`bg-gray-900 border rounded-lg overflow-hidden ${recall.parkIt ? 'border-red-800' : 'border-gray-800'}`}>
+    <div className={`bg-white rounded-xl shadow-md shadow-gray-200/60 overflow-hidden ${recall.parkIt ? 'border-2 border-red-400' : 'border border-gray-200'}`}>
       <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-medium text-gray-100">{recall.component}</h3>
+            <h3 className="text-sm font-medium text-gray-900">{recall.component}</h3>
             <p className="text-xs text-gray-500 mt-0.5">{recall.campaignNumber} · {recall.reportDate}</p>
           </div>
           {recall.parkIt && (
-            <span className="flex-shrink-0 px-2 py-0.5 text-[10px] font-medium bg-red-900/50 text-red-300 border border-red-800 rounded-full">PARK IT</span>
+            <span className="flex-shrink-0 px-2 py-0.5 text-[10px] font-medium bg-red-50 text-red-600 border border-red-200 rounded-full">PARK IT</span>
           )}
         </div>
       </button>
       {expanded && (
-        <div className="px-4 pb-4 space-y-2 border-t border-gray-800 pt-3">
-          <p className="text-sm text-gray-400">{recall.summary}</p>
-          {recall.consequence && <div><p className="text-xs font-medium text-gray-500 uppercase mb-1">Risk</p><p className="text-xs text-red-400">{recall.consequence}</p></div>}
+        <div className="px-4 pb-4 space-y-2 border-t border-gray-200 pt-3">
+          <p className="text-sm text-gray-500">{recall.summary}</p>
+          {recall.consequence && <div><p className="text-xs font-medium text-gray-500 uppercase mb-1">Risk</p><p className="text-xs text-red-600">{recall.consequence}</p></div>}
           {recall.remedy && <div><p className="text-xs font-medium text-gray-500 uppercase mb-1">Remedy</p><p className="text-xs text-gray-400">{recall.remedy}</p></div>}
         </div>
       )}
