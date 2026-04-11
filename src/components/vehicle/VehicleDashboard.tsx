@@ -1,12 +1,13 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useVehicleContext } from '@/contexts/AppContext';
 import { ChatMessage, ChatMessageLoading } from '@/components/chat/ChatMessage';
 import { type ChatMessage as ChatMessageType, createChatMessage } from '@/schemas/chat.schema';
+import { YMMTSelector } from '@/components/discovery/YMMTSelector';
 
 interface VehicleTuple {
   year: number; make: string; model: string; trim: string;
@@ -32,10 +33,10 @@ interface CachedPart { task: string; parts: any[]; source: string; }
 type SectionId = 'parts' | 'recalls' | 'guides' | 'chat';
 
 const NAV_ITEMS: { id: SectionId; label: string; icon: React.ReactNode }[] = [
+  { id: 'chat', label: 'Chat', icon: <IconChat /> },
   { id: 'parts', label: 'Parts', icon: <IconParts /> },
   { id: 'recalls', label: 'Recalls', icon: <IconRecalls /> },
   { id: 'guides', label: 'Guides', icon: <IconGuides /> },
-  { id: 'chat', label: 'Chat', icon: <IconChat /> },
 ];
 
 const TASK_NAMES: Record<string, string> = {
@@ -59,6 +60,8 @@ const TASK_NAMES: Record<string, string> = {
 
 const AFFILIATE_TAG = 'au7o-20';
 
+const DEEP_SHADOW = '0 50px 100px -20px rgba(50, 50, 93, 0.25), 0 30px 60px -30px rgba(0, 0, 0, 0.3)';
+
 export function VehicleDashboard({
   vehicle, slug, issues, recalls, cachedParts, specsSummary,
 }: {
@@ -67,9 +70,11 @@ export function VehicleDashboard({
   cachedParts: CachedPart[]; specsSummary: Record<string, string>;
 }) {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const initialSection = (searchParams.get('tab') as SectionId) || 'chat';
   const [activeSection, setActiveSection] = useState<SectionId>(initialSection);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [vehicleModalOpen, setVehicleModalOpen] = useState(false);
   const [chatMessages, setChatMessages] = useState<ChatMessageType[]>([]);
   const [chatInput, setChatInput] = useState('');
   const [chatLoading, setChatLoading] = useState(false);
@@ -77,7 +82,7 @@ export function VehicleDashboard({
   const inputRef = useRef<HTMLInputElement>(null);
   const { setVehicle } = useVehicleContext();
 
-  const vehicleDisplay = `${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}`;
+  const vehicleDisplay = vehicle.year + ' ' + vehicle.make + ' ' + vehicle.model + ' ' + vehicle.trim;
   const standardParts = cachedParts.filter(p => !p.task.startsWith('freetext:'));
   const criticalCount = issues.filter(i => i.severity === 'high' || i.severity === 'critical').length;
   const logoSlug = vehicle.make.toLowerCase().replace(/\s+/g, '-');
@@ -121,194 +126,259 @@ export function VehicleDashboard({
     }
   };
 
+  const handleVehicleChange = () => {
+    setVehicleModalOpen(false);
+    // YMMTSelector sets vehicle in context - read it back
+    // Small delay to let context update
+    setTimeout(() => {
+      const stored = localStorage.getItem('au7o_current_vehicle');
+      if (stored) {
+        try {
+          const v = JSON.parse(stored);
+          const s = v.year + '-' + v.make.toLowerCase().replace(/\s+/g, '-') + '-' + v.model.toLowerCase().replace(/\s+/g, '-') + '-' + v.trim.toLowerCase().replace(/\s+/g, '-');
+          router.push('/vehicle/' + s);
+        } catch { /* ignore */ }
+      }
+    }, 100);
+  };
+
+  // Suggestion chips for chat
+  const suggestions = [
+    { label: 'Oil Change Guide', msg: 'Give me a step-by-step oil change guide for my ' + vehicleDisplay },
+    { label: 'Brake Inspection', msg: 'What brake pads and rotors do I need for my ' + vehicleDisplay + '?' },
+    { label: 'Check Engine Light', msg: 'My check engine light is on. What are common causes for my ' + vehicleDisplay + '?' },
+  ];
+  if (issues.length > 0) {
+    suggestions.unshift({ label: issues.length + ' Known Issues', msg: 'What are the most common problems with my ' + vehicleDisplay + '?' });
+  }
+  if (recalls.length > 0) {
+    suggestions.unshift({ label: recalls.length + ' Recall' + (recalls.length > 1 ? 's' : ''), msg: 'Tell me about the active recalls for my ' + vehicleDisplay });
+  }
+
   return (
-    <div className="h-screen flex flex-col bg-gray-100 text-gray-900 overflow-hidden">
-      {/* Header */}
-      <header className="flex-shrink-0 h-14 flex items-center justify-between px-4 sm:px-6 bg-white shadow-sm">
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-1.5 rounded-lg hover:bg-gray-100 transition-colors hidden sm:block"
-          >
-            <svg className="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-          </button>
-          <Link href="/" className="text-lg font-bold text-gray-900 tracking-tight">
-            Au<span className="text-blue-600">7</span>o
-          </Link>
+    <div className="h-screen flex bg-gray-100 text-gray-900 overflow-hidden">
+      {/* Sidebar */}
+      <aside className={'hidden sm:flex flex-col flex-shrink-0 bg-gradient-to-b from-white to-gray-100 transition-all duration-200 ' + (sidebarOpen ? 'w-56' : 'w-16')}>
+        {/* Logo area */}
+        <div className="flex-shrink-0 py-4 px-3">
+          {sidebarOpen ? (
+            <div className="flex items-center gap-2 px-1">
+              <Image src="/icons/icon-192.png" alt="Au7o" width={32} height={32} className="flex-shrink-0" />
+              <span className="text-lg font-bold text-gray-900 tracking-tight">
+                Au<span className="text-blue-600">7</span>o
+              </span>
+              <button onClick={() => setSidebarOpen(false)} className="ml-auto p-1 rounded hover:bg-gray-100">
+                <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+            </div>
+          ) : (
+            <button onClick={() => setSidebarOpen(true)} className="w-full flex justify-center">
+              <Image src="/icons/icon-192.png" alt="Au7o" width={32} height={32} />
+            </button>
+          )}
         </div>
-      </header>
 
-      {/* Body */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar */}
-        <aside className={`hidden sm:flex flex-col flex-shrink-0 bg-gradient-to-b from-white to-gray-100 shadow-sm transition-all duration-200 ${sidebarOpen ? 'w-52' : 'w-16'}`}>
-          <nav className="flex-1 py-3 px-2 space-y-1">
-            {NAV_ITEMS.map(item => {
-              const isActive = activeSection === item.id;
-              const count = item.id === 'recalls' ? recalls.length
-                : item.id === 'parts' ? standardParts.length
-                : null;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleNav(item.id)}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                    sidebarOpen ? '' : 'justify-center'
-                  } ${isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800'}`}
-                  title={item.label}
-                >
-                  <span className="flex-shrink-0 w-5 h-5">{item.icon}</span>
-                  {sidebarOpen && (
-                    <>
-                      <span className="flex-1 text-left">{item.label}</span>
-                      {count !== null && count > 0 && (
-                        <span className={`text-xs px-1.5 py-0.5 rounded-full ${isActive ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-400'}`}>{count}</span>
-                      )}
-                    </>
-                  )}
-                </button>
-              );
-            })}
-          </nav>
-        </aside>
-
-        {/* Main */}
-        <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
-          <div className="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col gap-4">
-            {/* Vehicle Profile Card */}
-            <div className="bg-white rounded-lg shadow-sm p-5 flex-shrink-0">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden">
-                  <Image
-                    src={'/logos/' + logoSlug + '.png'}
-                    alt={vehicle.make}
-                    width={40}
-                    height={40}
-                    className="object-contain"
-                  />
-                </div>
-                <div>
-                  <h2 className="text-lg font-bold text-gray-900">{vehicleDisplay}</h2>
-                  {specsSummary.engine && <p className="text-sm text-gray-500">{specsSummary.engine}</p>}
-                </div>
-              </div>
-
-              <div className="mb-4 text-sm text-gray-500 leading-relaxed space-y-0.5">
-                {criticalCount > 0 && (
-                  <p className="text-red-600 font-medium">{criticalCount} critical/high severity issue{criticalCount > 1 ? 's' : ''} documented.</p>
+        {/* Nav items */}
+        <nav className="flex-1 px-2 space-y-1">
+          {NAV_ITEMS.map(item => {
+            const isActive = activeSection === item.id;
+            const count = item.id === 'recalls' ? recalls.length
+              : item.id === 'parts' ? standardParts.length
+              : null;
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleNav(item.id)}
+                className={'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ' +
+                  (sidebarOpen ? '' : 'justify-center ') +
+                  (isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800')}
+                title={item.label}
+              >
+                <span className="flex-shrink-0 w-5 h-5">{item.icon}</span>
+                {sidebarOpen && (
+                  <>
+                    <span className="flex-1 text-left">{item.label}</span>
+                    {count !== null && count > 0 && (
+                      <span className={'text-xs px-1.5 py-0.5 rounded-full ' + (isActive ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-400')}>{count}</span>
+                    )}
+                  </>
                 )}
-                {specsSummary.oil && (
-                  <p>Oil: <span className="text-gray-800 font-medium">{specsSummary.oil}</span>{specsSummary.oilFilter ? ' \u00B7 Filter: ' + specsSummary.oilFilter : ''}</p>
-                )}
-                {specsSummary.coolant && <p>Coolant: <span className="text-gray-800 font-medium">{specsSummary.coolant}</span></p>}
-                {specsSummary.transmission && <p>Transmission: <span className="text-gray-800 font-medium">{specsSummary.transmission}</span></p>}
-                {specsSummary.lug && <p>Lug: <span className="text-gray-800 font-medium">{specsSummary.lug}</span></p>}
-                {specsSummary.sparkPlugs && <p>Spark Plugs: <span className="text-gray-800 font-medium">{specsSummary.sparkPlugs}</span></p>}
-                {specsSummary.brakeFluid && <p>Brake Fluid: <span className="text-gray-800 font-medium">{specsSummary.brakeFluid}</span></p>}
-              </div>
+              </button>
+            );
+          })}
+        </nav>
 
-              <div className="flex gap-2 flex-wrap">
-                {issues.length > 0 && <Badge text={issues.length + ' known issue' + (issues.length !== 1 ? 's' : '')} />}
-                {recalls.length > 0 && <Badge text={recalls.length + ' recall' + (recalls.length !== 1 ? 's' : '')} color="red" />}
-                {standardParts.length > 0 && <Badge text={standardParts.length + ' parts cached'} />}
+        {/* Change Vehicle button */}
+        <div className="flex-shrink-0 px-2 pb-4">
+          <button
+            onClick={() => setVehicleModalOpen(true)}
+            className={'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors ' + (sidebarOpen ? '' : 'justify-center')}
+            title="Change Vehicle"
+          >
+            <svg className="flex-shrink-0 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" />
+            </svg>
+            {sidebarOpen && <span className="flex-1 text-left">Change Vehicle</span>}
+          </button>
+        </div>
+      </aside>
+
+      {/* Main */}
+      <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col gap-4">
+          {/* Vehicle Profile Card */}
+          <div className="bg-white rounded-lg p-5 flex-shrink-0" style={{ boxShadow: DEEP_SHADOW }}>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden">
+                <Image src={'/logos/' + logoSlug + '.png'} alt={vehicle.make} width={40} height={40} className="object-contain" />
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-gray-900">{vehicleDisplay}</h2>
+                {specsSummary.engine && <p className="text-sm text-gray-500">{specsSummary.engine}</p>}
               </div>
             </div>
 
-            {/* Content Area */}
-            <div className="bg-gradient-to-b from-white to-gray-100 rounded-lg shadow-sm p-5 flex-1 flex flex-col min-h-0">
-              {activeSection === 'parts' && (
-                <div className="space-y-3">
-                  <SectionHeader title="Parts" count={standardParts.length} />
-                  {standardParts.length === 0 ? (
-                    <EmptyState icon="&#128295;" title="No Cached Parts" description="Parts haven't been loaded yet. Ask the AI about specific parts." />
-                  ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {standardParts.map(cp => <PartCard key={cp.task} task={cp.task} parts={cp.parts} />)}
-                    </div>
-                  )}
-                </div>
+            <div className="mb-4 text-sm text-gray-500 leading-relaxed space-y-0.5">
+              {criticalCount > 0 && (
+                <p className="text-red-600 font-medium">{criticalCount} critical/high severity issue{criticalCount > 1 ? 's' : ''} documented.</p>
               )}
-
-              {activeSection === 'recalls' && (
-                <div className="space-y-3">
-                  <SectionHeader title="Recalls" count={recalls.length} />
-                  {recalls.length === 0 ? (
-                    <EmptyState icon="&#9989;" title="No Active Recalls" description="No open recalls for this vehicle." />
-                  ) : (
-                    recalls.map(r => <RecallCard key={r.campaignNumber} recall={r} />)
-                  )}
-                </div>
+              {specsSummary.oil && (
+                <p>Oil: <span className="text-gray-800 font-medium">{specsSummary.oil}</span>{specsSummary.oilFilter ? ' \u00B7 Filter: ' + specsSummary.oilFilter : ''}</p>
               )}
+              {specsSummary.coolant && <p>Coolant: <span className="text-gray-800 font-medium">{specsSummary.coolant}</span></p>}
+              {specsSummary.transmission && <p>Transmission: <span className="text-gray-800 font-medium">{specsSummary.transmission}</span></p>}
+              {specsSummary.lug && <p>Lug: <span className="text-gray-800 font-medium">{specsSummary.lug}</span></p>}
+              {specsSummary.sparkPlugs && <p>Spark Plugs: <span className="text-gray-800 font-medium">{specsSummary.sparkPlugs}</span></p>}
+              {specsSummary.brakeFluid && <p>Brake Fluid: <span className="text-gray-800 font-medium">{specsSummary.brakeFluid}</span></p>}
+            </div>
 
-              {activeSection === 'guides' && (
-                <div className="space-y-3">
-                  <SectionHeader title="Maintenance Guides" />
-                  <p className="text-sm text-gray-500">Select a task to get a step-by-step guide from the AI.</p>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                    {['Oil Change', 'Brake Pads', 'Spark Plugs', 'Air Filter', 'Cabin Filter', 'Battery',
-                      'Coolant Flush', 'Tire Rotation', 'Wiper Blades', 'Serpentine Belt', 'Transmission Fluid', 'Brake Fluid',
-                    ].map(task => (
-                      <button
-                        key={task}
-                        onClick={() => sendMessage('Give me a step-by-step ' + task.toLowerCase() + ' guide for my ' + vehicleDisplay)}
-                        className="p-3 bg-gray-50 rounded-lg text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors text-left"
-                      >
-                        {task}
-                      </button>
-                    ))}
-                  </div>
-                </div>
+            {/* Clickable stat badges - send context to chat */}
+            <div className="flex gap-2 flex-wrap">
+              {issues.length > 0 && (
+                <button onClick={() => sendMessage('What are the most common problems with my ' + vehicleDisplay + '?')} className="text-xs px-2.5 py-1 bg-gray-100 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors cursor-pointer">
+                  {issues.length} known issue{issues.length !== 1 ? 's' : ''}
+                </button>
               )}
-
-              {activeSection === 'chat' && (
-                <div className="flex-1 flex flex-col space-y-1">
-                  {chatMessages.length === 0 && (
-                    <div className="text-center py-8">
-                      <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
-                        <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
-                          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                        </svg>
-                      </div>
-                      <h2 className="text-base font-semibold text-gray-800">Ask me anything</h2>
-                      <p className="text-sm text-gray-400 mt-1">Parts, diagnostics, maintenance, costs</p>
-                    </div>
-                  )}
-                  {chatMessages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
-                  {chatLoading && <ChatMessageLoading />}
-                  <div ref={chatEndRef} />
-                  <div className="pt-3 mt-auto">
-                    <div className="flex gap-2">
-                      <input
-                        ref={inputRef}
-                        type="text"
-                        value={chatInput}
-                        onChange={e => setChatInput(e.target.value)}
-                        onKeyDown={e => { if (e.key === 'Enter') sendMessage(); }}
-                        placeholder={'Ask about your ' + vehicle.make + ' ' + vehicle.model + '...'}
-                        className="flex-1 bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
-                      />
-                      <button
-                        onClick={() => sendMessage()}
-                        disabled={!chatInput.trim() || chatLoading}
-                        className="px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-500 disabled:opacity-40 transition-colors"
-                      >
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+              {recalls.length > 0 && (
+                <button onClick={() => sendMessage('Tell me about the active recalls for my ' + vehicleDisplay)} className="text-xs px-2.5 py-1 bg-red-50 rounded-lg text-red-600 hover:bg-red-100 transition-colors cursor-pointer">
+                  {recalls.length} recall{recalls.length !== 1 ? 's' : ''}
+                </button>
+              )}
+              {standardParts.length > 0 && (
+                <button onClick={() => handleNav('parts')} className="text-xs px-2.5 py-1 bg-gray-100 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors cursor-pointer">
+                  {standardParts.length} parts cached
+                </button>
               )}
             </div>
           </div>
-        </main>
-      </div>
+
+          {/* Content Card */}
+          <div className="bg-gradient-to-b from-white to-gray-100 rounded-lg p-5 flex-1 flex flex-col min-h-0" style={{ boxShadow: DEEP_SHADOW }}>
+            {activeSection === 'parts' && (
+              <div className="space-y-3">
+                <SectionHeader title="Parts" count={standardParts.length} />
+                {standardParts.length === 0 ? (
+                  <EmptyState title="No Cached Parts" description="Parts haven't been loaded yet. Ask the AI about specific parts." />
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {standardParts.map(cp => <PartCard key={cp.task} task={cp.task} parts={cp.parts} />)}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {activeSection === 'recalls' && (
+              <div className="space-y-3">
+                <SectionHeader title="Recalls" count={recalls.length} />
+                {recalls.length === 0 ? (
+                  <EmptyState title="No Active Recalls" description="No open recalls for this vehicle." />
+                ) : (
+                  recalls.map(r => <RecallCard key={r.campaignNumber} recall={r} />)
+                )}
+              </div>
+            )}
+
+            {activeSection === 'guides' && (
+              <div className="space-y-3">
+                <SectionHeader title="Maintenance Guides" />
+                <p className="text-sm text-gray-500">Select a task to get a step-by-step guide from the AI.</p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  {['Oil Change', 'Brake Pads', 'Spark Plugs', 'Air Filter', 'Cabin Filter', 'Battery',
+                    'Coolant Flush', 'Tire Rotation', 'Wiper Blades', 'Serpentine Belt', 'Transmission Fluid', 'Brake Fluid',
+                  ].map(task => (
+                    <button
+                      key={task}
+                      onClick={() => sendMessage('Give me a step-by-step ' + task.toLowerCase() + ' guide for my ' + vehicleDisplay)}
+                      className="p-3 bg-gray-50 rounded-lg text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors text-left"
+                    >
+                      {task}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {activeSection === 'chat' && (
+              <div className="flex-1 flex flex-col space-y-1 min-h-0">
+                {chatMessages.length === 0 && (
+                  <div className="text-center py-6">
+                    <Image src="/icons/icon-192.png" alt="Au7o" width={48} height={48} className="mx-auto mb-3" />
+                    <h2 className="text-base font-semibold text-gray-800">How can I help with your {vehicle.make} {vehicle.model}?</h2>
+                    <p className="text-sm text-gray-400 mt-1">Parts, diagnostics, maintenance, costs</p>
+
+                    {/* Suggestion chips */}
+                    <div className="flex flex-wrap justify-center gap-2 mt-4">
+                      {suggestions.map((s, i) => (
+                        <button
+                          key={i}
+                          onClick={() => sendMessage(s.msg)}
+                          className="px-3 py-1.5 text-xs font-medium text-gray-600 bg-gray-50 rounded-full hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                        >
+                          {s.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex-1 overflow-y-auto min-h-0">
+                  {chatMessages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+                  {chatLoading && <ChatMessageLoading />}
+                  <div ref={chatEndRef} />
+                </div>
+
+                <div className="pt-3 mt-auto flex-shrink-0">
+                  <div className="flex gap-2">
+                    <input
+                      ref={inputRef}
+                      type="text"
+                      value={chatInput}
+                      onChange={e => setChatInput(e.target.value)}
+                      onKeyDown={e => { if (e.key === 'Enter') sendMessage(); }}
+                      placeholder={'Ask about your ' + vehicle.make + ' ' + vehicle.model + '...'}
+                      className="flex-1 bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+                    />
+                    <button
+                      onClick={() => sendMessage()}
+                      disabled={!chatInput.trim() || chatLoading}
+                      className="px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-500 disabled:opacity-40 transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </main>
 
       {/* Mobile Bottom Nav */}
-      <nav className="flex-shrink-0 sm:hidden bg-white shadow-[0_-1px_3px_rgba(0,0,0,0.1)]">
+      <nav className="flex-shrink-0 sm:hidden bg-white" style={{ boxShadow: '0 -1px 3px rgba(0,0,0,0.1)' }}>
         <div className="flex justify-around py-2">
           {NAV_ITEMS.map(item => (
             <button
@@ -322,16 +392,29 @@ export function VehicleDashboard({
           ))}
         </div>
       </nav>
+
+      {/* Vehicle Change Modal */}
+      {vehicleModalOpen && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl w-full max-w-lg p-6 relative" style={{ boxShadow: DEEP_SHADOW }}>
+            <button
+              onClick={() => setVehicleModalOpen(false)}
+              className="absolute top-4 right-4 p-1.5 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Change Vehicle</h3>
+            <YMMTSelector onComplete={handleVehicleChange} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
 // Sub-components
-
-function Badge({ text, color = 'gray' }: { text: string; color?: string }) {
-  const cls = color === 'red' ? 'bg-red-50 text-red-600' : 'bg-gray-100 text-gray-600';
-  return <span className={'text-xs px-2.5 py-1 rounded-lg ' + cls}>{text}</span>;
-}
 
 function SectionHeader({ title, count }: { title: string; count?: number }) {
   return (
@@ -344,10 +427,9 @@ function SectionHeader({ title, count }: { title: string; count?: number }) {
   );
 }
 
-function EmptyState({ icon, title, description }: { icon: string; title: string; description: string }) {
+function EmptyState({ title, description }: { title: string; description: string }) {
   return (
     <div className="text-center py-12">
-      <span className="text-4xl" dangerouslySetInnerHTML={{ __html: icon }} />
       <h3 className="text-base font-semibold text-gray-800 mt-3">{title}</h3>
       <p className="text-sm text-gray-400 mt-1">{description}</p>
     </div>
