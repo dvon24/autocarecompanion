@@ -33,7 +33,6 @@ interface CachedPart { task: string; parts: any[]; source: string; }
 type SectionId = 'issues' | 'parts' | 'recalls' | 'guides' | 'chat';
 
 const SIDEBAR_ITEMS: { id: SectionId; label: string; icon: React.ReactNode }[] = [
-  { id: 'issues', label: 'Known Issues', icon: <IconIssues /> },
   { id: 'parts', label: 'Parts', icon: <IconParts /> },
   { id: 'recalls', label: 'Recalls', icon: <IconRecalls /> },
   { id: 'guides', label: 'Guides', icon: <IconGuides /> },
@@ -71,7 +70,7 @@ export function VehicleDashboard({
   cachedParts: CachedPart[]; specsSummary: Record<string, string>;
 }) {
   const searchParams = useSearchParams();
-  const initialSection = (searchParams.get('tab') as SectionId) || 'issues';
+  const initialSection = (searchParams.get('tab') as SectionId) || 'chat';
   const [activeSection, setActiveSection] = useState<SectionId>(initialSection);
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
   const [chatMessages, setChatMessages] = useState<ChatMessageType[]>([]);
@@ -97,7 +96,7 @@ export function VehicleDashboard({
   // Update AI context when section changes
   useEffect(() => {
     const contextMap: Record<SectionId, string> = {
-      issues: `User is viewing ${issues.length} known issues for their ${vehicleDisplay}. ${criticalCount} are critical/high severity.`,
+      issues: `User has ${issues.length} known issues for their ${vehicleDisplay}. ${criticalCount} are critical/high severity.`,
       parts: `User is browsing cached parts for their ${vehicleDisplay}. ${standardParts.length} part categories available.`,
       recalls: `User is viewing ${recalls.length} recall(s) for their ${vehicleDisplay}.`,
       guides: `User wants maintenance guides for their ${vehicleDisplay}.`,
@@ -238,25 +237,6 @@ export function VehicleDashboard({
           {/* Scrollable Content Area */}
           <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4">
 
-            {/* Issues Section */}
-            {activeSection === 'issues' && (
-              <div className="space-y-3">
-                <SectionHeader title="Known Issues" count={issues.length} />
-                {criticalCount > 0 && (
-                  <div className="p-3 bg-red-950/40 border border-red-900/50 rounded-lg">
-                    <p className="text-sm text-red-300">
-                      <span className="font-semibold">{criticalCount} critical/high</span> severity issue{criticalCount > 1 ? 's' : ''}
-                    </p>
-                  </div>
-                )}
-                {issues.length === 0 ? (
-                  <EmptyState icon="✅" title="No Known Issues" description="No documented issues for this vehicle." />
-                ) : (
-                  issues.map(issue => <IssueCard key={issue.id} issue={issue} onAsk={(q) => sendMessage(q)} />)
-                )}
-              </div>
-            )}
-
             {/* Parts Section */}
             {activeSection === 'parts' && (
               <div className="space-y-3">
@@ -327,27 +307,6 @@ export function VehicleDashboard({
 
           {/* ─── Bottom: Context Buttons + Chat Input ────────── */}
           <div className="flex-shrink-0 border-t border-gray-800 bg-gray-900/50 px-4 sm:px-6 py-3">
-            {/* Context buttons */}
-            <div className="flex gap-2 mb-2 overflow-x-auto scrollbar-hide">
-              {activeSection !== 'chat' && (
-                <ContextPill
-                  label="Ask about this"
-                  onClick={() => {
-                    setActiveSection('chat');
-                    setTimeout(() => inputRef.current?.focus(), 100);
-                  }}
-                />
-              )}
-              {activeSection === 'chat' && (
-                <>
-                  <ContextPill label={`Issues (${issues.length})`} onClick={() => setActiveSection('issues')} />
-                  <ContextPill label={`Parts (${standardParts.length})`} onClick={() => setActiveSection('parts')} />
-                  <ContextPill label={`Recalls (${recalls.length})`} onClick={() => setActiveSection('recalls')} />
-                  <ContextPill label="Guides" onClick={() => setActiveSection('guides')} />
-                </>
-              )}
-            </div>
-
             {/* Chat input (always visible) */}
             <div className="flex gap-2">
               <input
@@ -417,80 +376,12 @@ function SectionHeader({ title, count }: { title: string; count?: number }) {
   );
 }
 
-function ContextPill({ label, onClick }: { label: string; onClick: () => void }) {
-  return (
-    <button
-      onClick={onClick}
-      className="flex-shrink-0 px-3 py-1.5 text-xs font-medium text-gray-300 bg-gray-800 border border-gray-700 rounded-full hover:bg-gray-700 hover:text-white transition-colors"
-    >
-      {label}
-    </button>
-  );
-}
-
 function EmptyState({ icon, title, description }: { icon: string; title: string; description: string }) {
   return (
     <div className="text-center py-12">
       <span className="text-4xl">{icon}</span>
       <h3 className="text-base font-semibold text-gray-200 mt-3">{title}</h3>
       <p className="text-sm text-gray-500 mt-1">{description}</p>
-    </div>
-  );
-}
-
-function IssueCard({ issue, onAsk }: { issue: KnownIssue; onAsk: (q: string) => void }) {
-  const [expanded, setExpanded] = useState(false);
-  const sevColor: Record<string, string> = {
-    critical: 'bg-red-900/50 text-red-300 border-red-800',
-    high: 'bg-red-900/30 text-red-400 border-red-800/50',
-    medium: 'bg-amber-900/30 text-amber-400 border-amber-800/50',
-    low: 'bg-gray-800 text-gray-400 border-gray-700',
-  };
-
-  return (
-    <div className="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
-      <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left">
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-medium text-gray-100">{issue.title}</h3>
-            {issue.estimatedCost && (
-              <p className="text-xs text-gray-500 mt-0.5">${issue.estimatedCost.min} - ${issue.estimatedCost.max}</p>
-            )}
-          </div>
-          <span className={`flex-shrink-0 px-2 py-0.5 text-[10px] font-medium rounded-full border ${sevColor[issue.severity] || sevColor.low}`}>
-            {issue.severity}
-          </span>
-        </div>
-      </button>
-      {expanded && (
-        <div className="px-4 pb-4 space-y-3 border-t border-gray-800 pt-3">
-          <p className="text-sm text-gray-400">{issue.description}</p>
-          {issue.symptoms && issue.symptoms.length > 0 && (
-            <div>
-              <p className="text-xs font-medium text-gray-500 uppercase mb-1">Symptoms</p>
-              <ul className="space-y-0.5">
-                {issue.symptoms.map((s, i) => <li key={i} className="text-xs text-gray-400">- {s}</li>)}
-              </ul>
-            </div>
-          )}
-          {issue.dtcCodes && issue.dtcCodes.length > 0 && (
-            <div className="flex gap-1.5 flex-wrap">
-              {issue.dtcCodes.map(code => (
-                <Link key={code} href={`/known-issues/dtc/${code.toLowerCase()}`}
-                  className="text-[10px] font-mono px-2 py-0.5 bg-blue-900/30 text-blue-400 border border-blue-800/50 rounded hover:bg-blue-900/50">
-                  {code}
-                </Link>
-              ))}
-            </div>
-          )}
-          <button
-            onClick={() => onAsk(`Tell me about the "${issue.title}" issue. What causes it and how much does it cost to fix?`)}
-            className="text-xs text-blue-400 hover:text-blue-300 font-medium"
-          >
-            Ask AI about this issue →
-          </button>
-        </div>
-      )}
     </div>
   );
 }
@@ -559,9 +450,6 @@ function RecallCard({ recall }: { recall: RecallItem }) {
 
 // ─── Icons (inline SVGs) ───────────────────────────────────────────────
 
-function IconIssues() {
-  return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>;
-}
 function IconParts() {
   return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1-5.1m0 0L3.07 12.32c-.84.84-.84 2.2 0 3.04l5.58 5.58c.84.84 2.2.84 3.04 0l2.24-2.24m-5.58-8.4l7.12-7.12c.84-.84 2.2-.84 3.04 0l1.41 1.41c.84.84.84 2.2 0 3.04L13.36 15.17" /></svg>;
 }
