@@ -17,9 +17,12 @@ interface KnownIssue {
   id: string; title: string; description: string; severity: string;
   category: string; reportCount: number;
   estimatedCost?: { low: number; high: number };
-  vehicleMatch: { years: number[]; trims?: string[] };
-  symptoms?: string[]; solutions?: string[];
-  communityRecommendations?: any[]; dtcCodes?: string[];
+  typicalMileage?: { low: number; high: number };
+  vehicleMatch: { years: number[]; trims?: string[]; engines?: string[]; make?: string; model?: string };
+  symptoms?: string[]; solution?: string;
+  communityRecommendations?: any[]; citations?: any[];
+  dtcCodes?: string[]; source?: string; confidence?: string;
+  lastReportedByOwners?: string; reviewedOn?: string;
   [key: string]: any;
 }
 
@@ -536,8 +539,12 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
     medium: 'bg-amber-50 text-amber-700',
     low: 'bg-gray-100 text-gray-500',
   };
-  const recs = issue.communityRecommendations as any[] || [];
-  const citations = issue.citations as any[] || [];
+  const recs = (issue.communityRecommendations as any[]) || [];
+  const citations = (issue.citations as any[]) || [];
+  const makeModel = issue.vehicleMatch?.make && issue.vehicleMatch?.model
+    ? issue.vehicleMatch.make + ' ' + issue.vehicleMatch.model
+    : '';
+  const searchQuery = encodeURIComponent(makeModel + ' ' + issue.title);
 
   return (
     <div className="bg-gray-50 rounded-xl overflow-hidden">
@@ -546,7 +553,7 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
           <div className="flex-1 min-w-0">
             <h3 className="text-sm font-medium text-gray-900">{issue.title}</h3>
             {issue.estimatedCost && (
-              <p className="text-xs text-gray-500 mt-0.5">{'$' + issue.estimatedCost.low + ' - $' + issue.estimatedCost.high}</p>
+              <p className="text-xs text-gray-500 mt-0.5">{'$' + issue.estimatedCost.low.toLocaleString() + ' - $' + issue.estimatedCost.high.toLocaleString()}</p>
             )}
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
@@ -559,59 +566,102 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
       </button>
 
       {expanded && (
-        <div className="px-4 pb-4 space-y-3">
-          <p className="text-sm text-gray-600">{issue.description}</p>
+        <div className="px-4 pb-4 space-y-4">
+          {/* Description */}
+          <p className="text-sm text-gray-600 leading-relaxed">{issue.description}</p>
 
+          {/* DTC Codes */}
+          {issue.dtcCodes && issue.dtcCodes.length > 0 && (
+            <div>
+              <p className="text-xs font-semibold text-gray-500 uppercase mb-1.5">Error Codes</p>
+              <div className="flex gap-1.5 flex-wrap">
+                {issue.dtcCodes.map(code => (
+                  <Link key={code} href={'/known-issues/dtc/' + code.toLowerCase()}
+                    className="text-[10px] font-mono px-2 py-1 bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100 transition-colors">
+                    {code}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Symptoms */}
           {issue.symptoms && issue.symptoms.length > 0 && (
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase mb-1">Symptoms</p>
-              <ul className="space-y-0.5">
-                {issue.symptoms.map((s, i) => <li key={i} className="text-xs text-gray-600">- {s}</li>)}
+              <p className="text-xs font-semibold text-gray-500 uppercase mb-1.5">Common Symptoms</p>
+              <ul className="space-y-1">
+                {issue.symptoms.map((s, i) => (
+                  <li key={i} className="text-xs text-gray-600 flex gap-2">
+                    <span className="text-gray-400 mt-0.5 flex-shrink-0">&bull;</span>
+                    <span>{s}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           )}
 
-          {issue.solutions && issue.solutions.length > 0 && (
+          {/* Solution / How to Fix */}
+          {issue.solution && (
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase mb-1">Solutions</p>
-              <ul className="space-y-0.5">
-                {issue.solutions.map((s, i) => <li key={i} className="text-xs text-gray-600">- {s}</li>)}
-              </ul>
+              <p className="text-xs font-semibold text-gray-500 uppercase mb-1.5">How to Fix</p>
+              <p className="text-xs text-gray-600 leading-relaxed">{issue.solution}</p>
             </div>
           )}
 
+          {/* Community Recommendations */}
           {recs.length > 0 && (
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase mb-1">What Owners Are Using</p>
-              <ul className="space-y-1.5">
+              <p className="text-xs font-semibold text-gray-500 uppercase mb-1.5">
+                What Owners Are Using
+                {issue.reportCount > 0 && <span className="normal-case font-normal text-gray-400 ml-1">from {issue.reportCount}+ owners</span>}
+              </p>
+              <div className="space-y-2">
                 {recs.map((r: any, i: number) => {
                   const content = r.content || r.text || r.name || (typeof r === 'string' ? r : '');
                   if (!content) return null;
-                  const partInfo = r.partBrand && r.partNumber ? r.partBrand + ' ' + (r.partName || '') + ' (' + r.partNumber + ')' : null;
-                  const affiliateUrl = r.affiliateUrl || (r.partNumber ? 'https://www.amazon.com/s?k=' + encodeURIComponent((r.partBrand || '') + ' ' + r.partNumber) + '&tag=' + AFFILIATE_TAG : null);
+                  const isPartRec = r.type === 'part' || r.partNumber;
+                  const affiliateUrl = r.affiliateUrl || (r.partNumber
+                    ? 'https://www.amazon.com/s?k=' + encodeURIComponent((r.partBrand || '') + ' ' + r.partNumber) + '&tag=' + AFFILIATE_TAG
+                    : null);
+
                   return (
-                    <li key={i} className="text-xs text-gray-600">
-                      <span>- {content}</span>
-                      {partInfo && affiliateUrl && (
-                        <a href={affiliateUrl} target="_blank" rel="noopener noreferrer" className="ml-1 text-blue-600 hover:text-blue-800 underline">
-                          Buy on Amazon
+                    <div key={i} className="bg-white rounded-lg p-2.5">
+                      <div className="flex items-start gap-2">
+                        <span className={'flex-shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded ' + (isPartRec ? 'bg-green-50 text-green-700' : 'bg-gray-100 text-gray-500')}>
+                          {isPartRec ? 'Part' : 'Tip'}
+                        </span>
+                        <p className="text-xs text-gray-600 flex-1">{content}</p>
+                      </div>
+                      {affiliateUrl && (
+                        <a href={affiliateUrl} target="_blank" rel="noopener noreferrer"
+                          className="inline-block mt-1.5 ml-7 text-[10px] font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded transition-colors">
+                          View on Amazon
                         </a>
                       )}
-                    </li>
+                    </div>
                   );
                 })}
-              </ul>
+              </div>
             </div>
           )}
 
+          {/* Cost */}
+          {issue.estimatedCost && (
+            <div className="flex items-center gap-2 text-xs text-gray-500">
+              <span className="font-semibold uppercase">Typical repair cost:</span>
+              <span className="text-gray-800 font-medium">{'$' + issue.estimatedCost.low.toLocaleString() + ' - $' + issue.estimatedCost.high.toLocaleString()}</span>
+            </div>
+          )}
+
+          {/* References / Citations */}
           {citations.length > 0 && (
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase mb-1">References</p>
-              <ul className="space-y-0.5">
+              <p className="text-xs font-semibold text-gray-500 uppercase mb-1.5">References</p>
+              <ul className="space-y-1">
                 {citations.map((c: any, i: number) => (
                   <li key={i} className="text-xs">
                     {c.url ? (
-                      <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">
+                      <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline underline-offset-2">
                         {c.title || c.url}
                       </a>
                     ) : (
@@ -623,20 +673,34 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
             </div>
           )}
 
-          {issue.dtcCodes && issue.dtcCodes.length > 0 && (
-            <div className="flex gap-1.5 flex-wrap">
-              {issue.dtcCodes.map(code => (
-                <Link key={code} href={'/known-issues/dtc/' + code.toLowerCase()}
-                  className="text-[10px] font-mono px-2 py-0.5 bg-blue-50 text-blue-600 rounded hover:bg-blue-100">
-                  {code}
-                </Link>
-              ))}
+          {/* Research Links */}
+          <div>
+            <p className="text-xs font-semibold text-gray-500 uppercase mb-1.5">Research This Issue</p>
+            <div className="flex gap-2 flex-wrap">
+              <a href={'https://www.google.com/search?q=' + searchQuery} target="_blank" rel="noopener noreferrer" className="text-[10px] px-2.5 py-1 bg-white rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors">Google</a>
+              <a href={'https://www.reddit.com/search/?q=' + searchQuery} target="_blank" rel="noopener noreferrer" className="text-[10px] px-2.5 py-1 bg-white rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors">Reddit</a>
+              <a href={'https://www.youtube.com/results?search_query=' + searchQuery} target="_blank" rel="noopener noreferrer" className="text-[10px] px-2.5 py-1 bg-white rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors">YouTube</a>
+              <a href={'https://www.nhtsa.gov/vehicle-safety/search-results?keyword=' + searchQuery} target="_blank" rel="noopener noreferrer" className="text-[10px] px-2.5 py-1 bg-white rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors">NHTSA</a>
             </div>
-          )}
+          </div>
 
+          {/* Meta info */}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] text-gray-400 pt-2">
+            {issue.source && (
+              <span className={'px-1.5 py-0.5 rounded ' + (issue.source === 'nhtsa-verified' ? 'bg-green-50 text-green-600' : issue.source === 'manual' ? 'bg-blue-50 text-blue-600' : 'bg-gray-100 text-gray-500')}>
+                {issue.source === 'nhtsa-verified' ? 'NHTSA Verified' : issue.source === 'manual' ? 'Manually Verified' : 'Community Reported'}
+              </span>
+            )}
+            {issue.confidence && <span>{issue.confidence} confidence</span>}
+            {issue.reportCount > 0 && <span>{issue.reportCount} reports</span>}
+            {issue.lastReportedByOwners && <span>Last reported {issue.lastReportedByOwners}</span>}
+            {issue.reviewedOn && <span>Reviewed {issue.reviewedOn}</span>}
+          </div>
+
+          {/* Ask AI button */}
           <button
             onClick={onAskAI}
-            className="text-xs font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-lg transition-colors mt-2"
+            className="text-xs font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-lg transition-colors"
           >
             Ask AI about this issue &rarr;
           </button>
