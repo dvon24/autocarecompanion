@@ -503,28 +503,29 @@ function PartCard({ task, parts, styled = true }: { task: string; parts: any[]; 
   const [expanded, setExpanded] = useState(false);
   const name = TASK_NAMES[task] || task.replace(/_/g, ' ');
   return (
-    <div className="rounded-xl overflow-hidden" style={styled ? { backgroundColor: '#c4bec4' } : { backgroundColor: '#f9fafb' }}>
-      <button onClick={() => setExpanded(!expanded)} className="w-full p-3 text-left flex items-center justify-between">
+    <div className={'rounded-xl overflow-hidden ' + (styled ? 'border' : 'bg-gray-50')} style={styled ? { borderColor: '#c4bec4', backgroundColor: '#EBEAEC' } : undefined}>
+      <button onClick={() => setExpanded(!expanded)} className={'w-full px-4 py-3 text-left flex items-center justify-between ' + (styled ? '' : 'hover:bg-gray-100')} style={styled ? { backgroundColor: '#3C313D' } : undefined}>
         <div>
-          <h3 className="text-sm font-medium text-gray-800">{name}</h3>
-          <p className="text-xs text-gray-500">{parts.length} part{parts.length !== 1 ? 's' : ''}</p>
+          <h3 className="text-sm font-semibold" style={{ color: styled ? '#EBEAEC' : '#111' }}>{name}</h3>
+          <p className="text-xs" style={{ color: styled ? '#9D9BA2' : '#666' }}>{parts.length} part{parts.length !== 1 ? 's' : ''}</p>
         </div>
-        <svg className={'w-4 h-4 text-gray-400 transition-transform ' + (expanded ? 'rotate-180' : '')} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+        <svg className={'w-4 h-4 transition-transform ' + (expanded ? 'rotate-180' : '')} style={{ color: styled ? '#EBEAEC' : '#999' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
       </button>
       {expanded && (
-        <div className="px-3 pb-3 space-y-2">
+        <div className="px-4 pb-4 pt-3 space-y-2">
           {parts.map((p: any, i: number) => (
-            <div key={i} className="flex items-center justify-between gap-2">
+            <div key={i} className="rounded-lg p-2.5 flex items-center justify-between gap-2" style={styled ? { backgroundColor: '#EBEAEC', border: '1px solid #c4bec4' } : { backgroundColor: 'white' }}>
               <div className="min-w-0">
-                <p className="text-xs text-gray-700 truncate">{p.brand || ''} {p.name || p.partNumber || ''}</p>
-                {p.partNumber && <p className="text-[10px] text-gray-400 font-mono">{p.partNumber}</p>}
-                {p.spec && <p className="text-[10px] text-gray-400">{p.spec}</p>}
+                <p className="text-xs truncate" style={{ color: styled ? '#3C313D' : '#374151' }}>{p.brand || ''} {p.name || p.partNumber || ''}</p>
+                {p.partNumber && <p className="text-[10px] font-mono" style={{ color: styled ? '#55535B' : '#9ca3af' }}>{p.partNumber}</p>}
+                {p.spec && <p className="text-[10px]" style={{ color: styled ? '#55535B' : '#9ca3af' }}>{p.spec}</p>}
               </div>
               {(p.affiliateUrl || p.partNumber) && (
                 <a href={p.affiliateUrl || ('https://www.amazon.com/s?k=' + encodeURIComponent((p.brand || '') + ' ' + p.partNumber) + '&tag=' + AFFILIATE_TAG)}
                   target="_blank" rel="noopener noreferrer"
-                  className="flex-shrink-0 text-[10px] px-2 py-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 transition-colors">
-                  Amazon
+                  className="flex-shrink-0 text-[10px] font-medium px-2.5 py-1 rounded transition-colors hover:opacity-80"
+                  style={styled ? { backgroundColor: '#3C313D', color: '#EBEAEC' } : { backgroundColor: '#eff6ff', color: '#2563eb' }}>
+                  View on Amazon
                 </a>
               )}
             </div>
