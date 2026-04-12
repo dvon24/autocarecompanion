@@ -786,13 +786,17 @@ export async function POST(request: NextRequest) {
     const ragContext = await loadRAGContext(vehicle);
 
     if (apiKey) {
+      // Truncate long conversation history to avoid token limits
+      // Keep last 10 messages, truncate any single message over 1500 chars
+      const recentHistory = conversationHistory.slice(-10).map((msg) => ({
+        role: msg.role,
+        content: msg.content.length > 1500 ? msg.content.slice(0, 1500) + '... [truncated]' : msg.content,
+      }));
+
       // Build messages for AI with RAG-enriched system prompt
       const messages: { role: string; content: string }[] = [
         { role: 'system', content: getSystemPrompt(vehicle, ragContext, intent, obdCodes) },
-        ...conversationHistory.map((msg) => ({
-          role: msg.role,
-          content: msg.content,
-        })),
+        ...recentHistory,
         { role: 'user', content: message },
       ];
 
