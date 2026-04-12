@@ -118,12 +118,19 @@ export function VehicleDashboard({
           conversationHistory: chatMessages.map(m => ({ role: m.role, content: m.content })),
           vehicle,
         }),
+        signal: AbortSignal.timeout(65000),
       });
-      if (!res.ok) throw new Error('Failed');
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.error || 'Request failed');
+      }
       const data = await res.json();
       setChatMessages(prev => [...prev, data.message]);
-    } catch {
-      setChatMessages(prev => [...prev, createChatMessage('assistant', 'Sorry, something went wrong. Please try again.')]);
+    } catch (err: any) {
+      const errMsg = err?.name === 'TimeoutError'
+        ? 'The request took too long. Please try again with a simpler question.'
+        : 'Sorry, something went wrong. Please try again.';
+      setChatMessages(prev => [...prev, createChatMessage('assistant', errMsg)]);
     } finally {
       setChatLoading(false);
     }

@@ -11,6 +11,9 @@ import { logApiCost, isBudgetExceeded } from '@/lib/costs';
 import prisma from '@/lib/db';
 import { getVehicleSpecs } from '@/lib/maintenance';
 
+// Allow up to 60s for tool-calling responses on Vercel
+export const maxDuration = 60;
+
 /**
  * AI Symptom Chat API Route
  *
