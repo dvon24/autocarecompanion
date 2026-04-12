@@ -78,6 +78,7 @@ export function VehicleDashboard({
   const [activeSection, setActiveSection] = useState<SectionId>(initialSection);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [vehicleModalOpen, setVehicleModalOpen] = useState(false);
+  const [styledTheme, setStyledTheme] = useState(true);
   const [chatMessages, setChatMessages] = useState<ChatMessageType[]>([]);
   const [chatInput, setChatInput] = useState('');
   const [chatLoading, setChatLoading] = useState(false);
@@ -231,7 +232,17 @@ export function VehicleDashboard({
         </nav>
 
         {/* Change Vehicle button */}
-        <div className="flex-shrink-0 px-2 pb-4">
+        <div className="flex-shrink-0 px-2 pb-4 space-y-1">
+          <button
+            onClick={() => setStyledTheme(!styledTheme)}
+            className={'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors ' + (sidebarOpen ? '' : 'justify-center')}
+            title={styledTheme ? 'Switch to Classic' : 'Switch to Styled'}
+          >
+            <svg className="flex-shrink-0 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z" />
+            </svg>
+            {sidebarOpen && <span className="flex-1 text-left">{styledTheme ? 'Classic Theme' : 'Styled Theme'}</span>}
+          </button>
           <button
             onClick={() => setVehicleModalOpen(true)}
             className={'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors ' + (sidebarOpen ? '' : 'justify-center')}
@@ -303,7 +314,7 @@ export function VehicleDashboard({
                   <EmptyState title="No Cached Parts" description="Parts haven't been loaded yet. Ask the AI about specific parts." />
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {standardParts.map(cp => <PartCard key={cp.task} task={cp.task} parts={cp.parts} />)}
+                    {standardParts.map(cp => <PartCard key={cp.task} task={cp.task} parts={cp.parts} styled={styledTheme} />)}
                   </div>
                 )}
               </div>
@@ -319,7 +330,7 @@ export function VehicleDashboard({
                   ) : (
                     recalls.map(r => (
                       <button key={r.campaignNumber} onClick={() => sendMessage('Tell me about the recall for ' + r.component + ' on my ' + vehicleDisplay + '. Campaign ' + r.campaignNumber)} className="w-full text-left">
-                        <RecallCard recall={r} />
+                        <RecallCard recall={r} styled={styledTheme} />
                       </button>
                     ))
                   )}
@@ -332,7 +343,7 @@ export function VehicleDashboard({
                     <p className="text-sm text-gray-400">No documented issues for this vehicle.</p>
                   ) : (
                     issues.map(issue => (
-                      <IssueCardExpanded key={issue.id} issue={issue} onAskAI={() => sendMessage('Tell me about the "' + issue.title + '" issue on my ' + vehicleDisplay + '. What parts do I need to fix it, what are owners using, and how much does it cost? Include part links.')} />
+                      <IssueCardExpanded key={issue.id} issue={issue} styled={styledTheme} onAskAI={() => sendMessage('Tell me about the "' + issue.title + '" issue on my ' + vehicleDisplay + '. What parts do I need to fix it, what are owners using, and how much does it cost? Include part links.')} />
                     ))
                   )}
                 </div>
@@ -350,7 +361,8 @@ export function VehicleDashboard({
                     <button
                       key={task}
                       onClick={() => sendMessage('Give me a step-by-step ' + task.toLowerCase() + ' guide for my ' + vehicleDisplay)}
-                      className="p-3 rounded-lg text-sm text-gray-800 hover:opacity-90 transition-colors text-left" style={{ backgroundColor: '#c4bec4' }}
+                      className={'p-3 rounded-lg text-sm transition-colors text-left ' + (styledTheme ? 'text-gray-800 hover:opacity-90' : 'bg-gray-50 text-gray-600 hover:bg-gray-100')}
+                      style={styledTheme ? { backgroundColor: '#c4bec4' } : undefined}
                     >
                       {task}
                     </button>
@@ -479,11 +491,11 @@ function EmptyState({ title, description }: { title: string; description: string
   );
 }
 
-function PartCard({ task, parts }: { task: string; parts: any[] }) {
+function PartCard({ task, parts, styled = true }: { task: string; parts: any[]; styled?: boolean }) {
   const [expanded, setExpanded] = useState(false);
   const name = TASK_NAMES[task] || task.replace(/_/g, ' ');
   return (
-    <div className="rounded-xl overflow-hidden" style={{ backgroundColor: '#c4bec4' }}>
+    <div className="rounded-xl overflow-hidden" style={styled ? { backgroundColor: '#c4bec4' } : { backgroundColor: '#f9fafb' }}>
       <button onClick={() => setExpanded(!expanded)} className="w-full p-3 text-left flex items-center justify-between">
         <div>
           <h3 className="text-sm font-medium text-gray-800">{name}</h3>
@@ -539,7 +551,7 @@ function IssueCard({ issue }: { issue: KnownIssue }) {
   );
 }
 
-function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () => void }) {
+function IssueCardExpanded({ issue, styled = true, onAskAI }: { issue: KnownIssue; styled?: boolean; onAskAI: () => void }) {
   const [expanded, setExpanded] = useState(false);
   const sevColor: Record<string, string> = {
     critical: 'bg-red-500 text-white',
@@ -555,21 +567,20 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
   const searchQuery = encodeURIComponent(makeModel + ' ' + issue.title);
 
   return (
-    <div className="rounded-xl overflow-hidden border" style={{ borderColor: '#c4bec4', backgroundColor: '#EBEAEC' }}>
-      {/* Dark header */}
-      <button onClick={() => setExpanded(!expanded)} className="w-full px-4 py-3 text-left" style={{ backgroundColor: '#3C313D' }}>
+    <div className={'rounded-xl overflow-hidden ' + (styled ? 'border' : 'bg-gray-50')} style={styled ? { borderColor: '#c4bec4', backgroundColor: '#EBEAEC' } : undefined}>
+      <button onClick={() => setExpanded(!expanded)} className={'w-full px-4 py-3 text-left ' + (styled ? '' : 'hover:bg-gray-100')} style={styled ? { backgroundColor: '#3C313D' } : undefined}>
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-semibold" style={{ color: '#EBEAEC' }}>{issue.title}</h3>
+            <h3 className="text-sm font-semibold" style={{ color: styled ? '#EBEAEC' : '#111' }}>{issue.title}</h3>
             {issue.estimatedCost && (
-              <p className="text-xs mt-0.5" style={{ color: '#9D9BA2' }}>Typical repair cost: {'$' + issue.estimatedCost.low.toLocaleString() + ' - $' + issue.estimatedCost.high.toLocaleString()}</p>
+              <p className="text-xs mt-0.5" style={{ color: styled ? '#9D9BA2' : '#666' }}>Typical repair cost: {'$' + issue.estimatedCost.low.toLocaleString() + ' - $' + issue.estimatedCost.high.toLocaleString()}</p>
             )}
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
             <span className={'px-2 py-0.5 text-[10px] font-medium rounded-full ' + (sevColor[issue.severity] || sevColor.low)}>
               {issue.severity}
             </span>
-            <svg className={'w-4 h-4 transition-transform ' + (expanded ? 'rotate-180' : '')} style={{ color: '#EBEAEC' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            <svg className={'w-4 h-4 transition-transform ' + (expanded ? 'rotate-180' : '')} style={{ color: styled ? '#EBEAEC' : '#999' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
           </div>
         </div>
       </button>
@@ -730,10 +741,10 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
   );
 }
 
-function RecallCard({ recall }: { recall: RecallItem }) {
+function RecallCard({ recall, styled = true }: { recall: RecallItem; styled?: boolean }) {
   const [expanded, setExpanded] = useState(false);
   return (
-    <div className={'rounded-xl overflow-hidden ' + (recall.parkIt ? 'ring-2 ring-red-400' : '')} style={{ backgroundColor: '#c4bec4' }}>
+    <div className={'rounded-xl overflow-hidden ' + (recall.parkIt ? 'ring-2 ring-red-400' : '')} style={styled ? { backgroundColor: '#c4bec4' } : { backgroundColor: '#f9fafb' }}>
       <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
