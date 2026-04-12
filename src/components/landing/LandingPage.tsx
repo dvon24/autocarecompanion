@@ -63,7 +63,7 @@ export default function LandingPage({ trendingIssues = [], stats }: { trendingIs
   const totalMakes = stats?.totalMakes ?? 34;
   const totalModels = stats?.totalModels ?? 640;
   return (
-    <div className="min-h-screen bg-white font-[system-ui,sans-serif] relative overflow-hidden">
+    <div className="min-h-screen bg-white font-[system-ui,sans-serif] relative overflow-hidden flex flex-col">
       {/* Animated Engine Background - Only visible in hero section */}
       <AnimatedBackground />
 
@@ -88,7 +88,7 @@ export default function LandingPage({ trendingIssues = [], stats }: { trendingIs
       />
 
       {/* Main content */}
-      <main className="relative flex flex-col" style={{ zIndex: 2 }}>
+      <main className="relative flex flex-col flex-1" style={{ zIndex: 2 }}>
         {/* Header */}
         <header className="px-6 py-4">
           <div className="max-w-5xl mx-auto flex items-center justify-between">
@@ -105,16 +105,6 @@ export default function LandingPage({ trendingIssues = [], stats }: { trendingIs
                   Au<span className="text-blue-600">7</span>o
                 </span>
               </Link>
-            </ScrollReveal>
-            <ScrollReveal delay={100} duration={800} direction="down" distance={20}>
-              <div className="flex items-center gap-3">
-                <Link
-                  href="/known-issues"
-                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  Known Issues
-                </Link>
-              </div>
             </ScrollReveal>
           </div>
         </header>

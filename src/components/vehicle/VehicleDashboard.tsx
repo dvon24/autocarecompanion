@@ -78,7 +78,7 @@ export function VehicleDashboard({
   const [activeSection, setActiveSection] = useState<SectionId>(initialSection);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [vehicleModalOpen, setVehicleModalOpen] = useState(false);
-  const [styledTheme, setStyledTheme] = useState(true);
+  const [styledTheme, setStyledTheme] = useState(false);
   const [chatMessages, setChatMessages] = useState<ChatMessageType[]>([]);
   const [chatInput, setChatInput] = useState('');
   const [chatLoading, setChatLoading] = useState(false);
@@ -261,34 +261,29 @@ export function VehicleDashboard({
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <div className="flex-1 overflow-y-auto p-4 sm:p-8 pt-10 sm:pt-12 pb-6 flex flex-col gap-8">
           {/* Vehicle Profile Card */}
-          <div className={'rounded-lg flex-shrink-0 overflow-hidden ' + (styledTheme ? '' : 'bg-white p-5')} style={{ boxShadow: DEEP_SHADOW }}>
-            {/* Header area */}
-            <div className={styledTheme ? 'px-5 pt-5 pb-4' : ''} style={styledTheme ? { backgroundColor: '#3C313D' } : undefined}>
-              <div className="flex items-center gap-4 mb-4">
-                <div className={'flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center overflow-hidden ' + (styledTheme ? '' : 'bg-gray-50')}>
-                  <Image src={'/logos/' + logoSlug + '.png'} alt={vehicle.make} width={40} height={40} className="object-contain" style={styledTheme ? { filter: 'brightness(1.3)' } : undefined} />
-                </div>
-                <div>
-                  <h2 className="text-lg font-bold" style={{ color: styledTheme ? '#EBEAEC' : '#111827' }}>{vehicleDisplay}</h2>
-                  {specsSummary.engine && <p className="text-sm" style={{ color: styledTheme ? '#9D9BA2' : '#6b7280' }}>{specsSummary.engine}</p>}
-                </div>
+          <div className="bg-white rounded-lg p-5 flex-shrink-0" style={{ boxShadow: DEEP_SHADOW }}>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden">
+                <Image src={'/logos/' + logoSlug + '.png'} alt={vehicle.make} width={40} height={40} className="object-contain" />
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-gray-900">{vehicleDisplay}</h2>
+                {specsSummary.engine && <p className="text-sm text-gray-500">{specsSummary.engine}</p>}
               </div>
             </div>
 
-            {/* Body area */}
-            <div className={styledTheme ? 'px-5 pb-5 pt-4' : ''} style={styledTheme ? { backgroundColor: '#EBEAEC' } : undefined}>
-            <div className="mb-4 text-sm leading-relaxed space-y-0.5" style={{ color: styledTheme ? '#3C313D' : '#6b7280' }}>
+            <div className="mb-4 text-sm text-gray-500 leading-relaxed space-y-0.5">
               {criticalCount > 0 && (
                 <p className="text-red-600 font-medium">{criticalCount} critical/high severity issue{criticalCount > 1 ? 's' : ''} documented.</p>
               )}
               {specsSummary.oil && (
-                <p>Oil: <span className="font-medium" style={{ color: styledTheme ? '#18141D' : '#1f2937' }}>{specsSummary.oil}</span>{specsSummary.oilFilter ? ' \u00B7 Filter: ' + specsSummary.oilFilter : ''}</p>
+                <p>Oil: <span className="text-gray-800 font-medium">{specsSummary.oil}</span>{specsSummary.oilFilter ? ' \u00B7 Filter: ' + specsSummary.oilFilter : ''}</p>
               )}
-              {specsSummary.coolant && <p>Coolant: <span className="font-medium" style={{ color: styledTheme ? '#18141D' : '#1f2937' }}>{specsSummary.coolant}</span></p>}
-              {specsSummary.transmission && <p>Transmission: <span className="font-medium" style={{ color: styledTheme ? '#18141D' : '#1f2937' }}>{specsSummary.transmission}</span></p>}
-              {specsSummary.lug && <p>Lug: <span className="font-medium" style={{ color: styledTheme ? '#18141D' : '#1f2937' }}>{specsSummary.lug}</span></p>}
-              {specsSummary.sparkPlugs && <p>Spark Plugs: <span className="font-medium" style={{ color: styledTheme ? '#18141D' : '#1f2937' }}>{specsSummary.sparkPlugs}</span></p>}
-              {specsSummary.brakeFluid && <p>Brake Fluid: <span className="font-medium" style={{ color: styledTheme ? '#18141D' : '#1f2937' }}>{specsSummary.brakeFluid}</span></p>}
+              {specsSummary.coolant && <p>Coolant: <span className="text-gray-800 font-medium">{specsSummary.coolant}</span></p>}
+              {specsSummary.transmission && <p>Transmission: <span className="text-gray-800 font-medium">{specsSummary.transmission}</span></p>}
+              {specsSummary.lug && <p>Lug: <span className="text-gray-800 font-medium">{specsSummary.lug}</span></p>}
+              {specsSummary.sparkPlugs && <p>Spark Plugs: <span className="text-gray-800 font-medium">{specsSummary.sparkPlugs}</span></p>}
+              {specsSummary.brakeFluid && <p>Brake Fluid: <span className="text-gray-800 font-medium">{specsSummary.brakeFluid}</span></p>}
             </div>
 
             {/* Clickable stat badges - send context to chat */}
@@ -308,7 +303,6 @@ export function VehicleDashboard({
                   {standardParts.length} parts cached
                 </button>
               )}
-            </div>
             </div>
           </div>
 
