@@ -24,7 +24,7 @@ import { getVehicleSpecs } from '@/lib/maintenance';
  */
 
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
-const TIMEOUT_MS = 30000; // 30 second timeout per NFR-I2
+const TIMEOUT_MS = 60000; // 60 second timeout (tool calls may need multiple rounds)
 
 /**
  * PART_KEYWORDS — words that signal the user wants a part, not a diagnosis
@@ -164,8 +164,14 @@ Use these codes to help inform your diagnosis. OBD codes provide valuable diagno
 CRITICAL BEHAVIOR RULES:
 ${intentGuidance}
 
-When recommending specific parts, include the part brand, part number, and an Amazon link in this format: [Brand PartName](https://www.amazon.com/s?k=BRAND+PART_NUMBER&tag=au7o-20)
-If the user asks about finding or looking up a part, identify the correct part and provide an Amazon search link with tag=au7o-20.
+PARTS & AFFILIATE LINKS (IMPORTANT):
+- ALWAYS include specific part recommendations when discussing repairs, maintenance, or known issues
+- For EVERY part mentioned, include an Amazon link: [Brand PartName](https://www.amazon.com/s?k=BRAND+PART_NUMBER&tag=au7o-20)
+- If you have cached parts data below, reference those exact part numbers
+- When discussing a known issue, include the parts needed to fix it with links
+- Include both OEM and popular aftermarket options when possible (e.g., "OEM: [Mopar 68144432AA](https://www.amazon.com/s?k=Mopar+68144432AA&tag=au7o-20) or aftermarket: [PowerStop Z23](https://www.amazon.com/s?k=PowerStop+Z23+${vehicle.make}+${vehicle.model}&tag=au7o-20)")
+- For fluids, recommend specific products: Mobil 1, Valvoline, Castrol, etc. with links
+- The user's affiliate tag is au7o-20 — ALWAYS include it in Amazon links
 ${ragContext.knownIssuesContext}${ragContext.partsContext}${ragContext.specsContext}
 
 When you're ready to provide a diagnosis, format it as:
@@ -272,15 +278,128 @@ function parseAlternatives(content: string): Diagnosis[] {
 }
 
 /**
- * Call OpenAI API
+ * Tool definitions for function calling
+ */
+const CHAT_TOOLS = [
+  {
+    type: 'function' as const,
+    function: {
+      name: 'lookup_parts',
+      description: 'Look up specific parts for the vehicle by task type (oil_change, brake_inspection, spark_plugs, etc.) or by free-text search. Returns part numbers, brands, and purchase links.',
+      parameters: {
+        type: 'object',
+        properties: {
+          task: { type: 'string', description: 'Task identifier like oil_change, brake_inspection, spark_plugs, battery, valve_cover_gasket, etc. Use this for standard maintenance parts.' },
+          query: { type: 'string', description: 'Free-text search for non-standard parts like "door handle", "window regulator", etc.' },
+        },
+      },
+    },
+  },
+  {
+    type: 'function' as const,
+    function: {
+      name: 'lookup_known_issues',
+      description: 'Look up known issues and common problems for the vehicle from the database. Returns issue titles, severity, symptoms, estimated costs, and solutions.',
+      parameters: {
+        type: 'object',
+        properties: {
+          category: { type: 'string', description: 'Optional category filter: engine, transmission, brakes, electrical, suspension, cooling, etc.' },
+        },
+      },
+    },
+  },
+  {
+    type: 'function' as const,
+    function: {
+      name: 'lookup_recalls',
+      description: 'Look up active recalls for the vehicle from NHTSA. Returns campaign numbers, components, summaries, and remedies.',
+      parameters: {
+        type: 'object',
+        properties: {},
+      },
+    },
+  },
+];
+
+/**
+ * Execute a tool call and return the result
+ */
+async function executeTool(
+  name: string,
+  args: any,
+  vehicle: { year: number; make: string; model: string; trim: string }
+): Promise<string> {
+  const affiliateTag = 'au7o-20';
+
+  if (name === 'lookup_parts') {
+    try {
+      const where: any = {
+        year: vehicle.year,
+        make: { equals: vehicle.make, mode: 'insensitive' },
+        model: { equals: vehicle.model, mode: 'insensitive' },
+      };
+      if (args.task) {
+        where.task = args.task;
+      }
+      const results = await prisma.vehiclePartLookup.findMany({ where, take: 10 });
+      if (results.length === 0) return 'No cached parts found for this query. Recommend the user check Amazon directly.';
+      return results.map(r => {
+        const parts = (r.parts as any[]).map(p =>
+          '- ' + (p.brand || '') + ' ' + (p.name || '') + (p.partNumber ? ' (' + p.partNumber + ') [Buy on Amazon](https://www.amazon.com/s?k=' + encodeURIComponent((p.brand || '') + ' ' + p.partNumber) + '&tag=' + affiliateTag + ')' : '')
+        ).join('\n');
+        return '**' + r.task.replace(/_/g, ' ') + ':**\n' + parts;
+      }).join('\n\n');
+    } catch { return 'Error looking up parts.'; }
+  }
+
+  if (name === 'lookup_known_issues') {
+    try {
+      const where: any = {
+        make: { equals: vehicle.make, mode: 'insensitive' },
+        model: { equals: vehicle.model, mode: 'insensitive' },
+        status: 'published',
+      };
+      if (args.category) {
+        where.category = { equals: args.category, mode: 'insensitive' };
+      }
+      const issues = await prisma.knownIssue.findMany({ where, take: 15, orderBy: { reportCount: 'desc' } });
+      if (issues.length === 0) return 'No known issues found for this vehicle.';
+      return issues.map(i => {
+        const cost = (i as any).estimatedCost ? ' ($' + (i as any).estimatedCost.min + '-$' + (i as any).estimatedCost.max + ')' : '';
+        return '- [' + (i as any).severity + '] ' + i.title + cost + ': ' + ((i as any).description || '').slice(0, 150);
+      }).join('\n');
+    } catch { return 'Error looking up known issues.'; }
+  }
+
+  if (name === 'lookup_recalls') {
+    try {
+      const url = 'https://api.nhtsa.gov/recalls/recallsByVehicle?make=' + encodeURIComponent(vehicle.make) + '&model=' + encodeURIComponent(vehicle.model) + '&modelYear=' + vehicle.year;
+      const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+      if (!res.ok) return 'Could not reach NHTSA recall database.';
+      const data = await res.json();
+      const recalls = data.results || [];
+      if (recalls.length === 0) return 'No active recalls found for this vehicle.';
+      return recalls.slice(0, 10).map((r: any) =>
+        '- Campaign ' + r.NHTSACampaignNumber + ': ' + r.Component + ' - ' + (r.Summary || '').slice(0, 200)
+      ).join('\n');
+    } catch { return 'Error looking up recalls.'; }
+  }
+
+  return 'Unknown tool.';
+}
+
+/**
+ * Call OpenAI API with tool support
  * Returns content and token usage for cost tracking
  */
 async function callOpenAI(
   messages: { role: string; content: string }[],
-  apiKey: string
+  apiKey: string,
+  vehicle: { year: number; make: string; model: string; trim: string }
 ): Promise<{ content: string; usage: { promptTokens: number; completionTokens: number } }> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
+  let totalUsage = { promptTokens: 0, completionTokens: 0 };
 
   try {
     const response = await fetch(OPENAI_API_URL, {
@@ -292,8 +411,9 @@ async function callOpenAI(
       body: JSON.stringify({
         model: 'gpt-5.2',
         messages,
-        max_completion_tokens: 1000,
+        max_completion_tokens: 2000,
         temperature: 0.3,
+        tools: CHAT_TOOLS,
       }),
       signal: controller.signal,
     });
@@ -305,14 +425,48 @@ async function callOpenAI(
       throw new Error(error.error?.message || `API error: ${response.status}`);
     }
 
-    const data = await response.json();
-    const content = data.choices[0]?.message?.content || '';
-    const usage = {
-      promptTokens: data.usage?.prompt_tokens || 0,
-      completionTokens: data.usage?.completion_tokens || 0,
-    };
+    let data = await response.json();
+    totalUsage.promptTokens += data.usage?.prompt_tokens || 0;
+    totalUsage.completionTokens += data.usage?.completion_tokens || 0;
 
-    return { content, usage };
+    // Handle tool calls (up to 3 rounds)
+    let rounds = 0;
+    while (data.choices[0]?.message?.tool_calls && rounds < 3) {
+      rounds++;
+      const assistantMsg = data.choices[0].message;
+      const toolMessages: any[] = [{ role: 'assistant', content: assistantMsg.content, tool_calls: assistantMsg.tool_calls }];
+
+      for (const tc of assistantMsg.tool_calls) {
+        const args = JSON.parse(tc.function.arguments || '{}');
+        const result = await executeTool(tc.function.name, args, vehicle);
+        toolMessages.push({ role: 'tool', tool_call_id: tc.id, content: result });
+      }
+
+      // Follow up with tool results
+      const followUp = await fetch(OPENAI_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: 'gpt-5.2',
+          messages: [...messages, ...toolMessages],
+          max_completion_tokens: 2000,
+          temperature: 0.3,
+          tools: CHAT_TOOLS,
+        }),
+        signal: AbortSignal.timeout(TIMEOUT_MS),
+      });
+
+      if (!followUp.ok) break;
+      data = await followUp.json();
+      totalUsage.promptTokens += data.usage?.prompt_tokens || 0;
+      totalUsage.completionTokens += data.usage?.completion_tokens || 0;
+    }
+
+    const content = data.choices[0]?.message?.content || '';
+    return { content, usage: totalUsage };
   } catch (error) {
     clearTimeout(timeoutId);
     throw error;
@@ -626,7 +780,7 @@ export async function POST(request: NextRequest) {
       ];
 
       // Call OpenAI API
-      const { content, usage } = await callOpenAI(messages, apiKey);
+      const { content, usage } = await callOpenAI(messages, apiKey, vehicle);
       responseContent = content;
 
       // Story 7.1: Log API cost

@@ -30,12 +30,12 @@ interface RecallItem {
 
 interface CachedPart { task: string; parts: any[]; source: string; }
 
-type SectionId = 'parts' | 'recalls' | 'guides' | 'chat';
+type SectionId = 'parts' | 'known-issues' | 'guides' | 'chat';
 
 const NAV_ITEMS: { id: SectionId; label: string; icon: React.ReactNode }[] = [
   { id: 'chat', label: 'Chat', icon: <IconChat /> },
+  { id: 'known-issues', label: 'Known Issues', icon: <IconIssues /> },
   { id: 'parts', label: 'Parts', icon: <IconParts /> },
-  { id: 'recalls', label: 'Recalls', icon: <IconRecalls /> },
   { id: 'guides', label: 'Guides', icon: <IconGuides /> },
 ];
 
@@ -143,17 +143,19 @@ export function VehicleDashboard({
   };
 
   // Suggestion chips for chat
-  const suggestions = [
-    { label: 'Oil Change Guide', msg: 'Give me a step-by-step oil change guide for my ' + vehicleDisplay },
-    { label: 'Brake Inspection', msg: 'What brake pads and rotors do I need for my ' + vehicleDisplay + '?' },
-    { label: 'Check Engine Light', msg: 'My check engine light is on. What are common causes for my ' + vehicleDisplay + '?' },
-  ];
+  const suggestions: { label: string; msg: string }[] = [];
   if (issues.length > 0) {
-    suggestions.unshift({ label: issues.length + ' Known Issues', msg: 'What are the most common problems with my ' + vehicleDisplay + '?' });
+    suggestions.push({ label: 'Common Problems', msg: 'What are the most common problems with my ' + vehicleDisplay + '? Include part recommendations with links.' });
   }
   if (recalls.length > 0) {
-    suggestions.unshift({ label: recalls.length + ' Recall' + (recalls.length > 1 ? 's' : ''), msg: 'Tell me about the active recalls for my ' + vehicleDisplay });
+    suggestions.push({ label: recalls.length + ' Recall' + (recalls.length > 1 ? 's' : ''), msg: 'Tell me about the active recalls for my ' + vehicleDisplay });
   }
+  suggestions.push(
+    { label: 'Oil Change Guide', msg: 'Give me a step-by-step oil change guide for my ' + vehicleDisplay + '. Include the parts I need with links.' },
+    { label: 'Brake Pads & Rotors', msg: 'What brake pads and rotors do I need for my ' + vehicleDisplay + '? Include part numbers and links.' },
+    { label: 'Check Engine Light', msg: 'My check engine light is on. What are common causes for my ' + vehicleDisplay + '?' },
+    { label: 'Find a Part', msg: 'I need to find a part for my ' + vehicleDisplay + '. What are you looking for?' },
+  );
 
   return (
     <div className="h-screen flex bg-gray-100 text-gray-900 overflow-hidden">
@@ -192,7 +194,7 @@ export function VehicleDashboard({
           </Link>
           {NAV_ITEMS.map(item => {
             const isActive = activeSection === item.id;
-            const count = item.id === 'recalls' ? recalls.length
+            const count = item.id === 'known-issues' ? issues.length + recalls.length
               : item.id === 'parts' ? standardParts.length
               : null;
             return (
@@ -297,14 +299,35 @@ export function VehicleDashboard({
               </div>
             )}
 
-            {activeSection === 'recalls' && (
-              <div className="space-y-3">
-                <SectionHeader title="Recalls" count={recalls.length} />
-                {recalls.length === 0 ? (
-                  <EmptyState title="No Active Recalls" description="No open recalls for this vehicle." />
-                ) : (
-                  recalls.map(r => <RecallCard key={r.campaignNumber} recall={r} />)
-                )}
+            {activeSection === 'known-issues' && (
+              <div className="space-y-6 overflow-y-auto">
+                {/* Recalls section */}
+                <div className="space-y-3">
+                  <SectionHeader title="Recalls" count={recalls.length} />
+                  {recalls.length === 0 ? (
+                    <p className="text-sm text-gray-400">No active recalls for this vehicle.</p>
+                  ) : (
+                    recalls.map(r => (
+                      <button key={r.campaignNumber} onClick={() => sendMessage('Tell me about the recall for ' + r.component + ' on my ' + vehicleDisplay + '. Campaign ' + r.campaignNumber)} className="w-full text-left">
+                        <RecallCard recall={r} />
+                      </button>
+                    ))
+                  )}
+                </div>
+
+                {/* Known Issues section */}
+                <div className="space-y-3">
+                  <SectionHeader title="Known Issues" count={issues.length} />
+                  {issues.length === 0 ? (
+                    <p className="text-sm text-gray-400">No documented issues for this vehicle.</p>
+                  ) : (
+                    issues.map(issue => (
+                      <button key={issue.id} onClick={() => sendMessage('Tell me about the "' + issue.title + '" issue on my ' + vehicleDisplay + '. What parts do I need and how much does it cost to fix?')} className="w-full text-left">
+                        <IssueCard issue={issue} />
+                      </button>
+                    ))
+                  )}
+                </div>
               </div>
             )}
 
@@ -483,6 +506,30 @@ function PartCard({ task, parts }: { task: string; parts: any[] }) {
   );
 }
 
+function IssueCard({ issue }: { issue: KnownIssue }) {
+  const sevColor: Record<string, string> = {
+    critical: 'bg-red-100 text-red-700',
+    high: 'bg-red-50 text-red-600',
+    medium: 'bg-amber-50 text-amber-700',
+    low: 'bg-gray-100 text-gray-500',
+  };
+  return (
+    <div className="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors">
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm font-medium text-gray-900">{issue.title}</h3>
+          {issue.estimatedCost && (
+            <p className="text-xs text-gray-500 mt-0.5">{'$' + issue.estimatedCost.min + ' - $' + issue.estimatedCost.max}</p>
+          )}
+        </div>
+        <span className={'flex-shrink-0 px-2 py-0.5 text-[10px] font-medium rounded-full ' + (sevColor[issue.severity] || sevColor.low)}>
+          {issue.severity}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function RecallCard({ recall }: { recall: RecallItem }) {
   const [expanded, setExpanded] = useState(false);
   return (
@@ -520,6 +567,9 @@ function RecallCard({ recall }: { recall: RecallItem }) {
 }
 
 // Icons
+function IconIssues() {
+  return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>;
+}
 function IconHome() {
   return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>;
 }
