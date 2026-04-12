@@ -428,7 +428,7 @@ async function callOpenAI(
       body: JSON.stringify({
         model: 'gpt-5.2',
         messages,
-        max_completion_tokens: 2000,
+        max_completion_tokens: 4000,
         temperature: 0.3,
         tools: CHAT_TOOLS,
       }),
@@ -469,7 +469,7 @@ async function callOpenAI(
         body: JSON.stringify({
           model: 'gpt-5.2',
           messages: [...messages, ...toolMessages],
-          max_completion_tokens: 2000,
+          max_completion_tokens: 4000,
           temperature: 0.3,
           tools: CHAT_TOOLS,
         }),
