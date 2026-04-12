@@ -169,23 +169,14 @@ export function VehicleDashboard({
   );
 
   return (
-    <div className={'h-screen flex text-gray-900 overflow-hidden ' + (styledTheme ? '' : 'bg-gray-100')} style={styledTheme ? { background: 'linear-gradient(to bottom, #3C313D 0%, #EBEAEC 50%, white 100%)' } : undefined}>
-      {styledTheme && (
-        <style>{`
-          .styled-chat .bg-gray-100 { background-color: #EBEAEC !important; }
-          .styled-chat .bg-gradient-to-br { background: linear-gradient(to bottom right, #3C313D, #18141D) !important; }
-          .styled-chat .text-gray-900 { color: #3C313D !important; }
-          .styled-chat .bg-gray-50 { background-color: #EBEAEC !important; }
-          .styled-chat .text-lg.font-semibold { background-color: #3C313D; color: #EBEAEC; padding: 8px 12px; border-radius: 6px; margin: -4px -4px 8px -4px; }
-        `}</style>
-      )}
+    <div className="h-screen flex bg-gray-100 text-gray-900 overflow-hidden">
       {/* Sidebar */}
       <aside className={'hidden sm:flex flex-col flex-shrink-0 bg-gradient-to-b from-white to-gray-100 transition-all duration-200 ' + (sidebarOpen ? 'w-56' : 'w-16')}>
         {/* Logo area */}
         <div className="flex-shrink-0 py-4 px-3">
           {sidebarOpen ? (
             <div className="flex items-center gap-2 px-1">
-              <Image src="/icons/icon-192.png" alt="Au7o" width={32} height={32} className="flex-shrink-0" style={styledTheme ? { filter: 'grayscale(100%) sepia(20%) saturate(300%) hue-rotate(240deg) brightness(0.7)' } : undefined} />
+              <Image src="/icons/icon-192.png" alt="Au7o" width={32} height={32} className="flex-shrink-0"  />
               <span className="text-lg font-bold text-gray-900 tracking-tight">
                 Au<span style={{ color: styledTheme ? '#3C313D' : '#2563eb' }}>7</span>o
               </span>
@@ -197,7 +188,7 @@ export function VehicleDashboard({
             </div>
           ) : (
             <button onClick={() => setSidebarOpen(true)} className="w-full flex justify-center">
-              <Image src="/icons/icon-192.png" alt="Au7o" width={32} height={32} style={styledTheme ? { filter: 'grayscale(100%) sepia(20%) saturate(300%) hue-rotate(240deg) brightness(0.7)' } : undefined} />
+              <Image src="/icons/icon-192.png" alt="Au7o" width={32} height={32}  />
             </button>
           )}
         </div>
@@ -391,7 +382,7 @@ export function VehicleDashboard({
               <div className="flex-1 flex flex-col space-y-1 min-h-0">
                 {chatMessages.length === 0 && (
                   <div className="text-center py-6">
-                    <Image src="/icons/icon-192.png" alt="Au7o" width={48} height={48} className="mx-auto mb-3" style={styledTheme ? { filter: 'grayscale(100%) sepia(20%) saturate(300%) hue-rotate(240deg) brightness(0.7)' } : undefined} />
+                    <Image src="/icons/icon-192.png" alt="Au7o" width={48} height={48} className="mx-auto mb-3"  />
                     <h2 className="text-base font-semibold text-gray-800">How can I help with your {vehicle.make} {vehicle.model}?</h2>
                     <p className="text-sm text-gray-400 mt-1">Parts, diagnostics, maintenance, costs</p>
 
@@ -411,7 +402,7 @@ export function VehicleDashboard({
                   </div>
                 )}
 
-                <div className={'flex-1 overflow-y-auto min-h-0 ' + (styledTheme ? 'styled-chat' : '')}>
+                <div className="flex-1 overflow-y-auto min-h-0">
                   {chatMessages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
                   {chatLoading && <ChatMessageLoading />}
                   <div ref={chatEndRef} />

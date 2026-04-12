@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { type ChatMessage as ChatMessageType } from '@/schemas/chat.schema';
 
 /**
@@ -34,10 +35,8 @@ export function ChatMessage({ message }: ChatMessageProps) {
     <div className="mb-6">
       <div className="flex items-start gap-3">
         {/* AI Avatar */}
-        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
-          <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-          </svg>
+        <div className="flex-shrink-0 w-8 h-8 rounded-full overflow-hidden">
+          <Image src="/icons/icon-192.png" alt="Au7o" width={32} height={32} className="object-cover" />
         </div>
         {/* Message Content */}
         <div className="flex-1 min-w-0">
@@ -327,10 +326,8 @@ export function ChatMessageLoading() {
     <div className="mb-6">
       <div className="flex items-start gap-3">
         {/* AI Avatar */}
-        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
-          <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-          </svg>
+        <div className="flex-shrink-0 w-8 h-8 rounded-full overflow-hidden">
+          <Image src="/icons/icon-192.png" alt="Au7o" width={32} height={32} className="object-cover" />
         </div>
         {/* Loading dots */}
         <div className="flex items-center gap-1 py-3">
