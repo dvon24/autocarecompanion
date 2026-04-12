@@ -227,7 +227,7 @@ export function VehicleDashboard({
 
       {/* Main */}
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col gap-6">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-8 pt-8 sm:pt-10 pb-6 flex flex-col gap-8">
           {/* Vehicle Profile Card */}
           <div className="bg-white rounded-lg p-5 flex-shrink-0" style={{ boxShadow: DEEP_SHADOW }}>
             <div className="flex items-center gap-4 mb-4">
