@@ -555,20 +555,21 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
   const searchQuery = encodeURIComponent(makeModel + ' ' + issue.title);
 
   return (
-    <div className="rounded-xl overflow-hidden" style={{ backgroundColor: '#c4bec4' }}>
-      <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left">
+    <div className="rounded-xl overflow-hidden border" style={{ borderColor: '#c4bec4', backgroundColor: '#EBEAEC' }}>
+      {/* Dark header */}
+      <button onClick={() => setExpanded(!expanded)} className="w-full px-4 py-3 text-left" style={{ backgroundColor: '#3C313D' }}>
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-medium" style={{ color: '#18141D' }}>{issue.title}</h3>
+            <h3 className="text-sm font-semibold" style={{ color: '#EBEAEC' }}>{issue.title}</h3>
             {issue.estimatedCost && (
-              <p className="text-xs mt-0.5" style={{ color: '#3C313D' }}>Typical repair cost: {'$' + issue.estimatedCost.low.toLocaleString() + ' - $' + issue.estimatedCost.high.toLocaleString()}</p>
+              <p className="text-xs mt-0.5" style={{ color: '#9D9BA2' }}>Typical repair cost: {'$' + issue.estimatedCost.low.toLocaleString() + ' - $' + issue.estimatedCost.high.toLocaleString()}</p>
             )}
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
             <span className={'px-2 py-0.5 text-[10px] font-medium rounded-full ' + (sevColor[issue.severity] || sevColor.low)}>
               {issue.severity}
             </span>
-            <svg className={'w-4 h-4 transition-transform ' + (expanded ? 'rotate-180' : '')} style={{ color: '#3C313D' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            <svg className={'w-4 h-4 transition-transform ' + (expanded ? 'rotate-180' : '')} style={{ color: '#EBEAEC' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
           </div>
         </div>
       </button>
