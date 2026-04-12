@@ -350,7 +350,7 @@ export function VehicleDashboard({
                     <button
                       key={task}
                       onClick={() => sendMessage('Give me a step-by-step ' + task.toLowerCase() + ' guide for my ' + vehicleDisplay)}
-                      className="p-3 bg-gray-50 rounded-lg text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors text-left"
+                      className="p-3 rounded-lg text-sm text-gray-800 hover:opacity-90 transition-colors text-left" style={{ backgroundColor: '#c4bec4' }}
                     >
                       {task}
                     </button>
@@ -483,7 +483,7 @@ function PartCard({ task, parts }: { task: string; parts: any[] }) {
   const [expanded, setExpanded] = useState(false);
   const name = TASK_NAMES[task] || task.replace(/_/g, ' ');
   return (
-    <div className="bg-gray-50 rounded-xl overflow-hidden">
+    <div className="rounded-xl overflow-hidden" style={{ backgroundColor: '#c4bec4' }}>
       <button onClick={() => setExpanded(!expanded)} className="w-full p-3 text-left flex items-center justify-between">
         <div>
           <h3 className="text-sm font-medium text-gray-800">{name}</h3>
@@ -555,7 +555,7 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
   const searchQuery = encodeURIComponent(makeModel + ' ' + issue.title);
 
   return (
-    <div className="rounded-xl overflow-hidden" style={{ backgroundColor: '#9D9BA2' }}>
+    <div className="rounded-xl overflow-hidden" style={{ backgroundColor: '#c4bec4' }}>
       <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
@@ -732,7 +732,7 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
 function RecallCard({ recall }: { recall: RecallItem }) {
   const [expanded, setExpanded] = useState(false);
   return (
-    <div className={'bg-gray-50 rounded-xl overflow-hidden ' + (recall.parkIt ? 'ring-2 ring-red-400' : '')}>
+    <div className={'rounded-xl overflow-hidden ' + (recall.parkIt ? 'ring-2 ring-red-400' : '')} style={{ backgroundColor: '#c4bec4' }}>
       <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
