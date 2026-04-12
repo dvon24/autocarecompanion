@@ -60,7 +60,7 @@ const TASK_NAMES: Record<string, string> = {
 
 const AFFILIATE_TAG = 'au7o-20';
 
-const DEEP_SHADOW = '0 50px 100px -20px rgba(50, 50, 93, 0.25), 0 30px 60px -30px rgba(0, 0, 0, 0.3)';
+const DEEP_SHADOW = 'rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px';
 
 export function VehicleDashboard({
   vehicle, slug, issues, recalls, cachedParts, specsSummary,
