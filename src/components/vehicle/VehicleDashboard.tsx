@@ -566,18 +566,20 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
       </button>
 
       {expanded && (
-        <div className="px-4 pb-4 space-y-4">
+        <div className="px-4 pb-4 space-y-0">
           {/* Description */}
-          <p className="text-sm text-gray-600 leading-relaxed">{issue.description}</p>
+          <div className="py-3">
+            <p className="text-sm leading-relaxed" style={{ color: '#55535B' }}>{issue.description}</p>
+          </div>
 
           {/* DTC Codes */}
           {issue.dtcCodes && issue.dtcCodes.length > 0 && (
-            <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase mb-1.5">Error Codes</p>
-              <div className="flex gap-1.5 flex-wrap">
+            <div className="py-3" style={{ borderTop: '1px solid #EBEAEC' }}>
+              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#EBEAEC', color: '#3C313D' }}>Error Codes</p>
+              <div className="flex gap-1.5 flex-wrap mt-2">
                 {issue.dtcCodes.map(code => (
                   <Link key={code} href={'/known-issues/dtc/' + code.toLowerCase()}
-                    className="text-[10px] font-mono px-2 py-1 bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100 transition-colors">
+                    className="text-[10px] font-mono px-2.5 py-1 rounded-md hover:opacity-80 transition-opacity" style={{ backgroundColor: '#3C313D', color: '#EBEAEC' }}>
                     {code}
                   </Link>
                 ))}
@@ -587,12 +589,12 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
 
           {/* Symptoms */}
           {issue.symptoms && issue.symptoms.length > 0 && (
-            <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase mb-1.5">Common Symptoms</p>
-              <ul className="space-y-1">
+            <div className="py-3" style={{ borderTop: '1px solid #EBEAEC' }}>
+              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#EBEAEC', color: '#3C313D' }}>Common Symptoms</p>
+              <ul className="space-y-1 mt-2">
                 {issue.symptoms.map((s, i) => (
-                  <li key={i} className="text-xs text-gray-600 flex gap-2">
-                    <span className="text-gray-400 mt-0.5 flex-shrink-0">&bull;</span>
+                  <li key={i} className="text-xs flex gap-2" style={{ color: '#55535B' }}>
+                    <span className="mt-0.5 flex-shrink-0" style={{ color: '#9D9BA2' }}>&bull;</span>
                     <span>{s}</span>
                   </li>
                 ))}
@@ -602,20 +604,20 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
 
           {/* Solution / How to Fix */}
           {issue.solution && (
-            <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase mb-1.5">How to Fix</p>
-              <p className="text-xs text-gray-600 leading-relaxed">{issue.solution}</p>
+            <div className="py-3" style={{ borderTop: '1px solid #EBEAEC' }}>
+              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#EBEAEC', color: '#3C313D' }}>How to Fix</p>
+              <p className="text-xs leading-relaxed mt-2" style={{ color: '#55535B' }}>{issue.solution}</p>
             </div>
           )}
 
           {/* Community Recommendations */}
           {recs.length > 0 && (
-            <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase mb-1.5">
+            <div className="py-3" style={{ borderTop: '1px solid #EBEAEC' }}>
+              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#EBEAEC', color: '#3C313D' }}>
                 What Owners Are Using
-                {issue.reportCount > 0 && <span className="normal-case font-normal text-gray-400 ml-1">from {issue.reportCount}+ owners</span>}
               </p>
-              <div className="space-y-2">
+              {issue.reportCount > 0 && <span className="text-[10px] ml-2" style={{ color: '#9D9BA2' }}>from {issue.reportCount}+ owners</span>}
+              <div className="space-y-2 mt-2">
                 {recs.map((r: any, i: number) => {
                   const content = r.content || r.text || r.name || (typeof r === 'string' ? r : '');
                   if (!content) return null;
@@ -625,16 +627,19 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
                     : null);
 
                   return (
-                    <div key={i} className="bg-white rounded-lg p-2.5">
+                    <div key={i} className="bg-white rounded-lg p-2.5" style={{ border: '1px solid #EBEAEC' }}>
                       <div className="flex items-start gap-2">
-                        <span className={'flex-shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded ' + (isPartRec ? 'bg-green-50 text-green-700' : 'bg-gray-100 text-gray-500')}>
-                          {isPartRec ? 'Part' : 'Tip'}
+                        <span className="flex-shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded" style={{
+                          backgroundColor: isPartRec ? '#EBEAEC' : '#EBEAEC',
+                          color: isPartRec ? '#3C313D' : '#55535B',
+                        }}>
+                          {isPartRec ? 'Upgrade' : 'Tip'}
                         </span>
-                        <p className="text-xs text-gray-600 flex-1">{content}</p>
+                        <p className="text-xs flex-1" style={{ color: '#55535B' }}>{content}</p>
                       </div>
                       {affiliateUrl && (
                         <a href={affiliateUrl} target="_blank" rel="noopener noreferrer"
-                          className="inline-block mt-1.5 ml-7 text-[10px] font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded transition-colors">
+                          className="inline-block mt-1.5 ml-7 text-[10px] font-medium px-2.5 py-1 rounded transition-colors hover:opacity-80" style={{ backgroundColor: '#3C313D', color: '#EBEAEC' }}>
                           View on Amazon
                         </a>
                       )}
@@ -647,25 +652,25 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
 
           {/* Cost */}
           {issue.estimatedCost && (
-            <div className="flex items-center gap-2 text-xs text-gray-500">
-              <span className="font-semibold uppercase">Typical repair cost:</span>
-              <span className="text-gray-800 font-medium">{'$' + issue.estimatedCost.low.toLocaleString() + ' - $' + issue.estimatedCost.high.toLocaleString()}</span>
+            <div className="py-3 flex items-center gap-2 text-xs" style={{ borderTop: '1px solid #EBEAEC' }}>
+              <span className="font-semibold uppercase" style={{ color: '#9D9BA2' }}>Typical repair cost:</span>
+              <span className="font-bold" style={{ color: '#18141D' }}>{'$' + issue.estimatedCost.low.toLocaleString() + ' - $' + issue.estimatedCost.high.toLocaleString()}</span>
             </div>
           )}
 
           {/* References / Citations */}
           {citations.length > 0 && (
-            <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase mb-1.5">References</p>
-              <ul className="space-y-1">
+            <div className="py-3" style={{ borderTop: '1px solid #EBEAEC' }}>
+              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#EBEAEC', color: '#3C313D' }}>References</p>
+              <ul className="space-y-1 mt-2">
                 {citations.map((c: any, i: number) => (
                   <li key={i} className="text-xs">
                     {c.url ? (
-                      <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline underline-offset-2">
+                      <a href={c.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-70" style={{ color: '#3C313D' }}>
                         {c.title || c.url}
                       </a>
                     ) : (
-                      <span className="text-gray-600">{c.title || (typeof c === 'string' ? c : '')}</span>
+                      <span style={{ color: '#55535B' }}>{c.title || (typeof c === 'string' ? c : '')}</span>
                     )}
                   </li>
                 ))}
@@ -674,20 +679,31 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
           )}
 
           {/* Research Links */}
-          <div>
-            <p className="text-xs font-semibold text-gray-500 uppercase mb-1.5">Research This Issue</p>
-            <div className="flex gap-2 flex-wrap">
-              <a href={'https://www.google.com/search?q=' + searchQuery} target="_blank" rel="noopener noreferrer" className="text-[10px] px-2.5 py-1 bg-white rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors">Google</a>
-              <a href={'https://www.reddit.com/search/?q=' + searchQuery} target="_blank" rel="noopener noreferrer" className="text-[10px] px-2.5 py-1 bg-white rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors">Reddit</a>
-              <a href={'https://www.youtube.com/results?search_query=' + searchQuery} target="_blank" rel="noopener noreferrer" className="text-[10px] px-2.5 py-1 bg-white rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors">YouTube</a>
-              <a href={'https://www.nhtsa.gov/vehicle-safety/search-results?keyword=' + searchQuery} target="_blank" rel="noopener noreferrer" className="text-[10px] px-2.5 py-1 bg-white rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors">NHTSA</a>
+          <div className="py-3" style={{ borderTop: '1px solid #EBEAEC' }}>
+            <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#EBEAEC', color: '#3C313D' }}>Research This Issue</p>
+            <div className="flex gap-2 flex-wrap mt-2">
+              {[
+                { label: 'Google', url: 'https://www.google.com/search?q=' + searchQuery },
+                { label: 'Reddit', url: 'https://www.reddit.com/search/?q=' + searchQuery },
+                { label: 'YouTube', url: 'https://www.youtube.com/results?search_query=' + searchQuery },
+                { label: 'NHTSA', url: 'https://www.nhtsa.gov/vehicle-safety/search-results?keyword=' + searchQuery },
+              ].map(link => (
+                <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer"
+                  className="text-[10px] px-2.5 py-1.5 rounded-md transition-colors hover:opacity-80"
+                  style={{ backgroundColor: '#3C313D', color: '#EBEAEC' }}>
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Meta info */}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] text-gray-400 pt-2">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] pt-3" style={{ borderTop: '1px solid #EBEAEC', color: '#9D9BA2' }}>
             {issue.source && (
-              <span className={'px-1.5 py-0.5 rounded ' + (issue.source === 'nhtsa-verified' ? 'bg-green-50 text-green-600' : issue.source === 'manual' ? 'bg-blue-50 text-blue-600' : 'bg-gray-100 text-gray-500')}>
+              <span className="px-1.5 py-0.5 rounded" style={{
+                backgroundColor: issue.source === 'nhtsa-verified' ? '#EBEAEC' : '#EBEAEC',
+                color: issue.source === 'nhtsa-verified' ? '#3C313D' : '#55535B',
+              }}>
                 {issue.source === 'nhtsa-verified' ? 'NHTSA Verified' : issue.source === 'manual' ? 'Manually Verified' : 'Community Reported'}
               </span>
             )}
@@ -698,12 +714,15 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
           </div>
 
           {/* Ask AI button */}
-          <button
-            onClick={onAskAI}
-            className="text-xs font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-lg transition-colors"
-          >
-            Ask AI about this issue &rarr;
-          </button>
+          <div className="pt-3">
+            <button
+              onClick={onAskAI}
+              className="text-xs font-medium px-3 py-2 rounded-lg transition-colors hover:opacity-80"
+              style={{ backgroundColor: '#3C313D', color: '#EBEAEC' }}
+            >
+              Ask AI about this issue &rarr;
+            </button>
+          </div>
         </div>
       )}
     </div>
