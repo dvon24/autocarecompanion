@@ -176,7 +176,7 @@ export function VehicleDashboard({
         <div className="flex-shrink-0 py-4 px-3">
           {sidebarOpen ? (
             <div className="flex items-center gap-2 px-1">
-              <Image src="/icons/icon-192.png" alt="Au7o" width={32} height={32} className="flex-shrink-0"  />
+              <Image src="/icons/icon-192.png" alt="Au7o" width={32} height={32} className="flex-shrink-0" style={styledTheme ? { filter: 'hue-rotate(240deg) saturate(1.5)' } : undefined} />
               <span className="text-lg font-bold text-gray-900 tracking-tight">
                 Au<span style={{ color: styledTheme ? '#3C313D' : '#2563eb' }}>7</span>o
               </span>
@@ -188,7 +188,7 @@ export function VehicleDashboard({
             </div>
           ) : (
             <button onClick={() => setSidebarOpen(true)} className="w-full flex justify-center">
-              <Image src="/icons/icon-192.png" alt="Au7o" width={32} height={32}  />
+              <Image src="/icons/icon-192.png" alt="Au7o" width={32} height={32} style={styledTheme ? { filter: 'hue-rotate(240deg) saturate(1.5)' } : undefined} />
             </button>
           )}
         </div>
@@ -382,7 +382,7 @@ export function VehicleDashboard({
               <div className="flex-1 flex flex-col space-y-1 min-h-0">
                 {chatMessages.length === 0 && (
                   <div className="text-center py-6">
-                    <Image src="/icons/icon-192.png" alt="Au7o" width={48} height={48} className="mx-auto mb-3"  />
+                    <Image src="/icons/icon-192.png" alt="Au7o" width={48} height={48} className="mx-auto mb-3" style={styledTheme ? { filter: 'hue-rotate(240deg) saturate(1.5)' } : undefined} />
                     <h2 className="text-base font-semibold text-gray-800">How can I help with your {vehicle.make} {vehicle.model}?</h2>
                     <p className="text-sm text-gray-400 mt-1">Parts, diagnostics, maintenance, costs</p>
 
