@@ -182,6 +182,14 @@ export function VehicleDashboard({
 
         {/* Nav items */}
         <nav className="flex-1 px-2 space-y-1">
+          <Link
+            href="/"
+            className={'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors ' + (sidebarOpen ? '' : 'justify-center')}
+            title="Home"
+          >
+            <span className="flex-shrink-0 w-5 h-5"><IconHome /></span>
+            {sidebarOpen && <span className="flex-1 text-left">Home</span>}
+          </Link>
           {NAV_ITEMS.map(item => {
             const isActive = activeSection === item.id;
             const count = item.id === 'recalls' ? recalls.length
@@ -227,7 +235,7 @@ export function VehicleDashboard({
 
       {/* Main */}
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        <div className="flex-1 overflow-y-auto p-4 sm:p-8 pt-8 sm:pt-10 pb-6 flex flex-col gap-8">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-8 pt-10 sm:pt-12 pb-6 flex flex-col gap-8">
           {/* Vehicle Profile Card */}
           <div className="bg-white rounded-lg p-5 flex-shrink-0" style={{ boxShadow: DEEP_SHADOW }}>
             <div className="flex items-center gap-4 mb-4">
@@ -380,6 +388,10 @@ export function VehicleDashboard({
       {/* Mobile Bottom Nav */}
       <nav className="flex-shrink-0 sm:hidden bg-white" style={{ boxShadow: '0 -1px 3px rgba(0,0,0,0.1)' }}>
         <div className="flex justify-around py-2">
+          <Link href="/" className="flex flex-col items-center gap-0.5 px-2 py-1 text-gray-400">
+            <span className="w-5 h-5"><IconHome /></span>
+            <span className="text-[10px]">Home</span>
+          </Link>
           {NAV_ITEMS.map(item => (
             <button
               key={item.id}
@@ -508,6 +520,9 @@ function RecallCard({ recall }: { recall: RecallItem }) {
 }
 
 // Icons
+function IconHome() {
+  return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>;
+}
 function IconParts() {
   return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1-5.1m0 0L3.07 12.32c-.84.84-.84 2.2 0 3.04l5.58 5.58c.84.84 2.2.84 3.04 0l2.24-2.24m-5.58-8.4l7.12-7.12c.84-.84 2.2-.84 3.04 0l1.41 1.41c.84.84.84 2.2 0 3.04L13.36 15.17" /></svg>;
 }
