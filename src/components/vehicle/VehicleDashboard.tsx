@@ -16,7 +16,7 @@ interface VehicleTuple {
 interface KnownIssue {
   id: string; title: string; description: string; severity: string;
   category: string; reportCount: number;
-  estimatedCost?: { min: number; max: number };
+  estimatedCost?: { low: number; high: number };
   vehicleMatch: { years: number[]; trims?: string[] };
   symptoms?: string[]; solutions?: string[];
   communityRecommendations?: any[]; dtcCodes?: string[];
@@ -517,7 +517,7 @@ function IssueCard({ issue }: { issue: KnownIssue }) {
         <div className="flex-1 min-w-0">
           <h3 className="text-sm font-medium text-gray-900">{issue.title}</h3>
           {issue.estimatedCost && (
-            <p className="text-xs text-gray-500 mt-0.5">{'$' + issue.estimatedCost.min + ' - $' + issue.estimatedCost.max}</p>
+            <p className="text-xs text-gray-500 mt-0.5">{'$' + issue.estimatedCost.low + ' - $' + issue.estimatedCost.high}</p>
           )}
         </div>
         <span className={'flex-shrink-0 px-2 py-0.5 text-[10px] font-medium rounded-full ' + (sevColor[issue.severity] || sevColor.low)}>
@@ -546,7 +546,7 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
           <div className="flex-1 min-w-0">
             <h3 className="text-sm font-medium text-gray-900">{issue.title}</h3>
             {issue.estimatedCost && (
-              <p className="text-xs text-gray-500 mt-0.5">{'$' + issue.estimatedCost.min + ' - $' + issue.estimatedCost.max}</p>
+              <p className="text-xs text-gray-500 mt-0.5">{'$' + issue.estimatedCost.low + ' - $' + issue.estimatedCost.high}</p>
             )}
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
@@ -583,10 +583,23 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
           {recs.length > 0 && (
             <div>
               <p className="text-xs font-semibold text-gray-500 uppercase mb-1">What Owners Are Using</p>
-              <ul className="space-y-0.5">
-                {recs.map((r: any, i: number) => (
-                  <li key={i} className="text-xs text-gray-600">- {r.text || r.name || (typeof r === 'string' ? r : JSON.stringify(r))}</li>
-                ))}
+              <ul className="space-y-1.5">
+                {recs.map((r: any, i: number) => {
+                  const content = r.content || r.text || r.name || (typeof r === 'string' ? r : '');
+                  if (!content) return null;
+                  const partInfo = r.partBrand && r.partNumber ? r.partBrand + ' ' + (r.partName || '') + ' (' + r.partNumber + ')' : null;
+                  const affiliateUrl = r.affiliateUrl || (r.partNumber ? 'https://www.amazon.com/s?k=' + encodeURIComponent((r.partBrand || '') + ' ' + r.partNumber) + '&tag=' + AFFILIATE_TAG : null);
+                  return (
+                    <li key={i} className="text-xs text-gray-600">
+                      <span>- {content}</span>
+                      {partInfo && affiliateUrl && (
+                        <a href={affiliateUrl} target="_blank" rel="noopener noreferrer" className="ml-1 text-blue-600 hover:text-blue-800 underline">
+                          Buy on Amazon
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           )}
@@ -623,7 +636,7 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
 
           <button
             onClick={onAskAI}
-            className="text-xs font-medium text-blue-600 hover:text-blue-800 mt-2"
+            className="text-xs font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-lg transition-colors mt-2"
           >
             Ask AI about this issue &rarr;
           </button>

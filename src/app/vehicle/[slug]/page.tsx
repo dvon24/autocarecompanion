@@ -106,10 +106,28 @@ export default async function VehicleProfilePage({
     Promise.resolve(getVehicleSpecs({ year, make, model, trim })),
   ]);
 
-  // Filter issues relevant to this year
-  const yearIssues = issues.filter(issue =>
-    issue.vehicleMatch.years.includes(year)
-  );
+  // Filter issues relevant to this year AND trim/engine
+  const trimLower = trim.toLowerCase();
+  const engineStr = specs?.engine?.toLowerCase() || '';
+  const yearIssues = issues.filter(issue => {
+    if (!issue.vehicleMatch.years.includes(year)) return false;
+    // If issue specifies engines, only show if our trim/engine matches
+    if (issue.vehicleMatch.engines && issue.vehicleMatch.engines.length > 0) {
+      const engineMatch = issue.vehicleMatch.engines.some((e: string) => {
+        const eLower = e.toLowerCase();
+        return trimLower.includes(eLower) || eLower.includes(trimLower) || engineStr.includes(eLower);
+      });
+      if (!engineMatch) return false;
+    }
+    // If issue specifies trims, only show if our trim matches
+    if (issue.vehicleMatch.trims && issue.vehicleMatch.trims.length > 0) {
+      const trimMatch = issue.vehicleMatch.trims.some((t: string) =>
+        trimLower.includes(t.toLowerCase()) || t.toLowerCase().includes(trimLower)
+      );
+      if (!trimMatch) return false;
+    }
+    return true;
+  });
 
   // Build specs summary for the cheat sheet
   const specsSummary: Record<string, string> = {};
