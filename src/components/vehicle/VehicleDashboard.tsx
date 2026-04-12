@@ -547,20 +547,20 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
   const searchQuery = encodeURIComponent(makeModel + ' ' + issue.title);
 
   return (
-    <div className="rounded-xl overflow-hidden" style={{ backgroundColor: '#3C313D' }}>
+    <div className="rounded-xl overflow-hidden" style={{ backgroundColor: '#9d989e' }}>
       <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-medium" style={{ color: '#EBEAEC' }}>{issue.title}</h3>
+            <h3 className="text-sm font-medium" style={{ color: '#18141D' }}>{issue.title}</h3>
             {issue.estimatedCost && (
-              <p className="text-xs mt-0.5" style={{ color: '#9D9BA2' }}>Typical repair cost: {'$' + issue.estimatedCost.low.toLocaleString() + ' - $' + issue.estimatedCost.high.toLocaleString()}</p>
+              <p className="text-xs mt-0.5" style={{ color: '#3C313D' }}>Typical repair cost: {'$' + issue.estimatedCost.low.toLocaleString() + ' - $' + issue.estimatedCost.high.toLocaleString()}</p>
             )}
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
             <span className={'px-2 py-0.5 text-[10px] font-medium rounded-full ' + (sevColor[issue.severity] || sevColor.low)}>
               {issue.severity}
             </span>
-            <svg className={'w-4 h-4 transition-transform ' + (expanded ? 'rotate-180' : '')} style={{ color: '#9D9BA2' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            <svg className={'w-4 h-4 transition-transform ' + (expanded ? 'rotate-180' : '')} style={{ color: '#3C313D' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
           </div>
         </div>
       </button>
@@ -569,12 +569,12 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
         <div className="px-4 pb-4 space-y-0">
           {/* Description */}
           <div className="py-3">
-            <p className="text-sm leading-relaxed" style={{ color: '#EBEAEC' }}>{issue.description}</p>
+            <p className="text-sm leading-relaxed" style={{ color: '#3C313D' }}>{issue.description}</p>
           </div>
 
           {/* DTC Codes */}
           {issue.dtcCodes && issue.dtcCodes.length > 0 && (
-            <div className="py-3" style={{ borderTop: '1px solid #55535B' }}>
+            <div className="py-3" style={{ borderTop: '1px solid #8a858c' }}>
               <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#3C313D', color: '#EBEAEC' }}>Common error codes that may appear</p>
               <div className="flex gap-1.5 flex-wrap mt-2">
                 {issue.dtcCodes.map(code => (
@@ -589,12 +589,12 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
 
           {/* Symptoms */}
           {issue.symptoms && issue.symptoms.length > 0 && (
-            <div className="py-3" style={{ borderTop: '1px solid #55535B' }}>
-              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#55535B', color: '#EBEAEC' }}>Common Symptoms</p>
+            <div className="py-3" style={{ borderTop: '1px solid #8a858c' }}>
+              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#3C313D', color: '#EBEAEC' }}>Common Symptoms</p>
               <ul className="space-y-1 mt-2">
                 {issue.symptoms.map((s, i) => (
-                  <li key={i} className="text-xs flex gap-2" style={{ color: '#9D9BA2' }}>
-                    <span className="mt-0.5 flex-shrink-0" style={{ color: '#9D9BA2' }}>&bull;</span>
+                  <li key={i} className="text-xs flex gap-2" style={{ color: '#3C313D' }}>
+                    <span className="mt-0.5 flex-shrink-0" style={{ color: '#3C313D' }}>&bull;</span>
                     <span>{s}</span>
                   </li>
                 ))}
@@ -604,19 +604,19 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
 
           {/* Solution / How to Fix */}
           {issue.solution && (
-            <div className="py-3" style={{ borderTop: '1px solid #55535B' }}>
-              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#55535B', color: '#EBEAEC' }}>How to Fix</p>
-              <p className="text-xs leading-relaxed mt-2" style={{ color: '#9D9BA2' }}>{issue.solution}</p>
+            <div className="py-3" style={{ borderTop: '1px solid #8a858c' }}>
+              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#3C313D', color: '#EBEAEC' }}>How to Fix</p>
+              <p className="text-xs leading-relaxed mt-2" style={{ color: '#3C313D' }}>{issue.solution}</p>
             </div>
           )}
 
           {/* Community Recommendations */}
           {recs.length > 0 && (
-            <div className="py-3" style={{ borderTop: '1px solid #55535B' }}>
-              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#55535B', color: '#EBEAEC' }}>
+            <div className="py-3" style={{ borderTop: '1px solid #8a858c' }}>
+              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#3C313D', color: '#EBEAEC' }}>
                 What Owners Are Using
               </p>
-              {issue.reportCount > 0 && <span className="text-[10px] ml-2" style={{ color: '#9D9BA2' }}>from {issue.reportCount}+ owners</span>}
+              {issue.reportCount > 0 && <span className="text-[10px] ml-2" style={{ color: '#3C313D' }}>from {issue.reportCount}+ owners</span>}
               <div className="space-y-2 mt-2">
                 {recs.map((r: any, i: number) => {
                   const content = r.content || r.text || r.name || (typeof r === 'string' ? r : '');
@@ -627,7 +627,7 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
                     : null);
 
                   return (
-                    <div key={i} className="rounded-lg p-2.5" style={{ backgroundColor: '#18141D', border: '1px solid #55535B' }}>
+                    <div key={i} className="rounded-lg p-2.5" style={{ backgroundColor: '#EBEAEC', border: '1px solid #9D9BA2' }}>
                       <div className="flex items-start gap-2">
                         <span className="flex-shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded" style={{
                           backgroundColor: isPartRec ? '#55535B' : '#55535B',
@@ -635,7 +635,7 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
                         }}>
                           {isPartRec ? 'Upgrade' : 'Tip'}
                         </span>
-                        <p className="text-xs flex-1" style={{ color: '#EBEAEC' }}>{content}</p>
+                        <p className="text-xs flex-1" style={{ color: '#3C313D' }}>{content}</p>
                       </div>
                       {affiliateUrl && (
                         <a href={affiliateUrl} target="_blank" rel="noopener noreferrer"
@@ -652,17 +652,17 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
 
           {/* References / Citations */}
           {citations.length > 0 && (
-            <div className="py-3" style={{ borderTop: '1px solid #55535B' }}>
-              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#55535B', color: '#EBEAEC' }}>References</p>
+            <div className="py-3" style={{ borderTop: '1px solid #8a858c' }}>
+              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#3C313D', color: '#EBEAEC' }}>References</p>
               <ul className="space-y-1 mt-2">
                 {citations.map((c: any, i: number) => (
                   <li key={i} className="text-xs">
                     {c.url ? (
-                      <a href={c.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-70" style={{ color: '#EBEAEC' }}>
+                      <a href={c.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-70" style={{ color: '#18141D' }}>
                         {c.title || c.url}
                       </a>
                     ) : (
-                      <span style={{ color: '#9D9BA2' }}>{c.title || (typeof c === 'string' ? c : '')}</span>
+                      <span style={{ color: '#3C313D' }}>{c.title || (typeof c === 'string' ? c : '')}</span>
                     )}
                   </li>
                 ))}
@@ -671,8 +671,8 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
           )}
 
           {/* Research Links */}
-          <div className="py-3" style={{ borderTop: '1px solid #55535B' }}>
-            <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#55535B', color: '#EBEAEC' }}>Research This Issue</p>
+          <div className="py-3" style={{ borderTop: '1px solid #8a858c' }}>
+            <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={{ backgroundColor: '#3C313D', color: '#EBEAEC' }}>Research This Issue</p>
             <div className="flex gap-2 flex-wrap mt-2">
               {[
                 { label: 'Google', url: 'https://www.google.com/search?q=' + searchQuery },
