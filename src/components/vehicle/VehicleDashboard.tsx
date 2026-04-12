@@ -547,7 +547,7 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
   const searchQuery = encodeURIComponent(makeModel + ' ' + issue.title);
 
   return (
-    <div className="rounded-xl overflow-hidden" style={{ backgroundColor: '#9d989e' }}>
+    <div className="rounded-xl overflow-hidden" style={{ backgroundColor: '#9D9BA2' }}>
       <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
@@ -627,7 +627,7 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
                     : null);
 
                   return (
-                    <div key={i} className="rounded-lg p-2.5" style={{ backgroundColor: '#EBEAEC', border: '1px solid #9D9BA2' }}>
+                    <div key={i} className="rounded-lg p-2.5" style={{ backgroundColor: '#EBEAEC', border: '1px solid #3C313D' }}>
                       <div className="flex items-start gap-2">
                         <span className="flex-shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded" style={{
                           backgroundColor: isPartRec ? '#55535B' : '#55535B',
@@ -690,7 +690,7 @@ function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () 
           </div>
 
           {/* Meta info */}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] pt-3" style={{ borderTop: '1px solid #EBEAEC', color: '#9D9BA2' }}>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] pt-3" style={{ borderTop: '1px solid #8a858c', color: '#EBEAEC' }}>
             {issue.source && (
               <span className="px-1.5 py-0.5 rounded" style={{
                 backgroundColor: issue.source === 'nhtsa-verified' ? '#EBEAEC' : '#EBEAEC',
