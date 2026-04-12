@@ -498,9 +498,10 @@ function PartCard({ task, parts }: { task: string; parts: any[] }) {
               <div className="min-w-0">
                 <p className="text-xs text-gray-700 truncate">{p.brand || ''} {p.name || p.partNumber || ''}</p>
                 {p.partNumber && <p className="text-[10px] text-gray-400 font-mono">{p.partNumber}</p>}
+                {p.spec && <p className="text-[10px] text-gray-400">{p.spec}</p>}
               </div>
-              {p.partNumber && (
-                <a href={'https://www.amazon.com/s?k=' + encodeURIComponent((p.brand || '') + ' ' + p.partNumber) + '&tag=' + AFFILIATE_TAG}
+              {(p.affiliateUrl || p.partNumber) && (
+                <a href={p.affiliateUrl || ('https://www.amazon.com/s?k=' + encodeURIComponent((p.brand || '') + ' ' + p.partNumber) + '&tag=' + AFFILIATE_TAG)}
                   target="_blank" rel="noopener noreferrer"
                   className="flex-shrink-0 text-[10px] px-2 py-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 transition-colors">
                   Amazon
