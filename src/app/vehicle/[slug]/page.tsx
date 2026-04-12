@@ -144,13 +144,93 @@ export default async function VehicleProfilePage({
     if (specs.brakeFluid) specsSummary.brakeFluid = specs.brakeFluid.type;
   }
 
+  // Generate parts from vehicle specs (always available, no seeding needed)
+  const tag = 'au7o-20';
+  const specsParts: { task: string; parts: any[]; source: string }[] = [];
+  const cachedTasks = new Set(cachedParts.map(p => p.task));
+
+  if (specs) {
+    if (specs.oil && !cachedTasks.has('oil_change')) {
+      const parts: any[] = [];
+      parts.push({
+        name: 'Engine Oil',
+        spec: specs.oil.type + ' · ' + specs.oil.capacity,
+        brand: specs.oil.type.includes('0W-40') ? 'Mobil 1' : specs.oil.type.includes('5W-30') ? 'Castrol' : 'Valvoline',
+        partNumber: '',
+        searchQuery: specs.oil.type + ' ' + make + ' ' + model,
+        affiliateUrl: 'https://www.amazon.com/s?k=' + encodeURIComponent(specs.oil.type + ' motor oil') + '&tag=' + tag,
+      });
+      if (specs.oil.filterPartNumber) {
+        parts.push({
+          name: 'Oil Filter',
+          spec: specs.oil.filterPartNumber,
+          brand: specs.oil.filterPartNumber.startsWith('PF') ? 'ACDelco' : 'OEM',
+          partNumber: specs.oil.filterPartNumber,
+          searchQuery: specs.oil.filterPartNumber,
+          affiliateUrl: 'https://www.amazon.com/s?k=' + encodeURIComponent(specs.oil.filterPartNumber) + '&tag=' + tag,
+        });
+      }
+      if (specs.oil.drainPlugSize) {
+        parts.push({ name: 'Drain Plug Socket', spec: specs.oil.drainPlugSize, brand: '', partNumber: '', searchQuery: specs.oil.drainPlugSize + ' socket' });
+      }
+      specsParts.push({ task: 'oil_change', parts, source: 'specs' });
+    }
+    if (specs.sparkPlugs && !cachedTasks.has('spark_plugs')) {
+      specsParts.push({ task: 'spark_plugs', parts: [{
+        name: 'Spark Plug (x' + specs.sparkPlugs.quantity + ')',
+        spec: 'Gap: ' + specs.sparkPlugs.gap + ' · Torque: ' + specs.sparkPlugs.torque,
+        brand: specs.sparkPlugs.partNumber.includes('41') ? 'ACDelco' : 'NGK',
+        partNumber: specs.sparkPlugs.partNumber,
+        searchQuery: specs.sparkPlugs.partNumber,
+        affiliateUrl: 'https://www.amazon.com/s?k=' + encodeURIComponent(specs.sparkPlugs.partNumber) + '&tag=' + tag,
+      }], source: 'specs' });
+    }
+    if (specs.coolant && !cachedTasks.has('coolant_flush')) {
+      specsParts.push({ task: 'coolant_flush', parts: [{
+        name: 'Coolant',
+        spec: specs.coolant.type + ' · ' + specs.coolant.capacity,
+        brand: '', partNumber: '',
+        searchQuery: specs.coolant.type + ' ' + make,
+        affiliateUrl: 'https://www.amazon.com/s?k=' + encodeURIComponent(specs.coolant.type + ' coolant') + '&tag=' + tag,
+      }], source: 'specs' });
+    }
+    if (specs.transmission && !cachedTasks.has('transmission_fluid')) {
+      specsParts.push({ task: 'transmission_fluid', parts: [{
+        name: 'Transmission Fluid',
+        spec: specs.transmission.type + ' · ' + specs.transmission.capacity,
+        brand: '', partNumber: '',
+        searchQuery: specs.transmission.type,
+        affiliateUrl: 'https://www.amazon.com/s?k=' + encodeURIComponent(specs.transmission.type) + '&tag=' + tag,
+      }], source: 'specs' });
+    }
+    if (specs.brakeFluid && !cachedTasks.has('brake_fluid')) {
+      specsParts.push({ task: 'brake_fluid', parts: [{
+        name: 'Brake Fluid',
+        spec: specs.brakeFluid.type,
+        brand: '', partNumber: '',
+        searchQuery: specs.brakeFluid.type + ' brake fluid',
+        affiliateUrl: 'https://www.amazon.com/s?k=' + encodeURIComponent(specs.brakeFluid.type + ' brake fluid') + '&tag=' + tag,
+      }], source: 'specs' });
+    }
+    if (specs.lug && !cachedTasks.has('tire_rotation')) {
+      specsParts.push({ task: 'tire_rotation', parts: [{
+        name: 'Lug ' + (specs.lug.useBolts ? 'Bolt' : 'Nut') + ' Socket',
+        spec: specs.lug.size + ' · Torque: ' + specs.lug.torque,
+        brand: '', partNumber: '',
+        searchQuery: specs.lug.size + ' lug socket',
+      }], source: 'specs' });
+    }
+  }
+
+  const allParts = [...cachedParts, ...specsParts];
+
   return (
     <VehicleDashboard
       vehicle={vehicle}
       slug={slug}
       issues={JSON.parse(JSON.stringify(yearIssues))}
       recalls={JSON.parse(JSON.stringify(recalls))}
-      cachedParts={JSON.parse(JSON.stringify(cachedParts))}
+      cachedParts={JSON.parse(JSON.stringify(allParts))}
       specsSummary={specsSummary}
     />
   );
