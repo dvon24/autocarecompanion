@@ -305,8 +305,6 @@ export default function TermsPage() {
             <div className="bg-gray-50 rounded-lg p-4 mt-4">
               <p className="text-gray-700">
                 <strong>Dvon Invest LLC</strong><br />
-                3257 Stiles Avenue<br />
-                Camarillo, California 93010<br />
                 Email: <a href="mailto:dvoninvestllc@yahoo.com" className="text-blue-600 hover:underline">dvoninvestllc@yahoo.com</a>
               </p>
             </div>

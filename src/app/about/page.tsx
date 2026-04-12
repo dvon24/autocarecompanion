@@ -29,14 +29,6 @@ export default function AboutPage() {
               Au<span className="text-blue-600">7</span>o
             </span>
           </Link>
-          <div className="flex items-center gap-3">
-            <Link href="/known-issues" className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-              Known Issues
-            </Link>
-            <Link href="/get-started" className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
-              Get Started
-            </Link>
-          </div>
         </div>
       </header>
 
