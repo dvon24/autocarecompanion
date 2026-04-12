@@ -322,9 +322,7 @@ export function VehicleDashboard({
                     <p className="text-sm text-gray-400">No documented issues for this vehicle.</p>
                   ) : (
                     issues.map(issue => (
-                      <button key={issue.id} onClick={() => sendMessage('Tell me about the "' + issue.title + '" issue on my ' + vehicleDisplay + '. What parts do I need and how much does it cost to fix?')} className="w-full text-left">
-                        <IssueCard issue={issue} />
-                      </button>
+                      <IssueCardExpanded key={issue.id} issue={issue} onAskAI={() => sendMessage('Tell me about the "' + issue.title + '" issue on my ' + vehicleDisplay + '. What parts do I need to fix it, what are owners using, and how much does it cost? Include part links.')} />
                     ))
                   )}
                 </div>
@@ -526,6 +524,111 @@ function IssueCard({ issue }: { issue: KnownIssue }) {
           {issue.severity}
         </span>
       </div>
+    </div>
+  );
+}
+
+function IssueCardExpanded({ issue, onAskAI }: { issue: KnownIssue; onAskAI: () => void }) {
+  const [expanded, setExpanded] = useState(false);
+  const sevColor: Record<string, string> = {
+    critical: 'bg-red-100 text-red-700',
+    high: 'bg-red-50 text-red-600',
+    medium: 'bg-amber-50 text-amber-700',
+    low: 'bg-gray-100 text-gray-500',
+  };
+  const recs = issue.communityRecommendations as any[] || [];
+  const citations = issue.citations as any[] || [];
+
+  return (
+    <div className="bg-gray-50 rounded-xl overflow-hidden">
+      <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left">
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-sm font-medium text-gray-900">{issue.title}</h3>
+            {issue.estimatedCost && (
+              <p className="text-xs text-gray-500 mt-0.5">{'$' + issue.estimatedCost.min + ' - $' + issue.estimatedCost.max}</p>
+            )}
+          </div>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <span className={'px-2 py-0.5 text-[10px] font-medium rounded-full ' + (sevColor[issue.severity] || sevColor.low)}>
+              {issue.severity}
+            </span>
+            <svg className={'w-4 h-4 text-gray-400 transition-transform ' + (expanded ? 'rotate-180' : '')} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+          </div>
+        </div>
+      </button>
+
+      {expanded && (
+        <div className="px-4 pb-4 space-y-3">
+          <p className="text-sm text-gray-600">{issue.description}</p>
+
+          {issue.symptoms && issue.symptoms.length > 0 && (
+            <div>
+              <p className="text-xs font-semibold text-gray-500 uppercase mb-1">Symptoms</p>
+              <ul className="space-y-0.5">
+                {issue.symptoms.map((s, i) => <li key={i} className="text-xs text-gray-600">- {s}</li>)}
+              </ul>
+            </div>
+          )}
+
+          {issue.solutions && issue.solutions.length > 0 && (
+            <div>
+              <p className="text-xs font-semibold text-gray-500 uppercase mb-1">Solutions</p>
+              <ul className="space-y-0.5">
+                {issue.solutions.map((s, i) => <li key={i} className="text-xs text-gray-600">- {s}</li>)}
+              </ul>
+            </div>
+          )}
+
+          {recs.length > 0 && (
+            <div>
+              <p className="text-xs font-semibold text-gray-500 uppercase mb-1">What Owners Are Using</p>
+              <ul className="space-y-0.5">
+                {recs.map((r: any, i: number) => (
+                  <li key={i} className="text-xs text-gray-600">- {r.text || r.name || (typeof r === 'string' ? r : JSON.stringify(r))}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {citations.length > 0 && (
+            <div>
+              <p className="text-xs font-semibold text-gray-500 uppercase mb-1">References</p>
+              <ul className="space-y-0.5">
+                {citations.map((c: any, i: number) => (
+                  <li key={i} className="text-xs">
+                    {c.url ? (
+                      <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">
+                        {c.title || c.url}
+                      </a>
+                    ) : (
+                      <span className="text-gray-600">{c.title || (typeof c === 'string' ? c : '')}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {issue.dtcCodes && issue.dtcCodes.length > 0 && (
+            <div className="flex gap-1.5 flex-wrap">
+              {issue.dtcCodes.map(code => (
+                <Link key={code} href={'/known-issues/dtc/' + code.toLowerCase()}
+                  className="text-[10px] font-mono px-2 py-0.5 bg-blue-50 text-blue-600 rounded hover:bg-blue-100">
+                  {code}
+                </Link>
+              ))}
+            </div>
+          )}
+
+          <button
+            onClick={onAskAI}
+            className="text-xs font-medium text-blue-600 hover:text-blue-800 mt-2"
+          >
+            Ask AI about this issue &rarr;
+          </button>
+        </div>
+      )}
     </div>
   );
 }

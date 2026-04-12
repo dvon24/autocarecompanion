@@ -299,11 +299,12 @@ const CHAT_TOOLS = [
     type: 'function' as const,
     function: {
       name: 'lookup_known_issues',
-      description: 'Look up known issues and common problems for the vehicle from the database. Returns issue titles, severity, symptoms, estimated costs, and solutions.',
+      description: 'Look up known issues and common problems for the vehicle from the database. Returns full details: description, symptoms, solutions, what owners are using to fix it, community recommendations, citations/references (Reddit, YouTube, forums), estimated costs, and DTC codes.',
       parameters: {
         type: 'object',
         properties: {
           category: { type: 'string', description: 'Optional category filter: engine, transmission, brakes, electrical, suspension, cooling, etc.' },
+          title: { type: 'string', description: 'Optional: search for a specific issue by title or keyword, e.g. "transmission shudder" or "steering"' },
         },
       },
     },
@@ -362,12 +363,25 @@ async function executeTool(
       if (args.category) {
         where.category = { equals: args.category, mode: 'insensitive' };
       }
-      const issues = await prisma.knownIssue.findMany({ where, take: 15, orderBy: { reportCount: 'desc' } });
+      // If searching for a specific issue title
+      if (args.title) {
+        where.title = { contains: args.title, mode: 'insensitive' };
+      }
+      const issues = await prisma.knownIssue.findMany({ where, take: 10, orderBy: { reportCount: 'desc' } });
       if (issues.length === 0) return 'No known issues found for this vehicle.';
-      return issues.map(i => {
-        const cost = (i as any).estimatedCost ? ' ($' + (i as any).estimatedCost.min + '-$' + (i as any).estimatedCost.max + ')' : '';
-        return '- [' + (i as any).severity + '] ' + i.title + cost + ': ' + ((i as any).description || '').slice(0, 150);
-      }).join('\n');
+      return issues.map((i: any) => {
+        const cost = i.estimatedCostLow ? ' (Estimated: $' + i.estimatedCostLow + '-$' + i.estimatedCostHigh + ')' : '';
+        const mileage = i.typicalMileageLow ? ' | Typical mileage: ' + i.typicalMileageLow.toLocaleString() + '-' + i.typicalMileageHigh.toLocaleString() + ' mi' : '';
+        const symptoms = i.symptoms?.length > 0 ? '\nSymptoms: ' + i.symptoms.join(', ') : '';
+        const dtcCodes = i.dtcCodes?.length > 0 ? '\nDTC codes: ' + i.dtcCodes.join(', ') : '';
+        const solution = i.solution ? '\nSolution: ' + i.solution : '';
+        const citations = i.citations ? '\nReferences: ' + (Array.isArray(i.citations) ? i.citations.map((c: any) => c.title ? c.title + (c.url ? ' (' + c.url + ')' : '') : c).join('; ') : '') : '';
+        const recs = i.communityRecommendations ? '\nWhat owners are using: ' + (Array.isArray(i.communityRecommendations) ? i.communityRecommendations.map((r: any) => r.text || r.name || (typeof r === 'string' ? r : JSON.stringify(r))).join('; ') : '') : '';
+        return '## [' + i.severity.toUpperCase() + '] ' + i.title + cost + mileage +
+          '\n' + i.description +
+          symptoms + dtcCodes + solution + recs + citations +
+          '\nSource: ' + i.source + ' | Reports: ' + i.reportCount;
+      }).join('\n\n---\n\n');
     } catch { return 'Error looking up known issues.'; }
   }
 
