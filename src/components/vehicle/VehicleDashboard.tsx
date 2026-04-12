@@ -676,6 +676,14 @@ function RecallCard({ recall }: { recall: RecallItem }) {
               <p className="text-xs text-gray-500">{recall.remedy}</p>
             </div>
           )}
+          <a
+            href={'https://www.nhtsa.gov/recalls?nhtsaId=' + recall.campaignNumber}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-xs font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-lg transition-colors mt-1"
+          >
+            View on NHTSA.gov &rarr;
+          </a>
         </div>
       )}
     </div>
