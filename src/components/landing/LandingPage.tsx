@@ -114,13 +114,6 @@ export default function LandingPage({ trendingIssues = [], stats }: { trendingIs
                 >
                   Known Issues
                 </Link>
-                {/* Parts Finder hidden until multi-agent verification is ready */}
-                <Link
-                  href="/get-started"
-                  className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
-                >
-                  Get Started
-                </Link>
               </div>
             </ScrollReveal>
           </div>
@@ -173,137 +166,15 @@ export default function LandingPage({ trendingIssues = [], stats }: { trendingIs
             <div className="w-full max-w-3xl mb-4">
               <HeroVehicleSearch />
             </div>
-            <p className="text-center text-gray-400 text-sm mb-6">
-              or{' '}
-              <Link href="/symptom-chat" className="text-blue-600 hover:text-blue-700 font-medium hover:underline">
-                describe a symptom to our AI
-              </Link>
-              {' '}&middot;{' '}
-              <Link href="/get-started" className="text-blue-600 hover:text-blue-700 font-medium hover:underline">
-                find parts &amp; repair guides
-              </Link>
-            </p>
           </ScrollReveal>
         </section>
 
-        {/* Gradient separator */}
-        <div
-          className="relative h-32 -mt-16 pointer-events-none"
-          style={{
-            background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(249, 250, 251, 0.8) 60%, rgb(249, 250, 251) 100%)',
-            zIndex: 3,
-          }}
-        />
-
-        {/* Trending Issues — Social Proof */}
-        <section
-          className="px-6 py-16 relative bg-gray-50"
-          style={{ zIndex: 3 }}
-        >
-          <div className="max-w-5xl mx-auto">
-            <ScrollReveal delay={0} duration={800}>
-              <div className="text-center mb-10">
-                <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-3">
-                  Common Vehicle Problems
-                </h2>
-                <p className="text-gray-500 max-w-lg mx-auto">
-                  The most-reported high-severity issues across all makes — with symptoms, repair costs, and community-verified solutions.
-                </p>
-              </div>
-
-              {/* Trending issue cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
-                {issues.map((item) => (
-                  <Link
-                    key={item.id}
-                    href={`/known-issues/${item.slug}`}
-                    className="bg-white border border-gray-200 rounded-xl p-4 hover:border-gray-300 hover:shadow-md transition-all duration-200 group"
-                  >
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <span className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                        {item.make} {item.model}
-                      </span>
-                      <span className={`text-xs font-medium px-2 py-0.5 rounded-full whitespace-nowrap ${severityColors[item.severity] || severityColors.medium}`}>
-                        {item.severity}
-                      </span>
-                    </div>
-                    <p className="text-sm text-gray-600 leading-snug mb-3">
-                      {item.title}
-                    </p>
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className={`text-xs font-medium px-2 py-0.5 rounded border ${getCategoryStyle(item.category)}`}>
-                        {item.category}
-                      </span>
-                      {item.yearRange && (
-                        <span className="text-xs text-gray-400">
-                          {item.yearRange}
-                        </span>
-                      )}
-                      {item.reportCount > 0 && (
-                        <span className="text-xs text-gray-400 ml-auto flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-                          </svg>
-                          {item.reportCount.toLocaleString()}
-                        </span>
-                      )}
-                    </div>
-                  </Link>
-                ))}
-              </div>
-
-              <div className="text-center">
-                <Link
-                  href="/known-issues"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-all duration-200 text-lg hover:scale-[1.02] hover:shadow-lg"
-                >
-                  Browse All Known Issues
-                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-
-        {/* Scroll-Synced Feature Section - BMAD Style */}
-        <div style={{ zIndex: 3 }} className="relative">
-          <ScrollSyncedFeatures />
-        </div>
-
         {/* Footer */}
         <footer
-          className="px-6 py-12 border-t border-gray-200 relative bg-white"
+          className="px-6 py-12 relative bg-white"
           style={{ zIndex: 3 }}
         >
           <div className="max-w-5xl mx-auto">
-            {/* CTA Section */}
-            <div className="text-center mb-12">
-              <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4">
-                Ready to start your repair?
-              </h2>
-              <p className="text-gray-500 mb-8 max-w-lg mx-auto">
-                Get expert guidance for your specific vehicle. No mechanic experience required.
-              </p>
-              <div className="flex flex-col items-center gap-6">
-                <Link
-                  href="/get-started"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-all duration-200 text-lg hover:scale-[1.02] hover:shadow-lg"
-                >
-                  Get Started Free
-                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-                <div className="w-full max-w-md">
-                  <p className="text-sm text-gray-400 mb-3">
-                    Or get notified about new features
-                  </p>
-                  <EmailCapture />
-                </div>
-              </div>
-            </div>
 
             {/* Legal Links */}
             <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400 mb-8">

@@ -24,6 +24,21 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/get-started',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/symptom-chat',
+        destination: '/',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default withSentryConfig(withPWA(nextConfig), {
