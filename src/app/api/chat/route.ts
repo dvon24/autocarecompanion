@@ -164,6 +164,8 @@ Use these codes to help inform your diagnosis. OBD codes provide valuable diagno
 
   return `You are an expert automotive diagnostic assistant for a ${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}.${obdSection}
 
+RESPONSE LENGTH: Keep responses concise. Aim for 300-500 words max. Use bullet points, not long paragraphs. For parts, list the top 2-3 options only, not every possible choice. Users are on mobile — brevity matters.
+
 CRITICAL BEHAVIOR RULES:
 ${intentGuidance}
 
@@ -428,7 +430,7 @@ async function callOpenAI(
       body: JSON.stringify({
         model: 'gpt-5.2',
         messages,
-        max_completion_tokens: 4000,
+        max_completion_tokens: 2000,
         temperature: 0.3,
         tools: CHAT_TOOLS,
       }),
@@ -469,7 +471,7 @@ async function callOpenAI(
         body: JSON.stringify({
           model: 'gpt-5.2',
           messages: [...messages, ...toolMessages],
-          max_completion_tokens: 4000,
+          max_completion_tokens: 2000,
           temperature: 0.3,
           tools: CHAT_TOOLS,
         }),
@@ -787,10 +789,10 @@ export async function POST(request: NextRequest) {
 
     if (apiKey) {
       // Truncate long conversation history to avoid token limits
-      // Keep last 10 messages, truncate any single message over 1500 chars
-      const recentHistory = conversationHistory.slice(-10).map((msg) => ({
+      // Keep last 6 messages, truncate any single message over 800 chars
+      const recentHistory = conversationHistory.slice(-6).map((msg) => ({
         role: msg.role,
-        content: msg.content.length > 1500 ? msg.content.slice(0, 1500) + '... [truncated]' : msg.content,
+        content: msg.content.length > 800 ? msg.content.slice(0, 800) + '... [truncated for brevity]' : msg.content,
       }));
 
       // Build messages for AI with RAG-enriched system prompt
@@ -801,11 +803,33 @@ export async function POST(request: NextRequest) {
       ];
 
       // Call OpenAI API
-      const { content, usage } = await callOpenAI(messages, apiKey, vehicle);
-      responseContent = content;
-
-      // Story 7.1: Log API cost
-      logApiCost('symptom_chat', usage.promptTokens, usage.completionTokens, 'gpt-5.2');
+      try {
+        const { content, usage } = await callOpenAI(messages, apiKey, vehicle);
+        responseContent = content;
+        logApiCost('symptom_chat', usage.promptTokens, usage.completionTokens, 'gpt-5.2');
+      } catch (aiError: any) {
+        console.error('[Chat API] OpenAI error:', aiError?.message || aiError);
+        // If tool-calling fails, retry without tools as fallback
+        try {
+          const fallbackRes = await fetch(OPENAI_API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + apiKey },
+            body: JSON.stringify({
+              model: 'gpt-5.2',
+              messages,
+              max_completion_tokens: 2000,
+              temperature: 0.3,
+            }),
+            signal: AbortSignal.timeout(TIMEOUT_MS),
+          });
+          if (!fallbackRes.ok) throw new Error('Fallback also failed');
+          const fallbackData = await fallbackRes.json();
+          responseContent = fallbackData.choices[0]?.message?.content || '';
+          logApiCost('symptom_chat', fallbackData.usage?.prompt_tokens || 0, fallbackData.usage?.completion_tokens || 0, 'gpt-5.2');
+        } catch {
+          throw aiError;
+        }
+      }
 
       diagnosis = parseDiagnosis(responseContent);
       alternativeDiagnoses = parseAlternatives(responseContent);
