@@ -472,17 +472,26 @@ async function callOpenAI(
     totalUsage.promptTokens += data.usage?.prompt_tokens || 0;
     totalUsage.completionTokens += data.usage?.completion_tokens || 0;
 
-    // Handle tool calls (up to 3 rounds)
+    // Handle tool calls (up to 2 rounds max)
     let rounds = 0;
-    while (data.choices[0]?.message?.tool_calls && rounds < 3) {
+    while (data.choices[0]?.message?.tool_calls && rounds < 2) {
       rounds++;
       const assistantMsg = data.choices[0].message;
-      const toolMessages: any[] = [{ role: 'assistant', content: assistantMsg.content, tool_calls: assistantMsg.tool_calls }];
+      // content can be null when AI only makes tool calls — must handle this
+      const toolMessages: any[] = [{
+        role: 'assistant',
+        content: assistantMsg.content || null,
+        tool_calls: assistantMsg.tool_calls,
+      }];
 
       for (const tc of assistantMsg.tool_calls) {
-        const args = JSON.parse(tc.function.arguments || '{}');
-        const result = await executeTool(tc.function.name, args, vehicle);
-        toolMessages.push({ role: 'tool', tool_call_id: tc.id, content: result });
+        try {
+          const args = JSON.parse(tc.function.arguments || '{}');
+          const result = await executeTool(tc.function.name, args, vehicle);
+          toolMessages.push({ role: 'tool', tool_call_id: tc.id, content: result });
+        } catch {
+          toolMessages.push({ role: 'tool', tool_call_id: tc.id, content: 'Tool call failed.' });
+        }
       }
 
       // Follow up with tool results
@@ -826,8 +835,9 @@ export async function POST(request: NextRequest) {
         { role: 'user', content: message },
       ];
 
-      // For short conversational follow-ups, skip tool-calling to avoid timeouts
-      const isFollowUp = conversationHistory.length > 0 && message.length < 200;
+      // For short conversational follow-ups (not parts/data requests), skip tool-calling
+      const needsTools = detectIntent(message) === 'parts' || /\b(part|price|cost|buy|replace|filter|fluid|recall|issue|problem)\b/i.test(message);
+      const isFollowUp = conversationHistory.length > 0 && message.length < 150 && !needsTools;
 
       // Call OpenAI API
       try {

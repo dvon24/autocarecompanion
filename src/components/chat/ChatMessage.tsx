@@ -61,6 +61,9 @@ function renderInlineMarkdown(text: string): React.ReactNode[] {
   let match;
 
   while ((match = inlineRegex.exec(text)) !== null) {
+    // Guard against infinite loop on zero-length matches
+    if (match[0].length === 0) { inlineRegex.lastIndex++; continue; }
+
     // Add text before the match
     if (match.index > lastIndex) {
       nodes.push(text.slice(lastIndex, match.index));
