@@ -816,28 +816,38 @@ export async function POST(request: NextRequest) {
     let diagnosis: Diagnosis | null = null;
     let alternativeDiagnoses: Diagnosis[] = [];
 
-    // Detect intent and load RAG context in parallel
+    // Detect intent
     const intent = detectIntent(message);
-    const ragContext = await loadRAGContext(vehicle);
+    const hasHistory = conversationHistory.length > 0;
+
+    // For follow-ups, skip heavy RAG context (AI already has it from first message)
+    const ragContext = hasHistory
+      ? { knownIssuesContext: '', partsContext: '', specsContext: '' }
+      : await loadRAGContext(vehicle);
 
     if (apiKey) {
-      // Truncate long conversation history to avoid token limits
-      // Keep last 6 messages, truncate any single message over 800 chars
-      const recentHistory = conversationHistory.slice(-6).map((msg) => ({
+      // Truncate conversation history to control token usage
+      const maxHistoryMessages = hasHistory ? 4 : 6;
+      const maxMsgLen = hasHistory ? 600 : 800;
+      const recentHistory = conversationHistory.slice(-maxHistoryMessages).map((msg) => ({
         role: msg.role,
-        content: msg.content.length > 800 ? msg.content.slice(0, 800) + '... [truncated for brevity]' : msg.content,
+        content: msg.content.length > maxMsgLen ? msg.content.slice(0, maxMsgLen) + '...' : msg.content,
       }));
 
-      // Build messages for AI with RAG-enriched system prompt
+      // Build messages — lighter system prompt for follow-ups
+      const systemPrompt = hasHistory
+        ? 'You are an expert automotive assistant for a ' + vehicle.year + ' ' + vehicle.make + ' ' + vehicle.model + ' ' + vehicle.trim + '. Continue the conversation naturally. Keep responses concise (300 words max). Include part links with tag=au7o-20 when relevant.'
+        : getSystemPrompt(vehicle, ragContext, intent, obdCodes);
+
       const messages: { role: string; content: string }[] = [
-        { role: 'system', content: getSystemPrompt(vehicle, ragContext, intent, obdCodes) },
+        { role: 'system', content: systemPrompt },
         ...recentHistory,
         { role: 'user', content: message },
       ];
 
-      // For short conversational follow-ups (not parts/data requests), skip tool-calling
-      const needsTools = detectIntent(message) === 'parts' || /\b(part|price|cost|buy|replace|filter|fluid|recall|issue|problem)\b/i.test(message);
-      const isFollowUp = conversationHistory.length > 0 && message.length < 150 && !needsTools;
+      // Decide if we need tool-calling
+      const needsTools = !hasHistory || detectIntent(message) === 'parts' || /\b(part|price|cost|buy|replace|filter|fluid|recall|issue|problem)\b/i.test(message);
+      const isFollowUp = hasHistory && !needsTools;
 
       // Call OpenAI API
       try {

@@ -116,8 +116,10 @@ function renderInlineMarkdown(text: string): React.ReactNode[] {
  * - Headers
  */
 function formatMessageContent(content: string): React.ReactNode {
-  // Check if this is a diagnosis message
-  if (content.includes('DIAGNOSIS:')) {
+  // Only use the structured diagnosis parser for simple diagnosis responses
+  // Rich responses with parts/links/costs should use the regular markdown renderer
+  const hasRichContent = content.includes('amazon.com') || content.includes('](http') || content.length > 2000;
+  if (content.includes('DIAGNOSIS:') && !hasRichContent) {
     return formatDiagnosisMessage(content);
   }
 
