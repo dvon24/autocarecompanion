@@ -169,9 +169,9 @@ export function VehicleDashboard({
   );
 
   return (
-    <div className="h-screen flex bg-gray-100 text-gray-900 overflow-hidden">
-      {/* Sidebar */}
-      <aside className={'hidden sm:flex flex-col flex-shrink-0 bg-gradient-to-b from-white to-gray-100 transition-all duration-200 ' + (sidebarOpen ? 'w-56' : 'w-16')}>
+    <div className="h-screen flex flex-col sm:flex-row bg-gray-100 text-gray-900 overflow-hidden">
+      {/* Sidebar - desktop only */}
+      <aside className="hidden sm:flex flex-col flex-shrink-0 bg-gradient-to-b from-white to-gray-100 transition-all duration-200" style={{ width: sidebarOpen ? '14rem' : '4rem' }}>
         {/* Logo area */}
         <div className="flex-shrink-0 py-4 px-3">
           {sidebarOpen ? (

@@ -408,6 +408,30 @@ async function executeTool(
 }
 
 /**
+ * Simple OpenAI call without tools — for conversational follow-ups
+ */
+async function callOpenAISimple(
+  messages: { role: string; content: string }[],
+  apiKey: string
+): Promise<{ content: string; usage: { promptTokens: number; completionTokens: number } }> {
+  const res = await fetch(OPENAI_API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + apiKey },
+    body: JSON.stringify({ model: 'gpt-5.2', messages, max_completion_tokens: 2000, temperature: 0.3 }),
+    signal: AbortSignal.timeout(TIMEOUT_MS),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error?.message || 'API error: ' + res.status);
+  }
+  const data = await res.json();
+  return {
+    content: data.choices[0]?.message?.content || '',
+    usage: { promptTokens: data.usage?.prompt_tokens || 0, completionTokens: data.usage?.completion_tokens || 0 },
+  };
+}
+
+/**
  * Call OpenAI API with tool support
  * Returns content and token usage for cost tracking
  */
@@ -802,9 +826,14 @@ export async function POST(request: NextRequest) {
         { role: 'user', content: message },
       ];
 
+      // For short conversational follow-ups, skip tool-calling to avoid timeouts
+      const isFollowUp = conversationHistory.length > 0 && message.length < 200;
+
       // Call OpenAI API
       try {
-        const { content, usage } = await callOpenAI(messages, apiKey, vehicle);
+        const { content, usage } = isFollowUp
+          ? await callOpenAISimple(messages, apiKey)
+          : await callOpenAI(messages, apiKey, vehicle);
         responseContent = content;
         logApiCost('symptom_chat', usage.promptTokens, usage.completionTokens, 'gpt-5.2');
       } catch (aiError: any) {
