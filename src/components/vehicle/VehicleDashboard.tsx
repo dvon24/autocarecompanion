@@ -79,6 +79,7 @@ export function VehicleDashboard({
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [vehicleModalOpen, setVehicleModalOpen] = useState(false);
   const [styledTheme, setStyledTheme] = useState(false);
+  const [specsExpanded, setSpecsExpanded] = useState(true);
   const [chatMessages, setChatMessages] = useState<ChatMessageType[]>([]);
   const [chatInput, setChatInput] = useState('');
   const [chatLoading, setChatLoading] = useState(false);
@@ -272,6 +273,11 @@ export function VehicleDashboard({
               </div>
             </div>
 
+            <button onClick={() => setSpecsExpanded(!specsExpanded)} className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600 mb-2">
+              <svg className={'w-3 h-3 transition-transform ' + (specsExpanded ? 'rotate-180' : '')} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+              {specsExpanded ? 'Hide details' : 'Show details'}
+            </button>
+            {specsExpanded && (
             <div className="mb-4 text-sm text-gray-500 leading-relaxed space-y-0.5">
               {criticalCount > 0 && (
                 <p className="text-red-600 font-medium">{criticalCount} critical/high severity issue{criticalCount > 1 ? 's' : ''} documented.</p>
@@ -285,6 +291,7 @@ export function VehicleDashboard({
               {specsSummary.sparkPlugs && <p>Spark Plugs: <span className="text-gray-800 font-medium">{specsSummary.sparkPlugs}</span></p>}
               {specsSummary.brakeFluid && <p>Brake Fluid: <span className="text-gray-800 font-medium">{specsSummary.brakeFluid}</span></p>}
             </div>
+            )}
 
             {/* Clickable stat badges - send context to chat */}
             <div className="flex gap-2 flex-wrap">
@@ -514,8 +521,8 @@ function PartCard({ task, parts, styled = true }: { task: string; parts: any[]; 
                 {p.partNumber && <p className="text-[10px] font-mono" style={{ color: styled ? '#55535B' : '#9ca3af' }}>{p.partNumber}</p>}
                 {p.spec && <p className="text-[10px]" style={{ color: styled ? '#55535B' : '#9ca3af' }}>{p.spec}</p>}
               </div>
-              {(p.affiliateUrl || p.partNumber) && (
-                <a href={p.affiliateUrl || ('https://www.amazon.com/s?k=' + encodeURIComponent((p.brand || '') + ' ' + p.partNumber) + '&tag=' + AFFILIATE_TAG)}
+              {(p.affiliateUrl || p.searchQuery || p.partNumber) && (
+                <a href={p.affiliateUrl || ('https://www.amazon.com/s?k=' + encodeURIComponent(p.searchQuery || ((p.brand || '') + ' ' + (p.name || '') + ' ' + (p.partNumber || '')).trim()) + '&tag=' + AFFILIATE_TAG)}
                   target="_blank" rel="noopener noreferrer"
                   className="flex-shrink-0 text-[10px] font-medium px-2.5 py-1 rounded transition-colors hover:opacity-80"
                   style={styled ? { backgroundColor: '#3C313D', color: '#EBEAEC' } : { backgroundColor: '#eff6ff', color: '#2563eb' }}>

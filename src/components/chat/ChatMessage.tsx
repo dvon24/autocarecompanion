@@ -39,7 +39,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
           <Image src="/icons/icon-192.png" alt="Au7o" width={32} height={32} className="object-cover" />
         </div>
         {/* Message Content */}
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 bg-gray-50 rounded-xl px-4 py-3">
           <div className="text-[15px] text-gray-900 leading-relaxed">
             {formatMessageContent(message.content)}
           </div>

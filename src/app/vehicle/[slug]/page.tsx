@@ -100,7 +100,16 @@ export default async function VehicleProfilePage({
     getKnownIssuesForArticle(make, model).catch(() => []),
     getRecallsForArticle(make, model, [year]).catch(() => []),
     prisma.vehiclePartLookup.findMany({
-      where: { year, make: { equals: make, mode: 'insensitive' }, model: { equals: model, mode: 'insensitive' } },
+      where: {
+        year,
+        make: { equals: make, mode: 'insensitive' },
+        model: { equals: model, mode: 'insensitive' },
+        // Try exact trim first, otherwise get all and filter later
+        OR: [
+          { trim: { equals: trim, mode: 'insensitive' } },
+          { trim: 'Base' },
+        ],
+      },
       select: { task: true, parts: true, source: true },
     }).catch(() => []),
     Promise.resolve(getVehicleSpecs({ year, make, model, trim })),
@@ -152,22 +161,27 @@ export default async function VehicleProfilePage({
   if (specs) {
     if (specs.oil && !cachedTasks.has('oil_change')) {
       const parts: any[] = [];
+      // Extract just the weight (e.g. "0W-40" from "0W-40 Full Synthetic (Pennzoil...)")
+      const oilWeight = specs.oil.type.match(/\d+W-\d+/)?.[0] || specs.oil.type;
       parts.push({
-        name: 'Engine Oil',
+        name: oilWeight + ' Motor Oil',
         spec: specs.oil.type + ' · ' + specs.oil.capacity,
-        brand: specs.oil.type.includes('0W-40') ? 'Mobil 1' : specs.oil.type.includes('5W-30') ? 'Castrol' : 'Valvoline',
+        brand: '',
         partNumber: '',
-        searchQuery: specs.oil.type + ' ' + make + ' ' + model,
-        affiliateUrl: 'https://www.amazon.com/s?k=' + encodeURIComponent(specs.oil.type + ' motor oil') + '&tag=' + tag,
+        searchQuery: specs.oil.type.split('(')[0].trim() + ' motor oil',
+        affiliateUrl: 'https://www.amazon.com/s?k=' + encodeURIComponent(oilWeight + ' full synthetic motor oil') + '&tag=' + tag,
       });
       if (specs.oil.filterPartNumber) {
+        // Clean up filter part number (remove brand suffix like "(Mopar)")
+        const filterPN = specs.oil.filterPartNumber.replace(/\s*\(.*\)/, '').trim();
+        const filterBrand = specs.oil.filterPartNumber.includes('Mopar') ? 'Mopar' : specs.oil.filterPartNumber.startsWith('PF') ? 'ACDelco' : '';
         parts.push({
           name: 'Oil Filter',
-          spec: specs.oil.filterPartNumber,
-          brand: specs.oil.filterPartNumber.startsWith('PF') ? 'ACDelco' : 'OEM',
-          partNumber: specs.oil.filterPartNumber,
-          searchQuery: specs.oil.filterPartNumber,
-          affiliateUrl: 'https://www.amazon.com/s?k=' + encodeURIComponent(specs.oil.filterPartNumber) + '&tag=' + tag,
+          spec: filterBrand ? filterBrand + ' ' + filterPN : filterPN,
+          brand: filterBrand,
+          partNumber: filterPN,
+          searchQuery: filterPN,
+          affiliateUrl: 'https://www.amazon.com/s?k=' + encodeURIComponent(filterPN + ' oil filter') + '&tag=' + tag,
         });
       }
       if (specs.oil.drainPlugSize) {
