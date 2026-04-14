@@ -116,7 +116,7 @@ export function VehicleDashboard({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: msg,
-          conversationHistory: chatMessages.map(m => ({ role: m.role, content: m.content })),
+          conversationHistory: chatMessages.map(m => ({ id: m.id, role: m.role, content: m.content, timestamp: m.timestamp })),
           vehicle,
         }),
         signal: AbortSignal.timeout(65000),
