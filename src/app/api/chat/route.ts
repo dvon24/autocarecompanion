@@ -156,15 +156,17 @@ Use these codes to help inform your diagnosis. OBD codes provide valuable diagno
 - Include brand, part number, and Amazon link: [Brand PartName](https://www.amazon.com/s?k=BRAND+PART_NUMBER&tag=au7o-20)
 - Mention if Au7o has a Parts Finder for more options: https://au7o.io/parts
 - Only ask ONE clarifying question if you genuinely cannot determine which part (e.g., front vs rear brakes)`
-    : `The user is describing a symptom or problem. Be DIRECT and efficient:
-- If the symptom is clear and common, diagnose immediately — do NOT ask unnecessary questions
-- Ask at MOST one clarifying question, and only if the symptom is genuinely ambiguous
-- If you have known issues data below for this vehicle, check if the symptom matches a known problem and say so
-- Users abandon the chat if you ask too many questions — give your best answer fast`;
+    : `The user is describing a symptom or problem. Be DIRECT and DECISIVE:
+- DIAGNOSE IMMEDIATELY with your best assessment. Do NOT ask clarifying questions.
+- If the symptom matches a known issue for this vehicle, say so and recommend the fix with parts.
+- Give a clear "here's what to do" recommendation with specific parts and links.
+- Users LEAVE if you ask questions instead of answering. Give your best answer NOW.
+- After your recommendation, you may add ONE brief "if it turns out to be X instead, then Y" alternative.
+- NEVER end your response with a question. End with a recommendation.`;
 
   return `You are an expert automotive diagnostic assistant for a ${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}.${obdSection}
 
-RESPONSE LENGTH: Keep responses concise. Aim for 300-500 words max. Use bullet points, not long paragraphs. For parts, list the top 2-3 options only, not every possible choice. Users are on mobile — brevity matters.
+RESPONSE LENGTH: Keep responses under 400 words. Use bullet points. List top 2-3 parts only. NEVER end with questions — end with a clear recommendation. Users want answers, not conversations.
 
 CRITICAL BEHAVIOR RULES:
 ${intentGuidance}
@@ -836,7 +838,7 @@ export async function POST(request: NextRequest) {
 
       // Build messages — lighter system prompt for follow-ups
       const systemPrompt = hasHistory
-        ? 'You are an expert automotive assistant for a ' + vehicle.year + ' ' + vehicle.make + ' ' + vehicle.model + ' ' + vehicle.trim + '. Continue the conversation naturally. Keep responses concise (300 words max). Include part links with tag=au7o-20 when relevant.'
+        ? 'You are an expert automotive assistant for a ' + vehicle.year + ' ' + vehicle.make + ' ' + vehicle.model + ' ' + vehicle.trim + '. RULES: (1) Give a DEFINITIVE answer based on what the user told you. Do NOT keep asking diagnostic questions. If the user gave you symptoms, diagnose and recommend parts. (2) Keep responses under 300 words. (3) Include Amazon part links with tag=au7o-20 as markdown links [Part Name](url). (4) End with a clear recommendation, not more questions. The user wants answers, not an interrogation.'
         : getSystemPrompt(vehicle, ragContext, intent, obdCodes);
 
       const messages: { role: string; content: string }[] = [

@@ -55,8 +55,8 @@ export function ChatMessage({ message }: ChatMessageProps) {
  */
 function renderInlineMarkdown(text: string): React.ReactNode[] {
   const nodes: React.ReactNode[] = [];
-  // Match markdown links [text](url), bold **text**, italic *text*, inline code `text`
-  const inlineRegex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|\*\*(.+?)\*\*|\*(.+?)\*|`([^`]+)`/g;
+  // Match markdown links [text](url), bare URLs, bold **text**, italic *text*, inline code `text`
+  const inlineRegex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s<)]+)|\*\*(.+?)\*\*|\*(.+?)\*|`([^`]+)`/g;
   let lastIndex = 0;
   let match;
 
@@ -83,16 +83,31 @@ function renderInlineMarkdown(text: string): React.ReactNode[] {
         </a>
       );
     } else if (match[3]) {
-      // Bold **text**
-      nodes.push(<strong key={match.index} className="font-semibold">{match[3]}</strong>);
+      // Bare URL
+      const bareUrl = match[3];
+      const displayUrl = bareUrl.length > 50 ? bareUrl.slice(0, 47) + '...' : bareUrl;
+      nodes.push(
+        <a
+          key={match.index}
+          href={bareUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 hover:text-blue-800 underline underline-offset-2 font-medium break-all"
+        >
+          {displayUrl}
+        </a>
+      );
     } else if (match[4]) {
-      // Italic *text*
-      nodes.push(<em key={match.index}>{match[4]}</em>);
+      // Bold **text**
+      nodes.push(<strong key={match.index} className="font-semibold">{match[4]}</strong>);
     } else if (match[5]) {
+      // Italic *text*
+      nodes.push(<em key={match.index}>{match[5]}</em>);
+    } else if (match[6]) {
       // Inline code `text`
       nodes.push(
         <code key={match.index} className="bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono">
-          {match[5]}
+          {match[6]}
         </code>
       );
     }
