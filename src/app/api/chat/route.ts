@@ -352,9 +352,13 @@ async function executeTool(
       const results = await prisma.vehiclePartLookup.findMany({ where, take: 10 });
       if (results.length === 0) return 'No cached parts found for this query. Recommend the user check Amazon directly.';
       return results.map(r => {
-        const parts = (r.parts as any[]).map(p =>
-          '- ' + (p.brand || '') + ' ' + (p.name || '') + (p.partNumber ? ' (' + p.partNumber + ') [Buy on Amazon](https://www.amazon.com/s?k=' + encodeURIComponent((p.brand || '') + ' ' + p.partNumber) + '&tag=' + affiliateTag + ')' : '')
-        ).join('\n');
+        const parts = (r.parts as any[]).map(p => {
+          const hasValidPN = p.partNumber && !p.partNumber.includes('N/A') && !p.partNumber.includes('Not applicable');
+          const searchTerm = p.searchQuery || ((p.oemBrand || p.brand || '') + ' ' + (p.name || '') + ' ' + (hasValidPN ? p.partNumber : '')).trim();
+          const amazonUrl = searchTerm ? ' [Buy on Amazon](https://www.amazon.com/s?k=' + encodeURIComponent(searchTerm) + '&tag=' + affiliateTag + ')' : '';
+          const displayBrand = p.oemBrand || p.brand || '';
+          return '- ' + displayBrand + ' ' + (p.name || '') + (hasValidPN ? ' (' + p.partNumber + ')' : '') + (p.spec ? ' - ' + p.spec : '') + amazonUrl;
+        }).join('\n');
         return '**' + r.task.replace(/_/g, ' ') + ':**\n' + parts;
       }).join('\n\n');
     } catch { return 'Error looking up parts.'; }
