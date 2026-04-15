@@ -303,45 +303,44 @@ export function VehicleDashboard({
         )}
 
         {/* Mobile: Main content area */}
-        <div className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto px-4 pt-4 pb-28" id="mobile-chat-container">
           {activeSection === 'chat' ? (
-            <div className="flex flex-col h-full">
-              <div className="flex-1 overflow-y-auto px-3 py-3">
-                {chatMessages.length === 0 && (
-                  <div className="flex flex-col items-center justify-center h-full px-4">
-                    <h2 className="text-xl font-semibold text-gray-800 text-center">How can I help with your {vehicle.model}?</h2>
-                    <p className="text-sm text-gray-400 mt-2 text-center">Parts, diagnostics, maintenance, costs</p>
-                    <div className="flex flex-wrap justify-center gap-2 mt-6">
-                      {suggestions.slice(0, 4).map((s, i) => (
-                        <button key={i} onClick={() => sendMessage(s.msg)}
-                          className="px-3 py-2 text-xs font-medium text-gray-600 bg-white border border-gray-200 rounded-full hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 shadow-sm">
-                          {s.label}
-                        </button>
-                      ))}
-                    </div>
+            <>
+              {chatMessages.length === 0 && (
+                <div className="flex flex-col items-center justify-center min-h-[60vh] px-2">
+                  <h2 className="text-xl font-semibold text-gray-800 text-center">How can I help with your {vehicle.model}?</h2>
+                  <p className="text-sm text-gray-400 mt-2 text-center">Parts, diagnostics, maintenance, costs</p>
+                  <div className="flex flex-wrap justify-center gap-2 mt-6">
+                    {suggestions.slice(0, 4).map((s, i) => (
+                      <button key={i} onClick={() => sendMessage(s.msg)}
+                        className="px-3 py-2 text-xs font-medium text-gray-600 bg-white border border-gray-200 rounded-full hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 shadow-sm">
+                        {s.label}
+                      </button>
+                    ))}
                   </div>
-                )}
-                {chatMessages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
-                {chatLoading && <ChatMessageLoading />}
-                <div ref={chatEndRef} />
-              </div>
-            </div>
+                </div>
+              )}
+              {chatMessages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+              {chatLoading && <ChatMessageLoading />}
+              <div ref={chatEndRef} />
+            </>
           ) : (
-            <div className="px-3 py-3">{renderContent()}</div>
+            <div>{renderContent()}</div>
           )}
-        </div>
+        </main>
 
-        {/* Mobile: Input - only on chat tab, sticky at bottom */}
+        {/* Mobile: Fixed floating input with gradient fade (Perplexity style) */}
         {activeSection === 'chat' && (
-          <div className="sticky bottom-0 bg-white px-3 py-2 shadow-[0_-2px_8px_rgba(0,0,0,0.08)]">
-            <div className="flex gap-2">
+          <div className="fixed bottom-0 left-0 w-full z-20 p-3" style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}>
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-100 via-gray-100/90 to-transparent pointer-events-none" />
+            <div className="relative max-w-2xl mx-auto bg-white border border-gray-200 rounded-2xl shadow-lg p-2 flex items-end gap-2">
               <input ref={inputRef} type="text" value={chatInput}
                 onChange={e => setChatInput(e.target.value)}
                 onKeyDown={e => { if (e.key === 'Enter') sendMessage(); }}
                 placeholder={'Ask about your ' + vehicle.model + '...'}
-                className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                className="flex-1 bg-transparent border-none px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-0" />
               <button onClick={() => sendMessage()} disabled={!chatInput.trim() || chatLoading}
-                className="px-3 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-500 disabled:opacity-40">
+                className="p-2 bg-blue-600 text-white rounded-xl hover:bg-blue-500 disabled:opacity-40 transition-all active:scale-95">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
               </button>
             </div>
