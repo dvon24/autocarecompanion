@@ -230,7 +230,7 @@ export function VehicleDashboard({
       {/* ===== MOBILE LAYOUT ===== */}
       <div className="flex flex-col flex-1 sm:hidden overflow-hidden">
         {/* Mobile Header - flex-shrink-0 keeps it fixed at top of flex column */}
-        <header className="flex-shrink-0 flex items-center justify-between px-3 py-2 bg-white shadow-sm z-20">
+        <header className="flex-shrink-0 flex items-center justify-between px-3 py-3 bg-white z-30" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)', minHeight: '48px', paddingTop: 'max(0.75rem, env(safe-area-inset-top))' }}>
           <button onClick={() => setMobileDrawerOpen(!mobileDrawerOpen)} className="p-2 rounded-lg hover:bg-gray-100">
             <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
