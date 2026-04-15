@@ -230,7 +230,7 @@ export function VehicleDashboard({
       {/* ===== MOBILE LAYOUT ===== */}
       <div className="flex flex-col flex-1 sm:hidden overflow-hidden">
         {/* Mobile Header */}
-        <header className="flex-shrink-0 flex items-center justify-between px-3 py-2 bg-white shadow-sm z-20">
+        <header className="sticky top-0 flex items-center justify-between px-3 py-2 bg-white shadow-sm z-20">
           <button onClick={() => setMobileDrawerOpen(!mobileDrawerOpen)} className="p-2 rounded-lg hover:bg-gray-100">
             <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -436,13 +436,13 @@ export function VehicleDashboard({
           <div className="bg-gradient-to-b from-white to-gray-100 rounded-lg p-5 flex-1 flex flex-col min-h-0" style={{ boxShadow: DEEP_SHADOW }}>
             {renderContent()}
             {activeSection === 'chat' && (
-              <div className="flex-1 flex flex-col space-y-1 min-h-0">
-                {chatMessages.length === 0 && (
-                  <div className="text-center py-6">
+              <div className={'flex-1 flex flex-col min-h-0 ' + (chatMessages.length === 0 ? 'justify-center' : 'justify-end')}>
+                {chatMessages.length === 0 ? (
+                  <div className="text-center px-4">
                     <Image src="/icons/icon-192.png" alt="Au7o" width={48} height={48} className="mx-auto mb-3" style={styledTheme ? { filter: 'hue-rotate(240deg) saturate(1.5)' } : undefined} />
-                    <h2 className="text-base font-semibold text-gray-800">How can I help with your {vehicle.make} {vehicle.model}?</h2>
+                    <h2 className="text-lg font-semibold text-gray-800">How can I help with your {vehicle.make} {vehicle.model}?</h2>
                     <p className="text-sm text-gray-400 mt-1">Parts, diagnostics, maintenance, costs</p>
-                    <div className="flex flex-wrap justify-center gap-2 mt-4">
+                    <div className="flex flex-wrap justify-center gap-2 mt-4 mb-8">
                       {suggestions.map((s, i) => (
                         <button key={i} onClick={() => sendMessage(s.msg)}
                           className={'px-3 py-1.5 text-xs font-medium rounded-full transition-colors ' + (styledTheme ? 'hover:opacity-80' : 'text-gray-600 bg-gray-50 hover:bg-blue-50 hover:text-blue-600')}
@@ -451,26 +451,42 @@ export function VehicleDashboard({
                         </button>
                       ))}
                     </div>
+                    <div className="max-w-xl mx-auto">
+                      <div className="flex gap-2">
+                        <input ref={inputRef} type="text" value={chatInput}
+                          onChange={e => setChatInput(e.target.value)}
+                          onKeyDown={e => { if (e.key === 'Enter') sendMessage(); }}
+                          placeholder={'Ask about your ' + vehicle.make + ' ' + vehicle.model + '...'}
+                          className="flex-1 bg-white border border-gray-200 rounded-2xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm" />
+                        <button onClick={() => sendMessage()} disabled={!chatInput.trim() || chatLoading}
+                          className="px-4 py-3 bg-blue-600 text-white rounded-2xl hover:bg-blue-500 disabled:opacity-40 transition-colors">
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
+                        </button>
+                      </div>
+                    </div>
                   </div>
+                ) : (
+                  <>
+                    <div className="flex-1 overflow-y-auto min-h-0 px-1">
+                      {chatMessages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+                      {chatLoading && <ChatMessageLoading />}
+                      <div ref={chatEndRef} />
+                    </div>
+                    <div className="pt-3 flex-shrink-0">
+                      <div className="flex gap-2">
+                        <input type="text" value={chatInput}
+                          onChange={e => setChatInput(e.target.value)}
+                          onKeyDown={e => { if (e.key === 'Enter') sendMessage(); }}
+                          placeholder={'Ask about your ' + vehicle.make + ' ' + vehicle.model + '...'}
+                          className="flex-1 bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm" />
+                        <button onClick={() => sendMessage()} disabled={!chatInput.trim() || chatLoading}
+                          className="px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-500 disabled:opacity-40 transition-colors">
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
+                        </button>
+                      </div>
+                    </div>
+                  </>
                 )}
-                <div className="flex-1 overflow-y-auto min-h-0">
-                  {chatMessages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
-                  {chatLoading && <ChatMessageLoading />}
-                  <div ref={chatEndRef} />
-                </div>
-                <div className="pt-3 mt-auto flex-shrink-0">
-                  <div className="flex gap-2">
-                    <input ref={inputRef} type="text" value={chatInput}
-                      onChange={e => setChatInput(e.target.value)}
-                      onKeyDown={e => { if (e.key === 'Enter') sendMessage(); }}
-                      placeholder={'Ask about your ' + vehicle.make + ' ' + vehicle.model + '...'}
-                      className="flex-1 bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm" />
-                    <button onClick={() => sendMessage()} disabled={!chatInput.trim() || chatLoading}
-                      className="px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-500 disabled:opacity-40 transition-colors">
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
-                    </button>
-                  </div>
-                </div>
               </div>
             )}
           </div>
