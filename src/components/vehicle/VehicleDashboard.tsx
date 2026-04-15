@@ -225,7 +225,7 @@ export function VehicleDashboard({
   );
 
   return (
-    <div className="h-screen flex flex-col sm:flex-row bg-gray-100 text-gray-900 overflow-hidden">
+    <div className="flex flex-col sm:flex-row bg-gray-100 text-gray-900 overflow-hidden" style={{ height: '100dvh' }}>
 
       {/* ===== MOBILE LAYOUT ===== */}
       <div className="flex flex-col flex-1 sm:hidden overflow-hidden bg-white">
