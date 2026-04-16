@@ -124,14 +124,14 @@ export default function TermsPage() {
             <h3 className="text-lg font-medium text-gray-800 mb-2">5.4 Cancellation</h3>
             <p className="text-gray-600 leading-relaxed mb-4">
               You may cancel your Subscription at any time through your Account settings or by contacting us at{' '}
-              <a href="mailto:dvoninvestllc@yahoo.com" className="text-blue-600 hover:underline">dvoninvestllc@yahoo.com</a>.
+              <a href="mailto:devonsroberson24@yahoo.com" className="text-blue-600 hover:underline">devonsroberson24@yahoo.com</a>.
               Upon cancellation, your Subscription will remain active until the end of the current billing period, after which you will lose access to premium features. You will not be charged for subsequent billing periods following cancellation.
             </p>
 
             <h3 className="text-lg font-medium text-gray-800 mb-2">5.5 Refund Policy</h3>
             <p className="text-gray-600 leading-relaxed mb-4">
               Subscription fees are generally non-refundable. However, if you believe you are entitled to a refund due to technical issues, billing errors, or other extenuating circumstances, you may submit a refund request within seven (7) days of the charge by contacting us at{' '}
-              <a href="mailto:dvoninvestllc@yahoo.com" className="text-blue-600 hover:underline">dvoninvestllc@yahoo.com</a>.
+              <a href="mailto:devonsroberson24@yahoo.com" className="text-blue-600 hover:underline">devonsroberson24@yahoo.com</a>.
               Refund requests will be evaluated on a case-by-case basis at our sole discretion. Approved refunds will be processed to your original payment method within five to ten (5-10) business days.
             </p>
 
@@ -305,7 +305,7 @@ export default function TermsPage() {
             <div className="bg-gray-50 rounded-lg p-4 mt-4">
               <p className="text-gray-700">
                 <strong>Dvon Invest LLC</strong><br />
-                Email: <a href="mailto:dvoninvestllc@yahoo.com" className="text-blue-600 hover:underline">dvoninvestllc@yahoo.com</a>
+                Email: <a href="mailto:devonsroberson24@yahoo.com" className="text-blue-600 hover:underline">devonsroberson24@yahoo.com</a>
               </p>
             </div>
           </section>

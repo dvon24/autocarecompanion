@@ -68,7 +68,7 @@ export default function CopyrightPage() {
               <p className="text-gray-700">
                 <strong>Copyright Agent</strong><br />
                 Dvon Invest LLC<br />
-                Email: <a href="mailto:dvoninvestllc@yahoo.com" className="text-blue-600 hover:underline">dvoninvestllc@yahoo.com</a>
+                Email: <a href="mailto:devonsroberson24@yahoo.com" className="text-blue-600 hover:underline">devonsroberson24@yahoo.com</a>
               </p>
             </div>
             <p className="text-gray-600 leading-relaxed">
@@ -122,7 +122,7 @@ export default function CopyrightPage() {
             <div className="bg-gray-50 rounded-lg p-4">
               <p className="text-gray-700">
                 <strong>Dvon Invest LLC</strong><br />
-                Email: <a href="mailto:dvoninvestllc@yahoo.com" className="text-blue-600 hover:underline">dvoninvestllc@yahoo.com</a>
+                Email: <a href="mailto:devonsroberson24@yahoo.com" className="text-blue-600 hover:underline">devonsroberson24@yahoo.com</a>
               </p>
             </div>
           </section>
