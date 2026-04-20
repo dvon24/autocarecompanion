@@ -444,7 +444,7 @@ async function callOpenAISimple(
   const res = await fetch(OPENAI_API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + apiKey },
-    body: JSON.stringify({ model: 'gpt-5.2', messages, max_completion_tokens: 2000, temperature: 0.3 }),
+    body: JSON.stringify({ model: 'gpt-5.4', messages, max_completion_tokens: 2000, temperature: 0.3 }),
     signal: AbortSignal.timeout(TIMEOUT_MS),
   });
   if (!res.ok) {
@@ -479,7 +479,7 @@ async function callOpenAI(
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'gpt-5.2',
+        model: 'gpt-5.4',
         messages,
         max_completion_tokens: 2000,
         temperature: 0.3,
@@ -529,7 +529,7 @@ async function callOpenAI(
           Authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-          model: 'gpt-5.2',
+          model: 'gpt-5.4',
           messages: [...messages, ...toolMessages],
           max_completion_tokens: 2000,
           temperature: 0.3,
@@ -882,7 +882,7 @@ export async function POST(request: NextRequest) {
           ? await callOpenAISimple(messages, apiKey)
           : await callOpenAI(messages, apiKey, vehicle);
         responseContent = content;
-        logApiCost('symptom_chat', usage.promptTokens, usage.completionTokens, 'gpt-5.2');
+        logApiCost('symptom_chat', usage.promptTokens, usage.completionTokens, 'gpt-5.4');
       } catch (aiError: any) {
         console.error('[Chat API] OpenAI error:', aiError?.message || aiError);
         // If tool-calling fails, retry without tools as fallback
@@ -891,7 +891,7 @@ export async function POST(request: NextRequest) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + apiKey },
             body: JSON.stringify({
-              model: 'gpt-5.2',
+              model: 'gpt-5.4',
               messages,
               max_completion_tokens: 2000,
               temperature: 0.3,
@@ -901,7 +901,7 @@ export async function POST(request: NextRequest) {
           if (!fallbackRes.ok) throw new Error('Fallback also failed');
           const fallbackData = await fallbackRes.json();
           responseContent = fallbackData.choices[0]?.message?.content || '';
-          logApiCost('symptom_chat', fallbackData.usage?.prompt_tokens || 0, fallbackData.usage?.completion_tokens || 0, 'gpt-5.2');
+          logApiCost('symptom_chat', fallbackData.usage?.prompt_tokens || 0, fallbackData.usage?.completion_tokens || 0, 'gpt-5.4');
         } catch {
           throw aiError;
         }

@@ -464,7 +464,7 @@ export async function POST(request: Request) {
         'Authorization': `Bearer ${OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'gpt-5.2',
+        model: 'gpt-5.4',
         messages,
         tools,
         tool_choice: 'auto',
@@ -490,7 +490,7 @@ export async function POST(request: Request) {
         'garage_assistant',
         data.usage.prompt_tokens || 0,
         data.usage.completion_tokens || 0,
-        'gpt-5.2'
+        'gpt-5.4'
       );
     }
 
@@ -534,7 +534,7 @@ export async function POST(request: Request) {
           'Authorization': `Bearer ${OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: 'gpt-5.2',
+          model: 'gpt-5.4',
           messages: followUpMessages,
           max_completion_tokens: 500,
         }),
@@ -556,7 +556,7 @@ export async function POST(request: Request) {
           'garage_assistant',
           followUpData.usage.prompt_tokens || 0,
           followUpData.usage.completion_tokens || 0,
-          'gpt-5.2'
+          'gpt-5.4'
         );
       }
 
