@@ -10,6 +10,7 @@ import type { OBDCodeEntry } from '@/schemas/obd.schema';
 import { logApiCost, isBudgetExceeded } from '@/lib/costs';
 import prisma from '@/lib/db';
 import { getVehicleSpecs } from '@/lib/maintenance';
+import { getRecallsForArticle } from '@/lib/recalls';
 
 // Allow up to 60s for tool-calling responses on Vercel
 export const maxDuration = 60;
@@ -65,17 +66,20 @@ async function loadRAGContext(vehicle: { year: number; make: string; model: stri
   knownIssuesContext: string;
   partsContext: string;
   specsContext: string;
+  recallsContext: string;
 }> {
   let knownIssuesContext = '';
   let partsContext = '';
   let specsContext = '';
+  let recallsContext = '';
 
   try {
-    // Load known issues for this vehicle
+    // Load known issues for this vehicle's specific year
     const issues = await prisma.knownIssue.findMany({
       where: {
         make: { equals: vehicle.make, mode: 'insensitive' },
         model: { equals: vehicle.model, mode: 'insensitive' },
+        years: { has: vehicle.year },
         status: 'published',
       },
       select: { title: true, severity: true, category: true, description: true },
@@ -130,7 +134,22 @@ ${specLines.join('\n')}`;
     }
   } catch { /* non-blocking */ }
 
-  return { knownIssuesContext, partsContext, specsContext };
+  try {
+    // Load active NHTSA recalls for this vehicle's year
+    const recalls = await getRecallsForArticle(vehicle.make, vehicle.model, [vehicle.year]);
+    if (recalls.length > 0) {
+      const lines = recalls.slice(0, 5).map(r => {
+        const sev = r.severity.toUpperCase();
+        const parkIt = r.parkIt ? ' (NHTSA PARK-IT ORDER)' : '';
+        const summary = (r.summary || '').slice(0, 180);
+        const remedy = (r.remedy || '').slice(0, 120);
+        return `- [${sev}] ${r.component}${parkIt}: ${summary} — Remedy: ${remedy} (Campaign ${r.campaignNumber})`;
+      });
+      recallsContext = `\n\nACTIVE NHTSA RECALLS for ${vehicle.year} ${vehicle.make} ${vehicle.model} — mention these when the user's symptom overlaps with a recalled component. Recalls are FREE at the dealer:\n${lines.join('\n')}`;
+    }
+  } catch { /* non-blocking */ }
+
+  return { knownIssuesContext, partsContext, specsContext, recallsContext };
 }
 
 /**
@@ -138,7 +157,7 @@ ${specLines.join('\n')}`;
  */
 function getSystemPrompt(
   vehicle: { year: number; make: string; model: string; trim: string },
-  ragContext: { knownIssuesContext: string; partsContext: string; specsContext: string },
+  ragContext: { knownIssuesContext: string; partsContext: string; specsContext: string; recallsContext: string },
   intent: 'parts' | 'symptom',
   obdCodes?: OBDCodeEntry[]
 ) {
@@ -157,7 +176,8 @@ Use these codes to help inform your diagnosis. OBD codes provide valuable diagno
 - Mention if Au7o has a Parts Finder for more options: https://au7o.io/parts
 - Only ask ONE clarifying question if you genuinely cannot determine which part (e.g., front vs rear brakes)`
     : `The user is describing a symptom or problem. Be DIRECT and DECISIVE:
-- DIAGNOSE IMMEDIATELY with your best assessment. Do NOT ask clarifying questions.
+- FIRST: call lookup_known_issues with a title keyword from the user's symptom (e.g. "transmission shudder", "brake squeal") to retrieve full details (symptoms, solutions, DTC codes, citations). The system prompt shows titles only — the tool gives you everything.
+- THEN DIAGNOSE IMMEDIATELY with your best assessment. Do NOT ask clarifying questions.
 - If the symptom matches a known issue for this vehicle, say so and recommend the fix with parts.
 - Give a clear "here's what to do" recommendation with specific parts and links.
 - Users LEAVE if you ask questions instead of answering. Give your best answer NOW.
@@ -179,7 +199,7 @@ PARTS & AFFILIATE LINKS (IMPORTANT):
 - Include both OEM and popular aftermarket options when possible (e.g., "OEM: [Mopar 68144432AA](https://www.amazon.com/s?k=Mopar+68144432AA&tag=au7o-20) or aftermarket: [PowerStop Z23](https://www.amazon.com/s?k=PowerStop+Z23+${vehicle.make}+${vehicle.model}&tag=au7o-20)")
 - For fluids, recommend specific products: Mobil 1, Valvoline, Castrol, etc. with links
 - The user's affiliate tag is au7o-20 — ALWAYS include it in Amazon links
-${ragContext.knownIssuesContext}${ragContext.partsContext}${ragContext.specsContext}
+${ragContext.knownIssuesContext}${ragContext.partsContext}${ragContext.specsContext}${ragContext.recallsContext}
 
 When you're ready to provide a diagnosis, format it as:
 
@@ -369,6 +389,7 @@ async function executeTool(
       const where: any = {
         make: { equals: vehicle.make, mode: 'insensitive' },
         model: { equals: vehicle.model, mode: 'insensitive' },
+        years: { has: vehicle.year },
         status: 'published',
       };
       if (args.category) {
@@ -828,7 +849,7 @@ export async function POST(request: NextRequest) {
 
     // For follow-ups, skip heavy RAG context (AI already has it from first message)
     const ragContext = hasHistory
-      ? { knownIssuesContext: '', partsContext: '', specsContext: '' }
+      ? { knownIssuesContext: '', partsContext: '', specsContext: '', recallsContext: '' }
       : await loadRAGContext(vehicle);
 
     if (apiKey) {

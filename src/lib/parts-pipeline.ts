@@ -12,6 +12,7 @@
 
 import Anthropic from '@anthropic-ai/sdk';
 import { getVehicleSpecs } from '@/lib/maintenance';
+import { getRecallsForArticle } from '@/lib/recalls';
 import prisma from '@/lib/db';
 
 const TASK_DESCRIPTIONS: Record<string, string> = {
@@ -335,7 +336,28 @@ async function loadKnownIssuesContext(
       }
     }
 
-    const combined = (issueText + insightContext).trim();
+    // Also pull active NHTSA recalls — the Identifier should prefer recall parts (free at dealer)
+    let recallContext = '';
+    try {
+      const recalls = await getRecallsForArticle(make, model, [year]);
+      if (recalls.length > 0) {
+        const relevant = categories && categories.length > 0
+          ? recalls.filter(r => {
+              const comp = (r.component || '').toLowerCase();
+              return categories.some(c => comp.includes(c.toLowerCase()));
+            })
+          : recalls;
+        const picked = (relevant.length > 0 ? relevant : recalls).slice(0, 4);
+        if (picked.length > 0) {
+          recallContext = '\nACTIVE NHTSA RECALLS (dealer fix is FREE — mention if user is searching a recalled component):\n' +
+            picked.map(r => `- [${r.severity}] ${r.component}: ${(r.summary || '').slice(0, 140)} — Remedy: ${(r.remedy || '').slice(0, 100)}`).join('\n');
+        }
+      }
+    } catch {
+      // Non-critical
+    }
+
+    const combined = (issueText + insightContext + recallContext).trim();
     return combined || null;
   } catch {
     // DB error — non-critical, continue without issues context
@@ -747,10 +769,11 @@ async function webVerifyAllParts(
     }
   }
 
-  // Verify parts sequentially to avoid rate limits (50k input tokens/min on Haiku)
-  // Each web search call uses ~1-2k tokens, but with multiple agents we're near the limit
-  for (let i = 0; i < partsWithNumbers.length; i++) {
-    const batch = [partsWithNumbers[i]];
+  // Verify parts in small parallel batches. Sequential was ~2-3s per part (10 parts = 25s);
+  // batching 3 at a time cuts wall time roughly 3x while staying under Haiku's TPM ceiling.
+  const BATCH_SIZE = 3;
+  for (let i = 0; i < partsWithNumbers.length; i += BATCH_SIZE) {
+    const batch = partsWithNumbers.slice(i, i + BATCH_SIZE);
     const results = await Promise.all(
       batch.map(async (part) => {
         const partNumber = part.oemPartNumber || part.partNumber;

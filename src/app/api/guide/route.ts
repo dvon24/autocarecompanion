@@ -16,6 +16,90 @@ import {
   recordCacheEvent,
 } from '@/lib/guide-cache';
 import { guideLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
+import prisma from '@/lib/db';
+import { getRecallsForArticle } from '@/lib/recalls';
+
+// Maps maintenance types to the KnownIssue categories most likely relevant.
+// Reused from parts-pipeline but kept local so guide route has no cross-import.
+const GUIDE_TASK_TO_CATEGORIES: Record<string, string[]> = {
+  oil_change: ['engine'],
+  coolant_flush: ['cooling', 'engine'],
+  transmission_fluid: ['transmission'],
+  differential_fluid: ['drivetrain'],
+  power_steering_fluid: ['suspension'],
+  brake_fluid: ['brakes'],
+  brake_pads_front: ['brakes'],
+  brake_pads_rear: ['brakes'],
+  brake_rotors_front: ['brakes'],
+  brake_rotors_rear: ['brakes'],
+  spark_plugs: ['engine', 'emissions'],
+  air_filter: ['engine'],
+  cabin_filter: ['hvac'],
+  battery: ['electrical'],
+  alternator: ['electrical'],
+  water_pump: ['cooling'],
+  thermostat: ['cooling'],
+  timing_belt: ['engine'],
+  serpentine_belt: ['engine'],
+  head_gasket: ['engine'],
+  intake_manifold_gasket: ['engine'],
+  catalytic_converter: ['exhaust', 'emissions'],
+  muffler_exhaust: ['exhaust'],
+  tire_rotation: ['suspension', 'drivetrain'],
+};
+
+async function loadGuideContext(
+  vehicle: { year: number; make: string; model: string; trim: string },
+  maintenanceType: string,
+): Promise<string> {
+  const categories = GUIDE_TASK_TO_CATEGORIES[maintenanceType];
+  const sections: string[] = [];
+
+  try {
+    const issues = await prisma.knownIssue.findMany({
+      where: {
+        make: { equals: vehicle.make, mode: 'insensitive' },
+        model: { equals: vehicle.model, mode: 'insensitive' },
+        years: { has: vehicle.year },
+        status: 'published',
+        ...(categories && categories.length > 0 ? { category: { in: categories } } : {}),
+      },
+      select: { title: true, severity: true, symptoms: true, solution: true },
+      orderBy: { reportCount: 'desc' },
+      take: 5,
+    });
+    if (issues.length > 0) {
+      sections.push('\n\nKNOWN ISSUES that frequently affect this repair — warn the user inline where relevant:');
+      issues.forEach(i => {
+        const syms = i.symptoms?.length ? ` Symptoms: ${i.symptoms.slice(0, 3).join(', ')}.` : '';
+        const fix = i.solution ? ` Fix: ${i.solution.slice(0, 140)}` : '';
+        sections.push(`- [${i.severity}] ${i.title}.${syms}${fix}`);
+      });
+    }
+  } catch { /* non-blocking */ }
+
+  try {
+    const recalls = await getRecallsForArticle(vehicle.make, vehicle.model, [vehicle.year]);
+    if (recalls.length > 0) {
+      const relevant = categories
+        ? recalls.filter(r => {
+            const comp = (r.component || '').toLowerCase();
+            return categories.some(c => comp.includes(c.toLowerCase()));
+          })
+        : recalls;
+      const picked = (relevant.length > 0 ? relevant : recalls).slice(0, 3);
+      if (picked.length > 0) {
+        sections.push('\nACTIVE NHTSA RECALLS for this vehicle — add a top-of-guide warning if any overlap with this repair. Dealer fixes the recall for FREE:');
+        picked.forEach(r => {
+          const park = r.parkIt ? ' (PARK-IT ORDER)' : '';
+          sections.push(`- [${r.severity}] ${r.component}${park}: ${(r.summary || '').slice(0, 160)} — Remedy: ${(r.remedy || '').slice(0, 100)} (Campaign ${r.campaignNumber})`);
+        });
+      }
+    }
+  } catch { /* non-blocking */ }
+
+  return sections.join('\n');
+}
 
 /**
  * Format vehicle specs into a string for injection into the AI prompt.
@@ -133,7 +217,8 @@ const TIMEOUT_MS = 55000; // 55 second timeout (leave 5s buffer for Vercel)
 function getGuideSystemPrompt(
   vehicle: { year: number; make: string; model: string; trim: string },
   diagnosis: { title: string; description?: string },
-  procedureHints?: string
+  procedureHints?: string,
+  issuesAndRecalls?: string,
 ) {
   // Trim description to avoid overly long prompts that slow down generation
   const trimmedDescription = diagnosis.description
@@ -146,7 +231,7 @@ function getGuideSystemPrompt(
 
 Vehicle: ${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}
 Issue: ${diagnosis.title}
-${trimmedDescription ? `Context: ${trimmedDescription}` : ''}${vehicleSpecs}
+${trimmedDescription ? `Context: ${trimmedDescription}` : ''}${vehicleSpecs}${issuesAndRecalls || ''}
 
 Create a comprehensive repair guide in the following JSON format. Be SPECIFIC to this exact vehicle.
 
@@ -545,8 +630,10 @@ export async function POST(request: NextRequest) {
     let costUsd: number | undefined;
 
     if (apiKey) {
+      // Load known issues + recalls context for this vehicle/repair (non-blocking helpers)
+      const issuesAndRecalls = await loadGuideContext(vehicle, maintenanceType);
       // Generate guide via AI (with procedure hints if available)
-      const systemPrompt = getGuideSystemPrompt(vehicle, diagnosis, procedureHints);
+      const systemPrompt = getGuideSystemPrompt(vehicle, diagnosis, procedureHints, issuesAndRecalls);
       const { content, usage } = await callOpenAI(systemPrompt, apiKey);
 
       // Story 7.1: Log API cost
