@@ -3,6 +3,7 @@ import prisma from '@/lib/db';
 import { getVehicleSpecs } from '@/lib/maintenance';
 import { knownIssuesLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
 import { runPartsPipeline, runFreetextPipeline, type PipelinePart, type PipelineResult } from '@/lib/parts-pipeline';
+import { auth } from '@/lib/auth';
 
 const TIMEOUT_MS = 180000; // Pipeline runs 6 agents + web search + retries — needs time
 
@@ -75,6 +76,13 @@ export async function GET(request: NextRequest) {
   // Country detection from Vercel headers
   const country = request.headers.get('x-vercel-ip-country') || 'US';
 
+  // Resolve authenticated user, if any — ties search history to their account.
+  let userId: string | null = null;
+  try {
+    const session = await auth();
+    userId = session?.user?.id || null;
+  } catch { /* anonymous */ }
+
   // ─── Weekly usage limit (3 lookups/week for free users) ───────────
   const FREE_WEEKLY_LIMIT = 3;
   try {
@@ -127,7 +135,7 @@ export async function GET(request: NextRequest) {
 
   // ─── Free-text search path ────────────────────────────────────────
   if (freeQuery) {
-    return handleFreetextSearch(year, make, model, trim, freeQuery, country, ip);
+    return handleFreetextSearch(year, make, model, trim, freeQuery, country, ip, userId);
   }
 
   // ─── Predefined task path ─────────────────────────────────────────
@@ -178,7 +186,7 @@ export async function GET(request: NextRequest) {
     ]);
 
     storePipelineResult(year, make, model, trim, task, result);
-    trackPartsSearch(year, make, model, trim, task, country, result.parts.length, ip);
+    trackPartsSearch(year, make, model, trim, task, country, result.parts.length, ip, userId);
 
     return NextResponse.json({
       parts: result.parts,
@@ -203,11 +211,13 @@ export async function GET(request: NextRequest) {
 
 function trackPartsSearch(
   year: number, make: string, model: string, trim: string,
-  task: string, country: string, partsCount: number, ip: string
+  task: string, country: string, partsCount: number, ip: string,
+  userId: string | null,
 ) {
   const title = task.startsWith('freetext:') ? task : task.replace(/_/g, ' ');
   prisma.vehicleInsight.create({
     data: {
+      userId,
       year, make, model, trim,
       source: 'parts_search',
       insightType: 'part_demand',
@@ -275,7 +285,8 @@ async function handleFreetextSearch(
   trim: string,
   query: string,
   country: string,
-  ip: string
+  ip: string,
+  userId: string | null,
 ) {
   // Normalize query for cache key
   const cacheTask = `freetext:${query.toLowerCase().trim()}`;
@@ -315,7 +326,7 @@ async function handleFreetextSearch(
     ]);
 
     storePipelineResult(year, make, model, trim, cacheTask, result);
-    trackPartsSearch(year, make, model, trim, cacheTask, country, result.parts.length, ip);
+    trackPartsSearch(year, make, model, trim, cacheTask, country, result.parts.length, ip, userId);
 
     return NextResponse.json({
       parts: result.parts,

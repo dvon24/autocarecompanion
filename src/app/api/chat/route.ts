@@ -11,6 +11,7 @@ import { logApiCost, isBudgetExceeded } from '@/lib/costs';
 import prisma from '@/lib/db';
 import { getVehicleSpecs } from '@/lib/maintenance';
 import { getRecallsForArticle } from '@/lib/recalls';
+import { auth } from '@/lib/auth';
 
 // Allow up to 60s for tool-calling responses on Vercel
 export const maxDuration = 60;
@@ -766,6 +767,7 @@ function captureSymptoms(data: {
   obdCodes?: OBDCodeEntry[];
   diagnosis?: Diagnosis | null;
   sessionHash: string;
+  userId?: string | null;
 }): void {
   // Extract symptom keywords
   const symptoms = extractSymptoms(data.message);
@@ -793,6 +795,7 @@ function captureSymptoms(data: {
   // Persist to VehicleInsight for the unified intelligence loop
   prisma.vehicleInsight.create({
     data: {
+      userId: data.userId || null,
       year: data.vehicle.year,
       make: data.vehicle.make,
       model: data.vehicle.model,
@@ -835,6 +838,13 @@ export async function POST(request: NextRequest) {
     }
 
     const { message, conversationHistory = [], vehicle, obdCodes } = parseResult.data;
+
+    // Resolve authenticated user, if any — ties history to their account.
+    let userId: string | null = null;
+    try {
+      const session = await auth();
+      userId = session?.user?.id || null;
+    } catch { /* anonymous */ }
 
     // Get API key from environment
     const apiKey = process.env.OPENAI_API_KEY;
@@ -930,6 +940,7 @@ export async function POST(request: NextRequest) {
       obdCodes,
       diagnosis,
       sessionHash,
+      userId,
     });
 
     // Persist full chat session for interaction analysis (non-blocking)
@@ -944,6 +955,7 @@ export async function POST(request: NextRequest) {
     ];
     prisma.chatSession.create({
       data: {
+        userId,
         messages: allMessages,
         diagnosis: diagnosis ? (diagnosis as any) : undefined,
         anonymousId: sessionHash,

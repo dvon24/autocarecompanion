@@ -38,6 +38,7 @@ model User {
   sessions           Session[]
   vehicles           Vehicle[]
   chatSessions       ChatSession[]
+  insights           VehicleInsight[]
 }
 
 model Account {
@@ -430,6 +431,7 @@ model VehiclePartLookup {
 
 model VehicleInsight {
   id          String   @id @default(cuid())
+  userId      String?  // null for anonymous users; set when a logged-in user generated the insight
   year        Int
   make        String
   model       String
@@ -445,8 +447,11 @@ model VehicleInsight {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
   @@index([make, model])
   @@index([source])
   @@index([insightType])
   @@index([year, make, model])
+  @@index([userId])
 }
