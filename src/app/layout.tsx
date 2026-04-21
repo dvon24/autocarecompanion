@@ -9,6 +9,7 @@ import { AdSenseScript } from "@/components/ads/AdSenseScript";
 import TermlyCMP from "@/components/consent/TermlyCMP";
 import { OrganizationJsonLd, WebSiteJsonLd, SoftwareApplicationJsonLd } from "@/components/seo/JsonLd";
 import { GoogleTranslate } from "@/components/shared/GoogleTranslate";
+import { InstallPrompt } from "@/components/pwa/InstallPrompt";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -98,6 +99,7 @@ export default function RootLayout({
           <AppProvider>
             <OfflineIndicator position="top" showFeatures />
             {children}
+            <InstallPrompt />
           </AppProvider>
         </SessionProvider>
       </body>
