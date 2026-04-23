@@ -736,6 +736,8 @@ export interface MaintenanceStatusResult {
   dueAtDate?: Date;
   milesUntilDue?: number;
   daysUntilDue?: number;
+  /** True when the computation used an estimated mileage or a synthesized delivery-time service record. */
+  isEstimated?: boolean;
 }
 
 interface MaintenanceRecord {
@@ -748,8 +750,62 @@ interface MaintenanceRecord {
 }
 
 interface Vehicle {
+  year?: number;
   currentMileage?: number | null;
   lastMileageUpdate?: Date | null;
+  annualMileage?: number | null;
+}
+
+const DEFAULT_ANNUAL_MILEAGE = 12000; // US average
+
+/**
+ * Estimate a vehicle's current mileage when the user hasn't entered one.
+ * Projects from either an older known mileage (using annualMileage rate)
+ * or from the model-year delivery date with US-average driving.
+ * Returns null when there isn't enough info.
+ */
+export function estimateCurrentMileage(vehicle: Vehicle, now: Date = new Date()): number | null {
+  const annualRate = vehicle.annualMileage && vehicle.annualMileage > 0
+    ? vehicle.annualMileage
+    : DEFAULT_ANNUAL_MILEAGE;
+
+  // If we already have a mileage reading, project forward from the last update date.
+  if (vehicle.currentMileage != null && vehicle.lastMileageUpdate) {
+    const msSince = now.getTime() - new Date(vehicle.lastMileageUpdate).getTime();
+    if (msSince <= 0) return vehicle.currentMileage;
+    const yearsSince = msSince / (365.25 * 24 * 60 * 60 * 1000);
+    return Math.round(vehicle.currentMileage + annualRate * yearsSince);
+  }
+
+  if (vehicle.currentMileage != null) return vehicle.currentMileage;
+
+  // Fall back to model-year delivery estimate.
+  if (!vehicle.year) return null;
+  // Cars of model year Y are typically delivered starting ~Sep of Y-1; use mid-year for simplicity.
+  const assumedDelivery = new Date(vehicle.year, 0, 1);
+  const yearsSince = (now.getTime() - assumedDelivery.getTime()) / (365.25 * 24 * 60 * 60 * 1000);
+  if (yearsSince <= 0) return 500; // brand-new car
+  return Math.round(yearsSince * annualRate);
+}
+
+/**
+ * Resolve a usable mileage for status computation, preferring real data.
+ * Returns { mileage, isEstimated } so the UI can show an "est" hint.
+ * Treats freshly entered readings (<24h) as exact; older or absent readings become estimates.
+ */
+function resolveMileage(vehicle: Vehicle, now: Date = new Date()): { mileage: number | null; isEstimated: boolean } {
+  if (vehicle.currentMileage != null && vehicle.lastMileageUpdate) {
+    const hoursSince = (now.getTime() - new Date(vehicle.lastMileageUpdate).getTime()) / 3_600_000;
+    if (hoursSince < 24) {
+      return { mileage: vehicle.currentMileage, isEstimated: false };
+    }
+  }
+  if (vehicle.currentMileage != null && !vehicle.lastMileageUpdate) {
+    return { mileage: vehicle.currentMileage, isEstimated: false };
+  }
+  const projected = estimateCurrentMileage(vehicle, now);
+  if (projected == null) return { mileage: null, isEstimated: false };
+  return { mileage: projected, isEstimated: true };
 }
 
 /**
@@ -775,16 +831,22 @@ export function getMaintenanceStatus(
   const intervalMiles = resolved?.intervalMiles ?? schedule.defaultIntervalMiles;
   const intervalMonths = resolved?.intervalMonths ?? schedule.defaultIntervalMonths;
 
-  const currentMileage = vehicle.currentMileage;
+  const { mileage: currentMileage, isEstimated: mileageEstimated } = resolveMileage(vehicle);
 
   if (!currentMileage) {
     return { status: 'unknown', message: 'Update your mileage to see status' };
   }
 
   // Find the most recent record of this type
-  const lastRecord = records
+  const realLastRecord = records
     .filter((r) => r.type === maintenanceType)
     .sort((a, b) => b.mileage - a.mileage)[0];
+
+  // No service logged yet — synthesize a "delivered from factory" baseline so the dashboard
+  // can still project a useful due-by number. The UI will flag this as estimated.
+  const lastRecord = realLastRecord ?? (vehicle.year
+    ? { id: 'est-delivery', type: maintenanceType, mileage: 0, date: new Date(vehicle.year, 0, 1), nextDueMileage: null, nextDueDate: null }
+    : null);
 
   if (!lastRecord) {
     return {
@@ -792,6 +854,8 @@ export function getMaintenanceStatus(
       message: 'No service history - log your first service',
     };
   }
+
+  const isEstimated = mileageEstimated || !realLastRecord;
 
   const milesSinceService = currentMileage - lastRecord.mileage;
   const daysSinceService = Math.floor(
@@ -822,6 +886,7 @@ export function getMaintenanceStatus(
         dueAtDate,
         milesUntilDue,
         daysUntilDue,
+        isEstimated,
       };
     } else if (overdueMiles > 0) {
       return {
@@ -833,6 +898,7 @@ export function getMaintenanceStatus(
         dueAtDate,
         milesUntilDue,
         daysUntilDue,
+        isEstimated,
       };
     } else {
       return {
@@ -844,6 +910,7 @@ export function getMaintenanceStatus(
         dueAtDate,
         milesUntilDue,
         daysUntilDue,
+        isEstimated,
       };
     }
   }
@@ -860,6 +927,7 @@ export function getMaintenanceStatus(
         dueAtDate,
         milesUntilDue,
         daysUntilDue,
+        isEstimated,
       };
     } else if (milesUntilDue < 500) {
       return {
@@ -871,6 +939,7 @@ export function getMaintenanceStatus(
         dueAtDate,
         milesUntilDue,
         daysUntilDue,
+        isEstimated,
       };
     } else {
       return {
@@ -882,6 +951,7 @@ export function getMaintenanceStatus(
         dueAtDate,
         milesUntilDue,
         daysUntilDue,
+        isEstimated,
       };
     }
   }
@@ -896,7 +966,16 @@ export function getMaintenanceStatus(
     dueAtDate,
     milesUntilDue,
     daysUntilDue,
+    isEstimated,
   };
+}
+
+/**
+ * Convenience helper that returns the resolved current mileage and whether it was estimated.
+ * Exported so UI code doesn't have to recompute it.
+ */
+export function getResolvedMileage(vehicle: Vehicle, now: Date = new Date()): { mileage: number | null; isEstimated: boolean } {
+  return resolveMileage(vehicle, now);
 }
 
 /**

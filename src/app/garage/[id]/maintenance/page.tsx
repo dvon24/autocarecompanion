@@ -19,6 +19,7 @@ import {
   getApplicableSchedules,
   getVehicleSpecs,
   getSpecsForMaintenanceType,
+  getResolvedMileage,
   type MaintenanceStatusResult,
   type VehicleContext,
   type ResolvedSchedule,
@@ -306,9 +307,17 @@ export default function MaintenancePage() {
     trim: vehicle.trim || undefined,
   });
 
-  // Get maintenance statuses using vehicle-specific intervals
+  // Get maintenance statuses using vehicle-specific intervals.
+  // Pass year + annualMileage + lastMileageUpdate so the helper can estimate when the user
+  // hasn't filled in a current mileage yet.
+  const statusVehicle = {
+    year: vehicle.year,
+    currentMileage: vehicle.currentMileage,
+    lastMileageUpdate: vehicle.lastMileageUpdate ? new Date(vehicle.lastMileageUpdate) : null,
+    annualMileage: vehicle.annualMileage,
+  };
   const statuses = getAllMaintenanceStatuses(
-    { currentMileage: vehicle.currentMileage },
+    statusVehicle,
     records.map((r) => ({
       ...r,
       date: new Date(r.date),
@@ -316,6 +325,7 @@ export default function MaintenancePage() {
     })),
     vehicleContext
   );
+  const resolvedMileage = getResolvedMileage(statusVehicle);
 
   // Filter applicable schedules by category
   const filteredTypes: [string, ResolvedSchedule][] = applicableSchedules
@@ -426,9 +436,19 @@ export default function MaintenancePage() {
                       </svg>
                     </div>
                     <p className="text-2xl font-bold text-gray-900 mt-1">
-                      {vehicle.currentMileage ? `${vehicle.currentMileage.toLocaleString()}` : '—'}
+                      {vehicle.currentMileage
+                        ? `${vehicle.currentMileage.toLocaleString()}`
+                        : resolvedMileage.mileage
+                          ? `~${resolvedMileage.mileage.toLocaleString()}`
+                          : '—'}
                     </p>
-                    <p className="text-xs text-gray-400 mt-1">miles</p>
+                    <p className="text-xs text-gray-400 mt-1">
+                      {vehicle.currentMileage
+                        ? 'miles'
+                        : resolvedMileage.isEstimated
+                          ? 'miles (estimated)'
+                          : 'miles'}
+                    </p>
                   </>
                 )}
               </ContentCard>
@@ -827,13 +847,20 @@ export default function MaintenancePage() {
                         </span>
                         <span className="font-semibold text-gray-900">{type.name}</span>
                       </div>
-                      <span
-                        className={`px-2 py-0.5 rounded text-xs font-bold ${getStatusColor(
-                          typeStatus.status
-                        )}`}
-                      >
-                        {getStatusIcon(typeStatus.status)} {typeStatus.status === 'ok' ? 'OK' : typeStatus.status === 'due_soon' ? 'Soon' : typeStatus.status === 'overdue' ? 'Overdue' : 'Unknown'}
-                      </span>
+                      <div className="flex items-center gap-1.5">
+                        {typeStatus.isEstimated && (
+                          <span className="px-1.5 py-0.5 rounded bg-gray-100 text-gray-500 text-[10px] font-medium uppercase tracking-wide">
+                            est
+                          </span>
+                        )}
+                        <span
+                          className={`px-2 py-0.5 rounded text-xs font-bold ${getStatusColor(
+                            typeStatus.status
+                          )}`}
+                        >
+                          {getStatusIcon(typeStatus.status)} {typeStatus.status === 'ok' ? 'OK' : typeStatus.status === 'due_soon' ? 'Soon' : typeStatus.status === 'overdue' ? 'Overdue' : 'Unknown'}
+                        </span>
+                      </div>
                     </div>
 
                     {/* Due info */}
