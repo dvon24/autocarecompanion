@@ -78,7 +78,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       // Mapbox Standard ships with 3D buildings + dynamic lighting baked in.
       style: 'mapbox://styles/mapbox/standard',
       center: origin ? [origin.lng, origin.lat] : [-98.5, 39.5],
-      zoom: origin ? 16 : 4,
+      zoom: origin ? 16 : 11,
       pitch: origin ? 60 : 0,
       bearing: 0,
       antialias: true,
@@ -96,14 +96,8 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         });
       }
       map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.3 });
-      map.setFog({
-        range: [0.5, 10],
-        color: '#ffffff',
-        'high-color': '#245cdf',
-        'space-color': '#000000',
-        'horizon-blend': 0.1,
-        'star-intensity': 0.0,
-      });
+      // Let Standard style's built-in atmosphere render — overriding space-color
+      // to black made the globe appear to be a void at low zooms.
       // Standard style uses a config API for lighting / themes.
       try {
         map.setConfigProperty('basemap', 'lightPreset', 'day');
