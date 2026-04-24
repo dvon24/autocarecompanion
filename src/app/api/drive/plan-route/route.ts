@@ -6,9 +6,16 @@ export const maxDuration = 30;
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
 const MAPBOX_TOKEN = process.env.MAPBOX_ACCESS_TOKEN || process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
+interface ConversationTurn {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
 interface PlanRouteBody {
   transcript: string;
   origin?: { lng: number; lat: number };
+  conversationHistory?: ConversationTurn[];
+  currentRoute?: { destination: string; miles: number; minutes: number } | null;
 }
 
 /**
@@ -37,32 +44,68 @@ export async function POST(request: NextRequest) {
   if (!transcript) return NextResponse.json({ error: 'transcript required' }, { status: 400 });
   if (!body.origin) return NextResponse.json({ error: 'origin (current location) required' }, { status: 400 });
 
-  // 1. Parse spoken text into destination + intent
+  // 1. Ask Claude to classify the voice turn. It may request navigation,
+  //    ask for clarification, or just chat about the current route.
   const client = new Anthropic({ apiKey: ANTHROPIC_KEY });
-  const parsePrompt = `Extract the navigation destination from the user's spoken request. Return ONLY a JSON object:
-{ "destination": "<clean geocodable place or address>", "intent": "navigate" }
 
-Do not include directions or route preferences in the destination — just the place. If the user is unclear, return { "destination": "", "intent": "clarify" }.
+  const currentRouteNote = body.currentRoute
+    ? `The user is currently routed to "${body.currentRoute.destination}" (${body.currentRoute.miles} mi, ${body.currentRoute.minutes} min).`
+    : 'The user has no active route yet.';
 
-User said: "${transcript}"`;
+  const systemPrompt = `You are Au7o, a voice navigation copilot that runs in the car. Respond like a helpful, concise friend — never verbose.
 
+${currentRouteNote}
+
+Every turn, return ONLY a JSON object with this shape:
+{
+  "intent": "navigate" | "clarify" | "chat",
+  "destination": "<clean geocodable place or address>",
+  "reply": "<short sentence spoken back to the driver, under 20 words>"
+}
+
+Rules:
+- intent "navigate" — the user wants to go somewhere new or change the route. Fill "destination" with a clean geocodable string (place name, address, or "nearest X"). "reply" should be a short confirmation like "Routing to Whole Foods now."
+- intent "clarify" — their ask is ambiguous (two Starbucks, they asked a vague "home", etc.). Leave destination empty. "reply" asks a short follow-up question.
+- intent "chat" — they asked something that doesn't change the destination (e.g., "how long is this trip?", "any stops on the way?", "thanks"). Leave destination empty. "reply" is your spoken answer.
+- If the user's last message builds on context ("the other one", "that Starbucks on Main"), use the conversation history to resolve it into a fresh destination string.
+- Never invent traffic, ETAs, or distances beyond what the current route context already states.`;
+
+  const messages: { role: 'user' | 'assistant'; content: string }[] = [];
+  if (Array.isArray(body.conversationHistory)) {
+    for (const t of body.conversationHistory.slice(-10)) {
+      if (t.role === 'user' || t.role === 'assistant') {
+        messages.push({ role: t.role, content: String(t.content || '') });
+      }
+    }
+  }
+  messages.push({ role: 'user', content: transcript });
+
+  let intent: 'navigate' | 'clarify' | 'chat' = 'navigate';
   let destination = '';
+  let spokenReply = '';
   try {
     const res = await client.messages.create({
       model: 'claude-sonnet-4-6',
-      max_tokens: 200,
-      system: 'You parse voice navigation requests into clean destination strings. Return only JSON, no prose.',
-      messages: [{ role: 'user', content: parsePrompt }],
+      max_tokens: 300,
+      system: systemPrompt,
+      messages,
     });
     const raw = res.content?.[0]?.type === 'text' ? res.content[0].text : '{}';
     const cleaned = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     const parsed = JSON.parse(cleaned);
+    intent = parsed.intent === 'clarify' || parsed.intent === 'chat' ? parsed.intent : 'navigate';
     destination = (parsed.destination || '').trim();
-    if (!destination) {
-      return NextResponse.json({ error: 'clarify', message: "I didn't catch a destination — try again." }, { status: 200 });
-    }
+    spokenReply = (parsed.reply || '').trim();
   } catch (err) {
     return NextResponse.json({ error: 'parse_failed', message: String(err) }, { status: 500 });
+  }
+
+  // If Claude only wanted to clarify or chat, return without geocoding.
+  if (intent !== 'navigate' || !destination) {
+    return NextResponse.json({
+      intent,
+      reply: spokenReply || "I'm not sure I got that — can you say it again?",
+    });
   }
 
   // 2. Geocode the destination near the user's current location
@@ -95,8 +138,13 @@ User said: "${transcript}"`;
   const miles = (route.distance / 1609.34).toFixed(1);
   const minutes = Math.max(1, Math.round(route.duration / 60));
   const summary = `Route to ${placeName}. ${miles} miles, about ${minutes} minutes.`;
+  // Prefer Claude's conversational reply; fall back to the deterministic summary.
+  const reply = spokenReply
+    ? `${spokenReply} ${miles} miles, about ${minutes} minutes.`
+    : summary;
 
   return NextResponse.json({
+    intent: 'navigate',
     destination: placeName,
     origin: body.origin,
     destinationCoords: { lng: destLng, lat: destLat },
@@ -104,5 +152,6 @@ User said: "${transcript}"`;
     miles: Number(miles),
     minutes,
     summary,
+    reply,
   });
 }

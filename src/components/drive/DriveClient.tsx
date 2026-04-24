@@ -14,6 +14,7 @@ declare global {
 }
 
 interface RouteResponse {
+  intent?: 'navigate' | 'clarify' | 'chat';
   destination?: string;
   origin?: { lng: number; lat: number };
   destinationCoords?: { lng: number; lat: number };
@@ -21,8 +22,20 @@ interface RouteResponse {
   miles?: number;
   minutes?: number;
   summary?: string;
+  reply?: string;
   error?: string;
   message?: string;
+}
+
+interface ConvoTurn {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
+interface ActiveRoute {
+  destination: string;
+  miles: number;
+  minutes: number;
 }
 
 function speak(text: string) {
@@ -49,6 +62,10 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const [busy, setBusy] = useState(false);
   const [route, setRoute] = useState<RouteResponse | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [history, setHistory] = useState<ConvoTurn[]>([]);
+  const [lastReply, setLastReply] = useState<string>('');
+  // Active route mirror for the API so Claude can answer "how long is this trip?"
+  const activeRouteRef = useRef<ActiveRoute | null>(null);
 
   const recognitionRef = useRef<any>(null);
 
@@ -182,11 +199,17 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     if (!text || !origin) return;
     setBusy(true);
     setErrorMsg(null);
+    const nextUserTurn: ConvoTurn = { role: 'user', content: text };
     try {
       const res = await fetch('/api/drive/plan-route', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ transcript: text, origin }),
+        body: JSON.stringify({
+          transcript: text,
+          origin,
+          conversationHistory: [...history, nextUserTurn].slice(-10),
+          currentRoute: activeRouteRef.current,
+        }),
       });
       const data = (await res.json()) as RouteResponse;
       if (!res.ok || data.error) {
@@ -195,11 +218,32 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         speak(msg);
         return;
       }
-      setRoute(data);
-      if (data.geometry && data.destinationCoords && data.destination) {
-        drawRoute(data.geometry, data.destinationCoords, data.destination);
+
+      const spoken = data.reply || data.summary || '';
+      if (spoken) {
+        setLastReply(spoken);
+        speak(spoken);
       }
-      if (data.summary) speak(data.summary);
+
+      // Record the turn so follow-ups ("the other one") can resolve.
+      setHistory((prev) => {
+        const trimmed = [...prev, nextUserTurn];
+        if (spoken) trimmed.push({ role: 'assistant', content: spoken });
+        return trimmed.slice(-20);
+      });
+
+      // Only actually draw/update the route when Claude asked to navigate.
+      if (data.intent === 'navigate' && data.geometry && data.destinationCoords && data.destination) {
+        setRoute(data);
+        drawRoute(data.geometry, data.destinationCoords, data.destination);
+        if (typeof data.miles === 'number' && typeof data.minutes === 'number') {
+          activeRouteRef.current = {
+            destination: data.destination,
+            miles: data.miles,
+            minutes: data.minutes,
+          };
+        }
+      }
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Network error';
       setErrorMsg(msg);
@@ -207,7 +251,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     } finally {
       setBusy(false);
     }
-  }, [origin, drawRoute]);
+  }, [origin, drawRoute, history]);
 
   const startListening = useCallback(() => {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -275,12 +319,24 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         )}
       </div>
 
-      {/* Transcript / error banner above the mic */}
-      {(transcript || errorMsg) && (
-        <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-10 max-w-[92vw]">
-          <div className={`px-4 py-3 rounded-xl text-sm font-medium shadow-lg ${errorMsg ? 'bg-red-600 text-white' : 'bg-white/95 backdrop-blur text-gray-900'}`}>
-            {errorMsg || `"${transcript}"`}
-          </div>
+      {/* Transcript / assistant reply / error banner above the mic */}
+      {(transcript || errorMsg || lastReply) && (
+        <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-10 max-w-[92vw] flex flex-col gap-2 items-center">
+          {errorMsg && (
+            <div className="px-4 py-3 rounded-xl text-sm font-medium shadow-lg bg-red-600 text-white">
+              {errorMsg}
+            </div>
+          )}
+          {!errorMsg && transcript && (
+            <div className="px-4 py-2 rounded-xl text-sm font-medium shadow-lg bg-white/95 backdrop-blur text-gray-900">
+              &ldquo;{transcript}&rdquo;
+            </div>
+          )}
+          {!errorMsg && lastReply && (
+            <div className="px-4 py-2 rounded-xl text-sm font-medium shadow-lg bg-blue-600 text-white max-w-md text-center">
+              {lastReply}
+            </div>
+          )}
         </div>
       )}
 
