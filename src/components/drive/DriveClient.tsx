@@ -25,6 +25,13 @@ interface FuelStop {
   milesFromStart: number;
 }
 
+interface SpeedLimitEntry {
+  speed: number | null;
+  unit: 'mph' | 'km/h' | null;
+  unknown?: boolean;
+  none?: boolean;
+}
+
 interface RouteResponse {
   intent?: 'navigate' | 'clarify' | 'chat';
   destination?: string;
@@ -36,6 +43,7 @@ interface RouteResponse {
   summary?: string;
   reply?: string;
   fuelStops?: FuelStop[];
+  speedLimits?: SpeedLimitEntry[];
   preferenceUpdate?: string;
   error?: string;
   message?: string;
@@ -72,6 +80,10 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
 
   const [origin, setOrigin] = useState<{ lng: number; lat: number } | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
+  const [driverSpeedMph, setDriverSpeedMph] = useState<number | null>(null);
+  const routeCoordsRef = useRef<[number, number][]>([]);
+  const speedLimitsRef = useRef<SpeedLimitEntry[]>([]);
+  const [currentLimit, setCurrentLimit] = useState<SpeedLimitEntry | null>(null);
   const [listening, setListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [busy, setBusy] = useState(false);
@@ -115,8 +127,33 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     }
     const watchId = navigator.geolocation.watchPosition(
       (pos) => {
-        setOrigin({ lng: pos.coords.longitude, lat: pos.coords.latitude });
+        const lng = pos.coords.longitude;
+        const lat = pos.coords.latitude;
+        setOrigin({ lng, lat });
         setLocationError(null);
+
+        // Browser geolocation gives speed in m/s (null if unavailable/parked).
+        if (typeof pos.coords.speed === 'number' && !Number.isNaN(pos.coords.speed)) {
+          setDriverSpeedMph(Math.max(0, pos.coords.speed * 2.23694));
+        }
+
+        // Resolve current speed limit by finding the nearest route segment.
+        const coords = routeCoordsRef.current;
+        const limits = speedLimitsRef.current;
+        if (coords.length > 1 && limits.length > 0) {
+          let bestIdx = 0;
+          let bestDist = Infinity;
+          for (let i = 0; i < coords.length; i++) {
+            const [cLng, cLat] = coords[i];
+            const dLng = cLng - lng;
+            const dLat = cLat - lat;
+            const d = dLng * dLng + dLat * dLat;
+            if (d < bestDist) { bestDist = d; bestIdx = i; }
+          }
+          // Annotation i belongs to segment between coords[i] and coords[i+1].
+          const segIdx = Math.min(bestIdx, limits.length - 1);
+          setCurrentLimit(limits[segIdx] || null);
+        }
       },
       (err) => setLocationError(err.message),
       { enableHighAccuracy: true, maximumAge: 5000, timeout: 10000 },
@@ -284,6 +321,11 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       if (data.intent === 'navigate' && data.geometry && data.destinationCoords && data.destination) {
         setRoute(data);
         drawRoute(data.geometry, data.destinationCoords, data.destination);
+        // Cache the route geometry + per-segment speed limits so the GPS watcher
+        // can look up the current limit as the driver moves.
+        routeCoordsRef.current = (data.geometry.coordinates as [number, number][]) || [];
+        speedLimitsRef.current = data.speedLimits || [];
+        setCurrentLimit(null);
         if (typeof data.miles === 'number' && typeof data.minutes === 'number') {
           activeRouteRef.current = {
             destination: data.destination,
@@ -375,6 +417,42 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       <div className="absolute top-4 left-4 z-10">
         <VehiclePicker value={vehicle} onChange={setVehicle} />
       </div>
+
+      {/* Speed-limit badge — top-left below vehicle picker */}
+      {currentLimit && (currentLimit.speed != null || currentLimit.none) && (() => {
+        const overBy = (() => {
+          if (!currentLimit.speed || !driverSpeedMph) return 0;
+          const limitMph = currentLimit.unit === 'km/h' ? currentLimit.speed * 0.621371 : currentLimit.speed;
+          return driverSpeedMph - limitMph;
+        })();
+        const over = overBy > 3; // tolerance so GPS jitter doesn't flash the badge
+        return (
+          <div className="absolute top-16 left-4 z-10 flex items-center gap-2">
+            <div
+              className={`flex flex-col items-center justify-center rounded-full border-4 shadow-lg bg-white transition-colors ${
+                over ? 'border-red-600 animate-pulse' : 'border-black'
+              }`}
+              style={{ width: 64, height: 64 }}
+              aria-label="Current speed limit"
+            >
+              {currentLimit.none ? (
+                <span className="text-black text-[10px] font-bold leading-tight text-center">NO<br/>LIMIT</span>
+              ) : (
+                <>
+                  <span className="text-black text-[9px] font-bold leading-none mt-1">SPEED LIMIT</span>
+                  <span className="text-black text-2xl font-black leading-none">{currentLimit.speed}</span>
+                  <span className="text-black text-[8px] font-semibold leading-none mb-1">{currentLimit.unit?.toUpperCase()}</span>
+                </>
+              )}
+            </div>
+            {driverSpeedMph != null && (
+              <div className={`px-2.5 py-1 rounded-lg text-sm font-bold shadow ${over ? 'bg-red-600 text-white' : 'bg-white/90 text-gray-800'}`}>
+                {Math.round(driverSpeedMph)} mph
+              </div>
+            )}
+          </div>
+        );
+      })()}
 
       {/* Top status pill */}
       <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 max-w-[92vw]">

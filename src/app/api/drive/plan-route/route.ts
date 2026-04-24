@@ -205,7 +205,8 @@ Rules:
 
   // 3. Get driving directions from origin → destination
   const coords = `${body.origin.lng},${body.origin.lat};${destLng},${destLat}`;
-  const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${coords}?geometries=geojson&overview=full&steps=false&access_token=${MAPBOX_TOKEN}`;
+  // overview=full ensures geometry.coordinates aligns 1:1 with the annotation arrays.
+  const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${coords}?geometries=geojson&overview=full&steps=false&annotations=maxspeed&access_token=${MAPBOX_TOKEN}`;
   const dirRes = await fetch(dirUrl);
   if (!dirRes.ok) {
     return NextResponse.json({ error: 'directions_failed', message: `Mapbox directions ${dirRes.status}` }, { status: 502 });
@@ -220,6 +221,29 @@ Rules:
   const miles = milesNum.toFixed(1);
   const minutes = Math.max(1, Math.round(route.duration / 60));
   const summary = `Route to ${placeName}. ${miles} miles, about ${minutes} minutes.`;
+
+  // Flatten per-segment maxspeed annotations from every leg so the client can
+  // align them with route.geometry.coordinates (N coords → N-1 segments).
+  // Mapbox returns objects like { speed: 55, unit: 'mph' }, { unknown: true }, or { none: true } (no limit).
+  interface MaxSpeedEntry { speed: number | null; unit: 'mph' | 'km/h' | null; unknown?: boolean; none?: boolean }
+  const speedLimits: MaxSpeedEntry[] = [];
+  if (Array.isArray(route.legs)) {
+    for (const leg of route.legs) {
+      const arr = leg?.annotation?.maxspeed;
+      if (Array.isArray(arr)) {
+        for (const m of arr) {
+          if (m?.none) speedLimits.push({ speed: null, unit: null, none: true });
+          else if (m?.unknown) speedLimits.push({ speed: null, unit: null, unknown: true });
+          else if (typeof m?.speed === 'number') {
+            const unit = m.unit === 'km/h' ? 'km/h' : 'mph';
+            speedLimits.push({ speed: m.speed, unit });
+          } else {
+            speedLimits.push({ speed: null, unit: null, unknown: true });
+          }
+        }
+      }
+    }
+  }
 
   // Fuel-stop planning: if the user mentioned a remaining range and the trip exceeds it,
   // pick a point along the route at ~70% of their range (30% safety buffer) and look up
@@ -273,6 +297,7 @@ Rules:
     reply,
     fuelStops,
     fuelMilesRemaining,
+    speedLimits,
     preferenceUpdate: preferenceUpdate || undefined,
   });
 }
