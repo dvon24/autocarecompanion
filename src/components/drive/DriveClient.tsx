@@ -75,11 +75,42 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     mapboxgl.accessToken = mapboxToken;
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/navigation-day-v1',
+      // Mapbox Standard ships with 3D buildings + dynamic lighting baked in.
+      style: 'mapbox://styles/mapbox/standard',
       center: origin ? [origin.lng, origin.lat] : [-98.5, 39.5],
-      zoom: origin ? 13 : 4,
+      zoom: origin ? 16 : 4,
+      pitch: origin ? 60 : 0,
+      bearing: 0,
+      antialias: true,
     });
     map.addControl(new mapboxgl.NavigationControl({ visualizePitch: true }), 'top-right');
+
+    // On style load, add terrain + atmosphere so distant landscape looks volumetric.
+    map.on('style.load', () => {
+      if (!map.getSource('mapbox-dem')) {
+        map.addSource('mapbox-dem', {
+          type: 'raster-dem',
+          url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+          tileSize: 512,
+          maxzoom: 14,
+        });
+      }
+      map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.3 });
+      map.setFog({
+        range: [0.5, 10],
+        color: '#ffffff',
+        'high-color': '#245cdf',
+        'space-color': '#000000',
+        'horizon-blend': 0.1,
+        'star-intensity': 0.0,
+      });
+      // Standard style uses a config API for lighting / themes.
+      try {
+        map.setConfigProperty('basemap', 'lightPreset', 'day');
+        map.setConfigProperty('basemap', 'show3dObjects', true);
+      } catch { /* older mapbox-gl versions */ }
+    });
+
     mapRef.current = map;
     return () => { map.remove(); mapRef.current = null; };
   // mapboxToken never changes; origin handled in separate effect.
@@ -95,7 +126,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       el.className = 'drive-origin-marker';
       el.style.cssText = 'width:14px;height:14px;border-radius:50%;background:#3b82f6;border:3px solid #fff;box-shadow:0 0 0 2px #3b82f6;';
       originMarker.current = new mapboxgl.Marker({ element: el }).setLngLat([origin.lng, origin.lat]).addTo(map);
-      map.flyTo({ center: [origin.lng, origin.lat], zoom: 14, speed: 1.2 });
+      map.flyTo({ center: [origin.lng, origin.lat], zoom: 16, pitch: 60, speed: 1.2, essential: true });
     } else {
       originMarker.current.setLngLat([origin.lng, origin.lat]);
     }
