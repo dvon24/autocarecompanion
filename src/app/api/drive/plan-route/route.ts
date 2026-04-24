@@ -170,6 +170,7 @@ Every turn, return ONLY a JSON object with this shape:
   "intent": "navigate" | "clarify" | "chat",
   "destination": "<clean geocodable place or address>",
   "fuelMilesRemaining": <number or null>,
+  "needsParkingSearch": <boolean>,
   "preferenceUpdate": "<short single-line note to remember for future sessions, or empty string>",
   "reply": "<short sentence spoken back to the driver, under 20 words>"
 }
@@ -181,6 +182,7 @@ Rules:
 - "NICE DRIVE" intent — if the user says things like "take me on a nice drive", "find me a scenic route", "I just want to cruise", "somewhere fun", pick a real geographic destination about 30–80 miles away from their current location that would make a pleasant out-and-back or loop drive — prefer scenic roads, coastlines, mountain passes, state parks, or historic towns when plausible for their region. DON'T pick interstate stretches or strip malls. Set intent = "navigate" with that destination. Use the DRIVER PREFERENCES and RECENT ROUTES context to pick somewhere new and aligned to their taste. In "reply", name the destination + why it'll be nice ("How about Chuckanut Drive? Great coastal cruise, 45 miles round trip."). If the driver has already asked for a nice drive recently, offer a different one.
 - fuelMilesRemaining: if the user mentions how far they can go on fuel/charge ("I have 120 miles to empty", "80 miles of range left", "quarter tank"), extract a numeric estimate. A quarter tank ≈ 75 mi, half tank ≈ 150 mi, low/almost empty ≈ 30 mi. If they say "I just filled up" and a vehicle is known, estimate full tank × combined MPG. Otherwise null.
 - preferenceUpdate: if the user states a durable preference we should remember next time ("I hate highways", "I like curvy mountain roads", "always avoid tolls", "no left turns on unprotected lights"), write a one-line note like "Prefers curvy mountain roads, dislikes highways." Otherwise empty string. Do NOT echo routine navigation commands as preferences.
+- needsParkingSearch: set TRUE when the destination is the kind of place that probably doesn't have its own easy parking — restaurants in downtown/urban areas, bars, clubs, theaters, museums, sports venues, cafes in dense neighborhoods, concert halls. Set FALSE for destinations that clearly include ample parking — big-box stores (Walmart, Target, Costco), suburban strip malls, malls, airports, IKEA, most gas stations. When uncertain, prefer TRUE for small/urban places and FALSE for large/suburban.
 - If the user's last message builds on context ("the other one", "that Starbucks on Main"), use the conversation history to resolve it into a fresh destination string.
 - Never invent traffic, ETAs, or distances beyond what the current route context already states.`;
 
@@ -198,6 +200,7 @@ Rules:
   let destination = '';
   let spokenReply = '';
   let preferenceUpdate = '';
+  let needsParkingSearch = false;
   // Priority for fuel range: explicit body param > value Claude extracted from the utterance.
   let fuelMilesRemaining: number | null = typeof body.fuelMilesRemaining === 'number' ? body.fuelMilesRemaining : null;
   try {
@@ -214,6 +217,7 @@ Rules:
     destination = (parsed.destination || '').trim();
     spokenReply = (parsed.reply || '').trim();
     preferenceUpdate = (parsed.preferenceUpdate || '').trim();
+    needsParkingSearch = parsed.needsParkingSearch === true;
     if (fuelMilesRemaining == null && typeof parsed.fuelMilesRemaining === 'number') {
       fuelMilesRemaining = parsed.fuelMilesRemaining;
     }
@@ -320,11 +324,44 @@ Rules:
     }
   }
 
+  // Parking lookup: if Claude flagged the destination as parking-challenged, pull
+  // 3 nearest parking options via Mapbox Geocoding, biased toward the destination.
+  interface ParkingOption { name: string; lng: number; lat: number; walkingBlocks: number }
+  let parkingOptions: ParkingOption[] = [];
+  let parkingNote = '';
+  if (needsParkingSearch) {
+    try {
+      const parkUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent('parking')}.json?proximity=${destLng},${destLat}&limit=3&access_token=${MAPBOX_TOKEN}`;
+      const parkRes = await fetch(parkUrl);
+      if (parkRes.ok) {
+        const parkData = await parkRes.json();
+        for (const feat of parkData.features || []) {
+          const [pLng, pLat] = feat.center as [number, number];
+          const distMi = haversineMiles(destLat, destLng, pLat, pLng);
+          // Rough walking distance: 1 city block ≈ 0.05 mi, so multiply by 20.
+          parkingOptions.push({
+            name: feat.text || feat.place_name || 'Parking',
+            lng: pLng,
+            lat: pLat,
+            walkingBlocks: Math.max(1, Math.round(distMi * 20)),
+          });
+        }
+      }
+    } catch { /* non-blocking */ }
+    if (parkingOptions.length > 0) {
+      const closest = parkingOptions[0];
+      parkingNote = `Heads up, parking there is tough. I marked ${parkingOptions.length} nearby option${parkingOptions.length === 1 ? '' : 's'} — closest is ${closest.name}, about ${closest.walkingBlocks} block${closest.walkingBlocks === 1 ? '' : 's'} walk.`;
+    }
+  }
+
   // Prefer Claude's conversational reply; fall back to the deterministic summary.
   const baseReply = spokenReply
     ? `${spokenReply} ${miles} miles, about ${minutes} minutes.`
     : summary;
-  const reply = fuelWarning ? `${baseReply} ${fuelWarning}` : baseReply;
+  const parts = [baseReply];
+  if (fuelWarning) parts.push(fuelWarning);
+  if (parkingNote) parts.push(parkingNote);
+  const reply = parts.join(' ');
 
   return NextResponse.json({
     intent: 'navigate',
@@ -339,6 +376,7 @@ Rules:
     fuelStops,
     fuelMilesRemaining,
     speedLimits,
+    parkingOptions,
     preferenceUpdate: preferenceUpdate || undefined,
   });
 }

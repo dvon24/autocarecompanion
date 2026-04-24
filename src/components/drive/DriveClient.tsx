@@ -25,6 +25,13 @@ interface FuelStop {
   milesFromStart: number;
 }
 
+interface ParkingOption {
+  name: string;
+  lng: number;
+  lat: number;
+  walkingBlocks: number;
+}
+
 interface SpeedLimitEntry {
   speed: number | null;
   unit: 'mph' | 'km/h' | null;
@@ -43,6 +50,7 @@ interface RouteResponse {
   summary?: string;
   reply?: string;
   fuelStops?: FuelStop[];
+  parkingOptions?: ParkingOption[];
   speedLimits?: SpeedLimitEntry[];
   preferenceUpdate?: string;
   error?: string;
@@ -77,6 +85,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const originMarker = useRef<mapboxgl.Marker | null>(null);
   const destMarker = useRef<mapboxgl.Marker | null>(null);
   const fuelMarkers = useRef<mapboxgl.Marker[]>([]);
+  const parkingMarkers = useRef<mapboxgl.Marker[]>([]);
 
   const [origin, setOrigin] = useState<{ lng: number; lat: number } | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
@@ -354,6 +363,18 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             const popup = new mapboxgl.Popup({ offset: 22 }).setText(`${stop.name} — ${stop.milesFromStart} mi in`);
             const marker = new mapboxgl.Marker({ element: el }).setLngLat([stop.lng, stop.lat]).setPopup(popup).addTo(map);
             fuelMarkers.current.push(marker);
+          });
+
+          // Refresh parking markers.
+          parkingMarkers.current.forEach((m) => m.remove());
+          parkingMarkers.current = [];
+          (data.parkingOptions || []).forEach((spot) => {
+            const el = document.createElement('div');
+            el.style.cssText = 'width:28px;height:28px;border-radius:6px;background:#2563eb;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;';
+            el.textContent = 'P';
+            const popup = new mapboxgl.Popup({ offset: 22 }).setText(`${spot.name} — ~${spot.walkingBlocks} block${spot.walkingBlocks === 1 ? '' : 's'} walk`);
+            const marker = new mapboxgl.Marker({ element: el }).setLngLat([spot.lng, spot.lat]).setPopup(popup).addTo(map);
+            parkingMarkers.current.push(marker);
           });
         }
       }
