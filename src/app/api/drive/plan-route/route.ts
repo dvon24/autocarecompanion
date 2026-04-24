@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
+import {
+  driveTurnMinuteLimiter,
+  driveTurnDayLimiter,
+  getClientIp,
+  rateLimitResponse,
+} from '@/lib/rate-limit';
 
 export const maxDuration = 30;
 
@@ -76,6 +82,14 @@ function pointAtMilesAlongRoute(coords: number[][], milesFromStart: number): [nu
  *   4) We return GeoJSON + a one-line summary the client can TTS back.
  */
 export async function POST(request: NextRequest) {
+  // Rate limit — each voice turn fans out to Claude + Mapbox geocoding + directions
+  // + (sometimes) a gas-station lookup, so we cap both per-minute burst and daily volume.
+  const ip = getClientIp(request);
+  const minCheck = driveTurnMinuteLimiter.check(ip);
+  if (!minCheck.success) return rateLimitResponse(minCheck.reset);
+  const dayCheck = driveTurnDayLimiter.check(ip);
+  if (!dayCheck.success) return rateLimitResponse(dayCheck.reset);
+
   if (!ANTHROPIC_KEY) {
     return NextResponse.json({ error: 'ANTHROPIC_API_KEY not configured' }, { status: 503 });
   }

@@ -96,6 +96,13 @@ export const knownIssuesLimiter = new RateLimiter(60_000, 60);   // 60 req/min
 export const guideLimiter = new RateLimiter(60_000, 10);          // 10 req/min
 export const affiliateTrackLimiter = new RateLimiter(60_000, 30); // 30 req/min
 
+// /drive voice turns are expensive: each one fans out to Claude + Mapbox
+// geocoding + Mapbox directions + (sometimes) a gas-station lookup.
+// Two tiers so a burst of voice commands during active driving is fine
+// but a runaway script can't rack up bills overnight.
+export const driveTurnMinuteLimiter = new RateLimiter(60_000, 20);          // 20 req/min
+export const driveTurnDayLimiter = new RateLimiter(24 * 60 * 60_000, 200);  // 200 req/day
+
 /**
  * Extract client IP from a request. Vercel sets x-forwarded-for automatically.
  * Falls back to 'unknown' if no IP can be determined.
