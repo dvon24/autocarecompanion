@@ -4,8 +4,15 @@ import {
   driveTurnMinuteLimiter,
   driveTurnDayLimiter,
   getClientIp,
-  rateLimitResponse,
 } from '@/lib/rate-limit';
+
+function formatRetryAfter(seconds: number): string {
+  if (seconds < 60) return `${seconds} second${seconds === 1 ? '' : 's'}`;
+  const minutes = Math.ceil(seconds / 60);
+  if (minutes < 60) return `${minutes} minute${minutes === 1 ? '' : 's'}`;
+  const hours = Math.ceil(minutes / 60);
+  return `${hours} hour${hours === 1 ? '' : 's'}`;
+}
 
 export const maxDuration = 30;
 
@@ -84,11 +91,31 @@ function pointAtMilesAlongRoute(coords: number[][], milesFromStart: number): [nu
 export async function POST(request: NextRequest) {
   // Rate limit — each voice turn fans out to Claude + Mapbox geocoding + directions
   // + (sometimes) a gas-station lookup, so we cap both per-minute burst and daily volume.
+  // We return a friendly spoken-style message instead of a bare 429 so the driver gets
+  // a useful TTS warning mid-drive.
   const ip = getClientIp(request);
-  const minCheck = driveTurnMinuteLimiter.check(ip);
-  if (!minCheck.success) return rateLimitResponse(minCheck.reset);
   const dayCheck = driveTurnDayLimiter.check(ip);
-  if (!dayCheck.success) return rateLimitResponse(dayCheck.reset);
+  if (!dayCheck.success) {
+    const wait = formatRetryAfter(dayCheck.reset);
+    return NextResponse.json(
+      {
+        error: 'rate_limit_day',
+        message: `You've hit today's voice limit during the beta. Try again in ${wait}, or sign up for the subscription for unlimited use.`,
+      },
+      { status: 429, headers: { 'Retry-After': String(dayCheck.reset) } },
+    );
+  }
+  const minCheck = driveTurnMinuteLimiter.check(ip);
+  if (!minCheck.success) {
+    const wait = formatRetryAfter(minCheck.reset);
+    return NextResponse.json(
+      {
+        error: 'rate_limit_minute',
+        message: `Slow down — too many voice commands in a row. Try again in ${wait}.`,
+      },
+      { status: 429, headers: { 'Retry-After': String(minCheck.reset) } },
+    );
+  }
 
   if (!ANTHROPIC_KEY) {
     return NextResponse.json({ error: 'ANTHROPIC_API_KEY not configured' }, { status: 503 });
