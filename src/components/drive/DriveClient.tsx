@@ -3,6 +3,11 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { VehiclePicker, type DriveVehicle } from './VehiclePicker';
+
+const LS_VEHICLE = 'au7o-drive-vehicle';
+const LS_PREFS = 'au7o-drive-prefs';
+const LS_HISTORY = 'au7o-drive-history';
 
 type SpeechRecognitionType = typeof window extends { SpeechRecognition: infer T } ? T : any;
 
@@ -31,6 +36,7 @@ interface RouteResponse {
   summary?: string;
   reply?: string;
   fuelStops?: FuelStop[];
+  preferenceUpdate?: string;
   error?: string;
   message?: string;
 }
@@ -75,6 +81,29 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const [lastReply, setLastReply] = useState<string>('');
   // Active route mirror for the API so Claude can answer "how long is this trip?"
   const activeRouteRef = useRef<ActiveRoute | null>(null);
+  // Garage-aware state — persisted to localStorage so no login is needed.
+  const [vehicle, setVehicleState] = useState<DriveVehicle | null>(null);
+  const driverPrefsRef = useRef<string>('');
+  const routeHistoryRef = useRef<Array<{ destination: string; miles: number; minutes: number; at: number }>>([]);
+
+  // Load persisted state once on mount.
+  useEffect(() => {
+    try {
+      const v = localStorage.getItem(LS_VEHICLE);
+      if (v) setVehicleState(JSON.parse(v));
+      driverPrefsRef.current = localStorage.getItem(LS_PREFS) || '';
+      const h = localStorage.getItem(LS_HISTORY);
+      if (h) routeHistoryRef.current = JSON.parse(h);
+    } catch { /* ignore */ }
+  }, []);
+
+  const setVehicle = useCallback((v: DriveVehicle | null) => {
+    setVehicleState(v);
+    try {
+      if (v) localStorage.setItem(LS_VEHICLE, JSON.stringify(v));
+      else localStorage.removeItem(LS_VEHICLE);
+    } catch { /* ignore */ }
+  }, []);
 
   const recognitionRef = useRef<any>(null);
 
@@ -218,6 +247,9 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
           origin,
           conversationHistory: [...history, nextUserTurn].slice(-10),
           currentRoute: activeRouteRef.current,
+          vehicle,
+          driverPreferences: driverPrefsRef.current || null,
+          routeHistory: routeHistoryRef.current.slice(-10),
         }),
       });
       const data = (await res.json()) as RouteResponse;
@@ -241,6 +273,13 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         return trimmed.slice(-20);
       });
 
+      // Persist any preference update Claude surfaced (e.g., "user likes scenic roads").
+      if (data.preferenceUpdate && typeof data.preferenceUpdate === 'string') {
+        const prev = driverPrefsRef.current ? driverPrefsRef.current + '\n' : '';
+        driverPrefsRef.current = (prev + data.preferenceUpdate).slice(-2000);
+        try { localStorage.setItem(LS_PREFS, driverPrefsRef.current); } catch { /* ignore */ }
+      }
+
       // Only actually draw/update the route when Claude asked to navigate.
       if (data.intent === 'navigate' && data.geometry && data.destinationCoords && data.destination) {
         setRoute(data);
@@ -251,6 +290,15 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             miles: data.miles,
             minutes: data.minutes,
           };
+          // Append to route history so future "nice drive" asks can avoid repeats.
+          const entry = {
+            destination: data.destination,
+            miles: data.miles,
+            minutes: data.minutes,
+            at: Date.now(),
+          };
+          routeHistoryRef.current = [...routeHistoryRef.current, entry].slice(-30);
+          try { localStorage.setItem(LS_HISTORY, JSON.stringify(routeHistoryRef.current)); } catch { /* ignore */ }
         }
         // Refresh fuel-stop markers.
         const map = mapRef.current;
@@ -274,7 +322,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     } finally {
       setBusy(false);
     }
-  }, [origin, drawRoute, history]);
+  }, [origin, drawRoute, history, vehicle]);
 
   const startListening = useCallback(() => {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -322,6 +370,11 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       style={{ height: '100vh' }}
     >
       <div ref={mapContainer} className="absolute inset-0" style={{ width: '100%', height: '100%' }} />
+
+      {/* Vehicle picker — top-left */}
+      <div className="absolute top-4 left-4 z-10">
+        <VehiclePicker value={vehicle} onChange={setVehicle} />
+      </div>
 
       {/* Top status pill */}
       <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 max-w-[92vw]">

@@ -11,12 +11,29 @@ interface ConversationTurn {
   content: string;
 }
 
+interface DriveVehicle {
+  year: number;
+  make: string;
+  model: string;
+  trim: string;
+}
+
+interface RouteHistoryEntry {
+  destination: string;
+  miles: number;
+  minutes: number;
+  at: number;
+}
+
 interface PlanRouteBody {
   transcript: string;
   origin?: { lng: number; lat: number };
   conversationHistory?: ConversationTurn[];
   currentRoute?: { destination: string; miles: number; minutes: number } | null;
   fuelMilesRemaining?: number | null;
+  vehicle?: DriveVehicle | null;
+  driverPreferences?: string | null;
+  routeHistory?: RouteHistoryEntry[];
 }
 
 /**
@@ -85,15 +102,34 @@ export async function POST(request: NextRequest) {
     ? `The user is currently routed to "${body.currentRoute.destination}" (${body.currentRoute.miles} mi, ${body.currentRoute.minutes} min).`
     : 'The user has no active route yet.';
 
+  const vehicleNote = body.vehicle
+    ? `VEHICLE: The driver is in a ${body.vehicle.year} ${body.vehicle.make} ${body.vehicle.model} ${body.vehicle.trim}. Use your knowledge of this exact trim's typical combined MPG and tank capacity when reasoning about range, fuel stops, or how the car performs on different roads.`
+    : 'VEHICLE: Unknown — the driver has not picked a vehicle yet. If they ask about range, mention you can give better answers once they pick a vehicle.';
+
+  const prefsNote = body.driverPreferences
+    ? `DRIVER PREFERENCES (learned from past sessions, may be empty):\n${body.driverPreferences.slice(-1500)}`
+    : '';
+
+  const historyNote = body.routeHistory && body.routeHistory.length > 0
+    ? `RECENT ROUTES THE DRIVER HAS TAKEN (most recent last):\n${body.routeHistory.slice(-10).map(r => `- ${r.destination} (${r.miles} mi)`).join('\n')}\nUse this to avoid suggesting the exact same "nice drive" twice in a row.`
+    : '';
+
   const systemPrompt = `You are Au7o, a voice navigation copilot that runs in the car. Respond like a helpful, concise friend — never verbose.
 
 ${currentRouteNote}
+
+${vehicleNote}
+
+${prefsNote}
+
+${historyNote}
 
 Every turn, return ONLY a JSON object with this shape:
 {
   "intent": "navigate" | "clarify" | "chat",
   "destination": "<clean geocodable place or address>",
   "fuelMilesRemaining": <number or null>,
+  "preferenceUpdate": "<short single-line note to remember for future sessions, or empty string>",
   "reply": "<short sentence spoken back to the driver, under 20 words>"
 }
 
@@ -101,9 +137,11 @@ Rules:
 - intent "navigate" — the user wants to go somewhere new or change the route. Fill "destination" with a clean geocodable string (place name, address, or "nearest X"). "reply" should be a short confirmation like "Routing to Whole Foods now."
 - intent "clarify" — their ask is ambiguous (two Starbucks, they asked a vague "home", etc.). Leave destination empty. "reply" asks a short follow-up question.
 - intent "chat" — they asked something that doesn't change the destination (e.g., "how long is this trip?", "any stops on the way?", "thanks"). Leave destination empty. "reply" is your spoken answer.
-- fuelMilesRemaining: if the user mentions how far they can go on fuel/charge ("I have 120 miles to empty", "80 miles of range left", "quarter tank"), extract a numeric estimate. A quarter tank ≈ 75 mi, half tank ≈ 150 mi, low/almost empty ≈ 30 mi. Otherwise null.
+- "NICE DRIVE" intent — if the user says things like "take me on a nice drive", "find me a scenic route", "I just want to cruise", "somewhere fun", pick a real geographic destination about 30–80 miles away from their current location that would make a pleasant out-and-back or loop drive — prefer scenic roads, coastlines, mountain passes, state parks, or historic towns when plausible for their region. DON'T pick interstate stretches or strip malls. Set intent = "navigate" with that destination. Use the DRIVER PREFERENCES and RECENT ROUTES context to pick somewhere new and aligned to their taste. In "reply", name the destination + why it'll be nice ("How about Chuckanut Drive? Great coastal cruise, 45 miles round trip."). If the driver has already asked for a nice drive recently, offer a different one.
+- fuelMilesRemaining: if the user mentions how far they can go on fuel/charge ("I have 120 miles to empty", "80 miles of range left", "quarter tank"), extract a numeric estimate. A quarter tank ≈ 75 mi, half tank ≈ 150 mi, low/almost empty ≈ 30 mi. If they say "I just filled up" and a vehicle is known, estimate full tank × combined MPG. Otherwise null.
+- preferenceUpdate: if the user states a durable preference we should remember next time ("I hate highways", "I like curvy mountain roads", "always avoid tolls", "no left turns on unprotected lights"), write a one-line note like "Prefers curvy mountain roads, dislikes highways." Otherwise empty string. Do NOT echo routine navigation commands as preferences.
 - If the user's last message builds on context ("the other one", "that Starbucks on Main"), use the conversation history to resolve it into a fresh destination string.
-- Never invent traffic, ETAs, or distances beyond what the current route context already states. Never invent fuel range that wasn't asked about.`;
+- Never invent traffic, ETAs, or distances beyond what the current route context already states.`;
 
   const messages: { role: 'user' | 'assistant'; content: string }[] = [];
   if (Array.isArray(body.conversationHistory)) {
@@ -118,12 +156,13 @@ Rules:
   let intent: 'navigate' | 'clarify' | 'chat' = 'navigate';
   let destination = '';
   let spokenReply = '';
+  let preferenceUpdate = '';
   // Priority for fuel range: explicit body param > value Claude extracted from the utterance.
   let fuelMilesRemaining: number | null = typeof body.fuelMilesRemaining === 'number' ? body.fuelMilesRemaining : null;
   try {
     const res = await client.messages.create({
       model: 'claude-sonnet-4-6',
-      max_tokens: 300,
+      max_tokens: 400,
       system: systemPrompt,
       messages,
     });
@@ -133,6 +172,7 @@ Rules:
     intent = parsed.intent === 'clarify' || parsed.intent === 'chat' ? parsed.intent : 'navigate';
     destination = (parsed.destination || '').trim();
     spokenReply = (parsed.reply || '').trim();
+    preferenceUpdate = (parsed.preferenceUpdate || '').trim();
     if (fuelMilesRemaining == null && typeof parsed.fuelMilesRemaining === 'number') {
       fuelMilesRemaining = parsed.fuelMilesRemaining;
     }
@@ -145,6 +185,7 @@ Rules:
     return NextResponse.json({
       intent,
       reply: spokenReply || "I'm not sure I got that — can you say it again?",
+      preferenceUpdate: preferenceUpdate || undefined,
     });
   }
 
@@ -232,5 +273,6 @@ Rules:
     reply,
     fuelStops,
     fuelMilesRemaining,
+    preferenceUpdate: preferenceUpdate || undefined,
   });
 }
