@@ -170,6 +170,7 @@ export default function LandingPage({ trendingIssues = [], stats }: { trendingIs
             <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400 mb-8">
               <Link href="/known-issues" className="hover:text-gray-600 transition-colors">Known Issues</Link>
               {/* Parts Finder hidden until verified */}
+              <Link href="/drive" className="hover:text-gray-600 transition-colors">Drive (beta)</Link>
               <Link href="/about" className="hover:text-gray-600 transition-colors">About</Link>
               <Link href="/terms" className="hover:text-gray-600 transition-colors">Terms of Service</Link>
               <Link href="/privacy" className="hover:text-gray-600 transition-colors">Privacy Policy</Link>
