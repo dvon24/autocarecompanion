@@ -85,6 +85,12 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     });
     map.addControl(new mapboxgl.NavigationControl({ visualizePitch: true }), 'top-right');
 
+    // Defensive resize — if the container laid out after map init, the canvas
+    // can be stuck at 0x0. Force a resize on the next frames.
+    requestAnimationFrame(() => map.resize());
+    setTimeout(() => map.resize(), 200);
+    setTimeout(() => map.resize(), 1000);
+
     // On style load, add terrain + atmosphere so distant landscape looks volumetric.
     map.on('style.load', () => {
       if (!map.getSource('mapbox-dem')) {
@@ -120,6 +126,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       el.className = 'drive-origin-marker';
       el.style.cssText = 'width:14px;height:14px;border-radius:50%;background:#3b82f6;border:3px solid #fff;box-shadow:0 0 0 2px #3b82f6;';
       originMarker.current = new mapboxgl.Marker({ element: el }).setLngLat([origin.lng, origin.lat]).addTo(map);
+      map.resize();
       map.flyTo({ center: [origin.lng, origin.lat], zoom: 16, pitch: 60, speed: 1.2, essential: true });
     } else {
       originMarker.current.setLngLat([origin.lng, origin.lat]);
@@ -243,8 +250,11 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   }, []);
 
   return (
-    <div className="relative w-full h-[100dvh] bg-gray-950 overflow-hidden">
-      <div ref={mapContainer} className="absolute inset-0" />
+    <div
+      className="relative w-full bg-gray-950 overflow-hidden"
+      style={{ height: '100vh' }}
+    >
+      <div ref={mapContainer} className="absolute inset-0" style={{ width: '100%', height: '100%' }} />
 
       {/* Top status pill */}
       <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 max-w-[92vw]">
