@@ -13,6 +13,13 @@ declare global {
   }
 }
 
+interface FuelStop {
+  name: string;
+  lng: number;
+  lat: number;
+  milesFromStart: number;
+}
+
 interface RouteResponse {
   intent?: 'navigate' | 'clarify' | 'chat';
   destination?: string;
@@ -23,6 +30,7 @@ interface RouteResponse {
   minutes?: number;
   summary?: string;
   reply?: string;
+  fuelStops?: FuelStop[];
   error?: string;
   message?: string;
 }
@@ -54,6 +62,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const originMarker = useRef<mapboxgl.Marker | null>(null);
   const destMarker = useRef<mapboxgl.Marker | null>(null);
+  const fuelMarkers = useRef<mapboxgl.Marker[]>([]);
 
   const [origin, setOrigin] = useState<{ lng: number; lat: number } | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
@@ -242,6 +251,20 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             miles: data.miles,
             minutes: data.minutes,
           };
+        }
+        // Refresh fuel-stop markers.
+        const map = mapRef.current;
+        if (map) {
+          fuelMarkers.current.forEach((m) => m.remove());
+          fuelMarkers.current = [];
+          (data.fuelStops || []).forEach((stop) => {
+            const el = document.createElement('div');
+            el.style.cssText = 'width:28px;height:28px;border-radius:50%;background:#f59e0b;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:14px;';
+            el.textContent = '⛽';
+            const popup = new mapboxgl.Popup({ offset: 22 }).setText(`${stop.name} — ${stop.milesFromStart} mi in`);
+            const marker = new mapboxgl.Marker({ element: el }).setLngLat([stop.lng, stop.lat]).setPopup(popup).addTo(map);
+            fuelMarkers.current.push(marker);
+          });
         }
       }
     } catch (err) {
