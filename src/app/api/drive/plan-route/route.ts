@@ -355,12 +355,24 @@ Rules:
     geocoded = await geocode(destination, false);
   }
   if (!geocoded) {
-    // Third pass: strip the (possibly hallucinated) street address and try just place + city + country.
+    // Third pass: strip the (possibly hallucinated) street and try just place + city + country.
     const stripped = stripPossibleStreet(destination);
     if (stripped) {
-      console.log(`[drive/plan-route] Geocode fallback: "${destination}" → "${stripped}"`);
+      console.log(`[drive/plan-route] Geocode fallback (drop street): "${destination}" → "${stripped}"`);
       geocoded = await geocode(stripped, true);
       if (!geocoded && country) geocoded = await geocode(stripped, false);
+    }
+  }
+  if (!geocoded) {
+    // Fourth pass: drop the PLACE NAME instead and route to the street address.
+    // Mapbox is excellent at addresses but weak on niche POIs like military bases.
+    // Routing to the address gets you to the right physical spot anyway.
+    const parts = destination.split(',').map((p) => p.trim()).filter(Boolean);
+    if (parts.length >= 4) {
+      const addressOnly = parts.slice(1).join(', ');
+      console.log(`[drive/plan-route] Geocode fallback (drop place name): "${destination}" → "${addressOnly}"`);
+      geocoded = await geocode(addressOnly, true);
+      if (!geocoded && country) geocoded = await geocode(addressOnly, false);
     }
   }
   if (!geocoded) {
