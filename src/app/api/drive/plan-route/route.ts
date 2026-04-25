@@ -338,10 +338,17 @@ Rules:
     if (withCountry && country) params.set('country', country.toLowerCase());
     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?${params.toString()}`;
     const r = await fetch(url);
-    if (!r.ok) return null;
+    if (!r.ok) {
+      const bodyText = await r.text().catch(() => '');
+      console.warn(`[drive/plan-route] Geocode HTTP ${r.status} for "${query}" :: ${bodyText.slice(0, 200)}`);
+      return null;
+    }
     const d = await r.json();
     const feats = (d.features || []) as Array<{ center: [number, number]; place_name: string }>;
-    if (!feats.length) return null;
+    if (!feats.length) {
+      console.log(`[drive/plan-route] Geocode 200 but 0 features for "${query}" (country=${withCountry ? country : 'none'})`);
+      return null;
+    }
     // Re-rank by haversine distance from the driver's current location.
     let best = feats[0];
     let bestDist = haversineMiles(body.origin!.lat, body.origin!.lng, best.center[1], best.center[0]);
