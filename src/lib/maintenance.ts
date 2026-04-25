@@ -102,6 +102,22 @@ export interface BrakeEndSpecs {
   aftermarketPads?: { brand: string; partNumber: string }[];
 }
 
+export interface FuelEconomySpecs {
+  city: number | null;
+  highway: number | null;
+  combined: number | null;
+  /** EPA MPGe combined for EVs and PHEVs */
+  mpgeCombined: number | null;
+  source: 'epa-estimate' | 'manual' | 'obd-measured';
+}
+
+export interface TankCapacitySpecs {
+  /** Fuel tank in US gallons (null for pure EVs) */
+  gallons: number | null;
+  /** Battery capacity in kWh (null for non-electrified vehicles) */
+  batteryKwh: number | null;
+}
+
 export interface VehicleSpecs {
   engine: string;
   oil?: OilSpecs;
@@ -124,6 +140,8 @@ export interface VehicleSpecs {
   bulbs?: BulbSpecs;
   safety?: string[];
   procedures?: Record<string, ProcedureHints>;
+  fuelEconomy?: FuelEconomySpecs;
+  tankCapacity?: TankCapacitySpecs;
 }
 
 // ─── Maintenance Specs Map ─────────────────────────────────────────────

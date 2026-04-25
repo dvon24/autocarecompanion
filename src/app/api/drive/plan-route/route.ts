@@ -181,8 +181,32 @@ export async function POST(request: NextRequest) {
 
   const locationNote = `LOCATION: The driver is currently in ${driverPlace || `approximately ${body.origin.lat.toFixed(4)}, ${body.origin.lng.toFixed(4)}${country ? ` (country code ${country})` : ''}`}. Use this as the implicit context for every destination they mention — when they say "Munich" they almost certainly mean the famous city in Germany if they're already in Germany; when they say "Kelley Barracks" they mean the US Army installation in Stuttgart if they're near Stuttgart; when they say "Covino" they mean the local restaurant by that name in their city. Apply common sense the way a local friend would.`;
 
+  // Look up structured fuel economy + tank data for the selected vehicle so
+  // Claude can quote real numbers instead of estimating from memory.
+  let fuelLine = '';
+  if (body.vehicle) {
+    try {
+      const { getVehicleSpecs } = await import('@/lib/maintenance');
+      const specs = getVehicleSpecs({ year: body.vehicle.year, make: body.vehicle.make, model: body.vehicle.model, trim: body.vehicle.trim });
+      const fe = specs?.fuelEconomy;
+      const tc = specs?.tankCapacity;
+      if (fe || tc) {
+        const parts: string[] = [];
+        if (fe?.combined) parts.push(`${fe.combined} mpg combined`);
+        if (fe?.city && fe?.highway) parts.push(`${fe.city} city / ${fe.highway} hwy`);
+        if (fe?.mpgeCombined) parts.push(`${fe.mpgeCombined} MPGe`);
+        if (tc?.gallons) parts.push(`${tc.gallons} gal tank`);
+        if (tc?.batteryKwh) parts.push(`${tc.batteryKwh} kWh battery`);
+        if (parts.length > 0 && fe?.combined && tc?.gallons) {
+          parts.push(`≈ ${Math.round(fe.combined * tc.gallons)} mi full-tank range`);
+        }
+        if (parts.length > 0) fuelLine = ` Verified specs: ${parts.join(' · ')}.`;
+      }
+    } catch { /* non-blocking */ }
+  }
+
   const vehicleNote = body.vehicle
-    ? `VEHICLE: The driver is in a ${body.vehicle.year} ${body.vehicle.make} ${body.vehicle.model} ${body.vehicle.trim}. Use your knowledge of this exact trim's typical combined MPG and tank capacity when reasoning about range, fuel stops, or how the car performs on different roads.`
+    ? `VEHICLE: The driver is in a ${body.vehicle.year} ${body.vehicle.make} ${body.vehicle.model} ${body.vehicle.trim}.${fuelLine} Use these verified numbers when reasoning about range, fuel stops, or how the car performs on different roads.`
     : 'VEHICLE: Unknown — the driver has not picked a vehicle yet. If they ask about range, mention you can give better answers once they pick a vehicle.';
 
   const prefsNote = body.driverPreferences
