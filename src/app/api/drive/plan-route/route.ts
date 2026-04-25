@@ -42,7 +42,7 @@ interface PlanRouteBody {
   transcript: string;
   origin?: { lng: number; lat: number };
   conversationHistory?: ConversationTurn[];
-  currentRoute?: { destination: string; miles: number; minutes: number } | null;
+  currentRoute?: { destination: string; miles: number; minutes: number; destinationCoords?: { lng: number; lat: number } } | null;
   fuelMilesRemaining?: number | null;
   vehicle?: DriveVehicle | null;
   driverPreferences?: string | null;
@@ -239,6 +239,7 @@ Every turn, return ONLY a JSON object with this shape:
 {
   "intent": "navigate" | "clarify" | "chat",
   "destination": "<clean geocodable place or address>",
+  "keepDestination": <boolean>,
   "isRoundTrip": <boolean>,
   "routePreferences": {
     "avoidHighways": <boolean>,
@@ -258,6 +259,7 @@ Every turn, return ONLY a JSON object with this shape:
 }
 
 Rules:
+- keepDestination: TRUE when the user is modifying routing preferences for the SAME current destination (e.g., 'I want highways instead', 'no tolls', 'go faster', 'take the scenic route', 'reroute', 'use back roads instead'). When TRUE, set intent='navigate' and copy the destination text from the current route — the system will reuse the existing destination coordinates instead of re-geocoding (avoids fuzzy-match errors). FALSE when the user picks a NEW destination.
 - intent "navigate" — the user wants to go somewhere new or change the route. Fill "destination" with a geocodable string. STRICT RULES for the destination string:
   • NEVER invent or guess street names or numbers. A wrong street is far worse than no street.
   • If you know the verified street address from your training or from a web_search result, use it: "Kelley Barracks, Plieninger Straße 100, 70567 Stuttgart, Germany"
@@ -312,6 +314,7 @@ Rules:
   let preferenceUpdate = '';
   let needsParkingSearch = false;
   let isRoundTrip = false;
+  let keepDestination = false;
   const routePreferences = { avoidHighways: false, avoidTolls: false, avoidFerries: false };
   interface TripIntelligence {
     tripType: 'commute' | 'errand' | 'road_trip' | 'scenic' | 'unknown';
@@ -362,6 +365,7 @@ Rules:
       preferenceUpdate = String(parsed.preferenceUpdate || '').trim();
       needsParkingSearch = parsed.needsParkingSearch === true;
       isRoundTrip = parsed.isRoundTrip === true;
+      keepDestination = parsed.keepDestination === true;
       const rp = parsed.routePreferences as { avoidHighways?: unknown; avoidTolls?: unknown; avoidFerries?: unknown } | undefined;
       if (rp && typeof rp === 'object') {
         routePreferences.avoidHighways = rp.avoidHighways === true;
@@ -461,12 +465,22 @@ Rules:
     return stripped !== input ? stripped : null;
   }
 
-  // Short-circuit: if the client passed a trustedDestination (user picked an
-  // autocomplete suggestion that we already retrieved from SearchBox), use
-  // those coords directly. This avoids the fuzzy-match bug where 'Öhringen'
-  // could re-geocode to a completely different town.
+  // Short-circuit 1: keepDestination — user is just modifying the route style
+  // ('I want highways' / 'no tolls') for the SAME place they're already going.
+  // Reuse the existing destinationCoords so we don't re-geocode and risk a
+  // fuzzy-match swap (e.g. 'Öhringen' → 'Böhringen').
   let geocoded: { lng: number; lat: number; placeName: string } | null = null;
-  if (body.trustedDestination && typeof body.trustedDestination.lng === 'number' && typeof body.trustedDestination.lat === 'number') {
+  if (keepDestination && body.currentRoute?.destinationCoords) {
+    geocoded = {
+      lng: body.currentRoute.destinationCoords.lng,
+      lat: body.currentRoute.destinationCoords.lat,
+      placeName: body.currentRoute.destination || destination,
+    };
+    console.log(`[drive/plan-route] keepDestination — reusing "${geocoded.placeName}"`);
+  }
+  // Short-circuit 2: trustedDestination — user picked an autocomplete suggestion
+  // that we already retrieved from SearchBox. Use those coords directly.
+  if (!geocoded && body.trustedDestination && typeof body.trustedDestination.lng === 'number' && typeof body.trustedDestination.lat === 'number') {
     geocoded = {
       lng: body.trustedDestination.lng,
       lat: body.trustedDestination.lat,

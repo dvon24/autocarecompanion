@@ -90,6 +90,7 @@ interface ActiveRoute {
   destination: string;
   miles: number;
   minutes: number;
+  destinationCoords?: { lng: number; lat: number };
 }
 
 /**
@@ -637,6 +638,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             destination: data.destination,
             miles: data.miles,
             minutes: data.minutes,
+            destinationCoords: data.destinationCoords,
           };
           // Append to route history so future "nice drive" asks can avoid repeats.
           const entry = {
