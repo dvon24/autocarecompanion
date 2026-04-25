@@ -102,13 +102,15 @@ export function GoogleTranslate() {
           <span className="hidden sm:inline">Translate</span>
         </button>
 
-        {/* Dropdown panel - always rendered, toggled with visibility */}
+        {/* Dropdown panel — clamps width and right-anchors so the long Google
+            select can't overflow off the right edge on small screens. */}
         <div
-          className={`absolute top-full right-0 mt-1.5 bg-white rounded-lg shadow-lg border border-gray-200 p-2 min-w-[160px] transition-opacity duration-150 ${
+          className={`absolute top-full right-0 mt-1.5 bg-white rounded-lg shadow-lg border border-gray-200 p-2 transition-opacity duration-150 overflow-hidden ${
             open ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
           }`}
+          style={{ width: 'min(220px, calc(100vw - 24px))', maxWidth: '90vw' }}
         >
-          <div id="google_translate_element" />
+          <div id="google_translate_element" className="overflow-x-auto" />
         </div>
       </div>
 

@@ -72,6 +72,8 @@ interface RouteResponse {
   speedLimits?: SpeedLimitEntry[];
   steps?: NavStep[];
   tripIntelligence?: TripIntelligence | null;
+  fuelNeeded?: { gallons: number; tankPercent: number | null; mpgUsed: number } | null;
+  isRoundTrip?: boolean;
   preferenceUpdate?: string;
   error?: string;
   message?: string;
@@ -819,17 +821,39 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
               </button>
             )}
 
+            {/* Conversation log — last few turns so the driver can see context */}
+            {history.length > 0 && (
+              <div className="mb-3 max-h-32 overflow-y-auto space-y-1.5 px-1">
+                {history.slice(-6).map((turn, i) => (
+                  <div key={`${i}-${turn.role}`} className={`text-xs leading-snug ${turn.role === 'user' ? 'text-gray-900 font-medium' : 'text-blue-700'}`}>
+                    <span className="text-gray-400 mr-1">{turn.role === 'user' ? 'You:' : 'Au7o:'}</span>
+                    {turn.content}
+                  </div>
+                ))}
+              </div>
+            )}
+
             {/* Trip Intelligence — Au7o's eyes-forward analysis of the planned route */}
-            {tripIntelligence && (tripIntelligence.suggestions.length > 0 || tripIntelligence.delayWarning || tripIntelligence.breakRecommendation) && (
+            {(tripIntelligence && (tripIntelligence.suggestions.length > 0 || tripIntelligence.delayWarning || tripIntelligence.breakRecommendation) || route?.fuelNeeded) && (
               <div className="mb-3 p-2.5 rounded-xl bg-blue-50 border border-blue-100">
                 <p className="text-[11px] font-bold text-blue-700 uppercase tracking-wide mb-1.5">💡 Trip plan</p>
-                {tripIntelligence.delayWarning && (
+                {route?.isRoundTrip && (
+                  <p className="text-xs text-gray-700 mb-1.5 leading-snug">🔄 Round trip — distance + ETA include the return leg</p>
+                )}
+                {route?.fuelNeeded && (
+                  <p className="text-xs text-gray-700 mb-1.5 leading-snug">
+                    ⛽ ≈ {route.fuelNeeded.gallons} gal needed
+                    {route.fuelNeeded.tankPercent != null ? ` (~${route.fuelNeeded.tankPercent}% of tank)` : ''}
+                    {' '}at {route.fuelNeeded.mpgUsed} mpg combined
+                  </p>
+                )}
+                {tripIntelligence?.delayWarning && (
                   <p className="text-xs text-amber-800 mb-1.5 leading-snug">⚠️ {tripIntelligence.delayWarning}</p>
                 )}
-                {tripIntelligence.breakRecommendation && (
+                {tripIntelligence?.breakRecommendation && (
                   <p className="text-xs text-gray-700 mb-1.5 leading-snug">☕ {tripIntelligence.breakRecommendation}</p>
                 )}
-                {tripIntelligence.suggestions.map((s, i) => (
+                {tripIntelligence?.suggestions.map((s, i) => (
                   <p key={i} className="text-xs text-gray-700 mb-1 leading-snug">• {s}</p>
                 ))}
               </div>

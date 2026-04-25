@@ -233,6 +233,7 @@ Every turn, return ONLY a JSON object with this shape:
 {
   "intent": "navigate" | "clarify" | "chat",
   "destination": "<clean geocodable place or address>",
+  "isRoundTrip": <boolean>,
   "fuelMilesRemaining": <number or null>,
   "needsParkingSearch": <boolean>,
   "tripIntelligence": {
@@ -265,6 +266,7 @@ Rules:
 - "NICE DRIVE" intent — if the user says things like "take me on a nice drive", "find me a scenic route", "I just want to cruise", "somewhere fun", pick a real geographic destination about 30–80 miles away from their current location that would make a pleasant out-and-back or loop drive — prefer scenic roads, coastlines, mountain passes, state parks, or historic towns when plausible for their region. DON'T pick interstate stretches or strip malls. Set intent = "navigate" with that destination. Use the DRIVER PREFERENCES and RECENT ROUTES context to pick somewhere new and aligned to their taste. In "reply", name the destination + why it'll be nice ("How about Chuckanut Drive? Great coastal cruise, 45 miles round trip."). If the driver has already asked for a nice drive recently, offer a different one.
 - fuelMilesRemaining: if the user mentions how far they can go on fuel/charge ("I have 120 miles to empty", "80 miles of range left", "quarter tank"), extract a numeric estimate. A quarter tank ≈ 75 mi, half tank ≈ 150 mi, low/almost empty ≈ 30 mi. If they say "I just filled up" and a vehicle is known, estimate full tank × combined MPG. Otherwise null.
 - preferenceUpdate: if the user states a durable preference we should remember next time ("I hate highways", "I like curvy mountain roads", "always avoid tolls", "no left turns on unprotected lights"), write a one-line note like "Prefers curvy mountain roads, dislikes highways." Otherwise empty string. Do NOT echo routine navigation commands as preferences.
+- isRoundTrip: TRUE when the user wants to come back to their starting point — phrases like "round trip", "and back", "back home", "loop", "return trip", "there and back", or "nice drive" / "scenic drive" with no specific destination they want to end at. Otherwise FALSE.
 - needsParkingSearch: set TRUE when the destination is the kind of place that probably doesn't have its own easy parking — restaurants in downtown/urban areas, bars, clubs, theaters, museums, sports venues, cafes in dense neighborhoods, concert halls. Set FALSE for destinations that clearly include ample parking — big-box stores (Walmart, Target, Costco), suburban strip malls, malls, airports, IKEA, most gas stations. When uncertain, prefer TRUE for small/urban places and FALSE for large/suburban.
 - tripIntelligence: be the driver's eyes-forward. Reason about the trip and add useful context:
   - tripType: "commute" if it matches a familiar route at typical commute hours; "errand" for short utility trips (<30 min); "road_trip" for 2+ hour drives; "scenic" if the user said "nice drive" or asked for a leisurely route; "unknown" otherwise.
@@ -292,6 +294,7 @@ Rules:
   let spokenReply = '';
   let preferenceUpdate = '';
   let needsParkingSearch = false;
+  let isRoundTrip = false;
   interface TripIntelligence {
     tripType: 'commute' | 'errand' | 'road_trip' | 'scenic' | 'unknown';
     suggestions: string[];
@@ -340,6 +343,7 @@ Rules:
       spokenReply = String(parsed.reply || '').trim();
       preferenceUpdate = String(parsed.preferenceUpdate || '').trim();
       needsParkingSearch = parsed.needsParkingSearch === true;
+      isRoundTrip = parsed.isRoundTrip === true;
       if (fuelMilesRemaining == null && typeof parsed.fuelMilesRemaining === 'number') {
         fuelMilesRemaining = parsed.fuelMilesRemaining;
       }
@@ -516,8 +520,10 @@ Rules:
   console.log(`[drive/plan-route] Final destination: "${geocoded.placeName}" at ${geocoded.lat.toFixed(4)},${geocoded.lng.toFixed(4)}`);
   const { lng: destLng, lat: destLat, placeName } = geocoded;
 
-  // 3. Get driving directions from origin → destination
-  const coords = `${body.origin.lng},${body.origin.lat};${destLng},${destLat}`;
+  // 3. Get driving directions from origin → destination (→ origin if round-trip).
+  const coords = isRoundTrip
+    ? `${body.origin.lng},${body.origin.lat};${destLng},${destLat};${body.origin.lng},${body.origin.lat}`
+    : `${body.origin.lng},${body.origin.lat};${destLng},${destLat}`;
   // driving-traffic profile factors live traffic into the ETA. steps=true so the
   // client can render turn-by-turn cards + speak voiceInstructions at the right
   // moments. overview=full ensures geometry aligns 1:1 with the annotation arrays.
@@ -542,7 +548,28 @@ Rules:
   const milesNum = route.distance / 1609.34;
   const miles = milesNum.toFixed(1);
   const minutes = Math.max(1, Math.round(route.duration / 60));
-  const summary = `Route to ${placeName}. ${miles} miles, about ${minutes} minutes.`;
+  const summary = isRoundTrip
+    ? `Round trip to ${placeName}. ${miles} miles total, about ${minutes} minutes.`
+    : `Route to ${placeName}. ${miles} miles, about ${minutes} minutes.`;
+
+  // Fuel-needed estimate: trip miles ÷ vehicle's combined MPG.
+  let fuelNeeded: { gallons: number; tankPercent: number | null; mpgUsed: number } | null = null;
+  if (body.vehicle) {
+    try {
+      const { getVehicleSpecs } = await import('@/lib/maintenance');
+      const vSpecs = getVehicleSpecs({ year: body.vehicle.year, make: body.vehicle.make, model: body.vehicle.model, trim: body.vehicle.trim });
+      const mpg = vSpecs?.fuelEconomy?.combined;
+      const tank = vSpecs?.tankCapacity?.gallons;
+      if (mpg && mpg > 0) {
+        const gallons = milesNum / mpg;
+        fuelNeeded = {
+          gallons: Math.round(gallons * 10) / 10,
+          tankPercent: tank ? Math.round((gallons / tank) * 100) : null,
+          mpgUsed: mpg,
+        };
+      }
+    } catch { /* non-blocking */ }
+  }
 
   // Flatten per-segment maxspeed annotations from every leg so the client can
   // align them with route.geometry.coordinates (N coords → N-1 segments).
@@ -633,9 +660,15 @@ Rules:
 
   // Prefer Claude's conversational reply; fall back to the deterministic summary.
   const baseReply = spokenReply
-    ? `${spokenReply} ${miles} miles, about ${minutes} minutes.`
+    ? `${spokenReply} ${miles} miles${isRoundTrip ? ' round trip' : ''}, about ${minutes} minutes.`
     : summary;
+  const fuelLineSpoken = fuelNeeded
+    ? fuelNeeded.tankPercent != null
+      ? `That'll use about ${fuelNeeded.gallons} gallons — roughly ${fuelNeeded.tankPercent}% of your tank.`
+      : `That'll use about ${fuelNeeded.gallons} gallons.`
+    : '';
   const parts = [baseReply];
+  if (fuelLineSpoken) parts.push(fuelLineSpoken);
   if (fuelWarning) parts.push(fuelWarning);
   if (parkingNote) parts.push(parkingNote);
   const reply = parts.join(' ');
@@ -683,6 +716,8 @@ Rules:
     parkingOptions,
     steps,
     tripIntelligence,
+    fuelNeeded,
+    isRoundTrip,
     preferenceUpdate: preferenceUpdate || undefined,
   });
 }
