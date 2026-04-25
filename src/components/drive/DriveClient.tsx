@@ -100,6 +100,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [history, setHistory] = useState<ConvoTurn[]>([]);
   const [lastReply, setLastReply] = useState<string>('');
+  const [typedInput, setTypedInput] = useState<string>('');
   // Active route mirror for the API so Claude can answer "how long is this trip?"
   const activeRouteRef = useRef<ActiveRoute | null>(null);
   // Garage-aware state — persisted to localStorage so no login is needed.
@@ -515,8 +516,8 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         </div>
       )}
 
-      {/* Mic button */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
+      {/* Mic + text input row */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3 w-[min(92vw,520px)]">
         <button
           onClick={listening ? stopListening : startListening}
           disabled={busy || !origin}
@@ -535,8 +536,39 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
           </svg>
         </button>
         <span className="text-xs text-white/90 font-medium drop-shadow">
-          {busy ? 'Planning…' : listening ? 'Listening — tap to stop' : 'Tap and say "Take me to…"'}
+          {busy ? 'Planning…' : listening ? 'Listening — tap to stop' : 'Tap and speak, or type below'}
         </span>
+        <form
+          className="w-full flex items-center gap-2 bg-white/95 backdrop-blur rounded-full shadow-xl px-4 py-2"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const text = typedInput.trim();
+            if (!text || busy || !origin) return;
+            setTypedInput('');
+            submitTranscript(text);
+          }}
+        >
+          <input
+            type="text"
+            inputMode="text"
+            autoComplete="off"
+            placeholder="Or type a destination — e.g. Badezentrum Sindelfingen"
+            value={typedInput}
+            onChange={(e) => setTypedInput(e.target.value)}
+            disabled={busy || !origin}
+            className="flex-1 bg-transparent text-sm text-gray-900 placeholder:text-gray-400 outline-none disabled:opacity-50"
+          />
+          <button
+            type="submit"
+            disabled={!typedInput.trim() || busy || !origin}
+            aria-label="Send destination"
+            className="w-9 h-9 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </button>
+        </form>
       </div>
     </div>
   );
