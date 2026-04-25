@@ -118,22 +118,43 @@ export async function POST(request: NextRequest) {
   }
 
   if (!ANTHROPIC_KEY) {
-    return NextResponse.json({ error: 'ANTHROPIC_API_KEY not configured' }, { status: 503 });
+    console.error('[drive/plan-route] ANTHROPIC_API_KEY missing in env');
+    return NextResponse.json(
+      { error: 'service_unavailable', message: 'Voice features are temporarily offline. Please try again later.' },
+      { status: 503 },
+    );
   }
   if (!MAPBOX_TOKEN) {
-    return NextResponse.json({ error: 'MAPBOX_ACCESS_TOKEN not configured' }, { status: 503 });
+    console.error('[drive/plan-route] MAPBOX_ACCESS_TOKEN missing in env');
+    return NextResponse.json(
+      { error: 'service_unavailable', message: 'Maps are temporarily offline. Please try again later.' },
+      { status: 503 },
+    );
   }
 
   let body: PlanRouteBody;
   try {
     body = (await request.json()) as PlanRouteBody;
   } catch {
-    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+    return NextResponse.json(
+      { error: 'bad_request', message: "I couldn't read that request. Try again." },
+      { status: 400 },
+    );
   }
 
   const transcript = (body.transcript || '').trim();
-  if (!transcript) return NextResponse.json({ error: 'transcript required' }, { status: 400 });
-  if (!body.origin) return NextResponse.json({ error: 'origin (current location) required' }, { status: 400 });
+  if (!transcript) {
+    return NextResponse.json(
+      { error: 'no_transcript', message: "I didn't hear anything — try again." },
+      { status: 400 },
+    );
+  }
+  if (!body.origin) {
+    return NextResponse.json(
+      { error: 'no_location', message: 'I need your location to plan a route. Please enable location access.' },
+      { status: 400 },
+    );
+  }
 
   // 1. Ask Claude to classify the voice turn. It may request navigation,
   //    ask for clarification, or just chat about the current route.
@@ -222,7 +243,11 @@ Rules:
       fuelMilesRemaining = parsed.fuelMilesRemaining;
     }
   } catch (err) {
-    return NextResponse.json({ error: 'parse_failed', message: String(err) }, { status: 500 });
+    console.error('[drive/plan-route] Anthropic parse failed:', err);
+    return NextResponse.json(
+      { error: 'parse_failed', message: "I'm having trouble understanding right now. Try again in a moment." },
+      { status: 502 },
+    );
   }
 
   // If Claude only wanted to clarify or chat, return without geocoding.
@@ -238,12 +263,19 @@ Rules:
   const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(destination)}.json?access_token=${MAPBOX_TOKEN}&proximity=${body.origin.lng},${body.origin.lat}&limit=1`;
   const geoRes = await fetch(geocodeUrl);
   if (!geoRes.ok) {
-    return NextResponse.json({ error: 'geocode_failed', message: `Mapbox geocode ${geoRes.status}` }, { status: 502 });
+    console.error('[drive/plan-route] Mapbox geocode failed:', geoRes.status);
+    return NextResponse.json(
+      { error: 'geocode_failed', message: "I couldn't look that place up right now. Try again in a moment." },
+      { status: 502 },
+    );
   }
   const geoData = await geoRes.json();
   const feature = geoData.features?.[0];
   if (!feature) {
-    return NextResponse.json({ error: 'not_found', message: `Couldn't find "${destination}".` }, { status: 200 });
+    return NextResponse.json(
+      { error: 'not_found', message: `I couldn't find "${destination}". Try saying it differently or use the full address.` },
+      { status: 200 },
+    );
   }
   const [destLng, destLat] = feature.center as [number, number];
   const placeName = feature.place_name as string;
@@ -254,12 +286,19 @@ Rules:
   const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${coords}?geometries=geojson&overview=full&steps=false&annotations=maxspeed&access_token=${MAPBOX_TOKEN}`;
   const dirRes = await fetch(dirUrl);
   if (!dirRes.ok) {
-    return NextResponse.json({ error: 'directions_failed', message: `Mapbox directions ${dirRes.status}` }, { status: 502 });
+    console.error('[drive/plan-route] Mapbox directions failed:', dirRes.status);
+    return NextResponse.json(
+      { error: 'directions_failed', message: "I couldn't plan that route right now. Try again in a moment." },
+      { status: 502 },
+    );
   }
   const dirData = await dirRes.json();
   const route = dirData.routes?.[0];
   if (!route) {
-    return NextResponse.json({ error: 'no_route', message: `No driving route to ${placeName}.` }, { status: 200 });
+    return NextResponse.json(
+      { error: 'no_route', message: `I couldn't find a driving route to ${placeName}. Try a different destination.` },
+      { status: 200 },
+    );
   }
 
   const milesNum = route.distance / 1609.34;
