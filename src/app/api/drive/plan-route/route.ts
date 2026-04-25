@@ -396,11 +396,60 @@ Rules:
     }
   }
   if (!geocoded) {
+    // Fifth pass: Mapbox SearchBox API — newer, purpose-built for POI matching.
+    // Better at pools, restaurants, military bases than legacy v5 geocoding.
+    try {
+      const sbParams = new URLSearchParams({
+        q: destination,
+        access_token: MAPBOX_TOKEN!,
+        proximity: `${body.origin.lng},${body.origin.lat}`,
+        limit: '5',
+        language: 'en',
+      });
+      if (country) sbParams.set('country', country.toLowerCase());
+      const sbUrl = `https://api.mapbox.com/search/searchbox/v1/forward?${sbParams.toString()}`;
+      console.log(`[drive/plan-route] Trying Mapbox SearchBox: "${destination}"`);
+      const sbRes = await fetch(sbUrl);
+      if (sbRes.ok) {
+        const sbData = await sbRes.json();
+        const sbFeats = (sbData.features || []) as Array<{
+          geometry?: { coordinates?: [number, number] };
+          properties?: { full_address?: string; name?: string };
+        }>;
+        if (sbFeats.length > 0) {
+          let bestSb = sbFeats[0];
+          let bestSbDist = Infinity;
+          for (const f of sbFeats) {
+            const c = f.geometry?.coordinates;
+            if (!c) continue;
+            const d = haversineMiles(body.origin.lat, body.origin.lng, c[1], c[0]);
+            if (d < bestSbDist) { bestSb = f; bestSbDist = d; }
+          }
+          const c = bestSb.geometry?.coordinates;
+          if (c) {
+            geocoded = {
+              lng: c[0],
+              lat: c[1],
+              placeName: bestSb.properties?.full_address || bestSb.properties?.name || destination,
+            };
+            console.log(`[drive/plan-route] SearchBox found: "${geocoded.placeName}"`);
+          }
+        }
+      } else {
+        console.warn('[drive/plan-route] SearchBox HTTP', sbRes.status);
+      }
+    } catch (err) {
+      console.warn('[drive/plan-route] SearchBox error:', err);
+    }
+  }
+  if (!geocoded) {
+    console.warn(`[drive/plan-route] All geocode attempts failed for: "${destination}"`);
     return NextResponse.json(
       { error: 'not_found', message: `I couldn't find "${destination}". Try saying the full address or adding the city.` },
       { status: 200 },
     );
   }
+  console.log(`[drive/plan-route] Final destination: "${geocoded.placeName}" at ${geocoded.lat.toFixed(4)},${geocoded.lng.toFixed(4)}`);
   const { lng: destLng, lat: destLat, placeName } = geocoded;
 
   // 3. Get driving directions from origin → destination
