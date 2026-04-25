@@ -142,6 +142,50 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const [currentStepInstruction, setCurrentStepInstruction] = useState<string>('');
   const [tripIntelligence, setTripIntelligence] = useState<TripIntelligence | null>(null);
 
+  // Autocomplete state for the destination input.
+  interface Suggestion { name: string; placeFormatted: string; mapboxId: string; featureType: string }
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const suggestSessionRef = useRef<string>('');
+  const suggestAbortRef = useRef<AbortController | null>(null);
+  const suggestDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Debounced fetch of Mapbox SearchBox suggestions whenever the user types.
+  useEffect(() => {
+    if (!suggestSessionRef.current) {
+      suggestSessionRef.current = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : Math.random().toString(36).slice(2);
+    }
+    if (suggestDebounceRef.current) clearTimeout(suggestDebounceRef.current);
+    const q = typedInput.trim();
+    if (q.length < 2 || !origin) {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      return;
+    }
+    suggestDebounceRef.current = setTimeout(() => {
+      suggestAbortRef.current?.abort();
+      const controller = new AbortController();
+      suggestAbortRef.current = controller;
+      const params = new URLSearchParams({
+        q,
+        lng: String(origin.lng),
+        lat: String(origin.lat),
+        session_token: suggestSessionRef.current,
+      });
+      fetch(`/api/drive/suggest?${params.toString()}`, { signal: controller.signal })
+        .then((r) => r.ok ? r.json() : { suggestions: [] })
+        .then((d: { suggestions?: Suggestion[] }) => {
+          setSuggestions(d.suggestions || []);
+          setShowSuggestions((d.suggestions || []).length > 0);
+        })
+        .catch(() => { /* aborted or network — silent */ });
+    }, 200);
+    return () => {
+      if (suggestDebounceRef.current) clearTimeout(suggestDebounceRef.current);
+    };
+  }, [typedInput, origin]);
+
+
   // Load persisted state once on mount.
   useEffect(() => {
     try {
@@ -168,6 +212,43 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     if (!map || !origin) return;
     map.flyTo({ center: [origin.lng, origin.lat], zoom: 16, pitch: 60, speed: 1.4, essential: true });
   }, [origin]);
+
+  // End the current trip: cancel TTS, exit follow mode, wipe route line +
+  // every overlay marker, reset trip-intelligence + steps so the bottom
+  // card returns to the empty 'pick a destination' state.
+  const endTrip = useCallback(() => {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    setFollowing(false);
+    const map = mapRef.current;
+    if (map) {
+      try {
+        if (map.getLayer('route-line')) map.removeLayer('route-line');
+        if (map.getSource('route')) map.removeSource('route');
+      } catch { /* noop */ }
+      destMarker.current?.remove();
+      destMarker.current = null;
+      fuelMarkers.current.forEach((m) => m.remove());
+      fuelMarkers.current = [];
+      parkingMarkers.current.forEach((m) => m.remove());
+      parkingMarkers.current = [];
+    }
+    setRoute(null);
+    activeRouteRef.current = null;
+    routeCoordsRef.current = [];
+    speedLimitsRef.current = [];
+    stepsRef.current = [];
+    currentStepIdxRef.current = 0;
+    spokenAnnouncementsRef.current.clear();
+    setCurrentStepInstruction('');
+    setTripIntelligence(null);
+    setCurrentLimit(null);
+    setLastReply('');
+    setTranscript('');
+    setTypedInput('');
+    setBottomExpanded(true);
+  }, []);
 
   const setVehicle = useCallback((v: DriveVehicle | null) => {
     setVehicleState(v);
@@ -499,6 +580,14 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     }
   }, [origin, drawRoute, history, vehicle, voiceMode]);
 
+  const pickSuggestion = useCallback((s: Suggestion) => {
+    const text = s.placeFormatted ? `${s.name}, ${s.placeFormatted}` : s.name;
+    setTypedInput('');
+    setSuggestions([]);
+    setShowSuggestions(false);
+    submitTranscript(text);
+  }, [submitTranscript]);
+
   const startListening = useCallback(() => {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SR) {
@@ -688,13 +777,12 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
               </div>
               <span className="text-xs text-blue-600 font-medium flex-shrink-0">Plan new</span>
             </button>
-            {/* Drive / Stop button — toggles follow-mode */}
+            {/* Drive / Stop button — Drive enters follow mode, Stop ends the trip entirely */}
             <button
               type="button"
               onClick={() => {
                 if (following) {
-                  setFollowing(false);
-                  window.speechSynthesis?.cancel();
+                  endTrip();
                 } else {
                   setFollowing(true);
                   recenterOnDriver();
@@ -764,6 +852,23 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
                 Drive →
               </button>
             )}
+            {/* Autocomplete suggestions dropdown — appears above the input */}
+            {showSuggestions && suggestions.length > 0 && (
+              <div className="mb-2 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden max-h-72 overflow-y-auto">
+                {suggestions.map((s) => (
+                  <button
+                    key={s.mapboxId || `${s.name}-${s.placeFormatted}`}
+                    type="button"
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={() => pickSuggestion(s)}
+                    className="w-full text-left px-3 py-2 hover:bg-blue-50 border-b border-gray-100 last:border-b-0"
+                  >
+                    <p className="text-sm font-medium text-gray-900 truncate">{s.name}</p>
+                    {s.placeFormatted && <p className="text-[11px] text-gray-500 truncate">{s.placeFormatted}</p>}
+                  </button>
+                ))}
+              </div>
+            )}
             <form
               className="flex items-center gap-2"
               onSubmit={(e) => {
@@ -771,6 +876,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
                 const text = typedInput.trim();
                 if (!text || busy || !origin) return;
                 setTypedInput('');
+                setShowSuggestions(false);
                 submitTranscript(text);
               }}
             >
@@ -781,6 +887,8 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
                 placeholder="Type or speak a destination"
                 value={typedInput}
                 onChange={(e) => setTypedInput(e.target.value)}
+                onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
+                onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
                 disabled={busy || !origin}
                 // 16px font prevents iOS Safari from auto-zooming on focus.
                 style={{ fontSize: 16 }}
