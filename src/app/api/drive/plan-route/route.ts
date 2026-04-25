@@ -160,9 +160,13 @@ export async function POST(request: NextRequest) {
   //    ask for clarification, or just chat about the current route.
   const client = new Anthropic({ apiKey: ANTHROPIC_KEY });
 
+  const country = (request.headers.get('x-vercel-ip-country') || '').toUpperCase();
+
   const currentRouteNote = body.currentRoute
     ? `The user is currently routed to "${body.currentRoute.destination}" (${body.currentRoute.miles} mi, ${body.currentRoute.minutes} min).`
     : 'The user has no active route yet.';
+
+  const locationNote = `LOCATION: The driver is at approximately ${body.origin.lat.toFixed(4)}, ${body.origin.lng.toFixed(4)}${country ? ` (country code ${country})` : ''}. Use this to disambiguate place names — for example, if they say "Kelley Barracks" and you know it's a US Army installation in Stuttgart, return "Kelley Barracks, Stuttgart, Germany". If they say "Covino" and you know it's a restaurant near them, expand to "Covino Restaurant, <City>, <Country>". Always include city and country in destinations to maximize geocoding success.`;
 
   const vehicleNote = body.vehicle
     ? `VEHICLE: The driver is in a ${body.vehicle.year} ${body.vehicle.make} ${body.vehicle.model} ${body.vehicle.trim}. Use your knowledge of this exact trim's typical combined MPG and tank capacity when reasoning about range, fuel stops, or how the car performs on different roads.`
@@ -177,6 +181,8 @@ export async function POST(request: NextRequest) {
     : '';
 
   const systemPrompt = `You are Au7o, a voice navigation copilot that runs in the car. Respond like a helpful, concise friend — never verbose.
+
+${locationNote}
 
 ${currentRouteNote}
 
@@ -197,7 +203,7 @@ Every turn, return ONLY a JSON object with this shape:
 }
 
 Rules:
-- intent "navigate" — the user wants to go somewhere new or change the route. Fill "destination" with a clean geocodable string (place name, address, or "nearest X"). "reply" should be a short confirmation like "Routing to Whole Foods now."
+- intent "navigate" — the user wants to go somewhere new or change the route. Fill "destination" with a FULLY-QUALIFIED geocodable string (not just a name — include the city and country when you can infer them from the LOCATION above or your world knowledge). Bad: "Kelley Barracks". Good: "Kelley Barracks, Stuttgart, Germany". Bad: "Covino". Good: "Covino Restaurant, Stuttgart, Germany". For chains and well-known places, "nearest X" is fine ("nearest Starbucks"). "reply" should be a short confirmation like "Routing to Whole Foods now."
 - intent "clarify" — their ask is ambiguous (two Starbucks, they asked a vague "home", etc.). Leave destination empty. "reply" asks a short follow-up question.
 - intent "chat" — they asked something that doesn't change the destination (e.g., "how long is this trip?", "any stops on the way?", "thanks"). Leave destination empty. "reply" is your spoken answer.
 - "NICE DRIVE" intent — if the user says things like "take me on a nice drive", "find me a scenic route", "I just want to cruise", "somewhere fun", pick a real geographic destination about 30–80 miles away from their current location that would make a pleasant out-and-back or loop drive — prefer scenic roads, coastlines, mountain passes, state parks, or historic towns when plausible for their region. DON'T pick interstate stretches or strip malls. Set intent = "navigate" with that destination. Use the DRIVER PREFERENCES and RECENT ROUTES context to pick somewhere new and aligned to their taste. In "reply", name the destination + why it'll be nice ("How about Chuckanut Drive? Great coastal cruise, 45 miles round trip."). If the driver has already asked for a nice drive recently, offer a different one.
@@ -259,26 +265,47 @@ Rules:
     });
   }
 
-  // 2. Geocode the destination near the user's current location
-  const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(destination)}.json?access_token=${MAPBOX_TOKEN}&proximity=${body.origin.lng},${body.origin.lat}&limit=1`;
-  const geoRes = await fetch(geocodeUrl);
-  if (!geoRes.ok) {
-    console.error('[drive/plan-route] Mapbox geocode failed:', geoRes.status);
-    return NextResponse.json(
-      { error: 'geocode_failed', message: "I couldn't look that place up right now. Try again in a moment." },
-      { status: 502 },
-    );
+  // 2. Geocode the destination near the user's current location.
+  //    First pass: tight to the user's country (if known). Returns up to 5 candidates,
+  //    we pick the one nearest the user's GPS. Second pass (fallback) drops the country
+  //    constraint in case Claude expanded into a region the IP-country missed.
+  async function geocode(query: string, withCountry: boolean): Promise<{ lng: number; lat: number; placeName: string } | null> {
+    const params = new URLSearchParams({
+      access_token: MAPBOX_TOKEN!,
+      proximity: `${body.origin!.lng},${body.origin!.lat}`,
+      limit: '5',
+      language: 'en',
+      types: 'poi,address,place,locality,neighborhood',
+    });
+    if (withCountry && country) params.set('country', country.toLowerCase());
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?${params.toString()}`;
+    const r = await fetch(url);
+    if (!r.ok) return null;
+    const d = await r.json();
+    const feats = (d.features || []) as Array<{ center: [number, number]; place_name: string }>;
+    if (!feats.length) return null;
+    // Re-rank by haversine distance from the driver's current location.
+    let best = feats[0];
+    let bestDist = haversineMiles(body.origin!.lat, body.origin!.lng, best.center[1], best.center[0]);
+    for (let i = 1; i < feats.length; i++) {
+      const d2 = haversineMiles(body.origin!.lat, body.origin!.lng, feats[i].center[1], feats[i].center[0]);
+      if (d2 < bestDist) { best = feats[i]; bestDist = d2; }
+    }
+    return { lng: best.center[0], lat: best.center[1], placeName: best.place_name };
   }
-  const geoData = await geoRes.json();
-  const feature = geoData.features?.[0];
-  if (!feature) {
+
+  let geocoded = await geocode(destination, true);
+  if (!geocoded && country) {
+    // Retry without country bias in case the destination's region was inferred wrong.
+    geocoded = await geocode(destination, false);
+  }
+  if (!geocoded) {
     return NextResponse.json(
-      { error: 'not_found', message: `I couldn't find "${destination}". Try saying it differently or use the full address.` },
+      { error: 'not_found', message: `I couldn't find "${destination}". Try saying the full address or adding the city.` },
       { status: 200 },
     );
   }
-  const [destLng, destLat] = feature.center as [number, number];
-  const placeName = feature.place_name as string;
+  const { lng: destLng, lat: destLat, placeName } = geocoded;
 
   // 3. Get driving directions from origin → destination
   const coords = `${body.origin.lng},${body.origin.lat};${destLng},${destLat}`;
