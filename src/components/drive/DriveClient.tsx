@@ -8,6 +8,9 @@ import { VehiclePicker, type DriveVehicle } from './VehiclePicker';
 const LS_VEHICLE = 'au7o-drive-vehicle';
 const LS_PREFS = 'au7o-drive-prefs';
 const LS_HISTORY = 'au7o-drive-history';
+const LS_VOICE = 'au7o-drive-voice-mode';
+
+type VoiceMode = 'all' | 'alerts' | 'mute';
 
 type SpeechRecognitionType = typeof window extends { SpeechRecognition: infer T } ? T : any;
 
@@ -68,8 +71,10 @@ interface ActiveRoute {
   minutes: number;
 }
 
-function speak(text: string) {
+function speak(text: string, mode: VoiceMode = 'all', priority: 'alert' | 'normal' = 'normal') {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+  if (mode === 'mute') return;
+  if (mode === 'alerts' && priority !== 'alert') return;
   try {
     window.speechSynthesis.cancel();
     const utter = new SpeechSynthesisUtterance(text);
@@ -108,6 +113,10 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const driverPrefsRef = useRef<string>('');
   const routeHistoryRef = useRef<Array<{ destination: string; miles: number; minutes: number; at: number }>>([]);
 
+  // UI shell state — collapsible bottom card + voice mode.
+  const [bottomExpanded, setBottomExpanded] = useState(true);
+  const [voiceMode, setVoiceMode] = useState<VoiceMode>('all');
+
   // Load persisted state once on mount.
   useEffect(() => {
     try {
@@ -116,8 +125,24 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       driverPrefsRef.current = localStorage.getItem(LS_PREFS) || '';
       const h = localStorage.getItem(LS_HISTORY);
       if (h) routeHistoryRef.current = JSON.parse(h);
+      const vm = localStorage.getItem(LS_VOICE) as VoiceMode | null;
+      if (vm === 'all' || vm === 'alerts' || vm === 'mute') setVoiceMode(vm);
     } catch { /* ignore */ }
   }, []);
+
+  const cycleVoiceMode = useCallback(() => {
+    setVoiceMode((prev) => {
+      const next: VoiceMode = prev === 'all' ? 'alerts' : prev === 'alerts' ? 'mute' : 'all';
+      try { localStorage.setItem(LS_VOICE, next); } catch { /* ignore */ }
+      return next;
+    });
+  }, []);
+
+  const recenterOnDriver = useCallback(() => {
+    const map = mapRef.current;
+    if (!map || !origin) return;
+    map.flyTo({ center: [origin.lng, origin.lat], zoom: 16, pitch: 60, speed: 1.4, essential: true });
+  }, [origin]);
 
   const setVehicle = useCallback((v: DriveVehicle | null) => {
     setVehicleState(v);
@@ -303,14 +328,14 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       if (!res.ok || data.error) {
         const msg = data.message || data.error || `Route failed (${res.status})`;
         setErrorMsg(msg);
-        speak(msg);
+        speak(msg, voiceMode, 'alert');
         return;
       }
 
       const spoken = data.reply || data.summary || '';
       if (spoken) {
         setLastReply(spoken);
-        speak(spoken);
+        speak(spoken, voiceMode, 'normal');
       }
 
       // Record the turn so follow-ups ("the other one") can resolve.
@@ -382,11 +407,13 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Network error';
       setErrorMsg(msg);
-      speak(msg);
+      speak(msg, voiceMode, 'alert');
     } finally {
       setBusy(false);
+      // Auto-collapse the bottom card so the freshly drawn route + ETA are visible.
+      if (!errorMsg) setBottomExpanded(false);
     }
-  }, [origin, drawRoute, history, vehicle]);
+  }, [origin, drawRoute, history, vehicle, voiceMode, errorMsg]);
 
   const startListening = useCallback(() => {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -440,35 +467,37 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         <VehiclePicker value={vehicle} onChange={setVehicle} />
       </div>
 
-      {/* Speed-limit badge — top-left below vehicle picker */}
+      {/* Speed-limit badge — fixed sizing so the SVG/circle never distort */}
       {currentLimit && (currentLimit.speed != null || currentLimit.none) && (() => {
         const overBy = (() => {
           if (!currentLimit.speed || !driverSpeedMph) return 0;
           const limitMph = currentLimit.unit === 'km/h' ? currentLimit.speed * 0.621371 : currentLimit.speed;
           return driverSpeedMph - limitMph;
         })();
-        const over = overBy > 3; // tolerance so GPS jitter doesn't flash the badge
+        const over = overBy > 3;
         return (
           <div className="absolute top-16 left-4 z-10 flex items-center gap-2">
             <div
-              className={`flex flex-col items-center justify-center rounded-full border-4 shadow-lg bg-white transition-colors ${
+              className={`relative flex-shrink-0 rounded-full border-[3px] shadow-lg bg-white transition-colors ${
                 over ? 'border-red-600 animate-pulse' : 'border-black'
               }`}
-              style={{ width: 64, height: 64 }}
+              style={{ width: 56, height: 56 }}
               aria-label="Current speed limit"
             >
-              {currentLimit.none ? (
-                <span className="text-black text-[10px] font-bold leading-tight text-center">NO<br/>LIMIT</span>
-              ) : (
-                <>
-                  <span className="text-black text-[9px] font-bold leading-none mt-1">SPEED LIMIT</span>
-                  <span className="text-black text-2xl font-black leading-none">{currentLimit.speed}</span>
-                  <span className="text-black text-[8px] font-semibold leading-none mb-1">{currentLimit.unit?.toUpperCase()}</span>
-                </>
-              )}
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-black px-1">
+                {currentLimit.none ? (
+                  <span className="text-[9px] font-bold leading-tight text-center">NO LIMIT</span>
+                ) : (
+                  <>
+                    <span className="text-[7px] font-bold leading-none">SPEED LIMIT</span>
+                    <span className="text-xl font-black leading-none mt-0.5">{currentLimit.speed}</span>
+                    <span className="text-[7px] font-semibold leading-none mt-0.5">{currentLimit.unit?.toUpperCase()}</span>
+                  </>
+                )}
+              </div>
             </div>
-            {driverSpeedMph != null && (
-              <div className={`px-2.5 py-1 rounded-lg text-sm font-bold shadow ${over ? 'bg-red-600 text-white' : 'bg-white/90 text-gray-800'}`}>
+            {driverSpeedMph != null && driverSpeedMph > 1 && (
+              <div className={`px-2 py-1 rounded-lg text-xs font-bold shadow ${over ? 'bg-red-600 text-white' : 'bg-white/90 text-gray-800'}`}>
                 {Math.round(driverSpeedMph)} mph
               </div>
             )}
@@ -476,35 +505,59 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         );
       })()}
 
-      {/* Top status pill */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 max-w-[92vw]">
-        {locationError && (
-          <div className="px-4 py-2 rounded-full bg-amber-500/90 text-white text-sm font-medium shadow-lg">
-            {locationError}
-          </div>
-        )}
-        {!locationError && !origin && (
-          <div className="px-4 py-2 rounded-full bg-white/90 backdrop-blur text-gray-700 text-sm shadow-lg">
-            Locating you…
-          </div>
-        )}
-        {route?.summary && (
-          <div className="px-4 py-2 rounded-full bg-blue-600 text-white text-sm font-medium shadow-lg truncate">
-            {route.summary}
-          </div>
-        )}
+      {/* Right-side controls — voice toggle + recenter */}
+      <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
+        <button
+          onClick={cycleVoiceMode}
+          aria-label={`Voice ${voiceMode}`}
+          title={`Voice: ${voiceMode}`}
+          className="w-11 h-11 rounded-full bg-white/95 backdrop-blur shadow-md border border-gray-200 flex items-center justify-center text-lg hover:bg-white"
+        >
+          {voiceMode === 'all' ? '🔊' : voiceMode === 'alerts' ? '🔔' : '🔇'}
+        </button>
+        <button
+          onClick={recenterOnDriver}
+          disabled={!origin}
+          aria-label="Recenter on me"
+          title="Recenter on me"
+          className="w-11 h-11 rounded-full bg-white/95 backdrop-blur shadow-md border border-gray-200 flex items-center justify-center hover:bg-white disabled:opacity-50"
+        >
+          <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3" fill="currentColor" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+          </svg>
+        </button>
       </div>
 
-      {/* Transcript / assistant reply / error banner above the mic */}
-      {(transcript || errorMsg || lastReply) && (
-        <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-10 max-w-[92vw] flex flex-col gap-2 items-center">
+      {/* Top status pill — only shown when there's NO active route (locating, error). Once a route is set, the bottom card carries the info instead. */}
+      {!route?.summary && (
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 max-w-[60vw]">
+          {locationError && (
+            <div className="px-3 py-1.5 rounded-full bg-amber-500/90 text-white text-xs font-medium shadow-lg truncate">
+              {locationError}
+            </div>
+          )}
+          {!locationError && !origin && (
+            <div className="px-3 py-1.5 rounded-full bg-white/90 backdrop-blur text-gray-700 text-xs shadow-lg">
+              Locating you…
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Transcript / assistant reply / error — sits ABOVE the bottom card so it never overlaps */}
+      {(transcript || errorMsg || lastReply) && (bottomExpanded || errorMsg) && (
+        <div
+          className="absolute left-1/2 -translate-x-1/2 z-10 max-w-[92vw] flex flex-col gap-2 items-center"
+          style={{ bottom: bottomExpanded ? 180 : 110 }}
+        >
           {errorMsg && (
-            <div className="px-4 py-3 rounded-xl text-sm font-medium shadow-lg bg-red-600 text-white">
+            <div className="px-4 py-3 rounded-xl text-sm font-medium shadow-lg bg-red-600 text-white max-w-md text-center">
               {errorMsg}
             </div>
           )}
           {!errorMsg && transcript && (
-            <div className="px-4 py-2 rounded-xl text-sm font-medium shadow-lg bg-white/95 backdrop-blur text-gray-900">
+            <div className="px-4 py-2 rounded-xl text-sm font-medium shadow-lg bg-white/95 backdrop-blur text-gray-900 max-w-md text-center">
               &ldquo;{transcript}&rdquo;
             </div>
           )}
@@ -516,59 +569,99 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         </div>
       )}
 
-      {/* Mic + text input row */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3 w-[min(92vw,520px)]">
-        <button
-          onClick={listening ? stopListening : startListening}
-          disabled={busy || !origin}
-          aria-label={listening ? 'Stop listening' : 'Start voice input'}
-          className={`w-20 h-20 rounded-full flex items-center justify-center shadow-xl transition-all ${
-            listening
-              ? 'bg-red-500 hover:bg-red-600 animate-pulse'
-              : busy
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-blue-600 hover:bg-blue-700'
-          } disabled:opacity-60`}
-        >
-          <svg className="w-9 h-9 text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 14a3 3 0 003-3V5a3 3 0 10-6 0v6a3 3 0 003 3z" />
-            <path d="M19 11a1 1 0 10-2 0 5 5 0 01-10 0 1 1 0 10-2 0 7 7 0 006 6.92V21a1 1 0 102 0v-3.08A7 7 0 0019 11z" />
-          </svg>
-        </button>
-        <span className="text-xs text-white/90 font-medium drop-shadow">
-          {busy ? 'Planning…' : listening ? 'Listening — tap to stop' : 'Tap and speak, or type below'}
-        </span>
-        <form
-          className="w-full flex items-center gap-2 bg-white/95 backdrop-blur rounded-full shadow-xl px-4 py-2"
-          onSubmit={(e) => {
-            e.preventDefault();
-            const text = typedInput.trim();
-            if (!text || busy || !origin) return;
-            setTypedInput('');
-            submitTranscript(text);
-          }}
-        >
-          <input
-            type="text"
-            inputMode="text"
-            autoComplete="off"
-            placeholder="Or type a destination — e.g. Badezentrum Sindelfingen"
-            value={typedInput}
-            onChange={(e) => setTypedInput(e.target.value)}
-            disabled={busy || !origin}
-            className="flex-1 bg-transparent text-sm text-gray-900 placeholder:text-gray-400 outline-none disabled:opacity-50"
-          />
+      {/* Bottom card — collapsible. Collapsed shows ETA/distance; expanded shows input + mic. */}
+      <div
+        className={`absolute bottom-6 left-1/2 -translate-x-1/2 z-10 w-[min(92vw,520px)] transition-opacity ${
+          busy ? 'opacity-40 pointer-events-none' : 'opacity-100'
+        }`}
+      >
+        {/* Always-visible: route summary chip / planning state — also acts as expand toggle when collapsed */}
+        {route?.summary && !bottomExpanded && (
           <button
-            type="submit"
-            disabled={!typedInput.trim() || busy || !origin}
-            aria-label="Send destination"
-            className="w-9 h-9 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+            type="button"
+            onClick={() => setBottomExpanded(true)}
+            className="w-full mb-2 px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur shadow-xl border border-gray-200 flex items-center justify-between gap-3 text-left"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 text-gray-900">
+                <span className="text-base font-bold">{route.minutes} min</span>
+                <span className="text-gray-400">·</span>
+                <span className="text-sm font-medium text-gray-700">{route.miles} mi</span>
+              </div>
+              <p className="text-xs text-gray-500 truncate">{route.destination}</p>
+            </div>
+            <span className="text-xs text-blue-600 font-medium flex-shrink-0">Plan new</span>
           </button>
-        </form>
+        )}
+
+        {/* Expanded: collapse handle, route summary line if any, input + mic */}
+        {bottomExpanded && (
+          <div className="bg-white/95 backdrop-blur rounded-2xl shadow-xl border border-gray-200 p-3">
+            {route?.summary && (
+              <button
+                type="button"
+                onClick={() => setBottomExpanded(false)}
+                className="w-full flex items-center justify-between gap-2 mb-2 px-1"
+              >
+                <div className="min-w-0 text-left">
+                  <span className="text-sm font-semibold text-gray-900">{route.minutes} min · {route.miles} mi</span>
+                  <p className="text-[11px] text-gray-500 truncate">{route.destination}</p>
+                </div>
+                <span className="text-[11px] text-gray-400 flex-shrink-0">Hide ▾</span>
+              </button>
+            )}
+            <form
+              className="flex items-center gap-2"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const text = typedInput.trim();
+                if (!text || busy || !origin) return;
+                setTypedInput('');
+                submitTranscript(text);
+              }}
+            >
+              <input
+                type="text"
+                inputMode="text"
+                autoComplete="off"
+                placeholder="Type or speak a destination"
+                value={typedInput}
+                onChange={(e) => setTypedInput(e.target.value)}
+                disabled={busy || !origin}
+                // 16px font prevents iOS Safari from auto-zooming on focus.
+                style={{ fontSize: 16 }}
+                className="flex-1 min-w-0 bg-gray-50 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 outline-none disabled:opacity-50 border border-gray-100"
+              />
+              <button
+                type="submit"
+                disabled={!typedInput.trim() || busy || !origin}
+                aria-label="Send destination"
+                className="w-12 h-12 rounded-xl bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center disabled:opacity-40 flex-shrink-0"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                onClick={listening ? stopListening : startListening}
+                disabled={busy || !origin}
+                aria-label={listening ? 'Stop listening' : 'Start voice input'}
+                className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
+                  listening ? 'bg-red-500 hover:bg-red-600 animate-pulse text-white' : 'bg-blue-600 hover:bg-blue-700 text-white'
+                } disabled:opacity-40`}
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 14a3 3 0 003-3V5a3 3 0 10-6 0v6a3 3 0 003 3z" />
+                  <path d="M19 11a1 1 0 10-2 0 5 5 0 01-10 0 1 1 0 10-2 0 7 7 0 006 6.92V21a1 1 0 102 0v-3.08A7 7 0 0019 11z" />
+                </svg>
+              </button>
+            </form>
+            <p className="text-[11px] text-gray-400 text-center mt-2">
+              {busy ? 'Planning…' : listening ? 'Listening — tap mic to stop' : route?.summary ? 'Tap “Hide ▾” to minimize' : 'Type a destination or tap the mic'}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
