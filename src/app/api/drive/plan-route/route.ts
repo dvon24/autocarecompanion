@@ -277,17 +277,37 @@ Rules:
     const textBlocks = (res.content || []).filter((b: { type: string }) => b.type === 'text') as Array<{ type: 'text'; text: string }>;
     const raw = textBlocks.length > 0 ? textBlocks[textBlocks.length - 1].text : '{}';
     const cleaned = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-    const parsed = JSON.parse(cleaned);
-    intent = parsed.intent === 'clarify' || parsed.intent === 'chat' ? parsed.intent : 'navigate';
-    destination = (parsed.destination || '').trim();
-    spokenReply = (parsed.reply || '').trim();
-    preferenceUpdate = (parsed.preferenceUpdate || '').trim();
-    needsParkingSearch = parsed.needsParkingSearch === true;
-    if (fuelMilesRemaining == null && typeof parsed.fuelMilesRemaining === 'number') {
-      fuelMilesRemaining = parsed.fuelMilesRemaining;
+    // Try to extract a JSON object from the response even if Claude wrapped it
+    // in conversational prose. Falls back to treating the whole text as a
+    // chat-mode reply rather than crashing the route.
+    let parsed: Record<string, unknown> | null = null;
+    try {
+      parsed = JSON.parse(cleaned);
+    } catch {
+      const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        try { parsed = JSON.parse(jsonMatch[0]); } catch { /* fall through */ }
+      }
+    }
+    if (parsed && typeof parsed === 'object') {
+      intent = parsed.intent === 'clarify' || parsed.intent === 'chat' ? parsed.intent : 'navigate';
+      destination = String(parsed.destination || '').trim();
+      spokenReply = String(parsed.reply || '').trim();
+      preferenceUpdate = String(parsed.preferenceUpdate || '').trim();
+      needsParkingSearch = parsed.needsParkingSearch === true;
+      if (fuelMilesRemaining == null && typeof parsed.fuelMilesRemaining === 'number') {
+        fuelMilesRemaining = parsed.fuelMilesRemaining;
+      }
+    } else {
+      // Claude broke contract and returned plain text. Don't crash — just
+      // treat it as a conversational reply to the driver.
+      console.warn('[drive/plan-route] Non-JSON Claude response, treating as chat reply:', cleaned.slice(0, 200));
+      intent = 'chat';
+      spokenReply = cleaned.slice(0, 280) || "I'm not sure I caught that — try again.";
+      destination = '';
     }
   } catch (err) {
-    console.error('[drive/plan-route] Anthropic parse failed:', err);
+    console.error('[drive/plan-route] Anthropic call failed:', err);
     return NextResponse.json(
       { error: 'parse_failed', message: "I'm having trouble understanding right now. Try again in a moment." },
       { status: 502 },
