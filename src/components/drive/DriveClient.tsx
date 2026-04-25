@@ -42,6 +42,14 @@ interface SpeedLimitEntry {
   none?: boolean;
 }
 
+interface NavStep {
+  instruction: string;
+  distance: number;
+  duration: number;
+  location: [number, number];
+  voice?: Array<{ distanceAlongGeometry: number; announcement: string }>;
+}
+
 interface RouteResponse {
   intent?: 'navigate' | 'clarify' | 'chat';
   destination?: string;
@@ -55,6 +63,7 @@ interface RouteResponse {
   fuelStops?: FuelStop[];
   parkingOptions?: ParkingOption[];
   speedLimits?: SpeedLimitEntry[];
+  steps?: NavStep[];
   preferenceUpdate?: string;
   error?: string;
   message?: string;
@@ -116,6 +125,13 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   // UI shell state — collapsible bottom card + voice mode.
   const [bottomExpanded, setBottomExpanded] = useState(true);
   const [voiceMode, setVoiceMode] = useState<VoiceMode>('all');
+  // Active-navigation state: when 'following', the camera tracks the driver and
+  // voice maneuvers are spoken at trigger distances.
+  const [following, setFollowing] = useState(false);
+  const stepsRef = useRef<NavStep[]>([]);
+  const currentStepIdxRef = useRef<number>(0);
+  const spokenAnnouncementsRef = useRef<Set<string>>(new Set());
+  const [currentStepInstruction, setCurrentStepInstruction] = useState<string>('');
 
   // Load persisted state once on mount.
   useEffect(() => {
@@ -185,16 +201,67 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             const d = dLng * dLng + dLat * dLat;
             if (d < bestDist) { bestDist = d; bestIdx = i; }
           }
-          // Annotation i belongs to segment between coords[i] and coords[i+1].
           const segIdx = Math.min(bestIdx, limits.length - 1);
           setCurrentLimit(limits[segIdx] || null);
+        }
+
+        // Follow-mode: keep the camera centered on the driver, oriented along their heading.
+        const map = mapRef.current;
+        if (map && following) {
+          const heading = (typeof pos.coords.heading === 'number' && !Number.isNaN(pos.coords.heading))
+            ? pos.coords.heading
+            : map.getBearing();
+          map.easeTo({
+            center: [lng, lat],
+            bearing: heading,
+            pitch: 60,
+            zoom: Math.max(map.getZoom(), 17),
+            duration: 800,
+            essential: true,
+          });
+        }
+
+        // Turn-by-turn: walk through pending maneuver steps and speak voice prompts
+        // at the right trigger distances. Once we've passed a step, advance.
+        const steps = stepsRef.current;
+        if (steps.length > 0 && following) {
+          // Haversine distance to the next maneuver point.
+          const haversine = (lat1: number, lng1: number, lat2: number, lng2: number) => {
+            const R = 6371_000;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLng = (lng2 - lng1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+            return 2 * R * Math.asin(Math.sqrt(a));
+          };
+          const idx = currentStepIdxRef.current;
+          const step = steps[idx];
+          if (step) {
+            setCurrentStepInstruction(step.instruction);
+            const distToManeuver = haversine(lat, lng, step.location[1], step.location[0]);
+            // Mapbox voiceInstructions trigger when the driver is within
+            // distanceAlongGeometry meters of the maneuver point.
+            for (const v of step.voice || []) {
+              if (distToManeuver <= v.distanceAlongGeometry) {
+                const key = `${idx}:${v.distanceAlongGeometry}`;
+                if (!spokenAnnouncementsRef.current.has(key)) {
+                  spokenAnnouncementsRef.current.add(key);
+                  speak(v.announcement, voiceMode, 'alert');
+                }
+              }
+            }
+            // Once we're <30 m from the maneuver, advance to the next step.
+            if (distToManeuver < 30 && idx < steps.length - 1) {
+              currentStepIdxRef.current = idx + 1;
+              spokenAnnouncementsRef.current.clear();
+            }
+          }
         }
       },
       (err) => setLocationError(err.message),
       { enableHighAccuracy: true, maximumAge: 5000, timeout: 10000 },
     );
     return () => navigator.geolocation.clearWatch(watchId);
-  }, []);
+  }, [following, voiceMode]);
 
   // Map init
   useEffect(() => {
@@ -360,6 +427,11 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         // can look up the current limit as the driver moves.
         routeCoordsRef.current = (data.geometry.coordinates as [number, number][]) || [];
         speedLimitsRef.current = data.speedLimits || [];
+        stepsRef.current = data.steps || [];
+        currentStepIdxRef.current = 0;
+        spokenAnnouncementsRef.current.clear();
+        setCurrentStepInstruction((data.steps?.[0]?.instruction) || '');
+        setFollowing(false); // user must hit Drive to enter follow mode
         setCurrentLimit(null);
         if (typeof data.miles === 'number' && typeof data.minutes === 'number') {
           activeRouteRef.current = {
@@ -505,8 +577,10 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         );
       })()}
 
-      {/* Right-side controls — voice toggle + recenter */}
-      <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
+      {/* Right-side controls — voice toggle + recenter. Pushed BELOW the
+          Mapbox NavigationControl (zoom +/- + pitch) so the right edge
+          becomes a single clean vertical stack. */}
+      <div className="absolute top-44 right-2 z-10 flex flex-col gap-2">
         <button
           onClick={cycleVoiceMode}
           aria-label={`Voice ${voiceMode}`}
@@ -569,6 +643,15 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         </div>
       )}
 
+      {/* Active turn-by-turn banner (top center, only while following) */}
+      {following && currentStepInstruction && (
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 max-w-[88vw]">
+          <div className="px-4 py-2 rounded-2xl bg-blue-600/95 backdrop-blur text-white shadow-xl text-center">
+            <p className="text-sm font-semibold leading-tight">{currentStepInstruction}</p>
+          </div>
+        </div>
+      )}
+
       {/* Bottom card — collapsible. Collapsed shows ETA/distance; expanded shows input + mic. */}
       <div
         className={`absolute bottom-6 left-1/2 -translate-x-1/2 z-10 w-[min(92vw,520px)] transition-opacity ${
@@ -577,21 +660,46 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       >
         {/* Always-visible: route summary chip / planning state — also acts as expand toggle when collapsed */}
         {route?.summary && !bottomExpanded && (
-          <button
-            type="button"
-            onClick={() => setBottomExpanded(true)}
-            className="w-full mb-2 px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur shadow-xl border border-gray-200 flex items-center justify-between gap-3 text-left"
-          >
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 text-gray-900">
-                <span className="text-base font-bold">{route.minutes} min</span>
-                <span className="text-gray-400">·</span>
-                <span className="text-sm font-medium text-gray-700">{route.miles} mi</span>
+          <div className="w-full mb-2 flex gap-2 items-stretch">
+            <button
+              type="button"
+              onClick={() => setBottomExpanded(true)}
+              className="flex-1 min-w-0 px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur shadow-xl border border-gray-200 flex items-center justify-between gap-3 text-left"
+            >
+              <div className="min-w-0">
+                <div className="flex items-center gap-2 text-gray-900">
+                  <span className="text-base font-bold">{route.minutes} min</span>
+                  <span className="text-gray-400">·</span>
+                  <span className="text-sm font-medium text-gray-700">{route.miles} mi</span>
+                </div>
+                <p className="text-xs text-gray-500 truncate">{route.destination}</p>
               </div>
-              <p className="text-xs text-gray-500 truncate">{route.destination}</p>
-            </div>
-            <span className="text-xs text-blue-600 font-medium flex-shrink-0">Plan new</span>
-          </button>
+              <span className="text-xs text-blue-600 font-medium flex-shrink-0">Plan new</span>
+            </button>
+            {/* Drive / Stop button — toggles follow-mode */}
+            <button
+              type="button"
+              onClick={() => {
+                if (following) {
+                  setFollowing(false);
+                  window.speechSynthesis?.cancel();
+                } else {
+                  setFollowing(true);
+                  recenterOnDriver();
+                  if (stepsRef.current[0]?.instruction) {
+                    speak(stepsRef.current[0].instruction, voiceMode, 'alert');
+                  }
+                }
+              }}
+              className={`px-5 py-2.5 rounded-2xl shadow-xl text-sm font-bold transition-colors flex-shrink-0 ${
+                following
+                  ? 'bg-red-600 hover:bg-red-700 text-white'
+                  : 'bg-green-600 hover:bg-green-700 text-white'
+              }`}
+            >
+              {following ? 'Stop' : 'Drive'}
+            </button>
+          </div>
         )}
 
         {/* Expanded: collapse handle, route summary line if any, input + mic */}

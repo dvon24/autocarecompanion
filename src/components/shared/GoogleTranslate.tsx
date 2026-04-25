@@ -81,7 +81,7 @@ export function GoogleTranslate() {
       `}</style>
 
       {/* Google Translate element - always in DOM, visibility toggled */}
-      <div className="fixed top-3 right-[calc(0.75rem+20px)] z-[9999]">
+      <div className="fixed top-3 right-[calc(0.75rem+40px)] z-[9999]">
         <button
           type="button"
           onClick={() => setOpen(!open)}

@@ -461,8 +461,10 @@ Rules:
 
   // 3. Get driving directions from origin → destination
   const coords = `${body.origin.lng},${body.origin.lat};${destLng},${destLat}`;
-  // overview=full ensures geometry.coordinates aligns 1:1 with the annotation arrays.
-  const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${coords}?geometries=geojson&overview=full&steps=false&annotations=maxspeed&access_token=${MAPBOX_TOKEN}`;
+  // driving-traffic profile factors live traffic into the ETA. steps=true so the
+  // client can render turn-by-turn cards + speak voiceInstructions at the right
+  // moments. overview=full ensures geometry aligns 1:1 with the annotation arrays.
+  const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${coords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=imperial&banner_instructions=true&language=en&access_token=${MAPBOX_TOKEN}`;
   const dirRes = await fetch(dirUrl);
   if (!dirRes.ok) {
     console.error('[drive/plan-route] Mapbox directions failed:', dirRes.status);
@@ -581,6 +583,33 @@ Rules:
   if (parkingNote) parts.push(parkingNote);
   const reply = parts.join(' ');
 
+  // Flatten step-by-step maneuvers from every leg for the client's
+  // turn-by-turn UI + voice prompts.
+  interface NavStep {
+    instruction: string;
+    distance: number;       // meters
+    duration: number;       // seconds
+    location: [number, number]; // lng, lat
+    voice?: Array<{ distanceAlongGeometry: number; announcement: string }>;
+  }
+  const steps: NavStep[] = [];
+  if (Array.isArray(route.legs)) {
+    for (const leg of route.legs) {
+      for (const s of (leg.steps || [])) {
+        steps.push({
+          instruction: s.maneuver?.instruction || '',
+          distance: s.distance || 0,
+          duration: s.duration || 0,
+          location: s.maneuver?.location || [0, 0],
+          voice: (s.voiceInstructions || []).map((v: { distanceAlongGeometry: number; announcement: string }) => ({
+            distanceAlongGeometry: v.distanceAlongGeometry,
+            announcement: v.announcement,
+          })),
+        });
+      }
+    }
+  }
+
   return NextResponse.json({
     intent: 'navigate',
     destination: placeName,
@@ -595,6 +624,7 @@ Rules:
     fuelMilesRemaining,
     speedLimits,
     parkingOptions,
+    steps,
     preferenceUpdate: preferenceUpdate || undefined,
   });
 }
