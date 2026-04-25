@@ -356,7 +356,7 @@ Rules:
       preferenceUpdate = String(parsed.preferenceUpdate || '').trim();
       needsParkingSearch = parsed.needsParkingSearch === true;
       isRoundTrip = parsed.isRoundTrip === true;
-      const rp = parsed.routePreferences;
+      const rp = parsed.routePreferences as { avoidHighways?: unknown; avoidTolls?: unknown; avoidFerries?: unknown } | undefined;
       if (rp && typeof rp === 'object') {
         routePreferences.avoidHighways = rp.avoidHighways === true;
         routePreferences.avoidTolls = rp.avoidTolls === true;
