@@ -304,6 +304,20 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     map.flyTo({ center: [origin.lng, origin.lat], zoom: 16, pitch: 60, speed: 1.4, essential: true });
   }, [origin]);
 
+  const clearStoredPreferences = useCallback(() => {
+    if (typeof window === 'undefined') return;
+    if (!window.confirm('Clear all saved driving preferences and trip history?\n\nThis wipes anything Au7o has learned about how you like to drive on this device. You\'ll start fresh.')) return;
+    driverPrefsRef.current = '';
+    routeHistoryRef.current = [];
+    try {
+      localStorage.removeItem(LS_PREFS);
+      localStorage.removeItem(LS_HISTORY);
+      localStorage.removeItem(LS_FAVORITES);
+    } catch { /* ignore */ }
+    setRatingToast('Saved preferences cleared');
+    setTimeout(() => setRatingToast(''), 2200);
+  }, []);
+
   // End the current trip: cancel TTS, exit follow mode, wipe route line +
   // every overlay marker, reset trip-intelligence + steps so the bottom
   // card returns to the empty 'pick a destination' state.
@@ -813,6 +827,14 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             <circle cx="12" cy="12" r="3" fill="currentColor" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2v3M12 19v3M2 12h3M19 12h3" />
           </svg>
+        </button>
+        <button
+          onClick={clearStoredPreferences}
+          aria-label="Clear saved preferences"
+          title="Clear saved preferences and trip history"
+          className="w-11 h-11 rounded-full bg-white/95 backdrop-blur shadow-md border border-gray-200 flex items-center justify-center hover:bg-white text-lg"
+        >
+          🧹
         </button>
       </div>
 
