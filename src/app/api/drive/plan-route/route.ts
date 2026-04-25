@@ -47,6 +47,12 @@ interface PlanRouteBody {
   vehicle?: DriveVehicle | null;
   driverPreferences?: string | null;
   routeHistory?: RouteHistoryEntry[];
+  /**
+   * If the user picked an autocomplete suggestion, the client passes the
+   * SearchBox-retrieved coordinates here so we skip the ambiguous geocoding
+   * step entirely. Used to fix 'Öhringen' fuzzy-matching to 'Böhringen'.
+   */
+  trustedDestination?: { lng: number; lat: number; placeName: string } | null;
 }
 
 /**
@@ -273,10 +279,10 @@ Rules:
 - preferenceUpdate: if the user states a durable preference we should remember next time ("I hate highways", "I like curvy mountain roads", "always avoid tolls", "no left turns on unprotected lights"), write a one-line note like "Prefers curvy mountain roads, dislikes highways." Otherwise empty string. Do NOT echo routine navigation commands as preferences.
 - isRoundTrip: TRUE when the user wants to come back to their starting point — phrases like "round trip", "and back", "back home", "loop", "return trip", "there and back", or "nice drive" / "scenic drive" with no specific destination they want to end at. Otherwise FALSE.
 - routePreferences: extract from the user's words AND from stored DRIVER PREFERENCES.
-  - avoidHighways: TRUE on phrases like "no highways", "back roads only", "scenic route", "off the beaten path", "country roads", or any "nice drive"/"scenic drive" intent. Also TRUE if driver preferences mention disliking highways/motorways/interstates.
-  - avoidTolls: TRUE on "no tolls", "avoid tolls", "don't take the tollway", or stored prefs.
-  - avoidFerries: TRUE only if user explicitly says so or stored prefs.
-  - Default everything FALSE for normal navigation requests.
+  - avoidHighways: TRUE ONLY when the user EXPLICITLY says they want to avoid highways — phrases like "no highways", "avoid highways", "no motorways", "no autobahn", "back roads only", "back roads instead", "country roads only", or stored prefs that EXPLICITLY say they dislike highways. **DO NOT** set TRUE just because the user said "scenic drive" or "nice drive" — those are aesthetic asks, not road-class restrictions. Default FALSE.
+  - avoidTolls: TRUE on "no tolls", "avoid tolls", "don't take the tollway", or stored prefs that say so. Default FALSE.
+  - avoidFerries: TRUE only if user explicitly says so or stored prefs. Default FALSE.
+  - Default everything FALSE for normal navigation requests, including "scenic drive", "nice drive", "take me somewhere fun".
 - needsParkingSearch: set TRUE when the destination is the kind of place that probably doesn't have its own easy parking — restaurants in downtown/urban areas, bars, clubs, theaters, museums, sports venues, cafes in dense neighborhoods, concert halls. Set FALSE for destinations that clearly include ample parking — big-box stores (Walmart, Target, Costco), suburban strip malls, malls, airports, IKEA, most gas stations. When uncertain, prefer TRUE for small/urban places and FALSE for large/suburban.
 - tripIntelligence: be the driver's eyes-forward. Reason about the trip and add useful context:
   - tripType: "commute" if it matches a familiar route at typical commute hours; "errand" for short utility trips (<30 min); "road_trip" for 2+ hour drives; "scenic" if the user said "nice drive" or asked for a leisurely route; "unknown" otherwise.
@@ -455,7 +461,20 @@ Rules:
     return stripped !== input ? stripped : null;
   }
 
-  let geocoded = await geocode(destination, true);
+  // Short-circuit: if the client passed a trustedDestination (user picked an
+  // autocomplete suggestion that we already retrieved from SearchBox), use
+  // those coords directly. This avoids the fuzzy-match bug where 'Öhringen'
+  // could re-geocode to a completely different town.
+  let geocoded: { lng: number; lat: number; placeName: string } | null = null;
+  if (body.trustedDestination && typeof body.trustedDestination.lng === 'number' && typeof body.trustedDestination.lat === 'number') {
+    geocoded = {
+      lng: body.trustedDestination.lng,
+      lat: body.trustedDestination.lat,
+      placeName: body.trustedDestination.placeName || destination,
+    };
+    console.log(`[drive/plan-route] Using trusted destination: "${geocoded.placeName}"`);
+  }
+  if (!geocoded) geocoded = await geocode(destination, true);
   if (!geocoded && country) {
     // Retry without country bias in case the destination's region was inferred wrong.
     geocoded = await geocode(destination, false);

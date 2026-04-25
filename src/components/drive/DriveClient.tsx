@@ -553,7 +553,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     else map.once('load', applyLayer);
   }, []);
 
-  const submitTranscript = useCallback(async (text: string) => {
+  const submitTranscript = useCallback(async (text: string, trustedDestination?: { lng: number; lat: number; placeName: string }) => {
     if (!text || !origin) return;
     setBusy(true);
     setErrorMsg(null);
@@ -570,6 +570,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
           vehicle,
           driverPreferences: driverPrefsRef.current || null,
           routeHistory: routeHistoryRef.current.slice(-10),
+          trustedDestination: trustedDestination || null,
         }),
       });
       const data = (await res.json()) as RouteResponse;
@@ -672,12 +673,31 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     }
   }, [origin, drawRoute, history, vehicle, voiceMode]);
 
-  const pickSuggestion = useCallback((s: Suggestion) => {
+  const pickSuggestion = useCallback(async (s: Suggestion) => {
     const text = s.placeFormatted ? `${s.name}, ${s.placeFormatted}` : s.name;
     setTypedInput('');
     setSuggestions([]);
     setShowSuggestions(false);
-    submitTranscript(text);
+    // Retrieve the EXACT coords for this specific suggestion via SearchBox.
+    // This bypasses re-geocoding (which can fuzzy-match to the wrong town).
+    let trusted: { lng: number; lat: number; placeName: string } | undefined;
+    if (s.mapboxId) {
+      try {
+        const params = new URLSearchParams({
+          action: 'retrieve',
+          id: s.mapboxId,
+          session_token: suggestSessionRef.current,
+        });
+        const r = await fetch(`/api/drive/suggest?${params.toString()}`);
+        if (r.ok) {
+          const d = await r.json();
+          if (typeof d.lng === 'number' && typeof d.lat === 'number') {
+            trusted = { lng: d.lng, lat: d.lat, placeName: d.placeName || text };
+          }
+        }
+      } catch { /* fall back to fuzzy geocode */ }
+    }
+    submitTranscript(text, trusted);
   }, [submitTranscript]);
 
   const startListening = useCallback(() => {
