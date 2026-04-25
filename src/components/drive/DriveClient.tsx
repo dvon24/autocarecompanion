@@ -75,6 +75,7 @@ interface RouteResponse {
   tripIntelligence?: TripIntelligence | null;
   fuelNeeded?: { gallons: number; tankPercent: number | null; mpgUsed: number } | null;
   isRoundTrip?: boolean;
+  routePreferences?: { avoidHighways: boolean; avoidTolls: boolean; avoidFerries: boolean };
   preferenceUpdate?: string;
   error?: string;
   message?: string;
@@ -959,6 +960,15 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
                 <p className="text-[11px] font-bold text-blue-700 uppercase tracking-wide mb-1.5">💡 Trip plan</p>
                 {route?.isRoundTrip && (
                   <p className="text-xs text-gray-700 mb-1.5 leading-snug">🔄 Round trip — distance + ETA include the return leg</p>
+                )}
+                {(route?.routePreferences?.avoidHighways || route?.routePreferences?.avoidTolls || route?.routePreferences?.avoidFerries) && (
+                  <p className="text-xs text-gray-700 mb-1.5 leading-snug">
+                    🛣️ Routed to avoid {[
+                      route.routePreferences.avoidHighways && 'highways',
+                      route.routePreferences.avoidTolls && 'tolls',
+                      route.routePreferences.avoidFerries && 'ferries',
+                    ].filter(Boolean).join(', ')}
+                  </p>
                 )}
                 {route?.fuelNeeded && (
                   <p className="text-xs text-gray-700 mb-1.5 leading-snug">

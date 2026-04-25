@@ -234,6 +234,11 @@ Every turn, return ONLY a JSON object with this shape:
   "intent": "navigate" | "clarify" | "chat",
   "destination": "<clean geocodable place or address>",
   "isRoundTrip": <boolean>,
+  "routePreferences": {
+    "avoidHighways": <boolean>,
+    "avoidTolls": <boolean>,
+    "avoidFerries": <boolean>
+  },
   "fuelMilesRemaining": <number or null>,
   "needsParkingSearch": <boolean>,
   "tripIntelligence": {
@@ -267,15 +272,21 @@ Rules:
 - fuelMilesRemaining: if the user mentions how far they can go on fuel/charge ("I have 120 miles to empty", "80 miles of range left", "quarter tank"), extract a numeric estimate. A quarter tank ≈ 75 mi, half tank ≈ 150 mi, low/almost empty ≈ 30 mi. If they say "I just filled up" and a vehicle is known, estimate full tank × combined MPG. Otherwise null.
 - preferenceUpdate: if the user states a durable preference we should remember next time ("I hate highways", "I like curvy mountain roads", "always avoid tolls", "no left turns on unprotected lights"), write a one-line note like "Prefers curvy mountain roads, dislikes highways." Otherwise empty string. Do NOT echo routine navigation commands as preferences.
 - isRoundTrip: TRUE when the user wants to come back to their starting point — phrases like "round trip", "and back", "back home", "loop", "return trip", "there and back", or "nice drive" / "scenic drive" with no specific destination they want to end at. Otherwise FALSE.
+- routePreferences: extract from the user's words AND from stored DRIVER PREFERENCES.
+  - avoidHighways: TRUE on phrases like "no highways", "back roads only", "scenic route", "off the beaten path", "country roads", or any "nice drive"/"scenic drive" intent. Also TRUE if driver preferences mention disliking highways/motorways/interstates.
+  - avoidTolls: TRUE on "no tolls", "avoid tolls", "don't take the tollway", or stored prefs.
+  - avoidFerries: TRUE only if user explicitly says so or stored prefs.
+  - Default everything FALSE for normal navigation requests.
 - needsParkingSearch: set TRUE when the destination is the kind of place that probably doesn't have its own easy parking — restaurants in downtown/urban areas, bars, clubs, theaters, museums, sports venues, cafes in dense neighborhoods, concert halls. Set FALSE for destinations that clearly include ample parking — big-box stores (Walmart, Target, Costco), suburban strip malls, malls, airports, IKEA, most gas stations. When uncertain, prefer TRUE for small/urban places and FALSE for large/suburban.
 - tripIntelligence: be the driver's eyes-forward. Reason about the trip and add useful context:
   - tripType: "commute" if it matches a familiar route at typical commute hours; "errand" for short utility trips (<30 min); "road_trip" for 2+ hour drives; "scenic" if the user said "nice drive" or asked for a leisurely route; "unknown" otherwise.
-  - suggestions: 0–3 short actionable hints. Examples: "Stop for coffee at Tank & Rast in 1.5 hr (good rest stop on A8)", "Rush hour starts at 16:00 on this route — leave by 15:30 to avoid the worst", "Construction near the A831 exit — Mapbox factored it in but expect heavier braking". Keep each under 20 words. Empty array if you have nothing genuinely useful.
-  - delayWarning: short warning ONLY if the time of day or day of week typically causes delays on this route ("Tuesday rush hour usually adds 8–12 min on the A8 here"). Empty string otherwise.
-  - breakRecommendation: ONLY for trips longer than 2 hours. Suggest a midpoint stop with rough timing. ("At about 1.5 hr in, A8 has rest stops near Pforzheim — good break spot."). Empty string for shorter trips.
-  - Use DRIVER PREFERENCES to flag mismatches ("This route uses the A8 highway — you mentioned preferring back roads, want me to find an alternate?").
+  - suggestions: 0–3 short actionable hints. Empty array if you have nothing genuinely useful.
+  - delayWarning: short warning ONLY if the time of day or day of week typically causes delays on this route. Empty string otherwise.
+  - breakRecommendation: ONLY for trips longer than 2 hours. Suggest a midpoint stop with rough timing. Empty string for shorter trips.
+  - **CRITICAL: do NOT invent specific waypoint town names, exits, rest-stop names, or 'we'll go through X' descriptions.** Mapbox computes the actual route AFTER you respond, and your guess about which towns it will pass through will usually be wrong. Stick to general descriptions ("a scenic backroads route", "rural country roads") and only mention SPECIFIC places if they're the destination itself or come from a known interest in the driver's preferences.
+  - Use DRIVER PREFERENCES to flag mismatches.
   - Use VEHICLE info to call out range issues you didn't already cover in fuelStops.
-  - Be honest about uncertainty. Don't fabricate specific traffic data — speak in averages and patterns from your training, never invent live conditions.
+  - Be honest about uncertainty. Don't fabricate live traffic, specific exits, or town-by-town narration — speak in averages and patterns from your training, never invent the route Mapbox is about to draw.
 - If the user's last message builds on context ("the other one", "that Starbucks on Main"), use the conversation history to resolve it into a fresh destination string.
 - Never invent traffic, ETAs, or distances beyond what the current route context already states.`;
 
@@ -295,6 +306,7 @@ Rules:
   let preferenceUpdate = '';
   let needsParkingSearch = false;
   let isRoundTrip = false;
+  const routePreferences = { avoidHighways: false, avoidTolls: false, avoidFerries: false };
   interface TripIntelligence {
     tripType: 'commute' | 'errand' | 'road_trip' | 'scenic' | 'unknown';
     suggestions: string[];
@@ -344,6 +356,12 @@ Rules:
       preferenceUpdate = String(parsed.preferenceUpdate || '').trim();
       needsParkingSearch = parsed.needsParkingSearch === true;
       isRoundTrip = parsed.isRoundTrip === true;
+      const rp = parsed.routePreferences;
+      if (rp && typeof rp === 'object') {
+        routePreferences.avoidHighways = rp.avoidHighways === true;
+        routePreferences.avoidTolls = rp.avoidTolls === true;
+        routePreferences.avoidFerries = rp.avoidFerries === true;
+      }
       if (fuelMilesRemaining == null && typeof parsed.fuelMilesRemaining === 'number') {
         fuelMilesRemaining = parsed.fuelMilesRemaining;
       }
@@ -527,7 +545,14 @@ Rules:
   // driving-traffic profile factors live traffic into the ETA. steps=true so the
   // client can render turn-by-turn cards + speak voiceInstructions at the right
   // moments. overview=full ensures geometry aligns 1:1 with the annotation arrays.
-  const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${coords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=imperial&banner_instructions=true&language=en&access_token=${MAPBOX_TOKEN}`;
+  // exclude= forces Mapbox to actually route around motorways/tolls/ferries when
+  // the driver said "no highways" / "back roads only" / etc.
+  const excludeList: string[] = [];
+  if (routePreferences.avoidHighways) excludeList.push('motorway');
+  if (routePreferences.avoidTolls) excludeList.push('toll');
+  if (routePreferences.avoidFerries) excludeList.push('ferry');
+  const excludeParam = excludeList.length > 0 ? `&exclude=${excludeList.join(',')}` : '';
+  const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${coords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=imperial&banner_instructions=true&language=en${excludeParam}&access_token=${MAPBOX_TOKEN}`;
   const dirRes = await fetch(dirUrl);
   if (!dirRes.ok) {
     console.error('[drive/plan-route] Mapbox directions failed:', dirRes.status);
@@ -718,6 +743,7 @@ Rules:
     tripIntelligence,
     fuelNeeded,
     isRoundTrip,
+    routePreferences,
     preferenceUpdate: preferenceUpdate || undefined,
   });
 }
