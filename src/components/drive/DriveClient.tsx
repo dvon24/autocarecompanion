@@ -9,6 +9,7 @@ const LS_VEHICLE = 'au7o-drive-vehicle';
 const LS_PREFS = 'au7o-drive-prefs';
 const LS_HISTORY = 'au7o-drive-history';
 const LS_VOICE = 'au7o-drive-voice-mode';
+const LS_FAVORITES = 'au7o-drive-favorites';
 
 type VoiceMode = 'all' | 'alerts' | 'mute';
 
@@ -90,6 +91,48 @@ interface ActiveRoute {
   minutes: number;
 }
 
+/**
+ * Pick the most natural-sounding voice the browser exposes. Defaults are
+ * usually the most robotic stock voice; OS-installed Enhanced/Neural voices
+ * sound dramatically better and we should use them when present.
+ */
+function pickBestVoice(): SpeechSynthesisVoice | null {
+  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return null;
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices.length) return null;
+  // Known-good voice names across iOS, Android, macOS, Windows Edge.
+  const preferredNames = [
+    'Samantha (Enhanced)', 'Samantha', 'Ava (Enhanced)', 'Ava',
+    'Daniel (Enhanced)', 'Daniel', 'Karen (Enhanced)', 'Karen',
+    'Moira (Enhanced)', 'Tessa', 'Alex',
+    'Google US English', 'Google UK English Female', 'Google UK English Male',
+    'Microsoft Aria Online (Natural)', 'Microsoft Guy Online (Natural)',
+    'Microsoft Jenny Online (Natural)', 'Microsoft Davis Online (Natural)',
+  ];
+  const qualityKeywords = ['enhanced', 'premium', 'natural', 'neural', 'siri', 'wavenet'];
+  const langs = ['en-US', 'en-GB', 'en'];
+  const scored = voices.map((v) => {
+    let score = 0;
+    if (langs.some((l) => v.lang.startsWith(l))) score += 100;
+    if (preferredNames.some((n) => v.name === n)) score += 80;
+    else if (preferredNames.some((n) => v.name.includes(n))) score += 50;
+    const nameLower = v.name.toLowerCase();
+    if (qualityKeywords.some((k) => nameLower.includes(k))) score += 30;
+    if (v.localService) score += 10;
+    if (v.default) score += 5;
+    return { voice: v, score };
+  });
+  scored.sort((a, b) => b.score - a.score);
+  return scored[0]?.score > 100 ? scored[0].voice : voices[0];
+}
+
+let _cachedVoice: SpeechSynthesisVoice | null = null;
+function resolveVoice(): SpeechSynthesisVoice | null {
+  if (_cachedVoice) return _cachedVoice;
+  _cachedVoice = pickBestVoice();
+  return _cachedVoice;
+}
+
 function speak(text: string, mode: VoiceMode = 'all', priority: 'alert' | 'normal' = 'normal') {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
   if (mode === 'mute') return;
@@ -97,7 +140,9 @@ function speak(text: string, mode: VoiceMode = 'all', priority: 'alert' | 'norma
   try {
     window.speechSynthesis.cancel();
     const utter = new SpeechSynthesisUtterance(text);
-    utter.rate = 1.0;
+    const voice = resolveVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95; // slightly slower than default for in-car clarity
     utter.pitch = 1.0;
     window.speechSynthesis.speak(utter);
   } catch { /* ignore */ }
@@ -199,6 +244,17 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       const vm = localStorage.getItem(LS_VOICE) as VoiceMode | null;
       if (vm === 'all' || vm === 'alerts' || vm === 'mute') setVoiceMode(vm);
     } catch { /* ignore */ }
+
+    // Some browsers (Chrome, Safari) load TTS voices asynchronously.
+    // Reset the cached pick whenever the list changes so we end up
+    // with the best available voice once they arrive.
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      const onVoicesChanged = () => { _cachedVoice = null; };
+      window.speechSynthesis.addEventListener?.('voiceschanged', onVoicesChanged);
+      // Trigger initial fetch — Safari sometimes requires this.
+      window.speechSynthesis.getVoices();
+      return () => window.speechSynthesis.removeEventListener?.('voiceschanged', onVoicesChanged);
+    }
   }, []);
 
   const cycleVoiceMode = useCallback(() => {
@@ -208,6 +264,38 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       return next;
     });
   }, []);
+
+  const [routeRating, setRouteRating] = useState<'love' | 'up' | 'down' | null>(null);
+  const [ratingToast, setRatingToast] = useState<string>('');
+
+  const rateCurrentRoute = useCallback((rating: 'love' | 'up' | 'down') => {
+    if (!route?.destination || typeof route.miles !== 'number') return;
+    setRouteRating(rating);
+    const verb = rating === 'love' ? 'Loved' : rating === 'up' ? 'Liked' : 'Disliked';
+    const tripTypeLabel = route.isRoundTrip ? 'round trip' : 'route';
+    const note = `${verb} a ${route.miles} mi ${tripTypeLabel} to ${route.destination} on ${new Date().toISOString().slice(0, 10)}.`;
+    // Save the rating event to localStorage.
+    try {
+      const arr = JSON.parse(localStorage.getItem(LS_FAVORITES) || '[]');
+      arr.push({
+        rating,
+        destination: route.destination,
+        miles: route.miles,
+        minutes: route.minutes,
+        isRoundTrip: !!route.isRoundTrip,
+        at: Date.now(),
+      });
+      localStorage.setItem(LS_FAVORITES, JSON.stringify(arr.slice(-50)));
+    } catch { /* ignore */ }
+    // Inject as a durable preference Claude sees on every future turn.
+    const prev = driverPrefsRef.current ? driverPrefsRef.current + '\n' : '';
+    driverPrefsRef.current = (prev + note).slice(-2000);
+    try { localStorage.setItem(LS_PREFS, driverPrefsRef.current); } catch { /* ignore */ }
+    // Toast feedback for the driver.
+    const toast = rating === 'love' ? '❤️ Saved as favorite' : rating === 'up' ? '👍 Got it — more like this' : '👎 Got it — fewer like this';
+    setRatingToast(toast);
+    setTimeout(() => setRatingToast(''), 2200);
+  }, [route]);
 
   const recenterOnDriver = useCallback(() => {
     const map = mapRef.current;
@@ -527,6 +615,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         setFollowing(false); // user must hit Drive to enter follow mode
         setBottomExpanded(true); // show pre-trip intelligence panel before driver hits Drive
         setCurrentLimit(null);
+        setRouteRating(null); // fresh route, no rating yet
         if (typeof data.miles === 'number' && typeof data.minutes === 'number') {
           activeRouteRef.current = {
             destination: data.destination,
@@ -722,10 +811,12 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         </div>
       )}
 
-      {/* Transcript / assistant reply / error — sits ABOVE the bottom card so it never overlaps */}
-      {(transcript || errorMsg || lastReply) && (bottomExpanded || errorMsg) && (
+      {/* Transient transcript ('what I just heard you say') and errors only.
+          The assistant's reply is no longer shown as a floating pill —
+          it lives inside the bottom card's conversation log instead. */}
+      {(transcript || errorMsg || ratingToast) && (
         <div
-          className="absolute left-1/2 -translate-x-1/2 z-10 max-w-[92vw] flex flex-col gap-2 items-center"
+          className="absolute left-1/2 -translate-x-1/2 z-10 max-w-[92vw] flex flex-col gap-2 items-center pointer-events-none"
           style={{ bottom: bottomExpanded ? 180 : 110 }}
         >
           {errorMsg && (
@@ -738,9 +829,9 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
               &ldquo;{transcript}&rdquo;
             </div>
           )}
-          {!errorMsg && lastReply && (
-            <div className="px-4 py-2 rounded-xl text-sm font-medium shadow-lg bg-blue-600 text-white max-w-md text-center">
-              {lastReply}
+          {ratingToast && (
+            <div className="px-4 py-2 rounded-xl text-sm font-medium shadow-lg bg-gray-900/90 text-white max-w-md text-center">
+              {ratingToast}
             </div>
           )}
         </div>
@@ -808,17 +899,46 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         {bottomExpanded && (
           <div className="bg-white/95 backdrop-blur rounded-2xl shadow-xl border border-gray-200 p-3">
             {route?.summary && (
-              <button
-                type="button"
-                onClick={() => setBottomExpanded(false)}
-                className="w-full flex items-center justify-between gap-2 mb-2 px-1"
-              >
-                <div className="min-w-0 text-left">
-                  <span className="text-sm font-semibold text-gray-900">{route.minutes} min · {route.miles} mi</span>
-                  <p className="text-[11px] text-gray-500 truncate">{route.destination}</p>
+              <>
+                <button
+                  type="button"
+                  onClick={() => setBottomExpanded(false)}
+                  className="w-full flex items-center justify-between gap-2 mb-2 px-1"
+                >
+                  <div className="min-w-0 text-left">
+                    <span className="text-sm font-semibold text-gray-900">{route.minutes} min · {route.miles} mi</span>
+                    <p className="text-[11px] text-gray-500 truncate">{route.destination}</p>
+                  </div>
+                  <span className="text-[11px] text-gray-400 flex-shrink-0">Hide ▾</span>
+                </button>
+                {/* Rate-this-route row — feeds back into Claude's driverPreferences */}
+                <div className="flex items-center justify-end gap-2 mb-2 px-1">
+                  <button
+                    type="button"
+                    onClick={() => rateCurrentRoute('love')}
+                    aria-label="Save as favorite"
+                    className={`text-base px-2 py-1 rounded-lg transition-colors ${routeRating === 'love' ? 'bg-red-100 text-red-600' : 'text-gray-400 hover:text-red-500'}`}
+                  >
+                    {routeRating === 'love' ? '❤️' : '🤍'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => rateCurrentRoute('up')}
+                    aria-label="Like this route"
+                    className={`text-base px-2 py-1 rounded-lg transition-colors ${routeRating === 'up' ? 'bg-green-100 text-green-700' : 'text-gray-400 hover:text-green-600'}`}
+                  >
+                    👍
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => rateCurrentRoute('down')}
+                    aria-label="Dislike this route"
+                    className={`text-base px-2 py-1 rounded-lg transition-colors ${routeRating === 'down' ? 'bg-gray-200 text-gray-700' : 'text-gray-400 hover:text-gray-700'}`}
+                  >
+                    👎
+                  </button>
                 </div>
-                <span className="text-[11px] text-gray-400 flex-shrink-0">Hide ▾</span>
-              </button>
+              </>
             )}
 
             {/* Conversation log — last few turns so the driver can see context */}
