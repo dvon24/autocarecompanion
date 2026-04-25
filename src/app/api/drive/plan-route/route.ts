@@ -216,7 +216,20 @@ Every turn, return ONLY a JSON object with this shape:
 }
 
 Rules:
-- intent "navigate" — the user wants to go somewhere new or change the route. Fill "destination" with a FULLY-QUALIFIED geocodable string (street address with city and country when possible). Bad: "Kelley Barracks". Good: "Kelley Barracks, Plieninger Straße 100, 70567 Stuttgart, Germany". Bad: "Covino". Good: "Covino Restaurant, <street>, <city>, <country>". For chains and well-known places "nearest X" is fine. **If you don't know the exact street address, use the web_search tool to find it before answering — search for the place name plus the driver's city.** "reply" should be a short confirmation like "Routing to Whole Foods now."
+- intent "navigate" — the user wants to go somewhere new or change the route. Fill "destination" with a geocodable string. STRICT RULES for the destination string:
+  • NEVER invent or guess street names or numbers. A wrong street is far worse than no street.
+  • If you know the verified street address from your training or from a web_search result, use it: "Kelley Barracks, Plieninger Straße 100, 70567 Stuttgart, Germany"
+  • If you do NOT know the exact street address, omit the street entirely and use only "<Place name>, <City>, <Country>" — Mapbox can usually still find it.
+  • For non-chain places (military bases, local restaurants, small businesses, landmarks) you should ALWAYS call the web_search tool first to verify the real address before responding. Search for the place name plus the driver's city.
+  • For chain stores, well-known landmarks, or "nearest X" patterns, no web_search needed.
+  • Always include city and country when you know them.
+  Examples:
+  - "Munich" (driver in Germany) → "Munich, Germany" ✓
+  - "Kelley Barracks" (driver near Stuttgart, you've verified address) → "Kelley Barracks, Plieninger Straße 100, 70567 Stuttgart, Germany" ✓
+  - "Kelley Barracks" (you're not sure of street) → "Kelley Barracks, Stuttgart, Germany" ✓ (NOT "Kelley Barracks, MadeUpStraße 1, ...")
+  - "Covino" (verified via web_search) → "Covino, <real verified street>, Stuttgart, Germany" ✓
+  - "Covino" (web_search didn't help) → "Covino restaurant, Stuttgart, Germany" ✓
+"reply" should be a short confirmation like "Routing to Whole Foods now."
 - intent "clarify" — their ask is ambiguous (two Starbucks, they asked a vague "home", etc.). Leave destination empty. "reply" asks a short follow-up question.
 - intent "chat" — they asked something that doesn't change the destination (e.g., "how long is this trip?", "any stops on the way?", "thanks"). Leave destination empty. "reply" is your spoken answer.
 - "NICE DRIVE" intent — if the user says things like "take me on a nice drive", "find me a scenic route", "I just want to cruise", "somewhere fun", pick a real geographic destination about 30–80 miles away from their current location that would make a pleasant out-and-back or loop drive — prefer scenic roads, coastlines, mountain passes, state parks, or historic towns when plausible for their region. DON'T pick interstate stretches or strip malls. Set intent = "navigate" with that destination. Use the DRIVER PREFERENCES and RECENT ROUTES context to pick somewhere new and aligned to their taste. In "reply", name the destination + why it'll be nice ("How about Chuckanut Drive? Great coastal cruise, 45 miles round trip."). If the driver has already asked for a nice drive recently, offer a different one.
@@ -256,6 +269,10 @@ Rules:
         { type: 'web_search_20250305', name: 'web_search', max_uses: 3 } as any,
       ],
     });
+    // Log content-block kinds so we can confirm in Vercel logs whether web_search fired.
+    const blockKinds = (res.content || []).map((b: { type: string }) => b.type).join(',');
+    const usedWebSearch = blockKinds.includes('web_search_tool_use') || blockKinds.includes('server_tool_use');
+    console.log(`[drive/plan-route] Claude blocks: ${blockKinds} | web_search used: ${usedWebSearch}`);
     // Final answer comes in the LAST text block (after any tool_use / tool_result blocks).
     const textBlocks = (res.content || []).filter((b: { type: string }) => b.type === 'text') as Array<{ type: 'text'; text: string }>;
     const raw = textBlocks.length > 0 ? textBlocks[textBlocks.length - 1].text : '{}';
@@ -315,10 +332,36 @@ Rules:
     return { lng: best.center[0], lat: best.center[1], placeName: best.place_name };
   }
 
+  /**
+   * Strip middle parts that look like a (likely-hallucinated) street address.
+   * "Kelley Barracks, MadeUpStraße 1, 70567 Stuttgart, Germany"
+   *  → "Kelley Barracks, Stuttgart, Germany"
+   * Keeps the first segment (place name) and last 1-2 segments (city, country).
+   */
+  function stripPossibleStreet(input: string): string | null {
+    const parts = input.split(',').map((p) => p.trim()).filter(Boolean);
+    if (parts.length < 4) return null; // already short
+    const first = parts[0];
+    const last = parts[parts.length - 1];
+    const cityCandidate = parts[parts.length - 2].replace(/^\d{4,6}\s+/, ''); // drop postal code prefix
+    if (!cityCandidate) return null;
+    const stripped = `${first}, ${cityCandidate}, ${last}`;
+    return stripped !== input ? stripped : null;
+  }
+
   let geocoded = await geocode(destination, true);
   if (!geocoded && country) {
     // Retry without country bias in case the destination's region was inferred wrong.
     geocoded = await geocode(destination, false);
+  }
+  if (!geocoded) {
+    // Third pass: strip the (possibly hallucinated) street address and try just place + city + country.
+    const stripped = stripPossibleStreet(destination);
+    if (stripped) {
+      console.log(`[drive/plan-route] Geocode fallback: "${destination}" → "${stripped}"`);
+      geocoded = await geocode(stripped, true);
+      if (!geocoded && country) geocoded = await geocode(stripped, false);
+    }
   }
   if (!geocoded) {
     return NextResponse.json(
