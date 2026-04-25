@@ -50,6 +50,13 @@ interface NavStep {
   voice?: Array<{ distanceAlongGeometry: number; announcement: string }>;
 }
 
+interface TripIntelligence {
+  tripType: 'commute' | 'errand' | 'road_trip' | 'scenic' | 'unknown';
+  suggestions: string[];
+  delayWarning: string;
+  breakRecommendation: string;
+}
+
 interface RouteResponse {
   intent?: 'navigate' | 'clarify' | 'chat';
   destination?: string;
@@ -64,6 +71,7 @@ interface RouteResponse {
   parkingOptions?: ParkingOption[];
   speedLimits?: SpeedLimitEntry[];
   steps?: NavStep[];
+  tripIntelligence?: TripIntelligence | null;
   preferenceUpdate?: string;
   error?: string;
   message?: string;
@@ -132,6 +140,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const currentStepIdxRef = useRef<number>(0);
   const spokenAnnouncementsRef = useRef<Set<string>>(new Set());
   const [currentStepInstruction, setCurrentStepInstruction] = useState<string>('');
+  const [tripIntelligence, setTripIntelligence] = useState<TripIntelligence | null>(null);
 
   // Load persisted state once on mount.
   useEffect(() => {
@@ -431,7 +440,9 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         currentStepIdxRef.current = 0;
         spokenAnnouncementsRef.current.clear();
         setCurrentStepInstruction((data.steps?.[0]?.instruction) || '');
+        setTripIntelligence(data.tripIntelligence || null);
         setFollowing(false); // user must hit Drive to enter follow mode
+        setBottomExpanded(true); // show pre-trip intelligence panel before driver hits Drive
         setCurrentLimit(null);
         if (typeof data.miles === 'number' && typeof data.minutes === 'number') {
           activeRouteRef.current = {
@@ -482,10 +493,11 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       speak(msg, voiceMode, 'alert');
     } finally {
       setBusy(false);
-      // Auto-collapse the bottom card so the freshly drawn route + ETA are visible.
-      if (!errorMsg) setBottomExpanded(false);
+      // Keep the bottom card expanded after a new plan so the trip
+      // intelligence + Drive button are immediately visible. Driver can
+      // tap Hide to collapse to the compact ETA pill.
     }
-  }, [origin, drawRoute, history, vehicle, voiceMode, errorMsg]);
+  }, [origin, drawRoute, history, vehicle, voiceMode]);
 
   const startListening = useCallback(() => {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -716,6 +728,40 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
                   <p className="text-[11px] text-gray-500 truncate">{route.destination}</p>
                 </div>
                 <span className="text-[11px] text-gray-400 flex-shrink-0">Hide ▾</span>
+              </button>
+            )}
+
+            {/* Trip Intelligence — Au7o's eyes-forward analysis of the planned route */}
+            {tripIntelligence && (tripIntelligence.suggestions.length > 0 || tripIntelligence.delayWarning || tripIntelligence.breakRecommendation) && (
+              <div className="mb-3 p-2.5 rounded-xl bg-blue-50 border border-blue-100">
+                <p className="text-[11px] font-bold text-blue-700 uppercase tracking-wide mb-1.5">💡 Trip plan</p>
+                {tripIntelligence.delayWarning && (
+                  <p className="text-xs text-amber-800 mb-1.5 leading-snug">⚠️ {tripIntelligence.delayWarning}</p>
+                )}
+                {tripIntelligence.breakRecommendation && (
+                  <p className="text-xs text-gray-700 mb-1.5 leading-snug">☕ {tripIntelligence.breakRecommendation}</p>
+                )}
+                {tripIntelligence.suggestions.map((s, i) => (
+                  <p key={i} className="text-xs text-gray-700 mb-1 leading-snug">• {s}</p>
+                ))}
+              </div>
+            )}
+
+            {/* Drive button when route exists and we're not yet following */}
+            {route?.summary && !following && (
+              <button
+                type="button"
+                onClick={() => {
+                  setFollowing(true);
+                  recenterOnDriver();
+                  if (stepsRef.current[0]?.instruction) {
+                    speak(stepsRef.current[0].instruction, voiceMode, 'alert');
+                  }
+                  setBottomExpanded(false);
+                }}
+                className="w-full mb-3 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white text-base font-bold shadow"
+              >
+                Drive →
               </button>
             )}
             <form

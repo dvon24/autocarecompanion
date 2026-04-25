@@ -211,6 +211,12 @@ Every turn, return ONLY a JSON object with this shape:
   "destination": "<clean geocodable place or address>",
   "fuelMilesRemaining": <number or null>,
   "needsParkingSearch": <boolean>,
+  "tripIntelligence": {
+    "tripType": "commute" | "errand" | "road_trip" | "scenic" | "unknown",
+    "suggestions": ["<short suggestion 1>", "<short suggestion 2>"],
+    "delayWarning": "<short warning about expected traffic / timing or empty string>",
+    "breakRecommendation": "<short recommendation for breaks / fuel / food on long trips or empty string>"
+  },
   "preferenceUpdate": "<short single-line note to remember for future sessions, or empty string>",
   "reply": "<short sentence spoken back to the driver, under 20 words>"
 }
@@ -236,6 +242,14 @@ Rules:
 - fuelMilesRemaining: if the user mentions how far they can go on fuel/charge ("I have 120 miles to empty", "80 miles of range left", "quarter tank"), extract a numeric estimate. A quarter tank ≈ 75 mi, half tank ≈ 150 mi, low/almost empty ≈ 30 mi. If they say "I just filled up" and a vehicle is known, estimate full tank × combined MPG. Otherwise null.
 - preferenceUpdate: if the user states a durable preference we should remember next time ("I hate highways", "I like curvy mountain roads", "always avoid tolls", "no left turns on unprotected lights"), write a one-line note like "Prefers curvy mountain roads, dislikes highways." Otherwise empty string. Do NOT echo routine navigation commands as preferences.
 - needsParkingSearch: set TRUE when the destination is the kind of place that probably doesn't have its own easy parking — restaurants in downtown/urban areas, bars, clubs, theaters, museums, sports venues, cafes in dense neighborhoods, concert halls. Set FALSE for destinations that clearly include ample parking — big-box stores (Walmart, Target, Costco), suburban strip malls, malls, airports, IKEA, most gas stations. When uncertain, prefer TRUE for small/urban places and FALSE for large/suburban.
+- tripIntelligence: be the driver's eyes-forward. Reason about the trip and add useful context:
+  - tripType: "commute" if it matches a familiar route at typical commute hours; "errand" for short utility trips (<30 min); "road_trip" for 2+ hour drives; "scenic" if the user said "nice drive" or asked for a leisurely route; "unknown" otherwise.
+  - suggestions: 0–3 short actionable hints. Examples: "Stop for coffee at Tank & Rast in 1.5 hr (good rest stop on A8)", "Rush hour starts at 16:00 on this route — leave by 15:30 to avoid the worst", "Construction near the A831 exit — Mapbox factored it in but expect heavier braking". Keep each under 20 words. Empty array if you have nothing genuinely useful.
+  - delayWarning: short warning ONLY if the time of day or day of week typically causes delays on this route ("Tuesday rush hour usually adds 8–12 min on the A8 here"). Empty string otherwise.
+  - breakRecommendation: ONLY for trips longer than 2 hours. Suggest a midpoint stop with rough timing. ("At about 1.5 hr in, A8 has rest stops near Pforzheim — good break spot."). Empty string for shorter trips.
+  - Use DRIVER PREFERENCES to flag mismatches ("This route uses the A8 highway — you mentioned preferring back roads, want me to find an alternate?").
+  - Use VEHICLE info to call out range issues you didn't already cover in fuelStops.
+  - Be honest about uncertainty. Don't fabricate specific traffic data — speak in averages and patterns from your training, never invent live conditions.
 - If the user's last message builds on context ("the other one", "that Starbucks on Main"), use the conversation history to resolve it into a fresh destination string.
 - Never invent traffic, ETAs, or distances beyond what the current route context already states.`;
 
@@ -254,6 +268,13 @@ Rules:
   let spokenReply = '';
   let preferenceUpdate = '';
   let needsParkingSearch = false;
+  interface TripIntelligence {
+    tripType: 'commute' | 'errand' | 'road_trip' | 'scenic' | 'unknown';
+    suggestions: string[];
+    delayWarning: string;
+    breakRecommendation: string;
+  }
+  let tripIntelligence: TripIntelligence | null = null;
   // Priority for fuel range: explicit body param > value Claude extracted from the utterance.
   let fuelMilesRemaining: number | null = typeof body.fuelMilesRemaining === 'number' ? body.fuelMilesRemaining : null;
   try {
@@ -297,6 +318,18 @@ Rules:
       needsParkingSearch = parsed.needsParkingSearch === true;
       if (fuelMilesRemaining == null && typeof parsed.fuelMilesRemaining === 'number') {
         fuelMilesRemaining = parsed.fuelMilesRemaining;
+      }
+      const ti = parsed.tripIntelligence as Partial<TripIntelligence> | undefined;
+      if (ti && typeof ti === 'object') {
+        const tType = ti.tripType;
+        tripIntelligence = {
+          tripType: (tType === 'commute' || tType === 'errand' || tType === 'road_trip' || tType === 'scenic')
+            ? tType
+            : 'unknown',
+          suggestions: Array.isArray(ti.suggestions) ? ti.suggestions.filter((s) => typeof s === 'string').slice(0, 3) : [],
+          delayWarning: String(ti.delayWarning || '').trim(),
+          breakRecommendation: String(ti.breakRecommendation || '').trim(),
+        };
       }
     } else {
       // Claude broke contract and returned plain text. Don't crash — just
@@ -625,6 +658,7 @@ Rules:
     speedLimits,
     parkingOptions,
     steps,
+    tripIntelligence,
     preferenceUpdate: preferenceUpdate || undefined,
   });
 }
