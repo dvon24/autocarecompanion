@@ -162,11 +162,24 @@ export async function POST(request: NextRequest) {
 
   const country = (request.headers.get('x-vercel-ip-country') || '').toUpperCase();
 
+  // Reverse-geocode the driver's coordinates to a real city/region/country string.
+  // This gives Claude concrete location context ("Stuttgart, Baden-Württemberg, Germany")
+  // instead of just lat/lng — critical for disambiguating "Munich", "Kelley Barracks", etc.
+  let driverPlace = '';
+  try {
+    const revUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${body.origin.lng},${body.origin.lat}.json?types=place,locality,region,country&limit=1&language=en&access_token=${MAPBOX_TOKEN}`;
+    const revRes = await fetch(revUrl);
+    if (revRes.ok) {
+      const revData = await revRes.json();
+      driverPlace = revData.features?.[0]?.place_name || '';
+    }
+  } catch { /* non-blocking */ }
+
   const currentRouteNote = body.currentRoute
     ? `The user is currently routed to "${body.currentRoute.destination}" (${body.currentRoute.miles} mi, ${body.currentRoute.minutes} min).`
     : 'The user has no active route yet.';
 
-  const locationNote = `LOCATION: The driver is at approximately ${body.origin.lat.toFixed(4)}, ${body.origin.lng.toFixed(4)}${country ? ` (country code ${country})` : ''}. Use this to disambiguate place names — for example, if they say "Kelley Barracks" and you know it's a US Army installation in Stuttgart, return "Kelley Barracks, Stuttgart, Germany". If they say "Covino" and you know it's a restaurant near them, expand to "Covino Restaurant, <City>, <Country>". Always include city and country in destinations to maximize geocoding success.`;
+  const locationNote = `LOCATION: The driver is currently in ${driverPlace || `approximately ${body.origin.lat.toFixed(4)}, ${body.origin.lng.toFixed(4)}${country ? ` (country code ${country})` : ''}`}. Use this as the implicit context for every destination they mention — when they say "Munich" they almost certainly mean the famous city in Germany if they're already in Germany; when they say "Kelley Barracks" they mean the US Army installation in Stuttgart if they're near Stuttgart; when they say "Covino" they mean the local restaurant by that name in their city. Apply common sense the way a local friend would.`;
 
   const vehicleNote = body.vehicle
     ? `VEHICLE: The driver is in a ${body.vehicle.year} ${body.vehicle.make} ${body.vehicle.model} ${body.vehicle.trim}. Use your knowledge of this exact trim's typical combined MPG and tank capacity when reasoning about range, fuel stops, or how the car performs on different roads.`
@@ -203,7 +216,7 @@ Every turn, return ONLY a JSON object with this shape:
 }
 
 Rules:
-- intent "navigate" — the user wants to go somewhere new or change the route. Fill "destination" with a FULLY-QUALIFIED geocodable string (not just a name — include the city and country when you can infer them from the LOCATION above or your world knowledge). Bad: "Kelley Barracks". Good: "Kelley Barracks, Stuttgart, Germany". Bad: "Covino". Good: "Covino Restaurant, Stuttgart, Germany". For chains and well-known places, "nearest X" is fine ("nearest Starbucks"). "reply" should be a short confirmation like "Routing to Whole Foods now."
+- intent "navigate" — the user wants to go somewhere new or change the route. Fill "destination" with a FULLY-QUALIFIED geocodable string (street address with city and country when possible). Bad: "Kelley Barracks". Good: "Kelley Barracks, Plieninger Straße 100, 70567 Stuttgart, Germany". Bad: "Covino". Good: "Covino Restaurant, <street>, <city>, <country>". For chains and well-known places "nearest X" is fine. **If you don't know the exact street address, use the web_search tool to find it before answering — search for the place name plus the driver's city.** "reply" should be a short confirmation like "Routing to Whole Foods now."
 - intent "clarify" — their ask is ambiguous (two Starbucks, they asked a vague "home", etc.). Leave destination empty. "reply" asks a short follow-up question.
 - intent "chat" — they asked something that doesn't change the destination (e.g., "how long is this trip?", "any stops on the way?", "thanks"). Leave destination empty. "reply" is your spoken answer.
 - "NICE DRIVE" intent — if the user says things like "take me on a nice drive", "find me a scenic route", "I just want to cruise", "somewhere fun", pick a real geographic destination about 30–80 miles away from their current location that would make a pleasant out-and-back or loop drive — prefer scenic roads, coastlines, mountain passes, state parks, or historic towns when plausible for their region. DON'T pick interstate stretches or strip malls. Set intent = "navigate" with that destination. Use the DRIVER PREFERENCES and RECENT ROUTES context to pick somewhere new and aligned to their taste. In "reply", name the destination + why it'll be nice ("How about Chuckanut Drive? Great coastal cruise, 45 miles round trip."). If the driver has already asked for a nice drive recently, offer a different one.
@@ -233,11 +246,19 @@ Rules:
   try {
     const res = await client.messages.create({
       model: 'claude-sonnet-4-6',
-      max_tokens: 400,
+      max_tokens: 1500,
       system: systemPrompt,
       messages,
+      // Server-side web search — Anthropic handles the search internally and
+      // returns results in the same response. Capped to keep latency reasonable.
+      tools: [
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        { type: 'web_search_20250305', name: 'web_search', max_uses: 3 } as any,
+      ],
     });
-    const raw = res.content?.[0]?.type === 'text' ? res.content[0].text : '{}';
+    // Final answer comes in the LAST text block (after any tool_use / tool_result blocks).
+    const textBlocks = (res.content || []).filter((b: { type: string }) => b.type === 'text') as Array<{ type: 'text'; text: string }>;
+    const raw = textBlocks.length > 0 ? textBlocks[textBlocks.length - 1].text : '{}';
     const cleaned = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     const parsed = JSON.parse(cleaned);
     intent = parsed.intent === 'clarify' || parsed.intent === 'chat' ? parsed.intent : 'navigate';
