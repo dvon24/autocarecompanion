@@ -740,39 +740,46 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     }, 1000);
 
     // POI click — Mapbox Standard renders labels for restaurants, shops,
-    // landmarks. Make them tappable: query rendered features under the
-    // click and if there's a named POI, route to it via the trusted-coords
-    // path so we skip Claude's geocoding entirely.
+    // landmarks, parks, etc. Look at every feature under the click for the
+    // first one that has both a 'name' property and a Point geometry. We
+    // intentionally don't filter by layer ID because Mapbox Standard's
+    // internal POI layer names are versioned and unreliable to match against.
     const handleMapClick = (e: mapboxgl.MapMouseEvent) => {
-      const features = map.queryRenderedFeatures(e.point);
-      // Find the first feature with a meaningful name property.
-      // Mapbox Standard uses 'name' / 'name_en' on POI / place layers.
+      // Slightly larger query box so a fingertip catches the icon.
+      const pad = 6;
+      const bbox: [mapboxgl.PointLike, mapboxgl.PointLike] = [
+        [e.point.x - pad, e.point.y - pad],
+        [e.point.x + pad, e.point.y + pad],
+      ];
+      const features = map.queryRenderedFeatures(bbox);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const poi = features.find((f: any) => {
+      const poi: any = features.find((f: any) => {
         const p = f.properties || {};
-        const cls = (p.class || p.maki || p.type || '').toString().toLowerCase();
-        const isPoiLayer = (f.layer?.id || '').toLowerCase().includes('poi') || (f.layer?.id || '').toLowerCase().includes('place');
-        return (p.name || p.name_en) && (isPoiLayer || ['restaurant', 'cafe', 'shop', 'fuel', 'parking'].some((k) => cls.includes(k)));
+        const hasName = !!(p.name || p.name_en);
+        const isPoint = f.geometry?.type === 'Point';
+        return hasName && isPoint;
       });
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const props = (poi as any)?.properties;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const coords = ((poi as any)?.geometry?.type === 'Point') ? (poi as any).geometry.coordinates as [number, number] : null;
-      if (props && coords) {
-        const name = String(props.name_en || props.name);
-        // Quick popup so the user sees what they tapped before we route.
-        new mapboxgl.Popup({ offset: 12, closeOnClick: true })
-          .setLngLat(coords)
-          .setHTML(`<div style="font:600 12px system-ui;padding:2px 4px;">${name}</div><button id="drive-poi-route" style="margin-top:6px;padding:6px 10px;background:#2563eb;color:#fff;border:0;border-radius:6px;font:600 11px system-ui;cursor:pointer;">Route here →</button>`)
-          .addTo(map);
-        // Wire the button after the popup mounts.
-        setTimeout(() => {
-          const btn = document.getElementById('drive-poi-route');
-          if (btn) btn.onclick = () => {
+      if (!poi) return;
+      const name = String(poi.properties.name_en || poi.properties.name);
+      const coords = poi.geometry.coordinates as [number, number];
+      const popup = new mapboxgl.Popup({ offset: 12, closeOnClick: true })
+        .setLngLat(coords)
+        .setHTML(`
+          <div style="font:600 13px system-ui;padding:4px 4px 6px;color:#111;">${name.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</div>
+          <button id="drive-poi-route" style="width:100%;padding:7px 10px;background:#2563eb;color:#fff;border:0;border-radius:8px;font:700 12px system-ui;cursor:pointer;">Route here →</button>
+        `)
+        .addTo(map);
+      // Wire the button after the popup mounts.
+      const wireBtn = () => {
+        const btn = document.getElementById('drive-poi-route');
+        if (btn) {
+          btn.onclick = () => {
+            popup.remove();
             submitTranscriptRef.current?.(name, { lng: coords[0], lat: coords[1], placeName: name });
           };
-        }, 50);
-      }
+        }
+      };
+      requestAnimationFrame(wireBtn);
     };
     map.on('click', handleMapClick);
 
@@ -795,25 +802,23 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         map.setConfigProperty('basemap', 'show3dObjects', true);
       } catch { /* older mapbox-gl versions */ }
 
-      // Fade 3D buildings from solid → mostly-transparent as the camera zooms
-      // in, so the blue route line stays visible at street level. Walks every
-      // fill-extrusion layer in the current style (Mapbox Standard's building
-      // layer name is internal/versioned; iterating is robust).
-      try {
-        const style = map.getStyle();
-        const layers = style?.layers || [];
-        for (const layer of layers) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          if ((layer as any).type === 'fill-extrusion') {
-            map.setPaintProperty(layer.id, 'fill-extrusion-opacity', [
-              'interpolate', ['linear'], ['zoom'],
-              14, 1.0,   // fully solid when looking at the city from afar
-              16, 0.55,  // half-transparent at typical follow zoom
-              18, 0.25,  // mostly see-through when zoomed close to a turn
-            ]);
-          }
-        }
-      } catch { /* style query failed; non-blocking */ }
+      // Mapbox Standard's 3D building layers live inside an imported style
+      // fragment and aren't directly paintable via setPaintProperty. The
+      // available knob is the boolean basemap.show3dObjects. So instead of
+      // fading, we simply HIDE the 3D buildings when the camera zooms in
+      // close enough that they'd block the route, and show them at lower
+      // zooms where they look great as scene-setting.
+      try { map.setConfigProperty('basemap', 'show3dObjects', map.getZoom() < 16); } catch { /* noop */ }
+    });
+
+    // Re-evaluate the 3D-building toggle as the camera zooms.
+    let last3dState: boolean | null = null;
+    map.on('zoomend', () => {
+      const wantBuildings = map.getZoom() < 16;
+      if (last3dState !== wantBuildings) {
+        try { map.setConfigProperty('basemap', 'show3dObjects', wantBuildings); } catch { /* noop */ }
+        last3dState = wantBuildings;
+      }
     });
 
     mapRef.current = map;
