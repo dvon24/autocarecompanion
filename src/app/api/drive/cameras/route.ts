@@ -71,7 +71,13 @@ out body 200;`;
   try {
     const r = await fetch('https://overpass-api.de/api/interpreter', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        // Overpass returns 406 to anonymous bursty traffic; include a UA so
+        // the public instance can rate-limit per-app instead of blanket 406.
+        'User-Agent': 'Au7o-Drive/1.0 (+https://au7o.io)',
+        'Accept': 'application/json',
+      },
       body: `data=${encodeURIComponent(query)}`,
       signal: AbortSignal.timeout(13000),
     });

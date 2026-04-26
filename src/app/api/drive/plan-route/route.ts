@@ -92,6 +92,91 @@ function pointAtMilesAlongRoute(coords: number[][], milesFromStart: number): [nu
   return [last[0], last[1]];
 }
 
+interface RouteCamera { id: string; lat: number; lng: number; type: string; maxspeed?: string }
+
+/**
+ * Fetch speed camera + enforcement nodes from OpenStreetMap Overpass for the
+ * bbox enclosing the given route geometry. Padded by ~500m so cameras just
+ * off the polyline still come through. Returns [] on any failure.
+ */
+async function fetchCamerasForGeometry(coords: number[][]): Promise<RouteCamera[]> {
+  if (!Array.isArray(coords) || coords.length < 2) return [];
+  let south = 90, west = 180, north = -90, east = -180;
+  for (const [lng, lat] of coords) {
+    if (lat < south) south = lat;
+    if (lat > north) north = lat;
+    if (lng < west) west = lng;
+    if (lng > east) east = lng;
+  }
+  const pad = 0.005; // ~500 m
+  south -= pad; west -= pad; north += pad; east += pad;
+  // Overpass caps any single-bbox query; if the route crosses an entire
+  // country we just bail rather than hammer the public API.
+  if ((north - south) > 1.5 || (east - west) > 2.0) return [];
+  const query = `[out:json][timeout:10];
+(
+  node["highway"="speed_camera"](${south},${west},${north},${east});
+  node["enforcement"="maxspeed"](${south},${west},${north},${east});
+  node["enforcement"="average_speed"](${south},${west},${north},${east});
+  node["enforcement"="traffic_signals"](${south},${west},${north},${east});
+);
+out body 200;`;
+  try {
+    const r = await fetch('https://overpass-api.de/api/interpreter', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': 'Au7o-Drive/1.0 (+https://au7o.io)',
+        'Accept': 'application/json',
+      },
+      body: `data=${encodeURIComponent(query)}`,
+      signal: AbortSignal.timeout(11000),
+    });
+    if (!r.ok) return [];
+    const data = await r.json();
+    interface OverpassNode { id: number; lat: number; lon: number; tags?: Record<string, string> }
+    const elements = (data.elements || []) as OverpassNode[];
+    const cameras: RouteCamera[] = [];
+    for (const e of elements) {
+      const tags = e.tags || {};
+      let type: RouteCamera['type'] = 'unknown';
+      if (tags.enforcement === 'average_speed') type = 'avg-speed';
+      else if (tags.enforcement === 'traffic_signals') type = 'red-light';
+      else if (tags.enforcement === 'maxspeed' || tags.highway === 'speed_camera') type = 'fixed';
+      if (tags.zone === 'school' || tags['school'] === 'yes') type = 'school-zone';
+      cameras.push({ id: `osm-${e.id}`, lat: e.lat, lng: e.lon, type, maxspeed: tags.maxspeed });
+    }
+    return cameras;
+  } catch { return []; }
+}
+
+/**
+ * Count cameras within `maxMeters` of any point on the polyline. Used to
+ * score Mapbox route alternates so we can pick the one with fewest cameras.
+ * Sampled every Nth point for speed.
+ */
+function countCamerasOnRoute(coords: number[][], cameras: RouteCamera[], maxMeters: number): number {
+  if (cameras.length === 0 || coords.length === 0) return 0;
+  const stride = Math.max(1, Math.floor(coords.length / 200));
+  let count = 0;
+  // Convert maxMeters to a rough lat/lng box per camera for fast pre-filter.
+  const degThreshold = maxMeters / 111_000 + 0.0005;
+  for (const cam of cameras) {
+    let hit = false;
+    for (let i = 0; i < coords.length; i += stride) {
+      const [lng, lat] = coords[i];
+      if (Math.abs(lat - cam.lat) > degThreshold || Math.abs(lng - cam.lng) > degThreshold) continue;
+      const dLat = (cam.lat - lat) * Math.PI / 180;
+      const dLng = (cam.lng - lng) * Math.PI / 180;
+      const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat * Math.PI / 180) * Math.cos(cam.lat * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+      const distM = 2 * 6371_000 * Math.asin(Math.sqrt(a));
+      if (distM <= maxMeters) { hit = true; break; }
+    }
+    if (hit) count++;
+  }
+  return count;
+}
+
 /**
  * Voice-driven route planner.
  *   1) Claude parses the user's spoken text into a clean destination query + intent.
@@ -268,7 +353,9 @@ Every turn, return ONLY a JSON object with this shape:
   "routePreferences": {
     "avoidHighways": <boolean>,
     "avoidTolls": <boolean>,
-    "avoidFerries": <boolean>
+    "avoidFerries": <boolean>,
+    "avoidSpeedCameras": <boolean>,
+    "routeToParking": <boolean>
   },
   "fuelMilesRemaining": <number or null>,
   "needsParkingSearch": <boolean>,
@@ -321,6 +408,8 @@ Rules:
   - avoidHighways: TRUE ONLY when the CURRENT message contains EXPLICIT highway-avoidance language — "no highways", "avoid highways", "no motorways", "no autobahn", "back roads only", "back roads instead", "no interstates". **Default FALSE.** Saying "scenic drive", "nice drive", "take me somewhere fun", "long drive", or anything aesthetic does NOT make this TRUE.
   - avoidTolls: TRUE ONLY when the CURRENT message says "no tolls", "avoid tolls", "don't take the tollway". Default FALSE.
   - avoidFerries: TRUE ONLY when the CURRENT message says "no ferries". Default FALSE.
+  - avoidSpeedCameras: TRUE ONLY when the CURRENT message says "avoid speed cameras", "no speed cameras", "go around the cameras", "route around speed traps", "kein Blitzer" / "Blitzer vermeiden" (DE), "ohne Blitzer". Default FALSE. The system will look at route alternatives and pick the one with the fewest camera/enforcement nodes.
+  - routeToParking: TRUE ONLY when the CURRENT message says something like "park me there", "find parking and drop me off", "take me to parking", "route to the parking lot", "lass mich parken", "park mich". Default FALSE. When TRUE the system will route directly to the closest parking lot near the venue instead of the venue itself.
   - When in doubt, return FALSE. The driver can always re-route if they want to avoid something.
 - needsParkingSearch: set TRUE when the destination is the kind of place that probably doesn't have its own easy parking — restaurants in downtown/urban areas, bars, clubs, theaters, museums, sports venues, cafes in dense neighborhoods, concert halls. Set FALSE for destinations that clearly include ample parking — big-box stores (Walmart, Target, Costco), suburban strip malls, malls, airports, IKEA, most gas stations. When uncertain, prefer TRUE for small/urban places and FALSE for large/suburban.
 - tripIntelligence: be the driver's eyes-forward. Reason about the trip and add useful context:
@@ -352,7 +441,7 @@ Rules:
   let needsParkingSearch = false;
   let isRoundTrip = false;
   let keepDestination = false;
-  const routePreferences = { avoidHighways: false, avoidTolls: false, avoidFerries: false };
+  const routePreferences = { avoidHighways: false, avoidTolls: false, avoidFerries: false, avoidSpeedCameras: false, routeToParking: false };
   const localSearch = { query: '', minRating: null as number | null, openNow: false, priceMax: null as number | null };
   const intermediateStop = { category: '', atTripPercent: 50, minRating: null as number | null, openNow: false };
   interface TripIntelligence {
@@ -405,11 +494,13 @@ Rules:
       needsParkingSearch = parsed.needsParkingSearch === true;
       isRoundTrip = parsed.isRoundTrip === true;
       keepDestination = parsed.keepDestination === true;
-      const rp = parsed.routePreferences as { avoidHighways?: unknown; avoidTolls?: unknown; avoidFerries?: unknown } | undefined;
+      const rp = parsed.routePreferences as { avoidHighways?: unknown; avoidTolls?: unknown; avoidFerries?: unknown; avoidSpeedCameras?: unknown; routeToParking?: unknown } | undefined;
       if (rp && typeof rp === 'object') {
         routePreferences.avoidHighways = rp.avoidHighways === true;
         routePreferences.avoidTolls = rp.avoidTolls === true;
         routePreferences.avoidFerries = rp.avoidFerries === true;
+        routePreferences.avoidSpeedCameras = rp.avoidSpeedCameras === true;
+        routePreferences.routeToParking = rp.routeToParking === true;
       }
       const ls = parsed.localSearch as { query?: unknown; minRating?: unknown; openNow?: unknown; priceMax?: unknown } | undefined;
       if (ls && typeof ls === 'object') {
@@ -757,7 +848,11 @@ Rules:
   if (routePreferences.avoidTolls) excludeList.push('toll');
   if (routePreferences.avoidFerries) excludeList.push('ferry');
   const excludeParam = excludeList.length > 0 ? `&exclude=${excludeList.join(',')}` : '';
-  const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${coords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=imperial&banner_instructions=true&language=en${excludeParam}&access_token=${MAPBOX_TOKEN}`;
+  // When the driver asked to avoid speed cameras, request alternatives so we
+  // can score each candidate by camera count and pick the lowest. Otherwise
+  // skip alternates to keep the response payload small.
+  const altParam = routePreferences.avoidSpeedCameras ? '&alternatives=true' : '';
+  const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${coords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=imperial&banner_instructions=true&language=en${altParam}${excludeParam}&access_token=${MAPBOX_TOKEN}`;
   const dirRes = await fetch(dirUrl);
   if (!dirRes.ok) {
     console.error('[drive/plan-route] Mapbox directions failed:', dirRes.status);
@@ -767,12 +862,54 @@ Rules:
     );
   }
   const dirData = await dirRes.json();
-  const route = dirData.routes?.[0];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let route: any = dirData.routes?.[0];
   if (!route) {
     return NextResponse.json(
       { error: 'no_route', message: `I couldn't find a driving route to ${placeName}. Try a different destination.` },
       { status: 200 },
     );
+  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const allRouteCandidates: any[] = Array.isArray(dirData.routes) ? dirData.routes : [route];
+
+  // Speed-camera-aware re-routing: when the driver asked to avoid cameras,
+  // fetch all enforcement nodes for the route's bbox, score each Mapbox
+  // candidate by how many it passes within 200m, and pick the lowest. Falls
+  // back to the default if Overpass is empty/down.
+  let cameraAvoidanceNote = '';
+  let routeCameras: RouteCamera[] = [];
+  if (routePreferences.avoidSpeedCameras && route.geometry?.coordinates) {
+    routeCameras = await fetchCamerasForGeometry(route.geometry.coordinates as number[][]);
+    if (routeCameras.length > 0 && allRouteCandidates.length > 1) {
+      const scored = allRouteCandidates.map((r) => ({
+        r,
+        cams: countCamerasOnRoute(r.geometry?.coordinates || [], routeCameras, 200),
+        durationDelta: r.duration - route.duration,
+      }));
+      // Sort: fewest cameras first, then shortest. If the chosen alt adds
+      // more than 25% to ETA, stay on the default — driver probably doesn't
+      // want a 2x detour for 1 fewer camera.
+      scored.sort((a, b) => a.cams - b.cams || a.r.duration - b.r.duration);
+      const baseCount = scored.find((s) => s.r === route)?.cams ?? scored[0].cams;
+      const best = scored[0];
+      const acceptable = best.r.duration <= route.duration * 1.25;
+      if (best.r !== route && best.cams < baseCount && acceptable) {
+        const saved = baseCount - best.cams;
+        cameraAvoidanceNote = lang === 'de'
+          ? `Route gewählt mit ${saved} Blitzer${saved === 1 ? '' : 'n'} weniger.`
+          : `Picked a route with ${saved} fewer camera${saved === 1 ? '' : 's'}.`;
+        route = best.r;
+      } else if (baseCount > 0) {
+        cameraAvoidanceNote = lang === 'de'
+          ? `Keine bessere Route gefunden — ${baseCount} Blitzer auf der Strecke.`
+          : `No better route found — ${baseCount} camera${baseCount === 1 ? '' : 's'} on the way.`;
+      }
+    } else if (routeCameras.length === 0) {
+      cameraAvoidanceNote = lang === 'de'
+        ? 'Keine bekannten Blitzer auf der Strecke.'
+        : 'No known cameras on this route.';
+    }
   }
 
   let milesNum = route.distance / 1609.34;
@@ -854,8 +991,10 @@ Rules:
       console.warn('[drive/plan-route] intermediate stop error:', err);
     }
   }
-  const miles = milesNum.toFixed(1);
-  const minutes = Math.max(1, Math.round(route.duration / 60));
+  // miles/minutes get recomputed once more after route-to-parking swap below;
+  // declared as `let` so we can refresh them then.
+  let miles = milesNum.toFixed(1);
+  let minutes = Math.max(1, Math.round(route.duration / 60));
   const summary = lang === 'de'
     ? (isRoundTrip
       ? `Hin- und Rückfahrt nach ${placeName}. ${(milesNum * 1.60934).toFixed(1)} km insgesamt, etwa ${minutes} Minuten.`
@@ -990,7 +1129,10 @@ Rules:
   interface ParkingOption { name: string; lng: number; lat: number; walkMeters: number; walkingBlocks: number }
   let parkingOptions: ParkingOption[] = [];
   let parkingNote = '';
-  if (needsParkingSearch) {
+  // routeToParking always implies a parking lookup — driver explicitly asked
+  // to be dropped at a parking spot, so we need candidates regardless of
+  // Claude's parking-difficulty heuristic.
+  if (needsParkingSearch || routePreferences.routeToParking) {
     const collected: ParkingOption[] = [];
     // Try Google Places first — it understands "parking lot" / "parking garage".
     if (process.env.GOOGLE_PLACES_API_KEY) {
@@ -1071,6 +1213,36 @@ Rules:
     }
   }
 
+  // Route-to-parking: when driver said "park me there", swap the route
+  // destination to the closest parking lot. Keeps the original venue name
+  // for context but the geometry/coords drop them at parking instead.
+  let parkingReroutedNote = '';
+  let parkingDropoff: { lng: number; lat: number; name: string } | null = null;
+  if (routePreferences.routeToParking && parkingOptions.length > 0) {
+    const lot = parkingOptions[0];
+    try {
+      const reCoords = isRoundTrip
+        ? `${body.origin.lng},${body.origin.lat};${lot.lng},${lot.lat};${body.origin.lng},${body.origin.lat}`
+        : `${body.origin.lng},${body.origin.lat};${lot.lng},${lot.lat}`;
+      const reUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${reCoords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=imperial&banner_instructions=true&language=en${excludeParam}&access_token=${MAPBOX_TOKEN}`;
+      const reRes = await fetch(reUrl);
+      if (reRes.ok) {
+        const reData = await reRes.json();
+        const newRoute = reData.routes?.[0];
+        if (newRoute) {
+          Object.assign(route, newRoute);
+          milesNum = newRoute.distance / 1609.34;
+          miles = milesNum.toFixed(1);
+          minutes = Math.max(1, Math.round(newRoute.duration / 60));
+          parkingDropoff = { lng: lot.lng, lat: lot.lat, name: lot.name };
+          parkingReroutedNote = lang === 'de'
+            ? `Routenziel auf ${lot.name} (Parkplatz) geändert.`
+            : `Routed to ${lot.name} (parking) instead of the venue.`;
+        }
+      }
+    } catch { /* non-blocking */ }
+  }
+
   // Prefer Claude's conversational reply; fall back to the deterministic summary.
   // If we picked a Google Places match, lead with its name + rating so the
   // driver hears the actual place rather than Claude's generic 'a coffee shop'.
@@ -1126,7 +1298,9 @@ Rules:
   if (stopLine) parts.push(stopLine);
   if (fuelLineSpoken) parts.push(fuelLineSpoken);
   if (fuelWarning) parts.push(fuelWarning);
-  if (parkingNote) parts.push(parkingNote);
+  if (cameraAvoidanceNote) parts.push(cameraAvoidanceNote);
+  if (parkingReroutedNote) parts.push(parkingReroutedNote);
+  else if (parkingNote) parts.push(parkingNote);
   const reply = parts.join(' ');
 
   // Flatten step-by-step maneuvers from every leg for the client's
@@ -1177,5 +1351,9 @@ Rules:
     routePreferences,
     intermediateStop: intermediateStopResult,
     preferenceUpdate: preferenceUpdate || undefined,
+    // Only present when we fetched cameras server-side for avoidance scoring;
+    // client falls back to its own /api/drive/cameras call otherwise.
+    routeCameras: routeCameras.length > 0 ? routeCameras : undefined,
+    parkingDropoff: parkingDropoff || undefined,
   });
 }

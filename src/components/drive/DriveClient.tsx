@@ -49,6 +49,7 @@ interface ParkingOption {
   lng: number;
   lat: number;
   walkingBlocks: number;
+  walkMeters?: number;
 }
 
 interface SpeedLimitEntry {
@@ -196,6 +197,10 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const announcedCamerasRef = useRef<Set<string>>(new Set());
   const lastVicinityFetchAtRef = useRef<number>(0);
   const lastVicinityFetchOriginRef = useRef<{ lng: number; lat: number } | null>(null);
+  // Cameras that fall within ~250m of the active route polyline. These are
+  // rendered as preview markers when the route is set and STAY rendered for
+  // the entire trip; the GPS-watcher proximity cleanup must not remove them.
+  const routeCameraIdsRef = useRef<Set<string>>(new Set());
 
   const [origin, setOrigin] = useState<{ lng: number; lat: number } | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
@@ -402,6 +407,48 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     userPanningRef.current = false; // tapping recenter explicitly resumes follow
     map.flyTo({ center: [origin.lng, origin.lat], zoom: 16, pitch: 60, speed: 1.4, essential: true });
   }, [origin]);
+
+  // Render markers for cameras that fall within `corridorMeters` of the
+  // active route polyline. Used to populate the preview before the driver
+  // starts moving, so they can see enforcement points up front instead of
+  // waiting for proximity. Stores camera IDs in routeCameraIdsRef so the
+  // GPS-watcher cleanup keeps them mounted for the entire trip.
+  const renderRouteCorridorCameras = useCallback((routeCoords: [number, number][], cams: CameraEntry[], corridorMeters = 250) => {
+    if (!mapRef.current || routeCoords.length === 0 || cams.length === 0) return;
+    routeCameraIdsRef.current.clear();
+    const stride = Math.max(1, Math.floor(routeCoords.length / 200));
+    const degThreshold = corridorMeters / 111_000 + 0.0005;
+    const map = mapRef.current;
+    for (const cam of cams) {
+      let onRoute = false;
+      for (let i = 0; i < routeCoords.length; i += stride) {
+        const [lng, lat] = routeCoords[i];
+        if (Math.abs(lat - cam.lat) > degThreshold || Math.abs(lng - cam.lng) > degThreshold) continue;
+        const dLat = (cam.lat - lat) * Math.PI / 180;
+        const dLng = (cam.lng - lng) * Math.PI / 180;
+        const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat * Math.PI / 180) * Math.cos(cam.lat * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+        const distM = 2 * 6371_000 * Math.asin(Math.sqrt(a));
+        if (distM <= corridorMeters) { onRoute = true; break; }
+      }
+      if (!onRoute) continue;
+      routeCameraIdsRef.current.add(cam.id);
+      if (cameraMarkersById.current.has(cam.id)) continue;
+      const el = document.createElement('div');
+      const isSchoolZone = cam.type === 'school-zone';
+      el.style.cssText = `width:24px;height:24px;border-radius:50%;background:${isSchoolZone ? '#facc15' : '#dc2626'};border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:12px;`;
+      el.textContent = '📷';
+      const labelType = cam.type === 'red-light' ? 'red-light camera'
+        : cam.type === 'avg-speed' ? 'average-speed enforcement'
+        : cam.type === 'school-zone' ? 'school zone enforcement'
+        : cameraSuppressedRef.current ? 'speed enforcement zone'
+        : 'speed camera';
+      const popup = new mapboxgl.Popup({ offset: 18, maxWidth: '240px' })
+        .setHTML(`<div style="font:600 12px system-ui;padding:2px 4px;">${labelType}</div>${cam.maxspeed ? `<div style="font:400 11px system-ui;color:#6b7280;padding:0 4px 4px;">Limit: ${cam.maxspeed}</div>` : ''}<div style="font:400 10px system-ui;color:#9ca3af;padding:0 4px 4px;">community data, may be inaccurate</div>`);
+      const marker = new mapboxgl.Marker({ element: el }).setLngLat([cam.lng, cam.lat]).setPopup(popup).addTo(map);
+      cameraMarkersById.current.set(cam.id, marker);
+    }
+    console.log(`[/drive] route corridor: ${routeCameraIdsRef.current.size} cameras pinned for preview`);
+  }, []);
 
   // Vicinity-based camera fetch — runs while NO route is active so the
   // driver still gets warnings during free-roaming. ~5km bbox around the
@@ -611,6 +658,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       cameraMarkersById.current.forEach((m) => m.remove());
       cameraMarkersById.current.clear();
       camerasRef.current = [];
+      routeCameraIdsRef.current.clear();
       announcedCamerasRef.current.clear();
     }
     setRoute(null);
@@ -798,9 +846,11 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
               speak(`${label} ahead in ${Math.round(distM)} meters.`, voiceMode, 'alert', language);
             }
           }
-          // Remove markers for cameras that are no longer in render range.
+          // Remove markers for cameras that are no longer in render range —
+          // BUT keep route-corridor cameras visible the whole trip even when
+          // the driver hasn't reached them yet.
           for (const [id, marker] of cameraMarkersById.current) {
-            if (!seenInRange.has(id)) {
+            if (!seenInRange.has(id) && !routeCameraIdsRef.current.has(id)) {
               marker.remove();
               cameraMarkersById.current.delete(id);
             }
@@ -1342,35 +1392,50 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             intermediateMarker.current = new mapboxgl.Marker({ element: el }).setLngLat([stop.lng, stop.lat]).setPopup(popup).addTo(map);
           }
 
-          // Speed cameras along the route — fetch the bbox from OSM/Overpass
-          // and STORE them. Markers themselves are only rendered as the
-          // driver approaches (handled in the GPS watcher) so dense urban
-          // areas don't drop hundreds of red pins on the map at once.
+          // Speed cameras along the route. Two paths:
+          //  1) Server already fetched + scored cameras (because the driver
+          //     said "avoid speed cameras"). Use data.routeCameras directly,
+          //     skip the duplicate Overpass call.
+          //  2) Otherwise, fire a normal /api/drive/cameras call for the
+          //     route bbox.
+          // In both cases we render the route-corridor subset as preview
+          // markers and let the GPS watcher light up off-route cameras as
+          // the driver approaches them.
           cameraMarkersById.current.forEach((m) => m.remove());
           cameraMarkersById.current.clear();
           camerasRef.current = [];
+          routeCameraIdsRef.current.clear();
           announcedCamerasRef.current.clear();
           if (data.geometry && data.geometry.coordinates) {
             const coords = data.geometry.coordinates as [number, number][];
-            let minLng = Infinity, minLat = Infinity, maxLng = -Infinity, maxLat = -Infinity;
-            for (const [lng, lat] of coords) {
-              if (lng < minLng) minLng = lng;
-              if (lng > maxLng) maxLng = lng;
-              if (lat < minLat) minLat = lat;
-              if (lat > maxLat) maxLat = lat;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const serverCams = (data as any).routeCameras as CameraEntry[] | undefined;
+            if (Array.isArray(serverCams) && serverCams.length > 0) {
+              camerasRef.current = serverCams;
+              renderRouteCorridorCameras(coords, serverCams);
+              console.log(`[/drive] ${serverCams.length} server-supplied cameras (avoidance scored)`);
+            } else {
+              let minLng = Infinity, minLat = Infinity, maxLng = -Infinity, maxLat = -Infinity;
+              for (const [lng, lat] of coords) {
+                if (lng < minLng) minLng = lng;
+                if (lng > maxLng) maxLng = lng;
+                if (lat < minLat) minLat = lat;
+                if (lat > maxLat) maxLat = lat;
+              }
+              // Pad bbox by ~2km so cameras just off the route still surface.
+              const pad = 0.02;
+              fetch('/api/drive/cameras', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ bbox: [minLat - pad, minLng - pad, maxLat + pad, maxLng + pad] }),
+              }).then((r) => r.ok ? r.json() : null).then((cd) => {
+                if (!cd || !Array.isArray(cd.cameras)) return;
+                cameraSuppressedRef.current = !!cd.suppressed;
+                camerasRef.current = cd.cameras;
+                renderRouteCorridorCameras(coords, cd.cameras);
+                console.log(`[/drive] ${cd.cameras.length} cameras cached for route bbox (suppressed=${cd.suppressed})`);
+              }).catch(() => { /* silent */ });
             }
-            // Pad bbox by ~2km so cameras just off the route still surface.
-            const pad = 0.02;
-            fetch('/api/drive/cameras', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ bbox: [minLat - pad, minLng - pad, maxLat + pad, maxLng + pad] }),
-            }).then((r) => r.ok ? r.json() : null).then((cd) => {
-              if (!cd || !Array.isArray(cd.cameras)) return;
-              cameraSuppressedRef.current = !!cd.suppressed;
-              camerasRef.current = cd.cameras;
-              console.log(`[/drive] ${cd.cameras.length} cameras cached for route bbox (suppressed=${cd.suppressed})`);
-            }).catch(() => { /* silent */ });
           }
 
           // Refresh parking markers.
@@ -1380,7 +1445,13 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             const el = document.createElement('div');
             el.style.cssText = 'width:28px;height:28px;border-radius:6px;background:#2563eb;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;';
             el.textContent = 'P';
-            const popup = new mapboxgl.Popup({ offset: 22 }).setText(`${spot.name} — ~${spot.walkingBlocks} block${spot.walkingBlocks === 1 ? '' : 's'} walk`);
+            // Prefer meters/feet over the rough "blocks" estimate when the
+            // server provided walkMeters. DE drivers see meters, others feet.
+            const meters = spot.walkMeters;
+            const distLabel = typeof meters === 'number'
+              ? (language === 'de' ? `${meters} m` : `${Math.round(meters * 3.28084)} ft`)
+              : `~${spot.walkingBlocks} block${spot.walkingBlocks === 1 ? '' : 's'}`;
+            const popup = new mapboxgl.Popup({ offset: 22 }).setText(`${spot.name} — ${distLabel} ${language === 'de' ? 'zu Fuß' : 'walk'}`);
             const marker = new mapboxgl.Marker({ element: el }).setLngLat([spot.lng, spot.lat]).setPopup(popup).addTo(map);
             parkingMarkers.current.push(marker);
           });
