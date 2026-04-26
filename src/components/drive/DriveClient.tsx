@@ -185,6 +185,12 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const fuelMarkers = useRef<mapboxgl.Marker[]>([]);
   const parkingMarkers = useRef<mapboxgl.Marker[]>([]);
   const intermediateMarker = useRef<mapboxgl.Marker | null>(null);
+  // Speed cameras along the route + which ones we've already announced this session.
+  interface CameraEntry { id: string; lat: number; lng: number; type: string; maxspeed?: string }
+  const cameraMarkers = useRef<mapboxgl.Marker[]>([]);
+  const camerasRef = useRef<CameraEntry[]>([]);
+  const cameraSuppressedRef = useRef<boolean>(false);
+  const announcedCamerasRef = useRef<Set<string>>(new Set());
 
   const [origin, setOrigin] = useState<{ lng: number; lat: number } | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
@@ -566,6 +572,10 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       parkingMarkers.current = [];
       intermediateMarker.current?.remove();
       intermediateMarker.current = null;
+      cameraMarkers.current.forEach((m) => m.remove());
+      cameraMarkers.current = [];
+      camerasRef.current = [];
+      announcedCamerasRef.current.clear();
     }
     setRoute(null);
     activeRouteRef.current = null;
@@ -700,6 +710,33 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             if (distToManeuver < 30 && idx < steps.length - 1) {
               currentStepIdxRef.current = idx + 1;
               spokenAnnouncementsRef.current.clear();
+            }
+          }
+        }
+
+        // Speed camera proximity: if any unannounced camera is within 500m
+        // ahead, speak a one-time alert. Restricted-country wording is
+        // softened to 'enforcement zone' instead of 'camera'.
+        if (following && camerasRef.current.length > 0) {
+          const haver = (la1: number, lo1: number, la2: number, lo2: number) => {
+            const R = 6371_000;
+            const dLat = (la2 - la1) * Math.PI / 180;
+            const dLng = (lo2 - lo1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) ** 2 + Math.cos(la1 * Math.PI / 180) * Math.cos(la2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+            return 2 * R * Math.asin(Math.sqrt(a));
+          };
+          for (const cam of camerasRef.current) {
+            if (announcedCamerasRef.current.has(cam.id)) continue;
+            const distM = haver(lat, lng, cam.lat, cam.lng);
+            if (distM <= 500) {
+              announcedCamerasRef.current.add(cam.id);
+              const isSuppressed = cameraSuppressedRef.current;
+              const label = cam.type === 'school-zone' ? 'School zone enforcement'
+                : cam.type === 'red-light' ? 'Red-light camera'
+                : isSuppressed ? 'Speed enforcement zone'
+                : 'Speed camera';
+              const dist = Math.round(distM);
+              speak(`${label} ahead in ${dist} meters.`, voiceMode, 'alert', language);
             }
           }
         }
@@ -1237,6 +1274,52 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             `;
             const popup = new mapboxgl.Popup({ offset: 22, maxWidth: '300px' }).setHTML(popupHtml);
             intermediateMarker.current = new mapboxgl.Marker({ element: el }).setLngLat([stop.lng, stop.lat]).setPopup(popup).addTo(map);
+          }
+
+          // Speed cameras along the route — fetch the bbox from OSM/Overpass
+          // and render red 📷 pins. In restricted countries (DE, FR, CH...)
+          // they render with neutral 'enforcement zone' wording instead of
+          // 'camera ahead' to stay on the right side of local law.
+          cameraMarkers.current.forEach((m) => m.remove());
+          cameraMarkers.current = [];
+          camerasRef.current = [];
+          announcedCamerasRef.current.clear();
+          if (data.geometry && data.geometry.coordinates) {
+            const coords = data.geometry.coordinates as [number, number][];
+            let minLng = Infinity, minLat = Infinity, maxLng = -Infinity, maxLat = -Infinity;
+            for (const [lng, lat] of coords) {
+              if (lng < minLng) minLng = lng;
+              if (lng > maxLng) maxLng = lng;
+              if (lat < minLat) minLat = lat;
+              if (lat > maxLat) maxLat = lat;
+            }
+            // Pad bbox by ~2km so cameras just off the route still surface.
+            const pad = 0.02;
+            fetch('/api/drive/cameras', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ bbox: [minLat - pad, minLng - pad, maxLat + pad, maxLng + pad] }),
+            }).then((r) => r.ok ? r.json() : null).then((cd) => {
+              if (!cd || !Array.isArray(cd.cameras) || !mapRef.current) return;
+              cameraSuppressedRef.current = !!cd.suppressed;
+              camerasRef.current = cd.cameras;
+              for (const cam of cd.cameras as CameraEntry[]) {
+                const el = document.createElement('div');
+                const isSchoolZone = cam.type === 'school-zone';
+                el.style.cssText = `width:24px;height:24px;border-radius:50%;background:${isSchoolZone ? '#facc15' : '#dc2626'};border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:12px;`;
+                el.textContent = '📷';
+                const labelType = cam.type === 'red-light' ? 'red-light camera'
+                  : cam.type === 'avg-speed' ? 'average-speed enforcement'
+                  : cam.type === 'school-zone' ? 'school zone enforcement'
+                  : cd.suppressed ? 'speed enforcement zone'
+                  : 'speed camera';
+                const popup = new mapboxgl.Popup({ offset: 18, maxWidth: '240px' })
+                  .setHTML(`<div style="font:600 12px system-ui;padding:2px 4px;">${labelType}</div>${cam.maxspeed ? `<div style="font:400 11px system-ui;color:#6b7280;padding:0 4px 4px;">Limit: ${cam.maxspeed}</div>` : ''}<div style="font:400 10px system-ui;color:#9ca3af;padding:0 4px 4px;">community data, may be inaccurate</div>`);
+                const marker = new mapboxgl.Marker({ element: el }).setLngLat([cam.lng, cam.lat]).setPopup(popup).addTo(mapRef.current);
+                cameraMarkers.current.push(marker);
+              }
+              console.log(`[/drive] ${cd.cameras.length} cameras in bbox (suppressed=${cd.suppressed})`);
+            }).catch(() => { /* silent */ });
           }
 
           // Refresh parking markers.
