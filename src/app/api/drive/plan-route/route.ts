@@ -248,6 +248,12 @@ Every turn, return ONLY a JSON object with this shape:
 {
   "intent": "navigate" | "clarify" | "chat",
   "destination": "<clean geocodable place or address>",
+  "localSearch": {
+    "query": "<category search string like 'coffee shop' or 'italian restaurant' — EMPTY when user named a specific place>",
+    "minRating": <number 0-5 or null>,
+    "openNow": <boolean>,
+    "priceMax": <1-4 or null>
+  },
   "keepDestination": <boolean>,
   "isRoundTrip": <boolean>,
   "routePreferences": {
@@ -288,6 +294,13 @@ Rules:
 - "NICE DRIVE" intent — if the user says things like "take me on a nice drive", "find me a scenic route", "I just want to cruise", "somewhere fun", pick a real geographic destination about 30–80 miles away from their current location that would make a pleasant out-and-back or loop drive — prefer scenic roads, coastlines, mountain passes, state parks, or historic towns when plausible for their region. DON'T pick interstate stretches or strip malls. Set intent = "navigate" with that destination. Use the DRIVER PREFERENCES and RECENT ROUTES context to pick somewhere new and aligned to their taste. In "reply", name the destination + why it'll be nice ("How about Chuckanut Drive? Great coastal cruise, 45 miles round trip."). If the driver has already asked for a nice drive recently, offer a different one.
 - fuelMilesRemaining: if the user mentions how far they can go on fuel/charge ("I have 120 miles to empty", "80 miles of range left", "quarter tank"), extract a numeric estimate. A quarter tank ≈ 75 mi, half tank ≈ 150 mi, low/almost empty ≈ 30 mi. If they say "I just filled up" and a vehicle is known, estimate full tank × combined MPG. Otherwise null.
 - preferenceUpdate: if the user states a durable preference we should remember next time ("I hate highways", "I like curvy mountain roads", "always avoid tolls", "no left turns on unprotected lights"), write a one-line note like "Prefers curvy mountain roads, dislikes highways." Otherwise empty string. Do NOT echo routine navigation commands as preferences.
+- localSearch: populate when the user is asking for a CATEGORY of place rather than a specific named one. Examples:
+  - "find me a coffee shop nearby" → query="coffee shop", openNow=true
+  - "best italian restaurant within 10 minutes" → query="italian restaurant", minRating=4.0, openNow=true
+  - "a cheap burger place" → query="burger restaurant", priceMax=2
+  - "highly rated bar to grab a drink" → query="bar", minRating=4.0, openNow=true
+  - "find me a gas station" → query="gas station", openNow=true
+  When set, the server will search Google Places for real candidates and pick the best one — your "destination" string becomes a fallback hint. Leave query="" when the user named a specific place ("take me to Starbucks on Main St", "Mediterraneo restaurant"). Set openNow=true by default for food/drink/services unless the user said otherwise.
 - isRoundTrip: TRUE when the user wants to come back to their starting point — phrases like "round trip", "and back", "back home", "loop", "return trip", "there and back", or "nice drive" / "scenic drive" with no specific destination they want to end at. Otherwise FALSE.
 - routePreferences: extract ONLY from the user's CURRENT message. **Do NOT** read these from stored DRIVER PREFERENCES — preferences are advisory background, not per-trip routing rules. Each trip starts clean unless the user re-asks this turn.
   - avoidHighways: TRUE ONLY when the CURRENT message contains EXPLICIT highway-avoidance language — "no highways", "avoid highways", "no motorways", "no autobahn", "back roads only", "back roads instead", "no interstates". **Default FALSE.** Saying "scenic drive", "nice drive", "take me somewhere fun", "long drive", or anything aesthetic does NOT make this TRUE.
@@ -325,6 +338,7 @@ Rules:
   let isRoundTrip = false;
   let keepDestination = false;
   const routePreferences = { avoidHighways: false, avoidTolls: false, avoidFerries: false };
+  const localSearch = { query: '', minRating: null as number | null, openNow: false, priceMax: null as number | null };
   interface TripIntelligence {
     tripType: 'commute' | 'errand' | 'road_trip' | 'scenic' | 'unknown';
     suggestions: string[];
@@ -380,6 +394,13 @@ Rules:
         routePreferences.avoidHighways = rp.avoidHighways === true;
         routePreferences.avoidTolls = rp.avoidTolls === true;
         routePreferences.avoidFerries = rp.avoidFerries === true;
+      }
+      const ls = parsed.localSearch as { query?: unknown; minRating?: unknown; openNow?: unknown; priceMax?: unknown } | undefined;
+      if (ls && typeof ls === 'object') {
+        localSearch.query = String(ls.query || '').trim();
+        if (typeof ls.minRating === 'number') localSearch.minRating = Math.max(0, Math.min(5, ls.minRating));
+        localSearch.openNow = ls.openNow === true;
+        if (typeof ls.priceMax === 'number') localSearch.priceMax = Math.max(1, Math.min(4, ls.priceMax));
       }
       if (fuelMilesRemaining == null && typeof parsed.fuelMilesRemaining === 'number') {
         fuelMilesRemaining = parsed.fuelMilesRemaining;
@@ -540,6 +561,76 @@ Rules:
         placeName: best.properties?.full_address || best.properties?.place_formatted || best.properties?.name || query,
       };
     } catch { return null; }
+  }
+
+  // AI-driven local search: when Claude flagged this as a category search
+  // ("find me a coffee shop"), call Google Places Text Search with the
+  // user's GPS as bias + Claude's filters (rating / open-now / price), then
+  // pick the top result. Skip the rest of the geocode chain — Google's
+  // result is the trusted destination.
+  let localSearchPick: { placeName: string; rating?: number | null; ratingCount?: number | null; openNow?: boolean | null } | null = null;
+  if (!geocoded && localSearch.query && process.env.GOOGLE_PLACES_API_KEY) {
+    try {
+      const fieldMask = 'places.id,places.displayName,places.formattedAddress,places.location,places.rating,places.userRatingCount,places.priceLevel,places.currentOpeningHours.openNow';
+      const gRes = await fetch('https://places.googleapis.com/v1/places:searchText', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Goog-Api-Key': process.env.GOOGLE_PLACES_API_KEY,
+          'X-Goog-FieldMask': fieldMask,
+        },
+        body: JSON.stringify({
+          textQuery: localSearch.query,
+          languageCode: lang,
+          maxResultCount: 10,
+          openNow: localSearch.openNow || undefined,
+          minRating: localSearch.minRating || undefined,
+          priceLevels: localSearch.priceMax ? Array.from({ length: localSearch.priceMax }, (_, i) => `PRICE_LEVEL_${['INEXPENSIVE','MODERATE','EXPENSIVE','VERY_EXPENSIVE'][i]}`) : undefined,
+          locationBias: {
+            circle: {
+              center: { latitude: body.origin.lat, longitude: body.origin.lng },
+              radius: 15000, // 15 km
+            },
+          },
+        }),
+        signal: AbortSignal.timeout(8000),
+      });
+      if (gRes.ok) {
+        const gData = await gRes.json();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const candidates = (gData.places || []) as any[];
+        // Score: rating × log(reviewCount + 1) − distance penalty.
+        let best: { place: typeof candidates[number]; score: number } | null = null;
+        for (const p of candidates) {
+          const loc = p.location;
+          if (!loc) continue;
+          const dist = haversineMiles(body.origin.lat, body.origin.lng, loc.latitude, loc.longitude);
+          const rating = typeof p.rating === 'number' ? p.rating : 3.5;
+          const count = typeof p.userRatingCount === 'number' ? p.userRatingCount : 1;
+          const score = rating * Math.log10(count + 10) - dist * 0.05;
+          if (!best || score > best.score) best = { place: p, score };
+        }
+        if (best) {
+          const p = best.place;
+          geocoded = {
+            lng: p.location.longitude,
+            lat: p.location.latitude,
+            placeName: p.displayName?.text || p.formattedAddress || localSearch.query,
+          };
+          localSearchPick = {
+            placeName: geocoded.placeName,
+            rating: typeof p.rating === 'number' ? p.rating : null,
+            ratingCount: typeof p.userRatingCount === 'number' ? p.userRatingCount : null,
+            openNow: p.currentOpeningHours?.openNow ?? null,
+          };
+          console.log(`[drive/plan-route] Local search picked: "${geocoded.placeName}" (${localSearchPick.rating} ★, ${localSearchPick.ratingCount} reviews)`);
+        }
+      } else {
+        console.warn('[drive/plan-route] Google local search HTTP', gRes.status);
+      }
+    } catch (err) {
+      console.warn('[drive/plan-route] Google local search error:', err);
+    }
   }
 
   if (!geocoded) {
@@ -775,9 +866,16 @@ Rules:
   }
 
   // Prefer Claude's conversational reply; fall back to the deterministic summary.
-  const baseReply = spokenReply
-    ? `${spokenReply} ${miles} miles${isRoundTrip ? ' round trip' : ''}, about ${minutes} minutes.`
-    : summary;
+  // If we picked a Google Places match, lead with its name + rating so the
+  // driver hears the actual place rather than Claude's generic 'a coffee shop'.
+  const localSearchPrefix = localSearchPick
+    ? `Found ${localSearchPick.placeName}${typeof localSearchPick.rating === 'number' ? ` — rated ${localSearchPick.rating.toFixed(1)} stars` : ''}${localSearchPick.openNow === false ? ' (currently closed)' : ''}.`
+    : '';
+  const baseReply = localSearchPrefix
+    ? `${localSearchPrefix} ${miles} miles${isRoundTrip ? ' round trip' : ''}, about ${minutes} minutes.`
+    : (spokenReply
+      ? `${spokenReply} ${miles} miles${isRoundTrip ? ' round trip' : ''}, about ${minutes} minutes.`
+      : summary);
   const fuelLineSpoken = fuelNeeded
     ? fuelNeeded.tankPercent != null
       ? `That'll use about ${fuelNeeded.gallons} gallons — roughly ${fuelNeeded.tankPercent}% of your tank.`
