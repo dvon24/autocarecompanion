@@ -497,6 +497,55 @@ Rules:
     };
     console.log(`[drive/plan-route] Using trusted destination: "${geocoded.placeName}"`);
   }
+
+  // Mapbox SearchBox /forward — POI-aware, way better at niche places like
+  // 'Mummelsee in the Black Forest' or 'REWE in Öhringen' than legacy
+  // Geocoding v5 which over-fuzzy-matches to nearby unrelated places.
+  // Tried FIRST so most destinations resolve correctly without ever hitting
+  // the legacy chain.
+  async function searchBoxForward(query: string): Promise<{ lng: number; lat: number; placeName: string } | null> {
+    try {
+      const sbParams = new URLSearchParams({
+        q: query,
+        access_token: MAPBOX_TOKEN!,
+        proximity: `${body.origin!.lng},${body.origin!.lat}`,
+        limit: '5',
+        language: 'en',
+      });
+      if (country) sbParams.set('country', country.toLowerCase());
+      const sbRes = await fetch(`https://api.mapbox.com/search/searchbox/v1/forward?${sbParams.toString()}`);
+      if (!sbRes.ok) {
+        console.warn(`[drive/plan-route] SearchBox forward HTTP ${sbRes.status} for "${query}"`);
+        return null;
+      }
+      const sbData = await sbRes.json();
+      const sbFeats = (sbData.features || []) as Array<{
+        geometry?: { coordinates?: [number, number] };
+        properties?: { full_address?: string; name?: string; place_formatted?: string };
+      }>;
+      if (!sbFeats.length) return null;
+      let best = sbFeats[0];
+      let bestDist = Infinity;
+      for (const f of sbFeats) {
+        const c = f.geometry?.coordinates;
+        if (!c) continue;
+        const d = haversineMiles(body.origin!.lat, body.origin!.lng, c[1], c[0]);
+        if (d < bestDist) { best = f; bestDist = d; }
+      }
+      const c = best.geometry?.coordinates;
+      if (!c) return null;
+      return {
+        lng: c[0],
+        lat: c[1],
+        placeName: best.properties?.full_address || best.properties?.place_formatted || best.properties?.name || query,
+      };
+    } catch { return null; }
+  }
+
+  if (!geocoded) {
+    geocoded = await searchBoxForward(destination);
+    if (geocoded) console.log(`[drive/plan-route] SearchBox forward (1st): "${geocoded.placeName}"`);
+  }
   if (!geocoded) geocoded = await geocode(destination, true);
   if (!geocoded && country) {
     // Retry without country bias in case the destination's region was inferred wrong.

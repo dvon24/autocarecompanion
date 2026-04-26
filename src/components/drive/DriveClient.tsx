@@ -362,6 +362,21 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     setTimeout(() => setRatingToast(''), 2200);
   }, [route]);
 
+  const saveRouteToHistory = useCallback(() => {
+    const r = activeRouteRef.current;
+    if (!r?.destination || typeof r.miles !== 'number' || typeof r.minutes !== 'number') return;
+    // De-dupe: don't append the same destination twice in a row.
+    const last = routeHistoryRef.current[routeHistoryRef.current.length - 1];
+    if (last && last.destination === r.destination && Date.now() - last.at < 5 * 60_000) return;
+    routeHistoryRef.current = [...routeHistoryRef.current, {
+      destination: r.destination,
+      miles: r.miles,
+      minutes: r.minutes,
+      at: Date.now(),
+    }].slice(-30);
+    try { localStorage.setItem(LS_HISTORY, JSON.stringify(routeHistoryRef.current)); } catch { /* ignore */ }
+  }, []);
+
   const recenterOnDriver = useCallback(() => {
     const map = mapRef.current;
     if (!map || !origin) return;
@@ -1023,15 +1038,8 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             minutes: data.minutes,
             destinationCoords: data.destinationCoords,
           };
-          // Append to route history so future "nice drive" asks can avoid repeats.
-          const entry = {
-            destination: data.destination,
-            miles: data.miles,
-            minutes: data.minutes,
-            at: Date.now(),
-          };
-          routeHistoryRef.current = [...routeHistoryRef.current, entry].slice(-30);
-          try { localStorage.setItem(LS_HISTORY, JSON.stringify(routeHistoryRef.current)); } catch { /* ignore */ }
+          // Route history append moved to the Drive button — only save trips
+          // the user actually committed to driving.
         }
         // Refresh fuel-stop markers.
         const map = mapRef.current;
@@ -1349,6 +1357,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
                 if (following) {
                   endTrip();
                 } else {
+                  saveRouteToHistory();
                   setFollowing(true);
                   recenterOnDriver();
                   if (stepsRef.current[0]?.instruction) {
@@ -1475,6 +1484,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
                 <button
                   type="button"
                   onClick={() => {
+                    saveRouteToHistory();
                     setFollowing(true);
                     recenterOnDriver();
                     if (stepsRef.current[0]?.instruction) {
