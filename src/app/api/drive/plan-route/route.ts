@@ -254,6 +254,12 @@ Every turn, return ONLY a JSON object with this shape:
     "openNow": <boolean>,
     "priceMax": <1-4 or null>
   },
+  "intermediateStop": {
+    "category": "<category like 'coffee shop' / 'restaurant' / 'rest area' / 'park' — empty if no stop wanted>",
+    "atTripPercent": <integer 10-90 — where in the trip the stop should happen>,
+    "minRating": <number 0-5 or null>,
+    "openNow": <boolean>
+  },
   "keepDestination": <boolean>,
   "isRoundTrip": <boolean>,
   "routePreferences": {
@@ -294,6 +300,12 @@ Rules:
 - "NICE DRIVE" intent — if the user says things like "take me on a nice drive", "find me a scenic route", "I just want to cruise", "somewhere fun", pick a real geographic destination about 30–80 miles away from their current location that would make a pleasant out-and-back or loop drive — prefer scenic roads, coastlines, mountain passes, state parks, or historic towns when plausible for their region. DON'T pick interstate stretches or strip malls. Set intent = "navigate" with that destination. Use the DRIVER PREFERENCES and RECENT ROUTES context to pick somewhere new and aligned to their taste. In "reply", name the destination + why it'll be nice ("How about Chuckanut Drive? Great coastal cruise, 45 miles round trip."). If the driver has already asked for a nice drive recently, offer a different one.
 - fuelMilesRemaining: if the user mentions how far they can go on fuel/charge ("I have 120 miles to empty", "80 miles of range left", "quarter tank"), extract a numeric estimate. A quarter tank ≈ 75 mi, half tank ≈ 150 mi, low/almost empty ≈ 30 mi. If they say "I just filled up" and a vehicle is known, estimate full tank × combined MPG. Otherwise null.
 - preferenceUpdate: if the user states a durable preference we should remember next time ("I hate highways", "I like curvy mountain roads", "always avoid tolls", "no left turns on unprotected lights"), write a one-line note like "Prefers curvy mountain roads, dislikes highways." Otherwise empty string. Do NOT echo routine navigation commands as preferences.
+- intermediateStop: populate when the user wants to BREAK UP the trip with a stop along the way. Examples:
+  - "scenic drive with a coffee shop built in for a break" → category="coffee shop", atTripPercent=50, openNow=true
+  - "take me to Munich, stop for lunch on the way" → category="restaurant", atTripPercent=50, openNow=true
+  - "long drive, want to grab a snack midway" → category="cafe", atTripPercent=50, openNow=true
+  - "find me a park to stretch my legs around halfway" → category="park", atTripPercent=50
+  Leave category="" when no stop is wanted (default). atTripPercent should usually be 50 unless the user specified ("a quarter of the way in" → 25, "about an hour from now" → estimate based on trip duration).
 - localSearch: populate when the user is asking for a CATEGORY of place rather than a specific named one. Examples:
   - "find me a coffee shop nearby" → query="coffee shop", openNow=true
   - "best italian restaurant within 10 minutes" → query="italian restaurant", minRating=4.0, openNow=true
@@ -339,6 +351,7 @@ Rules:
   let keepDestination = false;
   const routePreferences = { avoidHighways: false, avoidTolls: false, avoidFerries: false };
   const localSearch = { query: '', minRating: null as number | null, openNow: false, priceMax: null as number | null };
+  const intermediateStop = { category: '', atTripPercent: 50, minRating: null as number | null, openNow: false };
   interface TripIntelligence {
     tripType: 'commute' | 'errand' | 'road_trip' | 'scenic' | 'unknown';
     suggestions: string[];
@@ -401,6 +414,13 @@ Rules:
         if (typeof ls.minRating === 'number') localSearch.minRating = Math.max(0, Math.min(5, ls.minRating));
         localSearch.openNow = ls.openNow === true;
         if (typeof ls.priceMax === 'number') localSearch.priceMax = Math.max(1, Math.min(4, ls.priceMax));
+      }
+      const isr = parsed.intermediateStop as { category?: unknown; atTripPercent?: unknown; minRating?: unknown; openNow?: unknown } | undefined;
+      if (isr && typeof isr === 'object') {
+        intermediateStop.category = String(isr.category || '').trim();
+        if (typeof isr.atTripPercent === 'number') intermediateStop.atTripPercent = Math.max(10, Math.min(90, isr.atTripPercent));
+        if (typeof isr.minRating === 'number') intermediateStop.minRating = Math.max(0, Math.min(5, isr.minRating));
+        intermediateStop.openNow = isr.openNow === true;
       }
       if (fuelMilesRemaining == null && typeof parsed.fuelMilesRemaining === 'number') {
         fuelMilesRemaining = parsed.fuelMilesRemaining;
@@ -752,7 +772,85 @@ Rules:
     );
   }
 
-  const milesNum = route.distance / 1609.34;
+  let milesNum = route.distance / 1609.34;
+  // Intermediate stop: pick a Google Place at N% along the route, then
+  // recompute Mapbox Directions through it. Result becomes the new primary.
+  interface IntermediateStopResult { name: string; address: string; lng: number; lat: number; rating: number | null; ratingCount: number | null; openNow: boolean | null; milesIn: number }
+  let intermediateStopResult: IntermediateStopResult | null = null;
+  if (intermediateStop.category && process.env.GOOGLE_PLACES_API_KEY) {
+    try {
+      const targetMiles = milesNum * (intermediateStop.atTripPercent / 100);
+      const point = pointAtMilesAlongRoute(route.geometry.coordinates as number[][], targetMiles);
+      if (point) {
+        const fieldMask = 'places.id,places.displayName,places.formattedAddress,places.location,places.rating,places.userRatingCount,places.currentOpeningHours.openNow';
+        const stopRes = await fetch('https://places.googleapis.com/v1/places:searchText', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Goog-Api-Key': process.env.GOOGLE_PLACES_API_KEY,
+            'X-Goog-FieldMask': fieldMask,
+          },
+          body: JSON.stringify({
+            textQuery: intermediateStop.category,
+            languageCode: lang,
+            maxResultCount: 8,
+            openNow: intermediateStop.openNow || undefined,
+            minRating: intermediateStop.minRating || undefined,
+            locationBias: { circle: { center: { latitude: point[1], longitude: point[0] }, radius: 5000 } },
+          }),
+          signal: AbortSignal.timeout(8000),
+        });
+        if (stopRes.ok) {
+          const stopData = await stopRes.json();
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const candidates = (stopData.places || []) as any[];
+          // Score: rating × log(reviewCount) − distance from intended midpoint.
+          let best: { p: typeof candidates[number]; score: number } | null = null;
+          for (const p of candidates) {
+            if (!p.location) continue;
+            const dist = haversineMiles(point[1], point[0], p.location.latitude, p.location.longitude);
+            const rating = typeof p.rating === 'number' ? p.rating : 3.5;
+            const count = typeof p.userRatingCount === 'number' ? p.userRatingCount : 1;
+            const score = rating * Math.log10(count + 10) - dist * 0.5;
+            if (!best || score > best.score) best = { p, score };
+          }
+          if (best) {
+            const p = best.p;
+            const stopLng = p.location.longitude;
+            const stopLat = p.location.latitude;
+            // Recompute the directions through the new waypoint.
+            const stopCoords = isRoundTrip
+              ? `${body.origin.lng},${body.origin.lat};${stopLng},${stopLat};${destLng},${destLat};${body.origin.lng},${body.origin.lat}`
+              : `${body.origin.lng},${body.origin.lat};${stopLng},${stopLat};${destLng},${destLat}`;
+            const stopDirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${stopCoords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=imperial&banner_instructions=true&language=en&alternatives=false${excludeParam}&access_token=${MAPBOX_TOKEN}`;
+            const stopDirRes = await fetch(stopDirUrl);
+            if (stopDirRes.ok) {
+              const stopDirData = await stopDirRes.json();
+              const newRoute = stopDirData.routes?.[0];
+              if (newRoute) {
+                // Override route with the via-stop variant.
+                Object.assign(route, newRoute);
+                milesNum = newRoute.distance / 1609.34;
+                intermediateStopResult = {
+                  name: p.displayName?.text || intermediateStop.category,
+                  address: p.formattedAddress || '',
+                  lng: stopLng,
+                  lat: stopLat,
+                  rating: typeof p.rating === 'number' ? p.rating : null,
+                  ratingCount: typeof p.userRatingCount === 'number' ? p.userRatingCount : null,
+                  openNow: p.currentOpeningHours?.openNow ?? null,
+                  milesIn: Math.round(targetMiles),
+                };
+                console.log(`[drive/plan-route] Intermediate stop: "${intermediateStopResult.name}" at ~${intermediateStopResult.milesIn} mi`);
+              }
+            }
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('[drive/plan-route] intermediate stop error:', err);
+    }
+  }
   const miles = milesNum.toFixed(1);
   const minutes = Math.max(1, Math.round(route.duration / 60));
   const summary = isRoundTrip
@@ -807,6 +905,22 @@ Rules:
   interface FuelStop { name: string; lng: number; lat: number; milesFromStart: number }
   let fuelStops: FuelStop[] = [];
   let fuelWarning = '';
+  // Auto-default fuel range from the selected vehicle's specs when the
+  // user didn't mention how much they have. We assume a full tank at trip
+  // start (90% to be conservative) so longer trips trigger the gas-stop
+  // logic without the driver needing to say 'I have X miles left.'
+  if (fuelMilesRemaining == null && body.vehicle) {
+    try {
+      const { getVehicleSpecs } = await import('@/lib/maintenance');
+      const vSpecs = getVehicleSpecs({ year: body.vehicle.year, make: body.vehicle.make, model: body.vehicle.model, trim: body.vehicle.trim });
+      const mpg = vSpecs?.fuelEconomy?.combined;
+      const tank = vSpecs?.tankCapacity?.gallons;
+      if (mpg && tank && mpg * tank > 0) {
+        fuelMilesRemaining = Math.round(mpg * tank * 0.9);
+        console.log(`[drive/plan-route] Auto fuel range from vehicle: ${fuelMilesRemaining} mi (${mpg} mpg × ${tank} gal × 0.9)`);
+      }
+    } catch { /* non-blocking */ }
+  }
   if (fuelMilesRemaining != null && fuelMilesRemaining > 0 && milesNum > fuelMilesRemaining) {
     const targetMiles = Math.max(5, Math.min(fuelMilesRemaining * 0.7, milesNum - 2));
     const point = pointAtMilesAlongRoute(route.geometry.coordinates as number[][], targetMiles);
@@ -871,6 +985,9 @@ Rules:
   const localSearchPrefix = localSearchPick
     ? `Found ${localSearchPick.placeName}${typeof localSearchPick.rating === 'number' ? ` — rated ${localSearchPick.rating.toFixed(1)} stars` : ''}${localSearchPick.openNow === false ? ' (currently closed)' : ''}.`
     : '';
+  const stopLine = intermediateStopResult
+    ? `Built in a stop at ${intermediateStopResult.name}${intermediateStopResult.rating ? `, rated ${intermediateStopResult.rating.toFixed(1)}` : ''}, about ${intermediateStopResult.milesIn} miles in.`
+    : '';
   const baseReply = localSearchPrefix
     ? `${localSearchPrefix} ${miles} miles${isRoundTrip ? ' round trip' : ''}, about ${minutes} minutes.`
     : (spokenReply
@@ -882,6 +999,7 @@ Rules:
       : `That'll use about ${fuelNeeded.gallons} gallons.`
     : '';
   const parts = [baseReply];
+  if (stopLine) parts.push(stopLine);
   if (fuelLineSpoken) parts.push(fuelLineSpoken);
   if (fuelWarning) parts.push(fuelWarning);
   if (parkingNote) parts.push(parkingNote);
@@ -933,6 +1051,7 @@ Rules:
     fuelNeeded,
     isRoundTrip,
     routePreferences,
+    intermediateStop: intermediateStopResult,
     preferenceUpdate: preferenceUpdate || undefined,
   });
 }

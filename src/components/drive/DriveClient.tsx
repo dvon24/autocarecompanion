@@ -91,6 +91,7 @@ interface RouteResponse {
   fuelNeeded?: { gallons: number; tankPercent: number | null; mpgUsed: number } | null;
   isRoundTrip?: boolean;
   routePreferences?: { avoidHighways: boolean; avoidTolls: boolean; avoidFerries: boolean };
+  intermediateStop?: { name: string; address: string; lng: number; lat: number; rating: number | null; ratingCount: number | null; openNow: boolean | null; milesIn: number } | null;
   preferenceUpdate?: string;
   error?: string;
   message?: string;
@@ -183,6 +184,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const destMarker = useRef<mapboxgl.Marker | null>(null);
   const fuelMarkers = useRef<mapboxgl.Marker[]>([]);
   const parkingMarkers = useRef<mapboxgl.Marker[]>([]);
+  const intermediateMarker = useRef<mapboxgl.Marker | null>(null);
 
   const [origin, setOrigin] = useState<{ lng: number; lat: number } | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
@@ -556,6 +558,8 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       fuelMarkers.current = [];
       parkingMarkers.current.forEach((m) => m.remove());
       parkingMarkers.current = [];
+      intermediateMarker.current?.remove();
+      intermediateMarker.current = null;
     }
     setRoute(null);
     activeRouteRef.current = null;
@@ -1198,6 +1202,27 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             const marker = new mapboxgl.Marker({ element: el }).setLngLat([stop.lng, stop.lat]).setPopup(popup).addTo(map);
             fuelMarkers.current.push(marker);
           });
+
+          // Intermediate stop marker (purple) — tap routes through it
+          intermediateMarker.current?.remove();
+          intermediateMarker.current = null;
+          if (data.intermediateStop) {
+            const stop = data.intermediateStop;
+            const el = document.createElement('div');
+            el.style.cssText = 'width:30px;height:30px;border-radius:50%;background:#7c3aed;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;cursor:pointer;';
+            el.textContent = '☕';
+            const popupHtml = `
+              <div style="font:600 14px system-ui;padding:2px 4px 4px;color:#111;">${stop.name.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</div>
+              <div style="font:400 12px system-ui;color:#555;line-height:1.4;padding:0 4px 8px;">
+                ${typeof stop.rating === 'number' ? `<div style="color:#f59e0b;font-weight:700;margin-bottom:4px;">★ ${stop.rating.toFixed(1)}${stop.ratingCount ? ` <span style="color:#6b7280;font-weight:400;">(${stop.ratingCount})</span>` : ''}</div>` : ''}
+                ${stop.openNow != null ? `<div style="margin-bottom:4px;"><span style="display:inline-block;font:600 10px system-ui;background:${stop.openNow ? '#dcfce7' : '#fee2e2'};color:${stop.openNow ? '#166534' : '#991b1b'};padding:2px 7px;border-radius:9999px;">${stop.openNow ? 'Open now' : 'Closed'}</span></div>` : ''}
+                <div style="color:#6b7280;font-size:11px;">${(stop.address || '').replace(/&/g, '&amp;').replace(/</g, '&lt;')}</div>
+                <div style="color:#7c3aed;font-weight:600;font-size:11px;margin-top:4px;">~${stop.milesIn} mi into your trip</div>
+              </div>
+            `;
+            const popup = new mapboxgl.Popup({ offset: 22, maxWidth: '300px' }).setHTML(popupHtml);
+            intermediateMarker.current = new mapboxgl.Marker({ element: el }).setLngLat([stop.lng, stop.lat]).setPopup(popup).addTo(map);
+          }
 
           // Refresh parking markers.
           parkingMarkers.current.forEach((m) => m.remove());
