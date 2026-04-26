@@ -53,6 +53,8 @@ interface PlanRouteBody {
    * step entirely. Used to fix 'Öhringen' fuzzy-matching to 'Böhringen'.
    */
   trustedDestination?: { lng: number; lat: number; placeName: string } | null;
+  /** ISO-639 language code for Claude's spoken reply ('en' or 'de' currently). */
+  language?: 'en' | 'de';
 }
 
 /**
@@ -223,7 +225,14 @@ export async function POST(request: NextRequest) {
     ? `RECENT ROUTES THE DRIVER HAS TAKEN (most recent last):\n${body.routeHistory.slice(-10).map(r => `- ${r.destination} (${r.miles} mi)`).join('\n')}\nUse this to avoid suggesting the exact same "nice drive" twice in a row.`
     : '';
 
+  const lang = body.language === 'de' ? 'de' : 'en';
+  const langLine = lang === 'de'
+    ? 'WICHTIG: Antworte ausschließlich auf Deutsch. Sprich den Fahrer wie ein Freund an, nicht förmlich.'
+    : 'IMPORTANT: Reply in English. Speak to the driver like a friend, not formally.';
+
   const systemPrompt = `You are Au7o, a voice navigation copilot that runs in the car. Respond like a helpful, concise friend — never verbose.
+
+${langLine}
 
 ${locationNote}
 

@@ -10,6 +10,21 @@ const LS_PREFS = 'au7o-drive-prefs';
 const LS_HISTORY = 'au7o-drive-history';
 const LS_VOICE = 'au7o-drive-voice-mode';
 const LS_FAVORITES = 'au7o-drive-favorites';
+const LS_LANGUAGE = 'au7o-drive-language';
+
+type DriveLanguage = 'en' | 'de';
+
+function detectInitialLanguage(): DriveLanguage {
+  if (typeof navigator === 'undefined') return 'en';
+  const lang = (navigator.language || '').toLowerCase();
+  if (lang.startsWith('de')) return 'de';
+  return 'en';
+}
+
+const LANG_LABELS: Record<DriveLanguage, { code: string; voicePrefix: string; flag: string }> = {
+  en: { code: 'en-US', voicePrefix: 'en', flag: '🇺🇸' },
+  de: { code: 'de-DE', voicePrefix: 'de', flag: '🇩🇪' },
+};
 
 type VoiceMode = 'all' | 'alerts' | 'mute';
 
@@ -94,16 +109,16 @@ interface ActiveRoute {
 }
 
 /**
- * Pick the most natural-sounding voice the browser exposes. Defaults are
- * usually the most robotic stock voice; OS-installed Enhanced/Neural voices
- * sound dramatically better and we should use them when present.
+ * Pick the most natural-sounding voice the browser exposes for the requested
+ * language. Defaults are usually the most robotic stock voice; OS-installed
+ * Enhanced/Neural voices sound dramatically better and we should use them
+ * when present.
  */
-function pickBestVoice(): SpeechSynthesisVoice | null {
+function pickBestVoice(language: DriveLanguage): SpeechSynthesisVoice | null {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) return null;
   const voices = window.speechSynthesis.getVoices();
   if (!voices.length) return null;
-  // Known-good voice names across iOS, Android, macOS, Windows Edge.
-  const preferredNames = [
+  const preferredEn = [
     'Samantha (Enhanced)', 'Samantha', 'Ava (Enhanced)', 'Ava',
     'Daniel (Enhanced)', 'Daniel', 'Karen (Enhanced)', 'Karen',
     'Moira (Enhanced)', 'Tessa', 'Alex',
@@ -111,11 +126,19 @@ function pickBestVoice(): SpeechSynthesisVoice | null {
     'Microsoft Aria Online (Natural)', 'Microsoft Guy Online (Natural)',
     'Microsoft Jenny Online (Natural)', 'Microsoft Davis Online (Natural)',
   ];
+  const preferredDe = [
+    'Anna (Enhanced)', 'Anna', 'Markus (Enhanced)', 'Markus',
+    'Petra (Enhanced)', 'Petra', 'Yannick (Enhanced)', 'Yannick',
+    'Google Deutsch',
+    'Microsoft Katja Online (Natural)', 'Microsoft Conrad Online (Natural)',
+    'Microsoft Florian Online (Natural)',
+  ];
+  const preferredNames = language === 'de' ? preferredDe : preferredEn;
   const qualityKeywords = ['enhanced', 'premium', 'natural', 'neural', 'siri', 'wavenet'];
-  const langs = ['en-US', 'en-GB', 'en'];
+  const langPrefix = LANG_LABELS[language].voicePrefix;
   const scored = voices.map((v) => {
     let score = 0;
-    if (langs.some((l) => v.lang.startsWith(l))) score += 100;
+    if (v.lang.startsWith(langPrefix)) score += 100;
     if (preferredNames.some((n) => v.name === n)) score += 80;
     else if (preferredNames.some((n) => v.name.includes(n))) score += 50;
     const nameLower = v.name.toLowerCase();
@@ -125,25 +148,28 @@ function pickBestVoice(): SpeechSynthesisVoice | null {
     return { voice: v, score };
   });
   scored.sort((a, b) => b.score - a.score);
-  return scored[0]?.score > 100 ? scored[0].voice : voices[0];
+  return scored[0]?.score > 100 ? scored[0].voice : voices.find((v) => v.lang.startsWith(langPrefix)) || voices[0];
 }
 
 let _cachedVoice: SpeechSynthesisVoice | null = null;
-function resolveVoice(): SpeechSynthesisVoice | null {
-  if (_cachedVoice) return _cachedVoice;
-  _cachedVoice = pickBestVoice();
+let _cachedVoiceLang: DriveLanguage | null = null;
+function resolveVoice(language: DriveLanguage): SpeechSynthesisVoice | null {
+  if (_cachedVoice && _cachedVoiceLang === language) return _cachedVoice;
+  _cachedVoice = pickBestVoice(language);
+  _cachedVoiceLang = language;
   return _cachedVoice;
 }
 
-function speak(text: string, mode: VoiceMode = 'all', priority: 'alert' | 'normal' = 'normal') {
+function speak(text: string, mode: VoiceMode = 'all', priority: 'alert' | 'normal' = 'normal', language: DriveLanguage = 'en') {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
   if (mode === 'mute') return;
   if (mode === 'alerts' && priority !== 'alert') return;
   try {
     window.speechSynthesis.cancel();
     const utter = new SpeechSynthesisUtterance(text);
-    const voice = resolveVoice();
+    const voice = resolveVoice(language);
     if (voice) utter.voice = voice;
+    utter.lang = LANG_LABELS[language].code;
     utter.rate = 0.95; // slightly slower than default for in-car clarity
     utter.pitch = 1.0;
     window.speechSynthesis.speak(utter);
@@ -182,6 +208,11 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   // UI shell state — collapsible bottom card + voice mode.
   const [bottomExpanded, setBottomExpanded] = useState(true);
   const [voiceMode, setVoiceMode] = useState<VoiceMode>('all');
+  const [language, setLanguage] = useState<DriveLanguage>('en');
+  // True when the driver has touched the map recently. Pauses auto-recenter
+  // so they can pan/zoom freely while in follow mode.
+  const userPanningRef = useRef<boolean>(false);
+  const lastUserPanAtRef = useRef<number>(0);
   // Active-navigation state: when 'following', the camera tracks the driver and
   // voice maneuvers are spoken at trigger distances.
   const [following, setFollowing] = useState(false);
@@ -265,6 +296,9 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       if (h) routeHistoryRef.current = JSON.parse(h);
       const vm = localStorage.getItem(LS_VOICE) as VoiceMode | null;
       if (vm === 'all' || vm === 'alerts' || vm === 'mute') setVoiceMode(vm);
+      const ls = localStorage.getItem(LS_LANGUAGE) as DriveLanguage | null;
+      if (ls === 'en' || ls === 'de') setLanguage(ls);
+      else setLanguage(detectInitialLanguage());
     } catch { /* ignore */ }
 
     // Some browsers (Chrome, Safari) load TTS voices asynchronously.
@@ -277,6 +311,15 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       window.speechSynthesis.getVoices();
       return () => window.speechSynthesis.removeEventListener?.('voiceschanged', onVoicesChanged);
     }
+  }, []);
+
+  const cycleLanguage = useCallback(() => {
+    setLanguage((prev) => {
+      const next: DriveLanguage = prev === 'en' ? 'de' : 'en';
+      try { localStorage.setItem(LS_LANGUAGE, next); } catch { /* ignore */ }
+      _cachedVoice = null; _cachedVoiceLang = null;
+      return next;
+    });
   }, []);
 
   const cycleVoiceMode = useCallback(() => {
@@ -322,6 +365,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const recenterOnDriver = useCallback(() => {
     const map = mapRef.current;
     if (!map || !origin) return;
+    userPanningRef.current = false; // tapping recenter explicitly resumes follow
     map.flyTo({ center: [origin.lng, origin.lat], zoom: 16, pitch: 60, speed: 1.4, essential: true });
   }, [origin]);
 
@@ -401,11 +445,11 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
 
       // Spoken alert when meaningfully relevant.
       if (reason === 'off_route') {
-        speak('Rerouting.', voiceMode, 'alert');
+        speak('Rerouting.', voiceMode, 'alert', language);
       } else if (minutesDelta >= 5) {
-        speak(`Traffic added about ${minutesDelta} minutes. New ETA ${data.minutes} minutes.`, voiceMode, 'alert');
+        speak(`Traffic added about ${minutesDelta} minutes. New ETA ${data.minutes} minutes.`, voiceMode, 'alert', language);
       } else if (minutesDelta <= -5) {
-        speak(`Traffic cleared. New ETA ${data.minutes} minutes.`, voiceMode, 'alert');
+        speak(`Traffic cleared. New ETA ${data.minutes} minutes.`, voiceMode, 'alert', language);
       }
 
       // Faster-alternate detection: surface a 'switch?' prompt only when
@@ -421,7 +465,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         if (bestAlt) {
           const savesMin = data.minutes - bestAlt.minutes;
           setPendingAlternate({ alt: bestAlt, savesMin });
-          speak(`Faster route via ${bestAlt.summary} saves about ${savesMin} minutes. Tap Switch to take it.`, voiceMode, 'alert');
+          speak(`Faster route via ${bestAlt.summary} saves about ${savesMin} minutes. Tap Switch to take it.`, voiceMode, 'alert', language);
         } else {
           setPendingAlternate(null);
         }
@@ -460,7 +504,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     routeFetchedAtRef.current = Date.now();
     setLiveMinutes(pending.alt.minutes);
     lastRerouteAtRef.current = Date.now();
-    speak(`Switched to faster route. ${pending.alt.minutes} minutes.`, voiceMode, 'alert');
+    speak(`Switched to faster route. ${pending.alt.minutes} minutes.`, voiceMode, 'alert', language);
   }, [pendingAlternate, voiceMode]);
 
   const clearStoredPreferences = useCallback(() => {
@@ -569,8 +613,9 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         }
 
         // Follow-mode: keep the camera centered on the driver, oriented along their heading.
+        // Skip while the user is actively touching the map so they can pan/zoom freely.
         const map = mapRef.current;
-        if (map && following) {
+        if (map && following && !userPanningRef.current) {
           const heading = (typeof pos.coords.heading === 'number' && !Number.isNaN(pos.coords.heading))
             ? pos.coords.heading
             : map.getBearing();
@@ -608,7 +653,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
                 const key = `${idx}:${v.distanceAlongGeometry}`;
                 if (!spokenAnnouncementsRef.current.has(key)) {
                   spokenAnnouncementsRef.current.add(key);
-                  speak(v.announcement, voiceMode, 'alert');
+                  speak(v.announcement, voiceMode, 'alert', language);
                 }
               }
             }
@@ -674,6 +719,23 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     setTimeout(() => map.resize(), 200);
     setTimeout(() => map.resize(), 1000);
 
+    // User-gesture detection: pause auto-recenter for 10s after the driver
+    // touches the map (drag, pinch-zoom, rotate, pitch). Resumes silently
+    // after a quiet period or instantly when they tap the recenter button.
+    const markUserPan = () => {
+      userPanningRef.current = true;
+      lastUserPanAtRef.current = Date.now();
+    };
+    map.on('dragstart', markUserPan);
+    map.on('zoomstart', markUserPan);
+    map.on('rotatestart', markUserPan);
+    map.on('pitchstart', markUserPan);
+    const resumeTimer = setInterval(() => {
+      if (userPanningRef.current && Date.now() - lastUserPanAtRef.current > 10_000) {
+        userPanningRef.current = false;
+      }
+    }, 1000);
+
     // On style load, add terrain + atmosphere so distant landscape looks volumetric.
     map.on('style.load', () => {
       if (!map.getSource('mapbox-dem')) {
@@ -695,7 +757,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     });
 
     mapRef.current = map;
-    return () => { map.remove(); mapRef.current = null; };
+    return () => { clearInterval(resumeTimer); map.remove(); mapRef.current = null; };
   // mapboxToken never changes; origin handled in separate effect.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mapboxToken]);
@@ -779,20 +841,21 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
           driverPreferences: driverPrefsRef.current || null,
           routeHistory: routeHistoryRef.current.slice(-10),
           trustedDestination: trustedDestination || null,
+          language,
         }),
       });
       const data = (await res.json()) as RouteResponse;
       if (!res.ok || data.error) {
         const msg = data.message || data.error || `Route failed (${res.status})`;
         setErrorMsg(msg);
-        speak(msg, voiceMode, 'alert');
+        speak(msg, voiceMode, 'alert', language);
         return;
       }
 
       const spoken = data.reply || data.summary || '';
       if (spoken) {
         setLastReply(spoken);
-        speak(spoken, voiceMode, 'normal');
+        speak(spoken, voiceMode, 'normal', language);
       }
 
       // Record the turn so follow-ups ("the other one") can resolve.
@@ -894,14 +957,14 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Network error';
       setErrorMsg(msg);
-      speak(msg, voiceMode, 'alert');
+      speak(msg, voiceMode, 'alert', language);
     } finally {
       setBusy(false);
       // Keep the bottom card expanded after a new plan so the trip
       // intelligence + Drive button are immediately visible. Driver can
       // tap Hide to collapse to the compact ETA pill.
     }
-  }, [origin, drawRoute, history, vehicle, voiceMode]);
+  }, [origin, drawRoute, history, vehicle, voiceMode, language]);
 
   const pickSuggestion = useCallback(async (s: Suggestion) => {
     const text = s.placeFormatted ? `${s.name}, ${s.placeFormatted}` : s.name;
@@ -930,6 +993,9 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     submitTranscript(text, trusted);
   }, [submitTranscript]);
 
+  // Pin the new language deps onto startListening below by depending on them.
+  void language;
+
   const startListening = useCallback(() => {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SR) {
@@ -937,7 +1003,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       return;
     }
     const rec = new SR();
-    rec.lang = 'en-US';
+    rec.lang = LANG_LABELS[language].code;
     rec.interimResults = true;
     rec.continuous = false;
     let finalText = '';
@@ -963,7 +1029,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     setTranscript('');
     setListening(true);
     rec.start();
-  }, [submitTranscript]);
+  }, [submitTranscript, language]);
 
   const stopListening = useCallback(() => {
     recognitionRef.current?.stop();
@@ -1043,6 +1109,14 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             <circle cx="12" cy="12" r="3" fill="currentColor" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2v3M12 19v3M2 12h3M19 12h3" />
           </svg>
+        </button>
+        <button
+          onClick={cycleLanguage}
+          aria-label={`Language: ${language}`}
+          title={`Voice language: ${language === 'de' ? 'Deutsch' : 'English'} — tap to switch`}
+          className="w-11 h-11 rounded-full bg-white/95 backdrop-blur shadow-md border border-gray-200 flex items-center justify-center hover:bg-white text-base font-bold text-gray-800"
+        >
+          {LANG_LABELS[language].flag}
         </button>
         <button
           onClick={clearStoredPreferences}
@@ -1153,7 +1227,10 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
                 </div>
                 <p className="text-xs text-gray-500 truncate">{route.destination}</p>
               </div>
-              <span className="text-xs text-blue-600 font-medium flex-shrink-0">Plan new</span>
+              <span className="text-xs text-blue-600 font-medium flex-shrink-0 flex items-center gap-1">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z" /></svg>
+                Search
+              </span>
             </button>
             {/* Drive / Stop button — Drive enters follow mode, Stop ends the trip entirely */}
             <button
@@ -1165,7 +1242,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
                   setFollowing(true);
                   recenterOnDriver();
                   if (stepsRef.current[0]?.instruction) {
-                    speak(stepsRef.current[0].instruction, voiceMode, 'alert');
+                    speak(stepsRef.current[0].instruction, voiceMode, 'alert', language);
                   }
                 }
               }}
@@ -1281,7 +1358,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
                   setFollowing(true);
                   recenterOnDriver();
                   if (stepsRef.current[0]?.instruction) {
-                    speak(stepsRef.current[0].instruction, voiceMode, 'alert');
+                    speak(stepsRef.current[0].instruction, voiceMode, 'alert', language);
                   }
                   setBottomExpanded(false);
                 }}
