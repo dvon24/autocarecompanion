@@ -62,7 +62,10 @@ export async function POST(request: NextRequest) {
   if (body.routePreferences?.avoidFerries) excludeList.push('ferry');
   const excludeParam = excludeList.length > 0 ? `&exclude=${excludeList.join(',')}` : '';
 
-  const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${coords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=imperial&banner_instructions=true&language=en${excludeParam}&access_token=${MAPBOX_TOKEN}`;
+  // alternatives=true returns up to 3 route options sharing the same OD pair.
+  // Mapbox already factors live traffic per option, so the alternate's
+  // duration is the apples-to-apples comparison we surface as "faster route".
+  const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${coords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=imperial&banner_instructions=true&language=en&alternatives=true${excludeParam}&access_token=${MAPBOX_TOKEN}`;
 
   try {
     const r = await fetch(dirUrl);
@@ -107,12 +110,60 @@ export async function POST(request: NextRequest) {
     }
 
     const milesNum = route.distance / 1609.34;
+
+    // Alternates: any sibling route options Mapbox returned. We send the
+    // client a slim summary (geometry + duration + distance + a road-class
+    // hint) so it can compare and offer 'faster route via X' if applicable.
+    interface AltSummary {
+      geometry: GeoJSON.LineString;
+      miles: number;
+      minutes: number;
+      summary: string;
+      steps: NavStep[];
+    }
+    const alternates: AltSummary[] = [];
+    if (Array.isArray(data.routes) && data.routes.length > 1) {
+      for (let i = 1; i < data.routes.length; i++) {
+        const alt = data.routes[i];
+        if (!alt?.geometry || typeof alt.distance !== 'number') continue;
+        // Mapbox Directions includes a 'weight_name' + per-leg 'summary'
+        // text like 'A8, B312' which is plenty descriptive for a one-line
+        // switch prompt.
+        const summary = (alt.legs || []).map((l: { summary?: string }) => l.summary || '').filter(Boolean).join(' / ').slice(0, 80) || 'alternate route';
+        const altSteps: NavStep[] = [];
+        if (Array.isArray(alt.legs)) {
+          for (const leg of alt.legs) {
+            for (const s of (leg.steps || [])) {
+              altSteps.push({
+                instruction: s.maneuver?.instruction || '',
+                distance: s.distance || 0,
+                duration: s.duration || 0,
+                location: s.maneuver?.location || [0, 0],
+                voice: (s.voiceInstructions || []).map((v: { distanceAlongGeometry: number; announcement: string }) => ({
+                  distanceAlongGeometry: v.distanceAlongGeometry,
+                  announcement: v.announcement,
+                })),
+              });
+            }
+          }
+        }
+        alternates.push({
+          geometry: alt.geometry,
+          miles: Number((alt.distance / 1609.34).toFixed(1)),
+          minutes: Math.max(1, Math.round(alt.duration / 60)),
+          summary,
+          steps: altSteps,
+        });
+      }
+    }
+
     return NextResponse.json({
       geometry: route.geometry,
       miles: Number(milesNum.toFixed(1)),
       minutes: Math.max(1, Math.round(route.duration / 60)),
       speedLimits,
       steps,
+      alternates,
     });
   } catch (err) {
     console.error('[drive/reroute] error:', err);

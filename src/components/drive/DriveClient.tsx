@@ -199,6 +199,16 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const isReroutingRef = useRef<boolean>(false);
   const routeFetchedAtRef = useRef<number>(0);
   const [liveMinutes, setLiveMinutes] = useState<number | null>(null);
+
+  interface AlternateRoute {
+    geometry: GeoJSON.LineString;
+    miles: number;
+    minutes: number;
+    summary: string;
+    steps: NavStep[];
+  }
+  // The faster alternate Mapbox suggested on the most recent re-fetch (if any).
+  const [pendingAlternate, setPendingAlternate] = useState<{ alt: AlternateRoute; savesMin: number } | null>(null);
   const [tripIntelligence, setTripIntelligence] = useState<TripIntelligence | null>(null);
 
   // Autocomplete state for the destination input.
@@ -397,9 +407,61 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       } else if (minutesDelta <= -5) {
         speak(`Traffic cleared. New ETA ${data.minutes} minutes.`, voiceMode, 'alert');
       }
+
+      // Faster-alternate detection: surface a 'switch?' prompt only when
+      // Mapbox returned an alternate that's at least 5 min faster than the
+      // route we're currently on. Skip on off-route reroutes (we just snapped
+      // to a fresh path; no point second-guessing it immediately).
+      if (reason === 'periodic' && Array.isArray(data.alternates) && data.alternates.length > 0) {
+        let bestAlt: AlternateRoute | null = null;
+        for (const a of data.alternates as AlternateRoute[]) {
+          if (typeof a?.minutes !== 'number') continue;
+          if (a.minutes < data.minutes - 4 && (!bestAlt || a.minutes < bestAlt.minutes)) bestAlt = a;
+        }
+        if (bestAlt) {
+          const savesMin = data.minutes - bestAlt.minutes;
+          setPendingAlternate({ alt: bestAlt, savesMin });
+          speak(`Faster route via ${bestAlt.summary} saves about ${savesMin} minutes. Tap Switch to take it.`, voiceMode, 'alert');
+        } else {
+          setPendingAlternate(null);
+        }
+      }
     } catch { /* silent */ }
     finally { isReroutingRef.current = false; }
   }, [origin, voiceMode]);
+
+  // Switch to a previously-suggested alternate route. Wipes the pending prompt
+  // and re-uses the normal reroute pipeline so all the side-effects (steps,
+  // speed limits, route line, ETA) stay consistent.
+  const switchToAlternate = useCallback(() => {
+    const pending = pendingAlternate;
+    if (!pending) return;
+    setPendingAlternate(null);
+    const map = mapRef.current;
+    if (map) {
+      const applyLayer = () => {
+        const src = map.getSource('route') as mapboxgl.GeoJSONSource | undefined;
+        if (src) src.setData({ type: 'Feature', geometry: pending.alt.geometry, properties: {} });
+      };
+      if (map.isStyleLoaded()) applyLayer();
+      else map.once('load', applyLayer);
+    }
+    routeCoordsRef.current = (pending.alt.geometry.coordinates as [number, number][]) || [];
+    stepsRef.current = pending.alt.steps || [];
+    currentStepIdxRef.current = 0;
+    spokenAnnouncementsRef.current.clear();
+    setCurrentStepInstruction(pending.alt.steps?.[0]?.instruction || '');
+    activeRouteRef.current = activeRouteRef.current ? {
+      ...activeRouteRef.current,
+      miles: pending.alt.miles,
+      minutes: pending.alt.minutes,
+    } : null;
+    setRoute((prev) => prev ? { ...prev, miles: pending.alt.miles, minutes: pending.alt.minutes, geometry: pending.alt.geometry, steps: pending.alt.steps } : prev);
+    routeFetchedAtRef.current = Date.now();
+    setLiveMinutes(pending.alt.minutes);
+    lastRerouteAtRef.current = Date.now();
+    speak(`Switched to faster route. ${pending.alt.minutes} minutes.`, voiceMode, 'alert');
+  }, [pendingAlternate, voiceMode]);
 
   const clearStoredPreferences = useCallback(() => {
     if (typeof window === 'undefined') return;
@@ -458,6 +520,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     lastRerouteAtRef.current = 0;
     routeFetchedAtRef.current = 0;
     setLiveMinutes(null);
+    setPendingAlternate(null);
   }, []);
 
   const setVehicle = useCallback((v: DriveVehicle | null) => {
@@ -783,6 +846,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         setLiveMinutes(data.minutes ?? null);
         offRouteSinceRef.current = null;
         lastRerouteAtRef.current = Date.now(); // initial route counts as "just fetched"
+        setPendingAlternate(null); // wipe any leftover prompt from a previous trip
         if (typeof data.miles === 'number' && typeof data.minutes === 'number') {
           activeRouteRef.current = {
             destination: data.destination,
@@ -1033,10 +1097,36 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       )}
 
       {/* Active turn-by-turn banner (top center, only while following) */}
-      {following && currentStepInstruction && (
+      {following && currentStepInstruction && !pendingAlternate && (
         <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 max-w-[88vw]">
           <div className="px-4 py-2 rounded-2xl bg-blue-600/95 backdrop-blur text-white shadow-xl text-center">
             <p className="text-sm font-semibold leading-tight">{currentStepInstruction}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Faster-route prompt (top center, takes priority over the maneuver banner) */}
+      {following && pendingAlternate && (
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 max-w-[92vw] w-[min(92vw,520px)]">
+          <div className="rounded-2xl bg-amber-500/95 backdrop-blur text-white shadow-xl p-3">
+            <p className="text-sm font-semibold leading-tight mb-1">⚡ Faster route — saves {pendingAlternate.savesMin} min</p>
+            <p className="text-xs opacity-90 leading-snug truncate mb-2">via {pendingAlternate.alt.summary}</p>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={switchToAlternate}
+                className="flex-1 py-2 rounded-lg bg-white text-amber-700 font-bold text-sm"
+              >
+                Switch
+              </button>
+              <button
+                type="button"
+                onClick={() => setPendingAlternate(null)}
+                className="px-4 py-2 rounded-lg bg-white/20 text-white font-medium text-sm"
+              >
+                Dismiss
+              </button>
+            </div>
           </div>
         </div>
       )}
