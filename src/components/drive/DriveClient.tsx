@@ -576,6 +576,9 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   }, []);
 
   const recognitionRef = useRef<any>(null);
+  // Ref-shim around submitTranscript so map event handlers (registered once
+  // on mount) can call the latest version without re-binding.
+  const submitTranscriptRef = useRef<((text: string, trustedDestination?: { lng: number; lat: number; placeName: string }) => void) | null>(null);
 
   // Geolocation
   useEffect(() => {
@@ -736,6 +739,43 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       }
     }, 1000);
 
+    // POI click — Mapbox Standard renders labels for restaurants, shops,
+    // landmarks. Make them tappable: query rendered features under the
+    // click and if there's a named POI, route to it via the trusted-coords
+    // path so we skip Claude's geocoding entirely.
+    const handleMapClick = (e: mapboxgl.MapMouseEvent) => {
+      const features = map.queryRenderedFeatures(e.point);
+      // Find the first feature with a meaningful name property.
+      // Mapbox Standard uses 'name' / 'name_en' on POI / place layers.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const poi = features.find((f: any) => {
+        const p = f.properties || {};
+        const cls = (p.class || p.maki || p.type || '').toString().toLowerCase();
+        const isPoiLayer = (f.layer?.id || '').toLowerCase().includes('poi') || (f.layer?.id || '').toLowerCase().includes('place');
+        return (p.name || p.name_en) && (isPoiLayer || ['restaurant', 'cafe', 'shop', 'fuel', 'parking'].some((k) => cls.includes(k)));
+      });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const props = (poi as any)?.properties;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const coords = ((poi as any)?.geometry?.type === 'Point') ? (poi as any).geometry.coordinates as [number, number] : null;
+      if (props && coords) {
+        const name = String(props.name_en || props.name);
+        // Quick popup so the user sees what they tapped before we route.
+        new mapboxgl.Popup({ offset: 12, closeOnClick: true })
+          .setLngLat(coords)
+          .setHTML(`<div style="font:600 12px system-ui;padding:2px 4px;">${name}</div><button id="drive-poi-route" style="margin-top:6px;padding:6px 10px;background:#2563eb;color:#fff;border:0;border-radius:6px;font:600 11px system-ui;cursor:pointer;">Route here →</button>`)
+          .addTo(map);
+        // Wire the button after the popup mounts.
+        setTimeout(() => {
+          const btn = document.getElementById('drive-poi-route');
+          if (btn) btn.onclick = () => {
+            submitTranscriptRef.current?.(name, { lng: coords[0], lat: coords[1], placeName: name });
+          };
+        }, 50);
+      }
+    };
+    map.on('click', handleMapClick);
+
     // On style load, add terrain + atmosphere so distant landscape looks volumetric.
     map.on('style.load', () => {
       if (!map.getSource('mapbox-dem')) {
@@ -795,20 +835,33 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
           id: 'route-line',
           type: 'line',
           source: 'route',
+          // Mapbox Standard exposes layer slots; 'top' renders the route
+          // above 3D buildings so the line is visible when zoomed in.
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          slot: 'top' as any,
           paint: {
             'line-color': '#3b82f6',
             'line-width': 6,
-            'line-opacity': 0.85,
+            'line-opacity': 0.9,
           },
           layout: { 'line-cap': 'round', 'line-join': 'round' },
-        });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any);
       }
       if (destMarker.current) destMarker.current.remove();
-      const el = document.createElement('div');
-      el.style.cssText = 'width:18px;height:18px;border-radius:50%;background:#ef4444;border:3px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3);';
-      destMarker.current = new mapboxgl.Marker({ element: el })
+      // Pin + always-visible label so the driver instantly knows what they're going to.
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:2px;pointer-events:auto;';
+      const label = document.createElement('div');
+      label.style.cssText = 'background:#111;color:#fff;font-size:11px;font-weight:700;line-height:1;padding:4px 8px;border-radius:9999px;box-shadow:0 2px 6px rgba(0,0,0,.35);max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;';
+      label.textContent = (destLabel || 'Destination').split(',')[0].slice(0, 30);
+      const pin = document.createElement('div');
+      pin.style.cssText = 'width:22px;height:22px;border-radius:50%;background:#ef4444;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4);';
+      wrap.appendChild(label);
+      wrap.appendChild(pin);
+      destMarker.current = new mapboxgl.Marker({ element: wrap, anchor: 'bottom' })
         .setLngLat([destCoords.lng, destCoords.lat])
-        .setPopup(new mapboxgl.Popup({ offset: 20 }).setText(destLabel))
+        .setPopup(new mapboxgl.Popup({ offset: 22 }).setText(destLabel))
         .addTo(map);
 
       // Fit to route bounds
@@ -965,6 +1018,10 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       // tap Hide to collapse to the compact ETA pill.
     }
   }, [origin, drawRoute, history, vehicle, voiceMode, language]);
+
+  // Keep the ref pointed at the latest submitTranscript so map event handlers
+  // call the up-to-date closure.
+  useEffect(() => { submitTranscriptRef.current = submitTranscript; }, [submitTranscript]);
 
   const pickSuggestion = useCallback(async (s: Suggestion) => {
     const text = s.placeFormatted ? `${s.name}, ${s.placeFormatted}` : s.name;
