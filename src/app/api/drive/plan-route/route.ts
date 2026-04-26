@@ -856,9 +856,13 @@ Rules:
   }
   const miles = milesNum.toFixed(1);
   const minutes = Math.max(1, Math.round(route.duration / 60));
-  const summary = isRoundTrip
-    ? `Round trip to ${placeName}. ${miles} miles total, about ${minutes} minutes.`
-    : `Route to ${placeName}. ${miles} miles, about ${minutes} minutes.`;
+  const summary = lang === 'de'
+    ? (isRoundTrip
+      ? `Hin- und Rückfahrt nach ${placeName}. ${(milesNum * 1.60934).toFixed(1)} km insgesamt, etwa ${minutes} Minuten.`
+      : `Route nach ${placeName}. ${(milesNum * 1.60934).toFixed(1)} km, etwa ${minutes} Minuten.`)
+    : (isRoundTrip
+      ? `Round trip to ${placeName}. ${miles} miles total, about ${minutes} minutes.`
+      : `Route to ${placeName}. ${miles} miles, about ${minutes} minutes.`);
 
   // Speed-aware effective MPG. Uses rolling avgSpeedMph if available;
   // otherwise falls back to combined. Above 70 mph, applies a 2%-per-mph
@@ -964,64 +968,159 @@ Rules:
               lat: gLat,
               milesFromStart: Math.round(targetMiles),
             });
-            fuelWarning = `You'll need gas — I marked ${gasFeature.text || 'a station'} about ${Math.round(targetMiles)} miles in.`;
+            fuelWarning = lang === 'de'
+              ? `Du brauchst Tanken — ${gasFeature.text || 'eine Tankstelle'} etwa ${Math.round(targetMiles * 1.60934)} km voraus markiert.`
+              : `You'll need gas — I marked ${gasFeature.text || 'a station'} about ${Math.round(targetMiles)} miles in.`;
           }
         }
       } catch { /* non-blocking */ }
     }
     if (!fuelStops.length) {
-      fuelWarning = `Heads up — trip is ${miles} miles but you only have about ${Math.round(fuelMilesRemaining)} miles of range.`;
+      fuelWarning = lang === 'de'
+        ? `Achtung — die Strecke ist ${(milesNum * 1.60934).toFixed(1)} km, aber du hast nur etwa ${Math.round(fuelMilesRemaining * 1.60934)} km Reichweite.`
+        : `Heads up — trip is ${miles} miles but you only have about ${Math.round(fuelMilesRemaining)} miles of range.`;
     }
   }
 
   // Parking lookup: if Claude flagged the destination as parking-challenged, pull
-  // 3 nearest parking options via Mapbox Geocoding, biased toward the destination.
-  interface ParkingOption { name: string; lng: number; lat: number; walkingBlocks: number }
+  // nearby parking options. Use Google Places (when available) for category-aware
+  // POI matching, fall back to Mapbox Geocoding. Bounded to ≤1km from the
+  // destination so a "parking" search doesn't return hits in the next country
+  // (caused the infamous "82880 blocks walk" bug).
+  interface ParkingOption { name: string; lng: number; lat: number; walkMeters: number; walkingBlocks: number }
   let parkingOptions: ParkingOption[] = [];
   let parkingNote = '';
   if (needsParkingSearch) {
-    try {
-      const parkUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent('parking')}.json?proximity=${destLng},${destLat}&limit=3&access_token=${MAPBOX_TOKEN}`;
-      const parkRes = await fetch(parkUrl);
-      if (parkRes.ok) {
-        const parkData = await parkRes.json();
-        for (const feat of parkData.features || []) {
-          const [pLng, pLat] = feat.center as [number, number];
-          const distMi = haversineMiles(destLat, destLng, pLat, pLng);
-          // Rough walking distance: 1 city block ≈ 0.05 mi, so multiply by 20.
-          parkingOptions.push({
-            name: feat.text || feat.place_name || 'Parking',
-            lng: pLng,
-            lat: pLat,
-            walkingBlocks: Math.max(1, Math.round(distMi * 20)),
-          });
+    const collected: ParkingOption[] = [];
+    // Try Google Places first — it understands "parking lot" / "parking garage".
+    if (process.env.GOOGLE_PLACES_API_KEY) {
+      try {
+        const fieldMask = 'places.id,places.displayName,places.formattedAddress,places.location';
+        const pRes = await fetch('https://places.googleapis.com/v1/places:searchText', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Goog-Api-Key': process.env.GOOGLE_PLACES_API_KEY,
+            'X-Goog-FieldMask': fieldMask,
+          },
+          body: JSON.stringify({
+            textQuery: 'parking',
+            languageCode: lang,
+            maxResultCount: 8,
+            locationBias: { circle: { center: { latitude: destLat, longitude: destLng }, radius: 1000 } },
+          }),
+          signal: AbortSignal.timeout(7000),
+        });
+        if (pRes.ok) {
+          const pData = await pRes.json();
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          for (const place of (pData.places || []) as any[]) {
+            const loc = place.location;
+            if (!loc) continue;
+            const distMi = haversineMiles(destLat, destLng, loc.latitude, loc.longitude);
+            if (distMi > 0.62) continue; // ~1 km cap
+            const meters = Math.round(distMi * 1609.34);
+            collected.push({
+              name: place.displayName?.text || 'Parking',
+              lng: loc.longitude,
+              lat: loc.latitude,
+              walkMeters: meters,
+              walkingBlocks: Math.max(1, Math.round(distMi * 20)),
+            });
+          }
         }
-      }
-    } catch { /* non-blocking */ }
+      } catch { /* non-blocking */ }
+    }
+    // Mapbox fallback: bbox-bounded so we don't pull hits from the next country.
+    if (collected.length === 0) {
+      try {
+        const pad = 0.01; // ~1.1 km
+        const bbox = `${destLng - pad},${destLat - pad},${destLng + pad},${destLat + pad}`;
+        const parkUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent('parking')}.json?proximity=${destLng},${destLat}&bbox=${bbox}&limit=8&access_token=${MAPBOX_TOKEN}`;
+        const parkRes = await fetch(parkUrl);
+        if (parkRes.ok) {
+          const parkData = await parkRes.json();
+          for (const feat of parkData.features || []) {
+            const [pLng, pLat] = feat.center as [number, number];
+            const distMi = haversineMiles(destLat, destLng, pLat, pLng);
+            if (distMi > 0.62) continue; // double-check; bbox can still leak
+            const meters = Math.round(distMi * 1609.34);
+            collected.push({
+              name: feat.text || feat.place_name || 'Parking',
+              lng: pLng,
+              lat: pLat,
+              walkMeters: meters,
+              walkingBlocks: Math.max(1, Math.round(distMi * 20)),
+            });
+          }
+        }
+      } catch { /* non-blocking */ }
+    }
+    // Sort by walking distance, take top 3.
+    parkingOptions = collected.sort((a, b) => a.walkMeters - b.walkMeters).slice(0, 3);
     if (parkingOptions.length > 0) {
       const closest = parkingOptions[0];
-      parkingNote = `Heads up, parking there is tough. I marked ${parkingOptions.length} nearby option${parkingOptions.length === 1 ? '' : 's'} — closest is ${closest.name}, about ${closest.walkingBlocks} block${closest.walkingBlocks === 1 ? '' : 's'} walk.`;
+      // Use meters for metric locales (DE), feet for US/UK.
+      const isMetric = lang === 'de';
+      const distLabel = isMetric
+        ? `${closest.walkMeters} m`
+        : `${Math.round(closest.walkMeters * 3.28084)} ft`;
+      parkingNote = lang === 'de'
+        ? `Achtung, das Parken ist dort schwierig. Ich habe ${parkingOptions.length} Option${parkingOptions.length === 1 ? '' : 'en'} markiert — am nächsten ist ${closest.name}, etwa ${distLabel} zu Fuß.`
+        : `Heads up, parking there is tough. I marked ${parkingOptions.length} nearby option${parkingOptions.length === 1 ? '' : 's'} — closest is ${closest.name}, about ${distLabel} walk.`;
     }
   }
 
   // Prefer Claude's conversational reply; fall back to the deterministic summary.
   // If we picked a Google Places match, lead with its name + rating so the
   // driver hears the actual place rather than Claude's generic 'a coffee shop'.
+  const isDe = lang === 'de';
+  const distanceUnit = isDe ? 'km' : 'miles';
+  const minutesWord = isDe ? 'Minuten' : 'minutes';
+  const roundTripWord = isDe ? ' Hin- und Rückfahrt' : ' round trip';
+  const milesDisplay = isDe ? (Number(miles) * 1.60934).toFixed(1) : miles;
+  // Use Google's openNow flag to flag closed venues up front — driver should
+  // know before getting there. Closed wins over rating in the spoken line.
+  const closedSuffix = isDe ? ' (zurzeit geschlossen)' : ' (currently closed)';
   const localSearchPrefix = localSearchPick
-    ? `Found ${localSearchPick.placeName}${typeof localSearchPick.rating === 'number' ? ` — rated ${localSearchPick.rating.toFixed(1)} stars` : ''}${localSearchPick.openNow === false ? ' (currently closed)' : ''}.`
+    ? (() => {
+        const nameLine = isDe ? `Gefunden: ${localSearchPick.placeName}` : `Found ${localSearchPick.placeName}`;
+        const ratingLine = typeof localSearchPick.rating === 'number'
+          ? (isDe ? ` — Bewertung ${localSearchPick.rating.toFixed(1)} Sterne` : ` — rated ${localSearchPick.rating.toFixed(1)} stars`)
+          : '';
+        const closedLine = localSearchPick.openNow === false ? closedSuffix : '';
+        return `${nameLine}${ratingLine}${closedLine}.`;
+      })()
     : '';
   const stopLine = intermediateStopResult
-    ? `Built in a stop at ${intermediateStopResult.name}${intermediateStopResult.rating ? `, rated ${intermediateStopResult.rating.toFixed(1)}` : ''}, about ${intermediateStopResult.milesIn} miles in.`
+    ? (() => {
+        const namePart = isDe
+          ? `Zwischenstopp eingebaut bei ${intermediateStopResult.name}`
+          : `Built in a stop at ${intermediateStopResult.name}`;
+        const ratingPart = intermediateStopResult.rating
+          ? (isDe ? `, Bewertung ${intermediateStopResult.rating.toFixed(1)}` : `, rated ${intermediateStopResult.rating.toFixed(1)}`)
+          : '';
+        const distPart = isDe
+          ? `, etwa ${(intermediateStopResult.milesIn * 1.60934).toFixed(0)} km voraus`
+          : `, about ${intermediateStopResult.milesIn} miles in`;
+        const closedPart = intermediateStopResult.openNow === false ? closedSuffix : '';
+        return `${namePart}${ratingPart}${distPart}${closedPart}.`;
+      })()
     : '';
+  const tripLine = `${milesDisplay} ${distanceUnit}${isRoundTrip ? roundTripWord : ''}, ${isDe ? 'etwa' : 'about'} ${minutes} ${minutesWord}.`;
   const baseReply = localSearchPrefix
-    ? `${localSearchPrefix} ${miles} miles${isRoundTrip ? ' round trip' : ''}, about ${minutes} minutes.`
+    ? `${localSearchPrefix} ${tripLine}`
     : (spokenReply
-      ? `${spokenReply} ${miles} miles${isRoundTrip ? ' round trip' : ''}, about ${minutes} minutes.`
+      ? `${spokenReply} ${tripLine}`
       : summary);
   const fuelLineSpoken = fuelNeeded
-    ? fuelNeeded.tankPercent != null
-      ? `That'll use about ${fuelNeeded.gallons} gallons — roughly ${fuelNeeded.tankPercent}% of your tank.`
-      : `That'll use about ${fuelNeeded.gallons} gallons.`
+    ? (isDe
+      ? (fuelNeeded.tankPercent != null
+        ? `Verbrauch etwa ${(fuelNeeded.gallons * 3.785).toFixed(1)} Liter — ungefähr ${fuelNeeded.tankPercent}% deines Tanks.`
+        : `Verbrauch etwa ${(fuelNeeded.gallons * 3.785).toFixed(1)} Liter.`)
+      : (fuelNeeded.tankPercent != null
+        ? `That'll use about ${fuelNeeded.gallons} gallons — roughly ${fuelNeeded.tankPercent}% of your tank.`
+        : `That'll use about ${fuelNeeded.gallons} gallons.`))
     : '';
   const parts = [baseReply];
   if (stopLine) parts.push(stopLine);
