@@ -189,6 +189,16 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const currentStepIdxRef = useRef<number>(0);
   const spokenAnnouncementsRef = useRef<Set<string>>(new Set());
   const [currentStepInstruction, setCurrentStepInstruction] = useState<string>('');
+  // Reroute infrastructure — preserves the original destination + prefs across
+  // route changes so the driver can drift off and snap back to the SAME goal.
+  const originalDestRef = useRef<{ lng: number; lat: number; placeName: string } | null>(null);
+  const originalRoutePrefsRef = useRef<{ avoidHighways: boolean; avoidTolls: boolean; avoidFerries: boolean }>({ avoidHighways: false, avoidTolls: false, avoidFerries: false });
+  const isRoundTripRef = useRef<boolean>(false);
+  const lastRerouteAtRef = useRef<number>(0);
+  const offRouteSinceRef = useRef<number | null>(null);
+  const isReroutingRef = useRef<boolean>(false);
+  const routeFetchedAtRef = useRef<number>(0);
+  const [liveMinutes, setLiveMinutes] = useState<number | null>(null);
   const [tripIntelligence, setTripIntelligence] = useState<TripIntelligence | null>(null);
 
   // Autocomplete state for the destination input.
@@ -305,6 +315,92 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     map.flyTo({ center: [origin.lng, origin.lat], zoom: 16, pitch: 60, speed: 1.4, essential: true });
   }, [origin]);
 
+  // Periodic traffic re-fetch + ETA decrement while following.
+  useEffect(() => {
+    if (!following) return;
+    const refetchTimer = setInterval(() => {
+      if (origin && originalDestRef.current) reroute('periodic');
+    }, 150_000); // every 2.5 min
+    const etaTimer = setInterval(() => {
+      const minutes = activeRouteRef.current?.minutes;
+      const fetchedAt = routeFetchedAtRef.current;
+      if (!minutes || !fetchedAt) return;
+      const elapsedMin = (Date.now() - fetchedAt) / 60_000;
+      const projected = Math.max(0, Math.round(minutes - elapsedMin));
+      setLiveMinutes(projected);
+    }, 30_000);
+    return () => { clearInterval(refetchTimer); clearInterval(etaTimer); };
+    // reroute is stable enough (depends on origin + voiceMode) that we don't
+    // need to recreate timers on every re-render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [following]);
+
+  // Reroute helper — called both on off-route detection and on the periodic
+  // refresh timer. Hits /api/drive/reroute (no Claude, no geocoding) and
+  // updates the active route + map without showing a "planning" spinner.
+  const reroute = useCallback(async (reason: 'off_route' | 'periodic') => {
+    if (isReroutingRef.current) return;
+    if (!origin || !originalDestRef.current) return;
+    // Throttle: at most 1 reroute every 25s regardless of trigger.
+    if (Date.now() - lastRerouteAtRef.current < 25_000) return;
+    isReroutingRef.current = true;
+    lastRerouteAtRef.current = Date.now();
+    try {
+      const res = await fetch('/api/drive/reroute', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          origin,
+          destination: originalDestRef.current,
+          isRoundTrip: isRoundTripRef.current,
+          routePreferences: originalRoutePrefsRef.current,
+        }),
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (data.error || !data.geometry) return;
+
+      // Compute traffic delta vs. the previously-known minutes.
+      const oldMinutes = activeRouteRef.current?.minutes ?? data.minutes;
+      const minutesDelta = data.minutes - oldMinutes;
+
+      // Update everything that depends on the route.
+      const map = mapRef.current;
+      if (map && originalDestRef.current) {
+        const applyLayer = () => {
+          const src = map.getSource('route') as mapboxgl.GeoJSONSource | undefined;
+          if (src) src.setData({ type: 'Feature', geometry: data.geometry, properties: {} });
+        };
+        if (map.isStyleLoaded()) applyLayer();
+        else map.once('load', applyLayer);
+      }
+      routeCoordsRef.current = (data.geometry.coordinates as [number, number][]) || [];
+      speedLimitsRef.current = data.speedLimits || [];
+      stepsRef.current = data.steps || [];
+      currentStepIdxRef.current = 0;
+      spokenAnnouncementsRef.current.clear();
+      setCurrentStepInstruction(data.steps?.[0]?.instruction || '');
+      activeRouteRef.current = activeRouteRef.current ? {
+        ...activeRouteRef.current,
+        miles: data.miles,
+        minutes: data.minutes,
+      } : null;
+      setRoute((prev) => prev ? { ...prev, miles: data.miles, minutes: data.minutes, geometry: data.geometry, steps: data.steps, speedLimits: data.speedLimits } : prev);
+      routeFetchedAtRef.current = Date.now();
+      setLiveMinutes(data.minutes);
+
+      // Spoken alert when meaningfully relevant.
+      if (reason === 'off_route') {
+        speak('Rerouting.', voiceMode, 'alert');
+      } else if (minutesDelta >= 5) {
+        speak(`Traffic added about ${minutesDelta} minutes. New ETA ${data.minutes} minutes.`, voiceMode, 'alert');
+      } else if (minutesDelta <= -5) {
+        speak(`Traffic cleared. New ETA ${data.minutes} minutes.`, voiceMode, 'alert');
+      }
+    } catch { /* silent */ }
+    finally { isReroutingRef.current = false; }
+  }, [origin, voiceMode]);
+
   const clearStoredPreferences = useCallback(() => {
     if (typeof window === 'undefined') return;
     if (!window.confirm('Clear all saved driving preferences and trip history?\n\nThis wipes anything Au7o has learned about how you like to drive on this device. You\'ll start fresh.')) return;
@@ -354,6 +450,14 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     setTranscript('');
     setTypedInput('');
     setBottomExpanded(true);
+    // Reset reroute state so the next trip starts clean.
+    originalDestRef.current = null;
+    isRoundTripRef.current = false;
+    originalRoutePrefsRef.current = { avoidHighways: false, avoidTolls: false, avoidFerries: false };
+    offRouteSinceRef.current = null;
+    lastRerouteAtRef.current = 0;
+    routeFetchedAtRef.current = 0;
+    setLiveMinutes(null);
   }, []);
 
   const setVehicle = useCallback((v: DriveVehicle | null) => {
@@ -452,12 +556,38 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             }
           }
         }
+
+        // Off-route detection: if we've drifted > 60m from the route line for
+        // 8+ seconds, trigger an auto-reroute.
+        if (following && coords.length > 1) {
+          const haver = (lat1: number, lng1: number, lat2: number, lng2: number) => {
+            const R = 6371_000;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLng = (lng2 - lng1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+            return 2 * R * Math.asin(Math.sqrt(a));
+          };
+          let nearestMeters = Infinity;
+          for (let i = 0; i < coords.length; i++) {
+            const d = haver(lat, lng, coords[i][1], coords[i][0]);
+            if (d < nearestMeters) nearestMeters = d;
+          }
+          if (nearestMeters > 60) {
+            if (offRouteSinceRef.current == null) offRouteSinceRef.current = Date.now();
+            else if (Date.now() - offRouteSinceRef.current > 8000) {
+              offRouteSinceRef.current = null;
+              reroute('off_route');
+            }
+          } else {
+            offRouteSinceRef.current = null;
+          }
+        }
       },
       (err) => setLocationError(err.message),
       { enableHighAccuracy: true, maximumAge: 5000, timeout: 10000 },
     );
     return () => navigator.geolocation.clearWatch(watchId);
-  }, [following, voiceMode]);
+  }, [following, voiceMode, reroute]);
 
   // Map init
   useEffect(() => {
@@ -633,6 +763,26 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         setBottomExpanded(true); // show pre-trip intelligence panel before driver hits Drive
         setCurrentLimit(null);
         setRouteRating(null); // fresh route, no rating yet
+        // Snapshot the original destination + prefs so reroutes target the SAME goal.
+        if (data.destinationCoords) {
+          originalDestRef.current = {
+            lng: data.destinationCoords.lng,
+            lat: data.destinationCoords.lat,
+            placeName: data.destination || '',
+          };
+        }
+        isRoundTripRef.current = !!data.isRoundTrip;
+        if (data.routePreferences) {
+          originalRoutePrefsRef.current = {
+            avoidHighways: !!data.routePreferences.avoidHighways,
+            avoidTolls: !!data.routePreferences.avoidTolls,
+            avoidFerries: !!data.routePreferences.avoidFerries,
+          };
+        }
+        routeFetchedAtRef.current = Date.now();
+        setLiveMinutes(data.minutes ?? null);
+        offRouteSinceRef.current = null;
+        lastRerouteAtRef.current = Date.now(); // initial route counts as "just fetched"
         if (typeof data.miles === 'number' && typeof data.minutes === 'number') {
           activeRouteRef.current = {
             destination: data.destination,
@@ -907,7 +1057,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             >
               <div className="min-w-0">
                 <div className="flex items-center gap-2 text-gray-900">
-                  <span className="text-base font-bold">{route.minutes} min</span>
+                  <span className="text-base font-bold">{liveMinutes ?? route.minutes} min</span>
                   <span className="text-gray-400">·</span>
                   <span className="text-sm font-medium text-gray-700">{route.miles} mi</span>
                 </div>
@@ -951,7 +1101,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
                   className="w-full flex items-center justify-between gap-2 mb-2 px-1"
                 >
                   <div className="min-w-0 text-left">
-                    <span className="text-sm font-semibold text-gray-900">{route.minutes} min · {route.miles} mi</span>
+                    <span className="text-sm font-semibold text-gray-900">{liveMinutes ?? route.minutes} min · {route.miles} mi</span>
                     <p className="text-[11px] text-gray-500 truncate">{route.destination}</p>
                   </div>
                   <span className="text-[11px] text-gray-400 flex-shrink-0">Hide ▾</span>
