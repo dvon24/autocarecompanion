@@ -608,8 +608,8 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       parkingMarkers.current = [];
       intermediateMarker.current?.remove();
       intermediateMarker.current = null;
-      cameraMarkers.current.forEach((m) => m.remove());
-      cameraMarkers.current = [];
+      cameraMarkersById.current.forEach((m) => m.remove());
+      cameraMarkersById.current.clear();
       camerasRef.current = [];
       announcedCamerasRef.current.clear();
     }
