@@ -185,12 +185,17 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const fuelMarkers = useRef<mapboxgl.Marker[]>([]);
   const parkingMarkers = useRef<mapboxgl.Marker[]>([]);
   const intermediateMarker = useRef<mapboxgl.Marker | null>(null);
-  // Speed cameras along the route + which ones we've already announced this session.
+  // Speed cameras: keep the FULL fetched set in memory but render markers
+  // ONLY for cameras the driver is approaching (within RENDER_RADIUS_M).
+  // This keeps the map clean and avoids rendering hundreds of markers in
+  // dense city areas.
   interface CameraEntry { id: string; lat: number; lng: number; type: string; maxspeed?: string }
-  const cameraMarkers = useRef<mapboxgl.Marker[]>([]);
   const camerasRef = useRef<CameraEntry[]>([]);
+  const cameraMarkersById = useRef<Map<string, mapboxgl.Marker>>(new Map());
   const cameraSuppressedRef = useRef<boolean>(false);
   const announcedCamerasRef = useRef<Set<string>>(new Set());
+  const lastVicinityFetchAtRef = useRef<number>(0);
+  const lastVicinityFetchOriginRef = useRef<{ lng: number; lat: number } | null>(null);
 
   const [origin, setOrigin] = useState<{ lng: number; lat: number } | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
@@ -397,6 +402,37 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     userPanningRef.current = false; // tapping recenter explicitly resumes follow
     map.flyTo({ center: [origin.lng, origin.lat], zoom: 16, pitch: 60, speed: 1.4, essential: true });
   }, [origin]);
+
+  // Vicinity-based camera fetch — runs while NO route is active so the
+  // driver still gets warnings during free-roaming. ~5km bbox around the
+  // current GPS, throttled to once a minute and only refetched after the
+  // driver moves > 1km from the last fetch origin.
+  useEffect(() => {
+    if (!origin || route?.geometry) return; // route-based fetch handles routes
+    const minMs = 60_000;
+    const minMovementDeg = 0.01; // ~1.1 km
+    const last = lastVicinityFetchOriginRef.current;
+    const movedFar = !last
+      || Math.abs(last.lng - origin.lng) > minMovementDeg
+      || Math.abs(last.lat - origin.lat) > minMovementDeg;
+    if (!movedFar && Date.now() - lastVicinityFetchAtRef.current < minMs) return;
+
+    lastVicinityFetchAtRef.current = Date.now();
+    lastVicinityFetchOriginRef.current = { lng: origin.lng, lat: origin.lat };
+
+    const pad = 0.05; // ~5 km bbox
+    fetch('/api/drive/cameras', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ bbox: [origin.lat - pad, origin.lng - pad, origin.lat + pad, origin.lng + pad] }),
+    }).then((r) => r.ok ? r.json() : null).then((cd) => {
+      if (!cd || !Array.isArray(cd.cameras)) return;
+      cameraSuppressedRef.current = !!cd.suppressed;
+      // Just cache; markers light up in the GPS watcher when the driver
+      // approaches an individual camera. No upfront DOM cost.
+      camerasRef.current = cd.cameras;
+    }).catch(() => { /* silent */ });
+  }, [origin, route?.geometry]);
 
   // Periodic traffic re-fetch + ETA decrement while following.
   useEffect(() => {
@@ -714,10 +750,12 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
           }
         }
 
-        // Speed camera proximity: if any unannounced camera is within 500m
-        // ahead, speak a one-time alert. Restricted-country wording is
-        // softened to 'enforcement zone' instead of 'camera'.
-        if (following && camerasRef.current.length > 0) {
+        // Passive camera rendering: only show a marker when the driver is
+        // within RENDER_RADIUS_M of a camera; remove it when they're past.
+        // TTS warning still fires once per camera at WARN_RADIUS_M.
+        if (camerasRef.current.length > 0 && mapRef.current) {
+          const RENDER_RADIUS_M = 1500;
+          const WARN_RADIUS_M = 500;
           const haver = (la1: number, lo1: number, la2: number, lo2: number) => {
             const R = 6371_000;
             const dLat = (la2 - la1) * Math.PI / 180;
@@ -725,18 +763,46 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
             const a = Math.sin(dLat / 2) ** 2 + Math.cos(la1 * Math.PI / 180) * Math.cos(la2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
             return 2 * R * Math.asin(Math.sqrt(a));
           };
+          const map = mapRef.current;
+          const seenInRange = new Set<string>();
           for (const cam of camerasRef.current) {
-            if (announcedCamerasRef.current.has(cam.id)) continue;
             const distM = haver(lat, lng, cam.lat, cam.lng);
-            if (distM <= 500) {
+            if (distM > RENDER_RADIUS_M) continue;
+            seenInRange.add(cam.id);
+
+            // Render the marker if it isn't already on the map.
+            if (!cameraMarkersById.current.has(cam.id)) {
+              const el = document.createElement('div');
+              const isSchoolZone = cam.type === 'school-zone';
+              el.style.cssText = `width:24px;height:24px;border-radius:50%;background:${isSchoolZone ? '#facc15' : '#dc2626'};border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:12px;`;
+              el.textContent = '📷';
+              const labelType = cam.type === 'red-light' ? 'red-light camera'
+                : cam.type === 'avg-speed' ? 'average-speed enforcement'
+                : cam.type === 'school-zone' ? 'school zone enforcement'
+                : cameraSuppressedRef.current ? 'speed enforcement zone'
+                : 'speed camera';
+              const popup = new mapboxgl.Popup({ offset: 18, maxWidth: '240px' })
+                .setHTML(`<div style="font:600 12px system-ui;padding:2px 4px;">${labelType}</div>${cam.maxspeed ? `<div style="font:400 11px system-ui;color:#6b7280;padding:0 4px 4px;">Limit: ${cam.maxspeed}</div>` : ''}<div style="font:400 10px system-ui;color:#9ca3af;padding:0 4px 4px;">community data, may be inaccurate</div>`);
+              const marker = new mapboxgl.Marker({ element: el }).setLngLat([cam.lng, cam.lat]).setPopup(popup).addTo(map);
+              cameraMarkersById.current.set(cam.id, marker);
+            }
+
+            // TTS once per session per camera at the closer warn radius.
+            if (following && distM <= WARN_RADIUS_M && !announcedCamerasRef.current.has(cam.id)) {
               announcedCamerasRef.current.add(cam.id);
               const isSuppressed = cameraSuppressedRef.current;
               const label = cam.type === 'school-zone' ? 'School zone enforcement'
                 : cam.type === 'red-light' ? 'Red-light camera'
                 : isSuppressed ? 'Speed enforcement zone'
                 : 'Speed camera';
-              const dist = Math.round(distM);
-              speak(`${label} ahead in ${dist} meters.`, voiceMode, 'alert', language);
+              speak(`${label} ahead in ${Math.round(distM)} meters.`, voiceMode, 'alert', language);
+            }
+          }
+          // Remove markers for cameras that are no longer in render range.
+          for (const [id, marker] of cameraMarkersById.current) {
+            if (!seenInRange.has(id)) {
+              marker.remove();
+              cameraMarkersById.current.delete(id);
             }
           }
         }
@@ -1277,11 +1343,11 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
           }
 
           // Speed cameras along the route — fetch the bbox from OSM/Overpass
-          // and render red 📷 pins. In restricted countries (DE, FR, CH...)
-          // they render with neutral 'enforcement zone' wording instead of
-          // 'camera ahead' to stay on the right side of local law.
-          cameraMarkers.current.forEach((m) => m.remove());
-          cameraMarkers.current = [];
+          // and STORE them. Markers themselves are only rendered as the
+          // driver approaches (handled in the GPS watcher) so dense urban
+          // areas don't drop hundreds of red pins on the map at once.
+          cameraMarkersById.current.forEach((m) => m.remove());
+          cameraMarkersById.current.clear();
           camerasRef.current = [];
           announcedCamerasRef.current.clear();
           if (data.geometry && data.geometry.coordinates) {
@@ -1300,25 +1366,10 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ bbox: [minLat - pad, minLng - pad, maxLat + pad, maxLng + pad] }),
             }).then((r) => r.ok ? r.json() : null).then((cd) => {
-              if (!cd || !Array.isArray(cd.cameras) || !mapRef.current) return;
+              if (!cd || !Array.isArray(cd.cameras)) return;
               cameraSuppressedRef.current = !!cd.suppressed;
               camerasRef.current = cd.cameras;
-              for (const cam of cd.cameras as CameraEntry[]) {
-                const el = document.createElement('div');
-                const isSchoolZone = cam.type === 'school-zone';
-                el.style.cssText = `width:24px;height:24px;border-radius:50%;background:${isSchoolZone ? '#facc15' : '#dc2626'};border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:12px;`;
-                el.textContent = '📷';
-                const labelType = cam.type === 'red-light' ? 'red-light camera'
-                  : cam.type === 'avg-speed' ? 'average-speed enforcement'
-                  : cam.type === 'school-zone' ? 'school zone enforcement'
-                  : cd.suppressed ? 'speed enforcement zone'
-                  : 'speed camera';
-                const popup = new mapboxgl.Popup({ offset: 18, maxWidth: '240px' })
-                  .setHTML(`<div style="font:600 12px system-ui;padding:2px 4px;">${labelType}</div>${cam.maxspeed ? `<div style="font:400 11px system-ui;color:#6b7280;padding:0 4px 4px;">Limit: ${cam.maxspeed}</div>` : ''}<div style="font:400 10px system-ui;color:#9ca3af;padding:0 4px 4px;">community data, may be inaccurate</div>`);
-                const marker = new mapboxgl.Marker({ element: el }).setLngLat([cam.lng, cam.lat]).setPopup(popup).addTo(mapRef.current);
-                cameraMarkers.current.push(marker);
-              }
-              console.log(`[/drive] ${cd.cameras.length} cameras in bbox (suppressed=${cd.suppressed})`);
+              console.log(`[/drive] ${cd.cameras.length} cameras cached for route bbox (suppressed=${cd.suppressed})`);
             }).catch(() => { /* silent */ });
           }
 
