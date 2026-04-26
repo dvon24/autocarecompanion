@@ -55,6 +55,9 @@ interface PlanRouteBody {
   trustedDestination?: { lng: number; lat: number; placeName: string } | null;
   /** ISO-639 language code for Claude's spoken reply ('en' or 'de' currently). */
   language?: 'en' | 'de';
+  /** Rolling average driving speed in mph from the GPS watcher. Used to pick
+   * the right MPG band (city / combined / highway) for fuel projection. */
+  avgSpeedMph?: number | null;
 }
 
 /**
@@ -857,20 +860,47 @@ Rules:
     ? `Round trip to ${placeName}. ${miles} miles total, about ${minutes} minutes.`
     : `Route to ${placeName}. ${miles} miles, about ${minutes} minutes.`;
 
-  // Fuel-needed estimate: trip miles ÷ vehicle's combined MPG.
-  let fuelNeeded: { gallons: number; tankPercent: number | null; mpgUsed: number } | null = null;
+  // Speed-aware effective MPG. Uses rolling avgSpeedMph if available;
+  // otherwise falls back to combined. Above 70 mph, applies a 2%-per-mph
+  // penalty to model the real-world drag/RPM penalty EPA highway numbers
+  // understate.
+  function effectiveMpg(city?: number | null, combined?: number | null, highway?: number | null, avg?: number | null): number | null {
+    const c = typeof combined === 'number' ? combined : null;
+    if (typeof avg !== 'number' || avg <= 0) return c;
+    let base: number | null = null;
+    if (avg < 30) base = (typeof city === 'number' ? city : c);
+    else if (avg < 55) base = c;
+    else base = (typeof highway === 'number' ? highway : c);
+    if (base == null) return c;
+    if (avg > 70) {
+      const penalty = 1 - Math.min(0.35, (avg - 70) * 0.02);
+      base = base * penalty;
+    }
+    return Math.max(5, Math.round(base * 10) / 10);
+  }
+
+  // Fuel-needed estimate: trip miles ÷ vehicle's effective MPG (speed-aware).
+  let fuelNeeded: { gallons: number; tankPercent: number | null; mpgUsed: number; avgSpeedMph: number | null } | null = null;
+  let vehicleCity: number | null = null;
+  let vehicleCombined: number | null = null;
+  let vehicleHighway: number | null = null;
+  let vehicleTank: number | null = null;
   if (body.vehicle) {
     try {
       const { getVehicleSpecs } = await import('@/lib/maintenance');
       const vSpecs = getVehicleSpecs({ year: body.vehicle.year, make: body.vehicle.make, model: body.vehicle.model, trim: body.vehicle.trim });
-      const mpg = vSpecs?.fuelEconomy?.combined;
-      const tank = vSpecs?.tankCapacity?.gallons;
+      vehicleCity = vSpecs?.fuelEconomy?.city ?? null;
+      vehicleCombined = vSpecs?.fuelEconomy?.combined ?? null;
+      vehicleHighway = vSpecs?.fuelEconomy?.highway ?? null;
+      vehicleTank = vSpecs?.tankCapacity?.gallons ?? null;
+      const mpg = effectiveMpg(vehicleCity, vehicleCombined, vehicleHighway, body.avgSpeedMph);
       if (mpg && mpg > 0) {
         const gallons = milesNum / mpg;
         fuelNeeded = {
           gallons: Math.round(gallons * 10) / 10,
-          tankPercent: tank ? Math.round((gallons / tank) * 100) : null,
+          tankPercent: vehicleTank ? Math.round((gallons / vehicleTank) * 100) : null,
           mpgUsed: mpg,
+          avgSpeedMph: typeof body.avgSpeedMph === 'number' ? Math.round(body.avgSpeedMph) : null,
         };
       }
     } catch { /* non-blocking */ }
@@ -906,20 +936,15 @@ Rules:
   let fuelStops: FuelStop[] = [];
   let fuelWarning = '';
   // Auto-default fuel range from the selected vehicle's specs when the
-  // user didn't mention how much they have. We assume a full tank at trip
-  // start (90% to be conservative) so longer trips trigger the gas-stop
-  // logic without the driver needing to say 'I have X miles left.'
-  if (fuelMilesRemaining == null && body.vehicle) {
-    try {
-      const { getVehicleSpecs } = await import('@/lib/maintenance');
-      const vSpecs = getVehicleSpecs({ year: body.vehicle.year, make: body.vehicle.make, model: body.vehicle.model, trim: body.vehicle.trim });
-      const mpg = vSpecs?.fuelEconomy?.combined;
-      const tank = vSpecs?.tankCapacity?.gallons;
-      if (mpg && tank && mpg * tank > 0) {
-        fuelMilesRemaining = Math.round(mpg * tank * 0.9);
-        console.log(`[drive/plan-route] Auto fuel range from vehicle: ${fuelMilesRemaining} mi (${mpg} mpg × ${tank} gal × 0.9)`);
-      }
-    } catch { /* non-blocking */ }
+  // user didn't mention how much they have. Uses the speed-aware effective
+  // MPG so a Challenger doing 80 mph projects a shorter realistic range
+  // than its 19 mpg combined would suggest.
+  if (fuelMilesRemaining == null && vehicleTank) {
+    const mpg = effectiveMpg(vehicleCity, vehicleCombined, vehicleHighway, body.avgSpeedMph);
+    if (mpg && mpg * vehicleTank > 0) {
+      fuelMilesRemaining = Math.round(mpg * vehicleTank * 0.9);
+      console.log(`[drive/plan-route] Auto fuel range: ${fuelMilesRemaining} mi (${mpg} mpg × ${vehicleTank} gal × 0.9${typeof body.avgSpeedMph === 'number' ? ` at avg ${Math.round(body.avgSpeedMph)} mph` : ''})`);
+    }
   }
   if (fuelMilesRemaining != null && fuelMilesRemaining > 0 && milesNum > fuelMilesRemaining) {
     const targetMiles = Math.max(5, Math.min(fuelMilesRemaining * 0.7, milesNum - 2));

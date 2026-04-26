@@ -88,7 +88,7 @@ interface RouteResponse {
   speedLimits?: SpeedLimitEntry[];
   steps?: NavStep[];
   tripIntelligence?: TripIntelligence | null;
-  fuelNeeded?: { gallons: number; tankPercent: number | null; mpgUsed: number } | null;
+  fuelNeeded?: { gallons: number; tankPercent: number | null; mpgUsed: number; avgSpeedMph: number | null } | null;
   isRoundTrip?: boolean;
   routePreferences?: { avoidHighways: boolean; avoidTolls: boolean; avoidFerries: boolean };
   intermediateStop?: { name: string; address: string; lng: number; lat: number; rating: number | null; ratingCount: number | null; openNow: boolean | null; milesIn: number } | null;
@@ -189,6 +189,12 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const [origin, setOrigin] = useState<{ lng: number; lat: number } | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
   const [driverSpeedMph, setDriverSpeedMph] = useState<number | null>(null);
+  // Rolling 60-sample window of recent driving speed (~30s of GPS ticks),
+  // used to project real-world MPG more accurately than the EPA combined
+  // number. Idle/stopped samples (< 1 mph) are filtered out so red lights
+  // don't drag the average toward zero.
+  const speedSamplesRef = useRef<number[]>([]);
+  const avgSpeedMphRef = useRef<number | null>(null);
   const routeCoordsRef = useRef<[number, number][]>([]);
   const speedLimitsRef = useRef<SpeedLimitEntry[]>([]);
   const [currentLimit, setCurrentLimit] = useState<SpeedLimitEntry | null>(null);
@@ -617,7 +623,15 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
 
         // Browser geolocation gives speed in m/s (null if unavailable/parked).
         if (typeof pos.coords.speed === 'number' && !Number.isNaN(pos.coords.speed)) {
-          setDriverSpeedMph(Math.max(0, pos.coords.speed * 2.23694));
+          const mph = Math.max(0, pos.coords.speed * 2.23694);
+          setDriverSpeedMph(mph);
+          // Add to rolling window for MPG projection (only when actually moving).
+          if (mph > 1) {
+            speedSamplesRef.current.push(mph);
+            if (speedSamplesRef.current.length > 60) speedSamplesRef.current.shift();
+            const sum = speedSamplesRef.current.reduce((a, b) => a + b, 0);
+            avgSpeedMphRef.current = sum / speedSamplesRef.current.length;
+          }
         }
 
         // Resolve current speed limit by finding the nearest route segment.
@@ -1111,6 +1125,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
           routeHistory: routeHistoryRef.current.slice(-10),
           trustedDestination: trustedDestination || null,
           language,
+          avgSpeedMph: avgSpeedMphRef.current,
         }),
       });
       const data = (await res.json()) as RouteResponse;
@@ -1624,7 +1639,8 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
                   <p className="text-xs text-gray-700 mb-1.5 leading-snug">
                     ⛽ ≈ {route.fuelNeeded.gallons} gal needed
                     {route.fuelNeeded.tankPercent != null ? ` (~${route.fuelNeeded.tankPercent}% of tank)` : ''}
-                    {' '}at {route.fuelNeeded.mpgUsed} mpg combined
+                    {' '}at {route.fuelNeeded.mpgUsed} mpg
+                    {route.fuelNeeded.avgSpeedMph != null ? ` (your avg ${route.fuelNeeded.avgSpeedMph} mph)` : ' (combined)'}
                   </p>
                 )}
                 {tripIntelligence?.delayWarning && (
