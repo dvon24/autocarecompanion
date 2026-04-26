@@ -739,29 +739,11 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       }
     }, 1000);
 
-    // POI click — Mapbox Standard renders labels for restaurants, shops,
-    // landmarks, parks, etc. Look at every feature under the click for the
-    // first one that has both a 'name' property and a Point geometry. We
-    // intentionally don't filter by layer ID because Mapbox Standard's
-    // internal POI layer names are versioned and unreliable to match against.
-    const handleMapClick = (e: mapboxgl.MapMouseEvent) => {
-      // Slightly larger query box so a fingertip catches the icon.
-      const pad = 6;
-      const bbox: [mapboxgl.PointLike, mapboxgl.PointLike] = [
-        [e.point.x - pad, e.point.y - pad],
-        [e.point.x + pad, e.point.y + pad],
-      ];
-      const features = map.queryRenderedFeatures(bbox);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const poi: any = features.find((f: any) => {
-        const p = f.properties || {};
-        const hasName = !!(p.name || p.name_en);
-        const isPoint = f.geometry?.type === 'Point';
-        return hasName && isPoint;
-      });
-      if (!poi) return;
-      const name = String(poi.properties.name_en || poi.properties.name);
-      const coords = poi.geometry.coordinates as [number, number];
+    // POI clicks via Mapbox's Interactions API — the official path for
+    // tapping the built-in POI featureset on Standard Style. Falls back to
+    // a manual queryRenderedFeatures handler if addInteraction isn't
+    // available on this SDK version.
+    const showPoiPopup = (name: string, coords: [number, number]) => {
       const popup = new mapboxgl.Popup({ offset: 12, closeOnClick: true })
         .setLngLat(coords)
         .setHTML(`
@@ -769,19 +751,56 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
           <button id="drive-poi-route" style="width:100%;padding:7px 10px;background:#2563eb;color:#fff;border:0;border-radius:8px;font:700 12px system-ui;cursor:pointer;">Route here →</button>
         `)
         .addTo(map);
-      // Wire the button after the popup mounts.
-      const wireBtn = () => {
+      requestAnimationFrame(() => {
         const btn = document.getElementById('drive-poi-route');
-        if (btn) {
-          btn.onclick = () => {
-            popup.remove();
-            submitTranscriptRef.current?.(name, { lng: coords[0], lat: coords[1], placeName: name });
-          };
-        }
-      };
-      requestAnimationFrame(wireBtn);
+        if (btn) btn.onclick = () => {
+          popup.remove();
+          submitTranscriptRef.current?.(name, { lng: coords[0], lat: coords[1], placeName: name });
+        };
+      });
     };
-    map.on('click', handleMapClick);
+
+    let interactionsRegistered = false;
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const m: any = map;
+      if (typeof m.addInteraction === 'function') {
+        m.addInteraction('au7o-poi-click', {
+          type: 'click',
+          target: { featuresetId: 'poi', importId: 'basemap' },
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          handler: (e: any) => {
+            const f = e?.feature;
+            const name = f?.properties?.name_en || f?.properties?.name;
+            const coords = f?.geometry?.coordinates as [number, number] | undefined;
+            if (name && coords) showPoiPopup(String(name), coords);
+          },
+        });
+        interactionsRegistered = true;
+      }
+    } catch { /* fall through to manual handler */ }
+
+    // Fallback manual handler if Interactions API unavailable.
+    if (!interactionsRegistered) {
+      const handleMapClick = (e: mapboxgl.MapMouseEvent) => {
+        const pad = 6;
+        const bbox: [mapboxgl.PointLike, mapboxgl.PointLike] = [
+          [e.point.x - pad, e.point.y - pad],
+          [e.point.x + pad, e.point.y + pad],
+        ];
+        const features = map.queryRenderedFeatures(bbox);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const poi: any = features.find((f: any) => {
+          const p = f.properties || {};
+          return (p.name || p.name_en) && f.geometry?.type === 'Point';
+        });
+        if (!poi) return;
+        const name = String(poi.properties.name_en || poi.properties.name);
+        const coords = poi.geometry.coordinates as [number, number];
+        showPoiPopup(name, coords);
+      };
+      map.on('click', handleMapClick);
+    }
 
     // On style load, add terrain + atmosphere so distant landscape looks volumetric.
     map.on('style.load', () => {
@@ -802,23 +821,32 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         map.setConfigProperty('basemap', 'show3dObjects', true);
       } catch { /* older mapbox-gl versions */ }
 
-      // Mapbox Standard's 3D building layers live inside an imported style
-      // fragment and aren't directly paintable via setPaintProperty. The
-      // available knob is the boolean basemap.show3dObjects. So instead of
-      // fading, we simply HIDE the 3D buildings when the camera zooms in
-      // close enough that they'd block the route, and show them at lower
-      // zooms where they look great as scene-setting.
-      try { map.setConfigProperty('basemap', 'show3dObjects', map.getZoom() < 16); } catch { /* noop */ }
-    });
-
-    // Re-evaluate the 3D-building toggle as the camera zooms.
-    let last3dState: boolean | null = null;
-    map.on('zoomend', () => {
-      const wantBuildings = map.getZoom() < 16;
-      if (last3dState !== wantBuildings) {
-        try { map.setConfigProperty('basemap', 'show3dObjects', wantBuildings); } catch { /* noop */ }
-        last3dState = wantBuildings;
-      }
+      // Building transparency — try every approach Mapbox supports because
+      // Standard's internal layer naming has shifted across SDK versions:
+      //  1. Standard config knob 'show3dBuildings' (correct name per docs;
+      //     the singular 'show3dObjects' is a no-op).
+      //  2. Direct setPaintProperty on the 'building' fill-extrusion layer.
+      //  3. Iterate every fill-extrusion layer and apply a zoom-aware
+      //     opacity expression as a fallback.
+      try { map.setConfigProperty('basemap', 'show3dBuildings', true); } catch { /* noop */ }
+      const opacityExpr: mapboxgl.ExpressionSpecification = [
+        'interpolate', ['linear'], ['zoom'],
+        14, 1.0,
+        16, 0.45,
+        18, 0.15,
+      ];
+      const tryOpacity = (id: string, prop: 'fill-opacity' | 'fill-extrusion-opacity') => {
+        try { map.setPaintProperty(id, prop, opacityExpr); return true; } catch { return false; }
+      };
+      tryOpacity('building', 'fill-extrusion-opacity');
+      tryOpacity('building', 'fill-opacity');
+      try {
+        for (const layer of (map.getStyle()?.layers || [])) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const t = (layer as any).type;
+          if (t === 'fill-extrusion') tryOpacity(layer.id, 'fill-extrusion-opacity');
+        }
+      } catch { /* noop */ }
     });
 
     mapRef.current = map;
@@ -1432,22 +1460,33 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
               </div>
             )}
 
-            {/* Drive button when route exists and we're not yet following */}
+            {/* Drive + Clear when route exists and we're not yet following */}
             {route?.summary && !following && (
-              <button
-                type="button"
-                onClick={() => {
-                  setFollowing(true);
-                  recenterOnDriver();
-                  if (stepsRef.current[0]?.instruction) {
-                    speak(stepsRef.current[0].instruction, voiceMode, 'alert', language);
-                  }
-                  setBottomExpanded(false);
-                }}
-                className="w-full mb-3 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white text-base font-bold shadow"
-              >
-                Drive →
-              </button>
+              <div className="flex gap-2 mb-3">
+                <button
+                  type="button"
+                  onClick={endTrip}
+                  className="px-4 py-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 text-base font-semibold shadow-sm"
+                  aria-label="Clear route"
+                  title="Clear this route and start over"
+                >
+                  Clear
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFollowing(true);
+                    recenterOnDriver();
+                    if (stepsRef.current[0]?.instruction) {
+                      speak(stepsRef.current[0].instruction, voiceMode, 'alert', language);
+                    }
+                    setBottomExpanded(false);
+                  }}
+                  className="flex-1 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white text-base font-bold shadow"
+                >
+                  Drive →
+                </button>
+              </div>
             )}
             {/* Autocomplete suggestions dropdown — appears above the input */}
             {showSuggestions && suggestions.length > 0 && (
