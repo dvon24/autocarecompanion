@@ -799,14 +799,60 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
       } catch { return null; }
     };
 
+    interface RichDetails {
+      available?: boolean; found?: boolean;
+      name?: string; address?: string;
+      rating?: number | null; ratingCount?: number | null;
+      priceLevel?: string | null;
+      phone?: string; website?: string; googleMapsUri?: string;
+      openNow?: boolean | null; todaysHours?: string;
+      summary?: string;
+      reviews?: Array<{ author: string; rating: number | null; relativeTime: string; text: string }>;
+    }
+
+    const fetchRichDetails = async (name: string, coords: [number, number]): Promise<RichDetails | null> => {
+      const cacheKey = `rich:${name}|${coords[0].toFixed(4)}|${coords[1].toFixed(4)}`;
+      try {
+        const raw = localStorage.getItem(POI_CACHE_KEY);
+        const cache = raw ? JSON.parse(raw) : {};
+        const hit = cache[cacheKey];
+        if (hit && Date.now() - hit.at < POI_CACHE_TTL) return hit.data;
+      } catch { /* ignore */ }
+      try {
+        const r = await fetch('/api/drive/poi-rich-details', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, lng: coords[0], lat: coords[1], language: languageRef.current }),
+        });
+        if (!r.ok) return null;
+        const d = await r.json();
+        if (!d.available || !d.found) return null;
+        try {
+          const raw = localStorage.getItem(POI_CACHE_KEY);
+          const cache = raw ? JSON.parse(raw) : {};
+          cache[cacheKey] = { data: d, at: Date.now() };
+          localStorage.setItem(POI_CACHE_KEY, JSON.stringify(cache));
+        } catch { /* ignore */ }
+        return d;
+      } catch { return null; }
+    };
+
+    const renderStars = (rating: number) => {
+      const full = Math.floor(rating);
+      const half = rating - full >= 0.5;
+      return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(Math.max(0, 5 - full - (half ? 1 : 0)));
+    };
+
     const showPoiPopup = (name: string, coords: [number, number]) => {
       const safeName = escapeHtml(name);
-      const popup = new mapboxgl.Popup({ offset: 12, closeOnClick: true, maxWidth: '280px' })
+      const popup = new mapboxgl.Popup({ offset: 12, closeOnClick: true, maxWidth: '320px' })
         .setLngLat(coords)
         .setHTML(`
-          <div style="font:600 14px system-ui;padding:2px 4px 4px;color:#111;">${safeName}</div>
-          <div id="drive-poi-desc" style="font:400 12px system-ui;color:#555;line-height:1.4;padding:0 4px 8px;min-height:32px;">
-            <span style="color:#9ca3af;font-style:italic;">Loading…</span>
+          <div id="drive-poi-card" style="font:400 12px system-ui;color:#111;">
+            <div style="font:600 14px system-ui;padding:2px 4px 4px;">${safeName}</div>
+            <div id="drive-poi-desc" style="color:#555;line-height:1.4;padding:0 4px 8px;min-height:32px;">
+              <span style="color:#9ca3af;font-style:italic;">Loading…</span>
+            </div>
           </div>
           <button id="drive-poi-route" style="width:100%;padding:8px 10px;background:#2563eb;color:#fff;border:0;border-radius:8px;font:700 12px system-ui;cursor:pointer;">Route here →</button>
         `)
@@ -818,17 +864,57 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
           submitTranscriptRef.current?.(name, { lng: coords[0], lat: coords[1], placeName: name });
         };
       });
-      // Fetch and inject description asynchronously.
-      fetchPoiDetails(name, coords).then((details) => {
+
+      // Race Google rich-details + AI brief in parallel. If Google returns
+      // real data, render the rich card. Otherwise fall back to the AI brief.
+      Promise.all([
+        fetchRichDetails(name, coords),
+        fetchPoiDetails(name, coords),
+      ]).then(([rich, ai]) => {
         const el = document.getElementById('drive-poi-desc');
-        if (!el) return; // popup already closed
-        if (details && details.description) {
-          const tagsHtml = details.tags.length > 0
-            ? `<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:4px;">${details.tags.map((t) => `<span style="font:600 10px system-ui;background:#eff6ff;color:#2563eb;padding:2px 6px;border-radius:9999px;">${escapeHtml(t)}</span>`).join('')}</div>`
+        if (!el) return;
+        if (rich) {
+          const parts: string[] = [];
+          // Open status + hours
+          if (rich.openNow != null) {
+            const badge = rich.openNow
+              ? '<span style="display:inline-block;font:600 10px system-ui;background:#dcfce7;color:#166534;padding:2px 7px;border-radius:9999px;">Open now</span>'
+              : '<span style="display:inline-block;font:600 10px system-ui;background:#fee2e2;color:#991b1b;padding:2px 7px;border-radius:9999px;">Closed</span>';
+            const hours = rich.todaysHours ? `<span style="color:#6b7280;margin-left:6px;">${escapeHtml(rich.todaysHours.replace(/^[^:]+:\s*/, ''))}</span>` : '';
+            parts.push(`<div style="margin-bottom:6px;">${badge}${hours}</div>`);
+          }
+          // Rating
+          if (typeof rich.rating === 'number') {
+            const count = rich.ratingCount ? ` <span style="color:#6b7280;">(${rich.ratingCount})</span>` : '';
+            parts.push(`<div style="margin-bottom:6px;color:#f59e0b;font-weight:700;">${renderStars(rich.rating)} <span style="color:#111;">${rich.rating.toFixed(1)}</span>${count}</div>`);
+          }
+          // Editorial summary
+          if (rich.summary) {
+            parts.push(`<div style="color:#374151;line-height:1.4;margin-bottom:6px;">${escapeHtml(rich.summary)}</div>`);
+          }
+          // Address
+          if (rich.address) {
+            parts.push(`<div style="color:#6b7280;font-size:11px;margin-bottom:6px;">${escapeHtml(rich.address)}</div>`);
+          }
+          // Top review snippet
+          const topReview = (rich.reviews || [])[0];
+          if (topReview?.text) {
+            parts.push(`<div style="border-left:3px solid #e5e7eb;padding-left:6px;color:#4b5563;font-style:italic;font-size:11px;margin-bottom:6px;">"${escapeHtml(topReview.text.slice(0, 140))}${topReview.text.length > 140 ? '…' : ''}" <span style="color:#9ca3af;font-style:normal;">— ${escapeHtml(topReview.author || 'review')}</span></div>`);
+          }
+          // Quick action links
+          const links: string[] = [];
+          if (rich.phone) links.push(`<a href="tel:${rich.phone.replace(/\s+/g, '')}" style="color:#2563eb;text-decoration:none;font-weight:600;">Call</a>`);
+          if (rich.website) links.push(`<a href="${rich.website}" target="_blank" rel="noopener" style="color:#2563eb;text-decoration:none;font-weight:600;">Website</a>`);
+          if (rich.googleMapsUri) links.push(`<a href="${rich.googleMapsUri}" target="_blank" rel="noopener" style="color:#2563eb;text-decoration:none;font-weight:600;">View on Google</a>`);
+          if (links.length) parts.push(`<div style="display:flex;gap:10px;font-size:11px;">${links.join('')}</div>`);
+          el.innerHTML = parts.join('');
+        } else if (ai && ai.description) {
+          const tagsHtml = ai.tags.length > 0
+            ? `<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:4px;">${ai.tags.map((t) => `<span style="font:600 10px system-ui;background:#eff6ff;color:#2563eb;padding:2px 6px;border-radius:9999px;">${escapeHtml(t)}</span>`).join('')}</div>`
             : '';
-          el.innerHTML = `${escapeHtml(details.description)}${tagsHtml}`;
+          el.innerHTML = `${escapeHtml(ai.description)}${tagsHtml}`;
         } else {
-          el.innerHTML = '';
+          el.innerHTML = '<span style="color:#9ca3af;font-style:italic;">No info available.</span>';
         }
       });
     };
