@@ -594,6 +594,9 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   // Ref-shim around submitTranscript so map event handlers (registered once
   // on mount) can call the latest version without re-binding.
   const submitTranscriptRef = useRef<((text: string, trustedDestination?: { lng: number; lat: number; placeName: string }) => void) | null>(null);
+  // Mirror of language for the same reason — popup HTML lives inside the map
+  // mount effect, so it can't capture React state directly.
+  const languageRef = useRef<DriveLanguage>('en');
 
   // Geolocation
   useEffect(() => {
@@ -757,13 +760,55 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     // POI clicks via Mapbox's Interactions API — the official path for
     // tapping the built-in POI featureset on Standard Style. Falls back to
     // a manual queryRenderedFeatures handler if addInteraction isn't
-    // available on this SDK version.
+    // available on this SDK version. Popup shows an AI-generated brief
+    // description fetched lazily; cached in localStorage by name+coords for
+    // 24h since AI descriptions don't change frequently.
+    const escapeHtml = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const POI_CACHE_KEY = 'au7o-drive-poi-cache';
+    const POI_CACHE_TTL = 24 * 60 * 60 * 1000;
+    const fetchPoiDetails = async (name: string, coords: [number, number]): Promise<{ description: string; tags: string[] } | null> => {
+      const cacheKey = `${name}|${coords[0].toFixed(4)}|${coords[1].toFixed(4)}`;
+      try {
+        const raw = localStorage.getItem(POI_CACHE_KEY);
+        const cache = raw ? JSON.parse(raw) : {};
+        const hit = cache[cacheKey];
+        if (hit && Date.now() - hit.at < POI_CACHE_TTL) return { description: hit.description, tags: hit.tags };
+      } catch { /* ignore */ }
+      try {
+        const r = await fetch('/api/drive/poi-details', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, lng: coords[0], lat: coords[1], language: languageRef.current }),
+        });
+        if (!r.ok) return null;
+        const d = await r.json();
+        const result = { description: String(d.description || ''), tags: Array.isArray(d.tags) ? d.tags : [] };
+        try {
+          const raw = localStorage.getItem(POI_CACHE_KEY);
+          const cache = raw ? JSON.parse(raw) : {};
+          cache[cacheKey] = { ...result, at: Date.now() };
+          // Cap cache size at 200 entries.
+          const keys = Object.keys(cache);
+          if (keys.length > 200) {
+            const sorted = keys.sort((a, b) => cache[a].at - cache[b].at);
+            for (const k of sorted.slice(0, keys.length - 200)) delete cache[k];
+          }
+          localStorage.setItem(POI_CACHE_KEY, JSON.stringify(cache));
+        } catch { /* ignore */ }
+        return result;
+      } catch { return null; }
+    };
+
     const showPoiPopup = (name: string, coords: [number, number]) => {
-      const popup = new mapboxgl.Popup({ offset: 12, closeOnClick: true })
+      const safeName = escapeHtml(name);
+      const popup = new mapboxgl.Popup({ offset: 12, closeOnClick: true, maxWidth: '280px' })
         .setLngLat(coords)
         .setHTML(`
-          <div style="font:600 13px system-ui;padding:4px 4px 6px;color:#111;">${name.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</div>
-          <button id="drive-poi-route" style="width:100%;padding:7px 10px;background:#2563eb;color:#fff;border:0;border-radius:8px;font:700 12px system-ui;cursor:pointer;">Route here →</button>
+          <div style="font:600 14px system-ui;padding:2px 4px 4px;color:#111;">${safeName}</div>
+          <div id="drive-poi-desc" style="font:400 12px system-ui;color:#555;line-height:1.4;padding:0 4px 8px;min-height:32px;">
+            <span style="color:#9ca3af;font-style:italic;">Loading…</span>
+          </div>
+          <button id="drive-poi-route" style="width:100%;padding:8px 10px;background:#2563eb;color:#fff;border:0;border-radius:8px;font:700 12px system-ui;cursor:pointer;">Route here →</button>
         `)
         .addTo(map);
       requestAnimationFrame(() => {
@@ -772,6 +817,19 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
           popup.remove();
           submitTranscriptRef.current?.(name, { lng: coords[0], lat: coords[1], placeName: name });
         };
+      });
+      // Fetch and inject description asynchronously.
+      fetchPoiDetails(name, coords).then((details) => {
+        const el = document.getElementById('drive-poi-desc');
+        if (!el) return; // popup already closed
+        if (details && details.description) {
+          const tagsHtml = details.tags.length > 0
+            ? `<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:4px;">${details.tags.map((t) => `<span style="font:600 10px system-ui;background:#eff6ff;color:#2563eb;padding:2px 6px;border-radius:9999px;">${escapeHtml(t)}</span>`).join('')}</div>`
+            : '';
+          el.innerHTML = `${escapeHtml(details.description)}${tagsHtml}`;
+        } else {
+          el.innerHTML = '';
+        }
       });
     };
 
@@ -1083,6 +1141,7 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   // Keep the ref pointed at the latest submitTranscript so map event handlers
   // call the up-to-date closure.
   useEffect(() => { submitTranscriptRef.current = submitTranscript; }, [submitTranscript]);
+  useEffect(() => { languageRef.current = language; }, [language]);
 
   const pickSuggestion = useCallback(async (s: Suggestion) => {
     const text = s.placeFormatted ? `${s.name}, ${s.placeFormatted}` : s.name;
