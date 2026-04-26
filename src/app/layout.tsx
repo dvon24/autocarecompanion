@@ -84,6 +84,11 @@ export default function RootLayout({
       <head>
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
+        {/* AdSense site verification + Auto Ads loader. Per Google's
+            instructions the script must live in <head> verbatim with the
+            crossorigin="anonymous" attribute. */}
+        <meta name="google-adsense-account" content="ca-pub-6245698513720418" />
+        <AdSenseScript />
         <GoogleAnalytics />
         <OrganizationJsonLd />
         <WebSiteJsonLd />
@@ -93,7 +98,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <TermlyCMP />
-        <AdSenseScript />
         <GoogleTranslate />
         <SessionProvider>
           <AppProvider>

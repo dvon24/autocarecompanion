@@ -209,9 +209,9 @@ export function ArticleIssuesList({ issues, make, model, initialYear }: ArticleI
                   vehicleInfo={vehicleInfo}
                 />
               </div>
-              {/* Mid-content ad after 3rd category when there are 4+ categories */}
+              {/* Mid-content ad slot — uses Auto Ads (no hand-coded slot id). */}
               {index === 2 && groupedIssues.length > 3 && (
-                <AdSlot slotId="1234567890" format="rectangle" className="my-6 flex justify-center" />
+                <AdSlot slotId="auto" format="rectangle" className="my-6 flex justify-center" />
               )}
             </div>
           ))
