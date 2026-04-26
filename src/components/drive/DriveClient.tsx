@@ -205,6 +205,11 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   const [origin, setOrigin] = useState<{ lng: number; lat: number } | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
   const [driverSpeedMph, setDriverSpeedMph] = useState<number | null>(null);
+  // Last GPS fix used to compute speed when pos.coords.speed is null. Many
+  // browsers (Chrome on desktop, some Android setups) return null for speed
+  // even though they happily provide successive lng/lat fixes — we compute
+  // speed = distance / Δt as a fallback so the driver always sees a value.
+  const lastFixRef = useRef<{ lng: number; lat: number; t: number } | null>(null);
   // Rolling 60-sample window of recent driving speed (~30s of GPS ticks),
   // used to project real-world MPG more accurately than the EPA combined
   // number. Idle/stopped samples (< 1 mph) are filtered out so red lights
@@ -716,10 +721,26 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         setLocationError(null);
 
         // Browser geolocation gives speed in m/s (null if unavailable/parked).
-        if (typeof pos.coords.speed === 'number' && !Number.isNaN(pos.coords.speed)) {
-          const mph = Math.max(0, pos.coords.speed * 2.23694);
-          setDriverSpeedMph(mph);
-          // Add to rolling window for MPG projection (only when actually moving).
+        // Fall back to computed-from-deltas when null/NaN so we always have
+        // a value to show the driver.
+        let mph: number | null = null;
+        if (typeof pos.coords.speed === 'number' && !Number.isNaN(pos.coords.speed) && pos.coords.speed >= 0) {
+          mph = pos.coords.speed * 2.23694;
+        } else if (lastFixRef.current) {
+          const prev = lastFixRef.current;
+          const dtSec = (pos.timestamp - prev.t) / 1000;
+          if (dtSec > 0.5 && dtSec < 30) {
+            const R = 6371_000;
+            const dLat = (lat - prev.lat) * Math.PI / 180;
+            const dLng = (lng - prev.lng) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) ** 2 + Math.cos(prev.lat * Math.PI / 180) * Math.cos(lat * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+            const distM = 2 * R * Math.asin(Math.sqrt(a));
+            mph = (distM / dtSec) * 2.23694;
+          }
+        }
+        lastFixRef.current = { lng, lat, t: pos.timestamp };
+        if (mph != null) {
+          setDriverSpeedMph(Math.max(0, mph));
           if (mph > 1) {
             speedSamplesRef.current.push(mph);
             if (speedSamplesRef.current.length > 60) speedSamplesRef.current.shift();
@@ -1556,38 +1577,46 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         <VehiclePicker value={vehicle} onChange={setVehicle} />
       </div>
 
-      {/* Speed-limit badge — fixed sizing so the SVG/circle never distort */}
-      {currentLimit && (currentLimit.speed != null || currentLimit.none) && (() => {
+      {/* Speed-limit badge + driver speed pill. Driver speed renders as long
+          as we have a GPS fix, even when no current speed limit is known —
+          previously it only appeared while on a route with limit data. */}
+      {(driverSpeedMph != null || (currentLimit && (currentLimit.speed != null || currentLimit.none))) && (() => {
+        const showLimit = !!(currentLimit && (currentLimit.speed != null || currentLimit.none));
+        // Match units to local road signs. km/h when the limit says so OR
+        // when language is German with no limit data yet, mph otherwise.
+        const showKmh = currentLimit?.unit === 'km/h' || (currentLimit?.unit == null && language === 'de');
         const overBy = (() => {
-          if (!currentLimit.speed || !driverSpeedMph) return 0;
+          if (!currentLimit?.speed || !driverSpeedMph) return 0;
           const limitMph = currentLimit.unit === 'km/h' ? currentLimit.speed * 0.621371 : currentLimit.speed;
           return driverSpeedMph - limitMph;
         })();
         const over = overBy > 3;
         return (
           <div className="absolute top-16 left-4 z-10 flex items-center gap-2">
-            <div
-              className={`relative flex-shrink-0 rounded-full border-[3px] shadow-lg bg-white transition-colors ${
-                over ? 'border-red-600 animate-pulse' : 'border-black'
-              }`}
-              style={{ width: 56, height: 56 }}
-              aria-label="Current speed limit"
-            >
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-black px-1">
-                {currentLimit.none ? (
-                  <span className="text-[9px] font-bold leading-tight text-center">NO LIMIT</span>
-                ) : (
-                  <>
-                    <span className="text-[7px] font-bold leading-none">SPEED LIMIT</span>
-                    <span className="text-xl font-black leading-none mt-0.5">{currentLimit.speed}</span>
-                    <span className="text-[7px] font-semibold leading-none mt-0.5">{currentLimit.unit?.toUpperCase()}</span>
-                  </>
-                )}
+            {showLimit && (
+              <div
+                className={`relative flex-shrink-0 rounded-full border-[3px] shadow-lg bg-white transition-colors ${
+                  over ? 'border-red-600 animate-pulse' : 'border-black'
+                }`}
+                style={{ width: 56, height: 56 }}
+                aria-label="Current speed limit"
+              >
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-black px-1">
+                  {currentLimit!.none ? (
+                    <span className="text-[9px] font-bold leading-tight text-center">NO LIMIT</span>
+                  ) : (
+                    <>
+                      <span className="text-[7px] font-bold leading-none">SPEED LIMIT</span>
+                      <span className="text-xl font-black leading-none mt-0.5">{currentLimit!.speed}</span>
+                      <span className="text-[7px] font-semibold leading-none mt-0.5">{currentLimit!.unit?.toUpperCase()}</span>
+                    </>
+                  )}
+                </div>
               </div>
-            </div>
-            {driverSpeedMph != null && driverSpeedMph > 1 && (
+            )}
+            {driverSpeedMph != null && (
               <div className={`px-2 py-1 rounded-lg text-xs font-bold shadow ${over ? 'bg-red-600 text-white' : 'bg-white/90 text-gray-800'}`}>
-                {Math.round(driverSpeedMph)} mph
+                {showKmh ? Math.round(driverSpeedMph * 1.60934) : Math.round(driverSpeedMph)} {showKmh ? 'km/h' : 'mph'}
               </div>
             )}
           </div>
