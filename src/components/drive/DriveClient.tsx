@@ -794,6 +794,26 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
         map.setConfigProperty('basemap', 'lightPreset', 'day');
         map.setConfigProperty('basemap', 'show3dObjects', true);
       } catch { /* older mapbox-gl versions */ }
+
+      // Fade 3D buildings from solid → mostly-transparent as the camera zooms
+      // in, so the blue route line stays visible at street level. Walks every
+      // fill-extrusion layer in the current style (Mapbox Standard's building
+      // layer name is internal/versioned; iterating is robust).
+      try {
+        const style = map.getStyle();
+        const layers = style?.layers || [];
+        for (const layer of layers) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          if ((layer as any).type === 'fill-extrusion') {
+            map.setPaintProperty(layer.id, 'fill-extrusion-opacity', [
+              'interpolate', ['linear'], ['zoom'],
+              14, 1.0,   // fully solid when looking at the city from afar
+              16, 0.55,  // half-transparent at typical follow zoom
+              18, 0.25,  // mostly see-through when zoomed close to a turn
+            ]);
+          }
+        }
+      } catch { /* style query failed; non-blocking */ }
     });
 
     mapRef.current = map;
