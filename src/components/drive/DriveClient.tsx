@@ -212,6 +212,26 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
   // the entire trip; the GPS-watcher proximity cleanup must not remove them.
   const routeCameraIdsRef = useRef<Set<string>>(new Set());
 
+  // Fuel stations + live prices (Tankerkönig in DE; empty elsewhere). Cached
+  // by station id so we can update markers in place when the vicinity fetch
+  // refreshes prices without flicker. Vicinity fetch is throttled the same
+  // way cameras are — only when the driver moves >1km from the last fetch.
+  interface FuelStationEntry {
+    id: string;
+    name: string;
+    brand: string | null;
+    lat: number;
+    lng: number;
+    street?: string;
+    city?: string;
+    isOpen: boolean | null;
+    prices: { e5: number | null; e10: number | null; diesel: number | null; currency: string; unit: string };
+  }
+  const fuelStationsRef = useRef<FuelStationEntry[]>([]);
+  const fuelStationMarkersById = useRef<Map<string, mapboxgl.Marker>>(new Map());
+  const lastFuelFetchAtRef = useRef<number>(0);
+  const lastFuelFetchOriginRef = useRef<{ lng: number; lat: number } | null>(null);
+
   const [origin, setOrigin] = useState<{ lng: number; lat: number } | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
   const [driverSpeedMph, setDriverSpeedMph] = useState<number | null>(null);
@@ -474,6 +494,79 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
     console.log(`[/drive] route corridor: ${routeCameraIdsRef.current.size} cameras pinned for preview`);
   }, []);
 
+  // Render gas-station markers with the cheapest available price on each.
+  // Diff-and-update against the existing marker set so prices refresh in
+  // place when the vicinity refetch lands, rather than tearing down and
+  // recreating the whole map layer.
+  const renderFuelStationMarkers = useCallback((stations: FuelStationEntry[]) => {
+    if (!mapRef.current) return;
+    const map = mapRef.current;
+    const seen = new Set<string>();
+    for (const s of stations) {
+      seen.add(s.id);
+      // Pick the cheapest fuel grade available for the marker label.
+      const candidates = [s.prices.e5, s.prices.e10, s.prices.diesel].filter((p): p is number => typeof p === 'number' && p > 0);
+      const cheapest = candidates.length > 0 ? Math.min(...candidates) : null;
+      const priceLabel = cheapest != null
+        ? `${cheapest.toFixed(2).replace('.', ',')}${s.prices.currency === 'EUR' ? '€' : ''}`
+        : '—';
+
+      // Remove + re-add when the price label changes so the marker shows
+      // the latest number. Cheap and reliable; fancier diff is overkill.
+      const existing = fuelStationMarkersById.current.get(s.id);
+      if (existing) {
+        const prevLabel = existing.getElement().getAttribute('data-price') || '';
+        if (prevLabel === priceLabel) continue;
+        existing.remove();
+        fuelStationMarkersById.current.delete(s.id);
+      }
+
+      const el = document.createElement('div');
+      el.setAttribute('data-price', priceLabel);
+      el.style.cssText = `
+        background:${s.isOpen === false ? '#9ca3af' : '#16a34a'};
+        color:white;
+        padding:3px 7px 3px 22px;
+        border-radius:8px;
+        font:700 11px system-ui,-apple-system,sans-serif;
+        box-shadow:0 2px 4px rgba(0,0,0,.3);
+        position:relative;
+        white-space:nowrap;
+      `;
+      el.textContent = priceLabel;
+      // Inline ⛽ icon using a pseudo-element-ish span so the price stays
+      // aligned right of the icon regardless of label width.
+      const icon = document.createElement('span');
+      icon.style.cssText = 'position:absolute;left:4px;top:1px;font-size:13px;';
+      icon.textContent = '⛽';
+      el.prepend(icon);
+
+      const escapeHtml = (str: string) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const priceRows: string[] = [];
+      if (s.prices.e5) priceRows.push(`<div style="display:flex;justify-content:space-between;gap:12px;font-size:11px;"><span>Super E5</span><strong>${s.prices.e5.toFixed(3).replace('.', ',')}€</strong></div>`);
+      if (s.prices.e10) priceRows.push(`<div style="display:flex;justify-content:space-between;gap:12px;font-size:11px;"><span>Super E10</span><strong>${s.prices.e10.toFixed(3).replace('.', ',')}€</strong></div>`);
+      if (s.prices.diesel) priceRows.push(`<div style="display:flex;justify-content:space-between;gap:12px;font-size:11px;"><span>Diesel</span><strong>${s.prices.diesel.toFixed(3).replace('.', ',')}€</strong></div>`);
+      const popupHtml = `
+        <div style="font:600 12px system-ui;padding:4px 6px 2px;">${escapeHtml(s.name)}</div>
+        ${s.brand ? `<div style="font:400 10px system-ui;color:#6b7280;padding:0 6px 4px;">${escapeHtml(s.brand)}</div>` : ''}
+        ${s.street ? `<div style="font:400 10px system-ui;color:#6b7280;padding:0 6px 6px;">${escapeHtml(s.street)}, ${escapeHtml(s.city || '')}</div>` : ''}
+        <div style="border-top:1px solid #e5e7eb;padding:6px;">${priceRows.join('')}</div>
+        ${s.isOpen === false ? '<div style="background:#fee2e2;color:#991b1b;font:600 10px system-ui;padding:4px 6px;">Currently closed</div>' : ''}
+        <div style="font:400 9px system-ui;color:#9ca3af;padding:4px 6px;">Tankerkönig · prices may be ~minutes stale</div>
+      `;
+      const popup = new mapboxgl.Popup({ offset: 14, maxWidth: '240px' }).setHTML(popupHtml);
+      const marker = new mapboxgl.Marker({ element: el }).setLngLat([s.lng, s.lat]).setPopup(popup).addTo(map);
+      fuelStationMarkersById.current.set(s.id, marker);
+    }
+    // Remove markers for stations that dropped off the latest fetch.
+    for (const [id, marker] of fuelStationMarkersById.current) {
+      if (!seen.has(id)) {
+        marker.remove();
+        fuelStationMarkersById.current.delete(id);
+      }
+    }
+  }, []);
+
   // Vicinity-based camera fetch — runs while NO route is active so the
   // driver still gets warnings during free-roaming. ~5km bbox around the
   // current GPS, throttled to once a minute and only refetched after the
@@ -504,6 +597,36 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
       camerasRef.current = cd.cameras;
     }).catch(() => { /* silent */ });
   }, [origin, route?.geometry]);
+
+  // Vicinity-based fuel-price fetch. Same throttle pattern as cameras —
+  // only fires when the driver moves > 1km. Tankerkönig (DE only for now)
+  // returns nearby gas stations + live prices; client renders them as
+  // green ⛽ markers with the cheapest price on the marker label.
+  useEffect(() => {
+    if (!origin) return;
+    const minMs = 5 * 60_000; // 5 min — prices don't change every second
+    const minMovementDeg = 0.015; // ~1.6 km
+    const last = lastFuelFetchOriginRef.current;
+    const movedFar = !last
+      || Math.abs(last.lng - origin.lng) > minMovementDeg
+      || Math.abs(last.lat - origin.lat) > minMovementDeg;
+    if (!movedFar && Date.now() - lastFuelFetchAtRef.current < minMs) return;
+
+    lastFuelFetchAtRef.current = Date.now();
+    lastFuelFetchOriginRef.current = { lng: origin.lng, lat: origin.lat };
+
+    fetch('/api/drive/fuel-prices', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lat: origin.lat, lng: origin.lng, radius: 8 }),
+    }).then((r) => r.ok ? r.json() : null).then((data) => {
+      if (!data || !Array.isArray(data.stations)) return;
+      fuelStationsRef.current = data.stations;
+      renderFuelStationMarkers(data.stations as FuelStationEntry[]);
+    }).catch(() => { /* silent */ });
+    // renderFuelStationMarkers is stable (declared with useCallback below)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [origin]);
 
   // Periodic traffic re-fetch + ETA decrement while following.
   useEffect(() => {
