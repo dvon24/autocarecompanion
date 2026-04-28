@@ -178,7 +178,17 @@ function speak(text: string, mode: VoiceMode = 'all', priority: 'alert' | 'norma
   } catch { /* ignore */ }
 }
 
-export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
+interface DriveClientProps {
+  mapboxToken: string;
+  /** Server-supplied primary vehicle for signed-in users. Anonymous users
+   *  pass null and fall through to localStorage / VehiclePicker as before. */
+  initialVehicle?: DriveVehicle | null;
+  /** True when an authenticated session exists. Drives the "Sign in to save"
+   *  CTA and (later) gating of premium features. */
+  isAuthed?: boolean;
+}
+
+export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = false }: DriveClientProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const originMarker = useRef<mapboxgl.Marker | null>(null);
@@ -319,7 +329,16 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
   useEffect(() => {
     try {
       const v = localStorage.getItem(LS_VEHICLE);
-      if (v) setVehicleState(JSON.parse(v));
+      if (v) {
+        // Local pick wins — driver may have switched vehicles intentionally.
+        setVehicleState(JSON.parse(v));
+      } else if (initialVehicle) {
+        // No local pick yet, but the server knows their primary vehicle.
+        // Seed the local store so subsequent loads don't need the round-trip
+        // and the rest of the app (which still reads LS) stays consistent.
+        setVehicleState(initialVehicle);
+        try { localStorage.setItem(LS_VEHICLE, JSON.stringify(initialVehicle)); } catch { /* ignore */ }
+      }
       driverPrefsRef.current = localStorage.getItem(LS_PREFS) || '';
       const h = localStorage.getItem(LS_HISTORY);
       if (h) routeHistoryRef.current = JSON.parse(h);
@@ -1572,9 +1591,20 @@ export function DriveClient({ mapboxToken }: { mapboxToken: string }) {
     >
       <div ref={mapContainer} className="absolute inset-0" style={{ width: '100%', height: '100%' }} />
 
-      {/* Vehicle picker — top-left */}
-      <div className="absolute top-4 left-4 z-10">
+      {/* Vehicle picker — top-left. When the user isn't signed in we show a
+          subtle "Sign in to save" pill next to it so anonymous users learn
+          the upgrade path without being walled off from /drive. */}
+      <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
         <VehiclePicker value={vehicle} onChange={setVehicle} />
+        {!isAuthed && (
+          <a
+            href="/auth/signin?callbackUrl=/drive"
+            className="px-2.5 py-1.5 rounded-full bg-blue-600 text-white text-[11px] font-semibold shadow-sm hover:bg-blue-700 transition"
+            title="Save your vehicle, routes, and preferences across devices"
+          >
+            Sign in to save
+          </a>
+        )}
       </div>
 
       {/* Speed-limit badge + driver speed pill. Driver speed renders as long
