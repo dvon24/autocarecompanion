@@ -17,17 +17,23 @@ const { PrismaClient } = require('@prisma/client');
 const { PrismaPg } = require('@prisma/adapter-pg');
 const { Pool } = require('pg');
 const path = require('path');
+const { pathToFileURL } = require('url');
 
-// We import the TS pipeline by way of the compiled Next build at runtime —
-// or, if running standalone, via tsx. The simplest path is to spawn a
-// Next.js-aware Node and require the .ts file. For this script we use
-// dynamic ESM import via tsx-style shim. Devon: run with `npx tsx`.
+// We import the TS pipeline directly via tsx (already in devDependencies).
+// Windows ESM requires file:// URL form for absolute paths, so we convert
+// before passing to dynamic import — otherwise we get ERR_UNSUPPORTED_ESM_URL_SCHEME.
 async function loadPipeline() {
-  // Resolve TS module via tsx (already in devDependencies of the project).
-  const { runKnownIssuesPipeline } = await import(
-    path.join(__dirname, '..', 'src', 'lib', 'known-issues-pipeline.ts')
-  );
-  return { runKnownIssuesPipeline };
+  const tsPath = path.join(__dirname, '..', 'src', 'lib', 'known-issues-pipeline.ts');
+  const tsUrl = pathToFileURL(tsPath).href;
+  const mod = await import(tsUrl);
+  // Different bundlers/loaders place the named export differently — check
+  // both top-level and default-wrapped (CJS interop) before failing loudly.
+  const fn = mod.runKnownIssuesPipeline || mod.default?.runKnownIssuesPipeline;
+  if (typeof fn !== 'function') {
+    console.error('[loadPipeline] unable to find runKnownIssuesPipeline. Module keys:', Object.keys(mod));
+    throw new Error('pipeline export not found');
+  }
+  return { runKnownIssuesPipeline: fn };
 }
 
 const args = process.argv.slice(2);
