@@ -90,6 +90,7 @@ interface RouteResponse {
   steps?: NavStep[];
   tripIntelligence?: TripIntelligence | null;
   fuelNeeded?: { gallons: number; tankPercent: number | null; mpgUsed: number; avgSpeedMph: number | null } | null;
+  fuelMilesRemaining?: number | null;
   isRoundTrip?: boolean;
   routePreferences?: { avoidHighways: boolean; avoidTolls: boolean; avoidFerries: boolean };
   intermediateStop?: { name: string; address: string; lng: number; lat: number; rating: number | null; ratingCount: number | null; openNow: boolean | null; milesIn: number } | null;
@@ -300,6 +301,24 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
   // The faster alternate Mapbox suggested on the most recent re-fetch (if any).
   const [pendingAlternate, setPendingAlternate] = useState<{ alt: AlternateRoute; savesMin: number } | null>(null);
   const [tripIntelligence, setTripIntelligence] = useState<TripIntelligence | null>(null);
+  // Pre-trip safety check — populated after plan-route returns. Always
+  // surfaced (anonymous users see a "Sign in to enable" prompt rather than
+  // a wall) so the upgrade path stays discoverable.
+  interface SafetyItem {
+    severity: 'high' | 'medium' | 'low';
+    icon: string;
+    title: string;
+    detail: string;
+    action?: { label: string; href: string };
+  }
+  interface SafetyResult {
+    authed: boolean;
+    vehicle: { year: number; make: string; model: string; trim: string | null; mileage: number | null } | null;
+    verdict: 'go' | 'caution' | 'stop';
+    items: SafetyItem[];
+    summary: string;
+  }
+  const [safetyCheck, setSafetyCheck] = useState<SafetyResult | null>(null);
 
   // Autocomplete state for the destination input.
   interface Suggestion { name: string; placeFormatted: string; mapboxId: string; featureType: string }
@@ -817,6 +836,7 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
     spokenAnnouncementsRef.current.clear();
     setCurrentStepInstruction('');
     setTripIntelligence(null);
+    setSafetyCheck(null);
     setCurrentLimit(null);
     setLastReply('');
     setTranscript('');
@@ -1485,6 +1505,22 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
         spokenAnnouncementsRef.current.clear();
         setCurrentStepInstruction((data.steps?.[0]?.instruction) || '');
         setTripIntelligence(data.tripIntelligence || null);
+
+        // Fire-and-forget pre-trip safety check. Server handles auth /
+        // missing-vehicle gracefully and returns a friendly "sign in"
+        // verdict for anonymous users so the funnel stays visible.
+        setSafetyCheck(null);
+        fetch('/api/drive/pre-trip-check', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tripMiles: typeof data.miles === 'number' ? data.miles : null,
+            fuelMilesRemaining: typeof data.fuelMilesRemaining === 'number' ? data.fuelMilesRemaining : null,
+          }),
+        }).then((r) => r.ok ? r.json() : null).then((sc: SafetyResult | null) => {
+          if (sc) setSafetyCheck(sc);
+        }).catch(() => { /* silent — never block the trip on safety check */ });
+
         setFollowing(false); // user must hit Drive to enter follow mode
         setBottomExpanded(true); // show pre-trip intelligence panel before driver hits Drive
         setCurrentLimit(null);
@@ -2005,6 +2041,53 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
                 ))}
               </div>
             )}
+
+            {/* Pre-trip safety check — the killer feature. Verdict-led card
+                shows whether THIS car can make THIS trip based on the user's
+                maintenance log + known issues + fuel range. Anonymous users
+                see a "Sign in to enable" pitch instead of a wall. */}
+            {safetyCheck && (() => {
+              const verdictMeta = {
+                go: { emoji: '🟢', label: 'Ready', cls: 'bg-green-50 border-green-200', text: 'text-green-800' },
+                caution: { emoji: '🟡', label: 'Heads up', cls: 'bg-amber-50 border-amber-200', text: 'text-amber-900' },
+                stop: { emoji: '🔴', label: 'Hold off', cls: 'bg-red-50 border-red-200', text: 'text-red-900' },
+              }[safetyCheck.verdict];
+              const sevColor = (s: 'high' | 'medium' | 'low') =>
+                s === 'high' ? 'bg-red-500' : s === 'medium' ? 'bg-amber-500' : 'bg-blue-400';
+              return (
+                <div className={`mb-3 p-3 rounded-xl border ${verdictMeta.cls}`}>
+                  <div className="flex items-center justify-between mb-1">
+                    <p className={`text-xs font-bold uppercase tracking-wide ${verdictMeta.text}`}>
+                      {verdictMeta.emoji} Pre-trip · {verdictMeta.label}
+                    </p>
+                    {!safetyCheck.authed && (
+                      <a href="/auth/signin?callbackUrl=/drive" className="text-[10px] font-semibold text-blue-700 underline">
+                        Sign in
+                      </a>
+                    )}
+                  </div>
+                  <p className={`text-xs leading-snug mb-2 ${verdictMeta.text}`}>{safetyCheck.summary}</p>
+                  {safetyCheck.items.length > 0 && (
+                    <div className="space-y-1.5">
+                      {safetyCheck.items.slice(0, 5).map((item, i) => (
+                        <div key={i} className="flex items-start gap-2 text-xs leading-snug">
+                          <div className={`w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 ${sevColor(item.severity)}`} />
+                          <div className="flex-1 min-w-0">
+                            <div className="font-semibold text-gray-900">{item.title}</div>
+                            <div className="text-gray-600 text-[11px]">{item.detail}</div>
+                            {item.action && (
+                              <a href={item.action.href} className="inline-block mt-0.5 text-[10px] text-blue-700 font-semibold hover:underline">
+                                {item.action.label} →
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
 
             {/* Trip Intelligence — Au7o's eyes-forward analysis of the planned route */}
             {(tripIntelligence && (tripIntelligence.suggestions.length > 0 || tripIntelligence.delayWarning || tripIntelligence.breakRecommendation) || route?.fuelNeeded) && (
