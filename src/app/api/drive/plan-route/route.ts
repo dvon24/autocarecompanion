@@ -5,6 +5,8 @@ import {
   driveTurnDayLimiter,
   getClientIp,
 } from '@/lib/rate-limit';
+import { auth } from '@/lib/auth';
+import { runPreTripSafetyCheck, buildVoiceSafetyPromptSlice } from '@/lib/pre-trip-safety';
 
 function formatRetryAfter(seconds: number): string {
   if (seconds < 60) return `${seconds} second${seconds === 1 ? '' : 's'}`;
@@ -318,6 +320,28 @@ export async function POST(request: NextRequest) {
     ? 'WICHTIG: Antworte ausschließlich auf Deutsch. Sprich den Fahrer wie ein Freund an, nicht förmlich.'
     : 'IMPORTANT: Reply in English. Speak to the driver like a friend, not formally.';
 
+  // Pre-trip safety slice for the voice copilot. Pulls overdue maintenance
+  // + high-severity known issues for the driver's primary vehicle (when
+  // signed in) and teaches Claude to weave at most ONE item into the
+  // spoken reply naturally — like a buddy mechanic, not a disclaimer reader.
+  // Trip-mile-dependent items (fuel range) are intentionally LEFT OUT here
+  // because Mapbox hasn't run yet; the visual /pre-trip-check call later
+  // surfaces them on the card.
+  let voiceSafetySlice = '';
+  try {
+    const session = await auth();
+    if (session?.user?.id) {
+      const safety = await runPreTripSafetyCheck({
+        userId: session.user.id,
+        tripMiles: null,
+        fuelMilesRemaining: typeof body.fuelMilesRemaining === 'number' ? body.fuelMilesRemaining : null,
+      });
+      voiceSafetySlice = buildVoiceSafetyPromptSlice(safety, lang);
+    }
+  } catch {
+    // Auth or DB hiccup — voice copilot just stays generic for this turn.
+  }
+
   const systemPrompt = `You are Au7o, a voice navigation copilot that runs in the car. Respond like a helpful, concise friend — never verbose.
 
 ${langLine}
@@ -331,6 +355,7 @@ ${vehicleNote}
 ${prefsNote}
 
 ${historyNote}
+${voiceSafetySlice}
 
 Every turn, return ONLY a JSON object with this shape:
 {
