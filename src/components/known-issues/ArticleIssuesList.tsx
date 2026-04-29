@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { useVehicleContext } from '@/contexts/AppContext';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 import { CategorySection } from './CategorySection';
@@ -27,6 +28,8 @@ interface ArticleIssuesListProps {
 
 export function ArticleIssuesList({ issues, make, model, initialYear, relatedByIssueId }: ArticleIssuesListProps) {
   const { selectedVehicle } = useVehicleContext();
+  const router = useRouter();
+  const pathname = usePathname();
   const [severityFilter, setSeverityFilter] = useState<('high' | 'medium' | 'low')[]>(['high', 'medium', 'low']);
   const [yearFilter, setYearFilter] = useState<number | null>(initialYear ?? null);
 
@@ -125,7 +128,18 @@ export function ArticleIssuesList({ issues, make, model, initialYear, relatedByI
           <SeverityFilter selected={severityFilter} onChange={setSeverityFilter} />
           <select
             value={yearFilter ?? ''}
-            onChange={e => setYearFilter(e.target.value ? parseInt(e.target.value, 10) : null)}
+            onChange={e => {
+              const next = e.target.value ? parseInt(e.target.value, 10) : null;
+              // Update local state immediately so the cards filter without
+              // waiting for the route transition. Then push the URL to the
+              // year-specific (or all-years) canonical so the H1, <title>,
+              // JSON-LD, and FAQ schema all reflect the new selection. The
+              // server-rendered per-year variant is what we want users to
+              // share + Google to crawl.
+              setYearFilter(next);
+              const target = next ? `${pathname}?year=${next}` : pathname;
+              router.push(target, { scroll: false });
+            }}
             className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           >
             <option value="">All Years ({issues.length})</option>
