@@ -52,7 +52,12 @@ export async function generateMetadata({
   const vehicleName = `${parsed.make} ${parsed.model}`;
   const yearStr = yearRange ? `${yearRange.min}-${yearRange.max} ` : '';
 
-  const title = `${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`;
+  // Lead with the year range — owners search "2014 BMW 1 Series problems"
+  // 5x more than the bare model. Year prefix in <title>, OG, and Twitter
+  // tags lifts CTR on year-specific queries.
+  const title = yearRange
+    ? `${yearRange.min}-${yearRange.max} ${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`
+    : `${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`;
   const description = `${issues.length} documented problems for the ${yearStr}${vehicleName}${highCount > 0 ? `, including ${highCount} critical` : ''}. Symptoms, repair costs ($${getMinCost(issues)}-$${getMaxCost(issues)}), and solutions from ${totalReports.toLocaleString()}+ owner reports.`;
 
   return {
@@ -220,7 +225,15 @@ export default async function KnownIssuesArticlePage({
   const vehicleName = `${make} ${model}`;
   const yearStr = yearRange ? `${yearRange.min}-${yearRange.max}` : '';
   const articleUrl = `https://au7o.io/known-issues/${slug}`;
-  const title = `${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`;
+  // Title now leads with the full year range, e.g.
+  // "2008-2019 BMW 1 Series Problems: 11 Issues Every Owner Should Know".
+  // The year range carries enormous SEO weight — owners search "2014 BMW
+  // 1 Series problems" far more than the bare model name. H1, <title>,
+  // OG, and TechArticle.headline all derive from this single string so
+  // they stay in sync.
+  const title = yearStr
+    ? `${yearStr} ${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`
+    : `${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`;
 
   // Find most critical issues for the GEO summary
   const criticalIssues = issues.filter(i => i.severity === 'high');
