@@ -154,7 +154,18 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               </span>
             )}
           </div>
-          <h3 className={`font-medium ${config.textColor}`}>{issue.title}</h3>
+          {/* H3 prefixes the make + model so each page's card titles read
+              uniquely across the site. Without this, "62TE Transmission
+              Failure" appears verbatim on every Mopar page that shares
+              that transmission, and Google's near-duplicate filter buries
+              ~900 of our pages as "Discovered, not indexed". The prefix
+              makes the text on the Avenger page measurably different from
+              the Journey/Town & Country pages even when the underlying
+              issue is the same. */}
+          <h3 className={`font-medium ${config.textColor}`}>
+            {vehicleInfo ? `${vehicleInfo.make} ${vehicleInfo.model}: ` : ''}
+            {issue.title}
+          </h3>
           {/* Year range and applicable trims */}
           <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mt-1">
             <span className="text-xs text-gray-500">

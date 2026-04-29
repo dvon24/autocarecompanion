@@ -204,8 +204,14 @@ export function ArticleIssuesList({ issues, make, model, initialYear }: ArticleI
                 <CategorySection
                   category={category}
                   issues={catIssues}
-                  defaultExpanded={false}
-                  defaultCardExpanded={false}
+                  // Default expanded so the SSR HTML contains every issue
+                  // card's content. Googlebot can't see content that's
+                  // conditionally rendered (`{expanded && ...}`) when the
+                  // initial state is collapsed — that's why ~900 of these
+                  // pages were "Discovered, not indexed". Users can still
+                  // collapse manually after page load.
+                  defaultExpanded={true}
+                  defaultCardExpanded={true}
                   vehicleInfo={vehicleInfo}
                 />
               </div>
