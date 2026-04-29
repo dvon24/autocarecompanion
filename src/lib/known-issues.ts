@@ -36,6 +36,11 @@ function dbRowToKnownIssue(row: any): KnownIssue {
     source: row.source || 'ai-researched',
     status: row.status,
     dtcCodes: row.dtcCodes,
+    // Pre-computed semantic neighbors (KnownIssue.relatedIssueIds, populated
+    // by scripts/compute-issue-embeddings.js). Kept on the runtime object so
+    // findRelatedVehiclesForIssues can union it with DTC + engine matches.
+    relatedIssueIds: row.relatedIssueIds || [],
+    engines: row.engines || [],
   } as KnownIssue;
 }
 
@@ -219,9 +224,16 @@ export async function findRelatedVehiclesForIssues(
   const result = new Map<string, RelatedIssueVehicle[]>();
   for (const i of issues) result.set(i.id, []);
 
-  // Collect DTCs (upper-case) and engines (lower-case) across all issues.
+  // Collect DTCs (upper-case), engines (lower-case), and pre-computed
+  // semantic neighbor ids across all issues. The semantic neighbor list
+  // is populated offline by scripts/compute-issue-embeddings.js — it
+  // captures content overlap that engine/DTC matching alone misses
+  // (e.g., "valvetrain tick" ↔ "lifter failure" when both vehicles
+  // share an engine family AND the embedding similarity passes
+  // threshold).
   const allDtcs = new Set<string>();
   const allEngines = new Set<string>();
+  const allSemanticIds = new Set<string>();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   for (const i of issues as any[]) {
     if (Array.isArray(i.dtcCodes)) {
@@ -234,8 +246,13 @@ export async function findRelatedVehiclesForIssues(
         if (typeof e === 'string' && e.length > 0) allEngines.add(e.toLowerCase());
       }
     }
+    if (Array.isArray(i.relatedIssueIds)) {
+      for (const id of i.relatedIssueIds) {
+        if (typeof id === 'string' && id.length > 0) allSemanticIds.add(id);
+      }
+    }
   }
-  if (allDtcs.size === 0 && allEngines.size === 0) return result;
+  if (allDtcs.size === 0 && allEngines.size === 0 && allSemanticIds.size === 0) return result;
 
   // Fetch candidates that share a DTC OR an engine. Postgres `hasSome`
   // is case-sensitive, so we'll filter case-insensitively in JS after.
@@ -254,6 +271,14 @@ export async function findRelatedVehiclesForIssues(
       engVariants.add(titleCase);
     }
     orClauses.push({ engines: { hasSome: [...engVariants] } });
+  }
+
+  // Add semantic-neighbor ids to the OR clause too — pre-computed by
+  // the embeddings script with a structural pre-filter, so anything in
+  // here is already validated as both content-similar AND structurally
+  // related.
+  if (allSemanticIds.size > 0) {
+    orClauses.push({ id: { in: [...allSemanticIds] } });
   }
 
   const candidates = await prisma.knownIssue.findMany({
@@ -284,11 +309,14 @@ export async function findRelatedVehiclesForIssues(
     const issueDtcs = new Set(((issue as any).dtcCodes || []).map((d: string) => d.toUpperCase()));
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const issueEngs = new Set(((issue as any).engines || []).map((e: string) => e.toLowerCase()));
-    if (issueDtcs.size === 0 && issueEngs.size === 0) continue;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const issueSemanticIds = new Set(((issue as any).relatedIssueIds || []) as string[]);
+    if (issueDtcs.size === 0 && issueEngs.size === 0 && issueSemanticIds.size === 0) continue;
 
     const matched = candidates.filter((c) => {
       if (c.dtcCodes.some((d) => issueDtcs.has(d.toUpperCase()))) return true;
       if (c.engines.some((e) => issueEngs.has(e.toLowerCase()))) return true;
+      if (issueSemanticIds.has(c.id)) return true;
       return false;
     });
 

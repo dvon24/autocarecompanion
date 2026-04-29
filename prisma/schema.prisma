@@ -358,6 +358,14 @@ model KnownIssue {
   status                   String    @default("published")
   lastReportedByOwners     String    @default("")
   reviewedOn               String    @default("")
+
+  // Pre-computed semantic-similarity cross-links (other KnownIssue.id values)
+  // populated by scripts/compute-issue-embeddings.js. Embedding lookup is
+  // offline; render-time uses this column directly so cross-link lookup is
+  // a simple JOIN with no vector math at request time. Bounded to top-K
+  // (typically 5) and pre-filtered by shared component/engine/system.
+  relatedIssueIds          String[]  @default([])
+
   createdAt                DateTime  @default(now())
   updatedAt                DateTime  @updatedAt
 
