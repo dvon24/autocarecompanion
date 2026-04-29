@@ -22,14 +22,22 @@ export function ArticleSidebar({ grouped, hasRecalls, recallCount, make, model }
           <ul className="space-y-0.5">
             {grouped.map(({ category, count, highCount }) => {
               const config = categoryConfig[category];
+              // Anchor text now includes make + model so the link reads
+              // "Dodge Avenger Transmission Issues" instead of just
+              // "Transmission". Per Gemini's recommendation: descriptive
+              // anchor text helps Google associate the target section with
+              // specific search terms (e.g. "Dodge Avenger transmission").
+              const descriptiveLabel = `${make} ${model} ${config.label} Issues`;
               return (
                 <li key={category}>
                   <a
                     href={`#${category}`}
                     className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors py-1.5 rounded-md hover:bg-gray-50 px-2 -mx-2"
+                    aria-label={descriptiveLabel}
+                    title={descriptiveLabel}
                   >
                     <span className="flex-shrink-0 w-5 text-center">{config.icon}</span>
-                    <span className="truncate">{config.label}</span>
+                    <span className="truncate">{model} {config.label}</span>
                     <span className="text-gray-300 text-xs ml-auto">{count}</span>
                     {highCount > 0 && (
                       <span

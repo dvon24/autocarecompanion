@@ -92,7 +92,21 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
 
   const handleToggle = () => {
     triggerHaptic('light');
-    setExpanded(!expanded);
+    const next = !expanded;
+    setExpanded(next);
+    // Update the URL hash on expand so the user can copy/share a deep
+    // link to this specific card without having to find the "#" permalink.
+    // Use replaceState so the back button isn't filled with hash
+    // entries every time someone clicks around.
+    if (typeof window !== 'undefined') {
+      try {
+        if (next) {
+          window.history.replaceState(null, '', `#${issue.id}`);
+        } else if (window.location.hash === `#${issue.id}`) {
+          window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+      } catch { /* old browsers — silent */ }
+    }
   };
 
   return (
@@ -165,17 +179,44 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               </span>
             )}
           </div>
-          {/* H3 prefixes the make + model so each page's card titles read
-              uniquely across the site. Without this, "62TE Transmission
-              Failure" appears verbatim on every Mopar page that shares
-              that transmission, and Google's near-duplicate filter buries
-              ~900 of our pages as "Discovered, not indexed". The prefix
-              makes the text on the Avenger page measurably different from
-              the Journey/Town & Country pages even when the underlying
-              issue is the same. */}
-          <h3 className={`font-medium ${config.textColor}`}>
-            {vehicleInfo ? `${vehicleInfo.make} ${vehicleInfo.model}: ` : ''}
-            {issue.title}
+          {/* H3 prefixes the year range + make + model so each page's card
+              titles read uniquely across the site. Year range matters because
+              people search "2008-2014 Dodge Avenger problems" — without the
+              years, generations of the same model can look duplicated to
+              Google. Combined with the make/model prefix this satisfies
+              Gemini's "Generation-Specific Anchors" recommendation for
+              SEO uniqueness. */}
+          <h3 className={`font-medium ${config.textColor} flex items-center gap-2 group/heading`}>
+            <span>
+              {(() => {
+                const years = issue.vehicleMatch?.years || [];
+                const yearLabel = years.length === 0
+                  ? ''
+                  : years.length === 1
+                    ? `${years[0]} `
+                    : `${years[0]}-${years[years.length - 1]} `;
+                const ymm = vehicleInfo ? `${yearLabel}${vehicleInfo.make} ${vehicleInfo.model}: ` : '';
+                return `${ymm}${issue.title}`;
+              })()}
+            </span>
+            {/* Hover-visible permalink — gives users (and Google) a clear,
+                shareable URL for THIS specific card. Same pattern as MDN /
+                GitHub heading anchors. Updates the URL hash without
+                scrolling away (location set via history.replaceState
+                inside an inline handler that lives below the JSX). */}
+            <a
+              href={`#${issue.id}`}
+              aria-label="Permalink to this issue"
+              title="Copy link to this issue"
+              className="opacity-0 group-hover/heading:opacity-60 hover:opacity-100 text-xs text-gray-400 hover:text-blue-600 transition-opacity flex-shrink-0"
+              onClick={(e) => {
+                // Stop the parent button's expand-toggle from firing when
+                // the user just wants to copy the permalink.
+                e.stopPropagation();
+              }}
+            >
+              #
+            </a>
           </h3>
           {/* Year range and applicable trims */}
           <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mt-1">
@@ -238,7 +279,14 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                 : years.length === 1
                   ? `${years[0]} `
                   : `${years[0]}-${years[years.length - 1]} `;
-              return <>On the {yearLabel}{vehicleInfo.make} {vehicleInfo.model}, </>;
+              // Inject engine into the prefix when EXACTLY ONE engine is
+              // tagged. Multi-engine issues skip the qualifier (would read
+              // awkwardly like "On the 2008-2014 Avenger 5.7 HEMI, 6.4
+              // HEMI, the..."). This covers Gemini's "Generation
+              // Differentiator" recommendation for the common case.
+              const engines = issue.vehicleMatch?.engines || [];
+              const engineLabel = engines.length === 1 ? ` ${engines[0]}` : '';
+              return <>On the {yearLabel}{vehicleInfo.make} {vehicleInfo.model}{engineLabel}, </>;
             })()}
             {vehicleInfo && issue.description
               ? issue.description.charAt(0).toLowerCase() + issue.description.slice(1)

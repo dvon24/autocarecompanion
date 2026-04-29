@@ -45,7 +45,11 @@ const EMBED_MODEL = 'text-embedding-3-small';
 const EMBED_DIMENSIONS = 1536;
 const BATCH_SIZE = 100; // OpenAI accepts up to 2048 inputs per call
 const TOP_K_DEFAULT = 5;
-const MIN_SIMILARITY = 0.55; // cosine — below this, candidates are noise
+// Raised from 0.55 after dry-run review showed weak (~0.55-0.65) pairs were
+// matching different mechanisms with similar symptom wording (CVT vs DCT vs
+// torque-converter all paired off as "transmission shudder"). 0.65 keeps the
+// genuinely-similar pairs and trims the noise.
+const MIN_SIMILARITY = 0.65;
 const REQUIRE_STRUCTURAL_OVERLAP = true; // Sarah's guardrail
 
 const args = process.argv.slice(2);
@@ -113,11 +117,18 @@ function cosine(a, b, na, nb) {
 }
 
 function structuralOverlap(a, b) {
-  // Two issues share structure if any of these are true:
-  //   - any DTC in common
-  //   - any engine in common (case-insensitive)
-  //   - any affectedSystem in common (case-insensitive)
-  //   - same category
+  // Tightened guardrail (post dry-run review): require a SPECIFIC component
+  // signal, not just a shared top-level category. Old rule allowed
+  // category==='transmission' to pass — that linked CVT, DCT, and torque-
+  // converter shudder issues as "the same" because they all share the
+  // category name even though they're mechanically unrelated.
+  //
+  // Hierarchy of allowed structural overlap (any one is sufficient):
+  //   1. Shared DTC code (strongest — explicit OBD-II overlap)
+  //   2. Shared engine code (strong — same engine family)
+  //   3. Shared affectedSystem (medium — same mechanical subsystem,
+  //      e.g. "AC compressor", "timing chain", "torque converter")
+  // Same-category-only is no longer enough.
   if (a.dtcCodes.length && b.dtcCodes.length) {
     const aSet = new Set(a.dtcCodes.map((d) => d.toUpperCase()));
     if (b.dtcCodes.some((d) => aSet.has(d.toUpperCase()))) return true;
@@ -130,7 +141,6 @@ function structuralOverlap(a, b) {
     const aSet = new Set(a.affectedSystems.map((s) => s.toLowerCase()));
     if (b.affectedSystems.some((s) => aSet.has(s.toLowerCase()))) return true;
   }
-  if (a.category && b.category && a.category === b.category) return true;
   return false;
 }
 
