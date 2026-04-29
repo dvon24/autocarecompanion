@@ -31,7 +31,13 @@ const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
 if (!ANTHROPIC_KEY) { console.error('Missing ANTHROPIC_API_KEY'); process.exit(1); }
 
 const MODEL = 'claude-haiku-4-5-20251001';
-const CONCURRENCY = parseInt(process.env.EXTRACT_CONCURRENCY || '8', 10);
+// Haiku 4.5 input rate limit on tier-1 plans is ~50K TPM. At 600 input
+// tokens per call × concurrency=8 = 4,800 TPM peak per second burst, but
+// in practice the request-per-minute (RPM) ceiling is the constraint.
+// Tier-1 RPM for Haiku is 50/min — concurrency=8 was bursting past that
+// in <1s, hitting 429s, which got logged as "errors" and dropped 95%+
+// of work. Default concurrency=3 keeps us well below 50 RPM.
+const CONCURRENCY = parseInt(process.env.EXTRACT_CONCURRENCY || '3', 10);
 
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
@@ -122,6 +128,7 @@ async function runPool(items, worker, concurrency) {
   let totalOut = 0;
   let dtcAdded = 0;
   let engAdded = 0;
+  const errorSamples = [];
   const startTs = Date.now();
   async function loop() {
     while (idx < items.length) {
@@ -130,7 +137,16 @@ async function runPool(items, worker, concurrency) {
       try {
         const r = await worker(item);
         done++;
-        if (r.error) errored++;
+        if (r.error) {
+          errored++;
+          // Capture first 10 distinct error messages so we can debug
+          // without per-item spam. Previous run had 95% error rate and
+          // we couldn't tell whether it was 429s, 5xxs, or parse failures.
+          if (errorSamples.length < 10) {
+            errorSamples.push({ id: item.id, error: r.error });
+            console.warn(`[extract] sample error #${errorSamples.length}: ${item.id} → ${r.error}`);
+          }
+        }
         if (r.dtcAdded) dtcAdded += r.dtcAdded;
         if (r.engAdded) engAdded += r.engAdded;
         totalIn += r.inputTokens || 0;
@@ -138,6 +154,10 @@ async function runPool(items, worker, concurrency) {
       } catch (e) {
         errored++;
         done++;
+        if (errorSamples.length < 10) {
+          errorSamples.push({ id: item.id, error: String(e.message || e) });
+          console.warn(`[extract] sample exception #${errorSamples.length}: ${item.id} → ${e.message || e}`);
+        }
       }
       if (done % 50 === 0 || done === items.length) {
         const cost = (totalIn / 1e6) * 1 + (totalOut / 1e6) * 5;
@@ -147,7 +167,7 @@ async function runPool(items, worker, concurrency) {
     }
   }
   await Promise.all(Array.from({ length: concurrency }, loop));
-  return { done, errored, totalIn, totalOut, dtcAdded, engAdded };
+  return { done, errored, totalIn, totalOut, dtcAdded, engAdded, errorSamples };
 }
 
 (async () => {

@@ -72,6 +72,23 @@ export async function getAllKnownIssueSlugs(): Promise<{ slug: string; make: str
 
 // --- Article / sitemap dates ---
 
+/**
+ * When the article LAYOUT/RENDERING was last meaningfully revised. Bump this
+ * any time we ship a structural change (SSR-expanded cards, YMMT prefixes,
+ * cross-vehicle links, etc.) so the sitemap + JSON-LD `dateModified` push
+ * out a fresh signal that prompts Google to re-crawl. Without this, articles
+ * whose underlying issue rows haven't changed look "stale" to the crawler
+ * — the page is brand new HTML but `dateModified` reflects last data edit.
+ *
+ * Format: YYYY-MM-DD. Update on every meaningful render/SEO refactor.
+ */
+export const LAYOUT_LAST_REVISED = '2026-04-29';
+
+function maxDateString(...dates: string[]): string {
+  // Each input is already YYYY-MM-DD; lexicographic max == chronological max.
+  return dates.filter(Boolean).reduce((a, b) => (a > b ? a : b), '');
+}
+
 /** Get the earliest createdAt and latest updatedAt for a make+model's published issues. */
 export async function getArticleDates(make: string, model: string): Promise<{ published: string; modified: string }> {
   const result = await prisma.knownIssue.aggregate({
@@ -83,9 +100,13 @@ export async function getArticleDates(make: string, model: string): Promise<{ pu
     _min: { createdAt: true },
     _max: { updatedAt: true },
   });
+  const dataModified = (result._max.updatedAt || new Date()).toISOString().split('T')[0];
   return {
     published: (result._min.createdAt || new Date()).toISOString().split('T')[0],
-    modified: (result._max.updatedAt || new Date()).toISOString().split('T')[0],
+    // dateModified = max(last data edit, last layout revision). Layout
+    // changes signal "refresh the rendered page" to crawlers even when the
+    // underlying data hasn't changed.
+    modified: maxDateString(dataModified, LAYOUT_LAST_REVISED),
   };
 }
 
@@ -105,9 +126,15 @@ export async function getAllKnownIssueSlugsWithDates(): Promise<{ slug: string; 
     }
   }
 
+  // Bump every slug's lastModified to LAYOUT_LAST_REVISED when our render
+  // layer was revised more recently than the data — same logic as
+  // getArticleDates. Forces sitemap to advertise fresh URLs after a
+  // structural fix even when issue rows haven't been touched.
+  const layoutDate = new Date(LAYOUT_LAST_REVISED + 'T00:00:00Z');
   return Array.from(map.entries()).map(([slug, data]) => ({
     slug,
     ...data,
+    lastModified: data.lastModified > layoutDate ? data.lastModified : layoutDate,
   }));
 }
 
