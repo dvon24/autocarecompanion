@@ -110,6 +110,37 @@ export async function getArticleDates(make: string, model: string): Promise<{ pu
   };
 }
 
+/** Same shape as getArticleDates but scoped to a category — used by the
+ *  /known-issues/category/[category] landing pages so their JSON-LD +
+ *  sitemap entries advertise fresh dateModified. */
+export async function getCategoryDates(category: string): Promise<{ published: string; modified: string }> {
+  const result = await prisma.knownIssue.aggregate({
+    where: { status: 'published', category },
+    _min: { createdAt: true },
+    _max: { updatedAt: true },
+  });
+  const dataModified = (result._max.updatedAt || new Date()).toISOString().split('T')[0];
+  return {
+    published: (result._min.createdAt || new Date()).toISOString().split('T')[0],
+    modified: maxDateString(dataModified, LAYOUT_LAST_REVISED),
+  };
+}
+
+/** Same shape as getArticleDates but scoped to a make — used by the
+ *  /known-issues/make/[make] landing pages. */
+export async function getMakeDates(make: string): Promise<{ published: string; modified: string }> {
+  const result = await prisma.knownIssue.aggregate({
+    where: { status: 'published', make: { equals: make, mode: 'insensitive' } },
+    _min: { createdAt: true },
+    _max: { updatedAt: true },
+  });
+  const dataModified = (result._max.updatedAt || new Date()).toISOString().split('T')[0];
+  return {
+    published: (result._min.createdAt || new Date()).toISOString().split('T')[0],
+    modified: maxDateString(dataModified, LAYOUT_LAST_REVISED),
+  };
+}
+
 /** Get all slugs with their latest updatedAt date (for sitemap). */
 export async function getAllKnownIssueSlugsWithDates(): Promise<{ slug: string; make: string; model: string; lastModified: Date }[]> {
   const rows = await prisma.knownIssue.findMany({

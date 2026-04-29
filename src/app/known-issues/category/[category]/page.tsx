@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { makeSlug } from '@/lib/known-issues';
+import { makeSlug, getCategoryDates } from '@/lib/known-issues';
 import { categoryConfig } from '@/lib/issue-categories';
-import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { BreadcrumbJsonLd, TechnicalArticleJsonLd } from '@/components/seo/JsonLd';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
 import prisma from '@/lib/db';
 
@@ -147,17 +147,33 @@ export default async function CategoryPage({
   const { category } = await params;
   if (!VALID_CATEGORIES.includes(category as IssueCategory)) notFound();
 
-  const data = await getCategoryData(category);
+  const [data, dates] = await Promise.all([
+    getCategoryData(category),
+    getCategoryDates(category),
+  ]);
   const label = categoryLabel(category);
   const icon = categoryIcon(category);
   const description = categoryDescription(category);
+  const articleUrl = `https://au7o.io/known-issues/category/${category}`;
+  const articleTitle = `${label} Problems & Known Issues — ${data.totalIssues} documented across ${data.totalVehicles} vehicles`;
 
   return (
     <div className="min-h-screen bg-white">
+      {/* TechArticle gives Google a structured signal for the page. dateModified
+          comes from getCategoryDates() so a layout revision (e.g. today's
+          render fixes) bumps the freshness signal even when issue rows
+          haven't moved. */}
+      <TechnicalArticleJsonLd
+        title={articleTitle}
+        description={description}
+        url={articleUrl}
+        datePublished={dates.published}
+        dateModified={dates.modified}
+      />
       <BreadcrumbJsonLd items={[
         { name: 'Au7o', url: 'https://au7o.io' },
         { name: 'Known Issues', url: 'https://au7o.io/known-issues' },
-        { name: `${label} Issues`, url: `https://au7o.io/known-issues/category/${category}` },
+        { name: `${label} Issues`, url: articleUrl },
       ]} />
 
       {/* Header */}

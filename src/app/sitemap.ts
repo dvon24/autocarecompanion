@@ -141,7 +141,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   `;
   const categoryPages: MetadataRoute.Sitemap = categoryDates.map(c => ({
     url: `${baseUrl}/known-issues/category/${c.category}`,
-    lastModified: c.lastmod,
+    // Bump to layoutDate when our render layer is fresher than the data —
+    // same logic as the per-vehicle articles. Forces sitemap to advertise
+    // a recent lastmod so Google re-fetches the category landing pages.
+    lastModified: c.lastmod > layoutDate ? c.lastmod : layoutDate,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
@@ -155,7 +158,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   `;
   const makePages: MetadataRoute.Sitemap = makeDates.map(m => ({
     url: `${baseUrl}/known-issues/make/${m.make.toLowerCase().replace(/\s+/g, '-')}`,
-    lastModified: m.lastmod,
+    lastModified: m.lastmod > layoutDate ? m.lastmod : layoutDate,
     changeFrequency: 'monthly' as const,
     priority: 0.8,
   }));

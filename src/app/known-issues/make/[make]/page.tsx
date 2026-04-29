@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { makeSlug } from '@/lib/known-issues';
+import { makeSlug, getMakeDates } from '@/lib/known-issues';
 import { categoryConfig } from '@/lib/issue-categories';
-import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { BreadcrumbJsonLd, TechnicalArticleJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
 import prisma from '@/lib/db';
@@ -206,10 +206,23 @@ export default async function MakeLandingPage({
 
   const { make, totalIssues, highCount, models, categoryBreakdown } = data;
   const makeUrl = `https://au7o.io/known-issues/make/${makeParam}`;
+  const dates = await getMakeDates(make);
+  const articleTitle = `${make} Known Issues & Problems — ${totalIssues} documented across ${models.length} models`;
+  const articleDescription = `${totalIssues} documented ${make} problems across ${models.length} models${highCount > 0 ? `, including ${highCount} critical` : ''}. Known issues, repair costs, and solutions for every ${make} owner.`;
 
   return (
     <div className="min-h-screen bg-white">
-      {/* JSON-LD */}
+      {/* JSON-LD — TechArticle gives Google a structured signal with a
+          dateModified that floors at LAYOUT_LAST_REVISED, prompting a
+          re-crawl after layout/template revisions even when underlying
+          issue rows haven't changed. */}
+      <TechnicalArticleJsonLd
+        title={articleTitle}
+        description={articleDescription}
+        url={makeUrl}
+        datePublished={dates.published}
+        dateModified={dates.modified}
+      />
       <BreadcrumbJsonLd items={[
         { name: 'Au7o', url: 'https://au7o.io' },
         { name: 'Known Issues', url: 'https://au7o.io/known-issues' },
