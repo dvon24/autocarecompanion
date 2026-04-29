@@ -51,7 +51,9 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 4, idle
 pool.on('error', () => {});
 const prisma = new PrismaClient({ adapter: new PrismaPg(pool) });
 
-async function extractFor(issue) {
+function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+async function extractFor(issue, attempt = 0) {
   const yearStr = Array.isArray(issue.years) && issue.years.length > 0
     ? `${issue.years[0]}${issue.years.length > 1 ? `-${issue.years[issue.years.length - 1]}` : ''} `
     : '';
@@ -84,6 +86,17 @@ Rules:
     }),
     signal: AbortSignal.timeout(30000),
   });
+
+  // Retry on 429 with the server's suggested wait (or 8s × attempt as
+  // fallback). Three attempts max — most rate-limit waves clear in <30s
+  // on Haiku tier 1, so this turns transient 429s into delayed successes
+  // instead of permanent errors.
+  if (res.status === 429 && attempt < 3) {
+    const retryAfter = parseFloat(res.headers.get('retry-after') || '0');
+    const waitMs = retryAfter > 0 ? Math.ceil(retryAfter * 1000) + 500 : 8000 * (attempt + 1);
+    await sleep(waitMs);
+    return extractFor(issue, attempt + 1);
+  }
 
   if (!res.ok) {
     const text = await res.text().catch(() => '');
