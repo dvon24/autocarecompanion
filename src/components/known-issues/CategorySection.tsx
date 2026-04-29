@@ -8,6 +8,14 @@ import { categoryConfig } from '@/lib/issue-categories';
 
 export { categoryConfig };
 
+interface RelatedIssueVehicle {
+  slug: string;
+  make: string;
+  model: string;
+  issueId: string;
+  title: string;
+}
+
 interface CategorySectionProps {
   category: IssueCategory;
   issues: KnownIssue[];
@@ -19,9 +27,10 @@ interface CategorySectionProps {
     model: string;
     trim?: string;
   };
+  relatedByIssueId?: Record<string, RelatedIssueVehicle[]>;
 }
 
-export function CategorySection({ category, issues, defaultExpanded = false, defaultCardExpanded = false, vehicleInfo }: CategorySectionProps) {
+export function CategorySection({ category, issues, defaultExpanded = false, defaultCardExpanded = false, vehicleInfo, relatedByIssueId }: CategorySectionProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
 
   // Auto-expand when navigating to this category or a child issue via hash anchor
@@ -79,7 +88,13 @@ export function CategorySection({ category, issues, defaultExpanded = false, def
       {expanded && (
         <div className="p-3 space-y-2 bg-white">
           {issues.map(issue => (
-            <KnownIssueCard key={issue.id} issue={issue} vehicleInfo={vehicleInfo} defaultExpanded={defaultCardExpanded} />
+            <KnownIssueCard
+              key={issue.id}
+              issue={issue}
+              vehicleInfo={vehicleInfo}
+              defaultExpanded={defaultCardExpanded}
+              relatedVehicles={relatedByIssueId?.[issue.id]}
+            />
           ))}
         </div>
       )}

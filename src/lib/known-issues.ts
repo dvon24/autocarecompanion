@@ -179,6 +179,109 @@ export async function getRelatedVehicles(make: string, model: string, limit = 6)
   return siblings;
 }
 
+// --- Cross-issue related vehicles (Gemini's "hub-and-spoke" recommendation) ---
+
+export interface RelatedIssueVehicle {
+  slug: string;
+  make: string;
+  model: string;
+  issueId: string;
+  title: string;
+}
+
+/**
+ * For each issue on the current page, find up to N OTHER vehicles whose
+ * own KnownIssue records share a DTC code with it. This creates the
+ * "this issue also affects: [Dodge Journey, Chrysler Town & Country]"
+ * cross-link block that Gemini flagged as a way to push Google past
+ * "Discovered, not indexed" — the hub-and-spoke effect tells crawlers
+ * that the same engineering defect is documented across multiple
+ * pages, so each page is genuinely about something specific.
+ *
+ * Single batched Prisma query — we OR-merge every DTC across the
+ * current page's issues, fetch matching rows, then group in JS. Avoids
+ * N+1 per issue. Returns Map<issueId, RelatedIssueVehicle[]>.
+ *
+ * Issues without DTC codes get an empty array (graceful degradation).
+ * v2 could supplement with title-token matching (B58, LT4, 62TE) but
+ * that needs a precomputed token index to stay cheap.
+ */
+export async function findRelatedVehiclesForIssues(
+  issues: KnownIssue[],
+  excludeMake: string,
+  excludeModel: string,
+  perIssueLimit = 3,
+): Promise<Map<string, RelatedIssueVehicle[]>> {
+  const result = new Map<string, RelatedIssueVehicle[]>();
+  for (const i of issues) result.set(i.id, []);
+
+  // Collect all DTC codes across current issues, normalized to upper-case.
+  const allDtcs = new Set<string>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  for (const i of issues as any[]) {
+    if (Array.isArray(i.dtcCodes)) {
+      for (const d of i.dtcCodes) {
+        if (typeof d === 'string' && d.length > 0) allDtcs.add(d.toUpperCase());
+      }
+    }
+  }
+  if (allDtcs.size === 0) return result;
+
+  const candidates = await prisma.knownIssue.findMany({
+    where: {
+      dtcCodes: { hasSome: [...allDtcs] },
+      NOT: {
+        AND: [
+          { make: { equals: excludeMake, mode: 'insensitive' } },
+          { model: { equals: excludeModel, mode: 'insensitive' } },
+        ],
+      },
+      status: 'published',
+    },
+    select: { id: true, make: true, model: true, title: true, dtcCodes: true, severity: true },
+    take: 300,
+  });
+
+  // For each current issue, pick its candidates: those sharing at least
+  // one DTC. Dedupe by make+model so we link to one card per vehicle even
+  // if that vehicle has multiple matching issues.
+  for (const issue of issues) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const issueDtcs = new Set(((issue as any).dtcCodes || []).map((d: string) => d.toUpperCase()));
+    if (issueDtcs.size === 0) continue;
+
+    const matched = candidates.filter((c) =>
+      c.dtcCodes.some((d) => issueDtcs.has(d.toUpperCase())),
+    );
+
+    // Sort: prefer high-severity matches first (more likely to be the
+    // SAME root cause, not just a coincidental code overlap).
+    matched.sort((a, b) => {
+      const order: Record<string, number> = { critical: 0, high: 1, medium: 2, low: 3 };
+      return (order[a.severity] ?? 4) - (order[b.severity] ?? 4);
+    });
+
+    const seen = new Set<string>();
+    const related: RelatedIssueVehicle[] = [];
+    for (const c of matched) {
+      const key = `${c.make.toLowerCase()}|${c.model.toLowerCase()}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      related.push({
+        slug: makeSlug(c.make, c.model),
+        make: c.make,
+        model: c.model,
+        issueId: c.id,
+        title: c.title,
+      });
+      if (related.length >= perIssueLimit) break;
+    }
+    result.set(issue.id, related);
+  }
+
+  return result;
+}
+
 // --- Normalization (kept for seed script and API compatibility) ---
 
 const validCategories = ['engine','transmission','drivetrain','electrical','brakes','suspension','cooling','fuel','interior','exterior','body','safety','other'];

@@ -9,6 +9,7 @@ import {
   getYearRange,
   getArticleDates,
   getRelatedVehicles,
+  findRelatedVehiclesForIssues,
 } from '@/lib/known-issues';
 import { getRecallsForArticle } from '@/lib/recalls';
 import { categoryConfig } from '@/lib/issue-categories';
@@ -141,6 +142,40 @@ function generateFAQs(make: string, model: string, issues: KnownIssue[], yearRan
     });
   }
 
+  // Per-issue Q&As. One entry for each documented issue gives Google
+  // dozens of distinct, structured Q&A pairs per page — Gemini's
+  // "Multiplier" recommendation. Capped at 20 to keep schema readable;
+  // for pages with more issues we keep the highest-severity / most-reported
+  // ones (which are also what users search for).
+  const PER_ISSUE_FAQ_CAP = 20;
+  const sortedForFaq = [...issues].sort((a, b) => {
+    const order: Record<string, number> = { critical: 0, high: 1, medium: 2, low: 3 };
+    const sevDiff = (order[a.severity] ?? 4) - (order[b.severity] ?? 4);
+    if (sevDiff !== 0) return sevDiff;
+    return b.reportCount - a.reportCount;
+  }).slice(0, PER_ISSUE_FAQ_CAP);
+
+  for (const issue of sortedForFaq) {
+    const issueYears = issue.vehicleMatch?.years || [];
+    const yearLabel = issueYears.length === 0
+      ? ''
+      : issueYears.length === 1
+        ? `${issueYears[0]} `
+        : `${issueYears[0]}-${issueYears[issueYears.length - 1]} `;
+    const cost = issue.estimatedCost
+      ? ` Repairs typically run $${issue.estimatedCost.low.toLocaleString()}-$${issue.estimatedCost.high.toLocaleString()}.`
+      : '';
+    // Trim to ~280 chars so the schema stays readable + Google doesn't
+    // truncate. Description first sentence usually carries the symptom
+    // detail that makes the answer useful.
+    const desc = (issue.description || '').slice(0, 280).trim();
+    const tail = desc.endsWith('.') ? desc : desc + '…';
+    faqs.push({
+      question: `What is the ${yearLabel}${vehicleName} ${issue.title}?`,
+      answer: `${tail}${cost} Severity: ${issue.severity}.`,
+    });
+  }
+
   return faqs;
 }
 
@@ -165,6 +200,12 @@ export default async function KnownIssuesArticlePage({
     getArticleDates(make, model),
     getRelatedVehicles(make, model),
   ]);
+
+  // Per-issue cross-vehicle links — issues that share DTC codes across
+  // makes/models. Adds Gemini's "hub-and-spoke" internal-link network so
+  // Google sees these pages as a connected library, not 900 isolated
+  // pages. Cheap single batched query.
+  const relatedByIssue = await findRelatedVehiclesForIssues(issues, make, model);
   // Fetch after issues so we have the years array
   const allYears = issues.flatMap(i => i.vehicleMatch.years);
   const recalls = await getRecallsForArticle(make, model, [...new Set(allYears)]);
@@ -360,7 +401,13 @@ export default async function KnownIssuesArticlePage({
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 All {issues.length} Known Issues
               </h2>
-              <ArticleIssuesList issues={issues} make={make} model={model} initialYear={initialYear} />
+              <ArticleIssuesList
+                issues={issues}
+                make={make}
+                model={model}
+                initialYear={initialYear}
+                relatedByIssueId={Object.fromEntries(relatedByIssue)}
+              />
             </section>
 
             {/* Single ad slot — after issues, before recalls */}

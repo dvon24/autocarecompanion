@@ -7,14 +7,25 @@ import { CategorySection } from './CategorySection';
 import { SeverityFilter } from './SeverityFilter';
 import { AdSlot } from '@/components/ads/AdSlot';
 
+export interface RelatedIssueVehicle {
+  slug: string;
+  make: string;
+  model: string;
+  issueId: string;
+  title: string;
+}
+
 interface ArticleIssuesListProps {
   issues: KnownIssue[];
   make: string;
   model: string;
   initialYear?: number;
+  /** Per-issue cross-vehicle links (keyed by issue.id). Server pre-computes
+   *  this from shared DTC codes — see findRelatedVehiclesForIssues. */
+  relatedByIssueId?: Record<string, RelatedIssueVehicle[]>;
 }
 
-export function ArticleIssuesList({ issues, make, model, initialYear }: ArticleIssuesListProps) {
+export function ArticleIssuesList({ issues, make, model, initialYear, relatedByIssueId }: ArticleIssuesListProps) {
   const { selectedVehicle } = useVehicleContext();
   const [severityFilter, setSeverityFilter] = useState<('high' | 'medium' | 'low')[]>(['high', 'medium', 'low']);
   const [yearFilter, setYearFilter] = useState<number | null>(initialYear ?? null);
@@ -213,6 +224,7 @@ export function ArticleIssuesList({ issues, make, model, initialYear }: ArticleI
                   defaultExpanded={true}
                   defaultCardExpanded={true}
                   vehicleInfo={vehicleInfo}
+                  relatedByIssueId={relatedByIssueId}
                 />
               </div>
               {/* Mid-content ad slot — uses Auto Ads (no hand-coded slot id). */}

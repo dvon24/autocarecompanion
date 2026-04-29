@@ -11,6 +11,14 @@ import { triggerHaptic } from '@/hooks/useHaptic';
 import { IssueFix } from '@/hooks/useIssueFixes';
 import { trackAffiliateClick } from '@/lib/analytics';
 
+interface RelatedIssueVehicle {
+  slug: string;
+  make: string;
+  model: string;
+  issueId: string;
+  title: string;
+}
+
 interface KnownIssueCardProps {
   issue: KnownIssue;
   vehicleInfo?: {
@@ -23,9 +31,12 @@ interface KnownIssueCardProps {
   userFix?: IssueFix;
   onFixUpdated?: () => void;
   defaultExpanded?: boolean;
+  /** Other vehicles documented to share this issue (matched by DTC code).
+   *  Server-pre-computed in page.tsx via findRelatedVehiclesForIssues. */
+  relatedVehicles?: RelatedIssueVehicle[];
 }
 
-export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUpdated, defaultExpanded = false }: KnownIssueCardProps) {
+export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUpdated, defaultExpanded = false, relatedVehicles }: KnownIssueCardProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showFixModal, setShowFixModal] = useState(false);
@@ -212,8 +223,48 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
       {/* Expanded content */}
       {expanded && (
         <div className="p-4 bg-white space-y-4">
-          {/* Description */}
-          <p className="text-gray-700 text-sm leading-relaxed">{issue.description}</p>
+          {/* Description with YMMT-prefixed first sentence. The prefix
+              ("On the 2008-2014 Dodge Avenger, ...") makes every page's
+              first paragraph measurably different from sibling-make pages
+              that share the same underlying defect — Gemini's "boilerplate
+              trap" fix at the prose layer instead of just the title. We
+              lowercase the first letter of the description so the prefix
+              flows as one sentence. */}
+          <p className="text-gray-700 text-sm leading-relaxed">
+            {vehicleInfo && (() => {
+              const years = issue.vehicleMatch?.years || [];
+              const yearLabel = years.length === 0
+                ? ''
+                : years.length === 1
+                  ? `${years[0]} `
+                  : `${years[0]}-${years[years.length - 1]} `;
+              return <>On the {yearLabel}{vehicleInfo.make} {vehicleInfo.model}, </>;
+            })()}
+            {vehicleInfo && issue.description
+              ? issue.description.charAt(0).toLowerCase() + issue.description.slice(1)
+              : issue.description}
+          </p>
+
+          {/* Cross-vehicle hub-and-spoke links — shown when this issue
+              shares a DTC code with another vehicle's documented issue.
+              Tells Google these pages are part of one connected library
+              about a shared engineering defect, not 900 isolated pages. */}
+          {relatedVehicles && relatedVehicles.length > 0 && (
+            <div className="text-xs text-gray-600 leading-relaxed border-l-2 border-blue-200 pl-3 py-1 bg-blue-50/40">
+              <span className="font-medium text-gray-700">This issue also affects:</span>{' '}
+              {relatedVehicles.map((rv, i) => (
+                <span key={rv.issueId}>
+                  <Link
+                    href={`/known-issues/${rv.slug}#${rv.issueId}`}
+                    className="text-blue-700 hover:underline"
+                  >
+                    {rv.make} {rv.model}
+                  </Link>
+                  {i < relatedVehicles.length - 1 ? ', ' : ''}
+                </span>
+              ))}
+            </div>
+          )}
 
           {/* Symptoms */}
           <div>
