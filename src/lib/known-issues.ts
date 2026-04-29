@@ -191,20 +191,24 @@ export interface RelatedIssueVehicle {
 
 /**
  * For each issue on the current page, find up to N OTHER vehicles whose
- * own KnownIssue records share a DTC code with it. This creates the
- * "this issue also affects: [Dodge Journey, Chrysler Town & Country]"
- * cross-link block that Gemini flagged as a way to push Google past
- * "Discovered, not indexed" — the hub-and-spoke effect tells crawlers
- * that the same engineering defect is documented across multiple
- * pages, so each page is genuinely about something specific.
+ * own KnownIssue records share EITHER a DTC code OR a canonical engine
+ * code with it. This creates the "this issue also affects: [Dodge Journey,
+ * Chrysler Town & Country]" cross-link block — the hub-and-spoke effect
+ * Gemini flagged for Google's near-duplicate detector.
  *
- * Single batched Prisma query — we OR-merge every DTC across the
- * current page's issues, fetch matching rows, then group in JS. Avoids
- * N+1 per issue. Returns Map<issueId, RelatedIssueVehicle[]>.
+ * Why both DTC and engine? Many shared-platform defects have NO standard
+ * SAE code (HEMI MDS lifter failure, B58 timing chain rattle, EA888
+ * tensioner) but they're the same issue across 4-5 vehicles. Matching
+ * on engines extends cross-link coverage from ~47% (DTC-only) to ~85%+
+ * once `engines` is backfilled by scripts/extract-issue-metadata.js.
  *
- * Issues without DTC codes get an empty array (graceful degradation).
- * v2 could supplement with title-token matching (B58, LT4, 62TE) but
- * that needs a precomputed token index to stay cheap.
+ * Engine matching is case-insensitive exact-string. Variant noise
+ * ("5.7 HEMI" vs "5.7L HEMI") would lose matches; the extraction prompt
+ * canonicalizes to short form, but the data isn't strictly normalized.
+ * If matching feels weak in practice, v3 can add fuzzy/regex.
+ *
+ * Single batched Prisma query — OR-merges every DTC + engine across the
+ * page's issues, fetches matching rows, then groups in JS. No N+1.
  */
 export async function findRelatedVehiclesForIssues(
   issues: KnownIssue[],
@@ -215,8 +219,9 @@ export async function findRelatedVehiclesForIssues(
   const result = new Map<string, RelatedIssueVehicle[]>();
   for (const i of issues) result.set(i.id, []);
 
-  // Collect all DTC codes across current issues, normalized to upper-case.
+  // Collect DTCs (upper-case) and engines (lower-case) across all issues.
   const allDtcs = new Set<string>();
+  const allEngines = new Set<string>();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   for (const i of issues as any[]) {
     if (Array.isArray(i.dtcCodes)) {
@@ -224,12 +229,36 @@ export async function findRelatedVehiclesForIssues(
         if (typeof d === 'string' && d.length > 0) allDtcs.add(d.toUpperCase());
       }
     }
+    if (Array.isArray(i.engines)) {
+      for (const e of i.engines) {
+        if (typeof e === 'string' && e.length > 0) allEngines.add(e.toLowerCase());
+      }
+    }
   }
-  if (allDtcs.size === 0) return result;
+  if (allDtcs.size === 0 && allEngines.size === 0) return result;
+
+  // Fetch candidates that share a DTC OR an engine. Postgres `hasSome`
+  // is case-sensitive, so we'll filter case-insensitively in JS after.
+  const orClauses: Array<Record<string, unknown>> = [];
+  if (allDtcs.size > 0) orClauses.push({ dtcCodes: { hasSome: [...allDtcs] } });
+  if (allEngines.size > 0) {
+    // engines field stored as-is — pass both lower and original-case
+    // variations so we don't miss "HEMI" vs "Hemi". Cheap to widen the
+    // hasSome list; the JS filter below tightens it.
+    const engVariants = new Set<string>();
+    for (const e of allEngines) {
+      engVariants.add(e);
+      engVariants.add(e.toUpperCase());
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const titleCase = e.split(' ').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      engVariants.add(titleCase);
+    }
+    orClauses.push({ engines: { hasSome: [...engVariants] } });
+  }
 
   const candidates = await prisma.knownIssue.findMany({
     where: {
-      dtcCodes: { hasSome: [...allDtcs] },
+      OR: orClauses,
       NOT: {
         AND: [
           { make: { equals: excludeMake, mode: 'insensitive' } },
@@ -238,24 +267,31 @@ export async function findRelatedVehiclesForIssues(
       },
       status: 'published',
     },
-    select: { id: true, make: true, model: true, title: true, dtcCodes: true, severity: true },
-    take: 300,
+    select: {
+      id: true,
+      make: true,
+      model: true,
+      title: true,
+      dtcCodes: true,
+      engines: true,
+      severity: true,
+    },
+    take: 400,
   });
 
-  // For each current issue, pick its candidates: those sharing at least
-  // one DTC. Dedupe by make+model so we link to one card per vehicle even
-  // if that vehicle has multiple matching issues.
   for (const issue of issues) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const issueDtcs = new Set(((issue as any).dtcCodes || []).map((d: string) => d.toUpperCase()));
-    if (issueDtcs.size === 0) continue;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const issueEngs = new Set(((issue as any).engines || []).map((e: string) => e.toLowerCase()));
+    if (issueDtcs.size === 0 && issueEngs.size === 0) continue;
 
-    const matched = candidates.filter((c) =>
-      c.dtcCodes.some((d) => issueDtcs.has(d.toUpperCase())),
-    );
+    const matched = candidates.filter((c) => {
+      if (c.dtcCodes.some((d) => issueDtcs.has(d.toUpperCase()))) return true;
+      if (c.engines.some((e) => issueEngs.has(e.toLowerCase()))) return true;
+      return false;
+    });
 
-    // Sort: prefer high-severity matches first (more likely to be the
-    // SAME root cause, not just a coincidental code overlap).
     matched.sort((a, b) => {
       const order: Record<string, number> = { critical: 0, high: 1, medium: 2, low: 3 };
       return (order[a.severity] ?? 4) - (order[b.severity] ?? 4);
