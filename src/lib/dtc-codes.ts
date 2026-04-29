@@ -1,6 +1,6 @@
 import prisma from '@/lib/db';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
-import { makeSlug } from './known-issues';
+import { makeSlug, LAYOUT_LAST_REVISED } from './known-issues';
 
 export interface DTCCodeInfo {
   code: string;
@@ -100,9 +100,14 @@ export async function getDTCDates(code: string): Promise<{ published: string; mo
     where: { code: code.toUpperCase() },
     select: { createdAt: true, updatedAt: true },
   });
+  const dataModified = (dtc?.updatedAt || new Date()).toISOString().split('T')[0];
+  // Mirror getArticleDates: bump dateModified to LAYOUT_LAST_REVISED when
+  // the render layer was touched more recently than the data, so Google
+  // sees a fresh signal and re-crawls. Same logic, different route.
+  const modified = dataModified > LAYOUT_LAST_REVISED ? dataModified : LAYOUT_LAST_REVISED;
   return {
     published: (dtc?.createdAt || new Date()).toISOString().split('T')[0],
-    modified: (dtc?.updatedAt || new Date()).toISOString().split('T')[0],
+    modified,
   };
 }
 
@@ -115,8 +120,14 @@ export async function getAllDTCSlugsWithDates(): Promise<{ code: string; lastMod
     select: { code: true, updatedAt: true },
   });
 
+  // Same dateModified bump as the vehicle pages — every DTC URL in
+  // /sitemap.xml advertises today's lastmod after a layout revision.
+  const layoutDate = new Date(LAYOUT_LAST_REVISED + 'T00:00:00Z');
   return existingDTCs
-    .map(d => ({ code: d.code.toLowerCase(), lastModified: d.updatedAt }))
+    .map(d => ({
+      code: d.code.toLowerCase(),
+      lastModified: d.updatedAt > layoutDate ? d.updatedAt : layoutDate,
+    }))
     .sort((a, b) => a.code.localeCompare(b.code));
 }
 

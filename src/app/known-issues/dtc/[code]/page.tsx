@@ -285,7 +285,7 @@ export default async function DTCCodePage({
             {/* Cost Range — collapsible */}
             {minCost > 0 && (
               <section id="cost" className="scroll-mt-16 mb-8">
-                <details className="group">
+                <details className="group" open>
                   <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
                     <h2 className="text-lg font-semibold text-gray-900">Typical Repair Cost</h2>
                     <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -334,7 +334,7 @@ export default async function DTCCodePage({
             {/* Related Codes — collapsible */}
             {relatedCodes.length > 0 && (
               <section id="related" className="scroll-mt-16 mb-8">
-                <details className="group">
+                <details className="group" open>
                   <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
                     <h2 className="text-lg font-semibold text-gray-900">Related Codes ({relatedCodes.length})</h2>
                     <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">

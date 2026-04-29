@@ -24,7 +24,13 @@ interface CollapsibleMakeSectionProps {
 }
 
 export function CollapsibleMakeSection({ make, issues, dtcCode }: CollapsibleMakeSectionProps) {
-  const [expanded, setExpanded] = useState(false);
+  // Default expanded so the SSR HTML contains the actual per-vehicle
+  // issue list under each make. With useState(false) the issues were
+  // conditionally rendered (`{expanded && ...}`) and the DTC page's
+  // indexable content was just a wall of make names — Googlebot couldn't
+  // see "P0300 affects 2008 Honda Civic with K20 head gasket failure",
+  // only "Honda". Same bug as the vehicle-page cards had before today.
+  const [expanded, setExpanded] = useState(true);
 
   return (
     <div
