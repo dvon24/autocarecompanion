@@ -85,13 +85,44 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Known issues article pages — use actual DB updatedAt dates
-  const knownIssuesPages: MetadataRoute.Sitemap = (await getAllKnownIssueSlugsWithDates()).map(s => ({
+  // Known issues article pages — use actual DB updatedAt dates.
+  const knownIssueSlugsWithDates = await getAllKnownIssueSlugsWithDates();
+  const knownIssuesPages: MetadataRoute.Sitemap = knownIssueSlugsWithDates.map(s => ({
     url: `${baseUrl}/known-issues/${s.slug}`,
     lastModified: s.lastModified,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
+
+  // Year-filtered indexable variants of each article. The page renders
+  // ?year=YYYY as a separate canonical URL (server-filtered issues,
+  // year-specific title/H1/description, distinct meta canonical) so each
+  // "2018 BMW 1 Series Problems" lands as its own indexable page.
+  // Multiplies our known-issues index footprint roughly 5-7x.
+  const allPublished = await prisma.knownIssue.findMany({
+    where: { status: 'published' },
+    select: { make: true, model: true, years: true, updatedAt: true },
+  });
+  const perYearMap = new Map<string, Date>(); // key = `${slug}|${year}` → lastModified
+  for (const row of allPublished) {
+    const slug = `${row.make} ${row.model}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    for (const year of row.years || []) {
+      const key = `${slug}|${year}`;
+      const prev = perYearMap.get(key);
+      if (!prev || row.updatedAt > prev) perYearMap.set(key, row.updatedAt);
+    }
+  }
+  const layoutDate = new Date('2026-04-29T00:00:00Z');
+  const yearVariantPages: MetadataRoute.Sitemap = Array.from(perYearMap.entries()).map(([key, lastModified]) => {
+    const [slug, year] = key.split('|');
+    const lm = lastModified > layoutDate ? lastModified : layoutDate;
+    return {
+      url: `${baseUrl}/known-issues/${slug}?year=${year}`,
+      lastModified: lm,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6, // slightly lower than base — the canonical per-vehicle page is the hub
+    };
+  });
 
   // DTC code pages — use actual DB updatedAt dates
   const dtcPages: MetadataRoute.Sitemap = (await getAllDTCSlugsWithDates()).map(s => ({
@@ -129,5 +160,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...knownIssuesPages, ...dtcPages, ...categoryPages, ...makePages];
+  return [...staticPages, ...knownIssuesPages, ...yearVariantPages, ...dtcPages, ...categoryPages, ...makePages];
 }

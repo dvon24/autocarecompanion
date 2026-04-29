@@ -38,27 +38,51 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ year?: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const { year: yearParam } = await searchParams;
+  const requestedYear = yearParam ? parseInt(yearParam, 10) : null;
   const parsed = await parseSlug(slug);
   if (!parsed) return { title: 'Not Found' };
 
-  const issues = await getKnownIssuesForArticle(parsed.make, parsed.model);
-  const yearRange = getYearRange(issues);
-  const highCount = issues.filter(i => i.severity === 'high').length;
+  const allIssues = await getKnownIssuesForArticle(parsed.make, parsed.model);
+  // Year-filtered indexable variant. When ?year=YYYY is set AND that year
+  // has at least one documented issue, we treat this as a *separate*
+  // canonical page from the all-years base — its own title, description,
+  // and canonical URL. Multiplies index footprint ~5-7x.
+  const yearIsValid = requestedYear != null && allIssues.some((i) => i.vehicleMatch.years.includes(requestedYear));
+  const issues = yearIsValid
+    ? allIssues.filter((i) => i.vehicleMatch.years.includes(requestedYear!))
+    : allIssues;
+  const yearRange = getYearRange(allIssues); // base range stays from full set
+  const highCount = issues.filter((i) => i.severity === 'high').length;
   const totalReports = issues.reduce((sum, i) => sum + i.reportCount, 0);
   const vehicleName = `${parsed.make} ${parsed.model}`;
-  const yearStr = yearRange ? `${yearRange.min}-${yearRange.max} ` : '';
 
-  // Lead with the year range — owners search "2014 BMW 1 Series problems"
-  // 5x more than the bare model. Year prefix in <title>, OG, and Twitter
-  // tags lifts CTR on year-specific queries.
-  const title = yearRange
-    ? `${yearRange.min}-${yearRange.max} ${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`
+  // Title: when year-specific, lead with that single year. Otherwise the
+  // full year range. Owners search "2014 BMW 1 Series problems" 5x more
+  // than the bare model — explicit year match dominates range match.
+  const titlePrefix = yearIsValid
+    ? `${requestedYear}`
+    : (yearRange ? `${yearRange.min}-${yearRange.max}` : '');
+  const title = titlePrefix
+    ? `${titlePrefix} ${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`
     : `${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`;
-  const description = `${issues.length} documented problems for the ${yearStr}${vehicleName}${highCount > 0 ? `, including ${highCount} critical` : ''}. Symptoms, repair costs ($${getMinCost(issues)}-$${getMaxCost(issues)}), and solutions from ${totalReports.toLocaleString()}+ owner reports.`;
+
+  const descPrefix = yearIsValid
+    ? `${requestedYear} `
+    : (yearRange ? `${yearRange.min}-${yearRange.max} ` : '');
+  const description = `${issues.length} documented problems for the ${descPrefix}${vehicleName}${highCount > 0 ? `, including ${highCount} critical` : ''}. Symptoms, repair costs ($${getMinCost(issues)}-$${getMaxCost(issues)}), and solutions from ${totalReports.toLocaleString()}+ owner reports.`;
+
+  // Canonical splits between base and per-year variants. Each is a
+  // distinct indexable URL; Google credits content + ranking to the
+  // canonical that matches the request.
+  const baseUrl = `https://au7o.io/known-issues/${slug}`;
+  const canonical = yearIsValid ? `${baseUrl}?year=${requestedYear}` : baseUrl;
 
   return {
     title,
@@ -67,7 +91,7 @@ export async function generateMetadata({
       title,
       description,
       type: 'article',
-      url: `https://au7o.io/known-issues/${slug}`,
+      url: canonical,
       siteName: 'Au7o',
     },
     twitter: {
@@ -76,7 +100,7 @@ export async function generateMetadata({
       description,
     },
     alternates: {
-      canonical: `https://au7o.io/known-issues/${slug}`,
+      canonical,
     },
   };
 }
@@ -200,11 +224,23 @@ export default async function KnownIssuesArticlePage({
   if (!parsed) notFound();
 
   const { make, model } = parsed;
-  const [issues, articleDates, related] = await Promise.all([
+  const [allIssues, articleDates, related] = await Promise.all([
     getKnownIssuesForArticle(make, model),
     getArticleDates(make, model),
     getRelatedVehicles(make, model),
   ]);
+
+  // Year-filtered indexable variant. When ?year=YYYY is set AND that year
+  // has documented issues, we filter SERVER-SIDE so the SSR HTML
+  // contains only that year's issues — Google indexes a year-specific
+  // page (canonical = `?year=YYYY`) with year-specific content.
+  // When the year is invalid or has no issues, we fall back to the
+  // base view (all years) rather than 404, since users may bookmark
+  // a year that no longer matches our data.
+  const yearIsValid = initialYear != null && allIssues.some((i) => i.vehicleMatch.years.includes(initialYear));
+  const issues = yearIsValid
+    ? allIssues.filter((i) => i.vehicleMatch.years.includes(initialYear!))
+    : allIssues;
 
   // Per-issue cross-vehicle links — issues that share DTC codes across
   // makes/models. Adds Gemini's "hub-and-spoke" internal-link network so
@@ -216,21 +252,32 @@ export default async function KnownIssuesArticlePage({
   const recalls = await getRecallsForArticle(make, model, [...new Set(allYears)]);
   if (issues.length === 0) notFound();
 
-  const yearRange = getYearRange(issues);
+  // For year-filtered variants the "yearRange" displayed is just that year.
+  const yearRange = yearIsValid
+    ? { min: initialYear!, max: initialYear! }
+    : getYearRange(issues);
   const highCount = issues.filter(i => i.severity === 'high').length;
   const totalReports = issues.reduce((sum, i) => sum + i.reportCount, 0);
   const grouped = groupByCategory(issues);
   const faqs = generateFAQs(make, model, issues, yearRange);
 
   const vehicleName = `${make} ${model}`;
-  const yearStr = yearRange ? `${yearRange.min}-${yearRange.max}` : '';
-  const articleUrl = `https://au7o.io/known-issues/${slug}`;
-  // Title now leads with the full year range, e.g.
-  // "2008-2019 BMW 1 Series Problems: 11 Issues Every Owner Should Know".
-  // The year range carries enormous SEO weight — owners search "2014 BMW
-  // 1 Series problems" far more than the bare model name. H1, <title>,
-  // OG, and TechArticle.headline all derive from this single string so
-  // they stay in sync.
+  // Year display collapses to a single year when the user is on the
+  // ?year=YYYY variant (yearRange.min === yearRange.max). For the all-
+  // years base view it stays as a range like "2008-2019".
+  const yearStr = yearRange
+    ? (yearRange.min === yearRange.max ? `${yearRange.min}` : `${yearRange.min}-${yearRange.max}`)
+    : '';
+  // Canonical URL — base for all-years, ?year=YYYY for the year-filtered
+  // variant. Must match the canonical we emit in generateMetadata.
+  const articleUrl = yearIsValid
+    ? `https://au7o.io/known-issues/${slug}?year=${initialYear}`
+    : `https://au7o.io/known-issues/${slug}`;
+  // Title now leads with the year (single year or full range). H1,
+  // <title>, OG, and TechArticle.headline all derive from this string
+  // so they stay in sync. Year prefix is the highest-weight SEO signal
+  // for these queries — owners search "2014 BMW 1 Series problems" 5x
+  // more than the bare model.
   const title = yearStr
     ? `${yearStr} ${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`
     : `${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`;
@@ -317,7 +364,7 @@ export default async function KnownIssuesArticlePage({
           </h1>
           <div className="flex items-center justify-between flex-wrap gap-2">
             <p className="text-gray-400 text-sm">
-              {yearStr && `${yearStr} model years`} &middot; {totalReports.toLocaleString()}+ owner reports &middot; Updated April 2026
+              {yearStr && `${yearStr} model year${yearRange && yearRange.min !== yearRange.max ? 's' : ''}`} &middot; {totalReports.toLocaleString()}+ owner reports &middot; Updated April 2026
             </p>
             <ShareButtons url={articleUrl} title={title} />
           </div>
