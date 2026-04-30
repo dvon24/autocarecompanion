@@ -658,6 +658,51 @@ Rules:
     console.log(`[drive/plan-route] Using trusted destination: "${geocoded.placeName}"`);
   }
 
+  // Short-circuit 3: hardcoded military bases + niche landmarks that all
+  // public geocoders fumble. Mapbox + Google both resolve "Kelley Barracks"
+  // to downtown Stuttgart instead of the actual base in Möhringen — these
+  // are off-map by design (no street signs, no Google reviews) and the
+  // only fix is a known-good fallback. Match is fuzzy: lowercased,
+  // whitespace-normalized substring check on the destination string.
+  if (!geocoded) {
+    const HARDCODED_DESTINATIONS: { match: string[]; lng: number; lat: number; placeName: string }[] = [
+      // Kelley Barracks, Möhringen (USAG Stuttgart HQ / EUCOM)
+      {
+        match: ['kelley barracks', 'kelley kaserne'],
+        lng: 9.150566,
+        lat: 48.701389,
+        placeName: 'Kelley Barracks, Plieninger Str. 100, 70567 Stuttgart, Germany',
+      },
+      // Patch Barracks, Vaihingen (USEUCOM, US Army)
+      {
+        match: ['patch barracks', 'patch kaserne'],
+        lng: 9.094167,
+        lat: 48.728889,
+        placeName: 'Patch Barracks, 70569 Stuttgart-Vaihingen, Germany',
+      },
+      // Robinson Barracks, Burgholzhof
+      {
+        match: ['robinson barracks'],
+        lng: 9.213056,
+        lat: 48.831667,
+        placeName: 'Robinson Barracks, 70376 Stuttgart, Germany',
+      },
+      // Panzer Kaserne (USAG Stuttgart, Böblingen)
+      {
+        match: ['panzer kaserne', 'panzer barracks'],
+        lng: 9.012778,
+        lat: 48.694167,
+        placeName: 'Panzer Kaserne, 71032 Böblingen, Germany',
+      },
+    ];
+    const dq = destination.toLowerCase().replace(/\s+/g, ' ').trim();
+    const hit = HARDCODED_DESTINATIONS.find((h) => h.match.some((m) => dq.includes(m)));
+    if (hit) {
+      geocoded = { lng: hit.lng, lat: hit.lat, placeName: hit.placeName };
+      console.log(`[drive/plan-route] Hardcoded landmark match: "${destination}" → ${hit.placeName}`);
+    }
+  }
+
   // Mapbox SearchBox /forward — POI-aware, way better at niche places like
   // 'Mummelsee in the Black Forest' or 'REWE in Öhringen' than legacy
   // Geocoding v5 which over-fuzzy-matches to nearby unrelated places.

@@ -667,6 +667,63 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [following]);
 
+  // Screen Wake Lock — keeps the phone awake while actively navigating so
+  // iOS / Android don't kill the tab after a few minutes of inactivity.
+  // The biggest cause of "the app closed mid-drive" is iOS aggressively
+  // backgrounding tabs to save battery; the Wake Lock signals "user is
+  // actively using this" so the OS leaves us alone. Released when
+  // `following` flips off OR the page hides (driver locked the phone).
+  useEffect(() => {
+    if (!following) return;
+    if (typeof navigator === 'undefined' || !('wakeLock' in navigator)) return;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let sentinel: any = null;
+    let cancelled = false;
+    const acquire = async () => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const wl = (navigator as any).wakeLock;
+        if (!wl?.request) return;
+        const next = await wl.request('screen');
+        if (cancelled) { try { await next.release(); } catch { /* ignore */ } return; }
+        sentinel = next;
+      } catch {
+        // Permission denied or device doesn't support — silent fallback.
+      }
+    };
+    acquire();
+    // Re-acquire when the page comes back to focus — wake locks are
+    // released automatically on visibilitychange, so we hand it back
+    // when the driver returns to the tab.
+    const onVis = () => { if (document.visibilityState === 'visible' && !sentinel) acquire(); };
+    document.addEventListener('visibilitychange', onVis);
+    return () => {
+      cancelled = true;
+      document.removeEventListener('visibilitychange', onVis);
+      if (sentinel) { try { sentinel.release(); } catch { /* ignore */ } }
+    };
+  }, [following]);
+
+  // Reduce GPU + memory pressure while actively following. 3D buildings
+  // are the single biggest cost in the Mapbox Standard style — every
+  // frame the GPU re-renders thousands of extruded geometries while the
+  // camera tracks the driver. Turning them off in follow mode drops
+  // frame time noticeably on mid-tier phones and reduces RAM enough to
+  // help iOS keep the tab alive longer. Re-enabled when follow ends so
+  // pre-trip browsing still has the full visual experience.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const apply = () => {
+      try {
+        map.setConfigProperty('basemap', 'show3dBuildings', !following);
+        map.setConfigProperty('basemap', 'show3dObjects', !following);
+      } catch { /* noop on older mapbox-gl */ }
+    };
+    if (map.isStyleLoaded()) apply();
+    else map.once('style.load', apply);
+  }, [following]);
+
   // Reroute helper — called both on off-route detection and on the periodic
   // refresh timer. Hits /api/drive/reroute (no Claude, no geocoding) and
   // updates the active route + map without showing a "planning" spinner.
