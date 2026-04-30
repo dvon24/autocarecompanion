@@ -894,6 +894,68 @@ Rules:
       console.warn('[drive/plan-route] SearchBox error:', err);
     }
   }
+  // Last-ditch fallback: Google Places searchText. We only reach here when
+  // every Mapbox path failed, so paying for a Places call is justified by
+  // the alternative being a "not found" message that kills the user's trip.
+  // Triggers an estimated ~2-5% of queries — niche restaurants, military
+  // bases, regional landmarks Mapbox simply doesn't index well.
+  // Score-and-pick same as the localSearch path: rating × log(reviews) −
+  // distance penalty, so we don't pick a 1-star Kelley's Bar in Munich
+  // when the user said "Kelley Barracks" near Stuttgart.
+  if (!geocoded && process.env.GOOGLE_PLACES_API_KEY) {
+    try {
+      const fieldMask = 'places.id,places.displayName,places.formattedAddress,places.location,places.rating,places.userRatingCount';
+      const gRes = await fetch('https://places.googleapis.com/v1/places:searchText', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Goog-Api-Key': process.env.GOOGLE_PLACES_API_KEY,
+          'X-Goog-FieldMask': fieldMask,
+        },
+        body: JSON.stringify({
+          textQuery: destination,
+          languageCode: lang,
+          maxResultCount: 8,
+          locationBias: {
+            circle: {
+              center: { latitude: body.origin.lat, longitude: body.origin.lng },
+              radius: 50000, // 50 km — wider than localSearch since this is a proper-noun fallback
+            },
+          },
+        }),
+        signal: AbortSignal.timeout(7000),
+      });
+      if (gRes.ok) {
+        const gData = await gRes.json();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const candidates = (gData.places || []) as any[];
+        let best: { place: typeof candidates[number]; score: number } | null = null;
+        for (const p of candidates) {
+          const loc = p.location;
+          if (!loc) continue;
+          const dist = haversineMiles(body.origin.lat, body.origin.lng, loc.latitude, loc.longitude);
+          const rating = typeof p.rating === 'number' ? p.rating : 3.0;
+          const count = typeof p.userRatingCount === 'number' ? p.userRatingCount : 1;
+          const score = rating * Math.log10(count + 10) - dist * 0.04;
+          if (!best || score > best.score) best = { place: p, score };
+        }
+        if (best) {
+          const p = best.place;
+          geocoded = {
+            lng: p.location.longitude,
+            lat: p.location.latitude,
+            placeName: p.displayName?.text || p.formattedAddress || destination,
+          };
+          console.log(`[drive/plan-route] Google Places fallback: "${destination}" → "${geocoded.placeName}"`);
+        }
+      } else {
+        console.warn(`[drive/plan-route] Google Places fallback HTTP ${gRes.status}`);
+      }
+    } catch (err) {
+      console.warn('[drive/plan-route] Google Places fallback error:', err);
+    }
+  }
+
   if (!geocoded) {
     console.warn(`[drive/plan-route] All geocode attempts failed for: "${destination}"`);
     return NextResponse.json(
