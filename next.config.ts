@@ -5,8 +5,48 @@ import { withSentryConfig } from "@sentry/nextjs";
 const withPWA = withPWAInit({
   dest: "public",
   disable: process.env.NODE_ENV === "development",
-  // Caching strategies will be expanded in Epic 2 (Offline-First Garage Mode)
-  // See: architecture.md#Service Worker Strategy
+  // Push the new service worker active immediately on next page load so
+  // users don't sit on stale HTML for days after a deploy. Without these
+  // flags @ducanh2912/next-pwa waits for ALL tabs to close before
+  // activating the new SW — most mobile users never close the PWA, so
+  // they were stuck on cached HTML from the first install (e.g. the
+  // pre-SEO-fix /known-issues card markup).
+  register: true,
+  reloadOnOnline: true,
+  cacheOnFrontEndNav: true,
+  // skipWaiting + clientsClaim live inside workboxOptions in this
+  // package, not at the top level.
+  workboxOptions: {
+    skipWaiting: true,
+    clientsClaim: true,
+    // Article HTML and the API responses that hydrate it must always
+    // come from the network when available. The previous default
+    // (StaleWhileRevalidate) served stale HTML to mobile while
+    // background-fetching the new version — meaning users saw old
+    // cards for 1+ minutes after a deploy. NetworkFirst with a short
+    // network timeout keeps it snappy when offline but always prefers
+    // a fresh response over a cached one.
+    runtimeCaching: [
+      {
+        urlPattern: /^https:\/\/au7o\.io\/known-issues(\/.*)?$/,
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'known-issues-html',
+          networkTimeoutSeconds: 4,
+          expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 },
+        },
+      },
+      {
+        urlPattern: /^https:\/\/au7o\.io\/api\/.*$/,
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'api',
+          networkTimeoutSeconds: 6,
+          expiration: { maxEntries: 100, maxAgeSeconds: 60 * 5 },
+        },
+      },
+    ],
+  },
 });
 
 const nextConfig: NextConfig = {

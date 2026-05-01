@@ -10,6 +10,7 @@ import TermlyCMP from "@/components/consent/TermlyCMP";
 import { OrganizationJsonLd, WebSiteJsonLd, SoftwareApplicationJsonLd } from "@/components/seo/JsonLd";
 import { GoogleTranslate } from "@/components/shared/GoogleTranslate";
 import { InstallPrompt } from "@/components/pwa/InstallPrompt";
+import { ServiceWorkerRefresh } from "@/components/pwa/ServiceWorkerRefresh";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -104,6 +105,7 @@ export default function RootLayout({
             <OfflineIndicator position="top" showFeatures />
             {children}
             <InstallPrompt />
+            <ServiceWorkerRefresh />
           </AppProvider>
         </SessionProvider>
       </body>
