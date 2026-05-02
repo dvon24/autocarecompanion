@@ -4,7 +4,9 @@ import { getKnownIssuesForArticle } from '@/lib/known-issues';
 import { getRecallsForArticle } from '@/lib/recalls';
 import { getVehicleSpecs } from '@/lib/maintenance';
 import prisma from '@/lib/db';
-import { VehicleDashboard } from '@/components/vehicle/VehicleDashboard';
+import { auth } from '@/lib/auth';
+import { VehicleHub } from '@/components/vehicle/VehicleHub';
+import { getMaintenanceSuggestions, renderOpener, type MaintenanceSuggestion } from '@/lib/maintenance-suggestions';
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -238,14 +240,62 @@ export default async function VehicleProfilePage({
 
   const allParts = [...cachedParts, ...specsParts];
 
+  // ── Auth + maintenance suggestions for the new conversation hub ──
+  // Anonymous visitors hit this page with no Vehicle row to look up, so
+  // they get a generic opener. Signed-in users with a matching Vehicle in
+  // their garage get a maintenance-aware opener tailored to their actual
+  // mileage + service history.
+  let isAuthed = false;
+  let currentMileage: number | null = null;
+  let maintenanceSuggestions: MaintenanceSuggestion[] = [];
+  try {
+    const session = await auth();
+    if (session?.user?.id) {
+      isAuthed = true;
+      // Match the vehicle URL to a row in the user's garage. Loose match
+      // on year/make/model — trim variations are common ("SRT 392" vs
+      // "SRT" vs "Hellcat") so we'd rather over-match than miss the
+      // user's actual garage entry.
+      const userVehicle = await prisma.vehicle.findFirst({
+        where: {
+          userId: session.user.id,
+          year,
+          make: { equals: make, mode: 'insensitive' },
+          model: { equals: model, mode: 'insensitive' },
+        },
+        select: { id: true, currentMileage: true },
+      });
+      if (userVehicle?.currentMileage != null) {
+        currentMileage = userVehicle.currentMileage;
+        maintenanceSuggestions = await getMaintenanceSuggestions({
+          vehicleId: userVehicle.id,
+          currentMileage: userVehicle.currentMileage,
+        });
+      }
+    }
+  } catch {
+    // Silent fallback — anonymous flow continues to work even when auth
+    // or DB is briefly unhappy.
+  }
+
+  const opener = renderOpener(
+    { year, make, model, trim, currentMileage },
+    maintenanceSuggestions,
+  );
+
   return (
-    <VehicleDashboard
-      vehicle={vehicle}
+    <VehicleHub
+      vehicle={{ year, make, model, trim }}
       slug={slug}
-      issues={JSON.parse(JSON.stringify(yearIssues))}
-      recalls={JSON.parse(JSON.stringify(recalls))}
-      cachedParts={JSON.parse(JSON.stringify(allParts))}
-      specsSummary={specsSummary}
+      isAuthed={isAuthed}
+      counts={{
+        knownIssues: yearIssues.length,
+        recalls: recalls.length,
+        partsCached: allParts.length,
+      }}
+      currentMileage={currentMileage}
+      maintenanceSuggestions={maintenanceSuggestions}
+      opener={opener}
     />
   );
 }

@@ -222,6 +222,55 @@ model ChatSession {
 
   @@index([userId])
   @@index([anonymousId])
+  @@index([vehicleId, createdAt])
+}
+
+// ChatPromptInsight — write-only log of every prompt the chat sees,
+// enriched with vehicle context. Powers the "Trending for your car"
+// chip group in the hub by aggregating into TrendingIntent below.
+// Anonymous prompts allowed (vehicleId is nullable).
+model ChatPromptInsight {
+  id            String   @id @default(cuid())
+  vehicleYear   Int?
+  make          String?
+  model         String?
+  trim          String?
+  // Bucketed mileage so we don't fragment data across every odometer
+  // reading. 0, 10000, 20000, ... in 10k-mi buckets.
+  mileageBucket Int?
+  prompt        String   @db.Text
+  // Pre-classified intent (e.g. "maintenance.oil", "issue.transmission",
+  // "drive.trip-planning"). Populated by a cheap classifier on insert
+  // OR backfilled by the nightly aggregation cron.
+  intent        String?
+  promptTokens  Int?
+  vehicleId     String?
+  userId        String?
+  anonymousId   String?
+  createdAt     DateTime @default(now())
+
+  @@index([make, model, mileageBucket])
+  @@index([intent])
+  @@index([createdAt])
+}
+
+// TrendingIntent — pre-aggregated trending questions by vehicle slice.
+// Refreshed nightly from ChatPromptInsight. Read-heavy / write-occasionally
+// shape so the hub can render "Drivers like you also asked..." instantly
+// without aggregating at request time.
+model TrendingIntent {
+  id              String   @id @default(cuid())
+  make            String
+  model           String
+  mileageBucket   Int
+  intent          String
+  count           Int
+  exampleQuestion String   @db.Text
+  lastSeen        DateTime
+  refreshedAt     DateTime @default(now())
+
+  @@unique([make, model, mileageBucket, intent])
+  @@index([make, model, mileageBucket])
 }
 
 // ============================================
