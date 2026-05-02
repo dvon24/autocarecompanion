@@ -138,6 +138,10 @@ export function VehicleHub({
             ...messages.map((m) => ({ role: m.role, content: m.content })),
             { role: 'user' as const, content: trimmed },
           ],
+          // Hand the assistant our exact KnownIssue titles so it can
+          // reference them verbatim — that's how the inline issue
+          // attachment cards get matched + rendered.
+          knownIssueTitles: attachableIssues.map((i) => ({ id: i.id, title: i.title })),
         }),
       });
 
@@ -250,6 +254,12 @@ export function VehicleHub({
                   // good enough for v1; v2 could use the tool-use API to have
                   // the model itself emit issue ids.
                   attachments={matchAttachments(m.content, attachableIssues)}
+                  // Detect trip-planning intent (the assistant ends with
+                  // "open in Drive" / "plan it in Drive" by system-prompt
+                  // convention) and surface the Drive handoff card.
+                  driveHandoff={detectDriveIntent(m.content)}
+                  // Pick chip-able follow-up prompts to send next.
+                  onFollowUp={(prompt) => send(prompt)}
                 />
               )
           ))}
@@ -601,13 +611,42 @@ function relativeWhen(iso: string): string {
 }
 
 /* ─── Au7o reply bubble ─── */
-function Au7oReply({ content, attachments = [] }: { content: string; attachments?: AttachableIssue[] }) {
+function Au7oReply({
+  content, attachments = [], driveHandoff = null, onFollowUp,
+}: {
+  content: string;
+  attachments?: AttachableIssue[];
+  driveHandoff?: { destination: string | null } | null;
+  onFollowUp?: (prompt: string) => void;
+}) {
+  // Split out any "→ follow-up question" lines the AI emitted at the end
+  // of the reply. Body shows the cleaned content; chips render below as
+  // clickable suggestions for the next user turn.
+  const { body, followUps } = extractFollowUps(content);
   return (
     <div className="row-au7o">
       <Image src="/og-image.png" alt="" width={32} height={32} className="avatar" />
       <div className="body">
-        <div className="bubble-au7o">{renderMarkdownLite(content)}</div>
-        {attachments.map((iss) => <IssueAttachment key={iss.id} issue={iss} />)}
+        <div className="bubble-au7o">{renderMarkdownLite(body)}</div>
+        {attachments.length > 0 && <IssueAttachmentGroup issues={attachments} />}
+        {driveHandoff && <DriveHandoff destination={driveHandoff.destination} />}
+        {followUps.length > 0 && onFollowUp && (
+          <div className="followups">
+            {followUps.map((q, i) => (
+              <button key={i} className="chip-followup" onClick={() => onFollowUp(q)}>{q}</button>
+            ))}
+            <style jsx>{`
+              .followups { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+              .chip-followup {
+                padding: 6px 11px; border-radius: 999px;
+                background: #fff; border: 1px solid #E3DFD4;
+                font-family: inherit; font-size: 12px; font-weight: 500; color: #0B1220;
+                cursor: pointer;
+              }
+              .chip-followup:hover { background: #EFEDE6; }
+            `}</style>
+          </div>
+        )}
       </div>
 
       <style jsx>{`
@@ -633,6 +672,37 @@ function Au7oReply({ content, attachments = [] }: { content: string; attachments
       `}</style>
     </div>
   );
+}
+
+/**
+ * Pull "→ follow-up question" lines out of the assistant's reply. The
+ * system prompt instructs the model to emit suggested follow-ups on
+ * their own lines at the very end, prefixed with "→ ". We strip them
+ * from the rendered body so they don't show as awkward arrow text in
+ * the bubble, then render them as clickable chips below.
+ */
+function extractFollowUps(text: string): { body: string; followUps: string[] } {
+  if (!text) return { body: '', followUps: [] };
+  const lines = text.split('\n');
+  const followUps: string[] = [];
+  // Walk lines from the end, peeling off arrow-prefixed lines until we
+  // hit non-arrow content. Anything in front of that boundary is the body.
+  let cutAt = lines.length;
+  for (let i = lines.length - 1; i >= 0; i--) {
+    const line = lines[i].trim();
+    if (line === '') continue; // blank lines between body + follow-ups are fine
+    if (line.startsWith('→ ') || line.startsWith('-> ') || line.startsWith('→')) {
+      const q = line.replace(/^(?:→|->)\s*/, '').trim();
+      if (q.length > 0 && q.length < 120) {
+        followUps.unshift(q);
+        cutAt = i;
+        continue;
+      }
+    }
+    break;
+  }
+  const body = lines.slice(0, cutAt).join('\n').replace(/\s+$/, '');
+  return { body, followUps: followUps.slice(0, 4) };
 }
 
 /**
@@ -763,13 +833,14 @@ const Composer = ({
 
 /**
  * Match assistant-message text against the user's vehicle's known-issues
- * library and return up to 2 matched cards. Cheap substring match — if
- * the model named an issue word-for-word it gets attached. v2 swap-in
+ * library and return up to 4 matched cards. Cheap substring match — if
+ * the model named an issue word-for-word (which it now does because the
+ * system prompt feeds it our exact titles), it gets attached. v2 swap-in
  * is to use Anthropic tool_use so the model itself emits issue ids.
  *
- * Dedupes by issue id, caps at 2 attachments per reply so the bubble
- * doesn't turn into an issue dump. Whichever match has the longest
- * title prefix wins (more specific match).
+ * Dedupes by issue id, caps at 4 attachments per reply so the bubble
+ * stays scannable. Whichever match has the longest title (more
+ * specific match) wins ranking.
  */
 function matchAttachments(text: string, available: AttachableIssue[]): AttachableIssue[] {
   if (!text || available.length === 0) return [];
@@ -780,7 +851,162 @@ function matchAttachments(text: string, available: AttachableIssue[]): Attachabl
     return lower.includes(title);
   });
   matches.sort((a, b) => b.title.length - a.title.length);
-  return matches.slice(0, 2);
+  return matches.slice(0, 4);
+}
+
+/**
+ * Detect when the assistant's reply is a trip-planning recommendation,
+ * triggered by the convention phrases the system prompt asks Claude to
+ * use ("open in Drive" / "plan it in Drive"). Cheap regex match, no
+ * extra LLM calls.
+ *
+ * Tries to extract a destination if the reply mentions "to <Place>" —
+ * good enough for v1. Returns { destination: null } when intent is
+ * detected but no destination can be parsed (still useful — the card
+ * just becomes a generic Drive handoff).
+ */
+function detectDriveIntent(text: string): { destination: string | null } | null {
+  if (!text) return null;
+  const lower = text.toLowerCase();
+  const hasIntent = /open in drive|plan it in drive|plot (it|this) in drive|outline (it|this) in drive/.test(lower);
+  if (!hasIntent) return null;
+  // Naive destination extraction: "trip to <X>" / "drive to <X>" / "head to <X>".
+  // Captures up to the first sentence-ending punctuation.
+  const m = /(?:trip|drive|head|cruise|route)\s+(?:up|down|out|over)?\s*to\s+([A-Z][^.!?,;\n]{2,60})/.exec(text);
+  const destination = m ? m[1].trim() : null;
+  return { destination };
+}
+
+/* ─── Drive handoff card (rendered inline beneath a trip-planning reply) ─── */
+function DriveHandoff({ destination }: { destination: string | null }) {
+  // Pre-fill the destination via a query param so /drive can pick it up
+  // and start routing immediately. Falls back to a plain /drive deeplink
+  // when no destination was extractable.
+  const href = destination
+    ? `/drive?to=${encodeURIComponent(destination)}`
+    : '/drive';
+  return (
+    <Link href={href} className="drive-handoff">
+      <div className="dh-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/>
+        </svg>
+      </div>
+      <div className="dh-body">
+        <div className="dh-title">
+          {destination ? `Plan the route to ${destination}` : 'Plan this in Drive'}
+        </div>
+        <div className="dh-sub">Open Au7o Drive — voice navigation, vehicle-aware traffic + fuel</div>
+      </div>
+      <span className="dh-cta">Open Drive →</span>
+      <style jsx>{`
+        .drive-handoff {
+          display: flex; align-items: center; gap: 12px;
+          background: linear-gradient(180deg, #fff, #FAF8F2);
+          border: 1px solid #E3DFD4; border-radius: 12px;
+          padding: 12px 14px;
+          text-decoration: none; color: #0B1220;
+          box-shadow: 0 1px 2px rgba(11,18,32,.06);
+        }
+        .drive-handoff:hover { background: #FAF8F2; }
+        .dh-icon {
+          width: 36px; height: 36px; flex: 0 0 36px;
+          background: #EFF6FF; color: #3B82F6;
+          border-radius: 10px;
+          display: flex; align-items: center; justify-content: center;
+        }
+        .dh-body { flex: 1; min-width: 0; }
+        .dh-title { font-size: 13.5px; font-weight: 600; line-height: 1.3; }
+        .dh-sub { font-size: 11px; color: #64748B; margin-top: 2px; }
+        .dh-cta {
+          font-size: 11px; font-weight: 600; color: #3B82F6;
+          white-space: nowrap;
+        }
+      `}</style>
+    </Link>
+  );
+}
+
+/* ─── Issue attachment GROUP (stacked-card style from the prototype) ───
+ * Renders all matched issues inside one bordered container with a
+ * header strip ("4 known issues — filtered to your trim · See all"),
+ * plus a stacked list of issue rows underneath. This matches the
+ * prototype design instead of stacking N separate cards. */
+function IssueAttachmentGroup({ issues }: { issues: AttachableIssue[] }) {
+  // Use the first issue's slug-derivable URL as the "See all" target.
+  // All matched issues for one reply belong to the same vehicle so this
+  // is safe — they share the same /known-issues/{make-model} page.
+  const seeAllHref = (() => {
+    if (issues.length === 0) return '/known-issues';
+    return issues[0].knownIssuesUrl.split('#')[0];
+  })();
+  const sevColor = (sev: string) =>
+    sev === 'critical' || sev === 'high' ? '#EF4444'
+    : sev === 'medium' ? '#F59E0B'
+    : '#94A3B8';
+  return (
+    <div className="iag">
+      <div className="iag-head">
+        <div className="iag-head-left">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/>
+          </svg>
+          <span className="iag-count">{issues.length} known issue{issues.length === 1 ? '' : 's'}</span>
+          <span className="iag-meta">· filtered to your trim</span>
+        </div>
+        <Link href={seeAllHref} className="iag-seeall">
+          See all
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+        </Link>
+      </div>
+      {issues.map((iss, idx) => (
+        <Link key={iss.id} href={iss.knownIssuesUrl} className={`iag-row ${idx < issues.length - 1 ? 'with-border' : ''}`}>
+          <span className="iag-dot" style={{ background: sevColor(iss.severity) }} />
+          <div className="iag-row-body">
+            <div className="iag-row-title">{iss.title}</div>
+            <div className="iag-row-sub">
+              {iss.estimatedCost
+                ? <><span className="mono">${iss.estimatedCost.low.toLocaleString()}–${iss.estimatedCost.high.toLocaleString()}</span> · {iss.severity}</>
+                : iss.severity}
+            </div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" style={{ color: '#94A3B8' }}><path d="m9 6 6 6-6 6"/></svg>
+        </Link>
+      ))}
+      <style jsx>{`
+        .iag {
+          background: #fff; border: 1px solid #E3DFD4; border-radius: 16px;
+          overflow: hidden; box-shadow: 0 1px 2px rgba(11,18,32,.06);
+        }
+        .iag-head {
+          padding: 12px 16px; border-bottom: 1px solid #E3DFD4;
+          display: flex; align-items: center; justify-content: space-between;
+        }
+        .iag-head-left { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+        .iag-head-left svg { color: #64748B; }
+        .iag-count { font-weight: 600; }
+        .iag-meta { font-size: 11px; color: #64748B; font-weight: 400; }
+        .iag-seeall {
+          background: transparent; border: 0; color: #64748B;
+          font-size: 12px; cursor: pointer; text-decoration: none;
+          display: inline-flex; align-items: center; gap: 2px;
+        }
+        .iag-seeall:hover { color: #0B1220; }
+        .iag-row {
+          padding: 12px 16px;
+          display: flex; align-items: center; gap: 12px;
+          text-decoration: none; color: #0B1220;
+        }
+        .iag-row.with-border { border-bottom: 1px solid #E3DFD4; }
+        .iag-row:hover { background: #FAF8F2; }
+        .iag-dot { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; }
+        .iag-row-body { flex: 1; min-width: 0; }
+        .iag-row-title { font-size: 13.5px; font-weight: 500; }
+        .iag-row-sub { font-size: 11.5px; color: #64748B; margin-top: 2px; text-transform: capitalize; }
+        .mono { font-family: var(--font-geist-mono, ui-monospace, monospace); }
+      `}</style>
+    </div>
+  );
 }
 
 /* ─── Issue attachment card (rendered inline beneath an Au7o reply) ─── */

@@ -14,8 +14,16 @@ export const metadata = {
 // This is Day 1 of the freemium funnel work: foundation only, no paywall yet.
 export const dynamic = 'force-dynamic';
 
-export default async function DrivePage() {
+export default async function DrivePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ to?: string }>;
+}) {
   const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '';
+  // ?to=<destination> handoff from the hub. When the chat says "I'll plot
+  // this in Drive" and the user clicks through, /drive auto-routes to that
+  // destination instead of waiting for the user to type it again.
+  const { to: prefillDestination } = await searchParams;
 
   if (!mapboxToken) {
     return (
@@ -60,6 +68,7 @@ export default async function DrivePage() {
       mapboxToken={mapboxToken}
       initialVehicle={initialVehicle}
       isAuthed={isAuthed}
+      prefillDestination={prefillDestination || null}
     />
   );
 }

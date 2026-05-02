@@ -187,9 +187,14 @@ interface DriveClientProps {
   /** True when an authenticated session exists. Drives the "Sign in to save"
    *  CTA and (later) gating of premium features. */
   isAuthed?: boolean;
+  /** Optional destination passed via /drive?to=... — used by the hub
+   *  conversation to hand off "I'll plot this in Drive" routes. When
+   *  set + we have a GPS origin, we auto-fire the route plan on mount
+   *  so the user lands directly on the routed map. */
+  prefillDestination?: string | null;
 }
 
-export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = false }: DriveClientProps) {
+export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = false, prefillDestination = null }: DriveClientProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const originMarker = useRef<mapboxgl.Marker | null>(null);
@@ -1755,6 +1760,18 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
   // call the up-to-date closure.
   useEffect(() => { submitTranscriptRef.current = submitTranscript; }, [submitTranscript]);
   useEffect(() => { languageRef.current = language; }, [language]);
+
+  // Hub handoff: when /drive?to=<destination> is set AND we have a GPS
+  // origin, auto-fire the route plan once. Using a ref-guarded effect so
+  // the auto-fire only happens once even though both `origin` and
+  // `submitTranscript` change identity over time.
+  const prefillFiredRef = useRef(false);
+  useEffect(() => {
+    if (prefillFiredRef.current) return;
+    if (!prefillDestination || !origin) return;
+    prefillFiredRef.current = true;
+    submitTranscript(`Take me to ${prefillDestination}`);
+  }, [prefillDestination, origin, submitTranscript]);
 
   const pickSuggestion = useCallback(async (s: Suggestion) => {
     const text = s.placeFormatted ? `${s.name}, ${s.placeFormatted}` : s.name;
