@@ -635,16 +635,6 @@ function Au7oReply({
             {followUps.map((q, i) => (
               <button key={i} className="chip-followup" onClick={() => onFollowUp(q)}>{q}</button>
             ))}
-            <style jsx>{`
-              .followups { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
-              .chip-followup {
-                padding: 6px 11px; border-radius: 999px;
-                background: #fff; border: 1px solid #E3DFD4;
-                font-family: inherit; font-size: 12px; font-weight: 500; color: #0B1220;
-                cursor: pointer;
-              }
-              .chip-followup:hover { background: #EFEDE6; }
-            `}</style>
           </div>
         )}
       </div>
@@ -669,6 +659,17 @@ function Au7oReply({
         :global(.bubble-au7o em) { font-style: italic; color: #64748B; }
         :global(.bubble-au7o ul) { padding-left: 0; margin: 8px 0; list-style: none; }
         :global(.bubble-au7o li) { padding: 2px 0; }
+        /* Follow-up suggestion chips — moved from a nested <style jsx>
+           block into the main one because styled-jsx doesn't allow more
+           than one style block per component. */
+        .followups { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+        .chip-followup {
+          padding: 6px 11px; border-radius: 999px;
+          background: #fff; border: 1px solid #E3DFD4;
+          font-family: inherit; font-size: 12px; font-weight: 500; color: #0B1220;
+          cursor: pointer;
+        }
+        .chip-followup:hover { background: #EFEDE6; }
       `}</style>
     </div>
   );
