@@ -138,6 +138,43 @@ export function VehicleHub({
       return next;
     });
 
+    // ── Trip intent detected on the USER's message (not the AI's reply).
+    // Detection on the user side is far more reliable: regex finds clear
+    // signal in "plan a road trip / take me to X / scenic drive", and we
+    // can fire the route fetch in parallel with the chat stream so the
+    // map renders by the time the assistant finishes writing.
+    //
+    // We pass the user's literal text as the transcript to
+    // /api/drive/plan-route — the same endpoint that powers voice nav,
+    // which already handles natural language ("plan a scenic drive" with
+    // no specific destination → it picks one). No regex destination
+    // extraction needed; let the routing endpoint do its job.
+    if (looksLikeTripQuestion(trimmed)) {
+      const placeholderIdx = streamingIdxRef.current!;
+      setMessages((prev) => {
+        const copy = [...prev];
+        if (copy[placeholderIdx]) {
+          copy[placeholderIdx] = {
+            ...copy[placeholderIdx],
+            route: {
+              geometry: [],
+              origin: { lng: 0, lat: 0 },
+              destination: { lng: 0, lat: 0, placeName: 'Plotting…' },
+              miles: 0, minutes: 0, loading: true,
+            },
+          };
+        }
+        return copy;
+      });
+      fetchRoutePreview(trimmed).then((route) => {
+        setMessages((prev) => {
+          const copy = [...prev];
+          if (copy[placeholderIdx]) copy[placeholderIdx] = { ...copy[placeholderIdx], route };
+          return copy;
+        });
+      });
+    }
+
     try {
       const res = await fetch('/api/hub-chat', {
         method: 'POST',
@@ -219,52 +256,7 @@ export function VehicleHub({
         }
       }
 
-      // ── Post-stream: if the assistant suggested a trip, plan the
-      // route in the background and attach the preview to the bubble.
-      // Captured here (after the stream loop closes) so the bubble has
-      // its full text before we look for trip intent. The route fetch
-      // itself happens fully async — no await on the awaited assistant
-      // turn — so the placeholder map appears within the same turn.
-      const idx = streamingIdxRef.current;
-      if (idx != null) {
-        const finalContent = await new Promise<string>((resolve) => {
-          // Read the latest content from state via a microtask so we
-          // capture all token-deltas, not just the snapshot we have.
-          setMessages((prev) => {
-            resolve(prev[idx]?.content || '');
-            return prev;
-          });
-        });
-        const intent = detectDriveIntent(finalContent);
-        if (intent?.destination) {
-          // Optimistically attach a loading preview so the bubble shows
-          // the map skeleton immediately.
-          setMessages((prev) => {
-            const copy = [...prev];
-            if (copy[idx]) {
-              copy[idx] = {
-                ...copy[idx],
-                route: {
-                  geometry: [],
-                  origin: { lng: 0, lat: 0 },
-                  destination: { lng: 0, lat: 0, placeName: intent.destination! },
-                  miles: 0, minutes: 0, loading: true,
-                },
-              };
-            }
-            return copy;
-          });
-          // Fire-and-forget the route fetch. Errors fall back to the
-          // existing DriveHandoff card via the route.error path.
-          fetchRoutePreview(intent.destination).then((route) => {
-            setMessages((prev) => {
-              const copy = [...prev];
-              if (copy[idx]) copy[idx] = { ...copy[idx], route };
-              return copy;
-            });
-          });
-        }
-      }
+      // (route fetch fires in parallel with the stream — see below)
     } catch (err) {
       const errMsg = err instanceof Error ? err.message : 'Network error.';
       setMessages((prev) => {
@@ -281,13 +273,14 @@ export function VehicleHub({
   };
 
   /**
-   * Plan a route from the user's GPS to the named destination via the
-   * existing /api/drive/plan-route endpoint. Caches GPS in sessionStorage
-   * so subsequent trip questions in the same session don't re-prompt for
-   * permission. Returns a fully populated RoutePreview, or one with
-   * error: '...' set when geolocation is denied / route fails.
+   * Plan a route from the user's GPS using their literal trip-question
+   * text as the transcript to /api/drive/plan-route. Re-uses the same
+   * endpoint that powers voice nav — it accepts natural language and
+   * handles "plan a scenic drive" (no destination, picks one) just as
+   * well as "take me to Austin". GPS cached in sessionStorage so
+   * back-to-back trip questions don't re-prompt.
    */
-  const fetchRoutePreview = async (destination: string): Promise<RoutePreview> => {
+  const fetchRoutePreview = async (transcript: string): Promise<RoutePreview> => {
     let origin: { lng: number; lat: number };
     try {
       origin = await getCachedGeolocation();
@@ -295,7 +288,7 @@ export function VehicleHub({
       const msg = err instanceof Error ? err.message : 'Location permission needed';
       return {
         geometry: [], origin: { lng: 0, lat: 0 },
-        destination: { lng: 0, lat: 0, placeName: destination },
+        destination: { lng: 0, lat: 0, placeName: 'Plotting…' },
         miles: 0, minutes: 0, loading: false, error: msg,
       };
     }
@@ -305,7 +298,7 @@ export function VehicleHub({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          transcript: `Take me to ${destination}`,
+          transcript,
           origin,
           conversationHistory: [],
           vehicle: { year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim || '' },
@@ -322,7 +315,7 @@ export function VehicleHub({
       if (!data.geometry?.coordinates || !data.destinationCoords) {
         return {
           geometry: [], origin,
-          destination: { lng: 0, lat: 0, placeName: destination },
+          destination: { lng: 0, lat: 0, placeName: data.destination || 'destination' },
           miles: 0, minutes: 0, loading: false,
           error: 'Could not plot that route',
         };
@@ -333,7 +326,7 @@ export function VehicleHub({
         destination: {
           lng: data.destinationCoords.lng,
           lat: data.destinationCoords.lat,
-          placeName: data.destination || destination,
+          placeName: data.destination || 'destination',
         },
         miles: data.miles || 0,
         minutes: data.minutes || 0,
@@ -343,7 +336,7 @@ export function VehicleHub({
       const msg = err instanceof Error ? err.message : 'Route failed';
       return {
         geometry: [], origin,
-        destination: { lng: 0, lat: 0, placeName: destination },
+        destination: { lng: 0, lat: 0, placeName: 'destination' },
         miles: 0, minutes: 0, loading: false, error: msg,
       };
     }
@@ -372,7 +365,7 @@ export function VehicleHub({
             vehicle={vehicle}
             cta={opener.cta}
             trending={trending}
-            onPick={(prompt) => { setInput(prompt); composerRef.current?.focus(); }}
+            onPick={(prompt) => { send(prompt); }}
           />
 
           {messages.map((m, i) => (
@@ -1021,6 +1014,31 @@ function matchAttachments(text: string, available: AttachableIssue[]): Attachabl
  * detected but no destination can be parsed (still useful — the card
  * just becomes a generic Drive handoff).
  */
+/**
+ * Cheap heuristic: does the user's message look like a trip / driving /
+ * route question? Used to fire the inline route preview in parallel with
+ * the chat stream. False positives are fine — the route endpoint will
+ * return an error tile gracefully if the user wasn't actually asking
+ * for a drive ("How long is a drive belt?" vs "How long is the drive
+ * to Austin?"). False NEGATIVES are the bug — we'd silently skip the
+ * map. So lean permissive.
+ */
+function looksLikeTripQuestion(text: string): boolean {
+  if (!text) return false;
+  const lower = text.toLowerCase();
+  // Direct trip-planning verbs/phrases.
+  if (/(?:plan|plot|map|chart|find).+(?:trip|route|drive|drives|driving|destination)/.test(lower)) return true;
+  if (/\b(?:road trip|scenic drive|cruise|joyride|sunday drive|day trip|weekend (?:drive|trip))\b/.test(lower)) return true;
+  // "Take me to X", "Drive me to X", "Get me to X", "Route me to X"
+  if (/\b(?:take|drive|get|route|head|navigate|bring)\s+(?:me\s+)?(?:to|towards|over to)\s+\S/.test(lower)) return true;
+  // "Where can I drive", "where should I go", "best drive near"
+  if (/\bwhere\s+(?:can|should|to)\s+(?:i|we)\s+(?:drive|go)\b/.test(lower)) return true;
+  if (/\bbest\s+(?:drive|route|road)\b/.test(lower)) return true;
+  // "How long is the drive to X" / "fastest way to X"
+  if (/\b(?:how (?:long|far)|fastest way|shortest route)\b.+\bto\s+\S/.test(lower)) return true;
+  return false;
+}
+
 function detectDriveIntent(text: string): { destination: string | null } | null {
   if (!text) return null;
   const lower = text.toLowerCase();
