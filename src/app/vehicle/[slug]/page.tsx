@@ -7,6 +7,7 @@ import prisma from '@/lib/db';
 import { auth } from '@/lib/auth';
 import { VehicleHub } from '@/components/vehicle/VehicleHub';
 import { getMaintenanceSuggestions, renderOpener, type MaintenanceSuggestion } from '@/lib/maintenance-suggestions';
+import { getRecentThreads, getTrendingForVehicle, getAttachableIssues } from '@/lib/hub-data';
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -247,11 +248,14 @@ export default async function VehicleProfilePage({
   // mileage + service history.
   let isAuthed = false;
   let currentMileage: number | null = null;
+  let userVehicleId: string | null = null;
   let maintenanceSuggestions: MaintenanceSuggestion[] = [];
+  let userId: string | null = null;
   try {
     const session = await auth();
     if (session?.user?.id) {
       isAuthed = true;
+      userId = session.user.id;
       // Match the vehicle URL to a row in the user's garage. Loose match
       // on year/make/model — trim variations are common ("SRT 392" vs
       // "SRT" vs "Hellcat") so we'd rather over-match than miss the
@@ -265,12 +269,15 @@ export default async function VehicleProfilePage({
         },
         select: { id: true, currentMileage: true },
       });
-      if (userVehicle?.currentMileage != null) {
-        currentMileage = userVehicle.currentMileage;
-        maintenanceSuggestions = await getMaintenanceSuggestions({
-          vehicleId: userVehicle.id,
-          currentMileage: userVehicle.currentMileage,
-        });
+      if (userVehicle) {
+        userVehicleId = userVehicle.id;
+        if (userVehicle.currentMileage != null) {
+          currentMileage = userVehicle.currentMileage;
+          maintenanceSuggestions = await getMaintenanceSuggestions({
+            vehicleId: userVehicle.id,
+            currentMileage: userVehicle.currentMileage,
+          });
+        }
       }
     }
   } catch {
@@ -282,6 +289,17 @@ export default async function VehicleProfilePage({
     { year, make, model, trim, currentMileage },
     maintenanceSuggestions,
   );
+
+  // Batch 3 data: recent threads (only when authed), trending intents
+  // (everyone), and attachable known-issue cards (everyone). All run in
+  // parallel so the page render time doesn't grow.
+  const [recentThreads, trending, attachableIssues] = await Promise.all([
+    isAuthed && userId
+      ? getRecentThreads(userId, userVehicleId).catch(() => [])
+      : Promise.resolve([]),
+    getTrendingForVehicle({ make, model, currentMileage }).catch(() => []),
+    getAttachableIssues({ make, model, year, trim }).catch(() => []),
+  ]);
 
   return (
     <VehicleHub
@@ -296,6 +314,9 @@ export default async function VehicleProfilePage({
       currentMileage={currentMileage}
       maintenanceSuggestions={maintenanceSuggestions}
       opener={opener}
+      recentThreads={recentThreads}
+      trending={trending}
+      attachableIssues={attachableIssues}
     />
   );
 }

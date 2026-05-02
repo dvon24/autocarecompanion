@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { MaintenanceSuggestion } from '@/lib/maintenance-suggestions';
+import type { RecentThread, TrendingChip, AttachableIssue } from '@/lib/hub-data';
 
 /**
  * Conversation-first hub that lives at /vehicle/[slug]. The chat IS the
@@ -49,6 +50,14 @@ export interface VehicleHubProps {
   /** Pre-rendered opener message (from renderOpener) so the first turn
    *  is instant + deterministic. */
   opener: { text: string; cta: string[] };
+  /** Recent ChatSession rows for the user. Empty for anonymous viewers. */
+  recentThreads: RecentThread[];
+  /** Pre-aggregated trending intents for the vehicle's mileage bucket.
+   *  Empty until the nightly cron has data — falls back gracefully. */
+  trending: TrendingChip[];
+  /** Top KnownIssue records for this vehicle, ready to render as inline
+   *  attachments when the assistant mentions one in a reply. Bounded to 12. */
+  attachableIssues: AttachableIssue[];
 }
 
 interface Message {
@@ -65,6 +74,9 @@ export function VehicleHub({
   currentMileage,
   maintenanceSuggestions,
   opener,
+  recentThreads,
+  trending,
+  attachableIssues,
 }: VehicleHubProps) {
   // Seed the conversation with the pre-rendered opener so the page feels
   // alive on first paint. Subsequent turns get appended here and (in v2)
@@ -206,10 +218,11 @@ export function VehicleHub({
         vehicle={vehicle}
         currentMileage={currentMileage}
         counts={counts}
+        recentThreads={recentThreads}
       />
 
       <section className="hub-col">
-        <TopBar slug={slug} />
+        <TopBar />
 
         {!isAuthed && <AnonymousGate />}
 
@@ -221,13 +234,24 @@ export function VehicleHub({
           <Greeting
             vehicle={vehicle}
             cta={opener.cta}
+            trending={trending}
             onPick={(prompt) => { setInput(prompt); composerRef.current?.focus(); }}
           />
 
           {messages.map((m, i) => (
             m.role === 'user'
               ? <div key={i} className="row-user"><div className="bubble-user">{m.content}</div></div>
-              : <Au7oReply key={i} content={m.content} />
+              : (
+                <Au7oReply
+                  key={i}
+                  content={m.content}
+                  // Match issues whose title appears in the assistant's reply
+                  // and render them as inline cards. Cheap substring match —
+                  // good enough for v1; v2 could use the tool-use API to have
+                  // the model itself emit issue ids.
+                  attachments={matchAttachments(m.content, attachableIssues)}
+                />
+              )
           ))}
         </div>
 
@@ -299,8 +323,8 @@ export function VehicleHub({
 
 /* ─── Vehicle rail ─── */
 function VehicleRail({
-  vehicle, currentMileage, counts,
-}: { vehicle: VehicleHubProps['vehicle']; currentMileage: number | null; counts: VehicleHubProps['counts'] }) {
+  vehicle, currentMileage, counts, recentThreads,
+}: { vehicle: VehicleHubProps['vehicle']; currentMileage: number | null; counts: VehicleHubProps['counts']; recentThreads: RecentThread[] }) {
   const v = vehicle;
   return (
     <aside className="rail">
@@ -329,7 +353,18 @@ function VehicleRail({
 
       <div className="eyebrow">Recent</div>
       <div className="thread-list">
-        <div className="thread-empty">No saved conversations yet.</div>
+        {recentThreads.length === 0 ? (
+          <div className="thread-empty">No saved conversations yet.</div>
+        ) : (
+          recentThreads.map((t) => (
+            <button key={t.id} className="thread" title={t.preview}>
+              <div className="t-meta">
+                <div className="t-title">{t.preview || 'Untitled conversation'}</div>
+                <div className="t-when">{relativeWhen(t.updatedAt)}</div>
+              </div>
+            </button>
+          ))
+        )}
       </div>
 
       <div className="rail-spacer" />
@@ -372,8 +407,16 @@ function VehicleRail({
           font-size: 11px; font-weight: 600; text-transform: uppercase;
           letter-spacing: 0.08em; color: #64748B; padding: 18px 24px 8px;
         }
-        .thread-list { padding: 0 24px; }
-        .thread-empty { font-size: 12.5px; color: #94A3B8; }
+        .thread-list { padding: 0 12px; display: flex; flex-direction: column; gap: 2px; max-height: 240px; overflow-y: auto; }
+        .thread-empty { font-size: 12.5px; color: #94A3B8; padding: 0 12px; }
+        .thread {
+          display: block; width: 100%; text-align: left;
+          background: transparent; border: 0; cursor: pointer;
+          padding: 9px 12px; border-radius: 10px; color: #0B1220;
+        }
+        .thread:hover { background: rgba(11,18,32,0.04); }
+        .t-title { font-size: 12.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .t-when { font-size: 10.5px; color: #64748B; margin-top: 1px; }
         .rail-spacer { flex: 1; }
         .rail-bottom {
           padding: 12px 16px; border-top: 1px solid #E3DFD4;
@@ -392,8 +435,13 @@ function VehicleRail({
   );
 }
 
-/* ─── Top bar ─── */
-function TopBar({ slug }: { slug: string }) {
+/* ─── Top bar ─── Drive + Library buttons removed in batch 3 — Drive
+ lives in the rail footer ("Open Drive"), and Library is folded into the
+ conversation itself (you ask, the AI surfaces relevant articles inline).
+ The right side is intentionally empty so the global Translate widget
+ can dock there without overlap. The reserved-spacer keeps the title
+ centered visually. */
+function TopBar() {
   return (
     <div className="topbar">
       <div className="tb-left">
@@ -401,9 +449,9 @@ function TopBar({ slug }: { slug: string }) {
         <span className="tb-sep">·</span>
         <span style={{ color: '#334155' }}>Symptoms &amp; maintenance</span>
       </div>
-      <div className="tb-right">
-        <Link href="/drive" className="chip">Open Drive</Link>
-        <a href={`/${slug.split('-').slice(1).join('-')}`} className="chip" style={{ pointerEvents: 'none', opacity: 0.5 }}>Library</a>
+      <div className="tb-right" aria-hidden="true">
+        {/* Reserved space for the global Translate button (~110px wide). */}
+        <span style={{ width: 110, display: 'inline-block' }} />
       </div>
       <style jsx>{`
         .topbar {
@@ -420,13 +468,6 @@ function TopBar({ slug }: { slug: string }) {
         }
         .tb-sep { color: #CBD5E1; }
         .tb-right { display: flex; gap: 8px; }
-        .chip {
-          padding: 6px 11px; border-radius: 999px;
-          background: #fff; border: 1px solid #E3DFD4;
-          font-size: 12px; font-weight: 500; color: #0B1220;
-          text-decoration: none; cursor: pointer;
-        }
-        .chip:hover { background: #EFEDE6; }
       `}</style>
     </div>
   );
@@ -459,8 +500,13 @@ function AnonymousGate() {
 
 /* ─── Greeting + suggested prompts ─── */
 function Greeting({
-  vehicle, cta, onPick,
-}: { vehicle: VehicleHubProps['vehicle']; cta: string[]; onPick: (prompt: string) => void }) {
+  vehicle, cta, trending, onPick,
+}: {
+  vehicle: VehicleHubProps['vehicle'];
+  cta: string[];
+  trending: TrendingChip[];
+  onPick: (prompt: string) => void;
+}) {
   return (
     <div className="greet">
       <span className="greet-eyebrow">
@@ -470,11 +516,30 @@ function Greeting({
         {greetingFor()}.
         <span className="muted"> What's on your mind today?</span>
       </h1>
+
+      {/* Suggested prompts derived from the maintenance opener — these are
+          ALWAYS the user's own context (overdue items, mileage milestones).
+          Trending shows BELOW so the user's own prompts read first. */}
       <div className="prompt-row">
         {cta.map((label, i) => (
-          <button key={i} className="chip" onClick={() => onPick(label)}>{label}</button>
+          <button key={`cta-${i}`} className="chip" onClick={() => onPick(label)}>{label}</button>
         ))}
       </div>
+
+      {/* Trending — only renders once we have data. Empty state keeps the
+          UI from looking unfinished while the nightly cron warms up. */}
+      {trending.length > 0 && (
+        <>
+          <div className="trending-label">Drivers like you also asked</div>
+          <div className="prompt-row">
+            {trending.map((t, i) => (
+              <button key={`trend-${i}`} className="chip chip-trend" onClick={() => onPick(t.exampleQuestion)} title={`${t.count} drivers asked`}>
+                {t.exampleQuestion}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
       <style jsx>{`
         .greet { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; max-width: 720px; }
         .greet-eyebrow {
@@ -500,6 +565,15 @@ function Greeting({
           cursor: pointer;
         }
         .chip:hover { background: #EFEDE6; }
+        .trending-label {
+          font-size: 11px; font-weight: 600; text-transform: uppercase;
+          letter-spacing: 0.08em; color: #64748B;
+          margin-top: 16px; margin-bottom: -4px;
+        }
+        /* Trending chips read slightly different so the user knows the
+           source — community-derived rather than their own context. */
+        .chip-trend { background: #F1F5F9; border-color: #CBD5E1; color: #334155; }
+        .chip-trend:hover { background: #E2E8F0; }
       `}</style>
     </div>
   );
@@ -512,13 +586,28 @@ function greetingFor() {
   return 'Good evening';
 }
 
+/** "3 days ago" / "2h ago" / "just now" formatter for the recent-threads rail. */
+function relativeWhen(iso: string): string {
+  const then = new Date(iso).getTime();
+  const ms = Date.now() - then;
+  if (ms < 60_000) return 'just now';
+  const min = Math.floor(ms / 60_000);
+  if (min < 60) return `${min}m ago`;
+  const hr = Math.floor(min / 60);
+  if (hr < 24) return `${hr}h ago`;
+  const days = Math.floor(hr / 24);
+  if (days < 30) return `${days}d ago`;
+  return new Date(iso).toLocaleDateString();
+}
+
 /* ─── Au7o reply bubble ─── */
-function Au7oReply({ content }: { content: string }) {
+function Au7oReply({ content, attachments = [] }: { content: string; attachments?: AttachableIssue[] }) {
   return (
     <div className="row-au7o">
       <Image src="/og-image.png" alt="" width={32} height={32} className="avatar" />
       <div className="body">
         <div className="bubble-au7o">{renderMarkdownLite(content)}</div>
+        {attachments.map((iss) => <IssueAttachment key={iss.id} issue={iss} />)}
       </div>
 
       <style jsx>{`
@@ -671,6 +760,71 @@ const Composer = ({
     </div>
   );
 };
+
+/**
+ * Match assistant-message text against the user's vehicle's known-issues
+ * library and return up to 2 matched cards. Cheap substring match — if
+ * the model named an issue word-for-word it gets attached. v2 swap-in
+ * is to use Anthropic tool_use so the model itself emits issue ids.
+ *
+ * Dedupes by issue id, caps at 2 attachments per reply so the bubble
+ * doesn't turn into an issue dump. Whichever match has the longest
+ * title prefix wins (more specific match).
+ */
+function matchAttachments(text: string, available: AttachableIssue[]): AttachableIssue[] {
+  if (!text || available.length === 0) return [];
+  const lower = text.toLowerCase();
+  const matches = available.filter((iss) => {
+    const title = iss.title.toLowerCase();
+    if (title.length < 6) return false; // skip very short titles to avoid false positives
+    return lower.includes(title);
+  });
+  matches.sort((a, b) => b.title.length - a.title.length);
+  return matches.slice(0, 2);
+}
+
+/* ─── Issue attachment card (rendered inline beneath an Au7o reply) ─── */
+function IssueAttachment({ issue }: { issue: AttachableIssue }) {
+  const sevColor =
+    issue.severity === 'critical' || issue.severity === 'high'
+      ? '#EF4444'
+      : issue.severity === 'medium'
+        ? '#F59E0B'
+        : '#94A3B8';
+  return (
+    <Link href={issue.knownIssuesUrl} className="issue-attach">
+      <div className="issue-bar" style={{ background: sevColor }} />
+      <div className="issue-body">
+        <div className="issue-title">{issue.title}</div>
+        <div className="issue-sub">
+          {issue.category} · {issue.severity}
+          {issue.estimatedCost && (
+            <> · <span className="mono">${issue.estimatedCost.low.toLocaleString()}–${issue.estimatedCost.high.toLocaleString()}</span></>
+          )}
+        </div>
+      </div>
+      <span className="issue-cta">Read more →</span>
+      <style jsx>{`
+        .issue-attach {
+          display: flex; align-items: stretch; gap: 0;
+          background: #fff; border: 1px solid #E3DFD4; border-radius: 12px;
+          text-decoration: none; color: #0B1220;
+          overflow: hidden; box-shadow: 0 1px 2px rgba(11,18,32,.06);
+        }
+        .issue-attach:hover { background: #FAF8F2; }
+        .issue-bar { width: 4px; flex: 0 0 4px; }
+        .issue-body { flex: 1; padding: 10px 14px; min-width: 0; }
+        .issue-title { font-size: 13px; font-weight: 600; line-height: 1.3; }
+        .issue-sub { font-size: 11px; color: #64748B; margin-top: 2px; text-transform: capitalize; }
+        .mono { font-family: var(--font-geist-mono, ui-monospace, monospace); }
+        .issue-cta {
+          font-size: 11px; font-weight: 600; color: #3B82F6;
+          padding: 10px 14px; align-self: center; white-space: nowrap;
+        }
+      `}</style>
+    </Link>
+  );
+}
 
 /* ─── Generic muscle-coupe silhouette ─── */
 function CoupeSilhouette() {

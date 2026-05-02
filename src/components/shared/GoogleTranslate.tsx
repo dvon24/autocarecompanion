@@ -80,12 +80,12 @@ export function GoogleTranslate() {
         }
       `}</style>
 
-      {/* Google Translate element - moved from top-right (was overlapping
-          the new vehicle hub's chips and composer). Now bottom-right but
-          raised ~80px so it sits ABOVE the hub composer's send button.
-          On pages without a composer it just floats in the bottom-right
-          gutter — universally clear of every page's primary action area. */}
-      <div className="fixed bottom-20 right-3 z-[9999]">
+      {/* Google Translate element — back in top-right now that the hub's
+          Drive/Library buttons there were removed (batch 3). The hub's
+          TopBar reserves a 110px gap on the right specifically for this
+          widget, so there's no overlap on /vehicle/[slug] anymore. On
+          other pages it floats in the same conventional spot. */}
+      <div className="fixed top-3 right-3 z-[9999]">
         <button
           type="button"
           onClick={() => setOpen(!open)}
@@ -106,11 +106,11 @@ export function GoogleTranslate() {
           <span className="hidden sm:inline">Translate</span>
         </button>
 
-        {/* Dropdown panel — opens upward (bottom-anchored) and right-aligned
-            since the button is now bottom-right. Width clamps so the long
+        {/* Dropdown panel — opens downward (top-anchored) and right-aligned
+            since the button is now top-right. Width clamps so the long
             Google select can't overflow off the left edge on small screens. */}
         <div
-          className={`absolute bottom-full right-0 mb-1.5 bg-white rounded-lg shadow-lg border border-gray-200 p-2 transition-opacity duration-150 overflow-hidden ${
+          className={`absolute top-full right-0 mt-1.5 bg-white rounded-lg shadow-lg border border-gray-200 p-2 transition-opacity duration-150 overflow-hidden ${
             open ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
           }`}
           style={{ width: 'min(220px, calc(100vw - 24px))', maxWidth: '90vw' }}
