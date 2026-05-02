@@ -41,11 +41,21 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   const [showReportModal, setShowReportModal] = useState(false);
   const [showFixModal, setShowFixModal] = useState(false);
 
-  // Auto-expand when navigating to this issue via hash anchor (e.g. from DTC page)
+  // Auto-expand AND scroll-to when navigating to this issue via hash
+  // anchor (e.g. from the hub chat's issue cards or a DTC page deeplink).
+  // Next.js client-side nav doesn't reliably trigger native browser
+  // anchor scroll, so we do it manually after a short delay so the
+  // expanded content has time to render before we measure the scroll
+  // target.
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.hash === `#${issue.id}`) {
-      setExpanded(true);
-    }
+    if (typeof window === 'undefined') return;
+    if (window.location.hash !== `#${issue.id}`) return;
+    setExpanded(true);
+    const t = setTimeout(() => {
+      const el = document.getElementById(issue.id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 120);
+    return () => clearTimeout(t);
   }, [issue.id]);
 
   const severityConfig = {

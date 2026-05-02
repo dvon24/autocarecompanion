@@ -149,7 +149,9 @@ export function VehicleHub({
     // which already handles natural language ("plan a scenic drive" with
     // no specific destination → it picks one). No regex destination
     // extraction needed; let the routing endpoint do its job.
-    if (looksLikeTripQuestion(trimmed)) {
+    const tripIntent = looksLikeTripQuestion(trimmed);
+    console.log('[hub] trip-intent for', JSON.stringify(trimmed), '→', tripIntent);
+    if (tripIntent) {
       const placeholderIdx = streamingIdxRef.current!;
       setMessages((prev) => {
         const copy = [...prev];
@@ -166,7 +168,14 @@ export function VehicleHub({
         }
         return copy;
       });
+      console.log('[hub] firing fetchRoutePreview…');
       fetchRoutePreview(trimmed).then((route) => {
+        console.log('[hub] route fetch returned', {
+          ok: !route.error && route.geometry.length > 0,
+          error: route.error,
+          geometryPts: route.geometry.length,
+          miles: route.miles,
+        });
         setMessages((prev) => {
           const copy = [...prev];
           if (copy[placeholderIdx]) copy[placeholderIdx] = { ...copy[placeholderIdx], route };
@@ -284,8 +293,10 @@ export function VehicleHub({
     let origin: { lng: number; lat: number };
     try {
       origin = await getCachedGeolocation();
+      console.log('[hub] geolocation ok →', origin);
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Location permission needed';
+      console.warn('[hub] geolocation failed:', msg);
       return {
         geometry: [], origin: { lng: 0, lat: 0 },
         destination: { lng: 0, lat: 0, placeName: 'Plotting…' },
@@ -294,6 +305,7 @@ export function VehicleHub({
     }
 
     try {
+      console.log('[hub] POST /api/drive/plan-route', { transcript });
       const res = await fetch('/api/drive/plan-route', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -304,7 +316,11 @@ export function VehicleHub({
           vehicle: { year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim || '' },
         }),
       });
-      if (!res.ok) throw new Error(`Route service returned ${res.status}`);
+      if (!res.ok) {
+        const errBody = await res.text().catch(() => '');
+        console.warn('[hub] plan-route HTTP', res.status, errBody.slice(0, 200));
+        throw new Error(`Route service returned ${res.status}`);
+      }
       const data = await res.json() as {
         geometry?: { coordinates: [number, number][] };
         destinationCoords?: { lng: number; lat: number };
@@ -313,6 +329,7 @@ export function VehicleHub({
         minutes?: number;
       };
       if (!data.geometry?.coordinates || !data.destinationCoords) {
+        console.warn('[hub] plan-route returned no geometry', data);
         return {
           geometry: [], origin,
           destination: { lng: 0, lat: 0, placeName: data.destination || 'destination' },
