@@ -139,7 +139,21 @@ function buildVehicleBlock(vehicle: HubVehicle, knownIssues: KnownIssueRef[]): s
   const mileage = v.currentMileage ? `, currently at ~${v.currentMileage.toLocaleString()} miles` : '';
   let block = `Active vehicle context: the user is asking about a ${v.year} ${v.make} ${v.model}${v.trim ? ` ${v.trim}` : ''}${mileage}. Use this make and model in every reply that references the car.`;
   if (knownIssues.length > 0) {
-    block += `\n\nDocumented known issues for this vehicle (from Au7o's database). When referencing any of these, use the EXACT title verbatim — the UI will attach a clickable card linking to the full article. Don't invent paraphrased names; if an issue isn't in this list, describe it without bolding.\n\nAvailable issue titles:\n${knownIssues.map((i) => `- ${i.title}`).join('\n')}`;
+    block += `\n\nDocumented known issues for this vehicle (from Au7o's database):
+${knownIssues.map((i) => `- ${i.title}`).join('\n')}
+
+CRITICAL rendering rule for these issues:
+- When a user asks about common problems / known issues / what to look out for, your reply should be SHORT — one or two sentences setting context, then list the relevant issue titles VERBATIM (one per line, prefixed with "- "). The UI will replace the bolded titles with clickable cards that show severity, cost range, and link to the full article. DO NOT describe each issue in prose — the cards do that. Duplicating the description in your text creates clutter that obscures the cards.
+- BAD example (don't do this):
+  "Cooling: Water pumps fail. Look for coolant leaks. They cost $400-800 to replace."
+- GOOD example (do this):
+  "At 60k+ miles, these come up most often:
+  - Water Pump Failure
+  - Driveshaft / U-Joint Failure
+  - HEMI Lifter Tick
+  Cards below have the cost ranges and full repair guides."
+- Use EXACT titles from the list above. If an issue isn't in the list, describe it briefly in prose (no bolding).
+- Never paraphrase ("Header gaskets" instead of "HEMI Exhaust Manifold Bolt Failure" — the card won't render).`;
   }
   block += `\n\nAfter each substantive answer, suggest 2-3 short follow-up questions the user might naturally want to ask next. Format them at the very end of your reply on their own lines, one per line, starting with "→ " (arrow + space). Example:
 → How much does that cost to fix?

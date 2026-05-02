@@ -755,11 +755,21 @@ function Au7oReply({
   // of the reply. Body shows the cleaned content; chips render below as
   // clickable suggestions for the next user turn.
   const { body, followUps } = extractFollowUps(content);
+  // When we're rendering issue cards inline, strip any verbatim issue
+  // titles from the prose so the user doesn't see "- Water Pump Failure"
+  // listed as plain text immediately above the same title rendered as
+  // a card. Keeps the bubble tight + the cards do the work the system
+  // prompt is now asking the AI to delegate to them.
+  const visibleBody = attachments.length > 0
+    ? stripIssueTitleLines(body, attachments.map((a) => a.title))
+    : body;
   return (
     <div className="row-au7o">
       <Image src="/og-image.png" alt="" width={32} height={32} className="avatar" />
       <div className="body">
-        <div className="bubble-au7o">{renderMarkdownLite(body)}</div>
+        {visibleBody.trim().length > 0 && (
+          <div className="bubble-au7o">{renderMarkdownLite(visibleBody)}</div>
+        )}
         {attachments.length > 0 && <IssueAttachmentGroup issues={attachments} />}
         {/* Trip preview hierarchy: when we have a real Mapbox route
             attached to this turn, show the inline mini-map. Otherwise
@@ -852,6 +862,36 @@ function extractFollowUps(text: string): { body: string; followUps: string[] } {
   }
   const body = lines.slice(0, cutAt).join('\n').replace(/\s+$/, '');
   return { body, followUps: followUps.slice(0, 4) };
+}
+
+/**
+ * Remove lines from the assistant body that are verbatim issue titles
+ * (with optional bullet prefix and **bold** wrapping). The cards render
+ * those titles below the bubble; keeping them in the prose causes
+ * visual duplication. Preserves all other body content.
+ *
+ * Match is conservative — only strips a line when its trimmed content,
+ * after removing list bullets and **bold** markers, exactly equals one
+ * of the matched issue titles. Won't accidentally eat a sentence that
+ * mentions an issue name in passing.
+ */
+function stripIssueTitleLines(body: string, attachedTitles: string[]): string {
+  if (!body || attachedTitles.length === 0) return body;
+  const titleSet = new Set(attachedTitles.map((t) => t.toLowerCase().trim()));
+  const lines = body.split('\n');
+  const kept: string[] = [];
+  for (const line of lines) {
+    const stripped = line
+      .replace(/^\s*[-*]\s+/, '')   // bullets
+      .replace(/\*\*(.+?)\*\*/g, '$1') // bold markers
+      .trim()
+      .toLowerCase();
+    if (titleSet.has(stripped)) continue;
+    kept.push(line);
+  }
+  // Collapse 3+ consecutive blank lines that result from removed items
+  // back down to a single blank line so the bubble doesn't have weird gaps.
+  return kept.join('\n').replace(/\n{3,}/g, '\n\n').trim();
 }
 
 /**
@@ -1102,10 +1142,13 @@ function DriveHandoff({ destination }: { destination: string | null }) {
 }
 
 /* ─── Issue attachment GROUP (stacked-card style from the prototype) ───
- * Renders all matched issues inside one bordered container with a
- * header strip ("4 known issues — filtered to your trim · See all"),
- * plus a stacked list of issue rows underneath. This matches the
- * prototype design instead of stacking N separate cards. */
+ * Switched from styled-jsx to inline styles + a tiny Tailwind hover
+ * helper. Reason: previous styled-jsx layout looked "smashed left" in
+ * production because the styled-jsx + next/link combo was occasionally
+ * dropping the scoped flex rules — the chevron stayed inline, the
+ * severity dot lost its width, and the body text didn't push the
+ * chevron right. Inline `style` attributes have the highest specificity
+ * and cannot be defeated by any of the above. */
 function IssueAttachmentGroup({ issues }: { issues: AttachableIssue[] }) {
   // Use the first issue's slug-derivable URL as the "See all" target.
   // All matched issues for one reply belong to the same vehicle so this
@@ -1118,68 +1161,170 @@ function IssueAttachmentGroup({ issues }: { issues: AttachableIssue[] }) {
     sev === 'critical' || sev === 'high' ? '#EF4444'
     : sev === 'medium' ? '#F59E0B'
     : '#94A3B8';
+  // Tailwind hover via group-* doesn't help here because our parent
+  // already participates in styled-jsx; using a tiny class that we
+  // attach a global hover rule for is the cleanest path.
+  const rowBase: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 12,
+    padding: '12px 16px',
+    textDecoration: 'none',
+    color: '#0B1220',
+    cursor: 'pointer',
+    transition: 'background 0.15s ease',
+  };
   return (
-    <div className="iag">
-      <div className="iag-head">
-        <div className="iag-head-left">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/>
+    <div style={{
+      background: '#fff',
+      border: '1px solid #E3DFD4',
+      borderRadius: 16,
+      overflow: 'hidden',
+      boxShadow: '0 1px 2px rgba(11,18,32,.06)',
+    }}>
+      {/* Header strip: "4 known issues · filtered to your trim · See all →" */}
+      <div style={{
+        padding: '12px 16px',
+        borderBottom: '1px solid #E3DFD4',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13 }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" style={{ flex: '0 0 auto' }}>
+            <path d="M12 9v4M12 17h.01"/>
+            <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/>
           </svg>
-          <span className="iag-count">{issues.length} known issue{issues.length === 1 ? '' : 's'}</span>
-          <span className="iag-meta">· filtered to your trim</span>
+          <span style={{ fontWeight: 600 }}>
+            {issues.length} known issue{issues.length === 1 ? '' : 's'}
+          </span>
+          <span style={{ fontSize: 11, color: '#64748B', fontWeight: 400 }}>
+            · filtered to your trim
+          </span>
         </div>
-        <Link href={seeAllHref} className="iag-seeall">
+        <Link
+          href={seeAllHref}
+          style={{
+            background: 'transparent',
+            border: 0,
+            color: '#64748B',
+            fontSize: 12,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 2,
+          }}
+        >
           See all
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+            <path d="m9 6 6 6-6 6"/>
+          </svg>
         </Link>
       </div>
+
+      {/* Rows. Hover via JS rather than CSS so we don't depend on any
+          styled-jsx scoping interactions with next/link. */}
       {issues.map((iss, idx) => (
-        <Link key={iss.id} href={iss.knownIssuesUrl} className={`iag-row ${idx < issues.length - 1 ? 'with-border' : ''}`}>
-          <span className="iag-dot" style={{ background: sevColor(iss.severity) }} />
-          <div className="iag-row-body">
-            <div className="iag-row-title">{iss.title}</div>
-            <div className="iag-row-sub">
-              {iss.estimatedCost
-                ? <><span className="mono">${iss.estimatedCost.low.toLocaleString()}–${iss.estimatedCost.high.toLocaleString()}</span> · {iss.severity}</>
-                : iss.severity}
-            </div>
-          </div>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" style={{ color: '#94A3B8' }}><path d="m9 6 6 6-6 6"/></svg>
-        </Link>
+        <IssueAttachmentRow
+          key={iss.id}
+          issue={iss}
+          isLast={idx === issues.length - 1}
+          baseStyle={rowBase}
+          sevColor={sevColor(iss.severity)}
+        />
       ))}
-      <style jsx>{`
-        .iag {
-          background: #fff; border: 1px solid #E3DFD4; border-radius: 16px;
-          overflow: hidden; box-shadow: 0 1px 2px rgba(11,18,32,.06);
-        }
-        .iag-head {
-          padding: 12px 16px; border-bottom: 1px solid #E3DFD4;
-          display: flex; align-items: center; justify-content: space-between;
-        }
-        .iag-head-left { display: flex; align-items: center; gap: 8px; font-size: 13px; }
-        .iag-head-left svg { color: #64748B; }
-        .iag-count { font-weight: 600; }
-        .iag-meta { font-size: 11px; color: #64748B; font-weight: 400; }
-        .iag-seeall {
-          background: transparent; border: 0; color: #64748B;
-          font-size: 12px; cursor: pointer; text-decoration: none;
-          display: inline-flex; align-items: center; gap: 2px;
-        }
-        .iag-seeall:hover { color: #0B1220; }
-        .iag-row {
-          padding: 12px 16px;
-          display: flex; align-items: center; gap: 12px;
-          text-decoration: none; color: #0B1220;
-        }
-        .iag-row.with-border { border-bottom: 1px solid #E3DFD4; }
-        .iag-row:hover { background: #FAF8F2; }
-        .iag-dot { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; }
-        .iag-row-body { flex: 1; min-width: 0; }
-        .iag-row-title { font-size: 13.5px; font-weight: 500; }
-        .iag-row-sub { font-size: 11.5px; color: #64748B; margin-top: 2px; text-transform: capitalize; }
-        .mono { font-family: var(--font-geist-mono, ui-monospace, monospace); }
-      `}</style>
     </div>
+  );
+}
+
+/**
+ * One row in the IssueAttachmentGroup. Pulled into its own component so
+ * we can use a useState-based hover style (the only way to get reliable
+ * hover on a Next.js <Link> when our parent is using styled-jsx).
+ */
+function IssueAttachmentRow({
+  issue, isLast, baseStyle, sevColor,
+}: {
+  issue: AttachableIssue;
+  isLast: boolean;
+  baseStyle: React.CSSProperties;
+  sevColor: string;
+}) {
+  const [hover, setHover] = useState(false);
+  const costStr = issue.estimatedCost
+    ? `$${issue.estimatedCost.low.toLocaleString()}–${issue.estimatedCost.high.toLocaleString()}`
+    : null;
+  return (
+    <Link
+      href={issue.knownIssuesUrl}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      style={{
+        ...baseStyle,
+        background: hover ? '#FAF8F2' : 'transparent',
+        borderBottom: isLast ? 'none' : '1px solid #E3DFD4',
+      }}
+    >
+      {/* Severity dot — fixed width + flex-shrink:0 keeps it round. */}
+      <span
+        aria-hidden="true"
+        style={{
+          width: 10,
+          height: 10,
+          borderRadius: '50%',
+          background: sevColor,
+          flex: '0 0 10px',
+        }}
+      />
+
+      {/* Body — flex: 1 here is what pushes the chevron to the far right. */}
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{
+          fontSize: 13.5,
+          fontWeight: 500,
+          lineHeight: 1.3,
+          color: '#0B1220',
+          // Truncate single-line titles on tight widths.
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        }}>
+          {issue.title}
+        </div>
+        <div style={{
+          fontSize: 11.5,
+          color: '#64748B',
+          marginTop: 2,
+          display: 'flex',
+          gap: 6,
+          alignItems: 'baseline',
+        }}>
+          {costStr && (
+            <span style={{
+              fontFamily: 'var(--font-geist-mono, ui-monospace, monospace)',
+              fontFeatureSettings: '"tnum" 1',
+            }}>{costStr}</span>
+          )}
+          {costStr && <span style={{ color: '#CBD5E1' }}>·</span>}
+          <span style={{ textTransform: 'capitalize' }}>{issue.severity}</span>
+        </div>
+      </div>
+
+      {/* Chevron — flex-shrink:0 + auto margin-left so it always docks right. */}
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#94A3B8"
+        strokeWidth={1.6}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ flex: '0 0 14px' }}
+      >
+        <path d="m9 6 6 6-6 6"/>
+      </svg>
+    </Link>
   );
 }
 
