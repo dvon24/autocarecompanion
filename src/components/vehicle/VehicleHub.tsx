@@ -60,10 +60,27 @@ export interface VehicleHubProps {
   attachableIssues: AttachableIssue[];
 }
 
+interface RoutePreview {
+  /** Route polyline as [lng,lat][] from Mapbox Directions. */
+  geometry: [number, number][];
+  /** Origin we requested with — re-used as the "you are here" pin. */
+  origin: { lng: number; lat: number };
+  /** Destination Mapbox resolved to (may differ slightly from text). */
+  destination: { lng: number; lat: number; placeName: string };
+  miles: number;
+  minutes: number;
+  /** True while we're fetching — bubble shows a skeleton during this. */
+  loading: boolean;
+  /** Set when the request fails (no GPS, geocode miss, etc.). */
+  error?: string;
+}
+
 interface Message {
   role: 'user' | 'assistant';
   content: string;
   timestamp: number;
+  /** Inline route preview attached to this turn when trip intent fires. */
+  route?: RoutePreview;
 }
 
 export function VehicleHub({
@@ -201,6 +218,53 @@ export function VehicleHub({
           // 'done' has token-usage info we could surface later.
         }
       }
+
+      // ── Post-stream: if the assistant suggested a trip, plan the
+      // route in the background and attach the preview to the bubble.
+      // Captured here (after the stream loop closes) so the bubble has
+      // its full text before we look for trip intent. The route fetch
+      // itself happens fully async — no await on the awaited assistant
+      // turn — so the placeholder map appears within the same turn.
+      const idx = streamingIdxRef.current;
+      if (idx != null) {
+        const finalContent = await new Promise<string>((resolve) => {
+          // Read the latest content from state via a microtask so we
+          // capture all token-deltas, not just the snapshot we have.
+          setMessages((prev) => {
+            resolve(prev[idx]?.content || '');
+            return prev;
+          });
+        });
+        const intent = detectDriveIntent(finalContent);
+        if (intent?.destination) {
+          // Optimistically attach a loading preview so the bubble shows
+          // the map skeleton immediately.
+          setMessages((prev) => {
+            const copy = [...prev];
+            if (copy[idx]) {
+              copy[idx] = {
+                ...copy[idx],
+                route: {
+                  geometry: [],
+                  origin: { lng: 0, lat: 0 },
+                  destination: { lng: 0, lat: 0, placeName: intent.destination! },
+                  miles: 0, minutes: 0, loading: true,
+                },
+              };
+            }
+            return copy;
+          });
+          // Fire-and-forget the route fetch. Errors fall back to the
+          // existing DriveHandoff card via the route.error path.
+          fetchRoutePreview(intent.destination).then((route) => {
+            setMessages((prev) => {
+              const copy = [...prev];
+              if (copy[idx]) copy[idx] = { ...copy[idx], route };
+              return copy;
+            });
+          });
+        }
+      }
     } catch (err) {
       const errMsg = err instanceof Error ? err.message : 'Network error.';
       setMessages((prev) => {
@@ -213,6 +277,75 @@ export function VehicleHub({
     } finally {
       setPending(false);
       streamingIdxRef.current = null;
+    }
+  };
+
+  /**
+   * Plan a route from the user's GPS to the named destination via the
+   * existing /api/drive/plan-route endpoint. Caches GPS in sessionStorage
+   * so subsequent trip questions in the same session don't re-prompt for
+   * permission. Returns a fully populated RoutePreview, or one with
+   * error: '...' set when geolocation is denied / route fails.
+   */
+  const fetchRoutePreview = async (destination: string): Promise<RoutePreview> => {
+    let origin: { lng: number; lat: number };
+    try {
+      origin = await getCachedGeolocation();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Location permission needed';
+      return {
+        geometry: [], origin: { lng: 0, lat: 0 },
+        destination: { lng: 0, lat: 0, placeName: destination },
+        miles: 0, minutes: 0, loading: false, error: msg,
+      };
+    }
+
+    try {
+      const res = await fetch('/api/drive/plan-route', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          transcript: `Take me to ${destination}`,
+          origin,
+          conversationHistory: [],
+          vehicle: { year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim || '' },
+        }),
+      });
+      if (!res.ok) throw new Error(`Route service returned ${res.status}`);
+      const data = await res.json() as {
+        geometry?: { coordinates: [number, number][] };
+        destinationCoords?: { lng: number; lat: number };
+        destination?: string;
+        miles?: number;
+        minutes?: number;
+      };
+      if (!data.geometry?.coordinates || !data.destinationCoords) {
+        return {
+          geometry: [], origin,
+          destination: { lng: 0, lat: 0, placeName: destination },
+          miles: 0, minutes: 0, loading: false,
+          error: 'Could not plot that route',
+        };
+      }
+      return {
+        geometry: data.geometry.coordinates,
+        origin,
+        destination: {
+          lng: data.destinationCoords.lng,
+          lat: data.destinationCoords.lat,
+          placeName: data.destination || destination,
+        },
+        miles: data.miles || 0,
+        minutes: data.minutes || 0,
+        loading: false,
+      };
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Route failed';
+      return {
+        geometry: [], origin,
+        destination: { lng: 0, lat: 0, placeName: destination },
+        miles: 0, minutes: 0, loading: false, error: msg,
+      };
     }
   };
 
@@ -256,8 +389,13 @@ export function VehicleHub({
                   attachments={matchAttachments(m.content, attachableIssues)}
                   // Detect trip-planning intent (the assistant ends with
                   // "open in Drive" / "plan it in Drive" by system-prompt
-                  // convention) and surface the Drive handoff card.
+                  // convention). When `route` is attached, the message
+                  // already has a real Mapbox geometry — show the inline
+                  // mini-map. When it isn't (intent detected but route
+                  // not yet fetched / failed silently), fall back to the
+                  // simple Drive handoff button.
                   driveHandoff={detectDriveIntent(m.content)}
+                  route={m.route}
                   // Pick chip-able follow-up prompts to send next.
                   onFollowUp={(prompt) => send(prompt)}
                 />
@@ -612,11 +750,12 @@ function relativeWhen(iso: string): string {
 
 /* ─── Au7o reply bubble ─── */
 function Au7oReply({
-  content, attachments = [], driveHandoff = null, onFollowUp,
+  content, attachments = [], driveHandoff = null, route, onFollowUp,
 }: {
   content: string;
   attachments?: AttachableIssue[];
   driveHandoff?: { destination: string | null } | null;
+  route?: RoutePreview;
   onFollowUp?: (prompt: string) => void;
 }) {
   // Split out any "→ follow-up question" lines the AI emitted at the end
@@ -629,7 +768,23 @@ function Au7oReply({
       <div className="body">
         <div className="bubble-au7o">{renderMarkdownLite(body)}</div>
         {attachments.length > 0 && <IssueAttachmentGroup issues={attachments} />}
-        {driveHandoff && <DriveHandoff destination={driveHandoff.destination} />}
+        {/* Trip preview hierarchy: when we have a real Mapbox route
+            attached to this turn, show the inline mini-map. Otherwise
+            fall back to the simple Drive handoff button (for trips
+            where intent was detected but the route fetch hasn't fired
+            yet, or for the user's GPS denial case). */}
+        {route ? (
+          <MiniRoute
+            route={route}
+            onOpenDrive={() => {
+              const dest = route.destination.placeName || (driveHandoff?.destination ?? '');
+              const href = dest ? `/drive?to=${encodeURIComponent(dest)}` : '/drive';
+              window.location.href = href;
+            }}
+          />
+        ) : (
+          driveHandoff && <DriveHandoff destination={driveHandoff.destination} />
+        )}
         {followUps.length > 0 && onFollowUp && (
           <div className="followups">
             {followUps.map((q, i) => (
@@ -1050,6 +1205,199 @@ function IssueAttachment({ issue }: { issue: AttachableIssue }) {
         }
       `}</style>
     </Link>
+  );
+}
+
+/**
+ * Browser geolocation with sessionStorage cache. First trip-intent call
+ * in a session triggers the OS permission prompt; subsequent calls in
+ * the same session re-use the cached coords (15-min TTL — short enough
+ * that long sessions still get reasonably-fresh GPS, long enough that
+ * back-to-back trip questions don't double-prompt).
+ *
+ * Throws on denial / unsupported / timeout so the caller can surface a
+ * helpful error in the route preview.
+ */
+const GEO_CACHE_KEY = 'au7o-hub-gps';
+const GEO_CACHE_TTL_MS = 15 * 60_000;
+function getCachedGeolocation(): Promise<{ lng: number; lat: number }> {
+  return new Promise((resolve, reject) => {
+    if (typeof window === 'undefined' || !('geolocation' in navigator)) {
+      reject(new Error('Geolocation not supported on this device'));
+      return;
+    }
+    try {
+      const cached = sessionStorage.getItem(GEO_CACHE_KEY);
+      if (cached) {
+        const parsed = JSON.parse(cached) as { lng: number; lat: number; t: number };
+        if (Date.now() - parsed.t < GEO_CACHE_TTL_MS) {
+          resolve({ lng: parsed.lng, lat: parsed.lat });
+          return;
+        }
+      }
+    } catch { /* fall through to fresh fetch */ }
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const coords = { lng: pos.coords.longitude, lat: pos.coords.latitude };
+        try { sessionStorage.setItem(GEO_CACHE_KEY, JSON.stringify({ ...coords, t: Date.now() })); } catch { /* ignore */ }
+        resolve(coords);
+      },
+      (err) => {
+        if (err.code === err.PERMISSION_DENIED) reject(new Error('Location permission denied — share your location to plot a route'));
+        else if (err.code === err.POSITION_UNAVAILABLE) reject(new Error('Could not detect your location right now'));
+        else reject(new Error('Location request timed out'));
+      },
+      { enableHighAccuracy: false, timeout: 10_000, maximumAge: 60_000 },
+    );
+  });
+}
+
+/**
+ * Inline route preview — projects the Mapbox geometry into a small SVG
+ * with a paper-style background, route line, and origin/destination
+ * pins. Renders a skeleton loader while loading=true, an error tile
+ * with a retry/Drive-handoff CTA on error.
+ */
+function MiniRoute({ route, onOpenDrive }: { route: RoutePreview; onOpenDrive: () => void }) {
+  if (route.loading) {
+    return (
+      <div className="mini-route-loading">
+        <div className="skeleton" />
+        <div className="loading-text">Plotting route to {route.destination.placeName}…</div>
+        <style jsx>{`
+          .mini-route-loading {
+            background: #F2EEE3; border: 1px solid #E3DFD4; border-radius: 16px;
+            overflow: hidden; height: 220px; position: relative;
+            display: flex; align-items: center; justify-content: center;
+          }
+          .skeleton {
+            position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(11,18,32,0.04), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 1.4s ease-in-out infinite;
+          }
+          @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+          .loading-text { position: relative; z-index: 1; font-size: 13px; color: #64748B; }
+        `}</style>
+      </div>
+    );
+  }
+
+  if (route.error || route.geometry.length < 2) {
+    return (
+      <div className="mini-route-error">
+        <div className="err-msg">
+          {route.error || `Couldn't plot a route to ${route.destination.placeName}.`}
+        </div>
+        <button className="err-cta" onClick={onOpenDrive}>Open in Drive →</button>
+        <style jsx>{`
+          .mini-route-error {
+            background: #FFF7E8; border: 1px solid #F5E5BD; border-radius: 12px;
+            padding: 14px; display: flex; align-items: center; gap: 10px;
+            font-size: 13px; color: #92400E;
+          }
+          .err-msg { flex: 1; }
+          .err-cta {
+            background: #0B1220; color: #fff; border: 0;
+            padding: 6px 12px; border-radius: 8px;
+            font: 600 12px var(--font-geist-sans, system-ui);
+            cursor: pointer; white-space: nowrap;
+          }
+        `}</style>
+      </div>
+    );
+  }
+
+  // Compute SVG viewBox bounds from geometry. Lng/lat lives in geographic
+  // space; we project linearly into a 720x220 box (matches the prototype
+  // mini-map). Adequate for at-a-glance preview at this scale; not a
+  // proper Mercator projection.
+  let minLng = Infinity, maxLng = -Infinity, minLat = Infinity, maxLat = -Infinity;
+  for (const [lng, lat] of route.geometry) {
+    if (lng < minLng) minLng = lng;
+    if (lng > maxLng) maxLng = lng;
+    if (lat < minLat) minLat = lat;
+    if (lat > maxLat) maxLat = lat;
+  }
+  // Pad bounds by 8% so pins at the edges don't get clipped.
+  const lngPad = (maxLng - minLng) * 0.08 || 0.01;
+  const latPad = (maxLat - minLat) * 0.08 || 0.01;
+  minLng -= lngPad; maxLng += lngPad; minLat -= latPad; maxLat += latPad;
+  const W = 720, H = 220;
+  const project = (lng: number, lat: number): [number, number] => [
+    ((lng - minLng) / (maxLng - minLng)) * W,
+    H - ((lat - minLat) / (maxLat - minLat)) * H,
+  ];
+  // Sample down to ~120 points for a smoother SVG render; full geometry
+  // can be 1000+ vertices for a long trip.
+  const stride = Math.max(1, Math.floor(route.geometry.length / 120));
+  const pathD = route.geometry
+    .filter((_, i) => i % stride === 0)
+    .map((coord, i) => {
+      const [x, y] = project(coord[0], coord[1]);
+      return `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`;
+    })
+    .join(' ');
+  const [originX, originY] = project(route.origin.lng, route.origin.lat);
+  const [destX, destY] = project(route.destination.lng, route.destination.lat);
+
+  return (
+    <div className="mini-route">
+      <div className="mr-map">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+          <rect width={W} height={H} fill="#F2EEE3" />
+          {/* Route line — white halo + blue stroke for that Mapbox feel. */}
+          <path d={pathD} stroke="#FFFFFF" strokeWidth="7" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={pathD} stroke="#3B82F6" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          {/* Origin pin — blue dot. */}
+          <circle cx={originX} cy={originY} r="9" fill="#fff" />
+          <circle cx={originX} cy={originY} r="5" fill="#3B82F6" />
+          {/* Destination pin — dark with white center. */}
+          <circle cx={destX} cy={destY} r="11" fill="#0B1220" />
+          <circle cx={destX} cy={destY} r="5" fill="#fff" />
+        </svg>
+        <button className="mr-open" onClick={onOpenDrive}>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/></svg>
+          Open in Drive
+        </button>
+      </div>
+      <div className="mr-foot">
+        <span className="mr-stat"><strong className="mono">{route.miles.toFixed(0)} mi</strong></span>
+        <span className="mr-sep">·</span>
+        <span className="mr-stat mono">{Math.round(route.minutes)} min</span>
+        <span className="mr-sep">·</span>
+        <span className="mr-dest" title={route.destination.placeName}>{route.destination.placeName}</span>
+      </div>
+      <style jsx>{`
+        .mini-route {
+          background: #fff; border: 1px solid #E3DFD4; border-radius: 16px;
+          overflow: hidden; box-shadow: 0 1px 2px rgba(11,18,32,.06);
+        }
+        .mr-map { position: relative; height: 220px; }
+        .mr-open {
+          position: absolute; bottom: 12px; right: 12px;
+          background: #0B1220; color: #fff; border: 0;
+          padding: 6px 11px; border-radius: 999px;
+          font: 600 11px var(--font-geist-sans, system-ui);
+          cursor: pointer;
+          display: inline-flex; align-items: center; gap: 6px;
+        }
+        .mr-open:hover { background: #19223A; }
+        .mr-foot {
+          padding: 12px 16px;
+          display: flex; align-items: center; gap: 10px;
+          font-size: 12.5px; color: #334155;
+        }
+        .mr-stat strong { font-weight: 600; color: #0B1220; }
+        .mr-sep { color: #CBD5E1; }
+        .mr-dest {
+          color: #64748B; font-size: 11.5px;
+          overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+          flex: 1; min-width: 0;
+        }
+        .mono { font-family: var(--font-geist-mono, ui-monospace, monospace); font-feature-settings: "tnum" 1; }
+      `}</style>
+    </div>
   );
 }
 
