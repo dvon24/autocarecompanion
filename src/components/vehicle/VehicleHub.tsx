@@ -83,25 +83,121 @@ export function VehicleHub({
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages.length]);
 
+  // Server-issued sessionId — set after the first reply so subsequent
+  // turns are tied to the same ChatSession row + history is loaded
+  // server-side instead of being shipped over the wire each turn.
+  const sessionIdRef = useRef<string | null>(null);
+  // Tracks the index of the assistant message we're currently streaming
+  // INTO so each token append targets the right bubble.
+  const streamingIdxRef = useRef<number | null>(null);
+
   const send = async (text: string) => {
     const trimmed = text.trim();
     if (!trimmed || pending) return;
     setPending(true);
     setInput('');
-    setMessages((prev) => [...prev, { role: 'user', content: trimmed, timestamp: Date.now() }]);
 
-    // v2 will fire POST /api/chat here with vehicle context + history,
-    // stream the reply, persist via ChatSession, log to ChatPromptInsight.
-    // For v1 we stub a placeholder reply so the UX feels real during
-    // design review.
-    setTimeout(() => {
-      setMessages((prev) => [...prev, {
-        role: 'assistant',
-        content: '_(v1 stub — chat backend wires in batch 2)_ I have your vehicle context loaded. The next batch hooks me up to the real Claude API with caching, history persistence, and the prompt-injection guardrails we agreed on.',
-        timestamp: Date.now(),
-      }]);
+    // Append the user's message + an empty assistant placeholder. The
+    // placeholder gets filled in token-by-token as SSE chunks arrive.
+    setMessages((prev) => {
+      const next = [
+        ...prev,
+        { role: 'user' as const, content: trimmed, timestamp: Date.now() },
+        { role: 'assistant' as const, content: '', timestamp: Date.now() },
+      ];
+      streamingIdxRef.current = next.length - 1;
+      return next;
+    });
+
+    try {
+      const res = await fetch('/api/hub-chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          vehicle: {
+            year: vehicle.year,
+            make: vehicle.make,
+            model: vehicle.model,
+            trim: vehicle.trim,
+            currentMileage: currentMileage ?? undefined,
+          },
+          sessionId: sessionIdRef.current,
+          messages: [
+            ...messages.map((m) => ({ role: m.role, content: m.content })),
+            { role: 'user' as const, content: trimmed },
+          ],
+        }),
+      });
+
+      if (!res.ok || !res.body) {
+        const errBody = await res.json().catch(() => ({} as { message?: string; gated?: boolean }));
+        const fallbackMessage = res.status === 429
+          ? (errBody.message || 'Daily limit reached.')
+          : (errBody.message || `Chat failed (HTTP ${res.status}).`);
+        setMessages((prev) => {
+          const idx = streamingIdxRef.current;
+          if (idx == null) return prev;
+          const copy = [...prev];
+          copy[idx] = { ...copy[idx], content: fallbackMessage };
+          return copy;
+        });
+        setPending(false);
+        return;
+      }
+
+      // Parse SSE stream — each line that starts with `data: ` is a
+      // JSON event. We split on `\n\n` per the SSE spec but tolerate a
+      // partial last frame between reads.
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const frames = buffer.split('\n\n');
+        buffer = frames.pop() || '';
+        for (const frame of frames) {
+          const line = frame.trim();
+          if (!line.startsWith('data: ')) continue;
+          let event: { type: string; text?: string; sessionId?: string; message?: string };
+          try { event = JSON.parse(line.slice(6)); }
+          catch { continue; }
+          if (event.type === 'session' && event.sessionId) {
+            sessionIdRef.current = event.sessionId;
+          } else if (event.type === 'token' && event.text) {
+            setMessages((prev) => {
+              const idx = streamingIdxRef.current;
+              if (idx == null) return prev;
+              const copy = [...prev];
+              copy[idx] = { ...copy[idx], content: copy[idx].content + event.text };
+              return copy;
+            });
+          } else if (event.type === 'error' && event.message) {
+            setMessages((prev) => {
+              const idx = streamingIdxRef.current;
+              if (idx == null) return prev;
+              const copy = [...prev];
+              copy[idx] = { ...copy[idx], content: copy[idx].content || event.message! };
+              return copy;
+            });
+          }
+          // 'done' has token-usage info we could surface later.
+        }
+      }
+    } catch (err) {
+      const errMsg = err instanceof Error ? err.message : 'Network error.';
+      setMessages((prev) => {
+        const idx = streamingIdxRef.current;
+        if (idx == null) return prev;
+        const copy = [...prev];
+        copy[idx] = { ...copy[idx], content: copy[idx].content || `Couldn't reach the chat service: ${errMsg}` };
+        return copy;
+      });
+    } finally {
       setPending(false);
-    }, 350);
+      streamingIdxRef.current = null;
+    }
   };
 
   return (

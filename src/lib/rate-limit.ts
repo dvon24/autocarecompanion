@@ -103,6 +103,15 @@ export const affiliateTrackLimiter = new RateLimiter(60_000, 30); // 30 req/min
 export const driveTurnMinuteLimiter = new RateLimiter(60_000, 20);          // 20 req/min
 export const driveTurnDayLimiter = new RateLimiter(24 * 60 * 60_000, 200);  // 200 req/day
 
+// Hub chat — anonymous users get a tight per-day cap so we don't pay for
+// freeloaders pinging Sonnet 4.6 at scale. Authed users get a generous
+// cap that's still well under what a real human would hit organically.
+// Per-minute cap on top to absorb client retry bugs without rate-eating
+// 100 messages in 10 seconds.
+export const hubChatAnonDayLimiter = new RateLimiter(24 * 60 * 60_000, 5);   // 5 messages / day / IP
+export const hubChatAuthedDayLimiter = new RateLimiter(24 * 60 * 60_000, 200); // 200 / day / IP authed
+export const hubChatMinuteLimiter = new RateLimiter(60_000, 12);             // 12 / min — protects against client-loop bugs
+
 /**
  * Extract client IP from a request. Vercel sets x-forwarded-for automatically.
  * Falls back to 'unknown' if no IP can be determined.
