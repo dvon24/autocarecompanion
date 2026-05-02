@@ -1521,62 +1521,156 @@ function MiniRoute({ route, onOpenDrive }: { route: RoutePreview; onOpenDrive: (
   const [originX, originY] = project(route.origin.lng, route.origin.lat);
   const [destX, destY] = project(route.destination.lng, route.destination.lat);
 
+  // Strip postal codes / country names from the destination label so the
+  // pill shows a friendly city-only string.  "Heilbronn, Germany" stays
+  // as-is, but "Heilbronn, 74072 Heilbronn, Germany" collapses to
+  // "Heilbronn".  Cheap prefix-extract; falls back to the raw string.
+  const friendlyDest = (() => {
+    const raw = route.destination.placeName || 'Destination';
+    const head = raw.split(',')[0].trim();
+    return head || raw;
+  })();
+
   return (
-    <div className="mini-route">
-      <div className="mr-map">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+    <div style={{
+      background: '#fff',
+      border: '1px solid #E3DFD4',
+      borderRadius: 16,
+      overflow: 'hidden',
+      boxShadow: '0 1px 2px rgba(11,18,32,.06), 0 1px 1px rgba(11,18,32,.04)',
+    }}>
+      {/* Map well — paper-style background, decorative ground layers
+          (water + parks + road grid), then the real route line + pins. */}
+      <div style={{ position: 'relative', height: 220 }}>
+        <svg
+          viewBox={`0 0 ${W} ${H}`}
+          width="100%" height="100%"
+          preserveAspectRatio="xMidYMid slice"
+          style={{ display: 'block' }}
+        >
+          <defs>
+            {/* Water gradient — same as prototype. */}
+            <linearGradient id="mr-water" x1="0" x2="1">
+              <stop offset="0" stopColor="#C9DCE6" />
+              <stop offset="1" stopColor="#B5CCD9" />
+            </linearGradient>
+          </defs>
+          {/* Tan paper base. */}
           <rect width={W} height={H} fill="#F2EEE3" />
-          {/* Route line — white halo + blue stroke for that Mapbox feel. */}
+          {/* Decorative water swath — adds depth + matches prototype.
+              Doesn't represent real water; it's purely a visual ground
+              layer so the map well doesn't look like a flat tile. */}
+          <path
+            d="M-20 130 C 100 110 220 150 320 130 C 420 110 540 150 740 130 L 740 220 L -20 220 Z"
+            fill="url(#mr-water)" opacity="0.55"
+          />
+          {/* Decorative park rectangles. */}
+          <rect x="40" y="30" width="80" height="50" rx="4" fill="#D5E2C9" opacity="0.7" />
+          <rect x="180" y="20" width="60" height="40" rx="4" fill="#D5E2C9" opacity="0.7" />
+          <rect x="420" y="40" width="100" height="60" rx="4" fill="#D5E2C9" opacity="0.7" />
+          <rect x="600" y="20" width="80" height="50" rx="4" fill="#D5E2C9" opacity="0.7" />
+          {/* Road grid (white lines under the route). */}
+          <path d="M0 100 L720 90" stroke="#FFFFFF" strokeWidth="6" opacity="0.7" />
+          <path d="M0 160 L720 165" stroke="#FFFFFF" strokeWidth="4" opacity="0.7" />
+          <path d="M180 0 L200 220" stroke="#FFFFFF" strokeWidth="4" opacity="0.7" />
+          <path d="M540 0 L560 220" stroke="#FFFFFF" strokeWidth="4" opacity="0.7" />
+          {/* Real route line — white halo + blue stroke for that Mapbox feel. */}
           <path d={pathD} stroke="#FFFFFF" strokeWidth="7" fill="none" strokeLinecap="round" strokeLinejoin="round" />
           <path d={pathD} stroke="#3B82F6" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-          {/* Origin pin — blue dot. */}
+          {/* Origin pin — blue dot in white halo. */}
           <circle cx={originX} cy={originY} r="9" fill="#fff" />
           <circle cx={originX} cy={originY} r="5" fill="#3B82F6" />
           {/* Destination pin — dark with white center. */}
           <circle cx={destX} cy={destY} r="11" fill="#0B1220" />
           <circle cx={destX} cy={destY} r="5" fill="#fff" />
         </svg>
-        <button className="mr-open" onClick={onOpenDrive}>
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/></svg>
+
+        {/* Top-left destination chip — matches the prototype's
+            "📍 Healdsburg" label overlay. */}
+        <div style={{
+          position: 'absolute', top: 12, left: 14,
+          display: 'flex', gap: 6,
+        }}>
+          <span style={{
+            background: '#fff',
+            border: '1px solid #E3DFD4',
+            borderRadius: 999,
+            padding: '5px 10px',
+            fontSize: 11.5,
+            fontWeight: 500,
+            color: '#0B1220',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+            boxShadow: '0 1px 2px rgba(11,18,32,.06)',
+          }}>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            {friendlyDest}
+          </span>
+        </div>
+
+        {/* Bottom-right CTA — dark "Open in Drive" pill. */}
+        <button
+          onClick={onOpenDrive}
+          style={{
+            position: 'absolute', bottom: 12, right: 12,
+            background: '#0B1220', color: '#fff', border: 0,
+            padding: '6px 12px', borderRadius: 999,
+            font: '600 11.5px var(--font-geist-sans, system-ui, sans-serif)',
+            cursor: 'pointer',
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            boxShadow: '0 1px 2px rgba(11,18,32,.18)',
+          }}
+        >
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z" />
+          </svg>
           Open in Drive
         </button>
       </div>
-      <div className="mr-foot">
-        <span className="mr-stat"><strong className="mono">{route.miles.toFixed(0)} mi</strong></span>
-        <span className="mr-sep">·</span>
-        <span className="mr-stat mono">{Math.round(route.minutes)} min</span>
-        <span className="mr-sep">·</span>
-        <span className="mr-dest" title={route.destination.placeName}>{route.destination.placeName}</span>
+
+      {/* Footer strip — miles · minutes · destination · "Plotted by Au7o" byline. */}
+      <div style={{
+        padding: '12px 16px',
+        display: 'flex', alignItems: 'center', gap: 10,
+        fontSize: 12.5, color: '#334155',
+      }}>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z" />
+            <path d="M9 4v14M15 6v14" />
+          </svg>
+          <strong style={{
+            fontFamily: 'var(--font-geist-mono, ui-monospace, monospace)',
+            fontFeatureSettings: '"tnum" 1',
+            fontWeight: 600,
+            color: '#0B1220',
+          }}>{route.miles.toFixed(0)} mi</strong>
+        </span>
+        <span style={{ color: '#CBD5E1' }}>·</span>
+        <span style={{
+          fontFamily: 'var(--font-geist-mono, ui-monospace, monospace)',
+          fontFeatureSettings: '"tnum" 1',
+        }}>{Math.round(route.minutes)} min</span>
+        <span style={{ color: '#CBD5E1' }}>·</span>
+        <span
+          title={route.destination.placeName}
+          style={{
+            color: '#64748B', fontSize: 11.5,
+            overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+            flex: 1, minWidth: 0,
+          }}
+        >{friendlyDest}</span>
+        {/* Right-docked attribution. */}
+        <span style={{
+          marginLeft: 'auto',
+          color: '#64748B', fontSize: 11,
+          whiteSpace: 'nowrap',
+        }}>Plotted by Au7o · live traffic</span>
       </div>
-      <style jsx>{`
-        .mini-route {
-          background: #fff; border: 1px solid #E3DFD4; border-radius: 16px;
-          overflow: hidden; box-shadow: 0 1px 2px rgba(11,18,32,.06);
-        }
-        .mr-map { position: relative; height: 220px; }
-        .mr-open {
-          position: absolute; bottom: 12px; right: 12px;
-          background: #0B1220; color: #fff; border: 0;
-          padding: 6px 11px; border-radius: 999px;
-          font: 600 11px var(--font-geist-sans, system-ui);
-          cursor: pointer;
-          display: inline-flex; align-items: center; gap: 6px;
-        }
-        .mr-open:hover { background: #19223A; }
-        .mr-foot {
-          padding: 12px 16px;
-          display: flex; align-items: center; gap: 10px;
-          font-size: 12.5px; color: #334155;
-        }
-        .mr-stat strong { font-weight: 600; color: #0B1220; }
-        .mr-sep { color: #CBD5E1; }
-        .mr-dest {
-          color: #64748B; font-size: 11.5px;
-          overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-          flex: 1; min-width: 0;
-        }
-        .mono { font-family: var(--font-geist-mono, ui-monospace, monospace); font-feature-settings: "tnum" 1; }
-      `}</style>
     </div>
   );
 }
