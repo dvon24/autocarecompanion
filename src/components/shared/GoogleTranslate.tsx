@@ -80,8 +80,12 @@ export function GoogleTranslate() {
         }
       `}</style>
 
-      {/* Google Translate element - always in DOM, visibility toggled */}
-      <div className="fixed top-3 right-[calc(0.75rem+40px)] z-[9999]">
+      {/* Google Translate element - moved from top-right (was overlapping
+          the new vehicle hub's chips and composer). Now bottom-right but
+          raised ~80px so it sits ABOVE the hub composer's send button.
+          On pages without a composer it just floats in the bottom-right
+          gutter — universally clear of every page's primary action area. */}
+      <div className="fixed bottom-20 right-3 z-[9999]">
         <button
           type="button"
           onClick={() => setOpen(!open)}
@@ -102,10 +106,11 @@ export function GoogleTranslate() {
           <span className="hidden sm:inline">Translate</span>
         </button>
 
-        {/* Dropdown panel — clamps width and right-anchors so the long Google
-            select can't overflow off the right edge on small screens. */}
+        {/* Dropdown panel — opens upward (bottom-anchored) and right-aligned
+            since the button is now bottom-right. Width clamps so the long
+            Google select can't overflow off the left edge on small screens. */}
         <div
-          className={`absolute top-full right-0 mt-1.5 bg-white rounded-lg shadow-lg border border-gray-200 p-2 transition-opacity duration-150 overflow-hidden ${
+          className={`absolute bottom-full right-0 mb-1.5 bg-white rounded-lg shadow-lg border border-gray-200 p-2 transition-opacity duration-150 overflow-hidden ${
             open ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
           }`}
           style={{ width: 'min(220px, calc(100vw - 24px))', maxWidth: '90vw' }}
