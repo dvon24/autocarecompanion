@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Au7o — Hub (Direction A · conversation-first)</title>
+
+<!-- Geist (matches production) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ─── Au7o tokens (verbatim from the redesign brief) ─────────────── */
+:root {
+  --au7o-blue: #3B82F6;
+  --au7o-blue-600: #2563EB;
+  --au7o-blue-700: #1D4ED8;
+  --au7o-blue-50: #EFF6FF;
+  --au7o-blue-100: #DBEAFE;
+
+  --paper: #F7F6F2;
+  --paper-2: #EFEDE6;
+  --paper-line: #E3DFD4;
+  --ink: #0B1220;
+  --ink-2: #19223A;
+  --ink-3: #2A3450;
+  --slate-700: #334155;
+  --slate-500: #64748B;
+  --slate-400: #94A3B8;
+  --slate-300: #CBD5E1;
+  --slate-200: #E2E8F0;
+  --slate-100: #F1F5F9;
+
+  --ok: #10B981;
+  --ok-bg: #D1FAE5;
+  --warn: #F59E0B;
+  --warn-bg: #FEF3C7;
+  --crit: #EF4444;
+  --crit-bg: #FEE2E2;
+
+  --map-bg: #F2EEE3;
+  --map-road: #FFFFFF;
+  --map-block: #E8E2D2;
+  --map-water: #C9DCE6;
+  --map-park: #D5E2C9;
+
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --r-1: 6px; --r-2: 10px; --r-3: 14px; --r-4: 20px; --r-5: 28px; --r-pill: 999px;
+
+  --shadow-1: 0 1px 2px rgba(11,18,32,.06), 0 1px 1px rgba(11,18,32,.04);
+  --shadow-2: 0 6px 16px rgba(11,18,32,.08), 0 2px 4px rgba(11,18,32,.05);
+  --shadow-3: 0 18px 40px rgba(11,18,32,.18), 0 6px 12px rgba(11,18,32,.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(59,130,246,0.04), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(11,18,32,0.03), transparent 50%),
+    #ECE9DF;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Direction switcher */
+.controls {
+  display: flex; gap: 8px; align-items: center;
+  padding: 14px 24px; max-width: 1480px; margin: 0 auto;
+  font-size: 12px; color: var(--slate-500);
+}
+.controls strong { color: var(--ink); margin-right: 8px; font-weight: 600; }
+.controls .chip-tab {
+  background: rgba(11,18,32,0.04); border: 1px solid var(--paper-line);
+  color: var(--ink); padding: 6px 12px; border-radius: 999px;
+  font-family: var(--font-sans); font-size: 12px; font-weight: 500; cursor: pointer;
+}
+.controls .chip-tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+/* Stage */
+.stage {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
+.stage-frame {
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-radius: 24px;
+  box-shadow: var(--shadow-3);
+  overflow: hidden;
+  height: 920px;
+  display: flex;
+  flex-direction: row;
+}
+
+/* ─── Vehicle rail (left) ──────────────────────────────────────── */
+.rail {
+  width: 300px; flex: 0 0 300px;
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid var(--paper-line);
+  display: flex; flex-direction: column;
+}
+.rail-top {
+  padding: 22px 24px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand {
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.brand img { width: 28px; height: 28px; object-fit: contain; border-radius: 6px; }
+.brand-text { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); }
+.brand-text .accent { color: var(--au7o-blue); }
+.icon-btn { background: transparent; border: 0; padding: 4px; color: var(--slate-500); cursor: pointer; border-radius: 6px; }
+.icon-btn:hover { background: rgba(11,18,32,0.04); }
+
+.veh-card {
+  margin: 0 16px;
+  padding: 16px;
+  background: linear-gradient(180deg, #fff, #FAF8F2);
+  border: 1px solid var(--paper-line);
+  border-radius: 14px;
+}
+.veh-silhouette { display: flex; justify-content: center; margin-bottom: 8px; }
+.veh-name { font-size: 13.5px; font-weight: 600; line-height: 1.3; }
+.veh-meta { font-size: 11.5px; color: var(--slate-500); margin-top: 2px; }
+.mono { font-family: var(--font-mono); font-feature-settings: "tnum" 1; letter-spacing: -0.01em; }
+.veh-chips { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.chip-mini {
+  font-size: 10.5px; font-weight: 600; padding: 3px 8px; border-radius: 999px;
+  font-family: var(--font-mono);
+}
+.chip-mini.ok { background: var(--ok-bg); color: #065F46; }
+.chip-mini.warn { background: var(--warn-bg); color: #92400E; }
+.chip-mini.crit { background: var(--crit-bg); color: #991B1B; }
+
+.eyebrow {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--slate-500);
+  padding: 18px 24px 8px;
+}
+.thread-list { padding: 0 12px; display: flex; flex-direction: column; gap: 2px; }
+.thread {
+  display: flex; align-items: center; gap: 10px;
+  background: transparent; border: 0; cursor: pointer;
+  padding: 10px 12px; border-radius: 10px; text-align: left; color: var(--ink);
+  width: 100%;
+}
+.thread:hover { background: rgba(11,18,32,0.04); }
+.thread svg { color: var(--slate-500); flex: 0 0 auto; }
+.thread .t-meta { min-width: 0; flex: 1; }
+.thread .t-title { font-size: 12.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.thread .t-when { font-size: 10.5px; color: var(--slate-500); }
+
+.rail-spacer { flex: 1; }
+.rail-bottom {
+  padding: 12px 16px; border-top: 1px solid var(--paper-line);
+}
+.btn-outline {
+  width: 100%; display: inline-flex; align-items: center; justify-content: center;
+  gap: 6px; padding: 10px 12px; border-radius: 12px;
+  background: #fff; border: 1px solid var(--paper-line);
+  font-family: var(--font-sans); font-size: 13px; font-weight: 500; color: var(--ink);
+  cursor: pointer;
+}
+.btn-outline:hover { background: var(--paper-2); }
+
+/* ─── Conversation column (right) ──────────────────────────────── */
+.col {
+  flex: 1; display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+  min-width: 0;
+}
+
+/* Top bar */
+.topbar {
+  height: 56px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--paper-line);
+  background: rgba(255,255,255,0.5); backdrop-filter: blur(20px);
+  position: relative; z-index: 5; flex: 0 0 auto;
+}
+.tb-left { display: flex; align-items: center; gap: 12px; font-size: 13px; }
+.tb-left .eyebrow-inline { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--slate-500); }
+.tb-sep { color: var(--slate-300); }
+.tb-right { display: flex; gap: 8px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 11px; border-radius: 999px;
+  background: #fff; border: 1px solid var(--paper-line);
+  font-family: var(--font-sans); font-size: 12px; font-weight: 500; color: var(--ink);
+  cursor: pointer;
+}
+.chip:hover { background: var(--paper-2); }
+.chip-sm { font-size: 11.5px; padding: 5px 10px; }
+.chip svg { color: var(--slate-500); flex: 0 0 auto; }
+
+/* Ambient bg */
+.ambient {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0;
+}
+.ambient .blob {
+  position: absolute; border-radius: 50%;
+}
+.ambient .b1 { left: -10%; top: -20%; width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(59,130,246,0.10), transparent 60%); animation: floatA 22s ease-in-out infinite; }
+.ambient .b2 { right: -15%; top: 30%; width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(16,185,129,0.08), transparent 60%); animation: floatB 28s ease-in-out infinite; }
+.ambient .b3 { left: 30%; bottom: -25%; width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(245,158,11,0.06), transparent 60%); animation: floatC 34s ease-in-out infinite; }
+@keyframes floatA { 0%,100% { transform: translate(0,0); } 50% { transform: translate(40px,30px); } }
+@keyframes floatB { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-30px,40px); } }
+@keyframes floatC { 0%,100% { transform: translate(0,0); } 50% { transform: translate(20px,-30px); } }
+
+/* Conversation */
+.conv {
+  flex: 1; overflow-y: auto; position: relative; z-index: 1;
+  padding: 32px 56px 32px; display: flex; flex-direction: column; gap: 22px;
+}
+.greet {
+  display: flex; flex-direction: column; gap: 14px;
+  align-items: flex-start; max-width: 720px;
+}
+.greet-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--au7o-blue);
+}
+.pulse-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--au7o-blue);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+}
+.greet h1 {
+  font-size: 38px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
+}
+.greet h1 .muted { color: var(--slate-400); }
+.prompt-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+
+/* Bubbles */
+.bubble-user {
+  align-self: flex-end;
+  background: var(--ink); color: #fff;
+  padding: 12px 16px; border-radius: 18px 18px 4px 18px;
+  font-size: 14.5px; line-height: 1.5; max-width: 580px;
+}
+.row-user { display: flex; justify-content: flex-end; margin-top: 14px; }
+.row-au7o { display: flex; gap: 14px; align-items: flex-start; }
+.row-au7o .avatar { width: 32px; height: 32px; margin-top: 2px; border-radius: 8px; flex: 0 0 auto; object-fit: contain; }
+.row-au7o .body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; max-width: 720px; }
+.bubble-au7o {
+  background: #fff;
+  border: 1px solid var(--paper-line);
+  border-radius: 18px 18px 18px 4px;
+  padding: 14px 18px;
+  font-size: 14.5px; line-height: 1.55;
+  box-shadow: var(--shadow-1);
+}
+
+/* Issue attachment */
+.attach {
+  background: #fff; border: 1px solid var(--paper-line); border-radius: 16px;
+  overflow: hidden; box-shadow: var(--shadow-1);
+}
+.attach-head {
+  padding: 12px 16px; border-bottom: 1px solid var(--paper-line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.attach-head .head-left { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; }
+.attach-head .head-left svg { color: var(--slate-500); }
+.attach-head .head-meta { font-size: 11px; color: var(--slate-500); font-weight: 400; }
+.attach-head .seeall {
+  background: transparent; border: 0; color: var(--slate-500); font-size: 12px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 2px;
+}
+.issue-row {
+  padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid var(--paper-line);
+  cursor: pointer;
+}
+.issue-row:last-child { border-bottom: 0; }
+.issue-row:hover { background: var(--paper-2); }
+.dot { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; }
+.dot.crit { background: var(--crit); }
+.dot.warn { background: var(--warn); }
+.dot.ok { background: var(--ok); }
+.issue-meta { flex: 1; min-width: 0; }
+.issue-title { font-size: 13.5px; font-weight: 500; }
+.issue-sub { font-size: 11.5px; color: var(--slate-500); margin-top: 2px; }
+.recall-pill {
+  display: inline-block; margin-left: 8px;
+  font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px;
+  background: var(--crit-bg); color: #991B1B; font-family: var(--font-mono);
+}
+
+/* Map attachment */
+.map-card {
+  background: #fff; border: 1px solid var(--paper-line); border-radius: 16px;
+  overflow: hidden; box-shadow: var(--shadow-1);
+}
+.map-wrap { position: relative; height: 220px; }
+.map-overlay-tl {
+  position: absolute; top: 12px; left: 14px; display: flex; gap: 6px;
+}
+.map-overlay-br {
+  position: absolute; bottom: 12px; right: 14px; display: flex; gap: 6px;
+}
+.chip-on-map { background: #fff; }
+.chip-cta { background: var(--ink); color: #fff; border-color: var(--ink); }
+.chip-cta:hover { background: var(--ink-2); }
+.chip-cta svg { color: #fff; }
+.map-foot {
+  padding: 12px 16px; display: flex; align-items: center; gap: 14px; font-size: 12px;
+}
+.map-foot .sep { color: var(--slate-300); }
+.map-foot .by { margin-left: auto; color: var(--slate-500); font-size: 11px; }
+
+/* Composer */
+.composer-wrap {
+  position: relative; padding: 18px 56px 28px;
+  border-top: 1px solid var(--paper-line);
+  background: rgba(255,255,255,0.6); backdrop-filter: blur(20px);
+  flex: 0 0 auto;
+}
+.composer {
+  background: #fff; border: 1px solid var(--paper-line); border-radius: 18px;
+  box-shadow: var(--shadow-2);
+  padding: 10px 12px 10px 18px;
+  display: flex; align-items: flex-end; gap: 10px;
+}
+.composer textarea {
+  flex: 1; border: 0; outline: 0; resize: none;
+  font-family: var(--font-sans); font-size: 14.5px; line-height: 1.5; color: var(--ink);
+  padding: 8px 0;
+  background: transparent;
+  max-height: 120px;
+}
+.composer .icon-square {
+  width: 36px; height: 36px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex: 0 0 auto;
+}
+.composer .icon-mic {
+  background: transparent; border: 1px solid var(--paper-line); color: var(--slate-500);
+}
+.composer .icon-send {
+  background: var(--ink); border: 0; color: #fff;
+}
+.composer .icon-send:hover { background: var(--ink-2); }
+.composer-meta {
+  display: flex; justify-content: space-between; margin-top: 8px; padding: 0 6px;
+  font-size: 11px; color: var(--slate-500);
+}
+.composer-meta .keys { display: flex; gap: 14px; }
+
+/* Anonymous gate (for the "signed-out" toggle) */
+.gate {
+  margin: 14px 56px 0;
+  padding: 12px 14px;
+  background: #FFF7E8; border: 1px solid #F5E5BD;
+  border-radius: 12px; font-size: 12.5px; color: #92400E;
+  display: flex; align-items: center; gap: 10px;
+}
+.gate strong { font-weight: 600; }
+.gate .gate-cta {
+  margin-left: auto; padding: 6px 12px; border-radius: 8px;
+  background: var(--ink); color: #fff; border: 0;
+  font-family: var(--font-sans); font-size: 12px; font-weight: 600; cursor: pointer;
+}
+
+/* Status dot reused */
+.status-dot { width: 10px; height: 10px; border-radius: 999px; flex: 0 0 auto; }
+.status-dot.crit { background: var(--crit); }
+.status-dot.warn { background: var(--warn); }
+
+/* Footer copy */
+.legend {
+  max-width: 1480px; margin: 24px auto; padding: 0 32px;
+  font-size: 12.5px; color: var(--slate-500); line-height: 1.55;
+}
+.legend strong { color: var(--ink); }
+
+/* Hide scrollbars subtly */
+.conv::-webkit-scrollbar { width: 8px; }
+.conv::-webkit-scrollbar-thumb { background: rgba(11,18,32,0.12); border-radius: 4px; }
+
+/* Disabled (locked) chip */
+.chip.locked {
+  background: rgba(11,18,32,0.04); color: var(--slate-500);
+  cursor: not-allowed; opacity: 0.85;
+}
+.chip.locked svg { color: var(--slate-400); }
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <strong>Au7o Hub prototype · Direction A — conversation-first</strong>
+  <span style="margin: 0 8px; color: var(--slate-300);">·</span>
+  <span>view as:</span>
+  <button id="signed-in-tab" class="chip-tab active" onclick="setSignedIn(true)">Signed-in</button>
+  <button id="signed-out-tab" class="chip-tab" onclick="setSignedIn(false)">Signed-out (gated)</button>
+  <span style="margin-left: auto; color: var(--slate-400);">URL preview: <span class="mono" style="color:var(--slate-700)">/vehicle/2015-dodge-challenger-srt-392</span></span>
+</div>
+
+<div class="stage">
+<div class="stage-frame">
+
+<!-- ─── Left rail ─── -->
+<aside class="rail">
+  <div class="rail-top">
+    <span class="brand">
+      <img src="/og-image.png" alt="Au7o" />
+      <span class="brand-text">Au<span class="accent">7</span>o</span>
+    </span>
+    <button class="icon-btn" title="Settings">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3h0a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h0a1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8v0a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Vehicle card -->
+  <div class="veh-card">
+    <div class="veh-silhouette">
+      <!-- Generic muscle-coupe silhouette so this template generalizes beyond Challenger -->
+      <svg viewBox="0 0 320 100" width="160" height="50">
+        <ellipse cx="160" cy="92" rx="138" ry="3.5" fill="rgba(11,18,32,0.12)"/>
+        <path
+          d="M14,76 C18,66 30,62 50,60
+             C58,46 80,38 116,36
+             L160,30 C198,28 230,32 260,46
+             L292,52 C302,54 308,58 308,68
+             L308,80 C308,84 304,86 298,86
+             L268,86 A22,22 0 0 0 224,86
+             L114,86 A22,22 0 0 0 70,86
+             L24,86 C16,86 12,82 12,80 Z"
+          fill="#1a1a1a"/>
+        <path d="M112,40 L160,32 C190,30 216,34 234,42 L234,58 L108,58 Z" fill="#3B82F6" opacity="0.18"/>
+        <circle cx="92" cy="86" r="16" fill="#0B1220"/><circle cx="92" cy="86" r="7" fill="#3a3f4d"/>
+        <circle cx="246" cy="86" r="16" fill="#0B1220"/><circle cx="246" cy="86" r="7" fill="#3a3f4d"/>
+      </svg>
+    </div>
+    <div class="veh-name">2015 Dodge Challenger</div>
+    <div class="veh-meta">SRT 392 · <span class="mono">64,218 mi</span></div>
+    <div class="veh-chips">
+      <span class="chip-mini warn">4 issues</span>
+      <span class="chip-mini crit">6 recalls</span>
+      <span class="chip-mini ok">8 parts</span>
+    </div>
+  </div>
+
+  <div class="eyebrow">Recent</div>
+  <div class="thread-list">
+    <button class="thread">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1 5.66 5.66l-1.42 1.41-5.66-5.66 1.42-1.41Z"/><path d="m13.29 7.71-9.5 9.5a2 2 0 1 0 2.83 2.83l9.5-9.5"/></svg>
+      <div class="t-meta"><div class="t-title">EPS rack — what to ask the shop</div><div class="t-when">Yesterday</div></div>
+    </button>
+    <button class="thread">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg>
+      <div class="t-meta"><div class="t-title">Trip to Big Sur, charging-free</div><div class="t-when">3 days ago</div></div>
+    </button>
+    <button class="thread">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 16v6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>
+      <div class="t-meta"><div class="t-title">OEM radiator — replace or upgrade?</div><div class="t-when">Last week</div></div>
+    </button>
+  </div>
+
+  <div class="rail-spacer"></div>
+
+  <div class="rail-bottom">
+    <button class="btn-outline">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      New conversation
+    </button>
+  </div>
+</aside>
+
+<!-- ─── Conversation column ─── -->
+<section class="col">
+  <div class="topbar">
+    <div class="tb-left">
+      <span class="eyebrow-inline">Conversation</span>
+      <span class="tb-sep">·</span>
+      <span style="color: var(--slate-700);">Symptoms &amp; maintenance</span>
+    </div>
+    <div class="tb-right">
+      <button class="chip chip-sm">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg>
+        Open Drive
+      </button>
+      <button class="chip chip-sm">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16a2 2 0 0 0 2 2h14V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2Z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+        Library
+      </button>
+    </div>
+  </div>
+
+  <!-- Anonymous-gate banner (toggled by the view switcher) -->
+  <div id="gate" class="gate" style="display:none;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <span><strong>3 free messages</strong> remaining today. Sign in to save your vehicle, your chat history, and unlock pre-trip safety checks.</span>
+    <button class="gate-cta">Sign in to save</button>
+  </div>
+
+  <div class="conv">
+    <div class="ambient"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+    <!-- Greeting -->
+    <div class="greet">
+      <span class="greet-eyebrow"><span class="pulse-dot"></span> AU7O FOR YOUR CHALLENGER</span>
+      <h1>Good afternoon. <span class="muted">What's on your mind today?</span></h1>
+      <div class="prompt-row">
+        <button class="chip">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+          Common problems at 64k miles
+        </button>
+        <button class="chip">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1 5.66 5.66l-1.42 1.41-5.66-5.66 1.42-1.41Z"/><path d="m13.29 7.71-9.5 9.5a2 2 0 1 0 2.83 2.83l9.5-9.5"/></svg>
+          Plan my next oil change
+        </button>
+        <button class="chip">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          Why does my steering feel loose?
+        </button>
+        <button class="chip">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg>
+          Plan a weekend trip
+        </button>
+        <button class="chip">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+          What recalls apply to my car?
+        </button>
+      </div>
+    </div>
+
+    <!-- User asks -->
+    <div class="row-user"><div class="bubble-user">What are the most common problems on this car around 64k miles?</div></div>
+
+    <!-- Au7o reply with issue attachment -->
+    <div class="row-au7o">
+      <img class="avatar" src="/og-image.png" alt="" />
+      <div class="body">
+        <div class="bubble-au7o">For a <strong>2015 Challenger SRT 392</strong> around <span class="mono">64k miles</span>, four issues come up most often. Two are <strong>safety-critical</strong> — let's start with those.</div>
+
+        <!-- Issue attachment (rendered inline) -->
+        <div class="attach">
+          <div class="attach-head">
+            <div class="head-left">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+              <span>4 known issues</span>
+              <span class="head-meta">· filtered to your trim</span>
+            </div>
+            <button class="seeall">See all
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+            </button>
+          </div>
+          <div class="issue-row">
+            <span class="dot crit"></span>
+            <div class="issue-meta">
+              <div class="issue-title">Driveshaft / U-Joint Failure</div>
+              <div class="issue-sub"><span class="mono">$300 – $2,500</span> · ~14% at 60k+</div>
+            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--slate-400);"><path d="m9 6 6 6-6 6"/></svg>
+          </div>
+          <div class="issue-row">
+            <span class="dot crit"></span>
+            <div class="issue-meta">
+              <div class="issue-title">EPS Rack Failure <span class="recall-pill">RECALL S19</span></div>
+              <div class="issue-sub"><span class="mono">$1,200 – $2,800</span> · ~9% — recall S19</div>
+            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--slate-400);"><path d="m9 6 6 6-6 6"/></svg>
+          </div>
+          <div class="issue-row">
+            <span class="dot warn"></span>
+            <div class="issue-meta">
+              <div class="issue-title">OEM Radiator Premature Failure</div>
+              <div class="issue-sub"><span class="mono">$200 – $800</span> · ~6%</div>
+            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--slate-400);"><path d="m9 6 6 6-6 6"/></svg>
+          </div>
+          <div class="issue-row">
+            <span class="dot warn"></span>
+            <div class="issue-meta">
+              <div class="issue-title">ZF 8-Speed Harsh Shifting</div>
+              <div class="issue-sub"><span class="mono">$820 – $2,500</span> · ~5%</div>
+            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--slate-400);"><path d="m9 6 6 6-6 6"/></svg>
+          </div>
+        </div>
+
+        <div class="bubble-au7o">Recall <strong>S19</strong> covers the EPS rack on your VIN range — repair is free at any Dodge dealer. Want me to find the closest one and book a slot?</div>
+        <div style="display:flex; gap:8px;">
+          <button class="chip" style="background: var(--ink); color: #fff; border-color: var(--ink);">Find a dealer</button>
+          <button class="chip chip-sm">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            Open recall details
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- User asks for trip -->
+    <div class="row-user"><div class="bubble-user">Plan me a weekend trip to a winery, with a coffee stop on the way.</div></div>
+
+    <!-- Map attachment -->
+    <div class="row-au7o">
+      <img class="avatar" src="/og-image.png" alt="" />
+      <div class="body">
+        <div class="bubble-au7o">Plotted a Saturday loop with a stop at <strong>Equator Coffee</strong> 28 minutes in. Trip is <span class="mono">112 mi</span>, ~<span class="mono">2h 40m</span>. Checked: no parts-store stops needed for your maintenance items right now.</div>
+
+        <div class="map-card">
+          <div class="map-wrap">
+            <svg viewBox="0 0 720 220" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display:block;">
+              <defs>
+                <linearGradient id="water" x1="0" x2="1">
+                  <stop offset="0" stop-color="#C9DCE6"/><stop offset="1" stop-color="#B5CCD9"/>
+                </linearGradient>
+              </defs>
+              <rect width="720" height="220" fill="#F2EEE3"/>
+              <path d="M-20 130 C 100 110 220 150 320 130 C 420 110 540 150 740 130 L 740 220 L -20 220 Z" fill="url(#water)" opacity="0.6"/>
+              <rect x="40" y="30" width="80" height="50" rx="4" fill="#D5E2C9"/>
+              <rect x="180" y="20" width="60" height="40" rx="4" fill="#D5E2C9"/>
+              <rect x="420" y="40" width="100" height="60" rx="4" fill="#D5E2C9"/>
+              <rect x="600" y="20" width="80" height="50" rx="4" fill="#D5E2C9"/>
+              <path d="M0 100 L720 90" stroke="#FFFFFF" stroke-width="6"/>
+              <path d="M0 160 L720 165" stroke="#FFFFFF" stroke-width="4"/>
+              <path d="M180 0 L200 220" stroke="#FFFFFF" stroke-width="4"/>
+              <path d="M540 0 L560 220" stroke="#FFFFFF" stroke-width="4"/>
+              <path d="M 60 180 C 150 160 200 100 280 95 S 420 130 500 80 S 640 60 700 50" stroke="#FFFFFF" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M 60 180 C 150 160 200 100 280 95 S 420 130 500 80 S 640 60 700 50" stroke="#3B82F6" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <g transform="translate(60,180)"><circle r="9" fill="#fff"/><circle r="5" fill="#3B82F6"/></g>
+              <g transform="translate(280,95)"><circle r="10" fill="#fff" stroke="#E3DFD4"/><text x="0" y="3" font-size="10" text-anchor="middle" fill="#92400E">☕</text></g>
+              <g transform="translate(700,50)"><circle r="11" fill="#0B1220"/><circle r="5" fill="#fff"/></g>
+            </svg>
+            <div class="map-overlay-tl">
+              <span class="chip chip-sm chip-on-map">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Healdsburg
+              </span>
+              <span class="chip chip-sm chip-on-map">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h14v6a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8ZM17 8h2a3 3 0 0 1 0 6h-2"/></svg>
+                Coffee
+              </span>
+            </div>
+            <div class="map-overlay-br">
+              <button class="chip chip-sm chip-cta">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/></svg>
+                Open in Drive
+              </button>
+            </div>
+          </div>
+          <div class="map-foot">
+            <span style="display:flex; align-items:center; gap:6px;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/></svg>
+              <span class="mono">112 mi</span>
+            </span>
+            <span class="sep">·</span>
+            <span class="mono" style="color:var(--slate-700);">2h 40m</span>
+            <span class="sep">·</span>
+            <span style="color:var(--slate-700);">1 stop</span>
+            <span class="by">Plotted by Au7o · uses live traffic</span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:8px;">
+          <button class="chip chip-sm">Add another stop</button>
+          <button class="chip chip-sm">Avoid highways</button>
+          <button class="chip chip-sm">Find scenic alternative</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Composer -->
+  <div class="composer-wrap">
+    <div class="composer">
+      <textarea rows="1" placeholder="Ask anything about your Challenger — symptoms, parts, recalls, or plan a trip."></textarea>
+      <button class="icon-square icon-mic" title="Voice input">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg>
+      </button>
+      <button class="icon-square icon-send" title="Send">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7Z"/></svg>
+      </button>
+    </div>
+    <div class="composer-meta">
+      <span>Au7o uses your vehicle context · responses may need verifying with a mechanic</span>
+      <span class="keys"><span>↵ to send</span><span>⇧↵ for new line</span></span>
+    </div>
+  </div>
+</section>
+
+</div> <!-- /stage-frame -->
+</div> <!-- /stage -->
+
+<div class="legend">
+  <strong>Why this design:</strong> conversation IS the product. The vehicle context (year/make/model/trim, mileage, issues, recalls, parts cache count) lives in the
+  left rail and follows the user across every interaction. Issues, recalls, parts, and Drive routes surface as <em>rich attachments inside the conversation</em>
+  instead of as separate pages. Same vehicle context flows from chat → Drive → known-issues lookups via the persistent rail.
+  <br/><br/>
+  <strong>What's mocked vs real:</strong> all data is hardcoded for this prototype (vehicle, issues, recent threads, map, attachments). Backend wiring would
+  use the existing <code>ChatSession</code> Prisma model, the <code>KnownIssue</code> table, and Mapbox routing for the inline trip preview.
+  <br/><br/>
+  <strong>Anonymous gate:</strong> toggle the view switcher above to see how the same surface presents to a signed-out user — limited message count + "Sign in to save"
+  CTA. No data is persisted for anonymous sessions, keeping AI spend bounded.
+</div>
+
+<script>
+  function setSignedIn(yes) {
+    document.getElementById('signed-in-tab').classList.toggle('active', yes);
+    document.getElementById('signed-out-tab').classList.toggle('active', !yes);
+    document.getElementById('gate').style.display = yes ? 'none' : 'flex';
+  }
+</script>
+
+</body>
+</html>
