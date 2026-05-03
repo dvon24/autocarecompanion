@@ -184,6 +184,22 @@ export function VehicleHub({
       });
     }
 
+    // Read cached GPS (set the first time the route fetcher needed it)
+    // so the chat AI can anchor regional suggestions. Don't trigger a
+    // permission prompt here — only use it if it's already cached. The
+    // route preview path will prompt naturally when the user actually
+    // asks about a trip.
+    let userLocation: { lng: number; lat: number } | undefined;
+    try {
+      const cached = sessionStorage.getItem('au7o-hub-gps');
+      if (cached) {
+        const parsed = JSON.parse(cached) as { lng: number; lat: number; t: number };
+        if (Date.now() - parsed.t < 15 * 60_000) {
+          userLocation = { lng: parsed.lng, lat: parsed.lat };
+        }
+      }
+    } catch { /* ignore */ }
+
     try {
       const res = await fetch('/api/hub-chat', {
         method: 'POST',
@@ -205,6 +221,7 @@ export function VehicleHub({
           // reference them verbatim — that's how the inline issue
           // attachment cards get matched + rendered.
           knownIssueTitles: attachableIssues.map((i) => ({ id: i.id, title: i.title })),
+          userLocation,
         }),
       });
 
