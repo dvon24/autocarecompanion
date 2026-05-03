@@ -327,14 +327,21 @@ export function VehicleHub({
         destination?: string;
         miles?: number;
         minutes?: number;
+        intent?: 'navigate' | 'clarify' | 'chat';
       };
       if (!data.geometry?.coordinates || !data.destinationCoords) {
         console.warn('[hub] plan-route returned no geometry', data);
+        // When the voice-nav endpoint returns intent=clarify, it's not an
+        // error — it's saying "I need more info". The AI's chat response
+        // already handles the clarification ("Where are you headed?"), so
+        // don't show an error tile that would just duplicate that. Return
+        // a non-error empty route so the bubble renders the chat reply
+        // without any map artifact below it.
         return {
           geometry: [], origin,
           destination: { lng: 0, lat: 0, placeName: data.destination || 'destination' },
           miles: 0, minutes: 0, loading: false,
-          error: 'Could not plot that route',
+          error: data.intent === 'clarify' ? undefined : 'Could not plot that route',
         };
       }
       return {
@@ -1461,6 +1468,15 @@ function MiniRoute({ route, onOpenDrive }: { route: RoutePreview; onOpenDrive: (
         `}</style>
       </div>
     );
+  }
+
+  // No route + no error = the routing service asked for clarification
+  // (e.g., user said "plan a road trip" before the prompt-tuning landed,
+  // or genuinely needs more info). The AI's chat reply already tells
+  // the user what's missing, so we render NOTHING here rather than
+  // duplicating that with an error tile.
+  if (!route.error && route.geometry.length < 2) {
+    return null;
   }
 
   if (route.error || route.geometry.length < 2) {
