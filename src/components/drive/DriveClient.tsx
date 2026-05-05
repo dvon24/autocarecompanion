@@ -1249,7 +1249,9 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
       phone?: string; website?: string; googleMapsUri?: string;
       openNow?: boolean | null; todaysHours?: string;
       summary?: string;
+      typeLabel?: string;
       reviews?: Array<{ author: string; rating: number | null; relativeTime: string; text: string }>;
+      photoNames?: string[];
     }
 
     const fetchRichDetails = async (name: string, coords: [number, number]): Promise<RichDetails | null> => {
@@ -1285,13 +1287,70 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
       return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(Math.max(0, 5 - full - (half ? 1 : 0)));
     };
 
+    // Full-screen photo lightbox for POI thumbnails. Pure DOM — no React
+    // tree to worry about since the popup itself is innerHTML-driven, and
+    // mounting a React portal from inside a Mapbox popup callback is fiddly.
+    const openPoiLightbox = (photoNames: string[], startIdx: number) => {
+      if (photoNames.length === 0) return;
+      let idx = startIdx;
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:24px;';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-label', 'Photo viewer');
+
+      const img = document.createElement('img');
+      img.style.cssText = 'max-width:96vw;max-height:78vh;object-fit:contain;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.5);';
+      img.alt = '';
+      const setSrc = () => {
+        img.src = `/api/drive/poi-photo?name=${encodeURIComponent(photoNames[idx])}&w=1200&h=900`;
+      };
+      setSrc();
+      overlay.appendChild(img);
+
+      // Counter + nav controls
+      const controls = document.createElement('div');
+      controls.style.cssText = 'display:flex;align-items:center;gap:24px;color:#fff;font:600 13px system-ui;';
+      const prevBtn = document.createElement('button');
+      prevBtn.textContent = '‹ Prev';
+      prevBtn.style.cssText = 'background:rgba(255,255,255,0.12);color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer;font:inherit;';
+      const counter = document.createElement('span');
+      const updateCounter = () => { counter.textContent = `${idx + 1} / ${photoNames.length}`; };
+      updateCounter();
+      const nextBtn = document.createElement('button');
+      nextBtn.textContent = 'Next ›';
+      nextBtn.style.cssText = prevBtn.style.cssText;
+      const closeBtn = document.createElement('button');
+      closeBtn.textContent = 'Close';
+      closeBtn.style.cssText = 'background:#fff;color:#000;border:0;border-radius:8px;padding:8px 14px;cursor:pointer;font:inherit;margin-left:12px;';
+      controls.append(prevBtn, counter, nextBtn, closeBtn);
+      if (photoNames.length === 1) { prevBtn.style.display = 'none'; nextBtn.style.display = 'none'; counter.style.display = 'none'; }
+      overlay.appendChild(controls);
+
+      const close = () => {
+        document.removeEventListener('keydown', onKey);
+        overlay.remove();
+      };
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowRight' && photoNames.length > 1) { idx = (idx + 1) % photoNames.length; setSrc(); updateCounter(); }
+        else if (e.key === 'ArrowLeft' && photoNames.length > 1) { idx = (idx - 1 + photoNames.length) % photoNames.length; setSrc(); updateCounter(); }
+      };
+      prevBtn.onclick = () => { idx = (idx - 1 + photoNames.length) % photoNames.length; setSrc(); updateCounter(); };
+      nextBtn.onclick = () => { idx = (idx + 1) % photoNames.length; setSrc(); updateCounter(); };
+      closeBtn.onclick = close;
+      overlay.onclick = (e) => { if (e.target === overlay) close(); };
+      document.addEventListener('keydown', onKey);
+      document.body.appendChild(overlay);
+    };
+
     const showPoiPopup = (name: string, coords: [number, number]) => {
       const safeName = escapeHtml(name);
-      const popup = new mapboxgl.Popup({ offset: 12, closeOnClick: true, maxWidth: '320px' })
+      const popup = new mapboxgl.Popup({ offset: 12, closeOnClick: true, maxWidth: '340px' })
         .setLngLat(coords)
         .setHTML(`
           <div id="drive-poi-card" style="font:400 12px system-ui;color:#111;">
-            <div style="font:600 14px system-ui;padding:2px 4px 4px;">${safeName}</div>
+            <div id="drive-poi-photos" style="display:none;"></div>
+            <div style="font:600 14px system-ui;padding:6px 4px 4px;">${safeName}</div>
             <div id="drive-poi-desc" style="color:#555;line-height:1.4;padding:0 4px 8px;min-height:32px;">
               <span style="color:#9ca3af;font-style:italic;">Loading…</span>
             </div>
@@ -1316,7 +1375,31 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
         const el = document.getElementById('drive-poi-desc');
         if (!el) return;
         if (rich) {
+          // Photo strip — Google returns photo names; we route them through
+          // /api/drive/poi-photo so the API key stays server-side. Click any
+          // thumbnail to open the lightbox below.
+          const photoEl = document.getElementById('drive-poi-photos');
+          if (photoEl && rich.photoNames && rich.photoNames.length > 0) {
+            const thumbs = rich.photoNames.slice(0, 4).map((n, i) => {
+              const url = `/api/drive/poi-photo?name=${encodeURIComponent(n)}&w=200&h=140`;
+              return `<button data-poi-photo="${i}" style="flex:1;min-width:0;height:84px;padding:0;border:0;background:transparent;cursor:pointer;overflow:hidden;border-radius:6px;"><img src="${url}" alt="" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"/></button>`;
+            }).join('');
+            photoEl.innerHTML = `<div style="display:flex;gap:4px;padding:4px;">${thumbs}</div>`;
+            photoEl.style.display = 'block';
+            // Click handler — open the full-screen lightbox.
+            const buttons = photoEl.querySelectorAll('[data-poi-photo]');
+            buttons.forEach((b) => {
+              (b as HTMLElement).onclick = () => {
+                const idx = parseInt((b as HTMLElement).dataset.poiPhoto || '0', 10);
+                openPoiLightbox(rich.photoNames || [], idx);
+              };
+            });
+          }
           const parts: string[] = [];
+          // Cuisine / type label (e.g. "Italian restaurant", "Coffee shop")
+          if (rich.typeLabel) {
+            parts.push(`<div style="font:600 10px system-ui;text-transform:uppercase;letter-spacing:0.04em;color:#64748b;margin-bottom:4px;">${escapeHtml(rich.typeLabel)}</div>`);
+          }
           // Open status + hours
           if (rich.openNow != null) {
             const badge = rich.openNow
@@ -1325,10 +1408,23 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
             const hours = rich.todaysHours ? `<span style="color:#6b7280;margin-left:6px;">${escapeHtml(rich.todaysHours.replace(/^[^:]+:\s*/, ''))}</span>` : '';
             parts.push(`<div style="margin-bottom:6px;">${badge}${hours}</div>`);
           }
-          // Rating
-          if (typeof rich.rating === 'number') {
-            const count = rich.ratingCount ? ` <span style="color:#6b7280;">(${rich.ratingCount})</span>` : '';
-            parts.push(`<div style="margin-bottom:6px;color:#f59e0b;font-weight:700;">${renderStars(rich.rating)} <span style="color:#111;">${rich.rating.toFixed(1)}</span>${count}</div>`);
+          // Rating + price tier on one row
+          if (typeof rich.rating === 'number' || rich.priceLevel) {
+            const ratingHtml = typeof rich.rating === 'number'
+              ? `<span style="color:#f59e0b;font-weight:700;">${renderStars(rich.rating)} <span style="color:#111;">${rich.rating.toFixed(1)}</span>${rich.ratingCount ? ` <span style="color:#6b7280;">(${rich.ratingCount})</span>` : ''}</span>`
+              : '';
+            const priceMap: Record<string, string> = {
+              PRICE_LEVEL_FREE: 'Free',
+              PRICE_LEVEL_INEXPENSIVE: '$',
+              PRICE_LEVEL_MODERATE: '$$',
+              PRICE_LEVEL_EXPENSIVE: '$$$',
+              PRICE_LEVEL_VERY_EXPENSIVE: '$$$$',
+            };
+            const priceText = rich.priceLevel ? priceMap[rich.priceLevel] : '';
+            const priceHtml = priceText
+              ? `<span style="margin-left:8px;color:#16a34a;font-weight:700;">${priceText}</span>`
+              : '';
+            parts.push(`<div style="margin-bottom:6px;">${ratingHtml}${priceHtml}</div>`);
           }
           // Editorial summary
           if (rich.summary) {

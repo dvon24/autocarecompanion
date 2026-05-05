@@ -48,9 +48,11 @@ export async function POST(request: NextRequest) {
     'places.currentOpeningHours',
     'places.editorialSummary',
     'places.primaryType',
+    'places.primaryTypeDisplayName',
     'places.types',
     'places.googleMapsUri',
     'places.reviews',
+    'places.photos',
   ].join(',');
 
   const lang = body.language === 'de' ? 'de' : 'en';
@@ -96,6 +98,21 @@ export async function POST(request: NextRequest) {
       text: (r.text?.text || '').slice(0, 280),
     }));
 
+    // Photo references — Google returns `name` strings like "places/X/photos/Y"
+    // that the client uses to fetch via /api/drive/poi-photo (the actual key
+    // never leaves the server). Cap at 4 so we don't pay for more than we render.
+    interface Photo { name?: string; widthPx?: number; heightPx?: number }
+    const photoNames = (place.photos || [])
+      .slice(0, 4)
+      .map((p: Photo) => p.name)
+      .filter((n: unknown): n is string => typeof n === 'string' && n.startsWith('places/'));
+
+    // Humanized cuisine/type — primaryTypeDisplayName is already localized
+    // to the requested language. Falls back to a tidied primaryType when
+    // the new field is missing on older records.
+    const typeLabel = place.primaryTypeDisplayName?.text
+      || (place.primaryType ? place.primaryType.replace(/_/g, ' ') : '');
+
     return NextResponse.json({
       source: 'google',
       available: true,
@@ -113,7 +130,9 @@ export async function POST(request: NextRequest) {
       weeklyHours: place.regularOpeningHours?.weekdayDescriptions || [],
       summary: place.editorialSummary?.text || '',
       primaryType: place.primaryType || '',
+      typeLabel,
       reviews,
+      photoNames,
     });
   } catch (err) {
     console.error('[poi-rich-details] error:', err);

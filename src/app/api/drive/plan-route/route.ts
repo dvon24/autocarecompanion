@@ -312,7 +312,7 @@ export async function POST(request: NextRequest) {
     : '';
 
   const historyNote = body.routeHistory && body.routeHistory.length > 0
-    ? `RECENT ROUTES THE DRIVER HAS TAKEN (most recent last):\n${body.routeHistory.slice(-10).map(r => `- ${r.destination} (${r.miles} mi)`).join('\n')}\nUse this to avoid suggesting the exact same "nice drive" twice in a row.`
+    ? `RECENT ROUTES THE DRIVER HAS ALREADY TAKEN (most recent last) — DO NOT repeat any of these for an open-ended "nice drive" / "scenic route" request. Pick somewhere DIFFERENT from this list:\n${body.routeHistory.slice(-10).map(r => `- ${r.destination} (${r.miles} mi)`).join('\n')}`
     : '';
 
   const lang = body.language === 'de' ? 'de' : 'en';
@@ -432,7 +432,9 @@ Rules:
 
   Distance units in the reply: km when the driver is in a metric country (most of the world), miles when in the US/UK. Match local convention.
 
-  In "reply", name the destination + why it'll be nice ("How about a loop through the Schwarzwald? Beautiful forest roads, ~120 km round trip."). If the driver has already asked for a nice drive recently, offer a different one. Only fall back to "clarify" intent if the user explicitly indicates they have a destination in mind but didn't name it (e.g., "take me to a friend's house" with no clue who/where).
+  In "reply", name the destination + why it'll be nice ("How about a loop through the Schwarzwald? Beautiful forest roads, ~120 km round trip."). Only fall back to "clarify" intent if the user explicitly indicates they have a destination in mind but didn't name it (e.g., "take me to a friend's house" with no clue who/where).
+
+  **Variety rule — DO NOT repeat recent nice-drive destinations.** If RECENT ROUTES contains a destination already (Schwarzwald, Tegernsee, Blue Ridge, etc.), pick a *different* destination from your knowledge of the area. Rotate through the regional candidates above. The driver picked "nice drive" precisely because they want somewhere new. Repeating yesterday's loop is the worst possible response.
 - fuelMilesRemaining: if the user mentions how far they can go on fuel/charge ("I have 120 miles to empty", "80 miles of range left", "quarter tank"), extract a numeric estimate. A quarter tank ≈ 75 mi, half tank ≈ 150 mi, low/almost empty ≈ 30 mi. If they say "I just filled up" and a vehicle is known, estimate full tank × combined MPG. Otherwise null.
 - preferenceUpdate: if the user states a durable preference we should remember next time ("I hate highways", "I like curvy mountain roads", "always avoid tolls", "no left turns on unprotected lights"), write a one-line note like "Prefers curvy mountain roads, dislikes highways." Otherwise empty string. Do NOT echo routine navigation commands as preferences.
 - intermediateStop: populate when the user wants to BREAK UP the trip with a stop along the way. Examples:
@@ -448,6 +450,13 @@ Rules:
   - "highly rated bar to grab a drink" → query="bar", minRating=4.0, openNow=true
   - "find me a gas station" → query="gas station", openNow=true
   When set, the server will search Google Places for real candidates and pick the best one — your "destination" string becomes a fallback hint. Leave query="" when the user named a specific place ("take me to Starbucks on Main St", "Mediterraneo restaurant"). Set openNow=true by default for food/drink/services unless the user said otherwise.
+
+  **Price-tier rules — STRICTLY honor what the user said:**
+  - Words that REQUIRE priceMax=2: "cheap", "cheap eats", "budget", "affordable", "inexpensive", "fast food", "quick bite", "grab a quick X", "günstig" (DE), "billig" (DE), "pas cher" (FR), "barato" (ES). NEVER pick an expensive place when the user said any of these.
+  - Words that allow priceMax=4 (no restriction): "nice", "fancy", "upscale", "fine dining", "anniversary dinner", "treat ourselves", "high end", "schick" (DE).
+  - Cuisine words MUST appear in the query verbatim — "italian" → "italian restaurant", "ramen" → "ramen restaurant", "thai" → "thai restaurant", "pizza" → "pizza restaurant", "sushi" → "sushi restaurant", "tacos" → "taco restaurant", "döner" → "döner kebab restaurant". Do NOT swap cuisines.
+  - "place to eat" with no cuisine → query="restaurant" (let the rating/price filter do the work).
+  - When the user adds a price word AND a cuisine, BOTH apply: "cheap thai food" → query="thai restaurant", priceMax=2.
 - isRoundTrip: TRUE when the user wants to come back to their starting point — phrases like "round trip", "and back", "back home", "loop", "return trip", "there and back", or "nice drive" / "scenic drive" with no specific destination they want to end at. Otherwise FALSE.
 - routePreferences: extract ONLY from the user's CURRENT message. **Do NOT** read these from stored DRIVER PREFERENCES — preferences are advisory background, not per-trip routing rules. Each trip starts clean unless the user re-asks this turn.
   - avoidHighways: TRUE ONLY when the CURRENT message contains EXPLICIT highway-avoidance language — "no highways", "avoid highways", "no motorways", "no autobahn", "back roads only", "back roads instead", "no interstates". **Default FALSE.** Saying "scenic drive", "nice drive", "take me somewhere fun", "long drive", or anything aesthetic does NOT make this TRUE.
