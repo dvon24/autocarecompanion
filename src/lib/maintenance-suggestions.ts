@@ -106,6 +106,121 @@ export async function getMaintenanceSuggestions(opts: RunOptions): Promise<Maint
   return suggestions.slice(0, 6);
 }
 
+// ─── Rich maintenance schedule (powers the hero attachment in the hub) ────
+
+export type ScheduleServiceStatus = 'done' | 'overdue' | 'due_now' | 'upcoming';
+
+export interface ScheduleService {
+  typeId: string;
+  name: string;
+  mileage: number;
+  status: ScheduleServiceStatus;
+  // Human-readable note ("in 782 mi · ~3 weeks", "Mobil 1 0W-40 · 54,810")
+  note: string;
+  // True for the single most-pressing service — gets the highlighted dot.
+  primary?: boolean;
+}
+
+export interface ScheduleData {
+  services: ScheduleService[];
+  stats: {
+    nowMileage: number;
+    nextDueMiles: number | null;
+    overdueCount: number;
+    ytdSpent: number;
+  };
+  timelineMin: number;
+  timelineMax: number;
+}
+
+/**
+ * Build the rich Maintenance Schedule visualization data for the hub's hero
+ * attachment. Combines logged history (MaintenanceRecord) with the
+ * suggestion engine output so a single component can render past + future
+ * services on one mileage timeline.
+ */
+export async function getMaintenanceSchedule(opts: {
+  vehicleId: string;
+  currentMileage: number;
+  suggestions: MaintenanceSuggestion[];
+}): Promise<ScheduleData | null> {
+  const { vehicleId, currentMileage, suggestions } = opts;
+
+  const records = await prisma.maintenanceRecord.findMany({
+    where: { vehicleId },
+    orderBy: { date: 'desc' },
+  });
+
+  // Recently completed services — anything logged in the last 12 months.
+  const oneYearAgo = new Date();
+  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+  const ytdSpent = records
+    .filter((r) => r.date >= oneYearAgo && typeof r.cost === 'number')
+    .reduce((sum, r) => sum + (r.cost ?? 0), 0);
+
+  const services: ScheduleService[] = [];
+
+  // Plot completed services (cap at the most recent 6 so the timeline isn't
+  // overwhelmed for high-mileage vehicles).
+  for (const r of records.slice(0, 6)) {
+    const sched = MAINTENANCE_SCHEDULES[r.type];
+    if (!sched) continue;
+    const ago = monthsBetween(r.date, new Date());
+    services.push({
+      typeId: r.type,
+      name: sched.name,
+      mileage: r.mileage,
+      status: 'done',
+      note: ago === 0 ? 'this month' : ago === 1 ? '1 mo ago' : `${ago} mo ago`,
+    });
+  }
+
+  // Plot upcoming/overdue/due-now services (already deduped + ranked).
+  const topPrimary = suggestions[0]?.typeId ?? null;
+  for (const s of suggestions) {
+    const status: ScheduleServiceStatus =
+      s.status === 'overdue' ? 'overdue' :
+      s.status === 'due_now' ? 'due_now' : 'upcoming';
+    const note = status === 'overdue'
+      ? `${Math.abs(s.milesUntilDue).toLocaleString()} mi past due`
+      : `in ${s.milesUntilDue.toLocaleString()} mi`;
+    services.push({
+      typeId: s.typeId,
+      name: s.name,
+      mileage: s.nextDueMileage,
+      status,
+      note,
+      primary: s.typeId === topPrimary,
+    });
+  }
+
+  if (services.length === 0) return null;
+
+  const mileages = services.map((s) => s.mileage);
+  // Pad the timeline so the "you are here" marker isn't pinned to the edge.
+  const rawMin = Math.min(currentMileage, ...mileages);
+  const rawMax = Math.max(currentMileage, ...mileages);
+  const span = Math.max(5000, rawMax - rawMin);
+  const timelineMin = Math.max(0, Math.floor((rawMin - span * 0.05) / 1000) * 1000);
+  const timelineMax = Math.ceil((rawMax + span * 0.05) / 1000) * 1000;
+
+  const overdueCount = suggestions.filter((s) => s.status === 'overdue').length;
+  const nextDueMiles = suggestions[0] && suggestions[0].milesUntilDue >= 0
+    ? suggestions[0].milesUntilDue
+    : null;
+
+  return {
+    services,
+    stats: { nowMileage: currentMileage, nextDueMiles, overdueCount, ytdSpent },
+    timelineMin,
+    timelineMax,
+  };
+}
+
+function monthsBetween(a: Date, b: Date): number {
+  return Math.max(0, (b.getFullYear() - a.getFullYear()) * 12 + (b.getMonth() - a.getMonth()));
+}
+
 /**
  * Render a maintenance-aware opener message. Pure prose — no AI call;
  * deterministic so the same vehicle state always produces the same text

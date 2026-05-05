@@ -6,7 +6,7 @@ import { getVehicleSpecs } from '@/lib/maintenance';
 import prisma from '@/lib/db';
 import { auth } from '@/lib/auth';
 import { VehicleHub } from '@/components/vehicle/VehicleHub';
-import { getMaintenanceSuggestions, renderOpener, type MaintenanceSuggestion } from '@/lib/maintenance-suggestions';
+import { getMaintenanceSuggestions, getMaintenanceSchedule, renderOpener, type MaintenanceSuggestion, type ScheduleData } from '@/lib/maintenance-suggestions';
 import { getRecentThreads, getTrendingForVehicle, getAttachableIssues } from '@/lib/hub-data';
 
 export const revalidate = 3600;
@@ -250,12 +250,26 @@ export default async function VehicleProfilePage({
   let currentMileage: number | null = null;
   let userVehicleId: string | null = null;
   let maintenanceSuggestions: MaintenanceSuggestion[] = [];
+  let maintenanceSchedule: ScheduleData | null = null;
   let userId: string | null = null;
+  let userInfo: { name: string; joinedAt: string; isSubscriber: boolean } | null = null;
   try {
     const session = await auth();
     if (session?.user?.id) {
       isAuthed = true;
       userId = session.user.id;
+      // Pull the user row to get joinedAt for the rail footer's "SUBSCRIBER · X MO".
+      const userRow = await prisma.user.findUnique({
+        where: { id: session.user.id },
+        select: { name: true, email: true, createdAt: true },
+      });
+      if (userRow) {
+        userInfo = {
+          name: userRow.name || userRow.email.split('@')[0],
+          joinedAt: userRow.createdAt.toISOString(),
+          isSubscriber: session.user.subscriptionStatus === 'active',
+        };
+      }
       // Match the vehicle URL to a row in the user's garage. Loose match
       // on year/make/model — trim variations are common ("SRT 392" vs
       // "SRT" vs "Hellcat") so we'd rather over-match than miss the
@@ -276,6 +290,11 @@ export default async function VehicleProfilePage({
           maintenanceSuggestions = await getMaintenanceSuggestions({
             vehicleId: userVehicle.id,
             currentMileage: userVehicle.currentMileage,
+          });
+          maintenanceSchedule = await getMaintenanceSchedule({
+            vehicleId: userVehicle.id,
+            currentMileage: userVehicle.currentMileage,
+            suggestions: maintenanceSuggestions,
           });
         }
       }
@@ -317,6 +336,8 @@ export default async function VehicleProfilePage({
       recentThreads={recentThreads}
       trending={trending}
       attachableIssues={attachableIssues}
+      user={userInfo}
+      schedule={maintenanceSchedule}
     />
   );
 }

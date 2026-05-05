@@ -1,6 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+// Au7o design system — tokens (CSS variables) + utility classes used by
+// the redesigned hub + mobile shell. Imported AFTER globals.css so var()
+// definitions cascade and utility classes override Tailwind defaults
+// where they overlap. The body element is intentionally NOT touched —
+// globals.css owns it so existing pages don't repaint.
+import "@/styles/au7o-tokens.css";
+import "@/styles/au7o-utilities.css";
 import { AppProvider } from "@/contexts/AppContext";
 import { OfflineIndicator } from "@/components/offline/OfflineIndicator";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";

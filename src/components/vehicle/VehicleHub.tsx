@@ -3,8 +3,9 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import type { MaintenanceSuggestion } from '@/lib/maintenance-suggestions';
+import type { MaintenanceSuggestion, ScheduleData, ScheduleService, ScheduleServiceStatus } from '@/lib/maintenance-suggestions';
 import type { RecentThread, TrendingChip, AttachableIssue } from '@/lib/hub-data';
+import { Icon, type IconName } from '@/components/ui/Icon';
 
 /**
  * Conversation-first hub that lives at /vehicle/[slug]. The chat IS the
@@ -58,6 +59,17 @@ export interface VehicleHubProps {
   /** Top KnownIssue records for this vehicle, ready to render as inline
    *  attachments when the assistant mentions one in a reply. Bounded to 12. */
   attachableIssues: AttachableIssue[];
+  /** Authed user identity for the rail footer. Null when anonymous. */
+  user: {
+    name: string;
+    /** ISO date the User row was created. Drives the "SUBSCRIBER · X MO" tag. */
+    joinedAt: string;
+    isSubscriber: boolean;
+  } | null;
+  /** Rich maintenance schedule data for the hero attachment in Au7o's first
+   *  reply. Null for anonymous viewers or when there's no logged service
+   *  history + no upcoming services to plot. */
+  schedule: ScheduleData | null;
 }
 
 interface RoutePreview {
@@ -81,6 +93,8 @@ interface Message {
   timestamp: number;
   /** Inline route preview attached to this turn when trip intent fires. */
   route?: RoutePreview;
+  /** Rich maintenance schedule attachment — only on the auto-opener message. */
+  schedule?: ScheduleData;
 }
 
 export function VehicleHub({
@@ -94,15 +108,22 @@ export function VehicleHub({
   recentThreads,
   trending,
   attachableIssues,
+  user,
+  schedule,
 }: VehicleHubProps) {
   // Seed the conversation with the pre-rendered opener so the page feels
   // alive on first paint. Subsequent turns get appended here and (in v2)
   // sent to /api/chat for the real reply.
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: opener.text, timestamp: Date.now() },
+    { role: 'assistant', content: opener.text, timestamp: Date.now(),
+      schedule: schedule ?? undefined },
   ]);
   const [input, setInput] = useState('');
   const [pending, setPending] = useState(false);
+  // Mobile-only drawer with the recent-threads list. The desktop rail
+  // shows it inline; under 900px the rail is hidden, so a hamburger in
+  // the top bar opens this slide-in panel instead.
+  const [threadsOpen, setThreadsOpen] = useState(false);
   const composerRef = useRef<HTMLTextAreaElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -384,72 +405,117 @@ export function VehicleHub({
   };
 
   return (
-    <div className="hub-stage">
-      <VehicleRail
-        vehicle={vehicle}
-        currentMileage={currentMileage}
-        counts={counts}
-        recentThreads={recentThreads}
-      />
+    <>
+      <div className="hub-stage hub-desktop">
+        <VehicleRail
+          vehicle={vehicle}
+          currentMileage={currentMileage}
+          counts={counts}
+          recentThreads={recentThreads}
+          maintenanceSuggestions={maintenanceSuggestions}
+          user={user}
+          slug={slug}
+        />
 
-      <section className="hub-col">
-        <TopBar />
+        <MobileThreadsDrawer
+          open={threadsOpen}
+          onClose={() => setThreadsOpen(false)}
+          vehicle={vehicle}
+          currentMileage={currentMileage}
+          recentThreads={recentThreads}
+          user={user}
+          slug={slug}
+        />
 
-        {!isAuthed && <AnonymousGate />}
+        <section className="hub-col">
+          <TopBar vehicle={vehicle} user={user} onOpenThreads={() => setThreadsOpen(true)} />
 
-        <div ref={scrollRef} className="hub-conv">
-          <div className="hub-ambient">
-            <div className="hub-blob b1" /><div className="hub-blob b2" /><div className="hub-blob b3" />
+          {!isAuthed && <AnonymousGate />}
+
+          <div ref={scrollRef} className="hub-conv">
+            <div className="hub-ambient">
+              <div className="hub-blob b1" /><div className="hub-blob b2" /><div className="hub-blob b3" />
+            </div>
+
+            <Greeting
+              vehicle={vehicle}
+              cta={opener.cta}
+              trending={trending}
+              onPick={(prompt) => { send(prompt); }}
+            />
+
+            {messages.map((m, i) => (
+              m.role === 'user'
+                ? <div key={i} className="row-user"><div className="bubble-user">{m.content}</div></div>
+                : (
+                  <Au7oReply
+                    key={i}
+                    content={m.content}
+                    // Match issues whose title appears in the assistant's reply
+                    // and render them as inline cards. Cheap substring match —
+                    // good enough for v1; v2 could use the tool-use API to have
+                    // the model itself emit issue ids.
+                    attachments={matchAttachments(m.content, attachableIssues)}
+                    // Detect trip-planning intent (the assistant ends with
+                    // "open in Drive" / "plan it in Drive" by system-prompt
+                    // convention). When `route` is attached, the message
+                    // already has a real Mapbox geometry — show the inline
+                    // mini-map. When it isn't (intent detected but route
+                    // not yet fetched / failed silently), fall back to the
+                    // simple Drive handoff button.
+                    driveHandoff={detectDriveIntent(m.content)}
+                    route={m.route}
+                    schedule={m.schedule}
+                    // Pick chip-able follow-up prompts to send next.
+                    onFollowUp={(prompt) => send(prompt)}
+                  />
+                )
+            ))}
           </div>
 
-          <Greeting
-            vehicle={vehicle}
-            cta={opener.cta}
-            trending={trending}
-            onPick={(prompt) => { send(prompt); }}
+          <Composer
+            ref={composerRef}
+            value={input}
+            onChange={setInput}
+            onSend={() => send(input)}
+            pending={pending}
+            isAuthed={isAuthed}
           />
+        </section>
+      </div>
 
-          {messages.map((m, i) => (
-            m.role === 'user'
-              ? <div key={i} className="row-user"><div className="bubble-user">{m.content}</div></div>
-              : (
-                <Au7oReply
-                  key={i}
-                  content={m.content}
-                  // Match issues whose title appears in the assistant's reply
-                  // and render them as inline cards. Cheap substring match —
-                  // good enough for v1; v2 could use the tool-use API to have
-                  // the model itself emit issue ids.
-                  attachments={matchAttachments(m.content, attachableIssues)}
-                  // Detect trip-planning intent (the assistant ends with
-                  // "open in Drive" / "plan it in Drive" by system-prompt
-                  // convention). When `route` is attached, the message
-                  // already has a real Mapbox geometry — show the inline
-                  // mini-map. When it isn't (intent detected but route
-                  // not yet fetched / failed silently), fall back to the
-                  // simple Drive handoff button.
-                  driveHandoff={detectDriveIntent(m.content)}
-                  route={m.route}
-                  // Pick chip-able follow-up prompts to send next.
-                  onFollowUp={(prompt) => send(prompt)}
-                />
-              )
-          ))}
-        </div>
-
-        <Composer
-          ref={composerRef}
-          value={input}
-          onChange={setInput}
-          onSend={() => send(input)}
-          pending={pending}
-          isAuthed={isAuthed}
-        />
-      </section>
+      <MobileHub
+        vehicle={vehicle}
+        slug={slug}
+        isAuthed={isAuthed}
+        currentMileage={currentMileage}
+        opener={opener}
+        schedule={schedule}
+        attachableIssues={attachableIssues}
+        maintenanceSuggestions={maintenanceSuggestions}
+        trending={trending}
+        recentThreads={recentThreads}
+        user={user}
+        messages={messages}
+        input={input}
+        pending={pending}
+        threadsOpen={threadsOpen}
+        onChangeInput={setInput}
+        onSend={(text) => send(text)}
+        onOpenThreads={() => setThreadsOpen(true)}
+        onCloseThreads={() => setThreadsOpen(false)}
+      />
 
       <style jsx>{`
+        /* The desktop and mobile shells coexist; CSS toggles which one is
+           visible. This keeps hydration deterministic (no window-width
+           probes) and lets the mobile shell get its own dedicated layout
+           rather than a media-query reskin of desktop. */
+        .hub-desktop { display: flex; }
+        @media (max-width: 900px) {
+          .hub-desktop { display: none; }
+        }
         .hub-stage {
-          display: flex;
           height: 100vh;
           background: #ECE9DF;
           font-family: var(--font-geist-sans, system-ui, sans-serif);
@@ -498,6 +564,823 @@ export function VehicleHub({
           font-size: 14.5px; line-height: 1.5; max-width: 580px;
           white-space: pre-wrap;
         }
+
+      `}</style>
+    </>
+  );
+}
+
+/* ─── Mobile hub ─── Dedicated phone-form layout ported from the design
+   bundle's MobileA3Hub. This is NOT a media-query reskin of the desktop —
+   it's a separate component with its own header (vehicle pill + avatar),
+   vertical maintenance timeline, inline known-issues card, stacked
+   suggestion chips, and bottom tab bar. The desktop and mobile shells
+   are rendered side-by-side; CSS toggles which one is visible based on
+   viewport width. */
+function MobileHub({
+  vehicle, slug, isAuthed, currentMileage, opener, schedule, attachableIssues,
+  maintenanceSuggestions, recentThreads, user,
+  messages, input, pending, threadsOpen,
+  onChangeInput, onSend, onOpenThreads, onCloseThreads,
+}: {
+  vehicle: VehicleHubProps['vehicle'];
+  slug: string;
+  isAuthed: boolean;
+  currentMileage: number | null;
+  opener: VehicleHubProps['opener'];
+  schedule: ScheduleData | null;
+  attachableIssues: AttachableIssue[];
+  maintenanceSuggestions: MaintenanceSuggestion[];
+  trending: TrendingChip[];
+  recentThreads: RecentThread[];
+  user: VehicleHubProps['user'];
+  messages: Message[];
+  input: string;
+  pending: boolean;
+  threadsOpen: boolean;
+  onChangeInput: (v: string) => void;
+  onSend: (text: string) => void;
+  onOpenThreads: () => void;
+  onCloseThreads: () => void;
+}) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const taRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (!scrollRef.current) return;
+    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  }, [messages.length]);
+
+  // Vehicle initial for the avatar disc — Mobile design uses the model's
+  // first letter (e.g. "C" for Challenger), which is more recognizable
+  // than make initials when the model is the daily-driver identifier.
+  const vehInitial = (vehicle.model || vehicle.make || '·').charAt(0).toUpperCase();
+  const userInitialsTxt = user ? userInitials(user.name) : '';
+
+  // Derived greeting headline. Two paths matching the design bundle:
+  //   • A3 (signed-in): pressing-maintenance-state-driven headline + AI opener
+  //   • A2 (anonymous): time-of-day headline + opener as soft tease
+  const top = maintenanceSuggestions[0];
+  const greeting = (() => {
+    if (!isAuthed) {
+      return { line1: greetingFor() + '.', line2: "What's on your mind today?" };
+    }
+    if (!top) {
+      return { line1: greetingFor() + (user ? `, ${user.name.split(' ')[0]}.` : '.'), line2: "What's on your mind today?" };
+    }
+    if (top.status === 'overdue') return { line1: 'Service is overdue.', line2: "Let's tackle it." };
+    if (top.status === 'due_now') return { line1: 'Service is due soon.', line2: "Here's what I'd handle next." };
+    return { line1: 'You\'re in good shape.', line2: 'What can I help with?' };
+  })();
+
+  const eyebrow = isAuthed && user
+    ? `WELCOME BACK · ${user.name.toUpperCase().split(' ')[0]}`
+    : `AU7O · YOUR ${(vehicle.model || vehicle.make).toUpperCase()}`;
+
+  // Top issues for the inline ranked card. Anon variant shows 2 (matches
+  // 04-MobileHubAnonymous.jsx); signed-in shows 4 (matches 05).
+  const topIssues = attachableIssues.slice(0, isAuthed ? 4 : 2);
+
+  // Suggestion chip set — the design has two flavors:
+  //   • A3 (signed-in): maintenance-leaning (calendar/dollar/book/map)
+  //   • A2 (anonymous): diagnostic-leaning (alert/wrench/search/spark)
+  type ChipIcon = IconName;
+  const suggestions: { icon: ChipIcon; text: string; tone?: 'crit' }[] = (() => {
+    if (!isAuthed) {
+      // Anon: prompts that map to public surfaces (issues, recalls, parts)
+      // — drive engagement before sign-in.
+      return [
+        { icon: 'alert', text: `What recalls apply to my ${vehicle.model}?`, tone: 'crit' },
+        { icon: 'wrench', text: 'Plan my next oil change' },
+        { icon: 'search', text: 'Why does my steering feel loose?' },
+        { icon: 'spark', text: 'Find a brake pad upgrade' },
+      ] as const as { icon: ChipIcon; text: string; tone?: 'crit' }[];
+    }
+    const out: { icon: ChipIcon; text: string }[] = [];
+    const ctas = opener.cta || [];
+    if (ctas[0]) out.push({ icon: 'calendar', text: ctas[0] });
+    if (ctas[1]) out.push({ icon: 'dollar', text: ctas[1] });
+    if (ctas[2]) out.push({ icon: 'book', text: ctas[2] });
+    out.push({ icon: 'map', text: 'Plan a weekend drive' });
+    return out.slice(0, 4);
+  })();
+
+  // Quick-query chips above the composer — a horizontal scrolling row of
+  // category shortcuts. Tapping one drops a starter prompt into the input.
+  const quickQueries: { label: string; prompt: string }[] = [
+    { label: 'Maintenance', prompt: 'What maintenance is due?' },
+    { label: 'Recalls', prompt: 'Are there any recalls on my vehicle?' },
+    { label: 'Issues', prompt: 'What problems are common at my mileage?' },
+    { label: 'Parts', prompt: 'What parts do I need next?' },
+    { label: 'Trip', prompt: 'Plan a nice drive for me' },
+  ];
+
+  const submit = () => {
+    const t = input.trim();
+    if (!t || pending) return;
+    onSend(t);
+  };
+
+  const onKey = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      submit();
+    }
+  };
+
+  return (
+    <div className="m-shell">
+      <MobileThreadsDrawer
+        open={threadsOpen}
+        onClose={onCloseThreads}
+        vehicle={vehicle}
+        currentMileage={currentMileage}
+        recentThreads={recentThreads}
+        user={user}
+        slug={slug}
+      />
+
+      {/* App header — vehicle pill on the left, list + avatar on the right */}
+      <header className="m-head">
+        <Link href="/" className="m-veh-pill" aria-label={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}>
+          <span className="m-veh-disc">{vehInitial}</span>
+          <div className="m-veh-meta">
+            <div className="m-veh-name">{vehicle.model}</div>
+            <div className="m-veh-sub mono">
+              {vehicle.year}{currentMileage != null && <> · {currentMileage.toLocaleString()} mi</>}
+            </div>
+          </div>
+          <Icon name="chevron-down" size={11} style={{ color: 'var(--slate-400)', marginLeft: 4 }} />
+        </Link>
+        <div className="m-head-right">
+          <button type="button" className="m-icon-btn" onClick={onOpenThreads} aria-label="Open recent conversations">
+            <Icon name="list" size={14} />
+          </button>
+          {user ? (
+            <Link href="/account" className="m-avatar" aria-label={`${user.name} — account`}>
+              {userInitialsTxt}
+            </Link>
+          ) : (
+            <Link href={`/api/auth/signin?callbackUrl=${encodeURIComponent(`/vehicle/${slug}`)}`} className="m-avatar m-avatar-anon" aria-label="Sign in">
+              <Icon name="user" size={14} />
+            </Link>
+          )}
+        </div>
+      </header>
+
+      {/* Scrollable conversation surface */}
+      <div ref={scrollRef} className="m-body">
+        <div className="m-greet">
+          <div className="m-eyebrow-row">
+            <span className="au7o-pulse-soft m-pulse-dot" />
+            <span className="eyebrow m-greet-eyebrow">{eyebrow}</span>
+          </div>
+          <h1 className="m-h1">
+            {greeting.line1}<br />
+            <span className="m-h1-sub">{greeting.line2}</span>
+          </h1>
+          <p className="m-greet-p">{opener.text}</p>
+        </div>
+
+        {/* First attachment differs by auth state, matching the bundle:
+              • A3 (signed-in): rich vertical maintenance-schedule timeline
+              • A2 (anonymous): condensed health card (top 2 issues) */}
+        {isAuthed && schedule && schedule.services.length > 0 && (
+          <div className="m-attach">
+            <MobileMaintenanceCard schedule={schedule} currentMileage={currentMileage} />
+          </div>
+        )}
+
+        {/* Known issues attachment — ranked, on-trim. Anon path lifts this
+            to be the FIRST attachment (no schedule above). */}
+        {topIssues.length > 0 && (
+          <div className={`m-attach ${isAuthed ? 'm-attach-indent' : ''}`}>
+            <MobileIssuesCard issues={topIssues} slug={slug} authed={isAuthed} />
+          </div>
+        )}
+
+        {/* Suggested follow-up rows */}
+        {suggestions.length > 0 && (
+          <div className="m-suggest">
+            <div className="eyebrow m-suggest-eyebrow">SUGGESTED FOR YOU</div>
+            <div className="m-suggest-list">
+              {suggestions.map((s, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className="m-suggest-row"
+                  onClick={() => onSend(s.text)}
+                  disabled={pending}
+                >
+                  <Icon
+                    name={s.icon}
+                    size={13}
+                    style={{ color: s.tone === 'crit' ? 'var(--crit)' : 'var(--slate-500)' }}
+                  />
+                  <span className="m-suggest-text">{s.text}</span>
+                  <Icon name="chevron" size={10} style={{ color: 'var(--slate-400)' }} />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Conversation turns past the opener (the opener itself is rendered
+            into the greeting + attachments above, not as a bubble). */}
+        {messages.slice(1).map((m, idx) => (
+          m.role === 'user' ? (
+            <div key={idx} className="m-row-user">
+              <div className="m-bubble-user">{m.content}</div>
+            </div>
+          ) : (
+            <div key={idx} className="m-row-au7o">
+              <Image src="/og-image.png" alt="" width={22} height={22} className="m-mascot" />
+              <div className="m-au7o-body">
+                {m.content || <span className="m-typing">…</span>}
+              </div>
+            </div>
+          )
+        ))}
+      </div>
+
+      {/* Composer + bottom tab bar */}
+      <div className="m-foot">
+        <div className="m-quick-row">
+          {quickQueries.map((q) => (
+            <button
+              key={q.label}
+              type="button"
+              className="m-quick-chip"
+              onClick={() => onSend(q.prompt)}
+              disabled={pending}
+            >
+              {q.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="m-composer">
+          <Icon name="chat" size={13} style={{ color: 'var(--slate-400)' }} />
+          <textarea
+            ref={taRef}
+            className="m-composer-input"
+            placeholder="Ask Au7o anything…"
+            value={input}
+            onChange={(e) => onChangeInput(e.target.value)}
+            onKeyDown={onKey}
+            rows={1}
+            disabled={pending}
+          />
+          <button type="button" className="m-mic-btn" disabled aria-label="Voice (coming soon)" title="Voice — coming soon">
+            <Icon name="mic" size={13} />
+          </button>
+          <button
+            type="button"
+            className="m-send-btn"
+            onClick={submit}
+            disabled={pending || !input.trim()}
+            aria-label="Send"
+          >
+            <Icon name="send" size={12} />
+          </button>
+        </div>
+
+        <nav className="m-tabs" aria-label="Primary">
+          <span className="m-tab m-tab-active" aria-current="page">
+            <Icon name="chat" size={16} />
+            <span>Ask</span>
+          </span>
+          <Link href="/garage" className="m-tab">
+            <Icon name="list" size={16} />
+            <span>Garage</span>
+          </Link>
+          <Link href="/drive" className="m-tab">
+            <Icon name="map" size={16} />
+            <span>Drive</span>
+          </Link>
+          <Link href={user ? '/account' : `/api/auth/signin?callbackUrl=${encodeURIComponent(`/vehicle/${slug}`)}`} className="m-tab">
+            <Icon name="user" size={16} />
+            <span>You</span>
+          </Link>
+        </nav>
+      </div>
+
+      <style jsx>{`
+        .m-shell {
+          display: none;
+          height: 100vh;
+          flex-direction: column;
+          background: var(--paper);
+          color: var(--ink);
+          font-family: var(--au7o-font-sans);
+          overflow: hidden;
+          position: relative;
+        }
+        @media (max-width: 900px) {
+          .m-shell { display: flex; }
+        }
+
+        /* ─── Header ─── */
+        .m-head {
+          display: flex; align-items: center; justify-content: space-between;
+          gap: 10px; padding: 6px 16px 10px;
+          background: var(--paper); flex: 0 0 auto;
+        }
+        .m-veh-pill {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 6px 12px 6px 6px;
+          background: #fff; border: 1px solid var(--paper-line); border-radius: var(--r-pill);
+          color: var(--ink); text-decoration: none;
+          min-width: 0; max-width: 60vw;
+        }
+        .m-veh-disc {
+          width: 26px; height: 26px; border-radius: 50%;
+          background: var(--ink); color: #fff;
+          display: inline-flex; align-items: center; justify-content: center;
+          font-size: 11px; font-weight: 700; flex-shrink: 0;
+        }
+        .m-veh-meta { line-height: 1.1; min-width: 0; flex: 1; text-align: left; }
+        .m-veh-name {
+          font-size: 11.5px; font-weight: 600;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .m-veh-sub {
+          font-size: 9.5px; color: var(--slate-500);
+        }
+        .m-head-right { display: flex; align-items: center; gap: 8px; }
+        .m-icon-btn {
+          width: 32px; height: 32px; border-radius: 50%;
+          background: #fff; border: 1px solid var(--paper-line);
+          display: inline-flex; align-items: center; justify-content: center;
+          color: var(--slate-500); cursor: pointer; padding: 0;
+        }
+        .m-icon-btn:hover { background: var(--paper); }
+        .m-avatar {
+          width: 32px; height: 32px; border-radius: 50%;
+          background: linear-gradient(135deg, var(--au7o-blue), #1e3a8a);
+          color: #fff; display: inline-flex; align-items: center; justify-content: center;
+          font-size: 11px; font-weight: 700; text-decoration: none;
+        }
+        .m-avatar-anon {
+          background: #fff; color: var(--slate-500); border: 1px solid var(--paper-line);
+        }
+
+        /* ─── Body / conversation surface ─── */
+        .m-body {
+          flex: 1; min-height: 0;
+          overflow-y: auto;
+          padding: 4px 16px 220px;
+          -webkit-overflow-scrolling: touch;
+        }
+        .m-body::-webkit-scrollbar { width: 6px; }
+        .m-body::-webkit-scrollbar-thumb { background: rgba(11,18,32,0.12); border-radius: 3px; }
+
+        .m-greet { margin-top: 10px; }
+        .m-eyebrow-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+        .m-pulse-dot {
+          width: 6px; height: 6px; border-radius: 50%;
+          background: var(--au7o-blue);
+          display: inline-block;
+        }
+        .m-greet-eyebrow {
+          color: var(--au7o-blue);
+          font-size: 10px;
+        }
+        .m-h1 {
+          font-size: 22px; font-weight: 600; letter-spacing: -0.02em;
+          line-height: 1.2; margin: 0;
+        }
+        .m-h1-sub { color: var(--slate-500); }
+        .m-greet-p {
+          font-size: 12.5px; color: var(--slate-700);
+          margin: 8px 0 0; line-height: 1.5;
+          white-space: pre-wrap;
+        }
+
+        .m-attach { margin-top: 14px; }
+        .m-attach-indent { margin-left: 30px; }
+
+        /* ─── Suggested rows ─── */
+        .m-suggest { margin-top: 22px; }
+        .m-suggest-eyebrow { margin-bottom: 8px; font-size: 10px; }
+        .m-suggest-list { display: flex; flex-direction: column; gap: 6px; }
+        .m-suggest-row {
+          display: flex; align-items: center; gap: 10px;
+          padding: 10px 12px;
+          background: #fff; border: 1px solid var(--paper-line); border-radius: 12px;
+          font-family: inherit; font-size: 12.5px; color: var(--ink);
+          text-align: left; cursor: pointer; width: 100%;
+        }
+        .m-suggest-row:disabled { opacity: 0.5; cursor: default; }
+        .m-suggest-row:active { background: var(--paper-2); }
+        .m-suggest-text { flex: 1; min-width: 0; }
+
+        /* ─── Conversation turns ─── */
+        .m-row-user { display: flex; justify-content: flex-end; margin-top: 18px; }
+        .m-bubble-user {
+          background: var(--ink); color: #fff;
+          padding: 8px 12px; border-radius: 14px 14px 4px 14px;
+          font-size: 13px; line-height: 1.45; max-width: 82%;
+          white-space: pre-wrap;
+        }
+        .m-row-au7o {
+          margin-top: 10px; display: flex; gap: 8px; align-items: flex-start;
+        }
+        .m-mascot { margin-top: 2px; flex-shrink: 0; }
+        .m-au7o-body {
+          font-size: 12.5px; color: var(--ink); line-height: 1.5;
+          flex: 1; min-width: 0; white-space: pre-wrap;
+        }
+        .m-typing { color: var(--slate-400); }
+
+        /* ─── Composer + tab bar ─── */
+        .m-foot {
+          position: absolute; left: 0; right: 0; bottom: 0;
+          padding: 8px 12px 14px;
+          background: linear-gradient(180deg, rgba(247,246,242,0) 0%, rgba(247,246,242,0.92) 30%, var(--paper) 70%);
+          z-index: 4;
+        }
+        .m-quick-row {
+          display: flex; gap: 6px; margin-bottom: 8px;
+          overflow-x: auto; padding-bottom: 4px;
+          scrollbar-width: none;
+        }
+        .m-quick-row::-webkit-scrollbar { display: none; }
+        .m-quick-chip {
+          flex-shrink: 0;
+          padding: 5px 10px;
+          background: rgba(255,255,255,0.85); backdrop-filter: blur(10px);
+          border: 1px solid var(--paper-line); border-radius: var(--r-pill);
+          font-family: inherit; font-size: 11.5px; color: var(--slate-700);
+          cursor: pointer;
+        }
+        .m-quick-chip:disabled { opacity: 0.5; cursor: default; }
+
+        .m-composer {
+          background: #fff; border: 1px solid var(--paper-line); border-radius: 18px;
+          box-shadow: var(--shadow-2);
+          padding: 7px 7px 7px 14px;
+          display: flex; align-items: center; gap: 8px;
+        }
+        .m-composer-input {
+          flex: 1; min-width: 0;
+          border: none; outline: none; background: transparent;
+          font-family: inherit; font-size: 13px; color: var(--ink);
+          resize: none; padding: 4px 0; line-height: 1.4;
+          max-height: 120px;
+        }
+        .m-composer-input::placeholder { color: var(--slate-400); }
+        .m-mic-btn {
+          width: 28px; height: 28px; border-radius: 50%;
+          background: var(--paper-2); border: none;
+          display: inline-flex; align-items: center; justify-content: center;
+          color: var(--slate-500); cursor: pointer; padding: 0;
+        }
+        .m-mic-btn:disabled { opacity: 0.55; cursor: default; }
+        .m-send-btn {
+          width: 30px; height: 30px; border-radius: 50%;
+          background: var(--ink); border: none;
+          display: inline-flex; align-items: center; justify-content: center;
+          color: #fff; cursor: pointer; padding: 0;
+        }
+        .m-send-btn:disabled { background: var(--slate-400); cursor: default; }
+
+        .m-tabs {
+          display: flex; justify-content: space-around;
+          padding-top: 10px; margin-top: 4px;
+          border-top: 1px solid var(--paper-line);
+        }
+        .m-tab {
+          display: flex; flex-direction: column; align-items: center; gap: 2px;
+          background: transparent; border: none; cursor: pointer;
+          color: var(--slate-400); text-decoration: none;
+          padding: 0; font-family: inherit;
+        }
+        .m-tab > span:last-child { font-size: 9.5px; font-weight: 500; }
+        .m-tab-active { color: var(--ink); }
+        .m-tab-active > span:last-child { font-weight: 600; }
+      `}</style>
+    </div>
+  );
+}
+
+/* ─── Mobile maintenance schedule card (vertical timeline) ─── */
+function MobileMaintenanceCard({
+  schedule, currentMileage,
+}: { schedule: ScheduleData; currentMileage: number | null }) {
+  const services = schedule.services.filter((s) => s.status !== 'done').slice(0, 5);
+  const overdueCount = schedule.stats.overdueCount;
+  const dueSoonCount = services.filter((s) => s.status === 'due_now').length;
+  const totalTracked = schedule.services.length;
+  const ytdSpent = schedule.stats.ytdSpent;
+
+  // Header status pill: most pressing wins.
+  const headerBadge = overdueCount > 0
+    ? { text: 'OVERDUE', cls: 'crit' as const }
+    : dueSoonCount > 0
+      ? { text: 'SOON', cls: 'warn' as const }
+      : { text: 'ON TRACK', cls: 'ok' as const };
+
+  const statusColor = (s: ScheduleServiceStatus): string => {
+    // Token references inside inline-style values — needs raw values so
+    // dot fills + borders can be assembled in JSX. Mirrors the bundle's
+    // statusColor() helper and the design's amber-overdue / blue-due-soon
+    // / green-done / slate-upcoming palette.
+    switch (s) {
+      case 'overdue': return '#B45309'; // amber-700, intentionally darker than --warn
+      case 'due_now': return 'var(--au7o-blue)';
+      case 'done': return 'var(--ok)';
+      default: return 'var(--slate-400)';
+    }
+  };
+  const statusLabel = (s: ScheduleServiceStatus): string => {
+    switch (s) {
+      case 'overdue': return 'OVERDUE';
+      case 'due_now': return 'DUE SOON';
+      case 'done': return 'DONE';
+      default: return 'UPCOMING';
+    }
+  };
+
+  // Headline summary line — built dynamically since we don't know exact
+  // counts at design time.
+  const summary = `${totalTracked} services tracked${overdueCount > 0 ? ` · ${overdueCount} overdue` : ''}${dueSoonCount > 0 ? ` · ${dueSoonCount} due soon` : ''}`;
+
+  // "Next" stat — miles until next due. Null when nothing is on the
+  // horizon; <=0 means overdue.
+  const nextDueMiles = schedule.stats.nextDueMiles;
+  const nextLabel = nextDueMiles == null ? '—' : nextDueMiles <= 0 ? 'now' : nextDueMiles.toLocaleString();
+  const nextUnit = nextDueMiles == null ? 'nothing due' : nextDueMiles <= 0 ? 'overdue' : 'mi to go';
+
+  return (
+    <div className="mc">
+      <div className="mc-head">
+        <div className="mc-head-row">
+          <Icon name="wrench" size={12} style={{ color: 'var(--au7o-blue)' }} />
+          <span className="eyebrow mc-eyebrow">MAINTENANCE SCHEDULE</span>
+          <span className={`mc-status mc-status-${headerBadge.cls}`}>{headerBadge.text}</span>
+        </div>
+        <div className="mc-summary">{summary}</div>
+      </div>
+
+      <div className="mc-stats">
+        <div className="mc-stat">
+          <div className="eyebrow mc-stat-k">NOW</div>
+          <div className="mono mc-stat-v">{currentMileage != null ? currentMileage.toLocaleString() : '—'}</div>
+          <div className="mc-stat-u">miles</div>
+        </div>
+        <div className="mc-stat mc-stat-mid">
+          <div className="eyebrow mc-stat-k">NEXT</div>
+          <div className="mono mc-stat-v mc-stat-blue">{nextLabel}</div>
+          <div className="mc-stat-u">{nextUnit}</div>
+        </div>
+        <div className="mc-stat">
+          <div className="eyebrow mc-stat-k">YTD</div>
+          <div className="mono mc-stat-v mc-stat-ok">${ytdSpent.toLocaleString()}</div>
+          <div className="mc-stat-u">spent</div>
+        </div>
+      </div>
+
+      {/* Vertical timeline — "you are here" pill at top, then upcoming services
+          ascending in mileage. */}
+      <div className="mc-timeline">
+        <div className="mc-here">
+          <span className="mc-here-dot" />
+          <span className="mono mc-here-label">
+            YOU ARE HERE · {currentMileage != null ? currentMileage.toLocaleString() : '—'} MI
+          </span>
+        </div>
+
+        <div className="mc-track">
+          <div className="mc-rail" />
+          {services.map((s, i) => {
+            const c = statusColor(s.status);
+            const isPrimary = !!s.primary || (i === 0 && s.status !== 'done');
+            return (
+              <div key={s.typeId + i} className="mc-row">
+                <span
+                  className="mc-dot"
+                  style={{
+                    width: isPrimary ? 14 : 10,
+                    height: isPrimary ? 14 : 10,
+                    background: s.status === 'upcoming' ? '#fff' : c,
+                    border: `2px solid ${c}`,
+                    boxShadow: isPrimary ? '0 0 0 4px rgba(59,130,246,0.18)' : 'none',
+                    marginLeft: isPrimary ? -2 : 0,
+                  }}
+                />
+                <div className="mc-row-body">
+                  <div className="mc-row-head">
+                    <span className="mc-row-name">{s.name}</span>
+                    <span className="mono mc-row-status" style={{ color: c }}>{statusLabel(s.status)}</span>
+                  </div>
+                  <div className="mc-row-meta">
+                    <span className="mono mc-row-mi">{Math.round(s.mileage / 1000)}k mi</span>
+                    {s.note && <span className="mc-row-note"> · {s.note}</span>}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="mc-actions">
+        <button type="button" className="mc-btn mc-btn-primary">
+          <Icon name="calendar" size={11} /> Book all at one visit
+        </button>
+        <button type="button" className="mc-btn">
+          <Icon name="dollar" size={11} /> Estimate
+        </button>
+      </div>
+
+      <style jsx>{`
+        .mc {
+          background: #fff; border: 1px solid var(--paper-line); border-radius: var(--r-3);
+          overflow: hidden; box-shadow: var(--shadow-1);
+        }
+        .mc-head { padding: 12px 14px 10px; border-bottom: 1px solid var(--paper-line); }
+        .mc-head-row { display: flex; align-items: center; gap: 8px; }
+        .mc-eyebrow { color: var(--au7o-blue); font-size: 10px; }
+        .mc-status {
+          margin-left: auto;
+          font-size: 9.5px; font-weight: 700; padding: 2px 6px; border-radius: 4px;
+          letter-spacing: 0.04em;
+          font-family: var(--au7o-font-mono);
+        }
+        .mc-status-crit { background: var(--crit-bg); color: #991B1B; }
+        .mc-status-warn { background: var(--warn-bg); color: #92400E; }
+        .mc-status-ok { background: var(--ok-bg); color: #065F46; }
+        .mc-summary {
+          font-size: 14px; font-weight: 600; margin-top: 6px;
+          letter-spacing: -0.01em; line-height: 1.3;
+        }
+
+        .mc-stats {
+          display: grid; grid-template-columns: 1fr 1fr 1fr;
+          border-bottom: 1px solid var(--paper-line);
+        }
+        .mc-stat { padding: 10px 12px; background: #fff; }
+        .mc-stat-mid {
+          border-left: 1px solid var(--paper-line);
+          border-right: 1px solid var(--paper-line);
+        }
+        .mc-stat-k { font-size: 8.5px; }
+        .mc-stat-v {
+          font-size: 14px; font-weight: 700; color: var(--ink);
+          margin-top: 2px; letter-spacing: -0.01em;
+        }
+        .mc-stat-blue { color: var(--au7o-blue); }
+        .mc-stat-ok { color: var(--ok); }
+        .mc-stat-u { font-size: 9.5px; color: var(--slate-500); margin-top: 1px; }
+
+        .mc-timeline { padding: 14px 14px 6px; position: relative; }
+        .mc-here { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+        .mc-here-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ink); flex-shrink: 0; }
+        .mc-here-label {
+          font-size: 10px; font-weight: 700; color: var(--ink); letter-spacing: 0.04em;
+        }
+        .mc-track { position: relative; padding-left: 24px; }
+        .mc-rail {
+          position: absolute; left: 7px; top: 0; bottom: 12px;
+          width: 2px; background: var(--paper-line);
+        }
+        .mc-row {
+          display: flex; gap: 10px; align-items: flex-start;
+          padding-bottom: 14px; position: relative;
+        }
+        .mc-dot {
+          position: absolute; left: -22px; top: 4px;
+          border-radius: 50%; box-sizing: content-box;
+        }
+        .mc-row-body { flex: 1; min-width: 0; }
+        .mc-row-head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+        .mc-row-name { font-size: 12.5px; font-weight: 600; letter-spacing: -0.005em; }
+        .mc-row-status {
+          font-size: 9.5px; font-weight: 700; letter-spacing: 0.04em;
+        }
+        .mc-row-meta { display: flex; align-items: center; gap: 0; margin-top: 2px; flex-wrap: wrap; }
+        .mc-row-mi {
+          font-size: 10px; color: var(--slate-500); font-weight: 600;
+        }
+        .mc-row-note { font-size: 11px; color: var(--slate-700); }
+
+        .mc-actions {
+          padding: 8px 14px 12px; display: flex; gap: 6px;
+          border-top: 1px solid var(--paper-line);
+        }
+        .mc-btn {
+          flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+          padding: 8px 10px; border-radius: var(--r-pill);
+          background: #fff; border: 1px solid var(--paper-line);
+          font-family: inherit; font-size: 12px; font-weight: 600; color: var(--ink);
+          cursor: pointer;
+        }
+        .mc-btn-primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+      `}</style>
+    </div>
+  );
+}
+
+/* ─── Mobile inline known-issues card (ranked) ─── */
+function MobileIssuesCard({
+  issues, slug, authed,
+}: { issues: AttachableIssue[]; slug: string; authed: boolean }) {
+  // Count high-severity items so the eyebrow can hint at urgency
+  // ("X KNOWN · YOUR TRIM · Y HIGH" without overcrowding).
+  const highCount = issues.filter((i) => i.severity === 'critical' || i.severity === 'high').length;
+  // Anonymous variant uses the bundle's "COMMON AT 60K+ MILES" framing
+  // since we don't yet know if the user owns this car. Signed-in says
+  // "YOUR TRIM" because we have their actual vehicle on file.
+  const eyebrowText = authed
+    ? `${issues.length} KNOWN · YOUR TRIM`
+    : 'COMMON AT YOUR MILEAGE';
+  return (
+    <div className="ic">
+      <div className="ic-head">
+        <Icon name="alert" size={12} style={{ color: 'var(--slate-500)' }} />
+        <span className="eyebrow ic-eyebrow">{eyebrowText}</span>
+        {highCount > 0 && <span className="mono ic-meta">{highCount} HIGH</span>}
+      </div>
+      {issues.map((iss, i) => {
+        const isHigh = iss.severity === 'critical' || iss.severity === 'high';
+        const cost = iss.estimatedCost
+          ? `$${iss.estimatedCost.low}–${iss.estimatedCost.high >= 1000 ? `${Math.round(iss.estimatedCost.high / 100) / 10}k` : iss.estimatedCost.high}`
+          : '—';
+        const isLast = i === issues.length - 1;
+        return (
+          <Link
+            key={iss.id}
+            href={iss.knownIssuesUrl}
+            className="ic-row"
+            style={{ borderBottom: isLast ? 'none' : '1px solid var(--paper-line)' }}
+          >
+            <span className={`status-dot ${isHigh ? 'crit' : 'warn'}`} />
+            <div className="ic-body">
+              <div className="ic-name">{iss.title}</div>
+              <div className="mono ic-cat">{iss.category}</div>
+            </div>
+            <div className="mono ic-cost">{cost}</div>
+          </Link>
+        );
+      })}
+      <div className="ic-actions">
+        {authed ? (
+          <>
+            <Link href={`/known-issues/${slug}`} className="ic-btn ic-btn-primary">See all</Link>
+            <Link href={`/known-issues/${slug}#diagnose`} className="ic-btn">Diagnose mine</Link>
+          </>
+        ) : (
+          // Anon variant from 04-MobileHubAnonymous.jsx — twin chips with
+          // equal weight; "Diagnose mine" leads since it's the engagement
+          // hook for this surface.
+          <>
+            <Link href={`/known-issues/${slug}#diagnose`} className="ic-btn">Diagnose mine</Link>
+            <Link href={`/known-issues/${slug}`} className="ic-btn">Find a shop</Link>
+          </>
+        )}
+      </div>
+      <style jsx>{`
+        .ic {
+          background: #fff; border: 1px solid var(--paper-line); border-radius: var(--r-3);
+          overflow: hidden; box-shadow: var(--shadow-1);
+        }
+        .ic-head {
+          padding: 10px 14px; border-bottom: 1px solid var(--paper-line);
+          display: flex; align-items: center; gap: 8px;
+        }
+        .ic-eyebrow { font-size: 10px; }
+        .ic-meta {
+          margin-left: auto; font-size: 10px; color: #B45309; font-weight: 600;
+        }
+        .ic-row {
+          padding: 10px 14px; display: flex; align-items: center; gap: 10px;
+          color: var(--ink); text-decoration: none;
+        }
+        .ic-row:active { background: var(--paper-2); }
+        .ic-body { flex: 1; min-width: 0; }
+        .ic-name {
+          font-size: 12.5px; font-weight: 600; line-height: 1.25;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .ic-cat {
+          font-size: 10px; color: var(--slate-500); margin-top: 2px;
+          text-transform: capitalize;
+        }
+        .ic-cost {
+          font-size: 11px; color: var(--ink); font-weight: 600; flex-shrink: 0;
+        }
+        .ic-actions {
+          padding: 8px 14px 12px; display: flex; gap: 6px; border-top: 1px solid var(--paper-line);
+        }
+        .ic-btn {
+          flex: 1; display: inline-flex; align-items: center; justify-content: center;
+          padding: 8px 10px; border-radius: var(--r-pill);
+          background: #fff; border: 1px solid var(--paper-line);
+          font-family: inherit; font-size: 12px; font-weight: 600; color: var(--ink);
+          text-decoration: none;
+        }
+        .ic-btn-primary { background: var(--ink); color: #fff; border-color: var(--ink); }
       `}</style>
     </div>
   );
@@ -505,9 +1388,20 @@ export function VehicleHub({
 
 /* ─── Vehicle rail ─── */
 function VehicleRail({
-  vehicle, currentMileage, counts, recentThreads,
-}: { vehicle: VehicleHubProps['vehicle']; currentMileage: number | null; counts: VehicleHubProps['counts']; recentThreads: RecentThread[] }) {
+  vehicle, currentMileage, counts, recentThreads, maintenanceSuggestions, user, slug,
+}: {
+  vehicle: VehicleHubProps['vehicle'];
+  currentMileage: number | null;
+  counts: VehicleHubProps['counts'];
+  recentThreads: RecentThread[];
+  maintenanceSuggestions: MaintenanceSuggestion[];
+  user: VehicleHubProps['user'];
+  slug: string;
+}) {
   const v = vehicle;
+  // The most pressing service is the first one — getMaintenanceSuggestions
+  // sorts overdue → due_now → upcoming and we cap at 6, so [0] is the top.
+  const topService = maintenanceSuggestions[0] ?? null;
   return (
     <aside className="rail">
       <div className="rail-top">
@@ -533,6 +1427,10 @@ function VehicleRail({
         </div>
       </div>
 
+      {topService && currentMileage != null && (
+        <MaintenanceTile service={topService} currentMileage={currentMileage} />
+      )}
+
       <div className="eyebrow">Recent</div>
       <div className="thread-list">
         {recentThreads.length === 0 ? (
@@ -551,11 +1449,15 @@ function VehicleRail({
 
       <div className="rail-spacer" />
 
-      <div className="rail-bottom">
-        <Link href={`/known-issues/${v.make.toLowerCase().replace(/\s+/g, '-')}-${v.model.toLowerCase().replace(/\s+/g, '-')}`}
-              className="rail-link">Known issues page</Link>
-        <Link href="/drive" className="rail-link">Open Drive</Link>
-      </div>
+      {user ? (
+        <UserFooter user={user} />
+      ) : (
+        <div className="rail-bottom">
+          <Link href={`/known-issues/${v.make.toLowerCase().replace(/\s+/g, '-')}-${v.model.toLowerCase().replace(/\s+/g, '-')}`}
+                className="rail-link">Known issues page</Link>
+          <Link href={`/api/auth/signin?callbackUrl=${encodeURIComponent(`/vehicle/${slug}`)}`} className="rail-link">Sign in</Link>
+        </div>
+      )}
 
       <style jsx>{`
         .rail {
@@ -617,23 +1519,190 @@ function VehicleRail({
   );
 }
 
-/* ─── Top bar ─── Drive + Library buttons removed in batch 3 — Drive
- lives in the rail footer ("Open Drive"), and Library is folded into the
- conversation itself (you ask, the AI surfaces relevant articles inline).
- The right side is intentionally empty so the global Translate widget
- can dock there without overlap. The reserved-spacer keeps the title
- centered visually. */
-function TopBar() {
+/* ─── Maintenance tile (signed-in, glanceable next service) ─── */
+function MaintenanceTile({
+  service, currentMileage,
+}: { service: MaintenanceSuggestion; currentMileage: number }) {
+  // Progress from "last service" to "next due". Falls back to a 0-baseline
+  // when the user has never logged this service — in that case the bar
+  // visualises progress toward the manufacturer interval.
+  const baseline = service.lastServiceMileage ?? 0;
+  const span = Math.max(1, service.nextDueMileage - baseline);
+  const elapsed = currentMileage - baseline;
+  const pct = Math.max(0, Math.min(100, (elapsed / span) * 100));
+
+  const remaining = service.milesUntilDue;
+  const remainingLabel = remaining < 0
+    ? `${Math.abs(remaining).toLocaleString()} mi past due`
+    : `in ${remaining.toLocaleString()} mi`;
+
+  const badge =
+    service.status === 'overdue' ? { text: 'OVERDUE', cls: 'crit' } :
+    service.status === 'due_now' ? { text: 'SOON', cls: 'warn' } :
+    { text: 'UPCOMING', cls: 'info' };
+
+  return (
+    <div className="mt-wrap">
+      <button className="mt-card" type="button">
+        <div className="mt-head">
+          <span className="mt-eyebrow">NEXT SERVICE</span>
+          <span className={`mt-badge mt-badge-${badge.cls}`}>{badge.text}</span>
+        </div>
+        <div className="mt-name">{service.name}</div>
+        <div className="mt-meta mono">{remainingLabel}</div>
+        <div className="mt-bar"><div className="mt-fill" style={{ width: `${pct}%` }} /></div>
+        <div className="mt-ticks mono">
+          <span>{Math.round(baseline / 1000).toLocaleString()}k</span>
+          <span>{Math.round(service.nextDueMileage / 1000).toLocaleString()}k</span>
+        </div>
+      </button>
+      <style jsx>{`
+        .mt-wrap { padding: 12px 16px 0; }
+        .mt-card {
+          width: 100%; text-align: left; cursor: pointer;
+          background: #fff; border: 1px solid #E3DFD4; border-radius: 12px;
+          padding: 12px 14px; display: block;
+          font-family: var(--font-geist-sans, system-ui, sans-serif); color: #0B1220;
+        }
+        .mt-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+        .mt-eyebrow {
+          font-size: 9.5px; font-weight: 600; text-transform: uppercase;
+          letter-spacing: 0.08em; color: #64748B;
+        }
+        .mt-badge {
+          font-size: 9.5px; font-weight: 700; padding: 2px 6px; border-radius: 4px;
+          letter-spacing: 0.04em;
+          font-family: var(--font-geist-mono, ui-monospace, monospace);
+        }
+        .mt-badge-crit { background: #FEE2E2; color: #991B1B; }
+        .mt-badge-warn { background: #FEF3C7; color: #92400E; }
+        .mt-badge-info { background: rgba(59,130,246,0.12); color: #1D4ED8; }
+        .mt-name { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; }
+        .mt-meta { font-size: 10.5px; color: #64748B; margin-top: 2px;
+          font-family: var(--font-geist-mono, ui-monospace, monospace); font-feature-settings: "tnum" 1; }
+        .mt-bar { margin-top: 10px; height: 4px; background: #E3DFD4; border-radius: 2px; overflow: hidden; position: relative; }
+        .mt-fill { height: 100%; background: linear-gradient(90deg, #3B82F6, #2563EB); border-radius: 2px; }
+        .mt-ticks { display: flex; justify-content: space-between; margin-top: 4px;
+          font-size: 9.5px; color: #94A3B8;
+          font-family: var(--font-geist-mono, ui-monospace, monospace); }
+      `}</style>
+    </div>
+  );
+}
+
+/* ─── Signed-in user footer (avatar + name + subscriber tag) ─── */
+function UserFooter({ user }: { user: NonNullable<VehicleHubProps['user']> }) {
+  const initials = (() => {
+    const parts = user.name.trim().split(/\s+/).filter(Boolean);
+    if (parts.length === 0) return '·';
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  })();
+
+  const monthsJoined = (() => {
+    const joined = new Date(user.joinedAt);
+    if (isNaN(joined.getTime())) return null;
+    const now = new Date();
+    const m = (now.getFullYear() - joined.getFullYear()) * 12 + (now.getMonth() - joined.getMonth());
+    return Math.max(0, m);
+  })();
+
+  const tag = user.isSubscriber
+    ? (monthsJoined != null ? `SUBSCRIBER · ${monthsJoined} MO` : 'SUBSCRIBER')
+    : (monthsJoined != null ? `FREE · ${monthsJoined} MO` : 'FREE');
+
+  return (
+    <Link href="/account" className="uf">
+      <div className="uf-avatar">{initials}</div>
+      <div className="uf-meta">
+        <div className="uf-name">{user.name || 'Your account'}</div>
+        <div className="uf-tag mono">{tag}</div>
+      </div>
+      <svg className="uf-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+        <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+      <style jsx>{`
+        .uf {
+          display: flex; align-items: center; gap: 10px;
+          padding: 10px 12px; border-top: 1px solid #E3DFD4;
+          color: #0B1220; text-decoration: none;
+        }
+        .uf:hover { background: rgba(11,18,32,0.03); }
+        .uf-avatar {
+          width: 32px; height: 32px; border-radius: 50%;
+          background: linear-gradient(135deg, #3B82F6, #1e3a8a);
+          color: #fff; display: flex; align-items: center; justify-content: center;
+          font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em;
+          flex-shrink: 0;
+        }
+        .uf-meta { flex: 1; min-width: 0; line-height: 1.1; }
+        .uf-name {
+          font-size: 12.5px; font-weight: 600;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .uf-tag {
+          font-size: 9.5px; color: #64748B; margin-top: 2px;
+          font-family: var(--font-geist-mono, ui-monospace, monospace);
+          letter-spacing: 0.04em;
+        }
+        .uf-chev { color: #94A3B8; flex-shrink: 0; }
+      `}</style>
+    </Link>
+  );
+}
+
+/* ─── Top bar ─── A3-design: eyebrow on the left, quick-action pills
+ (Drive / Library) in the middle, user pill on the right when signed in.
+ The Translate widget docks to the right of the user pill via global CSS. */
+function TopBar({
+  vehicle, user, onOpenThreads,
+}: { vehicle: VehicleHubProps['vehicle']; user: VehicleHubProps['user']; onOpenThreads: () => void }) {
+  const slug = `${vehicle.make.toLowerCase().replace(/\s+/g, '-')}-${vehicle.model.toLowerCase().replace(/\s+/g, '-')}`;
+  const initials = user ? userInitials(user.name) : '';
   return (
     <div className="topbar">
       <div className="tb-left">
+        {/* Mobile-only hamburger — desktop has the rail with these threads
+            already pinned to the side. */}
+        <button type="button" className="tb-burger" onClick={onOpenThreads} aria-label="Open recent conversations">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
+        </button>
+        {/* Mobile-only brand chip — the desktop brand lives in the (hidden) rail. */}
+        <Link href="/" className="tb-brand-mobile" aria-label="Au7o home">
+          <Image src="/og-image.png" alt="" width={22} height={22} />
+        </Link>
         <span className="eyebrow-inline">Conversation</span>
         <span className="tb-sep">·</span>
-        <span style={{ color: '#334155' }}>Symptoms &amp; maintenance</span>
+        <span style={{ color: '#334155' }}>Maintenance check-in</span>
       </div>
-      <div className="tb-right" aria-hidden="true">
-        {/* Reserved space for the global Translate button (~110px wide). */}
-        <span style={{ width: 110, display: 'inline-block' }} />
+      <div className="tb-right">
+        <Link href="/drive" className="tb-pill" title="Open Drive">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/>
+          </svg>
+          <span className="tb-pill-label">Open Drive</span>
+        </Link>
+        <Link href={`/known-issues/${slug}`} className="tb-pill" title="Browse known issues">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+            <path d="M4 19.5A2.5 2.5 0 016.5 22H20" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+          </svg>
+          <span className="tb-pill-label">Library</span>
+        </Link>
+        {user && (
+          <>
+            <span className="tb-sepline" aria-hidden />
+            <Link href="/account" className="tb-user" title={user.name}>
+              <span className="tb-avatar">{initials}</span>
+              <span className="tb-username">{user.name}</span>
+            </Link>
+          </>
+        )}
+        {/* Reserved space for the global Translate button (desktop only). */}
+        <span className="tb-translate-spacer" aria-hidden />
       </div>
       <style jsx>{`
         .topbar {
@@ -649,10 +1718,262 @@ function TopBar() {
           letter-spacing: 0.08em; color: #64748B;
         }
         .tb-sep { color: #CBD5E1; }
-        .tb-right { display: flex; gap: 8px; }
+        .tb-right { display: flex; gap: 8px; align-items: center; }
+        .tb-pill {
+          display: inline-flex; align-items: center; gap: 6px;
+          padding: 5px 11px; border-radius: 999px;
+          background: #fff; border: 1px solid #E3DFD4;
+          font-size: 12px; font-weight: 500; color: #0B1220;
+          text-decoration: none;
+        }
+        .tb-pill:hover { background: #FAF8F2; }
+        .tb-sepline {
+          width: 1px; height: 18px; background: #E3DFD4; margin: 0 4px;
+        }
+        .tb-user {
+          display: inline-flex; align-items: center; gap: 6px;
+          padding: 4px 11px 4px 4px; border-radius: 999px;
+          background: transparent; border: 1px solid #E3DFD4;
+          font-size: 12px; font-weight: 500; color: #0B1220;
+          text-decoration: none;
+        }
+        .tb-user:hover { background: #FAF8F2; }
+        .tb-avatar {
+          width: 22px; height: 22px; border-radius: 50%;
+          background: linear-gradient(135deg, #3B82F6, #1e3a8a);
+          color: #fff; display: inline-flex; align-items: center; justify-content: center;
+          font-size: 9.5px; font-weight: 700; letter-spacing: 0.02em;
+        }
+        .tb-username {
+          max-width: 110px; overflow: hidden;
+          white-space: nowrap; text-overflow: ellipsis;
+        }
+        .tb-brand-mobile {
+          display: none;
+          align-items: center;
+          padding: 4px 6px; border-radius: 8px;
+          text-decoration: none;
+        }
+        .tb-brand-mobile :global(img) { display: block; }
+        .tb-burger {
+          display: none;
+          align-items: center; justify-content: center;
+          width: 34px; height: 34px;
+          background: transparent; border: 1px solid #E3DFD4;
+          border-radius: 10px; color: #0B1220;
+          cursor: pointer; padding: 0;
+          margin-right: 4px;
+        }
+        .tb-burger:hover { background: #FAF8F2; }
+        .tb-translate-spacer { width: 110px; display: inline-block; }
+        @media (max-width: 900px) {
+          .tb-brand-mobile { display: inline-flex; }
+          .tb-burger { display: inline-flex; }
+          .tb-translate-spacer { display: none; }
+        }
       `}</style>
     </div>
   );
+}
+
+/* ─── Mobile threads drawer ─── Slide-in panel that mirrors the rail's
+   recent-threads list when the desktop sidebar is collapsed (≤900px). The
+   panel is rendered at all viewport sizes but the wrapper is display:none
+   above 900px, so it costs nothing on desktop. */
+function MobileThreadsDrawer({
+  open, onClose, vehicle, currentMileage, recentThreads, user, slug,
+}: {
+  open: boolean;
+  onClose: () => void;
+  vehicle: VehicleHubProps['vehicle'];
+  currentMileage: number | null;
+  recentThreads: RecentThread[];
+  user: VehicleHubProps['user'];
+  slug: string;
+}) {
+  // Lock body scroll while the drawer is open and close on Escape.
+  useEffect(() => {
+    if (!open) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [open, onClose]);
+
+  return (
+    <div className={`md-shell ${open ? 'md-open' : ''}`} aria-hidden={!open}>
+      <button
+        type="button"
+        className="md-backdrop"
+        onClick={onClose}
+        aria-label="Close menu"
+        tabIndex={open ? 0 : -1}
+      />
+      <aside className="md-panel" role="dialog" aria-label="Recent conversations">
+        <div className="md-head">
+          <Link href="/" className="md-brand" onClick={onClose}>
+            <Image src="/og-image.png" alt="" width={24} height={24} />
+            <span>Au<span className="md-accent">7</span>o</span>
+          </Link>
+          <button type="button" className="md-close" onClick={onClose} aria-label="Close">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <div className="md-veh">
+          <div className="md-veh-name">{vehicle.year} {vehicle.make} {vehicle.model}</div>
+          <div className="md-veh-meta">
+            {vehicle.trim}
+            {currentMileage != null && <> · <span className="md-mono">{currentMileage.toLocaleString()} mi</span></>}
+          </div>
+        </div>
+
+        <div className="md-eyebrow">Recent</div>
+        <div className="md-list">
+          {recentThreads.length === 0 ? (
+            <div className="md-empty">No saved conversations yet.</div>
+          ) : (
+            recentThreads.map((t) => (
+              <button key={t.id} className="md-thread" type="button" title={t.preview}>
+                <div className="md-t-title">{t.preview || 'Untitled conversation'}</div>
+                <div className="md-t-when">{relativeWhen(t.updatedAt)}</div>
+              </button>
+            ))
+          )}
+        </div>
+
+        <div className="md-spacer" />
+
+        <div className="md-foot">
+          <Link href={`/known-issues/${slug}`} className="md-link" onClick={onClose}>
+            Known issues page
+          </Link>
+          {user ? (
+            <Link href="/account" className="md-link md-link-primary" onClick={onClose}>
+              {user.name} · Account
+            </Link>
+          ) : (
+            <Link
+              href={`/api/auth/signin?callbackUrl=${encodeURIComponent(`/vehicle/${slug}`)}`}
+              className="md-link md-link-primary"
+              onClick={onClose}
+            >
+              Sign in
+            </Link>
+          )}
+        </div>
+      </aside>
+
+      <style jsx>{`
+        .md-shell {
+          display: none;
+          position: fixed; inset: 0;
+          z-index: 50;
+          pointer-events: none;
+        }
+        @media (max-width: 900px) {
+          .md-shell { display: block; }
+        }
+        .md-backdrop {
+          position: absolute; inset: 0;
+          background: rgba(11,18,32,0.45);
+          opacity: 0;
+          transition: opacity 180ms ease;
+          border: 0; padding: 0; cursor: pointer;
+          pointer-events: none;
+        }
+        .md-open .md-backdrop {
+          opacity: 1;
+          pointer-events: auto;
+        }
+        .md-panel {
+          position: absolute; top: 0; bottom: 0; left: 0;
+          width: min(86vw, 320px);
+          background: #FAF8F2;
+          border-right: 1px solid #E3DFD4;
+          transform: translateX(-100%);
+          transition: transform 220ms cubic-bezier(0.32, 0.72, 0, 1);
+          display: flex; flex-direction: column;
+          color: #0B1220;
+          font-family: var(--font-geist-sans, system-ui, sans-serif);
+          pointer-events: none;
+        }
+        .md-open .md-panel {
+          transform: translateX(0);
+          pointer-events: auto;
+          box-shadow: 0 12px 40px rgba(11,18,32,0.18);
+        }
+        .md-head {
+          display: flex; align-items: center; justify-content: space-between;
+          padding: 18px 20px 12px;
+        }
+        .md-brand {
+          display: inline-flex; align-items: center; gap: 8px;
+          text-decoration: none; color: #0B1220;
+          font-size: 18px; font-weight: 600; letter-spacing: -0.02em;
+        }
+        .md-accent { color: #3B82F6; }
+        .md-close {
+          width: 32px; height: 32px;
+          display: inline-flex; align-items: center; justify-content: center;
+          background: transparent; border: 1px solid #E3DFD4; border-radius: 8px;
+          color: #0B1220; cursor: pointer; padding: 0;
+        }
+        .md-close:hover { background: #EFEDE6; }
+        .md-veh {
+          margin: 4px 16px 0; padding: 12px 14px;
+          background: #fff; border: 1px solid #E3DFD4; border-radius: 12px;
+        }
+        .md-veh-name { font-size: 13.5px; font-weight: 600; line-height: 1.3; }
+        .md-veh-meta { font-size: 11.5px; color: #64748B; margin-top: 2px; }
+        .md-mono { font-family: var(--font-geist-mono, ui-monospace, monospace); font-feature-settings: "tnum" 1; }
+        .md-eyebrow {
+          font-size: 11px; font-weight: 600; text-transform: uppercase;
+          letter-spacing: 0.08em; color: #64748B; padding: 18px 20px 8px;
+        }
+        .md-list { padding: 0 12px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 2px; }
+        .md-empty { font-size: 12.5px; color: #94A3B8; padding: 0 12px; }
+        .md-thread {
+          display: block; width: 100%; text-align: left;
+          background: transparent; border: 0; cursor: pointer;
+          padding: 10px 12px; border-radius: 10px; color: #0B1220;
+        }
+        .md-thread:hover { background: rgba(11,18,32,0.04); }
+        .md-t-title { font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .md-t-when { font-size: 10.5px; color: #64748B; margin-top: 2px; }
+        .md-spacer { flex: 0 0 4px; }
+        .md-foot {
+          padding: 12px 16px 18px; border-top: 1px solid #E3DFD4;
+          display: flex; flex-direction: column; gap: 8px;
+        }
+        .md-link {
+          display: flex; align-items: center; justify-content: center;
+          padding: 11px 12px; border-radius: 10px;
+          background: #fff; border: 1px solid #E3DFD4;
+          font-size: 13px; font-weight: 500; color: #0B1220;
+          text-decoration: none;
+        }
+        .md-link:hover { background: #EFEDE6; }
+        .md-link-primary {
+          background: #0B1220; color: #fff; border-color: #0B1220;
+        }
+        .md-link-primary:hover { background: #1e293b; }
+      `}</style>
+    </div>
+  );
+}
+
+function userInitials(name: string): string {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return '·';
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
 
 /* ─── Anonymous gate ─── */
@@ -784,12 +2105,13 @@ function relativeWhen(iso: string): string {
 
 /* ─── Au7o reply bubble ─── */
 function Au7oReply({
-  content, attachments = [], driveHandoff = null, route, onFollowUp,
+  content, attachments = [], driveHandoff = null, route, schedule, onFollowUp,
 }: {
   content: string;
   attachments?: AttachableIssue[];
   driveHandoff?: { destination: string | null } | null;
   route?: RoutePreview;
+  schedule?: ScheduleData;
   onFollowUp?: (prompt: string) => void;
 }) {
   // Split out any "→ follow-up question" lines the AI emitted at the end
@@ -811,6 +2133,7 @@ function Au7oReply({
         {visibleBody.trim().length > 0 && (
           <div className="bubble-au7o">{renderMarkdownLite(visibleBody)}</div>
         )}
+        {schedule && <MaintenanceSchedule schedule={schedule} />}
         {attachments.length > 0 && <IssueAttachmentGroup issues={attachments} />}
         {/* Trip preview hierarchy: when we have a real Mapbox route
             attached to this turn, show the inline mini-map. Otherwise
@@ -1014,9 +2337,33 @@ const Composer = ({
           }}
           disabled={pending}
         />
-        <button className="icon-square icon-send" onClick={onSend} disabled={pending} title="Send">
-          {pending ? '…' : '↑'}
-        </button>
+        <div className="composer-actions">
+          <div className="comp-chips">
+            <button className="comp-chip" type="button" disabled title="Coming soon">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M21 12.5l-9 9a5.5 5.5 0 01-7.78-7.78L13 4.94a3.67 3.67 0 015.18 5.19L9.41 18.9a1.83 1.83 0 01-2.59-2.59L15 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Attach
+            </button>
+            <button className="comp-chip" type="button" disabled title="Coming soon">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M3 7h3l2-3h8l2 3h3v13H3V7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="12" cy="13" r="4" stroke="currentColor" strokeWidth="2"/>
+              </svg>
+              Photo
+            </button>
+            <button className="comp-chip" type="button" disabled title="Voice is on Drive — coming to chat soon">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <rect x="9" y="3" width="6" height="12" rx="3" stroke="currentColor" strokeWidth="2"/>
+                <path d="M19 11a7 7 0 01-14 0M12 18v3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+              Voice
+            </button>
+          </div>
+          <button className="icon-square icon-send" onClick={onSend} disabled={pending} title="Send">
+            {pending ? '…' : '↑'}
+          </button>
+        </div>
       </div>
       <div className="composer-meta">
         <span>{isAuthed ? "Au7o knows your vehicle context" : "Sign in to save context across sessions"} · responses may need verifying with a mechanic</span>
@@ -1033,16 +2380,30 @@ const Composer = ({
         .composer {
           background: #fff; border: 1px solid #E3DFD4; border-radius: 18px;
           box-shadow: 0 6px 16px rgba(11,18,32,.08);
-          padding: 10px 12px 10px 18px;
-          display: flex; align-items: flex-end; gap: 10px;
+          padding: 12px 14px;
+          display: flex; flex-direction: column; gap: 8px;
         }
         textarea {
-          flex: 1; border: 0; outline: 0; resize: none;
+          width: 100%; border: 0; outline: 0; resize: none;
           font-family: inherit; font-size: 14.5px; line-height: 1.5; color: #0B1220;
-          padding: 8px 0;
+          padding: 4px 4px;
           background: transparent;
           max-height: 120px;
         }
+        .composer-actions {
+          display: flex; align-items: center; justify-content: space-between; gap: 8px;
+        }
+        .comp-chips { display: flex; gap: 6px; }
+        .comp-chip {
+          display: inline-flex; align-items: center; gap: 5px;
+          padding: 5px 9px; border-radius: 999px;
+          background: #FAF8F2; border: 1px solid #E3DFD4;
+          color: #0B1220; font-family: inherit; font-size: 11.5px; font-weight: 500;
+          cursor: pointer;
+        }
+        .comp-chip:hover:not(:disabled) { background: #F2EFE5; }
+        .comp-chip:disabled { opacity: 0.55; cursor: not-allowed; }
+        .comp-chip svg { color: #64748B; }
         .icon-square {
           width: 36px; height: 36px; border-radius: 12px;
           display: flex; align-items: center; justify-content: center;
@@ -1190,6 +2551,254 @@ function DriveHandoff({ destination }: { destination: string | null }) {
  * severity dot lost its width, and the body text didn't push the
  * chevron right. Inline `style` attributes have the highest specificity
  * and cannot be defeated by any of the above. */
+/* ─── Maintenance Schedule (rich attachment for Au7o's first reply) ───
+ * Mirrors the A3 design: 4-stat strip, mileage timeline with "you are here"
+ * marker + service dots, and grouped service rows. All inline styles to
+ * survive styled-jsx oddities (same lesson as IssueAttachmentGroup). */
+function MaintenanceSchedule({ schedule }: { schedule: ScheduleData }) {
+  const { services, stats, timelineMin, timelineMax } = schedule;
+  const span = Math.max(1, timelineMax - timelineMin);
+  const pct = (m: number) => Math.max(0, Math.min(100, ((m - timelineMin) / span) * 100));
+
+  // Tick marks every ~5k miles, capped at 8 to avoid clutter.
+  const tickStep = span > 30000 ? 10000 : 5000;
+  const ticks: number[] = [];
+  const firstTick = Math.ceil(timelineMin / tickStep) * tickStep;
+  for (let m = firstTick; m <= timelineMax; m += tickStep) ticks.push(m);
+
+  const grouped = {
+    overdue: services.filter((s) => s.status === 'overdue'),
+    due_now: services.filter((s) => s.status === 'due_now'),
+    upcoming: services.filter((s) => s.status === 'upcoming'),
+    done: services.filter((s) => s.status === 'done'),
+  };
+
+  const trackedCount = services.length;
+  const overdueCount = grouped.overdue.length;
+  const dueSoonCount = grouped.due_now.length;
+
+  return (
+    <div style={{
+      background: '#fff', border: '1px solid #E3DFD4', borderRadius: 16,
+      padding: '20px 22px', boxShadow: '0 1px 2px rgba(11,18,32,.06)',
+      display: 'flex', flexDirection: 'column', gap: 18,
+    }}>
+      {/* Header */}
+      <div>
+        <div style={{
+          fontSize: 11, fontWeight: 600, textTransform: 'uppercase',
+          letterSpacing: '0.08em', color: '#3B82F6',
+        }}>MAINTENANCE SCHEDULE</div>
+        <div style={{
+          fontSize: 17, fontWeight: 600, letterSpacing: '-0.02em',
+          marginTop: 4, lineHeight: 1.25,
+        }}>
+          {trackedCount} service{trackedCount === 1 ? '' : 's'} tracked
+          {overdueCount > 0 && <> · <span style={{ color: '#B45309' }}>{overdueCount} overdue</span></>}
+          {dueSoonCount > 0 && <> · <span style={{ color: '#3B82F6' }}>{dueSoonCount} due soon</span></>}
+        </div>
+      </div>
+
+      {/* 4-stat strip */}
+      <div className="maint-stats-strip" style={{
+        display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
+        border: '1px solid #E3DFD4', borderRadius: 10, overflow: 'hidden',
+      }}>
+        {[
+          { k: 'NOW', v: stats.nowMileage.toLocaleString(), u: 'miles', color: '#0B1220' },
+          { k: 'NEXT DUE', v: stats.nextDueMiles != null ? stats.nextDueMiles.toLocaleString() : '—',
+            u: stats.nextDueMiles != null ? 'mi to go' : 'on track', color: '#3B82F6' },
+          { k: 'OVERDUE', v: String(stats.overdueCount),
+            u: stats.overdueCount === 1 ? 'service' : 'services',
+            color: stats.overdueCount > 0 ? '#B45309' : '#94A3B8' },
+          { k: 'YR-TO-DATE', v: stats.ytdSpent > 0 ? `$${Math.round(stats.ytdSpent).toLocaleString()}` : '—',
+            u: 'spent on maint.', color: '#10B981' },
+        ].map((s, i) => (
+          <div key={i} style={{
+            padding: '12px 14px',
+            borderRight: i < 3 ? '1px solid #E3DFD4' : 'none',
+            background: '#fff',
+          }}>
+            <div style={{
+              fontSize: 9, fontWeight: 600, textTransform: 'uppercase',
+              letterSpacing: '0.08em', color: '#64748B',
+            }}>{s.k}</div>
+            <div style={{
+              fontFamily: 'var(--font-geist-mono, ui-monospace, monospace)',
+              fontFeatureSettings: '"tnum" 1',
+              fontSize: 18, fontWeight: 700, color: s.color,
+              marginTop: 4, letterSpacing: '-0.02em',
+            }}>{s.v}</div>
+            <div style={{ fontSize: 10.5, color: '#64748B', marginTop: 1 }}>{s.u}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Timeline */}
+      <div style={{ position: 'relative', padding: '32px 0 8px' }}>
+        <div style={{ position: 'relative', height: 40 }}>
+          {/* baseline */}
+          <div style={{ position: 'absolute', left: 0, right: 0, top: 18, height: 4,
+            background: '#E3DFD4', borderRadius: 2 }}/>
+          {/* travelled portion */}
+          <div style={{ position: 'absolute', left: 0, top: 18, height: 4,
+            width: `${pct(stats.nowMileage)}%`,
+            background: 'linear-gradient(90deg, #10B981, #3B82F6)',
+            borderRadius: 2 }}/>
+
+          {/* tick labels */}
+          {ticks.map((m, i) => (
+            <div key={i} style={{
+              position: 'absolute', left: `${pct(m)}%`, top: 0,
+              transform: 'translateX(-50%)',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2,
+            }}>
+              <span style={{
+                fontFamily: 'var(--font-geist-mono, ui-monospace, monospace)',
+                fontSize: 10, color: '#94A3B8', fontWeight: 500,
+              }}>{m / 1000}k</span>
+              <span style={{ width: 1, height: 8, background: '#E3DFD4' }}/>
+            </div>
+          ))}
+
+          {/* Service dots */}
+          {services.map((s, i) => {
+            const left = pct(s.mileage);
+            const yOffset = (i % 2) * 6;
+            const color =
+              s.status === 'done' ? '#10B981' :
+              s.status === 'overdue' ? '#B45309' :
+              s.status === 'due_now' ? '#3B82F6' : '#94A3B8';
+            const isUpcoming = s.status === 'upcoming';
+            return (
+              <div key={i} title={`${s.name} · ${s.mileage.toLocaleString()} mi`} style={{
+                position: 'absolute', left: `${left}%`, top: 14 + yOffset,
+                transform: 'translateX(-50%)',
+              }}>
+                <span style={{
+                  display: 'inline-block',
+                  width: s.primary ? 14 : 10, height: s.primary ? 14 : 10,
+                  borderRadius: '50%',
+                  background: isUpcoming ? '#fff' : color,
+                  border: `2px solid ${color}`,
+                  boxShadow: s.primary ? '0 0 0 4px rgba(59,130,246,0.18)' : 'none',
+                }}/>
+              </div>
+            );
+          })}
+
+          {/* "you are here" marker */}
+          <div style={{
+            position: 'absolute', left: `${pct(stats.nowMileage)}%`, top: -10,
+            transform: 'translateX(-50%)',
+            display: 'flex', flexDirection: 'column', alignItems: 'center',
+            pointerEvents: 'none',
+          }}>
+            <span style={{
+              fontFamily: 'var(--font-geist-mono, ui-monospace, monospace)',
+              fontSize: 9.5, fontWeight: 700, color: '#0B1220',
+              background: '#fff', padding: '2px 6px', borderRadius: 4,
+              border: '1px solid #E3DFD4', letterSpacing: '0.04em',
+              whiteSpace: 'nowrap',
+            }}>YOU · {stats.nowMileage.toLocaleString()}</span>
+            <span style={{ width: 2, height: 22, background: '#0B1220', marginTop: 4 }}/>
+          </div>
+        </div>
+      </div>
+
+      {/* Service rows */}
+      <div>
+        <ScheduleGroup title="Overdue" subtitle="Past the recommended interval — handle this next."
+          color="#B45309" services={grouped.overdue}/>
+        <ScheduleGroup title="Due now" subtitle="Pair these in one visit to save labor."
+          color="#3B82F6" services={grouped.due_now}/>
+        <ScheduleGroup title="On the horizon" subtitle="More than 500 mi out — plan ahead."
+          color="#64748B" services={grouped.upcoming}/>
+        <ScheduleGroup title="Recently completed" subtitle="Logged in the last 12 months."
+          color="#10B981" services={grouped.done} collapsed/>
+      </div>
+    </div>
+  );
+}
+
+function ScheduleGroup({
+  title, subtitle, color, services, collapsed,
+}: { title: string; subtitle: string; color: string; services: ScheduleService[]; collapsed?: boolean }) {
+  const [expanded, setExpanded] = useState(false);
+  if (services.length === 0) return null;
+  const visible = collapsed && !expanded ? services.slice(0, 1) : services;
+  return (
+    <div style={{ borderTop: '1px solid #E3DFD4', padding: '14px 0 12px' }}>
+      <div style={{
+        display: 'flex', alignItems: 'baseline', justifyContent: 'space-between',
+        marginBottom: 10, gap: 12,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ width: 6, height: 6, borderRadius: '50%', background: color }}/>
+          <span style={{ fontSize: 12, fontWeight: 600 }}>{title}</span>
+          <span style={{
+            fontFamily: 'var(--font-geist-mono, ui-monospace, monospace)',
+            fontSize: 10, color: '#94A3B8', fontWeight: 600,
+          }}>{services.length}</span>
+        </div>
+        <span style={{ fontSize: 11.5, color: '#64748B' }}>{subtitle}</span>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {visible.map((s, i) => (
+          <ScheduleRow key={i} service={s} accent={color}/>
+        ))}
+        {collapsed && services.length > 1 && (
+          <button onClick={() => setExpanded((e) => !e)} style={{
+            background: 'transparent', border: 'none', padding: '6px 0',
+            fontSize: 11.5, color: '#64748B', textAlign: 'left', cursor: 'pointer',
+            fontFamily: 'inherit',
+          }}>
+            {expanded ? `– hide ${services.length - 1}` : `+ show ${services.length - 1} more completed`}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ScheduleRow({ service, accent }: { service: ScheduleService; accent: string }) {
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 14,
+      padding: '10px 14px',
+      background: service.primary ? 'rgba(59,130,246,0.05)' : '#FAF8F2',
+      border: `1px solid ${service.primary ? 'rgba(59,130,246,0.22)' : '#E3DFD4'}`,
+      borderRadius: 10,
+    }}>
+      <span style={{
+        width: 28, height: 28, borderRadius: 8, flexShrink: 0,
+        background: '#fff', border: `1px solid ${accent}`,
+        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+        color: accent, fontSize: 12, fontWeight: 700,
+      }}>{statusGlyph(service.status)}</span>
+      <div style={{ flex: 1, minWidth: 0, display: 'flex', alignItems: 'baseline',
+        gap: 12, flexWrap: 'wrap' }}>
+        <span style={{ fontSize: 13, fontWeight: 600 }}>{service.name}</span>
+        <span style={{
+          fontFamily: 'var(--font-geist-mono, ui-monospace, monospace)',
+          fontFeatureSettings: '"tnum" 1',
+          fontSize: 11, color: '#64748B', fontWeight: 500,
+        }}>{service.mileage.toLocaleString()} mi</span>
+        <span style={{ fontSize: 11.5, color: '#475569' }}>· {service.note}</span>
+      </div>
+    </div>
+  );
+}
+
+function statusGlyph(status: ScheduleServiceStatus): string {
+  switch (status) {
+    case 'done': return '\u2713'; // ✓
+    case 'overdue': return '!';
+    case 'due_now': return '\u23F1'; // ⏱ (clock)
+    case 'upcoming': return '\u2192'; // →
+  }
+}
+
 function IssueAttachmentGroup({ issues }: { issues: AttachableIssue[] }) {
   // Use the first issue's slug-derivable URL as the "See all" target.
   // All matched issues for one reply belong to the same vehicle so this
