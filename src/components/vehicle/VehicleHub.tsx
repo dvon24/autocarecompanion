@@ -611,10 +611,15 @@ function MobileHub({
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages.length]);
 
-  // Vehicle initial for the avatar disc — Mobile design uses the model's
-  // first letter (e.g. "C" for Challenger), which is more recognizable
-  // than make initials when the model is the daily-driver identifier.
-  const vehInitial = (vehicle.model || vehicle.make || '·').charAt(0).toUpperCase();
+  // Vehicle initial for the avatar disc — fall back to make's first letter
+  // when the model leads with a digit (e.g. Chrysler "300", BMW "3 Series",
+  // RAM "1500") so the disc never reads as a number, which looks broken.
+  const vehInitial = (() => {
+    const modelChar = (vehicle.model || '').trim().charAt(0).toUpperCase();
+    const makeChar = (vehicle.make || '').trim().charAt(0).toUpperCase();
+    if (!modelChar) return makeChar || '·';
+    return /[A-Z]/.test(modelChar) ? modelChar : (makeChar || modelChar);
+  })();
   const userInitialsTxt = user ? userInitials(user.name) : '';
 
   // Derived greeting headline. Two paths matching the design bundle:
@@ -786,21 +791,61 @@ function MobileHub({
         )}
 
         {/* Conversation turns past the opener (the opener itself is rendered
-            into the greeting + attachments above, not as a bubble). */}
-        {messages.slice(1).map((m, idx) => (
-          m.role === 'user' ? (
-            <div key={idx} className="m-row-user">
-              <div className="m-bubble-user">{m.content}</div>
-            </div>
-          ) : (
+            into the greeting + attachments above, not as a bubble).
+            Assistant turns mirror desktop's Au7oReply behavior: markdown
+            inline (so ** / _ render properly instead of leaking raw),
+            issue cards matched from the reply text, mini-map for trip
+            intent, schedule attachment when present, and follow-up chips. */}
+        {messages.slice(1).map((m, idx) => {
+          if (m.role === 'user') {
+            return (
+              <div key={idx} className="m-row-user">
+                <div className="m-bubble-user">{m.content}</div>
+              </div>
+            );
+          }
+          const matched = matchAttachments(m.content, attachableIssues);
+          const { body, followUps } = extractFollowUps(m.content);
+          const visibleBody = matched.length > 0
+            ? stripIssueTitleLines(body, matched.map((a) => a.title))
+            : body;
+          const drive = detectDriveIntent(m.content);
+          return (
             <div key={idx} className="m-row-au7o">
               <Image src="/og-image.png" alt="" width={22} height={22} className="m-mascot" />
               <div className="m-au7o-body">
-                {m.content || <span className="m-typing">…</span>}
+                {!m.content
+                  ? <span className="m-typing">…</span>
+                  : visibleBody.trim().length > 0
+                    ? renderMarkdownLite(visibleBody)
+                    : null}
+                {m.schedule && <MaintenanceSchedule schedule={m.schedule} />}
+                {matched.length > 0 && <IssueAttachmentGroup issues={matched} />}
+                {m.route ? (
+                  <MiniRoute
+                    route={m.route}
+                    onOpenDrive={() => {
+                      const dest = m.route!.destination.placeName || (drive?.destination ?? '');
+                      const href = dest ? `/drive?to=${encodeURIComponent(dest)}` : '/drive';
+                      window.location.href = href;
+                    }}
+                  />
+                ) : (
+                  drive && <DriveHandoff destination={drive.destination} />
+                )}
+                {followUps.length > 0 && (
+                  <div className="m-followups">
+                    {followUps.map((q, i) => (
+                      <button key={i} className="m-followup-chip" onClick={() => onSend(q)} disabled={pending}>
+                        {q}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
-          )
-        ))}
+          );
+        })}
       </div>
 
       {/* Composer + bottom tab bar */}
@@ -888,11 +933,16 @@ function MobileHub({
         }
         .m-veh-pill {
           display: inline-flex; align-items: center; gap: 8px;
-          padding: 6px 12px 6px 6px;
+          padding: 6px 14px 6px 6px;
           background: #fff; border: 1px solid var(--paper-line); border-radius: var(--r-pill);
           color: var(--ink); text-decoration: none;
-          min-width: 0; max-width: 60vw;
+          min-width: 0; max-width: 70vw;
+          /* Stop the meta column from squeezing to wrap — iOS Safari was
+             stacking model/year vertically when the row got cramped. */
+          flex-wrap: nowrap;
         }
+        .m-veh-pill > * { flex-shrink: 0; }
+        .m-veh-pill .m-veh-meta { flex-shrink: 1; min-width: 0; }
         .m-veh-disc {
           width: 26px; height: 26px; border-radius: 50%;
           background: var(--ink); color: #fff;
@@ -984,14 +1034,33 @@ function MobileHub({
           white-space: pre-wrap;
         }
         .m-row-au7o {
-          margin-top: 10px; display: flex; gap: 8px; align-items: flex-start;
+          margin-top: 14px; display: flex; gap: 8px; align-items: flex-start;
         }
         .m-mascot { margin-top: 2px; flex-shrink: 0; }
         .m-au7o-body {
-          font-size: 12.5px; color: var(--ink); line-height: 1.5;
-          flex: 1; min-width: 0; white-space: pre-wrap;
+          font-size: 13px; color: var(--ink); line-height: 1.5;
+          flex: 1; min-width: 0;
+          display: flex; flex-direction: column; gap: 10px;
         }
+        .m-au7o-body :global(strong) { font-weight: 600; color: var(--ink); }
+        .m-au7o-body :global(em) { font-style: italic; color: var(--slate-500); }
+        .m-au7o-body :global(ul) { padding-left: 0; margin: 6px 0; list-style: none; }
+        .m-au7o-body :global(li) { padding: 2px 0; }
+        /* Loosen attachment widths so IssueAttachmentGroup, MiniRoute, and
+           MaintenanceSchedule don't get clipped by a desktop max-width. */
+        .m-au7o-body :global(.row-au7o) { width: 100%; }
+        .m-au7o-body :global(.body) { max-width: 100% !important; gap: 10px !important; }
         .m-typing { color: var(--slate-400); }
+        .m-followups { display: flex; flex-direction: column; gap: 6px; }
+        .m-followup-chip {
+          display: flex; align-items: center; gap: 8px; width: 100%;
+          padding: 9px 12px; border-radius: 12px;
+          background: #fff; border: 1px solid var(--paper-line);
+          color: var(--ink); font-family: inherit; font-size: 12.5px;
+          text-align: left; cursor: pointer;
+        }
+        .m-followup-chip:disabled { opacity: 0.5; cursor: default; }
+        .m-followup-chip:active { background: var(--paper-2); }
 
         /* ─── Composer + tab bar ─── */
         .m-foot {
@@ -1025,11 +1094,19 @@ function MobileHub({
         .m-composer-input {
           flex: 1; min-width: 0;
           border: none; outline: none; background: transparent;
-          font-family: inherit; font-size: 13px; color: var(--ink);
-          resize: none; padding: 4px 0; line-height: 1.4;
+          font-family: inherit; color: var(--ink);
+          /* iOS Safari auto-zooms when an <input>/<textarea> has font-size
+             below 16px. Scale the visual size back down via a transform-
+             free trick: keep font-size 16px but compensate line-height so
+             the composer height stays roughly where the design intends. */
+          font-size: 16px;
+          resize: none; padding: 2px 0; line-height: 1.3;
           max-height: 120px;
         }
-        .m-composer-input::placeholder { color: var(--slate-400); }
+        .m-composer-input::placeholder {
+          color: var(--slate-400);
+          font-size: 14px;
+        }
         .m-mic-btn {
           width: 28px; height: 28px; border-radius: 50%;
           background: var(--paper-2); border: none;
@@ -1051,12 +1128,18 @@ function MobileHub({
           border-top: 1px solid var(--paper-line);
         }
         .m-tab {
-          display: flex; flex-direction: column; align-items: center; gap: 2px;
+          display: flex; flex-direction: column; align-items: center;
+          /* Wider gap between glyph and label so the bottom row breathes
+             — earlier 2px crammed icon + text into one optical block. */
+          gap: 4px;
           background: transparent; border: none; cursor: pointer;
           color: var(--slate-400); text-decoration: none;
-          padding: 0; font-family: inherit;
+          padding: 2px 8px; font-family: inherit;
         }
-        .m-tab > span:last-child { font-size: 9.5px; font-weight: 500; }
+        .m-tab > span:last-child {
+          font-size: 9px; font-weight: 500;
+          letter-spacing: 0.01em;
+        }
         .m-tab-active { color: var(--ink); }
         .m-tab-active > span:last-child { font-weight: 600; }
       `}</style>
@@ -1325,20 +1408,12 @@ function MobileIssuesCard({
         );
       })}
       <div className="ic-actions">
-        {authed ? (
-          <>
-            <Link href={`/known-issues/${slug}`} className="ic-btn ic-btn-primary">See all</Link>
-            <Link href={`/known-issues/${slug}#diagnose`} className="ic-btn">Diagnose mine</Link>
-          </>
-        ) : (
-          // Anon variant from 04-MobileHubAnonymous.jsx — twin chips with
-          // equal weight; "Diagnose mine" leads since it's the engagement
-          // hook for this surface.
-          <>
-            <Link href={`/known-issues/${slug}#diagnose`} className="ic-btn">Diagnose mine</Link>
-            <Link href={`/known-issues/${slug}`} className="ic-btn">Find a shop</Link>
-          </>
-        )}
+        {/* Real destinations only — earlier "#diagnose" / "Find a shop" links
+            went to a 404. "See all" lands on the full known-issues article;
+            "Symptom check" routes to /symptom-chat which exists and is the
+            real diagnostic flow. */}
+        <Link href={`/known-issues/${slug}`} className="ic-btn ic-btn-primary">See all</Link>
+        <Link href="/symptom-chat" className="ic-btn">Symptom check</Link>
       </div>
       <style jsx>{`
         .ic {

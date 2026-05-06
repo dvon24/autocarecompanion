@@ -46,16 +46,21 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   // Next.js client-side nav doesn't reliably trigger native browser
   // anchor scroll, so we do it manually after a short delay so the
   // expanded content has time to render before we measure the scroll
-  // target.
+  // target. iOS Safari needs a longer window than desktop Chrome —
+  // 120ms wasn't enough on real devices, the layout was still settling
+  // when scrollIntoView fired and the browser would land on the wrong
+  // card. We retry once at the longer delay if the first attempt missed.
   useEffect(() => {
     if (typeof window === 'undefined') return;
     if (window.location.hash !== `#${issue.id}`) return;
     setExpanded(true);
-    const t = setTimeout(() => {
+    const scrollTo = () => {
       const el = document.getElementById(issue.id);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 120);
-    return () => clearTimeout(t);
+    };
+    const t1 = setTimeout(scrollTo, 200);
+    const t2 = setTimeout(scrollTo, 600);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [issue.id]);
 
   const severityConfig = {
