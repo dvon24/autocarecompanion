@@ -242,6 +242,17 @@ export default async function KnownIssuesArticlePage({
     ? allIssues.filter((i) => i.vehicleMatch.years.includes(initialYear!))
     : allIssues;
 
+  // Every year that has at least one documented issue across this make/model
+  // — built from allIssues (PRE-filter) so the year-nav rail in
+  // ArticleIssuesList can render a link for every ?year=YYYY variant. Each
+  // link is a real <a href>, so Google's crawler discovers all per-year
+  // canonicals from this single page; previously the year picker was a
+  // <select> whose options weren't crawlable, leaving the per-year pages
+  // orphaned in the link graph.
+  const navYearsSet = new Set<number>();
+  for (const i of allIssues) for (const y of i.vehicleMatch.years) navYearsSet.add(y);
+  const navYears = [...navYearsSet].sort((a, b) => b - a);
+
   // Per-issue cross-vehicle links — issues that share DTC codes across
   // makes/models. Adds Gemini's "hub-and-spoke" internal-link network so
   // Google sees these pages as a connected library, not 900 isolated
@@ -466,6 +477,7 @@ export default async function KnownIssuesArticlePage({
                 make={make}
                 model={model}
                 initialYear={initialYear}
+                allYears={navYears}
                 relatedByIssueId={Object.fromEntries(relatedByIssue)}
               />
             </section>

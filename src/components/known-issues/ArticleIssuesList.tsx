@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useVehicleContext } from '@/contexts/AppContext';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 import { CategorySection } from './CategorySection';
@@ -21,14 +22,19 @@ interface ArticleIssuesListProps {
   make: string;
   model: string;
   initialYear?: number;
+  /** All years that have at least one issue across this make/model BEFORE
+   *  per-year filtering. Drives the year-nav rail so Google can crawl every
+   *  ?year=YYYY variant via real <a href> links — earlier the year picker was
+   *  a <select> that depended on JS hydration to navigate, which left the
+   *  per-year variants orphaned in the link graph. */
+  allYears: number[];
   /** Per-issue cross-vehicle links (keyed by issue.id). Server pre-computes
    *  this from shared DTC codes — see findRelatedVehiclesForIssues. */
   relatedByIssueId?: Record<string, RelatedIssueVehicle[]>;
 }
 
-export function ArticleIssuesList({ issues, make, model, initialYear, relatedByIssueId }: ArticleIssuesListProps) {
+export function ArticleIssuesList({ issues, make, model, initialYear, allYears, relatedByIssueId }: ArticleIssuesListProps) {
   const { selectedVehicle } = useVehicleContext();
-  const router = useRouter();
   const pathname = usePathname();
   const [severityFilter, setSeverityFilter] = useState<('high' | 'medium' | 'low')[]>(['high', 'medium', 'low']);
   const [yearFilter, setYearFilter] = useState<number | null>(initialYear ?? null);
@@ -126,29 +132,6 @@ export function ArticleIssuesList({ issues, make, model, initialYear, relatedByI
       <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm border-b border-gray-200 px-4 py-3 -mx-4 sm:-mx-6 sm:px-6">
         <div className="flex items-center gap-3 flex-wrap">
           <SeverityFilter selected={severityFilter} onChange={setSeverityFilter} />
-          <select
-            value={yearFilter ?? ''}
-            onChange={e => {
-              const next = e.target.value ? parseInt(e.target.value, 10) : null;
-              // Update local state immediately so the cards filter without
-              // waiting for the route transition. Then push the URL to the
-              // year-specific (or all-years) canonical so the H1, <title>,
-              // JSON-LD, and FAQ schema all reflect the new selection. The
-              // server-rendered per-year variant is what we want users to
-              // share + Google to crawl.
-              setYearFilter(next);
-              const target = next ? `${pathname}?year=${next}` : pathname;
-              router.push(target, { scroll: false });
-            }}
-            className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          >
-            <option value="">All Years ({issues.length})</option>
-            {availableYears.map(y => (
-              <option key={y} value={y}>
-                {y} ({issues.filter(i => i.vehicleMatch.years.includes(y)).length})
-              </option>
-            ))}
-          </select>
           {availableTrims.length > 0 && (
             <select
               value={trimFilter ?? ''}
@@ -162,6 +145,48 @@ export function ArticleIssuesList({ issues, make, model, initialYear, relatedByI
             </select>
           )}
         </div>
+
+        {/* Year nav rail — every year is a real <a href>. Google crawls each
+            ?year=YYYY variant from this list, which fixes the orphaning
+            problem the earlier <select>-based picker created (Googlebot
+            can't interact with selects, so the per-year canonical pages
+            had no inbound link signal beyond the sitemap). Native browser
+            navigation also makes the year picker work even if React fails
+            to hydrate — the dropdown was silently broken on some ISR-
+            cached pages because of that hydration dependency. */}
+        {allYears.length > 0 && (
+          <nav aria-label="Filter by year" className="mt-3">
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 -mx-1 px-1">
+              <Link
+                href={pathname}
+                className={`flex-shrink-0 px-3 py-1 text-xs font-mono font-semibold rounded-full transition ${
+                  yearFilter === null
+                    ? 'bg-gray-900 text-white'
+                    : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-100'
+                }`}
+                scroll={false}
+                prefetch={false}
+              >
+                ALL YEARS
+              </Link>
+              {allYears.map(y => (
+                <Link
+                  key={y}
+                  href={`${pathname}?year=${y}`}
+                  className={`flex-shrink-0 px-3 py-1 text-xs font-mono font-semibold rounded-full transition ${
+                    yearFilter === y
+                      ? 'bg-gray-900 text-white'
+                      : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-100'
+                  }`}
+                  scroll={false}
+                  prefetch={false}
+                >
+                  {y}
+                </Link>
+              ))}
+            </div>
+          </nav>
+        )}
       </div>
 
       {/* Mileage Timeline — shows when issues typically appear */}
