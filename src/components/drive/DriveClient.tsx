@@ -179,6 +179,58 @@ function speak(text: string, mode: VoiceMode = 'all', priority: 'alert' | 'norma
   } catch { /* ignore */ }
 }
 
+// Lazy-init AudioContext for the camera-approach chime. Cached at
+// module level because (a) we only need one and (b) browsers cap how
+// many you can spawn. iOS Safari requires a user gesture to start
+// audio — entering follow mode (the "Drive" button tap) provides
+// that gesture, so by the time we'd play a chime the context is
+// already unlocked.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let _alertAudioCtx: AudioContext | null = null;
+function playAlertChime() {
+  if (typeof window === 'undefined') return;
+  try {
+    if (!_alertAudioCtx) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const Ctx = window.AudioContext || (window as any).webkitAudioContext;
+      if (!Ctx) return;
+      _alertAudioCtx = new Ctx();
+    }
+    const ctx = _alertAudioCtx;
+    if (ctx.state === 'suspended') {
+      // Best-effort resume — if we don't have a user gesture in scope this
+      // is a no-op and the chime silently won't play. TTS path still fires.
+      ctx.resume().catch(() => {});
+    }
+    const now = ctx.currentTime;
+    // Two-tone "ding-dong" — 880 Hz then 660 Hz, sine wave with fast
+    // attack/release. Total duration ~250 ms, distinct from car-radio
+    // chatter, plays even if the user has voice muted (it's a safety
+    // cue, not a chatter signal).
+    const tones: { freq: number; start: number }[] = [
+      { freq: 880, start: 0 },
+      { freq: 660, start: 0.13 },
+    ];
+    for (const { freq, start } of tones) {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      const t = now + start;
+      gain.gain.setValueAtTime(0, t);
+      gain.gain.linearRampToValueAtTime(0.28, t + 0.012); // attack
+      gain.gain.setValueAtTime(0.28, t + 0.08);           // sustain
+      gain.gain.linearRampToValueAtTime(0, t + 0.12);     // release
+      osc.start(t);
+      osc.stop(t + 0.13);
+    }
+  } catch {
+    // Audio API errors are silent — TTS will still announce the camera.
+  }
+}
+
 interface DriveClientProps {
   mapboxToken: string;
   /** Server-supplied primary vehicle for signed-in users. Anonymous users
@@ -1123,9 +1175,14 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
               cameraMarkersById.current.set(cam.id, marker);
             }
 
-            // TTS once per session per camera at the closer warn radius.
+            // Audio + TTS once per session per camera at the closer warn radius.
+            // Chime fires regardless of voiceMode (it's a safety cue, not
+            // chatter); TTS still respects mute. Order: chime first so the
+            // driver gets an auditory "look up" signal even before the voice
+            // starts forming the word "speed."
             if (following && distM <= WARN_RADIUS_M && !announcedCamerasRef.current.has(cam.id)) {
               announcedCamerasRef.current.add(cam.id);
+              playAlertChime();
               const isSuppressed = cameraSuppressedRef.current;
               const label = cam.type === 'school-zone' ? 'School zone enforcement'
                 : cam.type === 'red-light' ? 'Red-light camera'
