@@ -846,156 +846,25 @@ Rules:
     }
   }
 
-  if (!geocoded) {
-    geocoded = await searchBoxForward(destination);
-    if (geocoded) console.log(`[drive/plan-route] SearchBox forward (1st): "${geocoded.placeName}"`);
-  }
-
-  // Google Places Text Search — POI-aware fallback for named destinations
-  // that Mapbox SearchBox doesn't recognize. Google's POI database covers a
-  // lot of niche places (military bases under casual names, regional
-  // landmarks, small businesses) that Mapbox misses. Location-biased on the
-  // driver's GPS so "Kelley" near Stuttgart returns Kelley Barracks rather
-  // than some unrelated Kelley elsewhere. The existing localSearchPick path
-  // up the file handles category searches ("find me a coffee shop") with
-  // rating/openNow filters; this is the same API for specific-name lookups.
-  if (!geocoded && process.env.GOOGLE_PLACES_API_KEY) {
-    try {
-      const fieldMask = 'places.id,places.displayName,places.formattedAddress,places.location';
-      const gRes = await fetch('https://places.googleapis.com/v1/places:searchText', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Goog-Api-Key': process.env.GOOGLE_PLACES_API_KEY,
-          'X-Goog-FieldMask': fieldMask,
-        },
-        body: JSON.stringify({
-          textQuery: destination,
-          languageCode: lang,
-          maxResultCount: 5,
-          locationBias: {
-            circle: {
-              center: { latitude: body.origin.lat, longitude: body.origin.lng },
-              radius: 50000, // 50 km — wide enough to catch nearby cities, tight enough to suppress global homonyms
-            },
-          },
-        }),
-        signal: AbortSignal.timeout(8000),
-      });
-      if (gRes.ok) {
-        const gData = await gRes.json();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const candidates = (gData.places || []) as any[];
-        // Pick the closest result to the driver's GPS — same re-rank pattern
-        // we use for Mapbox to defeat the API's own ranking when it brings
-        // back something far away.
-        let best: { place: typeof candidates[number]; dist: number } | null = null;
-        for (const p of candidates) {
-          const loc = p.location;
-          if (!loc) continue;
-          const dist = haversineMiles(body.origin.lat, body.origin.lng, loc.latitude, loc.longitude);
-          if (!best || dist < best.dist) best = { place: p, dist };
-        }
-        if (best) {
-          geocoded = {
-            lng: best.place.location.longitude,
-            lat: best.place.location.latitude,
-            placeName: best.place.displayName?.text || best.place.formattedAddress || destination,
-          };
-          console.log(`[drive/plan-route] Google Places fallback: "${geocoded.placeName}" (${best.dist.toFixed(1)} mi from driver)`);
-        } else {
-          console.log(`[drive/plan-route] Google Places returned 0 places for "${destination}"`);
-        }
-      } else {
-        console.warn('[drive/plan-route] Google Places fallback HTTP', gRes.status);
-      }
-    } catch (err) {
-      console.warn('[drive/plan-route] Google Places fallback error:', err);
-    }
-  }
-
-  if (!geocoded) geocoded = await geocode(destination, true);
-  if (!geocoded && country) {
-    // Retry without country bias in case the destination's region was inferred wrong.
-    geocoded = await geocode(destination, false);
-  }
-  if (!geocoded) {
-    // Third pass: strip the (possibly hallucinated) street and try just place + city + country.
-    const stripped = stripPossibleStreet(destination);
-    if (stripped) {
-      console.log(`[drive/plan-route] Geocode fallback (drop street): "${destination}" → "${stripped}"`);
-      geocoded = await geocode(stripped, true);
-      if (!geocoded && country) geocoded = await geocode(stripped, false);
-    }
-  }
-  if (!geocoded) {
-    // Fourth pass: drop the PLACE NAME instead and route to the street address.
-    // Mapbox is excellent at addresses but weak on niche POIs like military bases.
-    // Routing to the address gets you to the right physical spot anyway.
-    const parts = destination.split(',').map((p) => p.trim()).filter(Boolean);
-    if (parts.length >= 4) {
-      const addressOnly = parts.slice(1).join(', ');
-      console.log(`[drive/plan-route] Geocode fallback (drop place name): "${destination}" → "${addressOnly}"`);
-      geocoded = await geocode(addressOnly, true);
-      if (!geocoded && country) geocoded = await geocode(addressOnly, false);
-    }
-  }
-  if (!geocoded) {
-    // Fifth pass: Mapbox SearchBox API — newer, purpose-built for POI matching.
-    // Better at pools, restaurants, military bases than legacy v5 geocoding.
-    try {
-      const sbParams = new URLSearchParams({
-        q: destination,
-        access_token: MAPBOX_TOKEN!,
-        proximity: `${body.origin.lng},${body.origin.lat}`,
-        limit: '5',
-        language: 'en',
-      });
-      if (country) sbParams.set('country', country.toLowerCase());
-      const sbUrl = `https://api.mapbox.com/search/searchbox/v1/forward?${sbParams.toString()}`;
-      console.log(`[drive/plan-route] Trying Mapbox SearchBox: "${destination}"`);
-      const sbRes = await fetch(sbUrl);
-      if (sbRes.ok) {
-        const sbData = await sbRes.json();
-        const sbFeats = (sbData.features || []) as Array<{
-          geometry?: { coordinates?: [number, number] };
-          properties?: { full_address?: string; name?: string };
-        }>;
-        if (sbFeats.length > 0) {
-          let bestSb = sbFeats[0];
-          let bestSbDist = Infinity;
-          for (const f of sbFeats) {
-            const c = f.geometry?.coordinates;
-            if (!c) continue;
-            const d = haversineMiles(body.origin.lat, body.origin.lng, c[1], c[0]);
-            if (d < bestSbDist) { bestSb = f; bestSbDist = d; }
-          }
-          const c = bestSb.geometry?.coordinates;
-          if (c) {
-            geocoded = {
-              lng: c[0],
-              lat: c[1],
-              placeName: bestSb.properties?.full_address || bestSb.properties?.name || destination,
-            };
-            console.log(`[drive/plan-route] SearchBox found: "${geocoded.placeName}"`);
-          }
-        }
-      } else {
-        console.warn('[drive/plan-route] SearchBox HTTP', sbRes.status);
-      }
-    } catch (err) {
-      console.warn('[drive/plan-route] SearchBox error:', err);
-    }
-  }
-  // Last-ditch fallback: Google Places searchText. We only reach here when
-  // every Mapbox path failed, so paying for a Places call is justified by
-  // the alternative being a "not found" message that kills the user's trip.
-  // Triggers an estimated ~2-5% of queries — niche restaurants, military
-  // bases, regional landmarks Mapbox simply doesn't index well.
-  // Score-and-pick same as the localSearch path: rating × log(reviews) −
-  // distance penalty, so we don't pick a 1-star Kelley's Bar in Munich
-  // when the user said "Kelley Barracks" near Stuttgart.
-  if (!geocoded && process.env.GOOGLE_PLACES_API_KEY) {
+  // Google Places Text Search — primary destination geocoder. Replaces
+  // the previous Mapbox SearchBox + Geocoding v5 chain entirely. Mapbox
+  // kept fuzzy-matching to wrong places ("Kelley" → some downtown
+  // unrelated bar instead of Kelley Barracks; named POIs in Europe
+  // resolved to wildly off-target spots). Google's POI database is
+  // strictly better for this use case — covers military bases, regional
+  // landmarks, small businesses, niche restaurants — and the
+  // location-bias on the driver's GPS plus distance-rerank gives us a
+  // local-friend-quality result the very first try.
+  //
+  // Three-pass strategy when the first call returns nothing:
+  //   1. Full destination string as Claude provided it.
+  //   2. Strip the (possibly hallucinated) middle street segment.
+  //   3. Drop the place name and keep only the street address — last
+  //      resort but still gets you to the physical spot.
+  // Each pass is one ~$0.005 Google Places Text Search call. Most
+  // queries succeed on pass 1, so we're amortized at ~1 call per route.
+  async function googleGeocode(query: string): Promise<{ lng: number; lat: number; placeName: string } | null> {
+    if (!process.env.GOOGLE_PLACES_API_KEY) return null;
     try {
       const fieldMask = 'places.id,places.displayName,places.formattedAddress,places.location,places.rating,places.userRatingCount';
       const gRes = await fetch('https://places.googleapis.com/v1/places:searchText', {
@@ -1006,46 +875,75 @@ Rules:
           'X-Goog-FieldMask': fieldMask,
         },
         body: JSON.stringify({
-          textQuery: destination,
+          textQuery: query,
           languageCode: lang,
           maxResultCount: 8,
           locationBias: {
             circle: {
-              center: { latitude: body.origin.lat, longitude: body.origin.lng },
-              radius: 50000, // 50 km — wider than localSearch since this is a proper-noun fallback
+              center: { latitude: body.origin!.lat, longitude: body.origin!.lng },
+              radius: 50000, // 50 km — wide enough to catch nearby cities, tight enough to suppress global homonyms
             },
           },
         }),
-        signal: AbortSignal.timeout(7000),
+        signal: AbortSignal.timeout(8000),
       });
-      if (gRes.ok) {
-        const gData = await gRes.json();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const candidates = (gData.places || []) as any[];
-        let best: { place: typeof candidates[number]; score: number } | null = null;
-        for (const p of candidates) {
-          const loc = p.location;
-          if (!loc) continue;
-          const dist = haversineMiles(body.origin.lat, body.origin.lng, loc.latitude, loc.longitude);
-          const rating = typeof p.rating === 'number' ? p.rating : 3.0;
-          const count = typeof p.userRatingCount === 'number' ? p.userRatingCount : 1;
-          const score = rating * Math.log10(count + 10) - dist * 0.04;
-          if (!best || score > best.score) best = { place: p, score };
-        }
-        if (best) {
-          const p = best.place;
-          geocoded = {
-            lng: p.location.longitude,
-            lat: p.location.latitude,
-            placeName: p.displayName?.text || p.formattedAddress || destination,
-          };
-          console.log(`[drive/plan-route] Google Places fallback: "${destination}" → "${geocoded.placeName}"`);
-        }
-      } else {
-        console.warn(`[drive/plan-route] Google Places fallback HTTP ${gRes.status}`);
+      if (!gRes.ok) {
+        console.warn(`[drive/plan-route] Google Places HTTP ${gRes.status} for "${query}"`);
+        return null;
       }
+      const gData = await gRes.json();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const candidates = (gData.places || []) as any[];
+      if (!candidates.length) return null;
+      // Score: rating × log(reviews) − distance penalty. Beats both
+      // pure-distance ("closest match" picks a 1-star Kelley's Bar) and
+      // pure-rating ("highest rated" picks something across town).
+      let best: { place: typeof candidates[number]; score: number; dist: number } | null = null;
+      for (const p of candidates) {
+        const loc = p.location;
+        if (!loc) continue;
+        const dist = haversineMiles(body.origin!.lat, body.origin!.lng, loc.latitude, loc.longitude);
+        const rating = typeof p.rating === 'number' ? p.rating : 3.0;
+        const count = typeof p.userRatingCount === 'number' ? p.userRatingCount : 1;
+        const score = rating * Math.log10(count + 10) - dist * 0.05;
+        if (!best || score > best.score) best = { place: p, score, dist };
+      }
+      if (!best) return null;
+      return {
+        lng: best.place.location.longitude,
+        lat: best.place.location.latitude,
+        placeName: best.place.displayName?.text || best.place.formattedAddress || query,
+      };
     } catch (err) {
-      console.warn('[drive/plan-route] Google Places fallback error:', err);
+      console.warn(`[drive/plan-route] Google Places error for "${query}":`, err);
+      return null;
+    }
+  }
+
+  // Pass 1 — try the destination string verbatim.
+  if (!geocoded) {
+    geocoded = await googleGeocode(destination);
+    if (geocoded) console.log(`[drive/plan-route] Google Places (full): "${geocoded.placeName}"`);
+  }
+  // Pass 2 — strip the middle street segment (Claude sometimes
+  // hallucinates a fake street address when it knows the place name +
+  // city but not the actual street).
+  if (!geocoded) {
+    const stripped = stripPossibleStreet(destination);
+    if (stripped) {
+      console.log(`[drive/plan-route] Google Places (stripped street): "${destination}" → "${stripped}"`);
+      geocoded = await googleGeocode(stripped);
+    }
+  }
+  // Pass 3 — drop the place name, route to the address only. Last
+  // resort; still gets you to the physical spot when the place name
+  // itself isn't searchable.
+  if (!geocoded) {
+    const parts = destination.split(',').map((p) => p.trim()).filter(Boolean);
+    if (parts.length >= 4) {
+      const addressOnly = parts.slice(1).join(', ');
+      console.log(`[drive/plan-route] Google Places (address only): "${destination}" → "${addressOnly}"`);
+      geocoded = await googleGeocode(addressOnly);
     }
   }
 
