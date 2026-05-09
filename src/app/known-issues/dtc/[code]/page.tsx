@@ -30,8 +30,37 @@ export async function generateMetadata({
   const data = await getDTCWithIssues(code);
   if (!data) return { title: 'Not Found' };
 
-  const title = `${data.code}: ${data.name} | OBD-II Code Guide`;
-  const description = `${data.code} means "${data.name}." Found on ${data.vehicleCount} vehicle models across ${data.makes.length} makes. Common causes, symptoms, repair costs, and vehicle-specific fixes.`;
+  // Top 3 most-reported vehicles for the SERP snippet. Issues come back
+  // sorted by reportCount desc from getDTCWithIssues, so the first three
+  // unique make+model pairs are what searchers will most likely query
+  // alongside the code (e.g. "p0420 toyota camry"). Baking these into the
+  // title + description gives Google an unambiguous signal that this page
+  // covers vehicle-specific cases of the code, not generic reference
+  // boilerplate that 1000 other DTC sites also publish.
+  const topVehicles: { make: string; model: string }[] = [];
+  const seen = new Set<string>();
+  for (const iss of data.issues) {
+    const key = `${iss.vehicleMatch.make}|${iss.vehicleMatch.model}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    topVehicles.push({ make: iss.vehicleMatch.make, model: iss.vehicleMatch.model });
+    if (topVehicles.length >= 3) break;
+  }
+  const vehicleList = topVehicles.map(v => `${v.make} ${v.model}`).join(', ');
+  const moreCount = Math.max(0, data.vehicleCount - topVehicles.length);
+  const moreSuffix = moreCount > 0 ? ` & ${moreCount} more` : '';
+
+  // Title — keep tight (~60 chars). Format puts the code first (matches
+  // search query lead), then makes (relevance), then code name (context).
+  const title = vehicleList
+    ? `${data.code} on ${topVehicles.map(v => v.make).join(', ')}${moreSuffix} — ${data.name}`
+    : `${data.code}: ${data.name} | OBD-II Code Guide`;
+  // Description (~155 chars). Lead with code + vehicle context. The
+  // generic "across N makes" framing was correct but invisible — it
+  // matched no real query.
+  const description = vehicleList
+    ? `${data.code} (${data.name}) on ${vehicleList}${moreSuffix} — common causes, repair costs, and per-vehicle fixes from real owner reports.`
+    : `${data.code} means "${data.name}." Found on ${data.vehicleCount} vehicle models. Common causes, symptoms, repair costs, and vehicle-specific fixes.`;
 
   return {
     title,
@@ -81,6 +110,20 @@ export default async function DTCCodePage({
   const costsHigh = data.issues.filter(i => i.estimatedCost).map(i => i.estimatedCost!.high);
   const minCost = costsLow.length > 0 ? Math.min(...costsLow) : 0;
   const maxCost = costsHigh.length > 0 ? Math.max(...costsHigh) : 0;
+
+  // Top 3 unique make+model pairs by reportCount (issues already sorted
+  // desc). Used by the GEO blockquote so the lead sentence names the
+  // vehicles searchers are most likely to query alongside the code.
+  const topVehicles: { make: string; model: string }[] = [];
+  const seenVehicles = new Set<string>();
+  for (const iss of data.issues) {
+    const key = `${iss.vehicleMatch.make}|${iss.vehicleMatch.model}`;
+    if (seenVehicles.has(key)) continue;
+    seenVehicles.add(key);
+    topVehicles.push({ make: iss.vehicleMatch.make, model: iss.vehicleMatch.model });
+    if (topVehicles.length >= 3) break;
+  }
+  const moreCount = Math.max(0, data.vehicleCount - topVehicles.length);
 
   // Severity
   const severityLabel = data.severity === 'high' ? 'Critical' : data.severity === 'medium' ? 'Moderate' : 'Minor';
@@ -180,11 +223,52 @@ export default async function DTCCodePage({
           </div>
         </header>
 
+        {/* Most-reported-on rail — top 5 vehicles by reportCount, each as
+            a real <Link>. Surfaces YMMT context above the fold for both
+            users (instant visual context: "this code shows up on my
+            Camry/Accord/Cruze") and Google (vehicle keywords appear high
+            in the page body, reinforcing the title/meta signal). The
+            CollapsibleMakeSection grid further down still covers the
+            full list. */}
+        {data.issues.length > 0 && (
+          <section aria-label="Most reported vehicles for this code" className="mb-8">
+            <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+              Most Reported On
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {data.issues.slice(0, 5).map((iss) => {
+                const yMin = Math.min(...iss.vehicleMatch.years);
+                const yMax = Math.max(...iss.vehicleMatch.years);
+                const yearLabel = yMin === yMax ? String(yMin) : `${yMin}-${yMax}`;
+                return (
+                  <Link
+                    key={iss.id}
+                    href={`/known-issues/${iss.slug}#${iss.id}`}
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-colors text-sm"
+                  >
+                    <span className="font-medium text-gray-900">
+                      {iss.vehicleMatch.make} {iss.vehicleMatch.model}
+                    </span>
+                    <span className="font-mono text-xs text-gray-500">{yearLabel}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
         {/* GEO Summary — blockquote */}
         <blockquote className="border-l-4 border-blue-200 pl-5 mb-10">
           <p className="text-gray-600 leading-relaxed">
             <strong className="text-gray-800">{data.code}</strong> is an OBD-II diagnostic trouble code meaning &ldquo;{data.name}.&rdquo; {data.description}{' '}
-            This code appears across <strong className="text-gray-800">{data.vehicleCount} vehicle models</strong> from {data.makes.length} manufacturers
+            This code is most commonly reported on{' '}
+            {topVehicles.map((v, idx) => (
+              <span key={`${v.make}-${v.model}`}>
+                {idx > 0 && (idx === topVehicles.length - 1 ? ', and ' : ', ')}
+                <strong className="text-gray-800">{v.make} {v.model}</strong>
+              </span>
+            ))}
+            {moreCount > 0 && <>, plus {moreCount} other vehicle{moreCount === 1 ? '' : 's'}</>}
             {minCost > 0 && <>, with repair costs ranging from <strong className="text-gray-800">${minCost.toLocaleString()}</strong> to <strong className="text-gray-800">${maxCost.toLocaleString()}</strong></>}.
           </p>
         </blockquote>
