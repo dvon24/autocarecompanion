@@ -114,16 +114,47 @@ export default async function DTCCodePage({
   // Top 3 unique make+model pairs by reportCount (issues already sorted
   // desc). Used by the GEO blockquote so the lead sentence names the
   // vehicles searchers are most likely to query alongside the code.
-  const topVehicles: { make: string; model: string }[] = [];
+  // Also carries year range + trims so the YMMT context appears in the
+  // body — earlier just "Audi SQ8" was rendered, which the user
+  // (correctly) flagged as missing the year and trim signals that
+  // searchers actually type ("002f audi sq8 prestige", "p0420 toyota
+  // camry 2018", etc.).
+  type TopVehicle = { make: string; model: string; minYear: number; maxYear: number; trims: string[] };
+  const topVehicles: TopVehicle[] = [];
   const seenVehicles = new Set<string>();
   for (const iss of data.issues) {
     const key = `${iss.vehicleMatch.make}|${iss.vehicleMatch.model}`;
     if (seenVehicles.has(key)) continue;
     seenVehicles.add(key);
-    topVehicles.push({ make: iss.vehicleMatch.make, model: iss.vehicleMatch.model });
+    const years = iss.vehicleMatch.years || [];
+    topVehicles.push({
+      make: iss.vehicleMatch.make,
+      model: iss.vehicleMatch.model,
+      minYear: years.length ? Math.min(...years) : 0,
+      maxYear: years.length ? Math.max(...years) : 0,
+      trims: iss.vehicleMatch.trims || [],
+    });
     if (topVehicles.length >= 3) break;
   }
   const moreCount = Math.max(0, data.vehicleCount - topVehicles.length);
+  const formatYearLabel = (v: TopVehicle): string => {
+    if (!v.minYear) return '';
+    return v.minYear === v.maxYear ? `${v.minYear}` : `${v.minYear}-${v.maxYear}`;
+  };
+  // Aggregate unique citations across all linked issues so the page can
+  // surface real source URLs (TSBs, NHTSA filings, forum threads). De-dup
+  // by URL since the same recall doc often appears on multiple issues.
+  // Many issues have citations:[] today — that's a data backfill gap, not
+  // a rendering one. The section just hides itself when nothing exists.
+  const citationMap = new Map<string, { type: string; title: string; url: string }>();
+  for (const iss of data.issues) {
+    for (const c of (iss.citations || [])) {
+      if (!c.url) continue;
+      if (citationMap.has(c.url)) continue;
+      citationMap.set(c.url, { type: c.type, title: c.title, url: c.url });
+    }
+  }
+  const citations = [...citationMap.values()].slice(0, 12);
 
   // Severity
   const severityLabel = data.severity === 'high' ? 'Critical' : data.severity === 'medium' ? 'Moderate' : 'Minor';
@@ -211,8 +242,31 @@ export default async function DTCCodePage({
             </span>
             <span className="text-xs text-gray-400 font-medium">{data.system}</span>
           </div>
+          {/* H1 — when the code maps to a SINGLE vehicle (only one unique
+              make+model across all linked issues), bake the full YMMT
+              into the heading so searchers querying "002f audi sq8" or
+              "p2095 honda civic 2014" get an exact-match signal. For
+              multi-vehicle codes the H1 stays generic ("P0420: Catalyst
+              System Efficiency") since cramming 8 makes into the heading
+              would read worse than letting the body's "Most Reported On"
+              + per-make grid do that work. */}
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
-            {data.code}: {data.name}
+            {topVehicles.length === 1 && data.vehicleCount === 1 ? (
+              <>
+                {data.code} on{' '}
+                {formatYearLabel(topVehicles[0]) && (
+                  <>{formatYearLabel(topVehicles[0])} </>
+                )}
+                {topVehicles[0].make} {topVehicles[0].model}
+                {topVehicles[0].trims.length > 0 && (
+                  <> ({topVehicles[0].trims.join(', ')})</>
+                )}
+                {' — '}
+                {data.name}
+              </>
+            ) : (
+              <>{data.code}: {data.name}</>
+            )}
           </h1>
           <div className="flex items-center justify-between flex-wrap gap-2">
             <p className="text-gray-400 text-sm">
@@ -237,19 +291,26 @@ export default async function DTCCodePage({
             </h2>
             <div className="flex flex-wrap gap-2">
               {data.issues.slice(0, 5).map((iss) => {
-                const yMin = Math.min(...iss.vehicleMatch.years);
-                const yMax = Math.max(...iss.vehicleMatch.years);
-                const yearLabel = yMin === yMax ? String(yMin) : `${yMin}-${yMax}`;
+                const years = iss.vehicleMatch.years || [];
+                const yMin = years.length ? Math.min(...years) : 0;
+                const yMax = years.length ? Math.max(...years) : 0;
+                const yearLabel = !yMin ? '' : yMin === yMax ? String(yMin) : `${yMin}-${yMax}`;
+                const trims = iss.vehicleMatch.trims || [];
                 return (
                   <Link
                     key={iss.id}
                     href={`/known-issues/${iss.slug}#${iss.id}`}
                     className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-colors text-sm"
                   >
+                    {yearLabel && <span className="font-mono text-xs text-gray-500">{yearLabel}</span>}
                     <span className="font-medium text-gray-900">
                       {iss.vehicleMatch.make} {iss.vehicleMatch.model}
                     </span>
-                    <span className="font-mono text-xs text-gray-500">{yearLabel}</span>
+                    {trims.length > 0 && (
+                      <span className="text-xs text-gray-500">
+                        {trims.length <= 2 ? trims.join(', ') : `${trims[0]} +${trims.length - 1}`}
+                      </span>
+                    )}
                   </Link>
                 );
               })}
@@ -262,12 +323,20 @@ export default async function DTCCodePage({
           <p className="text-gray-600 leading-relaxed">
             <strong className="text-gray-800">{data.code}</strong> is an OBD-II diagnostic trouble code meaning &ldquo;{data.name}.&rdquo; {data.description}{' '}
             This code is most commonly reported on{' '}
-            {topVehicles.map((v, idx) => (
-              <span key={`${v.make}-${v.model}`}>
-                {idx > 0 && (idx === topVehicles.length - 1 ? ', and ' : ', ')}
-                <strong className="text-gray-800">{v.make} {v.model}</strong>
-              </span>
-            ))}
+            {topVehicles.map((v, idx) => {
+              const yearLabel = formatYearLabel(v);
+              return (
+                <span key={`${v.make}-${v.model}`}>
+                  {idx > 0 && (idx === topVehicles.length - 1 ? ', and ' : ', ')}
+                  <strong className="text-gray-800">
+                    {yearLabel && `${yearLabel} `}{v.make} {v.model}
+                  </strong>
+                  {v.trims.length > 0 && (
+                    <> ({v.trims.join(', ')})</>
+                  )}
+                </span>
+              );
+            })}
             {moreCount > 0 && <>, plus {moreCount} other vehicle{moreCount === 1 ? '' : 's'}</>}
             {minCost > 0 && <>, with repair costs ranging from <strong className="text-gray-800">${minCost.toLocaleString()}</strong> to <strong className="text-gray-800">${maxCost.toLocaleString()}</strong></>}.
           </p>
@@ -310,6 +379,13 @@ export default async function DTCCodePage({
                       FAQ
                     </a>
                   </li>
+                  {citations.length > 0 && (
+                    <li>
+                      <a href="#sources" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 py-1.5 rounded-md hover:bg-gray-50 px-2 -mx-2 transition-colors">
+                        Sources ({citations.length})
+                      </a>
+                    </li>
+                  )}
                 </ul>
               </div>
 
@@ -462,6 +538,61 @@ export default async function DTCCodePage({
                 </div>
               </details>
             </section>
+
+            {/* Sources — TSBs, NHTSA filings, forum threads, manual refs.
+                Aggregated across the issues that mention this DTC code,
+                de-duped by URL. Hidden when no citations exist (many
+                issues currently have citations:[] — that's a data
+                backfill gap, not a code one). Each row is a real <a
+                target="_blank" rel="nofollow noopener"> so the SERP page
+                still controls outbound link signal but users get the
+                primary-source receipt. */}
+            {citations.length > 0 && (
+              <section id="sources" className="scroll-mt-16 mb-8">
+                <details className="group" open>
+                  <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
+                    <h2 className="text-lg font-semibold text-gray-900">Sources ({citations.length})</h2>
+                    <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </summary>
+                  <ul className="space-y-2 pt-4">
+                    {citations.map((c) => {
+                      const typeLabel = c.type === 'tsb' ? 'TSB'
+                        : c.type === 'recall' ? 'Recall'
+                        : c.type === 'nhtsa' ? 'NHTSA'
+                        : c.type === 'forum' ? 'Forum'
+                        : c.type === 'manual' ? 'Manual'
+                        : c.type;
+                      const typeColor = c.type === 'recall' ? 'bg-red-100 text-red-700'
+                        : c.type === 'tsb' ? 'bg-blue-100 text-blue-700'
+                        : c.type === 'nhtsa' ? 'bg-amber-100 text-amber-700'
+                        : 'bg-gray-100 text-gray-700';
+                      return (
+                        <li key={c.url}>
+                          <a
+                            href={c.url}
+                            target="_blank"
+                            rel="nofollow noopener noreferrer"
+                            className="group flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 transition-colors"
+                          >
+                            <span className={`text-[10px] font-mono font-bold uppercase px-1.5 py-0.5 rounded flex-shrink-0 ${typeColor}`}>
+                              {typeLabel}
+                            </span>
+                            <span className="text-sm text-gray-700 group-hover:text-blue-700 transition-colors flex-1 min-w-0">
+                              {c.title}
+                            </span>
+                            <svg className="w-4 h-4 text-gray-300 group-hover:text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 3h7v7m0-7L10 14m-7 7h7a4 4 0 004-4v-7" />
+                            </svg>
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </details>
+              </section>
+            )}
 
             {/* AI disclaimer */}
             <div className="flex items-start gap-2 py-3">
