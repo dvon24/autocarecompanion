@@ -325,7 +325,23 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
   // UI shell state — collapsible bottom card + voice mode.
   const [bottomExpanded, setBottomExpanded] = useState(true);
   const [voiceMode, setVoiceMode] = useState<VoiceMode>('all');
+  // Refs that mirror state used inside the watchPosition callback. The
+  // GPS watch lives in a useEffect that we DON'T want to tear down every
+  // time voiceMode / reroute / language change — re-acquiring a high-
+  // accuracy watch on iOS takes 5-15 seconds during which the dot stops
+  // moving. Reading from refs inside the callback lets it always see
+  // the latest value without the effect needing to re-fire.
+  const voiceModeRef = useRef(voiceMode);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const rerouteRef = useRef<((reason: 'off_route' | 'periodic') => any) | null>(null);
+  // (languageRef + its sync useEffect already exist further down — declared
+  // alongside the map mount effect since the popup HTML needs it. Reused
+  // here by the watchPosition callback.)
   const [language, setLanguage] = useState<DriveLanguage>('en');
+  // Keep refs in sync with the latest state so the watchPosition callback
+  // (defined once, lives the whole drive) always reads the current value
+  // without forcing a watch re-acquire.
+  useEffect(() => { voiceModeRef.current = voiceMode; }, [voiceMode]);
   // True when the driver has touched the map recently. Pauses auto-recenter
   // so they can pan/zoom freely while in follow mode.
   const userPanningRef = useRef<boolean>(false);
@@ -333,6 +349,10 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
   // Active-navigation state: when 'following', the camera tracks the driver and
   // voice maneuvers are spoken at trigger distances.
   const [following, setFollowing] = useState(false);
+  // Mirror of `following` for the watchPosition callback (which lives in
+  // an empty-deps useEffect to avoid GPS re-acquire churn).
+  const followingRef = useRef(false);
+  useEffect(() => { followingRef.current = following; }, [following]);
   const stepsRef = useRef<NavStep[]>([]);
   const currentStepIdxRef = useRef<number>(0);
   const spokenAnnouncementsRef = useRef<Set<string>>(new Set());
@@ -875,6 +895,12 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
     finally { isReroutingRef.current = false; }
   }, [origin, voiceMode]);
 
+  // Keep rerouteRef pointing at the latest reroute closure so the
+  // watchPosition callback can fire it without taking a hard dep on
+  // reroute (which would cause the GPS watch to tear down + re-acquire
+  // every time origin/voiceMode changes — 5-15s of dead time on iOS).
+  useEffect(() => { rerouteRef.current = reroute; }, [reroute]);
+
   // Switch to a previously-suggested alternate route. Wipes the pending prompt
   // and re-uses the normal reroute pipeline so all the side-effects (steps,
   // speed limits, route line, ETA) stay consistent.
@@ -1054,7 +1080,7 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
         // Follow-mode: keep the camera centered on the driver, oriented along their heading.
         // Skip while the user is actively touching the map so they can pan/zoom freely.
         const map = mapRef.current;
-        if (map && following && !userPanningRef.current) {
+        if (map && followingRef.current && !userPanningRef.current) {
           const heading = (typeof pos.coords.heading === 'number' && !Number.isNaN(pos.coords.heading))
             ? pos.coords.heading
             : map.getBearing();
@@ -1080,7 +1106,7 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
               essential: true,
             });
           }
-        } else if (map && !following && !userPanningRef.current) {
+        } else if (map && !followingRef.current && !userPanningRef.current) {
           // FREE-DRIVE follow: even without an active route, gently recenter
           // when the driver has wandered more than ~120m from the camera
           // center. Doesn't change zoom/pitch — feels like "the map is
@@ -1105,7 +1131,7 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
         // Turn-by-turn: walk through pending maneuver steps and speak voice prompts
         // at the right trigger distances. Once we've passed a step, advance.
         const steps = stepsRef.current;
-        if (steps.length > 0 && following) {
+        if (steps.length > 0 && followingRef.current) {
           // Haversine distance to the next maneuver point.
           const haversine = (lat1: number, lng1: number, lat2: number, lng2: number) => {
             const R = 6371_000;
@@ -1126,7 +1152,7 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
                 const key = `${idx}:${v.distanceAlongGeometry}`;
                 if (!spokenAnnouncementsRef.current.has(key)) {
                   spokenAnnouncementsRef.current.add(key);
-                  speak(v.announcement, voiceMode, 'alert', language);
+                  speak(v.announcement, voiceModeRef.current, 'alert', languageRef.current);
                 }
               }
             }
@@ -1180,7 +1206,7 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
             // chatter); TTS still respects mute. Order: chime first so the
             // driver gets an auditory "look up" signal even before the voice
             // starts forming the word "speed."
-            if (following && distM <= WARN_RADIUS_M && !announcedCamerasRef.current.has(cam.id)) {
+            if (followingRef.current && distM <= WARN_RADIUS_M && !announcedCamerasRef.current.has(cam.id)) {
               announcedCamerasRef.current.add(cam.id);
               playAlertChime();
               const isSuppressed = cameraSuppressedRef.current;
@@ -1188,7 +1214,7 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
                 : cam.type === 'red-light' ? 'Red-light camera'
                 : isSuppressed ? 'Speed enforcement zone'
                 : 'Speed camera';
-              speak(`${label} ahead in ${Math.round(distM)} meters.`, voiceMode, 'alert', language);
+              speak(`${label} ahead in ${Math.round(distM)} meters.`, voiceModeRef.current, 'alert', languageRef.current);
             }
           }
           // Remove markers for cameras that are no longer in render range —
@@ -1204,7 +1230,7 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
 
         // Off-route detection: if we've drifted > 60m from the route line for
         // 8+ seconds, trigger an auto-reroute.
-        if (following && coords.length > 1) {
+        if (followingRef.current && coords.length > 1) {
           const haver = (lat1: number, lng1: number, lat2: number, lng2: number) => {
             const R = 6371_000;
             const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -1221,7 +1247,7 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
             if (offRouteSinceRef.current == null) offRouteSinceRef.current = Date.now();
             else if (Date.now() - offRouteSinceRef.current > 8000) {
               offRouteSinceRef.current = null;
-              reroute('off_route');
+              rerouteRef.current?.('off_route');
             }
           } else {
             offRouteSinceRef.current = null;
@@ -1229,10 +1255,27 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
         }
       },
       (err) => setLocationError(err.message),
-      { enableHighAccuracy: true, maximumAge: 5000, timeout: 10000 },
+      // maximumAge: 0 — refuse cached fixes. Earlier 5000ms allowed the
+      // browser to return a 5-second-old GPS sample, which at 60mph is
+      // ~440 ft of stale data per ping. Combined with iOS's 1-3s actual
+      // fix cadence and Mapbox's animation easing the dot drifted
+      // multiple car lengths (and on highways: a literal mile) behind
+      // the driver. Demanding fresh fixes costs slightly more battery
+      // but is the whole point of follow mode.
+      // timeout: 15000 — give the GPS hardware up to 15s to produce a
+      // first high-accuracy fix on a cold acquire (covers tunnels,
+      // parking garages, urban canyons).
+      { enableHighAccuracy: true, maximumAge: 0, timeout: 15000 },
     );
     return () => navigator.geolocation.clearWatch(watchId);
-  }, [following, voiceMode, reroute]);
+    // Deps deliberately limited to []. The watchPosition handler reads
+    // voiceMode / language / reroute via refs, so we never tear down +
+    // re-acquire the GPS watch mid-trip — re-acquiring takes 5-15s on
+    // iOS during which the dot stops moving entirely. That gap was
+    // the root cause of the "drive can't keep up with me" complaint;
+    // every voice-mode toggle or reroute triggered it.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Map init
   useEffect(() => {
