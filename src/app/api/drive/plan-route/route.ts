@@ -850,6 +850,70 @@ Rules:
     geocoded = await searchBoxForward(destination);
     if (geocoded) console.log(`[drive/plan-route] SearchBox forward (1st): "${geocoded.placeName}"`);
   }
+
+  // Google Places Text Search — POI-aware fallback for named destinations
+  // that Mapbox SearchBox doesn't recognize. Google's POI database covers a
+  // lot of niche places (military bases under casual names, regional
+  // landmarks, small businesses) that Mapbox misses. Location-biased on the
+  // driver's GPS so "Kelley" near Stuttgart returns Kelley Barracks rather
+  // than some unrelated Kelley elsewhere. The existing localSearchPick path
+  // up the file handles category searches ("find me a coffee shop") with
+  // rating/openNow filters; this is the same API for specific-name lookups.
+  if (!geocoded && process.env.GOOGLE_PLACES_API_KEY) {
+    try {
+      const fieldMask = 'places.id,places.displayName,places.formattedAddress,places.location';
+      const gRes = await fetch('https://places.googleapis.com/v1/places:searchText', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Goog-Api-Key': process.env.GOOGLE_PLACES_API_KEY,
+          'X-Goog-FieldMask': fieldMask,
+        },
+        body: JSON.stringify({
+          textQuery: destination,
+          languageCode: lang,
+          maxResultCount: 5,
+          locationBias: {
+            circle: {
+              center: { latitude: body.origin.lat, longitude: body.origin.lng },
+              radius: 50000, // 50 km — wide enough to catch nearby cities, tight enough to suppress global homonyms
+            },
+          },
+        }),
+        signal: AbortSignal.timeout(8000),
+      });
+      if (gRes.ok) {
+        const gData = await gRes.json();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const candidates = (gData.places || []) as any[];
+        // Pick the closest result to the driver's GPS — same re-rank pattern
+        // we use for Mapbox to defeat the API's own ranking when it brings
+        // back something far away.
+        let best: { place: typeof candidates[number]; dist: number } | null = null;
+        for (const p of candidates) {
+          const loc = p.location;
+          if (!loc) continue;
+          const dist = haversineMiles(body.origin.lat, body.origin.lng, loc.latitude, loc.longitude);
+          if (!best || dist < best.dist) best = { place: p, dist };
+        }
+        if (best) {
+          geocoded = {
+            lng: best.place.location.longitude,
+            lat: best.place.location.latitude,
+            placeName: best.place.displayName?.text || best.place.formattedAddress || destination,
+          };
+          console.log(`[drive/plan-route] Google Places fallback: "${geocoded.placeName}" (${best.dist.toFixed(1)} mi from driver)`);
+        } else {
+          console.log(`[drive/plan-route] Google Places returned 0 places for "${destination}"`);
+        }
+      } else {
+        console.warn('[drive/plan-route] Google Places fallback HTTP', gRes.status);
+      }
+    } catch (err) {
+      console.warn('[drive/plan-route] Google Places fallback error:', err);
+    }
+  }
+
   if (!geocoded) geocoded = await geocode(destination, true);
   if (!geocoded && country) {
     // Retry without country bias in case the destination's region was inferred wrong.

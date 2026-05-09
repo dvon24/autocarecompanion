@@ -692,6 +692,15 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
         const next = await wl.request('screen');
         if (cancelled) { try { await next.release(); } catch { /* ignore */ } return; }
         sentinel = next;
+        // Wake-lock sentinels fire 'release' when the browser auto-revokes
+        // them — happens every time the screen locks or the tab backgrounds.
+        // Without clearing our ref, the visibility handler below sees
+        // `!sentinel` as false and skips re-acquire on the next focus,
+        // leaving the screen free to sleep mid-trip. This was the root
+        // cause of "app drops after a certain amount of time."
+        next.addEventListener('release', () => {
+          if (sentinel === next) sentinel = null;
+        });
       } catch {
         // Permission denied or device doesn't support — silent fallback.
       }
@@ -997,14 +1006,28 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
           const heading = (typeof pos.coords.heading === 'number' && !Number.isNaN(pos.coords.heading))
             ? pos.coords.heading
             : map.getBearing();
-          map.easeTo({
-            center: [lng, lat],
-            bearing: heading,
-            pitch: 60,
-            zoom: Math.max(map.getZoom(), 17),
-            duration: 800,
-            essential: true,
-          });
+          // Skip the easeTo call entirely when neither position nor bearing
+          // has meaningfully changed. iOS reports GPS every 1-2s even when
+          // sitting still; without this guard each tick fires a redundant
+          // 350ms animation that interrupts itself, producing the visible
+          // jank that read as "choppy follow." Threshold ~3m / 2° matches
+          // typical GPS jitter while parked.
+          const center = map.getCenter();
+          const meterDelta = Math.sqrt(((lat - center.lat) * 111_000) ** 2 + ((lng - center.lng) * 111_000 * Math.cos(lat * Math.PI / 180)) ** 2);
+          const bearingDelta = Math.min(Math.abs(heading - map.getBearing()), 360 - Math.abs(heading - map.getBearing()));
+          if (meterDelta >= 3 || bearingDelta >= 2) {
+            map.easeTo({
+              center: [lng, lat],
+              bearing: heading,
+              pitch: 60,
+              zoom: Math.max(map.getZoom(), 17),
+              // 350ms instead of 800ms — short enough that the animation
+              // finishes before the next 1-2s GPS tick interrupts it,
+              // which was the root cause of the stop-start jank.
+              duration: 350,
+              essential: true,
+            });
+          }
         } else if (map && !following && !userPanningRef.current) {
           // FREE-DRIVE follow: even without an active route, gently recenter
           // when the driver has wandered more than ~120m from the camera
