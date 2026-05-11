@@ -93,6 +93,13 @@ export default async function DTCCodePage({
     getRelatedDTCCodes(code),
   ]);
   if (!data) notFound();
+  // Hard 404 when the code exists in the registry but no published issue
+  // references it. Earlier the page rendered with empty pills, empty
+  // CollapsibleMakeSection grid, and a broken GEO blockquote
+  // ("most commonly reported on  with..."), which Google classified as
+  // soft 404 (200 OK with effectively no content). Returning a real 404
+  // tells Google to drop the URL cleanly rather than keep it in limbo.
+  if (data.issues.length === 0) notFound();
 
   const articleUrl = `https://au7o.io/known-issues/dtc/${code.toLowerCase()}`;
 

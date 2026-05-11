@@ -16,30 +16,34 @@ export const dynamicParams = true; // Allow on-demand rendering of new makes
 
 // --- Make name utilities ---
 
-/** Map of URL slugs to proper display names for makes that need special casing. */
-const MAKE_DISPLAY_NAMES: Record<string, string> = {
-  'bmw': 'BMW',
-  'gmc': 'GMC',
-  'ram': 'RAM',
-  'mini': 'MINI',
-  'volkswagen': 'Volkswagen',
-  'land-rover': 'Land Rover',
-};
-
-/** Convert a URL slug like "land-rover" back to a proper make name like "Land Rover". */
-function slugToMakeDisplay(slug: string): string {
-  const lower = slug.toLowerCase();
-  if (MAKE_DISPLAY_NAMES[lower]) return MAKE_DISPLAY_NAMES[lower];
-  // Title-case each word: "chevrolet" -> "Chevrolet"
-  return slug
-    .split('-')
-    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ');
-}
-
 /** Convert a make name to a URL slug. */
 function makeToSlug(make: string): string {
   return make.toLowerCase().replace(/\s+/g, '-');
+}
+
+/**
+ * Module-level cache mapping URL slugs back to the canonical make name
+ * stored in the DB. Built lazily on first request and reused for the
+ * lifetime of the process (the makes list is small — ~34 entries — and
+ * stable across the SSG build). Replaces the previous lossy
+ * slugToMakeDisplay() helper that title-cased + space-joined slug parts,
+ * which corrupted hyphenated make names (e.g. "mercedes-benz" →
+ * "Mercedes Benz" with a space, missing the DB row "Mercedes-Benz"
+ * → empty page → soft 404 in Google's eyes).
+ */
+let _makeSlugIndex: Map<string, string> | null = null;
+async function findMakeBySlug(slug: string): Promise<string | null> {
+  if (!_makeSlugIndex) {
+    const distinct = await prisma.knownIssue.findMany({
+      where: { status: 'published' },
+      distinct: ['make'],
+      select: { make: true },
+    });
+    _makeSlugIndex = new Map(
+      distinct.map(({ make }) => [makeToSlug(make), make]),
+    );
+  }
+  return _makeSlugIndex.get(slug.toLowerCase()) ?? null;
 }
 
 // --- Data fetching ---
@@ -59,12 +63,16 @@ interface MakePageData {
 }
 
 async function getMakePageData(makeSlugParam: string): Promise<MakePageData | null> {
-  // Look up the actual make name from DB (case-insensitive match)
-  const displayName = slugToMakeDisplay(makeSlugParam);
+  // Resolve slug → canonical make name via the DB-backed index. This is
+  // lossless (uses the exact same slug function the sitemap + internal
+  // links use) so it works for hyphenated makes like "Mercedes-Benz" and
+  // non-ASCII makes like "Citroën" without special-casing each one.
+  const canonicalMake = await findMakeBySlug(makeSlugParam);
+  if (!canonicalMake) return null;
 
   const rows = await prisma.knownIssue.findMany({
     where: {
-      make: { equals: displayName, mode: 'insensitive' },
+      make: canonicalMake,
       status: 'published',
     },
     select: { make: true, model: true, severity: true, years: true, category: true },
