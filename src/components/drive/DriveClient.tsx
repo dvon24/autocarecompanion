@@ -163,6 +163,57 @@ function resolveVoice(language: DriveLanguage): SpeechSynthesisVoice | null {
   return _cachedVoice;
 }
 
+/**
+ * Tiny i18n helper for the handful of client-generated voice strings that
+ * speak() emits directly (rerouting announcements, traffic deltas, camera
+ * approaches, network errors). Mapbox-generated turn-by-turn lines come
+ * back already-localized via the language= query param; this helper only
+ * covers the strings we author ourselves. Was the source of the user's
+ * "German voice but speaks English words" report — the strings were
+ * hardcoded English and only the TTS voice was language-aware.
+ */
+function tr(
+  key: string,
+  lang: DriveLanguage,
+  params: Record<string, string | number> = {},
+): string {
+  const dict: Record<DriveLanguage, Record<string, string>> = {
+    en: {
+      rerouting: 'Rerouting.',
+      trafficAdded: 'Traffic added about {min} minutes. New ETA {eta} minutes.',
+      trafficCleared: 'Traffic cleared. New ETA {eta} minutes.',
+      fasterRoute: 'Faster route via {summary} saves about {min} minutes. Tap Switch to take it.',
+      switchedToFaster: 'Switched to faster route. {min} minutes.',
+      cam_school: 'School zone enforcement',
+      cam_red: 'Red-light camera',
+      cam_zone: 'Speed enforcement zone',
+      cam_speed: 'Speed camera',
+      cam_ahead: '{label} ahead in {dist} meters.',
+      err_network: 'Network error.',
+      err_route_failed: 'Route failed.',
+    },
+    de: {
+      rerouting: 'Route wird neu berechnet.',
+      trafficAdded: 'Verkehr verzögert die Fahrt um etwa {min} Minuten. Neue Ankunftszeit {eta} Minuten.',
+      trafficCleared: 'Verkehr hat sich aufgelöst. Neue Ankunftszeit {eta} Minuten.',
+      fasterRoute: 'Schnellere Route über {summary} spart etwa {min} Minuten. Tippe auf Wechseln, um sie zu nehmen.',
+      switchedToFaster: 'Schnellere Route gewählt. {min} Minuten.',
+      cam_school: 'Schulzonen-Überwachung',
+      cam_red: 'Rotlichtblitzer',
+      cam_zone: 'Geschwindigkeitskontrolle',
+      cam_speed: 'Blitzer',
+      cam_ahead: '{label} in {dist} Metern.',
+      err_network: 'Netzwerkfehler.',
+      err_route_failed: 'Route fehlgeschlagen.',
+    },
+  };
+  let s = dict[lang]?.[key] ?? dict.en[key] ?? key;
+  for (const [k, v] of Object.entries(params)) {
+    s = s.replace(`{${k}}`, String(v));
+  }
+  return s;
+}
+
 function speak(text: string, mode: VoiceMode = 'all', priority: 'alert' | 'normal' = 'normal', language: DriveLanguage = 'en') {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
   if (mode === 'mute') return;
@@ -829,6 +880,10 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
           destination: originalDestRef.current,
           isRoundTrip: isRoundTripRef.current,
           routePreferences: originalRoutePrefsRef.current,
+          // Carry the driver's selected language so Mapbox returns the
+          // turn-by-turn voice announcements in German when requested,
+          // not English in a German-accent voice.
+          language,
         }),
       });
       if (!res.ok) return;
@@ -866,11 +921,11 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
 
       // Spoken alert when meaningfully relevant.
       if (reason === 'off_route') {
-        speak('Rerouting.', voiceMode, 'alert', language);
+        speak(tr('rerouting', language), voiceMode, 'alert', language);
       } else if (minutesDelta >= 5) {
-        speak(`Traffic added about ${minutesDelta} minutes. New ETA ${data.minutes} minutes.`, voiceMode, 'alert', language);
+        speak(tr('trafficAdded', language, { min: minutesDelta, eta: data.minutes }), voiceMode, 'alert', language);
       } else if (minutesDelta <= -5) {
-        speak(`Traffic cleared. New ETA ${data.minutes} minutes.`, voiceMode, 'alert', language);
+        speak(tr('trafficCleared', language, { eta: data.minutes }), voiceMode, 'alert', language);
       }
 
       // Faster-alternate detection: surface a 'switch?' prompt only when
@@ -886,7 +941,7 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
         if (bestAlt) {
           const savesMin = data.minutes - bestAlt.minutes;
           setPendingAlternate({ alt: bestAlt, savesMin });
-          speak(`Faster route via ${bestAlt.summary} saves about ${savesMin} minutes. Tap Switch to take it.`, voiceMode, 'alert', language);
+          speak(tr('fasterRoute', language, { summary: bestAlt.summary, min: savesMin }), voiceMode, 'alert', language);
         } else {
           setPendingAlternate(null);
         }
@@ -931,7 +986,7 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
     routeFetchedAtRef.current = Date.now();
     setLiveMinutes(pending.alt.minutes);
     lastRerouteAtRef.current = Date.now();
-    speak(`Switched to faster route. ${pending.alt.minutes} minutes.`, voiceMode, 'alert', language);
+    speak(tr('switchedToFaster', language, { min: pending.alt.minutes }), voiceMode, 'alert', language);
   }, [pendingAlternate, voiceMode]);
 
   const clearStoredPreferences = useCallback(() => {
@@ -1210,11 +1265,12 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
               announcedCamerasRef.current.add(cam.id);
               playAlertChime();
               const isSuppressed = cameraSuppressedRef.current;
-              const label = cam.type === 'school-zone' ? 'School zone enforcement'
-                : cam.type === 'red-light' ? 'Red-light camera'
-                : isSuppressed ? 'Speed enforcement zone'
-                : 'Speed camera';
-              speak(`${label} ahead in ${Math.round(distM)} meters.`, voiceModeRef.current, 'alert', languageRef.current);
+              const lang = languageRef.current;
+              const label = cam.type === 'school-zone' ? tr('cam_school', lang)
+                : cam.type === 'red-light' ? tr('cam_red', lang)
+                : isSuppressed ? tr('cam_zone', lang)
+                : tr('cam_speed', lang);
+              speak(tr('cam_ahead', lang, { label, dist: Math.round(distM) }), voiceModeRef.current, 'alert', lang);
             }
           }
           // Remove markers for cameras that are no longer in render range —
@@ -1964,7 +2020,12 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
         }
       }
     } catch (err) {
-      const msg = err instanceof Error ? err.message : 'Network error';
+      // Try to honor the underlying error message but fall back to a
+      // localized "Network error." so the German voice doesn't speak the
+      // raw English from err.message verbatim.
+      const raw = err instanceof Error ? err.message : '';
+      const isGeneric = !raw || raw === 'Network error' || raw === 'Failed to fetch';
+      const msg = isGeneric ? tr('err_network', language) : raw;
       setErrorMsg(msg);
       speak(msg, voiceMode, 'alert', language);
     } finally {

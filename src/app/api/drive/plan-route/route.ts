@@ -975,7 +975,7 @@ Rules:
   // can score each candidate by camera count and pick the lowest. Otherwise
   // skip alternates to keep the response payload small.
   const altParam = routePreferences.avoidSpeedCameras ? '&alternatives=true' : '';
-  const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${coords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=imperial&banner_instructions=true&language=en${altParam}${excludeParam}&access_token=${MAPBOX_TOKEN}`;
+  const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${coords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=${lang === 'de' ? 'metric' : 'imperial'}&banner_instructions=true&language=${lang}${altParam}${excludeParam}&access_token=${MAPBOX_TOKEN}`;
   const dirRes = await fetch(dirUrl);
   if (!dirRes.ok) {
     console.error('[drive/plan-route] Mapbox directions failed:', dirRes.status);
@@ -1085,7 +1085,7 @@ Rules:
             const stopCoords = isRoundTrip
               ? `${body.origin.lng},${body.origin.lat};${stopLng},${stopLat};${destLng},${destLat};${body.origin.lng},${body.origin.lat}`
               : `${body.origin.lng},${body.origin.lat};${stopLng},${stopLat};${destLng},${destLat}`;
-            const stopDirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${stopCoords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=imperial&banner_instructions=true&language=en&alternatives=false${excludeParam}&access_token=${MAPBOX_TOKEN}`;
+            const stopDirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${stopCoords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=${lang === 'de' ? 'metric' : 'imperial'}&banner_instructions=true&language=${lang}&alternatives=false${excludeParam}&access_token=${MAPBOX_TOKEN}`;
             const stopDirRes = await fetch(stopDirUrl);
             if (stopDirRes.ok) {
               const stopDirData = await stopDirRes.json();
@@ -1347,7 +1347,7 @@ Rules:
       const reCoords = isRoundTrip
         ? `${body.origin.lng},${body.origin.lat};${lot.lng},${lot.lat};${body.origin.lng},${body.origin.lat}`
         : `${body.origin.lng},${body.origin.lat};${lot.lng},${lot.lat}`;
-      const reUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${reCoords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=imperial&banner_instructions=true&language=en${excludeParam}&access_token=${MAPBOX_TOKEN}`;
+      const reUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${reCoords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=${lang === 'de' ? 'metric' : 'imperial'}&banner_instructions=true&language=${lang}${excludeParam}&access_token=${MAPBOX_TOKEN}`;
       const reRes = await fetch(reUrl);
       if (reRes.ok) {
         const reData = await reRes.json();

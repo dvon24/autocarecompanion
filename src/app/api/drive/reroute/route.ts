@@ -41,6 +41,7 @@ export async function POST(request: NextRequest) {
     origin?: { lng: number; lat: number };
     destination?: { lng: number; lat: number };
     isRoundTrip?: boolean;
+    language?: 'en' | 'de';
     routePreferences?: { avoidHighways?: boolean; avoidTolls?: boolean; avoidFerries?: boolean };
   };
   try { body = await request.json(); }
@@ -62,10 +63,17 @@ export async function POST(request: NextRequest) {
   if (body.routePreferences?.avoidFerries) excludeList.push('ferry');
   const excludeParam = excludeList.length > 0 ? `&exclude=${excludeList.join(',')}` : '';
 
+  // Honor the driver's selected language for the Mapbox-generated turn-
+  // by-turn voice announcements ("In 200 Metern rechts abbiegen…"). Was
+  // hardcoded en before, which made the German voice profile speak
+  // English text — the exact symptom the user reported.
+  const lang = body.language === 'de' ? 'de' : 'en';
+  const voiceUnits = lang === 'de' ? 'metric' : 'imperial';
+
   // alternatives=true returns up to 3 route options sharing the same OD pair.
   // Mapbox already factors live traffic per option, so the alternate's
   // duration is the apples-to-apples comparison we surface as "faster route".
-  const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${coords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=imperial&banner_instructions=true&language=en&alternatives=true${excludeParam}&access_token=${MAPBOX_TOKEN}`;
+  const dirUrl = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${coords}?geometries=geojson&overview=full&steps=true&annotations=maxspeed&voice_instructions=true&voice_units=${voiceUnits}&banner_instructions=true&language=${lang}&alternatives=true${excludeParam}&access_token=${MAPBOX_TOKEN}`;
 
   try {
     const r = await fetch(dirUrl);
