@@ -42,9 +42,15 @@ const args = process.argv.slice(2);
 const SAMPLE_SIZE = args.includes('--size')
   ? parseInt(args[args.indexOf('--size') + 1], 10)
   : 50;
+const MAKE_FILTER = args.includes('--make')
+  ? args[args.indexOf('--make') + 1]
+  : null;
+const ALL_FOR_MAKE = args.includes('--all'); // audit every issue for the specified make
 const OUTPUT_PATH = args.includes('--output')
   ? args[args.indexOf('--output') + 1]
-  : `audit-sample-${Date.now()}.json`;
+  : MAKE_FILTER && ALL_FOR_MAKE
+    ? `audit-${MAKE_FILTER.toLowerCase().replace(/\s+/g, '-')}-${Date.now()}.json`
+    : `audit-sample-${Date.now()}.json`;
 
 async function sleep(ms) {
   return new Promise(r => setTimeout(r, ms));
@@ -220,7 +226,22 @@ async function main() {
   console.log(`  Output: ${OUTPUT_PATH}`);
   console.log(`═══════════════════════════════════════════════════════════\n`);
 
-  const issues = await sampleIssues(SAMPLE_SIZE);
+  let issues;
+  if (MAKE_FILTER && ALL_FOR_MAKE) {
+    // Audit every published issue for one make. Used for the per-make
+    // cleanup pass — small enough makes (≤300 issues) are cheap to do
+    // completely instead of sampling.
+    console.log(`Loading ALL published issues for make="${MAKE_FILTER}"...`);
+    issues = (await pool.query(
+      `SELECT id, make, model, years, trims, "dtcCodes", category, title, description, solution, severity, "estimatedCostLow", "estimatedCostHigh", citations, source, "reportCount"
+       FROM "KnownIssue"
+       WHERE status = 'published' AND make ILIKE $1
+       ORDER BY "reportCount" DESC, model, id`,
+      [MAKE_FILTER],
+    )).rows;
+  } else {
+    issues = await sampleIssues(SAMPLE_SIZE);
+  }
   console.log(`Sampled ${issues.length} issues across ${new Set(issues.map(i => i.make)).size} makes\n`);
 
   const results = [];
