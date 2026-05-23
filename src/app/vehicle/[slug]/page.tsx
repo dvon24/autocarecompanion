@@ -8,6 +8,7 @@ import { auth } from '@/lib/auth';
 import { VehicleHub } from '@/components/vehicle/VehicleHub';
 import { getMaintenanceSuggestions, getMaintenanceSchedule, renderOpener, type MaintenanceSuggestion, type ScheduleData } from '@/lib/maintenance-suggestions';
 import { getRecentThreads, getTrendingForVehicle, getAttachableIssues } from '@/lib/hub-data';
+import { getOwnersManualSchedule } from '@/lib/owners-manual-schedule';
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -320,6 +321,12 @@ export default async function VehicleProfilePage({
     getAttachableIssues({ make, model, year, trim }).catch(() => []),
   ]);
 
+  // Owner's-manual-sourced maintenance schedule (separate from the dynamic
+  // suggestion-engine timeline). Available for ALL users on vehicles where
+  // we have a verified schedule entry — Phase 0 POC ships with the 2019
+  // Camaro ZL1 (LT4); Phase 1 expands coverage to top 25 US vehicles.
+  const ownersManualSchedule = getOwnersManualSchedule({ year, make, model, trim });
+
   return (
     <VehicleHub
       vehicle={{ year, make, model, trim }}
@@ -338,6 +345,7 @@ export default async function VehicleProfilePage({
       attachableIssues={attachableIssues}
       user={userInfo}
       schedule={maintenanceSchedule}
+      ownersManualSchedule={ownersManualSchedule}
     />
   );
 }

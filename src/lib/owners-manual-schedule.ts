@@ -7,29 +7,55 @@
  * which only stores generic default intervals.
  *
  * Data lives in src/data/maintenance-schedules.json, structured:
- *   Make > Model > Generation > schedule.{service_type}.{interval, fluid, capacity, note, verified}
+ *   Make > Model > Generation > schedule.{service_type}
  *
- * Phase 0 POC: 2019 Chevrolet Camaro ZL1 (LT4) only.
- * Phase 1 will expand to top 25 US vehicles via verified-source pipeline.
+ * Schema v1.1 adds structured numeric intervals (interval_miles +
+ * interval_months) alongside the human-readable interval_display string,
+ * so the SMS reminder engine can compute "is this due now?" math.
+ *
+ * Phase 0/1 POC: 2019 Chevrolet Camaro ZL1 (LT4).
+ * Phase 1 expansion: top 25 US vehicles via verified-source pipeline.
  */
 
 import schedulesData from '@/data/maintenance-schedules.json';
 
 export interface ServiceInterval {
-  /** Primary interval, e.g. "60,000 mi or every 5 years" */
-  interval: string;
-  /** Severe-service interval if defined */
-  interval_severe?: string;
+  /** Human-readable interval, e.g. "60,000 mi or every 5 years" */
+  interval_display: string;
+  /** Mileage interval as integer; null when interval is time-based only */
+  interval_miles: number | null;
+  /** Time interval in months; null when interval is mileage-based only */
+  interval_months: number | null;
+  /** Optional severe-service display string */
+  interval_severe_display?: string;
+  /** Severe-service mileage interval */
+  interval_severe_miles?: number | null;
+  /** Severe-service time interval in months */
+  interval_severe_months?: number | null;
+  /** For services with distinct first/subsequent intervals (e.g., engine coolant) */
+  interval_first_miles?: number;
+  interval_first_months?: number;
   /** Manufacturer-recommended fluid specification */
   fluid?: string;
   /** Capacity (with units) */
   capacity?: string;
+  /** Part number for consumables (spark plugs, filters) */
+  part_number?: string;
+  /** Spark plug gap, torque, etc. */
+  gap?: string;
+  torque?: string;
+  spec?: string;
   /** Additional owner-relevant note */
   note?: string;
   /** Owner-manual sourced (true) vs estimated (false) */
   verified: boolean;
-  // Some service types use slightly different fields; keep loose typing
-  [key: string]: string | number | boolean | undefined;
+}
+
+export interface VehicleScheduleSource {
+  primary: string;
+  url?: string;
+  supplement_url?: string;
+  section?: string;
 }
 
 export interface VehicleSchedule {
@@ -37,12 +63,7 @@ export interface VehicleSchedule {
   trims: string[];
   engine: string;
   transmission: string;
-  source: {
-    primary: string;
-    url?: string;
-    supplement_url?: string;
-    section?: string;
-  };
+  source: VehicleScheduleSource;
   /** Keyed by service type id (e.g., "engine_oil", "supercharger_oil") */
   schedule: Record<string, ServiceInterval>;
   /** Top-level alerts the owner should know about this specific vehicle */
@@ -88,6 +109,56 @@ export function getOwnersManualSchedule(opts: {
   }
 
   return bestMatch;
+}
+
+/**
+ * Compute days-until-due for a service given the user's current mileage,
+ * date of last service, and the service interval. Returns the SOONER of
+ * miles-based or time-based estimate (whichever expires first).
+ *
+ * Required for the SMS reminder engine: "Your oil change is due in 12
+ * days based on 1,200 mi/month average."
+ *
+ * Returns null if interval has neither mileage nor time component.
+ */
+export function computeDueEstimate(opts: {
+  service: ServiceInterval;
+  currentMileage: number;
+  lastServiceMileage: number;
+  lastServiceDate: Date;
+  /** Average miles driven per month (computed from user history or 1k default) */
+  avgMilesPerMonth?: number;
+}): { milesUntilDue: number | null; daysUntilDue: number | null; soonest: 'miles' | 'time' | null } | null {
+  const { service, currentMileage, lastServiceMileage, lastServiceDate, avgMilesPerMonth = 1000 } = opts;
+
+  let milesUntilDue: number | null = null;
+  if (service.interval_miles != null) {
+    const dueAt = lastServiceMileage + service.interval_miles;
+    milesUntilDue = dueAt - currentMileage;
+  }
+
+  let daysUntilDue: number | null = null;
+  if (service.interval_months != null) {
+    const dueDate = new Date(lastServiceDate);
+    dueDate.setMonth(dueDate.getMonth() + service.interval_months);
+    daysUntilDue = Math.round((dueDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
+  }
+
+  // For SMS reminders we want the SOONEST trigger. Convert milesUntilDue to days
+  // using the avg miles/month and compare.
+  if (milesUntilDue == null && daysUntilDue == null) return null;
+
+  let soonest: 'miles' | 'time' | null = null;
+  if (milesUntilDue != null && daysUntilDue == null) {
+    soonest = 'miles';
+  } else if (daysUntilDue != null && milesUntilDue == null) {
+    soonest = 'time';
+  } else if (milesUntilDue != null && daysUntilDue != null) {
+    const milesAsDays = (milesUntilDue / avgMilesPerMonth) * 30;
+    soonest = milesAsDays < daysUntilDue ? 'miles' : 'time';
+  }
+
+  return { milesUntilDue, daysUntilDue, soonest };
 }
 
 /**

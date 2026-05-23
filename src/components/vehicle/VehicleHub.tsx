@@ -6,6 +6,8 @@ import Image from 'next/image';
 import type { MaintenanceSuggestion, ScheduleData, ScheduleService, ScheduleServiceStatus } from '@/lib/maintenance-suggestions';
 import type { RecentThread, TrendingChip, AttachableIssue } from '@/lib/hub-data';
 import { Icon, type IconName } from '@/components/ui/Icon';
+import type { VehicleSchedule } from '@/lib/owners-manual-schedule';
+import { OwnersManualSchedule } from '@/components/vehicle/OwnersManualSchedule';
 
 /**
  * Conversation-first hub that lives at /vehicle/[slug]. The chat IS the
@@ -70,6 +72,11 @@ export interface VehicleHubProps {
    *  reply. Null for anonymous viewers or when there's no logged service
    *  history + no upcoming services to plot. */
   schedule: ScheduleData | null;
+  /** Owner's-manual-sourced reference schedule for this vehicle. Distinct
+   *  from `schedule` (which is dynamic per-user). Rendered as a static
+   *  reference section after the chat opener when a verified entry exists
+   *  for this YMMT. Available to ALL viewers (no auth required). */
+  ownersManualSchedule?: VehicleSchedule | null;
 }
 
 interface RoutePreview {
@@ -110,6 +117,7 @@ export function VehicleHub({
   attachableIssues,
   user,
   schedule,
+  ownersManualSchedule,
 }: VehicleHubProps) {
   // Seed the conversation with the pre-rendered opener so the page feels
   // alive on first paint. Subsequent turns get appended here and (in v2)
@@ -443,6 +451,10 @@ export function VehicleHub({
               trending={trending}
               onPick={(prompt) => { send(prompt); }}
             />
+
+            {ownersManualSchedule && (
+              <OwnersManualSchedule schedule={ownersManualSchedule} />
+            )}
 
             {messages.map((m, i) => (
               m.role === 'user'
