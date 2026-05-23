@@ -728,7 +728,6 @@ function MobileHub({
             legally nest inside a <Link>, so the wrapper is a plain div
             and the navigation target is scoped to the top row only. */}
         <div className="m-veh-pill" aria-label={`Vehicle: ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}`}>
-          <span className="m-veh-disc">{vehInitial}</span>
           <div className="m-veh-meta">
             <Link
               href="/garage"
@@ -959,7 +958,10 @@ function MobileHub({
         }
         .m-veh-pill {
           display: inline-flex; align-items: center; gap: 8px;
-          padding: 6px 14px 6px 6px;
+          /* Wider horizontal padding now that the disc avatar is gone —
+             gives the year/make/model text room to breathe inside the
+             rounded pill. */
+          padding: 8px 16px;
           background: #fff; border: 1px solid var(--paper-line); border-radius: var(--r-pill);
           color: var(--ink); text-decoration: none;
           min-width: 0; max-width: 70vw;
@@ -969,12 +971,6 @@ function MobileHub({
         }
         .m-veh-pill > * { flex-shrink: 0; }
         .m-veh-pill .m-veh-meta { flex-shrink: 1; min-width: 0; }
-        .m-veh-disc {
-          width: 26px; height: 26px; border-radius: 50%;
-          background: var(--ink); color: #fff;
-          display: inline-flex; align-items: center; justify-content: center;
-          font-size: 11px; font-weight: 700; flex-shrink: 0;
-        }
         .m-veh-meta { line-height: 1.1; min-width: 0; flex: 1; text-align: left; }
         .m-veh-name {
           font-size: 11.5px; font-weight: 600;
@@ -1101,7 +1097,11 @@ function MobileHub({
         /* ─── Composer + tab bar ─── */
         .m-foot {
           position: absolute; left: 0; right: 0; bottom: 0;
-          padding: 8px 12px 14px;
+          /* Tighter bottom padding now that the tab bar is gone — composer
+             sits flush against the iOS Safari address bar / home indicator.
+             env(safe-area-inset-bottom) respects iPhone notch + home bar so
+             we don't get obscured on devices with a physical home bar. */
+          padding: 8px 12px max(6px, env(safe-area-inset-bottom));
           background: linear-gradient(180deg, rgba(247,246,242,0) 0%, rgba(247,246,242,0.92) 30%, var(--paper) 70%);
           z-index: 4;
         }
@@ -1420,10 +1420,26 @@ function MobileIssuesCard({
     : 'COMMONLY REPORTED ISSUES';
   return (
     <div className="ic">
-      <div className="ic-head">
+      <div
+        className="ic-head"
+        style={{
+          padding: '12px 18px',
+          borderBottom: '1px solid var(--paper-line)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+        }}
+      >
         <Icon name="alert" size={12} style={{ color: 'var(--slate-500)' }} />
-        <span className="eyebrow ic-eyebrow">{eyebrowText}</span>
-        {highCount > 0 && <span className="mono ic-meta">{highCount} HIGH</span>}
+        <span className="eyebrow ic-eyebrow" style={{ fontSize: 10 }}>{eyebrowText}</span>
+        {highCount > 0 && (
+          <span
+            className="mono ic-meta"
+            style={{ marginLeft: 'auto', fontSize: 10, color: '#B45309', fontWeight: 600 }}
+          >
+            {highCount} HIGH
+          </span>
+        )}
       </div>
       {issues.map((iss, i) => {
         const isHigh = iss.severity === 'critical' || iss.severity === 'high';
@@ -1444,7 +1460,13 @@ function MobileIssuesCard({
               // title). Inline styles can't be scoped away.
               display: 'flex',
               alignItems: 'center',
-              gap: 10,
+              gap: 12,
+              // Generous breathing room — earlier rows looked smashed
+              // because no padding was set inline (the styled-jsx
+              // .ic-row { padding: 10px 14px } rule wasn't applying).
+              padding: '14px 18px',
+              color: 'var(--ink)',
+              textDecoration: 'none',
             }}
           >
             <span
@@ -1459,7 +1481,7 @@ function MobileIssuesCard({
               <div className="ic-name">{iss.title}</div>
               <div className="mono ic-cat">{iss.category}</div>
             </div>
-            <div className="mono ic-cost" style={{ flexShrink: 0 }}>{cost}</div>
+            <div className="mono ic-cost" style={{ flexShrink: 0, marginLeft: 8 }}>{cost}</div>
           </Link>
         );
       })}
