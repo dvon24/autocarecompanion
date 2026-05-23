@@ -37,6 +37,22 @@ const withPWA = withPWAInit({
         },
       },
       {
+        // Hub pages — same fast-refresh treatment as known-issues. The
+        // default StaleWhileRevalidate was making iOS users sit on the
+        // previous deploy's layout for 1-2 refreshes after a release
+        // because the SW served cached HTML while background-fetching
+        // the new bundle. NetworkFirst with a 4s timeout flips this so
+        // users see fresh content immediately, with cache as the offline
+        // safety net.
+        urlPattern: /^https:\/\/au7o\.io\/vehicle(\/.*)?$/,
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'vehicle-hub-html',
+          networkTimeoutSeconds: 4,
+          expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 },
+        },
+      },
+      {
         urlPattern: /^https:\/\/au7o\.io\/api\/.*$/,
         handler: 'NetworkFirst',
         options: {
