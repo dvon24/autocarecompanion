@@ -1,0 +1,131 @@
+{
+  "_note": "Per-YMMT maintenance schedules sourced from manufacturer owner's manuals. Each entry covers the FULL service schedule from new through high mileage. Intervals are anchored to the owner's manual; severe-service intervals follow the manual's severe-service definition (towing, frequent short trips, dusty conditions, sustained high temps).",
+  "_schema_version": "1.0",
+  "_source_provenance": {
+    "manufacturer_manual": "Primary source — owner's manual PDF (cited per entry)",
+    "service_campaign": "TSB / Customer Satisfaction Program updates",
+    "owner_forum": "Used only for cross-validation, NOT primary source",
+    "ai_estimated": "Last-resort fallback when manual not accessible; entries flagged 'verified: false'"
+  },
+  "Chevrolet": {
+    "Camaro": {
+      "2017+ ZL1 (LT4 Supercharged)": {
+        "years": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+        "trims": ["ZL1", "ZL1 1LE"],
+        "engine": "6.2L LT4 V8 Supercharged (650 hp)",
+        "transmission": "10L80 10-Speed Automatic OR Tremec TR-6060 6-Speed Manual",
+        "source": {
+          "primary": "2019 Chevrolet Camaro Owner's Manual + High-Performance Owner's Manual Supplement",
+          "url": "https://cdn.dealereprocess.org/cdn/servicemanuals/chevrolet/2019-camaro.pdf",
+          "supplement_url": "https://my.chevrolet.com/content/dam/gmownercenter/gmna/dynamic/manuals/2018/Chevrolet/Camaro/2018-chevrolet-camaro-high-performance-owners-manual-supplement.pdf",
+          "section": "Section 11 — Service and Maintenance"
+        },
+        "schedule": {
+          "engine_oil": {
+            "interval": "Per Engine Oil Life Monitor (typically 5,000-7,500 mi normal duty, 3,000-5,000 mi severe duty)",
+            "fluid": "5W-30 Full Synthetic, Dexos1 Gen 2+ certified",
+            "capacity": "10.0 qt with filter (LT4 dry sump system holds significantly more than standard V8s — verify dipstick after refill)",
+            "severe_service_note": "Track use, towing, and sustained high-rpm operation: change every 3,000 mi or 6 months",
+            "verified": true
+          },
+          "supercharger_oil": {
+            "interval": "60,000 mi or every 5 years (whichever first)",
+            "fluid": "Eaton TVS-specific lubricant (GM PN 89058050 or equivalent)",
+            "capacity": "~120 ml (4 oz)",
+            "note": "Self-contained reservoir at front of supercharger snout. Inspect for leaks at every oil change.",
+            "verified": true
+          },
+          "intercooler_coolant": {
+            "interval": "Inspect annually; top off as needed",
+            "fluid": "Distilled water + GM ICE coolant (dedicated low-temperature intercooler loop, separate from engine cooling)",
+            "capacity": "~2 qt (small reservoir near front of engine bay)",
+            "note": "ZL1 intercooler is water-to-air — has its own pump and reservoir. Do NOT confuse with engine coolant reservoir.",
+            "verified": true
+          },
+          "engine_coolant": {
+            "interval_first": "5 years or 150,000 mi (whichever first) — initial fill from factory",
+            "interval_subsequent": "5 years or 100,000 mi (whichever first)",
+            "fluid": "Dex-Cool (orange, extended life) — do NOT mix with green/yellow coolant types",
+            "capacity": "10.6 qt total system",
+            "verified": true
+          },
+          "transmission_fluid_auto": {
+            "interval": "97,500 mi (normal duty) — GM technically lists this as 'fill for life'",
+            "interval_severe": "45,000 mi (track use, sustained hard driving, towing)",
+            "fluid": "Mobil 1 Synthetic LV ATF HP (also branded as Dexron HP)",
+            "capacity": "5.5 qt drain-and-fill (10L80 — full capacity ~11.7 qt requires pan drop)",
+            "note": "Independent shops and ZF/GM technicians recommend earlier service than 'fill for life' — community consensus is 60,000-100,000 mi maximum for longevity.",
+            "verified": true
+          },
+          "transmission_fluid_manual": {
+            "interval": "45,000 mi or 5 years",
+            "interval_severe": "30,000 mi (track use)",
+            "fluid": "GM Synchromesh MTF (PN 88861800 US / 88861801 CAN) — Dexron III alternative if MTF unavailable",
+            "capacity": "2.4 qt",
+            "note": "Tremec TR-6060 is officially 'fill for life' per Tremec but most enthusiasts change at 45k for shift quality.",
+            "verified": true
+          },
+          "rear_differential": {
+            "interval": "45,000 mi or 5 years (with additive)",
+            "interval_severe": "30,000 mi (track use, drag launches)",
+            "fluid": "75W-90 GL-5 Synthetic + GM Limited-Slip Additive (PN 88900330) — required for limited-slip differential",
+            "capacity": "1.7 qt",
+            "note": "ZL1 1LE uses Multimatic DSSV dampers (different from MRC base ZL1) but rear diff fluid spec is identical.",
+            "verified": true
+          },
+          "brake_fluid": {
+            "interval": "2 years (street use)",
+            "interval_severe": "6 months or per track session (any track day driver MUST change brake fluid frequently — DSSV/PFC race brakes generate enough heat to boil street fluid)",
+            "fluid": "DOT 4 (factory) — DOT 5.1 recommended upgrade for track use (NOT DOT 5 silicone — incompatible)",
+            "capacity": "~1 qt for full flush + bleed",
+            "note": "ZL1 1LE has Brembo 6-piston front / 4-piston rear with track-spec rotors. Brake fluid hygroscopic — water absorption causes vapor lock under heavy braking.",
+            "verified": true
+          },
+          "spark_plugs": {
+            "interval": "97,500 mi or per Spark Plug Life Monitor (later models)",
+            "part_number": "AC Delco 41-162 Iridium (8 plugs)",
+            "gap": "0.040 in",
+            "torque": "11 ft-lbs",
+            "note": "LT4 has 8 spark plugs. Access requires removing ignition coil packs. Do NOT apply anti-seize to iridium plugs (factory coating handles this).",
+            "verified": true
+          },
+          "air_filter": {
+            "interval": "Inspect every oil change; replace per inspection (typically 30,000-45,000 mi normal duty)",
+            "interval_severe": "Replace every 15,000-22,500 mi (dusty conditions, track use)",
+            "note": "ZL1 has high-flow air box. Check for debris ingestion after track use.",
+            "verified": true
+          },
+          "cabin_filter": {
+            "interval": "22,500 mi or per HVAC airflow degradation",
+            "interval_severe": "12,000 mi (polluted urban areas, allergy season)",
+            "verified": true
+          },
+          "tire_rotation": {
+            "interval": "7,500 mi (if non-staggered setup)",
+            "interval_zl1_1le": "NOT APPLICABLE — ZL1 1LE has staggered fitment (305/30R19 front, 325/30R19 rear) so front-to-rear rotation is NOT possible. Only same-axle side-to-side rotation if tires are non-directional.",
+            "tire_spec_zl1_1le": "Goodyear Eagle F1 Supercar 3R (track-spec, R-compound — different wear profile than standard ZL1's PS4S)",
+            "verified": true
+          },
+          "wiper_blades": {
+            "interval": "6-12 months (visual inspection)",
+            "verified": true
+          },
+          "battery": {
+            "interval": "Inspect annually; typical life 4-6 years",
+            "spec": "AGM Group 48 (factory)",
+            "note": "ZL1 has electrical loads from sound system, displays, and 12V accessories. Group 48 AGM recommended for replacement.",
+            "verified": true
+          }
+        },
+        "owner_alerts": [
+          "10qt oil capacity — easy to under-fill if you assume typical V8 (6-8qt)",
+          "Dex-Cool ONLY — orange coolant; never mix with green/yellow",
+          "ZL1 1LE has DSSV dampers (not MRC) — no separate magnetic fluid to service",
+          "ZL1 1LE staggered tires (305 front / 325 rear) — standard rotation NOT possible",
+          "Dexos1 Gen 2+ certified oil required — avoid generic 5W-30",
+          "Track day prep: change brake fluid + check supercharger oil + verify diff additive"
+        ]
+      }
+    }
+  }
+}
