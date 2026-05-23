@@ -1,0 +1,46 @@
+{
+  "source": "claude-code-subscription-mode",
+  "sampledAt": "2026-05-23T00:00:00.000Z",
+  "make": "Volvo",
+  "totalAuditedSoFar": 167,
+  "totalIssuesInMake": 168,
+  "percentComplete": 99.4,
+  "summary": {
+    "verified": 142,
+    "minor_issues": 22,
+    "major_issues": 0,
+    "likely_fabricated": 0,
+    "duplicates_archived": 3
+  },
+  "archiveCandidates": [
+    {
+      "id": "volvo-ex30-software-glitches-2024",
+      "reason": "Duplicate of volvo-ex30-infotainment-android-bugs-2024. Both describe EX30 Android Automotive OS software bugs / infotainment instability. Same vehicle, same years, same root cause (Android Automotive immaturity in 2024-2025 builds). Confirmed via WebSearch — single class action lawsuit covers both framings.",
+      "applied": true
+    },
+    {
+      "id": "volvo-c40-recharge-software-glitches-2022",
+      "reason": "Duplicate of volvo-c40-recharge-infotainment-bugs-2022. Same C40 Recharge infotainment software issues. Google Built-In vs Android Automotive OS — same platform, same root cause.",
+      "applied": true
+    },
+    {
+      "id": "volvo-s80-intermittent-electrical-power-loss-and-module-communication-failures",
+      "reason": "Duplicate of volvo-s80-electronic-throttle-module-failure-causing-limp-mode-stalling-and-surging. ETM failure IS the cause of intermittent electrical power loss / limp mode / surging on S80. Both entries 2000-2000 year scope, same underlying Magneti Marelli ETM defect covered by recall 04V486.",
+      "applied": true
+    }
+  ],
+  "notes": {
+    "volvo_health": "Volvo running ~1.8% archive rate. Mostly real Volvo issues with calibration drift (year ranges for older models spanning P80/P2/P3/SPA generations).",
+    "notable_pattern_ETM_cluster": "Magneti Marelli Electronic Throttle Module (recall 04V486) appears as separate entries for 7 Volvo models (C70/S40/S60/S70/V40/V70/XC70). These are kept as separate entries because each is a per-vehicle SEO page; the underlying defect is the same but vehicles are distinct. Phase 2 could consolidate descriptions but archive would lose SEO surface.",
+    "fix_in_place_patterns": [
+      "Long-descriptive-slug S80 2000-2000 entries (4 of them) auto-generated with narrow year scope — some may need year expansion to actual 1999-2002 ETM recall window",
+      "PCV/oil-trap entries across S40/S60/S70/V40/V50/V60/V70/XC60/XC70/XC90 family — all real Volvo P80/P2/P3 era PCV breather box issue, each per-vehicle entry",
+      "Air suspension entries on Recharge models (S90/V90/XC90/V90CC) — real but year ranges may need tightening"
+    ],
+    "no_fabrications_found": "Volvo audit found zero fabricated entries. The 3 archives are all duplicates."
+  },
+  "batches_completed": [
+    {"batch": 1, "issues": 60, "verified": 52, "minor": 7, "duplicates": 1},
+    {"batch": "2+3", "issues": 107, "verified": 90, "minor": 15, "duplicates": 2}
+  ]
+}
