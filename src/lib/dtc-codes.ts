@@ -210,3 +210,95 @@ export async function getDTCWithIssues(code: string): Promise<DTCWithIssues | nu
     makes: Array.from(makeSet).sort(),
   };
 }
+
+/**
+ * Per-make variant of getDTCWithIssues. Returns only the issues from the
+ * specified make. Used for /known-issues/dtc/[code]/[make] pages which
+ * target queries like "ford p0a09" or "honda p0420" (where the user wants
+ * make-specific context, not a generic DTC reference).
+ *
+ * Returns null if the DTC doesn't exist OR if no published KnownIssue links
+ * that DTC to that make (avoids generating empty pages).
+ */
+export async function getDTCWithIssuesForMake(
+  code: string,
+  make: string,
+): Promise<DTCWithIssues | null> {
+  const upper = code.toUpperCase();
+  const dtc = await prisma.dTCCode.findUnique({ where: { code: upper } });
+  if (!dtc) return null;
+
+  const rows = await prisma.knownIssue.findMany({
+    where: {
+      dtcCodes: { has: upper },
+      status: 'published',
+      make: { equals: make, mode: 'insensitive' },
+    },
+    orderBy: { reportCount: 'desc' },
+  });
+
+  if (rows.length === 0) return null;
+
+  const issues = rows.map(r => ({
+    ...dbRowToKnownIssue(r),
+    slug: makeSlug(r.make, r.model),
+  }));
+
+  // Use the make name from actual data (correctly cased) instead of the
+  // URL slug to avoid "FORD" vs "Ford" mismatches in titles.
+  const actualMake = rows[0].make;
+  const vehicleSet = new Set(rows.map(r => `${r.make}|${r.model}`));
+
+  return {
+    code: upper,
+    name: dtc.name,
+    system: dtc.system,
+    description: dtc.description,
+    commonCauses: dtc.commonCauses,
+    severity: dtc.severity,
+    issues,
+    vehicleCount: vehicleSet.size,
+    makes: [actualMake],
+  };
+}
+
+/**
+ * Get all unique (DTC code, make) pairs that have at least one published
+ * KnownIssue linking them. Used by generateStaticParams() on the per-make-
+ * DTC route to produce only pages that have real content (filters the
+ * combinatorial explosion to ~2,000 real pages).
+ */
+export async function getAllDTCMakeSlugs(): Promise<{ code: string; make: string }[]> {
+  const rows = await prisma.$queryRaw<{ make: string; dtc: string }[]>`
+    SELECT DISTINCT make, dtc
+    FROM (
+      SELECT make, unnest("dtcCodes") as dtc
+      FROM "KnownIssue"
+      WHERE status = 'published'
+        AND "dtcCodes" IS NOT NULL
+        AND array_length("dtcCodes", 1) > 0
+    ) sub
+    WHERE dtc ~ '^[CPUB]?[0-9A-F]{4,5}$'
+    ORDER BY make, dtc
+  `;
+  return rows.map(r => ({
+    code: r.dtc.toLowerCase(),
+    make: makeToSlug(r.make),
+  }));
+}
+
+/** Convert a make name to a URL-safe slug. */
+export function makeToSlug(make: string): string {
+  return make.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+}
+
+/** Convert a make slug back to a display name (looks up the actual case). */
+export async function slugToMake(slug: string): Promise<string | null> {
+  const rows = await prisma.knownIssue.findMany({
+    where: { status: 'published' },
+    select: { make: true },
+    distinct: ['make'],
+  });
+  const match = rows.find(r => makeToSlug(r.make) === slug);
+  return match?.make ?? null;
+}
