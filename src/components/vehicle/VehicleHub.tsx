@@ -8,6 +8,7 @@ import type { RecentThread, TrendingChip, AttachableIssue } from '@/lib/hub-data
 import { Icon, type IconName } from '@/components/ui/Icon';
 import type { VehicleSchedule } from '@/lib/owners-manual-schedule';
 import { OwnersManualSchedule } from '@/components/vehicle/OwnersManualSchedule';
+import { MileageEditor } from '@/components/vehicle/MileageEditor';
 
 /**
  * Conversation-first hub that lives at /vehicle/[slug]. The chat IS the
@@ -719,18 +720,33 @@ function MobileHub({
 
       {/* App header — vehicle pill on the left, list + avatar on the right */}
       <header className="m-head">
-        <Link href="/garage" className="m-veh-pill" aria-label={`Change vehicle — currently ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}`}>
+        {/* Split pill: top row is a <Link> to /garage (change vehicle).
+            Bottom row contains a <button> via MileageEditor, which can't
+            legally nest inside a <Link>, so the wrapper is a plain div
+            and the navigation target is scoped to the top row only. */}
+        <div className="m-veh-pill" aria-label={`Vehicle: ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}`}>
           <span className="m-veh-disc">{vehInitial}</span>
           <div className="m-veh-meta">
-            <div className="m-veh-name">{vehicle.year} {vehicle.make} {vehicle.model}</div>
+            <Link
+              href="/garage"
+              aria-label="Change vehicle"
+              style={{ display: 'flex', alignItems: 'center', gap: 4, textDecoration: 'none', color: 'inherit', minWidth: 0 }}
+            >
+              <span className="m-veh-name">{vehicle.year} {vehicle.make} {vehicle.model}</span>
+              <Icon name="chevron-down" size={11} style={{ color: 'var(--slate-400)' }} />
+            </Link>
             <div className="m-veh-sub mono">
-              {vehicle.trim ? vehicle.trim : ''}
-              {vehicle.trim && currentMileage != null ? ' · ' : ''}
-              {currentMileage != null ? `${currentMileage.toLocaleString()} mi` : ''}
+              {vehicle.trim ? <span>{vehicle.trim}</span> : null}
+              {vehicle.trim ? <span style={{ margin: '0 4px' }}>·</span> : null}
+              <MileageEditor
+                vehicle={vehicle}
+                initialMileage={currentMileage}
+                isAuthed={isAuthed}
+                compact
+              />
             </div>
           </div>
-          <Icon name="chevron-down" size={11} style={{ color: 'var(--slate-400)', marginLeft: 4 }} />
-        </Link>
+        </div>
         <div className="m-head-right">
           <button type="button" className="m-icon-btn" onClick={onOpenThreads} aria-label="Open recent conversations">
             <Icon name="list" size={14} />
