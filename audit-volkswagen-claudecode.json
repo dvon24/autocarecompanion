@@ -1,0 +1,39 @@
+{
+  "source": "claude-code-subscription-mode",
+  "sampledAt": "2026-05-23T00:00:00.000Z",
+  "make": "Volkswagen",
+  "totalAuditedSoFar": 163,
+  "totalIssuesInMake": 163,
+  "percentComplete": 100,
+  "summary": {
+    "verified": 130,
+    "minor_issues": 16,
+    "major_issues": 0,
+    "likely_fabricated": 0,
+    "duplicates_archived": 17
+  },
+  "archiveCandidates": [
+    {"id": "vw-gti-carbon-buildup-2006", "reason": "Duplicate of volkswagen-golf-carbon-buildup-2008 (vw-gti slug but model field is Golf)", "applied": true},
+    {"id": "vw-gti-water-pump-thermostat-2006", "reason": "Duplicate of volkswagen-golf-water-pump-2008 (vw-gti slug but model is Golf)", "applied": true},
+    {"id": "vw-gli-carbon-buildup-2006", "reason": "Duplicate of vw-20t-carbon-buildup-2008 (both Jetta carbon buildup)", "applied": true},
+    {"id": "vw-gli-water-pump-2006", "reason": "Duplicate of vw-20t-water-pump-2008 (both Jetta)", "applied": true},
+    {"id": "vw-timing-chain-2008", "reason": "Duplicate of vw-20t-timing-chain-2008 (Jetta timing chain)", "applied": true},
+    {"id": "vw-gli-timing-chain-tensioner-2006", "reason": "Duplicate of vw-20t-timing-chain-2008 (Jetta timing chain)", "applied": true},
+    {"id": "vw-gti-dsg-mechatronic-2006", "reason": "Duplicate of volkswagen-golf-dsg-mechatronic-2008 (Golf DSG)", "applied": true},
+    {"id": "vw-golf-r-mk8-infotainment-2022", "reason": "Duplicate of vw-gti-mk8-infotainment-2022 (Golf MK8 infotainment)", "applied": true},
+    {"id": "vw-golf-r-haldex-pump-failure-2015", "reason": "Duplicate of vw-golf-r-haldex-2012 (Golf R Haldex)", "applied": true},
+    {"id": "vw-phaeton-air-suspension-failure-2004", "reason": "Duplicate of volkswagen-phaeton-air-suspension-failure-2004 (vw- prefix vs volkswagen- prefix, same Phaeton air suspension)", "applied": true},
+    {"id": "vw-corrado-g60-supercharger-1990", "reason": "Duplicate of volkswagen-corrado-g60-supercharger-1990 (vw- vs volkswagen- prefix swap, same Corrado G60)", "applied": true},
+    {"id": "vw-eurovan-transmission-failure-1993", "reason": "Duplicate of volkswagen-eurovan-auto-trans-failure-1993 (same Eurovan trans)", "applied": true},
+    {"id": "vw-tiguan-timing-chain-tensioner-2009", "reason": "Duplicate of volkswagen-tiguan-timing-chain-tensioner-2009 (vw- vs volkswagen-)", "applied": true},
+    {"id": "vw-tiguan-water-pump-leak-2009", "reason": "Duplicate of volkswagen-tiguan-water-pump-failure-2009 (same Tiguan water pump)", "applied": true},
+    {"id": "vw-arteon-infotainment-glitches-2019", "reason": "Duplicate of volkswagen-arteon-infotainment-2019 (same Arteon MIB3 infotainment)", "applied": true},
+    {"id": "volkswagen-beetle-turbo-wastegate-rattle-2012", "reason": "Duplicate of volkswagen-beetle-turbo-wastegate-2012 (same 2.0T wastegate)", "applied": true},
+    {"id": "vw-cabrio-convertible-top-leak-1995", "reason": "Overlaps with volkswagen-cabrio-top-mechanism-1995 (mechanism+weatherstrip vs seals+drains describe same convertible top failure)", "applied": true}
+  ],
+  "notes": {
+    "vw_health": "VW had ~10.4% archive rate — second highest after AMG GT. All archives were duplicates (zero fabrications). Pattern: original AI gen created two slug conventions (vw-* and volkswagen-*) producing parallel sets of entries for the same issues.",
+    "kept_per_vehicle_pages": "GTI, Golf R, Golf Alltrack, GLI all have their own entries even though they're Golf/Jetta trims. Kept as separate per-vehicle SEO pages.",
+    "verbose_slug_2000only_pattern": "Multiple Jetta entries with 2000-2000 single-year narrow scope and verbose descriptive slugs (heated seat, hazard flasher, brake light switch, window regulator clip). These look batch-generated and likely need year scope verification in Phase 2."
+  }
+}
