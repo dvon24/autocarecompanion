@@ -21,6 +21,7 @@ import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/component
 import { ShareButtons } from '@/components/shared/ShareButtons';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
+import { sourceLabel, analysisAttribution, sourceFootnote, metaSourceTail, formatUpdatedLabel } from '@/lib/source-attribution';
 
 // --- ISR + dynamic params ---
 
@@ -76,7 +77,7 @@ export async function generateMetadata({
   const descPrefix = yearIsValid
     ? `${requestedYear} `
     : (yearRange ? `${yearRange.min}-${yearRange.max} ` : '');
-  const description = `${issues.length} documented problems for the ${descPrefix}${vehicleName}${highCount > 0 ? `, including ${highCount} critical` : ''}. Symptoms, repair costs ($${getMinCost(issues)}-$${getMaxCost(issues)}), and solutions from ${totalReports.toLocaleString()}+ owner reports.`;
+  const description = `${issues.length} documented problems for the ${descPrefix}${vehicleName}${highCount > 0 ? `, including ${highCount} critical` : ''}. Symptoms, repair costs ($${getMinCost(issues)}-$${getMaxCost(issues)}), and ${metaSourceTail(totalReports)}.`;
 
   // Canonical splits between base and per-year variants. Each is a
   // distinct indexable URL; Google credits content + ranking to the
@@ -142,15 +143,18 @@ function generateFAQs(make: string, model: string, issues: KnownIssue[], yearRan
 
   // FAQ 1: Most common problems
   const topIssues = issues.slice(0, 3).map(i => i.title).join(', ');
+  const reliabilityCorpus = totalReports > 0
+    ? `documented across ${totalReports.toLocaleString()}+ owner reports`
+    : `compiled from NHTSA recalls, manufacturer TSBs, and owner forum reports`;
   faqs.push({
     question: `What are the most common ${vehicleName} problems?`,
-    answer: `According to Au7o's analysis of ${totalReports.toLocaleString()}+ owner reports, the ${yearStr}${vehicleName} has ${issues.length} documented issues. The most frequently reported are: ${topIssues}. ${highIssues.length > 0 ? `Of these, ${highIssues.length} ${highIssues.length === 1 ? 'is' : 'are'} rated critical and should be addressed promptly.` : 'None are rated critical, but regular maintenance is recommended.'}`,
+    answer: `According to ${analysisAttribution(totalReports)}, the ${yearStr}${vehicleName} has ${issues.length} documented issues. The most frequently reported are: ${topIssues}. ${highIssues.length > 0 ? `Of these, ${highIssues.length} ${highIssues.length === 1 ? 'is' : 'are'} rated critical and should be addressed promptly.` : 'None are rated critical, but regular maintenance is recommended.'}`,
   });
 
   // FAQ 2: Reliability
   faqs.push({
     question: `Is the ${vehicleName} reliable?`,
-    answer: `The ${yearStr}${vehicleName} has ${issues.length} known issues documented across ${totalReports.toLocaleString()}+ owner reports. ${highIssues.length === 0 ? `No issues are rated critical, suggesting generally good reliability.` : `${highIssues.length} issue${highIssues.length > 1 ? 's are' : ' is'} rated critical: ${highIssues.map(i => i.title).join(' and ')}. Prospective buyers should inspect for these issues and factor potential repair costs into their purchase decision.`} Regular maintenance following the manufacturer's schedule helps prevent many common problems.`,
+    answer: `The ${yearStr}${vehicleName} has ${issues.length} known issues ${reliabilityCorpus}. ${highIssues.length === 0 ? `No issues are rated critical, suggesting generally good reliability.` : `${highIssues.length} issue${highIssues.length > 1 ? 's are' : ' is'} rated critical: ${highIssues.map(i => i.title).join(' and ')}. Prospective buyers should inspect for these issues and factor potential repair costs into their purchase decision.`} Regular maintenance following the manufacturer's schedule helps prevent many common problems.`,
   });
 
   // FAQ 3: Maintenance cost
@@ -167,7 +171,7 @@ function generateFAQs(make: string, model: string, issues: KnownIssue[], yearRan
   if (yearRange && yearRange.max - yearRange.min > 2) {
     faqs.push({
       question: `What year ${vehicleName} is the most reliable?`,
-      answer: `Reliability varies across model years of the ${vehicleName}. Based on owner reports, issues are most commonly reported in earlier model years. Au7o recommends checking the specific known issues for your target year before purchasing, and having a pre-purchase inspection performed by a qualified mechanic. Our known issues database covers the ${yearStr}${vehicleName} with ${issues.length} documented issues from ${totalReports.toLocaleString()}+ owner reports.`,
+      answer: `Reliability varies across model years of the ${vehicleName}. Based on documented issues, problems are most commonly reported in earlier model years. Au7o recommends checking the specific known issues for your target year before purchasing, and having a pre-purchase inspection performed by a qualified mechanic. Our known issues database covers the ${yearStr}${vehicleName} with ${issues.length} documented issues ${reliabilityCorpus}.`,
     });
   }
 
@@ -375,7 +379,7 @@ export default async function KnownIssuesArticlePage({
           </h1>
           <div className="flex items-center justify-between flex-wrap gap-2">
             <p className="text-gray-400 text-sm">
-              {yearStr && `${yearStr} model year${yearRange && yearRange.min !== yearRange.max ? 's' : ''}`} &middot; {totalReports.toLocaleString()}+ owner reports &middot; Updated April 2026
+              {yearStr && `${yearStr} model year${yearRange && yearRange.min !== yearRange.max ? 's' : ''}`} &middot; {sourceLabel(totalReports)} &middot; {formatUpdatedLabel(articleDates.modified)}
             </p>
             <ShareButtons url={articleUrl} title={title} />
           </div>
@@ -384,7 +388,7 @@ export default async function KnownIssuesArticlePage({
         {/* GEO Summary — blockquote style for AI citation */}
         <blockquote className="border-l-4 border-blue-200 pl-5 mb-10">
           <p className="text-gray-600 leading-relaxed">
-            According to Au7o&apos;s analysis of {totalReports.toLocaleString()}+ owner reports, the {yearStr} {vehicleName} has {issues.length} documented known issues
+            According to {analysisAttribution(totalReports)}, the {yearStr} {vehicleName} has {issues.length} documented known issues
             {highCount > 0 ? (
               <>, with {highCount} rated critical. {criticalIssues.length > 0 && (
                 <>The most serious {criticalIssues.length === 1 ? 'is' : 'are'}{' '}
@@ -614,7 +618,7 @@ export default async function KnownIssuesArticlePage({
             {/* Footer attribution */}
             <footer className="pt-6 border-t border-gray-100 text-center">
               <p className="text-xs text-gray-400">
-                Data sourced from {totalReports.toLocaleString()}+ owner reports, TSBs, recalls, and automotive forums.
+                {sourceFootnote(totalReports)}
               </p>
               <p className="text-xs text-gray-400 mt-1">
                 &copy; {new Date().getFullYear()} Au7o. All rights reserved.

@@ -177,7 +177,7 @@ export async function generateMetadata({
   if (!data) return { title: 'Not Found' };
 
   const title = `${data.make} Known Issues & Problems | Au7o`;
-  const description = `${data.totalIssues} documented problems across ${data.models.length} ${data.make} models${data.highCount > 0 ? `, including ${data.highCount} critical issues` : ''}. Symptoms, repair costs, and solutions from real owner reports.`;
+  const description = `${data.totalIssues} documented problems across ${data.models.length} ${data.make} models${data.highCount > 0 ? `, including ${data.highCount} critical issues` : ''}. Symptoms, repair costs, and solutions compiled from NHTSA recalls, manufacturer TSBs, owner forums, and field reports.`;
   const url = `https://au7o.io/known-issues/make/${makeParam}`;
 
   return {
@@ -287,7 +287,7 @@ export default async function MakeLandingPage({
             {make} Known Issues & Problems
           </h1>
           <p className="text-gray-500 text-lg max-w-2xl">
-            {totalIssues.toLocaleString()} documented problems across {models.length} {make} models. Every issue includes symptoms, repair costs, and solutions from real owner reports.
+            {totalIssues.toLocaleString()} documented problems across {models.length} {make} models. Every issue includes symptoms, repair costs, and solutions — compiled from NHTSA recalls, manufacturer TSBs, owner forums, and field reports.
           </p>
           <div className="mt-4">
             <ShareButtons url={makeUrl} title={`${make} Known Issues & Problems | Au7o`} />
@@ -416,7 +416,7 @@ export default async function MakeLandingPage({
         {/* Footer */}
         <footer className="mt-8 pt-6 border-t border-gray-200 text-center">
           <p className="text-xs text-gray-500">
-            Data sourced from owner reports, TSBs, recalls, and automotive forums.
+            Data compiled from NHTSA recalls, manufacturer TSBs, owner forums, and AI-assisted research.
             Issues are verified where possible. Always consult a professional mechanic for diagnosis.
           </p>
           <p className="text-xs text-gray-500 mt-2">

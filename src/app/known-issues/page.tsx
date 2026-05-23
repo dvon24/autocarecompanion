@@ -16,7 +16,7 @@ export const revalidate = 1800; // Re-generate cached page every 30 minutes
 export const metadata: Metadata = {
   title: 'Known Vehicle Issues & Problems | Au7o',
   description:
-    'Browse 4,100+ documented vehicle problems across 34 makes and 640+ models, plus 323 OBD-II error codes. Symptoms, repair costs, and solutions from real owner reports.',
+    'Browse 4,200+ documented vehicle problems across 40+ makes and 650+ models, plus 323 OBD-II error codes. Symptoms, repair costs, and solutions compiled from NHTSA recalls, manufacturer TSBs, owner forums, and field reports.',
   openGraph: {
     title: 'Known Vehicle Issues & Problems | Au7o',
     description:
@@ -172,7 +172,7 @@ export default async function KnownIssuesIndexPage() {
             Known Vehicle Issues
           </h1>
           <p className="text-gray-500 max-w-xl">
-            {totalIssues.toLocaleString()}+ documented problems across {directory.length} makes and {totalVehicles} models. Symptoms, costs, and solutions from real owner reports.
+            {totalIssues.toLocaleString()}+ documented problems across {directory.length} makes and {totalVehicles} models. Symptoms, costs, and solutions compiled from NHTSA recalls, manufacturer TSBs, and owner forums.
           </p>
         </div>
 
