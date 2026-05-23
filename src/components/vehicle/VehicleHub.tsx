@@ -667,11 +667,13 @@ function MobileHub({
     if (!isAuthed) {
       // Anon: prompts that map to public surfaces (issues, recalls, parts)
       // — drive engagement before sign-in.
+      // Mobile-tight: 2 suggestions only (was 4 — vertical real estate is
+      // precious above the fold). The chip strip above the composer
+      // surfaces the broader Maintenance/Recalls/Issues/Parts/Trip
+      // entrypoints so we don't lose discoverability.
       return [
         { icon: 'alert', text: `What recalls apply to my ${vehicle.model}?`, tone: 'crit' },
         { icon: 'wrench', text: 'Plan my next oil change' },
-        { icon: 'search', text: 'Why does my steering feel loose?' },
-        { icon: 'spark', text: 'Find a brake pad upgrade' },
       ] as const as { icon: ChipIcon; text: string; tone?: 'crit' }[];
     }
     const out: { icon: ChipIcon; text: string }[] = [];
@@ -680,7 +682,8 @@ function MobileHub({
     if (ctas[1]) out.push({ icon: 'dollar', text: ctas[1] });
     if (ctas[2]) out.push({ icon: 'book', text: ctas[2] });
     out.push({ icon: 'map', text: 'Plan a weekend drive' });
-    return out.slice(0, 4);
+    // Mobile-tight: cap at 2 (was 4) so the section fits above the fold.
+    return out.slice(0, 2);
   })();
 
   // Quick-query chips above the composer — a horizontal scrolling row of
@@ -774,7 +777,13 @@ function MobileHub({
             {greeting.line1}<br />
             <span className="m-h1-sub">{greeting.line2}</span>
           </h1>
-          <p className="m-greet-p">{opener.text}</p>
+          {/* Body paragraph fades into transparency at the bottom so the
+              COMMON AT YOUR MILEAGE card below it becomes the visual focus.
+              Personality stays for SEO + screen-reader users; the fade is
+              cosmetic only. */}
+          <div className="m-greet-p-wrap">
+            <p className="m-greet-p">{opener.text}</p>
+          </div>
         </div>
 
         {/* First attachment differs by auth state, matching the bundle:
@@ -920,20 +929,11 @@ function MobileHub({
           </button>
         </div>
 
-        <nav className="m-tabs" aria-label="Primary">
-          <span className="m-tab m-tab-active" aria-current="page">
-            <Icon name="chat" size={16} />
-            <span>Ask</span>
-          </span>
-          <Link href="/garage" className="m-tab">
-            <Icon name="list" size={16} />
-            <span>Garage</span>
-          </Link>
-          <Link href="/drive" className="m-tab">
-            <Icon name="map" size={16} />
-            <span>Drive</span>
-          </Link>
-        </nav>
+        {/* Bottom nav removed — the chip strip above the composer
+            (Maintenance / Recalls / Issues / Parts / Trip) already covers
+            navigation, the vehicle pill's chevron at the top opens
+            /garage, and Ask is the composer itself. Removing the tab bar
+            reclaimed ~50px above the fold. */}
       </div>
 
       <style jsx>{`
@@ -1012,6 +1012,16 @@ function MobileHub({
         .m-body::-webkit-scrollbar-thumb { background: rgba(11,18,32,0.12); border-radius: 3px; }
 
         .m-greet { margin-top: 10px; }
+        .m-greet-p-wrap {
+          position: relative;
+          max-height: 56px;
+          overflow: hidden;
+          /* Fade the bottom of the body paragraph into transparency so
+             the COMMON AT YOUR MILEAGE card below it becomes the visual
+             focus. Mask handles both Safari (webkit) and others. */
+          -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+          mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+        }
         .m-eyebrow-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
         .m-pulse-dot {
           width: 6px; height: 6px; border-radius: 50%;
@@ -2020,6 +2030,12 @@ function MobileThreadsDrawer({
         <div className="md-spacer" />
 
         <div className="md-foot">
+          <Link href="/garage" className="md-link" onClick={onClose}>
+            Garage
+          </Link>
+          <Link href="/drive" className="md-link" onClick={onClose}>
+            Drive
+          </Link>
           <Link href={`/known-issues/${slug}`} className="md-link" onClick={onClose}>
             Known issues page
           </Link>
