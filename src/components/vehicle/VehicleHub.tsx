@@ -719,12 +719,14 @@ function MobileHub({
 
       {/* App header — vehicle pill on the left, list + avatar on the right */}
       <header className="m-head">
-        <Link href="/" className="m-veh-pill" aria-label={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}>
+        <Link href="/garage" className="m-veh-pill" aria-label={`Change vehicle — currently ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}`}>
           <span className="m-veh-disc">{vehInitial}</span>
           <div className="m-veh-meta">
-            <div className="m-veh-name">{vehicle.model}</div>
+            <div className="m-veh-name">{vehicle.year} {vehicle.make} {vehicle.model}</div>
             <div className="m-veh-sub mono">
-              {vehicle.year}{currentMileage != null && <> · {currentMileage.toLocaleString()} mi</>}
+              {vehicle.trim ? vehicle.trim : ''}
+              {vehicle.trim && currentMileage != null ? ' · ' : ''}
+              {currentMileage != null ? `${currentMileage.toLocaleString()} mi` : ''}
             </div>
           </div>
           <Icon name="chevron-down" size={11} style={{ color: 'var(--slate-400)', marginLeft: 4 }} />
@@ -914,10 +916,6 @@ function MobileHub({
           <Link href="/drive" className="m-tab">
             <Icon name="map" size={16} />
             <span>Drive</span>
-          </Link>
-          <Link href={user ? '/account' : `/api/auth/signin?callbackUrl=${encodeURIComponent(`/vehicle/${slug}`)}`} className="m-tab">
-            <Icon name="user" size={16} />
-            <span>You</span>
           </Link>
         </nav>
       </div>
@@ -1387,9 +1385,13 @@ function MobileIssuesCard({
   // Anonymous variant uses the bundle's "COMMON AT 60K+ MILES" framing
   // since we don't yet know if the user owns this car. Signed-in says
   // "YOUR TRIM" because we have their actual vehicle on file.
+  // Eyebrow label honesty: only use "AT YOUR MILEAGE" when we actually
+  // filter by mileage. We currently rank by severity/popularity, not
+  // mileage band, so the old label was misleading — especially on
+  // 0-mileage vehicles where it read as "common at 0 miles."
   const eyebrowText = authed
     ? `${issues.length} KNOWN · YOUR TRIM`
-    : 'COMMON AT YOUR MILEAGE';
+    : 'COMMONLY REPORTED ISSUES';
   return (
     <div className="ic">
       <div className="ic-head">
@@ -1408,24 +1410,88 @@ function MobileIssuesCard({
             key={iss.id}
             href={iss.knownIssuesUrl}
             className="ic-row"
-            style={{ borderBottom: isLast ? 'none' : '1px solid var(--paper-line)' }}
+            style={{
+              borderBottom: isLast ? 'none' : '1px solid var(--paper-line)',
+              // Inline display rules — styled-jsx hash isolation was
+              // producing a vertically-stacked layout on mobile in
+              // some builds (status dot on a separate row from the
+              // title). Inline styles can't be scoped away.
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+            }}
           >
-            <span className={`status-dot ${isHigh ? 'crit' : 'warn'}`} />
-            <div className="ic-body">
+            <span
+              className={`status-dot ${isHigh ? 'crit' : 'warn'}`}
+              style={{
+                width: 10, height: 10, borderRadius: 999,
+                flex: '0 0 auto', display: 'inline-block',
+                background: isHigh ? '#DC2626' : '#F59E0B',
+              }}
+            />
+            <div className="ic-body" style={{ flex: 1, minWidth: 0 }}>
               <div className="ic-name">{iss.title}</div>
               <div className="mono ic-cat">{iss.category}</div>
             </div>
-            <div className="mono ic-cost">{cost}</div>
+            <div className="mono ic-cost" style={{ flexShrink: 0 }}>{cost}</div>
           </Link>
         );
       })}
-      <div className="ic-actions">
-        {/* Real destinations only — earlier "#diagnose" / "Find a shop" links
-            went to a 404. "See all" lands on the full known-issues article;
-            "Symptom check" routes to /symptom-chat which exists and is the
-            real diagnostic flow. */}
-        <Link href={`/known-issues/${slug}`} className="ic-btn ic-btn-primary">See all</Link>
-        <Link href="/symptom-chat" className="ic-btn">Symptom check</Link>
+      {/* Action row — inline-styled to guarantee the two buttons render
+          side-by-side. Mobile users were reporting them rendering as a
+          single visual blob "See all  Symptom check" likely because the
+          styled-jsx .ic-actions hash wasn't being applied in some builds. */}
+      <div
+        className="ic-actions"
+        style={{
+          padding: '8px 14px 12px',
+          display: 'flex',
+          gap: 6,
+          borderTop: '1px solid var(--paper-line)',
+        }}
+      >
+        <Link
+          href={`/known-issues/${slug}`}
+          className="ic-btn ic-btn-primary"
+          style={{
+            flex: 1,
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '8px 10px',
+            borderRadius: 999,
+            background: 'var(--ink)',
+            color: '#fff',
+            border: '1px solid var(--ink)',
+            fontFamily: 'inherit',
+            fontSize: 12,
+            fontWeight: 600,
+            textDecoration: 'none',
+          }}
+        >
+          See all
+        </Link>
+        <Link
+          href="/symptom-chat"
+          className="ic-btn"
+          style={{
+            flex: 1,
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '8px 10px',
+            borderRadius: 999,
+            background: '#fff',
+            color: 'var(--ink)',
+            border: '1px solid var(--paper-line)',
+            fontFamily: 'inherit',
+            fontSize: 12,
+            fontWeight: 600,
+            textDecoration: 'none',
+          }}
+        >
+          Symptom check
+        </Link>
       </div>
       <style jsx>{`
         .ic {
