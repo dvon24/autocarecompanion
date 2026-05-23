@@ -53,6 +53,22 @@ export default function ForgotPasswordPage() {
               Enter your email and we&apos;ll send you a reset link.
             </p>
 
+            {/* Email provider isn't connected yet — surface that honestly
+                so users don't sit waiting for an email that won't arrive.
+                Remove this banner once RESEND_API_KEY + FROM_EMAIL are
+                set on Vercel and a verified sender is configured. */}
+            <div className="mb-6 p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-900 text-sm">
+              <div className="font-semibold mb-1">Under construction</div>
+              <p className="leading-snug">
+                We&apos;re finishing setup of our email provider. For now, password
+                resets won&apos;t arrive in your inbox.{' '}
+                <a href="mailto:devonsroberson24@yahoo.com" className="underline font-medium">
+                  Email support
+                </a>{' '}
+                and we&apos;ll reset it manually.
+              </p>
+            </div>
+
             {submitted ? (
               <div className="text-center space-y-4">
                 <div className="mx-auto w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center">

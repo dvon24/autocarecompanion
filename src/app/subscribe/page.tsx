@@ -148,6 +148,14 @@ export default function SubscribePage() {
                       <span className="text-blue-200">/month</span>
                     </div>
                     <p className="text-blue-100 text-sm mt-2">Cancel anytime</p>
+                    {/* Trial pitch — Stripe trial_period_days isn't wired
+                        yet, but the offering is committed. Remove this
+                        banner when create-checkout/route.ts passes
+                        trial_period_days: 30. */}
+                    <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/15 border border-white/25 rounded-full text-xs font-medium">
+                      <span>🚧</span>
+                      <span>30-day free trial coming soon</span>
+                    </div>
                   </div>
 
                   {/* CTA */}

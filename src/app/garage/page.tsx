@@ -69,7 +69,9 @@ export default function GaragePage() {
   return (
     <PageLayout backLink={{ href: '/', label: 'Home' }}>
       <div className="max-w-5xl mx-auto px-6 py-12">
-        {/* Demo Mode Banner */}
+        {/* Demo Mode Banner — anonymous users see this. Honest about
+            current state: data is local-only, accounts + sync are still
+            being finalized. */}
         {isDemo && (
           <ScrollReveal delay={0} duration={500}>
             <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl">
@@ -80,9 +82,13 @@ export default function GaragePage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-medium text-amber-800">Demo Mode</p>
+                  <p className="font-medium text-amber-800">
+                    Demo Mode <span className="ml-1.5 text-[10px] font-semibold uppercase tracking-wide px-1.5 py-0.5 bg-amber-200 text-amber-900 rounded">Beta</span>
+                  </p>
                   <p className="text-sm text-amber-700 mt-1">
-                    Your garage data is stored locally in your browser. Subscribe to sync across devices and enable maintenance reminders.
+                    Your garage data is stored locally in your browser for now. Cross-device sync,
+                    push notifications, and SMS maintenance reminders are still in active development —
+                    accounts work today but the premium features layered on top are landing this quarter.
                   </p>
                 </div>
               </div>
