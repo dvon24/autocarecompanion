@@ -88,11 +88,11 @@ const nextConfig: NextConfig = {
         destination: '/',
         permanent: true,
       },
-      {
-        source: '/symptom-chat',
-        destination: '/',
-        permanent: false,
-      },
+      // /symptom-chat redirect removed — the page is a real, in-use
+      // diagnostic interface. Multiple buttons across the app
+      // (Symptom check in the COMMON ISSUES card, ArticleSidebar,
+      // MobileBottomBar, account page) link to it. Sending all that
+      // intent to the home page silently broke the flow.
     ];
   },
 };
