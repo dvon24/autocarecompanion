@@ -104,12 +104,18 @@ function SymptomChatContent() {
       const storedModelMatch = selectedVehicle?.model?.toLowerCase() === model.toLowerCase();
       if (!storedMakeMatch || !storedModelMatch) {
         // Stored vehicle doesn't match article — override with article's make/model
-        // Use placeholder year/trim so the header shows the right car
+        // Use 'Base' as placeholder trim so the value passes VehicleSchema
+        // validation (which requires trim.min(1)). The needsYearTrim flag
+        // surfaces a prompt to the user to select the real year/trim.
+        // Previously trim:'' caused localStorage save to persist an invalid
+        // Vehicle, then loadFromStorage on next mount would strip it via
+        // Zod validation — leaving the user with no vehicle and triggering
+        // the redirect-to-home logic.
         setVehicle({
           year: new Date().getFullYear(),
           make,
           model,
-          trim: '',
+          trim: 'Base',
         });
         setNeedsYearTrim(true);
       }
