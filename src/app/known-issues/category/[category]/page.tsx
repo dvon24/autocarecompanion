@@ -6,6 +6,7 @@ import { makeSlug, getCategoryDates } from '@/lib/known-issues';
 import { categoryConfig } from '@/lib/issue-categories';
 import { BreadcrumbJsonLd, TechnicalArticleJsonLd } from '@/components/seo/JsonLd';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
+import { MakeLogo } from '@/components/shared/MakeLogo';
 import prisma from '@/lib/db';
 
 // --- ISR + dynamic params ---
@@ -133,10 +134,6 @@ async function getCategoryData(category: string) {
   return { totalIssues: rows.length, totalVehicles: vehicles.length, makes: sortedMakes };
 }
 
-function makeLogoSlug(make: string): string {
-  return make.toLowerCase().replace(/\s+/g, '-').replace(/ë/g, 'e');
-}
-
 // --- Page component ---
 
 export default async function CategoryPage({
@@ -229,7 +226,7 @@ export default async function CategoryPage({
                         href={`#${make.toLowerCase().replace(/\s+/g, '-')}`}
                         className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 py-1.5 rounded-md hover:bg-gray-50 px-2 -mx-2 transition-colors"
                       >
-                        <Image src={`/logos/${makeLogoSlug(make)}.png`} alt={make} width={18} height={18} className="flex-shrink-0 object-contain" />
+                        <MakeLogo make={make} size={18} />
                         <span className="truncate">{make}</span>
                         <span className="text-gray-300 text-xs ml-auto">{totalIssues}</span>
                       </a>
@@ -276,7 +273,7 @@ export default async function CategoryPage({
                 <details className="group">
                   <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
                     <div className="flex items-center gap-2.5">
-                      <Image src={`/logos/${makeLogoSlug(make)}.png`} alt={make} width={24} height={24} className="flex-shrink-0 object-contain" />
+                      <MakeLogo make={make} size={24} />
                       <h2 className="text-lg font-semibold text-gray-900">{make}</h2>
                       <span className="text-sm text-gray-400">{totalIssues} issues</span>
                     </div>

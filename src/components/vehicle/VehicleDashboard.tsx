@@ -8,6 +8,7 @@ import { useVehicleContext } from '@/contexts/AppContext';
 import { ChatMessage, ChatMessageLoading } from '@/components/chat/ChatMessage';
 import { type ChatMessage as ChatMessageType, createChatMessage } from '@/schemas/chat.schema';
 import { YMMTSelector } from '@/components/discovery/YMMTSelector';
+import { MakeLogo } from '@/components/shared/MakeLogo';
 
 interface VehicleTuple { year: number; make: string; model: string; trim: string; }
 interface KnownIssue {
@@ -86,7 +87,6 @@ export function VehicleDashboard({
   const vehicleShort = vehicle.year + ' ' + vehicle.model + ' ' + vehicle.trim;
   const standardParts = cachedParts.filter(p => !p.task.startsWith('freetext:'));
   const criticalCount = issues.filter(i => i.severity === 'high' || i.severity === 'critical').length;
-  const logoSlug = vehicle.make.toLowerCase().replace(/\s+/g, '-');
 
   useEffect(() => { setVehicle(vehicle); }, [vehicle, setVehicle]);
   useEffect(() => {
@@ -237,7 +237,7 @@ export function VehicleDashboard({
             </svg>
           </button>
           <button onClick={() => setSpecsExpanded(!specsExpanded)} className="flex items-center gap-2 flex-1 mx-3 min-w-0">
-            <Image src={'/logos/' + logoSlug + '.png'} alt={vehicle.make} width={24} height={24} className="flex-shrink-0 object-contain" />
+            <MakeLogo make={vehicle.make} size={24} />
             <span className="text-sm font-semibold text-gray-900 truncate">{vehicleShort}</span>
             <svg className={'w-3 h-3 text-gray-400 flex-shrink-0 transition-transform ' + (specsExpanded ? 'rotate-180' : '')} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
           </button>
@@ -403,7 +403,7 @@ export function VehicleDashboard({
           <div className="bg-white rounded-lg p-5 flex-shrink-0" style={{ boxShadow: DEEP_SHADOW }}>
             <div className="flex items-center gap-4 mb-2">
               <div className="flex-shrink-0 w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden">
-                <Image src={'/logos/' + logoSlug + '.png'} alt={vehicle.make} width={40} height={40} className="object-contain" />
+                <MakeLogo make={vehicle.make} size={40} />
               </div>
               <div className="flex-1">
                 <h2 className="text-lg font-bold text-gray-900">{vehicleDisplay}</h2>

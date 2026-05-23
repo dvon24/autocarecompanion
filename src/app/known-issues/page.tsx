@@ -6,6 +6,7 @@ import { categoryConfig } from '@/lib/issue-categories';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
 import { IssueSearch } from '@/components/known-issues/IssueSearch';
 import { BreadcrumbJsonLd, CollectionPageJsonLd } from '@/components/seo/JsonLd';
+import { MakeLogo } from '@/components/shared/MakeLogo';
 import prisma from '@/lib/db';
 
 // --- ISR ---
@@ -42,11 +43,6 @@ const POPULAR_MAKES = [
   'Toyota', 'Honda', 'Ford', 'Chevrolet', 'BMW', 'Dodge',
   'Jeep', 'Nissan', 'Hyundai', 'Kia', 'Mercedes-Benz', 'Subaru',
 ];
-
-// Map make names to logo filenames in /public/logos/
-function makeLogoSlug(make: string): string {
-  return make.toLowerCase().replace(/\s+/g, '-').replace(/ë/g, 'e');
-}
 
 async function buildDirectory() {
   const rows = await prisma.knownIssue.findMany({
@@ -195,7 +191,7 @@ export default async function KnownIssuesIndexPage() {
                 href={`/known-issues/make/${make.toLowerCase().replace(/\s+/g, '-')}`}
                 className="group flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-gray-300 hover:shadow-sm transition-all"
               >
-                <Image src={`/logos/${makeLogoSlug(make)}.png`} alt={`${make} logo`} width={36} height={36} className="flex-shrink-0 object-contain" />
+                <MakeLogo make={make} size={36} />
                 <div className="min-w-0">
                   <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{make}</h3>
                   <p className="text-xs text-gray-400 mt-0.5">
@@ -223,7 +219,7 @@ export default async function KnownIssuesIndexPage() {
                   href={`/known-issues/make/${make.toLowerCase().replace(/\s+/g, '-')}`}
                   className="group flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  <Image src={`/logos/${makeLogoSlug(make)}.png`} alt={`${make} logo`} width={24} height={24} className="flex-shrink-0 object-contain" />
+                  <MakeLogo make={make} size={24} />
                   <div className="min-w-0 flex-1">
                     <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900 truncate block">{make}</span>
                     <span className="text-xs text-gray-400">{vehicles.length} models</span>

@@ -145,7 +145,7 @@ export default async function PerMakeDTCPage({
           { name: make, url: articleUrl },
         ]}
       />
-      <FAQJsonLd faqs={faqs} />
+      <FAQJsonLd questions={faqs} />
 
       <article className="max-w-4xl mx-auto px-4 py-8">
         {/* Breadcrumb */}
