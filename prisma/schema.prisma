@@ -39,6 +39,23 @@ model User {
   vehicles           Vehicle[]
   chatSessions       ChatSession[]
   insights           VehicleInsight[]
+  passwordResetTokens PasswordResetToken[]
+}
+
+// Password reset flow — short-lived single-use tokens emailed to the
+// user when they request a reset. We index by tokenHash (not the raw
+// token) so a DB leak doesn't yield usable reset links.
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 model Account {
