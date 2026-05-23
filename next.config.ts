@@ -53,6 +53,19 @@ const withPWA = withPWAInit({
         },
       },
       {
+        // Auth pages — same fast-refresh treatment. Signin/signup/forgot/
+        // reset flows iterate often early in a product's life and the
+        // default StaleWhileRevalidate strategy left users staring at
+        // the previous deploy's UI for 1-2 refreshes after each push.
+        urlPattern: /^https:\/\/au7o\.io\/auth(\/.*)?$/,
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'auth-html',
+          networkTimeoutSeconds: 4,
+          expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 },
+        },
+      },
+      {
         urlPattern: /^https:\/\/au7o\.io\/api\/.*$/,
         handler: 'NetworkFirst',
         options: {
