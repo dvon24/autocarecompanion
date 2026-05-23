@@ -1,0 +1,115 @@
+{
+  "source": "claude-code-subscription-mode",
+  "sampledAt": "2026-05-23T00:00:00.000Z",
+  "make": "Mazda",
+  "totalAuditedSoFar": 144,
+  "totalIssuesInMake": 145,
+  "percentComplete": 99.3,
+  "summary": {
+    "verified": 121,
+    "minor_issues": 14,
+    "major_issues": 1,
+    "likely_fabricated": 0,
+    "duplicates_archived": 9,
+    "wrongvehicle_archived": 1
+  },
+  "archiveCandidates": [
+    {
+      "id": "mazda-cx30-cylinder-deactivation-shudder-2021",
+      "reason": "Wrong vehicle scope. Cylinder deactivation was discontinued on CX-30 2021-2022 (Mazda removed it while correcting cylinder head casting per source). Only 2020 CX-30 had CD. The original CD shudder pattern + 2018-2019 recall (~250k vehicles) covered CX-5/Mazda3/Mazda6 — not CX-30 specifically. Year range 2021-2025 CX-30 doesn't match actual CD availability on that vehicle.",
+      "applied": true
+    },
+    {
+      "id": "mazda-cx7-vvt-failure-2007",
+      "reason": "Duplicate of mazda-cx7-vvt-actuator-2007 (same VVT actuator failure on 2.3L Turbo CX-7)",
+      "applied": true
+    },
+    {
+      "id": "mazda-cx7-turbo-engine-failure-2007",
+      "reason": "Duplicate of mazda-cx7-turbo-failure-2007 (same end-state: turbo failure from VVT/oil starvation)",
+      "applied": true
+    },
+    {
+      "id": "mazda-speed3-motor-mount-failure-2007",
+      "reason": "Duplicate of mazda-mazdaspeed3-motor-mount-failure-2007 (Speed3/Mazdaspeed3 alias confusion)",
+      "applied": true
+    },
+    {
+      "id": "mazda-626-distributor",
+      "reason": "Duplicate of mazda-626-distributor-failure-1993",
+      "applied": true
+    },
+    {
+      "id": "mazda-626-transmission-failure",
+      "reason": "Duplicate of mazda-626-transmission-failure-1998 (both CD4E)",
+      "applied": true
+    },
+    {
+      "id": "mazda-mx6-distributor",
+      "reason": "Duplicate of mazda-mx6-distributor-failure-1993",
+      "applied": true
+    },
+    {
+      "id": "mazda-millenia-miller-cycle",
+      "reason": "Duplicate of mazda-millenia-miller-cycle-supercharger-2001",
+      "applied": true
+    },
+    {
+      "id": "mazda-rx7-apex-seal",
+      "reason": "Duplicate of mazda-rx7-apex-seal-failure-1993",
+      "applied": true
+    },
+    {
+      "id": "mazda-protege-engine-mount",
+      "reason": "Duplicate of mazda-protege-engine-mount-failure-1999",
+      "applied": true
+    }
+  ],
+  "notes": {
+    "mazda_health": "Mazda running ~2% archive rate so far. Most issues are real well-documented Mazda problems (RX-8 apex seal, MX-5 short-nose crank, Mazda3 dashboard melt class action, CX-5 Denso fuel pump recall).",
+    "common_fix_in_place_patterns": [
+      "Year ranges spanning 2+ generations of MX-5 (NA/NB/NC/ND) — soft top wear, rear main seal entries cover 25+ years",
+      "Wrong engine for the year (CX-9 2007 was 3.5L V6, 2008-2015 was 3.7L V6 — entry attributes 3.7L to whole range)"
+    ]
+  },
+  "batches_completed": [
+    {
+      "batch": 1,
+      "issues": 50,
+      "verified": 41,
+      "minor": 8,
+      "major": 1,
+      "archived": 1
+    },
+    {
+      "batch": "2+3",
+      "issues": 94,
+      "verified": 80,
+      "minor": 6,
+      "duplicates": 9
+    }
+  ],
+  "batch1_highlights": {
+    "verified_real_issues": [
+      "mazda-rx8-apex-seal-failure-2004 (iconic RX-8 issue)",
+      "mazda-mx5-miata-short-nose-crank-1990 (NA1 1.6L)",
+      "mazda-mazda3-dashboard-melting-2004 (class action, NHTSA)",
+      "mazda-cx5-fuel-pump-2019 (Denso recall, real)",
+      "mazda-mazda6-subframe-rust-2003 (real corrosion issue)",
+      "mazda-rx8-oil-metering-pump-2004 (causes seal degradation)",
+      "mazda-cx9-timing-chain-stretch-2007 (real on 3.5L/3.7L Duratec)",
+      "mazda-cx90-engine-stalling-recall-2024 (real recall)",
+      "mazda-cx90-transmission-jerkiness-2024 (longitudinal 8-speed)",
+      "mazda-cx5-carbon-buildup-2013 (Skyactiv DI)",
+      "mazda-cx5-oil-consumption-2013 (well documented)",
+      "mazda-mazda3-clutch-judder-2014 (SkyActiv MT)",
+      "mazda-cx9-turbo-coolant-leak-2016 (2.5T Skyactiv-G)",
+      "mazda-mazda6-rear-caliper-seizing-2009 (also Mazda3)"
+    ],
+    "minor_fixes_queued": [
+      "mazda-cx9-timing-chain-stretch-2007 — split engine attribution: 3.5L 2007, 3.7L 2008-2015",
+      "mazda-mx5-miata-soft-top-wear-1990 (1990-2025 spans 4 generations)",
+      "mazda-mx5-miata-rear-main-seal-1990 (1990-2015 spans 3 generations)"
+    ]
+  }
+}
