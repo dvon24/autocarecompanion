@@ -618,6 +618,9 @@ function MobileHub({
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const taRef = useRef<HTMLTextAreaElement>(null);
+  // Tap-to-expand for the greeting body. Starts collapsed (faded behind
+  // the COMMON ISSUES card); tap reveals the full opener text.
+  const [greetExpanded, setGreetExpanded] = useState(false);
 
   useEffect(() => {
     if (!scrollRef.current) return;
@@ -721,12 +724,19 @@ function MobileHub({
         slug={slug}
       />
 
-      {/* App header — vehicle pill on the left, list + avatar on the right */}
+      {/* App header — menu icon on the left (was right; the right side
+          was being eclipsed by the Google Translate widget), vehicle pill
+          next to it, account/user pill on the far right. */}
       <header className="m-head">
-        {/* Split pill: top row is a <Link> to /garage (change vehicle).
-            Bottom row contains a <button> via MileageEditor, which can't
-            legally nest inside a <Link>, so the wrapper is a plain div
-            and the navigation target is scoped to the top row only. */}
+        <button
+          type="button"
+          className="m-icon-btn"
+          onClick={onOpenThreads}
+          aria-label="Open menu"
+          style={{ flexShrink: 0 }}
+        >
+          <Icon name="list" size={16} />
+        </button>
         <div className="m-veh-pill" aria-label={`Vehicle: ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}`}>
           <div className="m-veh-meta">
             <Link
@@ -737,9 +747,9 @@ function MobileHub({
               <span className="m-veh-name">{vehicle.year} {vehicle.make} {vehicle.model}</span>
               <Icon name="chevron-down" size={11} style={{ color: 'var(--slate-400)' }} />
             </Link>
-            <div className="m-veh-sub mono">
+            <div className="m-veh-sub mono" style={{ marginTop: 6 }}>
               {vehicle.trim ? <span>{vehicle.trim}</span> : null}
-              {vehicle.trim ? <span style={{ margin: '0 4px' }}>·</span> : null}
+              {vehicle.trim ? <span style={{ margin: '0 6px' }}>·</span> : null}
               <MileageEditor
                 vehicle={vehicle}
                 initialMileage={currentMileage}
@@ -750,9 +760,6 @@ function MobileHub({
           </div>
         </div>
         <div className="m-head-right">
-          <button type="button" className="m-icon-btn" onClick={onOpenThreads} aria-label="Open recent conversations">
-            <Icon name="list" size={14} />
-          </button>
           {user ? (
             <Link href="/account" className="m-avatar" aria-label={`${user.name} — account`}>
               {userInitialsTxt}
@@ -778,11 +785,17 @@ function MobileHub({
           </h1>
           {/* Body paragraph fades into transparency at the bottom so the
               COMMON AT YOUR MILEAGE card below it becomes the visual focus.
-              Personality stays for SEO + screen-reader users; the fade is
-              cosmetic only. */}
-          <div className="m-greet-p-wrap">
+              Tapping expands the full text. Personality stays for SEO +
+              screen-reader users; the fade is cosmetic only. */}
+          <button
+            type="button"
+            className={`m-greet-p-wrap ${greetExpanded ? 'm-greet-p-wrap-open' : ''}`}
+            onClick={() => setGreetExpanded((v) => !v)}
+            aria-expanded={greetExpanded}
+            aria-label={greetExpanded ? 'Collapse summary' : 'Read full summary'}
+          >
             <p className="m-greet-p">{opener.text}</p>
-          </div>
+          </button>
         </div>
 
         {/* First attachment differs by auth state, matching the bundle:
@@ -938,7 +951,14 @@ function MobileHub({
       <style jsx>{`
         .m-shell {
           display: none;
+          /* 100dvh = "dynamic viewport height" — re-measures as the iOS
+             Safari address bar collapses/expands. Plain 100vh on iOS uses
+             the *largest* possible viewport which pushes the composer
+             below the visible area when the address bar is showing. */
+          height: 100dvh;
+          /* Fallback for browsers without dvh support (older Safari). */
           height: 100vh;
+          height: 100dvh;
           flex-direction: column;
           background: var(--paper);
           color: var(--ink);
@@ -1009,14 +1029,35 @@ function MobileHub({
 
         .m-greet { margin-top: 10px; }
         .m-greet-p-wrap {
+          /* Wrap is a <button> so the whole faded region is tappable —
+             tap removes the mask and reveals the full paragraph. */
           position: relative;
+          display: block;
+          width: 100%;
+          text-align: left;
+          background: transparent;
+          border: none;
+          padding: 0;
+          margin: 0;
+          font: inherit;
+          color: inherit;
+          cursor: pointer;
           max-height: 56px;
           overflow: hidden;
+          transition: max-height 220ms ease-out;
           /* Fade the bottom of the body paragraph into transparency so
              the COMMON AT YOUR MILEAGE card below it becomes the visual
              focus. Mask handles both Safari (webkit) and others. */
           -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
           mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+        }
+        .m-greet-p-wrap-open {
+          /* Expanded state — clear the mask + uncap height so the full
+             paragraph is legible. Generous max-height handles any
+             reasonable opener length without animation jitter. */
+          max-height: 1000px;
+          -webkit-mask-image: none;
+          mask-image: none;
         }
         .m-eyebrow-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
         .m-pulse-dot {
