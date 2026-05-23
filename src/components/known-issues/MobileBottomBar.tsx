@@ -24,20 +24,9 @@ export function MobileBottomBar({ make, model }: MobileBottomBarProps) {
         </svg>
         Chat
       </Link>
-      <Link
-        href="/get-started"
-        className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-medium text-emerald-600 border border-emerald-200 rounded-lg"
-      >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
-        </svg>
-        Parts
-      </Link>
+      {/* Parts CTA removed — was linking to /get-started which redirects
+          to home, sending users in a circle. Restore when the parts-
+          finder flow is seeded across all YMMT. */}
     </div>
   );
 }
