@@ -2,21 +2,43 @@
   "source": "claude-code-subscription-mode",
   "sampledAt": "2026-05-23T00:00:00.000Z",
   "make": "Ford",
-  "totalAuditedSoFar": 105,
+  "totalAuditedSoFar": 155,
   "totalIssuesInMake": 326,
-  "percentComplete": 32.2,
+  "percentComplete": 47.5,
   "summary": {
-    "verified": 81,
-    "minor_issues": 20,
-    "major_issues": 0,
+    "verified": 123,
+    "minor_issues": 26,
+    "major_issues": 1,
     "likely_fabricated": 0,
-    "duplicates_archived": 4
+    "duplicates_archived": 4,
+    "wrongengine_archived": 1
   },
   "archiveCandidates": [
-    {"id": "ford-mustang-mt82-transmission-2015", "reason": "Duplicate of ford-mustang-mt82-transmission-problems-2015 (batch 1)", "applied": true},
-    {"id": "ford-mustang-irs-clunk-2015", "reason": "Duplicate of ford-mustang-irs-rear-clunk-2015 (batch 1)", "applied": true},
-    {"id": "ford-mustang-coyote-tick-2015", "reason": "Duplicate of ford-mustang-coyote-tick-noise-2015 (batch 1)", "applied": true},
-    {"id": "ford-mustang-10speed-shudder-2018", "reason": "Duplicate of ford-mustang-10r80-transmission-problems-2018 (batch 1)", "applied": true}
+    {
+      "id": "ford-mustang-mt82-transmission-2015",
+      "reason": "Duplicate of ford-mustang-mt82-transmission-problems-2015 (batch 1)",
+      "applied": true
+    },
+    {
+      "id": "ford-mustang-irs-clunk-2015",
+      "reason": "Duplicate of ford-mustang-irs-rear-clunk-2015 (batch 1)",
+      "applied": true
+    },
+    {
+      "id": "ford-mustang-coyote-tick-2015",
+      "reason": "Duplicate of ford-mustang-coyote-tick-noise-2015 (batch 1)",
+      "applied": true
+    },
+    {
+      "id": "ford-mustang-10speed-shudder-2018",
+      "reason": "Duplicate of ford-mustang-10r80-transmission-problems-2018 (batch 1)",
+      "applied": true
+    },
+    {
+      "id": "ford-cmax-engine-coolant-intrusion-2013",
+      "reason": "Wrong engine attribution: C-Max uses 2.0L Atkinson hybrid (NA, no turbo); coolant intrusion is exclusively an EcoBoost (1.5L/1.6L/2.0L turbo) issue per Ford Authority + Lieff Cabraser class action. Cross-engine fabrication.",
+      "applied": true
+    }
   ],
   "notes": {
     "ford_health": "Ford running ~4% archive rate (mostly duplicates), 0 fabrications, 0 wrong-vehicle majors. Significantly cleaner than European/luxury makes (AMG GT 55%, Audi 13%, BMW 7%). Pattern: real well-documented Ford issues with calibration drift only.",
@@ -28,60 +50,495 @@
     ]
   },
   "batches_completed": [
-    {"batch": "1+2", "issues": 55, "verified": 38, "minor": 16, "duplicates": 1},
-    {"batch": "3+4", "issues": 50, "verified": 43, "minor": 4, "duplicates": 3}
+    {
+      "batch": "1+2",
+      "issues": 55,
+      "verified": 38,
+      "minor": 16,
+      "duplicates": 1
+    },
+    {
+      "batch": "3+4",
+      "issues": 50,
+      "verified": 43,
+      "minor": 4,
+      "duplicates": 3
+    },
+    {
+      "batch": "5+6",
+      "issues": 50,
+      "verified": 42,
+      "minor": 6,
+      "major": 1,
+      "duplicates": 0,
+      "archived": 1
+    }
   ],
   "results": [
     "_full_per_issue_audit_records_intentionally_truncated_for_brevity_after_batches_1_2_already_archived_above",
-    {"id": "ford-broncosport-15-oil-dilution-2021", "audit": {"verdict": "minor_issues", "issues_found": ["Description framed as 'oil dilution from fuel' but actual NHTSA recalls are 22S21 (oil separator housing cracking, 345,451 vehicles) and a separate fuel injector cracking recall", "Should add CSP 21N12 (10-year extended warranty for 1.5L engine replacement, but capped by age/mileage)"], "evidence": "Ford Authority + Lemon Law sources confirm 22S21 oil separator recall and fuel injector recall both affect 2021-2023 Bronco Sport 1.5L 3-cyl. Coolant intrusion is also documented but Ford handled via CSP rather than recall.", "confidence": "high"}},
-    {"id": "ford-edge-ptu-fluid-leak-2007", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Documented PTU fluid leak / failure on Edge AWD across multiple generations.", "confidence": "high"}},
-    {"id": "ford-f150-oil-pan-leak-2015", "audit": {"verdict": "verified", "issues_found": [], "evidence": "EcoBoost F-150 oil pan leak documented.", "confidence": "high"}},
-    {"id": "ford-explorer-internal-water-pump-failure", "audit": {"verdict": "verified", "issues_found": [], "evidence": "3.5L Cyclone V6 internal water pump well documented across Explorer/Edge/Flex/Taurus/MKZ.", "confidence": "high"}},
-    {"id": "ford-mustang-irs-clunk-2015", "audit": {"verdict": "duplicate", "issues_found": ["Duplicate of ford-mustang-irs-rear-clunk-2015 (batch 1)"], "evidence": "Same 2015-2023 S550 IRS clunk pattern.", "confidence": "high"}},
-    {"id": "ford-f150-carrier-bearing-2015", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Driveshaft carrier bearing failure on 2015-2020 F-150 documented.", "confidence": "medium"}},
-    {"id": "ford-transit-35-ecoboost-timing-chain-2015", "audit": {"verdict": "verified", "issues_found": [], "evidence": "3.5L EcoBoost first-gen timing chain stretch documented.", "confidence": "high"}},
-    {"id": "ford-escape-20-ecoboost-coolant-2015", "audit": {"verdict": "verified", "issues_found": [], "evidence": "2.0L EcoBoost open-deck block coolant intrusion well documented (class action).", "confidence": "high"}},
-    {"id": "ford-mustang-brake-pedal-bumper-2015", "audit": {"verdict": "verified", "issues_found": [], "evidence": "S550 brake pedal bumper degradation causing brake light always-on + battery drain documented.", "confidence": "high"}},
-    {"id": "ford-explorer-ptu-transfer-case-failure", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Explorer PTU failure documented across 5th-gen.", "confidence": "high"}},
-    {"id": "ford-maverick-20-ecoboost-hesitation-2022", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Documented Maverick 2.0L cold-start hesitation pattern.", "confidence": "medium"}},
-    {"id": "ford-transitconnect-8f35-trans-shudder-2019", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Multiple TSBs cover 8F35 shudder on 2019-2021 Transit Connect / Edge / Lincoln Nautilus.", "confidence": "high"}},
-    {"id": "ford-edge-20-ecoboost-coolant-intrusion-2015", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Same 2.0L EcoBoost open-deck issue as Escape.", "confidence": "high"}},
-    {"id": "ford-f-150-brake-line-hose-and-hydraulic-component-failure", "audit": {"verdict": "minor_issues", "issues_found": ["Year range 2004-2004 too narrow", "Description generic, no specific recall cited"], "evidence": "Needs Phase 2 deeper look; year range needs expansion or recall ID added.", "confidence": "low"}},
-    {"id": "ford-f150-water-pump-2017", "audit": {"verdict": "verified", "issues_found": [], "evidence": "3.5L EcoBoost water pump failure (internal pump driven by timing belt-in-oil).", "confidence": "high"}},
-    {"id": "ford-mustang-10speed-shudder-2018", "audit": {"verdict": "duplicate", "issues_found": ["Duplicate of ford-mustang-10r80-transmission-problems-2018 (batch 1)"], "evidence": "Same 10R80 shudder on 2018-2023 Mustang.", "confidence": "high"}},
-    {"id": "ford-excursion-v10-transfer-case-2000", "audit": {"verdict": "verified", "issues_found": [], "evidence": "BorgWarner 4405 electric shift transfer case failure documented on Excursion V10.", "confidence": "high"}},
-    {"id": "ford-expedition-35-ecoboost-vct-phaser-2018", "audit": {"verdict": "verified", "issues_found": [], "evidence": "3.5L EcoBoost VCT cam phaser cold-start rattle documented.", "confidence": "high"}},
-    {"id": "ford-f150-vacuum-pump-2015", "audit": {"verdict": "verified", "issues_found": [], "evidence": "F-150 EcoBoost brake vacuum pump failure documented.", "confidence": "high"}},
-    {"id": "ford-maverick-hybrid-ecvt-issues-2022", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Maverick hybrid eCVT shudder reports.", "confidence": "medium"}},
-    {"id": "ford-ranger-wind-noise-2019", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Common Ranger door/window wind noise pattern.", "confidence": "medium"}},
-    {"id": "ford-bronco-mic-hardtop-delamination", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Bronco MIC hardtop replacement program 2022 (Ford service action).", "confidence": "high"}},
-    {"id": "ford-explorer-rear-axle-bolt-fracture", "audit": {"verdict": "verified", "issues_found": [], "evidence": "NHTSA recall 21V031 / Ford 21S35 covers Explorer rear axle bolt.", "confidence": "high"}},
-    {"id": "ford-mustang-coyote-tick-2015", "audit": {"verdict": "duplicate", "issues_found": ["Duplicate of ford-mustang-coyote-tick-noise-2015 (batch 1)"], "evidence": "Same Coyote tick issue.", "confidence": "high"}},
-    {"id": "ford-broncosport-rdu-shudder-2021", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Bronco Sport RDU chatter/shudder during low-speed turns documented.", "confidence": "high"}},
-    {"id": "ford-fiesta-door-latch-2011", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Fiesta door latch in expanded 17V086 recall family.", "confidence": "medium"}},
-    {"id": "ford-bronco-27-ecoboost-valve-failure", "audit": {"verdict": "verified", "issues_found": [], "evidence": "2.7L EcoBoost intake valve manufacturing defect, multiple NHTSA recalls.", "confidence": "high"}},
-    {"id": "ford-bronco-hardtop-water-leaks", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Bronco hardtop water leak well documented.", "confidence": "high"}},
-    {"id": "ford-explorer-10-speed-transmission-harsh-shifting", "audit": {"verdict": "verified", "issues_found": [], "evidence": "10R60 shudder on 2020-2024 Explorer same family as 10R80.", "confidence": "high"}},
-    {"id": "ford-explorer-electric-power-steering-failure", "audit": {"verdict": "verified", "issues_found": [], "evidence": "NHTSA recall 14V388 / Ford 14S08 covers 2011-2013 Explorer EPS failure.", "confidence": "high"}},
-    {"id": "ford-mustang-sync-infotainment-2015", "audit": {"verdict": "verified", "issues_found": [], "evidence": "SYNC 3 freezing/black screen documented across 2015+ vehicles.", "confidence": "high"}},
-    {"id": "ford-transitconnect-16-ecoboost-coolant-2014", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Recall 14S11 (NHTSA 14V354) covers 1.6L EcoBoost coolant loss/overheating.", "confidence": "high"}},
-    {"id": "ford-edge-35-v6-timing-chain-2007", "audit": {"verdict": "verified", "issues_found": [], "evidence": "3.5L Cyclone V6 timing chain stretch + VCT phaser rattle documented.", "confidence": "high"}},
-    {"id": "ford-broncosport-15-ecoboost-coolant-2021", "audit": {"verdict": "verified", "issues_found": [], "evidence": "1.5L EcoBoost coolant loss covered by recall 22S21 (oil separator) + CSP 21N12.", "confidence": "high"}},
-    {"id": "ford-ranger-sync3-freeze-2019", "audit": {"verdict": "verified", "issues_found": [], "evidence": "SYNC 3 freezing/rebooting documented across 2019+ Ranger.", "confidence": "high"}},
-    {"id": "ford-eseries-sparkplug-blowout-1997", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Same 4.6L/5.4L 2V thread blowout as F-150.", "confidence": "high"}},
-    {"id": "ford-flex-water-pump-timing-chain-2009", "audit": {"verdict": "verified", "issues_found": [], "evidence": "3.5L Cyclone V6 internal water pump on Flex.", "confidence": "high"}},
-    {"id": "ford-mustang-blend-door-actuator-2015", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Common Ford HVAC actuator pattern.", "confidence": "high"}},
-    {"id": "ford-ranger-diff-whine-2019", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Ranger rear diff whine pattern documented.", "confidence": "medium"}},
-    {"id": "ford-bronco-10-speed-auto-shifting", "audit": {"verdict": "verified", "issues_found": [], "evidence": "10R60 shudder same as Explorer.", "confidence": "high"}},
-    {"id": "ford-bronco-7-speed-manual-grinding", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Getrag 7MTI550 grinding documented in Bronco forums.", "confidence": "medium"}},
-    {"id": "ford-explorer-rearview-camera-failure", "audit": {"verdict": "verified", "issues_found": [], "evidence": "6th-gen Explorer 360-degree camera system failure documented.", "confidence": "medium"}},
-    {"id": "ford-mach-e-12v-battery-door-lockout-2021", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Multiple recalls + NHTSA campaigns for Mach-E 12V battery drain causing door lockout.", "confidence": "high"}},
-    {"id": "ford-ranger-auto-start-stop-2019", "audit": {"verdict": "verified", "issues_found": [], "evidence": "Auto stop/start aggressive restart documented across Ford vehicles.", "confidence": "medium"}},
-    {"id": "ford-f-150-fuel-pump-driver-module-corrosion-and-no-start-stall", "audit": {"verdict": "minor_issues", "issues_found": ["Year range 2004-2004 too narrow — FPDM corrosion spans 2004-2009 F-150, with recall covering 2005-2006 specifically"], "evidence": "Galvanic corrosion (aluminum housing on steel frame crossmember) documented across 2004-2009 F-150; Ford recall for 2005-2006.", "confidence": "high"}},
-    {"id": "ford-lightning-hv-battery-short-2022", "audit": {"verdict": "verified", "issues_found": [], "evidence": "NHTSA recall 23V061 / Ford 23S15 covers Lightning HV battery cell defect.", "confidence": "high"}},
-    {"id": "ford-ranger-brake-shudder-2019", "audit": {"verdict": "verified", "issues_found": [], "evidence": "2019+ Ranger front brake shudder documented.", "confidence": "medium"}},
-    {"id": "ford-escape-25-hybrid-engine-fire-2020", "audit": {"verdict": "verified", "issues_found": [], "evidence": "NHTSA recall 23V472 / Ford 23S27 covers 2.5L hybrid engine block failure underhood fire risk.", "confidence": "high"}},
-    {"id": "ford-five-hundred-cvt-failure-2005", "audit": {"verdict": "verified", "issues_found": [], "evidence": "ZF CFT30 CVT failure on Five Hundred (and Mercury Montego, Freestyle) well documented.", "confidence": "high"}},
-    {"id": "ford-mach-e-hv-battery-contactor-2021", "audit": {"verdict": "verified", "issues_found": [], "evidence": "NHTSA recall 22V573 covers Mach-E HV battery contactor overheating.", "confidence": "high"}}
+    {
+      "id": "ford-broncosport-15-oil-dilution-2021",
+      "audit": {
+        "verdict": "minor_issues",
+        "issues_found": [
+          "Description framed as 'oil dilution from fuel' but actual NHTSA recalls are 22S21 (oil separator housing cracking, 345,451 vehicles) and a separate fuel injector cracking recall",
+          "Should add CSP 21N12 (10-year extended warranty for 1.5L engine replacement, but capped by age/mileage)"
+        ],
+        "evidence": "Ford Authority + Lemon Law sources confirm 22S21 oil separator recall and fuel injector recall both affect 2021-2023 Bronco Sport 1.5L 3-cyl. Coolant intrusion is also documented but Ford handled via CSP rather than recall.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-edge-ptu-fluid-leak-2007",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Documented PTU fluid leak / failure on Edge AWD across multiple generations.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-f150-oil-pan-leak-2015",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "EcoBoost F-150 oil pan leak documented.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-explorer-internal-water-pump-failure",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "3.5L Cyclone V6 internal water pump well documented across Explorer/Edge/Flex/Taurus/MKZ.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-mustang-irs-clunk-2015",
+      "audit": {
+        "verdict": "duplicate",
+        "issues_found": [
+          "Duplicate of ford-mustang-irs-rear-clunk-2015 (batch 1)"
+        ],
+        "evidence": "Same 2015-2023 S550 IRS clunk pattern.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-f150-carrier-bearing-2015",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Driveshaft carrier bearing failure on 2015-2020 F-150 documented.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "id": "ford-transit-35-ecoboost-timing-chain-2015",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "3.5L EcoBoost first-gen timing chain stretch documented.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-escape-20-ecoboost-coolant-2015",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "2.0L EcoBoost open-deck block coolant intrusion well documented (class action).",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-mustang-brake-pedal-bumper-2015",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "S550 brake pedal bumper degradation causing brake light always-on + battery drain documented.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-explorer-ptu-transfer-case-failure",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Explorer PTU failure documented across 5th-gen.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-maverick-20-ecoboost-hesitation-2022",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Documented Maverick 2.0L cold-start hesitation pattern.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "id": "ford-transitconnect-8f35-trans-shudder-2019",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Multiple TSBs cover 8F35 shudder on 2019-2021 Transit Connect / Edge / Lincoln Nautilus.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-edge-20-ecoboost-coolant-intrusion-2015",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Same 2.0L EcoBoost open-deck issue as Escape.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-f-150-brake-line-hose-and-hydraulic-component-failure",
+      "audit": {
+        "verdict": "minor_issues",
+        "issues_found": [
+          "Year range 2004-2004 too narrow",
+          "Description generic, no specific recall cited"
+        ],
+        "evidence": "Needs Phase 2 deeper look; year range needs expansion or recall ID added.",
+        "confidence": "low"
+      }
+    },
+    {
+      "id": "ford-f150-water-pump-2017",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "3.5L EcoBoost water pump failure (internal pump driven by timing belt-in-oil).",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-mustang-10speed-shudder-2018",
+      "audit": {
+        "verdict": "duplicate",
+        "issues_found": [
+          "Duplicate of ford-mustang-10r80-transmission-problems-2018 (batch 1)"
+        ],
+        "evidence": "Same 10R80 shudder on 2018-2023 Mustang.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-excursion-v10-transfer-case-2000",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "BorgWarner 4405 electric shift transfer case failure documented on Excursion V10.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-expedition-35-ecoboost-vct-phaser-2018",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "3.5L EcoBoost VCT cam phaser cold-start rattle documented.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-f150-vacuum-pump-2015",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "F-150 EcoBoost brake vacuum pump failure documented.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-maverick-hybrid-ecvt-issues-2022",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Maverick hybrid eCVT shudder reports.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "id": "ford-ranger-wind-noise-2019",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Common Ranger door/window wind noise pattern.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "id": "ford-bronco-mic-hardtop-delamination",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Bronco MIC hardtop replacement program 2022 (Ford service action).",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-explorer-rear-axle-bolt-fracture",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "NHTSA recall 21V031 / Ford 21S35 covers Explorer rear axle bolt.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-mustang-coyote-tick-2015",
+      "audit": {
+        "verdict": "duplicate",
+        "issues_found": [
+          "Duplicate of ford-mustang-coyote-tick-noise-2015 (batch 1)"
+        ],
+        "evidence": "Same Coyote tick issue.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-broncosport-rdu-shudder-2021",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Bronco Sport RDU chatter/shudder during low-speed turns documented.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-fiesta-door-latch-2011",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Fiesta door latch in expanded 17V086 recall family.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "id": "ford-bronco-27-ecoboost-valve-failure",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "2.7L EcoBoost intake valve manufacturing defect, multiple NHTSA recalls.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-bronco-hardtop-water-leaks",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Bronco hardtop water leak well documented.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-explorer-10-speed-transmission-harsh-shifting",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "10R60 shudder on 2020-2024 Explorer same family as 10R80.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-explorer-electric-power-steering-failure",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "NHTSA recall 14V388 / Ford 14S08 covers 2011-2013 Explorer EPS failure.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-mustang-sync-infotainment-2015",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "SYNC 3 freezing/black screen documented across 2015+ vehicles.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-transitconnect-16-ecoboost-coolant-2014",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Recall 14S11 (NHTSA 14V354) covers 1.6L EcoBoost coolant loss/overheating.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-edge-35-v6-timing-chain-2007",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "3.5L Cyclone V6 timing chain stretch + VCT phaser rattle documented.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-broncosport-15-ecoboost-coolant-2021",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "1.5L EcoBoost coolant loss covered by recall 22S21 (oil separator) + CSP 21N12.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-ranger-sync3-freeze-2019",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "SYNC 3 freezing/rebooting documented across 2019+ Ranger.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-eseries-sparkplug-blowout-1997",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Same 4.6L/5.4L 2V thread blowout as F-150.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-flex-water-pump-timing-chain-2009",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "3.5L Cyclone V6 internal water pump on Flex.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-mustang-blend-door-actuator-2015",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Common Ford HVAC actuator pattern.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-ranger-diff-whine-2019",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Ranger rear diff whine pattern documented.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "id": "ford-bronco-10-speed-auto-shifting",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "10R60 shudder same as Explorer.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-bronco-7-speed-manual-grinding",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Getrag 7MTI550 grinding documented in Bronco forums.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "id": "ford-explorer-rearview-camera-failure",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "6th-gen Explorer 360-degree camera system failure documented.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "id": "ford-mach-e-12v-battery-door-lockout-2021",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Multiple recalls + NHTSA campaigns for Mach-E 12V battery drain causing door lockout.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-ranger-auto-start-stop-2019",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "Auto stop/start aggressive restart documented across Ford vehicles.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "id": "ford-f-150-fuel-pump-driver-module-corrosion-and-no-start-stall",
+      "audit": {
+        "verdict": "minor_issues",
+        "issues_found": [
+          "Year range 2004-2004 too narrow — FPDM corrosion spans 2004-2009 F-150, with recall covering 2005-2006 specifically"
+        ],
+        "evidence": "Galvanic corrosion (aluminum housing on steel frame crossmember) documented across 2004-2009 F-150; Ford recall for 2005-2006.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-lightning-hv-battery-short-2022",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "NHTSA recall 23V061 / Ford 23S15 covers Lightning HV battery cell defect.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-ranger-brake-shudder-2019",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "2019+ Ranger front brake shudder documented.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "id": "ford-escape-25-hybrid-engine-fire-2020",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "NHTSA recall 23V472 / Ford 23S27 covers 2.5L hybrid engine block failure underhood fire risk.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-five-hundred-cvt-failure-2005",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "ZF CFT30 CVT failure on Five Hundred (and Mercury Montego, Freestyle) well documented.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-mach-e-hv-battery-contactor-2021",
+      "audit": {
+        "verdict": "verified",
+        "issues_found": [],
+        "evidence": "NHTSA recall 22V573 covers Mach-E HV battery contactor overheating.",
+        "confidence": "high"
+      }
+    }
   ]
 }
