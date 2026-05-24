@@ -16,6 +16,7 @@ import {
   DEFAULT_ANON_LIMIT,
   DEFAULT_FREE_AUTHED_LIMIT,
 } from '@/lib/chat-quota';
+import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 
 export const maxDuration = 60;
 export const runtime = 'nodejs';
@@ -216,6 +217,12 @@ export async function POST(request: NextRequest) {
   if (!ANTHROPIC_KEY) {
     return NextResponse.json({ error: 'service_unavailable', message: 'Chat is offline.' }, { status: 503 });
   }
+
+  // ── 0. GDPR Art. 21 right-to-object check ────────────────────────
+  // Signed-in users who toggled aiProcessingOptOut in Account
+  // Settings short-circuit here — no data ever reaches Anthropic.
+  const gate = await checkAiGate();
+  if (isAiGateBlocked(gate)) return gate;
 
   // ── 1. Parse + validate body ─────────────────────────────────────
   let body: HubChatBody;

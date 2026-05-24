@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { signOut } from 'next-auth/react';
 
 /**
@@ -21,6 +21,51 @@ export default function AccountPrivacyActions({ email }: { email: string }) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [confirmText, setConfirmText] = useState('');
   const [error, setError] = useState<string | null>(null);
+
+  // GDPR Art. 21 — AI processing opt-out state. We fetch it once on
+  // mount so the toggle reflects the persisted value, and PATCH on
+  // change. Optimistic UI is intentional — a failed write reverts.
+  const [aiOptOut, setAiOptOut] = useState<boolean | null>(null);
+  const [aiSaving, setAiSaving] = useState(false);
+  const [aiError, setAiError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/account/preferences')
+      .then((r) => (r.ok ? r.json() : Promise.reject(r)))
+      .then((data) => {
+        if (!cancelled) setAiOptOut(!!data.aiProcessingOptOut);
+      })
+      .catch(() => {
+        if (!cancelled) setAiOptOut(false);
+      });
+    return () => { cancelled = true; };
+  }, []);
+
+  const toggleAiOptOut = async () => {
+    if (aiOptOut === null || aiSaving) return;
+    const next = !aiOptOut;
+    setAiOptOut(next); // optimistic
+    setAiSaving(true);
+    setAiError(null);
+    try {
+      const res = await fetch('/api/account/preferences', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ aiProcessingOptOut: next }),
+      });
+      if (!res.ok) {
+        setAiOptOut(!next); // revert
+        const data = await res.json().catch(() => ({}));
+        setAiError(data.error || `Update failed (HTTP ${res.status})`);
+      }
+    } catch {
+      setAiOptOut(!next); // revert
+      setAiError('Network error. Try again.');
+    } finally {
+      setAiSaving(false);
+    }
+  };
 
   const handleExport = () => {
     // Trigger the browser's download flow. The server response carries
@@ -64,6 +109,40 @@ export default function AccountPrivacyActions({ email }: { email: string }) {
         and the right to have it erased. Both controls below operate on your
         Au7o account ({email}).
       </p>
+
+      {/* AI processing opt-out — full-width above the export/delete
+          grid because it's a continuous toggle rather than a one-time
+          action. Lives in the same section so all GDPR-rights
+          controls are grouped together. */}
+      <div className="rounded-xl border border-gray-200 bg-white p-5 mb-3">
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0 flex-1">
+            <h3 className="font-semibold text-gray-900 mb-1">AI processing</h3>
+            <p className="text-xs text-gray-500 leading-relaxed">
+              We use Anthropic and OpenAI to power chat, repair guides,
+              and parts lookups. Article 21 (right to object). If you
+              opt out, those features stop working for your account
+              until you re-enable them here.
+            </p>
+            {aiError && (
+              <p className="text-xs text-red-600 mt-2">{aiError}</p>
+            )}
+          </div>
+          <label className="flex-shrink-0 inline-flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              checked={aiOptOut === true}
+              onChange={toggleAiOptOut}
+              disabled={aiOptOut === null || aiSaving}
+              className="sr-only peer"
+            />
+            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all relative peer-checked:bg-red-600 peer-disabled:opacity-50" />
+            <span className="ml-2 text-xs font-medium text-gray-700">
+              {aiOptOut === null ? '…' : aiOptOut ? 'Opted out' : 'Allowed'}
+            </span>
+          </label>
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {/* Export */}

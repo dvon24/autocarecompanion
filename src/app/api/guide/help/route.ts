@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { logApiCost, isBudgetExceeded } from '@/lib/costs';
+import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 
 /**
  * Guide Help API Route
@@ -133,6 +134,11 @@ function generateMockResponse(question: string, context: z.infer<typeof HelpRequ
 
 export async function POST(request: NextRequest) {
   try {
+    // GDPR Art. 21 right-to-object check — opted-out users never
+    // reach the OpenAI help call below.
+    const gate = await checkAiGate();
+    if (isAiGateBlocked(gate)) return gate;
+
     // Story 7.3: Check budget before making API call
     if (isBudgetExceeded()) {
       return NextResponse.json(

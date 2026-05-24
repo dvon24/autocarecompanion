@@ -18,6 +18,7 @@ import {
 import { guideLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
 import prisma from '@/lib/db';
 import { getRecallsForArticle } from '@/lib/recalls';
+import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 
 // Maps maintenance types to the KnownIssue categories most likely relevant.
 // Reused from parts-pipeline but kept local so guide route has no cross-import.
@@ -565,6 +566,11 @@ export async function POST(request: NextRequest) {
   if (!rateCheck.success) {
     return rateLimitResponse(rateCheck.reset);
   }
+
+  // GDPR Art. 21 right-to-object check — opted-out users never
+  // reach the OpenAI generation call below.
+  const gate = await checkAiGate();
+  if (isAiGateBlocked(gate)) return gate;
 
   const startTime = Date.now();
 

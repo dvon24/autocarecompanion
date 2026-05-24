@@ -4,6 +4,7 @@ import { getVehicleSpecs } from '@/lib/maintenance';
 import { knownIssuesLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
 import { runPartsPipeline, runFreetextPipeline, type PipelinePart, type PipelineResult } from '@/lib/parts-pipeline';
 import { auth } from '@/lib/auth';
+import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 
 const TIMEOUT_MS = 180000; // Pipeline runs 6 agents + web search + retries — needs time
 
@@ -64,6 +65,11 @@ export async function GET(request: NextRequest) {
   if (!knownIssuesLimiter.check(ip)) {
     return rateLimitResponse(60);
   }
+
+  // GDPR Art. 21 right-to-object check — opted-out users get a 403
+  // before the parts-pipeline (which calls OpenAI under the hood) runs.
+  const gate = await checkAiGate();
+  if (isAiGateBlocked(gate)) return gate;
 
   const { searchParams } = new URL(request.url);
   const year = parseInt(searchParams.get('year') || '', 10);

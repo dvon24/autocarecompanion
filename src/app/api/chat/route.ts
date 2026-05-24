@@ -12,6 +12,7 @@ import prisma from '@/lib/db';
 import { getVehicleSpecs } from '@/lib/maintenance';
 import { getRecallsForArticle } from '@/lib/recalls';
 import { auth } from '@/lib/auth';
+import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 
 // Allow up to 60s for tool-calling responses on Vercel
 export const maxDuration = 60;
@@ -812,6 +813,11 @@ function captureSymptoms(data: {
 
 export async function POST(request: NextRequest) {
   try {
+    // GDPR Art. 21 right-to-object check — opted-out users never
+    // reach the OpenAI/Anthropic call below.
+    const gate = await checkAiGate();
+    if (isAiGateBlocked(gate)) return gate;
+
     // Story 7.3: Check budget before making API call
     if (isBudgetExceeded()) {
       return NextResponse.json(

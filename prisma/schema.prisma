@@ -30,6 +30,13 @@ model User {
   emailNotifications Boolean   @default(true)
   pushNotifications  Boolean   @default(true)
 
+  // GDPR Art. 21 right-to-object opt-out. When true, every AI endpoint
+  // (/api/chat, /api/hub-chat, /api/guide, /api/guide/help, /api/parts)
+  // refuses to call OpenAI / Anthropic for this user and returns a 403
+  // with code "ai_optout". The user is told to re-enable in account
+  // settings if they want chat/guides/parts AI lookups back.
+  aiProcessingOptOut Boolean @default(false)
+
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
 
