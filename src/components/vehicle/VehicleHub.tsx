@@ -7,7 +7,10 @@ import type { MaintenanceSuggestion, ScheduleData, ScheduleService, ScheduleServ
 import type { RecentThread, TrendingChip, AttachableIssue } from '@/lib/hub-data';
 import { Icon, type IconName } from '@/components/ui/Icon';
 import type { VehicleSchedule } from '@/lib/owners-manual-schedule';
-import { OwnersManualSchedule } from '@/components/vehicle/OwnersManualSchedule';
+// OwnersManualSchedule is no longer rendered as its own card — its data
+// lives in the `ownersManualSchedule` prop for the integration that
+// will feed the existing MaintenanceSchedule timeline card.
+// import { OwnersManualSchedule } from '@/components/vehicle/OwnersManualSchedule';
 import { MileageEditor } from '@/components/vehicle/MileageEditor';
 
 /**
@@ -453,9 +456,16 @@ export function VehicleHub({
               onPick={(prompt) => { send(prompt); }}
             />
 
-            {ownersManualSchedule && (
-              <OwnersManualSchedule schedule={ownersManualSchedule} />
-            )}
+            {/* OwnersManualSchedule card removed — the rich data (fluid
+                specs, intervals, capacities, owner alerts from the
+                owner's manual) should feed the existing MaintenanceSchedule
+                timeline card (4-stat strip + mileage timeline + service
+                rows below), NOT render as a second card. The integration
+                that pipes `ownersManualSchedule` into the ScheduleData
+                that powers MaintenanceSchedule is a follow-up — see TODO
+                in /api/hub-chat or lib/maintenance-suggestions. Prop is
+                still passed through so the integration can plug in
+                without re-touching the component tree. */}
 
             {messages.map((m, i) => (
               m.role === 'user'

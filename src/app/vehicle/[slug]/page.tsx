@@ -288,9 +288,17 @@ export default async function VehicleProfilePage({
         userVehicleId = userVehicle.id;
         if (userVehicle.currentMileage != null) {
           currentMileage = userVehicle.currentMileage;
+          // Compute owner's-manual schedule FIRST so the suggestion
+          // engine can use its per-vehicle interval_miles values
+          // instead of generic MAINTENANCE_SCHEDULES defaults.
+          // (e.g. 2015 Challenger SRT 392 oil interval is 7,000 mi,
+          // not the generic 5,000.) When no manual schedule exists
+          // for this YMMT, defaults apply unchanged.
+          const oms = getOwnersManualSchedule({ year, make, model, trim });
           maintenanceSuggestions = await getMaintenanceSuggestions({
             vehicleId: userVehicle.id,
             currentMileage: userVehicle.currentMileage,
+            ownersManualSchedule: oms,
           });
           maintenanceSchedule = await getMaintenanceSchedule({
             vehicleId: userVehicle.id,

@@ -1,5 +1,48 @@
 import prisma from '@/lib/db';
 import { MAINTENANCE_SCHEDULES } from '@/lib/maintenance';
+import type { VehicleSchedule } from '@/lib/owners-manual-schedule';
+
+/**
+ * Map HUB_RELEVANT_TYPES (this file's vocabulary) to keys used in
+ * src/data/maintenance-schedules.json (owner's-manual sourced).
+ * Lets us override the generic default-interval with the actual
+ * per-vehicle owner's-manual interval when one exists.
+ */
+const HUB_TO_OWNERS_MANUAL: Record<string, string[]> = {
+  oil_change: ['engine_oil'],
+  tire_rotation: ['tire_rotation'],
+  brake_service: [], // No 1:1 in owner's manual schedules
+  brake_fluid: ['brake_fluid'],
+  coolant_flush: ['engine_coolant'],
+  // Prefer auto, fall back to manual if a manual-trans vehicle ever lands here.
+  transmission_fluid: ['transmission_fluid_auto', 'transmission_fluid_manual'],
+  differential_fluid: ['rear_differential'],
+  spark_plugs: ['spark_plugs'],
+  air_filter: ['air_filter'],
+  cabin_filter: ['cabin_filter'],
+  fuel_filter: [], // Not in current owner's-manual schedules
+  wiper_blades: ['wiper_blades'],
+};
+
+/**
+ * Returns the per-vehicle interval in miles for a given hub-type id,
+ * or null if the owner's manual doesn't list one (caller should fall
+ * back to the generic MAINTENANCE_SCHEDULES default).
+ */
+function ownersManualIntervalMiles(
+  schedule: VehicleSchedule | null | undefined,
+  hubTypeId: string,
+): number | null {
+  if (!schedule) return null;
+  const candidates = HUB_TO_OWNERS_MANUAL[hubTypeId] ?? [];
+  for (const key of candidates) {
+    const entry = schedule.schedule[key];
+    if (entry && typeof entry.interval_miles === 'number' && entry.interval_miles > 0) {
+      return entry.interval_miles;
+    }
+  }
+  return null;
+}
 
 /**
  * Maintenance suggestions tailored to a vehicle's current mileage and the
@@ -55,6 +98,11 @@ export interface MaintenanceSuggestion {
 interface RunOptions {
   vehicleId: string;
   currentMileage: number;
+  /** Optional owner's-manual schedule for this YMMT — when present, its
+   *  per-vehicle interval_miles override the generic defaults from
+   *  MAINTENANCE_SCHEDULES. Lets a 2015 Challenger SRT 392 show 7,000 mi
+   *  oil intervals (its manual) instead of the generic 5,000. */
+  ownersManualSchedule?: VehicleSchedule | null;
 }
 
 export async function getMaintenanceSuggestions(opts: RunOptions): Promise<MaintenanceSuggestion[]> {
@@ -74,11 +122,17 @@ export async function getMaintenanceSuggestions(opts: RunOptions): Promise<Maint
     const last = records.find((r) => r.type === typeId);
     const lastServiceMileage = last?.mileage ?? null;
     const lastServiceDate = last?.date.toISOString().split('T')[0] ?? null;
+    // Prefer the per-vehicle owner's-manual interval when we have one;
+    // fall back to the generic default. This is what makes the timeline
+    // show real intervals (7k oil on Challenger SRT, 7.5k on Camaro ZL1)
+    // instead of generic 5k for everyone.
+    const intervalMiles = ownersManualIntervalMiles(opts.ownersManualSchedule, typeId)
+      ?? schedule.defaultIntervalMiles;
     // Never-logged services use mileage 0 as the reference; the next-due
     // is the manufacturer interval. For older vehicles this surfaces a
     // long backlog all at once, which is correct — they should know.
     const baseline = lastServiceMileage ?? 0;
-    const nextDueMileage = baseline + schedule.defaultIntervalMiles;
+    const nextDueMileage = baseline + intervalMiles;
     const milesUntilDue = nextDueMileage - opts.currentMileage;
 
     let status: SuggestionStatus | null = null;
@@ -92,7 +146,7 @@ export async function getMaintenanceSuggestions(opts: RunOptions): Promise<Maint
       typeId,
       name: schedule.name,
       status,
-      intervalMiles: schedule.defaultIntervalMiles,
+      intervalMiles,
       lastServiceMileage,
       lastServiceDate,
       nextDueMileage,
