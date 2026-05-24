@@ -28,11 +28,18 @@ interface Props {
 export function VehicleHero({ vehicle, width = 200, className = '' }: Props) {
   const { year, make, model, trim } = vehicle;
 
-  // Try the most-specific slug first, then progressively wider matches.
-  const candidates = [
+  // Try most-specific WebP first, then progressively wider matches,
+  // then the PNG variants (for any hero generated but not yet
+  // compressed). Order = priority: smaller + faster + most-specific
+  // wins, gracefully falls through to bigger / less-specific / silhouette.
+  const slugs = [
     vehicleSlug(year, make, model, trim || null),
     vehicleSlug(year, make, model, null),
   ].filter((v, i, a) => a.indexOf(v) === i); // dedupe
+
+  const candidates: string[] = [];
+  for (const s of slugs) candidates.push(`/vehicles/${s}.webp`);
+  for (const s of slugs) candidates.push(`/vehicles/${s}.png`);
 
   const [attempt, setAttempt] = useState(0);
   const [failed, setFailed] = useState(false);
@@ -69,7 +76,7 @@ export function VehicleHero({ vehicle, width = 200, className = '' }: Props) {
     );
   }
 
-  const src = `/vehicles/${candidates[attempt]}.png`;
+  const src = candidates[attempt];
   return (
     // Using a plain <img> rather than next/image because:
     //  1. We deliberately want client-side onError to drive the
