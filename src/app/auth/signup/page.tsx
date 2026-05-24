@@ -15,6 +15,11 @@ function SignUpForm() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
+  // GDPR Art. 6/7/8 require capturing both before account creation:
+  // explicit policy acceptance and confirmation the user meets the
+  // age of consent (16 in the EU default).
+  const [acceptedPolicies, setAcceptedPolicies] = useState(false);
+  const [ageConfirmed, setAgeConfirmed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -26,6 +31,14 @@ function SignUpForm() {
     }
     if (password !== confirm) {
       setError('Passwords don\'t match.');
+      return;
+    }
+    if (!acceptedPolicies) {
+      setError('Please accept the Privacy Policy and Terms to continue.');
+      return;
+    }
+    if (!ageConfirmed) {
+      setError('Please confirm you are at least 16 years old.');
       return;
     }
     setLoading(true);
@@ -40,6 +53,8 @@ function SignUpForm() {
           email,
           password,
           name: name.trim() || undefined,
+          acceptedPolicies,
+          ageConfirmed,
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -140,9 +155,43 @@ function SignUpForm() {
             placeholder="Type it again"
           />
         </div>
+        {/* GDPR consent gates — both required before the submit
+            button enables. Kept as unchecked checkboxes (not
+            pre-ticked) per EDPB guidelines on valid consent. */}
+        <div className="space-y-3 pt-1">
+          <label className="flex items-start gap-2 text-xs text-gray-600 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={acceptedPolicies}
+              onChange={(e) => setAcceptedPolicies(e.target.checked)}
+              className="mt-0.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            />
+            <span>
+              I&apos;ve read and agree to the{' '}
+              <Link href="/privacy" target="_blank" className="text-blue-600 hover:text-blue-700 underline">
+                Privacy Policy
+              </Link>
+              {' '}and{' '}
+              <Link href="/terms" target="_blank" className="text-blue-600 hover:text-blue-700 underline">
+                Terms
+              </Link>
+              .
+            </span>
+          </label>
+          <label className="flex items-start gap-2 text-xs text-gray-600 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={ageConfirmed}
+              onChange={(e) => setAgeConfirmed(e.target.checked)}
+              className="mt-0.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            />
+            <span>I confirm I am at least 16 years old.</span>
+          </label>
+        </div>
+
         <button
           type="submit"
-          disabled={loading || password.length < 8 || password !== confirm}
+          disabled={loading || password.length < 8 || password !== confirm || !acceptedPolicies || !ageConfirmed}
           className="w-full py-3 px-4 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? 'Creating account...' : 'Create account'}

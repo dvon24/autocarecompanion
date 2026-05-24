@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/db';
 import { PageLayout } from '@/components/ui/PageLayout';
+import AccountPrivacyActions from '@/components/account/AccountPrivacyActions';
 
 export const dynamic = 'force-dynamic';
 
@@ -187,6 +188,9 @@ export default async function AccountPage() {
             </ul>
           )}
         </section>
+
+        {/* GDPR data-rights actions */}
+        <AccountPrivacyActions email={session.user.email} />
 
         {/* Recent parts searches */}
         <section>

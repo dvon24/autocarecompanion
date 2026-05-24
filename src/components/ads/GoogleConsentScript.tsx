@@ -25,11 +25,20 @@ export function GoogleConsentScript() {
           __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+            // GDPR / EDPB-compliant default: deny everything until the
+            // Google Funding Choices CMP collects explicit consent. The
+            // analytics_storage flag used to default 'granted' which fired
+            // GA4 immediately for EEA/UK visitors — a violation per ICO
+            // and EDPB guidance ("no GA before consent"). The 500ms
+            // wait_for_update window gives the CMP time to read prior
+            // consent state and call gtag('consent','update',...) before
+            // GA4 makes its first ping, so returning visitors who already
+            // accepted don't lose the pageview.
             gtag('consent', 'default', {
               'ad_storage': 'denied',
               'ad_user_data': 'denied',
               'ad_personalization': 'denied',
-              'analytics_storage': 'granted',
+              'analytics_storage': 'denied',
               'wait_for_update': 500,
             });
           `,
