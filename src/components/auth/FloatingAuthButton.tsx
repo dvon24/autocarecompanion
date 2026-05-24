@@ -34,28 +34,27 @@ export function FloatingAuthButton() {
     return () => document.removeEventListener('mousedown', handler);
   }, [open]);
 
-  // Skeleton while session resolves so the pill doesn't pop in.
+  // Skeleton while session resolves so the link doesn't pop in.
   if (status === 'loading') {
     return (
       <div
-        className="fixed top-3 right-[112px] z-[9999] w-[88px] h-[30px] rounded-full bg-white/60 backdrop-blur-sm border border-gray-200 animate-pulse"
+        className="fixed top-3 right-[112px] z-[9999] w-[56px] h-[26px] bg-transparent"
         aria-hidden
       />
     );
   }
 
-  // Unauthed: simple sign-in pill matching the Translate widget style.
+  // Unauthed: plain text "Sign in" link — no pill, matches the visual
+  // weight of normal nav text. Sits next to (left of) the Translate
+  // pill which keeps its own styling.
   if (!session?.user) {
     return (
       <Link
         href="/auth/signin"
-        className="fixed top-3 right-[112px] z-[9999] inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full shadow-sm border bg-white/90 backdrop-blur-sm border-gray-200 text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-all duration-200"
+        className="fixed top-3 right-[112px] z-[9999] text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors px-1 py-1"
         aria-label="Sign in"
       >
-        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-        </svg>
-        <span className="hidden sm:inline">Sign in</span>
+        Sign in
       </Link>
     );
   }
