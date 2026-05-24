@@ -1691,15 +1691,53 @@ function VehicleRail({
 
       <div className="rail-spacer" />
 
-      {user ? (
-        <UserFooter user={user} />
-      ) : (
-        <div className="rail-bottom">
-          <Link href={`/known-issues/${v.make.toLowerCase().replace(/\s+/g, '-')}-${v.model.toLowerCase().replace(/\s+/g, '-')}`}
-                className="rail-link">Known issues page</Link>
-          <Link href={`/api/auth/signin?callbackUrl=${encodeURIComponent(`/vehicle/${slug}`)}`} className="rail-link">Sign in</Link>
-        </div>
-      )}
+      {/* Bottom action row — replaces the old UserFooter (subscriber tag).
+          Account access lives on the global FloatingAuthButton, so this
+          row is now task-oriented: jump to Drive, browse Known Issues,
+          add another vehicle. The Add-vehicle CTA is shown for everyone
+          but gated for non-subscribers when they already have ≥1 saved
+          vehicle (multi-vehicle is a premium feature). */}
+      <div className="rail-bottom-actions">
+        <Link href="/drive" className="rail-action" title="Open Drive">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/>
+          </svg>
+          <span>Open Drive</span>
+        </Link>
+        <Link
+          href={`/known-issues/${v.make.toLowerCase().replace(/\s+/g, '-')}-${v.model.toLowerCase().replace(/\s+/g, '-')}`}
+          className="rail-action"
+          title="Browse known issues"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+            <path d="M4 19.5A2.5 2.5 0 016.5 22H20" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+          </svg>
+          <span>Known Issues</span>
+        </Link>
+        <Link
+          href={user?.isSubscriber ? '/garage?add=1' : '/subscribe?reason=multi-vehicle'}
+          className="rail-action rail-action-ghost"
+          title={user?.isSubscriber ? 'Add another vehicle to your garage' : 'Multi-vehicle requires a subscription'}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
+          <span>Add vehicle{user && !user.isSubscriber ? ' · upgrade' : ''}</span>
+        </Link>
+        {!user && (
+          <Link
+            href={`/api/auth/signin?callbackUrl=${encodeURIComponent(`/vehicle/${slug}`)}`}
+            className="rail-action rail-action-ghost"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M15 3h6v18h-6M10 17l5-5-5-5M15 12H3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span>Sign in</span>
+          </Link>
+        )}
+      </div>
 
       <style jsx>{`
         .rail {
@@ -1744,18 +1782,30 @@ function VehicleRail({
         .t-title { font-size: 12.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .t-when { font-size: 10.5px; color: #64748B; margin-top: 1px; }
         .rail-spacer { flex: 1; }
-        .rail-bottom {
-          padding: 12px 16px; border-top: 1px solid #E3DFD4;
-          display: flex; flex-direction: column; gap: 6px;
+        /* Bottom action row — Open Drive, Known Issues, Add vehicle. */
+        .rail-bottom-actions {
+          padding: 12px 14px; border-top: 1px solid #E3DFD4;
+          display: flex; flex-direction: column; gap: 4px;
         }
-        .rail-link {
-          display: flex; align-items: center; justify-content: center;
-          padding: 10px 12px; border-radius: 12px;
-          background: #fff; border: 1px solid #E3DFD4;
-          font-size: 13px; font-weight: 500; color: #0B1220;
+        .rail-action {
+          display: flex; align-items: center; gap: 10px;
+          padding: 9px 12px; border-radius: 10px;
+          background: transparent; border: 1px solid transparent;
+          font-size: 12.5px; font-weight: 500; color: #0B1220;
           text-decoration: none;
+          color: #334155;
         }
-        .rail-link:hover { background: #EFEDE6; }
+        .rail-action:hover {
+          background: rgba(11,18,32,0.04);
+          color: #0B1220;
+          border-color: #E3DFD4;
+        }
+        .rail-action svg { color: #64748B; flex-shrink: 0; }
+        .rail-action:hover svg { color: #0B1220; }
+        .rail-action-ghost {
+          font-size: 12px;
+          color: #64748B;
+        }
       `}</style>
     </aside>
   );
@@ -1899,8 +1949,11 @@ function UserFooter({ user }: { user: NonNullable<VehicleHubProps['user']> }) {
 function TopBar({
   vehicle, user, onOpenThreads,
 }: { vehicle: VehicleHubProps['vehicle']; user: VehicleHubProps['user']; onOpenThreads: () => void }) {
-  const slug = `${vehicle.make.toLowerCase().replace(/\s+/g, '-')}-${vehicle.model.toLowerCase().replace(/\s+/g, '-')}`;
-  const initials = user ? userInitials(user.name) : '';
+  // Vehicle + user props retained for layout/aria purposes but no
+  // longer rendered in the topbar — Open Drive / Library / duplicate
+  // user pill all moved to the rail's action row, and the global
+  // FloatingAuthButton handles the avatar.
+  void vehicle; void user;
   return (
     <div className="topbar">
       <div className="tb-left">
@@ -1920,30 +1973,13 @@ function TopBar({
         <span style={{ color: '#334155' }}>Maintenance check-in</span>
       </div>
       <div className="tb-right">
-        <Link href="/drive" className="tb-pill" title="Open Drive">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/>
-          </svg>
-          <span className="tb-pill-label">Open Drive</span>
-        </Link>
-        <Link href={`/known-issues/${slug}`} className="tb-pill" title="Browse known issues">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
-            <path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-            <path d="M4 19.5A2.5 2.5 0 016.5 22H20" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-          </svg>
-          <span className="tb-pill-label">Library</span>
-        </Link>
-        {user && (
-          <>
-            <span className="tb-sepline" aria-hidden />
-            <Link href="/account" className="tb-user" title={user.name}>
-              <span className="tb-avatar">{initials}</span>
-              <span className="tb-username">{user.name}</span>
-            </Link>
-          </>
-        )}
-        {/* Reserved space for the global Translate button (desktop only). */}
+        {/* Open Drive / Library pills removed — now live in the rail's
+            bottom action row. The duplicate user pill (avatar + name)
+            was also removed because the global FloatingAuthButton in
+            the layout already shows the user avatar to the right of
+            the Translate widget; having two avatars side-by-side read
+            as a bug. Keeps just the translate-button spacer so the
+            global widget at top-right has room to land. */}
         <span className="tb-translate-spacer" aria-hidden />
       </div>
       <style jsx>{`
