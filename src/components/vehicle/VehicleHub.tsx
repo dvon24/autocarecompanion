@@ -813,7 +813,17 @@ function MobileHub({
               • A2 (anonymous): condensed health card (top 2 issues) */}
         {isAuthed && schedule && schedule.services.length > 0 && (
           <div className="m-attach">
-            <MobileMaintenanceCard schedule={schedule} currentMileage={currentMileage} />
+            <MobileMaintenanceCard
+              schedule={schedule}
+              currentMileage={currentMileage}
+              onTaskTap={(_typeId, name) => {
+                // Turn the tap into a chat prompt — keeps the user in the
+                // hub conversation instead of yanking them to a separate
+                // guide page. The opener phrasing matches what an owner
+                // would naturally ask.
+                onSend(`How do I do a ${name.toLowerCase()} on my ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}?`);
+              }}
+            />
           </div>
         )}
 
@@ -880,7 +890,14 @@ function MobileHub({
                   : visibleBody.trim().length > 0
                     ? renderMarkdownLite(visibleBody)
                     : null}
-                {m.schedule && <MaintenanceSchedule schedule={m.schedule} />}
+                {m.schedule && (
+                  <MaintenanceSchedule
+                    schedule={m.schedule}
+                    onTaskTap={(_typeId, name) => {
+                      onSend(`How do I do a ${name.toLowerCase()} on my ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}?`);
+                    }}
+                  />
+                )}
                 {matched.length > 0 && <IssueAttachmentGroup issues={matched} />}
                 {m.route ? (
                   <MiniRoute
@@ -1236,8 +1253,8 @@ function MobileHub({
 
 /* ─── Mobile maintenance schedule card (vertical timeline) ─── */
 function MobileMaintenanceCard({
-  schedule, currentMileage,
-}: { schedule: ScheduleData; currentMileage: number | null }) {
+  schedule, currentMileage, onTaskTap,
+}: { schedule: ScheduleData; currentMileage: number | null; onTaskTap?: (typeId: string, name: string) => void }) {
   const services = schedule.services.filter((s) => s.status !== 'done').slice(0, 5);
   const overdueCount = schedule.stats.overdueCount;
   const dueSoonCount = services.filter((s) => s.status === 'due_now').length;
@@ -1326,8 +1343,9 @@ function MobileMaintenanceCard({
           {services.map((s, i) => {
             const c = statusColor(s.status);
             const isPrimary = !!s.primary || (i === 0 && s.status !== 'done');
-            return (
-              <div key={s.typeId + i} className="mc-row">
+            const interactive = !!onTaskTap;
+            const rowInner = (
+              <>
                 <span
                   className="mc-dot"
                   style={{
@@ -1349,7 +1367,23 @@ function MobileMaintenanceCard({
                     {s.note && <span className="mc-row-note"> · {s.note}</span>}
                   </div>
                 </div>
-              </div>
+              </>
+            );
+            // When onTaskTap is provided, render as a button so every
+            // service row is tappable. Falls back to a plain div in the
+            // (unlikely) case the host hasn't provided a handler.
+            return interactive ? (
+              <button
+                key={s.typeId + i}
+                type="button"
+                className="mc-row mc-row-btn"
+                onClick={() => onTaskTap?.(s.typeId, s.name)}
+                aria-label={`Open guide for ${s.name}`}
+              >
+                {rowInner}
+              </button>
+            ) : (
+              <div key={s.typeId + i} className="mc-row">{rowInner}</div>
             );
           })}
         </div>
@@ -1419,6 +1453,20 @@ function MobileMaintenanceCard({
           display: flex; gap: 10px; align-items: flex-start;
           padding-bottom: 14px; position: relative;
         }
+        /* Button variant — same layout as div .mc-row, with interactive
+           affordances. Reset native button styling so it matches the
+           div sibling exactly. */
+        .mc-row-btn {
+          width: 100%; text-align: left;
+          background: transparent; border: none;
+          font-family: inherit; color: inherit;
+          cursor: pointer;
+          padding-left: 0; padding-right: 0;
+          border-radius: 8px;
+          transition: background 120ms ease;
+        }
+        .mc-row-btn:hover { background: rgba(11,18,32,0.03); }
+        .mc-row-btn:active { background: rgba(11,18,32,0.06); }
         .mc-dot {
           position: absolute; left: -22px; top: 4px;
           border-radius: 50%; box-sizing: content-box;
@@ -2427,7 +2475,18 @@ function Au7oReply({
         {visibleBody.trim().length > 0 && (
           <div className="bubble-au7o">{renderMarkdownLite(visibleBody)}</div>
         )}
-        {schedule && <MaintenanceSchedule schedule={schedule} />}
+        {schedule && (
+          <MaintenanceSchedule
+            schedule={schedule}
+            onTaskTap={(_typeId, name) => {
+              // Au7oReply doesn't have direct vehicle context, but the
+              // hub chat agent already has it from the system prompt.
+              // Sending "How do I do an oil change?" inside an
+              // established conversation resolves correctly.
+              onFollowUp?.(`How do I do a ${name.toLowerCase()}?`);
+            }}
+          />
+        )}
         {attachments.length > 0 && <IssueAttachmentGroup issues={attachments} />}
         {/* Trip preview hierarchy: when we have a real Mapbox route
             attached to this turn, show the inline mini-map. Otherwise
@@ -2849,7 +2908,9 @@ function DriveHandoff({ destination }: { destination: string | null }) {
  * Mirrors the A3 design: 4-stat strip, mileage timeline with "you are here"
  * marker + service dots, and grouped service rows. All inline styles to
  * survive styled-jsx oddities (same lesson as IssueAttachmentGroup). */
-function MaintenanceSchedule({ schedule }: { schedule: ScheduleData }) {
+function MaintenanceSchedule({
+  schedule, onTaskTap,
+}: { schedule: ScheduleData; onTaskTap?: (typeId: string, name: string) => void }) {
   const { services, stats, timelineMin, timelineMax } = schedule;
   const span = Math.max(1, timelineMax - timelineMin);
   const pct = (m: number) => Math.max(0, Math.min(100, ((m - timelineMin) / span) * 100));
@@ -3003,21 +3064,21 @@ function MaintenanceSchedule({ schedule }: { schedule: ScheduleData }) {
       {/* Service rows */}
       <div>
         <ScheduleGroup title="Overdue" subtitle="Past the recommended interval — handle this next."
-          color="#B45309" services={grouped.overdue}/>
+          color="#B45309" services={grouped.overdue} onTaskTap={onTaskTap}/>
         <ScheduleGroup title="Due now" subtitle="Pair these in one visit to save labor."
-          color="#3B82F6" services={grouped.due_now}/>
+          color="#3B82F6" services={grouped.due_now} onTaskTap={onTaskTap}/>
         <ScheduleGroup title="On the horizon" subtitle="More than 500 mi out — plan ahead."
-          color="#64748B" services={grouped.upcoming}/>
+          color="#64748B" services={grouped.upcoming} onTaskTap={onTaskTap}/>
         <ScheduleGroup title="Recently completed" subtitle="Logged in the last 12 months."
-          color="#10B981" services={grouped.done} collapsed/>
+          color="#10B981" services={grouped.done} collapsed onTaskTap={onTaskTap}/>
       </div>
     </div>
   );
 }
 
 function ScheduleGroup({
-  title, subtitle, color, services, collapsed,
-}: { title: string; subtitle: string; color: string; services: ScheduleService[]; collapsed?: boolean }) {
+  title, subtitle, color, services, collapsed, onTaskTap,
+}: { title: string; subtitle: string; color: string; services: ScheduleService[]; collapsed?: boolean; onTaskTap?: (typeId: string, name: string) => void }) {
   const [expanded, setExpanded] = useState(false);
   if (services.length === 0) return null;
   const visible = collapsed && !expanded ? services.slice(0, 1) : services;
@@ -3039,7 +3100,7 @@ function ScheduleGroup({
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         {visible.map((s, i) => (
-          <ScheduleRow key={i} service={s} accent={color}/>
+          <ScheduleRow key={i} service={s} accent={color} onTap={onTaskTap}/>
         ))}
         {collapsed && services.length > 1 && (
           <button onClick={() => setExpanded((e) => !e)} style={{
@@ -3055,15 +3116,28 @@ function ScheduleGroup({
   );
 }
 
-function ScheduleRow({ service, accent }: { service: ScheduleService; accent: string }) {
-  return (
-    <div style={{
-      display: 'flex', alignItems: 'center', gap: 14,
-      padding: '10px 14px',
-      background: service.primary ? 'rgba(59,130,246,0.05)' : '#FAF8F2',
-      border: `1px solid ${service.primary ? 'rgba(59,130,246,0.22)' : '#E3DFD4'}`,
-      borderRadius: 10,
-    }}>
+function ScheduleRow({
+  service, accent, onTap,
+}: { service: ScheduleService; accent: string; onTap?: (typeId: string, name: string) => void }) {
+  // When onTap is provided, render as a button so the entire row is
+  // tappable and accessible. Click forwards (typeId, name) so the
+  // host can pivot it into a chat prompt or guide-generation call.
+  const interactive = !!onTap;
+  const baseStyle: React.CSSProperties = {
+    display: 'flex', alignItems: 'center', gap: 14,
+    padding: '10px 14px',
+    background: service.primary ? 'rgba(59,130,246,0.05)' : '#FAF8F2',
+    border: `1px solid ${service.primary ? 'rgba(59,130,246,0.22)' : '#E3DFD4'}`,
+    borderRadius: 10,
+    width: '100%',
+    textAlign: 'left',
+    color: 'inherit',
+    fontFamily: 'inherit',
+    cursor: interactive ? 'pointer' : 'default',
+    transition: 'background 120ms ease, border-color 120ms ease',
+  };
+  const body = (
+    <>
       <span style={{
         width: 28, height: 28, borderRadius: 8, flexShrink: 0,
         background: '#fff', border: `1px solid ${accent}`,
@@ -3080,8 +3154,26 @@ function ScheduleRow({ service, accent }: { service: ScheduleService; accent: st
         }}>{service.mileage.toLocaleString()} mi</span>
         <span style={{ fontSize: 11.5, color: '#475569' }}>· {service.note}</span>
       </div>
-    </div>
+      {interactive && (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: '#94A3B8', flexShrink: 0 }} aria-hidden>
+          <path d="m9 6 6 6-6 6"/>
+        </svg>
+      )}
+    </>
   );
+  if (interactive) {
+    return (
+      <button
+        type="button"
+        onClick={() => onTap?.(service.typeId, service.name)}
+        style={baseStyle}
+        aria-label={`Open guide for ${service.name}`}
+      >
+        {body}
+      </button>
+    );
+  }
+  return <div style={baseStyle}>{body}</div>;
 }
 
 function statusGlyph(status: ScheduleServiceStatus): string {
