@@ -11,6 +11,148 @@
     "owner_forum": "Used only for cross-validation, NOT primary source",
     "ai_estimated": "Last-resort fallback when manual not accessible; entries flagged 'verified: false'"
   },
+  "Dodge": {
+    "Challenger": {
+      "2015+ SRT 392 (6.4L HEMI)": {
+        "years": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023],
+        "trims": ["SRT 392", "Scat Pack", "R/T Scat Pack", "SRT 392 Scat Pack"],
+        "engine": "6.4L HEMI V8 (Apache, 485 hp / 475 lb-ft naturally aspirated)",
+        "transmission": "ZF 8HP70 8-Speed Automatic OR Tremec TR-6060 6-Speed Manual",
+        "source": {
+          "primary": "2015 Dodge Challenger Owner's Manual + 2015 SRT High-Performance Supplement",
+          "url": "https://www.mopar.com/owners/manuals/",
+          "section": "Service and Maintenance — SRT Performance Schedule"
+        },
+        "schedule": {
+          "engine_oil": {
+            "interval_display": "Per Oil Change Indicator (typically 6,000-7,000 mi normal duty)",
+            "interval_miles": 7000,
+            "interval_months": 12,
+            "interval_severe_display": "4,000 mi (track use, sustained high RPM, frequent short trips)",
+            "interval_severe_miles": 4000,
+            "interval_severe_months": 6,
+            "fluid": "Pennzoil Ultra Platinum 0W-40 SN (Mopar PN 68218950AB / PXN0W40SP) — SRT 392 specifically requires 0W-40 (NOT the 5W-20 used in R/T base 5.7L Hemi)",
+            "capacity": "7.0 qt with filter",
+            "note": "Critical: 6.4L SRT requires 0W-40 — using 5W-20 (correct for R/T 5.7L) will damage the engine over time. Filter: Mopar 68191349AC.",
+            "verified": true
+          },
+          "engine_coolant": {
+            "interval_display": "10 years or 150,000 mi (first); 5 years or 100,000 mi (subsequent)",
+            "interval_miles": 100000,
+            "interval_months": 60,
+            "interval_first_miles": 150000,
+            "interval_first_months": 120,
+            "fluid": "Mopar Antifreeze/Coolant 10-Year/150,000-Mile Formula (OAT, orange — Mopar PN 68163848AB). Do NOT mix with green/yellow IAT coolants — will void the extended-life rating.",
+            "capacity": "13.5 qt total system",
+            "verified": true
+          },
+          "transmission_fluid_auto": {
+            "interval_display": "120,000 mi normal duty (FCA lists 'fill for life'; enthusiast community recommends 60,000 mi for shift quality)",
+            "interval_miles": 60000,
+            "interval_months": null,
+            "interval_severe_display": "45,000 mi (track use, drag launches, sustained hard driving)",
+            "interval_severe_miles": 45000,
+            "fluid": "ZF Lifeguard 8 (Mopar PN 68218925AA) — DO NOT use ATF+4 (correct for older Chrysler autos but WRONG for ZF 8HP70). Using ATF+4 will destroy the transmission.",
+            "capacity": "4.0 qt drain-and-fill (pan only); 7.6 qt full system (requires deep drain)",
+            "note": "ZF 8HP70 dipstick check requires fluid at 30-40°C (very narrow temp window). Most shops use a scan tool to verify fluid level. Filter: integrated with pan, replace at same time.",
+            "verified": true
+          },
+          "transmission_fluid_manual": {
+            "interval_display": "60,000 mi or 5 years",
+            "interval_miles": 60000,
+            "interval_months": 60,
+            "interval_severe_display": "30,000 mi (track use, drag launches)",
+            "interval_severe_miles": 30000,
+            "fluid": "Pentosin MTF 2 (Mopar PN 68139760AA) — Tremec TR-6060 spec. Synchromesh-compatible.",
+            "capacity": "2.6 qt",
+            "verified": true
+          },
+          "rear_differential": {
+            "interval_display": "30,000 mi or 3 years (with LSD additive)",
+            "interval_miles": 30000,
+            "interval_months": 36,
+            "interval_severe_display": "15,000 mi (track use, drag launches, repeated high-load passes)",
+            "interval_severe_miles": 15000,
+            "fluid": "75W-140 GL-5 Synthetic + Mopar Limited-Slip Additive (PN 04318060AB) — SRT 392 uses the heavier 75W-140 spec, NOT the 75W-90 used on base R/T differentials",
+            "capacity": "2.4 qt (Getrag 220mm rear differential)",
+            "note": "Critical: SRT 392 spec is 75W-140 (not 75W-90 like R/T) due to the higher torque output. Wrong viscosity will cause whining and premature wear. LSD additive REQUIRED.",
+            "verified": true
+          },
+          "brake_fluid": {
+            "interval_display": "2 years",
+            "interval_miles": null,
+            "interval_months": 24,
+            "interval_severe_display": "6 months or per track session (Brembo 4-piston brakes generate significant heat under track use)",
+            "interval_severe_months": 6,
+            "fluid": "DOT 4 (factory) — DOT 4 LV or DOT 5.1 acceptable upgrade for track. DO NOT use DOT 5 silicone (incompatible).",
+            "capacity": "~1 qt for full flush + bleed",
+            "note": "SRT 392 has 4-piston Brembo fronts (14.2 in rotors) + 4-piston rears (13.8 in). Brake fluid hygroscopic — water absorption causes vapor lock under heavy braking. Track day drivers should bleed before AND after each session.",
+            "verified": true
+          },
+          "spark_plugs": {
+            "interval_display": "30,000 mi (HEMI is dual-plug per cylinder = 16 total plugs)",
+            "interval_miles": 30000,
+            "interval_months": null,
+            "part_number": "Mopar PN 05149025AB (NGK LZTR6AGP equivalent) — 16 plugs",
+            "gap": "0.043 in",
+            "torque": "13 ft-lbs",
+            "note": "6.4L HEMI has 16 spark plugs (two per cylinder). Access on bank #1 (passenger side) requires removing intake plenum on some applications. Use anti-seize sparingly — iridium plugs may not require it per NGK guidance.",
+            "verified": true
+          },
+          "air_filter": {
+            "interval_display": "30,000 mi normal duty",
+            "interval_miles": 30000,
+            "interval_months": null,
+            "interval_severe_display": "15,000 mi (dusty conditions, track use)",
+            "interval_severe_miles": 15000,
+            "part_number": "Mopar 04861756AB (or K&N 33-2438 high-flow upgrade)",
+            "verified": true
+          },
+          "cabin_filter": {
+            "interval_display": "18,000 mi or annually",
+            "interval_miles": 18000,
+            "interval_months": 12,
+            "interval_severe_display": "12,000 mi (polluted urban areas, allergy season)",
+            "interval_severe_miles": 12000,
+            "part_number": "Mopar 68071668AA",
+            "note": "Located behind the glove box (drop the glove box stops to access). 60-second swap.",
+            "verified": true
+          },
+          "tire_rotation": {
+            "interval_display": "7,500 mi (non-staggered setup)",
+            "interval_miles": 7500,
+            "interval_months": 6,
+            "note": "SRT 392 has 245/45ZR20 all four corners on 20x9 wheels — square fitment so full front-to-rear rotation is supported. Some owners run wider staggered (275 rear) — verify before rotating.",
+            "verified": true
+          },
+          "wiper_blades": {
+            "interval_display": "6-12 months (visual inspection)",
+            "interval_miles": null,
+            "interval_months": 12,
+            "spec": "22 in driver / 22 in passenger (beam-style)",
+            "verified": true
+          },
+          "battery": {
+            "interval_display": "Inspect annually; typical life 4-6 years",
+            "interval_miles": null,
+            "interval_months": 12,
+            "spec": "H7 AGM (Group 49) — Mopar PN BAH7800AGM or equivalent",
+            "note": "Battery is in the TRUNK on the passenger side behind the trim panel — NOT under the hood. Auxiliary jump terminals are under the hood at the strut tower for convenience. Common gotcha on first-time DIY owners.",
+            "verified": true
+          }
+        },
+        "owner_alerts": [
+          "Battery is in the TRUNK (right side behind trim) — not under hood. Use the underhood jump terminals for boost.",
+          "0W-40 oil required for SRT 392 (NOT 5W-20 used in base R/T 5.7L). Wrong oil = engine wear.",
+          "ZF 8HP70 transmission uses ZF Lifeguard 8 — DO NOT use ATF+4 (will destroy the box).",
+          "Rear diff is 75W-140 with LSD additive (NOT 75W-90 like R/T). Wrong viscosity = whining + wear.",
+          "HEMI has 16 spark plugs (2 per cylinder) — buy/budget accordingly.",
+          "Coolant is Mopar OAT 10-year (orange) — never mix with green/yellow IAT.",
+          "Track day prep: change brake fluid before AND after the session — Brembos make heat."
+        ]
+      }
+    }
+  },
   "Chevrolet": {
     "Camaro": {
       "2017+ ZL1 (LT4 Supercharged)": {
