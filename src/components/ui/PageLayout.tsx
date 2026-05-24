@@ -5,7 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { AnimatedBackground } from './AnimatedBackground';
 import { ScrollReveal } from './ScrollReveal';
-import { UserMenu } from '@/components/auth/UserMenu';
+// UserMenu replaced by the global FloatingAuthButton — see the comment
+// inside the header below.
+// import { UserMenu } from '@/components/auth/UserMenu';
 
 /**
  * PageLayout - Shared layout with animated background
@@ -105,7 +107,12 @@ export function PageLayout({
                           {backLink.label}
                         </Link>
                       )}
-                      <UserMenu />
+                      {/* UserMenu removed — the global FloatingAuthButton
+                          in src/app/layout.tsx now sits in the top-right
+                          next to the Translate widget on every page,
+                          making this in-header duplicate redundant. Was
+                          causing the "two avatars" visual bug on /account
+                          and other PageLayout-wrapped pages. */}
                     </div>
                   </ScrollReveal>
                 </>

@@ -42,6 +42,27 @@ model User {
   passwordResetTokens PasswordResetToken[]
 }
 
+// Weekly chat quota for anonymous (and optionally free-tier signed-in)
+// users. Server-side backstop for the client-side useAnonymousLimit
+// hook — clearing localStorage in the browser no longer resets the
+// counter because the truth lives here.
+//
+// `key` is either:
+//   - "anon:{anonymousId}" for unsigned visitors (cookie-set)
+//   - "user:{userId}" for signed-in users on a paid-tier limit
+// `weekStart` is the Sunday-midnight-UTC bucket the count belongs to.
+// Old buckets are lazily replaced on the first request of a new week.
+model ChatQuota {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  weekStart DateTime
+  count     Int      @default(0)
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  @@index([weekStart])
+}
+
 // Password reset flow — short-lived single-use tokens emailed to the
 // user when they request a reset. We index by tokenHash (not the raw
 // token) so a DB leak doesn't yield usable reset links.

@@ -279,7 +279,23 @@ export function VehicleHub({
       });
 
       if (!res.ok || !res.body) {
-        const errBody = await res.json().catch(() => ({} as { message?: string; gated?: boolean }));
+        const errBody = await res.json().catch(() => ({} as { message?: string; gated?: boolean; error?: string }));
+        // Server-side weekly quota hit (error: 'quota_exceeded') — open
+        // the same upgrade modal we use for the client-side counter,
+        // and pop the empty assistant placeholder so the user doesn't
+        // see a stuck "…" bubble.
+        if (res.status === 429 && errBody.error === 'quota_exceeded') {
+          setShowUpgrade(true);
+          setMessages((prev) => {
+            const idx = streamingIdxRef.current;
+            if (idx == null) return prev;
+            const copy = [...prev];
+            copy.splice(idx, 1);
+            return copy;
+          });
+          setPending(false);
+          return;
+        }
         const fallbackMessage = res.status === 429
           ? (errBody.message || 'Daily limit reached.')
           : (errBody.message || `Chat failed (HTTP ${res.status}).`);

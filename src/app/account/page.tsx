@@ -74,17 +74,13 @@ export default async function AccountPage() {
   return (
     <PageLayout backLink={{ href: '/', label: 'Home' }}>
       <div className="max-w-5xl mx-auto px-6 py-10 space-y-10">
-        {/* Header */}
+        {/* Header — email line removed (the FloatingAuthButton avatar
+            dropdown in the top-right already surfaces it). */}
         <header>
           <h1 className="text-3xl font-bold text-gray-900">
             Your Account
             <span className="ml-2 align-middle text-[10px] font-semibold uppercase tracking-wide px-1.5 py-0.5 bg-blue-100 text-blue-800 rounded">Beta</span>
           </h1>
-          <p className="text-gray-600 mt-1">{session.user.email}</p>
-          {/* Soft expectation-setter — the page itself works (it shows
-              your existing chats, diagnoses, parts searches, vehicles)
-              but premium features (SMS reminders, cross-device sync,
-              push notifications) are still landing. */}
           <p className="text-sm text-gray-500 mt-2">
             Premium features (SMS reminders, push alerts, cross-device sync) are still
             in active development. What you see here today is read-only history of your

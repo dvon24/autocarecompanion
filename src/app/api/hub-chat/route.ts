@@ -10,6 +10,12 @@ import {
   rateLimitResponse,
 } from '@/lib/rate-limit';
 import { mileageBucket } from '@/lib/vehicle-slug';
+import {
+  checkAndConsumeChatQuota,
+  getOrSetAnonId,
+  DEFAULT_ANON_LIMIT,
+  DEFAULT_FREE_AUTHED_LIMIT,
+} from '@/lib/chat-quota';
 
 export const maxDuration = 60;
 export const runtime = 'nodejs';
@@ -256,6 +262,30 @@ export async function POST(request: NextRequest) {
       ? 'Daily chat limit reached. It resets in 24 hours.'
       : 'Free chat limit reached. Sign in to continue with a much higher daily allowance.';
     return NextResponse.json({ error: 'rate_limited', message, reset: dayLimit.reset, gated: !isAuthed }, { status: 429 });
+  }
+
+  // ── 3a. Server-side WEEKLY quota (backstop for the client-side
+  // useAnonymousLimit hook). IP-based daily limits above protect against
+  // bots; this quota protects against single-user abuse via localStorage
+  // tampering. Subscribers bypass entirely; free-authed users get a
+  // higher cap; anonymous users are the strict 5/week.
+  const isSubscriber = session?.user?.subscriptionStatus === 'active';
+  if (!isSubscriber) {
+    const quotaKey = isAuthed ? `user:${userId}` : `anon:${await getOrSetAnonId()}`;
+    const quotaLimit = isAuthed ? DEFAULT_FREE_AUTHED_LIMIT : DEFAULT_ANON_LIMIT;
+    const quota = await checkAndConsumeChatQuota({ key: quotaKey, limit: quotaLimit });
+    if (!quota.allowed) {
+      return NextResponse.json({
+        error: 'quota_exceeded',
+        message: isAuthed
+          ? `You've used all ${quotaLimit} free chats for this week. Subscribe for unlimited.`
+          : `You've used all ${quotaLimit} free chats this week. Sign in for more, or subscribe for unlimited.`,
+        resetAt: quota.resetAt.toISOString(),
+        remaining: 0,
+        limit: quotaLimit,
+        gated: true,
+      }, { status: 429 });
+    }
   }
 
   // ── 4. Resolve which Vehicle row this corresponds to (authed only) ──
