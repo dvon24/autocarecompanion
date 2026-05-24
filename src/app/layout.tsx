@@ -16,6 +16,7 @@ import { AdSenseScript } from "@/components/ads/AdSenseScript";
 import TermlyCMP from "@/components/consent/TermlyCMP";
 import { OrganizationJsonLd, WebSiteJsonLd, SoftwareApplicationJsonLd } from "@/components/seo/JsonLd";
 import { GoogleTranslate } from "@/components/shared/GoogleTranslate";
+import { FloatingAuthButton } from "@/components/auth/FloatingAuthButton";
 import { InstallPrompt } from "@/components/pwa/InstallPrompt";
 import { ServiceWorkerRefresh } from "@/components/pwa/ServiceWorkerRefresh";
 
@@ -108,6 +109,10 @@ export default function RootLayout({
         <TermlyCMP />
         <GoogleTranslate />
         <SessionProvider>
+          {/* Floating sign-in pill — sits top-right next to GoogleTranslate
+              (positioned at right-[112px] to clear the Translate pill's
+              width at right-3). Inside SessionProvider so useSession() works. */}
+          <FloatingAuthButton />
           <AppProvider>
             <OfflineIndicator position="top" showFeatures />
             {children}
