@@ -11,6 +11,8 @@ import type { VehicleSchedule } from '@/lib/owners-manual-schedule';
 // lives in the `ownersManualSchedule` prop for the integration that
 // will feed the existing MaintenanceSchedule timeline card.
 // import { OwnersManualSchedule } from '@/components/vehicle/OwnersManualSchedule';
+import { useAnonymousLimit } from '@/hooks/useAnonymousLimit';
+import { UpgradePrompt, RemainingChatsIndicator } from '@/components/chat/UpgradePrompt';
 import { MileageEditor } from '@/components/vehicle/MileageEditor';
 
 /**
@@ -132,6 +134,13 @@ export function VehicleHub({
   ]);
   const [input, setInput] = useState('');
   const [pending, setPending] = useState(false);
+
+  // Weekly chat allowance — anonymous users get 5 chats/week (tracked in
+  // localStorage); authed users are treated as unlimited by the hook.
+  // When the limit is exhausted, send() short-circuits and shows the
+  // upgrade prompt inline above the composer.
+  const { canChat, consumeChat, remaining, resetDate, isAuthenticated } = useAnonymousLimit();
+  const [showUpgrade, setShowUpgrade] = useState(false);
   // Mobile-only drawer with the recent-threads list. The desktop rail
   // shows it inline; under 900px the rail is hidden, so a hamburger in
   // the top bar opens this slide-in panel instead.
@@ -156,6 +165,17 @@ export function VehicleHub({
   const send = async (text: string) => {
     const trimmed = text.trim();
     if (!trimmed || pending) return;
+
+    // Quota gate — anonymous users get 5 chats/week. consumeChat()
+    // returns false when the allowance is exhausted; in that case
+    // we surface the upgrade prompt instead of firing /api/hub-chat.
+    // Authed users always return true (treated as unlimited at the
+    // hook level today — premium-tier limits are a future addition).
+    if (!consumeChat()) {
+      setShowUpgrade(true);
+      return;
+    }
+
     setPending(true);
     setInput('');
 
@@ -418,6 +438,37 @@ export function VehicleHub({
 
   return (
     <>
+      {/* Chat-limit modal — fires when anonymous users have used their
+          weekly 5-chat allowance. Closes on backdrop click. */}
+      {showUpgrade && !isAuthenticated && (
+        <div
+          style={{
+            position: 'fixed', inset: 0, zIndex: 10000,
+            background: 'rgba(11,18,32,0.55)', backdropFilter: 'blur(8px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: 16,
+          }}
+          onClick={(e) => { if (e.target === e.currentTarget) setShowUpgrade(false); }}
+        >
+          <div style={{ maxWidth: 480, width: '100%', position: 'relative' }}>
+            <button
+              type="button"
+              onClick={() => setShowUpgrade(false)}
+              aria-label="Close"
+              style={{
+                position: 'absolute', top: -36, right: 0,
+                background: 'rgba(255,255,255,0.95)',
+                border: 'none', borderRadius: '50%',
+                width: 28, height: 28, cursor: 'pointer',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#0B1220', fontSize: 16,
+                boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+              }}
+            >×</button>
+            <UpgradePrompt variant="full" resetDate={resetDate} />
+          </div>
+        </div>
+      )}
       <div className="hub-stage hub-desktop">
         <VehicleRail
           vehicle={vehicle}
@@ -636,6 +687,12 @@ function MobileHub({
     if (!scrollRef.current) return;
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages.length]);
+
+  // Anonymous chat allowance — surface the remaining-chats indicator
+  // and disable the composer when exhausted. Modal lives at the top-
+  // level VehicleHub; this hook call just reads the same localStorage
+  // counter for inline UI.
+  const { remaining } = useAnonymousLimit();
 
   // Vehicle initial for the avatar disc — fall back to make's first letter
   // when the model leads with a digit (e.g. Chrysler "300", BMW "3 Series",
@@ -942,17 +999,25 @@ function MobileHub({
           ))}
         </div>
 
+        {/* Remaining-chats indicator (anonymous only). Hook is idempotent
+            — also called at the top level so values agree. */}
+        {remaining !== Infinity && (
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 6 }}>
+            <RemainingChatsIndicator remaining={remaining} />
+          </div>
+        )}
+
         <div className="m-composer">
           <Icon name="chat" size={13} style={{ color: 'var(--slate-400)' }} />
           <textarea
             ref={taRef}
             className="m-composer-input"
-            placeholder="Ask Au7o anything…"
+            placeholder={remaining === 0 ? 'Subscribe to keep chatting…' : 'Ask Au7o anything…'}
             value={input}
             onChange={(e) => onChangeInput(e.target.value)}
             onKeyDown={onKey}
             rows={1}
-            disabled={pending}
+            disabled={pending || remaining === 0}
           />
           <button type="button" className="m-mic-btn" disabled aria-label="Voice (coming soon)" title="Voice — coming soon">
             <Icon name="mic" size={13} />
