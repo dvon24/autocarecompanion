@@ -195,17 +195,25 @@ export default function SignInPage() {
                 </div>
               </div>
 
-              {/* Subscribe CTA */}
-              <div className="text-center">
-                <p className="text-gray-600 mb-3">
+              {/* Account creation CTAs — free account is the primary
+                  path; subscription remains as the premium upgrade. */}
+              <div className="text-center space-y-3">
+                <p className="text-gray-600">
                   Don&apos;t have an account?
                 </p>
                 <Link
-                  href="/subscribe"
-                  className="block w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all text-center"
+                  href="/auth/signup"
+                  className="block w-full py-3 px-4 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-colors text-center"
                 >
-                  Subscribe for $9.99/month
+                  Create a free account
                 </Link>
+                <p className="text-xs text-gray-500">
+                  or{' '}
+                  <Link href="/subscribe" className="text-blue-600 hover:text-blue-700 underline">
+                    subscribe for $9.99/month
+                  </Link>{' '}
+                  to unlock premium features
+                </p>
               </div>
             </div>
 
