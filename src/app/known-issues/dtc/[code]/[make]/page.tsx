@@ -88,9 +88,15 @@ export default async function PerMakeDTCPage({
   const articleUrl = `https://au7o.io/known-issues/dtc/${code.toLowerCase()}/${makeSlug}`;
   const parentUrl = `https://au7o.io/known-issues/dtc/${code.toLowerCase()}`;
 
-  // Cost range across this make's issues
-  const costsLow = data.issues.filter(i => i.estimatedCost).map(i => i.estimatedCost!.low);
-  const costsHigh = data.issues.filter(i => i.estimatedCost).map(i => i.estimatedCost!.high);
+  // Cost range across this make's issues — filter $0 entries (AI
+  // pipeline writes zeros when no real cost is found). Including them
+  // produces "$0-$X" in the SERP snippet which kills CTR.
+  const costsLow = data.issues
+    .filter(i => i.estimatedCost && i.estimatedCost.low > 0)
+    .map(i => i.estimatedCost!.low);
+  const costsHigh = data.issues
+    .filter(i => i.estimatedCost && i.estimatedCost.high > 0)
+    .map(i => i.estimatedCost!.high);
   const minCost = costsLow.length > 0 ? Math.min(...costsLow) : 0;
   const maxCost = costsHigh.length > 0 ? Math.max(...costsHigh) : 0;
 

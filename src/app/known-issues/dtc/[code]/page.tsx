@@ -112,9 +112,17 @@ export default async function DTCCodePage({
   }
   const sortedMakes = Object.entries(issuesByMake).sort(([a], [b]) => a.localeCompare(b));
 
-  // Cost range
-  const costsLow = data.issues.filter(i => i.estimatedCost).map(i => i.estimatedCost!.low);
-  const costsHigh = data.issues.filter(i => i.estimatedCost).map(i => i.estimatedCost!.high);
+  // Cost range — filter out issues with $0 cost data (the AI research
+  // pipeline writes zeros when it can't find a real estimate). Including
+  // them produces "$0-$X" in the SERP snippet, which signals incomplete
+  // data and tanks CTR. Same fix applied to the per-vehicle article
+  // page in [slug]/page.tsx.
+  const costsLow = data.issues
+    .filter(i => i.estimatedCost && i.estimatedCost.low > 0)
+    .map(i => i.estimatedCost!.low);
+  const costsHigh = data.issues
+    .filter(i => i.estimatedCost && i.estimatedCost.high > 0)
+    .map(i => i.estimatedCost!.high);
   const minCost = costsLow.length > 0 ? Math.min(...costsLow) : 0;
   const maxCost = costsHigh.length > 0 ? Math.max(...costsHigh) : 0;
 
