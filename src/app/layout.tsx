@@ -13,7 +13,8 @@ import { OfflineIndicator } from "@/components/offline/OfflineIndicator";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { SessionProvider } from "@/components/auth/SessionProvider";
 import { AdSenseScript } from "@/components/ads/AdSenseScript";
-import TermlyCMP from "@/components/consent/TermlyCMP";
+import { TermlyConsentBootstrap } from "@/components/consent/TermlyConsentBootstrap";
+import TermlyRouteReinit from "@/components/consent/TermlyRouteReinit";
 import { OrganizationJsonLd, WebSiteJsonLd, SoftwareApplicationJsonLd } from "@/components/seo/JsonLd";
 import { GoogleTranslate } from "@/components/shared/GoogleTranslate";
 import { FloatingAuthButton } from "@/components/auth/FloatingAuthButton";
@@ -91,6 +92,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Termly resource-blocker — MUST be the first script in <head>
+            so Consent Mode v2 default signals arrive before any Google
+            tag fires. Loads beforeInteractive (via Next's <Script>) so
+            it executes before AdSense + GoogleAnalytics below. Previously
+            this lived as a body-mounted client component with useEffect
+            injection which made it land AFTER GA — Termly's GCM
+            Validation Scan flagged that as "default consent signals
+            sent too late." This placement passes the scan. */}
+        <TermlyConsentBootstrap />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         {/* AdSense site verification + Auto Ads loader. Per Google's
@@ -106,7 +116,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <TermlyCMP />
+        {/* SPA navigation: re-init Termly's banner on every route change
+            so its scope tracks pathname + query updates. The initial
+            script load is done via <TermlyConsentBootstrap /> in <head>. */}
+        <TermlyRouteReinit />
         <GoogleTranslate />
         <SessionProvider>
           {/* Floating sign-in pill — sits top-right next to GoogleTranslate
