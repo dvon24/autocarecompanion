@@ -131,7 +131,7 @@ Confidence:
 - medium: 2+ sources, no formal recall
 - low: 1-2 forum reports
 
-Return ONLY a JSON object: { "issues": [...] }. No markdown, no commentary.`;
+Return ONLY a JSON object: { "issues": [...] }. No markdown, no commentary, no thinking text. Your entire response must be parseable as a single JSON object starting with { and ending with }. Do NOT prefix with "I'll research" or "Here is the data" or any explanation.`;
 };
 
 async function callAnthropic({ prompt, max_tokens, max_searches = 5 }) {
@@ -153,10 +153,73 @@ async function callAnthropic({ prompt, max_tokens, max_searches = 5 }) {
   const data = await res.json();
   const textBlocks = (data.content || []).filter(c => c.type === 'text');
   const raw = textBlocks.map(b => b.text).join('\n').trim();
+  try { require('fs').writeFileSync('_last-raw-text.txt', raw); } catch {}
   const candidates = [raw, raw.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/i, '').trim()];
   const f = raw.indexOf('{'); const l = raw.lastIndexOf('}');
   if (f >= 0 && l > f) candidates.push(raw.slice(f, l + 1));
-  for (const c of candidates) { try { return JSON.parse(c); } catch { /* try next */ } }
+  // Also try every code-fenced JSON block — Opus sometimes wraps in ```json
+  const fenceMatches = raw.match(/```(?:json)?\s*([\s\S]*?)```/g) || [];
+  for (const m of fenceMatches) candidates.push(m.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/i, '').trim());
+  // Sanitize: escape bare control chars (newline, tab, CR) inside string literals.
+  // The model sometimes emits literal newlines inside descriptions, which strict
+  // JSON.parse rejects with "Bad control character in string literal".
+  function sanitizeJsonString(s) {
+    let out = '', inStr = false, esc = false;
+    for (let i = 0; i < s.length; i++) {
+      const ch = s[i], cc = ch.charCodeAt(0);
+      if (inStr) {
+        if (esc) { out += ch; esc = false; continue; }
+        if (ch === '\\') { out += ch; esc = true; continue; }
+        if (ch === '"') { out += ch; inStr = false; continue; }
+        if (cc === 10) { out += '\\n'; continue; }
+        if (cc === 13) { out += '\\r'; continue; }
+        if (cc === 9) { out += '\\t'; continue; }
+        if (cc < 32) { out += '\\u' + cc.toString(16).padStart(4, '0'); continue; }
+        out += ch;
+      } else {
+        if (ch === '"') inStr = true;
+        out += ch;
+      }
+    }
+    return out;
+  }
+  function tryParse(s) {
+    try { return JSON.parse(s); } catch {}
+    try { return JSON.parse(sanitizeJsonString(s)); } catch {}
+    return null;
+  }
+
+  // Brace-balancer: scan for every '{', try parsing from there to first balanced '}'.
+  // Pick the candidate that has an "issues" array, otherwise the biggest valid object.
+  let bestObj = null, bestLen = 0, withIssues = null;
+  for (let i = 0; i < raw.length; i++) {
+    if (raw[i] !== '{') continue;
+    let depth = 0, inStr = false, esc = false;
+    for (let j = i; j < raw.length; j++) {
+      const ch = raw[j];
+      if (inStr) {
+        if (esc) esc = false;
+        else if (ch === '\\') esc = true;
+        else if (ch === '"') inStr = false;
+      } else {
+        if (ch === '"') inStr = true;
+        else if (ch === '{') depth++;
+        else if (ch === '}') {
+          depth--;
+          if (depth === 0) {
+            const slice = raw.slice(i, j + 1);
+            const o = tryParse(slice);
+            if (o && Array.isArray(o.issues) && o.issues.length > 0) { withIssues = o; }
+            if (o && slice.length > bestLen) { bestObj = o; bestLen = slice.length; }
+            break;
+          }
+        }
+      }
+    }
+  }
+  if (withIssues) return withIssues;
+  if (bestObj) return bestObj;
+  for (const c of candidates) { const o = tryParse(c); if (o) return o; }
   throw new Error(`Parse failed. Raw start: ${raw.slice(0, 200)}`);
 }
 
@@ -255,9 +318,10 @@ async function main() {
 
   console.log(`\n━━━ Stage 1: Researcher (Opus 4.7 + web_search) ━━━`);
   const prompt = RESEARCHER_PROMPT(MAKE, MODEL, yearList, COUNT);
-  const data = await callAnthropic({ prompt, max_tokens: 16000, max_searches: 10 });
+  const data = await callAnthropic({ prompt, max_tokens: 24000, max_searches: 12 });
+  require('fs').writeFileSync('_last-raw-research.json', JSON.stringify(data, null, 2));
   const drafts = Array.isArray(data?.issues) ? data.issues : [];
-  console.log(`  Returned ${drafts.length} draft issues`);
+  console.log(`  Returned ${drafts.length} draft issues (keys: ${Object.keys(data || {}).slice(0,8).join(',')})`);
 
   let saved = 0, rejectedUrls = 0, rejectedVerifier = 0, corrected = 0;
   const savedIds = [];

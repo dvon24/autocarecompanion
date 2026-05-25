@@ -1,0 +1,105 @@
+{
+  "auditedAt": "2026-05-25T16:34:55.417Z",
+  "make": "Ford",
+  "model": "Maverick",
+  "total": 6,
+  "verified": 5,
+  "minor": 1,
+  "major": 0,
+  "fabricated": 0,
+  "errors": 0,
+  "results": [
+    {
+      "id": "ford-maverick-integrated-park-module-rollaway",
+      "title": "Integrated Park Module (IPM) Fails to Lock Transmission in Park — Rollaway Risk",
+      "severity": "high",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Repair cost field shows $0-$0 which is technically correct since it's a free recall OTA/dealer software update, but may be worth noting it's a recall remedy rather than out-of-pocket repair",
+          "Warranty claim counts (4 Maverick Hybrid, 22 Mach-E, 16 F-150 Lightning) could not be independently verified from search results but the overall recall is confirmed"
+        ],
+        "evidence": "NHTSA recall 25V863 / Ford recall 25C69 issued December 12, 2025 covers 272,645 vehicles including 80,468 2025-2026 Ford Maverick Hybrid pickups, where the IPM pawl can bind against the slider, preventing mechanical engagement of Park within 2.9 seconds and violating FMVSS 114. Remedy is a free OTA or dealer software update with interim letters mailed February 2, 2026.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-maverick-v2-rear-view-camera-freeze-recall",
+      "title": "Connected Touch Radio Rear View Camera Image Freeze (Recall 24S59 / 24V684)",
+      "severity": "high",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "NHTSA Recall 24V684 / Ford 24S59 confirms the Connected Touch Radio (CTR) software memory issue causing rear-view camera freeze on 2022-2024 Mavericks, affecting 144,516 vehicles built 2/3/2021-11/28/2023, with two crashes reported and no DTCs involved; remedy is a free software update.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-maverick-v2-windshield-wiper-motor-recall",
+      "title": "Front Windshield Wiper Motor Failure (Recall 24S51 / NHTSA 24V594)",
+      "severity": "high",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "NHTSA recall 24V594 / Ford 24S51 is confirmed as a real recall affecting 2023-2024 Ford Maverick (and 2023 Bronco Sport / Mustang Mach-E) for windshield wiper motor failure caused by missing sealer allowing water intrusion. Dealers inspect and replace the motor free of charge, consistent with the $0 repair cost and high severity (safety-related visibility risk) listed.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-maverick-v3-8f35-shudder-buck-jerk",
+      "title": "8F35 Transmission Shudder/Buck/Jerk Below 35 mph and Output Carrier Bearing Wear (Early 2022 Builds)",
+      "severity": "medium",
+      "verdict": "minor_issues",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "TSB 21-2389 explicitly applies to 2019-2021 Edge/Nautilus only, not the Maverick — citing it as carry-over to Maverick is inferential, not a formal Ford position",
+          "The more directly applicable bulletin for the output carrier bearing wear is TSB 22-2281 (Transit Connect, builds on/before 20-Dec-2021), which the description omits by name",
+          "DTC list is broad/generic; codes like P0727, P0771, P2700, P2701, P2704 are not specifically called out in either TSB and appear over-inclusive for the described shudder/carrier-wear conditions",
+          "Year range '2022-2022' is narrower than the affected build window (early 2022 builds before Dec 20, 2021 production cutoff) — phrasing is acceptable but could be more precise"
+        ],
+        "evidence": "Ford TSB 21-2389 documents the 8F35 shudder/buck/jerk below 35 mph but is officially scoped to 2019-2021 Edge/Nautilus; a separate TSB 22-2281 covers 8F35 slipping/harsh engagement and output carrier failures on units built on/before 20-Dec-2021, and Maverick owner forums widely report both conditions on early 2022 EcoBoost Mavericks with the 8F35.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-maverick-v3-engine-block-heater-fire-risk-25sa4",
+      "title": "Engine Block Heater May Crack and Cause Underhood Fire When Plugged In (Recall 25SA4 / 25V685)",
+      "severity": "high",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "NHTSA Campaign 25V685 / Ford Recall 25SA4 confirms the issue for 2022-2024 Ford Maverick (among other models), citing solder-joint cracks in the engine block heater allowing coolant intrusion, salt-bridge formation, short circuit, and underhood fire risk; 46 fire reports as of September 2025, mostly in Canada. Repair is a free replacement once redesigned parts are available, no DTCs are applicable, and severity 'high' is appropriate for a fire-risk recall.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "ford-maverick-v3-hpcm-forced-neutral-recall",
+      "title": "HPCM Software Forces Vehicle into Neutral While Driving (Recall 24S33 / 24V-330)",
+      "severity": "high",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "NHTSA recall 24V-330 (Ford 24S33) issued May 3, 2024 covers 2022-2024 Ford Maverick Hybrids with HPCM software that can force neutral while driving, then enter limp mode up to 30 mph; remedy is a free dealer software update. Owner reports confirm the listed DTCs (U1010, U1011, U1028, U0418, U0401, U0131) and the symptom description matches official documentation.",
+        "confidence": "high"
+      }
+    }
+  ]
+}
