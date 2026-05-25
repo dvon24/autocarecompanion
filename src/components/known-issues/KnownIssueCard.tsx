@@ -193,6 +193,34 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                 Upgrades Available
               </span>
             )}
+            {/* Engine badge — elevates issue.vehicleMatch.engines to a
+                visible chip so users reading the Dodge Challenger page
+                instantly see "Pentastar 3.6L V6 Only" without having to
+                expand the card. Per-Gemini-feedback: filters mental load
+                for users whose vehicle has a different engine variant.
+                We render up to 2 engines verbatim; 3+ collapses to
+                "<first> +N more" to avoid wrapping in the chip row.
+                Skip entirely when the issue applies across all engines
+                (engines array empty) — adding a chip there would just
+                be noise. */}
+            {(() => {
+              const engines = issue.vehicleMatch.engines || [];
+              if (engines.length === 0) return null;
+              const label = engines.length === 1
+                ? `Engine: ${engines[0]}`
+                : engines.length === 2
+                  ? `Engine: ${engines[0]} / ${engines[1]}`
+                  : `Engine: ${engines[0]} +${engines.length - 1} more`;
+              const title = engines.length > 2 ? engines.join(' / ') : undefined;
+              return (
+                <span
+                  className="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200"
+                  title={title}
+                >
+                  {label}
+                </span>
+              );
+            })()}
           </div>
           {/* H3 prefixes the year range + make + model so each page's card
               titles read uniquely across the site. Year range matters because
