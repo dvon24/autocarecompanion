@@ -1,0 +1,108 @@
+{
+  "auditedAt": "2026-05-25T16:46:19.609Z",
+  "make": "Cadillac",
+  "model": "CT5",
+  "total": 6,
+  "verified": 6,
+  "minor": 0,
+  "major": 0,
+  "fabricated": 0,
+  "errors": 0,
+  "results": [
+    {
+      "id": "cadillac-ct5-10l80-harsh-shift-p2812-p2814",
+      "title": "10L80 Harsh Shifts and Check Engine Light with DTC P2812 or P2814 (Line Pressure Solenoid)",
+      "severity": "high",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "P0747 is Pressure Control Solenoid A Stuck On, not directly tied to PIP5799 which specifically addresses P2812/P2814 (Solenoid G/Valve 7); its inclusion is loosely related at best",
+          "Repair cost upper bound ($3500) is high for a recall fix that GM performs free of charge via TCM reprogramming; out-of-warranty valve body replacement can approach that figure but the recall remedy itself is $0"
+        ],
+        "evidence": "GM Preliminary Information bulletin PIP5799 (published 04/01/2021) documents DTCs P2812/P2814 on 10L60/10L80/10L90/10L1000 transmissions including 2020-2021 Cadillac CT5, caused by an electrical fault in Transmission Control Solenoid Valve 7 (line pressure solenoid), with valve body replacement as the remedy. NHTSA Recall 25V148 (GM N242480630) issued March 6, 2025 covers 2020-2021 CT4/CT5, 2019-2020 CT6, and 2020-2022 Camaro with the 10-speed transmission for harsh shifting/wheel lock-up risk, remedied by free TCM monitoring software.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "cadillac-ct5-drl-wont-deactivate-recall",
+      "title": "Daytime Running Lights Won't Turn Off With Headlights (Recall 22V903 / N222386380)",
+      "severity": "low",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "NHTSA recall 22V903 (GM N222386380) confirmed for 2020-2023 Cadillac CT4/CT5 and other GM vehicles (740,108 total) for DRLs failing to deactivate with headlights on, violating FMVSS 108. Fix is a free BCM software update at dealer or via OTA, matching the $0 repair cost and low severity in the entry.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "cadillac-ct5-electric-water-pump-failure",
+      "title": "Electric Water Pump Circuit Board Failure — Overheat and Limp Mode",
+      "severity": "medium",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "No specific DTC codes listed (acceptable since none were provided); repair is performed at no cost under a Customer Satisfaction Program, so the $0-$1400 upper bound is misleading for owners (warranty-covered); technically classified as a Customer Satisfaction Program, not strictly a TSB"
+        ],
+        "evidence": "GM issued a December 1, 2020 bulletin (Customer Satisfaction Program) covering 2020 Cadillac CT4/CT5 vehicles with the 2.0L LSY and 2.7L L3B engines, stating the printed circuit board inside the water pump may have been manufactured incorrectly, with symptoms matching the description (rising coolant temps, false high oil pressure, reduced power/torque message, AC disabled, turn-off-engine warning). Dealers replace the entire water pump assembly at no cost to the owner, taking around four hours.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "cadillac-ct5-steering-shaft-brake-line-chafe",
+      "title": "Upper Intermediate Steering Shaft Chafes Front Brake Line (Service Update N202296840)",
+      "severity": "high",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Cadillac Society and GM Authority confirm GM issued service update N202296840 in January 2021 for 2020 Cadillac CT5, where the upper intermediate steering shaft can contact and chafe the front brake line; dealers inspect and replace the brake line as needed under warranty (no owner cost). DTC codes correctly listed as none, year range (2020 only) is accurate, and high severity is appropriate given potential brake fluid loss.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "cadillac-ct5-super-cruise-unavailable",
+      "title": "Super Cruise 'Unavailable' Message — System Inoperative from Delivery",
+      "severity": "medium",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "No DTC codes confirmed (entry correctly lists none); PIC6557B is a Preliminary Information bulletin, not a TSB, which is worth noting",
+          "Super Cruise option pricing on CT5 historically has been bundled in packages ($3,600+); the $2,500 figure matches standalone Escalade pricing but may not match CT5 package pricing"
+        ],
+        "evidence": "Cadillac owner forum threads confirm 2025 CT5 owners experiencing persistent 'Super Cruise Unavailable' messages from delivery, with dealers citing GM PIC6557B dated Sept. 25, 2024 and engineering having no ETA for a fix. A related earlier bulletin PIC6500A (May 24, 2023) addressed similar symptoms, indicating an ongoing multi-year issue.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "cadillac-ct5-v2-infotainment-freeze-update-stall",
+      "title": "Infotainment / Center Display Freezing, Black Screen and Stalled Software Update (stuck at 99%)",
+      "severity": "medium",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Primary cited source (JustAnswer) is AI-generated content rather than an authoritative TSB/NHTSA reference, so the specific 'TSB required at dealer' claim is not independently confirmed by GM documentation",
+          "Repair cost upper bound ($400) may be optimistic since infotainment module recovery/replacement is typically warranty-covered or can exceed this if module replacement is needed"
+        ],
+        "evidence": "Multiple owner forums (CadillacForums, CadillacVnet) and a Cadillac Society article confirm CT5 and related GM vehicles experience infotainment freeze/black-screen issues during OTA updates, with dealers performing USB reflashes to recover the module; the specific '99% blue progress bar' symptom on a 2020 CT5 is documented on JustAnswer but that source is AI-generated guidance rather than an official TSB reference.",
+        "confidence": "medium"
+      }
+    }
+  ]
+}

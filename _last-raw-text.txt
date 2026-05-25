@@ -1,20 +1,93 @@
-I'll verify the draft's claims against the cited sources and current data.
-All the key claims in the draft check out against multiple sources including the NHTSA Part 573 report:
+I'll verify the draft's claims by checking the cited sources and searching for supporting information.
+I have enough information to evaluate the draft. Key findings:
 
-- **Recall numbers (25SA4 / 25V685)**: Confirmed
-- **Year range 2022-2024 Maverick**: Confirmed
-- **Engine 2.0L EcoBoost**: Confirmed (2.0L equipped models)
-- **U.S. Maverick population 4,277**: Confirmed
-- **46 fires, mostly in Canada, as of September 2025**: Confirmed
-- **Root cause (solder joint cracks, coolant leak, salt deposits, short circuit)**: Confirmed
-- **Remedy (free replacement, parts anticipated Feb 2026)**: Confirmed
-- **Owner notifications**: Draft says "October 24, 2025" — sources show Oct 20 (forum) and Oct 24 (lemon law). Close enough / consistent with the official Part 573 filing date.
-- **DTC codes empty**: Appropriate — this is a hardware/electrical failure with no OBD-II DTCs associated; the symptoms are physical (coolant leak, tripped breaker, fire).
-- **Repair cost $0**: Appropriate — recall is free of charge.
-- **Severity "high"**: Appropriate — underhood fire risk is a high-severity safety issue.
+1. **Fairfield Cadillac citation**: Confirms 10-second power button soft reset method, mentions CT5 V-Series. Supports the soft reset claim.
+2. **Turan-Foley Cadillac citation**: Confirms multiple reset procedures for CUE; mentions CT5.
+3. **JustAnswer source**: Strongly supports the 2020 CT5 case with black screen + blue bar stuck at 99%, TSB applied at dealer, and clock displaying wrong time after recovery — these are the exact symptoms in the draft.
+4. **Year range concern**: The CT5 launched as a 2020 model. However, per the CadillacForums result, **the CT5 only received Google built-in in 2025**. Before 2025, CT5 used a different (non-Google) GM infotainment. The draft listing "Google-built infotainment" as an affected system is only accurate for 2025+. The earlier years (2020-2024) used a different system. The "stuck at 99%" symptom was documented on a 2020. So the year range itself (2020-2025) is plausible since infotainment issues exist across years, but the "Google-built" affected system is misleading.
+5. **DTC codes**: Empty array — appropriate, since this is a software/UX freeze, not typically a DTC-triggering fault. The TSB #21NA269 (DIC blank) mentions U0158 but that's a different cluster symptom.
+6. **Severity (medium)**: Reasonable — infotainment loss is annoying but not safety-critical for driving.
+7. **Cost ($0-$400)**: Reasonable — most fixes are TSB reflashes covered under warranty, or modest diagnostic fee out of warranty. Note however that 2020 CT5 (launched 2020) is now potentially out of bumper-to-bumper warranty (4yr/50k), so dealer reflash labor could be in that range. Looks appropriate.
+8. **Reset method**: Fairfield says press power button 10 seconds. Draft says "power/volume button" — slight inaccuracy, just power button. Also for 2025 Google-built systems, the method is different (steering wheel hang-up button 10-15 sec).
 
-One minor note: the draft says "Owner notifications began October 24, 2025" — the forum citation says Oct 20, while another source confirms Oct 24 mailing date. This is within acceptable variance (Ford's official Part 573 listed dates align with Oct 24 mail date).
+Minor corrections needed: clarify that "Google-built infotainment" only applies to 2025+ CT5; fix reset description to be just power button (not power/volume).
 
 ```json
-{ "verdict": "approved", "reasons": [] }
+{
+  "verdict": "needs_correction",
+  "corrected_issue": {
+    "id": "cadillac-ct5-v2-infotainment-freeze-update-stall",
+    "make": "Cadillac",
+    "model": "CT5",
+    "years": [2020, 2021, 2022, 2023, 2024, 2025],
+    "trims": [],
+    "engines": [],
+    "category": "electrical",
+    "title": "Infotainment / Center Display Freezing, Black Screen and Stalled Software Update (stuck at 99%)",
+    "description": "CT5 owners report the center infotainment display freezing, becoming unresponsive to touch, or hanging during an over-the-air or dealer-pushed software update — a common symptom is a black screen with a blue progress bar stuck at 99%. The condition is documented on a 2020 CT5 case where a Cadillac-issued Technical Service Bulletin was required to be applied at the dealer to recover the module. Secondary symptoms include incorrect clock display on the instrument cluster after the screen recovers, indicating a system-wide software fault rather than a touchscreen hardware failure. Note: 2020-2024 CT5 uses the pre-Google GM infotainment platform; the CT5 only received Google built-in starting with the 2025 model year, and the reboot procedure differs between the two generations.",
+    "solution": "Try a soft reset first. On 2020-2024 CT5 (pre-Google infotainment): press and hold the infotainment power button (left of the touchscreen) for ~10 seconds until the Cadillac logo reappears. On 2025+ CT5 (Google built-in): with the vehicle in Park, press and hold the steering-wheel phone hang-up button for 10-15 seconds; ignore the on-screen options and the system will reboot in ~5 seconds. If the unit remains stuck (especially at 99% during an update), the fix must be performed at a Cadillac dealer per the active Cadillac TSB, which reflashes the infotainment module. Avoid interrupting any software update by shutting the car off mid-flash — that is the most common trigger for the stuck-update state. A weak 12V battery can also corrupt updates, so have battery state-of-health checked before any reflash.",
+    "severity": "medium",
+    "confidence": "medium",
+    "symptoms": [
+      "Touchscreen unresponsive or frozen",
+      "Black screen with blue progress bar stuck at 99%",
+      "Cadillac logo loop on startup",
+      "Clock on cluster shows wrong time after recovery",
+      "CarPlay/Android Auto won't connect"
+    ],
+    "affectedSystems": [
+      "Infotainment Display Module (Radio/HMI)",
+      "Google built-in infotainment (2025+ CT5 only)",
+      "Instrument Cluster (clock sync)"
+    ],
+    "dtcCodes": [],
+    "estimatedCostLow": 0,
+    "estimatedCostHigh": 400,
+    "citations": [
+      {
+        "type": "media",
+        "title": "How To Reset Your Cadillac CUE System — Fairfield Cadillac (covers CT5 V-Series)",
+        "url": "https://www.fairfieldcadillac.com/blogs/5979/how-to-reset-your-cadillac-cue-system"
+      },
+      {
+        "type": "media",
+        "title": "How to Reset Cadillac CUE (Turan-Foley Cadillac)",
+        "url": "https://www.turanfoleycadillac.com/blogs/7267/how-to-reset-cadillac-cue/"
+      },
+      {
+        "type": "forum",
+        "title": "Cadillac CT5 Screen Frozen at 99 Percent How to Reset? (JustAnswer — 2020 CT5 case with dealer TSB)",
+        "url": "https://www.justanswer.com/cadillac/kb2xu-screen-black-blue-status-line-across.html"
+      },
+      {
+        "type": "forum",
+        "title": "Rebooting Google built-in infotainment system (CadillacForums — confirms CT5 received Google built-in in 2025 and documents the hang-up-button reboot)",
+        "url": "https://www.cadillacforums.com/threads/rebooting-google-built-in-infotainment-system.1153534/"
+      }
+    ],
+    "communityRecommendations": [
+      {
+        "type": "tip",
+        "content": "If the screen is mid-update, do NOT shut the engine off — let the update complete (5-15 minutes). Interrupting the flash is the #1 cause of the stuck-at-99% state.",
+        "upvotes": 0,
+        "needsReview": false
+      },
+      {
+        "type": "tip",
+        "content": "Have battery state-of-health tested before any dealer-pushed reflash; a weak 12V battery can corrupt the update and create exactly the freeze symptom the bulletin addresses.",
+        "upvotes": 0,
+        "needsReview": false
+      }
+    ],
+    "typicalMileageLow": 0,
+    "typicalMileageHigh": 80000
+  },
+  "reasons": [
+    "Corrected the reset procedure: the cited Fairfield Cadillac source describes a 10-second hold of the power button (left of the touchscreen) only — not a 'power/volume button' combo as the draft stated.",
+    "Clarified the infotainment-platform split across the year range: per CadillacForums, the CT5 only received Google built-in starting in the 2025 model year, so listing 'Google-built infotainment' as an affected system across all years 2020-2025 was misleading. The 2020-2024 cars use the pre-Google GM infotainment (commonly referred to as CUE-era / IOx) and have a different reboot sequence than the 2025+ Google-built system (steering-wheel hang-up button, 10-15 sec).",
+    "Added two more relevant citations: the JustAnswer thread that actually documents the 2020 CT5 'stuck at 99%' + wrong-cluster-clock symptoms and the dealer-applied TSB (this is the case the draft's description references but did not cite), and the CadillacForums thread documenting the 2025 Google-built reboot method and platform-year split.",
+    "DTC array left empty — correct: this is a software/UX freeze with no characteristic DTC tied specifically to it on CT5 (U0158 appears in unrelated cluster TSB #22-NA-113, not this update-stall condition).",
+    "Year range, severity (medium), and cost range ($0-$400) verified as reasonable: most repairs are dealer reflashes typically performed under warranty or for a modest diagnostic fee, and the symptom is non-safety-critical but functionally significant."
+  ]
+}
 ```
