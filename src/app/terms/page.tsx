@@ -65,6 +65,9 @@ export default function TermsPage() {
             <Link href="/cookies" className="hover:text-gray-900">Cookie Policy</Link>
             <Link href="/data-rights" className="hover:text-gray-900">Data Rights</Link>
             <Link href="/copyright" className="hover:text-gray-900">Copyright Policy</Link>
+            <a href="#" className="termly-display-preferences hover:text-gray-900 cursor-pointer">Consent Preferences</a>
+            <a href="https://app.termly.io/notify/e726c597-24aa-4113-99da-fce3e9bf5a6a" className="hover:text-gray-900">Do Not Sell or Share My Personal Information</a>
+            <a href="https://app.termly.io/notify/e726c597-24aa-4113-99da-fce3e9bf5a6a" className="hover:text-gray-900">Limit the Use Of My Sensitive Personal Information</a>
           </div>
         </div>
       </footer>

@@ -77,7 +77,13 @@ export async function generateMetadata({
   const descPrefix = yearIsValid
     ? `${requestedYear} `
     : (yearRange ? `${yearRange.min}-${yearRange.max} ` : '');
-  const description = `${issues.length} documented problems for the ${descPrefix}${vehicleName}${highCount > 0 ? `, including ${highCount} critical` : ''}. Symptoms, repair costs ($${getMinCost(issues)}-$${getMaxCost(issues)}), and ${metaSourceTail(totalReports)}.`;
+  // Only render the cost range when we have real numbers to show.
+  // When all issues lack cost data, drop the segment entirely instead
+  // of advertising "$0-$0" or "$0-$500" — both signal missing data.
+  const minCost = getMinCost(issues);
+  const maxCost = getMaxCost(issues);
+  const costSegment = minCost && maxCost ? `, repair costs ($${minCost}-$${maxCost})` : '';
+  const description = `${issues.length} documented problems for the ${descPrefix}${vehicleName}${highCount > 0 ? `, including ${highCount} critical` : ''}. Symptoms${costSegment}, and ${metaSourceTail(totalReports)}.`;
 
   // Canonical splits between base and per-year variants. Each is a
   // distinct indexable URL; Google credits content + ranking to the
@@ -108,14 +114,27 @@ export async function generateMetadata({
 
 // --- Helper functions ---
 
+// Cost-range helpers used in the meta description. Issues with no
+// real cost data carry low=0 / high=0 in the DB (the AI research
+// pipeline writes zeros when it can't find a cost estimate). Including
+// those zeros makes the meta render "$0-$500" which signals to SERP
+// readers that we don't have real data — a major CTR killer. Filter
+// those out so the meta description shows only the cost range backed
+// by actual data, or omits the range entirely when no issue has a
+// real cost on file. Returns '' (empty) when there's nothing to show
+// — caller renders the description without the cost segment.
 function getMinCost(issues: KnownIssue[]): string {
-  const costs = issues.filter(i => i.estimatedCost).map(i => i.estimatedCost!.low);
-  return costs.length > 0 ? Math.min(...costs).toLocaleString() : '0';
+  const costs = issues
+    .filter(i => i.estimatedCost && i.estimatedCost.low > 0)
+    .map(i => i.estimatedCost!.low);
+  return costs.length > 0 ? Math.min(...costs).toLocaleString() : '';
 }
 
 function getMaxCost(issues: KnownIssue[]): string {
-  const costs = issues.filter(i => i.estimatedCost).map(i => i.estimatedCost!.high);
-  return costs.length > 0 ? Math.max(...costs).toLocaleString() : '0';
+  const costs = issues
+    .filter(i => i.estimatedCost && i.estimatedCost.high > 0)
+    .map(i => i.estimatedCost!.high);
+  return costs.length > 0 ? Math.max(...costs).toLocaleString() : '';
 }
 
 function groupByCategory(issues: KnownIssue[]) {
