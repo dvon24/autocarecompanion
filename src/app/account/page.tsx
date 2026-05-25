@@ -4,6 +4,8 @@ import { auth } from '@/lib/auth';
 import prisma from '@/lib/db';
 import { PageLayout } from '@/components/ui/PageLayout';
 import AccountPrivacyActions from '@/components/account/AccountPrivacyActions';
+import SubscriptionControls from '@/components/account/SubscriptionControls';
+import { getStripe } from '@/lib/stripe';
 
 export const dynamic = 'force-dynamic';
 
@@ -44,6 +46,34 @@ export default async function AccountPage() {
   }
 
   const userId = session.user.id;
+
+  // Pull subscriptionId + status for the cancel/reactivate UI. The
+  // status column is kept in sync by the Stripe webhook, but we
+  // re-fetch cancel_at_period_end + current_period_end live from
+  // Stripe so the user sees the truth — the webhook lags by seconds
+  // and we don't store these fields locally.
+  const userSubInfo = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { subscriptionId: true, subscriptionStatus: true },
+  });
+  let subCancelAtPeriodEnd = false;
+  let subCurrentPeriodEnd: number | null = null;
+  if (
+    userSubInfo?.subscriptionId &&
+    (userSubInfo.subscriptionStatus === 'active' ||
+      userSubInfo.subscriptionStatus === 'trialing' ||
+      userSubInfo.subscriptionStatus === 'past_due')
+  ) {
+    try {
+      const sub = await getStripe().subscriptions.retrieve(userSubInfo.subscriptionId);
+      subCancelAtPeriodEnd = !!sub.cancel_at_period_end;
+      // Stripe API 2025+ moved current_period_end onto subscription items.
+      subCurrentPeriodEnd = sub.items?.data?.[0]?.current_period_end ?? null;
+    } catch {
+      // Stripe unavailable — render the controls without period info
+      // rather than blanking the section entirely.
+    }
+  }
 
   const [chats, diagnoses, partSearches, vehicles] = await Promise.all([
     prisma.chatSession.findMany({
@@ -188,6 +218,15 @@ export default async function AccountPage() {
             </ul>
           )}
         </section>
+
+        {/* Subscription self-service — only renders for users with an
+            active / trialing / past_due Stripe subscription. Free-tier
+            users see nothing. */}
+        <SubscriptionControls
+          initialStatus={userSubInfo?.subscriptionStatus ?? null}
+          initialCancelAtPeriodEnd={subCancelAtPeriodEnd}
+          initialCurrentPeriodEnd={subCurrentPeriodEnd}
+        />
 
         {/* GDPR data-rights actions */}
         <AccountPrivacyActions email={session.user.email} />
