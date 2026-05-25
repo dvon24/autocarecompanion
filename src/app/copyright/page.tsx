@@ -30,7 +30,7 @@ export default function CopyrightPage() {
       {/* Content */}
       <main className="max-w-4xl mx-auto px-6 py-12">
         <h1 className="text-3xl font-semibold text-gray-900 mb-2">Copyright Policy (DMCA Policy)</h1>
-        <p className="text-gray-500 mb-8">Effective Date: December 1, 2025</p>
+        <p className="text-gray-500 mb-8">Effective Date: May 25, 2026</p>
 
         <div className="prose prose-gray max-w-none">
           <p className="text-gray-600 leading-relaxed mb-8">
@@ -66,13 +66,16 @@ export default function CopyrightPage() {
             </p>
             <div className="bg-gray-50 rounded-lg p-4 mb-4">
               <p className="text-gray-700">
-                <strong>Copyright Agent</strong><br />
-                Dvon Invest LLC<br />
-                Email: <a href="mailto:devonsroberson24@yahoo.com" className="text-blue-600 hover:underline">devonsroberson24@yahoo.com</a>
+                <strong>Copyright Agent — Dvon Invest LLC</strong><br />
+                Attn: DMCA Designated Agent<br />
+                3257 Stiles Ave<br />
+                Camarillo, CA 93010<br />
+                United States<br />
+                Email: <a href="mailto:dvoninvestllc@yahoo.com" className="text-blue-600 hover:underline">dvoninvestllc@yahoo.com</a>
               </p>
             </div>
             <p className="text-gray-600 leading-relaxed">
-              To be effective, the notice must be in writing and contain all required elements listed above.
+              This agent is registered with the U.S. Copyright Office DMCA Directory pursuant to 17 U.S.C. § 512(c)(2). To be effective, your notice must be in writing and contain all required elements listed above.
             </p>
           </section>
 
@@ -122,7 +125,10 @@ export default function CopyrightPage() {
             <div className="bg-gray-50 rounded-lg p-4">
               <p className="text-gray-700">
                 <strong>Dvon Invest LLC</strong><br />
-                Email: <a href="mailto:devonsroberson24@yahoo.com" className="text-blue-600 hover:underline">devonsroberson24@yahoo.com</a>
+                3257 Stiles Ave<br />
+                Camarillo, CA 93010<br />
+                United States<br />
+                Email: <a href="mailto:dvoninvestllc@yahoo.com" className="text-blue-600 hover:underline">dvoninvestllc@yahoo.com</a>
               </p>
             </div>
           </section>
@@ -136,6 +142,7 @@ export default function CopyrightPage() {
             <Link href="/terms" className="hover:text-gray-900">Terms and Conditions</Link>
             <Link href="/privacy" className="hover:text-gray-900">Privacy Policy</Link>
             <Link href="/cookies" className="hover:text-gray-900">Cookie Policy</Link>
+            <Link href="/data-rights" className="hover:text-gray-900">Data Rights</Link>
             <Link href="/copyright" className="hover:text-gray-900">Copyright Policy</Link>
           </div>
         </div>
