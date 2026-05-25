@@ -40,6 +40,7 @@ export default function PrivacyPage() {
             <Link href="/terms" className="hover:text-gray-900">Terms and Conditions</Link>
             <Link href="/privacy" className="hover:text-gray-900">Privacy Policy</Link>
             <Link href="/cookies" className="hover:text-gray-900">Cookie Policy</Link>
+            <Link href="/data-rights" className="hover:text-gray-900">Data Rights</Link>
             <Link href="/copyright" className="hover:text-gray-900">Copyright Policy</Link>
           </div>
         </div>

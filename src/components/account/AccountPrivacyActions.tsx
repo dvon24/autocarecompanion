@@ -107,7 +107,15 @@ export default function AccountPrivacyActions({ email }: { email: string }) {
       <p className="text-sm text-gray-600 mb-4">
         Under GDPR and similar laws, you have the right to a copy of your data
         and the right to have it erased. Both controls below operate on your
-        Au7o account ({email}).
+        Au7o account ({email}). For other request types (rectification,
+        restriction, automated-decision objection), use the{' '}
+        <a
+          href="/data-rights"
+          className="text-blue-600 hover:text-blue-700 underline"
+        >
+          data rights form
+        </a>
+        .
       </p>
 
       {/* AI processing opt-out — full-width above the export/delete
