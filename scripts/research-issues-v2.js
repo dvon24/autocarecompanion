@@ -60,6 +60,8 @@ const YEARS = flag('years'); // "2018-2024"
 const COUNT = parseInt(flag('count', '5'), 10);
 const DRY_RUN = args.includes('--dry-run');
 const MODEL_ID = flag('model-id', 'claude-opus-4-7');
+const EXCLUDE = flag('exclude', ''); // comma-separated topic keywords to avoid (e.g. "timing belt,oil sludge")
+const FOCUS = flag('focus', '');     // comma-separated topics to focus on
 
 if (!MAKE || !MODEL) {
   console.error('Usage: node scripts/research-issues-v2.js --make MAKE --model MODEL [--years YYYY-YYYY] [--count N] [--dry-run]');
@@ -115,7 +117,8 @@ async function probeUrl(url) {
 // ────────────────────────────────────────────────────────────────────────
 // Stage 1 — RESEARCHER
 
-const RESEARCHER_PROMPT = (make, model, years, count) => `You are a senior automotive analyst documenting known issues for the ${years[0]}-${years[years.length-1]} ${make} ${model}. Your output drives a SEO content page that mechanics and owners will use. Accuracy matters more than coverage.
+const RESEARCHER_PROMPT = (make, model, years, count, opts = {}) => `You are a senior automotive analyst documenting known issues for the ${years[0]}-${years[years.length-1]} ${make} ${model}. Your output drives a SEO content page that mechanics and owners will use. Accuracy matters more than coverage.
+${opts.exclude ? `\nIMPORTANT — DO NOT INCLUDE these already-documented topics: ${opts.exclude}. Find DIFFERENT issues than these.\n` : ''}${opts.focus ? `\nFOCUS your research on these specific topics if applicable to this vehicle: ${opts.focus}\n` : ''}
 
 Find ${count} REAL, DOCUMENTED known issues for this vehicle. For each, search the web to find:
 - NHTSA complaints, recalls, TSBs (nhtsa.gov, transportation.gov)
@@ -163,7 +166,7 @@ Confidence rubric:
 - medium: 2+ sources but no formal recall/TSB
 - low: 1-2 forum reports, niche issue
 
-Return ONLY a JSON object: { "issues": [...] }. No markdown, no commentary.`;
+Return ONLY a JSON object: { "issues": [...] }. No markdown, no commentary, no preamble. Your first character must be '{' and your last character must be '}'. Do not write any sentences explaining what you found before or after the JSON.`;
 
 async function callAnthropic({ prompt, max_tokens, max_searches = 5 }) {
   const res = await fetch(ANTHROPIC_URL, {
@@ -179,7 +182,7 @@ async function callAnthropic({ prompt, max_tokens, max_searches = 5 }) {
       tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: max_searches }],
       messages: [{ role: 'user', content: prompt }],
     }),
-    signal: AbortSignal.timeout(180_000),
+    signal: AbortSignal.timeout(300_000),
   });
   if (!res.ok) {
     const txt = await res.text().catch(() => '');
@@ -194,18 +197,65 @@ async function callAnthropic({ prompt, max_tokens, max_searches = 5 }) {
     raw,
     raw.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/i, '').trim(),
   ];
+  // Strategy: find a ```json ... ``` fenced block anywhere in the text
+  const fenceMatch = raw.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fenceMatch) candidates.push(fenceMatch[1].trim());
+  // Strategy: first balanced brace span starting at the first '{'
+  const firstBrace = raw.indexOf('{');
+  if (firstBrace >= 0) {
+    let depth = 0, inStr = false, esc = false, end = -1;
+    for (let i = firstBrace; i < raw.length; i++) {
+      const ch = raw[i];
+      if (esc) { esc = false; continue; }
+      if (ch === '\\') { esc = true; continue; }
+      if (ch === '"') { inStr = !inStr; continue; }
+      if (inStr) continue;
+      if (ch === '{') depth++;
+      else if (ch === '}') { depth--; if (depth === 0) { end = i; break; } }
+    }
+    if (end > firstBrace) candidates.push(raw.slice(firstBrace, end + 1));
+  }
+  // Strategy: first '{' to LAST '}'
   const f = raw.indexOf('{'); const l = raw.lastIndexOf('}');
   if (f >= 0 && l > f) candidates.push(raw.slice(f, l + 1));
-  for (const c of candidates) {
-    try { return JSON.parse(c); } catch { /* try next */ }
+  // Helper: escape raw newlines/tabs inside JSON string literals
+  function sanitizeJsonString(s) {
+    let out = '';
+    let inStr = false, esc = false;
+    for (let i = 0; i < s.length; i++) {
+      const ch = s[i];
+      if (esc) { out += ch; esc = false; continue; }
+      if (ch === '\\') { out += ch; esc = true; continue; }
+      if (ch === '"') { inStr = !inStr; out += ch; continue; }
+      if (inStr) {
+        if (ch === '\n') { out += '\\n'; continue; }
+        if (ch === '\r') { out += '\\r'; continue; }
+        if (ch === '\t') { out += '\\t'; continue; }
+        const code = ch.charCodeAt(0);
+        if (code < 0x20) { out += `\\u${code.toString(16).padStart(4, '0')}`; continue; }
+      }
+      out += ch;
+    }
+    return out;
   }
-  throw new Error(`Parse failed. Raw start: ${raw.slice(0, 200)}`);
+  // Add sanitized versions of every candidate
+  const allCandidates = [...candidates, ...candidates.map(sanitizeJsonString)];
+  let lastErr = null;
+  for (const c of allCandidates) {
+    try { return JSON.parse(c); } catch (e) { lastErr = e; /* try next */ }
+  }
+  // Last resort: write raw to disk so we can inspect
+  try {
+    require('fs').writeFileSync('_anthropic-parse-fail.txt', raw);
+    console.error('  Wrote failed response to _anthropic-parse-fail.txt');
+  } catch {}
+  throw new Error(`Parse failed (${lastErr && lastErr.message}). Raw len=${raw.length}.`);
 }
 
 async function research() {
   console.log(`\n━━━ Stage 1: Researcher (Opus 4.7 + web_search) ━━━`);
   console.log(`  Target: ${MAKE} ${MODEL}, years ${yearRange.min}-${yearRange.max}, ${COUNT} issues`);
-  const prompt = RESEARCHER_PROMPT(MAKE, MODEL, yearList, COUNT);
+  const prompt = RESEARCHER_PROMPT(MAKE, MODEL, yearList, COUNT, { exclude: EXCLUDE, focus: FOCUS });
   const data = await callAnthropic({ prompt, max_tokens: 16000, max_searches: 10 });
   const issues = Array.isArray(data?.issues) ? data.issues : [];
   console.log(`  Returned ${issues.length} draft issues\n`);
@@ -356,6 +406,12 @@ async function main() {
     process.stdout.write(`  URL validation: `);
     const { alive, dead } = await validateUrls(draft);
     console.log(`${alive.length} alive, ${dead.length} dead`);
+    for (const d of dead) {
+      console.log(`     DEAD [${d._status}] ${d.url}`);
+    }
+    for (const a of alive) {
+      console.log(`     LIVE         ${a.url}`);
+    }
     if (alive.length < 2) {
       console.log(`  ✗ REJECTED — fewer than 2 surviving citations after URL check (likely hallucinated)`);
       rejectedUrls++;
