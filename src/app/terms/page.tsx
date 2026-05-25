@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import TermlyEmbed from '@/components/consent/TermlyEmbed';
+import PolicyFooter from '@/components/shared/PolicyFooter';
 
 export const metadata = {
   title: 'Terms and Conditions | Au7o',
@@ -56,21 +57,7 @@ export default function TermsPage() {
         <TermlyEmbed dataId="0a04ab72-b9f7-40ac-b9b1-e234f78e62a6" />
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-100 mt-12">
-        <div className="max-w-4xl mx-auto px-6 py-8">
-          <div className="flex flex-wrap gap-6 text-sm text-gray-500">
-            <Link href="/terms" className="hover:text-gray-900">Terms and Conditions</Link>
-            <Link href="/privacy" className="hover:text-gray-900">Privacy Policy</Link>
-            <Link href="/cookies" className="hover:text-gray-900">Cookie Policy</Link>
-            <Link href="/data-rights" className="hover:text-gray-900">Data Rights</Link>
-            <Link href="/copyright" className="hover:text-gray-900">Copyright Policy</Link>
-            <a href="#" className="termly-display-preferences hover:text-gray-900 cursor-pointer">Consent Preferences</a>
-            <a href="https://app.termly.io/notify/e726c597-24aa-4113-99da-fce3e9bf5a6a" className="hover:text-gray-900">Do Not Sell or Share My Personal Information</a>
-            <a href="https://app.termly.io/notify/e726c597-24aa-4113-99da-fce3e9bf5a6a" className="hover:text-gray-900">Limit the Use Of My Sensitive Personal Information</a>
-          </div>
-        </div>
-      </footer>
+      <PolicyFooter />
     </div>
   );
 }
