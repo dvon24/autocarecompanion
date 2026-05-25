@@ -17,6 +17,7 @@ import { ArticleIssuesList } from '@/components/known-issues/ArticleIssuesList';
 import { ArticleSidebar } from '@/components/known-issues/ArticleSidebar';
 import { MobileBottomBar } from '@/components/known-issues/MobileBottomBar';
 import { VehicleChatLink } from '@/components/known-issues/VehicleChatLink';
+import FutureModelYearNotice from '@/components/known-issues/FutureModelYearNotice';
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
 import { AdSlot } from '@/components/ads/AdSlot';
@@ -290,6 +291,17 @@ export default async function KnownIssuesArticlePage({
   const yearRange = yearIsValid
     ? { min: initialYear!, max: initialYear! }
     : getYearRange(issues);
+
+  // Future-model-year detection: user requested a specific year via
+  // ?year=YYYY but that year had zero issues, so we fell back to
+  // showing all years (above). Without this flag the fallback is
+  // silent — the SERP says "2026 Mitsubishi Outlander Problems" and
+  // the page loads with 2022-2024 content and no explanation. Set when
+  // user explicitly asked for a year that isn't in our data but the
+  // model itself has other-year coverage.
+  const allYearsRange = getYearRange(allIssues);
+  const showFutureYearNotice =
+    initialYear != null && !yearIsValid && allIssues.length > 0 && allYearsRange != null;
   const highCount = issues.filter(i => i.severity === 'high').length;
   const totalReports = issues.reduce((sum, i) => sum + i.reportCount, 0);
   const grouped = groupByCategory(issues);
@@ -403,6 +415,19 @@ export default async function KnownIssuesArticlePage({
             <ShareButtons url={articleUrl} title={title} />
           </div>
         </header>
+
+        {/* Future-model-year notice — shows when user requested a
+            year via ?year= that has no data, so we fell back to the
+            all-years view. Tells the user honestly rather than silently
+            showing prior-gen content under a year-specific URL/SERP. */}
+        {showFutureYearNotice && allYearsRange && (
+          <FutureModelYearNotice
+            requestedYear={initialYear!}
+            vehicleName={vehicleName}
+            yearRange={allYearsRange}
+            slug={slug}
+          />
+        )}
 
         {/* GEO Summary — blockquote style for AI citation */}
         <blockquote className="border-l-4 border-blue-200 pl-5 mb-10">
