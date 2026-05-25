@@ -1,0 +1,113 @@
+{
+  "auditedAt": "2026-05-25T16:02:13.048Z",
+  "make": "Mazda",
+  "model": "CX-60",
+  "total": 6,
+  "verified": 6,
+  "minor": 0,
+  "major": 0,
+  "fabricated": 0,
+  "errors": 0,
+  "results": [
+    {
+      "id": "mazda-cx60-12v-battery-drain-warning",
+      "title": "12V battery drain and persistent 'Low Battery Risk' warning",
+      "severity": "medium",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple owner forums (mazdas247, cx70forum) extensively document the 'Low Battery Risk - Start Vehicle to Charge the 12V Battery' warning on 2022+ CX-60 PHEV and 3.3D MHEV models, with Mazda issuing TSB RO56/23 (July 2023) and subsequent software updates to address parasitic 12V drain. The description, severity, and repair cost range (software update typically free under warranty, battery replacement ~$200-350) align with documented owner experiences.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "mazda-cx60-door-noise-insulation-tsb",
+      "title": "Poor door noise insulation — Mazda TSB R085/22 for added door damping",
+      "severity": "low",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Production date range end shown as '12/01/' is truncated in description; forum source lists the range as 15/03/2022 to 12/01/2023",
+          "TSB applies primarily to European/UK market CX-60 (KH); the CX-60 was not sold in North America, so NHTSA has no listing"
+        ],
+        "evidence": "Mazda TSB R085/22 'Hollow Drum Noise when closing Doors' is documented on CX-70/CX-60 owner forums covering CX-60s built roughly 15/03/2022 to 12/01/2023, with dealers installing Alubutyl-style insulation mats in the four doors. Owners widely confirm poor factory door sound deadening, and the fix is a no-cost dealer-installed warranty repair, making the low severity and $0–$600 cost band reasonable.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "mazda-cx60-harsh-rear-suspension-ride",
+      "title": "Harsh rear suspension ride — factory damper/spring revision program",
+      "severity": "medium",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Title says 'damper/spring revision' but Mazda's actual running change was a revised rear shock absorber only — springs were not changed by Mazda (springs are an aftermarket/Koni-related discussion point)",
+          "Vehicle is not sold in the US/NHTSA; documentation comes from EU/UK/AU markets, which the entry should clarify",
+          "Repair cost upper bound of $1200 is slightly misleading — Mazda offered the upgrade free of charge to affected owners through dealer network, so customer-paid cost is typically $0",
+          "No DTC codes is correct (this is a ride-quality/NVH concern, not a fault-code-triggering issue)"
+        ],
+        "evidence": "Multiple sources (CarExpert, 2GB/4BC, owner forums) confirm Mazda Australia made a factory running change in October 2023 to fit a revised rear shock absorber on the CX-60, and offered the upgrade free of charge to owners of vehicles built March 28–September 30, 2023. Owner forums (cx70forum, Mazdas247, Top Gear long-term review) widely corroborate harsh ride, excessive rebound, and wobble complaints, with Mazda issuing TSBs and at least one suspension-related recall (AR054A, Oct 2024).",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "mazda-cx60-phev-insulation-resistance-recall-as007a",
+      "title": "PHEV hybrid system malfunction — false electrical leak detection (Recall AS007A)",
+      "severity": "high",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Confirmed European Mazda recall AS007A for CX-60 PHEV (production March 15, 2022 to January 23, 2025) and CX-80 PHEV, where a temporary drop in insulation resistance is misinterpreted as an electrical leak, triggering the hybrid system malfunction light and preventing restart; sister recall 7325C documents DTC P0AA6:00 with a free PCM software reprogramming fix.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "mazda-cx60-software-warnings-recall-ar058a",
+      "title": "Software-triggered warning messages and ICE start fault (Recall AR058A / related AR056A)",
+      "severity": "medium",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "No DTC codes listed (acceptable for a software recall, but worth noting)",
+          "Vehicle count of ~46,415 cited for AR056A could not be independently confirmed; car-recalls.eu cites ~136,159 combined for AR056A+AR058A and ~89,744 for AR058A alone",
+          "Description was truncated mid-sentence ('improper Da...')"
+        ],
+        "evidence": "Multiple sources confirm Mazda recalls AR056A (KBA 14541R) and AR058A (KBA 14540R) for 2022-2024 CX-60 vehicles, addressing software errors affecting the windscreen defroster, seat belt reminder, 360° vision monitor, auto start-stop, and combustion engine initiation due to poor electric-motor connection, remedied by free software updates at authorized dealers.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "mazda-cx60-sticky-notchy-steering-rack",
+      "title": "Sticky/notchy electric power steering — worm gear spring recall",
+      "severity": "high",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Year range slightly broad — recall covers production from March 15, 2022 through December 11, 2023, so late-2023/2024 build CX-60s may not be affected",
+          "Repair is a free recall remedy (Mazda recall AR001A / NHTSA 24V-022), so the $0-$2500 cost ceiling is overstated; out-of-pocket cost should be $0 under recall",
+          "No DTC codes is correct — this is a mechanical worm-gear/spring/grease issue, not a fault-code-triggered failure"
+        ],
+        "evidence": "Multiple sources (NHTSA campaign 24V-022, Mazda recall AR001A/6524A, KBA 013311, and CX-60/CX-90 owner forums) confirm a worldwide recall of ~145,034 CX-60 and CX-90 vehicles built March 15, 2022 to December 11, 2023 for excessive worm-gear friction causing sudden increased steering effort; remedy is regreasing the worm wheel and replacing the worm gear spring with a modified part, performed free under recall in roughly 40-60 minutes.",
+        "confidence": "high"
+      }
+    }
+  ]
+}
