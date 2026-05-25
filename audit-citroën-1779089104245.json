@@ -1,0 +1,487 @@
+{
+  "sampledAt": "2026-05-18T07:31:42.403Z",
+  "total": 20,
+  "verified": 1,
+  "minor": 12,
+  "major": 2,
+  "fabricated": 3,
+  "errors": 2,
+  "deadLinks": 0,
+  "totalLinks": 9,
+  "results": [
+    {
+      "id": "citroen-c3-puretech-timing-chain",
+      "vehicle": "2014 Citroën C3",
+      "title": "PureTech 1.2 Timing Chain Stretch",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 140,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Misidentified as 'timing chain stretch' - the actual documented PSA/Stellantis PureTech 1.2 issue is a WET TIMING BELT degradation problem, not a chain stretch (chain stretch is associated with the older EP6/Prince BMW-PSA engine, not PureTech)",
+          "Year range 2014-2026 is inaccurate: PureTech 1.2 launched in 2012-2013; from 2023 onward Stellantis transitioned C3/C3 Aircross to a timing CHAIN (Gen 3 EB2), so newer models do not share the belt failure issue",
+          "Primary failure mode described (timing drift/misfires/valve damage) is incorrect - actual mode is belt disintegration contaminating oil, clogging the oil pump pickup, causing oil starvation and bearing/engine failure",
+          "DTC codes are questionable: real-world failures more commonly trigger low oil pressure warnings rather than P0016/P0300; these DTCs are generic and not specifically documented for this failure",
+          "Repair cost of $800-$2000 is significantly underestimated - catastrophic failures often require full engine replacement (well over $5,000-$10,000); even preventive wet belt replacement alone runs higher in many markets",
+          "Severity 'critical' is reasonable given catastrophic engine failure risk, but framing as a safety/driveability issue understates that it's typically a sudden total engine failure",
+          "Citroën C3 is not sold in the US market (no NHTSA data applicable); trim names Live/Feel/Shine are European"
+        ],
+        "evidence": "Multiple sources confirm the 1.2 PureTech (EB2) has a well-documented wet timing BELT degradation issue (not chain stretch), with Stellantis offering warranty extensions up to 10 years/175,000 km and launching a compensation platform for repairs between 2022-2024. Stellantis introduced a timing chain version from 2023 specifically to fix this; the C3 and C3 Aircross from 2023 onward use the new chain-driven Gen 3 engine.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-c3-power-steering-failure",
+      "vehicle": "2002 Citroën C3",
+      "title": "Electric Power Steering Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 95,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC C1302 is incorrect - it relates to brake pressure sensor/ABS configuration faults, not EPS. Correct EPS codes are C1404 (Electric Power Steering Control Fault), C1414 (EPS Motor Failure), and P0606 (Internal Fault)",
+          "Description says column-mounted EPS motor - accurate for Mark I but Mark II/C3 Picasso EPS module location and design differs"
+        ],
+        "evidence": "Multiple sources (Essex Recons, ECU Testing, Autotronics, C3 owner forums) confirm widespread EPS failures on C3 Mark I (2002 shape) and C3 Picasso 2006-2013 causing sudden heavy steering, especially problematic at low speeds. However, the documented fault codes are C1404, C1414, and P0606 — not C1302, which forum discussions associate with a brake pressure sensor in the ABS unit.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-c4-dpf-issues",
+      "vehicle": "2004 Citroën C4",
+      "title": "Diesel DPF Regeneration Issues",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 85,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2004-2026 is overly broad; newer C4 (post-2018) BlueHDi models use SCR/AdBlue alongside or instead of the additive-based FAP system, changing the failure mode",
+          "P2002 is a generic OBD-II DPF efficiency code; PSA-specific codes like P1435/P1434 (additive pump) or P244A/P242F are more commonly reported on C4 diesels",
+          "Severity 'high' may be miscalibrated — DPF clogging typically causes limp mode and costly repair but is not directly safety-critical; 'medium' is more appropriate",
+          "Trim names (Live, Feel, Shine) apply to current-gen C4 III only, not the full 2004-2026 range"
+        ],
+        "evidence": "Multiple Citroën owner forums and PSA technical sources confirm the C4 diesel (HDi/FAP) uses an Eolys cerine-based additive system to lower soot combustion temperature (~450°C), and short-trip urban driving commonly causes incomplete regeneration, blocked DPFs, and additive pump faults (e.g., P1434/P1435, P2463). Repair costs range from cheap Eolys refills to full DPF replacement, consistent with the cited range, but severity is typically driveability/limp-mode rather than safety-critical.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-c5-hydraulic-suspension-sphere",
+      "vehicle": "2001 Citroën C5",
+      "title": "Hydractive Suspension Sphere Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 85,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2001-2017 slightly overstates production; C5 was produced 2001-2008 (Mk1/Mk2) and 2008-2017 (Mk3/X7), trims VTR/VTX/Exclusive apply mainly to early models while Mk3 used different trim names",
+          "Description conflates Hydractive III/III+ — Hydractive III+ (with 7 spheres including rigidity regulation) is the higher-spec variant; base Hydractive III has 4 spheres",
+          "Severity 'high' is debatable — sphere wear typically causes harsh ride and ride-height issues rather than safety-critical failure, though warning to limit speed to 55 mph does appear",
+          "Repair cost range may be low for full sphere replacement; a complete set of 7 genuine spheres alone can approach £800 before labor"
+        ],
+        "evidence": "Multiple owner forums and repair sources confirm Hydractive III/III+ sphere wear is a well-documented C5 issue, with nitrogen-charged spheres losing pressure over time and causing harsh ride, failure to raise, and a 55 mph warning; genuine multi-layer spheres last ~10 years while aftermarket last ~4 years, and a full set of 7 X7 spheres runs near £800 parts-only.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-berlingo-sliding-door-cable",
+      "vehicle": "2008 Citroën Berlingo",
+      "title": "Sliding Door Cable Snap",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 80,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "Citroën Berlingo sliding doors are manual, not cable-driven powered doors — there is no cable-and-pulley actuation system that would 'snap' as described",
+          "Actual documented sliding door failure mode is the door catch/latch breaking (causing door not to stay open), not cable fraying",
+          "No evidence of cold-weather cable snapping in NHTSA, TSBs, or owner forums (French Car Forum, Berlingo Forum, Citroen Owners Club)",
+          "Description conflates the Berlingo with cable-driven power sliding doors found on minivans like Honda Odyssey/Toyota Sienna",
+          "Year range 2008-2026 spans MK2 and MK3 generations indiscriminately with no model-year specificity for an issue that isn't documented",
+          "DTC 'none' is consistent but only because the described issue itself appears fabricated",
+          "Repair cost range is speculative since the described failure mode doesn't match real Berlingo architecture"
+        ],
+        "evidence": "Searches across owner forums, parts suppliers, and repair guides consistently identify Berlingo sliding door problems as latch/catch failure, lock cylinder wear, roller/runner issues, and handle linkage problems — the door is mechanically operated with no cable-and-pulley powered actuation that could 'snap in cold weather' as described. The fabricated description appears to describe a power sliding door system from a different vehicle class.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-berlingo-dpf",
+      "vehicle": "2008 Citroën Berlingo",
+      "title": "DPF Blockage in Urban Use",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 75,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Severity 'high' is miscalibrated - DPF blockage causes limp mode and performance loss but is not safety-critical; medium would be more appropriate",
+          "Year range extends to 2026 which is speculative for future model years",
+          "Year range 2008-2026 spans three Berlingo generations (B9, K9) with different DPF/Eolys vs AdBlue systems - issue characteristics differ across generations",
+          "Vehicle not sold in US market so NHTSA TSBs are not applicable; trims 'Feel, Flair' are UK/European market designations"
+        ],
+        "evidence": "DPF blockage from short urban trips is a widely documented issue on Citroën Berlingo diesels across multiple owner forums (French Car Forum, VanTribe, Berlingo Forum), with the PSA/Citroën Eolys additive system specifically vulnerable to short-trip urban duty cycles. P2463 is a valid generic DPF soot accumulation DTC applicable to European diesels, and repair costs ($300-$2500) align with reported costs ranging from ~£160 for regen/additive refill up to £500-£1000+ for DPF replacement.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-ds3-timing-chain",
+      "vehicle": "2010 Citroën DS3",
+      "title": "Timing Chain Tensioner Failure",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 75,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range too broad - issue primarily affects Prince engines produced before November 2011; post-2012 engines had updated components with significantly improved reliability",
+          "Issue is most prevalent on turbocharged 1.6 THP variants (EP6DT/EP6CDT) rather than all DS3 trims; naturally aspirated VTi engines are less affected",
+          "Repair cost range is plausible but on the low end if engine damage has already occurred (valve/piston contact can push costs to $4000-6000 for engine replacement)"
+        ],
+        "evidence": "Multiple sources (AustralianCar.Reviews, French Car Forum, Honest John, eTuners) confirm the PSA/BMW Prince timing chain tensioner failure is a well-documented issue on the Citroën DS3, with DTCs P0016/P0017 being standard codes for the cam-crank correlation problem caused by chain stretch/tensioner failure. However, the problem is concentrated in pre-November 2011 production engines and primarily the turbocharged THP variants, not the full 2010-2019 range as listed.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-c4-egr-valve-failure",
+      "vehicle": "2004 Citroën C4",
+      "title": "EGR Valve Carbon Buildup",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 70,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "The Citroën C4 was produced in two generations: 2004-2010 (Mk1) and 2010-2018 (Mk2), with the C4 Cactus and C4 (third-gen hatchback) later. The \"Live, Feel, Shine\" trim names are typically associated with the newer C4 (2021+). The year range 2004-2021 is overly broad and mixes different generations. Also, P0403 is \"EGR Control Circuit Malfunction\" (an electrical/circuit issue), not a carbon buildu"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-c1-clutch-judder",
+      "vehicle": "2005 Citroën C1",
+      "title": "Clutch Judder",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 60,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range too broad - issue is primarily documented on pre-2009 facelift models with the original 180mm clutch, not the entire 2005-2022 range",
+          "Root cause description is inaccurate - the actual documented cause is an undersized 180mm clutch plate (later upgraded to 190mm Valeo), not 'hot spots' or 'lightweight flywheel amplification'",
+          "Repair cost slightly low - UK average is ~£686 (~$870) with range £500-£1,000, suggesting $500-$1,000 would be more accurate"
+        ],
+        "evidence": "Multiple UK sources (Willand Service Centre, clutch-repair.co.uk, FixMyCar, owner forums) confirm clutch judder is a well-known issue specifically on pre-2009 C1/107/Aygo models with the undersized 180mm clutch, resolved by upgrading to a 190mm Valeo unit. Average UK replacement cost is ~£686 with no DTC codes since it's a mechanical wear issue.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-c4-suspension-sphere",
+      "vehicle": "2004 Citroën C4",
+      "title": "Suspension Sphere Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 60,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "The Citroën C4 (2004-2017) does not use hydropneumatic suspension - it uses conventional steel coil springs",
+          "Hydropneumatic suspension with nitrogen spheres was used on flagship models (DS, CX, XM, C5, C6, Xantia), not the C4",
+          "There are no suspension spheres to fail on a standard C4",
+          "Repair cost range is irrelevant since the component doesn't exist on this vehicle",
+          "The C4 Cactus (a separate model) later received 'Progressive Hydraulic Cushions' but these are not spheres and don't lose gas pressure in the manner described"
+        ],
+        "evidence": "Multiple sources confirm hydropneumatic suspension with nitrogen-filled spheres was used on Citroën flagships like the DS, CX, XM, and C5 (last produced 2017), not on the C4. The C4 hatchback uses conventional coil-spring suspension, and the later C4 Cactus uses 'Progressive Hydraulic Cushions' which are secondary dampers replacing bump stops, not gas-filled spheres.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-berlingo-clutch-judder",
+      "vehicle": "2008 Citroën Berlingo",
+      "title": "Clutch Judder on Take-Off",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 55,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2008-2026 is too broad; clutch judder/DMF wear is primarily documented on 1.6 HDi diesel variants and piloted/ETG gearbox models, not the entire range including newer petrol/EV Berlingos",
+          "Trim levels 'Feel' and 'Flair' apply mainly to Berlingo Multispace passenger versions (discontinued in UK ~2018); description references 'commercial use' which is more relevant to the Van variant with different trims (Enterprise, X, etc.)",
+          "Repair cost estimate ($500-$1200) appears low for a full DMF + clutch replacement; forum/garage quotes commonly range £680-£1700 (~$850-$2100)",
+          "Severity 'medium' is reasonable but DMF disintegration can cause secondary engine damage, arguably borderline high"
+        ],
+        "evidence": "Multiple owner forums (berlingoforum.com, frenchcarforum.co.uk, Citroen Owners Club) document clutch judder on take-off and DMF wear on Berlingo 1.6 HDi and piloted-gearbox models, with juddering described particularly when pulling away, loaded, or on inclines. Repair quotes in the UK range from ~£680 to £1700 for clutch+DMF replacement, suggesting the listed $500-$1200 range is somewhat low.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-c1-ignition-coil-failure",
+      "vehicle": "2005 Citroën C1",
+      "title": "Ignition Coil Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 55,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple sources confirm ignition coil failure is a documented issue on the Citroën C1's 1.0L three-cylinder engine causing misfires, rough running, vibration and power loss. The 2005-2022 production range, coil-on-plug design, P0300/P0301 DTCs for misfires, and ~$60-200 repair cost (parts £20-40 plus labor) all align with sources including AutoDoc, CarNews, and EngineFinder.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-c5-aircross-dpf",
+      "vehicle": "2019 Citroën C5 Aircross",
+      "title": "DPF Regeneration Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 55,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description's causation reasoning is inaccurate — the real cause is the compact 1.5 BlueHDi DPF design needing more frequent regens, not 'heavier SUV body'",
+          "Severity 'high' is debatable; DPF clogging is typically a drivability/emissions concern, not safety-critical (medium would be more appropriate)",
+          "DTC P244A (differential pressure TOO LOW) is less typical for a clogging scenario; P2463 plus P2002/P242F would be more characteristic of soot/ash accumulation",
+          "Year range 2019-2026 is broad; only diesel BlueHDi variants are affected, and the BlueHDi was dropped from some markets in later model years"
+        ],
+        "evidence": "Multiple owner forums and reliability guides confirm the 1.5 BlueHDi C5 Aircross has well-documented DPF clogging issues on short urban trips, with the compact vertical DPF design needing frequent regens. P2463 is the standard generic DTC for DPF soot accumulation, and P244A is a valid (though less commonly paired) DPF differential pressure code. Repair costs cited (€100-200 forced regen up to €900-1500 replacement) align reasonably with the $300-$2500 range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-ds3-water-pump-failure",
+      "vehicle": "2010 Citroën DS3",
+      "title": "Water Pump Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 55,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0116 (ECT sensor range/performance) and P0217 (engine coolant over-temperature) are generic overheating-related codes, not specific water pump failure codes - they would be secondary symptoms rather than direct indicators",
+          "Issue is specifically the turbocharger cooling electric water pump on 1.6 THP/EP6 engines, not a general water pump - description should clarify this is the auxiliary/turbo coolant pump",
+          "Trim list (DStyle, DSport, Performance) is misleading - issue primarily affects THP-engined variants (DSport, Racing/Performance); non-turbo VTi DStyle models generally don't have this electric pump issue",
+          "Severity 'high' is slightly overstated - while overheating can be serious, there was a free manufacturer campaign (Ref: GAV) covering software update and pump replacement, suggesting it's more of a costly reliability issue than safety-critical"
+        ],
+        "evidence": "Multiple sources confirm the turbocharger cooling electric water pump failure on DS3 1.6 THP (EP6) engines, with Honest John noting turbo water pump issues by 2014 on THP 150 engines, and a French Car Forum post citing an official Citroën after-sales campaign (Ref: GAV) for ECU software update and electric water pump replacement free of charge. The DTC codes cited are generic coolant temperature/overheating codes rather than water-pump-specific codes.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-c3-suspension-sphere-leak",
+      "vehicle": "2002 Citroën C3",
+      "title": "Suspension Sphere Gas Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 50,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "The 2002-2010 Citroën C3 never offered hydropneumatic suspension — not as standard, not as an option",
+          "C3 Mk1 uses conventional MacPherson strut front and torsion beam rear suspension with steel springs",
+          "Hydropneumatic/Hydractive systems were reserved for larger Citroën models (DS, CX, BX, XM, Xantia, C5, C6)",
+          "There are no suspension spheres to leak nitrogen on this vehicle",
+          "Repair cost is meaningless since the described component does not exist on this car"
+        ],
+        "evidence": "Technical specifications for the Citroën C3 1.4 (2002-2010) confirm a torsion beam rear suspension with conventional steel springs, not hydropneumatic. Hydropneumatic suspension with nitrogen-filled spheres was fitted only to Citroën's larger models such as the DS, BX, CX, XM, Xantia, C5 and C6 — never to the supermini-class C3.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-c5-aircross-infotainment",
+      "vehicle": "2019 Citroën C5 Aircross",
+      "title": "Infotainment System Issues",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 45,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "The first-gen C5 Aircross was 2018-2022, with second-gen launched 2025. The year range 2019-2026 may have issues. Let me also note the C5 Aircross is not sold in the US so NHTSA wouldn't apply. The evidence strongly supports the issue is real.\n\n{\n  \"verdict\": \"minor_issues\",\n  \"real\": true,\n  \"issues_found\": [\n    \"Year range 2019-2026 spans two different generations (Mk1 2018-2022 and Mk2 2025+);"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-ds3-turbo-oil-leak",
+      "vehicle": "2010 Citroën DS3",
+      "title": "Turbocharger Oil Leak",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 45,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Severity 'high' is likely miscategorized - this is a costly mechanical/reliability issue but not safety-critical; should be 'medium'",
+          "Repair cost upper bound ($1500) is low - full turbo replacement on 1.6 THP typically exceeds $1500-$2500, though oil pipe/seal-only repairs fit the lower range",
+          "DTC P0299 (turbo underboost) is plausible but oil leaks often present without a stored DTC; description would benefit from noting code may not always be triggered"
+        ],
+        "evidence": "A 2016 Citroën recall confirmed turbocharger lubrication union bolt oil leaks on DS3, and multiple owner forums (HonestJohn, French Car Forum, DS3 Owners Club, AutoDoc) document 1.6 THP turbo oil leaks, bearing wear, oil consumption and blue smoke between 100,000-150,000 km. The issue is well-documented but typically presented as a reliability/cost problem rather than safety-critical.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-c4-cactus-airbump-deformation",
+      "vehicle": "2014 Citroën C4 Cactus",
+      "title": "Airbump Panel Deformation",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 40,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "2018 facelift reduced/removed Airbumps on some trims, so the year range 2014-2020 partially overstates the issue's applicability",
+          "Repair cost range is plausible but on the low side - a full Airbump replacement pack was quoted at under $1500 AUD, though individual panels start under $120",
+          "Issue documented as discolouration/peeling/lifting rather than 'deformation and shape loss' specifically - description slightly mischaracterizes the failure mode"
+        ],
+        "evidence": "Owner forums and a UK common-problems guide confirm Airbump panels can discolour, peel, and lift at the corners on the C4 Cactus, with TPU material confirmed. However, Citroën facelifted the C4 Cactus in 2018 with significantly reduced Airbump panels, so the 2014-2020 range conflates two design generations.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-c4-cactus-infotainment-freeze",
+      "vehicle": "2014 Citroën C4 Cactus",
+      "title": "Infotainment Touchscreen Freeze",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 35,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost range may be low - forum reports indicate replacement screens can cost ~£900 (~$1100+), exceeding the $0-$500 ceiling",
+          "Description emphasizes navigation/Bluetooth, but the most commonly reported trigger in owner reports is DAB radio (particularly BBC DAB stations), not just Bluetooth/nav",
+          "Severity 'low' is defensible as a nuisance, but the screen also controls HVAC and other core functions, which some owners consider a safety concern"
+        ],
+        "evidence": "Multiple owner forum threads (cactusforums.co.uk, frenchcarforum.co.uk, ds4ownersclub) document widespread touchscreen freezing/rebooting issues on 2015-2017 C4 Cactus and related PSA vehicles, often triggered by DAB radio or Bluetooth, with dealers charging ~£140 for diagnostics and replacement screens quoted around £900. Car-recalls.eu also lists touchscreen infotainment glitches as a known common problem for the C4 Cactus.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "citroen-c5-aircross-suspension-comfort",
+      "vehicle": "2019 Citroën C5 Aircross",
+      "title": "Progressive Hydraulic Cushion Degradation",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 35,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Issue is not widely documented as a systemic failure pattern - mostly anecdotal forum reports and one parts retailer article",
+          "Repair cost range ($400-$1200) may be low; one source cites £600-£1200 per corner (roughly $750-$1500 per corner), so full repair could exceed stated range",
+          "Year range 2019-2026 spans two generations (the second-gen C5 Aircross launched in 2024/2025 has a redesigned suspension); applicability to newest model years is uncertain",
+          "No NHTSA data applicable since C5 Aircross is not sold in the US market"
+        ],
+        "evidence": "The Progressive Hydraulic Cushion suspension is a real and well-documented Citroën feature, and owner forums plus a UK parts retailer note suspension can feel harder over time with hydraulic dampers prone to leaking and requiring expensive strut replacement (£600-£1200 per corner). However, no manufacturer TSBs or formal recalls for 'progressive degradation' were found, and reports are largely anecdotal.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    }
+  ]
+}

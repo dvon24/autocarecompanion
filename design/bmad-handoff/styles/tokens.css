@@ -1,0 +1,84 @@
+/* ============================================================================
+   AU7O · DESIGN TOKENS
+   ----------------------------------------------------------------------------
+   The single source of truth for color, type, radii, shadows.
+   Every screen imports this file once. All values are expressed as
+   CSS custom properties (`var(--token)`) so they cascade and theme cleanly.
+
+   Use semantic intent over raw color. e.g. prefer `var(--paper)` over `#F7F6F2`.
+   ============================================================================ */
+
+:root {
+  /* ── Brand ─────────────────────────────────────────────────────────────── */
+  --au7o-blue:      #3B82F6;   /* primary action, route lines, "you are here" */
+  --au7o-blue-600:  #2563EB;   /* hover */
+  --au7o-blue-700:  #1D4ED8;   /* pressed / dark surfaces */
+  --au7o-blue-50:   #EFF6FF;   /* subtle tint backgrounds */
+  --au7o-blue-100:  #DBEAFE;
+
+  /* ── Neutrals (warm paper, not sterile) ────────────────────────────────── */
+  --paper:          #F7F6F2;   /* default page background ("at-home" surfaces) */
+  --paper-2:        #EFEDE6;   /* recessed wells, alt-row backgrounds */
+  --paper-line:     #E3DFD4;   /* hairline borders on paper */
+  --ink:            #0B1220;   /* primary text + dark UI surfaces (in-car) */
+  --ink-2:          #19223A;   /* raised dark surfaces */
+  --ink-3:          #2A3450;   /* dark borders */
+
+  /* Slate scale — for body text + meta */
+  --slate-700:      #334155;   /* body text 2 */
+  --slate-500:      #64748B;   /* meta, labels */
+  --slate-400:      #94A3B8;   /* faint meta */
+  --slate-300:      #CBD5E1;
+  --slate-200:      #E2E8F0;
+  --slate-100:      #F1F5F9;
+
+  /* ── Semantic — reserved for safety + status ───────────────────────────── */
+  --ok:             #10B981;
+  --ok-bg:          #D1FAE5;
+  --warn:           #F59E0B;   /* attention / "in window" */
+  --warn-bg:        #FEF3C7;
+  --crit:           #EF4444;   /* recall, high-priority issue */
+  --crit-bg:        #FEE2E2;
+
+  /* ── Map (warm paper map style) ────────────────────────────────────────── */
+  --map-bg:         #F2EEE3;
+  --map-road:       #FFFFFF;
+  --map-road-edge:  #E2DBC7;
+  --map-block:      #E8E2D2;
+  --map-water:      #C9DCE6;
+  --map-park:       #D5E2C9;
+  --route:          var(--au7o-blue);
+
+  /* ── Typography ────────────────────────────────────────────────────────── */
+  --font-sans:      "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:      "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  /* Mono is used for: mileage, money, IDs, eyebrow caps, anything tabular */
+
+  /* ── Radii ─────────────────────────────────────────────────────────────── */
+  --r-1:            6px;
+  --r-2:            10px;
+  --r-3:            14px;       /* default card radius */
+  --r-4:            20px;
+  --r-5:            28px;
+  --r-pill:         999px;
+
+  /* ── Shadows ───────────────────────────────────────────────────────────── */
+  --shadow-1:       0 1px 2px rgba(11,18,32,.06), 0 1px 1px rgba(11,18,32,.04);
+  --shadow-2:       0 6px 16px rgba(11,18,32,.08), 0 2px 4px rgba(11,18,32,.05);
+  --shadow-3:       0 18px 40px rgba(11,18,32,.18), 0 6px 12px rgba(11,18,32,.08);
+  --shadow-sheet:   0 -10px 30px rgba(11,18,32,.12);
+}
+
+/* Reset */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
+p { margin: 0; }

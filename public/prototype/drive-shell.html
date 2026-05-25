@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Au7o — Vehicle Context Shell Prototype</title>
+<style>
+  :root {
+    --au-blue: #3B82F6;
+    --au-blue-dark: #2563EB;
+    --au-bg: #0f172a;
+    --au-card: #ffffff;
+    --au-text: #0f172a;
+    --au-muted: #64748b;
+    --au-good: #16a34a;
+    --au-warn: #f59e0b;
+    --au-bad: #dc2626;
+    --au-soft: #f1f5f9;
+    --au-border: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: linear-gradient(180deg, #1e293b, #0f172a);
+    color: #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px;
+    min-height: 100vh;
+  }
+  .legend {
+    max-width: 420px;
+    margin: 0 auto 16px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .legend strong { color: #f1f5f9; }
+  .controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .controls button {
+    background: #1e293b;
+    color: #cbd5e1;
+    border: 1px solid #334155;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .controls button.active {
+    background: var(--au-blue);
+    border-color: var(--au-blue);
+    color: white;
+  }
+  .controls .group {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  .controls .group label {
+    font-size: 11px;
+    color: #64748b;
+    margin-right: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Phone frame */
+  .phone {
+    width: 390px;
+    height: 844px;
+    background: var(--au-card);
+    border-radius: 36px;
+    border: 8px solid #0f172a;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    overflow: hidden;
+    position: relative;
+    color: var(--au-text);
+    display: flex;
+    flex-direction: column;
+  }
+  .phone::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 24px;
+    background: #0f172a;
+    border-radius: 0 0 14px 14px;
+    z-index: 100;
+  }
+
+  /* Persistent header */
+  .header {
+    flex-shrink: 0;
+    padding: 36px 16px 8px;
+    background: var(--au-card);
+    border-bottom: 1px solid var(--au-border);
+    z-index: 20;
+  }
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .vehicle-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--au-soft);
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 1;
+    min-width: 0;
+  }
+  .vehicle-pill .veh-emoji { font-size: 16px; }
+  .vehicle-pill .veh-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .vehicle-pill .chev { color: var(--au-muted); font-size: 10px; }
+  .avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--au-blue);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px;
+  }
+
+  .mode-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+    background: var(--au-soft);
+    padding: 4px;
+    border-radius: 10px;
+  }
+  .mode-tab {
+    padding: 8px 0;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--au-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .mode-tab.active {
+    background: var(--au-card);
+    color: var(--au-blue);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  /* Mode body */
+  .mode-body {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+  .mode { display: none; height: 100%; }
+  .mode.active { display: flex; flex-direction: column; }
+
+  /* Drive mode */
+  .drive-map {
+    flex: 1;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(59,130,246,0.15), transparent 40%),
+      radial-gradient(circle at 70% 70%, rgba(34,197,94,0.10), transparent 40%),
+      linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #d1d5db 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .drive-map::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .road {
+    position: absolute;
+    background: #94a3b8;
+    border-top: 2px dashed #fbbf24;
+    border-bottom: 2px dashed #fbbf24;
+  }
+  .road.h { left: -50px; right: -50px; height: 28px; }
+  .road.v { top: -50px; bottom: -50px; width: 28px; border-left: 2px dashed #fbbf24; border-right: 2px dashed #fbbf24; border-top: none; border-bottom: none; }
+  .road-1 { top: 30%; transform: rotate(-3deg); }
+  .road-2 { top: 65%; transform: rotate(2deg); }
+  .road-3 { left: 60%; transform: rotate(8deg); }
+  .route-line {
+    position: absolute;
+    top: 30%;
+    left: 15%;
+    width: 60%;
+    height: 8px;
+    background: linear-gradient(90deg, var(--au-blue) 0%, var(--au-blue-dark) 100%);
+    border-radius: 99px;
+    box-shadow: 0 2px 6px rgba(59,130,246,0.4);
+    transform: rotate(15deg);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .route-line.show { opacity: 1; }
+  .destination-pin {
+    position: absolute;
+    top: 22%;
+    right: 20%;
+    width: 30px; height: 30px;
+    background: var(--au-bad);
+    border: 3px solid white;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .destination-pin.show { opacity: 1; }
+  .my-loc {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    width: 22px; height: 22px;
+    background: var(--au-blue);
+    border: 4px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 8px rgba(59,130,246,0.2);
+  }
+  .speed-camera-pin {
+    position: absolute;
+    width: 22px; height: 22px;
+    background: var(--au-bad);
+    border: 2px solid white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .speed-camera-pin.show { opacity: 1; }
+
+  /* Top-left badges on map */
+  .map-badges {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    z-index: 5;
+  }
+  .speed-pill {
+    background: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .speed-pill .v { font-size: 16px; }
+  .speed-limit-sign {
+    width: 48px; height: 48px;
+    background: white;
+    border: 3px solid black;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-weight: 800;
+  }
+  .speed-limit-sign .v { font-size: 17px; color: black; }
+  .speed-limit-sign .u { font-size: 6px; color: black; margin-top: 1px; }
+
+  /* Turn instruction */
+  .turn-card {
+    position: absolute;
+    top: 70px;
+    left: 12px;
+    right: 12px;
+    background: rgba(15,23,42,0.92);
+    color: white;
+    padding: 12px 14px;
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    z-index: 5;
+    display: none;
+    align-items: center;
+    gap: 12px;
+  }
+  .turn-card.show { display: flex; }
+  .turn-arrow {
+    font-size: 28px;
+    line-height: 1;
+  }
+  .turn-text { flex: 1; }
+  .turn-distance { font-size: 11px; color: #94a3b8; }
+  .turn-instruction { font-size: 14px; font-weight: 700; line-height: 1.2; }
+
+  /* Floating mic */
+  .mic-fab {
+    position: absolute;
+    right: 16px;
+    bottom: 12px;
+    width: 56px; height: 56px;
+    background: var(--au-blue);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(59,130,246,0.4);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 6;
+  }
+
+  /* Bottom sheet */
+  .sheet {
+    flex-shrink: 0;
+    background: white;
+    border-top: 1px solid var(--au-border);
+    border-radius: 16px 16px 0 0;
+    padding: 0 16px 12px;
+    max-height: 60%;
+    overflow-y: auto;
+    transition: max-height 0.25s ease;
+  }
+  .sheet.collapsed { max-height: 78px; }
+  .sheet-grabber {
+    width: 40px; height: 4px;
+    background: var(--au-border);
+    border-radius: 2px;
+    margin: 8px auto 12px;
+  }
+  .sheet-row { font-size: 13px; line-height: 1.5; }
+  .sheet h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+
+  /* Idle sheet */
+  .voice-prompt {
+    background: var(--au-soft);
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 10px;
+  }
+  .voice-prompt input {
+    flex: 1; border: none; background: transparent;
+    font-size: 13px; color: var(--au-text);
+    outline: none;
+  }
+  .voice-prompt input::placeholder { color: var(--au-muted); }
+  .voice-prompt .mic-btn {
+    width: 36px; height: 36px;
+    background: var(--au-blue);
+    color: white;
+    border: none; border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .warn-row {
+    display: flex; align-items: center; gap: 8px;
+    background: #fef3c7;
+    color: #92400e;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .recent-list { font-size: 12px; color: var(--au-muted); }
+  .recent-list .item {
+    padding: 6px 0;
+    border-top: 1px solid var(--au-border);
+    display: flex; justify-content: space-between;
+  }
+
+  /* Trip planned sheet */
+  .trip-header {
+    display: flex; align-items: baseline; gap: 8px;
+    margin-bottom: 4px;
+  }
+  .trip-header .arrow { color: var(--au-blue); font-weight: 700; }
+  .trip-header .name { font-size: 16px; font-weight: 700; flex: 1; }
+  .trip-stats {
+    color: var(--au-muted);
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  .health-block {
+    background: var(--au-soft);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .health-row {
+    display: flex; align-items: center; gap: 6px;
+    margin: 3px 0;
+  }
+  .health-row .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+  .health-row .dot.g { background: var(--au-good); }
+  .health-row .dot.y { background: var(--au-warn); }
+  .health-row .dot.r { background: var(--au-bad); }
+  .trip-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--au-muted);
+    margin-bottom: 12px;
+  }
+  .trip-meta div {
+    background: var(--au-soft);
+    padding: 6px 8px;
+    border-radius: 6px;
+  }
+  .drive-btn-row {
+    display: flex; gap: 8px;
+    align-items: center;
+  }
+  .drive-btn {
+    flex: 1;
+    background: var(--au-blue);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .rate-btns { display: flex; gap: 4px; }
+  .rate-btns button {
+    width: 36px; height: 36px;
+    background: var(--au-soft);
+    border: none; border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  /* Driving sheet (collapsed pill) */
+  .driving-pill {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--au-muted);
+    padding-top: 4px;
+  }
+  .driving-pill .eta { font-weight: 700; color: var(--au-text); font-size: 14px; }
+  .driving-pill .open-hint { font-size: 11px; color: var(--au-blue); }
+
+  /* Garage mode */
+  .garage {
+    flex: 1; overflow-y: auto;
+    background: var(--au-soft);
+    padding: 12px;
+  }
+  .garage h2 {
+    font-size: 16px; font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .garage .vehicle-meta {
+    color: var(--au-muted);
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .card h3 {
+    font-size: 12px; font-weight: 700;
+    color: var(--au-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .health-list .row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 4px 0;
+    font-size: 13px;
+  }
+  .symptom-input {
+    background: var(--au-soft);
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex; align-items: center; gap: 10px;
+    border: none; width: 100%;
+    font-size: 13px;
+    color: var(--au-muted);
+    cursor: text;
+  }
+  .log-list .entry {
+    display: flex; justify-content: space-between;
+    padding: 6px 0;
+    font-size: 12px;
+    border-top: 1px solid var(--au-border);
+  }
+  .log-list .entry:first-child { border-top: none; }
+  .log-list .entry .t { font-weight: 600; }
+  .log-list .entry .d { color: var(--au-muted); }
+  .add-btn {
+    background: var(--au-soft);
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 6px;
+    width: 100%;
+    font-size: 12px;
+    color: var(--au-muted);
+    margin-top: 8px;
+    cursor: pointer;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .grid-2 .card { margin-bottom: 0; }
+
+  /* Articles mode */
+  .articles {
+    flex: 1; overflow-y: auto;
+    background: var(--au-soft);
+    padding: 12px;
+  }
+  .articles h2 {
+    font-size: 16px; font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .article-search {
+    background: white;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    color: var(--au-muted);
+    margin-bottom: 10px;
+    border: 1px solid var(--au-border);
+  }
+  .article-card {
+    background: white;
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .article-card .title {
+    font-size: 13px; font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .article-card .meta {
+    font-size: 11px; color: var(--au-muted);
+  }
+  .article-card .badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: #fee2e2; color: #991b1b;
+    margin-right: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .article-card .badge.med { background: #fef3c7; color: #92400e; }
+  .article-card .badge.low { background: #e0e7ff; color: #3730a3; }
+</style>
+</head>
+<body>
+
+<div class="legend">
+  <strong>Au7o — Vehicle Context Shell Prototype</strong><br>
+  Pick a mode at the top. In Drive mode use the <strong>state buttons</strong> below to flip between Idle / Trip Planned / Driving.
+</div>
+
+<div class="controls">
+  <div class="group">
+    <label>Drive state:</label>
+    <button data-state="idle" class="active">Idle</button>
+    <button data-state="planned">Trip planned</button>
+    <button data-state="driving">Driving</button>
+  </div>
+</div>
+
+<div class="phone">
+  <header class="header">
+    <div class="header-row">
+      <div class="vehicle-pill" title="Tap to switch vehicle">
+        <span class="veh-emoji">🚗</span>
+        <span class="veh-name">2019 Camaro ZL1 1LE</span>
+        <span class="chev">▼</span>
+      </div>
+      <div class="avatar">D</div>
+    </div>
+    <div class="mode-tabs">
+      <div class="mode-tab active" data-mode="drive">🗺 Drive</div>
+      <div class="mode-tab" data-mode="garage">🔧 Garage</div>
+      <div class="mode-tab" data-mode="articles">📖 Articles</div>
+    </div>
+  </header>
+
+  <div class="mode-body">
+
+    <!-- DRIVE MODE -->
+    <section class="mode active" id="mode-drive">
+      <div class="drive-map">
+        <div class="road h road-1"></div>
+        <div class="road h road-2"></div>
+        <div class="road v road-3"></div>
+        <div class="route-line" id="route-line"></div>
+        <div class="my-loc"></div>
+        <div class="destination-pin" id="dest-pin"></div>
+        <div class="speed-camera-pin show" style="top:35%;left:55%;">📷</div>
+        <div class="speed-camera-pin" id="cam-2" style="top:60%;left:40%;">📷</div>
+
+        <div class="map-badges">
+          <div class="speed-limit-sign">
+            <span class="v">30</span>
+            <span class="u">KM/H</span>
+          </div>
+          <div class="speed-pill"><span class="v">42</span> km/h</div>
+        </div>
+
+        <div class="turn-card" id="turn-card">
+          <div class="turn-arrow">↰</div>
+          <div class="turn-text">
+            <div class="turn-distance">in 200 m</div>
+            <div class="turn-instruction">Turn left onto Königstraße</div>
+          </div>
+        </div>
+
+        <button class="mic-fab" title="Talk to Au7o">🎤</button>
+      </div>
+
+      <!-- IDLE SHEET -->
+      <div class="sheet" id="sheet-idle">
+        <div class="sheet-grabber"></div>
+        <div class="trip-header">
+          <span class="name">Camaro ZL1 · 54,231 mi</span>
+        </div>
+        <div class="voice-prompt">
+          <input placeholder="Where are we going?" />
+          <button class="mic-btn">🎤</button>
+        </div>
+        <div class="warn-row">⚠ Oil overdue 1,200 mi — log a service when you do it.</div>
+        <h3>Recent</h3>
+        <div class="recent-list">
+          <div class="item"><span>Stuttgart → Heilbronn</span><span>3 hr ago</span></div>
+          <div class="item"><span>Home → Office</span><span>yesterday</span></div>
+          <div class="item"><span>Home → Mummelsee scenic</span><span>2d ago</span></div>
+        </div>
+      </div>
+
+      <!-- TRIP PLANNED SHEET -->
+      <div class="sheet" id="sheet-planned" style="display:none;">
+        <div class="sheet-grabber"></div>
+        <div class="trip-header">
+          <span class="arrow">→</span>
+          <span class="name">MILANEO Stuttgart</span>
+        </div>
+        <div class="trip-stats">5.4 km · 15 min · 0.3 gal (~3% tank)</div>
+
+        <div class="health-block">
+          <strong style="font-size:12px;display:block;margin-bottom:4px;color:var(--au-muted);text-transform:uppercase;letter-spacing:.5px;">Pre-trip safety</strong>
+          <div class="health-row"><div class="dot y"></div><span>Oil overdue — fine for 5km trip</span></div>
+          <div class="health-row"><div class="dot g"></div><span>Tires 5/32" · OK for trip</span></div>
+          <div class="health-row"><div class="dot g"></div><span>No active recalls</span></div>
+        </div>
+
+        <div class="trip-meta">
+          <div>📷 2 speed cameras on route</div>
+          <div>🅿 Parking · 82m walk</div>
+        </div>
+
+        <div class="drive-btn-row">
+          <button class="drive-btn">▶ Drive</button>
+          <div class="rate-btns">
+            <button title="Love it">❤️</button>
+            <button title="Like">👍</button>
+            <button title="Dislike">👎</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DRIVING SHEET (collapsed pill) -->
+      <div class="sheet collapsed" id="sheet-driving" style="display:none;">
+        <div class="sheet-grabber"></div>
+        <div class="driving-pill">
+          <span class="eta">ETA 11:42 · 9 min · 4.2 km</span>
+          <span class="open-hint">tap to open</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GARAGE MODE -->
+    <section class="mode" id="mode-garage">
+      <div class="garage">
+        <h2>Camaro ZL1 1LE</h2>
+        <div class="vehicle-meta">2019 · 54,231 mi · LT4 6.2L Supercharged</div>
+
+        <div class="card">
+          <h3>Health</h3>
+          <div class="health-list">
+            <div class="row"><div class="dot y" style="width:8px;height:8px;border-radius:50%;background:var(--au-warn);"></div>Oil change overdue (1,200 mi)</div>
+            <div class="row"><div class="dot g" style="width:8px;height:8px;border-radius:50%;background:var(--au-good);"></div>Brakes OK · last 12/15/25</div>
+            <div class="row"><div class="dot g" style="width:8px;height:8px;border-radius:50%;background:var(--au-good);"></div>Tires 5/32" — replace ~6 mo</div>
+            <div class="row"><div class="dot g" style="width:8px;height:8px;border-radius:50%;background:var(--au-good);"></div>Battery healthy · last 8/22/25</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Symptom Chat</h3>
+          <button class="symptom-input">💬 "I heard a knocking sound at idle..."</button>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Maintenance Log</h3>
+            <div class="log-list">
+              <div class="entry"><span class="t">Oil change</span><span class="d">4/01/26</span></div>
+              <div class="entry"><span class="t">Brakes</span><span class="d">12/15/25</span></div>
+              <div class="entry"><span class="t">Tire rotation</span><span class="d">11/02/25</span></div>
+            </div>
+            <button class="add-btn">+ Add record</button>
+          </div>
+          <div class="card">
+            <h3>Known Issues</h3>
+            <div style="font-size:24px;font-weight:800;color:var(--au-blue);line-height:1;">17</div>
+            <div style="font-size:11px;color:var(--au-muted);margin-bottom:8px;">issues for ZL1 1LE</div>
+            <button class="add-btn">See all →</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Recalls</h3>
+          <div style="font-size:13px;color:var(--au-good);">✓ No active recalls</div>
+        </div>
+
+        <div class="card" style="background:#eff6ff;">
+          <h3 style="color:var(--au-blue-dark);">Pre-trip ready</h3>
+          <div style="font-size:13px;">Plan a trip in <strong>Drive</strong> and Au7o cross-checks your maintenance log + known issues + DTCs before you leave.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTICLES MODE -->
+    <section class="mode" id="mode-articles">
+      <div class="articles">
+        <h2>Articles</h2>
+        <div class="article-search">🔍 Search 4,178 issues across 633 models…</div>
+
+        <div class="article-card">
+          <span class="badge">High</span>
+          <div class="title">Camaro ZL1 LT4 supercharger snout failure</div>
+          <div class="meta">2017–2024 · 8 reports · NHTSA-verified</div>
+        </div>
+        <div class="article-card">
+          <span class="badge med">Med</span>
+          <div class="title">LT4 timing chain rattle on cold start</div>
+          <div class="meta">2017–2024 · 12 reports</div>
+        </div>
+        <div class="article-card">
+          <span class="badge low">Low</span>
+          <div class="title">Camaro brake squeal at low speed</div>
+          <div class="meta">2016–2024 · cosmetic · 5 reports</div>
+        </div>
+        <div class="article-card">
+          <span class="badge med">Med</span>
+          <div class="title">DTC P0300 — random misfire on supercharged LT4</div>
+          <div class="meta">DTC reference · linked to your vehicle</div>
+        </div>
+        <div class="article-card">
+          <span class="badge">High</span>
+          <div class="title">Magnetic Ride Control shock failure</div>
+          <div class="meta">2016–2020 ZL1 · 11 reports</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="legend" style="margin-top:24px;max-width:560px;">
+  <strong>What this prototype demonstrates:</strong><br>
+  · Vehicle picker + mode tabs persist across all screens<br>
+  · Same Camaro context flows from Drive → Garage → Articles<br>
+  · Drive mode: map dominates · bottom sheet adapts (idle / planned / driving) · voice mic always reachable<br>
+  · Garage mode: maintenance log, symptom chat, known issues, recalls all in one place — and they feed the Drive AI<br>
+  · Articles mode: scoped to your vehicle by default, with full search
+</div>
+
+<script>
+  // Mode switching
+  document.querySelectorAll('.mode-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const mode = tab.dataset.mode;
+      document.querySelectorAll('.mode').forEach(m => m.classList.remove('active'));
+      document.getElementById('mode-' + mode).classList.add('active');
+    });
+  });
+
+  // Drive state switching
+  const sheets = {
+    idle: document.getElementById('sheet-idle'),
+    planned: document.getElementById('sheet-planned'),
+    driving: document.getElementById('sheet-driving'),
+  };
+  const routeLine = document.getElementById('route-line');
+  const destPin = document.getElementById('dest-pin');
+  const cam2 = document.getElementById('cam-2');
+  const turnCard = document.getElementById('turn-card');
+
+  document.querySelectorAll('.controls [data-state]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.controls [data-state]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const state = btn.dataset.state;
+      Object.entries(sheets).forEach(([key, el]) => {
+        el.style.display = (key === state) ? '' : 'none';
+      });
+      // Map adapts to state
+      if (state === 'idle') {
+        routeLine.classList.remove('show');
+        destPin.classList.remove('show');
+        cam2.classList.remove('show');
+        turnCard.classList.remove('show');
+      } else if (state === 'planned') {
+        routeLine.classList.add('show');
+        destPin.classList.add('show');
+        cam2.classList.add('show');
+        turnCard.classList.remove('show');
+      } else if (state === 'driving') {
+        routeLine.classList.add('show');
+        destPin.classList.add('show');
+        cam2.classList.add('show');
+        turnCard.classList.add('show');
+      }
+      // Auto-switch to Drive mode when toggling drive states
+      document.querySelector('.mode-tab[data-mode="drive"]').click();
+    });
+  });
+
+  // Tap collapsed driving pill to expand (toggle)
+  document.getElementById('sheet-driving').addEventListener('click', (e) => {
+    sheets.driving.classList.toggle('collapsed');
+  });
+</script>
+
+</body>
+</html>

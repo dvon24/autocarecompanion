@@ -1,0 +1,661 @@
+{
+  "sampledAt": "2026-05-18T07:33:14.863Z",
+  "total": 25,
+  "verified": 4,
+  "minor": 14,
+  "major": 5,
+  "fabricated": 1,
+  "errors": 1,
+  "deadLinks": 0,
+  "totalLinks": 20,
+  "results": [
+    {
+      "id": "renault-megane-window-regulator",
+      "vehicle": "2003 Renault Megane",
+      "title": "Window Regulator Failure",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 140,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range slightly off - issue is most prominently documented for Megane II (2002-2009); Megane III (2008-2016) less consistently affected",
+          "Description mentions 'cable-pulley mechanism snapping' but the actual failure mode is typically water ingress/corrosion damaging the regulator PCB/control module, not cable snapping",
+          "Repair cost range is reasonable but could trend slightly higher at dealers (£200-£400 / ~$250-$500 reported)",
+          "DTC codes correctly listed as none (this is a mechanical/electrical fault not typically logged as DTC)"
+        ],
+        "evidence": "Multiple owner forums and repair sites confirm this is a widely known and prolific fault on the Renault Megane II, with Renault UK reportedly extending warranties to 4 years and offering a 75% goodwill repair scheme for cars under 7 years/100k miles. The failure is typically caused by water ingress corroding the regulator's electronic control unit/PCB rather than cable-pulley snapping, and affects both front windows commonly.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-clio-ignition-coil-failure",
+      "vehicle": "2000 Renault Clio",
+      "title": "Ignition Coil Pack Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 130,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "P0302 is listed but not P0303/P0304 - misfires can occur on any cylinder, not just 1-2",
+          "Description says 'coil pack' but later Clios (especially 1.4 16v K4J and 1.2 16v D4F) use coil-on-plug (individual coils per cylinder), not a single coil pack - terminology is mixed",
+          "Repair cost $80-$250 is reasonable but individual coils can be very cheap (£12-25 each) for DIY, while full replacement at garage can exceed this range"
+        ],
+        "evidence": "Multiple owner forums (ClioSport, RenaultForums, RAC Forum) confirm ignition coil failure is extremely common on Clio II/III 1.2 16v and 1.4 16v petrol engines, causing misfires with P030x codes. One forum member noted coil packs are 'VERY common for failing on these engines' and another said Clios and Meganes are 'famous for it.'",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.renaultforums.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-megane-injection-fault",
+      "vehicle": "2003 Renault Megane",
+      "title": "Injection System Fault Warning",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 110,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2003-2023 is overly broad; injection fault warnings are most commonly documented on Megane II (2003-2008) diesel models, less so on later Megane IV",
+          "Repair cost range ($100-$500) is low for serious cases—injector pump, fuel rail, or ECU replacements can cost $1,000-$2,000+",
+          "Severity could arguably be 'high' in some cases since the fault can trigger limp mode or sudden stalling at speed, which owners describe as dangerous"
+        ],
+        "evidence": "Multiple owner forums (Megane Owners Club, Renault Forums, Megane Sport) and Renault-focused repair sites confirm the 'Check Injection' / 'Injection Fault' warning is a well-documented, common issue on Renault Megane (especially Mk2 1.5/1.9 dCi diesels), with causes ranging from injectors, fuel pressure sensors, crankshaft position sensors, and throttle bodies. The cited DTCs (P0335 crankshaft position sensor, P0120 throttle position sensor, P0190 fuel rail pressure sensor) are all valid OBD-II codes consistent with the described causes.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.renaultforums.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-clio-timing-belt-tensioner",
+      "vehicle": "2000 Renault Clio",
+      "title": "Timing Belt Tensioner Failure",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost range ($300-$600) reflects preventative belt/tensioner/water pump replacement only; if the tensioner fails catastrophically on this interference engine, actual repair costs (bent valves, head rebuild) are substantially higher",
+          "Year range 2000-2015 is broad and spans Clio II/III/IV generations with different K-series variants (K4J, K4M, K7J, K7M, K9K); issue is most documented on earlier K4J/K4M petrol engines",
+          "Description says water pump is 'driven by the timing belt' which is accurate for K4M/K4J but the causal direction in forums is often reversed: water pump seizure causes tensioner/belt failure, not the other way around"
+        ],
+        "evidence": "Multiple Renault owner forums (ClioSport, RenaultForums) and engine reference sites confirm timing belt tensioner and water pump failures are well-documented on Clio K-series engines, with the K4J specifically noted to suffer belt breakage 'due to the wedge of the water pump or its tension roller' causing bent valves on this interference engine. The K-Type family (K4J, K4M, K7J, K7M, K9K) was used in Clio II/III/IV across the stated year range.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.renaultforums.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-scenic-parking-brake-failure",
+      "vehicle": "2003 Renault Scenic",
+      "title": "Electric Parking Brake Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range likely too broad: Scenic Mk2/Mk3 (2003-2016) are the main affected generations; Scenic production ended in 2022 (the 2024 Scenic E-Tech is a different EV platform)",
+          "DTC C1126 not corroborated in forum/owner reports; actual codes referenced include DTC 50C6 / 50C4 series (Renault-specific). C1126 may be incorrect or generic",
+          "Trim names 'Expression/Dynamique/Signature' apply mainly to UK Mk2/Mk3 market, not all years cited",
+          "Repair cost range may be low end — owner reports of £536 handbrake kits and full caliper+motor replacements can push costs above $800 at dealers"
+        ],
+        "evidence": "Multiple owner forums (Honest John, Renault Forums, French Car Forum, MyCarly) and Renault's own user manual confirm the electronic parking brake on Scenic Mk2 (2003-2009) and Mk3 (2009-2016) is a well-known failure point, with caliper motors seizing, wiring harness corrosion under the passenger seat, and control module faults causing 'Check Parking Brake' warnings. However, the cited DTC C1126 doesn't match the Renault-specific codes (e.g., DTC 50C649) reported by technicians, and the 2024 end-year is inaccurate since Scenic III production ended ~2016 and Scenic IV ended in 2022.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.renaultforums.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-megane-timing-belt",
+      "vehicle": "2003 Renault Megane",
+      "title": "Timing Belt Premature Failure",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 90,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Cause is misattributed: documented cause is timing belt rubbing against a misaligned fuel pump on the K9K 1.5 dCi engine, not oil contamination from the front crankshaft seal",
+          "Year range 2003-2023 is too broad; the well-documented K9K 1.5 dCi cambelt failure issue centers on Megane II and Megane III (roughly 2003-2016), and the current-generation Megane uses different powertrains",
+          "Repair cost $350-$700 only covers a preventive belt-and-water-pump change; when the belt actually fails on this interference engine, damage typically requires head rebuild or engine replacement costing thousands",
+          "Severity 'critical' is reasonable for catastrophic engine damage but the cost figure conflicts with that severity",
+          "Trim levels (Expression, Dynamique, GT) are irrelevant — issue is engine-specific (K9K 1.5 dCi), not trim-specific",
+          "No DTCs is acceptable since belt failure is mechanical, though post-failure codes like P0340 (camshaft sensor) are commonly reported"
+        ],
+        "evidence": "Multiple Renault owner forums and Honest John document premature cambelt failures on the Megane 1.5 dCi (K9K engine), with the root cause widely attributed to a misaligned fuel pump causing belt wear, not crankshaft seal oil contamination. Renault reduced the change interval and there were VIN-range advisories for K9K 832 engines; the issue is concentrated in Megane II/III era, not the full 2003-2023 span claimed.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.renaultforums.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-zoe-battery-degradation",
+      "vehicle": "2013 Renault Zoe",
+      "title": "Battery Capacity Degradation",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 90,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Capacity loss figure overstated: documented real-world degradation is closer to 10-15% over 5 years, not 20-30%",
+          "Severity should likely be 'medium' rather than 'high' - degradation reduces range but is not safety-critical",
+          "Cold weather is a more commonly cited factor than high ambient temperatures for Zoe range loss",
+          "Many early Zoes had leased batteries with capacity guarantees (replacement below 75% SOH), reducing owner repair cost exposure"
+        ],
+        "evidence": "Battery degradation in early 22kWh Zoes is well-documented in owner forums, academic studies (DTU/EVS38 case study showed ~17.6% loss over 10 years on a 2013 Q210), and industry sources, with replacement batteries priced around €7,400 (22kWh) to €8,900 (41kWh). However, typical degradation is 10-15% over 5 years rather than the 20-30% claimed, and the issue is a range/usability concern rather than safety-critical.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.speakev.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-captur-edc-transmission-shudder",
+      "vehicle": "2013 Renault Captur",
+      "title": "EDC Dual-Clutch Transmission Shudder",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 85,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Clutch type misidentified: Renault EDC (Getrag 6DCT250/DC4) in Captur is a WET dual-clutch, not dry as described",
+          "DTC codes appear generic/borrowed: P0841 is a transmission fluid pressure sensor code commonly associated with Chrysler/Nissan, and P17F0 is documented as a Nissan Altima CVT judder code — neither is specifically tied to Renault EDC judder (which typically logs manufacturer-specific clutch 1/clutch 2 DTCs)",
+          "Year range 2013-2026 is too broad: the Getrag EDC was used primarily in first-gen Capturs (~2013-2019); second-gen and E-Tech hybrid models use different transmissions",
+          "Severity 'high' likely overstated: dealers and owners characterize the car as 'safe to drive' with shudder; more appropriately 'medium' (costly nuisance, not safety-critical)",
+          "Trim levels listed (Expression, Dynamique, Iconic) are UK-market trims that don't all span the full 2013-2026 range"
+        ],
+        "evidence": "Multiple sources (ASR Gearbox Repairs, Captur Owners Club forums, ClickMechanic, FixMyCar) confirm EDC judder/shudder and premature clutch wear are well-documented issues, particularly in 2013-2019 first-gen Capturs with the Getrag-supplied 6DCT250/DC4 wet dual-clutch. However, the description's 'dry clutch' claim contradicts the wet-clutch design, the listed DTCs are not characteristically Renault EDC codes, and the model-year span overstates affected production.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.renaultforums.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-clio-gearbox-bearing",
+      "vehicle": "2005 Renault Clio",
+      "title": "Gearbox Bearing Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 85,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2005-2019 is overly broad; JH3 was primarily used in Clio II/III (roughly 2001-2012), while later Clio IV models more commonly used TL4 alongside JR5",
+          "Repair cost range ($400-$1000) is on the low side — a full gearbox rebuild including differential bearings is often quoted around £700+ (~$900+) in owner forums, and replacement boxes can exceed $1000",
+          "Root cause attribution to 'inadequate lubrication at the differential end of the housing' is not well-supported; forum/technical evidence points more to general wear, hard driving (especially in RS variants), and oil degradation/leaks from selector shaft seals rather than a specific design lubrication flaw"
+        ],
+        "evidence": "Renault Technical Note 6029A confirms JH3 and JR5 manual gearboxes are used in Clio II and Clio III, and multiple owner forums (ClioSport, RAC Forum, French Car Forum) extensively document differential bearing whine as a common progressive failure mode. The issue is real and well-known, but the described root cause is oversimplified and the year range and cost ceiling are slightly off.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.renaultforums.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-scenic-injector-leak-diesel",
+      "vehicle": "2003 Renault Scenic",
+      "title": "Diesel Injector Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 75,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0201/P0202 are for injector electrical circuit faults, not mechanical seal/copper washer leaks - a physical injector seal leak typically does not trigger these codes",
+          "Year range 2003-2024 is too broad - Renault Scenic MPV production ended around 2022/2023, and not all model years had the affected diesel engines",
+          "Repair cost range may be low - if injectors seize in the head (common with this issue), costs can escalate significantly beyond $500",
+          "Severity could arguably be higher - prolonged leaks cause 'diesel black death' which can damage the cylinder head"
+        ],
+        "evidence": "The diesel injector copper washer leak with black tar residue is a well-documented issue on Renault 1.5 dCi engines (confirmed on Scenic II 2004 and similar Renault/Dacia diesels), with forums describing chuffing injectors, tar buildup, and copper fire seal failure. However, DTCs P0201/P0202 specifically indicate cylinder 1/2 injector circuit electrical malfunctions (open circuit/wiring faults), not mechanical seal leakage which is typically diagnosed visually rather than via OBD codes.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-zoe-charging-system",
+      "vehicle": "2013 Renault Zoe",
+      "title": "Charging System Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 65,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Severity should likely be 'medium' rather than 'high' — this is a costly drivability/inconvenience issue, not a safety-critical one (no crash/injury risk documented)",
+          "Year range may be slightly off — Zoe production began in 2012/2013 but the issue is most prominently documented on early models (pre-R240); description doesn't distinguish charger generations (Q210/R240/ZE40/ZE50)",
+          "Description mentions 'connector pin corrosion causes communication errors' which is less commonly cited than earthing/ground impedance sensitivity and BCI (Battery Charging Impossible) errors — the primary documented root causes are charger/PEC module failure and CP earthing issues, not pin corrosion",
+          "DTC field shows 'none' but P6012 (BCB/DCDC converter) is a commonly reported related code",
+          "Repair cost range $0–$2500 is roughly accurate for charger module replacement (~$2,500 reported) but PEC unit replacement can reach £5,000–£7,000 (~$6,000–$9,000), so upper bound may be understated"
+        ],
+        "evidence": "Multiple owner forums (SpeakEV, AEVA, Fuel Included, Medium) and a myenergi support article confirm the Renault Zoe's Chameleon charger has well-documented intermittent charging failures, BCI (Battery Charging Impossible) errors, sensitivity to earthing, and on-board charger/PEC module failures requiring expensive replacement (reports of $2,500 for internal charger module up to £5,000–£7,000 for PEC unit). The P6012 DTC related to the DCDC converter in the BCB is documented for this fault family.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.speakev.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-clio-tce-turbo-coolant-leak",
+      "vehicle": "2012 Renault Clio",
+      "title": "TCe Turbo Coolant Leak",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 60,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes are questionable - P0116 (coolant temp sensor range) and P0217 (engine overheat) are downstream consequences, not direct codes; P0128 would be more typical, and most owners report no DTC at all, just visual leak/low coolant",
+          "Description overemphasizes 'turbocharger coolant lines' - the dominant documented failure is the plastic thermostat housing itself (above the gearbox), not turbo coolant lines",
+          "Year range 2012-2026 is too broad - issue is strongly associated with Mk4 (2012-2019) 0.9 and 1.2 TCe engines; newer 1.0 TCe (Mk5, 2019+) and 2024+ Mk5 hybrid not clearly documented with same fault",
+          "Severity 'high' is debatable - it's a slow seepage that owners often drive with for years; only becomes safety-critical if ignored until overheat/head gasket failure (medium would be more calibrated)"
+        ],
+        "evidence": "Multiple owner forums (ClioSport, Captur Owners Club, Detailing World, Renault Forums) confirm the plastic thermostat housing on TCe engines (especially 0.9 TCe) commonly cracks/leaks, with the seal splitting and the housing going brittle, leading to coolant loss and potential head gasket failure if ignored. Reported repair costs ~£100-£250 ($125-$320) align with the stated range.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.renaultforums.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-captur-infotainment",
+      "vehicle": "2019 Renault Captur",
+      "title": "Infotainment System Glitches",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 55,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost range ($0-$600) appears low - forum reports mention unit replacements costing thousands when OTA updates brick the Easy Link system",
+          "MediaNav is primarily associated with older/entry-level Renaults; second-generation Captur predominantly uses Easy Link (and later OpenR Link), so naming MediaNav alongside Easy Link is slightly inaccurate",
+          "Severity 'low' may be understated - bricked Easy Link units have disabled parking sensors, emergency braking and driving aids per owner reports, suggesting medium severity in worst cases",
+          "Year range extends to 2026 but newer Capturs use OpenR Link (Android Automotive), not Easy Link"
+        ],
+        "evidence": "Multiple owner forums (Renault Captur Owners Club, Renault Forums UK) and consumer-help sites document widespread Easy Link touchscreen freezes, Bluetooth issues, and notably OTA software updates 'bricking' units, requiring Bosch CPU replacement with long waits. Carnews.nl confirms the Easy Link touchscreen can freeze, fail to respond or restart repeatedly on the Captur.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.renaultforums.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-kadjar-dpf-regeneration",
+      "vehicle": "2015 Renault Kadjar",
+      "title": "DPF Regeneration Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 55,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2015-2022 slightly off: Kadjar was introduced at 2015 Geneva Motor Show but sales started in 2015 and ended around 2022; trim names (Expression, Dynamique, Signature) are UK-specific and may not apply to all years",
+          "Severity rated 'high' is likely overstated — DPF clogging causes limp mode and performance loss but is not safety-critical; medium would be better calibrated",
+          "Repair cost lower bound ($200) is optimistic; DPF replacement commonly exceeds $1000-$1500, though cleaning/regen services can be cheaper",
+          "DTC codes P2463 and P2002 are generic SAE codes; Renault often uses manufacturer-specific codes (DF codes) — these generic codes are plausible but not Renault-specific"
+        ],
+        "evidence": "Multiple sources confirm DPF regeneration failures are a well-documented issue on Renault Kadjar diesel models (1.5 dCi and 1.6 dCi engines), commonly caused by short urban trips preventing regeneration. The DTC codes P2463 (DPF Soot Accumulation/Restriction) and P2002 (DPF Efficiency Below Threshold) are correctly identified as DPF-related codes that frequently appear together in this exact failure mode.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.renaultforums.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-captur-tce-turbo-issues",
+      "vehicle": "2013 Renault Captur",
+      "title": "TCe Turbocharger Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 50,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0299/P0234 are generic turbo boost codes; wastegate rattle is typically a mechanical noise complaint that does not always trigger these specific DTCs - the Renault TB 71538 describes it as a noise concern without specific fault codes",
+          "Year range 2013-2026 is overly broad; the well-documented wastegate rattle issue per Renault Technical Bulletin 71538 specifically affects TCe 90 (H4D) and 1.3 TCe (H5H) engines from approximately 2018 onward, while 1.2 TCe (H5F) Mk1 (2013-2019) has different turbo concerns (oil seal degradation tied to oil consumption defect)",
+          "Repair cost range $200-$1200 is reasonable for wastegate-only repair but a full turbo replacement on these engines typically exceeds this range",
+          "Severity 'medium' is appropriate for the rattle itself, but Renault TB 71538 indicates turbos are no longer replaced under warranty for this noise as it's considered cosmetic/non-damaging"
+        ],
+        "evidence": "Renault Technical Bulletin 71538 documents wastegate rod/actuator rattle on TCe 90 and 1.3 TCe engines causing metallic clicking on deceleration from 2000-1500 RPM, and multiple sources confirm 1.2 TCe turbo oil seal degradation linked to the engine's oil consumption defect. The issue is real and well-documented across Captur, Clio, and Dacia models sharing these engines.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.renaultforums.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-megane-etech-software-bugs",
+      "vehicle": "2022 Renault Megane E-Tech",
+      "title": "Software Bugs and OTA Update Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 50,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Specific symptoms listed (phantom notifications, inaccurate range estimation, climate control malfunctions) are not the most commonly reported software issues - more commonly cited are R-Link/OpenR Link black screen, nav freezing, audio delays, parking sensor errors, charging-related firmware bugs, and failed/stuck OTA updates",
+          "No DTC codes listed is reasonable for infotainment software issues, but generic infotainment DTCs could exist",
+          "Year range 2022-2026 is broadly correct (Megane E-Tech launched 2022) but most documented issues cluster in 2022-2024 early-build cars",
+          "Repair cost range $0-$300 is reasonable since most fixes are free OTA/dealer software updates under warranty"
+        ],
+        "evidence": "Multiple owner forums (meganeelectricforums.com, speakev.com, gps-rlink.com) confirm widespread software/OTA issues on the Megane E-Tech including failed OTA updates, stuck installations, R-Link black screens, nav/audio freezes, parking sensor errors, and charging firmware bugs requiring FOTA fixes. However the specific symptoms in the entry (phantom notifications, range inaccuracy, climate control malfunctions) are not the predominantly documented complaints - the actual common issues are infotainment/R-Link and charging-related.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.speakev.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-kadjar-cvt-issues",
+      "vehicle": "2015 Renault Kadjar",
+      "title": "CVT Transmission Issues",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 45,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Renault Kadjar primarily uses a 7-speed EDC dual-clutch automatic, not a CVT - issue misidentifies transmission type",
+          "Description of CVT belt and pulley wear does not apply to the EDC dual-clutch transmission used in most Kadjars",
+          "DTC codes P0868 and P17F1 are not specifically documented for this issue on the Kadjar",
+          "Severity 'high' (safety-critical) is likely miscategorized - transmission judder is typically a drivability/cost issue, better classified as medium",
+          "Trim levels listed (Expression, Dynamique, Signature) are UK trims but EDC auto was only available on Dynamique Nav and above, not Expression"
+        ],
+        "evidence": "Multiple authoritative sources (Parkers, Renault dealer announcements, FleetNews) confirm the Kadjar uses a 7-speed EDC dual-clutch automatic transmission, not a CVT. While some owners report transmission judder and delayed response (real EDC issues), the described CVT belt/pulley wear mechanism does not apply to the dual-clutch hardware actually fitted to most Kadjars.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.renaultforums.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-koleos-cvt-judder",
+      "vehicle": "2008 Renault Koleos",
+      "title": "CVT Judder and Slipping",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 45,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0868 and P0730 are generic automatic transmission codes more typical of conventional ATs; CVT-specific judder/slip codes are usually in the P0840-P0847 or P1700-series range",
+          "Severity 'high' is debatable - CVT failure is costly but not directly safety-critical, arguably 'medium'",
+          "Year range '2008-2024' is broadly correct (first gen launched 2008, second gen 2016-onward), though Initiale Paris is a second-gen trim only and not available across the full range",
+          "Issue is more strongly tied to higher mileage (80,000+ km) than to specific model years"
+        ],
+        "evidence": "Multiple sources (AutoDoc, CarExamer, MotorHub, owner forums, Renault forums) confirm the Jatco/X-Tronic CVT in the Koleos commonly develops slipping, judder, grinding, and fluid degradation issues, typically after ~80,000-100,000 km, with the steel-belt Jatco unit being more stressed in the heavier Koleos than in lighter Nissan applications. Repair costs ranging from fluid service to full rebuild/replacement align with the $300-$3500 range cited.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.renaultforums.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-koleos-infotainment-freeze",
+      "vehicle": "2017 Renault Koleos",
+      "title": "Infotainment System Freeze",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 40,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple independent sources confirm the R-Link 2 infotainment in the Renault Koleos II freezes, reboots unexpectedly, and has Bluetooth/CarPlay connectivity issues, often after software updates. Owner forums and Apple discussion threads corroborate the CarPlay-related complaints, and the low severity/nuisance categorization with software-update remedies aligns with reported fixes.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.renaultforums.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-zoe-motor-mount-vibration",
+      "vehicle": "2013 Renault Zoe",
+      "title": "Motor Mount Vibration",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 35,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "No specific evidence of motor mount failure being a documented widespread issue for the Renault Zoe; documented Zoe drivetrain vibration/noise issues relate to motor bearings and brushes, not mounts",
+          "Trim names 'Play' and 'Iconic' did not exist across the entire 2013-2024 range; these are later UK trim designations (post-2019 ZE50 era)",
+          "Description's claim that mounts deteriorate 'from high-torque EV drivetrain characteristics' is technically dubious — EVs generally have less vibration than ICE, and motor mounts typically last longer",
+          "Repair cost range ($150-$400) is plausible for generic motor mount work but unverified for Zoe specifically",
+          "Severity rating 'medium' may be reasonable for a generic mount issue, but the entire premise lacks supporting evidence"
+        ],
+        "evidence": "Searches across owner forums (SpeakEV, Renault Forums), EV repair specialists (EV Clinic), and Q&A sites surface well-documented Zoe drivetrain issues centered on motor bearings, motor brushes/carbon holders, and gearbox bearings — not motor mounts. No NHTSA TSBs or forum threads specifically identify motor mount wear as a characteristic Zoe problem.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.speakev.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-twizy-12v-battery-discharge-and-no-start",
+      "vehicle": "2012 Renault Twizy",
+      "title": "12V Battery Discharge and No-Start",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Severity could arguably be 'medium' rather than 'high' since the issue strands the vehicle but is not directly safety-critical (no crash/fire risk); however, complete loss of drive capability can be argued as high"
+        ],
+        "evidence": "Multiple owner forums (SpeakEV, OpenVehicles, JustAnswer, MyCarly) extensively document Twizy 12V auxiliary battery failures causing no-start, dash blackouts, blinking battery warning, and refusal to engage drive across 2012-2019 model years. Forum experts explicitly note 'Twizys are known for this' with the 12V battery swelling/failing and preventing DC-DC relays from holding, with aftermarket EK143 batteries recommended as a common fix.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-twizy-brake-seizure-and-uneven-pad-wear",
+      "vehicle": "2012 Renault Twizy",
+      "title": "Brake Seizure and Uneven Pad Wear",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple Renault Twizy owner forum threads (SpeakEV) confirm widespread sticking/seizing rear calipers, dragging brakes, uneven pad wear, and corroded discs attributed to underuse of friction brakes due to regenerative braking. There was also a Renault recall related to brake caliper/fluid issues, and MOT failures for poor handbrake are commonly reported.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-twizy-door-window-and-latch-water-ingress-problems",
+      "vehicle": "2012 Renault Twizy",
+      "title": "Door, Window, and Latch Water Ingress Problems",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple owner forums, reviews, and aftermarket window vendors confirm the Twizy's open-sided/half-door design is well-known for water ingress, draughts, and rain entering around the optional zip-on side windows; the original Renault soft windows are widely criticized as leaky with unreliable zips. The issue is a nuisance rather than safety-critical, no DTCs apply, and repair costs (reseals, window kit replacements, latch adjustments) fall within the stated range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-twizy-drive-motor-bearing-and-gear-reduction-noise",
+      "vehicle": "2012 Renault Twizy",
+      "title": "Drive Motor Bearing and Gear Reduction Noise",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Drive motor bearing/gearbox failure is a well-documented issue for the Renault Zoe, NOT the Renault Twizy - these vehicles share branding but use entirely different drivetrains",
+          "The most commonly reported Twizy drivetrain/rear-end noise complaints are actually brake rubbing/corrosion issues (from sitting in rain), not motor or gearbox bearings",
+          "Twizy gearbox whine is documented as a normal operational characteristic of the vehicle when new, not a wear-related fault",
+          "No NHTSA complaints, TSBs, or owner-forum consensus found specifically identifying motor/gearbox bearing failure as a known Twizy issue",
+          "Repair cost range may be inaccurate - if motor replacement were required (as on Zoe), costs typically exceed $2200; the Twizy's smaller motor would likely be cheaper, but no reliable repair data exists",
+          "Description appears to conflate the well-known Zoe motor bearing issue with the Twizy"
+        ],
+        "evidence": "Searches turned up extensive documentation of drive-motor bearing failures on the Renault Zoe (a different model with an electrically-excited synchronous motor from the Cléon factory), but no evidence of a comparable widespread bearing/gear-noise issue specific to the Twizy. The dominant documented Twizy complaint on owner forums (SpeakEV) is rear brake corrosion/rubbing noise from vehicles left standing, which Renault has acknowledged and sometimes covered. A 2012 autoevolution review describes Twizy gearbox whine as a normal design characteristic.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "renault-twizy-on-board-charger-failure-or-charge-interruption",
+      "vehicle": "2012 Renault Twizy",
+      "title": "On-Board Charger Failure or Charge Interruption",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I have sufficient evidence. The issue is well-documented across multiple forums. Severity assessment: this is not safety-critical (vehicle just won't charge), more of a costly inconvenience - \"medium\" would be more appropriate than \"high\". Cost range $150-$2500 is reasonable (forum mentions ~1500-1600€ for full replacement, ~550€ for module alone, and DIY fixes for cheaper).\n\n{\n  \"verdict\": \"minor"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    }
+  ]
+}

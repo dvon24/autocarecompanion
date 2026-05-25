@@ -1,0 +1,426 @@
+{
+  "sampledAt": "2026-05-18T07:31:21.623Z",
+  "total": 19,
+  "verified": 5,
+  "minor": 10,
+  "major": 3,
+  "fabricated": 0,
+  "errors": 1,
+  "deadLinks": 1,
+  "totalLinks": 4,
+  "results": [
+    {
+      "id": "fiat-500l-dct-shudder",
+      "vehicle": "2014 Fiat 500L",
+      "title": "Dual-Clutch Transmission Shudder",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 210,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range incorrect: DDCT was offered primarily in 2014; only the Pop trim retained DDCT through 2015-2016; from 2017 onward all 500L trims used the Aisin torque-converter automatic, so 2017-2020 should not be included",
+          "Trim list incorrect: Trekking and Lounge trims got the Aisin conventional automatic starting in 2015, not DDCT; only the Pop trim retained DDCT in 2015-2016",
+          "DTC codes are generic and not the codes typically documented for this specific failure; real-world Fiat 500L DDCT shudder/failure codes commonly include P2871 (Clutch 1 Performance), P1D6B (Clutch 1 Actuator Position), P1CB1 (Gear Shift Actuator Engage Failure), and P2930",
+          "P0868 (transmission fluid pressure low) is a questionable fit for a dual-DRY-clutch design",
+          "Repair cost ceiling may be low: forum reports cite repairs approaching or exceeding $4,000, with full transmission replacement often recommended"
+        ],
+        "evidence": "Owner forums, an Edmunds recall article, and a Gears Magazine technical article confirm the C635 DDCT in the 2014 Fiat 500L has well-documented shudder, slipping, limp-mode and clutch-overheating problems, with a 2014 NHTSA recall (14V103000) for transmission software. However, the DDCT was largely phased out after 2014 in favor of the Aisin conventional automatic (retained only in the Pop trim through 2016), making the 2014-2020 year range and Trekking/Lounge trim inclusion inaccurate, and the listed DTCs do not match those most commonly reported by dealers for this failure mode.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-500-multiair-actuator",
+      "vehicle": "2012 Fiat 500",
+      "title": "MultiAir Actuator Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 185,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes are incorrect - actual MultiAir-specific codes are P1065/P1067/P1069/P106B (cylinder-specific oil supply solenoid codes), not P0014/P1014. P0014 is a generic VVT camshaft over-advanced code typically caused by low oil, not MultiAir actuator failure specifically",
+          "Repair cost range ($800-$1400) appears low - forum reports and shop quotes commonly cite $2000-$3000 for the repair including labor, with the MultiAir unit alone running $550-$1300+",
+          "Severity may be miscategorized - while it can cause drivability issues, it's typically a costly repair rather than safety-critical; 'medium' may be more appropriate"
+        ],
+        "evidence": "MultiAir (also called UniAir) electro-hydraulic actuator failure is a well-documented issue on Fiat 1.4L MultiAir engines, confirmed via multiple owner forums (FiatForum, Fiat500USAForum, Fiat500Owners) and parts supplier articles. However, the genuine MultiAir DTCs are P1065/P1067/P1069/P106B (cylinder-specific solenoid codes), and repair quotes commonly range $2000-$3000 installed, well above the listed range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-500x-transmission-shifting",
+      "vehicle": "2016 Fiat 500X",
+      "title": "Transmission Harsh Shifting",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 165,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2016-2023 is broader than documented class action (2016-2020); harsh shifting complaints concentrate in earlier model years (2016-2018)",
+          "P0700 is a generic 'MIL request' code that doesn't specifically indicate harsh shifting; it's an umbrella code that accompanies more specific DTCs",
+          "Trim names listed (Pop, Trekking, Lounge, Sport) mix early (2016-2018) and later (2019+) trim names which didn't all coexist across the full year range",
+          "Severity could arguably be 'high' given Milisits v. FCA class action cites sudden loss of power and abrupt propulsion as safety concerns"
+        ],
+        "evidence": "The ZF 9HP (948TE) 9-speed transmission in the 2016-2020 Fiat 500X is the subject of the Milisits v. FCA class action citing rough/delayed shifting, with extensive owner forum complaints about harsh 1-2 shifts and cold-weather behavior often resolved (temporarily) by TCM software updates. DTC P0730 (incorrect gear ratio) and P0700 (transmission control system malfunction) are legitimate transmission codes that commonly appear together, though P0700 is a generic umbrella code rather than harsh-shift specific.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-500-oil-consumption",
+      "vehicle": "2012 Fiat 500",
+      "title": "Excessive Oil Consumption",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 140,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "No DTCs listed is reasonable since oil consumption typically doesn't trigger codes, but related issues can set P1524 (Oil Pressure Out Of Range) on EAF turbo engines per TSB 18-053-16",
+          "Repair cost upper bound ($1500) may be low—severe cases require long block replacement which exceeds this; PCV/AOS/valve seal repairs fit the lower range",
+          "Fiat's own accepted consumption spec is roughly 1qt/2000mi (first 50k mi) and 1qt/1000mi after, so the description is accurate but it's worth noting Fiat considers some of this 'normal'",
+          "The class-action lawsuit and formal TSB 09-013-22 oil consumption test apply primarily to the 2.4L Tigershark MultiAir II (not the 1.4L in the Fiat 500), so the 1.4L issue is forum/owner-documented rather than subject to a formal extended warranty"
+        ],
+        "evidence": "Excessive oil consumption on the 1.4L MultiAir/Turbo in 2012-2019 Fiat 500/Abarth is extensively documented across owner forums (Fiat500owners, Fiat500USAForum, 500Crew), with Fiat's own service bulletin citing 1qt/1000 miles as acceptable (1qt/500 miles >50K mi). Common contributors cited include PCV/AOS valve, valve seals, turbo seals, and piston ring issues, matching the description; however, the formal FCA oil-consumption class action and TSB 09-013-22 apply to the 2.4L Tigershark, not the 1.4L.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.consumerreports.org/cars/fiat/500/",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-500x-oil-consumption-24",
+      "vehicle": "2016 Fiat 500X",
+      "title": "Oil Consumption 2.4L Tigershark Engine",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 130,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Oil consumption rate understated: owners commonly report 1 quart per ~1,000 miles, not 1,500-2,500 miles",
+          "Year range partially inaccurate: official class action settlement (Wood v. FCA) covers 2016-2018 Fiat 500X, though some lawsuit filings cite 2016-2020",
+          "Severity may be undercalibrated: defect causes sudden engine stalling/shutdown without low-oil warning, posing a safety risk that arguably warrants 'high' rather than 'medium'",
+          "Repair cost ceiling likely too low: engine long block replacement (the official remedy under CSN W80) typically exceeds $2,000; FCA pays $340 supplemental + extended 7yr/100k powertrain warranty under settlement"
+        ],
+        "evidence": "The 2.4L Tigershark MultiAir II oil consumption defect is extensively documented via the Wood v. FCA US class action settlement (Case 5:20-cv-11054, E.D. Mich.), an $8M settlement covering 2016-2018 Fiat 500X among other FCA models, with FCA issuing Customer Service Notifications (CSN W20, W80, W84) including PCM reflashes and engine long block replacements. Owner reports, lawsuits, and FCA's own oil consumption test protocol consistently cite ~1 quart per 1,000 miles, with documented risk of unexpected engine stalling due to a piston ring defect and faulty oil-level indicator.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.carcomplaints.com/Fiat/500X/2017/engine/",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-500-clutch-shudder",
+      "vehicle": "2012 Fiat 500",
+      "title": "Manual Clutch Shudder and Chatter",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 120,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Repair cost upper bound is slightly low when dual-mass flywheel replacement is included (forum reports indicate ~$1000-$1300 USD for combined clutch+DMF job)",
+          "DMF presence varies by engine variant—confirmed on TwinAir and Abarth/Turbo 1.4, but base 1.4 petrol Pop/Lounge models may use a single-mass flywheel per some forum/eLearn references"
+        ],
+        "evidence": "Multiple owner forums (Fiat500USAForum, FiatForum, Fiat500Owners) and repair guides confirm clutch shudder/judder during 1st and reverse engagement is a documented Fiat 500 manual transmission complaint, with dual-mass flywheel failure (rattle, vibration, judder) confirmed especially on TwinAir and 2012 Abarth models. No DTCs are associated since this is a mechanical wear issue; repair costs reported in forums (~£800/$1000+ for combined clutch and DMF) roughly align with the $600-$1200 range, though high end may run higher when DMF is included.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-500-eps-failure",
+      "vehicle": "2012 Fiat 500",
+      "title": "Electric Power Steering (EPS) Failure",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 95,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC code C1001 is associated with 'Rear Left External Sensor' per some sources, not specifically the EPS motor; the most commonly documented EPS-specific codes are C1002 (Steering Column Torque Sensor) and others like C1607/C1608 (Motor Fault/Internal ECU Memory Error)",
+          "Year range may be slightly broad - documented EPS recall was for pre-2014 models, though forum and remanufacturer reports indicate the issue persists across the 2012-2019 generation",
+          "Repair cost range is plausible but on the low end - dealer replacement units alone can exceed £800 + VAT plus labor and programming, potentially exceeding $1500 at dealer pricing"
+        ],
+        "evidence": "Multiple independent sources (ecutesting.com, sinspeed, Power Steering Services, Western Power Steering, Blackcircles) confirm the Fiat 500 EPS column failure is a very common, well-documented fault typically caused by torque sensor or motor failure in the steering column. A UK recall was issued in June 2014 for EPS wiring issues, and the issue is widely reported on Fiat Forum and NHTSA complaints across the 2012-2019 generation.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2014/FIAT/500",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "fiat-500x-infotainment-freeze",
+      "vehicle": "2016 Fiat 500X",
+      "title": "Uconnect Infotainment Freezing",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 95,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Backup camera blackout symptom not strongly corroborated in sources—most reports center on freezing, reboot loops, and Bluetooth/USB issues rather than rearview camera failure",
+          "Repair cost upper bound ($800) may be slightly low; forum reports cite ~£1,000 (~$1,200+) for full unit replacement, though firmware reflashes are often free under warranty"
+        ],
+        "evidence": "Multiple owner forums (FiatForum, Fiat500Owners, Fiat500USAForum, 500XOwnersClub) document Uconnect freezing, reboot loops, stuck Fiat logo, and Bluetooth/USB issues across 2015-2018+ Fiat 500X and related Stellantis vehicles, with fixes ranging from firmware reflash to full head unit replacement (~£1k quoted). A third-party automotive issues site also lists Uconnect freezing/random restart and Bluetooth pairing loss as a known 500X problem. No DTC codes are typically associated (consistent with entry), no NHTSA recall specific to infotainment freeze on 500X, and severity as 'low/nuisance' is appropriate.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-500l-strut-noise",
+      "vehicle": "2014 Fiat 500L",
+      "title": "Front Suspension Strut Noise",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 85,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "RepairPal lists struts and strut mounts among the most common causes of rattling/clunking noise on the Fiat 500L, and the broader Fiat 500 platform (which shares MacPherson strut design) has extensive owner-reported strut top mount and bearing failures causing clunking over bumps and creaking during steering. No DTCs apply since this is a purely mechanical NVH issue, severity as nuisance-level is appropriate, and the $300-$700 range aligns with typical strut mount/bearing replacement costs.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.carcomplaints.com/Fiat/500L/2016/suspension/",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-500x-water-pump",
+      "vehicle": "2016 Fiat 500X",
+      "title": "Water Pump Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 80,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "P0217 is a generic engine overheat code, not a water-pump-specific code; a water pump failure may trigger it indirectly but more specific codes (e.g., P0480/P0128) or no code at all is common",
+          "Repair cost range ($400-$900) is roughly accurate but RepairPal cites $566-$612 and KBB cites $375-$787, so the upper bound is slightly high",
+          "No manufacturer TSB or NHTSA recall specifically targets the 500X water pump; evidence is anecdotal forum/owner reports rather than a widespread documented defect"
+        ],
+        "evidence": "Forum posts (FiatForum, fiat500owners) and RepairPal/KBB confirm water pump leaks and impeller/corrosion failures do occur on the 2016+ Fiat 500X, with overheating as a symptom and P0217 listed as a possible related overheat code. However, P0217 is a generic over-temperature DTC not specific to water pump failure, and no formal TSB/recall was found tying this to all 2016-2023 model years.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-500-input-shaft-bearing",
+      "vehicle": "2012 Fiat 500",
+      "title": "Transmission Input Shaft Bearing Noise",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 75,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description uses ambiguous 'clutch engaged' terminology; the documented symptom is that noise is present at idle in neutral with clutch pedal released (engaged) and disappears when clutch pedal is depressed (disengaged)",
+          "Repair cost range may be slightly low — specialist quotes for full gearbox repair can reach higher (one Australian quote was ~$4000), though $800–$2000 is reasonable for a bearing/seal replacement at most US shops",
+          "Issue is more strongly documented on the manual (C514) gearbox; year range 2012-2019 is plausible but the Abarth uses a different (C510-derivative) transmission and may not share identical failure rate"
+        ],
+        "evidence": "Multiple owner forums (Fiat500USAForum, FiatForum, Fiat500Owners) and a transmission specialist (Eco Torque) document input shaft bearing failure on the C514.5 manual gearbox used in the Fiat 500, producing a whine/grind that disappears when the clutch pedal is depressed. No DTC codes are associated since this is a mechanical noise issue, consistent with the entry.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-500l-bcm-electrical",
+      "vehicle": "2014 Fiat 500L",
+      "title": "Body Control Module (BCM) Electrical Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 70,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "BCM electrical issues are well-documented for the Fiat 500 hatchback (2012-2017), but the specific pattern described is not clearly documented for the 500L platform — these are different vehicles with different BCMs",
+          "Water intrusion at the BCM connector under the dashboard is not a documented contributing factor; 500L water/wiring issues are more commonly reported in the rear hatch harness, not the dashboard BCM",
+          "DTC U0140 (Lost Communication with BCM) is plausible/generic, but B1A00 is not a commonly cited code for this specific failure mode in Fiat documentation",
+          "Year range 2014-2020 may be over-broad; documented BCM-related complaints cluster on earlier model years (2014-2017)",
+          "The dominant electrical/electronic complaints on the 500L are transmission/PCM-related (NHTSA 17V192), not BCM-related — severity and symptom mix appear conflated with Fiat 500 hatchback issues",
+          "Repair cost range is plausible for BCM repair/replacement plus Proxi Configuration, but assumes the issue actually applies"
+        ],
+        "evidence": "Searches confirm BCM failures are a well-known issue on the 2012-2017 Fiat 500 hatchback (headlights stuck on, power window/lock failures, requiring Proxi Configuration after replacement), but evidence specifically tying this failure pattern — especially water intrusion at the dashboard BCM connector — to the 2014-2020 Fiat 500L is weak. NHTSA complaints for the 500L are dominated by transmission/powertrain issues (17V192 recall) and rear hatch wiring harness problems, not dashboard BCM water intrusion.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-500-ac-compressor",
+      "vehicle": "2012 Fiat 500",
+      "title": "AC Compressor Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 65,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple sources confirm AC compressor failure (clutch/bearing) is a documented issue on 2012-2019 Fiat 500, with a TSB addressing defective clutches on units built before October 2015, and reports that a seized compressor can break the serpentine belt and contaminate the system. Repair cost range of $600-$1200 and medium severity (not safety-critical but costly) align with typical AC compressor replacement estimates; no specific DTCs are universally tied to this mechanical failure.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-124-spider-boost-leak",
+      "vehicle": "2017 Fiat 124 Spider",
+      "title": "Turbo Boost Leak from Intercooler Piping",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 60,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Stock piping is plastic hard pipes with rubber hose joints, not 'silicone couplers' (silicone is aftermarket); actual common leak point is the gasketed plastic flange at the intercooler inlet/outlet",
+          "Repair cost range may be low — proper fix often requires intercooler replacement (~$500-$800+) or aftermarket FMIC kit, not just re-clamping",
+          "Issue affects all trims similarly (Classica/Lusso/Abarth share the same 1.4 MultiAir turbo plumbing); not specifically 'more common on Abarth tune' — though higher boost on Abarth may surface leaks faster"
+        ],
+        "evidence": "Multiple threads on 124spider.org confirm boost leaks from the stock intercooler piping/gaskets are a widespread, well-known issue on 2017+ Fiat 124 Spiders, frequently triggering P0299 underboost codes and often requiring intercooler/FMIC replacement. The leak typically occurs at the plastic intercooler flange gasket rather than silicone couplers, and the issue affects both base and Abarth variants.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-500l-wastegate-rattle",
+      "vehicle": "2014 Fiat 500L",
+      "title": "Turbo Wastegate Rattle",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 55,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "P0299 is an underboost code, not specifically triggered by wastegate rattle - a worn actuator linkage that only rattles often sets no DTC at all; P0299 appears only if wear progresses to cause boost loss",
+          "Description conflates a mechanical noise symptom with a boost performance DTC - these often occur separately"
+        ],
+        "evidence": "Forum reports (FiatForum, Fiat500USA) confirm wastegate actuator linkage wear/rattle is a documented issue on Fiat turbo engines including the 500L 1.4L MultiAir, with symptoms like metallic chatter and lateral play in the actuator arm. P0299 is universally defined as 'Turbocharger Underboost Condition' caused by boost leaks or stuck/worn wastegates, but a simple rattle without boost loss typically does not set this code.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-124-spider-infotainment",
+      "vehicle": "2017 Fiat 124 Spider",
+      "title": "Infotainment System Lag and Connectivity Issues",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 50,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "CarPlay/Android Auto was not factory-available on early 2017 cars — required hardware retrofit, not just 'unreliable connections'",
+          "Repair cost upper bound may be low if CMU/screen digitizer replacement is needed (ghost-touch/delamination repairs can exceed $400)"
+        ],
+        "evidence": "Multiple owner forum threads and the dedicated 21st Century Fiat 124 Spider blog confirm the Mazda-sourced CMU/Mazda Connect infotainment in 2017-2020 124 Spiders suffers from slow performance, memory limits, Bluetooth dropouts, lockups requiring reboot, and ghost-touch/delamination on the touchscreen. Early 2017 firmware (v56) notably lacked CarPlay/Android Auto and had documented Bluetooth deficiencies.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-124-spider-soft-top",
+      "vehicle": "2017 Fiat 124 Spider",
+      "title": "Soft Top Mechanism Binding",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 45,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "The search results indicate the documented soft top issues for the 2017-2020 Fiat 124 Spider are primarily about: (1) top rubbing on roll bar covers, and (2) inner liner sagging/coming loose. The described \"binding mechanism in cold weather\" and \"windshield header latch misalignment\" aren't really the headline issues - though the latch and operation issues do exist somewhat. Let me note that the d"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-500e-12v-battery-drain",
+      "vehicle": "2024 Fiat 500e",
+      "title": "12V Auxiliary Battery Drain",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 40,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "The vast majority of documented 12V drain complaints are for the first-generation 500e (2013-2019), not the new 2024-2026 platform sold as 'Inspired By'/'La Prima' in the US",
+          "Limited direct evidence specifically tying this issue to US 2024-2026 model years; most evidence comes from prior-gen US cars and EU La Prima (2021-2022)",
+          "DTC codes listed as 'none' is plausible since the issue is often a parasitic/software drain with no specific stored code, though BPCM/telematics/radio fault codes are sometimes observed",
+          "Repair cost range ($150-$400) is reasonable for a 12V battery replacement but may understate diagnostic costs if a module/software fix is required"
+        ],
+        "evidence": "Forum and Q&A sources extensively document 12V auxiliary battery drain on the Fiat 500e causing no-start and fob-unlock failure, with background modules and software glitches keeping the car awake; however, the bulk of documentation pertains to the 2013-2019 first-generation 500e, with some EU La Prima (2021-2022) reports of similar 12V drain on the new platform, but minimal US 2024-2026-specific documentation was found.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "fiat-500e-charging-port",
+      "vehicle": "2024 Fiat 500e",
+      "title": "Charging Port Connection Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 35,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range may be too broad - 2026 model availability unverified; current US-market 500e is primarily 2024-2025",
+          "Repair cost upper bound ($800) may be low - onboard charger replacement out of warranty can be significantly more expensive",
+          "Description conflates station-side issues with vehicle-side issues; many reports trace to specific charging stations rather than the car"
+        ],
+        "evidence": "Multiple sources confirm 2024+ Fiat 500e owners report inconsistent CCS DC fast charging behavior, including 'Service Electric Vehicle System' warnings and sessions cutting off early, with some issues tied to third-party networks rather than the car itself. NHTSA complaints and owner forums (Fiat500Owners, Recharged) document charging-system issues, though no specific TSB or recall directly addresses CCS connection failures as described.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    }
+  ]
+}

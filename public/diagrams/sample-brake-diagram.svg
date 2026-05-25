@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <style>
+      .part-outline { fill: none; stroke: #333; stroke-width: 2; }
+      .part-fill { fill: #e8e8e8; stroke: #333; stroke-width: 1.5; }
+      .callout-line { stroke: #0066cc; stroke-width: 1.5; stroke-dasharray: 4,2; }
+      .callout-circle { fill: #0066cc; }
+      .callout-text { font-family: Arial, sans-serif; font-size: 12px; fill: #333; }
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #222; }
+      .part-label { font-family: Arial, sans-serif; font-size: 11px; fill: #0066cc; font-weight: 500; }
+      .highlight { fill: #ffeb3b; fill-opacity: 0.3; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" class="title">Disc Brake Assembly - Front</text>
+
+  <!-- Brake Rotor (Disc) -->
+  <ellipse cx="350" cy="300" rx="140" ry="140" class="part-fill"/>
+  <ellipse cx="350" cy="300" rx="120" ry="120" fill="#d0d0d0" stroke="#333" stroke-width="1"/>
+  <ellipse cx="350" cy="300" rx="45" ry="45" fill="#999" stroke="#333" stroke-width="1.5"/>
+  <!-- Rotor ventilation slots -->
+  <g stroke="#888" stroke-width="1" fill="none">
+    <line x1="280" y1="260" x2="310" y2="290"/>
+    <line x1="270" y1="300" x2="300" y2="300"/>
+    <line x1="280" y1="340" x2="310" y2="310"/>
+    <line x1="390" y1="260" x2="420" y2="290"/>
+    <line x1="400" y1="300" x2="430" y2="300"/>
+    <line x1="390" y1="340" x2="420" y2="310"/>
+  </g>
+  <!-- Lug holes -->
+  <circle cx="350" cy="255" r="8" fill="#666"/>
+  <circle cx="395" cy="277" r="8" fill="#666"/>
+  <circle cx="395" cy="323" r="8" fill="#666"/>
+  <circle cx="350" cy="345" r="8" fill="#666"/>
+  <circle cx="305" cy="323" r="8" fill="#666"/>
+  <circle cx="305" cy="277" r="8" fill="#666"/>
+
+  <!-- Brake Caliper -->
+  <rect x="440" y="240" width="80" height="120" rx="10" class="part-fill" fill="#c0c0c0"/>
+  <rect x="450" y="255" width="60" height="35" rx="5" fill="#888" stroke="#333"/>
+  <rect x="450" y="310" width="60" height="35" rx="5" fill="#888" stroke="#333"/>
+  <!-- Caliper mounting bolts -->
+  <circle cx="460" cy="250" r="6" fill="#555"/>
+  <circle cx="500" cy="250" r="6" fill="#555"/>
+  <circle cx="460" cy="350" r="6" fill="#555"/>
+  <circle cx="500" cy="350" r="6" fill="#555"/>
+
+  <!-- Brake Pads (inside caliper) -->
+  <rect x="430" y="270" width="12" height="60" fill="#8B4513" stroke="#333" stroke-width="1"/>
+  <rect x="522" y="270" width="12" height="60" fill="#8B4513" stroke="#333" stroke-width="1"/>
+
+  <!-- Brake Line -->
+  <path d="M520 260 Q560 260 560 220 Q560 180 590 180" fill="none" stroke="#333" stroke-width="4"/>
+  <path d="M520 260 Q560 260 560 220 Q560 180 590 180" fill="none" stroke="#666" stroke-width="2"/>
+
+  <!-- Bleeder Valve -->
+  <rect x="515" y="245" width="15" height="20" fill="#888" stroke="#333"/>
+  <rect x="518" y="240" width="9" height="8" fill="#666" stroke="#333"/>
+
+  <!-- Callout Lines and Labels -->
+
+  <!-- 1. Brake Rotor -->
+  <line x1="250" y1="200" x2="300" y2="250" class="callout-line"/>
+  <circle cx="250" cy="200" r="12" class="callout-circle"/>
+  <text x="250" y="205" text-anchor="middle" fill="white" font-size="11" font-weight="bold">1</text>
+  <text x="145" y="195" class="part-label">Brake Rotor (Disc)</text>
+  <text x="145" y="208" class="callout-text">Machining spec: 0.002" max runout</text>
+
+  <!-- 2. Brake Caliper -->
+  <line x1="560" y1="200" x2="500" y2="260" class="callout-line"/>
+  <circle cx="560" cy="200" r="12" class="callout-circle"/>
+  <text x="560" y="205" text-anchor="middle" fill="white" font-size="11" font-weight="bold">2</text>
+  <text x="575" y="195" class="part-label">Brake Caliper</text>
+  <text x="575" y="208" class="callout-text">Sliding or floating type</text>
+
+  <!-- 3. Brake Pads -->
+  <line x1="560" y1="320" x2="530" y2="300" class="callout-line"/>
+  <circle cx="560" cy="320" r="12" class="callout-circle"/>
+  <text x="560" y="325" text-anchor="middle" fill="white" font-size="11" font-weight="bold">3</text>
+  <text x="575" y="315" class="part-label">Brake Pads</text>
+  <text x="575" y="328" class="callout-text">Min thickness: 3mm</text>
+
+  <!-- 4. Brake Line -->
+  <line x1="620" y1="140" x2="590" y2="175" class="callout-line"/>
+  <circle cx="620" cy="140" r="12" class="callout-circle"/>
+  <text x="620" y="145" text-anchor="middle" fill="white" font-size="11" font-weight="bold">4</text>
+  <text x="635" y="135" class="part-label">Brake Line</text>
+  <text x="635" y="148" class="callout-text">Check for cracks/leaks</text>
+
+  <!-- 5. Bleeder Valve -->
+  <line x1="560" y1="260" x2="530" y2="255" class="callout-line"/>
+  <circle cx="560" cy="260" r="12" class="callout-circle"/>
+  <text x="560" y="265" text-anchor="middle" fill="white" font-size="11" font-weight="bold">5</text>
+  <text x="575" y="255" class="part-label">Bleeder Valve</text>
+  <text x="575" y="268" class="callout-text">8mm wrench</text>
+
+  <!-- 6. Caliper Mounting Bolts -->
+  <line x1="560" y1="380" x2="500" y2="350" class="callout-line"/>
+  <circle cx="560" cy="380" r="12" class="callout-circle"/>
+  <text x="560" y="385" text-anchor="middle" fill="white" font-size="11" font-weight="bold">6</text>
+  <text x="575" y="375" class="part-label">Mounting Bolts</text>
+  <text x="575" y="388" class="callout-text">Torque: 25-35 ft-lbs</text>
+
+  <!-- 7. Hub/Center -->
+  <line x1="250" y1="350" x2="310" y2="320" class="callout-line"/>
+  <circle cx="250" cy="350" r="12" class="callout-circle"/>
+  <text x="250" y="355" text-anchor="middle" fill="white" font-size="11" font-weight="bold">7</text>
+  <text x="130" y="345" class="part-label">Wheel Hub</text>
+  <text x="130" y="358" class="callout-text">Clean before rotor install</text>
+
+  <!-- Warning box -->
+  <rect x="50" y="480" width="700" height="80" rx="8" fill="#fff3cd" stroke="#ffc107" stroke-width="2"/>
+  <text x="70" y="505" font-family="Arial" font-size="13" font-weight="bold" fill="#856404">⚠️ Safety Warning</text>
+  <text x="70" y="525" font-family="Arial" font-size="12" fill="#856404">• Always use jack stands - never work under a vehicle supported only by a jack</text>
+  <text x="70" y="542" font-family="Arial" font-size="12" fill="#856404">• Brake dust may contain asbestos - use wet cleaning methods only</text>
+
+  <!-- Legend -->
+  <rect x="50" y="420" width="200" height="50" rx="5" fill="#f5f5f5" stroke="#ccc"/>
+  <text x="60" y="438" font-family="Arial" font-size="11" font-weight="bold" fill="#333">Tools Required:</text>
+  <text x="60" y="455" font-family="Arial" font-size="10" fill="#555">Socket set, C-clamp, brake cleaner</text>
+
+</svg>

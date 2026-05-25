@@ -1,0 +1,578 @@
+{
+  "sampledAt": "2026-05-18T07:34:04.650Z",
+  "total": 25,
+  "verified": 3,
+  "minor": 16,
+  "major": 4,
+  "fabricated": 0,
+  "errors": 2,
+  "deadLinks": 1,
+  "totalLinks": 7,
+  "results": [
+    {
+      "id": "mitsubishi-eclipse-oil-consumption-v6",
+      "vehicle": "2000 Mitsubishi Eclipse",
+      "title": "V6 Engine Oil Consumption",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "Based on the search results, I have enough information to render a verdict. The 3.8L 6G75 was introduced in the 4G Eclipse (2006-2012), not 2000-2012. The 3G Eclipse (2000-2005) GT used the 3.0L 6G72. Oil consumption in these engines is mentioned in forums/JustAnswer but isn't a widely-documented systemic defect like, say, Toyota's 2AZ-FE oil consumption issue—the 6G7x engines are generally regard"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-eclipse-timing-belt-tensioner",
+      "vehicle": "2000 Mitsubishi Eclipse",
+      "title": "Timing Belt Tensioner and Water Pump Failure",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description mentions only 4G64 and 4G69 (4-cyl) engines but omits the 6G72 (3.0L V6, 2000-2005) and 6G75 (3.8L V6, 2006-2012) which share the same timing belt/hydraulic tensioner/water pump design and have well-documented failures on owner forums",
+          "DTCs listed as 'none' is acceptable pre-failure, but post-failure typically sets crankshaft/camshaft position codes (P0335/P0340) and misfire codes per RepairPal",
+          "Cost range $400-$1200 is reasonable but on the low end for V6 models, which often run $700-$1000+ at independent shops due to more labor"
+        ],
+        "evidence": "Multiple Mitsubishi Eclipse owner forums (club3g, club4g, BobIsTheOilGuy) confirm hydraulic timing belt tensioner failures and the standard practice of replacing the water pump with the timing belt; RepairPal also documents tensioner bearing failure leading to potential internal engine damage on this interference engine. Year range (2000-2012) and severity (critical, due to interference engine design) are accurate.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-eclipse-transmission-failure",
+      "vehicle": "2000 Mitsubishi Eclipse",
+      "title": "Automatic Transmission Failure (4-Speed)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Severity 'high' is debatable - transmission slipping can cause safety issues (loss of propulsion in traffic) but most documentation treats it as costly/reliability rather than safety-critical; 'medium' may be better calibrated",
+          "DTC P0700 is a generic transmission MIL request code and P0750 (Shift Solenoid A) is valid, but P0755 (Shift Solenoid B) is more commonly cited in real-world reports alongside P0750",
+          "Description attributes failure mainly to overheating/worn clutch packs, but forum/TSB evidence points more specifically to OD/neutral clutch pack failure causing 2-3 and 3-4 shift flare as the documented failure mode"
+        ],
+        "evidence": "Multiple owner forums (Club3G, RepairPal, CarProblemZoo) and NHTSA-referenced sources confirm the 3rd-gen Eclipse (2000-2005) 4-speed Sportronic/INVECS-II automatic, especially in GT V6 models, is widely documented to suffer slipping, harsh shifting, shift flare and complete failure, with Mitsubishi having issued a service bulletin for redesigned clutch pack parts. Reported DTCs include P0750/P0755 (shift solenoids), and rebuild/replacement costs reported by owners (~$1,200-$2,100+ parts/labor) align with the $1,500-$4,000 range.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.club3g.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-eclipse-cross-cvt-shudder",
+      "vehicle": "2018 Mitsubishi Eclipse Cross",
+      "title": "CVT Shudder During Acceleration",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range overstated: TSB-20-23-001REV4 covers 2018-2020 and 2022-2024 Eclipse Cross; 2025-2026 not confirmed as affected, and 2021 model year is notably absent from the TSB",
+          "DTC codes listed as 'none' but the official TSB identifies associated DTCs P0776, P0730, P0741, P084A, P0969, and P2719 that frequently accompany the shudder/surge condition",
+          "Severity arguably understated: class-action litigation alleges this defect can cause delayed/failed acceleration and catastrophic transmission failure, which has safety implications (could justify 'high')"
+        ],
+        "evidence": "Mitsubishi issued TSB-20-23-001REV4 (March 2024) titled 'Potential Transmission Shudder/Surge with Possible DTC (CVT-8)' covering 2018-2020 and 2022-2024 Eclipse Cross, attributing shudder to CVT belt slippage and hydraulic circuit issues, and a 2021 class-action lawsuit (Hardy v. Mitsubishi) addresses the same defect. Repair scope ranges from valve body/control valve replacement to full CVT replacement, consistent with the $200-$3500 cost range (though full CVT replacement can exceed $5000 per owner reports).",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-eclipse-cross-infotainment",
+      "vehicle": "2018 Mitsubishi Eclipse Cross",
+      "title": "Infotainment Touchpad and Screen Issues",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple owner forums and automotive sources confirm the pre-facelift Eclipse Cross touchpad controller was widely disliked and prone to issues, and Mitsubishi eliminated it in the 2022 facelift because users found it unintuitive. Post-facelift touchscreen freezing, unresponsiveness, and CarPlay/Bluetooth disconnection issues are also documented on 2022+ models in owner forums.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-eclipse-cross-phev-charging",
+      "vehicle": "2022 Mitsubishi Eclipse Cross",
+      "title": "PHEV Charging System Intermittent Failures",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Eclipse Cross PHEV was never sold in North America; US-market 2022-2026 Eclipse Cross is gas-only (1.5L, 152hp) per Mitsubishi and CarsDirect listings",
+          "Year range 2022-2026 is inaccurate for PHEV: global PHEV launched December 2020 (2021 MY in Europe/UK/Australia/Japan); applying 2022-2026 misses earlier PHEV years and includes non-existent US PHEV years",
+          "Described failure mode (EVSE communication errors, ground fault detection sensitivity causing Level 2 disconnects) is not specifically documented as a known issue; owner forums show different charging complaints (charge-port lock not releasing, battery capacity/range degradation, charging station handshake/release issues) — not the intermittent mid-session disconnect described",
+          "Severity 'medium' is debatable — most documented charging complaints are nuisance-level (low), not costly repairs",
+          "Repair cost range $0-$800 is speculative; no TSB or documented repair path matches the described failure"
+        ],
+        "evidence": "Mitsubishi's US site and CarsDirect confirm the 2022-2026 US Eclipse Cross is sold only with a 1.5L gas engine in ES/LE/SE/SEL/Black Edition trims; the PHEV variant exists only in overseas markets (Europe, UK, Australia, Japan) and launched in December 2020. Owner forum discussions for the global PHEV center on charge-port lock release problems, battery range degradation, and station-handshake issues — not the specific EVSE-communication/ground-fault mid-session disconnect pattern described in the entry.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-endeavor-ac-compressor",
+      "vehicle": "2004 Mitsubishi Endeavor",
+      "title": "AC Compressor Premature Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Specific mileage failure window (60,000-90,000 miles) is not substantiated by search results - appears speculative",
+          "Claim that Endeavor 'shares the same AC compressor platform as other Mitsubishi models' is not directly verified",
+          "No NHTSA recalls or manufacturer TSBs specifically identified for premature AC compressor failure as a widespread documented defect"
+        ],
+        "evidence": "AC compressor and clutch issues are reported by Mitsubishi Endeavor owners across multiple forums and repair sites (RepairPal, JustAnswer, MitsubishiForum) covering 2004-2011 model years, with common failures including clutch non-engagement, internal bearing failure, and seal leaks. However, the specific 60k-90k mile failure window and the 'shared platform' premature failure claim are not specifically substantiated; the issue appears to be a common wear item rather than a documented widespread defect with TSBs/recalls.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-endeavor-transmission-issues",
+      "vehicle": "2004 Mitsubishi Endeavor",
+      "title": "Automatic Transmission Harsh Shifting and Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description states '4-speed automatic' but AWD Endeavors use the 5-speed F5A51; the platform uses both F4A51 (4-speed) and F5A51 (5-speed) variants",
+          "Description mentions Galant/Eclipse component sharing but the F4A51/F5A51 family is more accurately shared with Chrysler and Hyundai vehicles as well",
+          "The root cause (wave spring failure leading to oil pump damage) is not mentioned, which is the signature failure mode",
+          "Failure mileage range (100k-130k) is roughly accurate but reports show failures occurring as early as 40k-70k miles in some cases",
+          "P0700 is a generic transmission code (informational only, pointing to TCM); more specific sub-codes typically accompany it, but P0700 is commonly reported"
+        ],
+        "evidence": "Multiple owner forums, NHTSA complaints via CarComplaints/CarProblemZoo, and RepairPal confirm the F4A51/F5A51 transmission in the Endeavor suffers harsh shifting and catastrophic failure due to a thin wave spring breaking and damaging the oil pump. Repair costs of $1500-$4000 align with reported rebuild/replacement costs (one owner cited $5,400 for a new transmission, while rebuilds run lower).",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-galant-ac-compressor",
+      "vehicle": "2004 Mitsubishi Galant",
+      "title": "AC Compressor Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Compressor failure is NOT the documented common AC issue on 2004-2012 Galant; the condenser is the well-known defective part with multiple part revisions through mid-2010",
+          "Expert mechanic specifically stated compressor failures are uncommon in these model years",
+          "Description overstates prevalence - condenser leaks outnumber compressor failures roughly 15:1 according to expert source",
+          "Claim of 'common across multiple Mitsubishi models sharing the same AC platform' is unsupported",
+          "No NHTSA recall or Mitsubishi TSB identified specifically for compressor failure on this platform"
+        ],
+        "evidence": "Search results consistently identify the AC condenser (with a known manufacturing defect and multiple part updates through 2010) as the dominant AC failure point on 2004-2012 Galants, not the compressor. A Mitsubishi specialist on JustAnswer explicitly noted compressor failures are uncommon in these years and that condensers fail roughly 15x more often. Repair cost range is plausible but the issue is mischaracterized.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-galant-transmission-failure",
+      "vehicle": "2004 Mitsubishi Galant",
+      "title": "Automatic Transmission Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Transmission specification is incorrect: V6 Galant models (Sport V6, Ralliart) used a 5-speed Sportronic automatic, not a 4-speed; the 4-speed was paired with the 2.4L inline-4",
+          "Claim that failures are 'particularly in V6 models' is not well-supported; documented complaints span both 4-cyl and V6 across multiple years",
+          "Repair cost range may be slightly low; at least one NHTSA-reported dealer quote exceeded $6,000 for a replacement",
+          "Issue is documented but not as widespread/systemic as description implies (RepairPal lists no 'most common' problems; CarComplaints shows only a small number of transmission complaints for 2004)"
+        ],
+        "evidence": "NHTSA/CarComplaints/forum reports confirm real transmission failures (slipping into neutral, 4th gear clutch burnout, harsh shifting) on 2004+ Galants, but manufacturer specs confirm V6 trims used a 5-speed automatic—contradicting the entry's '4-speed in V6 models' claim. P0700 is a valid generic transmission DTC, and complaint volume suggests the issue is real but not the dominant/systemic failure the description portrays.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-lancer-cvt-failure",
+      "vehicle": "2008 Mitsubishi Lancer",
+      "title": "CVT Transmission Failure (Non-Evo)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "P0868 (transmission fluid pressure low) is plausible but not the most commonly cited DTC for Lancer CVT failures; stepper motor codes and P17BF are more frequently reported",
+          "Mileage range (80k-120k) is typical but many failures occur earlier (60k-100k) per owner reports"
+        ],
+        "evidence": "Mitsubishi issued TIN-17-23-001 covering 2008-2017 Lancer CVT replacement procedures, NHTSA recall SR-16-006 addressed CVT hesitation in 2016 Lancers, and a 2021 class action (Hardy v. Mitsubishi) alleges a CVT Defect causing belt slippage, shuddering, and failure across Lancer/Outlander/Mirage. Forum and repair-shop sources confirm typical replacement costs of $3,000-$5,000+ and failures often between 60k-120k miles.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.lancerforum.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-lancer-evo-ayc-pump",
+      "vehicle": "2003 Mitsubishi Lancer",
+      "title": "Evolution AYC Rear Differential Pump Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Title says 'any trim' but AYC hydraulic pump is specific to Lancer Evolution (and partially Ralliart with ACD-only) - base Lancer does not have AYC",
+          "Year range 2003-2015 covers Evo VIII/IX/X which is correct for Evo, but misleading as applied to non-Evo Lancer trims",
+          "Failure mechanism described as 'motor burns out or internal gears strip' is inaccurate - documented root cause is galvanic corrosion, seal failure, and exposure to elements (salt/water) at the rear fender location",
+          "DTC codes listed as 'none' but owners report trouble codes are triggered along with 'ASC' / '4WD system service required' / 'AYC service' warning lights",
+          "Severity 'high' is defensible (owners describe safety/handling impact) but some sources note car remains drivable with degraded handling, suggesting 'medium' may also be appropriate"
+        ],
+        "evidence": "Multiple Evo owner forums (EvoXForums, EvolutionM) and NHTSA-style complaint aggregators (CarProblemZoo) confirm the ACD/AYC hydraulic pump on Lancer Evolution VIII-X is a widely documented failure point, with hundreds of reported cases, primarily due to galvanic corrosion from its exposed rear-fender location, triggering AWC/4WD warning lights and disabling torque vectoring. The issue is real but applies specifically to Evolution (and partially Ralliart) trims, not all Lancer variants, and the described failure mode (motor burnout/stripped gears) differs from the actual documented cause (corrosion/seal failure).",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-lancer-evo-transfer-case",
+      "vehicle": "2003 Mitsubishi Lancer",
+      "title": "Evolution Transfer Case and ACD Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Trim scope wrong: issue is specific to Lancer Evolution (Evo VIII/IX/X) only, not 'any trim' - regular Lancer/Lancer ES/GTS do not have ACD or this transfer case",
+          "Year range partially incorrect: ACD system was introduced in 2005 (Evo VIII MR) in USDM, not 2003; 2003-2004 Evos had a different non-ACD transfer case with spider gear failures (related but distinct issue)",
+          "DTC field incomplete: real-world reports cite codes such as C161E for the ACD pump/system, so 'none' is inaccurate",
+          "Description conflates two distinct failure modes: 2003-2004 spider gear/ring-and-pinion failure vs. 2005+ ACD clutch pack/hydraulic pump failures",
+          "Repair cost range is plausible but low-end; full ACD pump + transfer case work or OEM pump replacement frequently exceeds $4000"
+        ],
+        "evidence": "Multiple owner forums (EvolutionM, EvoXForums), CarProblemZoo NHTSA-style complaints, and specialist sources confirm Evo transfer case and ACD clutch pack/pump failures are well-documented, with OEM transfer case replacements cited around $3400 and ACD pump replacements even higher. However, the ACD system was only fitted to Lancer Evolution models (not regular Lancers) and only from the 2005 Evo VIII MR onward in the US market, making the '2003-2015 Lancer (any trim)' scope significantly inaccurate.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-lancer-timing-chain",
+      "vehicle": "2008 Mitsubishi Lancer",
+      "title": "4B11 Timing Chain Stretch",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Vehicle scope is too broad: the 4B11 engine is in the Lancer Evolution X and Lancer Ralliart trims, not all 2008-2017 Lancer trims (base Lancer uses 4B10/4B11 NA variants but the documented stretch issue is heavily associated with the 4B11T turbo in Evo X/Ralliart)",
+          "DTC codes are plausible but the most commonly cited code in Mitsubishi forums for this specific issue is P0012, not P0011; Mitsubishi also uses a dedicated ECM-monitored chain elongation warning rather than a standard generic DTC",
+          "Description omits that Mitsubishi released a redesigned (updated) chain and revised oil jet to address the problem"
+        ],
+        "evidence": "Multiple owner forums (EvoXForums, Lancer Register) and Road Race Engineering confirm the 4B11 timing chain stretch is a well-known issue, particularly on 2008+ Evo X and 2009+ Ralliart with the 4B11T, with Mitsubishi releasing a redesigned chain and oil-jet to address it; severity is appropriately high since chain jump causes valve-to-piston interference damage, and labor of 8+ hours supports the $800-$2000 cost range.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.lancerforum.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-mirage-ac-evaporator-leak",
+      "vehicle": "2014 Mitsubishi Mirage",
+      "title": "AC Evaporator Core Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range extends to 2026 but Mirage was discontinued in North America after 2024 model year",
+          "Repair cost range ($600-$1500) is low; RepairPal estimates $1,044-$1,840 for Mirage AC evaporator replacement",
+          "Issue is more commonly documented as general A/C refrigerant leaks (per Mitsubishi TIN-20-55B-001) rather than specifically evaporator core pinhole corrosion - the specific failure mode is not strongly documented for the 2014+ Mirage"
+        ],
+        "evidence": "Mitsubishi issued TIN-20-55B-001 (Sept 2020) acknowledging frequent low/high refrigerant level A/C issues on Mirage/Mirage G4, and RepairPal lists Mirage AC evaporator replacement at $1,044-$1,840. However, owner forum reports specifically describing evaporator core pinhole corrosion leaks on 2014+ Mirages are sparse; most reported A/C complaints involve general refrigerant leaks or clogged drain tubes.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.mirageforum.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-mirage-cvt-reliability",
+      "vehicle": "2014 Mitsubishi Mirage",
+      "title": "CVT Reliability and Longevity Concerns",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "Based on the research, I have sufficient information. The Mirage was produced 2014-2025 (not through 2026 in the US — last model year is 2024 in US/2025 elsewhere). The CVT issue is real but reports indicate it's relatively reliable overall, with some failures and complaints. Severity \"high\" is debatable - safety-critical typically means immediate danger. Cost range looks reasonable.\n\n```json\n{\n  "
+      },
+      "links": [
+        {
+          "url": "https://www.mirageforum.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-montero-sport-transfer-case",
+      "vehicle": "2000 Mitsubishi Montero Sport",
+      "title": "Transfer Case Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Issue is documented but not as widespread as description implies - NHTSA shows only 2-3 transfer case reports for these years",
+          "Many reported failures are linkage/bushing/sensor-related (e.g., shift fork wear, control lever bushing, 4WD engage solenoid) rather than internal bearing/chain wear specifically",
+          "Severity 'high' may be slightly overstated - failures typically result in 4WD inoperability rather than safety-critical loss of drive; medium might be more appropriate",
+          "Claim about fluid breaking down faster than service interval is not well-supported by search evidence"
+        ],
+        "evidence": "Forum and NHTSA reports confirm transfer case problems on 2000-2004 Montero Sport including grinding noise, 4WD engagement failure, and replacement needs, with repair costs ranging from ~$560 DIY rebuilt unit to $2000-$4000 at dealer. However, the specific 'internal bearing and chain wear' mechanism is one of several causes; linkage, bushings, sensors, and solenoids are equally or more commonly cited.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-outlander-ac-compressor",
+      "vehicle": "2007 Mitsubishi Outlander",
+      "title": "AC Compressor Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost range ($600-$1500) is low; typical full replacement runs $1,151-$2,419 per RepairPal, and PHEV variants can exceed $3,500",
+          "Description does not distinguish between belt-driven compressors (ICE Outlander) and electric compressors (PHEV 2018+), which have very different failure modes and costs",
+          "No specific NHTSA recalls or manufacturer TSBs found for AC compressor failure on this vehicle; the issue appears anecdotal rather than a widespread documented defect",
+          "Mileage range of 60,000-90,000 is plausible but generic; matches general industry averages for any AC compressor rather than an Outlander-specific pattern"
+        ],
+        "evidence": "Multiple repair sources (RepairPal, YourMechanic, owner forums) confirm AC compressor and clutch failures occur on Mitsubishi Outlanders across model years, with symptoms matching the description (seized clutch, internal leaks, flashing AC light). However, Go-Parts explicitly notes no NHTSA recalls or TSBs exist for this issue, and the listed repair cost is below typical professional estimates of $1,151-$2,419 (and far below PHEV costs of $3,500+).",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-outlander-cvt-failure",
+      "vehicle": "2007 Mitsubishi Outlander",
+      "title": "CVT Transmission Premature Failure",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2007-2020 is too broad - not all Outlander trims/years used the Jatco CVT; the V6 models used a 6-speed automatic, and CVT adoption varied by year and trim",
+          "DTC codes are generic transmission codes (P0700 is a generic MIL request, P0868 is generic low fluid pressure) and not CVT-specific; more specific codes like P0730, P0731, or P0746 are commonly associated with CVT belt/pulley issues",
+          "Severity 'critical' is debatable - while expensive, most failures manifest as slipping/shuddering rather than sudden safety-critical loss, though class-action lawsuits have alleged safety risk from hesitation/erratic shifting"
+        ],
+        "evidence": "Multiple owner forums, a December 2021 class-action lawsuit, Mitsubishi TSB 20-23-001REV, and a 2022 NHTSA recall confirm widespread CVT problems in the Outlander including shudder, surge, hesitation, and premature failure. Repair costs of $4,000-$7,000+ for CVT replacement are corroborated by forum reports and industry data.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-outlander-infotainment",
+      "vehicle": "2022 Mitsubishi Outlander",
+      "title": "Infotainment System Freezing and Connectivity Issues",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Wireless Android Auto is not offered on the new-gen Outlander (wired only); description incorrectly implies wireless AA disconnections",
+          "Year range slightly overstated: 2026 models not yet confirmed affected; recall (NHTSA 25V369 / SR-25-001) covers 2022-2024 ICE and 2023-2025 PHEV",
+          "Severity arguably understated: related rearview camera freeze aspect triggered an FMVSS 111 safety recall, not purely a nuisance",
+          "Repair cost range is technically accurate but misleading — the official A-IVI software fix is performed free under recall"
+        ],
+        "evidence": "Mitsubishi issued recall SR-25-001 (NHTSA 25V369) in 2025 for ~198,940 Outlanders covering A-IVI infotainment software causing screen freezing, non-responsive controls, and rearview camera blanking; owner forums confirm widespread reports of freezing, restarts, and CarPlay/AA dropouts requiring vehicle restart. However, the new Outlander does not support wireless Android Auto.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-outlander-phev-battery",
+      "vehicle": "2018 Mitsubishi Outlander",
+      "title": "PHEV Battery Degradation and Charging Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Battery replacement costs can significantly exceed $5000 if out of warranty (full pack replacement often $10k+)",
+          "No specific DTC codes listed, which is acceptable since the issue is often dismissed by dealers as 'normal degradation' rather than triggering codes"
+        ],
+        "evidence": "Multiple owner forums (myoutlanderphev.com, outlanderforums.com, mitsubishiforum.com) document widespread reports of accelerated PHEV battery degradation across 2018-2023 model years, and a class action lawsuit was filed by Shub & Johns against Mitsubishi over 2023 Outlander PHEV battery defects causing cold-weather charging/starting failures. Mitsubishi North America reportedly does not warranty gradual capacity loss, though other countries trigger warranty at 70% SOH.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.outlanderphevforum.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-outlander-suspension-noise",
+      "vehicle": "2014 Mitsubishi Outlander",
+      "title": "Front Suspension Clunking and Noise",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range likely too broad - the 2022+ Outlander is a fundamentally redesigned model (Nissan Rogue platform) and clunking complaints documented in forums/TSBs primarily relate to earlier (pre-2022) Outlanders; extending coverage through 2026 lacks supporting evidence",
+          "Strut mount bearing references are more strongly documented for Outlander Sport/RVR than for the standard Outlander; the original Outlander TSB referenced wheel bearings/knuckles rather than strut mount bearings",
+          "Repair cost range of $200-$600 may be slightly low if both strut mounts and end links are replaced with required alignment (parts + 1.5-2.5 hrs labor per side plus alignment can push costs higher)"
+        ],
+        "evidence": "Multiple owner forums (Edmunds, MitsubishiForum, EvolutionM) and parts vendors confirm front-end clunking from worn sway bar end links and strut mount bearings is a well-known complaint on 2007-2019 Outlander and Outlander Sport models, with sway bar links and strut mount bearings being common culprits. No NHTSA recall specifically for this, though related recalls exist (20V279000 crossmember corrosion, 13V300000 strut bracket weld); DTC-none and low severity are appropriate for a nuisance noise issue.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-outlander-sport-ac-compressor",
+      "vehicle": "2011 Mitsubishi Outlander Sport",
+      "title": "AC Compressor Premature Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "No NHTSA recalls or manufacturer TSBs specifically document AC compressor premature failure as a known defect for the 2011-2020 Outlander Sport",
+          "The specific failure pattern (clutch bearing seizure / reed valve breaks at 50-80k miles) appears to be generic AC compressor wear rather than a model-specific defect pattern",
+          "Issue is more accurately described as 'commonly reported' rather than 'frequent/premature' - it ranks among top 3 AC complaints but isn't a signature defect like it would be for some other makes",
+          "Cost range is reasonable for ICE models but would be significantly higher (~$3000-4500) if a PHEV variant were included; the Sport is non-PHEV so range is acceptable"
+        ],
+        "evidence": "RepairPal lists faulty AC compressor among the top 3 AC failure causes across multiple Outlander Sport model years (2015, 2020, 2021), and owner forums document compressor clutch and internal failures, but searches of NHTSA and TSB databases did not find any recalls or service bulletins specifically for AC compressor failure on 2003-2012 Outlander models, and no model-specific defect pattern is documented for the Outlander Sport line.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-outlander-sport-cvt-judder",
+      "vehicle": "2011 Mitsubishi Outlander Sport",
+      "title": "CVT Judder and Hesitation",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes listed as 'none' but Mitsubishi TSB 20-23-001 specifies P0776, P0730, P0741, P084A, P0969, and P2719 for this shudder/surge condition",
+          "Year range 2011-2026 is too broad; documented recall SR-16-006 covers only 2015-2016 Outlander Sport, and the Outlander Sport was discontinued after the 2024 model year (does not extend to 2026)",
+          "NHTSA classified the hesitation as a crash-risk safety recall, so 'medium' severity may be slightly under-calibrated for affected units",
+          "Repair cost ceiling of $4000 may be low; forum reports of full CVT replacement quotes reach $7000+, though ECU reprogramming under recall is free"
+        ],
+        "evidence": "Mitsubishi issued NHTSA recall SR-16-006 in August 2016 for 82,436 vehicles including 2015-2016 Outlander Sport for CVT hesitation caused by range switch signal loss, and TSB 20-23-001 (April 2020) addresses CVT-8 shudder/surge with specific DTCs (P0776, P0730, P0741, P084A, P0969, P2719). A 2021 class action lawsuit (Hardy v. Mitsubishi) further documents widespread CVT judder, hesitation, and shudder complaints across Outlander Sport model years.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mitsubishi-outlander-sport-rust-corrosion",
+      "vehicle": "2011 Mitsubishi Outlander Sport",
+      "title": "Underbody and Subframe Rust/Corrosion",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range too broad: official recall (NHTSA 20V-279, expanded by SR-21-001) covers 2011-2016 Outlander Sport only, not through 2020",
+          "Description emphasizes REAR subframe, but the documented Mitsubishi recall is for the FRONT crossmember causing lower control arm detachment",
+          "Fuel tank straps and brake lines are not the primary documented failure points; front crossmember/control arm corrosion is the main issue",
+          "Issue is salt-belt-state specific (recall only applies to ~22 listed states + DC), which the entry mentions but could be more explicit",
+          "DTC codes correctly listed as none (mechanical/structural issue, not electronic)"
+        ],
+        "evidence": "NHTSA recall 20V-279 (May 2020) and expansion SR-21-001 cover 2011-2016 Outlander Sport in salt-belt states for front crossmember corrosion that can cause lower control arm detachment and loss of vehicle control. Numerous owner complaints on CarComplaints.com and forums confirm widespread underbody/subframe rust issues, though the primary documented failure point is the front crossmember rather than the rear subframe described in the entry.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    }
+  ]
+}

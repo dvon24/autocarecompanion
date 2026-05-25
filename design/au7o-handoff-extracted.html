@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1280">
+  <title>Au7o · Handoff — A2/A3 Hub + Known Issues + Mobile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <style>/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("cc16c353-c614-4598-971f-4ee642b9008e") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("7a519b33-dce3-4da9-9dd4-4e9638fa87ac") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("a952d50e-0345-4293-b372-896404622a10") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("cc16c353-c614-4598-971f-4ee642b9008e") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("7a519b33-dce3-4da9-9dd4-4e9638fa87ac") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("a952d50e-0345-4293-b372-896404622a10") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("cc16c353-c614-4598-971f-4ee642b9008e") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("7a519b33-dce3-4da9-9dd4-4e9638fa87ac") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("a952d50e-0345-4293-b372-896404622a10") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("cc16c353-c614-4598-971f-4ee642b9008e") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("7a519b33-dce3-4da9-9dd4-4e9638fa87ac") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("a952d50e-0345-4293-b372-896404622a10") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("c7156c4b-013c-4a77-8548-935899a89922") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("e2d9bcff-09c9-4c52-9f08-6a73611cbcbf") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("610d30aa-ecfa-4008-935e-c1fc9bd831b2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("c7156c4b-013c-4a77-8548-935899a89922") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("e2d9bcff-09c9-4c52-9f08-6a73611cbcbf") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("610d30aa-ecfa-4008-935e-c1fc9bd831b2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("c7156c4b-013c-4a77-8548-935899a89922") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("e2d9bcff-09c9-4c52-9f08-6a73611cbcbf") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("610d30aa-ecfa-4008-935e-c1fc9bd831b2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("c7156c4b-013c-4a77-8548-935899a89922") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("e2d9bcff-09c9-4c52-9f08-6a73611cbcbf") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("610d30aa-ecfa-4008-935e-c1fc9bd831b2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+  <style>/* Au7o tokens — automotive without aggressive */
+:root {
+  /* Brand */
+  --au7o-blue: #3B82F6;
+  --au7o-blue-600: #2563EB;
+  --au7o-blue-700: #1D4ED8;
+  --au7o-blue-50: #EFF6FF;
+  --au7o-blue-100: #DBEAFE;
+
+  /* Neutrals — warm, not sterile */
+  --paper: #F7F6F2;        /* at-home surfaces / map base */
+  --paper-2: #EFEDE6;      /* recessed */
+  --paper-line: #E3DFD4;   /* hairline on paper */
+  --ink: #0B1220;          /* high-contrast text + in-car nav bg */
+  --ink-2: #19223A;        /* in-car raised */
+  --ink-3: #2A3450;        /* in-car border */
+  --slate-700: #334155;
+  --slate-500: #64748B;
+  --slate-400: #94A3B8;
+  --slate-300: #CBD5E1;
+  --slate-200: #E2E8F0;
+  --slate-100: #F1F5F9;
+
+  /* Semantic — safety only */
+  --ok: #10B981;
+  --ok-bg: #D1FAE5;
+  --warn: #F59E0B;
+  --warn-bg: #FEF3C7;
+  --crit: #EF4444;
+  --crit-bg: #FEE2E2;
+
+  /* Map (warm paper) */
+  --map-bg: #F2EEE3;
+  --map-road: #FFFFFF;
+  --map-road-edge: #E2DBC7;
+  --map-block: #E8E2D2;
+  --map-water: #C9DCE6;
+  --map-park: #D5E2C9;
+  --route: var(--au7o-blue);
+
+  /* Type */
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Radii */
+  --r-1: 6px;
+  --r-2: 10px;
+  --r-3: 14px;
+  --r-4: 20px;
+  --r-5: 28px;
+  --r-pill: 999px;
+
+  /* Shadows */
+  --shadow-1: 0 1px 2px rgba(11,18,32,.06), 0 1px 1px rgba(11,18,32,.04);
+  --shadow-2: 0 6px 16px rgba(11,18,32,.08), 0 2px 4px rgba(11,18,32,.05);
+  --shadow-3: 0 18px 40px rgba(11,18,32,.18), 0 6px 12px rgba(11,18,32,.08);
+  --shadow-sheet: 0 -10px 30px rgba(11,18,32,.12);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  color: var(--ink);
+  background: #ECE9DF;
+}
+
+/* canvas wrapper background — subtle paper texture */
+.au7o-canvas-bg {
+  background:
+    radial-gradient(circle at 20% 10%, rgba(59,130,246,0.04), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(11,18,32,0.03), transparent 50%),
+    #ECE9DF;
+}
+
+/* Phone frame */
+.phone {
+  width: 390px;
+  height: 844px;
+  background: var(--paper);
+  border-radius: 44px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 12px #1A1F2C,
+    0 0 0 13px #0B1220,
+    var(--shadow-3);
+  isolation: isolate;
+}
+.phone-screen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+}
+.notch {
+  position: absolute;
+  top: 10px; left: 50%;
+  transform: translateX(-50%);
+  width: 120px; height: 32px;
+  background: #0B1220;
+  border-radius: 999px;
+  z-index: 50;
+}
+.statusbar {
+  height: 50px;
+  padding: 16px 28px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 5;
+  flex: 0 0 auto;
+}
+.statusbar.dark { color: #fff; }
+.statusbar .right { display: flex; gap: 6px; align-items: center; }
+.statusbar .battery {
+  width: 24px; height: 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  position: relative;
+  opacity: 0.9;
+}
+.statusbar .battery::after {
+  content: ""; position: absolute;
+  right: -3px; top: 2px;
+  width: 1.5px; height: 5px;
+  background: currentColor; border-radius: 0 1px 1px 0;
+}
+.statusbar .battery::before {
+  content: ""; position: absolute;
+  inset: 1px; right: auto;
+  width: 16px; background: currentColor; border-radius: 1px;
+}
+
+/* Generic scroll lock for screens */
+.screen-body { flex: 1 1 auto; overflow: hidden; position: relative; }
+
+/* Pill */
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  font-size: 13px;
+  font-weight: 500;
+  background: rgba(11,18,32,0.06);
+  color: var(--ink);
+}
+.pill.dark { background: rgba(255,255,255,0.12); color: #fff; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border-radius: var(--r-3);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  letter-spacing: -0.01em;
+  transition: transform .12s ease, background .15s ease;
+}
+.btn:active { transform: scale(0.98); }
+.btn-primary { background: var(--ink); color: #fff; }
+.btn-primary:hover { background: var(--ink-2); }
+.btn-blue { background: var(--au7o-blue); color: #fff; }
+.btn-blue:hover { background: var(--au7o-blue-600); }
+.btn-ghost { background: transparent; color: var(--ink); }
+.btn-soft { background: rgba(11,18,32,0.06); color: var(--ink); }
+
+/* Cards */
+.card {
+  background: #fff;
+  border: 1px solid var(--paper-line);
+  border-radius: var(--r-3);
+  padding: 16px;
+}
+.card-flat {
+  background: var(--paper-2);
+  border-radius: var(--r-3);
+  padding: 14px;
+}
+
+/* Status row dots */
+.status-dot {
+  width: 10px; height: 10px; border-radius: 999px; flex: 0 0 auto;
+}
+.status-dot.ok { background: var(--ok); }
+.status-dot.warn { background: var(--warn); }
+.status-dot.crit { background: var(--crit); }
+
+/* Hairline */
+.hr { height: 1px; background: var(--paper-line); border: 0; margin: 0; }
+
+/* Mono numerals */
+.mono { font-family: var(--font-mono); font-feature-settings: "tnum" 1; letter-spacing: -0.01em; }
+
+/* Heading reset */
+h1,h2,h3,h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
+p { margin: 0; }
+
+/* keep DCArtboard visuals tidy */
+.dc-artboard-frame { background: transparent; }
+
+/* small caps label */
+.label-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--slate-500);
+}
+
+/* lock chip */
+.lock-chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; font-weight: 600;
+  padding: 3px 8px; border-radius: 999px;
+  background: var(--ink); color: #fff;
+}
+
+/* For section header artboards */
+.section-card {
+  width: 100%;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid var(--paper-line);
+  border-radius: 18px;
+}
+
+/* Animations for handoff hero */
+@keyframes au7o-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.5); }
+  50% { box-shadow: 0 0 0 12px rgba(245,158,11,0); }
+}
+.pulse-warn { animation: au7o-pulse 2s ease-out infinite; }
+
+@keyframes mic-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.4); }
+  50% { box-shadow: 0 0 0 18px rgba(59,130,246,0); }
+}
+
+@keyframes wave {
+  0% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(0.4); }
+}
+</style>
+  <style>/* Au7o web — additional tokens layered on top of src/tokens.css */
+
+/* Ambient background animations */
+@keyframes au7o-float-a {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.05); }
+}
+@keyframes au7o-float-b {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(-30px, -40px) scale(1.08); }
+}
+@keyframes au7o-float-c {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(20px, -50px) scale(0.95); }
+}
+
+/* Slow drift for hero hint pulses */
+@keyframes au7o-pulse-soft {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+.au7o-pulse-soft { animation: au7o-pulse-soft 4s ease-in-out infinite; }
+
+/* Type scrolling for chat reply */
+@keyframes au7o-blink { 50% { opacity: 0; } }
+.au7o-cursor::after {
+  content: "▎"; margin-left: 2px;
+  animation: au7o-blink 1s steps(2) infinite;
+  color: var(--au7o-blue);
+}
+
+/* Web frame (browser-window-style preview area) */
+.web-frame {
+  background: var(--paper);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--paper-line);
+  box-shadow: var(--shadow-2);
+  position: relative;
+  isolation: isolate;
+}
+.web-frame-chrome {
+  height: 38px;
+  background: linear-gradient(180deg,#fff,#F4F2EC);
+  border-bottom: 1px solid var(--paper-line);
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 14px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--slate-500);
+}
+.web-frame-chrome .lights { display:flex; gap: 6px; }
+.web-frame-chrome .lights span { width: 10px; height: 10px; border-radius: 50%; background: #d6d2c5; }
+.web-frame-chrome .url {
+  background: #fff; border: 1px solid var(--paper-line);
+  padding: 4px 10px; border-radius: 999px;
+  margin-left: auto; margin-right: auto;
+  display: flex; align-items: center; gap: 6px;
+}
+.web-frame-body { background: var(--paper); position: relative; }
+
+/* Card lift on hover */
+.web-card-lift { transition: transform .25s ease, box-shadow .25s ease; cursor: pointer; }
+.web-card-lift:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+
+/* Soft outline buttons */
+.btn-outline {
+  background: #fff; color: var(--ink); border: 1px solid var(--paper-line);
+  padding: 12px 16px; border-radius: 12px; font-weight: 500; font-family: var(--font-sans);
+  font-size: 14px; cursor: pointer; display:inline-flex; align-items:center; gap: 8px;
+  transition: background .15s ease, transform .12s ease;
+}
+.btn-outline:hover { background: var(--paper-2); }
+.btn-outline:active { transform: scale(0.98); }
+
+/* Chip */
+.chip {
+  display:inline-flex; align-items:center; gap: 6px;
+  padding: 6px 12px;
+  background: #fff; border: 1px solid var(--paper-line);
+  border-radius: 999px;
+  font-size: 13px; color: var(--slate-700); font-weight: 500;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.chip:hover { background: var(--paper-2); border-color: var(--slate-300); }
+.chip-sm { padding: 4px 9px; font-size: 11.5px; }
+
+/* Eyebrow */
+.eyebrow {
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--slate-500);
+}
+
+/* Scrollable inner panes for web mockups */
+.web-scroll {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--paper-line) transparent;
+}
+.web-scroll::-webkit-scrollbar { width: 6px; }
+.web-scroll::-webkit-scrollbar-thumb { background: var(--paper-line); border-radius: 3px; }
+
+/* Thinner h-rule */
+.hrule { height: 1px; background: var(--paper-line); border: 0; }
+
+/* Map dot pulse */
+@keyframes au7o-mappulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+.map-pulse {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: var(--au7o-blue);
+  animation: au7o-mappulse 1.8s ease-out infinite;
+}
+
+/* Conversation bubbles */
+.bubble-user {
+  background: var(--ink); color: #fff;
+  border-radius: 18px 18px 4px 18px;
+  padding: 12px 16px; font-size: 14.5px; line-height: 1.45;
+  max-width: 80%; align-self: flex-end;
+}
+.bubble-au7o {
+  background: #fff; color: var(--ink);
+  border: 1px solid var(--paper-line);
+  border-radius: 18px 18px 18px 4px;
+  padding: 14px 16px; font-size: 14.5px; line-height: 1.5;
+  max-width: 92%;
+  box-shadow: var(--shadow-1);
+}
+
+/* Subtle dotted grid for direction backdrops */
+.dotted-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgba(11,18,32,0.06) 1px, transparent 0);
+  background-size: 18px 18px;
+}
+</style>
+
+  <script src="f6240b15-ef70-4783-93bf-9ba0c8cdb8a6" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="5cba7abd-7d0e-4c56-9e6e-aa315f0e1e42" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="391b2dfb-d0f2-4992-b208-a4f1d9259fec" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="f227b948-f03b-4c8b-94d4-d4b710dd3b57"></script>
+  <script type="text/babel" src="9a02022d-5915-4831-bcbc-a8f8e967a512"></script>
+  <script type="text/babel" src="6ef7ba55-27cd-439f-a08d-1ad184cc8fc9"></script>
+  <script type="text/babel" src="8ef75a03-a3b7-418f-8664-9b56cd399ec3"></script>
+  <script type="text/babel" src="102bbe51-d8d0-4b4f-87bd-22ea544a9551"></script>
+  <script type="text/babel" src="61ef515f-ca43-4b2c-9a58-a009670ebf05"></script>
+  <script type="text/babel" src="6fb18fa1-ca25-45a1-bb08-65e931f46aa4"></script>
+  <script type="text/babel" src="9027cbcb-618d-4eef-b98e-e88f0c990f83"></script>
+  <script type="text/babel" src="918b28a8-d582-48b6-8369-157effb655aa"></script>
+</head>
+<body class="au7o-canvas-bg">
+  
+
+  <div id="root"></div>
+
+  <script type="text/babel" data-presets="env,react">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "showNotes": true
+}/*EDITMODE-END*/;
+
+function App() {
+  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  return (
+    <>
+      <DesignCanvas
+        title="Au7o · Handoff"
+        subtitle="Build-ready screens for the A2 conversation-first system. Web flow: Hub → Known Issues (Index → Make → Issue) → Drive. Same flow mirrored on mobile."
+      >
+        {/* ─── Notes ─── */}
+        {tweaks.showNotes && (
+          <DCSection id="notes" title="Read me first" subtitle="What's in this handoff and how it's structured.">
+            <DCArtboard id="notes-card" label="Handoff notes" width={1080} height={460}>
+              <HandoffNotes/>
+            </DCArtboard>
+          </DCSection>
+        )}
+
+        {/* ─── WEB ─────────────────────────────────────── */}
+        <DCSection id="web-hub" title="01 · Web — A2 Hub (signed-out)" subtitle="Post-YMMT home for non signed-in users. Conversation-first; vehicle context in a slim left rail. Au7o speaks first, surfaces issues + drive as rich attachments inline.">
+          <DCArtboard id="web-hub-board" label="Web · au7o.io (vehicle selected · signed-out)" width={1280} height={900}>
+            <WebFrame url="au7o.io"><DirectionAHub/></WebFrame>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="web-hub-a3" title="01b · Web — A3 Hub (signed-in)" subtitle="Same A2 vocabulary, personalized. Sidebar gains a maintenance progress tile + user footer; topbar shows the user chip; Au7o's first reply is a rich Maintenance Schedule attachment — a mileage timeline of past, due, overdue, and upcoming services.">
+          <DCArtboard id="web-hub-a3-board" label="Web · au7o.io (signed-in · maintenance + issues)" width={1280} height={2400}>
+            <WebFrame url="au7o.io"><DirectionA3Hub/></WebFrame>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="web-ki-flow" title="02 · Web — Known Issues (3-page flow)" subtitle="Index (describe-your-issue) → Make detail (cost-led model rows) → Issue detail (editorial body, three fix paths, anchored cost rail).">
+          <DCArtboard id="web-ki-index" label="Web · au7o.io/known-issues" width={1180} height={1700}>
+            <WebFrame url="au7o.io/known-issues"><KIRevisedIndex/></WebFrame>
+          </DCArtboard>
+          <DCArtboard id="web-ki-make" label="Web · au7o.io/known-issues/bmw" width={1180} height={1800}>
+            <WebFrame url="au7o.io/known-issues/bmw"><KIRevisedBMWPage/></WebFrame>
+          </DCArtboard>
+          <DCArtboard id="web-ki-detail" label="Web · au7o.io/known-issues/bmw/n20" width={1180} height={2400}>
+            <WebFrame url="au7o.io/known-issues/bmw/n20"><KIRevisedIssueDetail/></WebFrame>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="web-drive" title="03 · Web — Drive" subtitle="A2-style Drive surface. Conversation on the left, sticky map with floating route summary + stops on the right. Same paper palette and bubble vocabulary.">
+          <DCArtboard id="web-drive-board" label="Web · au7o.io/drive" width={1280} height={1000}>
+            <WebFrame url="au7o.io/drive"><DriveA2Web/></WebFrame>
+          </DCArtboard>
+        </DCSection>
+
+        {/* ─── MOBILE ──────────────────────────────────── */}
+        <DCSection id="mob-hub" title="04 · Mobile — A2 Hub (signed-out)" subtitle="Direction A on phone. Conversation-first, sticky composer + suggestion chips at the bottom, 4-tab nav.">
+          <DCArtboard id="mob-hub-board" label="Mobile · A2 hub" width={420} height={900}>
+            <PhoneShell time="10:34"><MobileA2Hub/></PhoneShell>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="mob-hub-a3" title="04b · Mobile — A3 Hub (signed-in)" subtitle="Personalized mobile hub. Auto-loads the maintenance schedule (vertical mileage timeline, 5 services, stat strip) AND the known-issues attachment ranked by your mileage. User avatar in the header.">
+          <DCArtboard id="mob-hub-a3-board" label="Mobile · A3 hub (signed-in)" width={420} height={1300}>
+            <PhoneShell time="10:34"><MobileA3Hub/></PhoneShell>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="mob-ki-flow" title="05 · Mobile — Known Issues (3-page flow)" subtitle="Mirrors the web KI flow: Index (symptom-first) → Make (BMW models in cost rows) → Issue detail (vehicle-aware list of issues for your owned car).">
+          <DCArtboard id="mob-ki-index" label="Mobile · Known Issues — Index" width={420} height={900}>
+            <PhoneShell time="10:34"><MobileKIIndex/></PhoneShell>
+          </DCArtboard>
+          <DCArtboard id="mob-ki-make" label="Mobile · Known Issues — BMW" width={420} height={900}>
+            <PhoneShell time="10:34"><MobileKIMake/></PhoneShell>
+          </DCArtboard>
+          <DCArtboard id="mob-ki-detail" label="Mobile · Known Issues — Issue list (your car)" width={420} height={900}>
+            <PhoneShell time="10:34"><MobileKnownIssues/></PhoneShell>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="mob-drive" title="06 · Mobile — Drive" subtitle="Drive on phone — planning state in conversation, then pushes to a full-screen edge-to-edge map after the user taps Start drive.">
+          <DCArtboard id="mob-drive-board" label="Mobile · Drive — planning" width={420} height={900}>
+            <PhoneShell time="10:34"><MobileDrive/></PhoneShell>
+          </DCArtboard>
+          <DCArtboard id="mob-drive-active" label="Mobile · Drive — full-screen navigation" width={420} height={900}>
+            <PhoneShell time="10:34"><MobileDriveExpanded/></PhoneShell>
+          </DCArtboard>
+        </DCSection>
+      </DesignCanvas>
+
+      <TweaksPanel title="Tweaks">
+        <TweakSection title="Display">
+          <TweakToggle label="Show handoff notes" value={tweaks.showNotes} onChange={(v) => setTweak('showNotes', v)}/>
+        </TweakSection>
+      </TweaksPanel>
+    </>
+  );
+}
+
+// ─── Browser frame wrapper ──────────────────────────────────────
+function WebFrame({ children, url = "au7o.io" }) {
+  return (
+    <div className="web-frame" style={{ width:"100%", height:"100%", display:"flex", flexDirection:"column" }}>
+      <div className="web-frame-chrome">
+        <div className="lights"><span/><span/><span/></div>
+        <div className="url"><span style={{ color:"var(--slate-400)" }}>🔒</span> {url}</div>
+      </div>
+      <div className="web-frame-body" style={{ flex: 1, overflow:"hidden", position:"relative" }}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function HandoffNotes() {
+  return (
+    <div style={{ padding:"32px 36px", background:"#fff", border:"1px solid var(--paper-line)", borderRadius: 18, width: 1080, height: 460, display:"flex", flexDirection:"column", gap: 18 }}>
+      <div>
+        <span className="eyebrow" style={{ color:"var(--au7o-blue)" }}>HANDOFF · BUILD-READY</span>
+        <h2 style={{ fontSize: 28, fontWeight: 600, letterSpacing:"-0.025em", lineHeight: 1.1, marginTop: 8 }}>
+          Eight screens across web + mobile, one consistent system
+        </h2>
+        <p style={{ fontSize: 13, color:"var(--slate-500)", marginTop: 6, lineHeight: 1.5, maxWidth: 780 }}>
+          Every screen shares the A2 conversation-first paper palette: Au7o speaks first, rich attachments inline, sticky composer. Web and mobile flow identically — Hub → Known Issues (Index → Make → Issue) → Drive — and Drive pushes to full-screen navigation on tap.
+        </p>
+      </div>
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap: 24, flex: 1 }}>
+        <div>
+          <div className="eyebrow">WEB · 5 SCREENS</div>
+          <p style={{ fontSize: 12.5, lineHeight: 1.55, marginTop: 8, color:"var(--slate-700)" }}>
+            <b>Hub</b> (DirectionAHub), <b>KI Index</b> (KIRevisedIndex — symptom/code/car), <b>KI Make</b> (KIRevisedBMWPage — cost-led model rows), <b>KI Detail</b> (KIRevisedIssueDetail — editorial + 3 fix paths), <b>Drive</b> (DriveA2Web — sticky map + stops).
+          </p>
+        </div>
+        <div>
+          <div className="eyebrow">MOBILE · 6 SCREENS</div>
+          <p style={{ fontSize: 12.5, lineHeight: 1.55, marginTop: 8, color:"var(--slate-700)" }}>
+            <b>Hub</b> (MobileA2Hub), <b>KI Index/Make/Detail</b> (MobileKIIndex / MobileKIMake / MobileKnownIssues), <b>Drive</b> in two states: planning (MobileDrive) and full-screen navigation (MobileDriveExpanded).
+          </p>
+        </div>
+        <div>
+          <div className="eyebrow">SHARED VOCABULARY</div>
+          <p style={{ fontSize: 12.5, lineHeight: 1.55, marginTop: 8, color:"var(--slate-700)" }}>
+            Paper palette · Geist + Geist Mono · status dots (ok/warn/crit) · cost-led summaries · ask-Au7o follow-ups · 4-tab dock on every mobile screen (Ask · Garage · Drive · You).
+          </p>
+        </div>
+      </div>
+      <div style={{ borderTop:"1px solid var(--paper-line)", paddingTop: 14, fontSize: 11.5, color:"var(--slate-500)", display:"flex", gap: 22, flexWrap:"wrap" }}>
+        <span><b style={{ color:"var(--ink)" }}>Tokens:</b> <span className="mono">src/tokens.css</span> + <span className="mono">src/web/web-tokens.css</span></span>
+        <span><b style={{ color:"var(--ink)" }}>Shared:</b> <span className="mono">src/web/web-shared.jsx</span></span>
+        <span><b style={{ color:"var(--ink)" }}>Web:</b> <span className="mono">direction-a.jsx</span> · <span className="mono">known-issues-revised.jsx</span></span>
+        <span><b style={{ color:"var(--ink)" }}>Mobile:</b> <span className="mono">mobile-a2-hub.jsx</span> · <span className="mono">handoff-extras.jsx</span></span>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+  </script>
+
+
+</body></html>

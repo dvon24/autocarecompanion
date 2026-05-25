@@ -1,0 +1,931 @@
+{
+  "sampledAt": "2026-05-14T16:47:21.851Z",
+  "total": 40,
+  "verified": 7,
+  "minor": 14,
+  "major": 10,
+  "fabricated": 9,
+  "errors": 0,
+  "deadLinks": 5,
+  "totalLinks": 8,
+  "results": [
+    {
+      "id": "acura-tl-auto-trans-3rd-gear-2004",
+      "vehicle": "2004 Acura TL",
+      "title": "Automatic Transmission 3rd Gear Failure",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 3200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Severity listed as 'critical' but schema uses high/medium/low - terminology mismatch; safety-critical classification is appropriate given documented crash/lockup risk",
+          "The 3rd gear clutch pack failure is more strongly documented for 1999-2003 (2nd gen) TLs; 3rd gen (2004-2008) shares the failure mode but to a lesser extent, with the official NHTSA recall (04V176000) actually addressing 2nd gear lubrication, not 3rd",
+          "Description attributes failure to 'weak pressure regulator design' but most technical sources point to 3rd/4th gear pressure switches and insufficient lubrication as the actual root cause",
+          "Mileage range 80,000-120,000 is reasonable but failures are widely reported at lower mileages (50K-90K) as well"
+        ],
+        "evidence": "Multiple sources including AcuraZine, Honda-Tech, CarComplaints.com and NHTSA confirm 3rd gear clutch pack failure on 3rd-gen TLs with DTCs P0730 (incorrect gear ratio/slippage) and P0780 (internal trans failure); replacement costs around $3,200-$3,400 align with the stated range. However, the issue is more pronounced in 1999-2003 models, and the actual recall (04V176000) addressed 2nd gear lubrication via oil cooler return line revision, not the 3rd gear specifically.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-tl-dashboard-crack-2004",
+      "vehicle": "2004 Acura TL",
+      "title": "Dashboard Surface Cracking and Melting",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 2800,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Description conflates two distinct issues: Acura TL is documented for cracking, not 'melting/sticky' surface (that's a Lexus/Toyota issue)",
+          "Severity 'low' is likely under-calibrated - cracks occur near passenger airbag and can trigger SRS warning light or affect airbag deployment, raising safety concerns",
+          "No repair cost listed despite well-known costs (~$2100 for dealer dash replacement, ~$1200 for repair, ~$60-$200 for dash covers/skins)",
+          "Description claim about 'reflective surface obstructing driver view' is minor/uncommon - main complaints are cosmetic cracking and airbag safety"
+        ],
+        "evidence": "Numerous owner complaints on AcuraZine, CarComplaints, NHTSA, and CarProblemZoo confirm widespread dashboard cracking on 2004-2008 (3rd gen) Acura TL, often starting near the passenger airbag. However, sources describe cracking/splitting of vinyl dash material, not melting/sticky plasticizer breakdown (which is a known Lexus/Toyota IS/Camry issue). Replacement dash costs ~$2100 and the issue has airbag safety implications.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-mdx-torque-converter-shudder-2014",
+      "vehicle": "2014 Acura MDX",
+      "title": "Transmission Torque Converter Shudder",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2400,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range incorrect: ZF 9-speed was only introduced in 2016 MDX, not 2014. The 2014-2015 MDX used the Honda 6-speed automatic.",
+          "Conflates two distinct issues: the well-documented torque converter judder TSB (16-062/16-063) actually applies to 2012-2015 MDX with the 6-speed, while the 9-speed (2016-2020) had different problems (harsh shifting, hesitation, hard 1-2/2-3 shifts).",
+          "Severity 'high' is miscalibrated - sources consistently describe the shudder as an annoyance with no catastrophic failures reported, not safety-critical. Should be 'medium' or 'low'.",
+          "P0700 is a generic transmission fault indicator rather than a code specific to torque converter shudder; shudder often occurs without setting any DTC at all."
+        ],
+        "evidence": "Acura TSBs 16-062 and 16-063 document torque converter lock-up clutch judder for 2012-2015 MDX (6-speed), with a fluid flush and software reflash repair procedure. The ZF 9-speed didn't appear in the MDX until the 2016 model year and is associated more with harsh shifting issues than classic TC shudder, though both problems exist across the third generation.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-tlx-9speed-shudder-2015",
+      "vehicle": "2015 Acura TLX",
+      "title": "9-Speed Automatic Transmission Shudder and Harsh Shifting",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Severity likely overstated - most documentation describes shifting/shudder as a driveability nuisance fixable via TSB software updates, not safety-critical (the separate park-pawl rollaway recall is a different issue)",
+          "Description states problem worsens in warm weather, but TSBs and owner reports indicate symptoms are typically worse when cold or after fluid heat-degradation",
+          "DTC P0730 (incorrect gear ratio) is plausible but P0780 (shift malfunction) is more commonly cited for ZF 9HP slip/shudder symptoms; many owners report no DTCs are stored at all",
+          "Upper end of repair cost ($2800) may be low if a full transmission replacement is needed; software TSB updates are often performed under warranty/cheaply"
+        ],
+        "evidence": "Multiple sources confirm the ZF 9HP 9-speed in 2015-2020 V6 TLX models has well-documented harsh/jerky shifting (especially 2-3 shift) and shudder, addressed via several Acura TSBs (e.g., TSB 15-021 'Transmission Slips or Shifts Hard When Cold', TSB 20-029/20-047 software updates) and a class-action lawsuit (Browning v. American Honda). The 2015 V6 also had separate NHTSA recalls (14V779000 parking pawl, 16V640000 wire harness/failsafe neutral), but the shudder/harsh-shift complaint itself is generally treated as a driveability TSB matter rather than a safety recall.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-rsx-3rd-gear-synchro-grind-2002",
+      "vehicle": "2002 Acura RSX",
+      "title": "3rd Gear Synchro Grind on Manual Transmission",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description conflates 5-speed and 6-speed; the documented 3rd gear synchro issue (Acura TSB 08-018) specifically affects the 6-speed manual in Type-S, not the Base model's 5-speed",
+          "Repair cost upper bound ($2000) may be slightly low; full 3rd gear set replacement with transmission R&R commonly runs $2000-$3000+ at dealers",
+          "Description overstates track-driving correlation; TSBs and owner reports show the issue occurs under normal driving, not just aggressive/track use"
+        ],
+        "evidence": "Acura issued TSB 02-016 (2002-04 RSX) and TSB 08-018 (July 2008) specifically addressing 'transmission grinds when shifting into 3rd gear, pops out of 3rd gear, or is hard to shift into 3rd gear' on the 6-speed manual, attributing it to a faulty 3rd gear synchronizer or 3-4 shift sleeve. Forums (ClubRSX, CarComplaints, NHTSA-style complaints on CarProblemZoo) extensively confirm this as a common, well-known defect across 2002-2006 RSX Type-S models.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-mdx-timing-belt-tensioner-2001",
+      "vehicle": "2001 Acura MDX",
+      "title": "Timing Belt Tensioner and Water Pump Failure",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 1900,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Severity 'critical' is slightly overstated - this is a wear-item maintenance issue, not a widespread defect; forum evidence suggests actual tensioner failures are relatively uncommon when service intervals are followed",
+          "DTC codes P0340/P0341 are camshaft position sensor codes that can appear when a belt skips teeth, but they are not the primary or most common codes for tensioner/water pump failure; misfire codes (P0300-series) are more commonly reported in real-world tensioner failure cases",
+          "Repair cost range ($800-$1500) is reasonable for preventive timing belt service, but post-failure repair (bent valves, head work) can run $2500-$5000+ which isn't reflected"
+        ],
+        "evidence": "Multiple owner forum threads (mdxers.org, piloteers.org) and parts guides confirm the J35 V6 in the 2001-2006 MDX uses an interference timing belt with a hydraulic tensioner, with 105K/7-year service interval and documented cases of tensioner failure causing skipped teeth and bent valves. DTCs P0340/P0341 are camshaft sensor phase codes that can be triggered by a stretched belt or skipped teeth, though misfire codes (P0300-P0303) are more commonly reported in actual tensioner failure incidents.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-tlx-infotainment-lag-crash-2015",
+      "vehicle": "2015 Acura TLX",
+      "title": "Infotainment System Lag, Freezing, and Crashes",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1850,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost field is empty; documented costs range roughly $450 DIY to $1,500 dealer for head unit replacement",
+          "Backup camera failure claim is not strongly supported in sources found (most reports focus on screen freeze, Bluetooth, and audio dropouts rather than rearview camera blackouts)"
+        ],
+        "evidence": "Multiple owner forums (TLXForums, AcuraWorld, AcuraZine), repair shop write-ups, and Edmunds consumer reviews confirm widespread infotainment lag, freezing, crash-reboot loops, and Bluetooth issues across 2015-2020 first-gen TLX models, with some owners replacing the entire head unit. CarComplaints logged 600+ complaints for the 2015 TLX including infotainment going blank/unresponsive, and forum users report dealer repair quotes around $1,500 vs ~$450 for self-installed remanufactured units.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-ilx-dct-shudder-2013",
+      "vehicle": "2013 Acura ILX",
+      "title": "DCT Dual-Clutch Transmission Shudder and Jerking",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1800,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Wrong year range: 2013-2015 ILX did NOT have the 8-speed DCT; the DCT was introduced on the 2016 ILX model year, not 2013-2015",
+          "2013-2015 ILX 2.4L was only available with a 6-speed manual transmission, not any automatic/DCT",
+          "Trim levels listed (Base, Technology, Premium) don't align with DCT availability since no 2013-2015 ILX had the DCT",
+          "DTC P0780 is plausible for shift issues, but P0740 is more commonly cited alongside it for the torque converter lockup problem on this DCT",
+          "Repair cost field is empty; torque converter replacement on this unit typically runs $1,800-$3,000",
+          "Severity 'high' may be overstated; symptoms are driveability/comfort complaints, not safety-critical, suggesting 'medium' is more appropriate"
+        ],
+        "evidence": "The 8-speed DCT with torque converter shudder/jerking issue is a well-documented real problem, but it affects 2016+ ILX models (when the 2.4L Earth Dreams engine + 8-speed DCT powertrain was introduced, shared with the 2015+ TLX), not 2013-2015 ILX. The 2013-2015 ILX offered only a 2.0L/5-speed auto, 2.4L/6-speed manual, or 1.5L hybrid/CVT — none had a DCT.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-mdx-shawd-rear-diff-whine-2007",
+      "vehicle": "2007 Acura MDX",
+      "title": "SH-AWD Rear Differential Whine and Bearing Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1650,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "No widespread TSB or recall documents a SH-AWD rear differential bearing whine issue for 2007-2013 MDX",
+          "The well-known 'whine' complaint on 2nd-gen MDX is the torque converter (TSB 12-029 warranty extension), not rear differential bearings",
+          "Description of 'insufficient lubrication flow at highway speeds' appears fabricated - documented rear diff complaints relate to fluid type/cold-weather shudder on turns, not highway-speed bearing wear",
+          "Severity 'high' with 'driveline lockup' claim is not supported by any NHTSA complaints or TSBs",
+          "Cost range is plausible (forum quote ~$2850 for diff replacement) but attached to a misdescribed failure mode"
+        ],
+        "evidence": "Searches of AcuraZine/MDXers forums and TSB lists show the dominant 2nd-gen MDX whine complaint is the torque converter (covered by TSB 12-029 warranty extension to 8yr/105k mi), and rear differential complaints typically involve cold-weather growl/shudder during low-speed turns fixed by fluid changes - not a highway-speed bearing failure leading to driveline lockup. No NHTSA recall or TSB matches the described failure mode.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-rdx-infotainment-reboot-2019",
+      "vehicle": "2019 Acura RDX",
+      "title": "True Touchpad Interface Infotainment Reboots and Lag",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1600,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Class action lawsuit and most documented complaints specifically reference 2019-2020 model years, not the full 2019-2023 range claimed",
+          "No DTC codes is plausible since this is an infotainment/UX issue, but no repair cost listed is a gap since dealer 'resets' and infotainment unit replacements have real costs",
+          "Description conflates ergonomic/usability complaints (touchpad learning curve, cursor drift) with actual defects (freezes/reboots) — these are somewhat distinct issues in the source material",
+          "Severity arguably could be rated higher given the lawsuit explicitly alleges the distraction is a safety danger"
+        ],
+        "evidence": "Multiple sources confirm real, widely-reported issues with the 3rd-gen RDX True Touchpad Interface including system freezes, reboots, black screens, and lag, with a class action lawsuit filed primarily covering 2019-2020 RDX models alleging the infotainment is distracting/dangerous. Owner forums (AcuraZine) and reviews (Cars.com, Motorbiscuit) corroborate input lag and touchpad usability problems, though most documented complaints cluster around earlier model years rather than the full 2019-2023 range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-rdx-turbo-oil-consumption-2019",
+      "vehicle": "2019 Acura RDX",
+      "title": "Turbo Engine Excessive Oil Consumption",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1450,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "The primary documented issue with the 3rd-gen RDX 2.0T is oil DILUTION (fuel mixing into oil), not excessive oil consumption - owners typically report oil levels are normal or rising, not low",
+          "The Acura TSB 19-052 about excessive oil consumption from carbon-clogged oil control rings applies to older V6 engines (3.5L/3.7L in MDX/TL/RL), NOT the 2.0T K20C4 in the 3rd-gen RDX",
+          "Consumption rate of 1 qt per 3,000-5,000 miles is overstated; most 2.0T owner reports cite closer to 1 qt per 7,000+ miles, and many report no consumption",
+          "Repair cost range $50-$3,000 is too broad and not well-calibrated; piston/ring replacement (if needed) typically runs $3,000+",
+          "Severity 'medium' is debatable - if real consumption were occurring, Acura's TSB approach treats it as 'within normal range' (low/nuisance) unless oil consumption test fails",
+          "Description incorrectly attributes the issue to direct injection and turbo scavenging when the actual documented 2.0T issue is fuel dilution from short-trip driving"
+        ],
+        "evidence": "NHTSA TSB 19-052 addresses oil consumption but for older Honda/Acura V6 engines with carbon-clogged oil control rings, not the 3rd-gen RDX 2.0T. Forum evidence (AcuraZine, BobIsTheOilGuy) shows the documented 2.0T issue is fuel dilution into oil, not excessive consumption - some owners report consumption but it's not a widespread, manufacturer-acknowledged issue specific to this engine.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-rdx-transmission-harsh-shift-2019",
+      "vehicle": "2019 Acura RDX",
+      "title": "Transmission Harsh Shifting and Hesitation from Stop",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1350,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "No DTCs typically set (matches description)",
+          "Repair cost not listed - typically warranty/TSB software update (C3 clutch break-in procedure)"
+        ],
+        "evidence": "Multiple owner forum reports (AcuraZine, DriveAccord) confirm harsh 1-2 and 2-3 upshifts on the 2019+ RDX 10-speed, addressed via Acura's OnePack Update #7 and a C3 clutch break-in procedure. Hesitation from stop and rolling-stop issues are also widely reported and tied to a Honda/Acura TSB on PCM/TCM communication affecting 2019-2020 MDX/RDX.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-mdx-infotainment-reboot-2014",
+      "vehicle": "2014 Acura MDX",
+      "title": "Infotainment System Random Reboots",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Issue is real but reported as intermittent/anomalous in forums, not a widespread defect — description may overstate frequency ('random reboots' implying common occurrence)",
+          "Root cause is often linked to smartphone/CarPlay/iOS connectivity issues rather than AcuraLink itself",
+          "30-60 second restart time is not well documented; actual reported recovery often requires full vehicle restart",
+          "No TSB or recall specifically for this issue on 2014-2020 MDX was found; severity 'medium' is reasonable but could arguably be 'low' (nuisance) since most owners report rare occurrences",
+          "No repair cost listed is appropriate since most fixes are software resets, not paid repairs"
+        ],
+        "evidence": "Multiple owner forum threads (MDXers.org, AcuraZine) confirm 3rd-gen MDX (2014-2020) owners experience occasional infotainment reboots/freezes, often tied to CarPlay/iOS issues or smartphone USB glitches, with typical fix being a soft reset or vehicle restart. However, reports indicate this is relatively uncommon (one owner reported 2-3 times in 8 years) rather than a frequent defect, and no manufacturer TSB specific to random reboots on this generation was identified.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-integra-infotainment-bugs-2023",
+      "vehicle": "2023 Acura Integra",
+      "title": "Infotainment System Software Bugs and Wireless CarPlay Drops",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 1100,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple Integra owner forum threads (IntegraForums, IntegraTalk) document wireless CarPlay/Android Auto disconnections, infotainment freezing (especially after iOS 18), and the need to factory-reset the head unit or re-pair the phone to restore function on 2023-2025 Integras. No DTCs are associated, severity is appropriately 'low' as it's a nuisance with no safety impact, and typical 'fix' is a free software reset/OTA update so no repair cost is appropriate.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-tl-power-steering-hose-leak-2004",
+      "vehicle": "2004 Acura TL",
+      "title": "Power Steering High-Pressure Hose Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Severity likely understated - NHTSA recall cites fire hazard from fluid leaking onto hot exhaust/catalytic converter, which is safety-critical (high)",
+          "Description attributes leak to crimp fittings; the official recall root cause is prolonged high under-hood temperatures causing the hose to deteriorate, crack, and leak (though ferrules are indeed common leak points)",
+          "Mileage range (80k-120k) is anecdotal; many owner reports show failures across a much wider mileage band including under 80k",
+          "Type-S with manual transmission and certain 2008 Type-S VINs are explicitly excluded from the recall, which the entry does not note",
+          "Since this is covered under NHTSA Safety Recall 08V091000, many owners are eligible for free repair/reimbursement - not noted in entry"
+        ],
+        "evidence": "NHTSA Safety Recall 08V091000 (Feb 2008) covers ~273,000 MY 2004-2008 Acura TL vehicles for power steering hose deterioration that can leak fluid onto hot exhaust components and cause a fire. Repair cost estimates from RepairPal/PartsGeek/YourMechanic align with the $200-$500 range, but the fire-hazard nature suggests severity should be high rather than medium.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-rdx-ac-compressor-failure-2013",
+      "vehicle": "2013 Acura RDX",
+      "title": "AC Compressor Clutch and Bearing Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 980,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "AC compressor problems on 2nd gen RDX are more commonly refrigerant leaks/seal leaks than clutch bearing seizure specifically",
+          "The dramatic 'clutch bearing seizure causing screeching + belt damage' failure mode is more strongly documented for the 1st gen RDX (2007-2012), which received an Acura extended warranty for the AC compressor field coil",
+          "No specific TSB or NHTSA recall found for 2013-2018 RDX AC compressor clutch bearing failure (the clutch bolt recall 15V417000 applies to 2014-2015 MDX, not RDX)",
+          "Mileage range 60K-90K is plausible but not strongly substantiated by forum/TSB data for 2nd gen specifically"
+        ],
+        "evidence": "AcuraZine documents that RDX models suffer from faulty AC compressors that can leak or fail at half their expected life, and 2nd gen RDX owner forums report AC failures (often refrigerant leaks on 2015 models). However, the specific clutch-bearing-seizure-with-belt-damage failure mode is better documented for 1st gen RDX (where Acura extended the field coil warranty to 100K miles) and for related MDX models; no 2nd-gen RDX-specific TSB was found for this exact failure.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-tsx-ac-compressor-clutch-2004",
+      "vehicle": "2004 Acura TSX",
+      "title": "AC Compressor Clutch Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 920,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost upper bound appears low - RepairPal estimates $886-$2,171 for AC compressor replacement on TSX",
+          "Failure mileage range (80k-120k) is slightly optimistic; forum reports cluster around 100k-250k miles",
+          "Forum consensus describes the issue as 'known but rare,' mostly affecting 2004 models rather than the full 2004-2014 range",
+          "Description focuses on bearing seizure/screeching, but more commonly reported failure modes are clutch coil burnout, worn air gap, or 'black death' internal failure"
+        ],
+        "evidence": "TSX owner forums and repair sites confirm AC compressor/clutch failure is a documented issue, with failures commonly reported around 100k+ miles and sometimes involving clutch coil burnout or 'black death' internal compressor failure. RepairPal lists compressor replacement at $886-$2,171, suggesting the entry's $500-$1400 cost range is somewhat low, and no DTCs are typically associated (consistent with entry).",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-integra-cvt-hesitation-2023",
+      "vehicle": "2023 Acura Integra",
+      "title": "CVT Hesitation and Rubber Band Effect",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 890,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "No NHTSA complaints, TSBs, or recalls found specific to CVT hesitation/rubber band on 2023-2026 Integra",
+          "Rubber band effect is an inherent CVT characteristic, not a vehicle-specific defect",
+          "Acura specifically tuned the Integra CVT with 'Step Shifts' to mitigate this; owner reviews on IntegraForums/IntegraTalk are largely positive about CVT tuning",
+          "Only source confirming this exact issue is au7o.io, which appears to be the AI-generated database being audited (circular sourcing)",
+          "Documented real Integra issues are sticky steering (NHTSA investigation/recall) and VSA modulator, not CVT hesitation",
+          "Year range includes 2026 which has minimal field data to support 890 owner reports claim",
+          "Severity 'medium' is overstated for what is normal CVT behavior; would be 'low' nuisance at most if real"
+        ],
+        "evidence": "Searches of NHTSA, Honda/Acura TSBs, and owner forums (IntegraForums, IntegraTalk, Honda-Tech) found no documented CVT hesitation defect specific to the 2023-2026 Integra. Owner discussions generally praise Acura's CVT tuning with Step Shifts, and the only source describing this exact 'issue' is the au7o.io entry being audited, suggesting the entry is AI-fabricated by generalizing inherent CVT characteristics.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-ilx-ac-compressor-failure-2013",
+      "vehicle": "2013 Acura ILX",
+      "title": "AC Compressor Failure and Refrigerant Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 870,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "No evidence of a systemic/widespread AC compressor design flaw specific to 2013-2019 ILX",
+          "No NHTSA recalls or Acura TSBs documenting widespread compressor seal leaks on this platform",
+          "Claim of 'shared design flaw across several Honda/Acura models of this era' is unsubstantiated",
+          "Reported ILX AC complaints are primarily clutch disengagement, not internal seal refrigerant leaks",
+          "Repair cost range ($700-$1500) is plausible but the underlying issue framing is misleading",
+          "Specific 50,000-80,000 mile failure window appears fabricated, not supported by aggregated complaint data"
+        ],
+        "evidence": "A comprehensive parts-vendor review found no specific recalls or TSBs addressing widespread systemic AC compressor failures for the 2013-2022 ILX, and most AC problems are attributed to general wear (refrigerant leaks, individual component failure). Owner complaint aggregators mention only a small number of ILX AC compressor issues, primarily related to the electromagnetic clutch intermittently disengaging rather than a systemic internal seal leak design flaw.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-rl-shawd-system-noise-2005",
+      "vehicle": "2005 Acura RL",
+      "title": "SH-AWD System Grinding and Transfer Case Noise",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 780,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Terminology error: 2nd-gen RL SH-AWD does not have a traditional 'transfer case'; it uses a transverse FWD transaxle with a torque transfer unit and a T-shaped rear differential containing electromagnetic clutch packs",
+          "Mechanism is misattributed: documented RL SH-AWD failures are predominantly electrical/electronic (SH-AWD control unit, rear diff oil pressure sensor, wiring, battery voltage) rather than clutch pack wear; clutch pack mechanical wear causing grinding is not a well-documented common failure mode",
+          "Repair cost ceiling is understated: dealer rear differential replacement has been quoted around $6,300; even used-diff swaps run near $1,000, so $300–$3,000 is low for a worst-case repair",
+          "DTC field listed as 'none' is questionable — the SH-AWD warning light typically stores diagnostic codes readable via HDS/navi that owners are routinely advised to retrieve",
+          "Description conflates two different driveline noise complaints (rear diff grinding vs. 'transfer case' whine) into a single issue without distinguishing fluid-related, sensor-related, and mechanical causes"
+        ],
+        "evidence": "Wikipedia and Acura technical sources confirm the 2005-2012 RL SH-AWD uses a transaxle + torque transfer unit + T-shaped rear differential with electromagnetic clutch packs (no transfer case). AcuraZine forum threads show real-world SH-AWD complaints are typically traced to the SH-AWD control unit, oil pressure sensor, or electrical issues rather than worn clutch packs, with rear diff replacement costs cited as high as $6,300 at dealers.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-tlx-brake-noise-aspec-2018",
+      "vehicle": "2018 Acura TLX",
+      "title": "Brake Squeal and Premature Pad Wear on A-Spec and Type S",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 780,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2018-2025 is too broad: the 2nd-gen TLX with Type S launched in 2021; 1st-gen (2018-2020) had A-Spec trim but no Type S and used different brakes",
+          "'Type S PMC' is not a known TLX variant — the PMC Edition was a 2020 1st-gen TLX, not a Type S",
+          "Description inaccuracy: Type S uses fixed 4-piston Brembo calipers, not sliding calipers with pins that can seize",
+          "Description conflates A-Spec (standard calipers) and Type S (Brembo) brake systems as one package"
+        ],
+        "evidence": "Owner forums (TLXforums, AcuraZine) confirm widespread brake squeal complaints on 2021+ TLX A-Spec and Type S models, with references to a TSB and dealer pad replacements; however, the Type S uses fixed Brembo calipers (not sliding-pin calipers), and the Type S trim did not exist before 2021, making the stated 2018-2025 range and 'PMC' designation inaccurate.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-tsx-power-steering-pump-whine-2009",
+      "vehicle": "2009 Acura TSX",
+      "title": "Power Steering Pump Whine and Moan on Cold Start",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 750,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "2009-2014 Acura TSX (2nd generation) uses Electric Power Steering (EPS), not a hydraulic system - there is no power steering pump, suction line O-rings, or power steering fluid that could cavitate or aerate",
+          "The described symptom (cold-start pump whine due to inlet O-ring) is a real documented issue (Acura TSB 07-060) but applies to hydraulic-equipped Acura V6 models like 2004-2008 TL and 1st-gen TSX (2004-2008), not the 2nd-gen TSX",
+          "Repair cost range is meaningless since the part/system described does not exist on this vehicle",
+          "Real 2009-2014 TSX steering issues involve EPS module failure with warning lights and DTCs, which would be severity medium-to-high (loss of assist), not a low-severity noise"
+        ],
+        "evidence": "Multiple owner forum sources and a CarCareKiosk reference confirm the 2009-2014 Acura TSX uses Electric Power Steering (EPS) with no hydraulic fluid or pump. The Acura TSB 07-060 'Power Steering Moans or Whines During Cold Start-Up' that matches the described symptoms applies to 2004-2008 TL and similar V6 hydraulic-equipped models, not the 2nd-gen TSX.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-rsx-ac-compressor-clutch-2002",
+      "vehicle": "2002 Acura RSX",
+      "title": "AC Compressor Clutch Bearing Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 680,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple owner forum threads on ClubRSX, Honda-Tech, and JustAnswer document AC compressor clutch and bearing failures on 2002-2006 Acura RSX vehicles, with symptoms matching the description (seized bearing, belt noise, loss of cold air). Repair kits specifically for 2002-2006 RSX are widely sold, confirming the year range, and the bearing-seizure mechanism described aligns with documented failure modes; no DTCs are typically associated with this purely mechanical failure.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-ilx-infotainment-lag-2016",
+      "vehicle": "2016 Acura ILX",
+      "title": "Infotainment System Lag and Unresponsive Touchscreen",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 650,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description states dual-screen system applies to the 'refreshed ILX' which is correct for 2016+, but the issue is more commonly reported on 2016-2018 models before the 2019 mid-cycle update added CarPlay/Android Auto; severity of lag complaints on 2019-2022 is less documented",
+          "No repair cost listed - in reality, software TSB fixes are typically no-cost under warranty, but full upper/lower display replacement can run several hundred dollars for used OEM parts; a rough range would improve the entry",
+          "Description borrows phrasing from other Honda/Acura platforms - the ILX dual-screen system is similar but not identical to TLX/MDX systems"
+        ],
+        "evidence": "Owner forum threads (AcuraZine, ILXforums) confirm 2016+ ILX owners report sluggish/laggy dual-screen infotainment behavior, with one user attributing it to CAN-bus overload and noting a TSB was issued for related preset-character issues. The 2016 refresh introduced the dual 8-inch upper / 7-inch lower touchscreen ODMD setup, and no NHTSA recall specifically targets infotainment lag on the ILX.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-tlx-type-s-turbo-oil-line-leak-2021",
+      "vehicle": "2021 Acura TLX",
+      "title": "Type S Turbo Oil Feed Line Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 620,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "Engine misidentified as 'twin-turbo V6' - the TLX Type S uses a single-turbocharger 3.0L V6, not twin-turbo",
+          "No documented TSBs, NHTSA complaints, or recurring forum reports of turbo oil feed line banjo fitting leaks on the TLX Type S",
+          "Documented oil-related issues on this engine are oil consumption and rear main seal leaks, not turbo feed line leaks",
+          "Repair cost range cannot be validated against any documented repair pattern since the issue itself is not established",
+          "Year range extends to 2025 but no reports of this specific failure mode exist in any model year"
+        ],
+        "evidence": "Searches of TLX forums, AcuraZine, MDXers, NHTSA-referenced TSBs and repair databases found no documented pattern of turbo oil feed line banjo fitting leaks on the 3.0L V6 in the TLX Type S; reported oil issues are oil consumption and rear main seal leaks. Additionally, the Type S engine is single-turbo, not twin-turbo as the entry states, indicating the description was likely AI-hallucinated.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-integra-turbo-heat-soak-2023",
+      "vehicle": "2023 Acura Integra",
+      "title": "Turbo Heat Soak and Power Loss in Hot Weather",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 560,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Owner forums (IntegraForums) and aftermarket vendors (PRL Motorsports, Phearable) document heat soak and power loss on the 2023+ Integra 1.5T and Type S 2.0T, with PRL noting excessive heat-soak causes major power loss and detonation risk under spirited driving. Owners report cooling is insufficient for back-to-back pulls in summer, consistent with the description; no DTCs are typically triggered and severity is appropriately rated low (nuisance/performance, not safety).",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-mdx-oil-dilution-20t-2022",
+      "vehicle": "2022 Acura MDX",
+      "title": "Oil Dilution from Fuel in 3.0L Turbo Engine",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 520,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "The 3.0L turbo V6 (J30AC) in the MDX Type S is a single-turbocharged engine, not twin-turbo as described",
+          "No documented TSB, recall, or NHTSA complaint pattern for oil dilution specific to the 2022-2025 MDX Type S 3.0L turbo",
+          "The widely-documented Honda/Acura oil dilution issue applies to the 1.5L turbo (CR-V/Civic) and to a lesser extent 2.0L turbo (RDX), not the 3.0L V6 in the MDX Type S",
+          "Acura's documented oil-related TSBs for V6 engines concern oil consumption from ring coking (3.7L J37), not fuel dilution",
+          "Description mischaracterizes the engine architecture, suggesting AI confused this with the 1.5T CR-V issue"
+        ],
+        "evidence": "Searches of NHTSA TSBs, Acura forums (mdxers.org, AcuraZine), and Honda technical bulletins show the oil dilution problem is well-documented for the 1.5L turbo 4-cylinder (CR-V, Civic) with a product update campaign, and the 2.0L RDX has scattered owner reports, but there is no documented oil dilution issue specific to the MDX Type S 3.0L turbo V6. Forum threads about the MDX Type S discuss oil consumption concerns and oil viscosity, not fuel dilution as a systemic issue, and the engine is single-turbo not twin-turbo.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-rl-navigation-system-failure-2005",
+      "vehicle": "2005 Acura RL",
+      "title": "Navigation System Hard Drive Failure",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 520,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "The 2005-2008 Acura RL (2nd gen) uses a DVD-based navigation system, NOT a hard drive-based system; the hard drive nav was on the 1996-2004 1st gen RL",
+          "Failure mechanism described (mechanical hard drive failing from vibration) is incorrect for these model years - actual failure is DVD drive lens/mechanism wear",
+          "Claim that 'hard drive also stores voice recognition data' is inaccurate for this generation since there is no hard drive",
+          "Year range is wrong for a 'hard drive' nav issue - should be 1996-2004 if describing HDD failure, or description should be changed to DVD drive failure for 2005-2008"
+        ],
+        "evidence": "Multiple sources (AcuraZine, Acura Legend Forum, cd4car, NHTSA TSB 05-018, JustAnswer) confirm the 2005-2008 RL uses a trunk-mounted Alpine DVD-based navigation system, with documented failures of the DVD drive (lens wear, read errors, blank screen, 'downloading software' loop). Alpine refurbishment runs ~$160-330, dealer replacement is much higher (~$3000 quoted in one case), so the $300-$1200 range is plausible for repair but the underlying technology description is fabricated/confused with the earlier 1st-gen RL hard drive system.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-nsx-12v-battery-drain-2017",
+      "vehicle": "2017 Acura NSX",
+      "title": "12V Auxiliary Battery Drain",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 450,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "No documented evidence of widespread 12V battery drain issue specifically for 2017-2022 second-generation hybrid NSX found in NHTSA, TSBs, or owner forums",
+          "Forum complaints about NSX battery drain are overwhelmingly for the first-generation (1991-2005) NA1/NA2 NSX, not the 2017-2022 hybrid",
+          "Battery chemistry claim may be inaccurate - the 2nd gen NSX is reported to use a lithium-ion 12V battery, not an AGM battery as stated",
+          "5-7 day drain timeframe and specific cause attribution to hybrid modules appears to be speculative/unsupported",
+          "Repair cost range of $200-$400 may be low if vehicle actually uses a specialty lithium-ion 12V battery"
+        ],
+        "evidence": "Searches found extensive battery drain discussions for the first-generation NSX (1991-2005) on NSXPrime forums, but no documented pattern of 12V auxiliary battery drain issues specific to the 2017-2022 second-generation hybrid NSX. The description's technical details (AGM battery, hybrid module parasitic draw) appear to be plausible-sounding speculation rather than verified facts for this specific vehicle.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-zdx-software-ota-bugs-2024",
+      "vehicle": "2024 Acura ZDX",
+      "title": "Software and OTA Update Bugs",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 450,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range includes 2026, but ZDX was discontinued after 2025 (only 2024-2025 model years exist)",
+          "Description conflates several distinct issues; AcuraLink app connectivity is documented via TSB 25-034, but 'phantom range estimates' is not specifically documented",
+          "OTA failures requiring dealer visits is partially accurate — many infotainment updates are dealer-applied by design, not failed OTAs"
+        ],
+        "evidence": "Multiple sources confirm the 2024 ZDX has well-documented software issues including an OTA brake software recall, AcuraLink app pairing/connectivity problems (TSB 25-034), charging-related software issues (TSB 25-044), and owner-reported OTA install failures on forums. However, the ZDX was discontinued after 2025, so a 2026 model year does not exist.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-rlx-suspension-bushing-wear-2014",
+      "vehicle": "2014 Acura RLX",
+      "title": "Front and Rear Suspension Bushing Premature Wear",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 420,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "No TSB, recall, or significant complaint pattern found for premature front lower control arm or rear trailing arm bushing wear specifically on the RLX",
+          "The documented RLX front suspension complaint is a strut/damper internal valve issue (TSB 14-040), not bushing wear",
+          "The well-known rear suspension issues on the RLX are the rear toe actuator (P-AWS) failures and a rear suspension bolt recall — not trailing arm bushings",
+          "Premature lower control arm bushing wear is a documented issue for the Acura TL (2004-2008), appears to have been incorrectly transferred to the RLX",
+          "Year range 2014-2020 covers full production but the actual documented suspension issues cluster on 2014-2015 models",
+          "Repair cost range is plausible for bushing work generically but not tied to a real RLX-specific repair"
+        ],
+        "evidence": "Searches of NHTSA, CarComplaints, AcuraZine, and AcuraProblems show RLX suspension complaints center on front strut rattle/clunk (TSB 14-040, internal damper valve) and rear toe actuator/P-AWS failures plus a rear suspension bolt recall (NHTSA 13V622000), not control arm or trailing arm bushing wear. The 'premature bushing wear' description closely matches a documented Acura TL (2004-2008) issue, suggesting cross-contamination rather than a real RLX-specific problem.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-zdx-charging-speed-inconsistency-2024",
+      "vehicle": "2024 Acura ZDX",
+      "title": "DC Fast Charging Speed Inconsistency",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 380,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Year range 2024-2026 may be slightly broad - ZDX launched as 2024 model; 2026 availability uncertain as Acura announced ZDX discontinuation after limited run",
+          "Description states 80-120 kW peak which may be slightly pessimistic; real-world reports vary more widely (e.g., 144 kW observed in cold weather)"
+        ],
+        "evidence": "Multiple owner forums (AcuraZine, Acura ZDX Forum, Honda Prologue Forum) confirm ZDX owners experience DC fast charging speeds below the 190 kW advertised peak, with battery preconditioning/thermal management cited as a key factor - battery temps staying in the 30s°F despite preconditioning signal, and best speeds achieved only after extended highway driving. The 190 kW peak spec, Ultium platform sharing with GM EVs, and aggressive taper behavior are all confirmed across multiple sources.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-rlx-shawd-rear-motor-noise-2014",
+      "vehicle": "2014 Acura RLX",
+      "title": "SH-AWD Rear Electric Motor Whine and Vibration",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 340,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "No documented TSB, recall, or widespread forum reports of rear electric motor/TMU bearing whine specifically on RLX Sport Hybrid",
+          "Year range slightly inaccurate: RLX Sport Hybrid was produced 2014 and 2016-2020 (no 2015 model year)",
+          "Most documented RLX Sport Hybrid driveline complaints relate to the 7-speed DCT transmission fluid (TSB 19-004), not rear motor bearings",
+          "Repair cost range ($500-$4000) is speculative with no supporting evidence; TMU replacement would likely far exceed $4000",
+          "Forum noise complaints are generally characterized as normal hybrid system sounds, not a bearing wear pattern"
+        ],
+        "evidence": "Searches of AcuraZine, MDXers, AcuraWorld forums and Acura TSB databases revealed no pattern of rear electric motor bearing whine on the RLX Sport Hybrid; documented driveline issues center on the 7DCT transmission (TSB 19-004 for judders/shudders) and the unrelated 3.5L V6 connecting rod bearing recall affecting TLX/MDX (not RLX). The Honda emergency response guide confirms RLX Sport Hybrid model years as 2014 and 2016-2020, indicating the year range in the entry is slightly off.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-nsx-hybrid-system-warning-2017",
+      "vehicle": "2017 Acura NSX",
+      "title": "Hybrid System Warning Light and Limp Mode",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 320,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "No NHTSA recalls, TSBs, or widespread owner forum complaints document a hybrid system warning/limp mode issue specific to the 2nd-gen Acura NSX",
+          "The specific described mechanism (software conflict between 9-speed DCT controller and hybrid battery management during aggressive/track driving) is not documented in any verifiable source",
+          "DTC P1A8A cannot be verified as an Acura NSX-specific code for this described condition; P0AA6 is a generic hybrid high-voltage isolation fault not specifically tied to DCT/HV-BMS conflicts",
+          "Documented NSX recalls relate to fuel pump, fuel tank crossover pipe, and center brake light — not hybrid/DCT software conflicts",
+          "No repair cost data available because the issue itself appears undocumented",
+          "Severity 'high' cannot be substantiated without evidence the issue exists at scale"
+        ],
+        "evidence": "Searches of NHTSA recall data and Acura owner communities surface fuel pump, fuel tank crossover, and brake light recalls for the 2017-2022 NSX, but no documented pattern of hybrid system warnings/limp mode caused by a DCT-to-hybrid-BMS software conflict. The cited DTCs and failure mechanism appear to be plausible-sounding but unverifiable for this specific vehicle.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-nsx-9speed-dct-shudder-2017",
+      "vehicle": "2017 Acura NSX",
+      "title": "9-Speed DCT Shudder and Low-Speed Judder",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 280,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "NSX 9-speed DCT uses wet clutches (DWC), not dry clutches as described",
+          "Low-speed creep in the 2nd-gen NSX is handled by the electric drive motors, not clutch slip, so the described mechanism is technically incorrect",
+          "No NHTSA complaints, TSBs, or owner-forum threads document a widespread low-speed shudder/judder issue specific to the 2017-2022 NSX",
+          "Shudder/judder complaints in the search results pertain to the unrelated ZF 9-speed automatic in TLX/MDX/RDX and the Honda torque-converter judder TSBs, not the NSX DCT",
+          "Severity, year range, and cost cannot be validated because the underlying issue is not substantiated"
+        ],
+        "evidence": "Acura's own documentation and the NSX 9-speed DCT engineering paper confirm the transmission uses a dual wet clutch and that low-speed operation is smoothed by the hybrid electric motors, contradicting the entry's 'dry clutch engagement' description. No NSX-specific TSB, NHTSA complaint, or forum thread documenting a widespread low-speed DCT shudder/judder issue was found; the shudder/judder TSBs that exist apply to the ZF 9-speed automatic in other Acura models.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "acura-tl-brake-pedal-vibration-and-2009",
+      "vehicle": "2009 Acura TL",
+      "title": "Brake Pedal Vibration and Premature Front Brake Rotor Warping",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "No formal Acura TSB specifically for 4th-gen TL front brake rotor warping was found (only owner-reported pattern across forums); a separate TSB 18-047/18-048 exists for 2012-14 TL judder but is transmission torque-converter related, not brakes — worth not conflating",
+          "Severity 'medium' is defensible but some owners and NHTSA-style reports frame premature rotor wear as a potential safety concern at higher speeds"
+        ],
+        "evidence": "Multiple Acura owner forums (AcuraZine, MDXers, TLX Forums, Edmunds) and a Drivetrain Resource article specifically document recurring front brake judder, steering wheel shake, and premature rotor warping/uneven pad deposits on Acura TL (including explicit references to the 4G TL), often requiring repeated resurfacing or aftermarket rotor/pad swaps. No DTCs are associated since it is a mechanical/friction-material issue, and reported repair approaches (resurface, OEM/aftermarket rotor+pad replacement) align with the $300-$900 cost range.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.carcomplaints.com/Acura/TL/",
+          "type": "forum",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2011/ACURA/TL/4%252520DR/FWD#complaints",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "acura-tl-handsfreelink-bluetooth-module-parasitic-2009",
+      "vehicle": "2009 Acura TL",
+      "title": "HandsFreeLink Bluetooth Module Parasitic Battery Drain and No-Start",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range is wrong: HFL parasitic battery drain is overwhelmingly a 3rd-generation TL (2004-2008) issue, not the 4th-gen (2009-2014) specified in the entry",
+          "Class action lawsuit and Acura TSB 05-020 specifically targeted earlier model years (roughly 2005-2008 MDX/TL/TSX/RL), not 4th-gen TLs",
+          "Forum evidence for 4th-gen TL (2009-2014) HFL drain is sparse compared to overwhelming 3rd-gen reports",
+          "Repair cost upper bound may be low: dealer module replacement quotes commonly cited at $800+ (though disconnect fix is cheap/free)"
+        ],
+        "evidence": "The HFL Bluetooth parasitic battery drain is a real, heavily-documented defect across multiple Acura models, with a class action lawsuit (Cadena v. American Honda) and TSB 05-020 — but the affected vehicles are predominantly 2004-2008 3rd-gen TLs and contemporaneous MDX/TSX/RL, not the 2009-2014 4th-gen TL specified in the entry. Forum threads, YouTube fix videos, and the lawsuit scope all center on the earlier generation.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2010/ACURA/TL/4%252520DR/FWD#complaints",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "acura-tl-oil-consumption-and-fouled-2009",
+      "vehicle": "2009 Acura TL",
+      "title": "Oil Consumption and Fouled Spark Plugs on 3.7L V6",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range incorrect: 2009 TL is not affected; documented affected TLs are 2010-2014 (pre-2010 J37 had different compression ratio and no issue)",
+          "Severity arguably should be medium rather than high - this is a costly reliability/durability issue, not a safety-critical defect, though it can progress to engine damage"
+        ],
+        "evidence": "The J37 V6 oil consumption issue is well-documented via Acura TSB 18-009, an NHTSA-posted warranty extension (8yr/125k miles) for piston ring/cylinder bore defects, and a 2020 class-action settlement; however, Acura's own affected-vehicle list is 2010-2014 TL (along with 2010-2013 MDX/ZDX and 2011-2012 RL), not 2009. Repair scope (piston ring/piston replacement, spark plugs) and cost range align with forum/dealer reports of roughly $3K-$4.5K when not covered, and misfire DTCs P0300-P0306 are consistent with spark plug fouling from oil consumption.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10164454-0001.pdf",
+          "type": "tsb",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2010/ACURA/TL/4%252520DR/AWD#complaints",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "acura-tl-sh-awd-rear-differential-whine-2009",
+      "vehicle": "2009 Acura TL",
+      "title": "SH-AWD Rear Differential Whine or Groan from Fluid Breakdown",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost upper bound ($1800) may be high for typical fluid-service fix; a simple SH-AWD rear diff fluid change is closer to $100-$300, and severity could arguably be 'low' since it's primarily a noise/maintenance issue not safety-critical"
+        ],
+        "evidence": "Multiple owner forums and Acura how-to guides confirm SH-AWD rear differential whine/groan is a known issue on 2009-2014 TL SH-AWD models, commonly resolved or improved by changing the rear differential fluid with the correct Acura DPSF fluid (service code ending in '6'). No DTCs are associated with the condition, consistent with the entry.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2012/ACURA/TL/4%252520DR/AWD#complaints",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "acura-tl-takata-front-airbag-inflator-2009",
+      "vehicle": "2009 Acura TL",
+      "title": "Takata Front Airbag Inflator Rupture Recall",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "NHTSA and multiple sources confirm the 2009-2014 Acura TL is included in the Takata airbag inflator recall, where the inflator can rupture and project metal fragments causing serious injury or death. Repairs are free at authorized Acura dealers, matching the $0 cost; no DTCs apply since this is a recall, not a diagnostic issue.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/recalls",
+          "type": "recall",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://owners.acura.com/service-maintenance/recalls",
+          "type": "recall",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 1
+    }
+  ]
+}

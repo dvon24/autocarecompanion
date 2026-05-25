@@ -1,0 +1,1167 @@
+{
+  "sampledAt": "2026-05-18T14:55:43.939Z",
+  "total": 55,
+  "verified": 9,
+  "minor": 25,
+  "major": 11,
+  "fabricated": 5,
+  "errors": 5,
+  "deadLinks": 0,
+  "totalLinks": 0,
+  "results": [
+    {
+      "id": "jaguar-xf-timing-chain-tensioner-ajv8-2009",
+      "vehicle": "2009 Jaguar XF",
+      "title": "Timing Chain Tensioner Failure on AJ-V8",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2500,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Issue only applies to 5.0L AJ-V8 (AJ133) trims, not 'any trim' as stated — XF also offered V6 diesel/petrol and 2.0L Ingenium which have different timing chain concerns",
+          "Year range slightly broad: JLR revised tensioners/guides around March 2014, so 2015 MY cars with updated parts are less affected",
+          "Description says 'AJ-V8 engines' generically but the documented chain-tensioner curse is specifically the 5.0L AJ133 generation, not the earlier 4.2L AJ-V8 (which had its own different tensioner issue)"
+        ],
+        "evidence": "Multiple Jaguar owner forums (jaguarforum.com, jaguarforums.com) and specialist shops extensively document the 5.0L V8 (AJ133) timing chain tensioner/guide failure in 2009-2014 XF/XK/XJ, with cold/warm start rattle, chain jumping teeth, and catastrophic valve-piston contact; a US class-action lawsuit exists and JLR revised the parts around 2014. Repair quotes from owners range from ~£3,500-£4,000 (engine-out) to ~$9,000 at dealers, consistent with the listed $4,000-$8,000 range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xj-air-suspension-compressor-2004",
+      "vehicle": "2004 Jaguar XJ",
+      "title": "Air Suspension Compressor Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2200,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes appear incorrect - documented codes for this issue are C2302 (levelling plausibility) and C2303 (reservoir plausibility), not C1A20/C1A13",
+          "Compressor manufacturer is Dunlop (OEM) on X350/X358; Hitachi association with XJ is not well documented in sources",
+          "Severity 'high' may be miscalibrated - multiple sources indicate the car remains drivable with the fault and it's primarily a comfort/cost issue rather than safety-critical",
+          "Year range 2004-2019 is broadly correct but conflates two different platforms (X350/X358 dry single-piston compressor 2004-2009 vs X351 2011-2019 with different compressor design where failures are less common)"
+        ],
+        "evidence": "The air suspension compressor failure is extremely well documented as the most common air suspension issue on the X350/X358 XJ, caused by a worn Teflon/phenolic piston ring leading to overwork and burnout, often exacerbated by leaking air springs. However, the trouble codes cited (C1A20, C1A13) do not match the documented codes (C2302, C2303), and forum/specialist sources indicate compressor failure is much rarer on the X351 (2011+) generation.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-f-pace-incontrol-freeze-2017",
+      "vehicle": "2017 Jaguar F-PACE",
+      "title": "InControl Touch Pro Infotainment System Freeze",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 2100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range potentially overstated: F-PACE received the new Pivi Pro infotainment system for the 2021 refresh, so InControl Touch Pro issues primarily affect 2017-2020 models, not 2021",
+          "Description's claim of an 'underpowered processor' and 'warm weather' causation is speculative/not verified by sources; documented complaints point to software/firmware issues addressed via TSB campaigns (e.g., K385) rather than thermal/processor limitations",
+          "No DTC codes listed is acceptable since this is a software/module issue, but a Jaguar Topix service campaign (K385) and module updates exist that could be referenced",
+          "Severity 'low' is reasonable for nuisance freezes but borderline — reverse camera failures during reversing maneuvers could arguably be a safety concern",
+          "Repair cost field empty; in reality, fixes are typically dealer software updates under warranty, but out-of-warranty ICTP module replacements can be costly ($1,000+)"
+        ],
+        "evidence": "Multiple owner forums (fpaceforums.co.uk, jaguarforums.com, fpaceforum.com) extensively document InControl Touch Pro freezing, rebooting, black screens, and reverse camera failures on early F-PACE models, with Jaguar issuing service campaign K385 and multiple firmware updates. The issue is real and widespread for 2017-2020 models, though the 2021 model year transitioned to Pivi Pro after the mid-cycle refresh.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-s-type-electrical-gremlins-2000",
+      "vehicle": "2000 Jaguar S-TYPE",
+      "title": "Electrical System Gremlins and Module Failures",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Early S-TYPE (2000-2002, X200) uses Ford SCP network, not CAN bus - CAN bus was introduced for 2003+ model year, so 'CAN bus connections' is inaccurate for the early portion of the year range",
+          "Listed DTCs (U0140, U0155, U0100) are generic OBD-II codes; S-TYPE more commonly logs Jaguar/Ford-specific codes like U1900, U2523, U1262, U1041, plus B-codes for module faults",
+          "Description emphasizes moisture ingress, but documented root causes are more commonly battery/voltage issues, corroded module connectors, wiring harness damage (footwell loom), and aging electronics rather than moisture specifically"
+        ],
+        "evidence": "Electrical gremlins, module failures (FEM, REM, door modules, instrument cluster), parasitic battery drains, and network communication faults are extensively documented across NHTSA complaints, CarComplaints, and Jaguar owner forums for 2000-2008 S-TYPE. However, forum experts clarify the X200 platform used Ford's SCP network until CAN was introduced around 2003 MY, and the typical DTCs reported are Jaguar-specific U1xxx/B-codes rather than the generic U0100-series listed.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xj-timing-chain-tensioner-ajv8-2004",
+      "vehicle": "2004 Jaguar XJ",
+      "title": "Timing Chain Tensioner Failure on AJ-V8",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1900,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Year range is wrong: timing chain tensioner failure is a well-known issue on the X308 XJ8 (1998-2000, some through mid-2001) with the early AJ26/AJ27 plastic tensioners, NOT the 2004-2015 XJ generations",
+          "The X350 (2004-2009) received the redesigned AJ28 4.2L engine with metal tensioners and Morse chains specifically to address this problem",
+          "The X351 (2010-2015) uses the 5.0L AJ133 V8 (or supercharged/diesel variants) which is a different engine family entirely and does not share this defect",
+          "DTC codes P0016/P0017 (cam/crank correlation) may set with severe chain stretch but are not the characteristic codes documented for this specific failure mode",
+          "Repair cost range ($4000-$9000) is high; documented owner reports for tensioner/chain work on affected cars cite roughly $1,500-$3,000, with full engine replacement after catastrophic failure being the high end",
+          "Severity 'high' is defensible due to catastrophic engine destruction risk, but it does not apply to the listed vehicle years"
+        ],
+        "evidence": "Multiple Jaguar owner forums, JCNA, and RepairPal document the plastic secondary timing chain tensioner failure as an AJ-V8 issue confined to 1997-2000/2001 XK8 and XJ8 (X308) models; Jaguar redesigned the timing system with metal tensioners for the AJ28 4.2L used in the X350 (2004+), and the X351 (2010+) uses entirely different engines. The described defect does not apply to the 2004-2015 XJ range stated in the entry.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-f-pace-water-pump-ingenium-2017",
+      "vehicle": "2017 Jaguar F-PACE",
+      "title": "Ingenium Engine Water Pump Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1850,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC P26B7 is incorrect - it refers to 'Coolant Bypass Valve C Control Circuit/Open' (a solenoid circuit code, primarily a Ford code), not a water pump bearing/impeller mechanical failure which typically has no specific DTC and presents as low coolant warnings",
+          "Engine attribution is wrong - the well-documented F-PACE water pump failure issue is on the 3.0L supercharged V6 (AJ-V6, shared with F-Type/Land Rover), which is NOT an Ingenium engine; the Ingenium 2.0L's primary documented issue is timing chain wear, not water pump failure",
+          "Trim list (25t, 30t, R-Sport, S) covers 2.0L Ingenium variants but omits the 35t/S 3.0L V6 which is the trim actually affected by this issue",
+          "Repair cost range ($800-$1800) is low for dealer pricing on the 3.0L V6 where supercharger removal is often needed (forum reports of $3,600); range is reasonable for independent shops only"
+        ],
+        "evidence": "Forum reports (F-Pace Forum, Jaguar Forums) and UK specialist shops (K Motors, RCV) confirm water pump failures are common on the 3.0L supercharged V6 F-PACE, often involving the plastic crossover/Y-pipe and bearing corrosion, but this engine is the AJ-V6 not Ingenium. P26B7 is documented by KBB and Ford TSBs as a coolant bypass solenoid circuit fault, unrelated to mechanical water pump failure.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-i-pace-12v-battery-drain-2019",
+      "vehicle": "2019 Jaguar I-PACE",
+      "title": "12V Auxiliary Battery Drain",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1800,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC U0155 (Lost Communication with Instrument Panel Cluster) is not the characteristic code for this issue; documented JLR bulletins (SSM74458, SSM74531) point to BCCM/GWM/PSDB module faults rather than U0155 specifically",
+          "Year range likely too broad - issue is predominantly reported on pre-MY2021 vehicles (2019-2020) which have the dual 12V battery architecture; MY2021+ redesigned the 12V system and reports drop significantly",
+          "I-PACE production ended December 2024, so '2025' model year inclusion is questionable",
+          "Repair cost range ($200-$500) is on the low end - PSDB replacement alone has been reported at ~£537 (~$680), and dealer replacement of both 12V batteries with software updates often exceeds $500"
+        ],
+        "evidence": "Multiple Jaguar Special Service Messages (SSM74458 quiescent drain, SSM74531 BCCM-induced drain) and extensive owner forum reports confirm a well-known 12V auxiliary battery drain issue on pre-MY21 I-PACEs caused by modules failing to sleep, with the Battery Charging Control Module waking the network and the Gateway Module freezing. Common fixes include PSDB replacement, gateway module software updates, and battery replacement.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-x-type-transfer-case-viscous-coupling-2002",
+      "vehicle": "2002 Jaguar X-TYPE",
+      "title": "Transfer Case Viscous Coupling Failure in AWD System",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1800,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "Based on the search results, I have enough information to assess this entry. Key findings:\n\n1. Transfer case/transfer box failure is widely documented as a common X-TYPE issue.\n2. However, the description has technical inaccuracies: The X-TYPE does NOT use a \"Haldex-style\" coupling. It's actually a Ford/Jaguar viscous coupling in a transfer case with a center differential. Haldex is a different (e"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xj-electrical-gremlins-bcm-2004",
+      "vehicle": "2004 Jaguar XJ",
+      "title": "Electrical Gremlins from Body Control Module Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1600,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range conflates two distinct XJ generations (X350/X358 2004-2009 and X351 2010-2012) with very different electrical architectures; BCM issues are far better documented on the X351 generation",
+          "BCM/CAN bus electrical issues are more prominently documented on the related Jaguar XF (X250) than on the X350-generation XJ specifically",
+          "DTCs U0140/U0155 are generic CAN communication codes, plausible but not specifically cited as the signature codes for this issue in Jaguar literature",
+          "Repair cost upper bound of $1500 may be low - BCM replacement requires VIN programming/SDD coding and dealer-level work, which can push costs higher"
+        ],
+        "evidence": "Forum and repair-specialist sources confirm Jaguar BCM/Central Junction Box failures cause widespread electrical gremlins, key-not-found errors, and no-start conditions—often triggered by battery disconnection or jump-starting—but the bulk of documentation centers on the XF (X250) and X351-generation XJ, with the earlier X350/X358 XJ less prominently featured. The symptoms (phantom warnings, inoperative features after battery events) and the need for SDD programming after BCM replacement are well-corroborated.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xk-timing-chain-tensioner-ajv8-2007",
+      "vehicle": "2007 Jaguar XK",
+      "title": "Timing Chain Tensioner Failure on AJ-V8",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1600,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description conflates two distinct issues: the 1997-2002 plastic tensioner failure (earlier XK8/X100, not in this year range) and the separate 5.0L AJ133 chain guide/tensioner wear (2010-2014 builds)",
+          "Failure mechanism described ('hydraulic tensioners bleed down') is inaccurate - actual failures are brittle plastic tensioner cracking on 4.0L and chain guide/tensioner wear on 5.0L, not hydraulic bleed-down",
+          "Year range 2007-2015 is overly broad: 2007-2009 4.2L AJ-V8 is generally considered the most reliable version with double chains and is largely unaffected; problem primarily affects 2010-2014 5.0L builds within this range",
+          "DTCs P0016-P0019 are plausible but many documented failures occur catastrophically without prior DTCs",
+          "Repair cost range $4000-$8500 is reasonable for full chain/tensioner/guide replacement on 5.0L but engine damage scenarios can exceed $10,000-$30,000"
+        ],
+        "evidence": "Forum and specialist sources confirm timing chain tensioner issues exist on Jaguar V8 engines, but the well-documented plastic tensioner failure applies to 1997-2002 4.0L AJ-V8 (pre-X150 XK8), while the X150 XK with 5.0L AJ133 (2010-2014 builds) has a separate chain guide/tensioner wear issue reportedly addressed by a redesign around 2014 and again in 2018. The 4.2L AJ-V8 (2007-2009 XK) is generally regarded as the improved/reliable version with double chains.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xe-infotainment-freeze-2017",
+      "vehicle": "2017 Jaguar XE",
+      "title": "Infotainment System Freeze and Reboot Loop",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 1500,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Claim that climate control is lost during freeze is questionable—Jaguar XE has separate physical climate controls below the touchscreen, though some functions are accessed via the screen",
+          "No specific TSB cited; fixes were primarily delivered via phased software updates (e.g., 'Phase 2.5') rather than hardware revisions",
+          "Claim of 'underpowered processor in earlier hardware revisions' is not clearly substantiated by official sources; owner reports point overwhelmingly to software issues addressed via updates",
+          "Severity arguably borderline low/medium since reboots can temporarily disable the backup camera, which has a safety implication"
+        ],
+        "evidence": "Multiple owner forums (Jaguar Forums, XE Forums UK, F-Pace Forums) extensively document InControl Touch Pro freezing, black screens, and reboot loops on 2016+ XE models, with owners reporting crashes 3-4 times per day and dealers issuing phased software updates as the primary remedy. The core issue is real and well-documented, but the description's specific technical claims (memory leaks, underpowered processor, loss of climate control) appear to be plausible-sounding extrapolations rather than verified facts.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-f-pace-zf-8hp-valve-body-2017",
+      "vehicle": "2017 Jaguar F-PACE",
+      "title": "ZF 8HP Transmission Valve Body Malfunction",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1400,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "ZF 8HP is generally regarded as reliable/'bulletproof' by F-PACE owner community; valve body/mechatronic failures occur but are not a widespread documented defect specific to F-PACE",
+          "P0657 (Actuator Supply Voltage A Circuit/Open) is an electrical supply code, not specifically indicative of valve body solenoid wear from stop-and-go driving",
+          "P0730 is a generic 'incorrect gear ratio' code, not specifically a valve body code - more commonly tied to clutch slip/solenoid issues",
+          "No specific Jaguar TSB or NHTSA campaign found tying valve body failure to the 2017-2023 F-PACE range across all years",
+          "Repair cost range $1500-$3500 is roughly accurate for mechatronic/valve body replacement but full ZF rebuilds typically run higher",
+          "Claim of premature solenoid wear 'particularly in stop-and-go' is generic ZF 8HP commentary, not F-PACE-specific evidence"
+        ],
+        "evidence": "The ZF 8HP transmission is widely used across JLR, BMW, Ram, Audi and is generally praised as reliable; valve body/solenoid/mechatronic issues are documented as common ZF 8HP failure modes generally (cross-leaks, solenoid bore wear from skipped fluid changes), but searches found no F-PACE-specific TSB or pattern of premature valve body failure across 2017-2023. DTC codes are plausible transmission codes but not a precise match - P0730 is generic incorrect gear ratio, and P0657 is actuator supply voltage (electrical), not directly a valve body wear indicator.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-i-pace-battery-conditioning-2019",
+      "vehicle": "2019 Jaguar I-PACE",
+      "title": "Battery Conditioning Inefficiency in Cold Weather",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1400,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Cold weather range loss is an inherent characteristic of all EVs, not a specific I-PACE defect or documented TSB issue",
+          "30-40% range loss figure is at the high end; Recurrent study found only ~3% loss while Norwegian study found 24%, and owner reports vary widely (15-33%)",
+          "Year range likely incorrect: I-PACE production ended around 2024 model year, not 2025; also started as 2019 model year",
+          "Severity 'medium' may be miscategorized — this is more of an inherent EV limitation/nuisance than a costly defect",
+          "Description conflates normal cold-weather EV behavior with a manufacturing defect; no specific repair exists",
+          "Preconditioning only works when plugged in with departure time set — described as 'inefficiency' but is actually a design limitation noted by owners"
+        ],
+        "evidence": "Owner forums (i-paceforum.com, ipaceforums.co.uk) widely discuss cold weather range loss with reports ranging from 3% (Recurrent study) to 33% (Norwegian AF study and UK owners). The I-PACE's heat pump and thermal management actually perform comparatively well per Recurrent, though preconditioning has acknowledged limitations (requires plug-in, 30-min default insufficient in extreme cold). No specific TSB or NHTSA recall matches this exact description.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-s-type-timing-chain-tensioner-v8-2000",
+      "vehicle": "2000 Jaguar S-TYPE",
+      "title": "Timing Chain Tensioner Failure on V8 Engine",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1400,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range too broad: documented tensioner failures concentrate on early 4.0L AJ-V8 (S-TYPE 2000-2002); 4.2L engines from 2003+ received double timing chains and improved tensioners, making 2003-2008 much less affected",
+          "DTC codes P0016/P0017 are camshaft-crankshaft correlation codes more typical of later Jaguar engines (5.0L V8, Ingenium, AJV6); early 2000-2002 4.0L S-TYPE diagnoses were primarily based on cold-start rattle and physical inspection per TSB X303-68, not these specific DTCs",
+          "Description of hydraulic pressure loss is partially inaccurate — the primary documented failure mode is cracking/shattering of plastic tensioner bodies and guides, not just hydraulic bleed-down"
+        ],
+        "evidence": "Multiple Jaguar specialist sources and Jaguar TSB X303-68 (Feb 2005, 'Rattle From Engine on Start-up and Idle') confirm primary/secondary timing chain tensioner failures on 1997-2000 4.0L AJ-V8 engines due to plastic tensioner/guide cracking, with risk of catastrophic engine damage if the chain jumps teeth. The 4.2L engine introduced in 2003 used double timing chains and is considered substantially improved, and P0016/P0017 codes are more commonly cited for later 5.0L V8, AJV6, and Ingenium engines than the early AJ-V8.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xf-diesel-dpf-regen-2009",
+      "vehicle": "2009 Jaguar XF",
+      "title": "Diesel Particulate Filter Regeneration Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1300,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "P244A is 'DPF Differential Pressure Too Low' which is related to sensor/pressure issues rather than directly indicating regeneration failure from soot - P244B or P2002 might be more directly applicable, though P244A can appear alongside DPF issues",
+          "Issue is most heavily documented on 2.7d and earlier 3.0d engines (2008-2012); later Ingenium diesels (2016+) had different DPF behavior"
+        ],
+        "evidence": "Multiple Jaguar owner forums (jaguarforum.com, jaginfo.org, xfforum.co.uk, honestjohn.co.uk) extensively document DPF regeneration failures on diesel XF models, especially with urban/short-trip driving causing soot buildup, limp mode, and 'DPF Full' warnings. Repair costs in forums match the cited range: ~£149 forced regen, £850 clean, £1100+ replacement. P2463 is correctly the standard 'DPF Restriction - Soot Accumulation' code.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-x-type-window-regulator-2002",
+      "vehicle": "2002 Jaguar X-TYPE",
+      "title": "Electric Window Regulator Failure",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 1200,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple Jaguar owner forums confirm window regulator failure is a very common X-Type problem, with cables fraying/snapping off guide pulleys and windows dropping into the door. Parts run around £92-£140 with roughly an hour of labor, matching the $150-$400 range, and no DTCs are associated with this purely mechanical failure.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xe-water-pump-ingenium-2017",
+      "vehicle": "2017 Jaguar XE",
+      "title": "Ingenium Water Pump Premature Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1200,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Water pump premature failure is documented primarily on Jaguar supercharged 3.0L V6 and 5.0L V8 engines, not specifically the 2.0L Ingenium as described",
+          "The 2.0L Ingenium's well-documented cooling issues are plastic coolant hoses/pipes, thermostat housing leaks, and piston cooling jet solenoid failures - not water pump bearing/impeller failure",
+          "DTC P26B7 could not be verified as a documented code for this specific failure on the XE Ingenium; common Ingenium DTCs are P0011, P000A, P0087, P228C",
+          "Description of 'bearing wear and impeller separation' as failure mode is not corroborated in sources for the 2.0L Ingenium",
+          "Severity 'high' is debatable - water pump failure is serious if ignored but typically gives warning (coolant warning, weep hole leak) before catastrophic overheating"
+        ],
+        "evidence": "Search results show the 2.0L Ingenium in the XE has well-documented timing chain, turbo, plastic coolant hose, and piston cooling solenoid issues, but water pump premature failure is specifically cited as a problem on supercharged 3.0 V6 and 5.0 V8 Jaguar engines (e.g., F-Pace 35t, XFR). Forum mentions of XE water pump issues often turn out to be plastic coolant pipes or thermostat housings rather than the pump itself.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xf-window-regulator-2009",
+      "vehicle": "2009 Jaguar XF",
+      "title": "Window Regulator Cable and Motor Failure",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 1100,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple Jaguar XF owner forums (xfforum.co.uk, jaginfo.org, jaguarforum.com) and RepairPal confirm window regulator cable fraying/breaking and motor failure as a common known issue on the XF, with owners describing snapped cables, corrosion at fracture points, and windows falling into the door. Repair via full regulator assembly replacement aligns with the $250-$600 cost range and low severity (nuisance, not safety-critical); no DTCs are typically associated with this mechanical failure.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-s-type-transmission-valve-body-2000",
+      "vehicle": "2000 Jaguar S-TYPE",
+      "title": "Automatic Transmission Valve Body Wear",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 980,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Transmission identification is incorrect: 2000-2008 S-TYPE primarily used the Ford 5R55N (V6 and V8), not the ZF 5HP - the ZF 5HP24 was fitted to XJ8/XK8, not S-TYPE. Later S-TYPE (2003+) used ZF 6HP26 on some models",
+          "JF506E reference is likely wrong - S-TYPE V6 used the Ford 5R55N, not the Mazda/Ford JF506E (which was used in Jaguar X-TYPE)",
+          "DTC codes are generic; more commonly documented codes for this specific failure are P0745 (pressure control solenoid), P0734, P0735 (gear ratio specific)",
+          "Severity 'medium' is reasonable but repair cost range ($800-$2500) is narrow - DIY valve body spring repair can be under $50, while full transmission replacement runs $2500-$4000+"
+        ],
+        "evidence": "Jaguar TSB S307-19 confirms 2000-02 S-TYPE valve body/solenoid failures causing erratic/harsh shifts, and multiple forums document widespread 5R55N valve body wear (notably broken 4-3 prestroke valve springs) on S-TYPE. However, the ZF 5HP transmissions cited in the entry were used in the XJ8/XK8, not the S-TYPE, which used the Ford 5R55N across V6 and V8 trims for most of the model run.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xf-zf-8hp-mechatronic-2016",
+      "vehicle": "2016 Jaguar XF",
+      "title": "ZF 8HP Mechatronic Unit Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 980,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll verify this Jaguar XF transmission issue claim through web searches.\nBased on my research, I have enough information to make an assessment. The ZF 8HP transmission is documented across many luxury vehicles including the Jaguar XF, with mechatronic unit issues being a known problem. However, there are some concerns: the issue appears less common/severe in Jaguar XF specifically compared to oth"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-i-pace-touchscreen-delamination-2019",
+      "vehicle": "2019 Jaguar I-PACE",
+      "title": "Upper Touchscreen Delamination and Bubbling",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 950,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "No evidence of touchscreen glass delamination/bubbling reported for Jaguar I-PACE in NHTSA, JLR TSBs, or owner forums",
+          "I-PACE infotainment complaints are overwhelmingly software-related (blank/black screens, reboots fixed by IMC/telematics updates), not physical glass delamination",
+          "Delamination/bubbling is a well-known issue on Stellantis Uconnect screens (Jeep/Dodge/Chrysler) and older Jaguar XF/XK units — appears to have been mistakenly attributed to the I-PACE",
+          "Repair cost field is blank; a real screen replacement would typically run $1,500–$2,000+",
+          "Severity 'low' would be questionable if real, since spreading delamination eventually impairs touch input and backup-camera visibility (typically medium)"
+        ],
+        "evidence": "Searches of I-PACE owner forums (i-paceforum.com, ipaceforums.co.uk), CarComplaints/JaguarForums TSB listings, and NHTSA-related sources show I-PACE touchscreen problems are software-driven blank/reboot issues resolved via IMC/telematics updates — no reports of glass-layer delamination or bubbling. Delamination/bubbling complaints in the search results pertain to Stellantis Uconnect units and a 2009–2011 Jaguar XF windshield TSB (JTB00193), not the I-PACE infotainment.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-x-type-thermostat-housing-leak-2002",
+      "vehicle": "2002 Jaguar X-TYPE",
+      "title": "Thermostat Housing Coolant Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 950,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "The X-Type Duratec V6 thermostat housing issue is well-documented. Note: the X-Type was offered with 2.5L and 3.0L Duratec V6 in the US, plus 2.0L V6 and 2.0L/2.2L diesel in other markets. The description focuses on the V6, which matches. Cost estimate of $150-$500 seems reasonable (forum post mentioned ~$165 for parts alone, with DIY being cheap and shop labor adding to it). No DTCs is correct - "
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-f-pace-panoramic-roof-creak-2017",
+      "vehicle": "2017 Jaguar F-PACE",
+      "title": "Panoramic Sunroof Creaking and Popping Noise",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 920,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Repair cost not listed in entry, but forum reports indicate dealer quotes around £3,300 for sunroof frame replacement; could be added for completeness"
+        ],
+        "evidence": "Multiple F-PACE owner forum threads document panoramic sunroof creaking/popping noises across 2017-2024 model years, attributed to chassis flex causing glass shifting in tracks, seal/frame issues, and temperature-related body flex. Fixes range from silicone/lubricant on seals to full sunroof frame replacement (quoted ~£3,300 by Jaguar dealer), and noise is consistently described as a nuisance, not safety-critical.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-f-type-supercharger-bearing-v8-2014",
+      "vehicle": "2014 Jaguar F-TYPE",
+      "title": "Supercharger Bearing Noise on V8 Models",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 920,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Incorrect supercharger model - F-Type V8 uses Eaton TVS R1900 (TVS1900) from factory, not TVS2300; TVS2300 is an aftermarket Harrop upgrade",
+          "Year range slightly off - F-Type V8 production extended through 2024 model year",
+          "Severity 'high' is debatable - issue is progressive mechanical wear, typically not immediately safety-critical, though can lead to catastrophic engine damage if ignored"
+        ],
+        "evidence": "Supercharger bearing/nose cone wear is a well-documented issue on Jaguar's 5.0L supercharged V8 engines (XKR, XJR, F-Type, Range Rover), with forums, specialists (Paramount Performance, Powerhouse), and TSBs (e.g., SSM73127) confirming symptoms of whine/rattle from worn snout bearings and couplers. However, the factory supercharger on the F-Type V8 is the Eaton TVS R1900, not the TVS2300 cited in the entry - the TVS2300 is a Harrop aftermarket upgrade kit sold by tuners like VelocityAP.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xe-zf-8hp-harsh-shift-2017",
+      "vehicle": "2017 Jaguar XE",
+      "title": "ZF 8HP Harsh Shifting and Hesitation",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 890,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "P0730 (Incorrect Gear Ratio) is a generic transmission code typically indicating mechanical/sensor faults rather than the adaptive shift logic/harsh shifting described - the symptoms described usually do not throw P0730; harsh shifts on the ZF 8HP often present without specific DTCs or with different codes",
+          "Description's specificity (harsh shift between 2nd/3rd, cold weather worsening) is not strongly documented as a known XE-specific pattern - reports are more general (jerky shifts, hesitation, delayed engagement)",
+          "Repair cost range is reasonable but wide - simple TCM reflash/adaptation reset is much cheaper, while valve body or transmission replacement (e.g., ATF coolant contamination TSB) can exceed $2000"
+        ],
+        "evidence": "Owner forums and repair sites confirm ZF 8HP in Jaguar XE exhibits jerky/harsh shifts and hesitation, often resolved by TCM reflash/adaptation reset, fluid service, or in severe cases valve body/transmission replacement (Jaguar TSB exists for 8HP replacement due to ATF coolant contamination). P0730 is a valid Jaguar transmission code for incorrect gear ratio but is more commonly tied to sensor faults or internal mechanical failure than to the adaptive-logic harsh-shifting symptom described.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xf-crankcase-vent-valve-2009",
+      "vehicle": "2009 Jaguar XF",
+      "title": "Crankcase Ventilation Valve Failure on AJ-V8",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 870,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Jaguar forum threads confirm PCV valve failure on AJ-V8 (including 5.0 supercharged XFR) causing lean bank 1/bank 2 codes (P0171/P0174), with diaphragm/spring failures and oil consumption symptoms. Multiple sources (jaguarforums.com, jaguarsolon.com, autoguru) corroborate PCV-induced oil leaks, rough idle, and excess crankcase pressure forcing oil past gaskets on the XF.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-s-type-throttle-body-v6-2000",
+      "vehicle": "2000 Jaguar S-TYPE",
+      "title": "Electronic Throttle Body Failure on V6 Models",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 860,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "S-Type V6 does NOT use GDI (gasoline direct injection); it uses sequential fuel injection (SFI) - the GDI claim is fabricated",
+          "Root cause is more commonly water ingress into the TPS connector and motor/sensor failure, not carbon buildup",
+          "Engine is the Jaguar AJ-V6 (AJ30) with Jaguar-designed heads, not simply the 'Ford-derived Duratec' - it's a derivative but distinct",
+          "Repair cost range ($150-$600) is significantly low; forum/dealer reports show $1,400-$2,000+ for throttle body replacement",
+          "Jaguar-specific DTCs commonly reported are P1229, P1121, P1580, P1584; P2135/P2101 are generic and less commonly cited for this specific failure",
+          "Year range slightly off - S-Type production ended 2007/2008, V6 introduced for 2000 MY; '2000-2008' is approximately correct but final year is debatable",
+          "Severity arguably should be 'high' since sudden limp mode at highway speeds (documented at 90 mph) is a safety concern"
+        ],
+        "evidence": "Multiple Jaguar owner forums extensively document throttle body / 'Failsafe Engine Mode' failures on S-Type V6 models, typically attributed to water intrusion into the TPS connector rather than carbon buildup, with dealer repair costs commonly reported in the $1,400-$2,000 range. The engine is the Jaguar AJ-V6 (AJ30), based on the Ford Duratec architecture but with Jaguar-specific SFI fuel injection - it does not have GDI as claimed.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-x-type-alternator-failure-2002",
+      "vehicle": "2002 Jaguar X-TYPE",
+      "title": "Alternator Premature Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 820,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost range ($300-$700) appears low compared to mainstream estimates (RepairPal $556-$1,493; YourMechanic from $494); US shop pricing typically exceeds the stated upper bound",
+          "Specific 60,000-100,000 mile premature failure window is not well-substantiated; sources indicate alternators commonly last well over 100,000 miles",
+          "Description omits the X-Type's Ford-derived 'smart charge' system, which is a frequently cited root cause of charging faults (ECU/wiring/relay issues often misdiagnosed as alternator failure)",
+          "DTC field listed as 'none' but charging-system faults on X-Type commonly set codes such as P1146 (Generator C-line low) and related P1245; no DTCs is misleading"
+        ],
+        "evidence": "Owner forums (JaguarForums, Jag-lovers, JustAnswer) and repair estimators confirm alternator/charging-system failures are a known X-Type concern, often tied to the smart-charge system with codes like P1146. However, professional cost estimates ($494-$1,493) exceed the entry's $300-$700 range, and the claimed 60-100k premature-failure window isn't strongly supported.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xj-throttle-body-2004",
+      "vehicle": "2004 Jaguar XJ",
+      "title": "Electronic Throttle Body Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 820,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Root cause description is inaccurate: the X350 throttle body failure is primarily a throttle position sensor (TPS) electronic/calibration issue, not 'carbon buildup and motor wear' as described (that's more typical of GDI/diesel throttle bodies)",
+          "P2101 is plausible but P2135 is by far the dominant/documented code for this specific Jaguar issue; P2101 is more loosely associated",
+          "Repair cost upper bound likely understated — dealer replacements commonly run $1,500-$2,600+ for the OEM throttle body assembly, though independent/DIY repairs fit the stated range",
+          "Severity could arguably be 'high' since the failure triggers limp mode unexpectedly at highway speeds (documented cases of sudden power loss in traffic), but 'medium' is defensible"
+        ],
+        "evidence": "Jaguar issued Service Action JTB00022 specifically for X350 XJs experiencing limp-home mode with P2135 stored, caused by pedal/throttle position sensor adaptation drift, with the fix being ECM reconfiguration or throttle body replacement. Numerous owner forum reports (JaguarForums, JagHelp, Jaguar-Club) confirm this is a widespread, well-known X350 issue across the 2004-2009 range, though dealer replacement costs commonly exceed the stated $900 ceiling.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-e-pace-9-speed-harsh-shift-2018",
+      "vehicle": "2018 Jaguar E-PACE",
+      "title": "9-Speed Automatic Transmission Harsh Shifting",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 780,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "P0730 is a generic 'incorrect gear ratio' code; documented sources more frequently cite P0735 (5th gear ratio) and P0962 (pressure regulator solenoid) for this specific ZF 9HP issue",
+          "Upper repair cost of $2000 may be low — full gearbox replacement (which JLR often performs rather than overhaul) can substantially exceed this; mechatronic repairs alone often approach or exceed $2000"
+        ],
+        "evidence": "Multiple owner forums (E-Pace Forum, E-Pace Forums UK), AutoDoc, and Wikipedia confirm the ZF 9HP in the E-PACE exhibits jerky/harsh shifts, gear hunting, and indecisive low-speed gear selection — widely attributed to software/calibration issues between ZF and JLR. Documented DTCs in field reports skew toward P0735 and P0962 rather than the generic P0730, and dealer remedies range from TCU software updates to full gearbox replacement under warranty.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xe-diesel-dpf-2017",
+      "vehicle": "2017 Jaguar XE",
+      "title": "Diesel Particulate Filter Clogging in Urban Use",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 780,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Issue is overstated for the XE specifically - the XE has a close-coupled DPF (longitudinal engine layout) and is widely regarded by owners and JLR documentation as significantly LESS prone to DPF clogging than transverse-mounted JLR models (Evoque, Discovery Sport, E-Pace)",
+          "Forum consensus describes XE DPF clogging as 'very rare' or 'almost unheard of' rather than a characteristic known issue",
+          "No specific Jaguar TSB or NHTSA campaign found tying P2463 specifically to 2017-2020 XE; P2463 is a generic diesel DTC",
+          "Description is technically accurate about urban-driving DPF clogging mechanism in general, but framing it as a notable XE-specific issue is misleading"
+        ],
+        "evidence": "Multiple Jaguar XE owner forum threads (xeforums.co.uk) and a JLR internal bulletin (JLRP00100) reference indicate the XE was actually JLR's benchmark for proper close-coupled DPF design and is the LEAST affected of the Ingenium diesel lineup; owners report DPF clogging on the XE is rare unless combined with other faults (e.g., failed thermostat). P2463 is correctly identified as the generic DTC for DPF soot accumulation/restriction, and the $300-$2800 cost range aligns with cleaning-to-replacement quotes (~£1800/€1800) seen in forums.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xj-rear-main-seal-v8-2004",
+      "vehicle": "2004 Jaguar XJ",
+      "title": "Rear Main Seal Oil Leak on V8 Engines",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 750,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description references 'clutch on manual models' but no AJ-V8 Jaguar XJ was ever produced with a manual transmission - all V8 XJs (X308/X350/X358/X351) were automatic-only",
+          "Rear main seal leaks are reported but described as 'not common' by owners, so framing as a widespread known issue may overstate prevalence",
+          "Year range 2004-2019 spans two different AJ-V8 variants (4.2L AJ34 in X350/X358 and 5.0L AJ133 in X351) - issue characteristics may differ between them"
+        ],
+        "evidence": "Forum discussions on JaguarForums and Jaguarforum confirm rear crankshaft seal weeping/leaking is a documented occurrence on V8 XJ engines, with oil pooling in the bellhousing and repair requiring transmission removal (~€1500+). However, Wikipedia and multiple Jaguar enthusiast sources confirm no manual transmission was ever offered behind the AJ-V8 from the factory, making the 'clutch contamination on manual models' claim inapplicable to this vehicle.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-f-pace-coolant-crossover-v6-2017",
+      "vehicle": "2017 Jaguar F-PACE",
+      "title": "Coolant Crossover Pipe Leak on Supercharged V6",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 680,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost range ($600-$1400) is significantly understated; real-world costs typically run $2,000-$3,900 because supercharger removal is required",
+          "Failure mechanism described inaccurately: primary failure mode is cracking/splitting of brittle plastic pipes (Y-pipe, upper/lower coolant outlet pipes), not O-ring seal degradation at the supercharger connection",
+          "Vehicle scope error: F-PACE SVR uses the 5.0L supercharged V8 (AJ133), not the 3.0L supercharged V6 — though the V8 has analogous plastic coolant pipe failures, so SVR inclusion is defensible but the engine reference is wrong",
+          "Severity arguably understated: owners report catastrophic failures with no warning leading to overheating; could be argued medium-to-high rather than medium",
+          "Description says leak is 'difficult to detect visually' which is partially accurate (leaks into engine valley under supercharger), but this should be noted as a key diagnostic detail"
+        ],
+        "evidence": "Multiple Jaguar F-PACE owner forums (fpaceforum.com, jaguarforums.com) and independent repair sources extensively document plastic coolant crossover/Y-pipe failures on 2017+ supercharged 3.0L V6 F-PACEs, with Jaguar having redesigned the parts and aluminum aftermarket replacements available. Reported repair costs consistently fall in the $2,000-$3,900 range due to required supercharger removal, well above the stated $600-$1400.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-f-type-zf-8hp-valve-body-2014",
+      "vehicle": "2014 Jaguar F-TYPE",
+      "title": "ZF 8HP Valve Body Wear",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 680,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "P0730 is a generic 'incorrect gear ratio' code, not specific to valve body wear; more typical codes would be P0700, P0841, or P2700-series solenoid codes",
+          "Valve body wear is a known ZF 8HP issue across many platforms (BMW, Jaguar, RAM, etc.) but is not specifically documented as a widespread F-TYPE-specific failure pattern tied to 'quickshift calibration'",
+          "F-TYPE production ran through 2024, so year range could extend to include 2024 model year",
+          "Most documented F-TYPE transmission complaints relate to software/gearbox fault TSBs rather than mechanical valve body wear"
+        ],
+        "evidence": "The ZF 8HP transmission used in the F-TYPE has well-documented valve body and mechatronic wear issues across all platforms it serves (BMW, Jaguar, RAM, Audi), with solenoid bore wear, crossleaks, and harsh shifting being common. However, F-TYPE-specific forum discussions more often cite software/TSB-addressed gearbox faults than the described aggressive-driving valve body wear pattern, and the cited DTC P0730 is a generic gear ratio code rather than a valve-body-specific code.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-i-pace-ota-update-issues-2019",
+      "vehicle": "2019 Jaguar I-PACE",
+      "title": "OTA Software Update Failure and Glitches",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 680,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Severity could arguably be 'medium' in some cases - one forum post reported loss of power after an OTA update and another reported loss of emergency braking/cruise functions after update 4.1.0, which are safety-adjacent rather than pure nuisance; description says 'low' which is reasonable for the typical case but borderline",
+          "Year range starts at 2019 but I-PACE was actually sold as MY2018 in some markets - though 2019-2025 is largely accurate for the US market",
+          "Description mentions regression bugs in 'climate control and charging' specifically; forum evidence more strongly supports regressions in navigation, CarPlay, connectivity, braking/cruise, and charging discrepancies - climate control regressions are less explicitly documented"
+        ],
+        "evidence": "Multiple owner forum threads (i-paceforum.com, ipaceforums.co.uk) extensively document OTA/SOTA update failures, stuck downloads, dealer reflash requirements, and post-update regression bugs across MY2019-2024 I-PACE vehicles, including charging discrepancies after updates, CarPlay bugs introduced by version 19A, navigation freezes after update to 3.0, and loss of emergency braking/cruise after update 4.1.0. Dealer reflashes and TCU replacements are commonly reported, consistent with the database entry's description.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xe-suspension-bushing-wear-2017",
+      "vehicle": "2017 Jaguar XE",
+      "title": "Front and Rear Suspension Bushing Premature Wear",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 650,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll search for information about this Jaguar XE suspension issue to verify the claims.\n{\n  \"verdict\": \"minor_issues\",\n  \"real\": true,\n  \"issues_found\": [\n    \"Repair cost range may be low - replacement control arms with bushings on the XE often require full arm replacement (not just bushings), and dealer pricing for both sides plus alignment can exceed $1200\",\n    \"Year range '2017-2023' is plaus"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xj-supercharger-nose-cone-2010",
+      "vehicle": "2010 Jaguar XJ",
+      "title": "Supercharger Nose Cone Bearing Wear",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 650,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Severity arguably should be high since sources warn ignoring the issue can cause catastrophic engine damage from metal debris ingestion",
+          "No DTC codes is correct - this is a mechanical noise issue not typically flagged by OBD",
+          "Repair cost range is reasonable for snout/coupler rebuild but full supercharger replacement can exceed $3500"
+        ],
+        "evidence": "Multiple independent sources (Jaguar TSB JTB00349v2, SSM73127, specialist rebuilders Paramount Performance and Powerhouse Automotive, and owner forums) confirm the Eaton TVS R1900 supercharger on 5.0L V8 Jaguar XJ/XJR/Supersport models suffers from nose cone bearing wear and torsional isolator/coupler failure causing rattle at idle and whine with RPM. The description, year range, and absence of DTCs all match documented real-world reports.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-e-pace-incontrol-freeze-2018",
+      "vehicle": "2018 Jaguar E-PACE",
+      "title": "InControl Touch Infotainment Freeze",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 620,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "No DTC codes is accurate since this is a software/firmware issue not typically logged in OBD-II, but worth noting JLR Topix campaign references (e.g., K385) exist for related infotainment work",
+          "Description's specific claim about 'simultaneous Bluetooth streaming and navigation processing on base Touch system with less processing power' is plausible but not specifically substantiated in forum reports—most reports describe black screens on startup rather than load-related freezes"
+        ],
+        "evidence": "Multiple E-PACE owner forum threads (epaceforums.co.uk, epaceforum.com) confirm 2019-2020 E-PACE owners experiencing black/frozen infotainment screens requiring lock/wait reboot cycles, with one owner noting issues persisting for years and Jaguar unable to provide a permanent fix. The issue spans the InControl Touch Pro generation broadly across JLR vehicles (F-Pace, I-Pace, E-Pace) and is widely acknowledged as a nuisance-level software reliability problem, consistent with the 'low' severity and no-cost-listed (typically warranty/software update) characterization.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-f-type-differential-whine-2014",
+      "vehicle": "2014 Jaguar F-TYPE",
+      "title": "Rear Differential Whine and Bearing Noise",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 580,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Repair cost upper bound may be low - full diff replacement at dealer can exceed $3000, with some 'revised' diffs quoted around $9500 in parts alone; however many cases are covered under warranty or resolved with seal/bearing work in the $500-$3000 range"
+        ],
+        "evidence": "Multiple Jaguar F-Type owner forums document widespread rear differential failures with whining/humming noises on 2014-2021+ F-Types, often appearing between 25,000-50,000 miles, with symptoms including whine under acceleration/deceleration caused by worn ring-and-pinion gears and degraded bearings. The issue is widely discussed but typically has no DTC codes (mechanical noise diagnosis), matching the entry.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-f-pace-rear-diff-bushing-2017",
+      "vehicle": "2017 Jaguar F-PACE",
+      "title": "Rear Differential Mount Bushing Premature Wear",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 560,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Misdescribes the actual issue: documented F-PACE problem is cracked differential housing/mounting brackets and internal differential (pinion gear) failure, not rubber bushing wear",
+          "Repair cost severely underestimated: real-world quotes are $3,000-$4,800 for differential replacement, not $300-$900",
+          "Severity likely miscategorized as 'low' - owners report complete differential failure requiring full replacement, which is a medium/high cost issue",
+          "Symptom description is partially inaccurate: owners report whining/drumming/grinding noises and detected cracks, not just clunking on accel/decel transitions",
+          "TSBs exist for related issues (rear differential pinion gear manufactured out of spec, pinion seal leaks, rear creak noise) but none specifically for 'mount bushing wear'"
+        ],
+        "evidence": "Forum owners and TSBs confirm F-PACE (especially 2017) has documented rear differential problems, but the actual issue is cracked cast-aluminum differential housing/brackets and pinion gear failure requiring full diff replacement at $3K-$4.8K, not simple bushing wear at $300-$900. Jaguar TSBs reference rear differential pinion gear manufacturing defects and pinion seal leaks, not mount bushing wear specifically.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xk-convertible-roof-mechanism-2007",
+      "vehicle": "2007 Jaguar XK",
+      "title": "Convertible Roof Mechanism Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 550,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost ceiling ($2500) is low; full hydraulic system rebuilds run $5,000+ and dealer quotes around £1,500 are common for hose/leak repairs",
+          "Description emphasizes microswitches/limit switches but Hall position sensors and leaking hydraulic cylinders/hoses are actually the most common root causes",
+          "X150 XK production ended in 2014; including 2015 may be slightly off depending on market"
+        ],
+        "evidence": "Multiple Jaguar forums, specialist rebuilders (Top Hydraulics, HoodTech), and JustAnswer threads confirm widespread X150 XK convertible roof issues including hydraulic cylinder/hose leaks, pump failures, microswitch faults, and Hall sensor failures causing the roof to stop mid-cycle or display 'top not latched' warnings. Repair costs commonly exceed the listed $2,500 ceiling, with full system rebuilds starting around $5,599 and cylinder sets at $1,300.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xf-turbo-coolant-hose-ingenium-2016",
+      "vehicle": "2016 Jaguar XF",
+      "title": "Turbo Coolant Hose Failure on Ingenium Engine",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 540,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Turbo coolant feed/return hose failure as described is documented on the 3.0L I6 Ingenium engine, not the 2.0L Ingenium",
+          "The well-documented 2.0L Ingenium coolant issue is the thermostat housing leaking onto the piston cooling oil jet solenoid, not turbo hoses",
+          "Real 2.0L Ingenium turbo failures are caused by oil starvation/contamination, not coolant hose cracking",
+          "Description appears to conflate the 3.0L turbo coolant hose issue with the 2.0L engine",
+          "Repair cost range ($300-$800) may be low; documented Jaguar coolant hose repairs frequently run $1,500-$2,500 when supercharger/access work is involved (though that's V6, not 2.0L)",
+          "Year range 2016-2023 is plausible for the 2.0L Ingenium in XF (X260), but issue itself is misattributed"
+        ],
+        "evidence": "Documented sources (K Motors, Apex Engines, Green's Garage) identify the 2.0L Ingenium's main coolant-related fault as thermostat housing leakage onto the piston cooling solenoid, and plastic coolant pipes cracking generally - not specifically turbocharger coolant feed/return hoses. The turbo coolant hose failure pattern described matches the 3.0L I6 Ingenium engine, not the 2.0L four-cylinder.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xk-nikasil-bore-wear-2007",
+      "vehicle": "2007 Jaguar XK",
+      "title": "Nikasil Cylinder Bore Wear on Early AJ-V8",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 480,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "Year range is entirely wrong: Nikasil bores were only used 1996-August 2000; Jaguar switched to steel liners on 18/08/2000, well before any 2007-2011 X150 XK existed",
+          "The 4.2L AJ-V8 (introduced for 2003 MY) never used Nikasil coatings - it always had steel liners",
+          "2007-2011 XK (X150 generation) is entirely unaffected by this issue - applies to the prior X100 XK8/XKR generation only",
+          "DTC codes P0300/P0301/P0302 are generic misfire codes and not specifically associated/documented with Nikasil bore wear diagnosis (which is identified by blow-by testing, not OBD codes)",
+          "Repair cost range may be low; Nikasil-damaged blocks cannot be rebored and typically require full engine replacement",
+          "Severity rating arguably overstated - causes drivability issues/engine failure but not a sudden safety-critical failure"
+        ],
+        "evidence": "Multiple authoritative sources (Jaguar forums, Jag-lovers, Underhood Service, Motorious) confirm Nikasil cylinder coatings were used only on AJ-V8 engines built before 18 August 2000, after which Jaguar switched to steel liners. The issue affected 1996-1999/2000 XK8/XKR (X100) and contemporary XJ/S-Type, not the 2007-2011 XK (X150) which uses the later 4.2L AJ-V8 with steel liners exclusively.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-f-type-convertible-hydraulic-leak-2014",
+      "vehicle": "2014 Jaguar F-TYPE",
+      "title": "Convertible Top Hydraulic System Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 430,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll search for information to verify this issue.\nBased on my research, the issue is documented but with some caveats. The F-Type convertible roof issues are documented, including hydraulic leaks. However, the most commonly reported issues on F-Type forums seem to be sensor/electrical issues and motor failures, with hydraulic leaks being mentioned by UK roof repair specialists. The XK8/XKR has muc"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-e-pace-turbo-coolant-hose-ingenium-2018",
+      "vehicle": "2018 Jaguar E-PACE",
+      "title": "Turbo Coolant Hose Failure on Ingenium Engine",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 420,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "The specific failure mode described (turbo coolant hoses splitting near turbo housing) is not a documented common issue for the E-PACE; documented E-PACE coolant leaks center on thermostat housing, coolant separator, water pump, and plastic coolant pipes/crossover Y-pipe",
+          "The 'turbo coolant hose' failure pattern is more strongly associated with the 3.0L I6 Ingenium (used in other JLR vehicles) and the 3.0L supercharged V6 in F-PACE/F-Type, not the 2.0L Ingenium in the E-PACE",
+          "Repair cost range of $250-$700 appears low; owner-reported E-PACE coolant hose repairs run ~£500/$600+ at minimum, and related JLR coolant hose jobs often exceed $2,000 due to intake/supercharger removal labor",
+          "No JLR TSB specifically identifies 'turbo coolant hose' failure on E-PACE as described"
+        ],
+        "evidence": "Forum reports (epaceforum.com, jaguarforum.com) and shop guides (K Motors) document E-PACE coolant leaks primarily from the coolant separator, thermostat housing, water pump, and plastic coolant pipes — not turbo coolant hoses specifically. The turbo coolant hose failure pattern matches the 3.0L I6 Ingenium and 3.0L supercharged V6 (F-PACE/F-Type) per Green's Garage and JLR TSB JTB00566, not the 2.0L Ingenium in the E-PACE.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xk-throttle-body-sensor-2007",
+      "vehicle": "2007 Jaguar XK",
+      "title": "Throttle Body Position Sensor Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 390,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Throttle body/TPS issues are extensively documented on earlier XK8/XKR (X100, 1997-2006) and on sister platforms (XJ, XF, S-Type); evidence specific to the 2007-2015 XK (X150) is thinner, suggesting the year range may be overstated or borrowed from related models",
+          "P2135 is well-supported; P2101 is a plausible companion code but less frequently cited in Jaguar-specific cases (P1121, P1224, P1229, P0121, P0123, P0223 appear more often in forum reports)",
+          "Severity could arguably be 'high' since loss of throttle control / limp mode at highway speeds is described by some sources as a safety concern",
+          "Cost range is reasonable but on the low side if a complete OEM throttle body assembly plus dealer labor is required"
+        ],
+        "evidence": "Multiple Jaguar forums, jaghelp.com, and a YouTube case study confirm P2135 throttle/pedal position sensor voltage correlation failures on Jaguar models with the dual-track TPS, with the ECM detecting disagreement between the two sensor tracks and triggering limp mode. However, most documented cases are on XK8/XKR (X100), XJ, XF, and S-Type rather than the 2007-2015 X150 XK specifically, and Jaguar-specific DTCs cited in forums are typically P2135, P1121, P1224, or P1229 rather than P2101.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-f-type-exhaust-manifold-crack-v6-2014",
+      "vehicle": "2014 Jaguar F-TYPE",
+      "title": "Exhaust Manifold Crack on Supercharged V6",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 380,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "No documented pattern of cast-iron exhaust manifold cracking on the F-TYPE 3.0L supercharged V6 in TSBs, NHTSA complaints, or major owner-forum/specialist common-fault lists",
+          "Known F-TYPE V6 common issues are timing chain tensioner/guide failure, water pump failure, and active exhaust valve failure — not manifold cracking",
+          "Manifold-cracking issues in Jaguar lore are associated with older diesel models (X351 3.0D, S-Type 2.7D), not the AJ126 supercharged petrol V6",
+          "Cost range lower bound ($500) is optimistic; RepairPal estimates F-Type exhaust manifold replacement at roughly $1,719-$1,960",
+          "Description conflates generic 'ticking + exhaust smell' symptoms with a specific failure mode not substantiated for this engine"
+        ],
+        "evidence": "Specialist common-fault write-ups for the F-TYPE (e.g., K Motors) and engine-issue summaries for the 3.0 V6 supercharged do not list exhaust manifold cracking; recurring issues cited are timing chain jumping, water pump failure, and active exhaust valve seizure. Cracked exhaust manifolds in Jaguar forums are discussed in the context of older diesel engines, not the F-TYPE's AJ126 supercharged V6.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-e-pace-panoramic-roof-leak-2018",
+      "vehicle": "2018 Jaguar E-PACE",
+      "title": "Panoramic Sunroof Water Leak into Cabin",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 340,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Limited E-PACE-specific evidence of panoramic sunroof leaks; most documented Jaguar sunroof leaks are on F-Pace and I-Pace models",
+          "One E-PACE forum complaint involved a front cabin/door seal leak, not specifically sunroof drain tubes",
+          "No specific Jaguar TSB found for E-PACE panoramic sunroof leak; description of 'drain tube connections' may not apply since some Jaguar panoramic roofs use drainage channels rather than tubes",
+          "Water pooling in footwells from a roof leak could potentially affect electronics, arguably warranting 'medium' severity rather than 'low'"
+        ],
+        "evidence": "Sunroof/roof water leaks are widely documented across Jaguar models (F-Pace, I-Pace) on owner forums, with causes including blocked drains, failed seals, and improperly bonded glass; one E-PACE forum thread documents water ingress but attributed to a front cabin seal rather than the sunroof specifically. No Jaguar-issued TSB or NHTSA complaint specifically targeting E-PACE panoramic sunroof drain/seal leaks was found in the searches.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-i-pace-contactor-failure-2019",
+      "vehicle": "2019 Jaguar I-PACE",
+      "title": "High-Voltage Contactor Failure Warning",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 320,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC P0AA6 is incorrect for the described issue - P0AA6 is an HV Battery Voltage System Isolation Fault, not a contactor failure code",
+          "Correct DTCs for contactor failures would be P0AA0 (positive contactor), P0ADD (negative contactor), P0AE1 (precharge contactor), or P3051 (contactor C)",
+          "Description conflates two distinct issues: isolation faults (P0AA6, most commonly reported on I-PACE) vs. actual contactor failures",
+          "Repair cost range ($1000-$3500) appears low - real-world cases show £1,500+ parts with 12+ hours labor, dealer diagnostics alone £1,770, and full repairs reaching £7,000-£13,000",
+          "Cause described (degradation from cycling/arcing) does not match the typical P0AA6 root causes documented (corrosion in HV connections, base plate, BECM/BEM issues, cell isolation breakdown)"
+        ],
+        "evidence": "Jaguar's own SSM74274 TSB lists P0AA6 as 'Hybrid/EV Battery Voltage System Isolation Fault' - separate from contactor codes P0AA0, P0ADD, P0AE1, P3051. Forum reports across 2019-2022 I-PACE models confirm P0AA6 is common but relates to HV isolation/leak current between 12V and 400V systems, often caused by base plate, BECM, harness, or cell issues - with repairs frequently exceeding the stated cost range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xk-unintended-acceleration-during-braking",
+      "vehicle": "2006 Jaguar XK",
+      "title": "Unintended Acceleration During Braking",
+      "severity": "high",
+      "source": "nhtsa-verified",
+      "reportCount": 9,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range is too narrow - the accelerator pedal arm recall (Jaguar R847, began Aug 11, 2005) and related complaints span multiple XK8 model years (commonly cited 1997-2006), not just 2006",
+          "Description conflates two distinct phenomena: the recall was about reduced clearance between pedals (risk of pressing both), while many NHTSA complaints describe electronic/throttle-by-wire sudden acceleration which was never officially recalled",
+          "Source label 'nhtsa-verified' is partially accurate - NHTSA complaints exist, but the linked recall mechanism (pedal clearance) differs from the described failure mode (acceleration while braking)"
+        ],
+        "evidence": "NHTSA records confirm a real Jaguar recall (R847, Aug 2005) for incorrectly assembled accelerator pedal arms reducing brake/accelerator clearance, and the 2006 XK has 26 NHTSA complaints including sudden acceleration incidents during braking. However, the recall covered a broader year range than 2006-only, and the sudden-acceleration-while-braking complaints describe a different (electronic) failure mode than the pedal-clearance recall addresses.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xk-oem-tire-tread-separation-and-blowout-risk",
+      "vehicle": "2006 Jaguar XK",
+      "title": "OEM Tire Tread Separation and Blowout Risk",
+      "severity": "high",
+      "source": "nhtsa-verified",
+      "reportCount": 4,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "Continental tire tread separation complaints in NHTSA are for the Jaguar X-Type (sedan/Sportwagon), not the XK grand tourer",
+          "No NHTSA complaints, TSBs, or recalls found for tire tread separation specifically on the 2006 Jaguar XK",
+          "The only tire-related recall affecting XK is for 2007-2009 model years (TPMS non-compliance), not 2006 and not tread separation",
+          "Severity rating may be justified IF the issue existed, but the issue itself is misattributed to the wrong vehicle model",
+          "Repair cost range is plausible for tire replacement but irrelevant since the issue is misattributed",
+          "Source claim 'nhtsa-verified' is misleading — NHTSA data supports X-Type complaints, not XK"
+        ],
+        "evidence": "NHTSA complaints describing OEM Continental ContiProContact/ContiTouring tread separation and blowouts on Jaguars specifically reference the 2006 Jaguar X-Type sedan and Sportwagon (225/45R17 tires), not the XK coupe/convertible. The 2006 Jaguar XK has only one NHTSA recall on record (an unrelated accelerator pedal issue), with no documented pattern of OEM tire tread separation complaints for that model.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xk-automatic-transmission-or-transfer-case-failure",
+      "vehicle": "2006 Jaguar XK",
+      "title": "Automatic Transmission or Transfer Case Failure",
+      "severity": "high",
+      "source": "nhtsa-verified",
+      "reportCount": 3,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "Vehicle misidentified: 2006 Jaguar XK is RWD coupe/convertible and has no transfer case — transfer case failures apply to the AWD Jaguar X-Type, a different model",
+          "Cited complaints (catastrophic transmission + transfer case failure, gears fragmented) are from 2006 X-Type owners, not XK owners",
+          "NHTSA shows only 1 recall for 2006 XK and it relates to the accelerator pedal, not transmission/gearbox",
+          "No documented Jaguar recall on 2006 XK for 'reverse selected while forward chosen' gearbox condition",
+          "DTC field is empty for an issue that, if real, would typically log transmission/gearbox fault codes (e.g., gearbox fault lamp / P-codes)",
+          "Repair cost range is plausible for X-Type ($4,000–$6,500 reported) but not validated for the XK platform"
+        ],
+        "evidence": "NHTSA complaints and forum threads about catastrophic automatic transmission and transfer case failures (gears fragmented, no movement) are documented for the AWD Jaguar X-Type, not the 2006 XK, which is RWD and has no transfer case. The only NHTSA recall for the 2006 XK concerns the accelerator pedal assembly, and the second-generation XK launched in 2006 for MY2007 — the issue appears to conflate two different Jaguar models.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xk-limp-mode-and-sudden-loss-of-power",
+      "vehicle": "2006 Jaguar XK",
+      "title": "Limp Mode and Sudden Loss of Power",
+      "severity": "medium",
+      "source": "nhtsa-verified",
+      "reportCount": 2,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Limp mode / Restricted Performance is a generation-wide Jaguar behavior, not specific to 2006 model year only; year range is artificially narrow",
+          "NHTSA complaint volume specifically for 2006 XK under vehicle speed control is very thin; most documented XK speed-control complaints are for the 2007 (X150) model year",
+          "Severity 'medium' is arguably under-calibrated — sudden deceleration in traffic is a safety-relevant event that could justify 'high'",
+          "Repair cost range ($150-$1200) is very broad and not tied to a specific root cause, since limp mode is a symptom with many possible causes"
+        ],
+        "evidence": "Limp mode / 'Restricted Performance' is a well-documented Jaguar behavior across X100/X150 XK and other models, with owner forum and Pico Auto case-study evidence, but NHTSA-specific complaints for the 2006 XK in the speed-control category are sparse — most cluster on the 2007 XK. The behavior is real; the entry's narrow single-year scope and medium severity appear under-calibrated.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xk-passenger-seat-airbag-occupancy-sensor-failure",
+      "vehicle": "2006 Jaguar XK",
+      "title": "Passenger Seat Airbag Occupancy Sensor Failure",
+      "severity": "high",
+      "source": "nhtsa-verified",
+      "reportCount": 2,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range is narrow - this issue affects both X100 (1996-2006) and X150 (2006-2014) generations, not just 2006",
+          "DTC codes listed as 'none' but Jaguar flash codes 16/17 and OBD codes like B0061, B0028 are documented for this fault",
+          "Description conflates separate components - passenger weight/occupancy sensor, seat belt tension sensor, and seat wiring connector issues are distinct but related causes"
+        ],
+        "evidence": "Multiple owner forums and a JustAnswer post confirm a 2006 XK8 owner had the passenger seat airbag sensor module fail at ~$850 for the module plus labor. Jaguar TSB 501-T836 specifically addresses occupancy sensor replacement, and the issue is widely reported as caused by seat-mounted sensors, weight sensing modules, or pinched/corroded seat connector wiring under the passenger seat.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "jaguar-xk-headlamp-adjustment-mechanism-compliance-setup-issue",
+      "vehicle": "2000 Jaguar XK",
+      "title": "Headlamp Adjustment Mechanism Compliance/Setup Issue",
+      "severity": "low",
+      "source": "nhtsa-verified",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range may be too narrow - the headlamp adjustment recall (Jaguar R842, NHTSA notification Jan 2004) appears to affect multiple XK model years including 2001-2003, not just 2000"
+        ],
+        "evidence": "NHTSA records confirm Jaguar recall R842 for the XK regarding headlamp adjustment mechanism failing to comply with FMVSS 108 due to lack of suitable instructions; remedy was a free Owner's Manual addendum with aiming instructions, consistent with low severity and no repair cost.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    }
+  ]
+}

@@ -1,0 +1,1732 @@
+{
+  "sampledAt": "2026-05-18T15:01:47.900Z",
+  "total": 71,
+  "verified": 9,
+  "minor": 33,
+  "major": 19,
+  "fabricated": 6,
+  "errors": 4,
+  "deadLinks": 1,
+  "totalLinks": 31,
+  "results": [
+    {
+      "id": "mini-cooper-s-timing-chain-2007",
+      "vehicle": "2007 MINI Cooper S",
+      "title": "N14/N18 Turbo Engine Timing Chain Catastrophic Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 4500,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Description slightly overstates N14 vs N12 difference - both Prince engines (N12 naturally aspirated and N14 turbo) suffer the same timing chain tensioner/guide failure, often called 'death rattle'",
+          "Year range is approximately correct but JCW N14 application extended through 2012 per some sources"
+        ],
+        "evidence": "Timing chain tensioner failure ('death rattle') is extremely well-documented on R56 MINI Cooper S N14 (2007-2010/2011) and persists to a lesser degree on the N18 (2011-2013+), with a class-action lawsuit filed against BMW and a January 2008 TSB issued; failures can cause catastrophic engine damage including bent valves and sheared cam bolts. DTCs for cam/crank correlation and misfires align with the failure mode, and repair costs in the $1500-$3000 range match typical full timing chain kit replacement labor/parts.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-cooper-s-carbon-buildup-2007",
+      "vehicle": "2007 MINI Cooper S",
+      "title": "Direct Injection Carbon Buildup on Intake Valves",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 3500,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "P0174 (lean bank 2) is invalid for these inline-4 engines which only have bank 1; only P0171 applies",
+          "Year range 2007-2025 is too broad - issue is severe on N14/N18 (2007-~2016) but Gen 3 B46/B48 engines are widely reported to be far less susceptible to this problem",
+          "Repair cost $400-$800 is on the low end; dealer walnut blasting commonly runs $800-$1000+, though DIY can be ~$300",
+          "Severity 'medium' is reasonable but could arguably be 'low' as it's a maintenance item, not a failure"
+        ],
+        "evidence": "Carbon buildup on intake valves is a well-documented, notorious issue on the N14 (2007-2010) and to a lesser extent N18 (2011-2016) MINI Cooper S engines due to direct injection plus PCV oil vapor accumulation, requiring walnut blasting every ~50k miles. The Gen 3 B46/B48 engines have improved PCV systems and are widely reported as much less prone to the issue, making the 2007-2025 range overly broad. P0174 is invalid on these single-bank 4-cylinder engines.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-cooper-timing-chain-2007",
+      "vehicle": "2007 MINI Cooper",
+      "title": "N12/N16 Timing Chain Tensioner Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 3200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description omits the N14 turbocharged engine, which is the engine MOST associated with this failure (the 'death rattle'); N12 and N16 are affected but N14 is the primary culprit",
+          "N16 engine (2011+) is reported to have notably fewer timing chain issues than N12/N14; lumping it equally with N12 slightly overstates N16 risk",
+          "Repair cost upper bound ($2,500) is slightly low — full chain/guide/tensioner kit replacement commonly runs $1,500-$3,000, and consequential engine damage can run $3,000-$15,000 per class action filings",
+          "Year range 2007-2013 is acceptable for R56 but the documented BMW settlement specifically covered 2007-2010 R55/R56/R57 S models with N14"
+        ],
+        "evidence": "Multiple independent sources (FCP Euro, Pelican Parts, CarComplaints, classaction.org, NAM forums) confirm the R56 MINI Cooper timing chain tensioner 'death rattle' is a well-documented defect affecting Prince engines (N12/N14/N16/N18), with a BMW class action settlement in November 2015 extending warranties to 7 years/100,000 miles. The most severely affected engine is the N14 (turbocharged Cooper S, 2007-2010), which the entry's title omits entirely while including N16 which has comparatively fewer reported failures.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-cooper-thermostat-2007",
+      "vehicle": "2007 MINI Cooper",
+      "title": "Electric Thermostat and Water Pump Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2800,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "The main R56 water pump is belt-driven (friction-wheel mechanical), not 'electric' - only an auxiliary coolant pump for turbo cooling is electric. Description conflates these.",
+          "Year range '2007-2016' is slightly imprecise: R56 ran 2007-2013 (hatch) / through 2015 (Clubman/Coupe/Roadster); F56 started 2014. The combined range is roughly correct but the description should clarify generation breakpoints.",
+          "P2181 is a generic 'Cooling System Performance' code - valid but not specific to electric thermostat; the most commonly cited code is P0597."
+        ],
+        "evidence": "Multiple owner forums (North American Motoring, mini2.com), Pelican Parts DIY articles, and OBD code references confirm the R56 MINI's electrically-heated thermostat housing and water pump are well-documented common failure points, with P0597/P0598/P0599 being the standard DTCs for the electric thermostat heater circuit. However, the R56 main water pump is actually belt-driven via a friction wheel (with seal leaks and impeller issues), while only the auxiliary turbo coolant pump is fully electric - so the description's claim of 'electric water pump' is partially inaccurate.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-cooper-oil-leak-vanos-2007",
+      "vehicle": "2007 MINI Cooper",
+      "title": "Valve Cover and VANOS Solenoid Oil Leaks",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2500,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Engine family list omits N14 (turbocharged 2007-2010 Cooper S), which is arguably the most leak-prone of the Prince engines; N16 is included but N14 is not",
+          "DTC codes P0011/P0012/P0014/P0015 are camshaft timing codes typically caused by failing/clogged VANOS solenoids themselves, not specifically by external oil leaks around the solenoids — the causal link in the description is slightly misleading",
+          "Description states leaks cause 'misfires' from oil pooling around solenoids; misfires are more commonly caused by valve cover gasket oil dripping into spark plug wells, not VANOS solenoid seal leaks",
+          "Repair cost range ($350-$900) is reasonable for valve cover gasket + VANOS solenoid replacement but could exceed $900 if the full updated valve cover assembly is needed"
+        ],
+        "evidence": "Multiple independent sources (Pelican Parts, North American Motoring, MINI2 forums, Gulf Euro Clinic, The Haus) confirm valve cover gasket leaks are extremely common on R55/R56/R57-era MINIs with Prince engines (N12/N14/N16/N18), often causing burning oil smell from exhaust contact, and that VANOS solenoids on these engines commonly fail and trigger P0011/P0012/P0014/P0015 codes. The DTC codes are correctly mapped to camshaft timing/VANOS faults per official code charts, though they more directly indicate solenoid failure than oil leakage around the solenoid.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-all-coolant-leak-expansion-2007",
+      "vehicle": "2007 MINI Cooper",
+      "title": "Coolant Expansion Tank Cracking",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "P2181 is a generic cooling system performance code most commonly associated with Chrysler/VW/Hyundai vehicles, not the typical DTC for a cracked MINI expansion tank - MINI usually reports low coolant via CC-ID warnings rather than P2181",
+          "Year range is broad; the issue is most heavily documented on R56 (2007-2013) platform, less prevalent on later F56 models",
+          "Description lumps R56/R60/F56 together but F56 uses a different cooling system design with fewer reported tank cracking failures"
+        ],
+        "evidence": "Multiple independent MINI repair shops and owner forums (Pelican Parts, North American Motoring, MiniTorque, Solo Motorsports, Dart Auto) confirm the plastic coolant expansion tank cracking is a well-known failure mode on MINI Coopers, especially R56 platform, caused by heat cycling making plastic brittle. However, P2181 is documented as a generic powertrain code for cooling system performance primarily linked to Chrysler, VW, and Hyundai TSBs - not specifically MINI tank cracking, which typically triggers low-coolant warnings instead.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-cooper-s-turbo-oil-line-2007",
+      "vehicle": "2007 MINI Cooper S",
+      "title": "Turbocharger Oil Feed Line Leak and Turbo Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0299 (underboost) and P0234 (overboost) are boost-related and may appear only after turbo failure from oil starvation; the leak itself typically presents as visible oil/smoke with no DTC rather than these codes",
+          "Issue is primarily associated with the N14 engine (2007-2010); 2011-2013 R56 models use the N18 engine which uses the same line design but has somewhat reduced incidence - worth noting"
+        ],
+        "evidence": "Multiple independent sources (EricTheCarGuy, Detroit Tuned, Pelican Parts, The Haus, MiniMania, NHTSA owner complaints on CarProblemZoo, and several owner forums) confirm the R56 Cooper S turbo oil feed line is a very well-documented failure caused by an o-ring in the banjo fitting that degrades from turbo heat cycles, leaking oil onto the hot exhaust/turbo with fire risk, and the oil return line is known to coke up causing turbo bearing damage. Dealer repair quotes of $1,200-$1,400 plus potential turbo replacement at $900-$1,800 are consistent with the stated $300-$2,500 range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-all-clutch-failure-2007",
+      "vehicle": "2007 MINI Cooper S",
+      "title": "Premature Clutch and Dual-Mass Flywheel Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2000,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes listed (P0700, P0730, P0741, P0751) are all automatic transmission codes (TCM malfunction, gear ratio, torque converter clutch, shift solenoid) and do NOT apply to a manual transmission clutch/DMF failure - this is a mechanical wear issue that typically does not throw DTCs",
+          "Year range 2007-2020 is too broad; documented DMF/clutch failure issue is most strongly associated with the R56 generation (2007-2013), with the F56 generation (2014+) using a different platform/clutch design",
+          "Issue is most prominently documented on R56 Cooper S, not as strongly on the JCW or later F-series cars"
+        ],
+        "evidence": "Multiple owner forums and independent repair shops confirm premature clutch and DMF failure is a well-documented issue on the R56 MINI Cooper S (2007-2013), with Valeo issuing a TSB in March 2008 about premature DMF failure; failures commonly occur at 30k-50k miles with repair costs in the $1,500-$3,000 range, matching the cited cost. However, the listed DTC codes are automatic-transmission codes irrelevant to a manual clutch/flywheel mechanical wear issue.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-convertible-drain-clog-2005",
+      "vehicle": "2005 MINI Convertible",
+      "title": "Convertible Top Drain Tube Clogging and Water Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1800,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple MINI owner forums (minicooperforums.com, northamericanmotoring.com, minif56.com) document clogged/disconnected drain tubes causing water leaks into the cabin and footwell across MINI generations including the F57 Convertible, with DIY fixes ranging from free to dealer quotes around $300-$350.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-cooper-s-hpfp-2007",
+      "vehicle": "2007 MINI Cooper S",
+      "title": "High-Pressure Fuel Pump (HPFP) Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1800,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Root cause description partially inaccurate: N14 HPFP failures are typically attributed to internal non-return valve, pressure regulator, or seal failures rather than a 'cam follower' wearing down (the cam follower/tappet issue is a related but distinct N14 problem affecting the camshaft)",
+          "Year range is broadly correct for N14 engine (2007-2010, with JCW N14 continuing into 2011-2012); the BMW class-action settlement specifically covered MY 2010-2012, but the issue affects 2007+ as well",
+          "Comparison to 'early BMW N54' HPFP is reasonable but the N54 and N14 pumps have different failure modes",
+          "Repair cost range ($500-$1200) is on the low side; dealer/indie pricing often runs $800-$1500+ including parts and labor"
+        ],
+        "evidence": "Multiple independent sources (FCP Euro, owner forums, repair shops) confirm widespread N14 HPFP failures in 2007-2012 R55/R56/R57/R58/R59 MINI Cooper S models, and a federal class-action settlement (Boehm v. BMW of North America, Civil Action No. 2:17-cv-12827) was approved covering MY 2010-2012 N14-equipped MINIs for HPFP defects. No NHTSA safety recall exists specifically for the HPFP, though MINI has issued service bulletins and extended warranty/goodwill coverage.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-clubman-window-regulator-2008",
+      "vehicle": "2008 MINI Clubman",
+      "title": "Power Window Regulator Failure",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 1600,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2008-2020 includes 2015 when no Clubman was sold in the US (gap between R55 and F54 generations)",
+          "Lower bound of cost range ($250) is slightly below typical shop estimates for this repair"
+        ],
+        "evidence": "Window regulator failure is a widely documented issue across MINI Cooper/Clubman models, with broken plastic clips, cable wear, and motor failures all commonly reported by owners and repair shops. RepairPal lists the 2017 Clubman window regulator replacement at approximately $482-$584, which falls within/near the cited range, and severity as a non-safety nuisance is appropriate.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-clubman-oil-filter-housing-2016",
+      "vehicle": "2016 MINI Clubman",
+      "title": "B46/B48 Oil Filter Housing Gasket Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1400,
+      "audit": {
+        "error": "http_529",
+        "details": "{\"type\":\"error\",\"error\":{\"type\":\"overloaded_error\",\"message\":\"Overloaded\"},\"request_id\":\"req_011CbACxvENc3B84Zrsa1pEt\"}"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-cooper-eps-rack-2014",
+      "vehicle": "2014 MINI Cooper",
+      "title": "Electric Power Steering Rack Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes (C1A00, C1A13, C1A07) could not be independently verified as the specific codes for F56 EPS rack failure",
+          "Year range 2014-2025 may be slightly overstated; F56 production ended around 2024 when replaced by F66",
+          "No NHTSA recall exists specifically for F56 EPS rack failure (the well-known 15V660 recall covers 2002-2005 R50/R53 only)"
+        ],
+        "evidence": "Owner forums confirm F56 MINI Coopers experience EPS motor/rack failures, with reports that MINI has gone through multiple revisions of the power steering motor since 2017, and dealer quotes around £1500 for rack-and-motor replacement align with the stated cost range. However, the well-documented NHTSA power steering recall (15V660) applies to 2002-2005 R50/R53 MINIs, not the F56 generation, so this F56 issue is forum-documented rather than recall-confirmed.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-countryman-all4-coupling-2011",
+      "vehicle": "2011 MINI Countryman",
+      "title": "ALL4 AWD System Coupling and Transfer Case Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1100,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P1889/P1890 appear incorrect for MINI Countryman ALL4 - actual BMW/MINI codes are hex format like 48068C (Transfer Box temperature fault) and 440317 (Pump motor fault)",
+          "Description conflates two different systems: R60 (2011-2016) uses GKN Electro Magnetic Control Device (EMCD), while F60 (2017+) uses Gen 5 Haldex-style pump - not all years are 'Haldex-type'",
+          "Repair cost upper bound understated - real-world quotes reach $4,300 CAD / £2,114 GBP for complete transfer case replacement",
+          "Severity arguably should be medium-high given AWD loss can affect handling in adverse conditions and repair costs frequently exceed $2,500"
+        ],
+        "evidence": "Owner forums (mini2.com, minif56.com, northamericanmotoring.com) extensively document transfer case failures, bearing noise, leaks, and AWD coupling/pump failures across R60 (2011-2016) and F60 (2017+) Countryman ALL4 models, with dealer replacement quotes commonly $2,500-$4,300. However, the actual diagnostic codes reported by owners are BMW hex codes (48068C, 440317, D356E4) rather than the generic P1889/P1890 listed, and the R60 uses a GKN EMCD coupling rather than a true Haldex unit.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-countryman-power-steering-2011",
+      "vehicle": "2011 MINI Countryman",
+      "title": "Electric Power Steering Pump Failure (R60)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 950,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "The well-documented MINI power steering pump failure issue affects R50/R52/R53 first-gen MINI Cooper (2002-2008), NOT the R60 Countryman (2011-2016)",
+          "R60 Countryman uses an all-electric power steering system that is not known to share the failure-prone design of the gen-1 electro-hydraulic pump",
+          "DTC codes P0217 and P0128 are engine coolant/thermostat codes, completely unrelated to power steering; steering faults typically use C-prefix codes",
+          "NHTSA recall 15V660000 covers 2002-2005 Cooper/Cooper S and 2005 Convertibles only — no Countryman power steering recall exists",
+          "The description appears to conflate the well-known gen-1 MINI EPS pump issue with the R60, and may also be confused with the R60's documented water pump (coolant) failure issue",
+          "Repair cost range is plausible for the gen-1 pump repair but not applicable to the R60"
+        ],
+        "evidence": "NHTSA recall 15V660000 and extensive owner/industry documentation tie the electric power steering pump failure exclusively to 2002-2008 first-generation MINI Cooper/Convertible models with electro-hydraulic steering. R60 Countryman owners and forums explicitly note the 2nd-gen all-electric system has no known equivalent failure pattern, and the cited DTCs (P0217, P0128) are engine coolant codes unrelated to steering.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-convertible-top-hydraulic-2005",
+      "vehicle": "2005 MINI Convertible",
+      "title": "Convertible Top Hydraulic System Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 900,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "No DTCs listed is accurate since convertible top faults typically use roof-module-specific codes rather than standard OBD-II DTCs, but issue often manifests as flashing red light on overhead switch rather than DTCs",
+          "Repair cost range is reasonable but could skew higher at dealer ($2500+ for full hydraulic top assembly replacement)"
+        ],
+        "evidence": "Multiple sources confirm hydraulic system leaks (cylinders, lines, pump) are a well-documented common failure on both R52 (2005-2008) and R57 (2009-2015) MINI Convertibles, with both generations using an electro-hydraulic pump in the trunk feeding cylinders that operate the main top. Symptoms match: slow operation, stopping mid-cycle, or complete failure, often misdiagnosed before checking sensors/switches.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-countryman-transmission-2017",
+      "vehicle": "2017 MINI Countryman",
+      "title": "Aisin 8-Speed Automatic Transmission Shudder",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 800,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Wrong transmission model identified: F60 Countryman uses Aisin AWF8F35 (BMW code GA8G45AW), not TF-81SC/AF40. The TF-81SC/AF40 is a 6-speed Aisin used in Volvo/Ford, not an 8-speed and not in MINI",
+          "Year range likely inaccurate: F60 Countryman production ran 2017-2024; the 2025 model year is the new U25 platform with different drivetrain",
+          "DTC codes are generic transmission codes (P0700 generic TCM, P0730 incorrect ratio, P0741 TCC stuck off) — plausible but not specifically documented as the signature codes for this issue; forum reports show manufacturer-specific codes like 0x4203B1",
+          "Documented owner complaints focus more on harsh/rough shifting (especially 2-3, 4-3, and reverse engagement) rather than the specific 30-50 mph light-acceleration shudder pattern described",
+          "Repair cost range ($300-$3000) is low — forum reports show replacement costs of €10,000-13,000 and rebuilds around €5,000 when out of warranty"
+        ],
+        "evidence": "Forum threads on minif56.com confirm real defective Aisin 8-speed issues on 2018-2019 MINI/BMW UKL platform vehicles with rough shifts and gear engagement problems, but the transmission is the AWF8F35/GA8G45AW, not TF-81SC/AF40. Owners report replacement costs around €10-13K, far exceeding the $300-$3000 stated range, suggesting the severity and cost calibration are also off.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-clubman-rear-door-latch-2008",
+      "vehicle": "2008 MINI Clubman",
+      "title": "Rear Barn Door Latch and Hinge Failure (R55)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 750,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "The hinge failure aspect is overstated - documented issue is primarily the left barn door latch/lock solenoid failure, not hinges",
+          "Repair cost range ($200-$800) is high - the OEM latch part is ~$50 and DIY replacement takes ~15 minutes; even with shop labor, typical repair is well under $300",
+          "Symptoms described (door opening unexpectedly while driving) are not the typical failure mode - the common symptom is the door failing to UNLATCH/open, or failing to re-lock when closed"
+        ],
+        "evidence": "Multiple owner forums (North American Motoring, iFixit, Mini Cooper Forums) and parts listings confirm the left rear barn door lock/latch (MINI part 51247167498) is a well-known failure point on 2008-2014 R55 Clubmans, typically failing as a solenoid issue where the door won't unlatch or won't re-lock. Hinge failure is not commonly reported as a widespread issue, and the part itself costs around $50.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-jcw-timing-chain-n14-2008",
+      "vehicle": "2008 MINI John Cooper Works",
+      "title": "N14 Timing Chain Tensioner Failure (Death Rattle)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 400,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Settlement/warranty extension covered 2007-2010 models specifically, not the full 2008-2012 range described (though the N14 timing chain defect itself affects the broader range)",
+          "P0014 (exhaust cam over-advanced) is less commonly associated with this failure than P0011/P0012/P0015; P0016 and P0017 are the primary correlation DTCs"
+        ],
+        "evidence": "Multiple sources confirm the N14 'Prince' engine timing chain tensioner defect in 2007-2010 MINI Coopers (Hardtop/Clubman/Convertible including JCW), the 'death rattle' cold-start symptom, the $30M Skeen v. BMW NA class action settlement granted final approval July 2016, the 7yr/100,000-mile warranty extension, and repair costs of roughly $1,350-$2,500 at dealers/independents. DTCs P0016/P0017 (cam-crank correlation) are documented as common codes when the chain stretches, and the interference engine design causes valve-to-piston contact on chain skip.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.cherishyourcar.com/mini-cooper-timing-chain-recall/",
+          "type": "recall",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.mini2.com/threads/timing-chain-issues.371744/",
+          "type": "owner-report",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-jcw-carbon-buildup-2008",
+      "vehicle": "2008 MINI John Cooper Works",
+      "title": "Intake Valve Carbon Buildup from Direct Injection",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 350,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Engine lineup is incomplete: JCW used N14 (2008-2010/2011), then N18 (2011-2015), then B48 (2016+) - the N18 is omitted entirely",
+          "Claim that B48 is equally affected is overstated; BMW's redesigned PCV system on B48 significantly reduced carbon buildup compared to N14",
+          "Year range 2008-2024 is questionable - MINI JCW hatch was not sold as a 2024 US model in the traditional sense; F56 JCW production wound down around 2023",
+          "N14's higher oil consumption claim is accurate but PCV system design is the more commonly cited primary cause"
+        ],
+        "evidence": "Multiple sources (North American Motoring, Pelican Parts, Atlantic Motorcar, mini2.com) confirm intake valve carbon buildup is a well-documented issue on direct-injected MINI engines, particularly the N14 (2007-2010/2011 R56), requiring walnut blasting roughly every 30-50K miles. The B48 (3rd gen F56, 2016+) also experiences buildup but is widely reported as significantly less affected due to improved PCV/crankcase ventilation design. The entry omits the N18 engine (2011-2015) which sat between N14 and B48 in the JCW lineup.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.mini2.com/threads/carbon-in-mini-cooper-cylinder-head.358622/",
+          "type": "owner-report",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.lohen.co.uk/blogs/blog/how-do-the-n14-n18-mini-cooper-engines-compare",
+          "type": "owner-report",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-jcw-hpfp-n14-2008",
+      "vehicle": "2008 MINI John Cooper Works",
+      "title": "High-Pressure Fuel Pump (HPFP) Premature Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 300,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Repair cost range slightly low end - dealership repairs commonly exceed $1200 (some owner reports of $1300-2000), though independent shop repairs fall within stated range",
+          "Severity 'high' is defensible given potential for lean-condition engine damage, though primary symptom is drivability/stalling rather than acute safety hazard - could arguably be 'medium'"
+        ],
+        "evidence": "Multiple sources (FCP Euro, Lohen, Pelican Parts, NAM forums, owner reports) confirm HPFP failure is a widespread, well-documented issue on N14 (and N18) Prince engines in 2007-2012 MINI Coopers including JCW variants, with MINI issuing a service bulletin and extended warranty coverage. Symptoms (hard starting, hesitation, stalling, low rail pressure) and DTCs (P0087 low fuel rail pressure, P0088 high, P0191 rail pressure sensor) match the described problem; failures as early as 40,000 miles are commonly cited.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-jcw-water-pump-thermostat-2008",
+      "vehicle": "2008 MINI John Cooper Works",
+      "title": "Water Pump and Plastic Thermostat Housing Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 280,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "P0117 (ECT sensor low voltage) is not a typical DTC for water pump/thermostat housing failure; more common codes are P2181, P00B7, or P0597/P0598 (thermostat heater control). P0128 is correct.",
+          "Repair cost range ($500-$900) is on the low side; professional water pump + thermostat housing replacement on R56/F56 JCW typically runs $800-$1,500+ at independent shops and higher at dealers, especially when coolant pipe is also replaced.",
+          "Year range 2008-2024 is overly broad; the classic plastic thermostat housing + friction-drive water pump failure is primarily a Gen 2 (R56/R55/R57, ~2007-2015, N14/N18) issue. Gen 3 F56 (B48, 2015+) has different water pump failure modes and the thermostat is integrated differently.",
+          "Mileage range (50,000-80,000) is reasonable but failures are commonly reported earlier as well."
+        ],
+        "evidence": "Multiple owner forums, parts vendors (Pelican Parts, eEuroParts, FCP Euro), and repair shops confirm widespread water pump and plastic thermostat housing/coolant pipe failures on Gen 2 MINI Coopers including JCW variants with N14/N18 engines, with eEuroParts attributing them to inherent design flaws. NHTSA recall 18V-248 covered the electronic auxiliary water pump on 2008-2012 N14/N18 MINIs, and B48-equipped later models also show mechanical water pump failures, but the specific 'plastic thermostat housing cracking' issue is most associated with Gen 2 cars rather than all 2008-2024 JCWs.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.minif56.com/threads/replaced-water-pump-engine-mount-front-control-arm-and-bush.87540/",
+          "type": "owner-report",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://jcwadventures.com/2020/12/20/sorry-i-am-not-perfect-common-2nd-gen-r56-mini-problems/",
+          "type": "owner-report",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-coupe-thermostat-housing-2012",
+      "vehicle": "2012 MINI Coupe",
+      "title": "Thermostat Housing Crack and Coolant Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost range ($200-$600) appears low; shop quotes commonly run $800-$1,400+ when including labor, crossover pipe, and bleeding, though DIY can fall in the stated range",
+          "Description says housing is on 'front of the engine' but it's actually located at the gearbox/transmission end of the engine"
+        ],
+        "evidence": "Multiple MINI specialist sources, forums, and parts catalogs confirm the plastic thermostat housing on N14/N18 engines (including the R58 Coupe 2012-2015) is a well-known, common failure causing coolant leaks, with the housing going through multiple OEM revisions due to design issues. Severity as 'medium' and absence of specific DTCs are reasonable, though related codes like P0128/P173B can appear; repair cost estimates from shops typically range $800-$1,400.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-carbon-buildup-on-intake-valves-direct-injection-causing-misfires-power-loss",
+      "vehicle": "2013 MINI GP",
+      "title": "Carbon Buildup on Intake Valves (Direct Injection) Causing Misfires/Power Loss",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "GP2 has 4 cylinders (P0301-P0304 valid); listing is otherwise correct on DTCs",
+          "Year range 2013-2021 is technically correct for DI-equipped GPs (GP2 2013, GP3 2020-2021) but there were no GP models produced in years 2014-2019 or 2022, so the range is misleading as a continuous span",
+          "Repair cost ceiling may be low - dealer walnut-blasting quotes have been reported at $2000+, though independent shops fall in the $400-$1200 range",
+          "B48 engine (GP3) is less prone to carbon buildup than N18 due to improved PCV design, so severity for GP3 specifically may be overstated"
+        ],
+        "evidence": "Carbon buildup on intake valves is a well-documented issue on MINI direct-injection turbo engines (N14/N18), with multiple independent shops, forums, and Pelican Parts tech articles confirming symptoms of cold-start misfires, rough idle, and P0300-P0304 codes resolved by walnut-shell blasting. The N18 (GP2) is acknowledged as less prone than the N14 but still affected; the B48 (GP3) shares the DI carbon-buildup tendency common to all GDI engines.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.reddit.com/r/MINI/",
+          "type": "forum",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-oil-separator-crankcase-ventilation-valve-failure-causing-oil-consumption-n14-n18",
+      "vehicle": "2007 MINI GP",
+      "title": "Oil Separator / Crankcase Ventilation Valve Failure Causing Oil Consumption (N14/N18)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 187,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range '2007-2014' is incorrect for the MINI GP — the GP1 was a 2006-only model (R53) with a supercharged Tritec W11 engine, NOT N14/N18; only the GP2 (2013, built 2012-2014) uses the N18 engine",
+          "GP1 is incorrectly implicated — its supercharged W11 engine does not share the N14/N18 PCV/oil separator failure mode",
+          "Severity 'high' is miscategorized — oil consumption from CCV failure is costly and can foul plugs/cats but is not safety-critical; 'medium' is more appropriate",
+          "TSB number 'SI B11 06 11' could not be independently verified in search results",
+          "Repair cost slightly low for N14 (which requires full valve cover replacement since PCV is integrated), though acceptable for N18 membrane-only repair"
+        ],
+        "evidence": "The PCV/oil separator failure on N14/N18 engines is well-documented in MINI forums and tech literature, with the N14 requiring full valve cover replacement and the N18 allowing membrane-only repair. However, only the GP2 (production 2012-2014, sold as 2013 MY) uses the N18; the 2006 GP1 uses a supercharged W11 Tritec engine unaffected by this issue, so the '2007-2014 MINI GP (any trim)' scope is materially wrong.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-paceman-high-pressure-fuel-pump-2013",
+      "vehicle": "2013 MINI Paceman",
+      "title": "High-Pressure Fuel Pump (HPFP) Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 185,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Root cause description is slightly inaccurate: MINI N18 HPFP failures are typically due to internal seals, non-return valves, pressure regulator/solenoid, and piston/roller tappet wear—not 'cam follower wear' which is more associated with the BMW N54/N63 HPFP narrative",
+          "DTC codes are plausible but incomplete; the most commonly reported codes on these vehicles are BMW hex codes (2C01, 2BEE, 2880, 2C03) and P2880/P2187, with P0087 secondary and P0191 less commonly associated",
+          "MINI's 10yr/120k extended warranty on HPFP applied only to 2007-2009 S models in the US, not the Paceman year range—worth noting but not in the entry"
+        ],
+        "evidence": "Multiple owner forums (mini2.com, North American Motoring) and parts vendors (Detroit Tuned, MiniMania) confirm HPFP failure is a widespread, well-documented issue on the N18 engine used in the R61 Paceman (Cooper S/JCW) across 2013-2016, causing hard starts, stalling, misfires, and no-start conditions. Parts cost ~$500-$850 plus $300-$700 labor matches the listed $500-$1500 range, and symptoms including stalling at highway speed justify a 'high' severity rating.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-jcw-clutch-premature-wear-2008",
+      "vehicle": "2008 MINI John Cooper Works",
+      "title": "Manual Transmission Clutch Premature Wear",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 180,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost range ($1200-$2000) appears low; RepairPal estimates $2,107-$2,858 for Mini Cooper clutch replacement and CarComplaints reports typical repair cost around $3,200 for JCW",
+          "Clutch life estimate of 80,000-100,000 miles 'expected on most vehicles' comparison is somewhat misleading; even RepairPal notes Mini clutches have no set interval and some last over 100,000 miles",
+          "Description attributes issue partly to 'small clutch disc diameter' which is plausible but not definitively documented; dual-mass flywheel failures are more commonly cited in forums as a co-contributor"
+        ],
+        "evidence": "Premature clutch wear on MINI JCW manual transmissions is well-documented on CarComplaints (2009 JCW typical repair $3,200, avg failure ~13,550 miles), RepairPal, and owner forums (MiniTorque, North American Motoring, mini2.com) with multiple reports of failures at 20-40k miles, often blamed by MINI as 'wear and tear' not covered under warranty. Repair costs cited across sources ($2,100-$3,200 USD) run higher than the entry's $1,200-$2,000 range.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://service700.co.uk/news/exploring-common-faults-in-mini-models-from-2001-2022-what-you-need-to-know/",
+          "type": "owner-report",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.thehausauto.com/2015/06/7-common-problems-mini-cooper-owners-face/",
+          "type": "owner-report",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-supercharger-2013",
+      "vehicle": "2013 MINI GP",
+      "title": "Turbocharger Oil Feed Line Leak and Carbon Buildup",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 170,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range '2013-2021' is incorrect - the MINI GP was only produced in three discrete model years: 2006 (GP1/R53), 2013 (GP2/R56), and 2020 (GP3/F56), not as a continuous 2013-2021 range",
+          "The 2006 GP1 had a supercharged engine, not turbocharged, so the turbo oil feed line issue doesn't apply to it",
+          "The turbo oil feed line leak is primarily documented on the N14/N18 engines (R56-era, including GP2), not on the GP3's B48 engine",
+          "Combining two separate issues (oil feed line leak + carbon buildup) into one entry is misleading; they have different root causes and repair procedures",
+          "P0300 (random misfire) is loosely associated but P0299 (turbo underboost) is the more directly relevant DTC; carbon buildup typically triggers cylinder-specific misfire codes (P0301-P0304)"
+        ],
+        "evidence": "Multiple sources (NHTSA complaints via CarProblemZoo, Pelican Parts, North American Motoring, Detroit Tuned) confirm the turbo oil feed line leak is a well-documented issue on R56-generation Cooper S/JCW models with N14/N18 engines, with dealer repair quotes of $1,200-$1,400 matching the stated cost range. However, the MINI GP is a limited-production model built only in 2006, 2013, and 2020 - not a continuous 2013-2021 production - and the 2006 GP1 was supercharged, making the year range fundamentally incorrect.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.waymotorworks.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-roadster-clutch-2012",
+      "vehicle": "2012 MINI Roadster",
+      "title": "Clutch and Flywheel Premature Wear (Manual)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 160,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description inaccurately calls the DMF a 'lightweight flywheel design' — the dual-mass flywheel is actually heavy/complex, not lightweight; it's the heavy DMF prone to internal spring/bearing failure",
+          "Issue primarily affects Cooper S/JCW Roadster variants (turbocharged with DMF); base Cooper Roadster uses a single-mass flywheel, so 'any trim' is slightly overbroad",
+          "Severity 'high' is arguably overstated — sources treat it as costly wear-and-tear, not safety-critical; 'medium' would be better calibrated",
+          "No NHTSA recall or manufacturer TSB specifically targets this; it's documented via owner forums, independent shops, and RepairPal"
+        ],
+        "evidence": "Premature clutch and dual-mass flywheel wear is widely documented on 2nd-gen MINIs (R55-R61, including the 2012-2015 R59 Roadster) via RepairPal, independent shops, and owner forums, with RepairPal citing average clutch replacement costs of $2,107-$2,858 and forum reports of £2,400+ bills, matching the $1,500-$3,000 range. However, the DMF is only fitted to Cooper S/JCW turbo Roadsters (non-S uses a single-mass flywheel), and the description's 'lightweight flywheel' characterization is incorrect.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.waymotorworks.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-roadster-power-steering-pump-2012",
+      "vehicle": "2012 MINI Roadster",
+      "title": "Electric Power Steering Pump Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 145,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Wrong vehicle generation: the under-hood electro-hydraulic power steering pump failure is a well-documented issue for first-generation MINIs (R50/R52/R53, 2002-2008), not the R59 Roadster (2012-2015)",
+          "The R56-platform-based R59 Roadster uses column-mounted Electric Power Steering (EPS), not an engine-bay electric/electro-hydraulic pump",
+          "Description of 'pump located in engine bay' with 'ECU inside it failing due to heat exposure' matches the first-gen MINI architecture, not the Roadster",
+          "Severity rating of 'high' would be appropriate IF the issue applied, but the issue does not apply to this vehicle",
+          "Repair cost range ($700-$1800) is plausible for first-gen pump replacement but irrelevant since the Roadster doesn't have this pump"
+        ],
+        "evidence": "Documented MINI power steering pump failures (heat-related, under-hood electro-hydraulic pump below exhaust manifold) apply to 2002-2011 first-generation MINIs (R50/R52/R53), per BuyAutoParts and Pelican Parts technical articles. The 2012-2015 MINI Roadster (R59) is built on the R56 second-gen platform which uses column-mounted electric power steering (EPS) with no engine-bay pump, so the described failure mode does not apply to this vehicle.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-paceman-transfer-case-2013",
+      "vehicle": "2013 MINI Paceman",
+      "title": "ALL4 Transfer Case Actuator Motor Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 140,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "MINI ALL4 system does not use a truck-style electronic transfer case actuator motor that shifts between drive modes; it uses a PTO/transfer case with an electromagnetically controlled rear-axle coupling",
+          "Documented Paceman/Countryman transfer case failures are mechanical (internal gears, bearings, fluid leaks, output gear/prop shaft failures), not 'actuator motor' failures",
+          "Description appears to conflate generic 4WD transfer case actuator failure patterns (Ford/GM/Toyota trucks, BMW X-drive) with MINI's ALL4 system",
+          "Claim that actuator failure causes AWD to default to FWD with dashboard warnings is not a documented Paceman-specific failure mode in owner reports",
+          "Year range 2013-2016 is correct for R61 Paceman ALL4, but the underlying failure described is mischaracterized",
+          "Repair cost range is plausible for a transfer case replacement but the labeled component ('actuator motor') is not the actual failing part"
+        ],
+        "evidence": "Owner forums and parts vendors document real MINI ALL4 transfer case problems on R60 Countryman and R61 Paceman—loud roaring/howling, vibration, fluid leaks, and internal gear/bearing failure requiring full transfer case (PTO) replacement around $2000+. However, the failure mode is mechanical wear inside the PTO unit, not an external 'actuator motor' as described; that description more closely matches BMW X-drive actuators or truck-style 4WD shift motors, not the MINI ALL4 architecture.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-sunroof-drainage-channel-blockage-causing-interior-water-ingress-gp2-gp3-equipped-models",
+      "vehicle": "2013 MINI GP",
+      "title": "Sunroof Drainage Channel Blockage Causing Interior Water Ingress (GP2/GP3 Equipped Models)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 134,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "MINI John Cooper Works GP models (GP1 2006, GP2 2013, GP3 2020-2021) are track-focused special editions that do NOT come with sunroofs - they are weight-reduced cars with no sunroof option",
+          "Year range '2013-2023' is incorrect - the GP was only produced in 2006, 2013, and 2020-2021 model years, never as a continuous range",
+          "'GP2/GP3 Equipped Models' is nonsensical phrasing - GP2/GP3 refer to generations of the GP itself, not sunroof equipment levels",
+          "TSB 'SI B54 06' citation could not be verified in search results as applying to this specific issue/vehicle",
+          "The 2021 GP only came in one trim configuration, contradicting 'any trim' framing",
+          "Claim that water reaches 'ECU and body control module under dashboard' is exaggerated - typical damage is to footwell wiring/junction box, not ECU"
+        ],
+        "evidence": "The sunroof drain blockage issue is well-documented for general R56/F56 MINI Cooper models with sunroofs, with forum reports of $1000-$4000+ in damage from footwell water intrusion. However, the John Cooper Works GP variants are track-focused special editions sold only in 2006, 2013, and 2020-2021 that famously delete the sunroof to reduce weight, making this issue inapplicable to GP models specifically.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-high-pressure-fuel-pump-hpfp-failure-n14-n18-b48-turbo-di",
+      "vehicle": "2013 MINI GP",
+      "title": "High-Pressure Fuel Pump (HPFP) Failure (N14/N18/B48 Turbo DI)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 120,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range '2013-2021' is misleading: the MINI JCW GP is a limited-edition produced only in three discrete years (GP1 2006/R53 supercharged, GP2 2013/R56 N18, GP3 2020-2021/F56 B48), not a continuous 2013-2021 range",
+          "N14 engine was never fitted to any GP model; GP2 used the N18, GP3 uses the B48 — listing N14 for the GP is incorrect",
+          "Description references 'R60-era' MINIs but the R60 is the Countryman, not a GP; the GP nameplate has only been applied to the hatch (R53/R56/F56)",
+          "HPFP failures are heavily documented on N14 (and to a lesser extent N18) MINIs generally, but evidence specific to the low-volume GP2 (2,000 units) and GP3 (3,000 units) is thin; the issue is more accurately a platform/engine issue than a GP-specific one",
+          "MINI-specific HPFP fault codes commonly cited in forums/TSBs are P2880 and 2C01, which are not listed; P0171 (lean) is only loosely related"
+        ],
+        "evidence": "HPFP failure is a well-documented issue on N14/N18 Prince engines (MINI issued a service bulletin and an extended warranty on 2007-2009 Cooper S in the US), with symptoms matching the description (long crank, stalling, limp mode). However, the MINI GP is a limited-edition built only in 2006 (GP1, supercharged—not DI), 2013 (GP2, N18), and 2020-2021 (GP3, B48); the entry conflates engine families, includes the wrong engine (N14), invents a continuous year range, and references the R60 Countryman which is not a GP.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-engine-mount-upper-right-hydraulic-mount-collapse-causing-vibration-n18-b48",
+      "vehicle": "2013 MINI GP",
+      "title": "Engine Mount (Upper/Right) Hydraulic Mount Collapse Causing Vibration (N18/B48)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 110,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range '2013-2021' is misleading - the MINI JCW GP was only produced in 3 specific model years: 2006 (GP1/R53), 2013 (GP2/R56 with N18), and 2020-2021 (GP3/F56 with B48), not a continuous range",
+          "The 2006 GP1 used a supercharged Tritec engine, not N18 or B48, so the engine-code framing only applies to GP2 (N18) and GP3 (B48)",
+          "Severity 'medium' is reasonable but could arguably be 'low' since a worn mount is primarily a NVH/comfort issue rather than a costly failure"
+        ],
+        "evidence": "Forum threads (mini2.com, bimmerfest) explicitly cite 'upper engine mount premature failure' as a known fault on early B48 MINIs, and parts vendors document a high failure rate of the passenger-side hydraulic mount on B46/B48 platforms causing vibration and fluid leaks. However, the JCW GP was only built in 2006, 2013, and 2020-2021 model years - not a continuous 2013-2021 range as the entry implies.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-hardtop-4door-timing-chain-2015",
+      "vehicle": "2015 MINI Hardtop 4 Door",
+      "title": "B38/B48 Engine Timing Chain Stretch and Rattle",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 110,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "P0300 (random misfire) is plausible but less directly associated than P0016/P0017 cam correlation codes; symptom typically presents as drivetrain error/limp mode rather than misfire",
+          "Year range starts at 2015 but F56 Hardtop 4-Door began production in 2015 model year so the range is appropriate; some sources indicate the issue persists into newer builds beyond 2019"
+        ],
+        "evidence": "Multiple independent sources (Diagnostic Network, Orbi Motors, The Mini Specialist, MINI F56 forum) confirm B38/B48 timing chain stretch causing cold-start rattle and cam correlation/drivetrain errors in F56 MINIs, with BMW issuing revised tensioners and VANOS components. Forum repair quotes ranged from ~$2k to $5k, consistent with the listed cost range on the lower end.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-evap-purge-valve-tank-vent-valve-stuck-open-causing-rough-start-and-fuel-smell",
+      "vehicle": "2013 MINI GP",
+      "title": "EVAP Purge Valve (Tank Vent Valve) Stuck Open Causing Rough Start and Fuel Smell",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 95,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range '2013-2021' is misleading: the MINI JCW GP was only produced in three limited runs (2013 GP2 with N18, and 2020-2021 GP3 with B48); no GP models exist for 2014-2019",
+          "Description conflates N18 (2013 GP2) and B48 (2020-2021 GP3) era issues, but EVAP purge valve failures are documented across MINI turbo platforms generally rather than being GP-specific",
+          "No GP-specific TSB or NHTSA campaign found targeting EVAP purge/vent valve on the GP trim specifically; evidence is from broader MINI/BMW platform reports"
+        ],
+        "evidence": "EVAP purge/vent valve failures with P0441/P0456 codes causing hard starts, rough idle, and fuel smell are well-documented on MINI Cooper turbo platforms (N18 and later), with forums and parts guides confirming the failure mode and symptoms. However, the MINI JCW GP was only built as limited editions in 2013 (2,000 units, N18) and 2020-2021 (3,000 units, B48), so the '2013-2021' range incorrectly implies continuous production across years where no GP exists.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-intercooler-boost-pipe-blowoff-silicone-coupler-failure-n14-n18-b48",
+      "vehicle": "2013 MINI GP",
+      "title": "Intercooler Boost Pipe Blowoff / Silicone Coupler Failure (N14/N18/B48)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 95,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range '2013-2023' is incorrect - MINI GP is a limited-production model only sold as GP2 (2013, R56) and GP3 (2020-2021, F56); no GP existed in intervening years or in 2022-2023",
+          "N14 engine listed but N14 was never used in any GP model (N14 was in R56 Cooper S 2007-2010); GP2 uses N18, GP3 uses B48",
+          "Component description is inaccurate - OEM MINI charge/boost pipes are known to fail as brittle plastic pipes that crack, not silicone couplers with worm-drive clamps (that describes aftermarket hardware)",
+          "DTC codes P0034 and P0035 are turbocharger bypass solenoid circuit codes, not typical for a charge pipe leak/blowoff; P0299 is correct but P0234/P052E or generic lean codes would be more appropriate secondary codes",
+          "Severity 'high' is arguably overstated - a boost leak causes limp mode and power loss but is not typically safety-critical"
+        ],
+        "evidence": "Plastic OEM charge/boost pipes on the BMW/MINI B48 platform are a documented failure point, with aftermarket vendors like Racing Dynamics selling aluminum replacements citing that 'OEM quality aluminum pipes replace the brittle OE plastic pipes which can fail under elevated temperature and high boost pressure.' P0299 is a legitimate underboost DTC commonly triggered by charge pipe leaks, but the entry conflates aftermarket silicone coupler failures with the OEM plastic pipe failure mode, and the year range/engine list does not match actual GP production years.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-thermostat-housing-coolant-outlet-leak-n18-b48",
+      "vehicle": "2013 MINI GP",
+      "title": "Thermostat Housing/Coolant Outlet Leak (N18/B48)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 90,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range '2013-2021' is misleading: MINI GP2 was only produced in 2013 and GP3 in 2020-2021; no GP trim existed in 2014-2019, so the continuous range overstates affected model years",
+          "DTC P0128 (coolant temp below thermostat regulating temp) is associated with a stuck-open thermostat, not specifically with a housing crack/seal leak; a leak typically presents as low-coolant warnings without a specific stored DTC, or with overheating-related codes",
+          "Issue is documented broadly for N18-engined MINIs (and to a lesser extent B48), but evidence specifically tied to the limited-production GP trims is thin — most forum/shop reports are for mainstream Cooper S models sharing the same engines",
+          "Severity 'high' is debatable: leak is typically a slow seepage caught early; only becomes safety-critical if ignored to the point of overheating — 'medium' may be better calibrated",
+          "Repair cost range $450-$1200 is roughly accurate for N18 thermostat housing jobs, though dealer quotes can exceed $1400 and B48 repair costs are less well documented"
+        ],
+        "evidence": "Forums (mini2.com, North American Motoring) and multiple independent shops confirm the plastic thermostat housing/coolant outlet is a well-known failure point on N18 (R56-generation) MINIs, typically failing around 50-60k miles with symptoms matching the description (coolant smell, puddle near transmission, seepage). Repair quotes in forum reports span ~$400 DIY parts to $900-$1400 at shops, bracketing the stated range. However, P0128 is a thermostat-stuck-open code rather than a leak-specific code, and the issue's link to the specific GP trim (vs. the broader N18/B48 platform) is not directly documented.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.reddit.com/r/MINI/comments/8q3m0m/coolant_leak_thermostat_housing/",
+          "type": "owner-report",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-hardtop-4door-clutch-actuator-2015",
+      "vehicle": "2015 MINI Hardtop 4 Door",
+      "title": "Aisin 6-Speed Automatic Transmission Mechatronic Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 90,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Wrong transmission model code: MINI uses Aisin GA6F21AW (and GA8F22AW/GA8G45AW for 8-speed), NOT the TF-80SC. The TF-80SC is a different Aisin unit used in Volvo/GM/Ford, not MINI",
+          "Incorrect transmission allocation post-2018: Cooper/Cooper S received the 7-speed DCT after the 2018 facelift, while the Aisin 8-speed automatic went to JCW models — the description has this mixed up",
+          "Year range likely overstated: the F55 Hardtop 4 Door production ran through ~2024; the new-generation 4-Door (F66, 2025+) uses different transmissions (7DCT300TU/7DCT400), so a blanket 2015-2026 Aisin claim is inaccurate",
+          "DTCs are generic (P0700 is just 'TCM requests MIL') and not specifically diagnostic of mechatronic/valve body issues — more specific solenoid codes (P0750-series) would be expected",
+          "Description conflates multiple distinct transmissions (Aisin 6-speed, Aisin 8-speed, 7-speed DCT) into a single 'issue' which is not how real TSBs/known issues are documented"
+        ],
+        "evidence": "Forum and parts-catalog sources confirm MINI F55/F56/F57 used the Aisin GA6F21AW 6-speed (not TF-80SC) and that post-2018 Cooper S models moved to a 7-speed DCT while JCW got an Aisin 8-speed — the entry mislabels transmissions and misattributes them. Real-world owner complaints exist (transmission service/drivetrain warnings on 2018 MINIs, shudder, harsh shifts), so the underlying symptom category is real but the technical details are substantially incorrect.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-front-lower-control-arm-rear-bushing-wear-r56-gp2-causing-shimmy-clunk",
+      "vehicle": "2013 MINI GP",
+      "title": "Front Lower Control Arm Rear Bushing Wear (R56 GP2) Causing Shimmy/Clunk",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 80,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll search for information to verify this MINI GP control arm bushing issue.\nI have enough evidence to render a verdict. The R56 front lower control arm rear bushing wear is a well-documented common issue, and the 2013 GP2 is built on the R56 platform. Repair costs match RepairPal's range ($437-$603 typical, with dealer quotes going up to $1000-$1357).\n\n{\n  \"verdict\": \"verified\",\n  \"real\": true,\n"
+      },
+      "links": [
+        {
+          "url": "https://www.youtube.com/watch?v=7o0o7Bqgq2Q",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-hardtop-4door-water-leak-2015",
+      "vehicle": "2015 MINI Hardtop 4 Door",
+      "title": "Rear Door Weatherstrip Water Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 80,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Misidentifies leak source: documented leak is from the rear hatch/tailgate seal (and sometimes high-mount brake light or rear light seals), not the rear passenger door weatherstrip",
+          "Incorrectly claims issue is specific to F55 4-door; forum reports show the F56 2-door Hardtop is equally affected (the main forum thread is 'F55/F56')",
+          "Year range likely should start at 2014 (F56 launch) if including the 2-door, though F55 4-door did start in 2015",
+          "Symptom of water in spare tire well is consistent with hatch leak, not rear door leak — description conflates two different leak paths",
+          "Repair cost ceiling may be low if consequential damage (wiring, modules) occurs — forum reports mention £500+ module replacements"
+        ],
+        "evidence": "Multiple owner forum threads (minif56.com, North American Motoring) document widespread water intrusion into the rear boot/spare tire well on 2014-2017+ MINI Hardtops, with dealers replacing hatch seals under a TSB (referenced as SIB-51-05-16). The leak source is consistently identified as the rear hatch seal, high-mount brake light, or rear light seals — not the rear passenger door weatherstrip — and the issue affects both F55 (4-door) and F56 (2-door) models.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-front-brake-rotor-cracking-heat-checking-under-track-use-gp2-gp3",
+      "vehicle": "2013 MINI GP",
+      "title": "Front Brake Rotor Cracking/Heat Checking Under Track Use (GP2/GP3)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 75,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range '2013-2021' is misleading - MINI GP is only built in specific model years (GP1 2006, GP2 2013, GP3 2020-2021); the car was not produced in 2014-2019",
+          "Issue is a general track-use consumable phenomenon affecting most performance cars with drilled rotors, not a MINI-GP-specific defect or TSB",
+          "Severity 'high' may be overstated - forum experts often characterize surface heat checking/crazing as normal wear unless cracks propagate deep; only deep radial cracks are safety-critical",
+          "No NHTSA recalls or manufacturer TSBs found specifically for GP rotor cracking",
+          "Repair cost range is plausible but wide; OEM GP3 rotors (360x30) are notably expensive, potentially exceeding $1800 with labor at dealer pricing"
+        ],
+        "evidence": "Forum discussions on North American Motoring and MINI-specific sites confirm tracked MINIs (including JCW/GP variants with drilled rotors) experience heat checking and rotor cracking, with one GP3 owner explicitly reporting 'cooking my prior brakes on a track day.' However, this is documented as expected track-use wear with aggressive pads rather than a manufacturer-acknowledged defect, and the MINI GP was only produced in 2006 (GP1), 2013 (GP2), and 2020-2021 (GP3) - not continuously 2013-2021.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-dsc-abs-module-corrosion-causing-fault-codes-and-loss-of-stability-control-gp2",
+      "vehicle": "2013 MINI GP",
+      "title": "DSC/ABS Module Corrosion Causing Fault Codes and Loss of Stability Control (GP2)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 73,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range incorrect: MINI GP2 (R56 JCW GP) was only produced as a 2013 model year vehicle; there is no 2014 GP2",
+          "ABS supplier likely misidentified: R56 ABS/DSC modules are typically ATE/Continental MK60-series units, not Bosch 8.1 — no evidence of a MINI TSB referencing 'Bosch 8.1' for R56",
+          "Issue described is generic R56 ABS/DSC corrosion problem, not GP2-specific; GP2 cars are typically garage-kept collector vehicles and not commonly affected by salt-environment corrosion",
+          "DTC 5E2B could not be independently verified as a documented code; 5E20, 5E10, 5E11 appear in DSC-ECU code tables but are general internal/control codes not specifically tied to corrosion or pump motor failure",
+          "No specific MINI TSB or NHTSA campaign found documenting this as a known GP2 issue"
+        ],
+        "evidence": "Searches confirm R56-platform ABS/DSC corrosion and module failure (including DTC 5E20 'DSC-ECU general control device error') is a documented issue across many R56 MINIs in forums and aftermarket repair services like ECU Testing. However, the issue is generic to the R56 generation rather than GP2-specific, the GP2 was only produced for 2013 (not 2014), and the cited 'Bosch 8.1' module reference appears incorrect for R56 — these modules are typically ATE/Continental MK60-family units.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-shift-linkage-wear-and-vague-gear-selection-gp2-manual-transmission",
+      "vehicle": "2013 MINI GP",
+      "title": "Shift Linkage Wear and Vague Gear Selection (GP2 Manual Transmission)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 67,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "Year range incorrect: GP2 was a 2013 model-year-only limited edition (2,000 units), not 2013-2014",
+          "No documented evidence of a widespread shift linkage wear issue specific to the GP2/R56 JCW GP in NHTSA, TSBs, or owner forums",
+          "Description fabricates technical specifics ('plastic-bushed ball-joint connections', 'close-ratio gearing demands more precise shifts') not corroborated by sources",
+          "Known MINI shift linkage failures (NHTSA 02V201000) apply to early R53 (2002) models, not the R56 GP2",
+          "Repair cost figure cannot be validated against any documented GP2-specific repair data"
+        ],
+        "evidence": "Searches confirm the R56 JCW GP (GP2) was produced as a 2013 model-year-only limited edition with a Getrag 6-speed manual, but no NHTSA complaints, TSBs, or forum threads document a systemic shift linkage wear/vague selection issue specific to this car. Documented MINI shift linkage failures relate to the 2002 R53 recall (cable detachment), not the GP2's linkage bushings.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-dsg-aisin-6-speed-automatic-transmission-shudder-and-harsh-downshift-gp3",
+      "vehicle": "2021 MINI GP",
+      "title": "DSG/Aisin 6-Speed Automatic Transmission Shudder and Harsh Downshift (GP3)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 62,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "GP3 (2021-2023 JCW GP) does NOT use a 6-speed Aisin automatic - it exclusively uses the 8-speed Aisin GA8G45AW automatic",
+          "Title references 'DSG' which is a VW Group dual-clutch term, not applicable to MINI/Aisin torque-converter automatics",
+          "The 6-speed Aisin (GA6F21WA) was used in 2nd-gen MINIs (R55/R56), not the F56 GP3",
+          "DTC codes P0740/P0741/P2714 are generic torque converter codes - not documented as a known GP3-specific issue",
+          "No NHTSA complaints, TSBs, or owner forum reports found for this specific issue on the GP3",
+          "Severity 'high' is miscalibrated - even if real, transmission shudder is typically a comfort/driveability issue, not safety-critical"
+        ],
+        "evidence": "Multiple sources (Cars.com, Edmunds, Canadian Auto Review, MotoringFile) confirm the 2021 MINI JCW GP (GP3) is equipped exclusively with the 8-speed Aisin GA8G45AW automatic transmission, not a 6-speed. The 6-speed Aisin described in the entry was used in earlier R-chassis MINIs roughly 2007-2016, making the entire premise of this database entry incorrect for the GP3.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-electric-power-steering-eps-assist-loss-eps-pump-module-failure-r56-era",
+      "vehicle": "2013 MINI GP",
+      "title": "Electric Power Steering (EPS) Assist Loss / EPS Pump Module Failure (R56-era)",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 60,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "The documented EPS/electro-hydraulic pump failure issue and NHTSA recall 15V660 applies to R50/R53 first-generation MINIs (2002-2005), NOT the R56 platform that the 2013 GP2 is built on",
+          "Entry incorrectly claims R56-era MINIs share the EPS failure pattern - the R56 uses a different electric power steering system than the R50/R53 electro-hydraulic pump",
+          "No significant NHTSA complaint pattern or TSB exists specifically for 2013 MINI GP EPS failures",
+          "Year range is wrong - the well-documented EPS pump issue is 2002-2005, not 2013",
+          "Severity 'critical' may be appropriate for the real (R50/R53) issue but is misapplied to a vehicle that doesn't substantively have this problem",
+          "Repair cost range is plausible for an EPS pump replacement but irrelevant since the issue doesn't apply to this vehicle"
+        ],
+        "evidence": "NHTSA recall 15V660 (October 2015) covered approximately 86,000 model year 2002-2005 MINI Cooper/Cooper S vehicles for electro-hydraulic power steering assist loss, with heat buildup near the exhaust manifold cited as the failure mechanism. The 2013 MINI JCW GP is an R56-generation car which uses a different steering system and was not part of this recall or any equivalent EPS failure campaign; documented R56/GP issues center on timing chain, oil consumption, and carbon buildup rather than EPS pump failure.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-rear-subframe-bushing-deterioration-causing-handling-imprecision-gp2-gp3",
+      "vehicle": "2013 MINI GP",
+      "title": "Rear Subframe Bushing Deterioration Causing Handling Imprecision (GP2/GP3)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 55,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "Year range 2013-2023 is incorrect - MINI GP2 (R56) was 2013 only and GP3 (F56) was 2020-2021; no GPs produced in intervening years",
+          "No documented evidence of rear subframe-to-body bushing deterioration as a GP-specific known issue in forums, TSBs, or NHTSA data",
+          "General MINI R56 rear subframe issues that exist are rust-related (especially in salt-belt regions), not bushing degradation from cornering loads",
+          "Documented MINI rear-end bushing wear points are trailing arm bushings and control arm bushings, not subframe-to-body mounting bushings",
+          "Claim that GP stiffer suspension tune accelerates subframe bushing wear is not supported by any owner reports or technical documentation",
+          "Repair cost range may be low if subframe drop is required for bushing replacement"
+        ],
+        "evidence": "Searches of MINI forums (mini2.com, NAM, Pelican Parts), DIY guides, and parts catalogs reveal documented rear suspension wear items on R56/F56 are trailing arm bushings, control arm bushings, and subframe rust - not a pattern of rear subframe-to-body bushing deterioration. No GP-specific TSB or recurring complaint pattern about this issue was found, and the stated year range (2013-2023) does not align with actual GP2/GP3 production years (2013 and 2020-2021).",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp3-torque-steer-transmission-lag-2021",
+      "vehicle": "2021 MINI GP",
+      "title": "GP3 Severe Torque Steer and Automatic Transmission Lag",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 50,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Minor: HP listed as 302 — sources variously cite 301/302/306 hp depending on market (EU vs US), so 302 is acceptable",
+          "This is an inherent design characteristic rather than a 'defect' — no repair exists, so the $0-500 cost and 'low' severity framing is appropriate but the entry could clarify it's a known design trait not a fault"
+        ],
+        "evidence": "Multiple reviews (MotoringFile, BMWBlog, Motor1, Top Gear, CarThrottle, Fast Car, WhichCar) extensively document the GP3's severe torque steer despite its mechanical LSD, with BMWBlog calling it 'the most violent torque steer we've ever felt' and reviewers noting the Aisin 8-speed automatic feels lazy/lagging and reluctant to downshift compared to the same unit in the JCW Clubman. The 2021 single-model-year scope is accurate as the GP3 was a limited 3,000-unit run.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.motoringfile.com/2025/08/08/revisiting-the-2020-mini-gp3-flawed-fast-and-still-compelling/",
+          "type": "owner-report",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.motoringfile.com/2025/08/19/every-mini-jcw-gp-driven-ranked/",
+          "type": "owner-report",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-differential-bearing-noise-and-limited-slip-differential-chatter-gp2-gp3",
+      "vehicle": "2013 MINI GP",
+      "title": "Differential Bearing Noise and Limited-Slip Differential Chatter (GP2/GP3)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 48,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "GP2 (2013) does not have a Torsen or helical mechanical LSD - it uses brake-based Electronic Differential Lock Control (EDLC) only",
+          "Year range '2013-2023' is misleading; GP2 was 2013 model year, GP3 was 2020 only - not a continuous production range",
+          "No documented pattern of differential bearing noise or LSD chatter specific to GP variants in NHTSA, TSBs, or owner forums",
+          "Description conflates GP2 and GP3 differential hardware which are fundamentally different systems",
+          "Claim about 'aggressive final drive ratios accelerating bearing wear' is not substantiated in any source",
+          "Repair cost range $80-$2800 is extremely wide and not tied to any documented GP-specific repair pattern"
+        ],
+        "evidence": "Per BMW Group press materials, the 2013 GP2 uses brake-based EDLC (Electronic Differential Lock Control), not a mechanical Torsen/helical LSD; mechanical LSD was actually dropped from JCW MINIs for 2010. The 2020 GP3 is the only GP variant with a mechanical differential lock. No forum, NHTSA, or TSB evidence supports a documented pattern of differential bearing noise or LSD chatter specific to either GP model.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp2-coilover-adjuster-seize-2013",
+      "vehicle": "2013 MINI GP",
+      "title": "GP2 Coilover Adjusters Seizing from Corrosion",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 40,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll research this issue about the 2013 MINI GP coilover adjusters.\nI have enough evidence. The coilover adjuster seizing is a documented issue (PistonHeads forum confirms it), and the GP2 was produced as a 2013 model. However, the description bundles in an unrelated claim about a \"bonnet scoop red decal\" cracking from turbo heat - the GP2 doesn't actually have a bonnet scoop with a red decal (the"
+      },
+      "links": [
+        {
+          "url": "https://www.pistonheads.com/gassing/topic.asp?h=0&f=164&t=1613671",
+          "type": "owner-report",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.mini2.com/threads/2013-gp2-jcw-vs-2021-gp3-jcw.373731/",
+          "type": "owner-report",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-clubman-clutch-failure-2008",
+      "vehicle": "2008 MINI Clubman",
+      "title": "Premature Clutch and Dual-Mass Flywheel Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple owner forum reports (MiniTorque, Mini2.com) document premature clutch and dual-mass flywheel failures on R55 Clubman models in the 2008-2014 range, including JCW and Cooper D/SD variants, with repair costs cited around £1600-£2000+ which aligns with the $1200-$2500 USD range. No DTC codes are typically associated with mechanical clutch/flywheel wear, and the medium severity rating is appropriate as this is costly but not safety-critical.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.youtube.com/watch?v=QXJX0i6J8J8",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-convertible-drain-tube-clog-2005",
+      "vehicle": "2005 MINI Convertible",
+      "title": "Convertible Top Drain Tube Clogging and Water Intrusion",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description partially conflates convertible top drain tubes with sunroof drain tubes (a well-known but distinct MINI hardtop issue); convertible-specific drain tube documentation is less prominent than the description implies",
+          "Claim of 'four drain tubes' channeling water from soft top well is not clearly corroborated - forum evidence more often references A-pillar/roof drains and door drains rather than a soft-top well with four tubes",
+          "Repair cost range may be low - dealer quotes for related drain/leak repairs are frequently cited around $1,000, though DIY is cheap",
+          "Specific claim about water reaching body control modules under rear seats causing cascading electrical faults is plausible but not well-documented in search results for the Convertible specifically"
+        ],
+        "evidence": "Forum threads (mini2.com, NAM, minicooperforums) confirm MINI Convertibles (R52, R57, F57) commonly experience water leaks into footwells, rear seats, and trunk, often related to clogged roof/A-pillar drain tubes, door drains, and degraded seals. However, the specific four-drain-tube architecture from a soft-top well described in the entry appears partially conflated with the well-known sunroof drain issue on hardtop MINIs.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.youtube.com/watch?v=Q9XvZ3v3G2E",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-convertible-top-drain-clog-2005",
+      "vehicle": "2005 MINI Convertible",
+      "title": "Convertible Top Drain Blockage and Water Leaks",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple owner forums and repair sources confirm MINI Convertibles (R52/R57 generation, covering 2005-2015) commonly suffer from clogged top/sunroof drain tubes causing water intrusion into footwells and electrical damage. Repair costs vary widely from DIY (~$0-50) to dealer quotes around $1000, and the $50-$500 range with no DTCs and medium severity is reasonable for this nuisance-but-costly issue.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-convertible-top-hydraulic-leak-2005",
+      "vehicle": "2005 MINI Convertible",
+      "title": "Convertible Top Hydraulic Cylinder and Line Leaks",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range '2005-2025' is too broad; the hydraulic top cylinder/line leak issue is overwhelmingly documented on R52 (2005-2008) and R57 (2009-2015) generations, with much less evidence for F57 (2016+) models",
+          "Description claim about colder climates accelerating seal failure is questionable; industry sources attribute seal failure primarily to heat exposure, not cold"
+        ],
+        "evidence": "Multiple specialist rebuilders (Top Hydraulics, Cabriolet Hydraulics) explicitly list MINI Cooper 2005-2008 and 2009-2015 convertible top cylinders and pumps as common rebuild candidates, and MINI forums confirm hydraulic pump/cylinder leaks causing slow or failed top operation. The system uses Pentosin CHF 11S specialized hydraulic fluid (not brake fluid), matching the description.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-countryman-water-pump-leak-2011",
+      "vehicle": "2011 MINI Countryman",
+      "title": "Electric Water Pump and Thermostat Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Terminology imprecise: the main N18 water pump is actually mechanical (belt/friction-wheel driven), while only the auxiliary turbo coolant pump is electric and was subject to NHTSA recall 18V-248",
+          "Recall 18V-248 for the electric auxiliary pump covers 2011-2012 MINI Countryman only, not the full 2011-2016 range claimed",
+          "P0128 is correctly associated with thermostat/coolant temp below regulating temperature, but P26B2 and P00B7 are not commonly cited DTCs for this specific failure mode and could not be verified",
+          "Repair cost range $400-$1000 is on the low end; RepairPal estimates $986-$1,313 for water pump and $695-$873 for thermostat at MINI dealers/shops",
+          "Severity 'high' is defensible given fire-risk recall history and rapid overheating potential, though main-pump failure is typically a gradual coolant leak rather than sudden catastrophic failure"
+        ],
+        "evidence": "NHTSA recall 18V-248 confirms electric auxiliary water pump failures (with fire risk) on 2008-2012 MINI vehicles with N14/N18 engines, including 2011-2012 Countryman. Owner forums and parts vendors confirm the main mechanical water pump and plastic thermostat housing on the N18 are widely known to crack/leak across the 2011-2016 Countryman generation, but the 'electric' descriptor strictly applies to the auxiliary pump and the 2013-2016 years are not covered by the recall.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.youtube.com/watch?v=abc123xyz",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-coupe-high-pressure-fuel-pump-2012",
+      "vehicle": "2012 MINI Coupe",
+      "title": "High Pressure Fuel Pump (HPFP) Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Incorrect failure mechanism described: states 'cam follower wears through its hardened surface' — that is the N20/N55 HPFP issue, not N14/N18. N14/N18 HPFP failures are internal (non-return valve, internal wear, solenoid/o-ring issues), not cam follower wear",
+          "Incorrect remedy classification: HPFP on N14/N18 was addressed via a limited warranty extension to 10yr/120k miles and a class-action settlement (Boehm v. BMW), NOT a safety recall",
+          "NHTSA recall number 12V-238 appears incorrect/unrelated to HPFP — no evidence this recall covers HPFP replacement on MINI",
+          "DTC P0191 less commonly associated with HPFP failure than BMW-specific codes (e.g., 2C01); P0087 is correct"
+        ],
+        "evidence": "HPFP failure on MINI N14/N18 engines (including 2012-2015 R58 Coupe) is extremely well-documented via a MINI service bulletin extending warranty to 10yr/120k miles and the Boehm v. BMW class-action settlement alleging defective pump part 13517588879 causing sudden engine failure/loss of power. However, the entry conflates the N14/N18 internal pump failure mode with the unrelated BMW N20/N55 cam follower issue, and mischaracterizes the remedy as NHTSA recall 12V-238 when it was actually a warranty extension/class action, not a safety recall.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/recalls",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "mini-coupe-thermostat-housing-leak-2012",
+      "vehicle": "2012 MINI Coupe",
+      "title": "Thermostat Housing Leak and Coolant Loss",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost upper bound likely understated — real-world quotes commonly range $700-$1,400+, with RepairPal listing $695-$873 for thermostat work alone and forum users reporting $900-$1,800 including related crossover pipe/water pump",
+          "Description states housing bolts to cylinder head, which is correct for N14/N18, but the location of the leak that reaches the serpentine belt is somewhat exaggerated — coolant from the rear-mounted housing more commonly runs down the back of the engine/transmission, not the front"
+        ],
+        "evidence": "Multiple MINI specialist shops, forums (mini2.com, North American Motoring), and parts vendors (Minimania) confirm the plastic thermostat housing on N14/N18 engines in 2012-2015 R58 Coupes is a known common failure point due to plastic embrittlement from heat cycling. P0128 is an appropriate DTC. Real-world repair costs typically range $700-$1,400, exceeding the stated $300-$700 upper bound.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.youtube.com/watch?v=3hM0R7YvNqE",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-coupe-timing-chain-2012",
+      "vehicle": "2012 MINI Coupe",
+      "title": "N14/N18 Timing Chain Tensioner Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "N14 engine not used in 2012-2015 MINI Coupe; only N18 was used in this generation/year range (N14 was replaced by N18 in late 2010)",
+          "N18 timing chain issues are documented but less prevalent than the N14; description overstates by lumping both engines together for this vehicle"
+        ],
+        "evidence": "Timing chain tensioner/stretch failures are well-documented on Prince N14/N18 engines, with N14 (2007-2010) being the most affected; N18 (2011+) received an updated tensioner and guides but still suffers from chain stretch, upper guide cracks, and death rattle. The 2012-2015 MINI Coupe S/JCW used the N18 only, not N14. DTCs P0011/P0012/P0016 (cam timing/correlation) are consistent with chain stretch symptoms, and repair costs of $1,200-$1,800 at independents up to $3,000+ at dealers align with the stated range.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.youtube.com/watch?v=7XxYzQ9vHkA",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-coupe-timing-chain-stretch-2012",
+      "vehicle": "2012 MINI Coupe",
+      "title": "N14/N18 Timing Chain Tensioner Failure and Chain Stretch",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0300/P0301 are misfire codes that may appear secondarily, but more typical primary codes for timing chain stretch are P0011, P0012, P0014, P0015, or P0341 (cam/crank correlation); P0016 is correct",
+          "For the 2012-2015 MINI Coupe (R58), the Cooper S used N18 from launch; only early JCW Coupes (through ~mid-2012/early-2013) had the N14, so N14 applicability is narrower than implied",
+          "Severity 'high' is defensible given catastrophic engine damage risk, though some would classify as medium since it's not a direct safety/crash issue"
+        ],
+        "evidence": "Multiple independent MINI specialists, forums, and Wikipedia confirm the N14/N18 'death rattle' timing chain tensioner and guide failure is a well-documented, widespread issue causing chain stretch, tooth-jumping, and potential catastrophic valve/piston damage; repair costs of $1,200-$1,800 at independent shops (higher at dealers) align with the $1,500-$3,000 range cited. The N14 (2007-2010 Cooper S, 2007-mid-2012/2013 JCW) is significantly more affected than the N18 (2011+ Cooper S), matching the description.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-clutch-master-cylinder-2013",
+      "vehicle": "2013 MINI GP",
+      "title": "Clutch Master Cylinder Failure (GP2 Manual Transmission)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Year range is wrong: the GP2 was a 2013 model-year-only limited edition (2,000 units worldwide); no 2014 or 2015 GP2 exists",
+          "No GP2-specific documentation (NHTSA, TSB, or owner-forum consensus) found establishing clutch master cylinder failure as a known/recurring issue for this model",
+          "Description appears to be generic hydraulic-clutch failure symptoms applied speculatively to the GP2 rather than a documented model-specific defect",
+          "Repair cost range is plausible generically but not validated against GP2-specific repair data"
+        ],
+        "evidence": "Sources (Wikipedia, Classic.com, johncooperworksgp.com, MotoringFile) confirm the R56 JCW GP2 was a 2013-model-year-only limited run of 2,000 units (500 in the US), not a 2013-2015 production vehicle. Searches of MINI forums and known-issue guides (Lohen Gen 2 MINI problems, North American Motoring) surface generic R56 clutch hydraulic complaints and timing-chain/coking issues, but no GP2-specific clutch master cylinder failure pattern is documented.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.youtube.com/watch?v=abc123xyz",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-cracked-exhaust-manifold-2013",
+      "vehicle": "2013 MINI GP",
+      "title": "Cracked Exhaust Manifold (Turbo Models)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range '2013-2023' is incorrect: the MINI JCW GP is a limited-edition model produced only in 3 specific model years (2006 GP1/R53, 2013 GP2/R56, and 2020-2021 GP3/F56) — it was not in continuous production from 2013-2023",
+          "Engine reference is wrong: the 2006 GP1 used a supercharged 1.6L (Tritec), NOT a turbo with N18/B48 — only the GP2 (2013) uses N18 and GP3 (2020-2021) uses B48",
+          "Description conflates exhaust manifold with turbo housing on N18: on the N18 the exhaust manifold is integrated into the cylinder head, and the turbo bolts to it via a separate flange (not 'integrated with the turbo housing')",
+          "DTC codes are weakly related: P0420/P0430/P2096 are catalyst efficiency / post-cat lean codes, not the canonical codes for a cracked exhaust manifold (which typically triggers no specific code, or O2/misfire codes)",
+          "Issue is more commonly documented as turbo housing cracking on N14/N18 platform broadly, not specifically a GP-only problem"
+        ],
+        "evidence": "MINI JCW GP exists only as 3 limited-run models (2006 R53 supercharged, 2013 R56 N18 turbo ~2000 units, 2020-2021 F56 B48 turbo ~3000 units) per Wikipedia, CarBuzz, and Stratstone — not a 2013-2023 continuous range. Aftermarket vendors (Mamba Turbo) and owner forums confirm the N14/N18 exhaust manifold/turbo housing is prone to cracking on the broader Prince engine platform, so the underlying issue is real but the vehicle-application and DTC details are significantly off.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.miniforums.com/forum/threads/exhaust-manifold-cracking-on-n18-turbo.123456/",
+          "type": "forum",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=abcd1234efg",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-timing-chain-stretch-2013",
+      "vehicle": "2013 MINI GP",
+      "title": "Timing Chain Stretch and Rattle (N18/B48 Engines)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range '2013-2023' is misleading - the MINI GP was only produced as discrete model-year limited editions: GP2 in 2013 (R56/N18) and GP3 in 2020 (F56/B48). No GP was made in 2014-2019 or 2021-2023.",
+          "Timing chain stretch is very well documented for the N18 engine, but for the B48 engine (GP3) it is far less of a known issue - the description's mention of B48 as also affected is weakly supported by evidence.",
+          "DTC codes (P0016/P0017 camshaft-crankshaft correlation, P0011/P0014 cam timing over-advanced) are appropriate and consistent with the described symptoms.",
+          "Repair cost range $1200-$3000 aligns with documented industry estimates.",
+          "Severity 'high' is reasonable given catastrophic engine damage potential, though this is more of a wear/maintenance issue than a sudden safety-critical defect."
+        ],
+        "evidence": "Multiple sources confirm the N18 engine (used in the 2013 GP2) suffers well-documented timing chain stretch, tensioner failure and the 'death rattle,' with BMW issuing a TSB and a 2015 class-action settlement extending warranties; quoted repair costs commonly fall in the $1,500-$3,000 range. However, the B48 engine (GP3, 2020) does not have a comparably documented timing chain stretch issue, and the year range '2013-2023' incorrectly implies continuous GP production.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-vanos-solenoid-2013",
+      "vehicle": "2013 MINI GP",
+      "title": "VANOS Solenoid Issues (N18/B48 Engines)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range is incorrect: GP2 (R56, N18) was 2013 model year only, not 2013-2015; GP3 (F56, B48) was 2020-2021, not 2020-2023",
+          "Issue title says '2013-2023 MINI GP' implying continuous production, but there is a multi-year gap between GP2 (2013) and GP3 (2020-2021)",
+          "DTC codes listed are generic OBD-II codes; MINI-specific codes like 287D, 2A82, 2A87, 2845 are more commonly reported in real-world diagnostics for these engines",
+          "Description overstates GP-specificity: VANOS solenoid issues affect all N18/B48 MINIs, not uniquely the GP trims"
+        ],
+        "evidence": "VANOS solenoid failures from oil contamination/sludge are well-documented on N18 (Pelican Parts, multiple owner forums) and B48 (Alex's Autohaus notes clogging at 50,000-70,000 miles) engines. However, the GP2 was only produced for the 2013 model year and the GP3 only for 2020-2021, making the '2013-2023' range misleading.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.youtube.com/watch?v=abcd1234efg",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-gp-water-pump-failure-2013",
+      "vehicle": "2013 MINI GP",
+      "title": "Electric Water Pump Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range '2013-2023' is wrong: the MINI GP only exists in three discrete model years (2006 GP1, 2013 GP2, 2020 GP3) — it is not a continuous production model",
+          "The N18-equipped 2013 GP uses a mechanical friction-driven main water pump, not an electric one; the electric pump issue applies to the auxiliary (turbo cooling) pump",
+          "BMW/MINI electric auxiliary water pump recall (NHTSA 18V-248) covers MY2008-2012 N14/N18 vehicles — it explicitly excludes the 2013 GP model year",
+          "Description conflates main water pump failure with auxiliary water pump failure; symptoms differ (auxiliary pump runs post-shutdown for turbo cooling, doesn't cause driving overheats)",
+          "DTC P0599 is typically thermostat heater control high, not specifically electric water pump; P26B4 relates to coolant pump control but pairing of all three codes is not well-documented for this specific failure",
+          "Severity 'high' is debatable — the recall cited fire risk (which would justify high), but a simple pump failure causing overheating is typically medium",
+          "Repair cost $500-$1200 is plausible for an out-of-warranty electric auxiliary pump replacement but recall repairs were free for affected years"
+        ],
+        "evidence": "NHTSA recall 18V-248 confirms a real electric auxiliary water pump defect on N14/N18 MINIs, but only for model years 2008-2012, excluding the 2013 GP2. The 2020 GP3 uses the B48 engine but no widespread electric water pump recall matches. The MINI GP is a limited-edition model produced only in 2006, 2013, and 2020 — not a continuous 2013-2023 range.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.youtube.com/watch?v=abcd1234efg",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-hardtop-4door-rear-hatch-wiring-2015",
+      "vehicle": "2015 MINI Hardtop 4 Door",
+      "title": "Rear Hatch Wiring Harness Fatigue and Breakage",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Claim that 4-door variant is more affected due to 'heavier hatch and tighter bend radius' appears unsupported - the F55 4-door has the same hatch design as the F56 2-door; the 4-door designation refers to passenger doors, not the hatch",
+          "Issue is not unique to the 4-door; affects MINI hatchbacks generally (and is a well-known issue across many makes including Fiat 500, VW, Alfa Romeo)",
+          "Repair cost range may be slightly low on the upper end if dealer replaces full harness vs. splice repair kit"
+        ],
+        "evidence": "European Auto Tech documents this exact issue on MINIs, noting wires bending/twisting at the hatch cause failures of hatch lock, rear wiper, defroster, and lights. Pelican Parts and forum threads confirm rear hatch wiring harness failures are a known MINI issue, with similar failure modes documented across F55/F56 generation vehicles.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-paceman-all4-coupling-failure-2013",
+      "vehicle": "2013 MINI Paceman",
+      "title": "ALL4 AWD Coupling Unit Failure and Overheating",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Description incorrectly identifies the coupling as 'Haldex-based' - the MINI Paceman/Countryman ALL4 actually uses GKN's Electro Magnetic Control Device (EMCD), a fundamentally different system that uses an electromagnet rather than a hydraulic pump",
+          "EMCD systems are designed for 150,000 mile lifespan with no drain plug; overheating-induced disengagement is not a widely documented failure mode the way it is described - real-world failures are more often clutch pack wear, bearing failure, and hub wear",
+          "No DTC codes listed - actual reported codes for EMCD-related issues exist (e.g., 00A0A9) and could be specified",
+          "Severity rated 'high' may be overstated - failure causes reversion to FWD with warning light, not a safety-critical loss of control; 'medium' would be more appropriate",
+          "Repair cost ceiling of $2,500 may be low - forum reports indicate rear differential/transfer case replacement alone can approach $2,500 in parts, with full repair often exceeding this with labor"
+        ],
+        "evidence": "Multiple sources confirm the MINI Paceman/Countryman ALL4 uses a GKN EMCD electromagnetic coupling, not a Haldex unit - these are different competing technologies. Owner forums (mini2.com, NAM, JustAnswer) confirm real EMCD clutch pack and rear differential failures on R60/R61 ALL4 models, but the failure mechanism is typically wear/bearing failure rather than the overheating-disengagement scenario described.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.youtube.com/watch?v=8Xc0XW0bH4I",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-paceman-awd-coupling-2013",
+      "vehicle": "2013 MINI Paceman",
+      "title": "ALL4 AWD Coupling Wear and Timing Chain",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll research this issue to verify the facts.\nI have enough information to assess this entry. Key findings:\n\n1. The Paceman (R61) uses the N18 engine (not N14 - that's earlier R56 era pre-2010). The description conflates N14/N18.\n2. The Paceman ALL4 uses GKN's EMCD system, NOT Haldex. This is a factual error - multiple sources clearly state ALL4 is GKN EMCD, not Haldex.\n3. The timing chain tension"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-paceman-valve-cover-gasket-2013",
+      "vehicle": "2013 MINI Paceman",
+      "title": "Valve Cover Gasket Oil Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "The primary failure on the N18 is typically the integrated PCV diaphragm in the plastic valve cover cracking/failing, often requiring full valve cover replacement (not just the gasket); repair cost can exceed the $800 ceiling when the complete OEM cover is needed (genuine MINI cover alone is ~$375-$430 before labor)",
+          "Description says PCV failure 'worsens any gasket leak' but in practice the cracked/failed valve cover itself is usually the leak source on N18, not just the gasket losing seal",
+          "No mention that vacuum leaks from the failed PCV/cover commonly trigger CEL codes (lean codes, vacuum leak codes) — listing 'none' for DTCs is technically defensible for a pure gasket leak but understates the typical real-world presentation"
+        ],
+        "evidence": "Multiple sources (ECS Tuning, Detroit Tuned, Pelican Parts, Way Motor Works, SneedSpeed, NAM forum) confirm the N18 engine in 2013-2016 Paceman S/JCW suffers from plastic valve cover warping/cracking and integrated PCV failure causing oil leaks and vacuum leaks. RepairPal estimates gasket replacement at $401-$573, but full valve cover replacement (commonly needed) runs ~$700-$900+ at dealer, putting actual repair cost at the upper end of or above the stated $300-$800 range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-roadster-soft-top-motor-2012",
+      "vehicle": "2012 MINI Roadster",
+      "title": "Manually Operated Soft Top Latch Mechanism Wear",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range mostly accurate (R59 Roadster was produced 2012-2015) but US sales effectively ended after 2015",
+          "Most documented R59 soft-top complaints relate to microswitch/Hall sensor/warning system issues rather than mechanical latch/striker wear specifically",
+          "Description conflates general convertible header-seal wear with Roadster-specific documented issues; striker pin play not strongly documented as a common failure mode",
+          "Repair cost range is plausible but on the low end if latch assemblies or wiring/sensor work is needed (forum reports show £400+ for related roof repairs)"
+        ],
+        "evidence": "The MINI Roadster (R59) does have a manually operated soft top opened via a release lever on the windscreen frame, confirmed by MotoringFile and MINI documentation. Owner forums (mini2.com, NorthAmericanMotoring) confirm soft-top latch and seal complaints exist, but the most commonly documented R59 top issues involve Hall sensors/microswitches and 'roof not latched' warnings rather than the specific mechanical latch/striker wear described; general header-seal leak complaints on MINI/BMW soft tops are well documented across models.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.youtube.com/watch?v=QxQm7Q5v0xE",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-roadster-timing-chain-2012",
+      "vehicle": "2012 MINI Roadster",
+      "title": "N18 Timing Chain and Turbo Oil Line Leak",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Issue conflates two separate problems: N18 timing chain stretch/guide failure is well-documented, but the turbo oil return line leak is not commonly paired with it as a single issue",
+          "DTC P0011 and P0016 are reasonable for timing chain stretch but would not typically be triggered by a turbo oil return line leak",
+          "Trim clarification needed: only Cooper S and JCW Roadster trims use the N18 turbo engine; base Roadster uses N16 (non-turbo), so 'any trim' is misleading"
+        ],
+        "evidence": "Multiple independent sources (Pelican Parts, North American Motoring, PSC Auto Centre, CarComplaints.com lawsuit, Detroit Tuned, Lohen) confirm the N18 engine (introduced 2010, used in 2012-2015 MINI Roadster Cooper S/JCW) suffers from timing chain stretch, top guide failure, and tensioner issues causing the 'death rattle,' with a class-action lawsuit and ~$3,000 repair bills documented. The turbo oil return line leak is a known but separate N18/N14 concern, not typically bundled with the timing chain issue or signaled by P0011/P0016.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mini-roadster-water-pump-failure-2012",
+      "vehicle": "2012 MINI Roadster",
+      "title": "Electric Water Pump Failure and Overheating",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Conflates two different pumps: the mechanical belt-driven main water pump (front of engine, plastic impeller can crack) and the electric auxiliary water pump (turbocharger cooling, circuit board can fail) — these are distinct components with different failure modes",
+          "Roadster (R59) was never equipped with the N14 engine; it used the N18 from its 2012 launch onward, so the claim that 'N14-equipped Roadsters (JCW) are especially prone' is factually wrong",
+          "NHTSA recall 18V-248 for the electric aux water pump only covers 2012 Cooper S Roadster/JCW Roadster built Aug 2010–Sept 2011, not the full 2012-2015 range claimed",
+          "DTC P0128 is a thermostat/coolant-below-regulating-temp code and P2181 is a generic cooling performance code; neither is the typical code for electric aux pump failure (which usually sets coolant-pump-specific codes like 2E81-2E84)",
+          "Description states the electric pump gives no warning noise, but the main MINI pump is friction/belt-driven, not the electric one; the statement contradicts itself"
+        ],
+        "evidence": "NHTSA recall 18V-248 confirms electric auxiliary water pump failures on 2008-2012 MINI N14/N18 vehicles with fire risk, and forums/CarComplaints document main water pump failures on R59 Roadsters, but the entry conflates the mechanical main pump and the electric auxiliary pump, misidentifies the Roadster's engine (N18, not N14), and lists DTCs that don't specifically match electric pump failure.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.youtube.com/watch?v=GvQvG6vGq9s",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "auditedAt": "2026-05-25T17:19:00.985Z",
+  "total": 6,
+  "verified": 4,
+  "minor": 2,
+  "major": 0,
+  "fabricated": 0,
+  "errors": 0,
+  "results": [
+    {
+      "id": "acura-integra-dc-automatic-transmission-shift-solenoid",
+      "title": "4-speed automatic: shift solenoid failure causes D4 light flash, missed shifts, and limp mode",
+      "severity": "medium",
+      "verdict": "minor_issues",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Transmission family misidentified: BAXA/MAXA are Accord/Odyssey transmissions; 1994-1999 Integra 4-speed auto is typically MPWA/M4RA/B4RA (Civic-family uses different codes)",
+          "DTC P1298 is an ELD (Electrical Load Detector) circuit code, not transmission-related — appears incorrect for this issue",
+          "P1660 is a PCM/TCM data-link communication code; tangentially related but not a primary shift-solenoid code",
+          "1994-1995 Integras are OBD1 and report 2-digit flash codes (not P-codes like P0740); P-codes only apply to 1996+ OBD2 models",
+          "Description text appears truncated mid-sentence ('transmission filter or screen re')"
+        ],
+        "evidence": "Forum threads (Honda-Tech, Team Integra, ClubIntegra) and parts listings confirm flashing D4 light with shift-solenoid A/B failure is a well-known Integra automatic issue, with P0740 (TCC) and P0780 (shift error) being legitimate related codes on 1996+ OBD2 Integras. However, the BAXA/MAXA designation belongs to Accord/Odyssey transmissions, and P1298 is an ELD code unrelated to transmission shifting.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "acura-integra-dc-distributor-internal-failure",
+      "title": "Internal distributor failure causing stalling, no-start, and misfires",
+      "severity": "high",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Description text is truncated mid-sentence ('The car has been in the sh')",
+          "Repair cost range slightly low for OEM Honda distributors which can run $400-$500+ for the part alone, though remanufactured units fit the stated range"
+        ],
+        "evidence": "Multiple owner forums (Honda-Tech, ClubIntegra, Team Integra), RepairPal, and parts retailers confirm the internal distributor (coil, ICM, CYP/TDC sensors, and shaft bearing) is a chronic failure point on 1990-2001 Integras, causing no-start, stalling, and misfires. DTC codes P1381/P1382 (CYP sensor intermittent/no signal) and P1361/P1362 (TDC sensor) are correctly tied to the distributor since all these sensors are built into the distributor housing.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "acura-integra-dc-ignition-switch-contact-pitting",
+      "title": "Ignition switch contact pitting causes engine to die when key released",
+      "severity": "high",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple Acura forums (Team Integra, Honda-Tech, Acura Legend) document the exact symptom: car starts but dies the moment the key is released from START to RUN, caused by pitted/corroded ignition switch contacts. Fix is either cleaning contacts with sandpaper (free) or replacing the switch (~$50 part from AutoZone, up to ~$250 from dealer), matching the stated $50-$200 range. No DTCs are expected since this is a direct power-loss issue, not an ECU-detected fault.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "acura-integra-dc-rear-lca-bolt-seizure",
+      "title": "Rear lower control arm bolts seize and shear inside bushing sleeves",
+      "severity": "medium",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple Integra/Honda owner forums and aftermarket parts vendors confirm this is a well-known issue: rear LCA bolts notoriously seize inside the bushing sleeves on 1990-2001 Integras, frequently requiring cutting the control arm off with a sawzall to remove. Aftermarket replacement bolt kits are specifically sold for this problem, and the year range, no-DTC, medium severity, and $100-$800 repair cost (bolts/bushings/LCAs plus labor) align with reported owner experiences.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "acura-integra-dc-timing-belt-interference-failure",
+      "title": "Timing belt failure on interference B18 engine bends valves",
+      "severity": "high",
+      "verdict": "verified",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Manufacturer's recommended interval is closer to 105,000 miles on later Integras, not strictly 90,000 (though 90k is a common conservative recommendation)",
+          "No DTC codes apply (correctly noted as none) - a broken timing belt typically results in a no-start, not stored codes"
+        ],
+        "evidence": "Multiple owner forums and parts suppliers confirm the 1994-2001 Integra B18 is an interference engine where timing belt failure commonly bends valves, with Gates explicitly labeling the T247 belt an 'interference engine application' and owners reporting bent valves after belt failure. Repair cost range is reasonable: timing belt service runs roughly $400-$1,100, while valve/head repair after failure pushes total cost into the multi-thousand range, consistent with the $350-$3000 estimate.",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "acura-integra-dc-vtec-oil-pressure-switch-code22",
+      "title": "VTEC oil pressure switch failure (Code 22 / P1259) on GS-R and Type R",
+      "severity": "low",
+      "verdict": "minor_issues",
+      "newStatus": "published",
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "The description claim of 'hard rev-limiter drop' is not consistently reported; symptoms are typically just CEL with VTEC cutting out, no true limp mode",
+          "Root cause often is not the switch itself but low oil pressure, clogged screen/gasket, wiring/ground issues, or even a faulty ECU - the switch is one of several potential causes",
+          "Repair cost range ($70-$250) is reasonable for DIY switch replacement but the actual switch part is very inexpensive (~$10-30); diagnostic labor alone can be ~1 hour at $80-150/hr"
+        ],
+        "evidence": "Multiple Acura Integra owner forums (Team-Integra, ClubIntegra) extensively document Code 22 / P1259 VTEC oil pressure switch issues on 1994-2001 GSR/Type R B18C engines, with symptoms matching the description (CEL after VTEC engagement, often around high RPM). The codes are correctly mapped: Code 22 is the OBD1 equivalent and P1259 is the OBD2 code for VTEC system malfunction related to the oil pressure switch.",
+        "confidence": "high"
+      }
+    }
+  ]
+}

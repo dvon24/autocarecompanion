@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg-gradient)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="1100" cy="100" r="200" fill="#3b82f6" fill-opacity="0.1"/>
+  <circle cx="100" cy="530" r="150" fill="#8b5cf6" fill-opacity="0.1"/>
+
+  <!-- Logo/Brand -->
+  <text x="100" y="200" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="white">
+    Au7o
+  </text>
+
+  <!-- Tagline -->
+  <text x="100" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="36" fill="#94a3b8">
+    AI-Powered Automotive Repair Guides
+  </text>
+
+  <!-- Feature bullets -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#cbd5e1">
+    <circle cx="115" cy="360" r="8" fill="url(#accent-gradient)"/>
+    <text x="140" y="368">Step-by-step guides for your exact vehicle</text>
+
+    <circle cx="115" cy="410" r="8" fill="url(#accent-gradient)"/>
+    <text x="140" y="418">AI symptom diagnosis chat</text>
+
+    <circle cx="115" cy="460" r="8" fill="url(#accent-gradient)"/>
+    <text x="140" y="468">Works offline - no internet required</text>
+  </g>
+
+  <!-- Car silhouette -->
+  <g transform="translate(750, 280)" fill="none" stroke="#3b82f6" stroke-width="3" stroke-opacity="0.5">
+    <!-- Simple car outline -->
+    <path d="M0 100 Q20 100 40 80 L80 80 Q100 60 140 50 L260 50 Q300 50 320 70 L360 70 Q380 90 400 100 L400 120 Q400 140 380 140 L350 140 Q340 160 310 160 Q280 160 270 140 L130 140 Q120 160 90 160 Q60 160 50 140 L20 140 Q0 140 0 120 Z"/>
+    <!-- Wheels -->
+    <circle cx="90" cy="140" r="25"/>
+    <circle cx="310" cy="140" r="25"/>
+    <!-- Windows -->
+    <path d="M100 75 L130 50 L250 50 L280 75 Z" fill="#3b82f6" fill-opacity="0.2"/>
+  </g>
+
+  <!-- URL -->
+  <text x="100" y="580" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#64748b">
+    au7o.io
+  </text>
+</svg>

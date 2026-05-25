@@ -1,0 +1,1210 @@
+{
+  "sampledAt": "2026-05-18T14:51:52.641Z",
+  "total": 41,
+  "verified": 5,
+  "minor": 26,
+  "major": 8,
+  "fabricated": 2,
+  "errors": 0,
+  "deadLinks": 40,
+  "totalLinks": 50,
+  "results": [
+    {
+      "id": "ram-2500-front-end-death-wobble-2003",
+      "vehicle": "2003 RAM 2500",
+      "title": "Front End \"Death Wobble\" Steering Oscillation",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 5500,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Death wobble is a well-documented issue on RAM 2500/3500 solid front axle trucks, with NHTSA complaints, class action lawsuits, and recalls dating back to 2003-2008 models and continuing through current generations; causes cited (track bar, ball joints, tie rod ends, wheel bearings) and trigger conditions (highway speeds, hitting a bump) match the description exactly. No DTCs apply since it's a mechanical/suspension issue, severity is correctly rated high as a safety-critical defect, and repair costs of $500-$3000 align with owner-reported repair totals.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2018/RAM/2500",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-3500-68rfe-transmission-failure-2007",
+      "vehicle": "2007 RAM 3500",
+      "title": "68RFE Automatic Transmission Failure When Towing",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 4500,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range ends at 2018 but 68RFE continues in RAM 3500 through current model years (2019-2024+)",
+          "'Any trim' is inaccurate — RAM 3500 HO/Max Tow trims use the Aisin AS69RC transmission, not the 68RFE",
+          "68RFE is derived from the 45RFE/545RFE family (gas SUV/minivan lineage), description's '545RFE derivative' is roughly correct but oversimplified",
+          "P0742 (TCC stuck on) is less commonly cited than P0871, P0868, or P0750 for typical 68RFE failure modes",
+          "Repair cost lower bound ($400) is unrealistically low for the described catastrophic failures; typical rebuilds run $5,000-$10,000+",
+          "Severity 'high' is borderline — failure is costly but not typically safety-critical in the crash/injury sense; 'medium' may be better calibrated"
+        ],
+        "evidence": "Multiple sources (ATS Diesel, Monster Transmission, Diesel Power Products, Tier One, owner forums) extensively document 68RFE premature failures in 2007.5+ RAM 2500/3500 6.7L Cummins trucks, with overdrive clutch packs, torque converter, and valve body cited as primary failure points under towing/heat — matching the description. However, the 68RFE was not used in HO/Max Tow 3500 trims (which got the Aisin AS69RC), and the transmission remained in production well past 2018.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2016/RAM/3500",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.cumminsforum.com/threads/suncoast-vs-bd-68rfe-build.2123456/",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-2500-def-system-issues-2013",
+      "vehicle": "2013 RAM 2500",
+      "title": "Diesel Exhaust Fluid (DEF) System Failures",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 4100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "P2463 is primarily a DPF soot accumulation code, not strictly a DEF system code - somewhat tangential to described issue",
+          "Issue applies only to 6.7L Cummins diesel-equipped trucks, not all trim/year combinations listed (e.g., Rebel 2500 wasn't available across full year range)",
+          "Severity 'high' is debatable - 5mph derate is more of a costly drivability/compliance issue than safety-critical, though speed limitation has some safety implications",
+          "Lower bound of $300 repair cost is optimistic - most DEF pump/heater repairs run $800-$2,500+ based on owner reports"
+        ],
+        "evidence": "Multiple owner forums (CumminsForum, RamForum, CarComplaints) and parts retailers confirm widespread DEF pump/heater failures on 2013+ RAM 2500/3500 6.7L Cummins, with cold-weather freezing damaging heaters, 5mph limp mode after countdown, and OEM pump/heater assemblies priced ~$1,099-$1,900 plus labor. Issue affects both 4th gen (2013-2018) and 5th gen (2019+) trucks with reports continuing into 2021-2022 model years.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.cumminsforum.com/threads/def-heater-tsb-18-018-20.2534890/",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2020/RAM/2500",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-2500-steering-gearbox-leak-2003",
+      "vehicle": "2003 RAM 2500",
+      "title": "Steering Gear Box Leak and Excessive Play",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 3800,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range starts at 2003 but issue affects 2nd gen (1994-2002) RAM 2500/3500 as well",
+          "5th gen (2019+) RAM 2500 has improved steering geometry making this issue significantly less common, so including through 2025 overstates prevalence in newer trucks",
+          "Lower cost bound of $100 is low for actual gearbox repair (reflects only additive band-aid fixes); typical gearbox replacement is $500-$1500"
+        ],
+        "evidence": "Multiple owner forums (DodgeForum, CumminsForum, RamForumZ), CarComplaints.com, and NHTSA-style complaint aggregators document steering gearbox leaks at input/sector shaft seals, excessive play/dead zone, and gearbox loosening from the frame on RAM 2500/3500 solid-front-axle trucks; aftermarket steering box braces (BD, Rough Country) specifically exist to address sector shaft play and frame flex on 03-08 models, and the issue is associated with the well-known 'death wobble' phenomenon.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2019/RAM/2500",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-2500-cp4-fuel-pump-failure-2019",
+      "vehicle": "2019 RAM 2500",
+      "title": "6.7L Cummins CP4.2 High-Pressure Fuel Pump Catastrophic Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 3200,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range is significantly wrong: CP4.2 pump was only installed in 2019-2020 model year RAM 2500 trucks, not 2019-2025. Ram switched back to the CP3 pump for the 2021 model year and onward, so 2021-2025 trucks are NOT affected by this issue.",
+          "Entry fails to mention the major NHTSA safety recall 21V-880 (Stellantis recall Y78) issued November 2021 covering ~222,410 trucks, which provides free CP4-to-CP3 conversion",
+          "DTC list is plausible but only P0087 is strongly documented as the primary code; P0088/P0190/P0191/P2293 are reasonable related fuel-pressure codes but not specifically cited in sources for this failure mode",
+          "Trim list is overly specific and includes trims that may not all have been offered every year; the issue is engine-specific (6.7L Cummins) and applies regardless of trim"
+        ],
+        "evidence": "The CP4.2 fuel pump failure is a heavily documented, real issue resulting in NHTSA recall 21V-880 covering 222,410 2019-2020 Ram 2500/3500/4500/5500 trucks with the 6.7L Cummins. However, Stellantis switched back to the CP3 pump starting with the 2021 model year, so the entry's '2019-2025' year range incorrectly includes 4 model years that do not have the CP4.2 pump.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2022/RAM/2500",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.cumminsforum.com/threads/cp4-2-failure-megathread.2475632/",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.trucktrend.com/news/ram-cummins-cp4-fuel-pump-lawsuit/",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-promaster-oil-filter-housing-leak-2014",
+      "vehicle": "2014 RAM ProMaster",
+      "title": "3.6L Pentastar V6 Oil Filter Housing/Cooler Leak",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2900,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0401/P0402/P0403/P0404 are all EGR system codes (Exhaust Gas Recirculation flow/circuit faults), completely unrelated to an oil filter housing or oil cooler leak; an external oil leak typically sets no DTC, and internal oil/coolant mixing would more likely produce codes like P0520 (oil pressure) or overheating-related codes",
+          "Repair cost range ($150-$800) appears low; real-world quotes commonly run $1,000-$1,500 including parts (OEM housing ~$217-$360, Dorman aluminum ~$180) plus several hours of labor to remove the intake manifold",
+          "Description says housing is mounted to side of engine block, but it is actually located in the valley under the intake manifold",
+          "Severity 'high' is arguable; most owners report a slow external leak that is not immediately safety-critical, though internal oil/coolant cross-contamination can be serious"
+        ],
+        "evidence": "Multiple sources (ProMaster forum, Pentastar repair guides, parts manufacturers like Standard and Dorman) confirm the 3.6L Pentastar oil filter housing/cooler leak is one of the most common failures on this engine, affecting ProMasters and other Pentastar-equipped vehicles. However, P0401-P0404 are unambiguously EGR system codes per multiple OBD-II references, not codes associated with oil filter housing leaks.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2019/RAM/PROMASTER",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-1500-8speed-trans-2013",
+      "vehicle": "2013 RAM 1500",
+      "title": "ZF 8-Speed Transmission Problems",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2876,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes are generic/imprecise - actual documented codes for this issue include P0734 (Gear 4 Shift Incorrect Ratio), P0868, and the P1D90-P1D9A clutch ratio series; P0741/P0742 are torque converter codes not primarily associated with the harsh-shifting complaint",
+          "Claim that '2013-2016 seem most affected' is questionable - forum reports and TSBs (including TSB 21-015-25) show the harsh shifting/2-1 bump issue persists into 2019, 2020, 2021, 2024, and even 2025 model years",
+          "Year range ends at 2023 but the same transmission family (8HP75) continues with similar complaints through 2025"
+        ],
+        "evidence": "Multiple sources confirm widespread ZF 8-speed (8HP45/8HP70/8HP75/845RE/850RE) harsh shifting and '2-1 bump' complaints in RAM 1500 from 2013 onward, with numerous FCA TSBs (21-004-15, 21-012-14, 21-028-14, 21-015-25) addressing TCM reprogramming. Mechanical failures of the A-clutch pressure plate and E-clutch hub spline are documented, with valve body repairs $1,200-$2,500 and full rebuilds/replacements $4,000-$5,000+, aligning with the stated cost range.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2015/RAM/1500",
+          "type": "tsb",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-3500-aisin-as69rc-issues-2013",
+      "vehicle": "2013 RAM 3500",
+      "title": "Aisin AS69RC Transmission Overheating and Converter Shudder",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2800,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "TSB number '21-013-19' could not be verified; actual related TSB is 21-002-23 (K1 Clutch Snap Ring) for 2021-2023 models",
+          "Issue says 'any trim' but AS69RC is only fitted to high-output/heavy-duty Cummins models, not all RAM 3500 trims",
+          "DTC codes P0740-P0742 fit torque converter shudder but more commonly reported failure codes in this transmission are P0731/P0732/P0700",
+          "Repair cost upper bound ($3500) is low for full transmission replacement which often exceeds $7,000-$10,000; fits only converter/TSB-level repairs"
+        ],
+        "evidence": "Multiple sources (Cummins Forum, Monster Transmission, NextGen Diesel, SlashGear) confirm widespread AS69RC issues in 2013-2023+ RAM 3500/4500/5500 including torque converter shudder, overheating during heavy towing triggering limp mode, K1/K2 clutch failures, and a NHTSA investigation. The transmission was introduced in 2013 for HO Cummins applications and Ram issued TSB 21-002-23 for related K1 clutch concerns on 2021-2023 models.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2020/RAM/3500",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-1500-rear-window-leak-2019",
+      "vehicle": "2019 RAM 1500",
+      "title": "Rear Window Water Leak into Cab",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2340,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Incorrect TSB number cited (23-005-19 REV.B); actual TSBs are 23-098-23 Rev A for back glass leak and 23-074-23 for CHMSL leak",
+          "Root cause misstated: primary cause is a cracked backlite (rear window) frame, not just inadequate upper-corner sealing; secondary sources include the CHMSL (3rd brake light) and roof antenna",
+          "Year range overstated: warranty extension/TSB primarily applies to 2019-2021 (and some early 2022) builds, not the full 2019-2024 range; later model years largely had revised parts",
+          "Repair cost range ($0-$500) is too low; out-of-warranty replacement of the backlite assembly is commonly quoted at $1,200-$2,500",
+          "Fix description inaccurate: official remedy is replacement of the rear sliding glass/backlite assembly (revised part), not 'updated seal and butyl tape application'",
+          "Severity arguably understated: water intrusion has reportedly damaged rear airbag electronics and electrical modules, which has safety implications and triggered a class-action lawsuit"
+        ],
+        "evidence": "Multiple owner forums, a CarComplaints.com class-action article, and an NHTSA-hosted Stellantis TSB confirm a widespread rear-cab water leak on 5th-gen RAM 1500s caused mainly by a cracked backlite frame, addressed by TSB 23-098-23 Rev A with an 8yr/150k mile warranty extension for 2019-2021 trucks; the TSB number, cost range, year range, and described fix in the entry are inaccurate.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2020/RAM/1500",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-3500-exhaust-brake-failure-2013",
+      "vehicle": "2013 RAM 3500",
+      "title": "6.7L Cummins Exhaust Brake Actuator and VGT Turbo Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2200,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC list contains gasoline engine codes (P0171/P0174 lean codes, P0300-P0304 misfire codes) that do not apply to the 6.7L Cummins diesel; correct codes are P2262, P226B, P226C, P2563, P003A, P00AF, U010C, P006E",
+          "P006A is not the commonly documented code for this issue; P006E (VGT supply voltage) and P2262/P226C (commanded vs actual position mismatch) are the typical codes",
+          "Year range 2013-2025 is narrow - the issue affects 2007.5-2024 6.7L Cummins trucks (HE351VE on 2007.5-2012, HE300VG on 2013-2024); description mentions both turbos but year range excludes earlier affected trucks",
+          "Severity arguably should be 'high' rather than 'medium' since loss of exhaust brake during heavy towing/descents is a documented safety hazard",
+          "TSB 14-001-21 citation could not be independently verified in search results"
+        ],
+        "evidence": "Multiple sources confirm VGT actuator failure and 'Stuck Turbo Syndrome' is the most common turbo problem on 6.7L Cummins, affecting 2007.5-2024 RAM 2500/3500, with documented codes P2262/P226B/P226C/P2563/P003A/P00AF/U010C/P006E and repair costs ranging from ~$985 for an actuator to $3000-$4000 for full turbo replacement. The DTC list in the entry mixes in unrelated gasoline-engine codes (P0171, P0174, P0300-P0304) that do not apply to a diesel Cummins.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2021/RAM/3500",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-1500-tipm-failure-2009",
+      "vehicle": "2009 RAM 1500",
+      "title": "TIPM (Totally Integrated Power Module) Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2156,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2009-2016 is broader than the most commonly affected years; 2011-2013 RAM 1500 are documented as the worst, and 2009-2010 use a different TIPM design that behaves differently and cannot use the common plug-in bypass",
+          "No formal NHTSA recall was ever issued for RAM 1500 TIPM (only 2011-2013 Jeep Grand Cherokee and Dodge Durango were recalled), which should be noted in the entry",
+          "DTC P0087 (fuel rail pressure too low) is plausible but P0230/P0231/P0232 (fuel pump primary circuit) are the more directly relevant codes; entry should clarify that no-start TIPM failures often produce NO stored codes per owner reports"
+        ],
+        "evidence": "Multiple owner forums, TIPM rebuilders, NHTSA recall documents (14V-530, 15V-115), and a 2015 class-action settlement confirm TIPM fuel pump relay failure is a well-documented issue on Chrysler/RAM vehicles, with 2011-2013 RAM 1500 cited as the worst affected. Symptoms (no-start, fuel pump running with key off, random horn/wiper/light behavior) and cost range ($30-60 bypass to ~$1200 TIPM replacement) match the entry, and severity is appropriately high due to documented stall-while-driving risk.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2013/RAM/1500",
+          "type": "recall",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-1500-transmission-shift-issues-2019",
+      "vehicle": "2019 RAM 1500",
+      "title": "ZF 8HP75 Transmission Harsh Shifting and Hesitation",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Specific TSB number '21-018-22 REV.A' could not be directly verified; other real TSBs exist (21-005-19, 21-015-25) for similar shift quality complaints",
+          "DTC codes P0741/P0742 are torque converter clutch codes which may not be triggered by calibration-related harsh shifting; harsh shift complaints often produce no DTCs at all",
+          "Description was truncated mid-sentence ('Some trucks require valve...')"
+        ],
+        "evidence": "Multiple owner forums and industry sources confirm the 2019+ RAM 1500 with the ZF 8HP75 exhibits harsh shifting, rough downshifts, and hesitation, frequently addressed via TCM software flashes and occasionally valve body replacement. Real Stellantis TSBs (e.g., 21-015-25 for 2025 trucks, 21-005-19) address these shift quality complaints, and the year range, severity (medium), and repair cost range ($0-$1500 for software/valve body) are reasonably calibrated.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2023/RAM/1500",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-promaster-brake-issues-2014",
+      "vehicle": "2014 RAM ProMaster",
+      "title": "Premature Front Brake Rotor Warping and Pad Wear",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Mileage claim of 15,000-25,000 miles for pulsation may be aggressive; forum evidence shows original brakes lasting 92k miles in some cases",
+          "Repair cost range $250-$600 may be slightly low for full front rotor+pad replacement on a heavy van at dealership pricing",
+          "Claim of '70-80% braking on FWD' is generalization; not specifically documented for ProMaster",
+          "No specific NHTSA TSB or recall confirmed in search; complaints exist anecdotally but specific NHTSA complaint volume not verified"
+        ],
+        "evidence": "Multiple dealership service pages and forum discussions confirm front rotor warping, pulsation, and accelerated pad wear are commonly discussed issues for the RAM ProMaster, particularly under heavy cargo loads, with front rotors wearing faster than rear. However, no formal manufacturer TSB or recall was located, and the specific early-wear mileage figures appear estimated rather than documented.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2021/RAM/PROMASTER",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-promaster-city-9speed-trans-2015",
+      "vehicle": "2015 RAM ProMaster City",
+      "title": "ZF 9HP 9-Speed Automatic Transmission Problems",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1950,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Transmission is technically the 948TE (a 9HP variant) made by ZF/Chrysler, not strictly marketed as 'ZF 9HP48' in the ProMaster City",
+          "DTC codes listed (P0700, P0741, P0742) are generic and plausible but documented real-world codes for this issue are more commonly P2784, P0721, P1720",
+          "TSB number 21-008-18 REV.C could not be independently verified in search results",
+          "Repair cost ceiling of $5,000 is low — owner reports show transmission replacements quoted at $7,000-$11,000",
+          "Description conflates the ProMaster City 9-speed (2015+) with the full-size ProMaster, which only got a 9-speed for 2022+"
+        ],
+        "evidence": "The 2015-2022 RAM ProMaster City does use the 948TE 9-speed automatic (a ZF 9HP-family transmission), and forum/industry sources document harsh shifting, clunking, premature failures, and a 2024 recall related to unexpected shifts into neutral. However, specific DTC codes cited are generic rather than the documented ones, and replacement costs commonly exceed the stated $5,000 ceiling.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2019/RAM/PROMASTER%20CITY",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-1500-hemi-lifter-2009",
+      "vehicle": "2009 RAM 1500",
+      "title": "HEMI Lifter/Camshaft Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1823,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost low-end of $200 is unrealistic; actual failures typically run $2,000-$8,500, with engine replacement reaching $12,000+",
+          "MDS attribution is contested - experts and forum analysis note lifter failures also occur on non-MDS cylinders, with root cause being inadequate lubrication to roller bearings",
+          "Year range 2009-2019 may be slightly overbroad on late end; issue is most documented in 2009-2015 models, though complaints exist through 2016+"
+        ],
+        "evidence": "Multiple sources confirm the 5.7L HEMI lifter/camshaft failure is a real, widely-documented issue with an active class-action lawsuit (Petro et al. v. FCA US LLC, Case 1:22-cv-00621), Chrysler STAR Case S1709000010 acknowledging the failure mode, and hundreds of owner complaints citing misfire codes P0301-P0308 and repair bills of $2,000-$8,500. The DTC codes, severity rating, and general year range are accurate; only the cost floor ($200) and exclusive MDS attribution are questionable.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2016/RAM/1500",
+          "type": "tsb",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-1500-air-suspension-failure-2019",
+      "vehicle": "2019 RAM 1500",
+      "title": "Four-Corner Air Suspension System Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1820,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "TSB number cited as '02-003-21' appears incorrect; the actual relevant air suspension TSB is 09-003-21 (REV. A)",
+          "DTC codes listed as 'none' but well-documented codes exist (C15A1-00, C1562-98/92, C159F-92, C15A0-92, C155E-92, C15AA-00, and height sensor codes C151E-2A, C1522-2A, C1526-2A, C152A-2A)",
+          "Compressor part number 'Arnott P-3246' is an aftermarket replacement part rather than the OEM compressor; should be clarified",
+          "Severity 'high' is defensible (owners and NHTSA reports cite safety concerns) but the issue is more commonly a costly reliability problem than a crash-risk failure"
+        ],
+        "evidence": "Multiple owner forums, NHTSA complaints, and Mopar TSB 09-003-21 REV. A confirm widespread air suspension failures on 2019+ RAM 1500 (DT) trucks, including compressor failure, leaks, cold-weather freeze-up, and 'Service Air Suspension' warnings. Repair costs in the $300–$3000 range align with reported real-world quotes (e.g., $1,600–$2,100 at dealers, ~$900 for delete kits).",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2022/RAM/1500",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-promaster-sliding-door-issues-2014",
+      "vehicle": "2014 RAM ProMaster",
+      "title": "Sliding Door Cable Failure and Alignment Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1800,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "TSB number appears incorrect - the documented Mopar TSB for sliding door cable issues is 23-040-15 (October 2015), which involves replacing the right sliding door exterior handle and rerouting the door cable, applying to 2014-2015 ProMasters built on or before April 20, 2015. No evidence found for 'TSB 23-024-20'.",
+          "Description conflates multiple issues - the primary documented failure is cable stretching/fraying connecting handle to latch (not 'cable that assists the sliding mechanism'); ProMaster sliding doors are manual, not power-assisted",
+          "Roller wear and door sag/alignment claims are less well-documented than the cable/latch issue; forum reports focus mostly on cable stretching and latch problems",
+          "Year range may be slightly broad - bulk of documented complaints are 2014-2019; fewer reports for 2020+ and limited evidence for 2024-2025 models"
+        ],
+        "evidence": "Multiple ProMaster forum threads (2015-2024) confirm widespread sliding door cable fraying/stretching and latch failure causing doors not to open from outside, affecting 2014-2019 model years primarily. Mopar TSB 23-040-15 specifically addresses replacing the right sliding door exterior handle and rerouting the door cable for 2014-2015 ProMasters, but the cited 'TSB 23-024-20' could not be verified.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2020/RAM/PROMASTER",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-3500-front-axle-seal-leak-2013",
+      "vehicle": "2013 RAM 3500",
+      "title": "AAM 11.5/11.8 Front Axle Seal and U-Joint Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1650,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Title incorrectly references 'AAM 11.5/11.8 Front Axle' — those are REAR axle designations; the RAM 3500 front axle is the AAM 9.25",
+          "Description incorrectly identifies U-joints as 'Dana Spicer 60' — the AAM 9.25 front axle uses 1555 series U-joints, not Dana 60 (which is a different axle entirely)",
+          "Repair cost ceiling ($1200) appears low — forum owners report ~$900 for seal replacement alone, and combined seal+U-joint+brake contamination repairs at dealers can run significantly higher",
+          "TSB 03-004-18 reference is unverified in search results and description is truncated",
+          "Severity 'high' may be overstated — sources indicate truck is drivable but should be repaired soon; 'medium' may be more appropriate unless U-joint seizes"
+        ],
+        "evidence": "Front axle seal leaks and U-joint failures on RAM 2500/3500 4x4 with the AAM 9.25 front axle are very well documented across multiple owner forums (RamForum, CumminsForum, DodgeForum) and parts vendors, with classic symptoms matching the description (oil sling inside wheel, clicking on turns in 4WD). However, the entry confuses axle nomenclature — AAM 11.5/11.8 are rear axles, and Dana Spicer 60 is not the front U-joint used in these trucks.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "ram-promaster-city-electrical-issues-2015",
+      "vehicle": "2015 RAM ProMaster City",
+      "title": "Electrical System Faults and Stalling",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1650,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes listed as 'none' but documented codes exist (P0325, P0601, B1040-64, P0513, P2784, P0610, P1500, P1720, B0100-49) per TSBs and field reports",
+          "Year range 2015-2022 is broadly accurate but some specific complaints (e.g., recall 16V202000) target earlier years; 2022 had fewer such complaints",
+          "Description conflates some full-size ProMaster issues with ProMaster City; alternator drain issues less clearly documented on City specifically",
+          "Repair cost range ($200-$1200) likely underestimates PCM/BCM replacement+programming which can exceed $1200 at dealer"
+        ],
+        "evidence": "NHTSA complaints and CarComplaints document stalling, loss of electrical power, instrument cluster issues, and BCM/PCM failures across 2015-2017 ProMaster City model years, with a 2019-2021 BCM software recall (Y71) and multiple PCM-related TSBs confirming module-level electrical problems. Forum and trade publication reports (Transmission Digest, ProMaster Forum) confirm BCM/PCM failures causing warning lights, no-start, and shifting issues on this vehicle.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2018/RAM/PROMASTER%20CITY",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-1500-etorque-mild-hybrid-2019",
+      "vehicle": "2019 RAM 1500",
+      "title": "eTorque Mild Hybrid System Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1450,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "TSB number 08-074-20 appears incorrect - that TSB relates to Jeep Wrangler/Gladiator steering feel, not eTorque MGU noise. The relevant eTorque TSBs are 08-014-21 (MGU replacement) and 08-093-22 (autostart/AutoPark failure on 2022 5.7L eTorque built before 03/29/2022)",
+          "DTC codes listed as 'none' but documented codes exist: P1C64 (Hybrid Perf - Engine Speed Below Target During Autostart) and U0402, per TSB 08-093-22",
+          "Severity 'medium' may be undercalibrated - the eTorque stalling issue led to NHTSA recall 23V-265 covering 131,700 trucks and an active NHTSA investigation (PE24018) for safety-critical stalling/AutoPark engagement, suggesting 'high' may be more appropriate for the stalling sub-symptom",
+          "Repair cost range $800-$2000 is on the low end - MGU replacement can run ~$2000+ and 48V battery replacement reportedly up to $3000 out of warranty; however many repairs are covered under 8-year/80,000-mile federal emissions warranty",
+          "Description states eTorque is 'standard on V6, optional on V8' which is correct, but should note that the most serious documented failures (recall/NHTSA investigation) are concentrated on the 5.7L V8 eTorque variant"
+        ],
+        "evidence": "Multiple sources confirm widespread eTorque issues on 2019+ RAM 1500 including 48V battery degradation, MGU bearing failures (whining noise), and stalling. NHTSA recall 23V-265 covers 2021 V8 eTorque trucks; TSB 08-093-22 addresses autostart failure with DTC P1C64 on 2022 models; TSB 08-014-21 covers MGU replacement, but cited TSB 08-074-20 actually concerns Jeep steering, not eTorque.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2021/RAM/1500",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-promaster-roof-leak-2014",
+      "vehicle": "2014 RAM ProMaster",
+      "title": "Roof Seam and High-Top Roof Leaks",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1450,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Factory RAM ProMaster high-roof is stamped steel, not fiberglass - there is no 'fiberglass high-top to metal body joint' from the factory (that applies to aftermarket conversion vans/Sportsmobile-type tops, not OEM ProMasters)",
+          "Repair cost upper bound may be understated - dealer body shop quotes for cutting out factory caulk, resealing and repainting roof have been reported around $2,500",
+          "DTC field correctly listed as none (water leak, no electronic codes expected)"
+        ],
+        "evidence": "Multiple ProMaster owner forum threads across 2014-2023 model years document cracked factory roof seam sealant (especially behind the slider/C-pillar), leaks around marker/clearance light gaskets, and antenna area leaks, with Chrysler/Ram dealers identifying bad seam seals and often declining warranty coverage. However, factory ProMaster high-roofs are one-piece steel — the 'fiberglass high-top to metal body joint' described applies only to aftermarket pop-tops/fiberglass conversions, not OEM vehicles.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "ram-1500-exhaust-manifold-bolts-2009",
+      "vehicle": "2009 RAM 1500",
+      "title": "Exhaust Manifold Bolt Breakage",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1432,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0420/P0430 are catalyst efficiency codes and not typically triggered by broken exhaust manifold bolts; broken bolts usually cause no DTC or O2-sensor/lean codes since the leak is downstream-affecting but pre-O2-sensor exhaust leaks more commonly cause P0171/P0174 or no code at all",
+          "Repair cost upper bound of $700 may be slightly low; forum reports commonly cite $775-$1,500 for full repair when manifold is warped/replaced, though simple bolt-only fixes fall in the stated range",
+          "Issue actually extends beyond 2019 into 5th-gen (2019+ DT) Rams as well, though the stated range is reasonable for 4th-gen scope",
+          "Description says 'rear bolts on both sides' - TSB specifically identifies cylinders 7 and 8 (rear bolts), which is accurate"
+        ],
+        "evidence": "The broken exhaust manifold bolt issue on 5.7L HEMI-equipped RAM 1500 trucks is extensively documented across owner forums (RamForumZ, DodgeForum, 5thGenRams, CarComplaints) and is the subject of Chrysler TSB 11-002-11, which addresses ticking at cold start due to broken bolts on cylinders 7 and 8 and prescribes replacement with higher-strength stainless steel studs. Symptoms (cold-start tick, exhaust leak, rear bolts most affected) match the entry, but P0420/P0430 are catalyst-efficiency codes not typically associated with this failure mode.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "ram-promaster-city-brake-booster-2015",
+      "vehicle": "2015 RAM ProMaster City",
+      "title": "Brake Booster Failure and Reduced Braking Power",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1100,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "NHTSA investigation EA19-003 does not pertain to RAM ProMaster City brake boosters - it is actually a motorcycle stability investigation",
+          "No evidence of a widespread/documented brake booster failure pattern specific to 2015-2022 RAM ProMaster City (no TSBs or recalls found)",
+          "Claim of 'hundreds of complaints' to NHTSA opening an investigation appears fabricated",
+          "Repair cost lower bound of $50 is unrealistic - brake booster replacement typically runs $300-$700+ per industry estimates",
+          "Owner forum reports describe isolated vacuum booster pressure sensor warnings on steep grades, not a hard-pedal/booster-failure epidemic",
+          "Description appears to conflate general brake booster failure symptoms with a non-existent vehicle-specific defect campaign"
+        ],
+        "evidence": "Searches of NHTSA, ProMaster owner forums, and repair databases found no documented widespread brake booster failure issue or investigation specific to the 2015-2022 RAM ProMaster City; NHTSA EA19-003 is unrelated (motorcycle stability), and ProMaster forum threads only describe isolated vacuum booster pressure sensor warnings on steep downgrades that often resolve on their own.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2017/RAM/PROMASTER%20CITY",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.nhtsa.gov/recalls",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 2
+    },
+    {
+      "id": "ram-1500-ecodiesel-fuel-pump-2014",
+      "vehicle": "2014 RAM 1500",
+      "title": "EcoDiesel Fuel Pump Failure / Stalling",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 987,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple NHTSA recalls confirm the Bosch CP4.2 HPFP failure issue on 2014-2023 RAM 1500 EcoDiesel trucks, including recall Z46 (2014-2019), Z96/22V-767 (2020-2022), and 23V-263 (2022-2023). Failures are catastrophic, sending metal debris through the fuel system causing stalling/loss of motive power, with repair costs commonly $8,000-$10,500+, matching the entry's description, DTC categories, severity, and cost range.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2018/RAM/1500",
+          "type": "tsb",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-1500-dashboard-crack-2019",
+      "vehicle": "2019 RAM 1500",
+      "title": "Dashboard Cracking and Warping",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 980,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0401-P0404 are EGR system codes completely unrelated to dashboard cracking - dashboard issues do not produce DTCs",
+          "Description conflates two different issues: the older 1998-2006 plastic dash cracking and the newer 2019+ leather dashboard bubbling/delamination from adhesive failure",
+          "Actual 2019+ issue is leather/glue delamination and bubbling (not plastic cracking near defroster vents); cracks 'near defroster vents' and 'passenger airbag seam' more characteristic of older 1994-2006 Rams",
+          "FCA revised the dashboard material around 2023, so 2023-2024 trucks may be less affected - year range may be too broad",
+          "Issue primarily affects leather-equipped trims (Limited, Longhorn, Laramie); base trims with non-leather dashes largely unaffected - not mentioned in description",
+          "Repair cost upper bound may be low - full dashboard replacement on these trucks can exceed $2500 with labor"
+        ],
+        "evidence": "Multiple owner forums (ramforum.com, 5thgenrams.com, ram-trx.com) confirm widespread leather dashboard bubbling/warping/delamination on 2019+ RAM 1500 trucks, attributed to adhesive failure under UV/heat exposure, with FCA reportedly revising the part multiple times and changing materials in 2023. However, the listed DTC codes (P0401-P0404) are EGR-flow codes with no relation to dashboards, and the described failure mode (plastic cracking at defroster/airbag seam) better matches the older 1994-2006 generation issue rather than the actual 2019+ leather delamination problem.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2021/RAM/1500",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-1500-esc-recall-2019",
+      "vehicle": "2019 RAM 1500",
+      "title": "Electronic Stability Control (ESC) Failure Recall",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 456,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "NHTSA Recall 23V-071 is a Ford Motor Company fuel tank welding recall, not a RAM 1500 ESC recall",
+          "No documented RAM 1500 recall matching 'ESC software disables stability control' description found in NHTSA database for 2019-2024 model years",
+          "Recall campaign number is misattributed to wrong manufacturer and wrong defect",
+          "Issue title and description do not correspond to any verified Stellantis/FCA recall campaign"
+        ],
+        "evidence": "Search of NHTSA records shows campaign 23V-071 is associated with Ford Motor Company for a fuel tank weld defect (per Lindsey Research NHTSA index), not a RAM 1500 ESC software failure. Known 2023-era RAM 1500 recalls cover TRSCM software (23V-059), PCM/eTorque engine stall (23V-265), HPFP failure (23V-263), and reluctor wheel (23V-411) — none describe ESC system disablement.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/recalls",
+          "type": "recall",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-1500-classic-exhaust-manifold-2019",
+      "vehicle": "2019 RAM 1500 Classic",
+      "title": "5.7L Hemi Exhaust Manifold Bolt Breakage",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 240,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Driver side (left) is stated as most commonly affected; documented evidence (including the TSB for cylinders 7 & 8 and numerous owner reports) indicates the passenger side is at least as commonly, if not more commonly, affected",
+          "Repair cost range $200-$800 is low; professional repair quotes commonly run $900-$2500+, with DIY/parts-only on the lower end",
+          "No DTCs is accurate for a simple exhaust leak, but severe/prolonged leaks can trigger misfire codes (e.g., P030x) — worth noting"
+        ],
+        "evidence": "Multiple owner forums (RamForum, DodgeForum, 5thGenRams), a Chrysler TSB (Rapid Response 11-017) for replacing cylinder 7/8 manifold bolts with stainless higher-strength bolts, and aftermarket fix kits (BD Diesel) explicitly covering 2009-2024 RAM 1500 (including DS/Classic) confirm the broken exhaust manifold bolt issue on the 5.7L Hemi, with cold-start ticking and exhaust smell as classic symptoms. Reported repair costs from owners and shops range from roughly $650 DIY to $2500+ at dealers, higher than the stated $200-$800 range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "ram-1500-classic-exhaust-manifold-bolt-2019",
+      "vehicle": "2019 RAM 1500 Classic",
+      "title": "Exhaust Manifold Bolt Breakage (5.7L Hemi)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description incorrectly specifies driver-side (left) manifold rear bolts as primary failure point; the original Chrysler TSB called out cylinders 7 and 8 which are on the passenger side of the Hemi, and forum reports show both sides fail (passenger side frequently mentioned)",
+          "Repair cost upper bound of $1200 may be slightly low for worst-case scenarios where multiple bolts snap flush and require drilling/extraction or manifold replacement (reports of $2500-$3200), though $400-$1200 covers the typical case"
+        ],
+        "evidence": "Broken exhaust manifold bolts on the 5.7L Hemi are an extremely well-documented, decades-long issue affecting RAM 1500 (including Classic), 2500, Durango, and Jeep Grand Cherokee models from 2009-2022+; Chrysler issued TSBs (e.g., for cylinders 7 and 8 with upgraded stainless steel bolts) and the symptom of cold-start ticking that diminishes as the engine warms is the classic 'Hemi tick' pattern. Repair costs in forums commonly range $200-$1000 at independent shops, with worst-case scenarios reaching $2500-$3200.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2019/RAM/1500%20CLASSIC",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-1500-classic-exhaust-manifold-bolts-2019",
+      "vehicle": "2019 RAM 1500 Classic",
+      "title": "5.7L HEMI Exhaust Manifold Bolt Breakage",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0420/P0430 are catalyst efficiency codes and are not typically triggered by broken exhaust manifold bolts; this issue usually presents with no DTC or sometimes lean/O2-related codes rather than catalyst codes",
+          "Original TSB (11-002-11) specifically identified cylinders 7 and 8 bolts as primary failure point, which adds specificity missing from the description"
+        ],
+        "evidence": "The 5.7L HEMI broken exhaust manifold bolt issue is extensively documented across owner forums, a Chrysler TSB (11-002-11 for the 2009 DS Ram 1500), and dealer/warranty blogs spanning 2009-2022+ model years, with the classic cold-start ticking that quiets when warm caused by thermal cycling between the aluminum head and iron manifold. However, P0420/P0430 are catalytic converter efficiency codes not typically associated with this specific failure mode, which most often presents as a noise complaint without DTCs.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2020/RAM/1500%252520CLASSIC/PU%25252FCC/4WD#complaints",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-1500-classic-hemi-lifter-failure-2019",
+      "vehicle": "2019 RAM 1500 Classic",
+      "title": "5.7L HEMI MDS Lifter Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Severity 'high' is borderline - this is primarily a costly mechanical failure rather than safety-critical; could arguably be 'medium' per the provided definitions where high=safety-critical and medium=costly but not dangerous"
+        ],
+        "evidence": "The 5.7L HEMI MDS lifter/cam failure is extensively documented across forums (RamForum, Allpar, CarComplaints) and repair sites for multiple model years of the 5.7L HEMI, including the 1500 Classic platform which uses the same Eagle 5.7L engine as earlier 4th-gen trucks. Repair costs commonly cited at $3,350-$5,300 (cam + all 16 lifters), and misfire DTCs P0301-P0308 plus P0300 are the correct codes per multiple sources including cararac.com which explicitly lists P0300-P0308 for this failure.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2019/RAM/1500%20Classic",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=abcd1234efg",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-1500-classic-mds-lifter-tick-2019",
+      "vehicle": "2019 RAM 1500 Classic",
+      "title": "MDS Lifter Failure and Hemi Tick (5.7L)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Severity 'high' is debatable - this is more of a costly mechanical failure than a safety-critical issue, though severe lifter failure with cam damage can disable the vehicle",
+          "DTC list is comprehensive but P0300 (random misfire) is the most commonly cited; cylinder-specific codes depend on which lifter fails"
+        ],
+        "evidence": "Multiple sources (forums, repair guides, and a P0300 diagnostic database covering 2019-2026 Ram 1500) confirm MDS lifter failure and 'Hemi tick' as a widely documented issue on the 5.7L Hemi, with P0300 and cylinder-specific misfire codes being the typical DTCs and severe cases requiring camshaft replacement. Repair cost estimates from sources range from $1,200-$2,500 for lifters/solenoids up to ~$5,000 for full cam-and-lifter jobs, consistent with the $2,000-$4,500 estimate.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2020/RAM/1500%20CLASSIC",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-2500-dash-screen-delamination-2019",
+      "vehicle": "2019 RAM 2500",
+      "title": "Uconnect Dashboard Touchscreen Delamination",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range is significantly off: documented delamination predominantly affects 2017-2019 (especially 2018) model years with the bad LG LA084X01(SL)(01) screen; Stellantis switched to improved (02) screen for 2020+ and reports drop off sharply",
+          "No evidence of widespread delamination on 5th gen (2025) RAM 2500s — claim of '4th and 5th gen' affected appears fabricated",
+          "12-inch screen delamination is not documented as a common issue; reports overwhelmingly involve the 8.4-inch Uconnect 4 unit",
+          "Severity 'low' is arguably miscategorized — owners and ClassAction.org report phantom touches causing radio/HVAC/backup camera to activate unprompted while driving, which is a potential safety distraction",
+          "Repair cost upper bound slightly low — dealer quotes commonly cited at $1,500-$2,500 for full unit replacement",
+          "No NHTSA recall or official Stellantis TSB issued; described primarily through owner forums and a closed class-action investigation"
+        ],
+        "evidence": "Uconnect 8.4 touchscreen delamination is a widely documented defect on 2017-2019 FCA/Stellantis vehicles including RAM 2500 (especially 2018), with bubbling, rainbow distortion, and phantom touches caused by failing digitizer adhesive. However, the issue is tied to a specific LG screen part used in 2018-2019, was largely resolved with a revised part in 2020+, and there is no credible evidence of the issue affecting 2022-2025 RAM 2500s or the 12-inch Uconnect 5 screens.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2020/RAM/2500/PU%252FCC/4WD#complaints",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-2500-exhaust-manifold-crack-2010",
+      "vehicle": "2010 RAM 2500",
+      "title": "Exhaust Manifold Cracking (6.7L Cummins)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Repair costs can exceed $1500 if bolts break during removal (dealer quotes up to $3000); range is slightly conservative on the high end",
+          "Description specifies cylinders #3 and #4 as crack location, but forum/vendor reports more commonly cite rear cylinders (#5, #6) as failure points"
+        ],
+        "evidence": "Multiple aftermarket vendors (BD Diesel, DPS, XDP) and Cummins owner forums confirm the one-piece cast iron exhaust manifold on 6.7L Cummins RAM 2500/3500 trucks is notorious for cracking due to heat cycling, producing cold-start ticking that fades when warm, with both 4th gen (2007.5-2018) and 5th gen (2019-2024) designs affected. Repair cost estimates from JustAnswer cite ~$650 in parts plus ~$1000 labor (~$1650 total), with dealer quotes reaching $3000 when bolts break.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2010/RAM/2500",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=abcd1234efg",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-2500-rear-axle-ujoint-2010",
+      "vehicle": "2010 RAM 2500",
+      "title": "Rear Axle U-Joint Premature Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost range ($200-$600) is somewhat low compared to RepairPal's $610-$722 estimate for professional replacement",
+          "Description claims factory U-joints are 'undersized' - the documented root cause on 2013+ aluminum driveshafts is galvanic corrosion from incorrect U-joint coating, not undersizing",
+          "Many factory U-joints on these trucks are sealed/non-greaseable (no zerk fittings), so the maintenance-overlooked grease fitting claim is misleading for newer years",
+          "Year range is very broad; issue characteristics differ between 2nd-gen carryover designs and 4th-gen (2013+) aluminum driveshaft trucks"
+        ],
+        "evidence": "Premature U-joint failure is well documented on RAM 2500s across forums (RamForum, CumminsForum, DodgeForum) and CarComplaints, and a MOOG technical bulletin specifically addresses 2013-2018 RAM 2500/3500 aluminum driveshaft U-joint failures from galvanic corrosion. RepairPal lists average replacement cost at $610-$722, slightly above the entry's stated range.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2019/RAM/2500/PU%25252FCC/4WD#complaints",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-2500-transfer-case-leak-2010",
+      "vehicle": "2010 RAM 2500",
+      "title": "Transfer Case Fluid Leak (BW4470/BW4494)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Transfer case model numbers 'BW4470' and 'BW4494' appear fabricated - actual BorgWarner units in RAM 2500 are designated BW 44-44, BW 44-45, BW 44-46, and BW 48-series",
+          "Year range incorrect: 2010-2011 RAM 2500s used New Venture Gear transfer cases (NV241/NV271/NV273), not BorgWarner. BorgWarner units began appearing in RAM HD trucks around 2012-2013",
+          "Repair cost likely understated - dealer reseal/output shaft seal repairs commonly run higher, especially when case halves must be separated",
+          "Issue is more prominently reported on recent (2023-2024) model year trucks than across the entire claimed range"
+        ],
+        "evidence": "Forum reports (Cummins Forum, RamForum) confirm real, ongoing transfer case output shaft seal and case-half leak issues on RAM 2500 trucks, with multiple owners reporting repeat warranty repairs and back-ordered seals described as a 'known issue.' However, the specific part numbers BW4470/BW4494 do not match BorgWarner's actual designations (BW 44-44/44-45/44-46/48-xx), and the 2010-2011 years used New Venture Gear NV-series transfer cases instead.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2010/RAM/2500",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2022/RAM/2500",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 2
+    },
+    {
+      "id": "ram-3500-exhaust-manifold-stud-2010",
+      "vehicle": "2010 RAM 3500",
+      "title": "Exhaust Manifold Stud Failure (6.7L Cummins)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description states center studs (#3 and #4) fail most frequently, but documented evidence indicates the rear cylinders (closer to #5/#6) run hottest and are typically where failures originate first",
+          "Repair cost upper bound ($1200) may be slightly low — documented quotes range up to $1650-$3200 when broken studs must be extracted from the head or manifold is also replaced",
+          "Year range starts at 2010 but the 6.7L Cummins has been in Ram trucks since 2007.5; not technically wrong for the listed vehicle years but the issue is well-documented across the entire 2007.5-2024 platform"
+        ],
+        "evidence": "Multiple aftermarket suppliers (BD Diesel, Diesel Power Source, Mishimoto, Pure Diesel Power) and owner forums confirm broken exhaust manifold studs/bolts and cracked manifolds are a very common, well-documented issue on the 6.7L Cummins due to thermal cycling, with rear cylinders running hottest. No DTCs are typically set (consistent with the entry), and repair costs in forums range from ~$400 to $3200 depending on broken stud extraction difficulty.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2010/RAM/3500",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=ZfD7yK8v0xA",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-3500-fifth-wheel-wiring-2013",
+      "vehicle": "2013 RAM 3500",
+      "title": "5th Wheel / Gooseneck Prep Wiring Corrosion",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description conflates in-bed 7-pin (gooseneck prep) with 4-pin connector; the factory in-bed prep connector is 7-pin only — 4-pin is at the rear bumper, not under the bed",
+          "Auxiliary camera dropouts are not typically routed through the in-bed gooseneck prep harness, so that symptom is likely inaccurate",
+          "No manufacturer TSB or recall specifically documents in-bed gooseneck prep harness corrosion as a systemic defect; evidence is anecdotal forum reports and general 7-pin corrosion (often at the rear bumper splice, not the in-bed connector specifically)",
+          "Year range is broad but defensible; prep package availability and connector style changed around 2010, so 2013-2025 is reasonable"
+        ],
+        "evidence": "Forum threads (Cummins Forum, RamForumZ) and parts vendor pages confirm 7-pin trailer connector corrosion is a common, well-known nuisance on RAM 2500/3500 trucks, frequently at the bumper splice junction where the harness tees to the bed connector, with dielectric grease and connector cleaning as typical fixes. However, no manufacturer TSB or NHTSA documentation isolates the in-bed gooseneck prep connector specifically as a defect, and the description's mention of an under-bed 4-pin connector and camera dropouts does not match the actual factory wiring architecture.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2013/RAM/3500#complaints",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=abcd1234efg",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-3500-front-hub-bearing-2010",
+      "vehicle": "2010 RAM 3500",
+      "title": "Front Hub Bearing Failure Under Heavy Load",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes C0050/C0051 are not the standard codes associated with RAM 3500 wheel bearing failures; documented codes are typically wheel speed sensor codes like C003A and C0037, or generic 'implausible wheel speed' ABS codes",
+          "Severity 'medium' may be undercalibrated — multiple owner reports describe wheel detachment, hub disintegration at highway speed, and loss of steering control, which is safety-critical",
+          "Mileage range 60,000-100,000 is plausible but real-world failures span 39K to 180K miles, so the range is narrower than reality",
+          "Repair cost $300-$700 is reasonable for the front hub assembly on a 3500 but may be slightly low for dealer-performed work on a 4x4 HD truck"
+        ],
+        "evidence": "Multiple owner forum threads (Cummins Forum, RamForumZ, RamForum) confirm widespread front hub bearing failures on 4th-gen RAM 3500 (2010+) trucks, with documented failures at 39K, 58K, 70K, 87K, 89K, and 114K miles. A 2021 RAM 3500 TSB specifically addresses front Hub/Bearing growling/humming noise, leaking grease, and excessive play, and NHTSA has prior wheel bearing recalls/complaints on Ram platforms — but the cited DTCs C0050/C0051 do not match the wheel-speed-sensor codes (C003A, C0037) documented in FCA TSBs for this condition.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2010/RAM/3500",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2021/RAM/3500",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 2
+    },
+    {
+      "id": "ram-3500-grid-heater-relay-2010",
+      "vehicle": "2010 RAM 3500",
+      "title": "Grid Heater Relay Failure (6.7L Cummins)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0540 and P0543 are generic intake air heater circuit codes but the most commonly documented codes for this specific RAM 6.7L issue are P2609 and P0542, not P0540/P0543",
+          "Severity may be under-calibrated: NHTSA recall Y08/Y76 exists for 2021-2022 RAM trucks where stuck-on relays cause fire risk (safety-critical), and the related 'killer bolt' failure mode can cause catastrophic engine damage",
+          "Year range starts at 2010 but the 6.7L Cummins was introduced in 2007.5; issue is documented for 2007-2024 model years",
+          "Repair cost range ($80-$250) may be low if TSB-recommended repair (replacing both grid heater and relay as a set) is followed, which can run $250-$350 OEM"
+        ],
+        "evidence": "Banks Power, Cummins Forum, RamForum, and an NHTSA recall (Y08/Y76 for 2021-2022 trucks) confirm grid heater relay failure is a well-documented issue on 6.7L Cummins RAM trucks from 2007-2024, with Mopar TSB #9003585 addressing it for 2012-2016 models. However, the most commonly cited DTCs are P2609 and P0542 rather than the P0540/P0543 listed in the entry.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2010/RAM/3500",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=abcd1234efg",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-promaster-city-rear-door-hinge-2015",
+      "vehicle": "2015 RAM ProMaster City",
+      "title": "Rear Cargo Door Hinge Pin Wear and Door Sag",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Most documented hinge/door-sag complaints are for the full-size ProMaster (front driver door, A-pillar cracking) rather than the ProMaster City's rear cargo doors specifically",
+          "The specific claim that the 'upper driver-side rear hinge fails first' is not corroborated by TSBs or forum posts for the ProMaster City",
+          "No specific TSB found for ProMaster City rear hinge pin wear; the known TSB (MC-10214627) covers a driver-door check strap, not rear hinges",
+          "Repair cost range may be low — a single OEM rear upper hinge alone retails around $345+, so replacing multiple hinges with labor could exceed $600"
+        ],
+        "evidence": "Mopar sells a dedicated door hinge pin (PN 68266393AA) for 2015-2022 ProMaster City, and forum users report rear hinge pins wearing/becoming sloppy and affecting door alignment, confirming the general phenomenon. However, most prominent hinge-failure discussions and the related NHTSA TSB pertain to the full-size ProMaster's front driver door, not the ProMaster City's rear cargo doors, and the specific 'upper driver-side fails first' detail is not documented.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2015/RAM/ProMaster%20City",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=abcdef12345",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ram-promaster-city-transmission-9speed-2015",
+      "vehicle": "2015 RAM ProMaster City",
+      "title": "9-Speed Automatic Transmission Harsh Shifting and Hesitation",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Upper repair cost range ($2,500) is low - full transmission replacement on ProMaster City typically runs $3,500-$11,000 per dealer/owner reports",
+          "Description references 'FCA/Stellantis TCM software updates' generally without citing a specific TSB number, which weakens specificity",
+          "Owner forums note slow downshifts and reluctance to use 8th/9th gears more than 'harsh 1-2/2-3 shifts' specifically - symptom description is partially generic ZF 9HP boilerplate"
+        ],
+        "evidence": "The ProMaster City does use the 948TE 9-speed (ZF 9HP derivative) across all 2015-2022 model years, and owner forums (promasterforum.com) plus industry sources (Transmission Digest, Northampton Transmission) document harsh shifting, slow downshifts, torque converter failures, and TCM-related drivability issues. However, owner-reported replacement costs frequently exceed $3,500-$11,000, making the stated $2,500 upper bound too low.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2019/RAM/PROMASTER%20CITY",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    }
+  ]
+}

@@ -1,0 +1,675 @@
+{
+  "sampledAt": "2026-05-18T07:33:34.755Z",
+  "total": 25,
+  "verified": 5,
+  "minor": 15,
+  "major": 2,
+  "fabricated": 1,
+  "errors": 2,
+  "deadLinks": 0,
+  "totalLinks": 24,
+  "results": [
+    {
+      "id": "peugeot-208-puretech-timing-chain",
+      "vehicle": "2012 Peugeot 208",
+      "title": "PureTech 1.2 Timing Chain Stretch",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 150,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Issue describes 'timing chain stretch' but the actual PureTech 1.2 (EB2) problem is a wet timing BELT degradation/disintegration, not a chain",
+          "DTC codes P0016 (camshaft/crankshaft correlation) and P0300 (random misfire) are not the typical codes; real symptoms involve oil pressure warnings, low oil pressure codes, and VVT/cam codes from oil passage clogging by belt debris",
+          "Year range 2012-2022 is broadly plausible for Peugeot 208 PureTech availability but the original 208 (Mk1) ran 2012-2019 and Mk2 from 2019; trim levels listed (Active/Allure/GT Line) are UK/EU trims, not US",
+          "Repair cost $800-$2000 is too low for worst-case outcomes; belt-only replacement is in that range, but oil-system contamination commonly causes engine damage costing significantly more (forum reports of big-end bearing damage, full engine rebuilds)",
+          "Severity 'critical' is reasonable given potential for catastrophic engine failure, but rationale in description (chain stretch causing timing misalignment) is wrong mechanism"
+        ],
+        "evidence": "Multiple owner forums, a Stellantis technical bulletin context, and a 2026 Carvira article confirm the PureTech 1.2 (EB2) uses a wet timing belt-in-oil that prematurely degrades, sheds debris that clogs oil passages and VVT solenoids, and can cause engine failure — Stellantis even replaced it with a chain in the 2026 Turbo 100. The database entry incorrectly characterizes this as a timing chain stretch problem.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.autoexpress.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-2008-puretech-timing-chain",
+      "vehicle": "2013 Peugeot 2008",
+      "title": "PureTech 1.2 Timing Chain Stretch",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 130,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Mischaracterized as 'timing chain stretch' - the actual issue is wet timing BELT delamination/degradation, not chain stretch. The PureTech 1.2 uses a wet belt, not a chain",
+          "Description contradicts itself with 'wet belt/chain design' - these are different components",
+          "Year range starts at 2013 but the wet belt issue is most documented from ~2014-2015 onward; some sources indicate Peugeot redesigned to a chain in later years",
+          "Repair cost range ($800-$2000) covers preventive belt replacement but understates catastrophic engine failure costs (~£5000/$6000+ reported when belt debris destroys engine)",
+          "DTC P0016 is plausible but the more common symptoms involve oil pressure warnings, limp mode, and misfire codes from oil pickup blockage rather than direct timing correlation faults"
+        ],
+        "evidence": "The 1.2 PureTech wet timing belt problem is extensively documented across Peugeot forums, owner clubs, and resulted in a 2021 Peugeot recall for belt degradation restricting oil flow. However, the issue is specifically with a wet BELT that delaminates and sheds rubber into the oil system - not a timing chain stretch as the entry describes.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.autoexpress.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-206-window-regulator-failure",
+      "vehicle": "2000 Peugeot 206",
+      "title": "Window Regulator Failure",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 120,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple owner forums and repair guides confirm the Peugeot 206 window regulator is a well-known failure point, with broken cables, snapped plastic clips, and Temic motor module failures commonly reported. Repair kits are available cheaply (€13) and full regulator replacements with labor fall within the $100-$300 range; severity as 'low' (nuisance) is appropriate and no DTCs are typically associated with this mechanical failure.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.peugeotforums.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-208-dpf-issues-diesel",
+      "vehicle": "2012 Peugeot 208",
+      "title": "Diesel Particulate Filter Blockage",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 110,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range likely too broad: diesel 208 availability diminishes in later years as Peugeot phases out diesels; extending to 2026 is questionable",
+          "Severity 'high' may be overcalibrated - DPF blockage is typically a drivability/cost issue, not safety-critical (limp mode allows safe stopping); medium would be more appropriate",
+          "P244A is technically 'DPF Differential Pressure Too Low Bank 1' - related to DPF system but is a sensor-range code, not strictly a 'blockage' code; P2463 is the primary correct code",
+          "Trim levels (Active, Allure) are UK/EU market specific - issue is engine-related (HDi/BlueHDi diesel) not trim-specific"
+        ],
+        "evidence": "Multiple owner forums (208ownersclub.co.uk, peugeotforums.com) document DPF blockage complaints on diesel 208 HDi models from 2013-2021, particularly with short-trip urban use preventing regeneration. P2463 is universally documented as the DPF soot accumulation code across diesel vehicles, and repair costs in the $300-$2000 range align with reported owner experiences (€955-€1550 cited).",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.peugeotforums.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-308-dpf-regen-issues",
+      "vehicle": "2007 Peugeot 308",
+      "title": "DPF Regeneration Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range too broad: Eolys additive system primarily applies to pre-BlueHDi diesels (roughly 2007-2014); later BlueHDi engines use AdBlue/SCR and reduced reliance on Eolys",
+          "Year range includes future years (up to 2026) which is speculative; current-gen 308 (2021+) has limited diesel availability",
+          "DTCs listed (P2463, P2002) are generic DPF codes; Peugeot-specific Eolys/additive codes like P1445, P15B3, B2EB000 are more commonly logged for this exact issue",
+          "Severity 'high' is likely miscalibrated - this is a costly drivability/emissions issue, not safety-critical; 'medium' fits better per the provided definitions",
+          "Issue applies only to diesel variants, not all Active/Allure trims (many are petrol)"
+        ],
+        "evidence": "Multiple owner forums (Peugeot Forums, French Car Forum) and specialist shops confirm Eolys additive depletion causing DPF regeneration failures is a well-known recurring issue on Peugeot 308 HDi diesels, with dealers reportedly not checking Eolys levels at service. P2463 is a valid generic 'DPF Restriction - Soot Accumulation' code and P2002 is 'DPF Efficiency Below Threshold,' but Peugeot-specific codes (P1445, P15B3) are more typically logged for the additive/Eolys scenario described.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.peugeotforums.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-207-timing-chain-tensioner",
+      "vehicle": "2006 Peugeot 207",
+      "title": "Timing Chain Tensioner Failure",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 95,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Trim names 'Active' and 'Allure' are typically associated with the Peugeot 208, not the 207 (which used Urban/Sport/GT/GTI/S/SE/Verve/Envy trims in most markets)",
+          "Issue is far more prevalent on turbocharged THP/EP6DT variants than naturally aspirated EP6/VTi, though both are affected",
+          "Repair cost range ($800-$1800) is reasonable but real-world failures involving valve/piston contact can exceed $2500-$3000"
+        ],
+        "evidence": "Multiple owner forums and technical sources confirm the EP6/Prince engine (co-developed by BMW-PSA) used in the Peugeot 207 has a widely-documented timing chain tensioner/chain stretch issue causing cold-start rattle, P0016/P0017 correlation codes, and in severe cases valve-to-piston contact; a revised tensioner with an identifying dot was issued via TSB and earlier brown guides were replaced with revised white PVC guides.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.peugeotforums.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-3008-dpf-issues",
+      "vehicle": "2009 Peugeot 3008",
+      "title": "DPF Premature Blockage",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 90,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll research this DPF issue for the Peugeot 3008.\nI have enough information now. Let me analyze:\n\n1. **Real issue**: Yes, DPF clogging on Peugeot 3008 diesel is widely documented, especially on the 1.6 HDi engine and short-trip driving patterns.\n2. **DTC codes**: P2463 = DPF soot accumulation (correct). P244A = \"DPF differential pressure too LOW\" (not exactly \"blockage\" - high pressure codes like"
+      },
+      "links": [
+        {
+          "url": "https://www.peugeotforums.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-206-head-gasket-failure",
+      "vehicle": "2000 Peugeot 206",
+      "title": "Head Gasket Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 85,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range starts at 2000 but Peugeot 206 production began in 1998",
+          "Typical TU engine HGF symptom is external oil leak at front corner, not coolant-oil mixing/white smoke as described",
+          "DTC codes P0116 (ECT sensor range) and P0217 (coolant overtemp) are generic cooling-related codes, not specific head gasket failure indicators",
+          "Severity 'high' may be overstated - typical failure mode is a slow oil leak, more of a medium severity issue",
+          "Issue is most prevalent on 1.4 8v TU variant specifically, not all TU-series engines equally"
+        ],
+        "evidence": "Multiple Peugeot owner forums and a Peugeot main dealer confirm head gasket failure is an acknowledged common fault on the 206's 1.4 8v TU engine, with Peugeot offering goodwill repairs. However, the characteristic failure is an oil leak at the front corner near the timing belt, not the coolant-oil mixing/white smoke scenario described, and the cited DTCs are generic cooling-system codes rather than head-gasket-specific.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.peugeotforums.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-partner-dpf-issues",
+      "vehicle": "2008 Peugeot Partner/Rifter",
+      "title": "DPF Blockage in Commercial Use",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 80,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2008-2026 is too broad - includes electric e-Rifter variants (2021+) which have no DPF",
+          "Severity 'high' may be miscalibrated - DPF blockage typically causes limp mode/reduced power, not safety-critical failure (better classified as medium)",
+          "P2463 is a generic OBD-II code; PSA/Stellantis vehicles often log manufacturer-specific codes like P1435, P1445, or 'risk of filter clogging' messages instead"
+        ],
+        "evidence": "Multiple sources confirm DPF clogging is a well-documented common issue on Peugeot Partner diesel vans used for short urban trips, with the 1.6 HDi engine particularly affected. P2463 is a valid generic DTC for DPF soot accumulation across diesel vehicles, though Peugeot-specific codes (P1445, P15B3) are more commonly cited for this platform.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-308-egr-failure",
+      "vehicle": "2007 Peugeot 308",
+      "title": "EGR Valve Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 75,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0401/P0403 are generic; Peugeot 308 diesels more commonly log manufacturer-specific codes like P0490 (EGR valve too closed) and P1162 (EGR solenoid sticking)",
+          "Year range 2007-2021 is broad and mixes Mk1 (2007-2013) and Mk2 (2014-2021) generations with different engines/EGR designs",
+          "Trim names (Active, Allure, GT) are UK/EU trims and the issue is specific to diesel HDi/BlueHDi engines, not trim-dependent"
+        ],
+        "evidence": "Multiple owner forums (PeugeotForums, FrenchCarForum, HonestJohn) and repair guides confirm EGR valve clogging from carbon deposits is a well-known issue on Peugeot 308 diesel (HDi/BlueHDi) models, with symptoms matching the description. One owner reported a €355 replacement bill, aligning with the stated cost range, though commonly logged DTCs are P0490/P1162 rather than the generic P0401/P0403 listed.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-208-infotainment-freeze",
+      "vehicle": "2019 Peugeot 208",
+      "title": "Infotainment System Freeze and Reboot",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 70,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Year range extends to 2026 which is speculative but reasonable as the second-gen 208 is still in production",
+          "DTC codes correctly listed as none (infotainment issues typically don't trigger powertrain DTCs)"
+        ],
+        "evidence": "Multiple owner forum threads (PeugeotForums, 208OwnersClub) document touchscreen freezing, rebooting, and CarPlay/Bluetooth failures on the second-gen 208 starting from 2019-2020 models, and a Peugeot TSB has been issued acknowledging the touchscreen failure as a known fault, sometimes requiring screen replacement. Repair approaches range from free firmware updates/resets to full touchscreen replacement (which aligns with the $0-$800 range, though dealer screen replacement could exceed $800 out of warranty).",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-partner-sliding-door-mechanism",
+      "vehicle": "2008 Peugeot Partner/Rifter",
+      "title": "Sliding Door Mechanism Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 70,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost range may be slightly low if a full roller guide assembly plus labor is needed at a dealer (genuine OEM rails/guides can push costs higher); DIY roller replacement is well under $100",
+          "Year range extends to 2026 but the issue is most commonly documented on older Partner Tepee (B9, 2008-2018) and current K9 Partner/Rifter (2018+); no evidence of widespread failure on newest model years yet",
+          "DTC field correctly listed as none since this is a mechanical wear issue, but cold-weather jamming claims in description are more anecdotal than documented"
+        ],
+        "evidence": "Peugeot Forums has a dedicated thread documenting sliding door roller wear repair on Partner models, including drilling out the peened pin and replacing the roller, with advice that the track should not be greased because the roller needs traction. Multiple parts suppliers (Eccoparts, Autodoc, ProxyParts) stock specific sliding door roller guides and runner rails for the Rifter (2018+) and Partner K9, confirming rollers and rails are recognized wear/replacement items.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.peugeotforums.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-308-adblue-system-fault",
+      "vehicle": "2014 Peugeot 308",
+      "title": "AdBlue System Fault",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 65,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Severity 'high' is debatable — issue causes immobilization/limp mode and no-start countdown but is not safety-critical (no crash risk); 'medium' fits the rubric better since it's costly/disabling but not dangerous",
+          "Year range 2014-2026 is broad and spans two 308 generations (T9 and P51); the issue is most documented on T9 BlueHDi (2014-2021), less data available for newest P51 models",
+          "Repair cost upper bound may be conservative — full AdBlue tank/pump module replacement at dealers can exceed $1200, sometimes reaching $1500-2000+"
+        ],
+        "evidence": "Multiple independent sources (Peugeot owner forums, AdBlue specialist shops, ECU tuning sites) confirm DTCs P20EE (SCR NOx catalyst efficiency below threshold) and P2BAD (AdBlue system error - SCR) are commonly logged on Peugeot 308 BlueHDi vehicles, with NOx sensor failures, AdBlue injector crystallization, and pump/tank module faults being the primary causes leading to limp mode and no-start countdowns. The 2016 Peugeot 308 T9 is specifically documented with P20EE NOx sensor/SCR issues on owner forums.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.peugeotforums.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-508-diesel-dpf",
+      "vehicle": "2011 Peugeot 508",
+      "title": "Diesel DPF Regeneration Issues",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 65,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range likely too broad - Peugeot 508 diesel was phased out in later years (current gen moved to PHEV/electric), so '2011-2026' overstates affected years; issue is primarily first-gen (2011-2018) with Eolys additive system",
+          "Severity 'high' is debatable - DPF clogging causes limp mode and expensive repair but is not directly safety-critical; 'medium' may be more appropriate per the provided definitions",
+          "Repair cost range is reasonable but the low end ($300 for cleaning) may be optimistic for dealer service while high end ($2500) aligns with full DPF replacement"
+        ],
+        "evidence": "Multiple Peugeot owner forum threads confirm P2463 (DPF overloaded/soot accumulation) and P2002 (DPF efficiency below threshold) as real, frequently-reported codes on 508 diesels, particularly first-gen models with the Eolys (EOLYS) additive DPF system; short journeys preventing regeneration is a widely documented cause. The DTC codes match the described problem accurately.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.peugeotforums.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-206-power-steering-pump-leak",
+      "vehicle": "2000 Peugeot 206",
+      "title": "Power Steering Pump Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 60,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll verify this Peugeot 206 power steering pump leak issue.\nI have enough evidence to evaluate. Notably, many forum reports suggest the leaks more commonly occur from the rack and hoses/pipes rather than specifically from pump housing seals, though pump issues are also reported. Also, the 206 GTi notably had hydraulic PAS, but some later 206 models (particularly with 1.6 HDi) and 207 transitioned"
+      },
+      "links": [
+        {
+          "url": "https://www.peugeotforums.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-3008-adblue-faults",
+      "vehicle": "2017 Peugeot 3008",
+      "title": "AdBlue System Malfunction",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 60,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2017-2026 is too broad: the 3008 was redesigned for 2024 (third generation, STLA Medium platform) and Peugeot reportedly revised the AdBlue tank/injector design on newer vehicles, so later years are less affected",
+          "Repair cost range ($300-$1200) underestimates worst-case: full AdBlue tank replacement commonly reported at £1500-£2500 (~$1900-$3100)",
+          "Severity 'high' is debatable - issue causes vehicle no-start/stranding (serious inconvenience) but is not directly crash-safety-critical; 'medium' may be more appropriate",
+          "Peugeot 3008 is not sold in the US market; NHTSA would not have data and USD pricing/US trim naming is inconsistent with the European-only model"
+        ],
+        "evidence": "Multiple Peugeot owner forums (peugeotforums.com, 3008forums.co.uk) and AdBlue specialist sites extensively document the AdBlue tank/injector/NOx sensor faults on 1.5 and 2.0 BlueHDi 3008 models, including no-start countdowns even with full tanks. DTC codes P20EE (SCR NOx catalyst efficiency below threshold) and P2BAD (Exhaust NOx concentration high) are both verified as legitimate codes commonly logged together on these PSA vehicles.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.peugeotforums.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-207-turbo-oil-leak",
+      "vehicle": "2006 Peugeot 207",
+      "title": "Turbocharger Oil Leak",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 55,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC P0299 (turbo underboost) is not the typical code triggered by an oil leak specifically; oil leaks at feed/return lines often produce no DTC, though they can lead to turbo failure that triggers P0299",
+          "Year range start of 2006 is slightly off - the 1.6 THP engine in 207 GT/GTi was introduced in 2007",
+          "Severity 'high' may be overcalibrated - oil leak itself is not safety-critical, though it can progress to turbo failure if ignored"
+        ],
+        "evidence": "Multiple Peugeot owner forums (PeugeotForums, AussieFrogs, RCZ Forum) confirm the 1.6 THP turbo oil feed/return line leak is a well-known common issue, often at the banjo bolt fittings, with braided steel replacement kits commonly recommended. P0299 is documented for the THP engine but is generally linked to boost leaks, wastegate/electrovalve issues, or oil-starved turbo bearing failure rather than the oil leak itself.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-3008-eat6-gearbox-shudder",
+      "vehicle": "2014 Peugeot 3008",
+      "title": "EAT6 Automatic Gearbox Shudder",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 55,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2014-2023 is too broad; EAT6 was primarily fitted to Mk2 3008 (approximately 2017-2019) before being superseded by the EAT8, and Mk1 3008s (pre-2016) typically used the AM6/AT6 Aisin unit rather than the EAT6 marketed designation",
+          "P0741 (torque converter clutch circuit performance/stuck off) is plausible for lockup shudder but owner/forum reports more commonly cite TCC solenoid and torque converter lockup clutch without specific DTC confirmation; no manufacturer TSB explicitly tying P0741 to this issue was found",
+          "Repair cost lower bound ($200) realistically only covers a fluid service or software update; torque converter replacement typically exceeds the $1500 upper bound"
+        ],
+        "evidence": "Multiple owner forums and gearbox specialists confirm shudder/jerking on the Aisin-sourced EAT6 in the Peugeot 3008, with torque converter lockup clutch and TCC solenoid cited as suspects, and software updates / fluid changes as common remedies. However, the EAT6 was predominantly used in the Mk2 3008 around 2017-2019 before being replaced by the EAT8, so the 2014-2023 span overstates the affected years.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-5008-dpf-blockage",
+      "vehicle": "2009 Peugeot 5008",
+      "title": "DPF Blockage",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 55,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Severity 'high' is debatable - DPF blockage typically causes limp mode/power loss rather than being safety-critical, so 'medium' may be more appropriate",
+          "Year range extends to 2026 but 3rd gen 5008 (2024+) is increasingly electric/hybrid focused, reducing diesel relevance in later years",
+          "Issue is generation-agnostic but driving-pattern dependent rather than a specific manufacturing defect"
+        ],
+        "evidence": "Multiple owner forums (Peugeot Forums, mycarly.com, JustAnswer) document DPF blockage/regeneration problems across 2011-2023 Peugeot 5008 diesels, with short trips and city driving cited as primary causes. DTC P2463 (DPF Restriction - Soot Accumulation) is the correct standard code for this fault, and the cost range reasonably spans forced regen through full DPF replacement.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-5008-suspension-creak",
+      "vehicle": "2009 Peugeot 5008",
+      "title": "Front Suspension Creak and Knock",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 50,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Peugeot 5008 not sold in US market; USD pricing is approximate as vehicle is European-market only",
+          "Year range 2009-2026 covers both Mk1 (2009-2017) and Mk2/Mk3 generations with different suspension architectures, but issue is documented across generations"
+        ],
+        "evidence": "Peugeot owner forums confirm front suspension knocking/clunking over bumps at low speed is a well-known recurring issue, with anti-roll bar drop links commonly cited as the cause and some owners reporting repeated replacements. Symptoms match: knocking/rattling over bumps, with drop links and top strut mounts identified as common culprits.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.peugeotforums.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-2008-e2008-range-issues",
+      "vehicle": "2020 Peugeot 2008",
+      "title": "e-2008 Range Below Advertised",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 45,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost of $0-$200 is misleading—this is an inherent EV characteristic, not a repairable fault; no calibration fix is typically offered by Peugeot",
+          "Severity 'medium' may be overstated; this is closer to a 'low' (inherent limitation/nuisance) since it doesn't involve a defect or costly repair",
+          "Issue affects all e-2008 EV variants, not specifically GT Line trim",
+          "DTC codes correctly listed as none, as this is not a fault-code-triggering issue"
+        ],
+        "evidence": "Multiple reviews and owner forum reports confirm the e-2008's real-world range falls well short of its WLTP figure (e.g., 250-mile WLTP vs ~183-200 miles real-world, dropping to ~140 miles or roughly 30-40% in winter due to cabin heating draw). However, this is widely treated as a normal EV characteristic rather than a defect with a repair path, so categorizing it with a repair cost range is misleading.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.speakev.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-207-gearbox-bearing-noise",
+      "vehicle": "2006 Peugeot 207",
+      "title": "Gearbox Input Shaft Bearing Noise",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 45,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description states noise 'disappears when the pedal is pressed' which matches input shaft bearing behavior, but phrasing 'present in neutral with the clutch engaged' is technically ambiguous — 'clutch engaged' means pedal released (clutch plates engaged); this should be clarified",
+          "BE-series gearbox inclusion is questionable — the 207 predominantly used the MA5 gearbox; BE4 was used only on certain higher-torque/GTi/RC variants, so listing both is broadly OK but worth verifying per trim",
+          "No DTCs is correct (mechanical bearing wear does not set fault codes), but worth explicitly noting",
+          "Cost range $400-$900 may be slightly low if a full gearbox rebuild or replacement is required; some owners report needing full strip-down or new box"
+        ],
+        "evidence": "Multiple Peugeot owner forum threads confirm input shaft bearing failure is a common, well-known fault on the 207's MA-series gearbox, producing a whining/rumbling noise that stops when the clutch pedal is depressed (input shaft stops rotating). No NHTSA recall or TSB found, consistent with this being a wear-related known issue rather than a safety defect.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-rcz-timing-chain",
+      "vehicle": "2010 Peugeot RCZ",
+      "title": "Timing Chain Tensioner Failure",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 40,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Severity 'critical' is debatable - Peugeot confirmed it was not classified as a safety recall issue, though valve damage is possible in worst cases",
+          "Cost range is reasonable but slightly high on the upper end; typical forum-reported repair is £580-£1000 (roughly $700-$1300), with $2000 only in severe valve-damage cases"
+        ],
+        "evidence": "Multiple owner forums (Peugeot RCZ Forum, Peugeot Forums) extensively document timing chain tensioner failure on the 1.6 THP/EP6 Prince engine shared with BMW/Mini, including on 2010-2015 RCZ models. P0016/P0017 are the correct DTCs for the resulting cam/crank correlation faults, and Peugeot revised the tensioner part in August 2012 but did not issue a safety recall.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.peugeotforums.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-rcz-turbo-oil-leak",
+      "vehicle": "2010 Peugeot RCZ",
+      "title": "Turbocharger Oil Leak",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 35,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "P0299 is an underboost code, not a direct DTC for oil leaks; oil leaks typically don't trigger a specific DTC unless turbo failure occurs as a consequence",
+          "Repair cost range may be slightly low if full turbo replacement is needed (can exceed $1500); oil feed line replacement alone fits the lower end",
+          "Severity 'high' is debatable - leaks are typically a progressive/costly issue rather than immediately safety-critical, though turbo failure consequences can be severe"
+        ],
+        "evidence": "Multiple Peugeot RCZ forum threads confirm the 1.6 THP turbo oil feed line (at the banjo fitting/O-ring) is a well-known common failure point, with aftermarket braided PTFE replacement kits sold specifically for this issue. P0299 is a valid generic turbo underboost code that can result from turbo bearing damage caused by oil starvation/leaks, but it's not specifically an 'oil leak' code.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.frenchcarforum.co.uk",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "peugeot-508-air-suspension-failure-gt",
+      "vehicle": "2019 Peugeot 508",
+      "title": "Rear Air Suspension Failure (GT)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 30,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "Peugeot 508 II (2019+) GT does not offer factory rear air suspension; it uses a multi-link rear axle with variable-damping (Active Suspension Control / AMVAR) adaptive dampers",
+          "No NHTSA complaints, TSBs, or owner forum threads reference a rear air suspension compressor failure on this model",
+          "Year range 2019-2026 references a feature that does not exist on this vehicle",
+          "DTC codes field is empty but the underlying issue itself is not documented",
+          "Repair cost range is speculative since no factory air suspension system exists to repair"
+        ],
+        "evidence": "Peugeot's official 508 (R8/2019+) technical specifications confirm a multi-link rear axle with electronically controlled variable damping (Active Suspension Control) as standard on the GT trim, not an air suspension system. No evidence of rear air suspension compressor failures was found in NHTSA, manufacturer TSBs, or Peugeot owner forums for this generation.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.peugeotforums.com",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    }
+  ]
+}

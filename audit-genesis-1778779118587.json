@@ -1,0 +1,486 @@
+{
+  "sampledAt": "2026-05-14T17:25:02.468Z",
+  "total": 22,
+  "verified": 2,
+  "minor": 8,
+  "major": 5,
+  "fabricated": 5,
+  "errors": 2,
+  "deadLinks": 0,
+  "totalLinks": 0,
+  "results": [
+    {
+      "id": "genesis-g70-infotainment-lag",
+      "vehicle": "2019 Genesis G70",
+      "title": "Infotainment System Lag and Crashes",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Most documented complaints describe flickering display, reboots, and connectivity glitches rather than specifically a 15-30 second boot lag; the specific boot-time figure is not well documented",
+          "The 2022 G70 received a mid-cycle refresh with a new 10.25-inch system, so lumping 2022 with 'early G70 models' may be inaccurate — the issue is more characteristic of 2019-2021",
+          "Repair cost range may be optimistic — display replacements (if needed) can exceed $500, though software updates are free"
+        ],
+        "evidence": "Owner forums and third-party reports confirm 2019-2021 G70s experience infotainment slowness, reboots, and crashes, often resolved by software updates or a Map+Setup button reboot. However, the 2022 model year got a refreshed 10.25-inch AVN system, so grouping it with 'early' models is questionable, and most sources emphasize flickering/reboots rather than the specific 15-30s boot delay cited.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-g70-lsd-noise",
+      "vehicle": "2019 Genesis G70",
+      "title": "Limited-Slip Differential Chatter Noise",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple owner forum reports (Genesis Owners Forum, BobIsTheOilGuy) confirm G70 LSD-equipped models exhibit chattering during low-speed turns, often resolved by adding friction modifier (e.g., CRC Trans-X or Amsoil Slip Lock) to the differential fluid. No DTCs are typically associated with this mechanical clutch-pack noise, severity is properly rated as low (nuisance), and the $100-$300 cost range aligns with a fluid drain/refill plus additive.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-g70-transmission-shift-quality",
+      "vehicle": "2019 Genesis G70",
+      "title": "8-Speed Automatic Shift Quality Issues",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Documented TSB targets 2-3, 3-4, and 4-5 upshifts, not the 1-2 and 2-3 upshifts described",
+          "Most prominent forum-reported issue is 'Jerky Downshift Syndrome' (JDS) on 3-2/4-3 downshifts, not cold upshifts",
+          "Repair cost ceiling may be low - solenoid replacement and TCU work can exceed $500, though adaptive resets are cheap/free under warranty",
+          "Year range 2019-2026 is broad; most documented complaints concentrate in 2019-2023 model years"
+        ],
+        "evidence": "Multiple Genesis owner forums and a November 2021 Hyundai TSB (plus 2023 TSB 23-AT-001G) document harsh/delayed shifting on the 8-speed A8LR1/A8TR1 transmission, with remedies including solenoid replacement and TCU adaptive value resets. The general issue is real and Genesis-acknowledged, but the description misidentifies which specific gear changes are affected by the official TSB.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-g70-turbo-oil-line-leak",
+      "vehicle": "2019 Genesis G70",
+      "title": "Turbo Oil Feed Line Leak (3.3T)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range too broad: official recall (NHTSA 24V-191/Recall 019G) covers 2019-2022 G70 only; 2023+ models received stainless steel pipes and are excluded",
+          "Root cause mischaracterized: actual defect is the LH turbocharger oil feed pipe/hose assembly material cracking from prolonged heat exposure, not banjo bolt crush washers degrading",
+          "Severity under-rated: NHTSA classified this as a safety recall due to engine compartment fire risk when oil contacts the exhaust manifold; should be 'high', not 'medium'",
+          "Repair cost significantly underestimated: out-of-warranty repair quoted around $2,800 (engine must be pulled, ~6.5+ hours labor), not $200-$800",
+          "Missing key fact: this is covered under a manufacturer safety recall (019G), so most repairs are free to owners",
+          "Affects only one side (left/LH turbo) per the recall, not both feed lines as implied"
+        ],
+        "evidence": "NHTSA recall 24V-191 (Genesis Recall 019G), expanding earlier 19V-538, covers 2019-2022 G70, 2018-2020 G80, and 2017-2022 G90 with 3.3T engines for LH turbocharger oil feed pipe cracking that can leak onto the exhaust manifold and cause engine fires. Owner forum reports cite ~$2,800 out-of-warranty repairs due to engine removal, and Genesis switched to stainless steel pipes around August 2021.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-g80-35t-turbo-wastegate",
+      "vehicle": "2017 Genesis G80",
+      "title": "3.3T Turbo Wastegate Rattle",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "Wastegate rattle is a documented issue on the Hyundai Genesis Coupe 2.0T (Theta engine), not the Genesis G80 3.3T twin-turbo V6 (Lambda engine)",
+          "G80 3.3T forum complaints about rattles point to heat shields, valve/tappet (CVVT/lifter) cold-start clatter, or starter issues — not wastegate actuator/flap play",
+          "No TSB or NHTSA documentation found linking wastegate rattle to the 2017-2020 G80 3.3T",
+          "Description appears to conflate a known Genesis Coupe 2.0T single-turbo issue with the G80's twin-turbo V6",
+          "Repair cost range likely understated if a twin-turbo actuator/turbo replacement were actually required"
+        ],
+        "evidence": "Extensive forum discussions of 'wastegate rattle' are tied to the Hyundai/Genesis Coupe 2.0T platform (BK1/BK2), while G80 3.3T Sport owners reporting rattles were diagnosed with loose heat shields, tappet/CVVT cold-start valve clatter, or starter issues. No manufacturer TSB or owner-forum consensus was found documenting a wastegate actuator/flap rattle specific to the 2017-2020 G80 3.3T.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-g80-air-suspension-compressor",
+      "vehicle": "2021 Genesis G80",
+      "title": "Air Suspension Compressor Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "The 2021-2026 Genesis G80 (RG3) does not offer air suspension as a factory option - it uses electronically controlled adaptive suspension (Preview ECS), not air springs/compressor",
+          "Air suspension compressor failures documented in forums are for the older Hyundai Equus (2011-2016) or GV80 SUV, not the current G80",
+          "No NHTSA complaints, TSBs, or owner forum threads found specifically documenting air suspension compressor failure on 2021+ G80",
+          "DTC codes listed as 'none' is unverifiable since the underlying issue doesn't apply to this vehicle",
+          "Cold-climate causation narrative appears to be AI-generated speculation not supported by any documented evidence",
+          "Repair cost range cannot be validated for a component the vehicle doesn't have"
+        ],
+        "evidence": "Searches of Genesis owner forums, RepairPal, and KBB show the 2021+ G80 uses adaptive/electronically controlled suspension rather than air suspension; documented air suspension compressor failures in the Genesis/Hyundai family are for the older Equus platform and the GV80 SUV. No owner complaints or TSBs were found describing air suspension compressor failure on the 2021-2026 G80.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-g80-electrified-software",
+      "vehicle": "2022 Genesis G80",
+      "title": "Electrified G80 Software and Charging Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "The year range is the main concern. The Electrified G80 was sold in the U.S. for 2023 and 2024 only, not 2022-2026. Otherwise the issue is well documented.\n\n{\n  \"verdict\": \"minor_issues\",\n  \"real\": true,\n  \"issues_found\": [\n    \"Year range incorrect: Electrified G80 was sold in U.S. only for 2023 and 2024 model years, not 2022-2026\",\n    \"Description bundles multiple distinct issues (range estimat"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-g80-infotainment-glitches",
+      "vehicle": "2017 Genesis G80",
+      "title": "Infotainment System Software Glitches",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Severity rating of 'low' may be under-calibrated; NHTSA recall ~84,000 Genesis vehicles (incl. G80) for screens rebooting/blanking while driving treats this as a safety issue, not just nuisance",
+          "Year range 2017-2026 is broad; most documented infotainment glitches concentrate on 2021+ redesign and 2025-2026 HD radio reboot recall; pre-2021 G80 (Hyundai-era) has fewer such reports",
+          "Repair cost range is reasonable since most fixes are free OTA/dealer software updates under warranty, but out-of-warranty head unit replacement can exceed $500",
+          "No DTC codes listed is acceptable since infotainment software glitches typically don't set standard OBD-II DTCs"
+        ],
+        "evidence": "Multiple owner forums (Genesis G80 Forum, GenesisOwners) and a January 2026 NHTSA recall covering ~84,000 model year 2025-2026 Genesis G80/Electrified G80/GV70/GV80 vehicles confirm widespread infotainment/cluster screen reboots, blackouts, and software glitches tied to HD radio memory logic. Genesis has issued multiple OTA and dealer software updates, and owners report some updates introducing new issues (e.g., bricked head units after updates).",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-g90-air-suspension-failure",
+      "vehicle": "2017 Genesis G90",
+      "title": "Air Suspension Strut and Compressor Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Year range is wrong: 2017-2022 first-generation G90 does not have air suspension at all; only 2023+ second-gen G90 offers multi-chamber air suspension (and only as an available/optional feature, not standard on all trims)",
+          "No documented widespread pattern of strut bladder cracks or compressor failure on the G90 specifically; reported air suspension failures in Genesis owner forums are predominantly on the related Hyundai Equus, not the G90",
+          "The '60,000 miles' failure threshold claim is unsupported - 2023+ G90s with air suspension are too new to have established a documented high-mileage failure pattern",
+          "Severity 'high' likely overstated - air suspension sag is typically a comfort/drivability issue rather than safety-critical",
+          "No DTC codes listed; real air suspension faults typically log codes (e.g., C1611, C2403, C1A4xxx ride-height/compressor codes) which should be documented",
+          "Repair cost upper bound of $5,000 is plausible only for multiple strut replacement; single component repairs are typically lower"
+        ],
+        "evidence": "Multiple Genesis owner forum posts and a Genesis executive (Albert Biermann) explicitly state the first-generation G90 (2017-2022) does not have air suspension. Air suspension (multi-chamber) was only introduced as an available feature on the redesigned 2023+ second-generation G90, and there is no documented widespread strut/compressor failure pattern for the G90 specifically - most reported air suspension failures in Genesis forums involve the older Hyundai Equus.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-g90-elsd-noise",
+      "vehicle": "2017 Genesis G90",
+      "title": "Electronic Limited-Slip Differential Noise",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Issue is documented for Genesis GV70, GV80, and G70 — not specifically the G90; forum/TSB evidence for G90 e-LSD noise is essentially absent",
+          "e-LSD is not a standard feature across all G90 trims/years; the 1st-gen G90 (2017-2022) primarily used HTRAC AWD without the GV80-style e-LSD",
+          "Year range 2017-2026 is too broad and conflates two different G90 generations (1st gen 2017-2022 and 2nd gen 2023+) with different drivetrains",
+          "Repair cost of $100-$600 is far too low — documented Genesis differential repairs typically involve full rear differential or actuator replacement under warranty, with retail costs running into the low thousands",
+          "Severity 'low' may understate it; real-world cases have escalated to full differential replacements, AWD warning lights, and repeat failures",
+          "Described symptom (whine during low-speed turns / AWD engagement) better matches GV70/GV80 rear-diff TSB (23-DS-004G) than any G90-specific issue"
+        ],
+        "evidence": "Searches of NHTSA TSBs and Genesis owner forums show a well-documented rear differential whine issue addressed by TSB 23-DS-004G, but the affected vehicles are overwhelmingly the GV70, GV80, and G70 AWD models — not the G90. One G90 owner reported a rear axle whine that required full axle replacement, but it was not characterized as an e-LSD clutch-pack engagement issue, and there is no clear pattern of e-LSD noise complaints specific to the G90 across the 2017-2026 range.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-g90-rear-seat-entertainment",
+      "vehicle": "2020 Genesis G90",
+      "title": "Rear Seat Entertainment System Malfunctions",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "Description is factually incorrect: G90 rear screens are mounted on the back of front seats, not 'tablet-style screens in the rear seat headrests'",
+          "G90 rear entertainment uses a DVD player in the glovebox, not HDMI input - no HDMI input exists to fail",
+          "Year range is wrong: 2nd-gen G90 (2023-2026) eliminated the rear seat entertainment system entirely; only 2017-2022 G90 had rear screens (and only on 5.0 Ultimate / Premium trims)",
+          "No NHTSA complaints, TSBs, or owner forum reports describing blackouts, HDMI failures, Wi-Fi drops, or vibration-induced connector loosening for the rear entertainment system",
+          "Owner complaints about the rear screens are about design/DVD-only limitation, not hardware malfunctions",
+          "The described failure mode (Wi-Fi connectivity on rear screens) does not match the actual system architecture"
+        ],
+        "evidence": "Searches of Genesis owner forums, NHTSA recalls/TSBs, and manufacturer documentation show the G90 rear entertainment consists of fixed 10.3-inch screens on the back of front seats fed by a glovebox DVD player - not headrest tablets with HDMI/Wi-Fi. The 2023-2026 redesigned G90 does not even offer rear seat entertainment, and no documented reports of the described failure modes were found.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-gv60-12v-battery-drain",
+      "vehicle": "2023 Genesis GV60",
+      "title": "12V Battery Drain When Parked",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Drain timeline of '5-7 days' is optimistic; many owners report dead 12V batteries in 2-4 days",
+          "Description omits the related and well-documented ICCU (Integrated Charging Control Unit) failure that frequently causes/compounds 12V drain and has been subject to recalls/TSBs",
+          "No DTC codes listed is plausible since dealers frequently cannot replicate or find codes, but a software update TSB (e.g., VCU SW UPD referenced by owners) exists and could be noted"
+        ],
+        "evidence": "Multiple owner forum threads (genesisowners.com, gvforums.com) and a GV60 problems guide confirm widespread 12V parasitic drain on 2023-2025 GV60s, with owners reporting dead batteries after 2-7 days parked, dealer software updates, and related ICCU recalls. Repair costs are typically $0 under warranty or roughly £150-£400 (~$200-$500) out of warranty, aligning with the stated range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-gv60-ota-software-issues",
+      "vehicle": "2023 Genesis GV60",
+      "title": "OTA Software Update Failures",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description overstates consequences - documented failures typically result in update not completing or requiring dealer/USB reinstall, not widespread ADAS deactivation or charging management errors",
+          "Repair cost range may be low - some severe cases required head unit replacement or extended dealer service (3+ hours)",
+          "No specific TSB/recall number cited; the related Recall 031G addresses screen reboot issue rather than OTA failure itself"
+        ],
+        "evidence": "Multiple Genesis owner forum threads and an official Genesis OTA notice confirm GV60 OTA updates frequently fail or are unavailable, often requiring manual USB installation or dealer intervention; in some cases dealers have replaced head units or caused secondary issues (key fob, steering errors) after botched updates. The 'no DTC' and 'medium severity' calibration is reasonable since the issue is typically a nuisance rather than safety-critical, though severe cases can exceed the $0-$300 cost range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-gv60-range-inconsistency",
+      "vehicle": "2023 Genesis GV60",
+      "title": "Range Estimate Inconsistency",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Not a GV60-specific defect or TSB-documented issue; it's normal EV physics affecting all E-GMP platform vehicles (Ioniq 5, EV6) and EVs broadly",
+          "Description frames it as an algorithm flaw, but sources indicate the range estimator (GOM) is reasonably accurate—the actual losses come from cold battery chemistry, heat pump/cabin heating load, and aero drag, not faulty estimation logic",
+          "Real-world cold-weather losses commonly reported are 20-35% (sometimes 30-45% in deep cold at highway speed), so the cited 15-25% understates the worst cases",
+          "No NHTSA complaints, TSBs, or recalls tied specifically to range estimation accuracy were found",
+          "Severity 'low' is appropriate but this may not belong in a known-issue database as a defect at all—it's expected EV behavior"
+        ],
+        "evidence": "Multiple owner forum threads (Genesis Owners) and independent range tests confirm GV60 owners routinely see 20-35% range reduction in cold weather and at 70-75 mph, consistent with the entry's claim, but this is normal E-GMP/EV behavior rather than a GV60-specific algorithm defect. No TSBs, DTCs, or recalls address range estimation; documented GV60 recalls instead target ICCU, instrument clusters, and infotainment screens.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-gv70-brake-noise",
+      "vehicle": "2022 Genesis GV70",
+      "title": "Front Brake Squeal and Dust",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Most owner complaints describe squeal primarily in reverse rather than light forward braking",
+          "Repair cost may be slightly high since some dealers fix via chamfering pad edges (lower cost) rather than full pad replacement; others were told it's 'normal' with no repair performed",
+          "Dealers often consider it normal/characteristic of performance pads, so it may not always be a billable repair"
+        ],
+        "evidence": "Multiple owner forum threads (Genesis Owners, GV Forums) and a Genesis dealer blog confirm that GV70 high-performance brake pads produce squealing during low-speed braking along with increased brake dust, especially after sitting overnight; documented across 2022-2025 model years. Fix has ranged from dealer chamfering pad edges to replacement, with some dealers declaring it normal behavior of the performance pad compound.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-gv70-electrified-range",
+      "vehicle": "2023 Genesis GV70",
+      "title": "Electrified GV70 Range Inconsistency",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "{\n  \"verdict\": \"minor_issues\",\n  \"real\": true,\n  \"issues_found\": [\"Year range includes 2026 but Electrified GV70 range concerns are most documented for 2023-2025 model years; 2026 is a redesigned 4th-gen battery (84-kWh, 263-mile range) which may mitigate the issue\", \"This is generally characterized as inherent EV behavior (physics/battery chemistry) rather than a defect-style 'known issue'—severi"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-gv70-infotainment-freeze",
+      "vehicle": "2022 Genesis GV70",
+      "title": "Infotainment Screen Freeze and Reboot",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Severity is miscalibrated: NHTSA classified this as a safety recall (FMVSS 101 non-compliance) because the instrument cluster/infotainment can reboot while driving, hiding speed and warning lights — not a 'low/nuisance' issue",
+          "Repair cost range is wrong: the official remedy is a free OTA or dealer software update under recall 031G (NHTSA), so cost to owner is $0, not $0–$300",
+          "Year range is partially inaccurate: the formal recall (031G, Feb 2026) covers 2025–2026 GV70 and Electrified GV70; a separate earlier recall (March 2025) covered 2023–2025 GV70/Electrified for similar instrument-panel software failure — the entry's blanket '2022–2026' overstates coverage for 2022 (forum-only reports, no recall)",
+          "DTC field listed as 'none' is plausible for a software/HD-radio-memory logic issue, but the description omits the underlying HD radio software root cause identified by Genesis"
+        ],
+        "evidence": "NHTSA/Genesis recall 031G (Feb 2026, ~83,877 vehicles) covers 2025–2026 GV70 and Electrified GV70 (plus G80/GV80/GV60) for an HD-radio software logic defect that causes the infotainment and instrument cluster to reboot while driving; an earlier recall (March 2025, ~32,594 vehicles) covered 2023–2025 GV70/Electrified for related instrument-panel software failures. Owner forums (gvforums.com, genesisowners.com) also document 2022 GV70 infotainment freezes/reboots tied to map/software updates, fixed via dealer software updates at no cost.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-gv70-turbo-coolant-line",
+      "vehicle": "2022 Genesis GV70",
+      "title": "Turbo Coolant Line Leak (2.5T)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "No documented evidence of turbo coolant supply line leaks at the water jacket on GV70 2.5T",
+          "Documented GV70 coolant leaks are primarily intercooler radiator punctures from road debris, not turbo lines",
+          "Other documented coolant issues are water pump seal failures (on 3.5TT) - different component",
+          "Description of 'weeping after heat cycles at turbo water jacket' appears to be a generic plausible-sounding failure mode not tied to actual reports",
+          "Repair cost range $200-$700 likely too low; documented turbo/cooling repairs on GV70 typically exceed this",
+          "Severity rating may be miscalibrated - actual coolant leaks on this platform have caused power loss flagged as safety concerns by owners"
+        ],
+        "evidence": "Searches of Genesis owner forums, parts catalogs, and repair databases reveal the predominant 2.5T GV70 coolant issue is intercooler radiator damage from road debris (with code P26CB00), and a separate water pump seal issue on 3.5TT models. No NHTSA complaints, TSBs, or forum threads describe weeping turbocharger coolant supply lines at the water jacket as a pattern failure on the 2.5T GV70.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-gv80-air-suspension-issues",
+      "vehicle": "2021 Genesis GV80",
+      "title": "Air Suspension Calibration and Leak Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "GV80 does not come with factory air suspension - it uses Electronically Controlled Suspension (ECS/Preview ECS) with solenoid-valve dampers, not air struts",
+          "No 'entry/exit mode' ride-height lowering feature exists on the GV80",
+          "No NHTSA complaints or Genesis TSBs found for air suspension calibration drift or air leaks",
+          "Description appears to confuse GV80 ECS with air suspension systems found on competitors (Mercedes GLE Airmatic, Audi Q7, BMW X5)",
+          "Aftermarket air suspension kits exist (Bag Riders, MartiniWorks) but these are conversions, not OEM"
+        ],
+        "evidence": "Genesis's own technical documentation and multiple reviews confirm the GV80 uses Electronically Controlled Suspension with solenoid-valve dampers (Preview ECS), not air suspension. Carbuzz specifically criticizes Genesis for NOT giving the GV80 the multi-chamber air suspension from the G90, and aftermarket vendors sell air suspension conversion kits for the GV80 - confirming it is not factory-equipped with air suspension.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-gv80-diesel-nox",
+      "vehicle": "2021 Genesis GV80",
+      "title": "Diesel NOx System Issues (International Markets)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "No specific GV80 TSB directly tying P20EE/P229F codes to this vehicle was found; codes are generic SCR/NOx codes applicable across diesel platforms",
+          "Year range 2021-2023 is reasonable but GV80 diesel launched in 2020 in Korea, so could include 2020",
+          "Repair cost upper bound may be slightly conservative if full SCR catalyst replacement is needed (can exceed $2000 with labor on luxury vehicles)"
+        ],
+        "evidence": "GV80 diesel (international markets only, not US) has well-documented emissions and SCR/AdBlue issues per owner forums and Korean press, including a Korea Times report on NOx emissions problems and ReDriven review noting SCR/AdBlue-related problems on the diesel. P20EE (SCR NOx Catalyst Efficiency Below Threshold) and P229F (NOx Sensor Circuit Range/Performance) are valid, commonly-paired diesel SCR DTCs that accurately match the described symptoms.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-gv80-infotainment-issues",
+      "vehicle": "2021 Genesis GV80",
+      "title": "Infotainment and Connected Services Issues",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Wireless charger overheating specifically not directly confirmed in search results for GV80, though plausible and reported across HMG vehicles",
+          "DTC codes correctly listed as none since these are software/telematics issues"
+        ],
+        "evidence": "Multiple owner forum threads (gvforums.com, genesisowners.com, Edmunds) confirm widespread GV80 infotainment glitches across 2021-2025 model years including navigation/map screen freezing, head unit lockups, and Genesis Connected Services failing to activate or communicate with the vehicle. Fixes are typically OTA software updates or dealer reflashes under warranty, consistent with the low severity and $0-$500 cost range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "genesis-gv80-transmission-shudder",
+      "vehicle": "2021 Genesis GV80",
+      "title": "8-Speed Transmission Shudder",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "The 'torque converter clutch shudder with friction material wear' is a well-documented GM 8L90/8L45 issue, not a Genesis/Hyundai issue - description appears to be a misattribution",
+          "GV80 transmission complaints in forums are primarily about rough downshifts/hard shifts/adaptive programming, transfer case issues, and rear differential whine - not TCC shudder",
+          "No Genesis/Hyundai TSB found specifically for GV80 torque converter shudder; G80/GV80 shudder reports often trace to transfer case or differential, not torque converter",
+          "Year range extending through 2026 is speculative given lack of documented issue",
+          "Repair cost range $200-$3000 is overly broad; an actual torque converter replacement on a Genesis would likely be $3000+ (forum reports of $5300 for transfer case repairs)",
+          "Severity 'medium' may be reasonable if issue existed, but the issue itself is not well-substantiated for this vehicle"
+        ],
+        "evidence": "Searches of Genesis owner forums show GV80 transmission complaints center on rough/hard shifting, adaptive programming resets, transfer case issues, and rear differential whine - not TCC friction material wear. The described shudder pattern with uneven friction wear is the signature GM 8L90 issue (TSB 18-NA-355), not a documented Hyundai/Genesis 8-speed problem.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    }
+  ]
+}

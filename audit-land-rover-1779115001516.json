@@ -1,0 +1,1207 @@
+{
+  "sampledAt": "2026-05-18T14:56:38.911Z",
+  "total": 56,
+  "verified": 10,
+  "minor": 25,
+  "major": 15,
+  "fabricated": 4,
+  "errors": 2,
+  "deadLinks": 1,
+  "totalLinks": 1,
+  "results": [
+    {
+      "id": "land-rover-freelander-k-series-head-gasket-1997",
+      "vehicle": "1997 Land Rover Freelander",
+      "title": "1.8L K-Series Head Gasket Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 5000,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC P0300 (random misfire) is not the primary diagnostic code for head gasket failure; coolant loss/overheating symptoms and cylinder-specific misfire codes are more typical",
+          "Description slightly conflates issues: the original gasket was a single-layer design and the dowels were changed from metal to plastic (causing head shimmy), not 'coolant seeping between gasket layers'",
+          "Severity 'high' is debatable - causes catastrophic engine damage but is not directly safety-critical; could be 'medium'",
+          "The >50% failure rate at 80,000 miles claim is anecdotally supported (specialists say ~70,000-75,000 miles typical) but not from a formal statistical source"
+        ],
+        "evidence": "Multiple Land Rover specialist sites and owner forums extensively document the 1.8 K-Series head gasket failure as a near-universal problem on Freelander 1 (1997-2006), typically occurring around 70,000-75,000 miles, caused by a flimsy single-layer gasket and plastic dowels; repair costs in the £545-£1300+ range align with the quoted USD estimate.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-freelander-head-gasket-2002",
+      "vehicle": "2002 Land Rover Freelander",
+      "title": "Head Gasket Failure on 2.5L KV6 Engine",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 4800,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range is slightly off: V6 KV6 Freelander was produced 2001-2006, not 2002-2005",
+          "DTC codes listed (P0300-P0303) only cover cylinders 1-3 of a 6-cylinder engine; head gasket failures on KV6 commonly throw codes across any cylinder including P0304-P0306, and primary symptoms are typically coolant loss/overheating/white smoke rather than misfires",
+          "Description's claim about 'two head gaskets, rear bank particularly prone to failure' is plausibly true (rear head is harder to access) but the more commonly cited root cause is cylinder liner protrusion/coolant loss from thermostat housing failure, not just gasket deterioration",
+          "Severity 'high' is debatable — issue is costly and engine-destroying but not directly safety-critical (medium might be more appropriate per the rubric)"
+        ],
+        "evidence": "Multiple owner forums and specialist sites confirm KV6 head gasket failure is a well-known Freelander issue, often triggered by coolant loss from the plastic thermostat housing and cylinder liner tolerance issues. UK specialist quotes £995-£1695 (~$1300-$2200) for repair, with forum reports up to £2000-£3000 when engine removal and additional work is required, placing the $1500-$3500 estimate in a reasonable ballpark.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-discovery-air-suspension-compressor-2005",
+      "vehicle": "2005 Land Rover Discovery",
+      "title": "Air Suspension Compressor Overheating and Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 4500,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Severity 'high' is miscalibrated - this is not safety-critical (vehicle still drives, limp-home to normal height); should be 'medium'",
+          "Failure mechanism description is partially inaccurate - primary root cause is blocked desiccant/worn piston seal causing slow pressure buildup (C1A20-64 'pressure increases too slowly'), not road spray corrosion or thermal fuse blowing",
+          "Compressor location description is misleading - it is mounted under a cover, not directly exposed to road spray",
+          "DTC should ideally be listed as C1A20-64 (the specific sub-code per JLR TSB LTB00420), though C1A20 is acceptable shorthand"
+        ],
+        "evidence": "Jaguar Land Rover TSB LTB00420 confirms the Hitachi air suspension compressor failure with DTC C1A20-64 on LR3/LR4/Range Rover Sport, and multiple forums/repair vendors corroborate this is among the most common LR3/LR4 failures. However, the documented root cause is blocked desiccant and worn piston seal (slow gallery pressurization), not corrosion from road spray or thermal fuse failure, and repair costs of $1,200 at dealer or much less via rebuild kits align with the stated range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-air-suspension-compressor-2003",
+      "vehicle": "2003 Land Rover Range Rover",
+      "title": "Air Suspension Compressor Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 4200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2003-2021 is too broad; Hitachi compressor specifically fitted to L322 from late 2005-2012, not the full range. Early L322 (2003-2005) used WABCO, and L405 (2013-2021) uses different compressor systems (AMK)",
+          "Severity 'high' is arguable - vehicle typically enters 'Normal Height Only' limp mode and remains drivable, not strictly safety-critical",
+          "Description of 'thermal fuse blowing' as primary failure mode is one of several; more common root causes per suppliers are worn piston seals/desiccant breakdown causing slow pressure rise (C1A20)"
+        ],
+        "evidence": "Multiple supplier/forum sources confirm Hitachi air suspension compressor failure is a benchmark issue on Range Rover L322 (late 2005-2012) and related LR3/4 and RR Sport, with C1A20 ('pressure increases too slow when filling reservoir/gallery') and C1A13 ('pressure does not decrease when venting gallery') being the canonical DTCs. Forum reports cite dealer compressor replacement around $1,200, consistent with the stated cost range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-sunroof-drain-2003",
+      "vehicle": "2003 Land Rover Range Rover",
+      "title": "Sunroof Drain Blockage Causing Interior Water Leaks",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 3800,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "{\n  \"verdict\": \"verified\",\n  \"real\": true,\n  \"issues_found\": [\"Description mentions 'body control modules' under front seats; actual affected electronics are typically the audio amplifier and rear differential/diff control module, not BCMs\", \"Description says 'panoramic sunroof' but issue affects standard sunroofs too, not just panoramic\", \"Upper repair cost estimate of $1500 is low—severe cases i"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-freelander-ird-failure-2001",
+      "vehicle": "2001 Land Rover Freelander",
+      "title": "IRD (Intermediate Reduction Drive) Unit Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 3500,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Root cause is mischaracterized: IRD failure is primarily caused by a failing/seized Viscous Coupling Unit (VCU) creating drivetrain wind-up, not 'inadequate lubrication' from a missing drain plug",
+          "IRD does have a drain plug - owners routinely drain oil and check for metal swarf; the description is factually incorrect on this point",
+          "Primary symptoms described are inaccurate: typical symptoms are clunking/grinding/banging noise on turning or reversing on full lock, not primarily a 'loud whining noise'",
+          "Year range is slightly off for US market (Freelander 1 sold in US 2002-2005); globally 1997-2006 - 2001 start is arbitrary",
+          "Severity 'high' is debatable - failure causes loss of drive but is not safety-critical; 'medium' (costly but not dangerous) better fits the definition provided"
+        ],
+        "evidence": "Multiple Land Rover specialist sites (Bell Engineering, FreelanderSpecialist) and owner forums (LRUK, Landyzone, AULRO) extensively document IRD failure on Freelander 1 as one of the most common and expensive failures, but consistently attribute root cause to VCU failure/drivetrain wind-up (often exacerbated by mismatched tyres), not lubrication issues. Reconditioned IRD costs around £650 plus ~£195 fitting (~$1000-1200), with VCU replacement recommended simultaneously bringing total toward the upper end of the stated range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-air-spring-leak-2003",
+      "vehicle": "2003 Land Rover Range Rover",
+      "title": "Air Spring Bladder Cracks and Leaks",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 3500,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC C1A20 is a compressor/reservoir pressure code ('Pressure increase too slow when filling reservoir'), not a direct air spring leak code - it's a downstream symptom code rather than the primary DTC for cracked bladders",
+          "Description attributes cracking primarily to UV/road salt/ozone, but documented primary causes are fold-line fatigue from flexing, heat cycling, and rubber dry rot/age",
+          "Year range is broadly correct but spans two distinct platforms (L322 2003-2012 and L405 2013-2021) with different compressors (Hitachi vs AMK) - may warrant splitting"
+        ],
+        "evidence": "Multiple sources (forums, repair shops, parts vendors) confirm air spring bladder cracking is a very common, well-documented Range Rover issue causing overnight sag, excessive compressor cycling, and eventual compressor failure. C1A20-64 is documented as 'Pressure increase too slow when filling reservoir' - typically points to compressor failure caused by leaks, rather than being the direct code for a cracked air bladder itself.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-discovery-sunroof-drain-2005",
+      "vehicle": "2005 Land Rover Discovery",
+      "title": "Sunroof and A-Pillar Water Leaks",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 3200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "BECM under driver seat description is inaccurate for LR3/LR4 — that's a P38 Range Rover characteristic; on LR3/LR4 water typically damages wiring harness splices and connectors under the carpet, not a BECM",
+          "Year range 2005-2024 is overly broad; documented issue is primarily LR3 (2005-2009) and LR4 (2010-2016), with less evidence for Discovery 5 (2017+)",
+          "Common cause cited by owners/dealers is misrouted/disconnected drain tube elbows at fender, not just 'blocked drains' — the 'extra-long drain tubes' framing is slightly misleading",
+          "Cowl/plenum failure and A-pillar exterior trim leaks are separate related ingress paths, not just deteriorated seals"
+        ],
+        "evidence": "Multiple owner forums (landroverforums, landroversonly, expeditionportal) and a JLR class action lawsuit confirm widespread sunroof drain and A-pillar water ingress on LR3/LR4 causing wet footwells and electrical/wiring damage. However, the BECM-under-driver-seat detail appears borrowed from P38 Range Rover, and Discovery 5 (2017+) has far fewer documented cases of this specific failure mode.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-sport-air-suspension-2005",
+      "vehicle": "2005 Land Rover Range Rover Sport",
+      "title": "Air Suspension Compressor and Valve Block Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 3100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range starts at 2005 but Range Rover Sport (L320) began as 2006 model year in North America",
+          "Description's claim about 'lower ride height and sportier driving style accelerating wear' is speculative and not supported by documented failure causes (actual causes are air spring leaks, desiccant/dryer failure, and moisture contamination)",
+          "Severity 'high' is borderline - system typically degrades to 'normal height only' limp mode rather than causing immediate safety hazard; 'medium' may be more accurate",
+          "C1A13 is more specifically a venting/exhaust valve issue ('pressure does not decrease when venting gallery'), often dryer/exhaust valve seal related rather than purely valve block solenoid"
+        ],
+        "evidence": "Multiple owner forums, RepairPal, parts vendors, and a Jaguar Land Rover TSB (LTB00793) confirm C1A20 and C1A13 are the benchmark DTCs for air suspension compressor failures on Range Rover Sport L320/L494. RepairPal estimates compressor replacement at $2,086-$2,172, consistent with the quoted $1,200-$3,500 range when including valve block repairs.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-timing-chain-tensioner-2010",
+      "vehicle": "2010 Land Rover Range Rover",
+      "title": "Timing Chain Tensioner Failure on 5.0L AJ-V8",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2800,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2010-2022 is too broad; tensioner/guide design was updated around MY2014-2015 and engines from 2015+ are generally considered to have the redesigned parts, with the bulk of failures occurring on 2010-2014 models",
+          "Description's failure mechanism is slightly inaccurate: primary root cause is the steel tensioner ram wearing into the softer aluminum guide (causing slack), not hydraulic tensioners losing oil pressure on cold starts; the cold-start rattle is a symptom, not the mechanism",
+          "DTC list is plausible but real-world JLR TSBs (LTB00916NAS) more commonly cite P0016, P0017, P0026, and P0341 rather than P0018/P0019 specifically"
+        ],
+        "evidence": "Multiple JLR TSBs (LTB00916NAS, LTB00474NAS), a 2018 class-action lawsuit, and extensive forum documentation confirm timing chain tensioner/guide failure on the AJ133 5.0L V8, with $5-6k typical repair cost and ~$20-30k engine replacement if it fails catastrophically. However, the issue is primarily concentrated in MY2010-2014 vehicles (updated parts cut in around 2014-2015), making the 2010-2022 range overstated, and the described failure mechanism conflates the symptom (cold-start rattle) with the actual root cause (steel-on-aluminum guide wear).",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-battery-drain-2013",
+      "vehicle": "2013 Land Rover Range Rover",
+      "title": "Parasitic Battery Drain from Infotainment and Modules",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2400,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "No specific NHTSA recall or JLR TSB number cited (though described as 'none' for DTCs which is appropriate)",
+          "Drain timeframe of 3-5 days is plausible but varies widely by case",
+          "Repair cost field empty - actual repair costs can vary from $0 (software update) to $1,500+ (module replacement)"
+        ],
+        "evidence": "Multiple owner forums and service sources confirm parasitic battery drain is a well-known issue on L405 Range Rover and L494 Range Rover Sport, with modules (including Bluetooth/BT module in left rear, infotainment, and telematics/TCU) commonly failing to enter sleep mode. Sources specifically identify the BT module location and infotainment systems as common culprits matching the description.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-discovery-sport-9-speed-trans-2015",
+      "vehicle": "2015 Land Rover Discovery Sport",
+      "title": "ZF 9HP48 9-Speed Transmission Harsh Shifting",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC P0730 (Incorrect Gear Ratio) is plausible but not the most commonly reported code for harsh shifting; ZF 9HP48 issues more commonly cite P0700 (generic), P0729, or shift-quality codes like P2700-series. P0700 alone is generic and only signals 'check transmission'.",
+          "Severity could arguably be 'high' rather than 'medium' given documented NHTSA recall (16V614000) for unexpected shifts into neutral causing loss of motive power — a safety-critical condition, not just a comfort nuisance.",
+          "No repair cost listed — typical TCM software reflash is free under recall/TSB, but valve body or mechatronic replacement runs $1,500-$4,000; entry should reflect this range.",
+          "Description conflates two distinct issues: (a) harsh/clunky shift calibration (TSB/software territory) and (b) the recalled wiring-harness crimp causing neutral drops (safety recall). These have different root causes and remedies."
+        ],
+        "evidence": "Confirmed real issue: NHTSA recall 16V614000 covers 2015 Discovery Sport (and 2014-2015 Evoque) for ZF 9HP48 transmission wiring harness crimp causing unexpected shifts to neutral, remedied via TCM software update. Owner forums (discoverysport.net, discosportforums.co.uk) extensively document harsh/jerky shifts, reverse engagement delays, and limp-mode events across 2015-2020 model years, with JLR issuing multiple TCM software updates as TSB remedies.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-freelander-window-regulator-1997",
+      "vehicle": "1997 Land Rover Freelander",
+      "title": "Electric Window Regulator Failure",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 2200,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Repair cost range ($150-$400) is on the low side for professional shop replacement (RepairPal estimates $639-$662), though it aligns with DIY cable repair kits and used regulators from breakers"
+        ],
+        "evidence": "Multiple Land Rover owner forums (LandyZone, FreelanderSpecialist) and repair sites confirm cable-type window regulator failure is a well-known, widespread Freelander 1 issue, with cables snapping, plastic guides breaking, and windows dropping into doors. The year range 1997-2006 matches Freelander 1 production; no DTCs are expected for this mechanical failure.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-discovery-dpf-regen-2010",
+      "vehicle": "2010 Land Rover Discovery",
+      "title": "Diesel Particulate Filter (DPF) Regeneration Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2100,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Year range 2010-2020 broadly covers multiple Discovery generations (LR4/L319 and Discovery 5/L462) with different diesel engines; the issue is particularly well-documented on 2.0 Ingenium diesels (2017+) but also affects 3.0 TDV6/SDV6 engines",
+          "Severity could arguably be 'high' given documented secondary damage (timing chain failure, oil dilution, engine destruction) reported in forums and repair shops"
+        ],
+        "evidence": "Multiple independent sources (K Motors, Marc's Garage, CCM, PistonHeads, Land Rover owner forums) confirm DPF regeneration failure is a widely documented issue on JLR diesels including Discovery models, especially with short journeys. DTC P2463 (soot accumulation) and P2002 (DPF efficiency below threshold) are both verified valid DPF codes, and repair costs ranging from forced regeneration/cleaning up to full DPF replacement align with the $300-$3500 range cited.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-coolant-crossover-pipe-2006",
+      "vehicle": "2006 Land Rover Range Rover",
+      "title": "Coolant Crossover Pipe Leak Under Intake Manifold",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1800,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Wrong engines specified: the infamous coolant crossover pipe failure is on the 5.0L V8 (supercharged and NA, 2010+), not the BMW 4.4L M62 (2003-2005) or Jaguar/Ford AJ-V8 4.4L (2006-2009)",
+          "Year range is significantly off: the documented widespread issue starts with 2010 model year 5.0L engines, not 2006-2009 4.4L vehicles; range should likely be 2010-2013 for L322 (and continues into L405)",
+          "Failure mechanism description is incorrect: pipes fail due to plastic cracking from heat cycling, not O-ring leaks or 'electrolysis corroding pipe from inside out' (pipes are plastic, not metal)",
+          "TDV8 4.4L diesel is mentioned but the prominent forum-documented failure is on gasoline 5.0L, not the TDV8 (TDV8 has different coolant pipe issues)",
+          "Repair cost range is on the low side: dealer quotes are commonly $2,000-$4,300; indie shops $1,500-$2,200 is more typical, so $800 floor is unrealistic"
+        ],
+        "evidence": "Forum sources (rangerovers.net, landroverworld.org) extensively document the coolant crossover pipe failure as a well-known issue on the 5.0L V8 (2010+) Range Rover/Sport/LR4, where plastic pipes under the supercharger/intake crack and cause sudden coolant loss and catastrophic engine overheating. The issue described (O-ring leaks on metal pipes due to electrolysis) does not match the documented plastic-pipe-cracking failure mode, and the specified BMW 4.4L V8 and 2006-2009 AJ-V8 4.4L engines are not the engines associated with this widespread failure.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-sport-zf-valve-body-2014",
+      "vehicle": "2014 Land Rover Range Rover Sport",
+      "title": "ZF 8HP70 Transmission Valve Body and Mechatronic Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1700,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple owner forums (rangerovers.net, landroverforums) and transmission specialists confirm ZF 8HP70 valve body/mechatronic failures in L494 Range Rover Sport with symptoms matching the description (harsh shifts, slamming downshifts, limp mode). Forum repair quotes ranged from ~$1,500 for reman valve body to ~$4,000-$5,600 for full mechatronic replacement, consistent with stated cost range. DTC codes P0730/P0741/P2714 are appropriate generic codes for gear ratio, torque converter, and pressure control solenoid faults.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-discovery-terrain-response-fault-2005",
+      "vehicle": "2005 Land Rover Discovery",
+      "title": "Terrain Response System Faults and Mode Selection Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1600,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC P1889 is associated with the Haldex Active On-Demand Coupling used on Freelander 2/Evoque/Discovery Sport, not the LR3/LR4 transfer case described in the issue",
+          "Description conflates two different drivetrain systems: LR3/LR4 has a true 2-speed transfer case (shift motor failure is real), while P1889 refers to a different platform's Haldex coupling oil pump",
+          "U0102 (Lost Communication with Transfer Case Control Module) and C1A00 are plausible but not specifically corroborated as the documented codes for this LR3/LR4 issue",
+          "Year range 2005-2016 spans both LR3 (2005-2009) and LR4 (2010-2016) which is acceptable, though the 'Discovery' nameplate was not used in the US during these years",
+          "Severity 'medium' is reasonable since vehicle remains drivable; cost range $300-$1800 is plausible (switch pack ~$1200 reported on forums)"
+        ],
+        "evidence": "Forums confirm Terrain Response faults, stuck modes, rotary switch pack failures, and transfer case actuator issues are well-documented on LR3/LR4. However, the Land Rover TSB LTB00795NAS1 and Haldex repair sources confirm DTC P1889-14 refers to the Active On-Demand Coupling oil pump brushes on Freelander 2/Evoque (Gen 4 Haldex, 2008-2015), a fundamentally different AWD system than the LR3/LR4 transfer case.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-evoque-thermostat-housing-2012",
+      "vehicle": "2012 Land Rover Range Rover Evoque",
+      "title": "Plastic Thermostat Housing Crack and Coolant Leak",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1600,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Thermostat housing cracking is mentioned as a possible failure but is not the most commonly documented coolant leak point on first-gen Evoque 2.0L Si4 — heater hoses, rear heater/crossover pipe, and water pump are cited more frequently in owner forums",
+          "Severity 'high' is somewhat aggressive; the leak is typically gradual rather than 'sudden and severe' as described — 'medium' may be better calibrated since it's costly but not inherently safety-critical unless ignored",
+          "Repair cost range ($400-$1000) is on the low side; RepairPal estimates $766-$921 for thermostat replacement at certified shops, so upper bound could be higher at dealer rates"
+        ],
+        "evidence": "Forum discussions and parts catalogs confirm the 2.0L Si4 Evoque (2012-2019) uses a plastic thermostat housing (OEM LR027158) that can leak, and TheMechanicDoctor lists thermostat housing leaks among common Evoque cooling issues. However, the dominant coolant leak points reported by Evoque owners are the heater hose connectors, rear crossover/heater pipe manifold, and water pump rather than the thermostat housing specifically.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-discovery-egr-cooler-2010",
+      "vehicle": "2010 Land Rover Discovery",
+      "title": "EGR Cooler Failure and Coolant Leak (TDV6/SDV6)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1500,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "P2BAD is not a valid standard OBD-II DTC format/code",
+          "P0401/P0402 are generic EGR flow codes; EGR cooler internal coolant leaks typically present as coolant loss, white smoke, and misfire codes rather than EGR flow codes - so DTCs are not strongly diagnostic for this specific failure",
+          "Year range mostly correct for 3.0L TDV6/SDV6 (Discovery 4 LR4 2010-2016, Discovery 5 2017-2018), but the issue is also well-documented on the earlier 2.7L TDV6 (Discovery 3, 2005-2009) - description limits to 3.0L only",
+          "Repair cost upper bound may be conservative - one forum quote was AUD $8K for related EGR/oil cooler repair; hydrolock scenario can require engine replacement well exceeding $5000"
+        ],
+        "evidence": "Multiple Land Rover owner forums (AULRO, LandyZone, Disco3.co.uk) and specialist sites confirm EGR cooler failures on TDV6/SDV6 diesels causing coolant leaks into the exhaust, white smoke, coolant loss, and risk of hydrolock when coolant enters cylinders. The failure mechanism (internal cracks/corrosion in the heat exchanger leaking coolant into the exhaust side) and severity (potential catastrophic engine damage via hydrolock) are well-documented, though no NHTSA recall exists.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-defender-pivi-pro-issues-2020",
+      "vehicle": "2020 Land Rover Defender",
+      "title": "Pivi Pro Infotainment Software Bugs and Connectivity Issues",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 1400,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Off-road display inaccuracy (pitch/roll/wheel articulation showing incorrect data) is not clearly documented in owner reports or TSBs; appears speculative compared to the well-documented general Pivi Pro bugs",
+          "Description mixes well-documented issues (CarPlay/Android Auto/Bluetooth dropouts, slow boot, OTA updates) with a less-substantiated specific claim about off-road info screen accuracy"
+        ],
+        "evidence": "Multiple owner forums (Land Rover Forums, Range Rovers.net, AULRO) and JLR's own OTA update notes confirm widespread Pivi Pro bugs including Bluetooth/CarPlay/Android Auto disconnections, slow boot times (30 sec to 2 min), black screens, and frequent software updates across MY2020-2025 Defenders. Severity as 'low' (nuisance, no safety impact, no listed cost since fixes are OTA/warranty) is reasonably calibrated, and the year range is accurate as the issue has persisted since Pivi Pro launched in 2020.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-discovery-sport-thermostat-housing-2015",
+      "vehicle": "2015 Land Rover Discovery Sport",
+      "title": "Plastic Thermostat Housing Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1400,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple independent sources confirm plastic thermostat housing cracking/leaking is a common, well-documented failure on the 2.0L Ingenium engine in the 2015-2019 Discovery Sport, with forum reports on 2016 and 2018 models and independent specialists (K Motors) noting it as a known fault that can also damage the piston cooling jet solenoid below it. The 'none' DTC entry is reasonable since this is a mechanical coolant leak typically diagnosed by visual/pressure test rather than fault codes, severity 'high' is appropriate given overheating risk, and the $400-$1000 repair cost aligns with the labor-intensive access (intake/front-end work) reported by owners.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-sport-transfer-case-2005",
+      "vehicle": "2005 Land Rover Range Rover Sport",
+      "title": "Transfer Case Actuator Motor and Chain Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1400,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Transfer case manufacturer is incorrect: L320 uses Magna Steyr (DD295), not BorgWarner",
+          "DTC P1889 is not commonly associated with this issue on L320; typical codes are P0806, P0915, P186D, P181D",
+          "DTC U0102 (Lost Communication with TCCM) is a generic communication code, not specific to actuator/chain failure",
+          "Chain stretch failure mode is not a well-documented issue on the Magna Steyr DD295 unit; actuator/shift motor and clutch position sensor failures dominate forum reports",
+          "Severity 'high' may be overstated — typically results in loss of low-range/4WD function rather than safety-critical failure"
+        ],
+        "evidence": "Forum evidence (rangerovers.net, aulro.com) confirms transfer case shift motor/actuator failures on L320 are common, but the unit is Magna Steyr DD295 (not BorgWarner), and reported DTCs are P0806, P0915, P186D, P181D — not P1889/U0102. Repair costs (~$1000+ for actuator, multi-thousand for rebuild) are in the right range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-evoque-door-handle-2012",
+      "vehicle": "2012 Land Rover Range Rover Evoque",
+      "title": "Exterior Door Handle Mechanism Failure",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 1300,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "First-generation Evoque (2012-2019) does NOT have pop-out/retractable door handles; those are on the Velar and second-gen Evoque (2020+)",
+          "Description of mechanism (pop-out, micro-switches, spring mechanism) is incorrect for this generation",
+          "Actual common issue on 2012-2019 Evoque is door lock/latch actuator failure with conventional handles, not handle mechanism failure",
+          "DTC codes listed as 'none' but real-world actuator failures often throw B1161/B1166/B1167 codes",
+          "Repair cost range $300-$800 is roughly plausible for actuator replacement at a shop but DIY parts are ~$30-50"
+        ],
+        "evidence": "Forum and repair sources confirm 2012-2019 Evoques have conventional (non-retractable) door handles, with the common failure being the internal door lock/latch actuator (around £300/$300+ at a garage, ~$30-50 DIY part). Pop-out/retractable handles only appear on the Velar (2018+) and second-generation Evoque (2020+), so the entry's described mechanism does not exist on the listed model years.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-sport-dpf-regen-2014",
+      "vehicle": "2014 Land Rover Range Rover Sport",
+      "title": "Diesel DPF Regeneration Failure in Short-Trip Driving",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1300,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "DPF clogging from short-trip driving is a widely documented issue for diesel Range Rover Sport (L494) models including SDV6/TDV6 engines, confirmed across owner forums (rangerovers.net, aulro.com) and specialist repair shops. P2463 (DPF Restriction - Soot Accumulation) and P2002 (DPF Efficiency Below Threshold) are both legitimate, commonly-reported DTCs for this symptom, and repair costs ranging from ~$300 for forced regen to $2,500+ for filter replacement align with reported dealer/specialist pricing.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-discovery-sport-panoramic-roof-leak-2015",
+      "vehicle": "2015 Land Rover Discovery Sport",
+      "title": "Panoramic Sunroof Drain Blockage and Seal Leaks",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Most documented evidence relates to other Land Rover models (Discovery II, LR3, Discovery 5, Range Rover Sport) rather than the Discovery Sport (L550) specifically; Discovery Sport-specific complaints exist but are less prominent than the description implies",
+          "Repair cost upper bound may be understated — severe cases involving water-damaged electronics/modules on Land Rover platforms have been reported to run into thousands of dollars, though simple drain clearing is indeed low-cost",
+          "Description generalizes from 'most Land Rover models' rather than citing Discovery Sport-specific TSBs or NHTSA complaints; no specific TSB was located for the Discovery Sport on this issue"
+        ],
+        "evidence": "Forum posts and repair guides across multiple Land Rover models (LR3, Discovery II/5, Range Rover Sport) confirm a well-known pattern of sunroof drain tube clogging/breakage routed through A- and C-pillars, plus seal degradation causing cabin water intrusion. Direct Discovery Sport-specific documentation is thinner, but the platform-wide pattern and shared sunroof design make the issue plausible for that model; severity as 'medium' is reasonable since it's not safety-critical but can cause expensive secondary electrical damage.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-pivi-pro-bugs-2022",
+      "vehicle": "2022 Land Rover Range Rover",
+      "title": "Pivi Pro Infotainment System Freezing and Crashing",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1200,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple owner forums (Range Rovers.net, Land Rover Forums) and repair guides confirm widespread Pivi Pro freezing, black screen, and reboot issues on 2022+ L460 Range Rovers, with JLR releasing repeated software updates (now on 4.3.x in late 2025) that have not fully resolved the problem. Reset procedures match the described symptoms, and severity/no-cost classification is appropriate since fixes are typically OTA software updates, though hardware replacement (~$6,500) has been reported in rare cases.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-freelander-2-fuel-pump-2007",
+      "vehicle": "2007 Land Rover Freelander",
+      "title": "Fuel Pump Module Failure (Freelander 2)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range slightly off - Freelander 2 was built 2006-2014 (MY 2007-2015 in some markets); entry says 2007-2014 which is acceptable but the original Freelander 2 launched in 2006",
+          "DTCs are valid for fuel pump issues but P0087 on LR2/Freelander 2 is more commonly associated with high-pressure fuel pump failure rather than just the in-tank module",
+          "Description conflates symptoms - on diesel TD4 models the main pump is engine-mounted (mechanical HPFP) and the in-tank unit is a lift/balance pump; the entry oversimplifies this",
+          "Repair cost range is reasonable but slightly low on the high end - genuine LR pumps alone can exceed $1000 before labor"
+        ],
+        "evidence": "Multiple sources (kemsoracing, freel2.com forum, K Motors, Land Rover forums) confirm in-tank fuel pump module and fuel level sender failures are well-documented common issues on Freelander 2 (2006-2014), with P0230 and P0087 being legitimate associated DTCs. K Motors specifically cites faulty sender units and wiring connector corrosion as frequent problems, with replacement costs aligning with the stated range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-evoque-haldex-clutch-2012",
+      "vehicle": "2012 Land Rover Range Rover Evoque",
+      "title": "Haldex AWD Coupling Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1100,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Haldex generation is wrong: Evoque uses Gen 4 Haldex, not Gen 5; the most-cited code in forums/repair sources is P1889, not the listed U0300/C1A54",
+          "Year range likely too broad: starting in 2014 the Evoque switched from Haldex to a GKN active/standard driveline, so 2014-2019 AWD models are not Haldex-equipped (issue mainly affects 2012-2013, possibly early 2014)",
+          "Described failure mode is partially inaccurate: forums attribute failures primarily to filter clogging and pump failure (no manufacturer-specified service interval), not 'overheating and electronic controller failure'",
+          "Repair cost range is plausible but on the low side for full coupling replacement (forum quotes ~£1,900/$2,400+ for new unit), while a fluid/filter service is ~$500-$780"
+        ],
+        "evidence": "Multiple owner forums and Land Rover specialists confirm Haldex coupling/pump failures are a well-known Evoque issue caused by neglected fluid/filter changes, with symptoms like 'Transmission Fault/Traction Reduced' and loss of rear drive. However, sources indicate the Evoque uses Gen 4 Haldex (not Gen 5), the common DTC is P1889, and from 2014 model year onward Land Rover replaced the Haldex with a GKN driveline, narrowing the affected range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-sport-rear-diff-leak-2005",
+      "vehicle": "2005 Land Rover Range Rover Sport",
+      "title": "Rear Differential Oil Leak from Pinion Seal",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "The well-documented pinion seal failure / JLR TSB primarily affects the L494 generation (2014+) Range Rover Sport, not the entire 2005-2022 range; the L320 (2005-2013) is rarely cited for this specific failure mode",
+          "Repair cost range ($400-$1200) is on the low side — dealer quotes are commonly $1,200-$2,500+ because JLR originally required full differential replacement; independent shops with aftermarket seal kits can be cheaper",
+          "No DTC codes is correct (mechanical leak, no codes expected)"
+        ],
+        "evidence": "Multiple owner forums, an NHTSA TSB (SB-10106163-9340), and aftermarket seal kit vendors (RKX) confirm the rear differential pinion seal is a widely known failure on L494 Range Rover Sport (2014+) and L405 Range Rover, with JLR originally requiring full diff replacement before a seal-only repair kit became available. Dealer repair quotes commonly range from ~$1,200 up to $2,500, and in cases where the diff is damaged from low fluid, full replacement has cost $6,000.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-velar-touchscreen-failure-2018",
+      "vehicle": "2018 Land Rover Range Rover Velar",
+      "title": "Dual Touchscreen Climate and Infotainment Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range slightly overstated: the 2024 Velar was redesigned with a single-screen console and no longer uses the Touch Pro Duo dual-screen system, so the issue specifically applies to 2018-2023 model years",
+          "No mention of related NHTSA recall 22V-581 / JLR campaign N972 covering blank infotainment screens (which disable the rearview camera)",
+          "Repair cost field is empty; control unit/screen replacement at a dealership is typically a significant cost that could be noted",
+          "Description could note that a software update (e.g., 18D or later for Touch Pro Duo) resolves many cases before hardware replacement"
+        ],
+        "evidence": "The Touch Pro Duo dual-screen failure (lower screen going black, freezing, or unresponsive, disabling climate controls) is extensively documented on owner forums (velarforums.co.uk, rangerovers.net), in reliability guides, and through a JLR recall (NHTSA 22V-581 / N972) for blank screens disabling the rearview camera. However, the 2024 Velar received a redesigned single-screen console and does not use Touch Pro Duo, so including 2024 in the year range is inaccurate.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-evoque-incontrol-freeze-2016",
+      "vehicle": "2016 Land Rover Range Rover Evoque",
+      "title": "InControl Touch Pro Infotainment Freezing and Lag",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 980,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple owner forums and a 2024 JLR class action settlement confirm widespread InControl Touch Pro infotainment problems including freezing, lag, black screens, and reboots across 2016-2019 Evoque and related JLR models. Severity as 'low' nuisance is reasonable, no DTCs are typically associated, and repairs are predominantly software updates (no cost) with occasional warranty hardware replacement.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-supercharger-nose-cone-2010",
+      "vehicle": "2010 Land Rover Range Rover",
+      "title": "Supercharger Nose Cone Bearing Wear and Coupler Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 950,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Coupler/isolator failure is significantly more common than actual nose cone bearing wear—one independent mechanic notes the bearings themselves rarely wear out and it's primarily the coupler/isolator that fails",
+          "DIY coupler-only repair can be as low as $30-$500 in parts; the $1500 floor reflects shop labor but doesn't capture lower-cost coupler-only fixes"
+        ],
+        "evidence": "Multiple owner forums (rangerovers.net, landroverworld.org, fullfatrr.com), independent shop write-ups (Pawlik Automotive), and parts vendor guides confirm this is a well-known, widespread issue on the 5.0L V8 Eaton TVS supercharger in 2010-2022 Range Rover (L322 and L405). A JLR TSB (SSM73127) acknowledges supercharger noise diagnosis, no DTCs are typically set, and dealer repair quotes around $2,200 for the isolator align with the stated cost range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-sport-crankshaft-sensor-2005",
+      "vehicle": "2005 Land Rover Range Rover Sport",
+      "title": "Crankshaft Position Sensor Failure Causing Stalling",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 920,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "CPS heat-soak failure is well-documented on older Land Rover V8s (Discovery II, P38) but less specifically documented as a widespread issue on the L320 Range Rover Sport platform itself",
+          "L320 stalling complaints more commonly involve camshaft position sensors, fuel pump control module, or low-side fuel pressure sensor rather than CPS",
+          "Description's claim about year range covering all 2005-2013 L320 models may overstate prevalence on the 5.0L (2010+) engines",
+          "No specific NHTSA recall or manufacturer TSB confirmed for this exact issue on L320"
+        ],
+        "evidence": "DTCs P0335/P0336 are correctly mapped to crankshaft position sensor circuit faults, and heat-soak CPS failure causing stalling is a well-known Land Rover pattern (documented on Discovery II and P38 with the classic 'cool with water to restart' test). However, L320-specific stalling threads more frequently point to camshaft sensors, FPCM, or fuel pressure sensors rather than CPS, suggesting the issue description may be generalizing from older Rover V8 platforms.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-velar-door-handle-2018",
+      "vehicle": "2018 Land Rover Range Rover Velar",
+      "title": "Deployable Door Handle Mechanism Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 890,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost range ($500-$1200) appears low; dealer quotes commonly cited at $2,000-$3,800 for full latch/handle assembly replacement, though independent repairs around $800 are possible",
+          "No specific DTC listed, but owners and techs reference 'exterior door handle motor - short circuit to ground' fault code which could be included",
+          "Description claims stuck handle 'can trap occupants inside' - this is overstated; interior door handles operate mechanically/independently in most reported cases",
+          "Cold weather TSB (SSM73851) describes it as a 'cosmetic appearance concern only' for the freezing-retraction scenario, not always a true mechanism failure"
+        ],
+        "evidence": "Issue is well-documented: Jaguar Land Rover issued SSM73851 in April 2018 addressing deployable door handles not retracting in freezing conditions, and multiple owner forums (velarforums.co.uk, rangerovervelar.org) report actuator/latch failures across 2018-2021 model years with dealer repair quotes ranging from ~$800 to $3,800. The cold-weather and water-ingress aspects are confirmed, but the database's repair cost estimate appears under the typical dealer range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-discovery-sport-tailgate-wiring-2015",
+      "vehicle": "2015 Land Rover Discovery Sport",
+      "title": "Tailgate Wiring Harness Chafing and Breakage",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 870,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "{\n  \"verdict\": \"minor_issues\",\n  \"real\": true,\n  \"issues_found\": [\n    \"Forum evidence specifically points to 16.5/17 model year vehicles as the affected range, not the full 2015-2022 span claimed\",\n    \"Reported symptoms in forums focus on power tailgate open/close failure (3-beep fault); claimed symptoms (rear wiper, washer, license plate lights, backup camera, tailgate release simultaneously) a"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-sport-epb-actuator-2014",
+      "vehicle": "2014 Land Rover Range Rover Sport",
+      "title": "Electric Parking Brake Actuator Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 850,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes are wrong: actual codes per TSB SSM74004 are C2005, C2006, C2007, C2008 (actuator stuck codes). C0044 is a brake pressure sensor code and C0055 relates to wheel speed/steering sensor — neither is the EPB actuator code",
+          "Root cause description is partially inaccurate: TSB SSM74004 identifies software corruption (release command interrupted by apply command) and mechanical gear failure as primary causes, not road salt/moisture corrosion",
+          "Repair cost upper bound is low: real-world owner reports commonly total $1300-$2500 (actuator ~$800-$1000 + ~6 hours labor); $1800 ceiling is borderline",
+          "Severity arguably understated: a stuck or non-holding parking brake on a 5,000+ lb SUV has safety implications, though 'medium' is defensible since the service brake still functions"
+        ],
+        "evidence": "Land Rover TSB SSM74004 (filed with NHTSA) confirms the EPB calibration/actuator stuck issue on L494 Range Rover Sport with specific DTCs C2005-71, C2006-71, C2007-72, and C2008-72 — not C0044/C0055. Multiple owner forums (LandRoverWorld, RangeRovers.net, AULRO) confirm widespread actuator failures with repair costs typically $1000-$2500 including parts (~$450-$1000) and ~6 hours labor.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-defender-engine-mount-vibration-2020",
+      "vehicle": "2020 Land Rover Defender",
+      "title": "2.0L Ingenium Engine Excessive Vibration at Idle",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 780,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "No documented widespread 'excessive vibration at idle' issue specific to Defender 2.0L Ingenium; owner reports generally describe the P300 as smooth and well-dampened",
+          "Factual error: Defender L663 (2020+) uses a monocoque/unibody D7x aluminum platform, NOT body-on-frame as claimed",
+          "The comparison premise (body-on-frame Defender vs monocoque Evoque/Discovery Sport) is invalid since all three are unibody",
+          "Documented Ingenium idle issues are tied to PCV valve/oil separator failures causing rough idle/misfire, not generalized engine-mount vibration",
+          "Early engine mount failures on Defender P300 are not a commonly reported pattern in forums or TSBs",
+          "Repair cost range is speculative with no documented basis for this specific 'issue'"
+        ],
+        "evidence": "Searches of owner forums (Land Rover Forums, VW Vortex, Defender2.net) and Ingenium engine problem databases show the P300 is widely described as smooth and refined; documented idle complaints trace to PCV/oil-separator failures or timing chain issues, not chassis-amplified 4-cylinder vibration. The entry also contains a fundamental factual error claiming the Defender is body-on-frame when it actually uses JLR's D7x monocoque aluminum architecture.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-all-terrain-response-module-2005",
+      "vehicle": "2005 Land Rover Discovery",
+      "title": "Terrain Response ECU Software Glitches",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 780,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC U0102 is 'Lost Communication with Drive Motor Control Module A' and is not the standard code associated with Terrain Response faults; typical codes are U0001, U0073, U0122, U0128, U0155, U0300",
+          "C1A00 appears in VDM (Vehicle Dynamics Module) contexts as a generic 'Control Module' code, not specifically a Terrain Response ECU corruption code",
+          "Root cause mischaracterized: documented Terrain Response faults are overwhelmingly caused by subsystem faults (Haldex, ABS, transfer case, parking brake, battery voltage, water ingress at TCCM, steering angle sensor) — not 'ECU software corruption' or 'calibration data loss'",
+          "Year range 2005-2020 conflates three distinct platforms (LR3 2005-2009, LR4 2010-2016, L462 2017+); behavior and fixes differ significantly between them",
+          "No repair cost provided; real-world fixes range from free (steering angle recalibration, battery replacement) to $1,500+ (Haldex, transfer case actuator)",
+          "No NHTSA TSB or recall specifically for 'Terrain Response ECU software corruption' was identified"
+        ],
+        "evidence": "Forum threads and the LR workshop manual confirm Terrain Response 'Special Programs Not Available' warnings are common across LR3/LR4/Discovery Sport, but they are subsystem-driven (battery, Haldex, TCCM water ingress, steering angle sensor, CAN bus loss) rather than ECU software corruption with the cited DTCs. The codes U0102 and C1A00 do not align with the standard set of communication/TR codes seen in real diagnostic reports (U0001, U0073, U0122, U0128, U0155, U0300).",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-discovery-sport-haldex-coupling-2015",
+      "vehicle": "2015 Land Rover Discovery Sport",
+      "title": "Haldex AWD Coupling Oil Starvation",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 780,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC code U0300 is incorrect - it is a generic 'Internal Control Module Software Incompatibility' code, not specific to Haldex. Actual Haldex-related codes include P0560, P0602, P0607, P0666, and P1889",
+          "Description overgeneralizes - not all Discovery Sports use Haldex Gen 5; vehicles with 'Dynamic Driveline' use a GKN system instead of Haldex",
+          "Fluid change interval cited as 30,000-40,000 miles is supported, though some sources specifically cite 40,000 miles for Gen 5"
+        ],
+        "evidence": "Multiple Land Rover specialist sources and owner forums confirm Haldex coupling oil/filter neglect is a well-documented issue on Discovery Sport, with recommended service every 30-40k miles and failures manifesting as 'Traction Reduced' warnings and loss of AWD. However, the U0300 DTC code does not match documented Haldex fault codes, and not all Discovery Sport AWD systems use Haldex (some use GKN Dynamic Driveline).",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-velar-adblue-system-2018",
+      "vehicle": "2018 Land Rover Range Rover Velar",
+      "title": "AdBlue/DEF System Faults and Injector Crystallization",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 780,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple Velar/Land Rover owner forums confirm AdBlue injector crystallization as a recurring issue on diesel Velars, causing dosing malfunctions and no-start countdowns; reported dealer repair costs of £1500-£1700 align with the stated range. DTC codes P20EE (SCR NOx efficiency) and P207F (DEF quality/dosing) are well-documented and frequently appear together with crystallization-related faults, and P2BAC is a recognized SCR inducement code.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-velar-water-ingress-2018",
+      "vehicle": "2018 Land Rover Range Rover Velar",
+      "title": "Water Ingress into Tailgate and Rear Light Clusters",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 720,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Velar does not have a 'continuous LED tail light strip that spans the tailgate' - it has separate side tail light clusters plus a center lamp panel; the description conflates Velar with newer full-width light bar designs",
+          "Condensation in Land Rover tail lights is documented by JLR as normal/expected behavior due to Goretex breather membranes, not a defect",
+          "No evidence found of widespread Velar-specific water ingress causing LED failure, wiper motor damage, or liftgate actuator failure as a cascading issue",
+          "No TSBs or NHTSA complaints found specifically targeting Velar tailgate water ingress with the described symptoms",
+          "Repair cost range is speculative without a documented repair pattern; tail lamp assembly alone can exceed the upper bound"
+        ],
+        "evidence": "Forum discussions for the Velar treat tail light condensation as expected behavior per the owner's manual, not a defect. While water ingress around tailgate seals/rear lights is a known pattern on older Land Rovers (Evoque, L322), there is no strong documented evidence of a chronic Velar-specific issue matching the description's cascading damage to LEDs, wiper motors, and liftgate actuators.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-discovery-l462-air-suspension-2017",
+      "vehicle": "2017 Land Rover Discovery",
+      "title": "L462 Discovery Air Suspension Height Sensor Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 680,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes C1A20 and C1A23 do not match commonly documented Land Rover height sensor codes (typically C1A04/C1A05/C1A06 for front/rear height sensors, or C1A74 for sensor mechanism)",
+          "Height sensor failure is described as a less common failure mode on L462 compared to air spring leaks and compressor burnout, so framing it as 'particularly prone to failure' overstates frequency",
+          "Severity 'medium' is reasonable but could arguably be higher since a fault often locks the vehicle into 'Normal Height Only' mode affecting off-road capability"
+        ],
+        "evidence": "Forum posts and repair guides confirm height sensors on Land Rover Discovery/L462 can fail and cause uneven ride height, but documented DTCs for the four corner height sensors are C1A04-C1A06 and C1A74-range codes, not C1A20/C1A23. Sources also indicate height sensor failures are less common than air spring leaks or compressor failures on the L462.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-freelander-2-rear-diff-leak-2007",
+      "vehicle": "2007 Land Rover Freelander",
+      "title": "Rear Differential Pinion Seal and Flange Leak (Freelander 2)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 650,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "TSB LTB00342 specifically covers MY 2007-2011 (VINs up to 257090), not the full 2007-2014 range stated; 2012-2014 models received the improved Gen-4 Haldex and updated software and are less affected",
+          "Description conflates pinion bearing damage (the actual TSB root cause from Haldex torque application) with simple seal wear; bearing failure typically precedes/causes the leak rather than low fluid causing bearing damage",
+          "Repair cost range is plausible for a seal-only job but a full pinion bearing/diff repair (the actual TSB remedy) commonly runs higher than $900"
+        ],
+        "evidence": "Land Rover issued TSB LTB00342/2010 (revised 2011) for Freelander 2 rear differential pinion bearing damage on MY 2007-2011, attributed to Haldex coupling torque application overloading the bearing. Owner forums (LandyZone, Freel2, LandRoverForums) widely confirm rear diff pinion/input seal and Haldex o-ring/shaft seal leaks as a known weak spot, and AutoGuru lists pinion seal replacement around $200-$500 AUD.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-evoque-fuel-pump-2020",
+      "vehicle": "2020 Land Rover Range Rover Evoque",
+      "title": "Ingenium Engine High-Pressure Fuel Pump Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 650,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "P0088 indicates fuel pressure TOO HIGH (opposite problem) - inappropriate for a pump failure that reduces pressure; should likely be P0089 (regulator performance) or P228C/P228D instead",
+          "P0191 is a fuel rail pressure sensor circuit code, not directly a pump wear symptom",
+          "The 'cam follower premature wear' failure mode is well-documented on Ford EcoBoost engines but not clearly documented as the specific Ingenium HPFP failure mode in available sources; JLR Ingenium HPFP issues more often cite metering valve faults (per TSB referencing P00C6/P228C/P228D)",
+          "No specific JLR TSB confirmed for an updated pump design on 2020-2025 Evoque HPFP",
+          "Repair cost range may be slightly low - dealer quotes for HPFP work on JLR vehicles can exceed $2000 with diagnostics and labor"
+        ],
+        "evidence": "Forum reports confirm HPFP failures on Ingenium 2.0L engines with P0087 codes and symptoms matching the description (hard starting, rough running, power loss). However, the documented JLR TSB for HPFP issues references codes P00C6/P228C/P228D with metering valve failures, not the cam-follower wear mechanism described, and P0088 indicates the opposite pressure condition.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-defender-air-suspension-2020",
+      "vehicle": "2020 Land Rover Defender",
+      "title": "Optional Air Suspension Faults After Off-Road Use",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 560,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC C1A20 is a generic Land Rover compressor fault code ('pressure increases too slow when filling reservoir') primarily documented on LR3/LR4/Disco 3-4/Range Rover L322/Sport platforms, not specifically tied to the L663 Defender or to the described mud/debris/puncture scenario",
+          "C1A20 relates to compressor/reservoir filling problems, not height sensor mud contamination or air spring puncture as described - DTCs do not match the failure mode",
+          "Claim that air suspension is 'standard on 110 V8 and X models' is too narrow; electronic air suspension is standard on additional L663 trims (e.g., First Edition, XS, and most six-cylinder configurations)",
+          "No repair cost provided; typical air suspension repairs range from ~$200 (sensor) to $2,000+ (full overhaul)"
+        ],
+        "evidence": "Owner forums and independent shops confirm L663 Defenders do experience air suspension issues including height sensor faults, compressor noise, and premature air strut wear, particularly with off-road use. However, DTC C1A20 is overwhelmingly documented on older Land Rover models (LR3/LR4, Disco 3/4, RR L322, RR Sport) as a compressor/reservoir pressure-rise fault, not as a mud/puncture-related code on the L663 Defender.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-defender-rear-window-crack-2020",
+      "vehicle": "2020 Land Rover Defender",
+      "title": "Rear Quarter Window Spontaneous Cracking",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 520,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "The well-documented spontaneous cracking issue on the 2020+ Defender is the windshield, not the rear quarter window — no substantial evidence of rear quarter glass spontaneously cracking",
+          "Class action lawsuit (filed 2022, expanded 2024) specifically concerns windshields on 2020-2022 Defenders, not rear quarter glass",
+          "Rear quarter area issues that do exist are different problems: cosmetic rear quarter trim/panel popping off its clips, and the rear door fixed window assembly coming loose — neither involves spontaneous glass cracking",
+          "Repair cost of $500-$1500 is low for Defender glass work; windshield replacements are reported around $2,000-$2,471, though a smaller quarter glass might be cheaper if the issue were real",
+          "Year range 2020-2025 likely too broad — documented complaints/lawsuit primarily cover 2020-2022 model years",
+          "Severity 'low' may understate the issue if conflated with the windshield problem, which plaintiffs argue is a safety hazard"
+        ],
+        "evidence": "Extensive forum discussion, NHTSA complaints, and a US District Court class action lawsuit document spontaneous WINDSHIELD cracking on 2020-2022 Defenders attributed to thermal/design issues, with some owners replacing 3-5 windshields. No comparable body of evidence exists for rear quarter window glass spontaneously cracking — rear-area complaints involve trim panels detaching or fixed window assemblies loosening, not glass fracture.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-range-rover-velar-wading-sensor-2018",
+      "vehicle": "2018 Land Rover Range Rover Velar",
+      "title": "Wade Sensing System False Alarms",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 450,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "No documented evidence of wade sensing false alarms on Velar in NHTSA, TSBs, or owner forums",
+          "Wade sensing only activates during actual water wading, not from puddles or rain as described",
+          "Wade sensing is a rarely-optioned feature (not available in US for most years), making widespread issue claims implausible",
+          "Description conflates wade sensing with general moisture/puddle detection, which is not how the system works"
+        ],
+        "evidence": "Wade sensing is a real optional Velar feature using ultrasonic sensors in the door mirrors, but extensive searches of owner forums (velarforums.co.uk), NHTSA, and TSB databases found no documented pattern of false alarms from contaminated sensors. The described trigger mechanism (puddles/rain causing dashboard warnings) misrepresents how the system actually operates.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-defender-door-check-strap-2020",
+      "vehicle": "2020 Land Rover Defender",
+      "title": "Front Door Check Strap Premature Wear",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 420,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "No evidence of front door check strap premature wear on 2020-2024 L663 Defender; this is a known issue on classic/pre-2016 Defenders, not the new model",
+          "Documented door issues on the new Defender involve latch/actuator failures and seal suction, not check straps",
+          "Claim that 110 is worse 'due to larger doors' is incorrect - 90 and 110 share the same front door size/construction on L663",
+          "Repair cost range is speculative with no TSB or shop data to support it",
+          "Description appears to conflate well-known classic Defender check strap problems with the modern L663 platform"
+        ],
+        "evidence": "Forum searches on the L663 Defender (landroverforums.com, 2020-2024 model years) surface door problems related to electronic latches/actuators, child-lock glitches, and door-seal suction, but no reports of front door check strap wear. Check strap wear results all reference the pre-2016 classic Defender with two-piece doors, which is a structurally different vehicle.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-discovery-sport-fuel-pump-ingenium-2020",
+      "vehicle": "2020 Land Rover Discovery Sport",
+      "title": "Ingenium 2.0L High-Pressure Fuel Pump Cam Follower Wear",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 380,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "Conflates two different engines: HPFP cam follower wear is a documented issue on the Ford-sourced 2.0L (pre-Ingenium) used in 2015-2017 Discovery Sport and 2012-2017 Evoque, NOT the JLR Ingenium 2.0L used in 2020-2025 Discovery Sport",
+          "The 2020-2025 Discovery Sport Ingenium engine's documented issues are timing chain stretch, oil dilution, turbo failures and DPF/VVT problems — not HPFP cam follower wear",
+          "No TSB, NHTSA complaint, or forum evidence found tying HPFP cam follower wear to the Ingenium engine specifically",
+          "Claim that JLR 'acknowledged with an updated part' for this specific issue on Ingenium engines is unsubstantiated",
+          "Year range (2020-2025) is wrong for the actual cam follower issue, which affected earlier Ford-engine model years"
+        ],
+        "evidence": "Search results confirm HPFP cam follower wear is a well-known issue on the Ford-derived 2.0L EcoBoost-based engine in 2015-2017 Discovery Sport and 2012-2017 Evoque, but the 2020-2025 Discovery Sport uses the JLR Ingenium 2.0L, whose documented problems are timing chain stretch, oil dilution, and turbo/VVT issues rather than HPFP cam follower wear. The entry appears to incorrectly transfer the older Ford engine's known issue to the newer Ingenium engine.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-defender-wading-sensor-false-2020",
+      "vehicle": "2020 Land Rover Defender",
+      "title": "Wade Sensing System False Alerts and Calibration Issues",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 340,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Wade sensing does not auto-activate or alert during normal driving/rain/puddles - it must be manually selected from the 4x4 infotainment menu, so 'false alerts during rain' and 'distracting during normal driving' is technically inaccurate",
+          "System auto-disables above 6 mph and requires ~6 inches of water to register, contradicting the 'shallow puddle false alerts' claim",
+          "No NHTSA complaints, recalls, or TSBs found documenting this as a widespread issue",
+          "Only isolated forum reports of sensor misreads exist (often related to dirty sensors or folded mirrors per owner's manual), not a documented systemic defect",
+          "Description conflates a normal limitation/maintenance item (keep sensors clean) with a defect",
+          "Severity 'low' is reasonable IF the issue existed, but the issue as described doesn't match real-world behavior"
+        ],
+        "evidence": "Forum threads on landroverforums.com show isolated owner reports of wade sensors occasionally misreading, with causes traced to dirty sensors, folded mirrors, or insufficient water depth - all documented as normal limitations in the owner's manual. The system must be manually activated and disables above 6 mph, so the described 'false alerts in rain/puddles during normal driving' scenario is not how the system operates.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "land-rover-defender-diff-breather-2020",
+      "vehicle": "2020 Land Rover Defender",
+      "title": "Differential Breather Blockage After Wading/Off-Road",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 290,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Issue is well-documented for classic Defenders and off-road vehicles generally, but specific evidence for L663 (2020-2025) is limited; the L663 reportedly has an improved breather design",
+          "Front differential breather location claim ('sits lower, more exposed') not specifically verified for L663 architecture",
+          "Repair cost upper bound ($600) may be low if pinion seal replacement is required on L663's active torque vectoring diff, which forum users describe as a complex job",
+          "No DTCs is correct - this is a mechanical/seal issue with no electronic monitoring",
+          "Severity 'low' is reasonable for nuisance leak but could escalate to medium if differential runs low on oil"
+        ],
+        "evidence": "Differential breather blockage causing pressure buildup and seal leaks is a well-documented phenomenon in off-road vehicles and classic Land Rovers (extensive forum discussions, aftermarket raised-breather kits exist). For the L663 specifically, maintenance guides mention the breather design is improved and recommend extended breathers as preventive for heavy wading, but no TSB or widespread owner reports were found tying this specific failure mode to 2020-2025 Defenders.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "landrover-rangeroversport-48v-mild-hybrid-battery--2023",
+      "vehicle": "2023 Land Rover Range Rover Sport",
+      "title": "48V Mild-Hybrid Battery / DC-DC Converter Fault Causing No-Start, Warning Messages, and Limp Mode",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes appear incorrect/fabricated - actual documented JLR DTC for this issue is P0A78-49 stored in the EPIC module per SSM76229/SSM76347, not P0A94/P1AEE/B11DB",
+          "U3000 is a generic communication code referenced in a different L461 TSB (air suspension/EESM), not specifically this 48V/DC-DC fault",
+          "TSBs (SSM76229, SSM76347) explicitly cite L460 Range Rover and L663 Defender; L461 Range Rover Sport inclusion is plausible due to shared MLA-Flex architecture but not directly confirmed in TSB text found",
+          "Description references 'battery energy control module (BECM)' which is more commonly associated with older L494 MHEV platform; new L461 uses EPIC module terminology"
+        ],
+        "evidence": "Multiple JLR TSBs filed with NHTSA in 2025 (SSM76173, SSM76229, SSM76347) confirm a real 'Stop Safely Electrical Fault Detected' issue tied to 48V DC-DC converter / EPIC module failures on L460/L663 MHEV vehicles, with documented DTC P0A78-49; owner forums and carproblemzoo report identical symptoms (sudden shutdown, electrical fault warnings, no-start) on Range Rover Sport MHEVs. However, the specific DTC codes listed in the entry do not match the actual JLR-documented code.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "landrover-rangeroversport-front-brake-squeal-judder-2023",
+      "vehicle": "2023 Land Rover Range Rover Sport",
+      "title": "Front Brake Squeal, Judder, and Premature Rotor/Pads Replacement on Heavy New-Generation Models",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Issue is predominantly REAR brakes, not front as described - this is a significant misattribution",
+          "Root cause is torque vectoring by braking and rear brake bias (rear caliper doubles as e-brake), not front pad compound or wheel/tire weight",
+          "Repair costs understated - documented owner bills are $2,000-$2,500+, exceeding the $600-$1,800 range",
+          "Year range is reasonable but issue is most documented on 2023-2024 MY; some sources extend to 2022-2025",
+          "Severity arguably should be higher given active class action lawsuit alleging safety risk and potential brake system failure"
+        ],
+        "evidence": "An April 2026 class action lawsuit (Zats v. JLR NA) and extensive owner forum reports confirm premature brake wear on 2023+ Range Rover/Range Rover Sport, but the documented problem is rear pads/rotors wearing at 8,000-17,000 miles due to rear brake bias and torque vectoring by braking - not front brakes as described. Repair costs in the lawsuit run $2,000-$2,500+ per incident, above the stated range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "landrover-rangeroversport-pivi-pro-infotainment-freezing-2023",
+      "vehicle": "2023 Land Rover Range Rover Sport",
+      "title": "Pivi Pro Infotainment Freezing, Black Screen, and Camera System Dropout",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes (U0001, U0155, B1A6A) are not specifically documented for this issue; U0148 (Lost Communication with Infotainment Module) is the code cited in troubleshooting sources",
+          "Upper repair cost estimate ($2200) appears low - a forum report cited a head unit replacement work order at approximately $6500",
+          "Issue is broader than just 2023-2025 RRS - affects nearly all JLR vehicles with Pivi Pro from 2020+, though most prevalent in MY2024-2025"
+        ],
+        "evidence": "Multiple owner forums (Land Rover Forums, RangeRovers.net) and JLR's own software update page confirm Pivi Pro freezing, black screens, and reboot issues affecting Range Rover Sport L461 and other JLR models, with symptoms including loss of HVAC, camera, navigation, and Bluetooth functionality. JLR has issued numerous OTA software updates targeting Pivi Pro stability, and dealers have replaced head units in some cases.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "landrover-rangeroversport-rearview-camera-360-degree-2023",
+      "vehicle": "2023 Land Rover Range Rover Sport",
+      "title": "Rearview Camera / 360-Degree Surround View Failure and Delayed Image Display",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range slightly inaccurate: primary NHTSA recall N927 for surround/rearview camera failure on the current-gen Range Rover Sport targets 2024 model year specifically (not 2023 or 2025); 2023 L461 Sport is not named in the NFSM camera recall",
+          "Description conflates two distinct issues: (1) the 2018-2022 water-ingress recall (N778) which does NOT apply to the new L461 Sport, and (2) the 2024 NFSM overheating recall (N927) which is the actual current-gen issue",
+          "DTC codes are plausible/generic but not specifically confirmed in JLR TSBs for this exact failure; U0238 and U3000 are generic communication codes rather than JLR-specific camera codes",
+          "Repair cost range ($0-$1800) is misleading: NFSM replacement and seal/camera replacement are performed free of charge under active NHTSA recalls (N927, N778, N946)"
+        ],
+        "evidence": "NHTSA recall N927 (Oct 2024) confirms 2024 Range Rover Sport vehicles have a Near Field Sensing Module that may overheat and cause the 3D surround camera and rearview image not to display, which is a documented FMVSS 111 safety issue. The water-ingress camera recall (N778, 24V023) cited in the description actually applies only to 2018-2022 L494 Range Rover Sport, not the current-generation 2023-2025 L461.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/recalls",
+          "type": "recall",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "landrover-rangeroversport-water-intrusion-from-tailgate-2023",
+      "vehicle": "2023 Land Rover Range Rover Sport",
+      "title": "Water Intrusion from Tailgate / Rear Body Seals Causing Damp Cargo Area and Electrical Faults",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "No documented TSBs, recalls, or widespread owner reports specifically about tailgate/rear body seal water intrusion on the 2023-2025 L461 Range Rover Sport",
+          "Forum reports of rear cargo water leaks are from older Range Rover Sport generations (L320/L494), not the redesigned L461",
+          "DTC 'B1DXX' is not a valid code - it is a wildcard placeholder, suggesting AI fabrication",
+          "U0140 (Lost Communication with BCM) is a generic communication code not specifically tied to water intrusion in the rear of this vehicle",
+          "Documented electrical faults on 2023+ Sport relate to DCDC converter/EPIC module (P0A78-49), not rear water ingress",
+          "Repair cost range is plausible in general but not anchored to any documented repair for this specific issue"
+        ],
+        "evidence": "NHTSA TSBs for the 2023+ L461 Range Rover Sport address MHEV DCDC converter failures and EPIC module faults rather than tailgate water intrusion, and forum reports of rear cargo water leaks reference older L320/L494 generations. The cited DTC 'B1DXX' is a placeholder rather than a real code, indicating the entry was likely AI-generated without source verification.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    }
+  ]
+}

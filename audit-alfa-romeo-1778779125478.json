@@ -1,0 +1,406 @@
+{
+  "sampledAt": "2026-05-14T17:23:57.630Z",
+  "total": 17,
+  "verified": 1,
+  "minor": 8,
+  "major": 4,
+  "fabricated": 2,
+  "errors": 2,
+  "deadLinks": 6,
+  "totalLinks": 6,
+  "results": [
+    {
+      "id": "alfa-romeo-giulia-stall",
+      "vehicle": "2017 Alfa Romeo Giulia",
+      "title": "Engine Stall and No-Start Electrical Fault",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 175,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Root cause mischaracterized: documented issue is a low-pressure fuel pump/fuel delivery module defect (NHTSA recall 25V-586/93C), not an ECM or wiring harness electrical fault",
+          "DTC codes likely incorrect: P0606 (ECM processor) and U0100 (lost ECM communication) do not match the actual fuel pressure/low fuel pressure codes reported by owners and dealers",
+          "Year range too broad: NHTSA recall covers 2017-2019 Giulia only; extending to 2026 is unsupported by available evidence",
+          "Trim list includes Ti Sport which isn't a standard Giulia trim in most years; Quadrifoglio is confirmed affected",
+          "Repair cost range misleading: under the recall, fuel delivery module replacement is free; out-of-warranty replacement can exceed the $2000 upper bound"
+        ],
+        "evidence": "NHTSA opened PE24-003 in January 2024 and Stellantis issued recall 25V-586 in September 2025 covering 53,849 vehicles (2017-2019 Giulia, 2018-2019 Stelvio) for low-pressure fuel pump/fuel delivery module failures causing engine stalls and loss of motive power — not an ECM or wiring harness fault. Owner forums also commonly cite starter relay and battery issues for no-start symptoms, not the ECM-related DTCs listed.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2018/ALFA%20ROMEO/GIULIA",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "alfa-romeo-giulia-infotainment-reboot",
+      "vehicle": "2017 Alfa Romeo Giulia",
+      "title": "Infotainment System Random Reboots",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 145,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Trim list slightly off for later years - Quadrifoglio was discontinued after 2024 model year in North America, and Veloce was converted to a package (not standalone trim) for 2025+; Ti Sport was discontinued earlier and replaced with Sprint trim for 2021+",
+          "Severity could arguably be 'high' since loss of backup camera while reversing is a safety concern, though 'medium' is defensible"
+        ],
+        "evidence": "Multiple owner forum threads (giuliaforums.com, alfaowner.com) from 2017-2025 document widespread Uconnect infotainment random reboot issues on 2017+ Giulias, typically resolved via software updates (e.g., MV-002.009.055 and later) or head unit replacement under warranty. The Giulia remains on sale in North America through the 2026 calendar year, supporting the year range, though trim availability (Quadrifoglio, Veloce, Ti Sport) varies significantly by year.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "alfa-romeo-stelvio-stall",
+      "vehicle": "2018 Alfa Romeo Stelvio",
+      "title": "Engine Stall and No-Start Electrical Fault",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 140,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Root cause misattributed: documented Stelvio stall issue is the low-pressure fuel pump/fuel delivery module (NHTSA recall 25V-667 / FCA recall 93C), not ECM wiring harness or ground connections",
+          "Year range 2018-2026 is too broad; the primary documented stall recall covers only 2018-2019 Stelvios",
+          "DTC codes P0606 and U0100 are generic ECM codes not specifically associated with the documented Stelvio stall problem; actual reported codes include misfire codes (P0300/P0301/P0304/P0363) and U0010 CAN bus faults",
+          "Issue overlaps with multiple distinct documented problems (fuel pump recall 93C, BCM fuel level recall V84, catalytic converter/wiring heat recall UA4, starter relay forum reports) that are being conflated",
+          "Repair cost range $200-$2000 is plausible for a relay/wiring fix but the actual documented fix (fuel delivery module) is covered free under recall, making the cost framing misleading",
+          "Quadrifoglio trim inclusion is partially correct — Quadrifoglio was included in fuel pump recall but with different production dates"
+        ],
+        "evidence": "NHTSA records confirm Stellantis recalled ~53,849 2017-2019 Giulia and 2018-2019 Stelvio vehicles in September 2025 (recall 93C / NHTSA 25V-667) for fuel pump failures causing engine stall and loss of motive power — the fix is fuel delivery module replacement, not ECM wiring repair. Owner forums (StelvioForum, AlfaBB) also document starter relay failures causing no-start after auto stop/start events, but no documented TSB or recall attributes Stelvio stalls to ECM wiring harness or ground connection faults as described.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2019/ALFA%20ROMEO/STELVIO",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "alfa-romeo-stelvio-infotainment-crash",
+      "vehicle": "2018 Alfa Romeo Stelvio",
+      "title": "Infotainment System Crash and Black Screen",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 120,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2018-2026 likely too broad; MY24+ refresh introduced new Uconnect 5 system that addresses many of these issues - documented complaints concentrate on 2018-2023 (pre-refresh Uconnect 8.8)",
+          "Repair cost range $0-$1200 is wide but plausible; some owners had head unit/radio replacements which can exceed $1200, others were resolved with free software updates",
+          "No DTC codes is accurate - forum users report scans with MES/AlfaOBD often show no error codes for this issue"
+        ],
+        "evidence": "Multiple owner forum threads (Stelvio Forum, Giulia Forums, Alfa Owner) document Uconnect infotainment crashes/black screens on 2018-2022 Stelvios, often fixed via software reflash or head unit replacement. Issue is widely reported but appears tied to pre-refresh Uconnect system; no NHTSA recall but Alfa Romeo Social Care has acknowledged and collected VINs for investigation.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.stelvioforums.com/threads/infotainment-crash.5601/",
+          "status": 405,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "alfa-romeo-giulia-brake-squeal",
+      "vehicle": "2017 Alfa Romeo Giulia",
+      "title": "Front Brake Squeal and Dust",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 110,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "Based on the search results, I have enough evidence to render a verdict. The issue is well-documented on Giulia owner forums across multiple model years, though brake dust reports are mixed (some owners report heavy dust, others minimal).\n\n{\n  \"verdict\": \"verified\",\n  \"real\": true,\n  \"issues_found\": [\"Brake dust complaints are mixed - some owners report heavy dust while others report remarkably lo"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "alfa-romeo-stelvio-sunroof-rattle",
+      "vehicle": "2018 Alfa Romeo Stelvio",
+      "title": "Panoramic Sunroof Rattle and Wind Noise",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 90,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "No official TSB/recall specific to this issue; fixes are typically dealer goodwill/warranty work rather than a documented bulletin",
+          "Repair cost ceiling may be slightly low — full headliner R&R with track/frame repair can exceed $650 in labor alone"
+        ],
+        "evidence": "Multiple Stelvio owner forum threads (2018–2022 model years, Ti Sport, Veloce, Quadrifoglio) document panoramic sunroof rattles over bumps and wind/whistling noise at highway speeds, with fixes ranging from foam blocks behind the headliner, reseating clips, replacing buckled rubber gaskets, to full headliner removal. No DTC codes are associated (purely mechanical/NVH), and no official Alfa Romeo TSB or NHTSA recall specifically addresses it, consistent with a low-severity nuisance issue.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.stelvioforums.com/threads/sunroof-rattle.4501/",
+          "status": 405,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "alfa-romeo-giulia-transfer-case-noise",
+      "vehicle": "2017 Alfa Romeo Giulia",
+      "title": "AWD Transfer Case Noise",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 85,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Symptom description partially mismatched: documented Q4 transfer case complaints involve jolting/slipping during acceleration, leaks, or 5th-gear resonance rumble, not specifically 'whining/grinding during low-speed turns'",
+          "DTC code P17D0 could not be verified as a documented code for Q4 transfer case clutch wear on the Giulia; common Q4/AWD-related codes on this platform tend to be C-codes (e.g., C2652-81) for TVM/torque vectoring",
+          "Repair cost upper bound likely understated: owner reports cite ~$3,000–$3,500 dealer quotes for transfer case replacement, exceeding the $2,500 ceiling",
+          "Year range 2017-2026 likely too broad on the new end; the Giulia was discontinued after the 2024 model year in many markets, so 2025-2026 inclusion is questionable",
+          "Root cause attribution to 'premature clutch pack wear' is plausible but a frequent documented trigger is tire diameter mismatch causing ATC to over-engage, which is not mentioned"
+        ],
+        "evidence": "Owner forums (giuliaforums.com) document real Q4 Active Transfer Case problems including slipping/jerking during acceleration with ~$3,500 replacement quotes, leaky transfer cases (~$3k repair), and premature ATC wear from tire circumference mismatch—confirming the issue exists, but the specific noise symptom, DTC P17D0, and $2,500 cost ceiling do not closely align with documented evidence.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "alfa-romeo-stelvio-transfer-case-leak",
+      "vehicle": "2018 Alfa Romeo Stelvio",
+      "title": "Transfer Case Fluid Leak",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 75,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC P17D0 is not clearly documented as an Alfa Romeo-specific code for this issue; it appears associated with Toyota center differential lock switch diagnostics, not the Stelvio Q4 transfer case",
+          "Repair cost upper bound ($1800) may be low — forum reports indicate full transfer case assembly replacement can approach £3,500, and seal replacement involves ~10 hours of labor",
+          "Severity rating of 'high' may be overstated — leak is typically slow and not immediately safety-critical, more appropriately 'medium' unless transfer case failure occurs"
+        ],
+        "evidence": "Multiple owner forum threads (alfaowner.com, stelvioforum.com) confirm Q4 transfer case fluid leaks from the front output/driveshaft seal on 2018+ Stelvios, with dealer-confirmed repairs requiring ~10 hours labor. However, no evidence ties P17D0 specifically to this Alfa Romeo issue, and the transfer case assembly itself can cost ~£3,500 if full replacement is needed.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.stelvioforums.com/threads/transfer-case-leak.3201/",
+          "status": 405,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "alfa-romeo-4c-tct-shudder",
+      "vehicle": "2015 Alfa Romeo 4C",
+      "title": "TCT Dual-Clutch Transmission Shudder",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 70,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC P0730 (Incorrect Gear Ratio) is not the typical code reported for TCT shudder/clutch wear; forum-reported codes are clutch/actuator-specific like P2909, P0916, P294D, P0856, P292B, P292C",
+          "Description conflates clutch wear from creeping with general shudder; both occur but root causes differ (calibration vs. clutch overheating from stop-and-go)"
+        ],
+        "evidence": "Multiple owner forum threads (4c-forums, alfaowner, alfabb) extensively document TCT dry dual-clutch shudder, jerkiness off-line, and accelerated clutch wear from stop-and-go/creeping driving on 2015-2020 4Cs, often remedied by TCU reflash, clutch calibration, or actuator/clutch replacement ($2,500+ USD). However, the documented DTCs are clutch-pressure/actuator codes (P2909, P0916, P292x series), not P0730.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "alfa-romeo-giulia-turbo-coolant-leak",
+      "vehicle": "2017 Alfa Romeo Giulia",
+      "title": "Turbo Coolant Line Leak",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 65,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC code P0217 (engine coolant over temperature) is not the primary code associated with this issue; P026A (secondary coolant leak) is more commonly cited in forums",
+          "Failure mechanism described as 'crimped fittings' is inaccurate — actual failure is O-ring seals on turbo coolant supply/return pipes and a plastic Schrader/bleeder valve in the line",
+          "Year range likely overstated — issue is heavily documented on 2017-2019 models; Alfa released an updated part design for later years, so 2020-2026 inclusion is questionable",
+          "Severity 'high' is defensible due to overheating risk, but most owners catch the slow leak before engine damage occurs; 'medium' may be more appropriate"
+        ],
+        "evidence": "Multiple Alfa Romeo Giulia owner forums (giuliaforums.com, alfaowner.com) and RepairPal confirm a well-documented turbo coolant leak issue caused by failed O-rings on the turbo coolant supply/return lines and a cracking plastic bleeder/Schrader valve assembly, with Alfa issuing a TSB and an updated part design. The repair commonly involves replacing O-rings and the coolant supply/return pipes, often performed under warranty.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "alfa-romeo-tonale-infotainment-bugs",
+      "vehicle": "2023 Alfa Romeo Tonale",
+      "title": "Infotainment Software Bugs",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 65,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "{\n  \"verdict\": \"minor_issues\",\n  \"real\": true,\n  \"issues_found\": [\"Description mentions 'incorrect range estimates' which is not prominently documented in TSBs/forums as a known infotainment bug - typical reported symptoms are frozen/blank screens, navigation map blackouts, ghost-touch events, CarPlay/Android Auto connectivity issues, and failed OTA updates\", \"Repair cost range of $0-$500 may be l"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "alfa-romeo-giulia-window-regulator",
+      "vehicle": "2017 Alfa Romeo Giulia",
+      "title": "Rear Window Regulator Failure",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 60,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "No evidence of widespread rear window regulator failure for 2017-2026 Giulia in NHTSA complaints, recalls, or owner forums",
+          "Window regulator failure with plastic gear/clip weakness is a known issue on older Alfa models (164, 156, Milano, 159, GTV6) — appears to have been incorrectly attributed to the modern Giulia",
+          "Year range extends to 2026 which is implausible for a 'known issue' database entry",
+          "Top documented Giulia issues are fuel pump, BCM, infotainment, and brake pedal — not window regulators",
+          "Repair cost of $200-$500 is likely too low; modern Giulia regulator+motor assemblies typically run higher with dealer labor"
+        ],
+        "evidence": "NHTSA and owner forum searches show no pattern of rear window regulator failures on the 2017+ Giulia; documented Giulia issues center on the fuel pump (recall 25V586000), BCM, and brake/airbag recalls. Window regulator failures with plastic gears/clips are a well-documented issue but only on legacy Alfa models like the 164, 156, Milano, and 159 — not the modern Giulia platform.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "alfa-romeo-4c-headlight-condensation",
+      "vehicle": "2015 Alfa Romeo 4C",
+      "title": "Headlight Condensation and Moisture",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 55,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Only one isolated forum post found specifically for the 4C; not a widely documented/systemic issue for this model",
+          "Description mentions 'LED' components, but the 4C was offered with halogen or bi-xenon headlights, not LED",
+          "Root cause attribution to 'poor factory sealing' is inaccurate—4C headlights are intentionally vented and not fully sealed, so mild condensation is considered normal",
+          "Repair cost range ($100-$2000) is extremely wide and poorly calibrated",
+          "No NHTSA complaints or TSBs found for 4C headlight condensation specifically"
+        ],
+        "evidence": "Forum searches found only one isolated 4C owner complaint about fogged headlights, with other owners explaining headlights are vented by design and not sealed. Headlight condensation is a more documented issue on Alfa Romeo Giulia/Stelvio, not the 4C, and the 4C used halogen/bi-xenon (not LED) lighting.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "alfa-romeo-stelvio-turbo-oil-leak",
+      "vehicle": "2018 Alfa Romeo Stelvio",
+      "title": "Turbo Oil Line Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 55,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Mechanism described is inaccurate: actual failure is at O-rings on the turbo oil/coolant line fittings, not banjo bolt fittings with copper crush washers",
+          "No DTC codes is plausible since this is a mechanical seal leak, but should be explicitly noted as a visual/smell-based diagnosis",
+          "Repair cost range ($150-$600) is reasonable for a straightforward O-ring replacement but could understate cases where extensive labor or related damage occurs",
+          "Year range likely accurate for affected production but bulk of reports are 2017-2020 model years; later years (2023+) show fewer reports"
+        ],
+        "evidence": "Multiple Alfa Romeo Stelvio owner forum threads confirm a widespread, well-documented turbo oil/coolant line leak issue, but it is specifically described as an O-ring seal failure at the turbo fittings—dealers reportedly have done hundreds of these repairs. The described banjo-bolt/copper-crush-washer mechanism does not match the actual Stelvio turbo line design described by owners and techs.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.stelvioforums.com/threads/turbo-oil-leak.6801/",
+          "status": 405,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "alfa-romeo-4c-suspension-bushing",
+      "vehicle": "2015 Alfa Romeo 4C",
+      "title": "Suspension Bushing Premature Wear",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 45,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Issue is most commonly reported as rear control arm bushings (where uniball/upgraded bushings are a popular fix), not equally front and rear",
+          "Repair cost range may be slightly low if OEM control arms must be replaced (bushings often not sold separately, requiring full arm replacement)",
+          "Year range correct but note 4C coupe started 2014 in some markets (US 2015+ is accurate)"
+        ],
+        "evidence": "Multiple 4C owner forum threads document premature wear of rubber suspension bushings, particularly the rear control arm bushings, with popular aftermarket fixes (Gale/Rudi uniballs, GMS, AW, Powerflex) being commonly recommended; symptoms include clunks, wandering and looseness especially after track use. No specific NHTSA recall or manufacturer TSB was found targeting bushing wear directly (a TSB exists for a front suspension popping noise fix using adhesive, which is different).",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "alfa-romeo-tonale-phev-charging",
+      "vehicle": "2023 Alfa Romeo Tonale",
+      "title": "PHEV Charging System Issues",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 45,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC P0A0F is 'Engine Failed to Start' for hybrids, not specifically an onboard charger fault code - mismatch with described symptoms",
+          "Severity 'high' is likely miscalibrated - charging failures are an inconvenience/nuisance, not safety-critical (no fire/crash risk from failed charging itself)",
+          "Year range includes 2026 which is very early to validate as a known issue pattern",
+          "Sprint trim is not offered as PHEV in US market (PHEV trims are typically Ti, Veloce, Speciale)",
+          "Repair cost range $0-$2000 is wide but plausible; most reported fixes have been software updates/warranty repairs (closer to $0)"
+        ],
+        "evidence": "Multiple owner forum reports (TonaleTalk, AlfaOwner) and consumer complaints document Tonale PHEV charging failures including failed-to-initiate charging, slow/throttled charge rates, and blank E-Hybrid menu issues, often resolved via software updates or warranty repairs. However, no NHTSA recall or TSB specifically targets the onboard charger module with DTC P0A0F, and the charging issue is not safety-critical.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "alfa-romeo-tonale-suspension-noise",
+      "vehicle": "2023 Alfa Romeo Tonale",
+      "title": "Front Suspension Clunk and Noise",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 40,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "No documented evidence of a widespread front suspension clunk issue specific to the Tonale; forum complaints centered on software, hybrid/PHEV system, ADAS cameras, and electronics rather than suspension noise",
+          "Year range is questionable: Tonale launched as a 2024 MY in North America (PHEV-only), with 2023 MY only in select markets",
+          "Trim list (Sprint, Ti, Veloce) is inaccurate for 2025-2026; Alfa Romeo dropped Sprint/Ti/Speciale/Veloce trims for 2025 in favor of Tonale and Tonale Hybrid with Premium/Veloce/Active Assist option packages",
+          "Suspension clunk attributed to 'stabilizer bar end links and front strut mounts' on 'early production units' appears to be a generic description borrowed from issues on other Alfa Romeo models (Giulia/Stelvio/147/156), not Tonale-specific TSBs or NHTSA complaints",
+          "No supporting TSB found for this specific issue on the Tonale"
+        ],
+        "evidence": "Searches of Tonale owner forums (tonaletalk, alfabb, alfaowner) and reviews surface complaints centered on PHEV/hybrid system failures, ADAS/camera modules, software glitches, and adaptive cruise control — not front suspension clunking. Suspension-clunk forum threads retrieved are all for other Alfa models (Stelvio, Giulia, 4C, classic Alfas) on different platforms, and 2025 JD Power coverage notes the Tonale's MacPherson/Chapman strut setup soaks up bumps well without mentioning clunk complaints.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    }
+  ]
+}

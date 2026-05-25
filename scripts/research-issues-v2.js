@@ -256,10 +256,20 @@ async function research() {
   console.log(`\n━━━ Stage 1: Researcher (Opus 4.7 + web_search) ━━━`);
   console.log(`  Target: ${MAKE} ${MODEL}, years ${yearRange.min}-${yearRange.max}, ${COUNT} issues`);
   const prompt = RESEARCHER_PROMPT(MAKE, MODEL, yearList, COUNT, { exclude: EXCLUDE, focus: FOCUS });
-  const data = await callAnthropic({ prompt, max_tokens: 16000, max_searches: 10 });
-  const issues = Array.isArray(data?.issues) ? data.issues : [];
-  console.log(`  Returned ${issues.length} draft issues\n`);
-  return issues;
+  let lastErr;
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const data = await callAnthropic({ prompt, max_tokens: 16000, max_searches: 10 });
+      const issues = Array.isArray(data?.issues) ? data.issues : [];
+      console.log(`  Returned ${issues.length} draft issues (attempt ${attempt})\n`);
+      return issues;
+    } catch (err) {
+      lastErr = err;
+      console.log(`  ! attempt ${attempt} failed: ${err.message.slice(0, 120)}`);
+      if (attempt === 1) console.log(`  Retrying...`);
+    }
+  }
+  throw lastErr;
 }
 
 // ────────────────────────────────────────────────────────────────────────

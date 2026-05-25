@@ -1,93 +1,83 @@
-I'll verify the draft's claims by checking the cited sources and searching for supporting information.
-I have enough information to evaluate the draft. Key findings:
+I'll verify the citations and claims in this draft.
+I have sufficient information to evaluate the draft. Let me analyze:
 
-1. **Fairfield Cadillac citation**: Confirms 10-second power button soft reset method, mentions CT5 V-Series. Supports the soft reset claim.
-2. **Turan-Foley Cadillac citation**: Confirms multiple reset procedures for CUE; mentions CT5.
-3. **JustAnswer source**: Strongly supports the 2020 CT5 case with black screen + blue bar stuck at 99%, TSB applied at dealer, and clock displaying wrong time after recovery — these are the exact symptoms in the draft.
-4. **Year range concern**: The CT5 launched as a 2020 model. However, per the CadillacForums result, **the CT5 only received Google built-in in 2025**. Before 2025, CT5 used a different (non-Google) GM infotainment. The draft listing "Google-built infotainment" as an affected system is only accurate for 2025+. The earlier years (2020-2024) used a different system. The "stuck at 99%" symptom was documented on a 2020. So the year range itself (2020-2025) is plausible since infotainment issues exist across years, but the "Google-built" affected system is misleading.
-5. **DTC codes**: Empty array — appropriate, since this is a software/UX freeze, not typically a DTC-triggering fault. The TSB #21NA269 (DIC blank) mentions U0158 but that's a different cluster symptom.
-6. **Severity (medium)**: Reasonable — infotainment loss is annoying but not safety-critical for driving.
-7. **Cost ($0-$400)**: Reasonable — most fixes are TSB reflashes covered under warranty, or modest diagnostic fee out of warranty. Note however that 2020 CT5 (launched 2020) is now potentially out of bumper-to-bumper warranty (4yr/50k), so dealer reflash labor could be in that range. Looks appropriate.
-8. **Reset method**: Fairfield says press power button 10 seconds. Draft says "power/volume button" — slight inaccuracy, just power button. Also for 2025 Google-built systems, the method is different (steering wheel hang-up button 10-15 sec).
+**Citations verified:**
+- Citation 1 (lower-control-arm-bolt-replacement.151379): Confirmed — talks about rusted/seized bolts, welded nuts breaking, cutting ears off strut, matching nuts/washers.
+- Citation 2 (rear-lower-control-arm-bolt.79694): Confirmed — discusses M10x1.25 spec, ~$4-9 from dealer, "LCA bolts break ALL the time", grade concerns.
 
-Minor corrections needed: clarify that "Google-built infotainment" only applies to 2025+ CT5; fix reset description to be just power button (not power/volume).
+**Year range issue:** Draft has 1994-1999. However, the 3rd-gen Integra (DC2/DB) ran 1994-2001 in North America. Sources (Valex Racing) state the issue applies to "1990-2001 Acura Integra (all)" — meaning both 2nd-gen (DA, 1990-1993) and 3rd-gen (DC, 1994-2001). The draft's title says "DC" (3rd-gen) but cuts off at 1999 and excludes 2000-2001, and also excludes the 2nd-gen DA chassis that has the same issue. The years should be 1994-2001 to match the DC chassis (since the ID says "dc"), or 1990-2001 if including DA.
+
+**DTC codes:** Empty array — correct, this is a mechanical/corrosion issue with no electronic diagnostic code.
+
+**Severity:** "medium" — reasonable. The bolts don't typically fail while driving (they seize during repair attempts). Forum quote: "they won't break oN the car while you're driving". Medium is appropriate.
+
+**Cost range $100-$800:** Reasonable. Forum mentions $560 just for labor on a related compensator arm issue, OEM LCAs ~$50-60/side, bolts $4-13 each. Could go higher if shop has to cut/weld but range is plausible.
+
+**Other claims:** All well-supported by forum sources.
+
+The primary correction needed is the year range — should extend to 2001 for the DC chassis.
 
 ```json
 {
   "verdict": "needs_correction",
   "corrected_issue": {
-    "id": "cadillac-ct5-v2-infotainment-freeze-update-stall",
-    "make": "Cadillac",
-    "model": "CT5",
-    "years": [2020, 2021, 2022, 2023, 2024, 2025],
+    "id": "acura-integra-dc-rear-lca-bolt-seizure",
+    "make": "Acura",
+    "model": "Integra",
+    "years": [1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001],
     "trims": [],
     "engines": [],
-    "category": "electrical",
-    "title": "Infotainment / Center Display Freezing, Black Screen and Stalled Software Update (stuck at 99%)",
-    "description": "CT5 owners report the center infotainment display freezing, becoming unresponsive to touch, or hanging during an over-the-air or dealer-pushed software update — a common symptom is a black screen with a blue progress bar stuck at 99%. The condition is documented on a 2020 CT5 case where a Cadillac-issued Technical Service Bulletin was required to be applied at the dealer to recover the module. Secondary symptoms include incorrect clock display on the instrument cluster after the screen recovers, indicating a system-wide software fault rather than a touchscreen hardware failure. Note: 2020-2024 CT5 uses the pre-Google GM infotainment platform; the CT5 only received Google built-in starting with the 2025 model year, and the reboot procedure differs between the two generations.",
-    "solution": "Try a soft reset first. On 2020-2024 CT5 (pre-Google infotainment): press and hold the infotainment power button (left of the touchscreen) for ~10 seconds until the Cadillac logo reappears. On 2025+ CT5 (Google built-in): with the vehicle in Park, press and hold the steering-wheel phone hang-up button for 10-15 seconds; ignore the on-screen options and the system will reboot in ~5 seconds. If the unit remains stuck (especially at 99% during an update), the fix must be performed at a Cadillac dealer per the active Cadillac TSB, which reflashes the infotainment module. Avoid interrupting any software update by shutting the car off mid-flash — that is the most common trigger for the stuck-update state. A weak 12V battery can also corrupt updates, so have battery state-of-health checked before any reflash.",
+    "category": "suspension",
+    "title": "Rear lower control arm bolts seize and shear inside bushing sleeves",
+    "description": "The long bolts that pass through the rear lower control arm inner bushings corrode to the steel sleeve inside the bushing. Any attempt to remove them for alignment, bushing, or shock work results in a sheared bolt and a destroyed bushing sleeve. This is a near-universal complaint in rust-belt cars. \nOwners had to cut the ears that go around the LCA off the strut because the bolts rust to the inside of the bushing.\n \nLCA bolts break ALL the time.\n",
+    "solution": "Soak bolts with penetrating fluid (PB Blaster/Kroil) for days before attempting removal; heat the bushing sleeve with a torch. If the bolt shears, the only fix is to cut the bushing out and drill/punch the remaining sleeve from the subframe ear. \nWhen you are down there and replacing rusted bolts, if they are rusted on bad enough you might have to break the welded nut they go into on the front side of the subframe and trailing arms. You can get matching sized nuts and washers.\n Replace with OEM Honda bolts (M10x1.25, ~$4-9 each from the dealer). \nDiameter = 10mm, Pitch = 1.25.\n",
     "severity": "medium",
-    "confidence": "medium",
+    "confidence": "high",
     "symptoms": [
-      "Touchscreen unresponsive or frozen",
-      "Black screen with blue progress bar stuck at 99%",
-      "Cadillac logo loop on startup",
-      "Clock on cluster shows wrong time after recovery",
-      "CarPlay/Android Auto won't connect"
+      "seized suspension hardware",
+      "clunking from rear",
+      "unable to align rear",
+      "sheared bolt during repair"
     ],
-    "affectedSystems": [
-      "Infotainment Display Module (Radio/HMI)",
-      "Google built-in infotainment (2025+ CT5 only)",
-      "Instrument Cluster (clock sync)"
-    ],
+    "affectedSystems": ["suspension", "chassis"],
     "dtcCodes": [],
-    "estimatedCostLow": 0,
-    "estimatedCostHigh": 400,
+    "estimatedCostLow": 100,
+    "estimatedCostHigh": 800,
     "citations": [
       {
-        "type": "media",
-        "title": "How To Reset Your Cadillac CUE System — Fairfield Cadillac (covers CT5 V-Series)",
-        "url": "https://www.fairfieldcadillac.com/blogs/5979/how-to-reset-your-cadillac-cue-system"
-      },
-      {
-        "type": "media",
-        "title": "How to Reset Cadillac CUE (Turan-Foley Cadillac)",
-        "url": "https://www.turanfoleycadillac.com/blogs/7267/how-to-reset-cadillac-cue/"
+        "type": "forum",
+        "title": "Lower Control Arm Bolt Replacement — Team Integra",
+        "url": "https://www.team-integra.net/threads/lower-control-arm-bolt-replacement.151379/"
       },
       {
         "type": "forum",
-        "title": "Cadillac CT5 Screen Frozen at 99 Percent How to Reset? (JustAnswer — 2020 CT5 case with dealer TSB)",
-        "url": "https://www.justanswer.com/cadillac/kb2xu-screen-black-blue-status-line-across.html"
-      },
-      {
-        "type": "forum",
-        "title": "Rebooting Google built-in infotainment system (CadillacForums — confirms CT5 received Google built-in in 2025 and documents the hang-up-button reboot)",
-        "url": "https://www.cadillacforums.com/threads/rebooting-google-built-in-infotainment-system.1153534/"
+        "title": "Rear Lower control arm bolt? — Team Integra",
+        "url": "https://www.team-integra.net/threads/rear-lower-control-arm-bolt.79694/"
       }
     ],
     "communityRecommendations": [
       {
         "type": "tip",
-        "content": "If the screen is mid-update, do NOT shut the engine off — let the update complete (5-15 minutes). Interrupting the flash is the #1 cause of the stuck-at-99% state.",
+        "content": "Spray penetrating oil into the bushing sleeve through both ends a week before the job.",
         "upvotes": 0,
         "needsReview": false
       },
       {
-        "type": "tip",
-        "content": "Have battery state-of-health tested before any dealer-pushed reflash; a weak 12V battery can corrupt the update and create exactly the freeze symptom the bulletin addresses.",
+        "type": "warning",
+        "content": "Use proper-grade OEM bolts — hardware-store bolts are not always the correct grade for this safety-critical joint.",
         "upvotes": 0,
         "needsReview": false
       }
     ],
-    "typicalMileageLow": 0,
-    "typicalMileageHigh": 80000
+    "typicalMileageLow": 100000,
+    "typicalMileageHigh": 250000
   },
   "reasons": [
-    "Corrected the reset procedure: the cited Fairfield Cadillac source describes a 10-second hold of the power button (left of the touchscreen) only — not a 'power/volume button' combo as the draft stated.",
-    "Clarified the infotainment-platform split across the year range: per CadillacForums, the CT5 only received Google built-in starting in the 2025 model year, so listing 'Google-built infotainment' as an affected system across all years 2020-2025 was misleading. The 2020-2024 cars use the pre-Google GM infotainment (commonly referred to as CUE-era / IOx) and have a different reboot sequence than the 2025+ Google-built system (steering-wheel hang-up button, 10-15 sec).",
-    "Added two more relevant citations: the JustAnswer thread that actually documents the 2020 CT5 'stuck at 99%' + wrong-cluster-clock symptoms and the dealer-applied TSB (this is the case the draft's description references but did not cite), and the CadillacForums thread documenting the 2025 Google-built reboot method and platform-year split.",
-    "DTC array left empty — correct: this is a software/UX freeze with no characteristic DTC tied specifically to it on CT5 (U0158 appears in unrelated cluster TSB #22-NA-113, not this update-stall condition).",
-    "Year range, severity (medium), and cost range ($0-$400) verified as reasonable: most repairs are dealer reflashes typically performed under warranty or for a modest diagnostic fee, and the symptom is non-safety-critical but functionally significant."
+    "Year range extended from 1994-1999 to 1994-2001 to cover the full 3rd-generation DC chassis Integra (the ID specifies 'dc'). Multiple sources (including the Valex Racing replacement bolt kit listing) confirm the issue applies to all 1990-2001 Acura Integras; the draft cut off at 1999 with no justification, missing the 2000 and 2001 model years which share identical rear suspension hardware and the same rust-seizure failure mode.",
+    "All other claims (M10x1.25 bolt spec, ~$4-9 OEM dealer price, near-universal in rust-belt cars, sheared bolts being normal, welded captured nuts in subframe breaking, having to cut the strut ears off, the quoted phrases 'LCA bolts break ALL the time' and the strut-ear cutting language) are directly supported by the two cited Team-Integra threads.",
+    "Empty dtcCodes array is correct — this is a purely mechanical/corrosion failure with no associated OBD-II code.",
+    "Severity 'medium' is well-calibrated: bolts seize and fail during service work, not while driving (forum users explicitly note OEM bolts 'won't break ON the car while you're driving'), so it's a repair-cost/serviceability issue rather than an immediate safety failure.",
+    "Cost range $100-$800 is plausible — bolts are $4-13 each OEM, replacement LCAs run ~$50-60/side, and a related rear-suspension seized-bolt job was quoted at $560 labor by a Honda dealer in one cited thread."
   ]
 }
 ```

@@ -1,0 +1,1117 @@
+{
+  "sampledAt": "2026-05-18T14:54:50.113Z",
+  "total": 51,
+  "verified": 5,
+  "minor": 20,
+  "major": 21,
+  "fabricated": 2,
+  "errors": 3,
+  "deadLinks": 0,
+  "totalLinks": 0,
+  "results": [
+    {
+      "id": "porsche-911-ims-bearing-failure-1999",
+      "vehicle": "1999 Porsche 911",
+      "title": "Intermediate Shaft (IMS) Bearing Failure",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 5500,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0520/P0521 are oil pressure sensor codes, not IMS bearing failure codes - IMS failure typically produces no warning DTCs or camshaft correlation codes (P0341/P0344) after failure",
+          "Bearing year ranges are reversed/incorrect: dual-row was used 1997-1999 (and some 2000-2001), single-row from 2000-2005 (most failure-prone), and a larger non-serviceable bearing from 2006-2008",
+          "Description states 'dual-row (1999-2005) fails less frequently than single-row (2006-2008)' which is factually wrong - the 2000-2005 single-row is the most problematic group, while 2006-2008 has the lowest failure rate of the affected years",
+          "Repair cost range is slightly low - typical range is $2,000-$5,000+, and 2006-2008 non-serviceable bearings require full engine disassembly costing significantly more"
+        ],
+        "evidence": "IMS bearing failure is a well-documented, real defect in 1997-2008 Porsche M96/M97 engines, subject of the Eisen class-action lawsuit. However, the entry has the bearing-type/year mapping backwards (dual-row 1997-99, single-row 2000-05, larger non-serviceable 2006-08) and uses incorrect DTC codes (P0520/P0521 are oil pressure sensor codes unrelated to IMS failure).",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-boxster-ims-bearing-1997",
+      "vehicle": "1997 Porsche Boxster",
+      "title": "Intermediate Shaft (IMS) Bearing Failure",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 4200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0520/P0521 are generic oil pressure sensor codes, not specific to IMS bearing failure - IMS failures typically don't trigger specific DTCs and are detected via metal debris in oil filter",
+          "Description conflates 986 generation with full 1997-2008 range; 986 Boxster was actually 1997-2004, 987 Boxster was 2005-2008",
+          "Claim that 986 is 'most commonly affected' is imprecise - the 2000-2005 single-row bearing cars (spanning late 986 and early 987) have the highest failure rates, not the early 986 dual-row cars",
+          "2006-2008 Boxsters have the larger non-serviceable bearing with ~1% failure rate, much lower than earlier years - lumping all years together overstates risk for late models"
+        ],
+        "evidence": "Multiple Porsche specialist sources confirm IMS bearing failure is a well-documented catastrophic issue affecting M96/M97 engines in Boxsters from MY1997-2008, with the 2000-2005 single-row bearing being most failure-prone (up to 8-10% failure rate). However, P0520/P0521 are generic OBD-II oil pressure sensor codes unrelated to IMS bearing failure mode, and the repair cost range of $1800-$4000 aligns with typical preventive IMS retrofit pricing.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-taycan-software-bugs-2020",
+      "vehicle": "2020 Porsche Taycan",
+      "title": "Infotainment and Vehicle Software Bugs",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 4200,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "The evidence strongly supports this as a real, well-documented issue across the 2020-2025 Taycan range. Multiple forum threads confirm screen freezes, CarPlay disconnections, OTA-related bugs, and PCM issues spanning multiple model years.\n\n{\n  \"verdict\": \"verified\",\n  \"real\": true,\n  \"issues_found\": [],\n  \"evidence\": \n\"The PCM would just hang, would not load any data, maps, or radio stations\" is w"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-911-rear-main-seal-leak-1999",
+      "vehicle": "1999 Porsche 911",
+      "title": "Rear Main Seal (RMS) Oil Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 3800,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 1999-2019 is too broad; RMS leaks are primarily documented on M96/M97 engines in 911 models from 1999-2008 (996 and early 997), not through 2019",
+          "MA1 engine inclusion is incorrect; MA1 is the direct-injection engine used in the 991 generation (2012+) and is not commonly associated with the classic RMS leak issue. The 2009+ 997.2 used the 9A1 engine, not MA1",
+          "Description states the seal 'hardens over time' but root cause per LN Engineering and Callas Rennsport is actually crankcase mis-machining causing crankshaft-to-housing-bore runout, not seal hardening"
+        ],
+        "evidence": "Multiple authoritative sources (LN Engineering, Callas Rennsport 'RMS: Tales of M96 Woe', Porsche Club forums, Planet-9) confirm RMS leaks are a well-known issue on M96/M97 engines in 911 (996/early 997), Boxster, and Cayman from 1997-2008. Owner survey data showed ~35% of these cars experienced IMS or RMS failures. Newer Porsche engines (9A1 from 2009+, MA1/MA2 from 2012+) have significantly improved seal designs and the issue is far less common.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-taycan-12v-battery-drain-2020",
+      "vehicle": "2020 Porsche Taycan",
+      "title": "12V Auxiliary Battery Drain",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 3500,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost range ($200-$800) appears low; one documented owner replacement cost over $2000, and dealer quotes commonly cited are €250-450 plus diagnostic/labor, with some owners needing a lithium-compatible charger/maintainer as additional cost",
+          "Severity 'high' is debatable - issue is a reliability/stranding nuisance rather than safety-critical; 'medium' may be better calibrated since the car cannot be driven but it's not a crash/safety hazard",
+          "Description attributes drain to 'always-on connectivity' but root cause per forums and Porsche TSBs is more nuanced - includes a software/charging loop bug and limited HV-to-12V top-up cycles (max 8 cycles, 30 min each)",
+          "No DTCs listed is acceptable but Porsche has issued a technical service bulletin and a 12V switch firmware update addressing the issue, which could be referenced"
+        ],
+        "evidence": "The 12V battery drain issue is extensively documented across Taycan owner forums (TaycanForum, Rennlist) and third-party guides for 2020-2025 Taycans, with Porsche acknowledging it via a TSB and releasing a '12V switch' firmware update plus a 2024/2025 internal timer fix that wakes the HV battery to charge the 12V. Root cause is linked to limited HV-to-12V charging cycles (8 cycles × 30 min max), app/connectivity polling, and software bugs; replacement costs reported by owners range from ~$250 to over $2000, often with owners advised to install a CTEK lithium maintainer.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-718-boxster-wastegate-rattle-2017",
+      "vehicle": "2017 Porsche 718 Boxster",
+      "title": "Turbo Wastegate Rattle at Idle",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 3200,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Mischaracterized as a benign idle rattle nuisance; documented issue is actually a wastegate actuator sticking/corroding that can cause underboost, power loss, and often requires full turbo replacement",
+          "Severity 'low' is miscalibrated — real-world cases involve loss of boost and turbo replacement, better classified as medium",
+          "DTC codes listed as 'none' is inaccurate; P0299 (underboost) is commonly associated when the wastegate fails",
+          "Year range 2017-2025 is questionable — the turbo flat-four applies to Base/T/S trims (2017-2024 primarily); GTS 4.0/GT4/Spyder use NA flat-six and are not affected",
+          "Repair cost listed as 'none' is misleading — Porsche's official remedy is full turbocharger replacement, which is a costly job"
+        ],
+        "evidence": "Multiple forum threads (718Forum, Planet-9) and parts guides confirm wastegate actuator issues on 2.0L turbo 718 Boxster/Cayman models, but the documented symptom is a sticking/corroded actuator causing boost loss and metallic rattle under throttle — not just an idle nuisance. Porsche's fix is replacing the entire turbocharger with an updated housing design.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-911-bore-scoring-2009",
+      "vehicle": "2009 Porsche 911",
+      "title": "Cylinder Bore Scoring (Nikasil Wear)",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 3200,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll research this issue to verify the facts.\nI have enough information to evaluate. Key findings:\n\n1. The 991 generation is 2012-2019, NOT 2009-2019. 2009-2012 was the 997.2.\n2. The 991 used **Alusil** blocks, NOT Lokasil. Lokasil was used in the M96/M97 (996/997).\n3. Bore scoring typically affects cylinders on bank 2 (cylinders 4-6), with cylinder 6 being most commonly affected, NOT cylinders 1 "
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-718-cayman-wastegate-rattle-2017",
+      "vehicle": "2017 Porsche 718 Cayman",
+      "title": "Turbo Wastegate Rattle at Idle",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 3000,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes listed as 'none' but wastegate actuator failure commonly triggers P0299 (underboost) when problem progresses",
+          "Year range 2017-2025 is broad; issue is predominantly documented on early 2.0L models (roughly 2017-2019) per multiple sources",
+          "Severity 'low' may be understated - while rattle itself is a nuisance, it commonly progresses to actuator seizure/turbo failure requiring full turbo replacement (~£2,800 / several thousand USD)",
+          "No repair cost listed despite forum reports of significant repair costs (e.g., £2,800) and Porsche's fix being full turbo replacement"
+        ],
+        "evidence": "Multiple sources confirm the wastegate actuator rattle is a well-documented issue on 2.0L turbo 718 Boxster/Cayman models, particularly early (2017-2019) cars, caused by corrosion/play in the actuator due to its low mounting position, and Porsche's official fix is full turbocharger replacement. Forum reports indicate progression to underboost (P0299), seized wastegates, and repair costs around £2,800 out of warranty.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-boxster-rms-oil-leak-1997",
+      "vehicle": "1997 Porsche Boxster",
+      "title": "Rear Main Seal Oil Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 3000,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range likely too broad: M96/M97 engine was used in Boxster from 1997-2008; 2009-2012 Boxsters use the 9A1 direct-injection engine which is not subject to the same RMS issue",
+          "Repair cost range is plausible but on the higher side for seal-only; typical RMS+clutch jobs run ~$1500-2500 at independents"
+        ],
+        "evidence": "Multiple Porsche specialist sources and owner forums confirm RMS leaks are a well-known issue on M96/M97 engines in 1997-2008 Boxster/Cayman/996/early 997 models, with Porsche revising the seal multiple times. The 2009+ Boxster uses the redesigned 9A1 engine, so extending the range to 2012 is inaccurate.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-911-aos-failure-1999",
+      "vehicle": "1999 Porsche 911",
+      "title": "Air-Oil Separator (AOS) Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2800,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Description conflates two distinct failure modes: unmetered air leak (causes LEAN condition, matching P0171/P0174) vs. oil ingestion (causes RICH running, smoke, fouled plugs). The stated symptom 'rich running' contradicts the lean DTCs listed.",
+          "Repair cost upper bound ($1500) is on the low side for dealer pricing (some quotes reach $2000-$3300, especially on Tiptronic cars requiring engine drop), though accurate for typical indy shop work.",
+          "Diaphragm rupture is one failure mode but AOS failures also include cracked housing and stuck regulator; description is slightly narrow."
+        ],
+        "evidence": "Multiple authoritative sources (Pelican Parts, LN Engineering, Rennlist, RennTech) confirm AOS failure is a well-known, common issue on M96/M97 engines in 996 (1999-2005) and 997.1 (2005-2008) 911s, producing white exhaust smoke, oil in intake, fouled plugs, and CEL. Typical repair costs at independent shops run $1,000-$1,500, with dealer quotes up to $2,000-$3,300 on Tiptronic cars.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-cayenne-coolant-pipe-leak-2003",
+      "vehicle": "2003 Porsche Cayenne",
+      "title": "Coolant Pipe Failure Between Cylinder Banks",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2800,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2003-2018 is too broad - the classic plastic coolant pipe failure under intake manifold is primarily a 2003-2006 V8 (955) issue, with a related but distinct water distributor issue on 2008-2010 957 V8 4.8 DFI engines",
+          "VR6 engine inclusion is incorrect - this issue is documented as a V8 problem; the VR6 (3.6L) has different coolant-related concerns (thermostat housing/Y-pipe), not the same between-banks pipe failure",
+          "958 generation Cayennes (2011-2018) have a different cooling architecture and are not typically affected by this specific issue",
+          "Base model inclusion is questionable for early years - the 955 base was VR6, and the documented pipe issue affects V8 S/Turbo models",
+          "Severity rated 'high' is defensible due to sudden failure and overheating risk, though some sources describe it as inconvenient rather than safety-critical"
+        ],
+        "evidence": "Multiple Porsche specialist sources (Fifth Gear, Fluid MotorUnion, ECS Tuning, PCA Riesentöter, 6SpeedOnline forum) confirm the plastic coolant pipe failure under the intake manifold is a well-known, near-universal issue on 2003-2006 V8 Cayenne S and Turbo (955) models, with Porsche releasing updated aluminum replacement pipes. A related but distinct water distributor/coolant pipe issue affects 2008-2010 957 V8 4.8 DFI engines, but the 958 (2011-2018) generation and the VR6 engines are not associated with this specific between-banks plastic pipe failure mode.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-cayman-ims-bearing-2006",
+      "vehicle": "2006 Porsche Cayman",
+      "title": "Intermediate Shaft (IMS) Bearing Failure",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 2800,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range incorrect: Cayman R (2011-2012) is 987.2 generation with 9A1/MA1 engine that eliminated the IMS shaft entirely - not susceptible to IMS failure",
+          "Description wrongly claims '2006-2008 single-row bearing variant is the highest risk' - Caymans never had the failure-prone serviceable single-row bearing; all Caymans came with the larger non-serviceable bearing which actually has a low (~1%) failure rate",
+          "Cayman R claim is fabricated - the Cayman R uses the DFI 9A1 engine without an IMS",
+          "DTC P0520 is an engine oil pressure sensor code, not associated with IMS bearing failure; IMS failures typically produce no DTC warning before catastrophic failure",
+          "Repair cost $1800-$4000 is too low - this range fits a preventative IMS retrofit on serviceable engines, but a catastrophic IMS failure on a non-serviceable 06-08 engine typically requires engine replacement/rebuild ($10K-$20K+)",
+          "Correct affected Cayman year range is 2006-2008 only (987.1), not 2006-2012"
+        ],
+        "evidence": "The IMS bearing issue is well-documented for 2006-2008 Cayman/Cayman S with the M97 engine (larger non-serviceable bearing, ~1% failure rate), but 2009+ 987.2 models including the Cayman R use the 9A1/MA1 engine which eliminated the intermediate shaft entirely. The most failure-prone single-row bearing was in 2000-2005 Boxsters/911s, which the Cayman never had. P0520 is an oil pressure sensor code unrelated to IMS failure.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-boxster-bore-scoring-2005",
+      "vehicle": "2005 Porsche Boxster",
+      "title": "Cylinder Bore Scoring",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 2600,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range incorrect: M96/M97 bore scoring affects 1997-2008 Boxsters; 2009-2012 Boxsters use the MA1 engine (DFI) not M96/M97, so those years should be excluded",
+          "Base Boxster (2.5/2.7/3.2L) is rarely affected; issue primarily affects late Boxster S with 3.4L M97.21 engine (roughly 2007-2008), so 'Base, S' is misleading",
+          "Affected-cylinder claim partially wrong: sources identify cylinder 6 (bank 2, cylinders 4-6) as the typical failure point, not cylinders 1 AND 6; mechanism described (uneven oil distribution) is oversimplified — actual cause is piston thrust/cooling asymmetry plus Lokasil/Alusil bore breakdown",
+          "DTC P0301 (cyl 1 misfire) is inconsistent with the documented bank-2/cylinder-6 failure pattern; P0306 and P0300 are plausible",
+          "Severity label 'critical' is not in the defined rubric (high/medium/low); this is a costly engine failure but not a direct safety hazard, so 'high' would be the correct calibration",
+          "Symptom description omits the characteristic ticking/knocking noise (often misdiagnosed as lifter tick) and sooty tailpipe, which are hallmark symptoms"
+        ],
+        "evidence": "Bore scoring in M96/M97 engines is extensively documented by LN Engineering, Flat 6 Innovations, and PCA, but applies to 1997-2008 Boxster/Cayman/911 models — primarily the 3.4L/3.6L/3.8L S variants, with cylinder 6 (bank 2) being the most affected due to thermal/lubrication asymmetry. Base Boxster engines (2.5/2.7/3.2L) and post-2008 MA1-engine Boxsters (2009+) are not part of this failure pattern, making the stated 2005-2012 Base+S scope inaccurate.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-taycan-charging-issues-2020",
+      "vehicle": "2020 Porsche Taycan",
+      "title": "DC Fast Charging Failures and Reduced Charging Speed",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2600,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Peak charging spec of 270 kW is incorrect for 2025 model year — refreshed 2025 Taycan peaks at 320 kW, not 270 kW",
+          "DTC codes listed as 'none' is acceptable but owner reports mention specific codes like '40_00H_0' that could be documented",
+          "Repair cost listed as 'no cost listed' understates reality — failed onboard/HV charger units have been reported at ~$7,400 for the part alone (typically warranty-covered)",
+          "Severity 'medium' is reasonable for most cases, but some reports include limp mode / inability to drive, which could trend toward higher severity"
+        ],
+        "evidence": "Multiple owner forums (TaycanForum, Taycan EV Forum) and reliability guides extensively document DC fast charging failures, premature session termination, charge port communication errors, and reduced peak charging speeds on 2020-2024 Taycans, often tied to early software, cold battery, picky network compatibility, and occasional HV booster/onboard charger hardware failures. However, the 2025 refreshed Taycan increased peak DC charging from 270 kW to 320 kW, so the entry's '270 kW peak' description doesn't accurately span the full 2020-2025 range claimed.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-cayenne-air-suspension-failure-2003",
+      "vehicle": "2003 Porsche Cayenne",
+      "title": "Air Suspension Compressor and Strut Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2400,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Terminology error: PASM refers to Porsche Active Suspension Management (adaptive dampers), not air suspension; air suspension is a separate optional system",
+          "Air suspension is optional on most trims (standard on Turbo/Turbo S/GTS/Turbo GT), not universal across all listed trims",
+          "Severity 'high' is arguable - issue is costly but typically not safety-critical; 'medium' may be more appropriate",
+          "Cost range slightly low on upper end - full system repairs (all 4 struts + compressor) can exceed $4500, with RepairPal listing ~$2900 per air spring and ~$2500 for compressor alone",
+          "No DTC codes listed; common codes/messages include 'Chassis System Fault/Failure' warnings would be worth noting"
+        ],
+        "evidence": "Multiple sources (Rennlist, Cayenne Forums, RepairPal, Strutmasters, RennTech) extensively document compressor burnout and air spring/bladder leaks across all Cayenne generations (955/957/958/9Y0), with the classic failure pattern of leaking struts overworking the WABCO/Continental compressor. RepairPal lists compressor replacement at $2,465-$2,516 and air spring replacement at $2,878-$3,060, confirming the cost range is in the right ballpark though potentially low for multi-component repairs.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-panamera-battery-drain-2010",
+      "vehicle": "2010 Porsche Panamera",
+      "title": "Parasitic Battery Drain",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2400,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Parasitic battery drain is a well-documented Porsche issue across multiple owner forums (Rennlist, Planet-9) and dealer advisories, with common causes including PCM not staying asleep, modules failing to enter sleep mode after the ~30 minute sleep timer, key fob proximity waking the car, and CAN bus wake-up signals. The description's mention of PCM, keyless entry, and modules failing to sleep matches forum reports exactly, and cost ranges align with reported dealer diagnostic fees (~$700+) plus repair labor.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-911-direct-injection-carbon-2009",
+      "vehicle": "2009 Porsche 911",
+      "title": "Direct Injection Intake Valve Carbon Buildup",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC list is incomplete - 911 is a flat-six so misfire codes P0304, P0305, P0306 should also be included alongside P0300-P0303",
+          "Year range 2009-2019 conflates two engine generations: 2009-2011 is 997.2 (also 9A1 DFI) while 991 generation is 2012-2019; description says '991 engines' specifically but range starts in 2009",
+          "Description overstates severity of the problem on Porsche specifically - 9A1 injectors are aimed to partially wash the back of the intake valve, so Porsche DI engines are widely reported as less prone to carbon buildup than Audi/VW DI engines",
+          "GTS trim was not offered for the entire 2009-2019 range on 991 (GTS introduced mid-cycle)",
+          "Not a documented NHTSA defect or manufacturer TSB - it is a wear/maintenance condition discussed primarily on owner forums"
+        ],
+        "evidence": "Forum discussions on Rennlist, 6SpeedOnline, Planet-9 and PistonHeads confirm carbon buildup on intake valves of Porsche DFI engines (9A1, including 991 and Turbo S), with walnut blasting quoted around $1100 at independents and reports of a 50k-mile Turbo S with heavily carboned valves. However, multiple sources note Porsche's 9A1 sprays fuel partially onto the back of the intake valve, making buildup less severe than Audi/VW DI engines, and there are no NHTSA recalls or factory TSBs for this issue.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-boxster-convertible-top-hydraulic-1997",
+      "vehicle": "1997 Porsche Boxster",
+      "title": "Convertible Top Hydraulic System Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2200,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range is inaccurate: the 986 Boxster (1997-2004) uses an electric motor/cable/transmission-gear top system with mechanical pushrods, not a hydraulic ram system; hydraulic rams/pump are primarily a feature of the 987 (2005-2012) and 981 (2013-2016) Boxsters",
+          "Description of 'hydraulic cylinders at the top latching mechanism' is misleading - the hydraulic rams lift/lower the top assembly, while the header latch is typically a separate electric mechanism",
+          "Most common 986-era top failures are actually the plastic transmission gears, cables, and pushrod ball-joints (mechanical), not hydraulic leaks",
+          "DTC codes field correctly shows none, since failures typically present as 'Failure Convertible Top Ctrl' message rather than standard OBD-II DTCs"
+        ],
+        "evidence": "Forum and vendor sources confirm hydraulic ram/cylinder failures are well-documented on later Boxsters and 911 Cabriolets, with rebuild services around $900 plus labor, but the 986 (1997-2004) Boxster top is driven by electric motors, cables, and plastic transmission gears with mechanical pushrods rather than hydraulic rams. The issue as described conflates two different top systems across the year range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-cayman-bore-scoring-2006",
+      "vehicle": "2006 Porsche Cayman",
+      "title": "Cylinder Bore Scoring",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 2200,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2006-2016 is too broad - bore scoring primarily affects 2006-2008 987.1 Cayman S with M97 3.4L engine; base Cayman (2.7L) is NOT affected per Flat 6 Innovations and LN Engineering",
+          "Cayman GT4 (981, 3.8L 9A1-derived) bore scoring is rare, not a widely documented issue like on M96/M97 engines",
+          "Claim of 'identical pattern on cylinders 1 and 6' is questionable - on 981/991 9A1 engines, affected cylinders are typically 1 and 4, not 1 and 6; on M96/M97 it's often cylinder 6 specifically",
+          "Root cause description is inaccurate - real cause is Lokasil/Alusil bore breakdown, piston coating wear, fuel wash, and piston-to-cylinder clearance, not simply 'oil starvation during cold starts'",
+          "DTC P0306 is plausible but bore scoring typically presents as ticking noise and oil consumption first, not misfire codes; misfires are a late-stage symptom",
+          "MA1 engine designation is incorrect terminology - the direct-injected successor is the 9A1 engine (MA1 is sometimes used but 9A1 is standard)",
+          "Lumping all variants (Base, S, R, GTS, GT4) together is misleading - base 2.7L/2.9L Caymans are largely unaffected"
+        ],
+        "evidence": "Bore scoring is a well-documented Porsche issue, but it predominantly affects 1997-2008 M96/M97 engines with Lokasil bores - specifically the 2006-2008 Cayman S, not base models or later 981/GT4 cars where the issue is rare. The described cylinder pattern (1 and 6), cause (cold-start oil starvation), and broad year/variant range do not match documented sources from LN Engineering, Flat 6 Innovations, and PCA.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-macan-pdk-shudder-2015",
+      "vehicle": "2015 Porsche Macan",
+      "title": "PDK Low-Speed Shudder and Rough Engagement",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 2200,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Macan PDK is a WET-clutch dual-clutch transmission, not dry-clutch as described - this is a factual error about the mechanical design",
+          "Low-speed shudder in the Macan is overwhelmingly attributed to transfer case failure (a documented TSB/warranty extension issue), not inherent PDK clutch behavior - the root cause is misidentified",
+          "Repair cost low-end ($300) is unrealistic; transfer case replacement typically runs $3000-5000+ and PDK service/replacement is far higher",
+          "Description conflates a real PDK character trait (some low-speed roughness) with the more serious transfer case issue commonly reported by owners"
+        ],
+        "evidence": "Forums (Macanforum, Rennlist) and independent Porsche specialists consistently identify low-speed shudder/judder in the Macan as a transfer case issue, for which Porsche issued an extended warranty, not a PDK dry-clutch wear issue. The Macan's 7-speed PDK is actually a wet-clutch transmission (DL501-based), so the 'dry-clutch PDK' premise is incorrect.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-boxster-aos-failure-1997",
+      "vehicle": "1997 Porsche Boxster",
+      "title": "Air-Oil Separator (AOS) Diaphragm Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 2100,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "AOS diaphragm failure is extensively documented across Pelican Parts, Rennlist, 986Forum, and LN Engineering for the M96/M97 Boxster engines (1997-2008 covers 986 and 987.1). Symptoms match (oil consumption, rough idle, smoke, fouled plugs), and P0171/P0174 lean codes are confirmed by Boxster owners as common AOS-related codes due to unmetered air from the ruptured diaphragm.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-panamera-infotainment-failure-2010",
+      "vehicle": "2010 Porsche Panamera",
+      "title": "PCM Infotainment System Freezing and Failure",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 2000,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "The PCM 3.1 infotainment system in 2010-2016 Porsche Panameras is widely documented to suffer from freezing, reboot loops, and HDD failure, with a class-action lawsuit confirming the issue and no specific DTCs reliably pointing to it. Severity is appropriately low (does not affect safety/driving) and repair costs align with SSD swaps (~$100 DIY) up to full PCM replacement/programming costs in the low thousands.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-taycan-suspension-noise-2020",
+      "vehicle": "2020 Porsche Taycan",
+      "title": "Front Suspension Clunking and Creaking",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 2000,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Repair cost upper bound may be low - one owner reported quoted $3k for replacement; OEM shock replacement quoted at $3,200 in some markets",
+          "Description's claim that 'heavy battery pack' accelerates wear is speculative; forum discussion suggests the suspension geometry (Audi-derived multi-link design) is the root cause, not battery weight"
+        ],
+        "evidence": "Multiple Taycan owner forum threads document front suspension clunking/creaking traced to upper control arms and bushings across 2020-2023 model years, including Base, 4S, Turbo S, GTS, and Cross Turismo variants, often replaced under warranty. No NHTSA recall found, supporting the 'low severity/nuisance' classification, though one owner was quoted approximately $3k for non-warranty replacement, suggesting the upper repair cost range could be slightly understated.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-cayenne-timing-chain-2008",
+      "vehicle": "2008 Porsche Cayenne",
+      "title": "Timing Chain Stretch and Tensioner Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1900,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "The most prominent documented timing-related failure on 2008-2018 Cayenne V8s is the camshaft adjuster bolt failure (aluminum bolts shearing) on 2010-2012 models, subject to recall AH08 - not generic 'chain stretch'; the description conflates several distinct issues",
+          "P0341 is a camshaft position sensor circuit code, less directly tied to chain stretch than P0016/P0017 (cam-crank correlation); P0008/P0009 would be more typical for actual chain stretch",
+          "The V8 timing system being 'at the rear of the engine' applies specifically to the 4.8L V8 (2008+), correct - but the older 4.5L V8 (early 955) is different; year scoping is mostly OK",
+          "'VR6' terminology is imprecise - the base Cayenne used a 3.6L V6 (shared with Touareg/VW VR6 architecture in early years, then 3.6L Audi-derived); calling it VR6 is loose but defensible",
+          "Repair cost $4000-$9000 is on the high end; tensioner-only jobs run $1,500-$2,700, while full chain/guide/tensioner service on V8 with rear access can reach $5,000-$8,000, so the lower bound is high",
+          "Severity 'high' is reasonable given interference engine catastrophic failure risk, though it's not a sudden safety-critical defect like brakes/steering"
+        ],
+        "evidence": "Multiple independent sources (Rennlist forums, Porsche specialty shops, parts retailers, RepairPal) confirm timing chain tensioner and guide wear is a well-documented issue on Cayenne V6 and V8 engines, with the 4.8L V8 having a rear-mounted timing system requiring labor-intensive repair. The most famous related failure is the 2010-2012 V8 aluminum camshaft adjuster bolt recall, which the entry conflates with general chain stretch. DTCs P0016/P0017 are correct for cam-crank correlation symptoms; P0341 is more of a sensor code.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-911-chain-tensioner-failure-2009",
+      "vehicle": "2009 Porsche 911",
+      "title": "Timing Chain Tensioner and Guide Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1800,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I have enough info. Key issues with the entry:\n1. Year range 2009-2019 is wrong — the 991 generation is 2012-2019 (991.1 from 2012, 991.2 from 2016). The 2009-2011 cars are 997.2 generation.\n2. The GT3 (4.0 Mezger and later 9A1-derived) and Turbo/Turbo S have different engines; the timing chain tensioner issue is more associated with the 9A1 DFI engines.\n3. DTC codes P0016/P0017 are camshaft/crank"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-boxster-intermediate-shaft-bearing-play-2005",
+      "vehicle": "2005 Porsche Boxster",
+      "title": "Intermediate Shaft End-Play and Bearing Wear",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1800,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Entry frames 'intermediate shaft end-play' as a distinct diagnostic issue with a specific 0.10mm threshold; this specific measurement protocol is not a widely documented Porsche-recognized diagnostic — the well-known issue is IMS bearing failure itself",
+          "Sources consistently state there are typically NO reliable early warning signs before catastrophic failure; rattling noises usually mean failure is imminent, not a separately diagnosable end-play stage",
+          "Year range is misleading: 2006-2008 (and late 2005) use the larger non-serviceable bearing with ~1% failure rate, so lumping all 2005-2008 together as 'high severity' overstates risk for 2006-2008",
+          "Repair cost $2000-$4500 is reasonable for serviceable (early 2005) bearings but drastically understates 2006-2008 cost, which requires complete engine disassembly (often $8,000-$15,000+)",
+          "Description conflates IMS bearing wear symptoms with a separate 'end-play' failure mode not commonly recognized in TSBs or specialist literature"
+        ],
+        "evidence": "IMS bearing failure is a well-documented, legendary issue affecting 1997-2008 M96/M97 Boxsters, but specialist sources (LN Engineering, Revolution Porsche, Rennlist) describe it as bearing failure with little/no warning, not a distinct measurable 'end-play' diagnostic stage. The 2006-2008 models have ~1% failure rates and require engine disassembly, making the cost estimate and uniform severity rating inaccurate.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-panamera-air-suspension-2010",
+      "vehicle": "2010 Porsche Panamera",
+      "title": "Air Suspension Strut and Compressor Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1800,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost range ($1500-$4500) is somewhat low; single OEM strut alone runs ~$1400-$1700 installed, compressor replacement averages $3500-$4200, and full system repairs can exceed $10,000",
+          "Severity 'high' is debatable — air suspension failure causes sagging/poor handling but is generally not immediately safety-critical (medium would be more accurate per the provided definitions)",
+          "Air suspension is optional on base/4S/GTS trims (standard only on Turbo/Turbo S/E-Hybrid), so year/trim applicability is broader than precise",
+          "Claim that 'Panamera's lower ride height vs Cayenne makes air spring damage from road debris more common' is unsupported speculation — Panamera is a sedan, Cayenne is an SUV; they're not directly comparable platforms",
+          "No DTCs listed; common related codes (P1583, U0421, C1200C) exist in owner reports but entry lists none"
+        ],
+        "evidence": "Multiple sources (Rennlist, 6SpeedOnline, RepairPal, Strutmasters, Suncore) confirm air strut bladder leaks and compressor failures are a well-known, common Panamera issue across 2010-2016 (970) and continuing into 2017+ (971) generations. RepairPal estimates compressor replacement at $3,561-$4,215 and air spring replacement at $4,679-$4,913, with owner-reported costs of $1,400-$1,700 per strut and full system repairs reaching $8,000-$11,000 — making the entry's $1500-$4500 range valid only for single-component repairs.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-taycan-range-degradation-2020",
+      "vehicle": "2020 Porsche Taycan",
+      "title": "High-Voltage Battery Range Degradation",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1800,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Porsche warranty threshold is 70% over 8 years (not a 5% per year benchmark) - the '5% per year considered above normal' claim is not a Porsche-published metric",
+          "No repair cost listed - battery/module repairs are typically warranty-covered within the 8-year HV battery warranty, but out-of-warranty pack replacements can cost tens of thousands of dollars",
+          "Issue is widely reported on owner forums but is not a formal TSB/recall - mostly handled case-by-case under HV battery warranty",
+          "Severity 'medium' is reasonable but most degradation cases are addressed under warranty rather than owner-paid repairs"
+        ],
+        "evidence": "Owner forums (TaycanForum, Taycan EV Forum) document numerous range degradation complaints, with some owners reporting SOH down to 84% within 2-3 years, particularly with heavy DC fast charging and hot climates. Porsche's HV battery warranty covers degradation below 70% within 8 years, and dealers perform short-term and long-term capacity measurements to evaluate warranty claims.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-cayenne-transfer-case-failure-2003",
+      "vehicle": "2003 Porsche Cayenne",
+      "title": "Transfer Case Failure and Fluid Leak",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1600,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range is incorrect: the transfer case failure issue is documented for the 958 generation (2011-2018), not the 955/957 (2003-2010)",
+          "Failure mode mischaracterized: the well-known issue is internal clutch/design flaw causing shuddering and juddering (with water ingress via vent design), not primarily output shaft seal leaks and bearing wear",
+          "Claim that Turbo/GTS fail more frequently due to higher torque is not supported; Base and S models are reported failing just as often",
+          "Repair cost range low end ($2000) is optimistic; documented OEM replacement costs run $4,400-$6,300",
+          "Entry omits that Porsche issued an extended transfer case warranty (7-10 years) covering many affected vehicles"
+        ],
+        "evidence": "Multiple owner forums (Rennlist, CayenneForums), CarProblemZoo NHTSA complaints, and Porsche's own extended warranty program confirm transfer case failure as a widespread issue specifically on 2011-2018 Cayenne (958) models, with symptoms of shuddering/juddering on acceleration and turns rather than seal leaks. Porsche extended the transfer case warranty to 7-10 years for MY2011-2018 Cayennes, and typical replacement costs are $4,400-$6,300.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-cayman-aos-failure-2006",
+      "vehicle": "2006 Porsche Cayman",
+      "title": "Air-Oil Separator (AOS) Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1600,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Cost range slightly narrow on the high end - some indy/dealer repairs run $1,500+ when intake cleaning is needed",
+          "DTC codes P0171/P0174 are plausible (lean codes from vacuum leak) but misfire codes (P0300-series) and oil consumption are more frequently cited symptoms"
+        ],
+        "evidence": "AOS failure on M96/M97 engines in 987 Boxster/Cayman and 996/997 911 is extensively documented across Rennlist, Planet-9, LN Engineering, and independent Porsche shops. Diaphragm rupture causing high crankcase vacuum, oil ingestion, smoke, lean conditions, fouled plugs, and potential hydrolock matches the description; repair costs commonly range from ~$95 DIY parts to $1,100-$1,500 at independent shops.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-macan-timing-chain-tensioner-2015",
+      "vehicle": "2015 Porsche Macan",
+      "title": "Timing Chain Tensioner Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1600,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Conflates two distinct engines: 2015-2018 Macans use Porsche-designed 3.0L/3.6L V6, while EA839 (Audi-designed) only appears in 2019+ Macans",
+          "Primary documented Macan V6 timing issue is timing COVER oil leaks from broken aluminum bolts, not tensioner hydraulic pressure loss - description mischaracterizes the dominant failure mode",
+          "3.6L V6 only existed in 2015-2018 Macan Turbo; not applicable across full 2015-2023 range",
+          "P0341 is plausible but forum reports more commonly cite P0344 for this symptom",
+          "Cost range may be low for full timing cover bolt repair (historically $9-12K engine-out, though engine-in procedures have reduced this)",
+          "Tensioner wear is documented but typically as a high-mileage (100k+) concern, not a widespread early-life defect"
+        ],
+        "evidence": "Forum and specialist sources confirm timing-related issues on Macan V6 engines, but the dominant documented problem on 2015-2018 models is timing cover oil leaks from defective aluminum bolts, while tensioner wear is a separate high-mileage concern on EA839 engines in 2019+ models. The entry incorrectly merges these into one issue and misattributes the EA839 family to the entire 2015-2023 range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-911-coolant-pipe-leak-2012",
+      "vehicle": "2012 Porsche 911",
+      "title": "Coolant Pipe and Fitting Leaks",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1500,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Description conflates the well-known 996/997 GT1-block glued coolant pipe failure with the 991's different leak pattern (O-ring/seal failures at thermostat housing and plastic pipe junctions, typically at the rear engine area, not 'near the front radiators')",
+          "Leak location described as 'connections near the front radiators' is inaccurate; documented 991 leaks are predominantly at the water pump/thermostat housing/plastic coolant pipe joints at the engine",
+          "Severity rated 'high' is arguable—991 leaks are typically slow/intermittent and not the catastrophic safety hazard seen on GT1-block cars; medium would be better calibrated",
+          "Repair cost range of $800-$2500 may be low; updated plastic pipes require significant disassembly (coolant pump removal) and dealer quotes can exceed this",
+          "Year range covers 991.1 and 991.2 generally correctly (2012-2019), but issue applies broadly to 991 generation including non-listed trims (Turbo, etc.)"
+        ],
+        "evidence": "Multiple owner forums (Rennlist, Pelican Parts, RennTech, 911uk) and independent Porsche shops confirm coolant leaks are a known issue on 991.1 and 991.2 models, typically at O-ring seals between the plastic coolant pipe and thermostat/water pump housing, with Porsche issuing updated part numbers (e.g., 9A1 106 215 00 → OPB 121 437). However, the description appears to conflate this with the more catastrophic GT1-block glued-pipe failure from 996/997 Turbo/GT3 cars, and mislocates the leaks as being 'near the front radiators.'",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-718-boxster-coolant-leak-2017",
+      "vehicle": "2017 Porsche 718 Boxster",
+      "title": "Coolant Leak at Turbo Connections",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1400,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "Described failure mode (leaks at turbocharger water line connections and coolant distribution housing) is not the documented common coolant issue for the 718 Boxster",
+          "Actual well-documented coolant issue is the coolant expansion/reservoir tank cracking at the seam (engine-out repair) and water pump failures",
+          "Repair cost of $500-$1500 is far too low; the real common coolant tank failure is an engine-out job costing several thousand dollars",
+          "Severity 'medium' is questionable — owners report cars becoming immobile and overheating, often requiring extended warranty claims",
+          "No DTC codes listed, but coolant level/fault warning messages are commonly reported and could be referenced"
+        ],
+        "evidence": "Multiple owner forums (718forum.com, PCGB) and shop write-ups document coolant leaks on 2017+ 718 Boxsters as primarily caused by the plastic coolant expansion tank splitting at the seam (engine-out replacement) and water pump failures — not turbocharger water line connections or a 'coolant distribution housing.' No TSB or forum evidence was found supporting the specific failure points described in the entry.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-cayenne-catalytic-converter-2011",
+      "vehicle": "2011 Porsche Cayenne",
+      "title": "Catalytic Converter Premature Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1400,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Repair cost range may be slightly low on the high end - RepairPal estimates $5,710-$6,083 for Cayenne cat replacement, and V8 models with four cats can exceed $6,000",
+          "Issue affects more variants than listed (Base, S, GTS) - also commonly reported on Cayenne S Hybrid and Diesel models within the 958 generation",
+          "Description attributes failure primarily to 'substrate breakdown and thermal degradation' but a very common documented failure mode on 958 Cayennes is mechanical cracking/breakage at the flange where the cat attaches to the manifold"
+        ],
+        "evidence": "Multiple Porsche owner forums (Rennlist, CayenneForums) confirm P0420/P0430 catalytic converter failures are a well-known issue on 2011-2018 958-generation Cayennes, with documented cases on S Hybrid, Diesel, and V8 variants. RepairPal lists Cayenne cat replacement at $5,710-$6,083, and the DTC codes P0420/P0430 (catalyst efficiency below threshold, banks 1 and 2) are exactly correct for this V-engine failure mode.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-panamera-coolant-pipe-2010",
+      "vehicle": "2010 Porsche Panamera",
+      "title": "Coolant Pipe and Distribution Housing Leak",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1400,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2010-2020 is too broad; Porsche switched to bolted-on coolant pipes for the 2015 model year, so affected years are primarily 2010-2014 (lawsuit covers 2010-2016)",
+          "Root cause described inaccurately: the documented failure is epoxy adhesive on slip-fit joints between coolant pipes and thermostat housing letting go, not 'plastic pipes cracking from heat cycling'",
+          "Issue is documented on V8 engines (lawsuit specifically targets V8 Panameras); inclusion of V6 is not well supported and the trim list (S, 4S, GTS, Turbo) mixes V6 (S/4S in some years) with V8 variants without clarification",
+          "Severity 'high' is defensible (sudden coolant loss / overheating / stranding), but it's a reliability/road-hazard issue rather than a crash-safety defect; some databases would tag this as medium-high",
+          "Repair cost range is on the low side: real-world repairs commonly run $2,500-$4,000+ at dealers because intake manifold removal and replacement of associated components is required"
+        ],
+        "evidence": "Multiple sources (CarComplaints class-action coverage, NHTSA inquiry response, Rennlist/6SpeedOnline forums) confirm a well-documented coolant pipe separation defect on 2010-2016 Panamera (and 2011-2019 Cayenne) V8 engines caused by failing epoxy adhesive on pipe-to-thermostat-housing joints, fixed with a bolted-on design starting in the 2015 model year. Repairs typically cost $2,500-$4,000 and the leak is hidden under the intake manifold, consistent with the entry, but the entry's year range, V6 inclusion, and described failure mechanism are inaccurate.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-718-cayman-coolant-leak-2017",
+      "vehicle": "2017 Porsche 718 Cayman",
+      "title": "Coolant Leak at Turbo Connections",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1300,
+      "audit": {
+        "verdict": "major_issues",
+        "real": false,
+        "issues_found": [
+          "The specific failure mode described (plastic turbo water line connections and coolant housings cracking from thermal cycling) is not a documented common issue for the 718 Cayman",
+          "Documented coolant-related issues on the 718 Cayman are primarily water pump failures (bearings/impeller) and changeover valve/vacuum leaks triggering cooling system faults, not turbo water line cracks",
+          "Description appears to be copied/extrapolated from the 718 Boxster entry without verification that the same specific failure mode is documented",
+          "No NHTSA TSBs or recalls found for this specific described issue",
+          "Year range issue: 2020-2023 GTS 4.0 variant is naturally aspirated (no turbo), though entry limits to Base/T/S which are turbo so this is acceptable"
+        ],
+        "evidence": "Forum and RepairPal sources document coolant leaks on the 718 Cayman primarily caused by water pump failures and changeover valve/vacuum line issues triggering cooling system faults, not by plastic turbo water line connections cracking from thermal cycling. No TSBs or widely-reported owner complaints match the specific failure mode described in the entry.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-cayenne-pdcc-leak-2007",
+      "vehicle": "2007 Porsche Cayenne",
+      "title": "PDCC (Porsche Dynamic Chassis Control) Hydraulic Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1300,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range starts at 2007 but PDCC was introduced on the Cayenne for the 2008 model year (957 facelift)",
+          "Year range incorrectly groups all years 2007-2025 as hydraulic; the 3rd-gen Cayenne (2019+, 9Y0) including Turbo GT uses a 48V electromechanical PDCC, not hydraulic — so the hydraulic-leak issue does not apply to 2019+ models",
+          "Description says 'Porsche-only fluid' but the system actually uses Pentosin CHF 202, a widely available hydraulic fluid shared with power steering",
+          "DTC field is empty; in practice the fault typically presents as 'Chassis System Faulty/Warning' messages without a customer-readable P-code, so 'none' is defensible but could note the chassis warning message"
+        ],
+        "evidence": "Multiple owner forums (Rennlist, Planet-9, RennTech, Cayenne Forums) and independent Porsche specialists (pcarwise) document hydraulic PDCC leaks from corroded lines, hoses, valve block, and reservoir on 957/958 Cayennes, with symptoms of 'Chassis System Warning' messages and repair costs reaching into the thousands (TFLcar reported a ~$7,000 dealer estimate). However, the 2019+ 9Y0 Cayenne uses a 48V electric PDCC system, so lumping it into a hydraulic-leak issue is inaccurate.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-macan-water-pump-failure-2015",
+      "vehicle": "2015 Porsche Macan",
+      "title": "Water Pump Failure and Coolant Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1300,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Issue affects both 4-cylinder EA888 (base) and V6 engines, not 'particularly V6 turbo' as described - forums report failures on 2.0L 4-cyl base models too",
+          "Description mentions 'plastic impeller cracking' which is less commonly documented than the shaft seal/thermostat housing leak failure mode",
+          "Repair cost range $800-$2000 is reasonable; RepairPal estimates $1,341-$1,703 and dealer quotes around $2,000 are typical, though low-end could be a bit higher"
+        ],
+        "evidence": "Water pump/thermostat housing leaks are a well-documented, widespread issue on Macan models using the EA888 Gen3 4-cylinder and the V6 engines, with the INA-supplied pump revised multiple times. RepairPal puts replacement at $1,341-$1,703 and Rennlist owners report ~$2,000 dealer quotes, aligning with the cited range; severity as 'medium' is appropriate since leaks are typically slow with low-coolant warnings before catastrophic failure.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-cayman-ac-compressor-2006",
+      "vehicle": "2006 Porsche Cayman",
+      "title": "AC Compressor Failure and Clutch Burnout",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1200,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "AC compressor failure is documented but not a particularly common/widespread issue on the Cayman; condenser failures and refrigerant leaks are far more prevalent (one Porsche specialist source states the AC compressor 'rarely has issues')",
+          "Claim that compressor clutch failure 'throws the serpentine belt and disables all accessories' is incorrect - the pulley is designed to mechanically break free and spin freely if the compressor seizes, specifically to allow other belt-driven accessories to keep functioning",
+          "Year range issue: 981-generation Caymans (2014-2016) use a variable-displacement compressor without a traditional engaging clutch, so 'clutch bearing wear' doesn't apply uniformly across the stated 2006-2016 range",
+          "Mid-engine 'higher ambient temperature' causation is not supported in any documented source as a factor in compressor failure",
+          "Description conflates distinct failure modes (clutch bearing, internal seal leaks) into a single issue when forums treat them separately"
+        ],
+        "evidence": "Forum discussions (Planet-9, Rennlist) and RepairPal confirm AC compressor failures do occur on Caymans, with dealer replacement quotes around $2,600 matching the stated cost range. However, Porsche specialist sources indicate the compressor itself rarely fails compared to condensers/refrigerant leaks, and the claim about throwing the belt contradicts the documented design where the pulley free-spins on compressor seizure.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-panamera-timing-chain-2010",
+      "vehicle": "2010 Porsche Panamera",
+      "title": "Timing Chain Stretch and Tensioner Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Primary documented V8 issue is camshaft adjuster bolt failure (NHTSA 17V368 / Porsche recall AH08), not 'chain stretch' as described - description conflates two related but distinct issues",
+          "Year range 2010-2016 too broad for the most severe/recalled defect, which affects 2010-2012 V8 models specifically",
+          "Description claims timing system is at 'rear of engine' - Panamera V8 timing chain service is typically accessed from the front timing cover, though rear-mounted cam adjusters are involved",
+          "Severity 'high' is defensible given interference engine and recall safety implications (loss of brake vacuum/fuel pump drive), but the chain-stretch framing alone would more typically be 'medium'"
+        ],
+        "evidence": "Multiple sources (Fifth Gear, Go-Parts, Pcarwise, YouCanic) confirm a well-documented V8 timing-related issue on 2010-2012 Panamera S/4S/Turbo involving aluminum camshaft adjuster bolts shearing off, subject to NHTSA recall 17V368/Porsche AH08. Chain/guide/tensioner wear is also documented at higher mileage with P0016 codes, and complete timing service costs reported at $5,000-$10,000 - matching the stated repair cost range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-718-cayman-direct-injection-carbon-2017",
+      "vehicle": "2017 Porsche 718 Cayman",
+      "title": "Direct Injection Intake Valve Carbon Buildup",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1100,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Porsche 718 engines have factory air/oil separators and injector spray aimed at intake valve backs, making this issue less prevalent than the description implies",
+          "Claim that 'turbo engines are more prone due to higher intake temperatures' is questionable - the GT4 RS uses the naturally aspirated 4.0L flat-six (shared with 911 GT3), and turbocharged engines typically have intercooled charge air",
+          "Documented real-world failures with DTCs on 718s specifically are scarce; most discussion is preventive/speculative rather than confirmed widespread failure"
+        ],
+        "evidence": "Owner forums (718forum, Planet-9, Rennlist) confirm carbon buildup is a recognized concern for direct-injection Porsche engines including the 718, but multiple sources note Porsche's 9A1-derived engines have factory air/oil separators and intake-valve-aimed injector spray that reduce buildup compared to other DI engines (VW/Audi/BMW). Few 718 owners report actual misfire failures; most cleaning is preventive walnut blasting around 60k miles.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-cayenne-turbo-coolant-line-2008",
+      "vehicle": "2008 Porsche Cayenne",
+      "title": "Turbo Coolant Line Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1100,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Description misidentifies the failure mode: the well-documented Cayenne coolant leak issue involves plastic coolant transfer pipes in the engine V valley and glued-in fittings on the thermostat housing/water distributor, NOT turbocharger coolant feed lines with crimped fittings and rubber sections",
+          "Issue is not specific to Turbo/Turbo S — it affects all 4.8L V8 variants (Cayenne S, GTS, Turbo, Turbo S) on 957, and the 955 generation suffered the original plastic pipe failures",
+          "Repair cost range ($600-$1800) is low; real-world quotes commonly run $1500-$4000 due to intake manifold removal (and sometimes engine drop) required for access",
+          "Year range 2008-2018 is broadly plausible but the issue is most documented on 955 (2003-2006) and 957 (2008-2010) V8s, with some 958 (2011-2018) cases involving different glued fittings"
+        ],
+        "evidence": "Multiple independent sources (Rennlist, RennTech, 6SpeedOnline, ECS Tuning, Fluid MotorUnion, Dart Auto) confirm a widespread Cayenne V8 coolant leak issue, but it involves plastic coolant pipes/water distributor fittings under the intake manifold — not turbocharger coolant feed lines. Repair typically requires intake removal and frequently costs $2000-$4000, with some independent shops doing it cheaper.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-macan-turbo-coolant-line-2015",
+      "vehicle": "2015 Porsche Macan",
+      "title": "Turbo Coolant Line Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1100,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Misidentified component: actual failure is plastic coolant transfer/Y-pipe under intake manifold (PA66 nylon with aluminum fittings), not rubber turbo coolant feed lines",
+          "Failure mechanism wrong: cracks occur at plastic-to-aluminum joints from thermal cycling, not 'rubber deterioration' at 'crimped fittings'",
+          "Issue is not specific to turbochargers - affects non-turbo V6 Macan S as well, and turbo-specific framing is misleading",
+          "Repair cost significantly understated: typical job is 5-8 hours labor for Y-pipe (often $1500-2500); rear coolant distributor failures require engine removal with 20-25 hours labor ($4000+)",
+          "Year range slightly off - some sources indicate the affected V6 platform spans roughly 2015-2023, but most documented cases cluster around 2015-2018 models with the 3.0L V6"
+        ],
+        "evidence": "Multiple Porsche forums, independent shops, and repair guides document the well-known coolant Y-pipe/transfer pipe leak under the intake manifold on Macan V6 engines, made of plastic with aluminum fittings that crack from thermal cycling - not rubber turbo coolant lines. Labor-intensive access (intake manifold removal, or engine drop for rear distributor) makes typical repair costs higher than the listed $500-$1500 range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-macan-transfer-case-leak-2015",
+      "vehicle": "2015 Porsche Macan",
+      "title": "Transfer Case Seal Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1000,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "The well-documented Macan transfer case issue is primarily internal clutch plate failure (addressed via gas nitrocarburizing of clutch plates and a 7-year extended warranty), not output shaft seal leaks as described",
+          "Year range 2015-2023 is too broad; the transfer case problem affects 2018-and-older models, with factory fix implemented March 2018 (part 95B.341.010.A); 2019+ models largely unaffected",
+          "Repair cost range $800-$3500 is low for full transfer case replacement, which typically runs $4,000-$6,000+; seal-only repair could fall in the lower range but full TC failures exceed the stated upper bound",
+          "Description conflates output shaft seal leak with PTU damage; Porsche extended the transfer case warranty to 7 years specifically because of internal failures, suggesting severity may warrant 'high' rather than 'medium'",
+          "No DTCs listed is plausible but transfer case clutch issues often trigger AWD/4WD warning lights in the cluster"
+        ],
+        "evidence": "Forum and NHTSA TSB evidence (MC-10142255-9999) confirms a widespread Porsche Macan transfer case problem primarily on 2014-2018 models, addressed by an updated transfer case with gas-nitrocarburized clutch plates and a 7-year extended warranty from Porsche. Owner reports do mention seal seepage at the transmission/transfer case interface, but the headline issue is internal clutch plate failure rather than output shaft seal leaks, and the affected year range is narrower than 2015-2023.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-panamera-pdk-failure-2010",
+      "vehicle": "2010 Porsche Panamera",
+      "title": "PDK Dual-Clutch Transmission Mechatronic Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1000,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes listed are generic; Panamera-specific PDK codes more commonly cited are P1731-P1734 (shift rod/displacement sensors), P17B1/P17B2 (clutch pressure), and P17D4/P17D5 (mechatronic valve faults)",
+          "Year range 2010-2020 spans two different PDK units (7-speed ZF in Gen 1 970, 8-speed ZF in Gen 2 971) which have somewhat different failure modes; description conflates them",
+          "Repair cost range ($3000-$8000) is reasonable for mechatronic/valve body repair but understates full PDK replacement which dealers often quote at $10,000-$25,000",
+          "Most commonly reported Panamera PDK failure point is actually the shift rod/displacement sensor pack, not just mechatronic/clutch packs as described"
+        ],
+        "evidence": "Multiple independent sources (Rennlist, 6SpeedOnline, Diagnostic Network, PDK specialist shops) confirm Panamera PDK mechatronic, valve body solenoid, and displacement sensor failures producing harsh shifts, limp mode, and transmission fault messages. The Panamera PDK is confirmed as a distinct, higher-torque unit from the mid-engine/911 PDK, with dealer replacement quotes of $10k-$25k and independent repairs in the $1,500-$6,000 range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-718-boxster-convertible-top-2017",
+      "vehicle": "2017 Porsche 718 Boxster",
+      "title": "Convertible Top Alignment and Seal Issues",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 900,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Convertible top alignment/leak issues are far more commonly documented on older 986/987 Boxsters than on the 718 generation",
+          "No NHTSA recalls or Porsche TSBs specifically for 718 Boxster top alignment/seal issues were found",
+          "Most 718 owners report no top problems; this appears to be a rare/individual issue rather than a widespread known issue for this specific generation",
+          "Repair cost upper bound may be low — top motor/mechanism replacements on Porsche convertibles can exceed several thousand dollars per owner reports",
+          "Severity rating of 'low' is reasonable for nuisance wind/water leaks, but appropriate"
+        ],
+        "evidence": "Forum searches show isolated 718 top alignment complaints (e.g., one 718forum thread about top not folding properly), but the bulk of documented Boxster convertible top alignment/leak/cable problems pertain to older 986/987 models. Long-time 718 owners broadly report no top issues, and no NHTSA recalls or Porsche TSBs were found specific to this issue on the 718 generation.",
+        "confidence": "medium"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-cayman-cylinder-scoring-981-2014",
+      "vehicle": "2014 Porsche Cayman",
+      "title": "Cylinder Scoring on 981 GTS and GT4",
+      "severity": "critical",
+      "source": "ai-researched",
+      "reportCount": 900,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Overstates prevalence: MA1/9A1 bore scoring is documented but rare in 981s, not 'particularly prone' as stated - multiple expert sources (PCA, LN Engineering, Rennlist) describe it as uncommon compared to M96/M97 engines",
+          "Unsupported claim that GT4 3.8L has 'highest incidence rate among Cayman variants' - no evidence supports this; forum experts report no meaningful difference in occurrence between 981 variants",
+          "DTC codes (P0300/P0301/P0306 misfires) are not the typical diagnostic signature for bore scoring - actual symptoms are ticking noise, oil consumption, smoke, and elevated wear metals in oil analysis, not primarily misfire codes",
+          "GT4 was a single model year (2016 MY in US, launched late 2015) - lumping it into a 2014-2016 range with GTS is imprecise",
+          "Track use/thermal cycling as primary accelerant is not the documented main cause - cold operation, insufficient warm-up, and oil quality/intervals are the cited risk factors"
+        ],
+        "evidence": "Bore scoring is a real and documented phenomenon in MA1/9A1 engines per LN Engineering and PCA, but expert consensus on Rennlist and Planet-9 forums describes it as rare in 981 Caymans (including GTS/GT4), not 'particularly prone.' The listed misfire DTCs do not match the actual diagnostic presentation (ticking, oil consumption, oil analysis findings), and the GT4-specific claims about higher incidence are unsupported.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-macan-pdcc-leak-2015",
+      "vehicle": "2015 Porsche Macan",
+      "title": "PDCC Hydraulic System Leak",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 900,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "PDCC was never offered as a factory option on the first-generation Porsche Macan (2015-2023), including GTS and Turbo trims",
+          "PDCC hydraulic leak is a documented issue on Cayenne/Panamera/911 — not Macan; issue appears to be misattributed",
+          "No DTC codes listed despite description mentioning fault codes",
+          "Repair cost range cannot be verified for a system that doesn't exist on this vehicle",
+          "Severity rating is moot since system is not present on Macan"
+        ],
+        "evidence": "Multiple Porsche owner forum threads (Rennlist, MacanForum) and Porsche dealer reference guides confirm PDCC was not available as an option on the first-gen Macan (2015-2023); owners specifically lamented its absence. PDCC hydraulic leak issues are well-documented on Cayenne, Panamera, and 911 models, but the Macan used conventional anti-roll bars with PASM/air suspension instead.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-718-boxster-pdk-mechatronic-2017",
+      "vehicle": "2017 Porsche 718 Boxster",
+      "title": "PDK Mechatronic Unit Valve Body Issues",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 800,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Root cause misattributed: most common 718 PDK failure is the distance/displacement sensor, not solenoid valve wear in the mechatronic valve body (though valve body issues do occur)",
+          "DTC P0730 is not commonly associated with this issue in real-world reports; actual reported codes include P1736, P1732, P17F1, P17F2 (distance sensor) and P17D4/P17D5 (valve body solenoid)",
+          "Repair cost range understates dealer pricing significantly — Porsche dealers typically replace the entire PDK at $20,000-$29,000; the $2,500-$6,000 only reflects independent specialist repairs",
+          "Year range is plausible but 2017-2019 see most reports; later years (2020-2023) less documented possibly due to warranty coverage"
+        ],
+        "evidence": "Multiple owner reports on 718Forum and PistonHeads confirm PDK failures in 2017+ 718 Boxsters with symptoms matching the description (refusal to shift, stuck in gear, harsh engagement), and ZF 7DT45 PDK valve body solenoid faults are documented by specialists like BRR Performance. However, the predominant root cause in real-world cases is the distance sensor, not valve body solenoid wear, and dealer repair costs reach $20K-$29K rather than $2,500-$6,000.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-911-cylinder-scoring-992-2020",
+      "vehicle": "2020 Porsche 911",
+      "title": "Water-Cooled Cylinder Scoring on 992 Generation",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 800,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "Bore scoring is a documented issue for older M96/M97 engines (1997-2008) and to a lesser extent the 9A1 engine in 997.2/991.1, NOT the 992 generation",
+          "The 992 uses an updated 9A2 engine with SUMEbore APS iron-coated cylinder bores (introduced on 991.2) that specifically resolves the bore scoring failure mode",
+          "Multiple expert sources state the 992 has no known widespread mechanical/catastrophic issues and is among the most reliable 911 generations ever produced",
+          "No NHTSA complaints, TSBs, or forum reports specifically documenting widespread bore scoring on 992-generation 911s at 20,000 miles",
+          "Severity 'high' is miscategorized — even if it occurred, bore scoring is a costly engine failure, not a safety-critical issue",
+          "Turbo/Turbo S models use a different engine variant; lumping all 992 trims together is inaccurate",
+          "Repair cost range is roughly plausible for a 911 engine rebuild but applied to a non-existent issue"
+        ],
+        "evidence": "Authoritative sources (LN Engineering, PCA, The Drive, Pelican Parts) consistently document bore scoring as an M96/M97 (1997-2008) and 9A1 (997.2/991.1) issue, explicitly noting Porsche introduced SUMEbore iron-composite coated cylinder bores on the 991.2 that resolved the failure mode and is carried into the 992. Independent buyers' guides as recent as 2026 state the 992 generation has no widespread mechanical failures and is one of the most reliable 911 generations produced.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "porsche-718-cayman-pdk-mechatronic-2017",
+      "vehicle": "2017 Porsche 718 Cayman",
+      "title": "PDK Mechatronic Unit Issues",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 750,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0730/P0700 are generic; documented Porsche PDK codes are P1733, P17D4, P17D5 (distance sensor and clutch valve faults)",
+          "Description emphasizes solenoid wear, but the most commonly documented 718 PDK failure mode in owner forums is the distance/position sensor, not valve body solenoids",
+          "Repair cost range ($2,500-$6,000) reflects independent specialist repair only; Porsche dealer SOP is full transmission replacement at ~$25,000-$29,000",
+          "Severity 'high' (safety-critical) is overstated; failures typically result in limp-home mode rather than safety-critical loss of control",
+          "Claim that 718 shares the same issues as Boxster is accurate (same ZF 7DT45 transmission), but issue is not unusually prevalent on 718 specifically"
+        ],
+        "evidence": "Owner forums (718forum, Planet-9, Rennlist) and Porsche specialists confirm PDK mechatronic/sensor failures occur on 718 Caymans, but the dominant failure mode is the distance sensor (code P1733) causing limp mode with 'Transm. fault. Poss. no R gear' messages, not the generic P0730/P0700 codes listed. Dealer repair via full PDK replacement runs $25,000+, while independent valve body/sensor repair is in the $2,000-$5,000 range.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    }
+  ]
+}

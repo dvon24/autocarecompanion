@@ -1,287 +1,587 @@
 {
   "issues": [
     {
-      "id": "cadillac-ct5-v2-rear-axle-elsd-c1135-sym92",
-      "make": "Cadillac",
-      "model": "CT5",
+      "id": "acura-integra-dc-distributor-internal-failure",
+      "make": "Acura",
+      "model": "Integra",
       "years": [
-        2020,
-        2021,
-        2022
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
       ],
-      "trims": [
-        "V",
-        "V-Series"
-      ],
+      "trims": [],
       "engines": [
-        "3.0L LGY Twin-Turbo V6"
+        "B18B1",
+        "B18C1",
+        "B18C5"
       ],
-      "category": "drivetrain",
-      "title": "CT5-V eLSD 'Service Rear Axle' Message with DTC C1135 SYM92 / Differential Control Module Startup Delay",
-      "description": "On CT5-V models equipped with the Electronic Limited-Slip Rear Differential (eLSD), owners report a 'Service Rear Axle' message in the Driver Information Center, often accompanied by reduced eLSD function or temporary loss of torque vectoring. The Differential Control Module (DCM) can experience a startup delay or communication fault that sets DTC C1135 with symptom byte 92, sometimes shortly after a cold start. GM issued a service update (N202312960) and multiple Preliminary Information bulletins (PIP5763, PIP5763A, PIP5763B) to address it.",
-      "solution": "Have the dealer scan the DCM for C1135 SYM92 and follow PIP5763B, which typically calls for reprogramming the Differential Control Module with updated calibration; in some cases the DCM or rear axle assembly is replaced. The N202312960 service update reflashes the DCM to correct the startup delay at no charge during the campaign window. Confirm the latest DCM software is installed before authorizing any axle hardware replacement, since the issue is usually software-related.",
-      "severity": "medium",
+      "category": "electrical",
+      "title": "Internal distributor failure causing stalling, no-start, and misfires",
+      "description": "The TEC/Hitachi internal-coil distributor on third-generation Integras is a chronic failure point. Heat from the internal ignition coil degrades the coil, igniter (ICM), and bearings, causing intermittent stalling at operating temperature, hot-restart problems, and dead no-starts. \nThe 1996 Acura Integra has the most overall complaints, with the most-reported problem being distributor failure. This issue can cause difficulty starting the car, stalling, and misfiring.\n \nThe car has been in the shop because the driver was driving and it just shut off with no warning or light. Come to find out it was the distributor so they changed it.\n",
+      "solution": "Pull DTCs first — codes P1381 (cylinder position sensor) and Code 22 commonly originate inside the distributor. \nP1381 is the cylinder position sensor code, located inside the distributor.\n Replace the complete OEM distributor assembly (avoid cheap aftermarket — many fail within months). OBD1 (94-95) and OBD2 (96-99) distributors are not interchangeable. \nIt is worth noting that the distributor plugs are different for each obd generation. So the obd1, and obd2 have different harness plugs.\n Budget $250-550 for a quality unit installed.",
+      "severity": "high",
       "confidence": "high",
       "symptoms": [
-        "'Service Rear Axle' message in DIC",
-        "Reduced or disabled eLSD function",
-        "Loss of torque vectoring in corners",
-        "Intermittent traction/stability warnings on cold start"
+        "engine stalls while driving",
+        "hot no-start",
+        "intermittent misfire",
+        "check engine light",
+        "rough idle when warm",
+        "engine cuts out and restarts"
       ],
       "affectedSystems": [
-        "Electronic Limited-Slip Differential",
-        "Differential Control Module",
-        "Rear axle"
+        "ignition",
+        "engine management"
       ],
       "dtcCodes": [
-        "C1135",
-        "C1135 SYM92"
+        "P1381",
+        "P1382",
+        "P1361",
+        "P1362"
       ],
-      "estimatedCostLow": 0,
+      "estimatedCostLow": 250,
       "estimatedCostHigh": 600,
       "citations": [
         {
-          "type": "tsb",
-          "title": "2020-2021 Cadillac CT5-V Service Bulletin #PIP5763B: Service Rear Axle Message with DTC C1135 SYM92",
-          "url": "https://www.cadillacvnet.com/knowledge-base/article/2016-2020-cadillac-ats-v-cts-v-ct6-v-service-bulletin-pip5785-whining-whirring-whistle-squeaking-groaning-growling-noise-coming-from-the-front-wheel-engine-area-mar-6-2021-56.html"
-        }
-      ],
-      "communityRecommendations": [
-        {
-          "type": "tip",
-          "content": "Before any axle hardware replacement, insist the dealer verify the Differential Control Module has the latest calibration per N202312960 / PIP5763B — most cases are resolved by a reflash, not parts.",
-          "upvotes": 0,
-          "needsReview": false
+          "type": "forum",
+          "title": "Anatomy of a B-series Distributor — Team Integra Forums",
+          "url": "https://www.team-integra.net/threads/anatomy-of-a-b-series-distributor.163657/"
         },
         {
-          "type": "warning",
-          "content": "If the Service Rear Axle message comes back after a reflash, request a follow-up diagnosis: persistent C1135 SYM92 after recalibration can indicate an actual DCM hardware fault.",
-          "upvotes": 0,
-          "needsReview": false
-        }
-      ],
-      "typicalMileageLow": 0,
-      "typicalMileageHigh": 40000
-    },
-    {
-      "id": "cadillac-ct5-v2-10l80-harsh-shift-p2812-p2814",
-      "make": "Cadillac",
-      "model": "CT5",
-      "years": [
-        2020,
-        2021
-      ],
-      "trims": [],
-      "engines": [
-        "3.0L LGY Twin-Turbo V6",
-        "6.2L LT4 Supercharged V8"
-      ],
-      "category": "transmission",
-      "title": "10L80 / 10L90 Harsh Shifts and Check Engine Light with DTC P2812 or P2814 (Line Pressure Solenoid)",
-      "description": "Owners of CT5 and CT5-V models equipped with the 10L80 (and CT5-V Blackwing's 10L90) 10-speed automatic report harsh, abrupt shifts accompanied by an illuminated check engine light. GM Preliminary Information bulletin PIP5799 documents an electrical fault in Transmission Control Solenoid Valve 7 (the line pressure solenoid) that stores DTC P2812 or P2814 in the TCM. GM separately placed certain 10L60/10L80/10L90 assemblies on PQC restriction (dealers must contact the Product Quality Center before replacing the transmission), and Recall N242480630 covers a software fix to prevent internal damage that can cause wheel lock-up.",
-      "solution": "Scan the TCM; if P2812 or P2814 is set, follow SI diagnostics for the line pressure solenoid circuit. PIP5799 directs that, if no other root cause is found, the valve body is replaced. Dealers are required to open a Product Quality Center (PQC) case via Dealer Case Management before replacing the transmission assembly. Also verify that GM safety Recall N242480630 (TCM monitoring software for wheel lock-up risk) has been performed; owner letters were mailed April 7, 2025.",
-      "severity": "high",
-      "confidence": "high",
-      "symptoms": [
-        "Harsh or abrupt 1-2 and 2-3 shifts",
-        "Check engine light / SES light",
-        "Rumble-strip shudder under light throttle in higher gears",
-        "Possible wheel lock-up (subject of recall N242480630)"
-      ],
-      "affectedSystems": [
-        "10L80 transmission",
-        "10L90 transmission",
-        "Transmission Control Module",
-        "Valve body / Line Pressure Solenoid"
-      ],
-      "dtcCodes": [
-        "P2812",
-        "P2814"
-      ],
-      "estimatedCostLow": 0,
-      "estimatedCostHigh": 3500,
-      "citations": [
-        {
-          "type": "tsb",
-          "title": "PIP5799 — 10L60 10L80 10L90 10L1000 Automatic Transmissions With SES Light And DTCs P2812 Or P2814 Setting",
-          "url": "https://ww7.oemdtc.com/15916/10l60-10l80-10l90-10l1000-automatic-transmissions-with-ses-light-and-dtcs-p2812-or-p2814-setting-2019-2021-cadillac-chevrolet-gmc/"
-        },
-        {
-          "type": "tsb",
-          "title": "2021 10L60/10L80/10L90 10-Speed Gen II Automatic Transmission Restriction Program",
-          "url": "https://ww7.oemdtc.com/15061/2021-10l60-10l80-10l90-10-speed-gen-ii-automatic-transmission-restriction-program-2021-cadillac-chevrolet"
-        },
-        {
-          "type": "recall",
-          "title": "Recall 257108 / N242480630 — 2019-2020 CT6, 2020-2021 CT4/CT5, 2020-2022 Camaro 10-speed transmission wheel lock-up risk",
-          "url": "https://dot.report/vehicle/cadillac/ct5-awd/2020/complaints"
-        }
-      ],
-      "communityRecommendations": [
-        {
-          "type": "tip",
-          "content": "If you experience harsh shifts, pull codes first — a stored P2812 or P2814 points directly to the line pressure solenoid and qualifies the car for PIP5799 diagnostics under powertrain warranty.",
-          "upvotes": 0,
-          "needsReview": false
-        },
-        {
-          "type": "warning",
-          "content": "Verify Recall N242480630 has been completed via NHTSA VIN lookup; the TCM monitoring software update is free and addresses a wheel-lock-up safety risk.",
-          "upvotes": 0,
-          "needsReview": false
-        }
-      ],
-      "typicalMileageLow": 5000,
-      "typicalMileageHigh": 80000
-    },
-    {
-      "id": "cadillac-ct5-v2-unwanted-aeb-phantom-braking",
-      "make": "Cadillac",
-      "model": "CT5",
-      "years": [
-        2020,
-        2021,
-        2022,
-        2023,
-        2024,
-        2025
-      ],
-      "trims": [],
-      "engines": [],
-      "category": "safety",
-      "title": "Unwanted Automatic Emergency Braking / Reverse Automatic Braking False Activations",
-      "description": "Owners report the Forward Automatic Emergency Braking (AEB) and Reverse Automatic Braking systems engaging without a real obstacle present — most often when reversing out of a dim garage into bright sunlight, in rain, or at low speeds with no vehicle in front. GM documented the concern broadly as 'Unwanted Integrated Brake Assist' in service bulletin N252521591 (later expanded as N252521591-02) and issued TSB 25-NA-118 providing a customer-concern verification sheet for AEB complaints. Owners on Cadillac forums confirm the CT5 and CT5-V are affected, and a class-action over similar GM AEB false activations is referenced by owners.",
-      "solution": "Document the conditions (lighting, weather, speed, presence/absence of obstacle) and bring the vehicle to a Cadillac dealer with TSB 25-NA-118 in hand so the tech completes the customer-concern verification sheet — this is required before GM will authorize the software remedy. The fix is typically a reflash of the radar/camera and electronic brake control modules per service update N252521591 (latest revision -02). As a workaround, the front AEB sensitivity and Reverse Automatic Braking can be turned down or off in the Driver Assistance menu while waiting for the software update.",
-      "severity": "high",
-      "confidence": "high",
-      "symptoms": [
-        "Car slams on brakes for no visible reason",
-        "Reverse Automatic Braking triggers when backing out of garage",
-        "False forward collision alerts in light rain or low sun",
-        "Brake pedal pulses or hard stop with no obstacle ahead"
-      ],
-      "affectedSystems": [
-        "Automatic Emergency Braking",
-        "Reverse Automatic Braking",
-        "Forward Collision Alert",
-        "Electronic Brake Control Module",
-        "Front camera/radar"
-      ],
-      "dtcCodes": [],
-      "estimatedCostLow": 0,
-      "estimatedCostHigh": 250,
-      "citations": [
-        {
-          "type": "tsb",
-          "title": "2020 Cadillac CT5 AWD — TSB 25-NA-118 Collision Avoidance: Automatic Emergency Braking customer-concern verification sheet (DOT Report)",
-          "url": "https://dot.report/vehicle/cadillac/ct5-awd/2020/complaints"
+          "type": "forum",
+          "title": "Acura Integra - distributor, no start (SOLVED) - Car Talk Community",
+          "url": "https://community.cartalk.com/t/acura-integra-distributor-no-start-solved/107487"
         },
         {
           "type": "media",
-          "title": "GM Releases Fix For Cadillac CT5 Unwanted Brake Assist (Service Update N252521591-02)",
-          "url": "https://gmauthority.com/blog/2026/02/gm-releases-fix-for-cadillac-ct5-unwanted-brake-assist/"
+          "title": "Acura Integra problems and complaints — Slotcar Today",
+          "url": "https://slotcar-today.com/problems/acura/integra"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "Use a genuine Honda/Hitachi OEM distributor — aftermarket re-mans commonly fail again within months.",
+          "upvotes": 0,
+          "needsReview": false
+        },
+        {
+          "type": "tip",
+          "content": "Mark the distributor housing position before removal so you can return to base timing without a timing light.",
+          "upvotes": 0,
+          "needsReview": false
+        }
+      ],
+      "typicalMileageLow": 90000,
+      "typicalMileageHigh": 180000
+    },
+    {
+      "id": "acura-integra-dc-distributor-o-ring-oil-leak",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [
+        "LS",
+        "GS",
+        "RS",
+        "GS-R",
+        "Type R"
+      ],
+      "engines": [
+        "B18B1",
+        "B18C1",
+        "B18C5"
+      ],
+      "category": "engine",
+      "title": "Distributor O-ring leaks oil onto transmission bellhousing",
+      "description": "The O-ring sealing the distributor shaft to the cylinder head shrinks and hardens, allowing oil to weep out behind the distributor and run down the back of the head onto the top of the transmission. Owners often misdiagnose it as a head gasket or cam seal leak. \nOwners report a problem with the b18b1 head leaking oil where the distributor plugs into the head, with the little o-ring gasket being the cause.\n \nOwners notice their GSR a little low on oil, with the leak coming from behind the dizzy, and oil on the coolant temp sensor.\n",
+      "solution": "Remove the three distributor mounting bolts, pull the distributor (mark its position first), and replace the O-ring with an OEM Honda part (~$5). \nThere is an O-ring around the distributor. Take the three bolts off that hold the unit in, mark the position, there is an O-ring on the part that goes into the engine. Honda sells these for like $5.\n If the leak persists, inspect the VTEC solenoid gasket and the rocker shaft freeze plug at the rear of the head — \nit was the vtec rocker shaft freeze plug/seal that was the cause\n in some persistent cases.",
+      "severity": "low",
+      "confidence": "high",
+      "symptoms": [
+        "oil drips on top of transmission",
+        "oil-soaked distributor housing",
+        "oil on coolant temp sensor",
+        "low oil between changes",
+        "burning oil smell from engine bay"
+      ],
+      "affectedSystems": [
+        "lubrication",
+        "ignition"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": 10,
+      "estimatedCostHigh": 80,
+      "citations": [
+        {
+          "type": "forum",
+          "title": "distributor oil leak — Team Integra Forums",
+          "url": "https://www.team-integra.net/threads/distributor-oil-leak.190450/"
         },
         {
           "type": "forum",
-          "title": "Auto braking when backing up — Cadillac Owners Forum (CT5-V owner reports)",
-          "url": "https://www.cadillacforums.com/threads/auto-braking-when-backing-up.1157594/"
+          "title": "Bad Distributor Oil Leak — Honda-Tech",
+          "url": "https://honda-tech.com/forums/acura-integra-6/bad-distributor-oil-leak-2369618/"
         },
         {
           "type": "forum",
-          "title": "'21 automatic braking question — Cadillac Owners Forum",
-          "url": "https://www.cadillacforums.com/threads/21-automatic-braking-question.1127792/"
+          "title": "Distributor o ring leak...FIXED w/pics — Team Integra Forums",
+          "url": "https://www.team-integra.net/threads/distributor-o-ring-leak-fixed-w-pics.86503/"
         }
       ],
       "communityRecommendations": [
         {
           "type": "tip",
-          "content": "Reverse Automatic Braking is most likely to false-trigger when transitioning from dim light (garage) to bright sunlight or in rain — keep a longer dwell at the threshold and watch for the rear sensor warning before applying throttle.",
+          "content": "Replace the VTEC solenoid gasket at the same time — it leaks from the same area and is cheap insurance.",
           "upvotes": 0,
           "needsReview": false
         },
         {
           "type": "warning",
-          "content": "Bring the bulletin number (N252521591 or 25-NA-118) to your service writer. Some dealers initially deny a problem until presented with the actual GM document.",
+          "content": "Do not use RTV in place of the O-ring; it will not seal long-term and complicates future removal.",
           "upvotes": 0,
           "needsReview": false
         }
       ],
-      "typicalMileageLow": 0,
-      "typicalMileageHigh": 100000
+      "typicalMileageLow": 80000,
+      "typicalMileageHigh": 200000
     },
     {
-      "id": "cadillac-ct5-v2-infotainment-freeze-update-stall",
-      "make": "Cadillac",
-      "model": "CT5",
+      "id": "acura-integra-dc-ignition-switch-contact-pitting",
+      "make": "Acura",
+      "model": "Integra",
       "years": [
-        2020,
-        2021,
-        2022,
-        2023,
-        2024,
-        2025
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
       ],
       "trims": [],
       "engines": [],
       "category": "electrical",
-      "title": "Infotainment / Center Display Freezing, Black Screen and Stalled Software Update (stuck at 99%)",
-      "description": "CT5 owners report the center infotainment display freezing, becoming unresponsive to touch, or hanging during an over-the-air or dealer-pushed software update — a common symptom is a black screen with a blue progress bar stuck at 99%. The condition is documented on a 2020 CT5 case where a Cadillac-issued Technical Service Bulletin was required to be applied at the dealer to recover the module. Secondary symptoms include incorrect clock display on the instrument cluster after the screen recovers, indicating a system-wide software fault rather than a touchscreen hardware failure.",
-      "solution": "Try a soft reset first: press and hold the infotainment power/volume button for ~10 seconds until the Cadillac logo reappears. If the unit remains stuck (especially at 99% during an update), the fix must be performed at a Cadillac dealer per the active Cadillac TSB, which reflashes the infotainment module. Avoid interrupting any software update by shutting the car off mid-flash — that is the most common trigger for the stuck-update state. A weak 12V battery can also corrupt updates, so have battery state-of-health checked before any reflash.",
-      "severity": "medium",
-      "confidence": "medium",
+      "title": "Ignition switch contact pitting causes engine to die when key released",
+      "description": "The electrical contact block on the steering-column ignition switch develops pitted contacts. The car will crank and start, but as soon as the key returns from START to RUN the contact fails and the engine dies. Sometimes the car will run if the key is held partially toward START. \nDriving home and the 95 Acura Integra 4 door GSR died on the highway. If trying to start the car, it would start then die as the key was released. Holding the key close to III kept the engine on. The ignition harness switching mechanism contact point was pitted.\n",
+      "solution": "Replace the ignition switch electrical portion (not the cylinder/lock) — it unbolts from the back of the steering column lock housing with two screws. OEM Honda part is the most reliable choice. \nThe issue is starting the car and it dies as soon as you let go of the key. After research, it became obvious it was an ignition switch issue.\n Check the under-hood main fuse and the ignition fuses before condemning the switch. Budget $50-150 for parts and 1 hour labor.",
+      "severity": "high",
+      "confidence": "high",
       "symptoms": [
-        "Touchscreen unresponsive or frozen",
-        "Black screen with blue progress bar stuck at 99%",
-        "Cadillac logo loop on startup",
-        "Clock on cluster shows wrong time after recovery",
-        "CarPlay/Android Auto won't connect"
+        "engine dies when key returns to RUN",
+        "intermittent no-start",
+        "accessories cut out",
+        "must hold key toward START to keep running"
       ],
       "affectedSystems": [
-        "Infotainment Display Module",
-        "Google-built infotainment",
-        "Instrument Cluster (clock sync)"
+        "ignition",
+        "starting"
       ],
       "dtcCodes": [],
-      "estimatedCostLow": 0,
-      "estimatedCostHigh": 400,
+      "estimatedCostLow": 50,
+      "estimatedCostHigh": 200,
       "citations": [
         {
+          "type": "nhtsa",
+          "title": "1995 Acura Integra Electrical System: Ignition: Switch Problems — CarComplaints",
+          "url": "https://www.carcomplaints.com/Acura/Integra/1995/electrical/electrical_system-ignition-switch.shtml"
+        },
+        {
           "type": "forum",
-          "title": "Cadillac CT5 Screen Frozen at 99 Percent How to Reset? (2020 CT5, JustAnswer expert references active Cadillac TSB)",
-          "url": "https://www.justanswer.com/cadillac/kb2xu-screen-black-blue-status-line-across.html"
+          "title": "Ignition switch issue — Honda-Tech",
+          "url": "https://honda-tech.com/forums/acura-integra-6/ignition-switch-issue-3057067/"
         },
         {
-          "type": "media",
-          "title": "How To Reset Your Cadillac CUE System — Fairfield Cadillac (covers CT5 V-Series)",
-          "url": "https://www.fairfieldcadillac.com/blogs/5979/how-to-reset-your-cadillac-cue-system"
-        },
-        {
-          "type": "media",
-          "title": "Cadillac CUE Reset — A 'How To' Guide (Quantrell Cadillac)",
-          "url": "https://www.quantrellcadillac.com/how-to-reset-cadillac-cue/"
-        },
-        {
-          "type": "media",
-          "title": "How to Reset Cadillac CUE (Turan-Foley Cadillac)",
-          "url": "https://www.turanfoleycadillac.com/blogs/7267/how-to-reset-cadillac-cue/"
+          "type": "nhtsa",
+          "title": "1996 Acura Integra Ignition Switch Problems — CarComplaints",
+          "url": "https://www.carcomplaints.com/Acura/Integra/1996/electrical/electrical_system-ignition-switch.shtml"
         }
       ],
       "communityRecommendations": [
         {
           "type": "tip",
-          "content": "If the screen is mid-update, do NOT shut the engine off — let the update complete (5-15 minutes). Interrupting the flash is the #1 cause of the stuck-at-99% state.",
+          "content": "Test fuses and the under-hood main fuse first — symptoms can mimic switch failure.",
+          "upvotes": 0,
+          "needsReview": false
+        },
+        {
+          "type": "warning",
+          "content": "Aftermarket ignition switches are hit-or-miss; the OEM Honda part is worth the price.",
+          "upvotes": 0,
+          "needsReview": false
+        }
+      ],
+      "typicalMileageLow": 80000,
+      "typicalMileageHigh": 200000
+    },
+    {
+      "id": "acura-integra-dc-automatic-transmission-shift-solenoid",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [
+        "LS",
+        "GS",
+        "RS",
+        "Special Edition"
+      ],
+      "engines": [
+        "B18B1"
+      ],
+      "category": "transmission",
+      "title": "4-speed automatic: shift solenoid failure causes D4 light flash, missed shifts, and limp mode",
+      "description": "The Honda BAXA/MAXA 4-speed automatic in the Integra is notoriously sensitive to fluid condition and shift-solenoid contamination. Solenoid A/B failure causes flashing D4 light, harsh or missed 2-3/3-4 shifts, loss of power in D4/D3, and sometimes speedometer drop-out. \nIntegra often faces delayed or missed shifts and manual downshifting difficulties in automatic transmissions. Shifting problems in the 1998 Integra's automatic transmission can stem from a clogged transmission filter or screen restricting fluid flow. This causes poor hydraulic pressure, leading to missed 4th gear shifts and failure to downshift.\n \nWhile driving, the D4 suddenly lost almost all power, wouldn't shift, and the speedometer stopped working. Codes returned were Automatic Transaxle FI A circuit failure and ELD error.\n",
+      "solution": "Drain-and-fill with Honda ATF-Z1/DW-1 (NEVER use generic Dexron — it will destroy the clutches). \nThe transmission fluid in the Integra 4AT's are supposed to be changed every 3 years/36,000 mi. It can cook and wear out just like the oil in your engine.\n Pull codes with a Honda jumper or scan tool; the lock-up and shift solenoids are external, three-bolt parts accessible from the engine bay and often just need cleaning. \nA screwed up lock-up solenoid will give you a general CEL #70 (Automatic Transaxle); the solenoid is totally accessible from the engine bay and costs less than $200 to replace. It's held in place by three bolts.\n",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "flashing D4 indicator",
+        "harsh 2-3 shift",
+        "no 4th gear",
+        "loss of power in D4/D3",
+        "speedometer intermittent",
+        "shift hold in gear"
+      ],
+      "affectedSystems": [
+        "transmission",
+        "TCM"
+      ],
+      "dtcCodes": [
+        "P0740",
+        "P0780",
+        "P1660",
+        "P1298"
+      ],
+      "estimatedCostLow": 150,
+      "estimatedCostHigh": 3500,
+      "citations": [
+        {
+          "type": "forum",
+          "title": "Auto transmission B18B1 won't move car — Team Integra",
+          "url": "https://www.team-integra.net/threads/auto-transmission-b18b1-wont-move-car.193383/"
+        },
+        {
+          "type": "forum",
+          "title": "99 Integra Transmission Problem — Acura World",
+          "url": "https://www.acuraworld.com/threads/99-integra-transmission-problem.91416/"
+        },
+        {
+          "type": "forum",
+          "title": "Auto transmission issue (ATF service guide) — Team Integra",
+          "url": "https://www.team-integra.net/threads/auto-transmission-issue.343435/"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "warning",
+          "content": "Use only Honda ATF-Z1 or DW-1. Generic ATF causes shift flare and premature failure.",
           "upvotes": 0,
           "needsReview": false
         },
         {
           "type": "tip",
-          "content": "Have battery state-of-health tested before any dealer-pushed reflash; a weak 12V battery can corrupt the update and create exactly the freeze symptom the bulletin addresses.",
+          "content": "Pull the specific solenoid code before condemning the transmission — a $150 solenoid often fixes it.",
           "upvotes": 0,
           "needsReview": false
         }
       ],
-      "typicalMileageLow": 0,
-      "typicalMileageHigh": 80000
+      "typicalMileageLow": 90000,
+      "typicalMileageHigh": 180000
+    },
+    {
+      "id": "acura-integra-dc-timing-belt-interference-failure",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [],
+      "engines": [
+        "B18B1",
+        "B18C1",
+        "B18C5"
+      ],
+      "category": "engine",
+      "title": "Timing belt failure on interference B18 engine bends valves",
+      "description": "All B18 engines in the 94-99 Integra are interference-design. If the timing belt snaps (or jumps teeth from a seized tensioner or water pump), pistons strike open valves. The belt should be replaced every 90,000 miles along with the water pump, tensioner, and seals. \nThe timing belt in the DOHC Honda engine keeps engine running and valvetrain events on time. Because the 1.8 liter B18 engine is an interference engine, failure of the timing belt usually means pistons have hit valves. This can lead to lack of cylinder compression at the bare minimum. At worst the valve may become stuck or destroy the piston.\n",
+      "solution": "Replace the complete timing belt kit: belt (125T non-VTEC, 126T VTEC), tensioner, tensioner spring, water pump, cam and crank seals, and balance shaft belt where applicable. \nTiming belt part numbers are 14400-P7J-004 or 14400-PR4-A01 for the 19-tooth LS water pump, with water pump 19200-P75-003 or 19200-PT5-000.\n Do NOT mix LS and GSR water pumps — the tooth counts differ. \nThe water pumps are not the same. They have different amounts of teeth on them.\n Professional cost: \nin the ballpark of 350-600 dollars for a job of this type\n.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "squealing from timing cover",
+        "engine misfire",
+        "sudden engine stop",
+        "no compression after belt break",
+        "ticking from timing cover"
+      ],
+      "affectedSystems": [
+        "engine",
+        "valvetrain",
+        "cooling"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": 350,
+      "estimatedCostHigh": 3000,
+      "citations": [
+        {
+          "type": "media",
+          "title": "How To Change a B18B Timing Belt — My Pro Street",
+          "url": "https://my.prostreetonline.com/2015/02/05/change-b18b-timing-belt/"
+        },
+        {
+          "type": "media",
+          "title": "How To Change Your B18C1 DOHC VTEC Timing Belt — My Pro Street",
+          "url": "https://my.prostreetonline.com/2014/06/05/change-b18c1-dohc-vtec-timing-belt/"
+        },
+        {
+          "type": "media",
+          "title": "Acura Integra Timing Belt — PartsGeek",
+          "url": "https://www.partsgeek.com/mmparts/timing_belt/acura/integra.html"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "Use a Japanese-made kit (Aisin water pump, Mitsuboshi or Gates belt) — avoid no-name kits.",
+          "upvotes": 0,
+          "needsReview": false
+        },
+        {
+          "type": "warning",
+          "content": "Replace at 90k miles or 7 years even if the belt looks fine; tensioner bearings seize without warning.",
+          "upvotes": 0,
+          "needsReview": false
+        }
+      ],
+      "typicalMileageLow": 90000,
+      "typicalMileageHigh": 110000
+    },
+    {
+      "id": "acura-integra-dc-vtec-oil-pressure-switch-code22",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [
+        "GS-R",
+        "Type R"
+      ],
+      "engines": [
+        "B18C1",
+        "B18C5"
+      ],
+      "category": "engine",
+      "title": "VTEC oil pressure switch failure (Code 22 / P1259) on GS-R and Type R",
+      "description": "The VTEC oil pressure switch screwed into the VTEC solenoid assembly on B18C engines fails or leaks, triggering CEL with OBD1 Code 22 or OBD2 P1259. Symptoms include VTEC not engaging at high RPM and a hard rev-limiter drop. \nOwner had a 99 GSR with CEL constantly on and code 22 (VTEC Oil Pressure Switch). Even after replacing it with a new one and swapping the VTEC solenoid, the problem occurred after going into VTEC and letting off, mostly around 60-90mph.\n \nError code 22 corresponds to the front valve timing oil pressure switch, which is the VTEC oil pressure switch.\n",
+      "solution": "Verify oil level and condition first — \nif the code is still present after checking, make sure there is plenty of oil and then reset the ECU\n. The switch is the green-plug sensor on top of the VTEC solenoid; replace with OEM Honda part. \nReplace the switch. It's the green plug located on the vtec solenoid.\n If the code returns after replacement, install a mechanical oil pressure gauge — \na worn oil pump or internal leak can cause low pressure that triggers the code; an oil pressure gauge will confirm\n. Switch is ~$70 OEM.",
+      "severity": "low",
+      "confidence": "high",
+      "symptoms": [
+        "check engine light",
+        "VTEC fails to engage",
+        "soft rev cut around 6000 RPM",
+        "loss of top-end power"
+      ],
+      "affectedSystems": [
+        "VTEC",
+        "engine management"
+      ],
+      "dtcCodes": [
+        "Code 22",
+        "P1259"
+      ],
+      "estimatedCostLow": 70,
+      "estimatedCostHigh": 250,
+      "citations": [
+        {
+          "type": "forum",
+          "title": "VTEC Oil Pressure Switch Code 22 help! — Team Integra",
+          "url": "https://www.team-integra.net/threads/vtec-oil-pressure-switch-code-22-help.155707/"
+        },
+        {
+          "type": "forum",
+          "title": "VTEC Oil Pressure Switch Problem — Team Integra",
+          "url": "https://www.team-integra.net/threads/vtec-oil-pressure-switch-problem.96848/"
+        },
+        {
+          "type": "forum",
+          "title": "Error code 22 on Integra GSR! — Tampa Racing",
+          "url": "https://www.tamparacing.com/forums/honda-acura-tech/68226-error-code-22-integra-gsr.html"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Do an oil and filter change before replacing the switch — gunked oil galleries often cause the same code.",
+          "upvotes": 0,
+          "needsReview": false
+        },
+        {
+          "type": "warning",
+          "content": "Aftermarket VTEC controllers commonly trigger this code by changing the engagement RPM the ECU expects.",
+          "upvotes": 0,
+          "needsReview": false
+        }
+      ],
+      "typicalMileageLow": 80000,
+      "typicalMileageHigh": 200000
+    },
+    {
+      "id": "acura-integra-dc-rear-lca-bolt-seizure",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "suspension",
+      "title": "Rear lower control arm bolts seize and shear inside bushing sleeves",
+      "description": "The long bolts that pass through the rear lower control arm inner bushings corrode to the steel sleeve inside the bushing. Any attempt to remove them for alignment, bushing, or shock work results in a sheared bolt and a destroyed bushing sleeve. This is a near-universal complaint in rust-belt cars. \nOwners had to cut the ears that go around the LCA off the strut because the bolts rust to the inside of the bushing.\n \nLCA bolts break ALL the time.\n",
+      "solution": "Soak bolts with penetrating fluid (PB Blaster/Kroil) for days before attempting removal; heat the bushing sleeve with a torch. If the bolt shears, the only fix is to cut the bushing out and drill/punch the remaining sleeve from the subframe ear. \nWhen you are down there and replacing rusted bolts, if they are rusted on bad enough you might have to break the welded nut they go into on the front side of the subframe and trailing arms. You can get matching sized nuts and washers.\n Replace with OEM Honda bolts (M10x1.25, ~$4-9 each from the dealer). \nDiameter = 10mm, Pitch = 1.25.\n",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "seized suspension hardware",
+        "clunking from rear",
+        "unable to align rear",
+        "sheared bolt during repair"
+      ],
+      "affectedSystems": [
+        "suspension",
+        "chassis"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": 100,
+      "estimatedCostHigh": 800,
+      "citations": [
+        {
+          "type": "forum",
+          "title": "Lower Control Arm Bolt Replacement — Team Integra",
+          "url": "https://www.team-integra.net/threads/lower-control-arm-bolt-replacement.151379/"
+        },
+        {
+          "type": "forum",
+          "title": "Rear Lower control arm bolt? — Team Integra",
+          "url": "https://www.team-integra.net/threads/rear-lower-control-arm-bolt.79694/"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Spray penetrating oil into the bushing sleeve through both ends a week before the job.",
+          "upvotes": 0,
+          "needsReview": false
+        },
+        {
+          "type": "warning",
+          "content": "Use proper-grade OEM bolts — hardware-store bolts are not always the correct grade for this safety-critical joint.",
+          "upvotes": 0,
+          "needsReview": false
+        }
+      ],
+      "typicalMileageLow": 100000,
+      "typicalMileageHigh": 250000
+    },
+    {
+      "id": "acura-integra-dc-power-window-regulator-cable",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "Cable-style power window regulator frays and window falls into door",
+      "description": "The factory cable-driven window regulator frays inside the spool housing. The window then moves slowly, gets stuck, makes grinding or clicking noise, or drops into the door. The driver's door is most commonly affected due to use frequency. \nAn inoperative power window would commonly be caused by failure of the cable in the window regulator, or the window motor itself. The window regulator will need to be replaced as an assembly to correct this concern.\n \nA clicking, chattering, or grinding noise when the window moves can indicate a failing regulator. In some cases a severely damaged window regulator could cause the window to drop inside the door.\n",
+      "solution": "Replace the regulator assembly — the cable cannot be serviced separately. Remove door panel, lower glass to expose the two regulator-to-glass bolts, then six bolts holding regulator to door shell. \nDisconnect the 6 bolts holding the window regulator to the door. Remove regulator/motor assembly through the largest hole in the door.\n Test the motor before condemning — switches and the master switch power module also fail. Total cost: \nstarting from $364\n at a shop; DIY parts run $60-150.",
+      "severity": "low",
+      "confidence": "high",
+      "symptoms": [
+        "slow window travel",
+        "window stuck open",
+        "clicking from door",
+        "window drops into door",
+        "motor hums but no glass movement"
+      ],
+      "affectedSystems": [
+        "body electrical",
+        "doors"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": 60,
+      "estimatedCostHigh": 450,
+      "citations": [
+        {
+          "type": "forum",
+          "title": "Acura Integra Window Won't Go Up or Down — RepairPal",
+          "url": "https://repairpal.com/acura/integra/stuck-car-window"
+        },
+        {
+          "type": "forum",
+          "title": "Power window motor replace — Team Integra",
+          "url": "https://www.team-integra.net/threads/power-window-motor-replace.184333/"
+        },
+        {
+          "type": "media",
+          "title": "Acura Integra Window Motor Regulator Replacement Costs — YourMechanic",
+          "url": "https://www.yourmechanic.com/estimates/acura/integra/window-motor-regulator-assembly-replacement"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Test the motor on the bench with battery jumpers before buying a regulator — sometimes only the switch is bad.",
+          "upvotes": 0,
+          "needsReview": false
+        },
+        {
+          "type": "part",
+          "content": "Genuine Honda regulators last far longer than budget aftermarket; junkyard OEM is often the best value.",
+          "upvotes": 0,
+          "needsReview": false
+        }
+      ],
+      "typicalMileageLow": 80000,
+      "typicalMileageHigh": 200000
     }
   ]
 }

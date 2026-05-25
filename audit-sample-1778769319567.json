@@ -1,0 +1,961 @@
+{
+  "sampledAt": "2026-05-14T14:45:51.765Z",
+  "total": 35,
+  "verified": 9,
+  "minor": 10,
+  "major": 2,
+  "fabricated": 1,
+  "errors": 13,
+  "deadLinks": 33,
+  "totalLinks": 50,
+  "results": [
+    {
+      "id": "bmw-n55-water-pump-2012",
+      "vehicle": "2012 BMW 3 Series",
+      "title": "Electric Water Pump Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1800,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "Vehicle list incorrectly groups models with different engines: 335d is a diesel (N57), and 340i/M340i use the B58 engine, not N55 — only the 335i has the N55",
+          "DTC codes are wrong/generic: actual BMW-specific water pump fault codes are 2E81, 2E82, 2E83, 2E84, 2E85, and 377A; P0128 is a generic stuck-open-thermostat code and P2181 is a generic cooling system performance code, neither is the primary water pump DTC",
+          "Mileage range slightly narrow — documented failures occur as early as 30-40k miles, not just 60-100k",
+          "No formal BMW extended warranty campaign specifically for N55 water pumps is well-documented (some goodwill coverage exists but claim is vague)"
+        ],
+        "evidence": "Multiple sources (FCP Euro, ECS Tuning, BMWTuning, Bimmerfest, BimmerPost) confirm N55 (and N54) electric water pump failure is a well-known issue, typically requiring replacement around 60-90k miles with real-world repair costs around $940-$1,100. However, the actual BMW DTCs cited in owner forums are 2E81-2E85 and 377A, not P0128/P2181, and the listed vehicle range incorrectly includes the 335d (diesel), 340i, and M340i, which do not use the N55 engine.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2013/BMW/328I",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "bmw-driveshaft-flex-disc-e90",
+      "vehicle": "2006 BMW 3 Series",
+      "title": "Driveshaft Flex Disc (Guibo) Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1567,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "Multiple BMW parts vendors and owner forums confirm the driveshaft flex disc (guibo) is a well-known wear item on E90/E91/E92/E93 3 Series (2006-2013), causing vibration and clunking; the center support bearing is commonly replaced alongside it, and independent shop repair costs typically fall in the $400-$550 range (part ~$65-$200 plus 2-3 hours labor), aligning with the $150-$500 estimate especially for DIY/part-only or lower-labor scenarios. No DTCs are associated since it's a mechanical wear item.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.bimmerfest.com/forums/showthread.php?t=guibo",
+          "type": "forum",
+          "status": 404,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "bmw-m2-cooling-system-2016",
+      "vehicle": "2016 BMW M2",
+      "title": "Cooling System Inadequacy Under Track Use - F87 M2/M2C",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll verify this F87 BMW M2 cooling issue claim.\nI have enough information. Key findings:\n- The track cooling issue on the F87 M2 (N55) is well-documented, with oil temps reaching 275-280°F causing limp mode\n- However, the claim that \"M2 Competition with S55 engine runs even hotter\" is inaccurate - forum evidence states the S55 cars actually run cooler on track due to a larger front oil cooler\n- D"
+      },
+      "links": [
+        {
+          "url": "https://f87.bimmerpost.com/forums/",
+          "type": "forum",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2017/BMW/M2",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "bmw-6series-n62-coolant-pipe-2004",
+      "vehicle": "2004 BMW 6 Series",
+      "title": "N62 Coolant Transfer Pipe Leak (Engine Valley Pipe)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0128/P2181 are generic cooling-related codes; this mechanical seal failure typically presents as a visible coolant leak from a weep hole without specific DTCs",
+          "Severity 'high' is debatable - issue is costly but not directly safety-critical unless ignored to the point of overheating",
+          "Description states coolant 'pools in engine valley' but actual symptom is coolant exiting via weep hole near water pump at front of engine, not pooling damaging wiring"
+        ],
+        "evidence": "Multiple sources confirm the N62 coolant transfer pipe O-ring failure is a well-documented common issue on 2004-2010 645Ci/650i, with failures as early as 40,000 miles and traditional repairs costing thousands due to engine disassembly. Aftermarket solutions like BimmerFix stent (~$239) and URO collapsible pipe kits have brought repair costs down significantly, making the $239-$5000 range accurate.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.bimmerfest.com/",
+          "type": "forum",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.bimmerpost.com/forums/",
+          "type": "forum",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "ford-broncosport-loss-of-power-recall-2021",
+      "vehicle": "2021 Ford Bronco Sport",
+      "title": "Loss of Drive Power Due to 12V Battery Detection Failure - Recall 24S24",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 456000,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "NHTSA Recall 24V267 / Ford 24S24 confirmed for 2021-2024 Bronco Sport and 2022-2023 Maverick, covering BCM/PCM calibration failure to detect 12V battery state of charge, with free dealer reprogramming and matching safety scenarios (Auto Stop/Start no-restart and low-speed stall/loss of motive power).",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.ford.com/support/how-tos/recall/recalls-and-faqs/24s24-bronco-sport-2021-2024-and-maverick-2022-2023-loss-of-power-recall/",
+          "type": "recall",
+          "status": 0,
+          "ok": false,
+          "error": "The operation was aborted due to timeout"
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ford-mustang-door-latch-recall-2015",
+      "vehicle": "2015 Ford Mustang",
+      "title": "Door Latch Pawl Spring Tab Failure (Recall 16S30)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 50000,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range incorrect: Recall 16S30 only applies to 2015 Mustang, not 2015-2017",
+          "Vehicle variants overstated: Shelby GT350 inclusion is not documented; recall is for 2015 Mustang only"
+        ],
+        "evidence": "Ford Safety Recall 16S30 is a real, documented recall covering the 2015 Mustang (along with other Ford models) for pawl spring tab failure in the side door latch, with Ford reporting one alleged accident and three alleged injuries; repair is free under recall. However, the recall only covers the 2015 model year Mustang, not 2015-2017, and no specific evidence supports the GT350 trim being separately called out.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "ford-fiesta-powershift-dps6-2011",
+      "vehicle": "2011 Ford Fiesta",
+      "title": "DPS6 PowerShift Dual-Clutch Transmission Shudder, Slipping, and Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 950,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll verify this Ford Fiesta DPS6 transmission issue with web searches.\nI have sufficient evidence to make a verdict. Let me analyze:\n\n1. **Issue is real**: Extensively documented with multiple class action lawsuits, settlements, NHTSA complaints\n2. **Year range (2011-2019)**: Correct - 2011-2016 covered original settlement, 2017-2019 covered new lawsuit\n3. **DTC codes**: The listed codes (P0700, "
+      },
+      "links": [
+        {
+          "url": "https://www.cars.com/articles/ford-focus-fiesta-transmission-settlement-what-owners-should-know-420135/",
+          "type": "recall",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.fordproblems.com/models/fiesta/generations/6/",
+          "type": "nhtsa",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "ford-superduty-67-def-scr-failure-2015",
+      "vehicle": "2015 Ford F-250 Super Duty",
+      "title": "6.7L Power Stroke DEF/SCR System Failure - P207F and P20EE Codes",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 1560,
+      "audit": {
+        "verdict": "major_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes field lists P0401-P0404 which are EGR flow/circuit codes, completely unrelated to the DEF/SCR issue described in the title and description (which correctly references P207F and P20EE)",
+          "Description appears truncated mid-sentence ('NOx sen...')",
+          "Repair cost lower bound ($30) is unrealistically low for an SCR/DEF system repair; forum reports indicate DPF/SCR replacement runs $3,000-$7,000",
+          "Year range 2015-2022 is reasonable but the same SCR system issue affects 2011-2014 6.7L Power Strokes as well (issue is not unique to 2015+)"
+        ],
+        "evidence": "P207F (Reductant Quality Performance) and P20EE (SCR NOx Catalyst Efficiency Below Threshold) are well-documented real issues on 6.7L Power Stroke F-Series trucks, with Ford issuing CSPs (21M01 reductant heater, 21N02/21N05 NOx sensor warranty extensions) and dealer repair quotes ranging $3K-$7K for DPF/SCR replacement. However, the DTC codes field (P0401-P0404) lists EGR system codes that are unrelated to the DEF/SCR issue described.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.thedieselstop.com/threads/intermittent-p207f-def-quality-code-and-idle-mode.658760/",
+          "type": "forum",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.ford-trucks.com/forums/1729722-2013-f250-6-7-and-p20ee.html",
+          "type": "forum",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://nudef.com/ford-powerstroke-def-problems-causes-codes-fixes/",
+          "type": "article",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "audi-q7-air-suspension-2007",
+      "vehicle": "2007 Audi Q7",
+      "title": "Air Suspension System Failure (Compressor and Springs)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2500,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Severity 'high' is debatable - issue is expensive but not strictly safety-critical, though degraded handling can be unsafe",
+          "DTC codes left as 'none' though specific codes (01400 Suspension Level Control, 02250 Function Deactivation) are well-documented for this fault",
+          "Lower bound of cost range ($1200) is optimistic - RepairPal estimates compressor replacement alone at $2,100-$3,700"
+        ],
+        "evidence": "Multiple owner forums (AudiWorld, Audi Owners Club), parts vendors (Arnott, Strutmasters), and repair databases extensively document air suspension failures on the 4L Q7 (2007-2015), including leaking air springs causing compressor burnout, valve block issues, and cascading failures - matching the description almost exactly. RepairPal lists compressor replacement at $2,102-$3,727 and aftermarket guides specifically note that air spring leaks cause compressor burnout as the most common failure mode.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2012/AUDI/Q7",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "audi-20t-timing-chain-2009",
+      "vehicle": "2009 Audi A4",
+      "title": "Timing Chain Tensioner Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2200,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll verify this Audi A4 timing chain tensioner issue with web searches.\nI have enough information to render a verdict. Let me note the key findings:\n\n1. **Real issue**: Well-documented for 2008-2013/2015 Audi 2.0T TSI/TFSI EA888 engines, including A4. Class-action lawsuit covered 2008-2013 models.\n2. **Description issue**: The entry says \"2.0T EA888\" but lists \"1.8T, 2.8\" in trims. The 2.8 V6 is "
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2012/AUDI/A4",
+          "type": "tsb",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "audi-a3-tdi-turbo-2010",
+      "vehicle": "2010 Audi A3",
+      "title": "Turbocharger Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 520,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "Based on my research, I have significant findings. The entry describes a BV43 variable-geometry turbocharger, but the 2.0T gasoline Audi A3 (engines BPY, CCTA, CBFA, CPMA, etc.) uses a K03 wastegated turbo from BorgWarner or IHI — NOT a BV43 VGT. The BV43 is a diesel turbo (used on 2.0 TDI engines). Variable geometry vanes are a diesel turbo characteristic, confirmed by the AutoDoc source noting w"
+      },
+      "links": [
+        {
+          "url": "https://www.idparts.com/cr140-turbocharger-oem-cbeacjaa-03l253056-p-14922.html",
+          "type": "resource",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.fcpeuro.com/products/vw-turbocharger-borg-warner-03l253056",
+          "type": "resource",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.idparts.com/turbo-oil-feed-line-cbeacjaa-03l145771-p-2584.html",
+          "type": "resource",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 3
+    },
+    {
+      "id": "audi-sq5-air-suspension-2018",
+      "vehicle": "2018 Audi SQ5",
+      "title": "Adaptive Damper and Air Spring Issues",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 122,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Air suspension is an optional package (S Sport Package), not standard on all SQ5 trims - description acknowledges this but year range covers all trims",
+          "No specific TSBs or NHTSA complaints found confirming widespread damper leak/air spring sag pattern unique to SQ5",
+          "Repair cost range may be low - air spring/strut replacement on Audi SUVs often runs $1500-3500+ per corner",
+          "Claim that SQ5 weight/sport calibration accelerates wear vs Q5 is speculative, not documented",
+          "No DTC codes listed; common related codes (e.g., C1100-series suspension level/pressure codes) could be included"
+        ],
+        "evidence": "Owner forums (AudiWorld, Audizine, MyAudiQ5) discuss the SQ5's optional adaptive air suspension and general owner concerns about long-term air suspension reliability and cost, with one source noting service warnings often stem from level sensors or calibration. However, no NHTSA campaigns or manufacturer TSBs were found establishing damper leaks/air spring sag as a documented widespread defect specific to 2018-2024 SQ5.",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.audiworld.com/forums/sq5-discussion-177/",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "chevy-cobalt-ignition-switch-defect-2005",
+      "vehicle": "2005 Chevrolet Cobalt",
+      "title": "Defective Ignition Switch Causing Engine Shutoff and Airbag Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 4503,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Year range 2005-2010 is broader than the original Cobalt-specific recall, which covered 2005-2007 models; the Cobalt was produced 2005-2010 and all years were eventually included in the broader GM recall, so this is acceptable but worth noting",
+          "Repair cost listed as $0-$0 is accurate since the repair was performed free under recall, but could be clarified as 'covered by recall'"
+        ],
+        "evidence": "The GM ignition switch defect is one of the most well-documented automotive safety scandals in history. GM recalled approximately 800,000 Chevrolet Cobalts and Pontiac G5s on February 7, 2014, compensated claimants for 124 deaths, and the defect mechanism (key rotation from Run to Accessory/Off due to heavy keychains, vibration, or knee contact, disabling airbags) matches the description exactly. GM knew of the issue as early as 2004-2005 via service bulletins.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://static.nhtsa.gov/odi/rcl/2014/RCONL-14V047-3498.pdf",
+          "type": "recall",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/General_Motors_ignition_switch_recalls",
+          "type": "recall",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "chevy-silverado-transmission-shudder-2015",
+      "vehicle": "2015 Chevrolet Silverado 1500",
+      "title": "8/10-Speed Transmission Shudder",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 3200,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "10-speed (10L80) only applies to 2019+ Silverado 1500, not 2015-2018",
+          "P0742 (TCC stuck on) is less commonly associated with shudder than P0741; many shudder cases occur with no DTC at all",
+          "Low end of cost range ($200) is optimistic - fluid flush with required Mobil 1 Blue Label typically runs $450-$1200"
+        ],
+        "evidence": "GM has issued multiple TSBs (18-NA-355, 19-NA-121, 19-NA-018) specifically addressing torque converter clutch shudder on the 8L90/8L45 8-speed and 10L80 10-speed transmissions in Silverado 1500 and related GM vehicles. Fixes range from a Mobil 1 Blue Label ATF fluid flush (~$450-$1200) to torque converter replacement (~$1,200 parts + $800 labor), confirming the issue, DTC P0741 association, and cost range are largely accurate.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10148392-0001.pdf",
+          "type": "tsb",
+          "status": 404,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "chevy-tahoe-transmission-shudder-2015",
+      "vehicle": "2015 Chevrolet Tahoe",
+      "title": "8L90 8-Speed Transmission Shudder",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll verify the facts about this Chevrolet Tahoe transmission issue.\nI have enough information to make a verdict. Let me analyze:\n\n1. **Real issue?** Yes - well-documented 8L90 torque converter shudder issue in GM vehicles\n2. **Year range:** The Tahoe got the 8L90 starting in 2015, and the class action covers up through March 2019 production. 2015-2020 is reasonable, though shudder issues mostly t"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2015/CHEVROLET/TAHOE",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10159774-9999.pdf",
+          "type": "tsb",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.carcomplaints.com/Chevrolet/Tahoe/2015/transmission_shudder.shtml",
+          "type": "owner-report",
+          "status": 404,
+          "ok": false
+        },
+        {
+          "url": "https://www.reddit.com/r/MechanicAdvice/comments/dx5n9v/2016_chevy_tahoe_8l90_transmission_shudder/",
+          "type": "forum",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 2
+    },
+    {
+      "id": "chevy-ss-magnetic-ride-shock-failure-2014",
+      "vehicle": "2014 Chevrolet SS",
+      "title": "Magnetic Ride Control (MRC) Shock Absorber Premature Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 180,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "Key finding: The Chevy SS only had MRC starting in 2015 model year (2014 SS did NOT have MagneRide - it was added in 2015). The bypass kit confirms \"2015 to 2017 Chevy SS\" range. The 2014 SS used conventional FE3 suspension.\n\n{\n  \"verdict\": \"minor_issues\",\n  \"real\": true,\n  \"issues_found\": [\n    \"Year range incorrect: MRC was not standard on the 2014 Chevy SS; it was introduced for the 2015 model "
+      },
+      "links": [
+        {
+          "url": "https://www.ssforums.com/threads/what-are-the-known-problems-with-the-chevy-ss.114058/",
+          "type": "owner-report",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "toyota-rav4-occupant-sensor-airbag-2020",
+      "vehicle": "2020 Toyota RAV4",
+      "title": "Occupant Classification Sensor Short Circuit / Airbag Non-Deployment",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1120000,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range listed as 2020-2022, but recall 23V865 primarily covers 2020-2021 model years for RAV4",
+          "DTC codes B0100/B0101/B0102 are generic airbag/OCS-related codes but not specifically confirmed in recall documentation"
+        ],
+        "evidence": "NHTSA recall 23V865 (December 2023) confirms Toyota recalled approximately 1.12 million vehicles worldwide (~1 million US) including 2020-2021 RAV4 and RAV4 Hybrid due to improperly manufactured OCS sensors that could short-circuit and prevent passenger airbag deployment; dealers inspect and replace sensors free of charge.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "toyota-tundra-frame-rust-2000",
+      "vehicle": "2000 Toyota Tundra",
+      "title": "Frame Rust and Corrosion",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 50000,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Year range 2000-2008 is misleading - two separate programs exist: NHTSA recall covers 2000-2003 Tundras, class action settlement covers only 2007-2008 Tundras; 2004-2006 model years are largely not covered by either remedy",
+          "Settlement amount stated as $3 billion but was actually approximately $3.4 billion",
+          "Class action settlement only covered 2007-2008 Tundras specifically, not the full 2000-2008 range as implied"
+        ],
+        "evidence": "NHTSA confirmed a 2009 recall of ~110,000 model year 2000-2003 Tundras in 20 cold-weather states for rear cross member corrosion causing spare tire separation, brake line damage, and proportioning valve issues. A separate 2016 class action settlement (~$3.4B) covered 2005-2010 Tacomas, 2007-2008 Tundras, and 2005-2008 Sequoias for frame rust perforation, with frame replacements costing ~$15,000 each.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "toyota-rav4-entune-freeze-2016",
+      "vehicle": "2016 Toyota RAV4",
+      "title": "Entune/Audio System Freezing",
+      "severity": "low",
+      "source": "ai-researched",
+      "reportCount": 620,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "Entune system was primarily used 2012-2019/2020; 2021 RAV4 began transitioning to the new Toyota Audio Multimedia system, so labeling all 2021 RAV4s as 'Entune' is partially inaccurate",
+          "No specific RAV4-targeted TSB cited; documented Entune TSBs (e.g., SB0035-16) covered other Toyota models, though RAV4 owners report the same symptoms on forums",
+          "DTC field correctly listed as none (infotainment freezes typically do not set powertrain DTCs)"
+        ],
+        "evidence": "Multiple owner forum threads (RAV4World, ToyotaNation) and troubleshooting guides confirm Entune freezing/rebooting is a widely-reported issue on 2016+ RAV4s, with Consumer Reports noting Entune was used 2012-2019 and replaced by Toyota Audio Multimedia in 2020-2023. A Toyota TSB (SB0035-16) addressed Entune reprogramming on related models, and dealer fixes range from free software updates to head-unit replacement.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2019/TOYOTA/RAV4/SUV/FWD#complaints",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "honda-crv-fuel-pump-denso-2018",
+      "vehicle": "2018 Honda CR-V",
+      "title": "Denso Fuel Pump Failure Recall",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2600000,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes listed (P0087, P0230, P0231, P0232) are plausible fuel pump/pressure codes but the recall documentation cites MIL illumination, stalling, and hard starting as symptoms rather than these specific DTCs — they are not officially confirmed by Honda/NHTSA for this recall",
+          "Description says 'moisture' absorption but the actual defect involves fuel absorption after solvent-drying-induced surface cracking"
+        ],
+        "evidence": "NHTSA recall 23V-858 issued December 2023 confirms a Denso fuel pump impeller defect affecting 2018-2020 Honda CR-V (and CR-V Hybrid 2020), with the remedy being free fuel pump module replacement at Honda dealers. The defect causes impeller deformation leading to inoperative fuel pumps, potential no-start and stalling — consistent with high severity and $0 owner cost.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "honda-crv-rear-frame-corrosion-2007",
+      "vehicle": "2007 Honda CR-V",
+      "title": "Rear Frame/Subframe Corrosion - Suspension Detachment Risk",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 564000,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "NHTSA recall 23V-228 (April 2023) confirms Honda recalled 563,711 model year 2007-2011 CR-Vs for rear frame corrosion from de-icing agents that can cause the rear trailing arm to detach, affecting vehicles sold/registered in 22 salt-belt states plus Washington D.C. (23 jurisdictions total). Repair is performed free of charge by Honda dealers, severity is appropriately rated as high (safety-critical, loss of vehicle control risk), and no DTCs apply since this is a structural/mechanical corrosion issue.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "honda-insight-fuel-pump-recall-2019",
+      "vehicle": "2019 Honda Insight",
+      "title": "Fuel Pump Failure (NHTSA Recall)",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [],
+        "evidence": "NHTSA confirms multiple recalls (20V-314, 21V-215, and 2024 expansion 23V-858/Honda KGC-KGD) for Denso fuel pump impeller defect on 2019-2022 Honda Insight, with free dealer fuel pump module replacement. Symptoms (stalling, hard starting, MIL) and DTCs (P0087 low fuel rail pressure; P0230-P0232 fuel pump primary circuit) align with documented failure mode.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/recalls?nhtsaId=21V215",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.nhtsa.gov/recalls?nhtsaId=23V858",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 2
+    },
+    {
+      "id": "nissan-altima-cvt-failure-2013",
+      "vehicle": "2013 Nissan Altima",
+      "title": "CVT Transmission Failure/Shudder",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 4500,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll verify this Nissan Altima CVT issue claim through web searches.\nI have enough evidence. Key findings:\n\n1. **Real issue**: Confirmed - widely documented CVT problems in Altimas with class actions, TSBs, and NHTSA records\n2. **Year range issue**: The 10-year/120,000-mile extension applied to **2003-2010** Altimas, NOT 2013-2023. The 2013-2016 and 2017-2018 Altimas got extensions to only **84 mo"
+      },
+      "links": [
+        {
+          "url": "https://www.nissanproblems.com/cvt-transmission-warranty/",
+          "type": "forum",
+          "status": 404,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "nissan-leaf-battery-degradation-2011",
+      "vehicle": "2011 Nissan Leaf",
+      "title": "Battery Pack Capacity Degradation",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 4500,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I have enough information. Key findings:\n- Issue is well-documented and real\n- DTC codes P0401-P0404 are EVAP/EGR codes for gasoline engines, NOT applicable to an EV battery issue. This is a major error.\n- Year range is reasonable (2011-2023 covers all Gen 1 and Gen 2 Leafs before redesign)\n- Warranty details (8yr/100k, 9 bars, ~66-70%) are accurate\n- Severity \"high\" is debatable - it's a costly f"
+      },
+      "links": [
+        {
+          "url": "https://www.mynissanleaf.com/viewtopic.php?t=28261",
+          "status": 404,
+          "ok": false
+        },
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2016/NISSAN/LEAF",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 2
+    },
+    {
+      "id": "nissan-pathfinder-catalytic-converter-2013",
+      "vehicle": "2013 Nissan Pathfinder",
+      "title": "Premature Catalytic Converter Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "CVT (transmission) does not cause rich running conditions - this is a technical inaccuracy; rich conditions come from engine/fuel system issues",
+          "Repair cost upper bound ($2500) may be low - dealer quotes for both cats can reach $4000+",
+          "Failure mileage range (80K-120K) is on the low side; forum reports more commonly cite 107K-200K+ miles/km"
+        ],
+        "evidence": "Multiple PathfinderTalk forum threads confirm R52 Pathfinder (2013+) with VQ35DE experiences P0420/P0430 catalytic converter failures, with owners reporting issues at 107K miles and 200K+ km. Dealer repair costs reported between $1800 CAD and $4700, with two separate cats (Bank 1 near firewall, Bank 2 radiator side).",
+        "confidence": "medium"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2013/NISSAN/PATHFINDER",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.carcomplaints.com/Nissan/Pathfinder/2013/catalytic_converter.shtml",
+          "type": "owner-report",
+          "status": 404,
+          "ok": false
+        },
+        {
+          "url": "https://www.nissan-techinfo.com/en-US/tsb/TSB-NTB17-063",
+          "type": "tsb",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "url": "https://www.reddit.com/r/MechanicAdvice/comments/9xk2z2/2014_nissan_pathfinder_p0420_code_catalytic_converter/",
+          "type": "forum",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 2
+    },
+    {
+      "id": "volvo-s40-pcv-system-failure-2004",
+      "vehicle": "2004 Volvo S40",
+      "title": "PCV System Failure Causing Oil Leaks and Engine Damage",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 2200,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes P0234/P0299 are turbocharger overboost/underboost codes, not the typical codes set by a clogged PCV system; PCV failures on these engines usually don't trigger specific DTCs and are diagnosed by symptoms (oil leaks, whistling, dipstick smoke)",
+          "Severity 'high' may be overcalibrated - sources describe PCV failure as a slow-motion problem causing expensive secondary damage rather than a safety-critical issue",
+          "Issue is most documented on T5 (turbo) variants; description should clarify the 2.4i naturally-aspirated variant is less affected",
+          "Description was truncated mid-sentence ('should be treat')"
+        ],
+        "evidence": "Multiple Volvo forums (SwedeSpeed, Matthews Volvo Site, Volvo Owners Club) extensively document PCV/oil trap/breather box failures on 2004.5-2012 S40/V50 T5 engines causing crankcase overpressure that blows cam seals, rear main seals, and oil filter housing leaks; service managers reportedly call it a 'well known problem.' However, P0234 and P0299 are generic turbo boost pressure DTCs not specifically tied to PCV failure diagnosis.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.matthewsvolvosite.com/forums/viewtopic.php?t=67890",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.swedespeed.com/threads/s40-v50-pcv-system-failure.234567/",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "volvo-v70-trans-solenoid-1998",
+      "vehicle": "1998 Volvo V70",
+      "title": "AW55-50/AW55-51 Automatic Transmission Solenoid Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll search for information to verify this automotive issue.\nKey findings:\n- The AW55-50SN was introduced in the P2 platform in 2001 model year (NA), not 1998. The 1998-2000 V70 used a different transmission (likely AW50-42).\n- The solenoids referenced are SLT, SLS, SLU (linear solenoids), NOT \"SL1 and SL2\" as stated in the entry.\n- DTC codes: P0750/P0755/P0760 are Shift Solenoid A/B/C codes (gene"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2004/VOLVO/V70",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.carcomplaints.com/Volvo/V70/2004/transmission.shtml",
+          "type": "owner-report",
+          "status": 404,
+          "ok": false
+        },
+        {
+          "url": "https://forums.swedespeed.com/showthread.php?threadid=271964",
+          "type": "forum",
+          "status": 404,
+          "ok": false
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=6z2c2jXxXv8",
+          "type": "video",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 3
+    },
+    {
+      "id": "volkswagen-golf-carbon-buildup-2008",
+      "vehicle": "2008 Volkswagen Golf",
+      "title": "Direct Injection Carbon Buildup on Intake Valves",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 5200,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll verify the facts about this VW Golf carbon buildup issue.\nI have enough information. Key findings:\n- Issue is real and well-documented for VW EA888 direct-injection engines\n- The R32 (2008) used a VR6 engine, NOT EA888 2.0T - this is an error in vehicle list\n- The 2008 Golf wasn't sold in the US (Mk5 ended 2009; Mk6 started 2010) - though R32 was 2008\n- The claim that \"VW addressed this in th"
+      },
+      "links": [
+        {
+          "url": "https://www.vwvortex.com/threads/carbon-buildup-walnut-blasting-guide.9387654/",
+          "status": 404,
+          "ok": false
+        },
+        {
+          "url": "https://www.golfmk7.com/forums/index.php?threads/carbon-buildup-at-60k.378892/",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "vw-golf-r-haldex-2012",
+      "vehicle": "2012 Volkswagen Golf R",
+      "title": "Haldex AWD Coupling Pump and Filter Clogging",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 200,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll verify this Haldex AWD issue for the VW Golf R.\nI have enough to make a verdict. Let me note key findings:\n\n1. **Issue is real and well-documented** - confirmed across multiple VW forums (VWROC, GolfMK7, VWVortex, Audizine) and Haldex repair specialists.\n2. **DTC codes** - The description claims codes 01315 and 16566. However, the actual commonly-cited DTC codes for this issue from search res"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "hyundai-theta2-engine",
+      "vehicle": "2011 Hyundai Sonata",
+      "title": "Theta II Engine Seizure/Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 5632,
+      "audit": {
+        "verdict": "minor_issues",
+        "real": true,
+        "issues_found": [
+          "DTC codes listed (P0300-P0306) are generic misfire codes and not the correct codes for this issue; the actual DTC documented in Hyundai TSBs is P1326 (Knock Sensor Detection System)",
+          "Issue is not limited to 'metal debris blocking oil flow' alone — uneven crankpin surface roughness from machining is also a documented contributing cause",
+          "Description omits the associated fire risk (hole-in-block fires) which is a major aspect of the safety concern"
+        ],
+        "evidence": "Hyundai's TSB (Service Campaign T3G) confirms applicability to 2011-2014 Sonata (YF) and 2015-2019 Sonata (LF) with 2.0L Turbo and 2.4L GDI Theta II engines, with the documented DTC being P1326 — not the P0300-series misfire codes listed. NHTSA recalls, a $1.3B class-action settlement, and a $210M NHTSA civil penalty confirm the issue is real, severe (engine seizure, stalling, fires), and that engine replacement is the remedy when bearing damage is found.",
+        "confidence": "high"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2015/HYUNDAI/SONATA",
+          "type": "recall",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    },
+    {
+      "id": "hyundai-kona-oil-dilution-2018",
+      "vehicle": "2018 Hyundai Kona",
+      "title": "Oil Dilution from Short Trips (1.6T)",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I have sufficient evidence to assess the claim. The issue is well-documented on owner forums (a general GDI issue, particularly noted with the Kona 1.6T in cold-climate short-trip use). No DTCs are expected (the description correctly says \"none\"). Severity as \"medium\" is reasonable. Repair cost $50-$200 is consistent with an oil change being the typical remediation.\n\n{\n  \"verdict\": \"verified\",\n  \""
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2018/HYUNDAI/KONA",
+          "type": "nhtsa",
+          "status": 403,
+          "ok": false
+        },
+        {
+          "url": "https://www.carcomplaints.com/Hyundai/Kona/2018/oil_dilution.shtml",
+          "type": "owner-report",
+          "status": 404,
+          "ok": false
+        },
+        {
+          "url": "https://www.hyundaitechinfo.com/tsb/TSB-18-KONA-ENGINE-OIL-DILUTION-1.6T.pdf",
+          "type": "tsb",
+          "status": 500,
+          "ok": false
+        },
+        {
+          "url": "https://www.reddit.com/r/MechanicAdvice/comments/xyz123/hyundai_kona_16t_oil_dilution_issue_short_trips/",
+          "type": "forum",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "deadLinkCount": 3
+    },
+    {
+      "id": "mercedes-s-class-abc-hydraulic-leak-2000",
+      "vehicle": "2000 Mercedes-Benz S-Class",
+      "title": "ABC Hydraulic Suspension System Leak",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 3000,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Upper-end repair cost ($6000) may be conservative — full system repairs (multiple struts, tandem pump, accumulators, hoses) can exceed $10,000 per multiple owner reports",
+          "DTC code C1402 was not specifically confirmed in search results, though ABC-related codes are stored in the ABC control module readable via STAR/SDS diagnostic tools"
+        ],
+        "evidence": "Multiple independent sources (RepairPal, MBWorld forums, Mercedes service publications, independent shops) confirm the ABC hydraulic suspension on S-Class/CL-Class is widely known for leaks at the tandem pump, hydraulic lines, struts, and seals/accumulators, operating at pressures up to 3,000 PSI. Reported repair costs commonly range from ~$700 for a single strut to $5,000+ for strut pairs and $10K-15K for comprehensive system restoration.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "mercedes-gle-transfer-case-actuator-2016",
+      "vehicle": "2016 Mercedes-Benz GLE",
+      "title": "Transfer Case Actuator Motor Failure",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 700,
+      "audit": {
+        "verdict": "likely_fabricated",
+        "real": false,
+        "issues_found": [
+          "P1744 is a Torque Converter Clutch (TCC) code across manufacturers, not a transfer case actuator code",
+          "The described failure mode (actuator motor failure defaulting to fixed split) is characteristic of BMW xDrive systems, not Mercedes 4MATIC",
+          "2016+ GLE uses an integrated 4MATIC design; documented transfer case issues are chain/bearing wear, not actuator motor failure",
+          "No NHTSA complaints, TSBs, or forum threads found documenting this specific failure pattern on 2016-2022 GLE",
+          "GLE53 AMG was introduced for 2020 MY, so the year range claim is also imprecise",
+          "Repair cost range likely understated if a real transfer case issue occurs (typically $2000+ for these models)"
+        ],
+        "evidence": "P1744 is consistently documented as a Torque Converter Clutch System code (Ford, Kia, Hyundai, Honda, etc.), with no association to Mercedes transfer case actuators. Documented GLE transfer case failures involve chain stretch and bearing wear rather than an actuator motor with fixed-split fallback, which matches BMW xDrive behavior instead.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "kia-optima-theta-ii-engine-failure",
+      "vehicle": "2011 Kia Optima",
+      "title": "Theta II Engine Seizure and Failure",
+      "severity": "high",
+      "source": "ai-researched",
+      "reportCount": 1500,
+      "audit": {
+        "verdict": "verified",
+        "real": true,
+        "issues_found": [
+          "Trim levels (EX, LX, S) listed don't match how Kia Optima trims are typically named (LX, EX, SX, SXL); this is a minor cosmetic issue",
+          "Repair cost range $4000-$8000 is on the low end—full engine replacement often runs $5000-$10000+, but range is reasonable"
+        ],
+        "evidence": "The Theta II engine defect is a well-documented issue covered by the In re: Hyundai and Kia Engine Litigation settlement, which includes 2011-2018 and certain 2019 Kia Optima vehicles with 2.0L/2.4L Theta II GDI engines, alleging manufacturing debris caused restricted oil flow, premature bearing wear, engine seizure, and fires. The $1.3 billion settlement figure and NHTSA $210M civil penalty are consistent with public records, and severity is appropriately rated 'high' due to safety risks from stalling/fire.",
+        "confidence": "high"
+      },
+      "links": [],
+      "deadLinkCount": 0
+    },
+    {
+      "id": "kia-sportage-sunroof-crack-2017",
+      "vehicle": "2017 Kia Sportage",
+      "title": "Panoramic Sunroof Spontaneous Cracking",
+      "severity": "medium",
+      "source": "ai-researched",
+      "reportCount": 0,
+      "audit": {
+        "error": "parse_failed",
+        "raw": "I'll verify this issue about Kia Sportage panoramic sunroof spontaneous cracking.\nI have sufficient information to make my assessment. Key findings:\n\n1. The issue is real and well-documented for Kia Sportage, including 2023-2025 models, with NHTSA complaints and class action lawsuits.\n2. However, the year range in the entry (2017-2025) has a problem: the well-documented class action involved 2011-"
+      },
+      "links": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2020/KIA/SPORTAGE",
+          "status": 403,
+          "ok": false
+        }
+      ],
+      "deadLinkCount": 1
+    }
+  ]
+}
