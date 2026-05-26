@@ -28,19 +28,51 @@ const { Pool } = require('pg');
 
 const HEAD_TIMEOUT_MS = 10_000;
 
+/**
+ * URL liveness check that distinguishes "dead" from "bot-blocked."
+ *
+ *   2xx, 3xx  → live, accept
+ *   401, 403  → bot-blocked / auth-required. URL exists for real
+ *               users; we can't access it from Node. Accept.
+ *               Pattern: Cloudflare/Tollbit/Imperva on enthusiast
+ *               forums (Audizine, AudiWorld, NSXPrime, BimmerForums,
+ *               ECS Tuning, audiusa.com, etc.) — they 403 any
+ *               server-side fetch regardless of User-Agent because
+ *               of TLS fingerprinting + JS challenges.
+ *   404, 410  → genuinely gone. Reject.
+ *   5xx       → server error, could be transient. Accept (don't
+ *               false-reject on outage).
+ *   Network   → DNS-fail or connection-refused. Reject.
+ *
+ * Real users hitting a 403 see content fine. Treating 403 as "dead"
+ * was rejecting real, valuable forum citations. This change keeps
+ * the gate strict against true 404s while accepting URLs that
+ * Cloudflare hides from server-side fetchers.
+ */
 async function isUrlLive(url) {
   if (!url || typeof url !== 'string') return false;
   if (!/^https?:\/\//i.test(url)) return false;
+  const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36';
   const attempt = async (method) => {
     try {
       const r = await fetch(url, {
         method,
         redirect: 'follow',
         signal: AbortSignal.timeout(HEAD_TIMEOUT_MS),
-        headers: { 'User-Agent': 'Au7oBot/1.0 (issue verifier; +https://au7o.io)' },
+        headers: {
+          'User-Agent': UA,
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          'Accept-Language': 'en-US,en;q=0.5',
+        },
       });
-      return r.status >= 200 && r.status < 400;
+      // Live: 2xx/3xx (success), 401/403 (auth/bot-block — exists for users), 5xx (transient).
+      // Dead: 404 (not found), 410 (gone), or anything in the 4xx range we haven't explicitly allowed.
+      if (r.status >= 200 && r.status < 400) return true;
+      if (r.status === 401 || r.status === 403) return true;
+      if (r.status >= 500) return true;
+      return false; // 404, 410, 405, 406, etc.
     } catch {
+      // Network error (DNS fail, connection refused, timeout) — treat as dead.
       return false;
     }
   };
