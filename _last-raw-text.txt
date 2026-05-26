@@ -1,83 +1,111 @@
-I'll verify the citations and claims in this draft.
-I have sufficient information to evaluate the draft. Let me analyze:
+I'll verify the draft's claims by checking the citations and sanity-checking the technical details.
+I have enough information now. Let me analyze:
 
-**Citations verified:**
-- Citation 1 (lower-control-arm-bolt-replacement.151379): Confirmed — talks about rusted/seized bolts, welded nuts breaking, cutting ears off strut, matching nuts/washers.
-- Citation 2 (rear-lower-control-arm-bolt.79694): Confirmed — discusses M10x1.25 spec, ~$4-9 from dealer, "LCA bolts break ALL the time", grade concerns.
+**Key findings:**
 
-**Year range issue:** Draft has 1994-1999. However, the 3rd-gen Integra (DC2/DB) ran 1994-2001 in North America. Sources (Valex Racing) state the issue applies to "1990-2001 Acura Integra (all)" — meaning both 2nd-gen (DA, 1990-1993) and 3rd-gen (DC, 1994-2001). The draft's title says "DC" (3rd-gen) but cuts off at 1999 and excludes 2000-2001, and also excludes the 2nd-gen DA chassis that has the same issue. The years should be 1994-2001 to match the DC chassis (since the ID says "dc"), or 1990-2001 if including DA.
+1. **Year range issue**: The draft's title/ID says "DA" (which is the second-generation chassis code, 1990-1993). The years listed [1990-1993] match the DA generation. However, the *description text* says "1986-1993 Acura Integra" — this incorrectly conflates the first-gen (DA1/DA3, 1986-1989) with the second-gen DA (1990-1993). The DA chassis code specifically refers to the second-generation. This is an internal inconsistency in the draft.
 
-**DTC codes:** Empty array — correct, this is a mechanical/corrosion issue with no electronic diagnostic code.
+2. **Citations**: The Team Integra forum threads do support the symptoms (humming noise from rear, hard to localize, hum changes when turning) and the press-in bearing nature. 
+A user describes a humming sound from the rear that they believed was the wheel bearing, with passengers thinking it came from their side, and the noise going away when turning left
+. 
+Front wheel bearings are easier to detect via steering wheel movement, but rear bearings are easier to replace though slightly more expensive
+. The DIY Rear Wheel Bearing Replacement thread confirms press-out work. 
+Dealership pricing was about $300 for a pair, with Autozone bearings noted as essentially the same thing
+.
 
-**Severity:** "medium" — reasonable. The bolts don't typically fail while driving (they seize during repair attempts). Forum quote: "they won't break oN the car while you're driving". Medium is appropriate.
+3. **Rear hub assembly approach**: Multiple forum users indicate the rear is often sold as a complete hub assembly (~$80-$120), not requiring a press. 
+The hub/bearing assembly is about $80 from Autozone
+ and 
+the whole hub assembly costs around $111-$120 at acuraautomotiveparts, meaning the bearing doesn't need to be pressed out
+. This somewhat contradicts the draft's claim that "Rear bearings on the DA are also press-in." The draft's DIY citation does mention pressing for rears, so there's some support, but the situation is more nuanced.
 
-**Cost range $100-$800:** Reasonable. Forum mentions $560 just for labor on a related compensator arm issue, OEM LCAs ~$50-60/side, bolts $4-13 each. Could go higher if shop has to cut/weld but range is plausible.
+4. **DTC codes**: Empty array is correct — 1990-1993 Integras are pre-OBD-II (OBD-II became mandatory in 1996), and wheel bearings are mechanical with no DTC association anyway.
 
-**Other claims:** All well-supported by forum sources.
+5. **Severity**: "medium" is reasonable — bearing failure can be serious but is typically a slow degradation with audible warning.
 
-The primary correction needed is the year range — should extend to 2001 for the DC chassis.
+6. **Cost range ($80-$500)**: Supported by forum data ($35-$120 parts, plus press/labor).
+
+7. **Description text error**: Says "1986-1993" but the years array is only 1990-1993, and the ID/title specifies DA (which is 2nd gen only). Need to fix to "1990-1993".
 
 ```json
 {
   "verdict": "needs_correction",
   "corrected_issue": {
-    "id": "acura-integra-dc-rear-lca-bolt-seizure",
+    "id": "acura-integra-da-rear-wheel-bearing-hum",
     "make": "Acura",
     "model": "Integra",
-    "years": [1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001],
+    "years": [1990, 1991, 1992, 1993],
     "trims": [],
     "engines": [],
     "category": "suspension",
-    "title": "Rear lower control arm bolts seize and shear inside bushing sleeves",
-    "description": "The long bolts that pass through the rear lower control arm inner bushings corrode to the steel sleeve inside the bushing. Any attempt to remove them for alignment, bushing, or shock work results in a sheared bolt and a destroyed bushing sleeve. This is a near-universal complaint in rust-belt cars. \nOwners had to cut the ears that go around the LCA off the strut because the bolts rust to the inside of the bushing.\n \nLCA bolts break ALL the time.\n",
-    "solution": "Soak bolts with penetrating fluid (PB Blaster/Kroil) for days before attempting removal; heat the bushing sleeve with a torch. If the bolt shears, the only fix is to cut the bushing out and drill/punch the remaining sleeve from the subframe ear. \nWhen you are down there and replacing rusted bolts, if they are rusted on bad enough you might have to break the welded nut they go into on the front side of the subframe and trailing arms. You can get matching sized nuts and washers.\n Replace with OEM Honda bolts (M10x1.25, ~$4-9 each from the dealer). \nDiameter = 10mm, Pitch = 1.25.\n",
+    "title": "Rear wheel bearing hum from press-in hub assembly",
+    "description": "\nThe wheel bearings on the 1990-1993 Acura Integra (DA chassis, second generation) are critical parts located inside the wheel hub assembly — for the DA-generation Integra these are press-in style bearings pressed into the steering knuckle in the front and the hub/spindle in the rear, and they support the full weight of the car while it's in motion.\n \nWhen a wheel bearing starts to go bad it usually gives warning signs; ignoring them can lead to serious problems including the wheel separating from the car, and the most common sign is a humming, rumbling, or grinding sound that gets louder with speed.\n \nThe hum is often hard to localize from inside the cabin — passengers in the back may each think it's on their side — but it typically lessens when steering loads the bad bearing's opposite side (e.g., turning right unloads the left side, so if noise decreases when turning right, the left bearing is likely the culprit).\n",
+    "solution": "\nThis is an advanced DIY job. Some owners replace the rear as a complete pre-pressed hub assembly (commonly $80-$120 from aftermarket suppliers), which avoids press work; others source just the bearing/race and press it into the spindle/knuckle using a hydraulic shop press (or have a machine shop do it). Front bearings on the DA always require pressing into the knuckle.\n Quality replacement brands include SKF, Timken, FAG, Koyo and NSK (the latter two are often OEM suppliers to Honda).\n Rear bearings are a bit more expensive but easier to access than the fronts.\n Budget $40-$120 per bearing/assembly plus press/labor; total shop cost typically $200-$450 per corner.",
     "severity": "medium",
     "confidence": "high",
     "symptoms": [
-      "seized suspension hardware",
-      "clunking from rear",
-      "unable to align rear",
-      "sheared bolt during repair"
+      "Humming or rumbling noise that increases with speed",
+      "Noise changes pitch or volume when turning",
+      "Vibration through floor at highway speed",
+      "Slight wheel play when rocked on jack stands",
+      "Uneven inner tire wear"
     ],
-    "affectedSystems": ["suspension", "chassis"],
+    "affectedSystems": ["Suspension", "Wheel hub"],
     "dtcCodes": [],
-    "estimatedCostLow": 100,
-    "estimatedCostHigh": 800,
+    "estimatedCostLow": 80,
+    "estimatedCostHigh": 500,
     "citations": [
       {
         "type": "forum",
-        "title": "Lower Control Arm Bolt Replacement — Team Integra",
-        "url": "https://www.team-integra.net/threads/lower-control-arm-bolt-replacement.151379/"
+        "title": "rear end making a loud humming noise — Team Integra",
+        "url": "https://www.team-integra.net/threads/rear-end-making-a-loud-humming-noise-as-i.114168/"
       },
       {
         "type": "forum",
-        "title": "Rear Lower control arm bolt? — Team Integra",
-        "url": "https://www.team-integra.net/threads/rear-lower-control-arm-bolt.79694/"
+        "title": "DIY Rear Wheel Bearing Replacement — Team Integra",
+        "url": "https://www.team-integra.net/threads/diy-rear-wheel-bearing-replacement.203721/"
+      },
+      {
+        "type": "forum",
+        "title": "Diagnosing Wheel Bearing Problem — Team Integra",
+        "url": "https://www.team-integra.net/threads/diagnosing-wheel-bearing-problem.41173/"
+      },
+      {
+        "type": "media",
+        "title": "Acura Integra Bad Wheel Bearing Noise Diagnosis — Drivetrain Resource",
+        "url": "https://www.700r4transmissionhq.com/acura-integra-wheel-bearing-noise/"
       }
     ],
     "communityRecommendations": [
       {
         "type": "tip",
-        "content": "Spray penetrating oil into the bushing sleeve through both ends a week before the job.",
+        "content": "Diagnose by steering side-to-side at highway speed: if the hum lessens when steering right, the bad bearing is on the left (unloaded) side, and vice versa.",
         "upvotes": 0,
         "needsReview": false
       },
       {
-        "type": "warning",
-        "content": "Use proper-grade OEM bolts — hardware-store bolts are not always the correct grade for this safety-critical joint.",
+        "type": "tip",
+        "content": "For the rear, you can often buy a complete pre-assembled hub/bearing unit for roughly $80-$120, which avoids needing access to a hydraulic press.",
+        "upvotes": 0,
+        "needsReview": false
+      },
+      {
+        "type": "part",
+        "content": "Stick with Koyo or NSK bearings — they were the original Honda OEM suppliers and outlast most cheap aftermarket kits.",
         "upvotes": 0,
         "needsReview": false
       }
     ],
     "typicalMileageLow": 100000,
-    "typicalMileageHigh": 250000
+    "typicalMileageHigh": 200000
   },
   "reasons": [
-    "Year range extended from 1994-1999 to 1994-2001 to cover the full 3rd-generation DC chassis Integra (the ID specifies 'dc'). Multiple sources (including the Valex Racing replacement bolt kit listing) confirm the issue applies to all 1990-2001 Acura Integras; the draft cut off at 1999 with no justification, missing the 2000 and 2001 model years which share identical rear suspension hardware and the same rust-seizure failure mode.",
-    "All other claims (M10x1.25 bolt spec, ~$4-9 OEM dealer price, near-universal in rust-belt cars, sheared bolts being normal, welded captured nuts in subframe breaking, having to cut the strut ears off, the quoted phrases 'LCA bolts break ALL the time' and the strut-ear cutting language) are directly supported by the two cited Team-Integra threads.",
-    "Empty dtcCodes array is correct — this is a purely mechanical/corrosion failure with no associated OBD-II code.",
-    "Severity 'medium' is well-calibrated: bolts seize and fail during service work, not while driving (forum users explicitly note OEM bolts 'won't break ON the car while you're driving'), so it's a repair-cost/serviceability issue rather than an immediate safety failure.",
-    "Cost range $100-$800 is plausible — bolts are $4-13 each OEM, replacement LCAs run ~$50-60/side, and a related rear-suspension seized-bolt job was quoted at $560 labor by a Honda dealer in one cited thread."
+    "Description text said '1986-1993 Acura Integra' which conflates first-gen (1986-1989, DA1/DA3) with second-gen DA (1990-1993). The id/title/years array all specify the DA second generation, so the description was corrected to '1990-1993' for internal consistency.",
+    "The solution overstated that rear bearings strictly require a press. Multiple forum sources (including the cited Team Integra threads and ClubIntegra) show that owners routinely buy a complete pre-pressed rear hub assembly for ~$80-$120 and bolt it on without press work; only the bearing-only replacement path requires pressing. Updated wording to reflect both options.",
+    "Original tip was slightly ambiguous about which side is bad when noise changes with steering — clarified the diagnostic logic (loaded vs. unloaded side).",
+    "Added the 'Diagnosing Wheel Bearing Problem' Team Integra thread as an additional citation since it directly supports the localization-by-turning diagnostic and the ~$80 rear hub assembly price point cited in the issue.",
+    "DTC codes correctly empty — 1990-1993 Integras are pre-OBD-II and wheel bearings are purely mechanical with no diagnostic code association.",
+    "Severity 'medium' and cost range $80-$500 are well-calibrated against forum-reported real-world pricing."
   ]
 }
 ```
