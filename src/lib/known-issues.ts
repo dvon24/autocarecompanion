@@ -46,8 +46,23 @@ function dbRowToKnownIssue(row: any): KnownIssue {
 
 // --- Slug utilities ---
 
+/**
+ * Build the /known-issues/{slug} URL slug for a (make, model) pair.
+ *
+ * Uses NFD-normalize + diacritic-strip so accented characters
+ * transliterate to their base form rather than becoming dashes:
+ * "Citroën Berlingo" → "citroen-berlingo", NOT "citro-n-berlingo".
+ * The earlier dash-stripping version produced broken slugs Google
+ * marked as "Crawled — currently not indexed" in GSC. See the 301
+ * redirect in next.config.ts that catches the old citro-n-* URLs.
+ */
 export function makeSlug(make: string, model: string): string {
-  return `${make} ${model}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  return `${make} ${model}`
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
 }
 
 /** Parse a slug back to {make, model}. Returns null if not found. */

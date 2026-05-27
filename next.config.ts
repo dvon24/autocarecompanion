@@ -106,6 +106,30 @@ const nextConfig: NextConfig = {
       // (Symptom check in the COMMON ISSUES card, ArticleSidebar,
       // MobileBottomBar, account page) link to it. Sending all that
       // intent to the home page silently broke the flow.
+      //
+      // Citroën slug fix — the old makeSlug() stripped the ë in
+      // "Citroën" to a dash, producing /known-issues/citro-n-berlingo
+      // and similar broken URLs that Google marked as "Crawled — currently
+      // not indexed." The slug is now citroen-* (transliterates instead
+      // of strips). 301 the old broken URLs to the new ones so existing
+      // crawl history + any external backlinks transfer cleanly.
+      {
+        source: '/known-issues/citro-n-:rest*',
+        destination: '/known-issues/citroen-:rest*',
+        permanent: true,
+      },
+      // Same shape for the make landing page itself
+      {
+        source: '/known-issues/make/citro-n',
+        destination: '/known-issues/make/citroen',
+        permanent: true,
+      },
+      // And the DTC-by-make pages (e.g. /known-issues/dtc/p0420/citro-n)
+      {
+        source: '/known-issues/dtc/:code/citro-n',
+        destination: '/known-issues/dtc/:code/citroen',
+        permanent: true,
+      },
     ];
   },
 };

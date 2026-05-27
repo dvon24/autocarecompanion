@@ -23,10 +23,32 @@ export interface VehicleSlugParts {
   trim: string | null;
 }
 
+/**
+ * Normalize a string to URL-safe kebab case, transliterating accented
+ * characters first so that "Citroën" → "citroen" not "citro-n".
+ *
+ * The earlier implementation just stripped any non-[a-z0-9] character,
+ * which broke Citroën URLs (the ë became a `-`, producing slugs like
+ * `citro-n-berlingo`). Google saw those malformed slugs and de-prioritized
+ * them — visible in GSC's "Crawled — currently not indexed" report.
+ *
+ * Fix: NFD-normalize to decompose accented chars into base letter +
+ * combining diacritic, strip the combining marks (U+0300-U+036F), then
+ * apply the original kebab pass. Result: Citroën → citroen, Škoda → skoda,
+ * Ñoño → nono, etc.
+ */
+function slugNorm(s: string): string {
+  return s
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
 export function vehicleSlug(year: number, make: string, model: string, trim?: string | null): string {
-  const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-  const parts = [String(year), norm(make), norm(model)];
-  if (trim) parts.push(norm(trim));
+  const parts = [String(year), slugNorm(make), slugNorm(model)];
+  if (trim) parts.push(slugNorm(trim));
   return parts.join('-');
 }
 
@@ -52,8 +74,11 @@ export function parseVehicleSlug(slug: string): VehicleSlugParts | null {
   if (tokens.length === 0) return null;
 
   // Greedy match: try longest make first, then longest model, then trim.
+  // Strips diacritics so that "Citroën" in YMMT matches "citroen" in
+  // the URL slug after vehicleSlug() normalization.
   const makeKeys = Object.keys(yearData);
-  const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '');
+  const norm = (s: string) =>
+    s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '');
 
   for (let mLen = Math.min(tokens.length - 1, 3); mLen >= 1; mLen--) {
     const makeCandidate = tokens.slice(0, mLen).join('-');
