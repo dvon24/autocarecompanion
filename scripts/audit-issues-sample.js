@@ -30,12 +30,12 @@ pool.on('error', () => {});
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const ANTHROPIC_URL = 'https://api.anthropic.com/v1/messages';
-// Opus 4.7 — picked for accuracy. Sonnet 4.6 was returning malformed JSON
+// Opus 4.8 — picked for accuracy. Sonnet 4.6 was returning malformed JSON
 // on ~40% of audits (model was emitting prose around the JSON block); Opus
 // follows the JSON-only instruction tightly enough that we keep the
 // verdict for nearly every issue, and its fact-grounding via web_search
 // is materially better for catching wrong-year-range / wrong-DTC errors.
-const MODEL = 'claude-opus-4-7';
+const MODEL = 'claude-opus-4-8';
 const DELAY_MS = 2500;
 
 const args = process.argv.slice(2);

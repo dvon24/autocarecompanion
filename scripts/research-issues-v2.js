@@ -37,7 +37,7 @@
  *   --years YYYY-YYYY       optional (defaults to last 5 model years)
  *   --count N               how many issues to request (default 5)
  *   --dry-run               don't write to DB, print what would be saved
- *   --model-id ID           override Anthropic model (default claude-opus-4-7)
+ *   --model-id ID           override Anthropic model (default claude-opus-4-8)
  */
 
 require('dotenv').config({ path: '.env.local' });
@@ -59,7 +59,7 @@ const MODEL = flag('model');
 const YEARS = flag('years'); // "2018-2024"
 const COUNT = parseInt(flag('count', '5'), 10);
 const DRY_RUN = args.includes('--dry-run');
-const MODEL_ID = flag('model-id', 'claude-opus-4-7');
+const MODEL_ID = flag('model-id', 'claude-opus-4-8');
 const EXCLUDE = flag('exclude', ''); // comma-separated topic keywords to avoid (e.g. "timing belt,oil sludge")
 const FOCUS = flag('focus', '');     // comma-separated topics to focus on
 

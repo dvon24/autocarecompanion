@@ -261,14 +261,24 @@ export async function POST(request: NextRequest) {
   const burstLimit = hubChatMinuteLimiter.check(ip);
   if (!burstLimit.success) return rateLimitResponse(burstLimit.reset);
 
-  // Daily cap — different for authed vs anon.
+  // Daily cap — different for authed vs anon. Anon is now 1/day (was 5):
+  // a single free question per IP, then the signup gate fires.
   const dayLimiter = isAuthed ? hubChatAuthedDayLimiter : hubChatAnonDayLimiter;
   const dayLimit = dayLimiter.check(ip);
   if (!dayLimit.success) {
-    const message = isAuthed
-      ? 'Daily chat limit reached. It resets in 24 hours.'
-      : 'Free chat limit reached. Sign in to continue with a much higher daily allowance.';
-    return NextResponse.json({ error: 'rate_limited', message, reset: dayLimit.reset, gated: !isAuthed }, { status: 429 });
+    if (isAuthed) {
+      return NextResponse.json({ error: 'rate_limited', message: 'Daily chat limit reached. It resets in 24 hours.', reset: dayLimit.reset, gated: false }, { status: 429 });
+    }
+    return NextResponse.json({
+      error: 'login_required',
+      message: 'Sign up free to keep chatting with the AI about your vehicle. Takes 10 seconds.',
+      reset: dayLimit.reset,
+      gated: true,
+      ctaUrl: '/auth/signup',
+      ctaLabel: 'Sign up free',
+      secondaryCtaUrl: '/auth/signin',
+      secondaryCtaLabel: 'Sign in',
+    }, { status: 429 });
   }
 
   // ── 3a. Server-side WEEKLY quota (backstop for the client-side
@@ -282,15 +292,29 @@ export async function POST(request: NextRequest) {
     const quotaLimit = isAuthed ? DEFAULT_FREE_AUTHED_LIMIT : DEFAULT_ANON_LIMIT;
     const quota = await checkAndConsumeChatQuota({ key: quotaKey, limit: quotaLimit });
     if (!quota.allowed) {
+      if (isAuthed) {
+        return NextResponse.json({
+          error: 'quota_exceeded',
+          message: `You've used all ${quotaLimit} free chats for this week. Subscribe for unlimited.`,
+          resetAt: quota.resetAt.toISOString(),
+          remaining: 0,
+          limit: quotaLimit,
+          gated: true,
+          ctaUrl: '/account',
+          ctaLabel: 'Subscribe',
+        }, { status: 429 });
+      }
       return NextResponse.json({
-        error: 'quota_exceeded',
-        message: isAuthed
-          ? `You've used all ${quotaLimit} free chats for this week. Subscribe for unlimited.`
-          : `You've used all ${quotaLimit} free chats this week. Sign in for more, or subscribe for unlimited.`,
+        error: 'login_required',
+        message: 'Free question used. Sign up free to keep chatting — takes 10 seconds.',
         resetAt: quota.resetAt.toISOString(),
         remaining: 0,
         limit: quotaLimit,
         gated: true,
+        ctaUrl: '/auth/signup',
+        ctaLabel: 'Sign up free',
+        secondaryCtaUrl: '/auth/signin',
+        secondaryCtaLabel: 'Sign in',
       }, { status: 429 });
     }
   }

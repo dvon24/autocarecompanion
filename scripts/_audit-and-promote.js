@@ -21,7 +21,7 @@ pool.on('error', () => {});
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const ANTHROPIC_URL = 'https://api.anthropic.com/v1/messages';
-const MODEL = 'claude-opus-4-7';
+const MODEL = 'claude-opus-4-8';
 const DELAY_MS = 3500;
 
 const args = process.argv.slice(2);

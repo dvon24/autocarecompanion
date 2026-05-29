@@ -1,11 +1,13 @@
 /**
  * Rate limiting utilities for anonymous users
  *
- * Epic 5, Story 5.9: Rate Limiting
- * Anonymous users get 5 chats per week.
+ * Anonymous users get 1 chat per week (the "free taste") then hit the
+ * login gate. Server-side limit in chat-quota.ts is the authoritative
+ * one; this client-side counter just keeps the UI honest about how
+ * many chats remain so the signup CTA appears at the right moment.
  */
 
-const ANONYMOUS_LIMIT = 5;
+const ANONYMOUS_LIMIT = 1;
 const STORAGE_KEY = 'acc_anon_chats';
 
 interface AnonymousChatData {

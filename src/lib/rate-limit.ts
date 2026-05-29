@@ -103,12 +103,13 @@ export const affiliateTrackLimiter = new RateLimiter(60_000, 30); // 30 req/min
 export const driveTurnMinuteLimiter = new RateLimiter(60_000, 20);          // 20 req/min
 export const driveTurnDayLimiter = new RateLimiter(24 * 60 * 60_000, 200);  // 200 req/day
 
-// Hub chat — anonymous users get a tight per-day cap so we don't pay for
-// freeloaders pinging Sonnet 4.6 at scale. Authed users get a generous
-// cap that's still well under what a real human would hit organically.
-// Per-minute cap on top to absorb client retry bugs without rate-eating
-// 100 messages in 10 seconds.
-export const hubChatAnonDayLimiter = new RateLimiter(24 * 60 * 60_000, 5);   // 5 messages / day / IP
+// Hub chat — anonymous users get ONE free question per day per IP, then
+// hit the signup gate. Was 5/day; dropped to 1 once the chat product
+// proved popular enough that anon traffic was burning API credit faster
+// than signups were converting. Authed users still get a generous daily
+// cap that's well under what a real human hits organically. Per-minute
+// cap on top to absorb client retry bugs without eating 100 msgs in 10s.
+export const hubChatAnonDayLimiter = new RateLimiter(24 * 60 * 60_000, 1);   // 1 message / day / IP — login gate
 export const hubChatAuthedDayLimiter = new RateLimiter(24 * 60 * 60_000, 200); // 200 / day / IP authed
 export const hubChatMinuteLimiter = new RateLimiter(60_000, 12);             // 12 / min — protects against client-loop bugs
 

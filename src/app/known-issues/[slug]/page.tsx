@@ -92,9 +92,22 @@ export async function generateMetadata({
   const baseUrl = `https://au7o.io/known-issues/${slug}`;
   const canonical = yearIsValid ? `${baseUrl}?year=${requestedYear}` : baseUrl;
 
+  // Thin year-variant guard. When a user (or crawler) hits the page
+  // with ?year=YYYY but that year has zero documented issues, the page
+  // gracefully falls back to all-years content — but the URL itself is
+  // now a thin duplicate of the canonical base. Google correctly refused
+  // to index ~150 of these (5/9 GSC "Crawled — currently not indexed"
+  // report). Emitting noindex,follow makes the intent explicit so they
+  // drop from the report on next recrawl: "don't index this URL, but
+  // follow the canonical we point to so link equity still flows."
+  const isThinYearVariant = requestedYear != null && !yearIsValid;
+
   return {
     title,
     description,
+    robots: isThinYearVariant
+      ? { index: false, follow: true, googleBot: { index: false, follow: true } }
+      : undefined,
     openGraph: {
       title,
       description,

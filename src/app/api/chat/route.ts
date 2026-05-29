@@ -13,6 +13,19 @@ import { getVehicleSpecs } from '@/lib/maintenance';
 import { getRecallsForArticle } from '@/lib/recalls';
 import { auth } from '@/lib/auth';
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
+import {
+  hubChatAnonDayLimiter,
+  hubChatAuthedDayLimiter,
+  hubChatMinuteLimiter,
+  getClientIp,
+  rateLimitResponse,
+} from '@/lib/rate-limit';
+import {
+  checkAndConsumeChatQuota,
+  getOrSetAnonId,
+  DEFAULT_ANON_LIMIT,
+  DEFAULT_FREE_AUTHED_LIMIT,
+} from '@/lib/chat-quota';
 
 // Allow up to 60s for tool-calling responses on Vercel
 export const maxDuration = 60;
@@ -818,6 +831,72 @@ export async function POST(request: NextRequest) {
     const gate = await checkAiGate();
     if (isAiGateBlocked(gate)) return gate;
 
+    // ── Auth + login gate ────────────────────────────────────────────
+    // Mirrors /api/hub-chat: anon users get 1 free question per IP/day
+    // (and 1/week per cookie) then are bounced to /auth/signup. Same
+    // DB quota key space as hub-chat so "1 free question" spans both
+    // endpoints rather than handing the user 2 free taps.
+    const ip = getClientIp(request);
+    let chatSession;
+    try { chatSession = await auth(); } catch { chatSession = null; }
+    const isAuthed = !!chatSession?.user?.id;
+    const sessionUserId = chatSession?.user?.id || null;
+    const isSubscriber = chatSession?.user?.subscriptionStatus === 'active';
+
+    // Burst protection applies to everyone.
+    const burstLimit = hubChatMinuteLimiter.check(ip);
+    if (!burstLimit.success) return rateLimitResponse(burstLimit.reset);
+
+    const dayLimiter = isAuthed ? hubChatAuthedDayLimiter : hubChatAnonDayLimiter;
+    const dayLimit = dayLimiter.check(ip);
+    if (!dayLimit.success) {
+      if (isAuthed) {
+        return NextResponse.json({ error: 'rate_limited', message: 'Daily chat limit reached. It resets in 24 hours.', reset: dayLimit.reset, gated: false }, { status: 429 });
+      }
+      return NextResponse.json({
+        error: 'login_required',
+        message: 'Sign up free to keep chatting with the AI about your vehicle. Takes 10 seconds.',
+        reset: dayLimit.reset,
+        gated: true,
+        ctaUrl: '/auth/signup',
+        ctaLabel: 'Sign up free',
+        secondaryCtaUrl: '/auth/signin',
+        secondaryCtaLabel: 'Sign in',
+      }, { status: 429 });
+    }
+
+    if (!isSubscriber) {
+      const quotaKey = isAuthed ? `user:${sessionUserId}` : `anon:${await getOrSetAnonId()}`;
+      const quotaLimit = isAuthed ? DEFAULT_FREE_AUTHED_LIMIT : DEFAULT_ANON_LIMIT;
+      const quota = await checkAndConsumeChatQuota({ key: quotaKey, limit: quotaLimit });
+      if (!quota.allowed) {
+        if (isAuthed) {
+          return NextResponse.json({
+            error: 'quota_exceeded',
+            message: `You've used all ${quotaLimit} free chats for this week. Subscribe for unlimited.`,
+            resetAt: quota.resetAt.toISOString(),
+            remaining: 0,
+            limit: quotaLimit,
+            gated: true,
+            ctaUrl: '/account',
+            ctaLabel: 'Subscribe',
+          }, { status: 429 });
+        }
+        return NextResponse.json({
+          error: 'login_required',
+          message: 'Free question used. Sign up free to keep chatting — takes 10 seconds.',
+          resetAt: quota.resetAt.toISOString(),
+          remaining: 0,
+          limit: quotaLimit,
+          gated: true,
+          ctaUrl: '/auth/signup',
+          ctaLabel: 'Sign up free',
+          secondaryCtaUrl: '/auth/signin',
+          secondaryCtaLabel: 'Sign in',
+        }, { status: 429 });
+      }
+    }
+
     // Story 7.3: Check budget before making API call
     if (isBudgetExceeded()) {
       return NextResponse.json(
@@ -845,12 +924,9 @@ export async function POST(request: NextRequest) {
 
     const { message, conversationHistory = [], vehicle, obdCodes } = parseResult.data;
 
-    // Resolve authenticated user, if any — ties history to their account.
-    let userId: string | null = null;
-    try {
-      const session = await auth();
-      userId = session?.user?.id || null;
-    } catch { /* anonymous */ }
+    // Resolved above by the login-gate block; reuse to avoid a second
+    // NextAuth round-trip.
+    const userId: string | null = sessionUserId;
 
     // Get API key from environment
     const apiKey = process.env.OPENAI_API_KEY;

@@ -32,7 +32,7 @@ const COUNT = parseInt(flag('count', '5'), 10);
 const ID_PREFIX = flag('id-prefix', '');
 const AVOID_TITLES = flag('avoid-titles', '');
 const FOCUS = flag('focus', '');
-const MODEL_ID = flag('model-id', 'claude-opus-4-7');
+const MODEL_ID = flag('model-id', 'claude-opus-4-8');
 const DRY_RUN = args.includes('--dry-run');
 
 if (!MAKE || !MODEL) {

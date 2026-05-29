@@ -27,7 +27,7 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 pool.on('error', () => {});
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-const MODEL = 'claude-opus-4-7';
+const MODEL = 'claude-opus-4-8';
 const BATCH_URL = 'https://api.anthropic.com/v1/messages/batches';
 const BATCH_ID_PATH = 'audit-batch-id.txt';
 const RESULTS_PATH = 'audit-full-results.jsonl';

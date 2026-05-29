@@ -18,7 +18,10 @@ import crypto from 'crypto';
 const ANON_COOKIE = 'au7o_anon_id';
 const ANON_COOKIE_MAX_AGE = 60 * 60 * 24 * 365 * 2; // 2 years
 
-export const DEFAULT_ANON_LIMIT = 5;
+// Was 5/week; dropped to 1 to match the login-gate posture — anonymous
+// visitors get a single taste of the AI, then are nudged to sign up
+// (free) for a much larger free-authed weekly allowance.
+export const DEFAULT_ANON_LIMIT = 1;
 export const DEFAULT_FREE_AUTHED_LIMIT = 25;
 
 /**
