@@ -109,6 +109,12 @@ interface Message {
   route?: RoutePreview;
   /** Rich maintenance schedule attachment — only on the auto-opener message. */
   schedule?: ScheduleData;
+  /** Top-N Known Issues card for this vehicle — vehicle-level context,
+   *  attached to the first assistant message so it stays visible across
+   *  Recent-thread switches (re-applied in loadSession). Same data
+   *  source as the mobile MobileIssuesCard but works on desktop too
+   *  since the card itself uses inline styles. */
+  issues?: AttachableIssue[];
 }
 
 export function VehicleHub({
@@ -129,9 +135,13 @@ export function VehicleHub({
   // Seed the conversation with the pre-rendered opener so the page feels
   // alive on first paint. Subsequent turns get appended here and (in v2)
   // sent to /api/chat for the real reply.
+  // Same slice rule as the mobile shell: 4 issues for signed-in users
+  // (more vertical room + we know it's their car), 2 for anonymous.
+  const openerIssues = attachableIssues.slice(0, isAuthed ? 4 : 2);
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: opener.text, timestamp: Date.now(),
-      schedule: schedule ?? undefined },
+      schedule: schedule ?? undefined,
+      issues: openerIssues.length > 0 ? openerIssues : undefined },
   ]);
   const [input, setInput] = useState('');
   const [pending, setPending] = useState(false);
@@ -176,18 +186,22 @@ export function VehicleHub({
       if (!res.ok) return;
       const data = await res.json() as { sessionId: string; messages: Array<{ role: 'user' | 'assistant'; content: string }> };
       if (!Array.isArray(data.messages) || data.messages.length === 0) return;
-      // Re-attach the vehicle-level Maintenance Schedule card to the
-      // first assistant message in the restored history. The schedule
-      // is per-vehicle context (same for every conversation about this
-      // car), not per-conversation, so it should follow you between
-      // threads. Without this, switching threads makes the rich
-      // schedule card vanish because DB rows only persist role+content.
-      let attachedSchedule = false;
+      // Re-attach vehicle-level context cards (Maintenance Schedule
+      // + Known Issues) to the first assistant message in the restored
+      // history. These are per-vehicle, not per-conversation — they
+      // should follow you between threads. DB rows only persist
+      // role+content, so without this both rich cards vanish on
+      // thread-switch.
+      let attached = false;
       const restored = data.messages.map((m) => {
         const base = { role: m.role, content: m.content, timestamp: Date.now() };
-        if (!attachedSchedule && m.role === 'assistant' && schedule) {
-          attachedSchedule = true;
-          return { ...base, schedule };
+        if (!attached && m.role === 'assistant') {
+          attached = true;
+          return {
+            ...base,
+            ...(schedule ? { schedule } : {}),
+            ...(openerIssues.length > 0 ? { issues: openerIssues } : {}),
+          };
         }
         return base;
       });
@@ -197,7 +211,7 @@ export function VehicleHub({
     } catch (err) {
       console.warn('[hub] failed to load session', err);
     }
-  }, [pending, schedule]);
+  }, [pending, schedule, openerIssues]);
 
   const send = async (text: string) => {
     const trimmed = text.trim();
@@ -595,6 +609,9 @@ export function VehicleHub({
                     driveHandoff={detectDriveIntent(m.content)}
                     route={m.route}
                     schedule={m.schedule}
+                    issues={m.issues}
+                    slug={slug}
+                    isAuthed={isAuthed}
                     // Pick chip-able follow-up prompts to send next.
                     onFollowUp={(prompt) => send(prompt)}
                   />
@@ -2598,13 +2615,16 @@ function relativeWhen(iso: string): string {
 
 /* ─── Au7o reply bubble ─── */
 function Au7oReply({
-  content, attachments = [], driveHandoff = null, route, schedule, onFollowUp,
+  content, attachments = [], driveHandoff = null, route, schedule, issues, slug, isAuthed, onFollowUp,
 }: {
   content: string;
   attachments?: AttachableIssue[];
   driveHandoff?: { destination: string | null } | null;
   route?: RoutePreview;
   schedule?: ScheduleData;
+  issues?: AttachableIssue[];
+  slug?: string;
+  isAuthed?: boolean;
   onFollowUp?: (prompt: string) => void;
 }) {
   // Split out any "→ follow-up question" lines the AI emitted at the end
@@ -2637,6 +2657,14 @@ function Au7oReply({
               onFollowUp?.(`How do I do a ${name.toLowerCase()}?`);
             }}
           />
+        )}
+        {/* Known Issues card — vehicle-level context, parallel to the
+            Maintenance Schedule above. Reuses MobileIssuesCard since
+            that component is fully inline-styled and works at any
+            viewport width (the "Mobile" prefix is historical — it was
+            built for the mobile shell first). */}
+        {issues && issues.length > 0 && slug && (
+          <MobileIssuesCard issues={issues} slug={slug} authed={!!isAuthed} />
         )}
         {attachments.length > 0 && <IssueAttachmentGroup issues={attachments} />}
         {/* Trip preview hierarchy: when we have a real Mapbox route
