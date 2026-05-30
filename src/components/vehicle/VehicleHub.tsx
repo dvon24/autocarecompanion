@@ -176,17 +176,28 @@ export function VehicleHub({
       if (!res.ok) return;
       const data = await res.json() as { sessionId: string; messages: Array<{ role: 'user' | 'assistant'; content: string }> };
       if (!Array.isArray(data.messages) || data.messages.length === 0) return;
-      setMessages(data.messages.map((m) => ({
-        role: m.role,
-        content: m.content,
-        timestamp: Date.now(),
-      })));
+      // Re-attach the vehicle-level Maintenance Schedule card to the
+      // first assistant message in the restored history. The schedule
+      // is per-vehicle context (same for every conversation about this
+      // car), not per-conversation, so it should follow you between
+      // threads. Without this, switching threads makes the rich
+      // schedule card vanish because DB rows only persist role+content.
+      let attachedSchedule = false;
+      const restored = data.messages.map((m) => {
+        const base = { role: m.role, content: m.content, timestamp: Date.now() };
+        if (!attachedSchedule && m.role === 'assistant' && schedule) {
+          attachedSchedule = true;
+          return { ...base, schedule };
+        }
+        return base;
+      });
+      setMessages(restored);
       sessionIdRef.current = data.sessionId || threadId;
       setThreadsOpen(false);
     } catch (err) {
       console.warn('[hub] failed to load session', err);
     }
-  }, [pending]);
+  }, [pending, schedule]);
 
   const send = async (text: string) => {
     const trimmed = text.trim();
