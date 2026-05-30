@@ -7,6 +7,7 @@ import { MaintenanceOverview } from '@/components/maintenance/MaintenanceStatusB
 import { useGuide } from '@/hooks/useGuide';
 import { useKnownIssues } from '@/hooks/useKnownIssues';
 import { MAINTENANCE_SCHEDULES, type VehicleContext } from '@/lib/maintenance';
+import { vehicleSlug } from '@/lib/vehicle-slug';
 
 interface Vehicle {
   id: string;
@@ -358,13 +359,13 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
         </div>
       </div>
 
-      {/* Actions - Single button now */}
+      {/* Actions - Open the vehicle hub (chat + known issues + maintenance + drive). */}
       <div className="px-5 py-3 bg-gray-50/50 border-t border-gray-100">
         <Link
-          href={`/garage/${vehicle.id}/maintenance`}
+          href={`/vehicle/${vehicleSlug(vehicle.year, vehicle.make, vehicle.model, vehicle.trim)}`}
           className="block w-full text-center px-4 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
         >
-          View Maintenance
+          Open Vehicle Hub
         </Link>
       </div>
     </div>

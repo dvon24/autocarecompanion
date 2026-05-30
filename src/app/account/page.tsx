@@ -232,27 +232,11 @@ export default async function AccountPage() {
         {/* GDPR data-rights actions */}
         <AccountPrivacyActions email={session.user.email} />
 
-        {/* Recent parts searches */}
-        <section>
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Recent Parts Searches</h2>
-          {partSearches.length === 0 ? (
-            <p className="text-sm text-gray-500">
-              No searches yet. <Link href="/parts" className="text-blue-600 hover:text-blue-700 font-medium">Try the Parts Finder →</Link>
-            </p>
-          ) : (
-            <ul className="space-y-2">
-              {partSearches.map((p) => (
-                <li key={p.id} className="rounded-xl border border-gray-200 bg-white p-3 flex items-center justify-between gap-4">
-                  <div className="min-w-0">
-                    <p className="text-sm font-medium text-gray-900 capitalize truncate">{p.title.replace(/^freetext:/, '')}</p>
-                    <p className="text-xs text-gray-500 truncate">{p.year} {p.make} {p.model}</p>
-                  </div>
-                  <span className="text-xs text-gray-400 flex-shrink-0">{timeAgo(p.createdAt)}</span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
+        {/* Recent Parts Searches section hidden 2026-05-30 — Parts
+            Finder is temporarily unsurfaced pending verification. The
+            partSearches query above still runs (cheap) so existing
+            history is preserved in state for when the section is
+            restored; no DB changes needed. */}
       </div>
     </PageLayout>
   );

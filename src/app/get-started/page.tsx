@@ -33,10 +33,10 @@ export default function GetStartedPage() {
     router.push('/symptom-chat');
   };
 
-  const handlePartsLookup = () => {
-    setShowBriefing(false);
-    router.push('/parts');
-  };
+  // Parts Finder entry point removed — feature hidden 2026-05-30 pending
+  // verification work. The briefing modal's onPartsLookup prop is
+  // optional and unused in the rendered JSX, so dropping this prop pass
+  // also removes the dead-wired button.
 
   const handleModeChange = (newMode: SelectionMode) => {
     setMode(newMode);
@@ -189,7 +189,6 @@ export default function GetStartedPage() {
             }}
             onDismiss={handleBriefingDismiss}
             onContinue={handleBriefingContinue}
-            onPartsLookup={handlePartsLookup}
           />
         )}
       </div>

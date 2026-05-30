@@ -188,7 +188,6 @@ Use these codes to help inform your diagnosis. OBD codes provide valuable diagno
 - Identify the exact part they need for their specific vehicle
 - If you have cached parts data below, use it directly
 - Include brand, part number, and Amazon link: [Brand PartName](https://www.amazon.com/s?k=BRAND+PART_NUMBER&tag=au7o-20)
-- Mention if Au7o has a Parts Finder for more options: https://au7o.io/parts
 - Only ask ONE clarifying question if you genuinely cannot determine which part (e.g., front vs rear brakes)`
     : `The user is describing a symptom or problem. Be DIRECT and DECISIVE:
 - FIRST: call lookup_known_issues with a title keyword from the user's symptom (e.g. "transmission shudder", "brake squeal") to retrieve full details (symptoms, solutions, DTC codes, citations). The system prompt shows titles only — the tool gives you everything.
