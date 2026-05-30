@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { MaintenanceSuggestion, ScheduleData, ScheduleService, ScheduleServiceStatus } from '@/lib/maintenance-suggestions';
@@ -162,6 +162,31 @@ export function VehicleHub({
   // Tracks the index of the assistant message we're currently streaming
   // INTO so each token append targets the right bubble.
   const streamingIdxRef = useRef<number | null>(null);
+
+  // Load a previous ChatSession when the user clicks a Recent thread.
+  // Replaces the visible conversation with that session's full history
+  // and re-points sessionIdRef so the next turn the user sends gets
+  // appended to the same row server-side (continuity preserved). Auth-
+  // scoped on the server — the endpoint 404s if the session isn't
+  // owned by the current user. Also closes the mobile drawer.
+  const loadSession = useCallback(async (threadId: string) => {
+    if (!threadId || pending) return;
+    try {
+      const res = await fetch(`/api/hub-chat/session/${encodeURIComponent(threadId)}`);
+      if (!res.ok) return;
+      const data = await res.json() as { sessionId: string; messages: Array<{ role: 'user' | 'assistant'; content: string }> };
+      if (!Array.isArray(data.messages) || data.messages.length === 0) return;
+      setMessages(data.messages.map((m) => ({
+        role: m.role,
+        content: m.content,
+        timestamp: Date.now(),
+      })));
+      sessionIdRef.current = data.sessionId || threadId;
+      setThreadsOpen(false);
+    } catch (err) {
+      console.warn('[hub] failed to load session', err);
+    }
+  }, [pending]);
 
   const send = async (text: string) => {
     const trimmed = text.trim();
@@ -495,6 +520,7 @@ export function VehicleHub({
           maintenanceSuggestions={maintenanceSuggestions}
           user={user}
           slug={slug}
+          onSelectThread={loadSession}
         />
 
         <MobileThreadsDrawer
@@ -505,6 +531,7 @@ export function VehicleHub({
           recentThreads={recentThreads}
           user={user}
           slug={slug}
+          onSelectThread={loadSession}
         />
 
         <section className="hub-col">
@@ -587,6 +614,7 @@ export function VehicleHub({
         trending={trending}
         recentThreads={recentThreads}
         user={user}
+        onSelectThread={loadSession}
         messages={messages}
         input={input}
         pending={pending}
@@ -672,7 +700,7 @@ function MobileHub({
   vehicle, slug, isAuthed, currentMileage, opener, schedule, attachableIssues,
   maintenanceSuggestions, recentThreads, user,
   messages, input, pending, threadsOpen,
-  onChangeInput, onSend, onOpenThreads, onCloseThreads,
+  onChangeInput, onSend, onOpenThreads, onCloseThreads, onSelectThread,
 }: {
   vehicle: VehicleHubProps['vehicle'];
   slug: string;
@@ -693,6 +721,7 @@ function MobileHub({
   onSend: (text: string) => void;
   onOpenThreads: () => void;
   onCloseThreads: () => void;
+  onSelectThread?: (threadId: string) => void;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const taRef = useRef<HTMLTextAreaElement>(null);
@@ -806,6 +835,7 @@ function MobileHub({
         recentThreads={recentThreads}
         user={user}
         slug={slug}
+        onSelectThread={onSelectThread}
       />
 
       {/* App header — menu icon on the left (was right; the right side
@@ -1770,7 +1800,7 @@ function MobileIssuesCard({
 
 /* ─── Vehicle rail ─── */
 function VehicleRail({
-  vehicle, currentMileage, counts, recentThreads, maintenanceSuggestions, user, slug,
+  vehicle, currentMileage, counts, recentThreads, maintenanceSuggestions, user, slug, onSelectThread,
 }: {
   vehicle: VehicleHubProps['vehicle'];
   currentMileage: number | null;
@@ -1779,6 +1809,7 @@ function VehicleRail({
   maintenanceSuggestions: MaintenanceSuggestion[];
   user: VehicleHubProps['user'];
   slug: string;
+  onSelectThread?: (threadId: string) => void;
 }) {
   const v = vehicle;
   // The most pressing service is the first one — getMaintenanceSuggestions
@@ -1824,7 +1855,13 @@ function VehicleRail({
           <div className="thread-empty">No saved conversations yet.</div>
         ) : (
           recentThreads.map((t) => (
-            <button key={t.id} className="thread" title={t.preview}>
+            <button
+              key={t.id}
+              className="thread"
+              type="button"
+              title={t.preview}
+              onClick={() => onSelectThread?.(t.id)}
+            >
               <div className="t-meta">
                 <div className="t-title">{t.preview || 'Untitled conversation'}</div>
                 <div className="t-when">{relativeWhen(t.updatedAt)}</div>
@@ -2204,7 +2241,7 @@ function TopBar({
    panel is rendered at all viewport sizes but the wrapper is display:none
    above 900px, so it costs nothing on desktop. */
 function MobileThreadsDrawer({
-  open, onClose, vehicle, currentMileage, recentThreads, user, slug,
+  open, onClose, vehicle, currentMileage, recentThreads, user, slug, onSelectThread,
 }: {
   open: boolean;
   onClose: () => void;
@@ -2213,6 +2250,7 @@ function MobileThreadsDrawer({
   recentThreads: RecentThread[];
   user: VehicleHubProps['user'];
   slug: string;
+  onSelectThread?: (threadId: string) => void;
 }) {
   // Lock body scroll while the drawer is open and close on Escape.
   useEffect(() => {
@@ -2263,7 +2301,13 @@ function MobileThreadsDrawer({
             <div className="md-empty">No saved conversations yet.</div>
           ) : (
             recentThreads.map((t) => (
-              <button key={t.id} className="md-thread" type="button" title={t.preview}>
+              <button
+                key={t.id}
+                className="md-thread"
+                type="button"
+                title={t.preview}
+                onClick={() => { onSelectThread?.(t.id); onClose(); }}
+              >
                 <div className="md-t-title">{t.preview || 'Untitled conversation'}</div>
                 <div className="md-t-when">{relativeWhen(t.updatedAt)}</div>
               </button>
