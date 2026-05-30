@@ -6,6 +6,7 @@ import { PageLayout } from '@/components/ui/PageLayout';
 import AccountPrivacyActions from '@/components/account/AccountPrivacyActions';
 import SubscriptionControls from '@/components/account/SubscriptionControls';
 import { getStripe } from '@/lib/stripe';
+import { vehicleSlug } from '@/lib/vehicle-slug';
 
 export const dynamic = 'force-dynamic';
 
@@ -139,7 +140,7 @@ export default async function AccountPage() {
               {vehicles.map((v) => (
                 <Link
                   key={v.id}
-                  href={`/garage/${v.id}`}
+                  href={`/vehicle/${vehicleSlug(v.year, v.make, v.model, v.trim)}`}
                   className="block rounded-xl border border-gray-200 bg-white p-4 hover:border-blue-300 hover:shadow-sm transition-all"
                 >
                   <p className="font-semibold text-gray-900 text-sm truncate">
