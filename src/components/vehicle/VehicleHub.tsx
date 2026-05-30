@@ -1864,7 +1864,13 @@ function VehicleRail({
             >
               <div className="t-meta">
                 <div className="t-title">{t.preview || 'Untitled conversation'}</div>
-                <div className="t-when">{relativeWhen(t.updatedAt)}</div>
+                {/* suppressHydrationWarning — relativeWhen() uses Date.now()
+                    which differs between SSR (build time) and client render
+                    (browser load time). Without suppression React #418 fires
+                    and bails out of hydrating this <button>, so onClick
+                    never attaches and clicks do nothing. SSR text stays;
+                    client may update on subsequent renders. */}
+                <div className="t-when" suppressHydrationWarning>{relativeWhen(t.updatedAt)}</div>
               </div>
             </button>
           ))
@@ -2309,7 +2315,10 @@ function MobileThreadsDrawer({
                 onClick={() => { onSelectThread?.(t.id); onClose(); }}
               >
                 <div className="md-t-title">{t.preview || 'Untitled conversation'}</div>
-                <div className="md-t-when">{relativeWhen(t.updatedAt)}</div>
+                {/* See note in VehicleRail — suppressHydrationWarning so the
+                    Date.now() mismatch in relativeWhen() doesn't fail hydration
+                    and strip the button's onClick handler. */}
+                <div className="md-t-when" suppressHydrationWarning>{relativeWhen(t.updatedAt)}</div>
               </button>
             ))
           )}
