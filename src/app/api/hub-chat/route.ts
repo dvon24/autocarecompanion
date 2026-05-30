@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Anthropic from '@anthropic-ai/sdk';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/db';
 import {
@@ -28,19 +27,21 @@ export const runtime = 'nodejs';
  * fast, streaming, vehicle-aware conversation with strict guardrails.
  *
  * Architecture notes:
- *   - Anthropic Sonnet 4.6 with system-prompt caching via cache_control
- *     (saves ~90% on repeat system-prompt tokens across users / sessions
- *     with the same vehicle scope).
+ *   - OpenAI gpt-5.5 (migrated from Anthropic Sonnet 4.6 on 2026-05-30
+ *     to consolidate Anthropic spend onto another project). OpenAI
+ *     auto-caches system prompts >1024 tokens, so the ~90%-off posture
+ *     on repeat system-prompt tokens is preserved — just no longer
+ *     surfaced via explicit cache_control breakpoints.
  *   - Streams tokens back via SSE so the UI can render character-by-
  *     character — feels alive vs the dead-pause of a synchronous reply.
  *   - Every prompt logged to ChatPromptInsight (for trending/aggregation
  *     in batch 3) + persisted to ChatSession (for recent-threads rail).
  *   - Five guardrails baked in:
- *       1. XML-wrapped user input — Claude treats anything in
+ *       1. XML-wrapped user input — the model treats anything in
  *          <user_message> as user input, never as instructions
  *       2. Topic scope in system prompt — refuse non-vehicle queries
  *       3. Hard 2k-token cap on input
- *       4. Anonymous IP-based rate limit (5/day) + authed cap (200/day)
+ *       4. Anonymous IP-based rate limit (1/day) + authed cap (200/day)
  *       5. Per-minute burst cap (12/min) catches client retry loops
  *
  * Request body:
@@ -57,10 +58,18 @@ export const runtime = 'nodejs';
  *   { type: 'error', message }     — fatal error (rate limit, refusal, etc.)
  */
 
-const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
-const MODEL = 'claude-sonnet-4-6';
+// Migrated off Anthropic Sonnet 4.6 → OpenAI gpt-5.5 (2026-05-30). User
+// is using Sonnet on a different project and wanted to consolidate
+// Anthropic spend out of this codebase. Caching: was using explicit
+// Anthropic cache_control breakpoints on the system block (~90% off
+// repeat system tokens); OpenAI does automatic prompt caching for any
+// system prompt >1024 tokens, so the savings posture is preserved
+// implicitly — just no longer surfaced in code.
+const OPENAI_KEY = process.env.OPENAI_API_KEY;
+const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
+const MODEL = 'gpt-5.5';
 const MAX_INPUT_TOKENS = 2000;       // hard cap on user input per turn
-const MAX_HISTORY_MESSAGES = 20;     // last N turns sent to Claude
+const MAX_HISTORY_MESSAGES = 20;     // last N turns sent to the model
 const MAX_OUTPUT_TOKENS = 1500;
 
 interface HubVehicle {
@@ -214,13 +223,13 @@ async function logPromptInsight(args: {
 }
 
 export async function POST(request: NextRequest) {
-  if (!ANTHROPIC_KEY) {
+  if (!OPENAI_KEY) {
     return NextResponse.json({ error: 'service_unavailable', message: 'Chat is offline.' }, { status: 503 });
   }
 
   // ── 0. GDPR Art. 21 right-to-object check ────────────────────────
   // Signed-in users who toggled aiProcessingOptOut in Account
-  // Settings short-circuit here — no data ever reaches Anthropic.
+  // Settings short-circuit here — no data ever reaches OpenAI.
   const gate = await checkAiGate();
   if (isAiGateBlocked(gate)) return gate;
 
@@ -383,12 +392,12 @@ export async function POST(request: NextRequest) {
     anonymousId,
   });
 
-  // ── 6. Build the Anthropic request with system-prompt caching ────
-  // Two cache breakpoints:
-  //   Block 1: STATIC_SYSTEM_PROMPT — identical for every user/vehicle.
-  //            Cache hits universally once warm. ~90% off on this block.
-  //   Block 2: vehicle context — varies per vehicle but caches across
-  //            users querying the SAME vehicle. Real win at scale.
+  // ── 6. Build the OpenAI request ──────────────────────────────────
+  // Previously had two explicit Anthropic cache breakpoints (static
+  // system + per-vehicle block). OpenAI does automatic prompt caching
+  // for any system prompt >1024 tokens, so combining them into one
+  // long system message still gets cache hits — just managed by
+  // OpenAI's cache rather than declared by us.
   const knownIssueTitles = Array.isArray(body.knownIssueTitles) ? body.knownIssueTitles.slice(0, 12) : [];
   const vehicleBlock = buildVehicleBlock(v, knownIssueTitles);
 
@@ -427,9 +436,17 @@ export async function POST(request: NextRequest) {
     };
   });
 
-  const client = new Anthropic({ apiKey: ANTHROPIC_KEY });
+  // Combine the three system blocks into one. OpenAI auto-caches
+  // system prompts >1024 tokens, so the single concatenated prompt
+  // still benefits from prompt caching for repeated identical
+  // (static + vehicle) combinations.
+  const systemContent = [STATIC_SYSTEM_PROMPT, vehicleBlock, locationBlock]
+    .filter(Boolean)
+    .join('\n\n');
 
-  // Stream via SSE so the UI can render token-by-token.
+  // Stream via SSE so the UI can render token-by-token. Event shape
+  // (session/token/done/error) intentionally matches the previous
+  // Anthropic implementation so the client side needs no changes.
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
     async start(controller) {
@@ -443,52 +460,69 @@ export async function POST(request: NextRequest) {
       let usageIn = 0;
       let usageOut = 0;
       try {
-        const response = await client.messages.stream({
-          model: MODEL,
-          max_tokens: MAX_OUTPUT_TOKENS,
-          // cache_control on the system block enables prompt caching.
-          // First call per (system_text) costs full price; subsequent
-          // calls within the 5-min cache TTL get ~90% off the system
-          // tokens. Across users with the same vehicle this is a real
-          // saving as adoption grows.
-          system: [
-            {
-              type: 'text',
-              text: STATIC_SYSTEM_PROMPT,
-              // Universal cache hit across all users/vehicles once warm.
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              cache_control: { type: 'ephemeral' } as any,
-            },
-            {
-              type: 'text',
-              text: vehicleBlock,
-              // Per-vehicle cache hit; meaningful at scale (popular vehicles
-              // get repeat cache hits across many concurrent users).
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              cache_control: { type: 'ephemeral' } as any,
-            },
-            // Location block — only emitted when reverse-geocode succeeded.
-            // Per-region cache hit; users in the same city share cache entries.
-            ...(locationBlock ? [{
-              type: 'text' as const,
-              text: locationBlock,
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              cache_control: { type: 'ephemeral' } as any,
-            }] : []),
-          ],
-          messages: wrappedMessages,
+        const openaiMessages = [
+          { role: 'system' as const, content: systemContent },
+          ...wrappedMessages,
+        ];
+
+        const res = await fetch(OPENAI_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${OPENAI_KEY}`,
+          },
+          body: JSON.stringify({
+            model: MODEL,
+            messages: openaiMessages,
+            max_completion_tokens: MAX_OUTPUT_TOKENS,
+            stream: true,
+            // Required for usage to appear in the final stream chunk —
+            // without this we'd have no way to log token counts.
+            stream_options: { include_usage: true },
+          }),
+          signal: AbortSignal.timeout(55_000),
         });
 
-        for await (const event of response) {
-          if (event.type === 'content_block_delta' && event.delta?.type === 'text_delta') {
-            const text = event.delta.text || '';
-            assistantText += text;
-            send({ type: 'token', text });
+        if (!res.ok || !res.body) {
+          const errText = await res.text().catch(() => 'unknown');
+          throw new Error(`OpenAI ${res.status}: ${errText.slice(0, 200)}`);
+        }
+
+        // OpenAI SSE format:
+        //   data: {"choices":[{"delta":{"content":"hello"}}]}\n\n
+        //   ...
+        //   data: {"choices":[{"finish_reason":"stop","delta":{}}],"usage":{...}}\n\n
+        //   data: [DONE]\n\n
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+
+          let idx;
+          while ((idx = buffer.indexOf('\n\n')) !== -1) {
+            const rawEvent = buffer.slice(0, idx).trim();
+            buffer = buffer.slice(idx + 2);
+            if (!rawEvent.startsWith('data:')) continue;
+            const payload = rawEvent.slice(5).trim();
+            if (payload === '[DONE]') continue;
+            try {
+              const parsed = JSON.parse(payload);
+              const delta = parsed.choices?.[0]?.delta?.content;
+              if (typeof delta === 'string' && delta) {
+                assistantText += delta;
+                send({ type: 'token', text: delta });
+              }
+              if (parsed.usage) {
+                usageIn = parsed.usage.prompt_tokens || 0;
+                usageOut = parsed.usage.completion_tokens || 0;
+              }
+            } catch { /* skip malformed chunk — usually a keep-alive */ }
           }
         }
-        const final = await response.finalMessage();
-        usageIn = final.usage?.input_tokens || 0;
-        usageOut = final.usage?.output_tokens || 0;
 
         // Persist the assistant reply back to the session so next turn's
         // history includes it.
