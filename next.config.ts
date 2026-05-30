@@ -130,6 +130,16 @@ const nextConfig: NextConfig = {
         destination: '/known-issues/dtc/:code/citroen',
         permanent: true,
       },
+      // /parts redirect — Parts Finder hidden 2026-05-30 pending
+      // verification. Using a 302 (temporary) so Google doesn't
+      // aggressively forget the URL while it's offline. Direct bookmark
+      // holders land on home; nothing else broken. Remove this redirect
+      // when restoring the feature.
+      {
+        source: '/parts',
+        destination: '/',
+        permanent: false,
+      },
     ];
   },
 };
