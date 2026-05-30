@@ -6,6 +6,7 @@ import Image from 'next/image';
 import type { MaintenanceSuggestion, ScheduleData, ScheduleService, ScheduleServiceStatus } from '@/lib/maintenance-suggestions';
 import type { RecentThread, TrendingChip, AttachableIssue } from '@/lib/hub-data';
 import { Icon, type IconName } from '@/components/ui/Icon';
+import { vehicleSlug } from '@/lib/vehicle-slug';
 import type { VehicleSchedule } from '@/lib/owners-manual-schedule';
 // OwnersManualSchedule is no longer rendered as its own card — its data
 // lives in the `ownersManualSchedule` prop for the integration that
@@ -84,6 +85,17 @@ export interface VehicleHubProps {
    *  reference section after the chat opener when a verified entry exists
    *  for this YMMT. Available to ALL viewers (no auth required). */
   ownersManualSchedule?: VehicleSchedule | null;
+  /** User's saved garage vehicles for the top-bar switcher dropdown.
+   *  Empty array on anonymous viewers — the switcher then renders the
+   *  current vehicle as a plain label with no dropdown affordance. */
+  userVehicles?: Array<{
+    id: string;
+    year: number;
+    make: string;
+    model: string;
+    trim: string | null;
+    nickname: string | null;
+  }>;
 }
 
 interface RoutePreview {
@@ -131,6 +143,7 @@ export function VehicleHub({
   user,
   schedule,
   ownersManualSchedule,
+  userVehicles = [],
 }: VehicleHubProps) {
   // Seed the conversation with the pre-rendered opener so the page feels
   // alive on first paint. Subsequent turns get appended here and (in v2)
@@ -560,7 +573,7 @@ export function VehicleHub({
         />
 
         <section className="hub-col">
-          <TopBar vehicle={vehicle} user={user} onOpenThreads={() => setThreadsOpen(true)} />
+          <TopBar vehicle={vehicle} user={user} userVehicles={userVehicles} currentSlug={slug} isAuthed={isAuthed} onOpenThreads={() => setThreadsOpen(true)} />
 
           {!isAuthed && <AnonymousGate />}
 
@@ -2159,17 +2172,19 @@ function UserFooter({ user }: { user: NonNullable<VehicleHubProps['user']> }) {
   );
 }
 
-/* ─── Top bar ─── A3-design: eyebrow on the left, quick-action pills
- (Drive / Library) in the middle, user pill on the right when signed in.
- The Translate widget docks to the right of the user pill via global CSS. */
+/* ─── Top bar ─── A3-design: vehicle switcher pill on the left, quick-
+ action area on the right (Translate widget docks here via global CSS). */
 function TopBar({
-  vehicle, user, onOpenThreads,
-}: { vehicle: VehicleHubProps['vehicle']; user: VehicleHubProps['user']; onOpenThreads: () => void }) {
-  // Vehicle + user props retained for layout/aria purposes but no
-  // longer rendered in the topbar — Open Drive / Library / duplicate
-  // user pill all moved to the rail's action row, and the global
-  // FloatingAuthButton handles the avatar.
-  void vehicle; void user;
+  vehicle, user, userVehicles, currentSlug, isAuthed, onOpenThreads,
+}: {
+  vehicle: VehicleHubProps['vehicle'];
+  user: VehicleHubProps['user'];
+  userVehicles: NonNullable<VehicleHubProps['userVehicles']>;
+  currentSlug: string;
+  isAuthed: boolean;
+  onOpenThreads: () => void;
+}) {
+  void user; // retained for future use; FloatingAuthButton handles avatar today
   return (
     <div className="topbar">
       <div className="tb-left">
@@ -2184,9 +2199,12 @@ function TopBar({
         <Link href="/" className="tb-brand-mobile" aria-label="Au7o home">
           <Image src="/og-image.png" alt="" width={22} height={22} />
         </Link>
-        <span className="eyebrow-inline">Conversation</span>
-        <span className="tb-sep">·</span>
-        <span style={{ color: '#334155' }}>Maintenance check-in</span>
+        <VehicleSwitcher
+          vehicle={vehicle}
+          userVehicles={userVehicles}
+          currentSlug={currentSlug}
+          isAuthed={isAuthed}
+        />
       </div>
       <div className="tb-right">
         {/* Open Drive / Library pills removed — now live in the rail's
@@ -2265,6 +2283,139 @@ function TopBar({
           .tb-burger { display: inline-flex; }
           .tb-translate-spacer { display: none; }
         }
+      `}</style>
+    </div>
+  );
+}
+
+/* ─── Vehicle switcher ─── Dropdown chip in the top bar showing the
+   current vehicle. Click expands a list of the user's other saved
+   vehicles, each linking to its own /vehicle/{slug} hub. Anonymous
+   viewers (or signed-in users with no saved vehicles) see a plain
+   label with no dropdown affordance — there's nothing to switch to. */
+function VehicleSwitcher({
+  vehicle, userVehicles, currentSlug, isAuthed,
+}: {
+  vehicle: VehicleHubProps['vehicle'];
+  userVehicles: NonNullable<VehicleHubProps['userVehicles']>;
+  currentSlug: string;
+  isAuthed: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Close on outside click + Escape so the dropdown doesn't trap users.
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
+    document.addEventListener('mousedown', onDown);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDown);
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
+  const label = `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}`;
+  // Hide the dropdown affordance entirely when there's nowhere to
+  // switch to. Authed-but-empty users still get to see "+ Add a
+  // vehicle" so they can populate their garage from the hub.
+  const hasDropdown = isAuthed;
+
+  if (!hasDropdown) {
+    return <span className="vs-label">{label}</span>;
+  }
+
+  return (
+    <div className="vs" ref={ref}>
+      <button
+        type="button"
+        className="vs-trigger"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-haspopup="menu"
+        title="Switch vehicle"
+      >
+        <span className="vs-label">{label}</span>
+        <svg className={`vs-caret ${open ? 'vs-caret-open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      {open && (
+        <div className="vs-menu" role="menu">
+          {userVehicles.length === 0 ? (
+            <div className="vs-empty">No saved vehicles yet.</div>
+          ) : (
+            userVehicles.map((v) => {
+              const vSlug = vehicleSlug(v.year, v.make, v.model, v.trim);
+              const isCurrent = vSlug === currentSlug;
+              const displayLabel = v.nickname || `${v.year} ${v.make} ${v.model}`;
+              return (
+                <Link
+                  key={v.id}
+                  href={`/vehicle/${vSlug}`}
+                  className={`vs-item ${isCurrent ? 'vs-item-current' : ''}`}
+                  onClick={() => setOpen(false)}
+                  role="menuitem"
+                >
+                  <span className="vs-item-label">{displayLabel}</span>
+                  {isCurrent && <span className="vs-item-check" aria-hidden>✓</span>}
+                </Link>
+              );
+            })
+          )}
+          <div className="vs-divider" />
+          <Link href="/garage" className="vs-item vs-item-action" onClick={() => setOpen(false)} role="menuitem">
+            + Add a vehicle
+          </Link>
+          <Link href="/garage" className="vs-item vs-item-action" onClick={() => setOpen(false)} role="menuitem">
+            Manage garage →
+          </Link>
+        </div>
+      )}
+
+      <style jsx>{`
+        .vs { position: relative; display: inline-block; }
+        .vs-label {
+          font-size: 13px; font-weight: 500; color: #0B1220;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 240px;
+        }
+        .vs-trigger {
+          display: inline-flex; align-items: center; gap: 6px;
+          padding: 5px 10px; border-radius: 999px;
+          background: #fff; border: 1px solid #E3DFD4;
+          cursor: pointer; color: #0B1220;
+        }
+        .vs-trigger:hover { background: #FAF8F2; }
+        .vs-trigger[aria-expanded="true"] { background: #FAF8F2; }
+        .vs-caret { transition: transform 150ms ease; color: #64748B; }
+        .vs-caret-open { transform: rotate(180deg); }
+        .vs-menu {
+          position: absolute; top: calc(100% + 6px); left: 0;
+          min-width: 260px; max-width: 320px;
+          background: #fff; border: 1px solid #E3DFD4; border-radius: 12px;
+          box-shadow: 0 10px 32px rgba(11, 18, 32, 0.08), 0 2px 6px rgba(11, 18, 32, 0.04);
+          padding: 6px; z-index: 50;
+        }
+        .vs-empty {
+          padding: 10px 12px; font-size: 12px; color: #64748B;
+        }
+        .vs-item {
+          display: flex; align-items: center; gap: 8px;
+          padding: 8px 10px; border-radius: 8px;
+          font-size: 13px; color: #0B1220; text-decoration: none;
+          cursor: pointer;
+        }
+        .vs-item:hover { background: #FAF8F2; }
+        .vs-item-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .vs-item-check { color: #2563EB; font-weight: 700; flex: 0 0 auto; }
+        .vs-item-current { font-weight: 600; }
+        .vs-item-action { color: #2563EB; font-weight: 500; font-size: 12.5px; }
+        .vs-divider { height: 1px; background: #E3DFD4; margin: 6px 0; }
       `}</style>
     </div>
   );

@@ -254,6 +254,10 @@ export default async function VehicleProfilePage({
   let maintenanceSchedule: ScheduleData | null = null;
   let userId: string | null = null;
   let userInfo: { name: string; joinedAt: string; isSubscriber: boolean } | null = null;
+  // Saved vehicles for the top-bar switcher dropdown — only populated
+  // when authed. Empty array on anonymous viewers so the switcher just
+  // renders the static vehicle label without dropdown affordance.
+  let userVehicles: Array<{ id: string; year: number; make: string; model: string; trim: string | null; nickname: string | null }> = [];
   try {
     const session = await auth();
     if (session?.user?.id) {
@@ -271,6 +275,17 @@ export default async function VehicleProfilePage({
           isSubscriber: session.user.subscriptionStatus === 'active',
         };
       }
+      // Pull ALL vehicles for the switcher dropdown — same query as
+      // /api/vehicles GET but inlined here so we can do it in parallel
+      // with the userVehicle lookup below. Bounded to 10 for the
+      // dropdown render budget (rare to have more anyway).
+      userVehicles = await prisma.vehicle.findMany({
+        where: { userId: session.user.id },
+        orderBy: [{ isPrimary: 'desc' }, { updatedAt: 'desc' }],
+        take: 10,
+        select: { id: true, year: true, make: true, model: true, trim: true, nickname: true },
+      });
+
       // Match the vehicle URL to a row in the user's garage. Loose match
       // on year/make/model — trim variations are common ("SRT 392" vs
       // "SRT" vs "Hellcat") so we'd rather over-match than miss the
@@ -354,6 +369,7 @@ export default async function VehicleProfilePage({
       user={userInfo}
       schedule={maintenanceSchedule}
       ownersManualSchedule={ownersManualSchedule}
+      userVehicles={userVehicles}
     />
   );
 }
