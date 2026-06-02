@@ -7,6 +7,7 @@ import type { MaintenanceSuggestion, ScheduleData, ScheduleService, ScheduleServ
 import type { RecentThread, TrendingChip, AttachableIssue } from '@/lib/hub-data';
 import { Icon, type IconName } from '@/components/ui/Icon';
 import { vehicleSlug } from '@/lib/vehicle-slug';
+import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import type { VehicleSchedule } from '@/lib/owners-manual-schedule';
 // OwnersManualSchedule is no longer rendered as its own card — its data
 // lives in the `ownersManualSchedule` prop for the integration that
@@ -127,6 +128,11 @@ interface Message {
    *  source as the mobile MobileIssuesCard but works on desktop too
    *  since the card itself uses inline styles. */
   issues?: AttachableIssue[];
+  /** Set when the server returned 429 with `gated: true` — the
+   *  assistant bubble is replaced with an inline gate card driving
+   *  signup (anon) or subscribe (authed-free). Content is empty when
+   *  this is set; the card carries the message + CTAs. */
+  gate?: GateInfo;
 }
 
 export function VehicleHub({
@@ -343,11 +349,39 @@ export function VehicleHub({
       });
 
       if (!res.ok || !res.body) {
-        const errBody = await res.json().catch(() => ({} as { message?: string; gated?: boolean; error?: string }));
-        // Server-side weekly quota hit (error: 'quota_exceeded') — open
-        // the same upgrade modal we use for the client-side counter,
-        // and pop the empty assistant placeholder so the user doesn't
-        // see a stuck "…" bubble.
+        const errBody = await res.json().catch(() => ({} as { message?: string; gated?: boolean; error?: string; ctaUrl?: string; ctaLabel?: string; secondaryCtaUrl?: string; secondaryCtaLabel?: string; resetAt?: string }));
+
+        // Server gated the request — render an inline gate card in the
+        // assistant placeholder slot. Same code path covers both:
+        //   anon (login_required → /auth/signup)
+        //   authed-free (quota_exceeded → /account subscribe)
+        // The InlineGateCard reads ctaUrl/ctaLabel/secondaryCta directly
+        // from the response so all copy lives server-side.
+        if (res.status === 429 && errBody.gated && errBody.ctaUrl && errBody.ctaLabel) {
+          const gate: GateInfo = {
+            message: errBody.message || 'Sign up free to keep chatting.',
+            ctaUrl: errBody.ctaUrl,
+            ctaLabel: errBody.ctaLabel,
+            secondaryCtaUrl: errBody.secondaryCtaUrl,
+            secondaryCtaLabel: errBody.secondaryCtaLabel,
+            resetAt: errBody.resetAt,
+            isAuthed,
+          };
+          setMessages((prev) => {
+            const idx = streamingIdxRef.current;
+            if (idx == null) return prev;
+            const copy = [...prev];
+            copy[idx] = { ...copy[idx], content: '', gate };
+            return copy;
+          });
+          streamingIdxRef.current = null;
+          setPending(false);
+          return;
+        }
+
+        // Legacy fallback for any 429 that doesn't carry the new gated
+        // payload (kept so older deploys / external callers don't
+        // regress). Opens the existing UpgradePrompt modal.
         if (res.status === 429 && errBody.error === 'quota_exceeded') {
           setShowUpgrade(true);
           setMessages((prev) => {
@@ -623,6 +657,7 @@ export function VehicleHub({
                     route={m.route}
                     schedule={m.schedule}
                     issues={m.issues}
+                    gate={m.gate}
                     slug={slug}
                     isAuthed={isAuthed}
                     // Pick chip-able follow-up prompts to send next.
@@ -2766,7 +2801,7 @@ function relativeWhen(iso: string): string {
 
 /* ─── Au7o reply bubble ─── */
 function Au7oReply({
-  content, attachments = [], driveHandoff = null, route, schedule, issues, slug, isAuthed, onFollowUp,
+  content, attachments = [], driveHandoff = null, route, schedule, issues, gate, slug, isAuthed, onFollowUp,
 }: {
   content: string;
   attachments?: AttachableIssue[];
@@ -2774,6 +2809,7 @@ function Au7oReply({
   route?: RoutePreview;
   schedule?: ScheduleData;
   issues?: AttachableIssue[];
+  gate?: GateInfo;
   slug?: string;
   isAuthed?: boolean;
   onFollowUp?: (prompt: string) => void;
@@ -2794,6 +2830,16 @@ function Au7oReply({
     <div className="row-au7o">
       <Image src="/og-image.png" alt="" width={32} height={32} className="avatar" />
       <div className="body">
+        {/* Gate card — when present, replaces the normal answer bubble
+            entirely. Sits in the same slot as the assistant's reply so
+            the user sees the signup/subscribe CTA exactly where they
+            expected an answer. Other attachments (schedule, issues) are
+            suppressed in this case since the conversation can't continue
+            until they sign up. */}
+        {gate ? (
+          <InlineGateCard gate={gate} />
+        ) : (
+          <>
         {visibleBody.trim().length > 0 && (
           <div className="bubble-au7o">{renderMarkdownLite(visibleBody)}</div>
         )}
@@ -2841,6 +2887,8 @@ function Au7oReply({
               <button key={i} className="chip-followup" onClick={() => onFollowUp(q)}>{q}</button>
             ))}
           </div>
+        )}
+          </>
         )}
       </div>
 
