@@ -23,6 +23,7 @@ import { ShareButtons } from '@/components/shared/ShareButtons';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 import { sourceLabel, analysisAttribution, sourceFootnote, metaSourceTail, formatUpdatedLabel } from '@/lib/source-attribution';
+import { vehicleSlug } from '@/lib/vehicle-slug';
 
 // --- ISR + dynamic params ---
 
@@ -369,18 +370,21 @@ export default async function KnownIssuesArticlePage({
               Au<span className="text-blue-600">7</span>o
             </span>
           </Link>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Link
               href="/known-issues"
-              className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              className="px-3 sm:px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden sm:inline-block"
             >
               Known Issues
             </Link>
+            {/* Was "Get Started" linking to /get-started, which now 301s
+                to home — sent users in a circle. Now routes straight to
+                the rich vehicle hub for THIS page's vehicle. */}
             <Link
-              href="/get-started"
-              className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+              href={`/vehicle/${vehicleSlug(yearRange?.max ?? new Date().getFullYear(), make, model)}`}
+              className="px-3 sm:px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
-              Get Started
+              Open Hub
             </Link>
           </div>
         </div>
@@ -685,8 +689,14 @@ export default async function KnownIssuesArticlePage({
         </div>
       </article>
 
-      {/* Mobile fixed bottom bar */}
-      <MobileBottomBar make={make} model={model} />
+      {/* Mobile fixed bottom bar — pass the requested year if valid,
+          else the most recent documented year, so the Hub deep-link
+          routes to the right /vehicle/[year-make-model] slug. */}
+      <MobileBottomBar
+        make={make}
+        model={model}
+        hubYear={yearIsValid ? initialYear! : (yearRange?.max ?? new Date().getFullYear())}
+      />
     </div>
   );
 }

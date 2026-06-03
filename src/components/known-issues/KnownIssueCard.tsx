@@ -251,7 +251,11 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               href={`#${issue.id}`}
               aria-label="Permalink to this issue"
               title="Copy link to this issue"
-              className="opacity-0 group-hover/heading:opacity-60 hover:opacity-100 text-xs text-gray-400 hover:text-blue-600 transition-opacity flex-shrink-0"
+              // Mobile (lg-) users have no hover state, so the
+              // previously-hover-only permalink was invisible to 67% of
+              // traffic. Show at low opacity on touch devices; keep the
+              // hover-reveal pattern on desktop.
+              className="opacity-40 lg:opacity-0 group-hover/heading:opacity-60 hover:opacity-100 text-sm lg:text-xs text-gray-400 hover:text-blue-600 transition-opacity flex-shrink-0 px-1 py-0.5 min-w-[24px] min-h-[24px] inline-flex items-center justify-center"
               onClick={(e) => {
                 // Stop the parent button's expand-toggle from firing when
                 // the user just wants to copy the permalink.
