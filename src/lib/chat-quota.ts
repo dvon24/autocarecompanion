@@ -22,7 +22,47 @@ const ANON_COOKIE_MAX_AGE = 60 * 60 * 24 * 365 * 2; // 2 years
 // visitors get a single taste of the AI, then are nudged to sign up
 // (free) for a much larger free-authed weekly allowance.
 export const DEFAULT_ANON_LIMIT = 1;
-export const DEFAULT_FREE_AUTHED_LIMIT = 25;
+
+// ── Authed-free weekly chat allowance ────────────────────────────────
+// Pricing brief (wf_70514661-afd) recommended dropping 25 → 5/week to
+// make the "Au7o Pro at $9.99/mo unlimited" upgrade obvious. To avoid
+// spiking churn on EXISTING free-authed users who were trained on 25,
+// we grandfather them at the old limit for 90 days, then converge.
+// New signups after the cutoff start on the new 5/week from day 1 so
+// we can measure conversion lift on the new cohort independently.
+const LEGACY_CUTOFF_DATE = new Date('2026-06-03T00:00:00Z');
+const LEGACY_GRACE_DAYS = 90;
+const LEGACY_GRACE_EXPIRY_MS = LEGACY_CUTOFF_DATE.getTime() + LEGACY_GRACE_DAYS * 24 * 3600 * 1000;
+const LEGACY_FREE_AUTHED_LIMIT = 25;
+const NEW_FREE_AUTHED_LIMIT = 5;
+
+/**
+ * DEFAULT_FREE_AUTHED_LIMIT is the value used when the caller has no
+ * userCreatedAt context (e.g. anonymous callers calling the wrong
+ * code path). Defaults to the new tighter limit — "I don't know when
+ * this user signed up" gets treated as a new user, never grandfathered.
+ *
+ * For routes that DO have the user context, call
+ * getEffectiveFreeAuthedLimit(user.createdAt) instead.
+ */
+export const DEFAULT_FREE_AUTHED_LIMIT = NEW_FREE_AUTHED_LIMIT;
+
+/**
+ * Apply the grandfather logic. Returns 25 for users created before
+ * the cutoff date IF we're still inside the 90-day grace window, else 5.
+ *
+ * Examples (cutoff = 2026-06-03):
+ *   user created 2024-05-01, today 2026-06-15 (in grace)  → 25
+ *   user created 2024-05-01, today 2026-09-15 (past grace) → 5
+ *   user created 2026-07-01 (post-cutoff)                  → 5
+ *   user createdAt unknown                                 → 5
+ */
+export function getEffectiveFreeAuthedLimit(userCreatedAt: Date | null | undefined): number {
+  if (!userCreatedAt) return NEW_FREE_AUTHED_LIMIT;
+  if (Date.now() > LEGACY_GRACE_EXPIRY_MS) return NEW_FREE_AUTHED_LIMIT;
+  if (userCreatedAt.getTime() >= LEGACY_CUTOFF_DATE.getTime()) return NEW_FREE_AUTHED_LIMIT;
+  return LEGACY_FREE_AUTHED_LIMIT;
+}
 
 /**
  * Return the Sunday-midnight-UTC of the current week. Matches the

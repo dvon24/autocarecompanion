@@ -24,7 +24,7 @@ import {
   checkAndConsumeChatQuota,
   getOrSetAnonId,
   DEFAULT_ANON_LIMIT,
-  DEFAULT_FREE_AUTHED_LIMIT,
+  getEffectiveFreeAuthedLimit,
 } from '@/lib/chat-quota';
 
 // Allow up to 60s for tool-calling responses on Vercel
@@ -852,44 +852,61 @@ export async function POST(request: NextRequest) {
       if (isAuthed) {
         return NextResponse.json({ error: 'rate_limited', message: 'Daily chat limit reached. It resets in 24 hours.', reset: dayLimit.reset, gated: false }, { status: 429 });
       }
+      // Anon at daily limit — brief copy: emphasizes free signup
+      // value (5 questions/week, no card) over the upgrade pitch.
       return NextResponse.json({
         error: 'login_required',
-        message: 'Sign up free to keep chatting with the AI about your vehicle. Takes 10 seconds.',
+        message: 'Free preview used. Sign in for 5 questions/week — free, no card required.',
         reset: dayLimit.reset,
         gated: true,
         ctaUrl: '/auth/signup',
-        ctaLabel: 'Sign up free',
+        ctaLabel: 'Start free — sign in',
         secondaryCtaUrl: '/auth/signin',
         secondaryCtaLabel: 'Sign in',
       }, { status: 429 });
     }
 
     if (!isSubscriber) {
+      // For authed users, fetch createdAt to apply grandfather logic.
+      // Existing free-authed users keep 25/week for 90 days; new
+      // signups get 5/week from day 1 per the pricing brief.
+      let userCreatedAt: Date | null = null;
+      if (isAuthed && sessionUserId) {
+        try {
+          const u = await prisma.user.findUnique({ where: { id: sessionUserId }, select: { createdAt: true } });
+          userCreatedAt = u?.createdAt ?? null;
+        } catch { /* silent — falls through to new-user limit */ }
+      }
       const quotaKey = isAuthed ? `user:${sessionUserId}` : `anon:${await getOrSetAnonId()}`;
-      const quotaLimit = isAuthed ? DEFAULT_FREE_AUTHED_LIMIT : DEFAULT_ANON_LIMIT;
+      const quotaLimit = isAuthed ? getEffectiveFreeAuthedLimit(userCreatedAt) : DEFAULT_ANON_LIMIT;
       const quota = await checkAndConsumeChatQuota({ key: quotaKey, limit: quotaLimit });
       if (!quota.allowed) {
         if (isAuthed) {
+          // Authed-free at weekly cap — brief's value-anchor pitch.
           return NextResponse.json({
             error: 'quota_exceeded',
-            message: `You've used all ${quotaLimit} free chats for this week. Subscribe for unlimited.`,
+            message: `You've hit this week's free limit (${quotaLimit} chats). The next wrong part or shop diagnostic costs more than a whole year of Au7o.`,
             resetAt: quota.resetAt.toISOString(),
             remaining: 0,
             limit: quotaLimit,
             gated: true,
             ctaUrl: '/account',
-            ctaLabel: 'Subscribe',
+            ctaLabel: 'Go unlimited — $9.99/mo',
+            secondaryCtaUrl: undefined,
+            secondaryCtaLabel: undefined,
           }, { status: 429 });
         }
+        // Anon hitting the weekly cookie cap (rare — usually
+        // daily IP cap fires first). Same signup pitch as daily.
         return NextResponse.json({
           error: 'login_required',
-          message: 'Free question used. Sign up free to keep chatting — takes 10 seconds.',
+          message: 'Free preview used. Sign in for 5 questions/week — free, no card required.',
           resetAt: quota.resetAt.toISOString(),
           remaining: 0,
           limit: quotaLimit,
           gated: true,
           ctaUrl: '/auth/signup',
-          ctaLabel: 'Sign up free',
+          ctaLabel: 'Start free — sign in',
           secondaryCtaUrl: '/auth/signin',
           secondaryCtaLabel: 'Sign in',
         }, { status: 429 });

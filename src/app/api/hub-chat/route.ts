@@ -13,7 +13,7 @@ import {
   checkAndConsumeChatQuota,
   getOrSetAnonId,
   DEFAULT_ANON_LIMIT,
-  DEFAULT_FREE_AUTHED_LIMIT,
+  getEffectiveFreeAuthedLimit,
 } from '@/lib/chat-quota';
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 
@@ -278,13 +278,15 @@ export async function POST(request: NextRequest) {
     if (isAuthed) {
       return NextResponse.json({ error: 'rate_limited', message: 'Daily chat limit reached. It resets in 24 hours.', reset: dayLimit.reset, gated: false }, { status: 429 });
     }
+    // Anon at daily limit — brief copy emphasizes free signup value
+    // (5 questions/week, no card) over the upgrade pitch.
     return NextResponse.json({
       error: 'login_required',
-      message: 'Sign up free to keep chatting with the AI about your vehicle. Takes 10 seconds.',
+      message: 'Free preview used. Sign in for 5 questions/week — free, no card required.',
       reset: dayLimit.reset,
       gated: true,
       ctaUrl: '/auth/signup',
-      ctaLabel: 'Sign up free',
+      ctaLabel: 'Start free — sign in',
       secondaryCtaUrl: '/auth/signin',
       secondaryCtaLabel: 'Sign in',
     }, { status: 429 });
@@ -293,35 +295,50 @@ export async function POST(request: NextRequest) {
   // ── 3a. Server-side WEEKLY quota (backstop for the client-side
   // useAnonymousLimit hook). IP-based daily limits above protect against
   // bots; this quota protects against single-user abuse via localStorage
-  // tampering. Subscribers bypass entirely; free-authed users get a
-  // higher cap; anonymous users are the strict 5/week.
+  // tampering. Subscribers bypass entirely; authed-free users use the
+  // grandfather-aware limit (existing users keep 25/week for 90 days,
+  // new signups start on 5/week per the pricing brief).
   const isSubscriber = session?.user?.subscriptionStatus === 'active';
   if (!isSubscriber) {
+    // For authed users, fetch createdAt to apply grandfather logic.
+    // Cheap lookup; one row by indexed PK. Anonymous path skips this.
+    let userCreatedAt: Date | null = null;
+    if (isAuthed && userId) {
+      try {
+        const u = await prisma.user.findUnique({ where: { id: userId }, select: { createdAt: true } });
+        userCreatedAt = u?.createdAt ?? null;
+      } catch { /* silent — falls through to new-user limit */ }
+    }
     const quotaKey = isAuthed ? `user:${userId}` : `anon:${await getOrSetAnonId()}`;
-    const quotaLimit = isAuthed ? DEFAULT_FREE_AUTHED_LIMIT : DEFAULT_ANON_LIMIT;
+    const quotaLimit = isAuthed ? getEffectiveFreeAuthedLimit(userCreatedAt) : DEFAULT_ANON_LIMIT;
     const quota = await checkAndConsumeChatQuota({ key: quotaKey, limit: quotaLimit });
     if (!quota.allowed) {
       if (isAuthed) {
+        // Authed-free at weekly cap — brief's value-anchor pitch.
         return NextResponse.json({
           error: 'quota_exceeded',
-          message: `You've used all ${quotaLimit} free chats for this week. Subscribe for unlimited.`,
+          message: `You've hit this week's free limit (${quotaLimit} chats). The next wrong part or shop diagnostic costs more than a whole year of Au7o.`,
           resetAt: quota.resetAt.toISOString(),
           remaining: 0,
           limit: quotaLimit,
           gated: true,
           ctaUrl: '/account',
-          ctaLabel: 'Subscribe',
+          ctaLabel: 'Go unlimited — $9.99/mo',
+          secondaryCtaUrl: undefined,
+          secondaryCtaLabel: undefined,
         }, { status: 429 });
       }
+      // Anon hitting the cookie-based weekly cap (rare — usually
+      // the IP daily cap fires first). Same signup pitch as daily.
       return NextResponse.json({
         error: 'login_required',
-        message: 'Free question used. Sign up free to keep chatting — takes 10 seconds.',
+        message: 'Free preview used. Sign in for 5 questions/week — free, no card required.',
         resetAt: quota.resetAt.toISOString(),
         remaining: 0,
         limit: quotaLimit,
         gated: true,
         ctaUrl: '/auth/signup',
-        ctaLabel: 'Sign up free',
+        ctaLabel: 'Start free — sign in',
         secondaryCtaUrl: '/auth/signin',
         secondaryCtaLabel: 'Sign in',
       }, { status: 429 });

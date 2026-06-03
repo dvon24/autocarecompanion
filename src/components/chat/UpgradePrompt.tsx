@@ -27,13 +27,13 @@ export function UpgradePrompt({
     return (
       <div className={`text-center py-4 ${className}`}>
         <p className="text-gray-600 text-sm mb-2">
-          You&apos;ve used all your free chats.{' '}
+          Free limit reached.{' '}
           <Link href="/subscribe" className="text-blue-600 hover:text-blue-700 font-medium">
-            Subscribe for unlimited
+            Go unlimited — $9.99/mo →
           </Link>
         </p>
         <p className="text-xs text-gray-400">
-          Resets {resetText}
+          Or wait until {resetText}
         </p>
       </div>
     );
@@ -47,17 +47,17 @@ export function UpgradePrompt({
         <div className="flex items-center justify-between gap-4">
           <div>
             <p className="font-medium text-gray-900 text-sm">
-              Chat limit reached
+              Free limit reached
             </p>
             <p className="text-xs text-gray-500 mt-0.5">
-              Resets {resetText}
+              Resets {resetText} · or unlimited $9.99/mo
             </p>
           </div>
           <Link
             href="/subscribe"
             className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"
           >
-            Subscribe
+            Go Pro
           </Link>
         </div>
       </div>
@@ -86,12 +86,12 @@ export function UpgradePrompt({
       </div>
 
       <h3 className="text-xl font-bold text-gray-900 mb-2">
-        You&apos;ve used your 5 free chats this week
+        You&apos;re getting real value from Au7o.
       </h3>
 
       <p className="text-gray-600 mb-6 max-w-md mx-auto">
-        Subscribe to unlock unlimited AI diagnoses, maintenance tracking,
-        smart notifications, and the AI garage assistant.
+        Unlimited symptom chat, photo-to-part, and video diagnosis — <strong>$9.99/mo</strong>.
+        One avoided wrong part pays for 8 months.
       </p>
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -99,26 +99,26 @@ export function UpgradePrompt({
           href="/subscribe"
           className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg shadow-blue-500/25"
         >
-          Subscribe - $9.99/month
+          Go unlimited — $9.99/mo
         </Link>
         <p className="text-sm text-gray-500">
           or wait until {resetText}
         </p>
       </div>
 
-      {/* Features preview */}
+      {/* Features preview — matches the pricing brief's Au7o Pro tier */}
       <div className="mt-8 pt-6 border-t border-blue-200/50">
         <p className="text-xs text-gray-500 uppercase tracking-wide mb-4">
-          Subscriber benefits
+          Au7o Pro benefits
         </p>
         <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto text-left">
           {[
-            'Unlimited AI chats',
-            'Vehicle garage',
-            'Maintenance tracking',
-            'Smart notifications',
-            'AI garage assistant',
-            'No ads',
+            'Unlimited AI chat',
+            'Photo-to-part',
+            'Video diagnosis',
+            'Complete repair kits',
+            'Multi-source pricing',
+            'Unlimited vehicles',
           ].map((feature) => (
             <div key={feature} className="flex items-center gap-2 text-sm">
               <svg
