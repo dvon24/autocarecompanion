@@ -1252,14 +1252,16 @@ function MobileHub({
         )}
 
         {/* Hidden file input — Photo button below triggers it via the
-            ref. capture="environment" hints mobile to open the rear
-            camera directly, which is what users want for engine bays /
-            damage / parts. Falls back to file picker on desktop. */}
+            ref. NO `capture` attribute — that would force iOS/Android
+            into camera-only mode and block the library picker. Without
+            it, users get the standard "Photo Library / Take Photo /
+            Browse Files" action sheet on mobile (and a plain file
+            picker on desktop). Users frequently want to upload photos
+            they snapped earlier — forcing live camera blocks that. */}
         <input
           ref={photoInputRef}
           type="file"
           accept="image/*"
-          capture="environment"
           style={{ display: 'none' }}
           onChange={(e) => {
             const file = e.target.files?.[0];
@@ -3196,9 +3198,13 @@ const Composer = ({
   isAuthed: boolean;
 }) => {
   // Hidden file input — Photo chip below triggers it via ref.click().
-  // capture="environment" hints mobile browsers to open the rear
-  // camera directly (vs the front-facing) which is what users want
-  // when photographing engine bays / damage / parts.
+  // Note: deliberately NO `capture` attribute. With `capture="environment"`,
+  // mobile browsers skip the library picker entirely and jump straight to
+  // the camera — users complained they couldn't choose an existing photo.
+  // Without `capture`, iOS/Android show the standard "Photo Library / Take
+  // Photo / Browse Files" action sheet, which is what users want most of
+  // the time (they snapped the photo earlier when the part was disassembled
+  // and now want to ask about it later).
   const fileInputRef = useRef<HTMLInputElement>(null);
   return (
     <div className="composer-wrap">
@@ -3206,7 +3212,6 @@ const Composer = ({
         ref={fileInputRef}
         type="file"
         accept="image/*"
-        capture="environment"
         style={{ display: 'none' }}
         onChange={(e) => {
           const file = e.target.files?.[0];
