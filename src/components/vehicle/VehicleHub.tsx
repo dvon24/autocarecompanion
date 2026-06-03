@@ -8,6 +8,7 @@ import type { RecentThread, TrendingChip, AttachableIssue } from '@/lib/hub-data
 import { Icon, type IconName } from '@/components/ui/Icon';
 import { vehicleSlug } from '@/lib/vehicle-slug';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
+import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
 import type { VehicleSchedule } from '@/lib/owners-manual-schedule';
 // OwnersManualSchedule is no longer rendered as its own card — its data
 // lives in the `ownersManualSchedule` prop for the integration that
@@ -133,6 +134,10 @@ interface Message {
    *  signup (anon) or subscribe (authed-free). Content is empty when
    *  this is set; the card carries the message + CTAs. */
   gate?: GateInfo;
+  /** Set when /api/vision returned a successful photo analysis — the
+   *  assistant bubble is replaced with the rich VisionResultCard
+   *  (preview + identified part + complete repair kit + Amazon links). */
+  vision?: VisionResult;
 }
 
 export function VehicleHub({
@@ -191,6 +196,116 @@ export function VehicleHub({
   // Tracks the index of the assistant message we're currently streaming
   // INTO so each token append targets the right bubble.
   const streamingIdxRef = useRef<number | null>(null);
+
+  // Handle a photo upload from the Composer's camera/file button.
+  // Posts to /api/vision (auth + subscription/quota gated server-side),
+  // appends a user "uploaded a photo" message + assistant placeholder,
+  // then populates the placeholder with the VisionResult when it
+  // returns. Same 429/401 → InlineGateCard handling as send().
+  // Image preview URL is created client-side from the File so the
+  // result card can show what the user uploaded — the server never
+  // echoes images back (zero-storage privacy posture).
+  const handlePhotoUpload = useCallback(async (file: File) => {
+    if (!file || pending) return;
+    if (file.size > 10 * 1024 * 1024) {
+      setMessages((prev) => [
+        ...prev,
+        { role: 'assistant' as const, content: 'That photo is over 10MB. Try a lower-quality phone setting or crop tighter, then re-upload.', timestamp: Date.now() },
+      ]);
+      return;
+    }
+
+    setPending(true);
+    const previewUrl = URL.createObjectURL(file);
+
+    setMessages((prev) => {
+      const next = [
+        ...prev,
+        { role: 'user' as const, content: '📷 Uploaded a photo for analysis', timestamp: Date.now() },
+        { role: 'assistant' as const, content: 'Analyzing your photo…', timestamp: Date.now() },
+      ];
+      streamingIdxRef.current = next.length - 1;
+      return next;
+    });
+
+    try {
+      const formData = new FormData();
+      formData.append('image', file);
+      formData.append('vehicle', JSON.stringify({
+        year: vehicle.year,
+        make: vehicle.make,
+        model: vehicle.model,
+        trim: vehicle.trim || '',
+      }));
+
+      const res = await fetch('/api/vision', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({} as { message?: string; gated?: boolean; error?: string; ctaUrl?: string; ctaLabel?: string; secondaryCtaUrl?: string; secondaryCtaLabel?: string; resetAt?: string }));
+
+        // Gate response (401 anon-must-signup or 429 photo-quota-exceeded)
+        // — same InlineGateCard treatment as the chat 429 path.
+        if ((res.status === 429 || res.status === 401) && errBody.gated && errBody.ctaUrl && errBody.ctaLabel) {
+          const gate: GateInfo = {
+            message: errBody.message || 'Photo analysis requires a subscription.',
+            ctaUrl: errBody.ctaUrl,
+            ctaLabel: errBody.ctaLabel,
+            secondaryCtaUrl: errBody.secondaryCtaUrl,
+            secondaryCtaLabel: errBody.secondaryCtaLabel,
+            resetAt: errBody.resetAt,
+            isAuthed,
+          };
+          setMessages((prev) => {
+            const idx = streamingIdxRef.current;
+            if (idx == null) return prev;
+            const copy = [...prev];
+            copy[idx] = { ...copy[idx], content: '', gate };
+            return copy;
+          });
+          URL.revokeObjectURL(previewUrl);
+          return;
+        }
+
+        const msg = errBody.message || `Photo analysis failed (HTTP ${res.status}).`;
+        setMessages((prev) => {
+          const idx = streamingIdxRef.current;
+          if (idx == null) return prev;
+          const copy = [...prev];
+          copy[idx] = { ...copy[idx], content: msg };
+          return copy;
+        });
+        URL.revokeObjectURL(previewUrl);
+        return;
+      }
+
+      const data = await res.json() as { vision: VisionResult };
+      const visionWithPreview: VisionResult = { ...data.vision, imagePreviewUrl: previewUrl };
+
+      setMessages((prev) => {
+        const idx = streamingIdxRef.current;
+        if (idx == null) return prev;
+        const copy = [...prev];
+        copy[idx] = { ...copy[idx], content: '', vision: visionWithPreview };
+        return copy;
+      });
+    } catch (err) {
+      console.warn('[hub] photo upload failed:', err);
+      setMessages((prev) => {
+        const idx = streamingIdxRef.current;
+        if (idx == null) return prev;
+        const copy = [...prev];
+        copy[idx] = { ...copy[idx], content: 'Photo upload failed. Check your connection and try again.' };
+        return copy;
+      });
+      URL.revokeObjectURL(previewUrl);
+    } finally {
+      streamingIdxRef.current = null;
+      setPending(false);
+    }
+  }, [pending, vehicle, isAuthed]);
 
   // Load a previous ChatSession when the user clicks a Recent thread.
   // Replaces the visible conversation with that session's full history
@@ -658,6 +773,7 @@ export function VehicleHub({
                     schedule={m.schedule}
                     issues={m.issues}
                     gate={m.gate}
+                    vision={m.vision}
                     slug={slug}
                     isAuthed={isAuthed}
                     // Pick chip-able follow-up prompts to send next.
@@ -672,6 +788,7 @@ export function VehicleHub({
             value={input}
             onChange={setInput}
             onSend={() => send(input)}
+            onPhotoUpload={handlePhotoUpload}
             pending={pending}
             isAuthed={isAuthed}
           />
@@ -2801,7 +2918,7 @@ function relativeWhen(iso: string): string {
 
 /* ─── Au7o reply bubble ─── */
 function Au7oReply({
-  content, attachments = [], driveHandoff = null, route, schedule, issues, gate, slug, isAuthed, onFollowUp,
+  content, attachments = [], driveHandoff = null, route, schedule, issues, gate, vision, slug, isAuthed, onFollowUp,
 }: {
   content: string;
   attachments?: AttachableIssue[];
@@ -2810,6 +2927,7 @@ function Au7oReply({
   schedule?: ScheduleData;
   issues?: AttachableIssue[];
   gate?: GateInfo;
+  vision?: VisionResult;
   slug?: string;
   isAuthed?: boolean;
   onFollowUp?: (prompt: string) => void;
@@ -2830,13 +2948,14 @@ function Au7oReply({
     <div className="row-au7o">
       <Image src="/og-image.png" alt="" width={32} height={32} className="avatar" />
       <div className="body">
-        {/* Gate card — when present, replaces the normal answer bubble
-            entirely. Sits in the same slot as the assistant's reply so
-            the user sees the signup/subscribe CTA exactly where they
-            expected an answer. Other attachments (schedule, issues) are
-            suppressed in this case since the conversation can't continue
-            until they sign up. */}
-        {gate ? (
+        {/* Vision card — when /api/vision returned a successful photo
+            analysis, replace the assistant bubble with the rich result
+            card. Same in-slot replacement pattern as the gate card.
+            Other attachments (schedule, issues) are suppressed since
+            the photo is the user's current focus. */}
+        {vision ? (
+          <VisionResultCard vision={vision} />
+        ) : gate ? (
           <InlineGateCard gate={gate} />
         ) : (
           <>
@@ -3042,17 +3161,36 @@ function inlineFormat(s: string): React.ReactNode {
 
 /* ─── Composer ─── */
 const Composer = ({
-  ref, value, onChange, onSend, pending, isAuthed,
+  ref, value, onChange, onSend, onPhotoUpload, pending, isAuthed,
 }: {
   ref: React.RefObject<HTMLTextAreaElement | null>;
   value: string;
   onChange: (v: string) => void;
   onSend: () => void;
+  onPhotoUpload?: (file: File) => void;
   pending: boolean;
   isAuthed: boolean;
 }) => {
+  // Hidden file input — Photo chip below triggers it via ref.click().
+  // capture="environment" hints mobile browsers to open the rear
+  // camera directly (vs the front-facing) which is what users want
+  // when photographing engine bays / damage / parts.
+  const fileInputRef = useRef<HTMLInputElement>(null);
   return (
     <div className="composer-wrap">
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        capture="environment"
+        style={{ display: 'none' }}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (file && onPhotoUpload) onPhotoUpload(file);
+          // Reset so the same file can be re-picked if needed
+          if (e.target) e.target.value = '';
+        }}
+      />
       <div className="composer">
         <textarea
           ref={ref}
@@ -3076,7 +3214,13 @@ const Composer = ({
               </svg>
               Attach
             </button>
-            <button className="comp-chip" type="button" disabled title="Coming soon">
+            <button
+              className="comp-chip comp-chip-photo"
+              type="button"
+              disabled={pending || !onPhotoUpload}
+              onClick={() => fileInputRef.current?.click()}
+              title="Snap a photo of a part — AI returns the complete repair kit"
+            >
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>
                 <path d="M3 7h3l2-3h8l2 3h3v13H3V7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <circle cx="12" cy="13" r="4" stroke="currentColor" strokeWidth="2"/>
