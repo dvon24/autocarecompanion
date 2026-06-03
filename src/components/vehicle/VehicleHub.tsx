@@ -816,6 +816,7 @@ export function VehicleHub({
         onSend={(text) => send(text)}
         onOpenThreads={() => setThreadsOpen(true)}
         onCloseThreads={() => setThreadsOpen(false)}
+        onPhotoUpload={handlePhotoUpload}
       />
 
       <style jsx>{`
@@ -893,7 +894,7 @@ function MobileHub({
   vehicle, slug, isAuthed, currentMileage, opener, schedule, attachableIssues,
   maintenanceSuggestions, recentThreads, user,
   messages, input, pending, threadsOpen,
-  onChangeInput, onSend, onOpenThreads, onCloseThreads, onSelectThread,
+  onChangeInput, onSend, onOpenThreads, onCloseThreads, onSelectThread, onPhotoUpload,
 }: {
   vehicle: VehicleHubProps['vehicle'];
   slug: string;
@@ -915,9 +916,11 @@ function MobileHub({
   onOpenThreads: () => void;
   onCloseThreads: () => void;
   onSelectThread?: (threadId: string) => void;
+  onPhotoUpload?: (file: File) => void;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const taRef = useRef<HTMLTextAreaElement>(null);
+  const photoInputRef = useRef<HTMLInputElement>(null);
   // Tap-to-expand for the greeting body. Starts collapsed (faded behind
   // the COMMON ISSUES card); tap reveals the full opener text.
   const [greetExpanded, setGreetExpanded] = useState(false);
@@ -1120,6 +1123,7 @@ function MobileHub({
                 // would naturally ask.
                 onSend(`How do I do a ${name.toLowerCase()} on my ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}?`);
               }}
+              onSendPrompt={(prompt) => onSend(prompt)}
             />
           </div>
         )}
@@ -1247,6 +1251,22 @@ function MobileHub({
           </div>
         )}
 
+        {/* Hidden file input — Photo button below triggers it via the
+            ref. capture="environment" hints mobile to open the rear
+            camera directly, which is what users want for engine bays /
+            damage / parts. Falls back to file picker on desktop. */}
+        <input
+          ref={photoInputRef}
+          type="file"
+          accept="image/*"
+          capture="environment"
+          style={{ display: 'none' }}
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file && onPhotoUpload) onPhotoUpload(file);
+            if (e.target) e.target.value = '';
+          }}
+        />
         <div className="m-composer">
           <Icon name="chat" size={13} style={{ color: 'var(--slate-400)' }} />
           <textarea
@@ -1259,6 +1279,16 @@ function MobileHub({
             rows={1}
             disabled={pending || remaining === 0}
           />
+          <button
+            type="button"
+            className="m-mic-btn"
+            onClick={() => photoInputRef.current?.click()}
+            disabled={pending || !onPhotoUpload}
+            aria-label="Snap a photo of a part"
+            title="Snap a photo of a part — AI returns the complete repair kit"
+          >
+            <Icon name="camera" size={13} />
+          </button>
           <button type="button" className="m-mic-btn" disabled aria-label="Voice (coming soon)" title="Voice — coming soon">
             <Icon name="mic" size={13} />
           </button>
@@ -1558,8 +1588,8 @@ function MobileHub({
 
 /* ─── Mobile maintenance schedule card (vertical timeline) ─── */
 function MobileMaintenanceCard({
-  schedule, currentMileage, onTaskTap,
-}: { schedule: ScheduleData; currentMileage: number | null; onTaskTap?: (typeId: string, name: string) => void }) {
+  schedule, currentMileage, onTaskTap, onSendPrompt,
+}: { schedule: ScheduleData; currentMileage: number | null; onTaskTap?: (typeId: string, name: string) => void; onSendPrompt?: (prompt: string) => void }) {
   const services = schedule.services.filter((s) => s.status !== 'done').slice(0, 5);
   const overdueCount = schedule.stats.overdueCount;
   const dueSoonCount = services.filter((s) => s.status === 'due_now').length;
@@ -1695,10 +1725,20 @@ function MobileMaintenanceCard({
       </div>
 
       <div className="mc-actions">
-        <button type="button" className="mc-btn mc-btn-primary">
+        <button
+          type="button"
+          className="mc-btn mc-btn-primary"
+          onClick={() => onSendPrompt?.('Help me schedule all my upcoming maintenance in one shop visit. Group what can be done together and give me a total estimated time + cost.')}
+          disabled={!onSendPrompt}
+        >
           <Icon name="calendar" size={11} /> Book all at one visit
         </button>
-        <button type="button" className="mc-btn">
+        <button
+          type="button"
+          className="mc-btn"
+          onClick={() => onSendPrompt?.('Give me an estimated total cost for all my upcoming maintenance — DIY vs shop labor for each item.')}
+          disabled={!onSendPrompt}
+        >
           <Icon name="dollar" size={11} /> Estimate
         </button>
       </div>
@@ -1889,10 +1929,15 @@ function MobileIssuesCard({
           </Link>
         );
       })}
-      {/* Action row — inline-styled to guarantee the two buttons render
-          side-by-side. Mobile users were reporting them rendering as a
-          single visual blob "See all  Symptom check" likely because the
-          styled-jsx .ic-actions hash wasn't being applied in some builds. */}
+      {/* Action row — "See all" is now full-width since Symptom check
+          was removed (was sending users to the legacy /symptom-chat
+          page; symptom Q&A now happens inline in the hub chat itself).
+          The earlier two-button layout had a 404 bug too: the See all
+          href used the VEHICLE slug (e.g. "2015-dodge-challenger-srt-392")
+          but /known-issues/[slug] expects the MAKE-MODEL slug (e.g.
+          "dodge-challenger"). Now derives the right URL from the first
+          issue's pre-built knownIssuesUrl — same pattern as
+          IssueAttachmentGroup. */}
       <div
         className="ic-actions"
         style={{
@@ -1903,14 +1948,14 @@ function MobileIssuesCard({
         }}
       >
         <Link
-          href={`/known-issues/${slug}`}
+          href={issues.length > 0 ? issues[0].knownIssuesUrl.split('#')[0] : '/known-issues'}
           className="ic-btn ic-btn-primary"
           style={{
             flex: 1,
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '8px 10px',
+            padding: '10px 14px',
             borderRadius: 999,
             background: 'var(--ink)',
             color: '#fff',
@@ -1921,28 +1966,7 @@ function MobileIssuesCard({
             textDecoration: 'none',
           }}
         >
-          See all
-        </Link>
-        <Link
-          href="/symptom-chat"
-          className="ic-btn"
-          style={{
-            flex: 1,
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '8px 10px',
-            borderRadius: 999,
-            background: '#fff',
-            color: 'var(--ink)',
-            border: '1px solid var(--paper-line)',
-            fontFamily: 'inherit',
-            fontSize: 12,
-            fontWeight: 600,
-            textDecoration: 'none',
-          }}
-        >
-          Symptom check
+          See all known issues
         </Link>
       </div>
       <style jsx>{`
