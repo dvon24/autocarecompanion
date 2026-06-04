@@ -218,13 +218,23 @@ export function VehicleHub({
     setPending(true);
     const previewUrl = URL.createObjectURL(file);
 
+    // Capture the placeholder index synchronously here, OUTSIDE of any
+    // setMessages updater. React batches updaters and runs them during
+    // the next render, by which time the `finally` block (or even later
+    // setMessages calls in this function) would have nulled
+    // streamingIdxRef.current — the previous code read the ref INSIDE
+    // each updater and consistently got null, so the "Analyzing your
+    // photo…" placeholder was never replaced. Capturing idx as a local
+    // const decouples the value from the ref's lifetime.
+    let placeholderIdx = -1;
     setMessages((prev) => {
       const next = [
         ...prev,
         { role: 'user' as const, content: '📷 Uploaded a photo for analysis', timestamp: Date.now() },
         { role: 'assistant' as const, content: 'Analyzing your photo…', timestamp: Date.now() },
       ];
-      streamingIdxRef.current = next.length - 1;
+      placeholderIdx = next.length - 1;
+      streamingIdxRef.current = placeholderIdx;
       return next;
     });
 
@@ -243,11 +253,15 @@ export function VehicleHub({
         body: formData,
       });
 
+      // Resolve the placeholder index from the ref ONCE here, after
+      // React has committed the placeholder append. From this point we
+      // use the local `idx` (not the ref) in every updater so the value
+      // can't be racing against the finally block.
+      const idx = placeholderIdx >= 0 ? placeholderIdx : streamingIdxRef.current;
+
       if (!res.ok) {
         const errBody = await res.json().catch(() => ({} as { message?: string; gated?: boolean; error?: string; ctaUrl?: string; ctaLabel?: string; secondaryCtaUrl?: string; secondaryCtaLabel?: string; resetAt?: string }));
 
-        // Gate response (401 anon-must-signup or 429 photo-quota-exceeded)
-        // — same InlineGateCard treatment as the chat 429 path.
         if ((res.status === 429 || res.status === 401) && errBody.gated && errBody.ctaUrl && errBody.ctaLabel) {
           const gate: GateInfo = {
             message: errBody.message || 'Photo analysis requires a subscription.',
@@ -259,8 +273,7 @@ export function VehicleHub({
             isAuthed,
           };
           setMessages((prev) => {
-            const idx = streamingIdxRef.current;
-            if (idx == null) return prev;
+            if (idx == null || idx < 0 || idx >= prev.length) return prev;
             const copy = [...prev];
             copy[idx] = { ...copy[idx], content: '', gate };
             return copy;
@@ -270,9 +283,9 @@ export function VehicleHub({
         }
 
         const msg = errBody.message || `Photo analysis failed (HTTP ${res.status}).`;
+        console.warn('[hub] /api/vision returned', res.status, errBody);
         setMessages((prev) => {
-          const idx = streamingIdxRef.current;
-          if (idx == null) return prev;
+          if (idx == null || idx < 0 || idx >= prev.length) return prev;
           const copy = [...prev];
           copy[idx] = { ...copy[idx], content: msg };
           return copy;
@@ -282,20 +295,30 @@ export function VehicleHub({
       }
 
       const data = await res.json() as { vision: VisionResult };
-      const visionWithPreview: VisionResult = { ...data.vision, imagePreviewUrl: previewUrl };
+      if (!data || !data.vision) {
+        console.warn('[hub] /api/vision returned 200 but no vision payload', data);
+        setMessages((prev) => {
+          if (idx == null || idx < 0 || idx >= prev.length) return prev;
+          const copy = [...prev];
+          copy[idx] = { ...copy[idx], content: 'Photo analysis returned an empty result. Try a clearer photo or different angle.' };
+          return copy;
+        });
+        URL.revokeObjectURL(previewUrl);
+        return;
+      }
 
+      const visionWithPreview: VisionResult = { ...data.vision, imagePreviewUrl: previewUrl };
       setMessages((prev) => {
-        const idx = streamingIdxRef.current;
-        if (idx == null) return prev;
+        if (idx == null || idx < 0 || idx >= prev.length) return prev;
         const copy = [...prev];
         copy[idx] = { ...copy[idx], content: '', vision: visionWithPreview };
         return copy;
       });
     } catch (err) {
       console.warn('[hub] photo upload failed:', err);
+      const idx = placeholderIdx >= 0 ? placeholderIdx : streamingIdxRef.current;
       setMessages((prev) => {
-        const idx = streamingIdxRef.current;
-        if (idx == null) return prev;
+        if (idx == null || idx < 0 || idx >= prev.length) return prev;
         const copy = [...prev];
         copy[idx] = { ...copy[idx], content: 'Photo upload failed. Check your connection and try again.' };
         return copy;
