@@ -46,7 +46,10 @@ export const runtime = 'nodejs';
 
 const OPENAI_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
-const MODEL = 'gpt-5.5';
+// Vision model can be overridden via env without a redeploy. Defaults to
+// gpt-5.5 (same as hub-chat). If a model rejects vision OR json_object
+// mode, OPENAI_VISION_MODEL=gpt-5.2 (or gpt-4o) is a safer swap.
+const MODEL = process.env.OPENAI_VISION_MODEL || 'gpt-5.5';
 const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
 const SUBSCRIBER_MONTHLY_CAP = 10_000; // effective unlimited; throttles only runaway abuse
 
@@ -214,7 +217,7 @@ Your job:
 5. For each part, give a search query Amazon would understand (with brand + part number when possible). Use the Au7o affiliate tag: au7o-20.
 6. Difficulty: easy / medium / hard. Estimated DIY time. Safety warnings if any.
 
-Return STRICT JSON only, no prose. Schema:
+Return ONLY a JSON object — no markdown fences, no preamble, no commentary before or after. Start your response with { and end it with }. Schema:
 {
   "summary": "1-2 sentence plain-English diagnosis the user can scan in 3 seconds",
   "confidence": 0.0-1.0,
@@ -222,21 +225,39 @@ Return STRICT JSON only, no prose. Schema:
   "primaryPart": null OR {
     "name": "...",
     "brand": "...",
-    "partNumber": "...",  // OEM if known, else aftermarket
-    "amazonSearch": "Motorcraft SP-546 spark plug"  // input to https://amazon.com/s?k=...&tag=au7o-20
+    "partNumber": "...",
+    "amazonSearch": "Motorcraft SP-546 spark plug"
   },
-  "kitItems": [
-    { "name": "...", "spec": "...", "amazonSearch": "..." }
-  ],
-  "consumables": [
-    { "name": "...", "spec": "...", "amazonSearch": "..." }
-  ],
+  "kitItems": [{ "name": "...", "spec": "...", "amazonSearch": "..." }],
+  "consumables": [{ "name": "...", "spec": "...", "amazonSearch": "..." }],
   "toolsNeeded": ["..."],
   "difficulty": "easy"|"medium"|"hard",
   "estimatedTimeMinutes": 30,
   "warnings": ["..."],
-  "relatedKnownIssueIds": ["existing-issue-id-1", "..."]
+  "relatedKnownIssueIds": ["existing-issue-id-1"]
 }`;
+
+  // Build the OpenAI request body. NOTE: deliberately NOT using
+  // `response_format: { type: 'json_object' }` — it is incompatible with
+  // some gpt-5.x model versions when combined with image input, returning
+  // 400 "response_format not supported with this model+input combo". The
+  // system prompt explicitly tells the model to return ONLY a JSON object
+  // and the extractor below tolerates an opening prose line or markdown
+  // code fence just in case.
+  const openaiBody = {
+    model: MODEL,
+    max_completion_tokens: 1800,
+    messages: [
+      { role: 'system', content: SYSTEM_PROMPT },
+      {
+        role: 'user',
+        content: [
+          { type: 'text', text: caption ? `My note: ${caption}\n\nWhat is this and what do I need to fix it?` : 'What is this and what do I need to fix it?' },
+          { type: 'image_url', image_url: { url: dataUrl, detail: 'high' } },
+        ],
+      },
+    ],
+  };
 
   let openaiResp: Response;
   try {
@@ -246,21 +267,7 @@ Return STRICT JSON only, no prose. Schema:
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${OPENAI_KEY}`,
       },
-      body: JSON.stringify({
-        model: MODEL,
-        max_completion_tokens: 1800,
-        response_format: { type: 'json_object' },
-        messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
-          {
-            role: 'user',
-            content: [
-              { type: 'text', text: caption ? `My note: ${caption}\n\nWhat is this and what do I need to fix it?` : 'What is this and what do I need to fix it?' },
-              { type: 'image_url', image_url: { url: dataUrl, detail: 'high' } },
-            ],
-          },
-        ],
-      }),
+      body: JSON.stringify(openaiBody),
       signal: AbortSignal.timeout(55_000),
     });
   } catch (err) {
@@ -270,17 +277,59 @@ Return STRICT JSON only, no prose. Schema:
 
   if (!openaiResp.ok) {
     const txt = await openaiResp.text().catch(() => '');
-    console.error('[vision] OpenAI', openaiResp.status, txt.slice(0, 200));
-    return NextResponse.json({ error: 'vision_failed', message: 'Photo analysis failed. Try a clearer photo or different angle.' }, { status: 502 });
+    console.error('[vision] OpenAI', openaiResp.status, 'model=', MODEL, 'body=', txt.slice(0, 500));
+    // Surface the OpenAI status so the client knows it was an upstream
+    // issue (404 = bad model, 400 = bad request, 401 = bad key, 429 = OAI
+    // rate limit). Helps the user debug from devtools.
+    return NextResponse.json({
+      error: 'vision_failed',
+      message: `Photo analysis failed (upstream HTTP ${openaiResp.status}). Try a clearer photo or different angle.`,
+      upstreamStatus: openaiResp.status,
+      upstreamBody: txt.slice(0, 300),
+    }, { status: 502 });
   }
 
   const data = await openaiResp.json();
   const content: string = data?.choices?.[0]?.message?.content || '';
-  let parsed: Record<string, unknown>;
-  try {
-    parsed = JSON.parse(content);
-  } catch {
-    console.error('[vision] could not parse model output:', content.slice(0, 200));
+  if (!content) {
+    console.error('[vision] OpenAI 200 but empty content. choices=', JSON.stringify(data?.choices || []).slice(0, 400));
+    return NextResponse.json({ error: 'empty_response', message: 'Photo analysis returned no content. Try again.' }, { status: 502 });
+  }
+
+  // Robust JSON extraction. Handles three cases the model might emit:
+  //   1. Pure JSON: "{...}"
+  //   2. Markdown-fenced: "```json\n{...}\n```"
+  //   3. Prose + JSON: "Here's the analysis: {...}"
+  // We find the first '{' and matching closing '}' by depth counting.
+  function extractJson(text: string): Record<string, unknown> | null {
+    const trimmed = text.trim();
+    // Strip markdown code fence if present.
+    const fenceMatch = trimmed.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/);
+    const candidate = fenceMatch ? fenceMatch[1].trim() : trimmed;
+    // Quick attempt.
+    try { return JSON.parse(candidate) as Record<string, unknown>; } catch { /* try harder below */ }
+    // Find first '{' and balance braces (ignoring quoted strings).
+    const start = candidate.indexOf('{');
+    if (start < 0) return null;
+    let depth = 0, inStr = false, escape = false;
+    for (let i = start; i < candidate.length; i++) {
+      const c = candidate[i];
+      if (escape) { escape = false; continue; }
+      if (c === '\\') { escape = true; continue; }
+      if (c === '"') { inStr = !inStr; continue; }
+      if (inStr) continue;
+      if (c === '{') depth++;
+      else if (c === '}') { depth--; if (depth === 0) {
+        const sub = candidate.slice(start, i + 1);
+        try { return JSON.parse(sub) as Record<string, unknown>; } catch { return null; }
+      } }
+    }
+    return null;
+  }
+
+  const parsed = extractJson(content);
+  if (!parsed) {
+    console.error('[vision] could not extract JSON from model output. content=', content.slice(0, 500));
     return NextResponse.json({ error: 'parse_failed', message: 'Photo analysis returned an unexpected format. Try again.' }, { status: 502 });
   }
 
