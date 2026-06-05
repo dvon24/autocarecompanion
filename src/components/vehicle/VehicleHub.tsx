@@ -250,9 +250,16 @@ export function VehicleHub({
         trim: vehicle.trim || '',
       }));
 
+      // 75s client-side timeout. The server caps OpenAI at 55s and the
+      // Vercel function dies at 60s, so 75s leaves a buffer for upload
+      // + response delivery on slow cellular. Without this AbortSignal,
+      // mobile Safari that backgrounds the tab can leave the fetch
+      // suspended indefinitely — users see the "Analyzing your photo…"
+      // placeholder forever.
       const res = await fetch('/api/vision', {
         method: 'POST',
         body: formData,
+        signal: AbortSignal.timeout(75_000),
       });
 
       // Resolve the placeholder index from the ref ONCE here, after
@@ -319,10 +326,14 @@ export function VehicleHub({
     } catch (err) {
       console.warn('[hub] photo upload failed:', err);
       const idx = placeholderIdx >= 0 ? placeholderIdx : streamingIdxRef.current;
+      const isTimeout = err instanceof DOMException && (err.name === 'TimeoutError' || err.name === 'AbortError');
+      const msg = isTimeout
+        ? 'Photo analysis timed out. Try a clearer single-part shot, or try again.'
+        : 'Photo upload failed. Check your connection and try again.';
       setMessages((prev) => {
         if (idx == null || idx < 0 || idx >= prev.length) return prev;
         const copy = [...prev];
-        copy[idx] = { ...copy[idx], content: 'Photo upload failed. Check your connection and try again.' };
+        copy[idx] = { ...copy[idx], content: msg };
         return copy;
       });
       URL.revokeObjectURL(previewUrl);
