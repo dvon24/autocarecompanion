@@ -9,6 +9,7 @@ import { Icon, type IconName } from '@/components/ui/Icon';
 import { vehicleSlug } from '@/lib/vehicle-slug';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
+import { downscaleImage } from '@/lib/downscale-image';
 import type { VehicleSchedule } from '@/lib/owners-manual-schedule';
 // OwnersManualSchedule is no longer rendered as its own card — its data
 // lives in the `ownersManualSchedule` prop for the integration that
@@ -207,16 +208,17 @@ export function VehicleHub({
   // echoes images back (zero-storage privacy posture).
   const handlePhotoUpload = useCallback(async (file: File) => {
     if (!file || pending) return;
-    if (file.size > 10 * 1024 * 1024) {
+    if (file.size > 25 * 1024 * 1024) {
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant' as const, content: 'That photo is over 10MB. Try a lower-quality phone setting or crop tighter, then re-upload.', timestamp: Date.now() },
+        { role: 'assistant' as const, content: 'That photo is over 25MB. Try a lower-quality phone setting or crop tighter, then re-upload.', timestamp: Date.now() },
       ]);
       return;
     }
 
     setPending(true);
     const previewUrl = URL.createObjectURL(file);
+    const uploadFile = await downscaleImage(file);
 
     // Capture the placeholder index synchronously here, OUTSIDE of any
     // setMessages updater. React batches updaters and runs them during
@@ -240,7 +242,7 @@ export function VehicleHub({
 
     try {
       const formData = new FormData();
-      formData.append('image', file);
+      formData.append('image', uploadFile);
       formData.append('vehicle', JSON.stringify({
         year: vehicle.year,
         make: vehicle.make,
