@@ -103,7 +103,7 @@ export default async function HomePage() {
         select: { year: true, make: true, model: true, trim: true },
       });
       if (primary) {
-        redirect(`/vehicle/${vehicleSlug(primary)}`);
+        redirect(`/vehicle/${vehicleSlug(primary.year, primary.make, primary.model, primary.trim)}`);
       }
     }
   } catch (err) {
