@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 import LandingPage from '@/components/landing/LandingPage';
 import prisma from '@/lib/db';
 import { makeSlug } from '@/lib/known-issues';
+import { auth } from '@/lib/auth';
+import { vehicleSlug } from '@/lib/vehicle-slug';
 
 export const metadata: Metadata = {
   title: 'Au7o - Know Your Car\'s Weak Spots | 3,600+ Documented Vehicle Problems',
@@ -23,7 +26,10 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 3600; // revalidate every hour
+// Dynamic — needs to call auth() to redirect signed-in users to their hub.
+// Trades the previous 1h ISR for per-request rendering; trending + stats
+// DB queries below are cheap and still fast.
+export const dynamic = 'force-dynamic';
 
 async function getTrendingIssues() {
   try {
@@ -84,6 +90,31 @@ async function getSiteStats() {
 }
 
 export default async function HomePage() {
+  // Signed-in users land on their primary vehicle hub instead of the
+  // marketing landing — the marketing page is for acquisition, the hub
+  // is the product. Falls through to the landing if auth fails, the user
+  // has no vehicles yet, or anything else goes sideways.
+  try {
+    const session = await auth();
+    if (session?.user?.id) {
+      const primary = await prisma.vehicle.findFirst({
+        where: { userId: session.user.id },
+        orderBy: [{ isPrimary: 'desc' }, { updatedAt: 'desc' }],
+        select: { year: true, make: true, model: true, trim: true },
+      });
+      if (primary) {
+        redirect(`/vehicle/${vehicleSlug(primary)}`);
+      }
+    }
+  } catch (err) {
+    // next/navigation's redirect() throws by design — re-throw so Next
+    // can act on it. Swallow only real errors so the landing renders as
+    // a fallback.
+    if (err && typeof err === 'object' && 'digest' in err && String(err.digest).startsWith('NEXT_REDIRECT')) {
+      throw err;
+    }
+  }
+
   const [trendingIssues, stats] = await Promise.all([
     getTrendingIssues(),
     getSiteStats(),

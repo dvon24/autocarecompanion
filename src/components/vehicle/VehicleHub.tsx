@@ -2641,17 +2641,30 @@ function MobileThreadsDrawer({
   onSelectThread?: (threadId: string) => void;
 }) {
   // Lock body scroll while the drawer is open and close on Escape.
+  // Cleanup ALWAYS unconditionally clears body overflow back to '' rather
+  // than restoring a captured prevOverflow value — that capture pattern
+  // caused a sticky scroll-lock bug where navigating from the hub to
+  // /account left the account page non-scrollable on mobile (the captured
+  // value was already 'hidden' from a prior effect, so "restore" left it
+  // hidden). Clearing to '' guarantees the destination page always inherits
+  // the document's natural scroll behavior.
   useEffect(() => {
     if (!open) return;
-    const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     window.addEventListener('keydown', onKey);
     return () => {
-      document.body.style.overflow = prevOverflow;
+      document.body.style.overflow = '';
       window.removeEventListener('keydown', onKey);
     };
   }, [open, onClose]);
+
+  // Belt-and-suspenders: when the drawer component unmounts (e.g. user
+  // navigates away while the panel is open and React races the state
+  // update against the navigation), guarantee body overflow is cleared.
+  useEffect(() => {
+    return () => { document.body.style.overflow = ''; };
+  }, []);
 
   return (
     <div className={`md-shell ${open ? 'md-open' : ''}`} aria-hidden={!open}>
