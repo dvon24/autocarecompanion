@@ -244,9 +244,13 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
   // system prompt explicitly tells the model to return ONLY a JSON object
   // and the extractor below tolerates an opening prose line or markdown
   // code fence just in case.
+  // 6000 covers both internal reasoning tokens (gpt-5.x burns 1-3k thinking)
+  // AND the ~1500 tokens of JSON output we actually want. Earlier value (1800)
+  // was getting fully consumed by reasoning, leaving message.content empty and
+  // triggering the misleading "empty response" path.
   const openaiBody = {
     model: MODEL,
-    max_completion_tokens: 1800,
+    max_completion_tokens: 6000,
     messages: [
       { role: 'system', content: SYSTEM_PROMPT },
       {
@@ -290,10 +294,28 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
   }
 
   const data = await openaiResp.json();
-  const content: string = data?.choices?.[0]?.message?.content || '';
+  const choice = data?.choices?.[0];
+  const content: string = choice?.message?.content || '';
+  const finishReason: string = choice?.finish_reason || '';
+  const refusal: string = choice?.message?.refusal || '';
   if (!content) {
-    console.error('[vision] OpenAI 200 but empty content. choices=', JSON.stringify(data?.choices || []).slice(0, 400));
-    return NextResponse.json({ error: 'empty_response', message: 'Photo analysis returned no content. Try again.' }, { status: 502 });
+    console.error('[vision] OpenAI 200 but empty content.',
+      'finish_reason=', finishReason,
+      'refusal=', refusal.slice(0, 200),
+      'usage=', JSON.stringify(data?.usage || {}),
+      'choices=', JSON.stringify(data?.choices || []).slice(0, 400));
+    let userMsg = 'Photo analysis returned no content. Try a clearer photo or different angle.';
+    if (finishReason === 'length') {
+      userMsg = 'Photo analysis hit its thinking budget before answering. Try a simpler photo (one part in frame, well-lit).';
+    } else if (finishReason === 'content_filter' || refusal) {
+      userMsg = 'Photo analysis declined to answer. Try a different photo of just the part.';
+    }
+    return NextResponse.json({
+      error: 'empty_response',
+      message: userMsg,
+      finishReason,
+      refusal: refusal.slice(0, 200),
+    }, { status: 502 });
   }
 
   // Robust JSON extraction. Handles three cases the model might emit:
