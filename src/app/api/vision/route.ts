@@ -13,6 +13,8 @@ import {
 } from '@/lib/photo-quota';
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 import { getVehicleSpecs } from '@/lib/maintenance';
+import { attachVendorLinks } from '@/lib/vendor-resolver';
+import type { IdentifiedPart, PartCategory, PartRole } from '@/types/vision';
 
 export const maxDuration = 60;
 export const runtime = 'nodejs';
@@ -271,33 +273,64 @@ User's description (may be empty): ${caption || '(none provided)'}
 
 Your job:
 1. Identify what's visible in the photo — be specific (e.g., "driver-side LED projector headlight assembly with cracked lens" not just "headlight").
-2. If the photo is NOT a car part or vehicle area, say so clearly — do not invent an answer. Set primaryPart = null in that case.
-3. **Vehicle-match check.** The user is currently viewing their ${vehicleDesc}. Look for any visible cue that identifies the source vehicle of this photo: brand badges (Mopar, Honda, Ford), distinctive body lines, specific wheel/grille designs, license plate, interior trim. Compare against the user's vehicle and set vehicleMatch:
-   - "confident" — visible cues clearly match the user's vehicle OR the part is generic enough (e.g., universal tire, common spark plug) that source vehicle doesn't matter for fitment
-   - "uncertain" — you cannot tell from the photo what vehicle this is from (most common case for clean part close-ups)
-   - "likely_mismatch" — you see clear visual evidence this part is from a different make/model than the user's (e.g., a SRT badge or Mopar logo when user owns a Camaro)
-   Populate vehicleMatchNote with the actual visual cue you used to reach the verdict ("No identifying marks visible" / "Mopar logo visible on caliper" / "Bowtie badge consistent with Chevrolet").
-   If vehicleMatch is "likely_mismatch", DO NOT confidently recommend parts for the user's vehicle — populate summary with the mismatch warning and set primaryPart=null.
-4. If the part is visible AND vehicleMatch is not "likely_mismatch", cross-reference the KNOWN ISSUES list above. If the photo matches a documented issue for THIS vehicle, link it via its id.
-5. Provide the COMPLETE repair kit: main part + fasteners (bolts/clips/washers) + consumables (gaskets/fluids/sealants) + tools needed. Owners under-purchase one of these and have to make a second trip — that's what we solve.
-6. For each part, give a search query Amazon would understand (with brand + part number when possible). Use the Au7o affiliate tag: au7o-20.
+2. If the photo is NOT a car part or vehicle area, say so clearly — do not invent an answer. Set identifiedParts=[] and primaryPartId=null in that case.
+3. **Vehicle-match check.** The user is currently viewing their ${vehicleDesc}. Look for any visible cue that identifies the source vehicle: brand badges (Mopar, Honda, Ford), distinctive body lines, specific wheel/grille designs, license plate, interior trim. Set vehicleMatch:
+   - "confident" — visible cues clearly match OR the part is generic enough (universal tire, common spark plug) that source vehicle doesn't matter
+   - "uncertain" — you cannot tell from the photo (most common for clean part close-ups)
+   - "likely_mismatch" — clear visual evidence the part is from a different make/model
+   Populate vehicleMatchNote with the actual visual cue used.
+   If vehicleMatch is "likely_mismatch", set primaryPartId=null and use summary for the warning.
+4. **Identify EVERY buyable part visible in the photo as a separate entry in identifiedParts**, not just the headline one. A single wheel photo typically yields: rotor, brake pads (visible through spokes), caliper, lug nuts, tire, wheel/rim itself, sometimes TPMS sensor. List ALL of them. Surfacing only one is the #1 user complaint. Set role='primary' for any part the user could reasonably want to purchase (clearly visible and meaningful); reserve role='fastener' for small hardware (lug nuts, clips, bolts) and role='consumable' for fluids/sealants the job needs but that aren't shown. Aim for 3-7 entries on a typical wheel/engine-bay photo, not 1.
+
+   For EACH identified part you must produce:
+     - category — exact enum: rotor, brake_pad, caliper, tire, wheel, lug_nut, tpms, filter, fluid, wiper, bulb, battery, spark_plug, sensor, belt, hose, suspension, ignition, fuel_pump, alternator, starter, body_panel, trim, badge, emblem, bracket, interior, accessory, tool, oem_specific, other (we route to vendors based on this, be precise)
+     - position when relevant ('front-left', 'rear-right', 'driver-side', 'passenger-side', 'both')
+     - oemPartNumbers as an ARRAY — give the OEM number when you know it (you know many: e.g. 68249841AA for Challenger SRT front rotors). If left and right have different numbers, include both. Empty array is acceptable if you genuinely don't know — DO NOT fabricate.
+     - aftermarketPartNumbers as cross-references when known (e.g. Brembo 09.C394.11). Optional.
+     - visibleInPhoto: true for parts literally in the pixels, false for parts you recommend that aren't in frame
+     - confidence per part (lower for parts at edge or partially occluded)
+     - searchQuery — brand + OEM number + name (e.g. 'Mopar 68249841AA front brake rotor'). The server will use this to construct vendor URLs. DO NOT generate URLs yourself.
+     - notes for axle-pair rules, torque specs, anti-seize requirements
+5. Set primaryPartId to the id of the part the user most likely came for. For a wheel photo where the user might want any of rotor/pads/tire, pick the most expensive/important one (usually the rotor). The other identified parts stay in identifiedParts.
+6. Cross-reference the KNOWN ISSUES list above. If any identified part matches a documented issue for this vehicle, list the issue id in relatedKnownIssueIds.
 7. Difficulty: easy / medium / hard. Estimated DIY time. Safety warnings if any.
 
-Return ONLY a JSON object — no markdown fences, no preamble, no commentary before or after. Start your response with { and end it with }. Schema:
+EXAMPLE — user uploads a photo of a Challenger SRT front wheel showing rim, tire sidewall, lug nuts, brake caliper through spokes, and rotor face. identifiedParts should contain:
+- rotor (role:primary, category:rotor, OEM 68249841AA, searchQuery:'Mopar 68249841AA Challenger SRT front rotor', visibleInPhoto:true)
+- brake pads (role:primary, category:brake_pad, OEM 68389062AA, visibleInPhoto:true)
+- caliper (role:primary, category:caliper, OEM 68144181AA, visibleInPhoto:true)
+- tire (role:primary, category:tire, searchQuery includes size like '275/40R20', visibleInPhoto:true)
+- wheel/rim (role:primary, category:wheel, visibleInPhoto:true)
+- lug nuts (role:fastener, category:lug_nut, OEM 6036432AA, visibleInPhoto:true)
+- brake fluid (role:consumable, category:fluid, visibleInPhoto:false — needed for the job)
+Seven entries, not one.
+
+Return ONLY a JSON object — no markdown fences, no preamble. Start with { end with }. Schema:
 {
-  "summary": "1-2 sentence plain-English diagnosis the user can scan in 3 seconds",
+  "summary": "1-2 sentence diagnosis",
   "confidence": 0.0-1.0,
   "isCarRelated": true|false,
   "vehicleMatch": "confident"|"uncertain"|"likely_mismatch",
-  "vehicleMatchNote": "what visual cue you used — e.g. 'No identifying marks visible' or 'Mopar logo on caliper'",
-  "primaryPart": null OR {
-    "name": "...",
-    "brand": "...",
-    "partNumber": "...",
-    "amazonSearch": "Motorcraft SP-546 spark plug"
-  },
-  "kitItems": [{ "name": "...", "spec": "...", "amazonSearch": "..." }],
-  "consumables": [{ "name": "...", "spec": "...", "amazonSearch": "..." }],
+  "vehicleMatchNote": "visual cue used",
+  "primaryPartId": "p_rotor" or null,
+  "identifiedParts": [
+    {
+      "id": "p_rotor",
+      "role": "primary",
+      "category": "rotor",
+      "name": "Front brake rotor (vented, 360mm)",
+      "spec": "vented, 360mm × 32mm, fits Brembo 6-piston caliper",
+      "position": "front-left",
+      "confidence": 0.92,
+      "visibleInPhoto": true,
+      "brand": "OEM Mopar",
+      "oemPartNumbers": ["68249841AA"],
+      "aftermarketPartNumbers": [{"brand": "Brembo", "partNumber": "09.C394.11"}],
+      "searchQuery": "Mopar 68249841AA Challenger SRT front brake rotor",
+      "estimatedPriceUsd": {"low": 180, "high": 340},
+      "notes": "Replace as axle pair — never one side only."
+    }
+  ],
   "toolsNeeded": ["..."],
   "difficulty": "easy"|"medium"|"hard",
   "estimatedTimeMinutes": 30,
@@ -329,7 +362,11 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
     model: MODEL,
     reasoning: { effort: 'low' },
     text: { format: { type: 'json_object' } },
-    max_output_tokens: 2500,
+    // Bumped 2500 -> 4000 for the multi-part shape: each identifiedPart
+    // entry runs ~120 tokens (name, spec, position, oemPartNumbers,
+    // aftermarketPartNumbers, vendorLinks, notes). A 7-part wheel photo
+    // = ~840 tokens of parts alone, plus summary + tools + warnings.
+    max_output_tokens: 4000,
     input: [
       {
         role: 'system',
@@ -466,26 +503,120 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
     return failWithRefund({ error: 'parse_failed', message: 'Photo analysis returned an unexpected format. Try again.' }, 502);
   }
 
-  // Build affiliate URLs from the model's amazonSearch strings.
+  // ─── Parse multi-part response + populate vendor links ────────────
+  //
+  // The model returns identifiedParts[] per the new schema. For each
+  // part we (a) normalize its fields, (b) call attachVendorLinks() from
+  // vendor-resolver.ts to populate per-part vendor URLs, (c) project
+  // back to the legacy primaryPart/kitItems/consumables shape so the
+  // existing VisionResultCard v1 keeps rendering unchanged.
+
+  // Validate + normalize each raw part from the model.
+  type RawPart = Partial<{
+    id: string; role: string; category: string; name: string; spec: string;
+    position: string; confidence: number; visibleInPhoto: boolean;
+    brand: string; oemPartNumbers: string[];
+    aftermarketPartNumbers: Array<{ brand: string; partNumber: string }>;
+    searchQuery: string; estimatedPriceUsd: { low: number; high: number };
+    notes: string;
+  }>;
+  const VALID_ROLES = new Set<PartRole>(['primary', 'consumable', 'fastener', 'related']);
+  const VALID_CATS = new Set<PartCategory>([
+    'rotor','brake_pad','caliper','tire','wheel','lug_nut','tpms','filter','fluid',
+    'wiper','bulb','battery','spark_plug','sensor','belt','hose','suspension',
+    'ignition','fuel_pump','alternator','starter','body_panel','trim','badge',
+    'emblem','bracket','interior','accessory','tool','oem_specific','other',
+  ]);
+  const rawParts: RawPart[] = Array.isArray(parsed.identifiedParts) ? parsed.identifiedParts as RawPart[] : [];
+
+  // Normalize each part. Drop entries without a name.
+  const normalizedParts = rawParts
+    .filter((p) => typeof p?.name === 'string' && p.name.trim().length > 0)
+    .slice(0, 12) // cap at 12 parts to bound response size
+    .map((p, i): Omit<IdentifiedPart, 'vendorLinks'> => {
+      const role: PartRole = VALID_ROLES.has(p.role as PartRole) ? (p.role as PartRole) : 'primary';
+      const category: PartCategory = VALID_CATS.has(p.category as PartCategory) ? (p.category as PartCategory) : 'other';
+      const oemNums = Array.isArray(p.oemPartNumbers)
+        ? p.oemPartNumbers.filter((n: unknown): n is string => typeof n === 'string' && n.trim().length > 0).slice(0, 6)
+        : [];
+      const aftermarket = Array.isArray(p.aftermarketPartNumbers)
+        ? p.aftermarketPartNumbers.filter((x: { brand?: string; partNumber?: string } | unknown): x is { brand: string; partNumber: string } =>
+            !!x && typeof x === 'object' && typeof (x as { brand?: string }).brand === 'string' && typeof (x as { partNumber?: string }).partNumber === 'string')
+            .slice(0, 6)
+        : undefined;
+      return {
+        id: typeof p.id === 'string' && p.id.trim() ? p.id : `p_${i}_${Math.random().toString(36).slice(2, 8)}`,
+        role,
+        category,
+        name: p.name as string,
+        spec: typeof p.spec === 'string' ? p.spec : undefined,
+        position: typeof p.position === 'string' ? p.position : undefined,
+        confidence: typeof p.confidence === 'number' ? Math.max(0, Math.min(1, p.confidence)) : 0.7,
+        visibleInPhoto: p.visibleInPhoto !== false,
+        brand: typeof p.brand === 'string' ? p.brand : undefined,
+        oemPartNumbers: oemNums,
+        aftermarketPartNumbers: aftermarket,
+        estimatedPriceUsd: p.estimatedPriceUsd && typeof p.estimatedPriceUsd.low === 'number' && typeof p.estimatedPriceUsd.high === 'number'
+          ? { low: p.estimatedPriceUsd.low, high: p.estimatedPriceUsd.high }
+          : undefined,
+        notes: typeof p.notes === 'string' ? p.notes : undefined,
+        // searchQuery is consumed by the resolver — store on a side
+        // channel via a hidden field so attachVendorLinks can read it.
+        // We don't include it in the public IdentifiedPart type.
+      };
+    });
+
+  // Attach per-part vendor links via the resolver.
+  const identifiedParts: IdentifiedPart[] = attachVendorLinks(normalizedParts, vehicle ? { year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim } : undefined)
+    .map((p, i) => ({
+      ...p,
+      vendorLinks: p.vendorLinks.length > 0 ? p.vendorLinks : (
+        // Resolver returned no vendors (rare — e.g. a category with no
+        // matching vendor catalog entry). Fall back to a single Amazon
+        // search link so the user always has SOMETHING to click.
+        [{
+          vendor: 'amazon' as const,
+          displayName: 'Amazon',
+          url: `https://www.amazon.com/s?k=${encodeURIComponent((rawParts[i]?.searchQuery as string | undefined) || `${p.brand || ''} ${p.oemPartNumbers[0] || ''} ${p.name}`.trim())}&tag=au7o-20`,
+          searchQuery: (rawParts[i]?.searchQuery as string | undefined) || p.name,
+          linkType: 'search' as const,
+          priority: 1,
+        }]
+      ),
+    }));
+
+  // Resolve primaryPartId: prefer the model's value, fall back to the
+  // first role='primary' part. Null when no parts identified.
+  const modelPrimaryId = typeof parsed.primaryPartId === 'string' ? parsed.primaryPartId : null;
+  const primaryPartId: string | null = modelPrimaryId && identifiedParts.some((p) => p.id === modelPrimaryId)
+    ? modelPrimaryId
+    : (identifiedParts.find((p) => p.role === 'primary')?.id ?? null);
+
+  // ─── Legacy projection ────────────────────────────────────────────
+  // Existing VisionResultCard v1 reads primaryPart + kitItems +
+  // consumables. Build them from identifiedParts so nothing breaks on
+  // older clients (saved conversation replays, future mobile builds).
   const TAG = 'au7o-20';
-  const amazonUrl = (q: string | undefined) => q ? `https://www.amazon.com/s?k=${encodeURIComponent(q)}&tag=${TAG}` : null;
-  const decorateItem = (it: unknown) => {
-    if (!it || typeof it !== 'object') return null;
-    const r = it as { name?: string; spec?: string; brand?: string; partNumber?: string; amazonSearch?: string };
-    if (!r.name) return null;
-    return {
-      name: r.name,
-      spec: r.spec || '',
-      brand: r.brand || '',
-      partNumber: r.partNumber || '',
-      amazonUrl: amazonUrl(r.amazonSearch || `${r.brand || ''} ${r.partNumber || ''} ${r.name}`.trim()),
-    };
+  const amazonFallback = (it: IdentifiedPart): string | null => {
+    const amazonLink = it.vendorLinks.find((v) => v.vendor === 'amazon');
+    if (amazonLink) return amazonLink.url;
+    const q = `${it.brand || ''} ${it.oemPartNumbers[0] || ''} ${it.name}`.trim();
+    return q ? `https://www.amazon.com/s?k=${encodeURIComponent(q)}&tag=${TAG}` : null;
   };
+  const legacyProject = (p: IdentifiedPart) => ({
+    name: p.name,
+    spec: p.spec || '',
+    brand: p.brand || '',
+    partNumber: p.oemPartNumbers[0] || p.aftermarketPartNumbers?.[0]?.partNumber || '',
+    amazonUrl: amazonFallback(p),
+  });
+  const primaryPartLegacy = primaryPartId
+    ? (identifiedParts.find((p) => p.id === primaryPartId) ? legacyProject(identifiedParts.find((p) => p.id === primaryPartId)!) : null)
+    : null;
+  const kitItemsLegacy = identifiedParts.filter((p) => p.role === 'fastener').map(legacyProject);
+  const consumablesLegacy = identifiedParts.filter((p) => p.role === 'consumable').map(legacyProject);
 
-  const primaryRaw = parsed.primaryPart as Record<string, unknown> | null | undefined;
-  const primary = primaryRaw ? decorateItem(primaryRaw) : null;
-
-  // Look up the related known-issue rows to attach real URLs.
+  // Look up related known-issue rows.
   const relatedIssueIds = Array.isArray(parsed.relatedKnownIssueIds) ? parsed.relatedKnownIssueIds.filter((x: unknown): x is string => typeof x === 'string').slice(0, 4) : [];
   let relatedIssues: Array<{ id: string; title: string; severity: string }> = [];
   if (relatedIssueIds.length > 0) {
@@ -501,14 +632,18 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
   const validVehicleMatch = ['confident', 'uncertain', 'likely_mismatch'];
   const vehicleMatchRaw = String(parsed.vehicleMatch || 'uncertain').toLowerCase();
   const result = {
+    schemaVersion: 2 as const,
     summary: String(parsed.summary || ''),
     confidence: typeof parsed.confidence === 'number' ? parsed.confidence : 0.5,
     isCarRelated: parsed.isCarRelated !== false,
     vehicleMatch: (validVehicleMatch.includes(vehicleMatchRaw) ? vehicleMatchRaw : 'uncertain') as 'confident' | 'uncertain' | 'likely_mismatch',
     vehicleMatchNote: String(parsed.vehicleMatchNote || '').slice(0, 300),
-    primaryPart: primary,
-    kitItems: (Array.isArray(parsed.kitItems) ? parsed.kitItems : []).map(decorateItem).filter(Boolean),
-    consumables: (Array.isArray(parsed.consumables) ? parsed.consumables : []).map(decorateItem).filter(Boolean),
+    identifiedParts,
+    primaryPartId,
+    // Legacy shims so v1 renderer keeps working:
+    primaryPart: primaryPartLegacy,
+    kitItems: kitItemsLegacy,
+    consumables: consumablesLegacy,
     toolsNeeded: Array.isArray(parsed.toolsNeeded) ? parsed.toolsNeeded.filter((t: unknown): t is string => typeof t === 'string') : [],
     difficulty: ['easy','medium','hard'].includes(String(parsed.difficulty)) ? parsed.difficulty as string : 'medium',
     estimatedTimeMinutes: typeof parsed.estimatedTimeMinutes === 'number' ? parsed.estimatedTimeMinutes : null,
@@ -519,15 +654,18 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
   };
 
   vlog('result_shaped', {
+    schemaVersion: result.schemaVersion,
     summaryLen: result.summary.length,
     summaryHead: result.summary.slice(0, 120),
     isCarRelated: result.isCarRelated,
     vehicleMatch: result.vehicleMatch,
-    vehicleMatchNote: result.vehicleMatchNote.slice(0, 80),
-    hasPrimary: !!result.primaryPart,
-    kitCount: result.kitItems.length,
+    identifiedCount: result.identifiedParts.length,
+    primaryRoleCount: result.identifiedParts.filter((p) => p.role === 'primary').length,
+    categoriesSeen: result.identifiedParts.map((p) => p.category),
+    vendorLinkTotal: result.identifiedParts.reduce((s, p) => s + p.vendorLinks.length, 0),
+    primaryPartId: result.primaryPartId,
+    legacyHasPrimary: !!result.primaryPart,
     relatedCount: result.relatedIssues.length,
-    confidence: result.confidence,
   });
 
   return respond({ vision: result });
