@@ -10,6 +10,7 @@ import { vehicleSlug } from '@/lib/vehicle-slug';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
 import { downscaleImage } from '@/lib/downscale-image';
+import { extractVideoFrames } from '@/lib/video-extract';
 import { clearTrace, pushTrace, flushTrace, setReqId } from '@/lib/upload-trace';
 import type { VehicleSchedule } from '@/lib/owners-manual-schedule';
 // OwnersManualSchedule is no longer rendered as its own card — its data
@@ -392,6 +393,176 @@ export function VehicleHub({
       const msg = isTimeout
         ? 'Photo analysis timed out. Try a clearer single-part shot, or try again.'
         : 'Photo upload failed. Check your connection and try again.';
+      setMessages((prev) => {
+        if (idx == null || idx < 0 || idx >= prev.length) return prev;
+        const copy = [...prev];
+        copy[idx] = { ...copy[idx], content: msg };
+        return copy;
+      });
+      URL.revokeObjectURL(previewUrl);
+    } finally {
+      document.removeEventListener('visibilitychange', onVisibility);
+      streamingIdxRef.current = null;
+      setPending(false);
+    }
+  }, [pending, vehicle, isAuthed]);
+
+  // Video upload — extracts frames + audio client-side, uploads to the
+  // SAME /api/vision endpoint via the frames[] + audio multipart fields.
+  // Server-side mode is implicit from which form fields are present.
+  const handleVideoUpload = useCallback(async (file: File) => {
+    if (!file || pending) return;
+    if (file.size > 200 * 1024 * 1024) {
+      setMessages((prev) => [
+        ...prev,
+        { role: 'assistant' as const, content: 'That video is over 200MB. Try a shorter clip or lower-resolution recording.', timestamp: Date.now() },
+      ]);
+      return;
+    }
+
+    clearTrace();
+    pushTrace('start', { fileSize: file.size, fileType: file.type, fileName: file.name, mode: 'video' });
+    setPending(true);
+    const previewUrl = URL.createObjectURL(file);
+
+    let placeholderIdx = -1;
+    setMessages((prev) => {
+      const next = [
+        ...prev,
+        { role: 'user' as const, content: '🎥 Uploaded a video for diagnosis', timestamp: Date.now() },
+        { role: 'assistant' as const, content: 'Extracting frames + audio…', timestamp: Date.now() },
+      ];
+      placeholderIdx = next.length - 1;
+      streamingIdxRef.current = placeholderIdx;
+      return next;
+    });
+
+    const onVisibility = () => {
+      if (document.visibilityState === 'hidden') { pushTrace('visibility_hidden'); flushTrace('visibility'); }
+      else pushTrace('visibility_visible');
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
+    try {
+      pushTrace('extract_start');
+      const extract = await extractVideoFrames(file, 4);
+      pushTrace('extract_done', {
+        frameCount: extract.frames.length,
+        audioOk: extract.audioOk,
+        audioSize: extract.audio?.size || 0,
+        durationSeconds: Math.round(extract.durationSeconds * 10) / 10,
+      });
+
+      if (extract.frames.length === 0) {
+        const idx = placeholderIdx >= 0 ? placeholderIdx : streamingIdxRef.current;
+        setMessages((prev) => {
+          if (idx == null || idx < 0 || idx >= prev.length) return prev;
+          const copy = [...prev];
+          copy[idx] = { ...copy[idx], content: "Couldn't read your video — try a different format (MP4 or MOV)." };
+          return copy;
+        });
+        URL.revokeObjectURL(previewUrl);
+        return;
+      }
+
+      const formData = new FormData();
+      extract.frames.forEach((f, i) => formData.append('frames', f, `frame_${i}.jpg`));
+      if (extract.audio) formData.append('audio', extract.audio, extract.audio.name);
+      formData.append('vehicle', JSON.stringify({
+        year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim || '',
+      }));
+
+      // Update placeholder copy so the user knows we moved on from extraction.
+      setMessages((prev) => {
+        const idx = placeholderIdx >= 0 ? placeholderIdx : streamingIdxRef.current;
+        if (idx == null || idx < 0 || idx >= prev.length) return prev;
+        const copy = [...prev];
+        copy[idx] = { ...copy[idx], content: 'Analyzing your video…' };
+        return copy;
+      });
+
+      pushTrace('fetch_start');
+      const res = await fetch('/api/vision', {
+        method: 'POST',
+        body: formData,
+        signal: AbortSignal.timeout(90_000), // longer than photo's 75s — Whisper + multi-frame analysis takes longer
+      });
+      const serverReqId = res.headers.get('x-au7o-req-id');
+      if (serverReqId) setReqId(serverReqId);
+      pushTrace('headers_received', { status: res.status, ok: res.ok, reqId: serverReqId });
+
+      const idx = placeholderIdx >= 0 ? placeholderIdx : streamingIdxRef.current;
+
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({} as { message?: string; gated?: boolean; ctaUrl?: string; ctaLabel?: string; secondaryCtaUrl?: string; secondaryCtaLabel?: string; resetAt?: string }));
+        if ((res.status === 429 || res.status === 401) && errBody.gated && errBody.ctaUrl && errBody.ctaLabel) {
+          const gate: GateInfo = {
+            message: errBody.message || 'Video diagnosis requires a subscription.',
+            ctaUrl: errBody.ctaUrl, ctaLabel: errBody.ctaLabel,
+            secondaryCtaUrl: errBody.secondaryCtaUrl, secondaryCtaLabel: errBody.secondaryCtaLabel,
+            resetAt: errBody.resetAt, isAuthed,
+          };
+          setMessages((prev) => {
+            if (idx == null || idx < 0 || idx >= prev.length) return prev;
+            const copy = [...prev];
+            copy[idx] = { ...copy[idx], content: '', gate };
+            return copy;
+          });
+          pushTrace('placeholder_replaced', { kind: 'gate', status: res.status });
+          URL.revokeObjectURL(previewUrl);
+          return;
+        }
+        const msg = errBody.message || `Video analysis failed (HTTP ${res.status}).`;
+        setMessages((prev) => {
+          if (idx == null || idx < 0 || idx >= prev.length) return prev;
+          const copy = [...prev];
+          copy[idx] = { ...copy[idx], content: msg };
+          return copy;
+        });
+        pushTrace('placeholder_replaced', { kind: 'error_response', status: res.status });
+        URL.revokeObjectURL(previewUrl);
+        return;
+      }
+
+      pushTrace('body_start');
+      const data = await res.json() as { vision: VisionResult };
+      const v = data?.vision as VisionResult & { mode?: string; transcript?: string; framesAnalyzed?: number; schemaVersion?: number; identifiedParts?: Array<{ category: string; vendorLinks: Array<{ vendor: string }> }> };
+      pushTrace('body_done', {
+        hasVision: !!v,
+        mode: v?.mode,
+        framesAnalyzed: v?.framesAnalyzed,
+        transcriptLen: v?.transcript?.length || 0,
+        schemaVersion: v?.schemaVersion,
+        identifiedCount: v?.identifiedParts?.length || 0,
+        vendorLinkTotal: v?.identifiedParts?.reduce((s, p) => s + (p.vendorLinks?.length || 0), 0) || 0,
+      });
+
+      if (!data || !data.vision) {
+        setMessages((prev) => {
+          if (idx == null || idx < 0 || idx >= prev.length) return prev;
+          const copy = [...prev];
+          copy[idx] = { ...copy[idx], content: 'Video analysis returned an empty result. Try again.' };
+          return copy;
+        });
+        URL.revokeObjectURL(previewUrl);
+        return;
+      }
+
+      const visionWithPreview: VisionResult = { ...data.vision, imagePreviewUrl: previewUrl };
+      setMessages((prev) => {
+        if (idx == null || idx < 0 || idx >= prev.length) return prev;
+        const copy = [...prev];
+        copy[idx] = { ...copy[idx], content: '', vision: visionWithPreview };
+        return copy;
+      });
+      pushTrace('placeholder_replaced', { kind: 'vision' });
+    } catch (err) {
+      console.warn('[hub] video upload failed:', err);
+      const idx = placeholderIdx >= 0 ? placeholderIdx : streamingIdxRef.current;
+      const isTimeout = err instanceof DOMException && (err.name === 'TimeoutError' || err.name === 'AbortError');
+      pushTrace('error', { name: err instanceof Error ? err.name : 'unknown', message: err instanceof Error ? err.message.slice(0, 200) : String(err).slice(0, 200), isTimeout });
+      flushTrace('error');
+      const msg = isTimeout ? 'Video analysis timed out. Try a shorter clip.' : 'Video upload failed. Check your connection and try again.';
       setMessages((prev) => {
         if (idx == null || idx < 0 || idx >= prev.length) return prev;
         const copy = [...prev];
@@ -884,6 +1055,7 @@ export function VehicleHub({
 
           <Composer
             ref={composerRef}
+            onVideoUpload={handleVideoUpload}
             value={input}
             onChange={setInput}
             onSend={() => send(input)}
@@ -3314,25 +3486,19 @@ function inlineFormat(s: string): React.ReactNode {
 
 /* ─── Composer ─── */
 const Composer = ({
-  ref, value, onChange, onSend, onPhotoUpload, pending, isAuthed,
+  ref, value, onChange, onSend, onPhotoUpload, onVideoUpload, pending, isAuthed,
 }: {
   ref: React.RefObject<HTMLTextAreaElement | null>;
   value: string;
   onChange: (v: string) => void;
   onSend: () => void;
   onPhotoUpload?: (file: File) => void;
+  onVideoUpload?: (file: File) => void;
   pending: boolean;
   isAuthed: boolean;
 }) => {
-  // Hidden file input — Photo chip below triggers it via ref.click().
-  // Note: deliberately NO `capture` attribute. With `capture="environment"`,
-  // mobile browsers skip the library picker entirely and jump straight to
-  // the camera — users complained they couldn't choose an existing photo.
-  // Without `capture`, iOS/Android show the standard "Photo Library / Take
-  // Photo / Browse Files" action sheet, which is what users want most of
-  // the time (they snapped the photo earlier when the part was disassembled
-  // and now want to ask about it later).
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const videoInputRef = useRef<HTMLInputElement>(null);
   return (
     <div className="composer-wrap">
       <input
@@ -3343,7 +3509,17 @@ const Composer = ({
         onChange={(e) => {
           const file = e.target.files?.[0];
           if (file && onPhotoUpload) onPhotoUpload(file);
-          // Reset so the same file can be re-picked if needed
+          if (e.target) e.target.value = '';
+        }}
+      />
+      <input
+        ref={videoInputRef}
+        type="file"
+        accept="video/*"
+        style={{ display: 'none' }}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (file && onVideoUpload) onVideoUpload(file);
           if (e.target) e.target.value = '';
         }}
       />
@@ -3383,12 +3559,18 @@ const Composer = ({
               </svg>
               Photo
             </button>
-            <button className="comp-chip" type="button" disabled title="Voice is on Drive — coming to chat soon">
+            <button
+              className="comp-chip comp-chip-video"
+              type="button"
+              disabled={pending || !onVideoUpload}
+              onClick={() => videoInputRef.current?.click()}
+              title="Record a short clip — AI sees frames + hears noises to diagnose"
+            >
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <rect x="9" y="3" width="6" height="12" rx="3" stroke="currentColor" strokeWidth="2"/>
-                <path d="M19 11a7 7 0 01-14 0M12 18v3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                <rect x="3" y="6" width="14" height="12" rx="2" stroke="currentColor" strokeWidth="2"/>
+                <path d="M17 10l4-2v8l-4-2z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
               </svg>
-              Voice
+              Video
             </button>
           </div>
           <button className="icon-square icon-send" onClick={onSend} disabled={pending} title="Send">

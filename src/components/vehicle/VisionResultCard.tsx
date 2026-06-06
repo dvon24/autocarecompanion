@@ -50,6 +50,13 @@ export interface VisionResult {
   /** Hero pointer — id of the most likely "this is what you came for"
    *  part. References an id present in identifiedParts. */
   primaryPartId?: string | null;
+  /** Which input flavor produced this — 'photo' or 'video'. v2 only. */
+  mode?: 'photo' | 'video';
+  /** Whisper transcript of the video's audio track. Empty for photos
+   *  or videos where audio extraction failed. */
+  transcript?: string;
+  /** Number of frames the server analyzed. Video mode only. */
+  framesAnalyzed?: number;
 }
 
 /**
@@ -422,9 +429,18 @@ function VisionResultCardV2({ vision }: { vision: VisionResult }) {
         <div className="vr-summary-block">
           <div className="vr-eyebrow">
             <span className="vr-dot" aria-hidden />
-            AU7O VISION · {confidencePct}% · {parts.length} {parts.length === 1 ? 'PART' : 'PARTS'}
+            {vision.mode === 'video' ? 'AU7O VIDEO' : 'AU7O VISION'} · {confidencePct}%
+            {vision.mode === 'video' && vision.framesAnalyzed ? ` · ${vision.framesAnalyzed} FRAMES` : ''}
+            {` · ${parts.length} ${parts.length === 1 ? 'PART' : 'PARTS'}`}
           </div>
           <div className="vr-summary">{vision.summary}</div>
+          {vision.transcript && vision.transcript.trim().length > 0 && (
+            <div className="vr2-transcript">
+              <span className="vr2-transcript-icon" aria-hidden>🎤</span>
+              <span className="vr2-transcript-label">You said:</span>
+              <span className="vr2-transcript-text">&ldquo;{vision.transcript}&rdquo;</span>
+            </div>
+          )}
           {isUncertain && vision.vehicleMatchNote && (
             <div className="vr-uncertain">
               Confirm this is from your vehicle before ordering — {vision.vehicleMatchNote.toLowerCase()}.
@@ -604,6 +620,16 @@ function VendorButtonV2({ link }: { link: VendorLink }) {
 
 const v2Styles = `
   .vr2-card { /* additional v2-specific overrides if needed */ }
+  .vr2-transcript {
+    display: flex; align-items: flex-start; gap: 6px;
+    margin-top: 6px; padding: 6px 8px;
+    background: rgba(37,99,235,0.08); border-left: 2px solid #2563EB;
+    border-radius: 4px;
+    font-size: 12px; line-height: 1.4; color: #1E40AF;
+  }
+  .vr2-transcript-icon { flex: 0 0 auto; font-size: 12px; line-height: 1.4; }
+  .vr2-transcript-label { font-weight: 600; flex: 0 0 auto; }
+  .vr2-transcript-text { font-style: italic; }
   .vr2-hero { padding: 12px 16px; background: #FAFBFF; border-bottom: 1px solid var(--paper-line, #E3DFD4); }
   .vr2-others { border-bottom: 1px solid var(--paper-line, #E3DFD4); }
   .vr2-others-toggle {
