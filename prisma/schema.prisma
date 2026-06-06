@@ -25,6 +25,11 @@ model User {
   stripeCustomerId   String?   @unique
   subscriptionId     String?
   subscriptionStatus String?   // active, canceled, past_due, trialing
+  // Phase 1 tiering: free | plus | pro. Null on legacy free users;
+  // legacy active subscribers are backfilled to 'plus' (the $9.99 plan
+  // they had is closest to the new $14.99 Plus tier feature set).
+  // Stripe webhook writes this from subscription.metadata.tier.
+  subscriptionTier   String?   // free, plus, pro
 
   // Notification preferences
   emailNotifications Boolean   @default(true)

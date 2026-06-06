@@ -1,283 +1,183 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { PricingTiers } from '@/components/pricing/PricingTiers';
+import { MobilePricing } from '@/components/pricing/MobilePricing';
+import type { Tier, TierId } from '@/lib/pricing/tiers';
 
-const FEATURES = [
-  {
-    name: 'Unlimited AI Diagnoses',
-    free: '5 per week',
-    premium: 'Unlimited',
-    icon: '🔍',
-  },
-  {
-    name: 'Vehicle Garage',
-    free: 'None',
-    premium: 'Up to 10 vehicles',
-    icon: '🚗',
-  },
-  {
-    name: 'Maintenance Tracking',
-    free: '—',
-    premium: 'Full tracking + history',
-    icon: '🔧',
-  },
-  {
-    name: 'Maintenance Notifications',
-    free: '—',
-    premium: 'Email + Push alerts',
-    icon: '🔔',
-  },
-  {
-    name: 'AI Garage Assistant',
-    free: '—',
-    premium: 'Voice commands + smart suggestions',
-    icon: '🤖',
-  },
-  {
-    name: 'Ad-Free Experience',
-    free: '—',
-    premium: 'No ads',
-    icon: '✨',
-  },
-];
-
+/**
+ * /subscribe — three-tier pricing page (Free / Plus $14.99 / Pro $24.99).
+ *
+ * Desktop: PricingTiers 3-column grid.
+ * Mobile: MobilePricing stacked list.
+ * Both call into the same checkout flow — clicking a paid tier POSTs
+ * /api/stripe/create-checkout with the tier ID and redirects to the
+ * Stripe-hosted checkout page. Hosted page (not embedded) keeps PCI
+ * scope small and avoids embedding Stripe Elements; we can swap in the
+ * embedded modal later without touching this page.
+ *
+ * Free tier "Current plan" button is informational only — no checkout.
+ */
 export default function SubscribePage() {
-  const [loading, setLoading] = useState(false);
+  const [loadingTier, setLoadingTier] = useState<TierId | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [currentTier, setCurrentTier] = useState<TierId | null>(null);
 
-  const handleSubscribe = async () => {
-    setLoading(true);
+  // Fetch the user's current tier so we can flag the right card with
+  // "Current plan" instead of letting them re-checkout into the same
+  // plan. Failure (e.g. anonymous user) leaves currentTier null and
+  // every tier is purchasable as it should be for new visitors.
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/user/tier', { credentials: 'include' })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (cancelled || !data?.tier) return;
+        setCurrentTier(data.tier as TierId);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const handleSelect = async (tier: Tier) => {
+    setError(null);
+    if (tier.id === 'free') {
+      // Nothing to do — free is just sign up. Send unauthenticated
+      // users to signup, authenticated users back home.
+      window.location.href = '/auth/signup';
+      return;
+    }
+    setLoadingTier(tier.id);
     try {
-      const response = await fetch('/api/stripe/create-checkout', {
+      const res = await fetch('/api/stripe/create-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({}),
+        body: JSON.stringify({ tierId: tier.id }),
       });
-
-      const data = await response.json();
-
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        console.error('No checkout URL returned');
-        setLoading(false);
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.url) {
+        setError(data.message || data.error || 'Could not start checkout. Try again.');
+        setLoadingTier(null);
+        return;
       }
-    } catch (error) {
-      console.error('Error creating checkout:', error);
-      setLoading(false);
+      window.location.href = data.url;
+    } catch {
+      setError('Network error. Try again.');
+      setLoadingTier(null);
     }
   };
 
   return (
-    <div className="min-h-screen bg-white font-[system-ui,sans-serif] relative overflow-hidden">
-      {/* Subtle gradient blobs for depth */}
-      <div
-        className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%)',
-          filter: 'blur(80px)',
-          transform: 'translate(20%, -30%)',
-          zIndex: 1,
-        }}
-      />
-      <div
-        className="absolute top-1/4 left-0 w-[400px] h-[400px] pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%)',
-          filter: 'blur(80px)',
-          transform: 'translate(-50%, 0%)',
-          zIndex: 1,
-        }}
-      />
+    <div
+      style={{
+        minHeight: '100dvh',
+        background: 'var(--paper, #F7F6F2)',
+        color: 'var(--ink, #0B1220)',
+        fontFamily: 'var(--font-sans, system-ui, -apple-system, sans-serif)',
+      }}
+    >
+      <header style={{ padding: '14px 22px' }}>
+        <div style={{ maxWidth: 1080, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none', color: 'inherit' }}>
+            <Image src="/og-image.png" alt="" width={28} height={28} style={{ borderRadius: 8 }} />
+            <span style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.02em' }}>
+              Au<span style={{ color: 'var(--au7o-blue, #3B82F6)' }}>7</span>o
+            </span>
+          </Link>
+          <Link
+            href="/auth/signin"
+            style={{ padding: '8px 14px', fontSize: 13.5, fontWeight: 500, color: 'var(--slate-700, #334155)', textDecoration: 'none' }}
+          >
+            Sign in
+          </Link>
+        </div>
+      </header>
 
-      {/* Main content */}
-      <main className="relative flex flex-col" style={{ zIndex: 2 }}>
-        {/* Header */}
-        <header className="px-6 py-4">
-          <div className="max-w-5xl mx-auto flex items-center justify-between">
-            <ScrollReveal delay={0} duration={800} direction="down" distance={20}>
-              <Link href="/" className="flex items-center gap-2">
-                <Image
-                  src="/og-image.png"
-                  alt="Au7o mascot"
-                  width={32}
-                  height={32}
-                  className="rounded-lg"
-                />
-                <span className="text-2xl font-bold text-gray-900 tracking-tight">
-                  Au<span className="text-blue-600">7</span>o
-                </span>
-              </Link>
-            </ScrollReveal>
-            <ScrollReveal delay={100} duration={800} direction="down" distance={20}>
-              <Link
-                href="/auth/signin"
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-              >
-                Sign In
-              </Link>
-            </ScrollReveal>
+      {/* Desktop layout — hidden under 760px. */}
+      <main className="subscribe-desktop" style={{ maxWidth: 1080, margin: '0 auto', padding: '28px 22px 80px' }}>
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+          <h1 style={{ fontSize: 36, fontWeight: 700, letterSpacing: '-0.03em', margin: 0 }}>Pick your plan</h1>
+          <p style={{ fontSize: 16, color: 'var(--slate-500, #64748B)', marginTop: 10 }}>
+            Start free. Upgrade when you want the full garage, unlimited diagnoses, and alerts.
+          </p>
+        </div>
+
+        {error && (
+          <div
+            style={{
+              maxWidth: 680,
+              margin: '0 auto 18px',
+              padding: '10px 14px',
+              background: 'var(--crit-bg, #FEE2E2)',
+              color: 'var(--crit, #EF4444)',
+              borderRadius: 10,
+              fontSize: 13,
+              textAlign: 'center',
+            }}
+          >
+            {error}
           </div>
-        </header>
+        )}
 
-        {/* Hero */}
-        <section className="px-6 py-16 lg:py-24">
-          <div className="max-w-4xl mx-auto">
-            <ScrollReveal delay={200} duration={800}>
-              <div className="text-center mb-12">
-                <h1 className="text-4xl sm:text-5xl font-semibold text-gray-900 mb-4 tracking-tight">
-                  Get More From Your Vehicle
-                </h1>
-                <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-                  Track maintenance, get smart reminders, and let AI help manage your garage.
-                </p>
-              </div>
-            </ScrollReveal>
+        <PricingTiers onSelect={handleSelect} loadingTierId={loadingTier} currentTierId={currentTier} />
 
-            {/* Pricing Card */}
-            <ScrollReveal delay={300} duration={800}>
-              <div className="max-w-md mx-auto mb-16">
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                  {/* Header */}
-                  <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-8 text-center text-white">
-                    <p className="text-blue-100 font-medium mb-2">Premium Subscription</p>
-                    <div className="flex items-baseline justify-center gap-1">
-                      <span className="text-5xl font-bold">$9.99</span>
-                      <span className="text-blue-200">/month</span>
-                    </div>
-                    <p className="text-blue-100 text-sm mt-2">Cancel anytime</p>
-                    {/* Trial pitch — Stripe trial_period_days isn't wired
-                        yet, but the offering is committed. Remove this
-                        banner when create-checkout/route.ts passes
-                        trial_period_days: 30. */}
-                    <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/15 border border-white/25 rounded-full text-xs font-medium">
-                      <span>🚧</span>
-                      <span>30-day free trial coming soon</span>
-                    </div>
-                  </div>
-
-                  {/* CTA */}
-                  <div className="p-6 space-y-3">
-                    <button
-                      onClick={handleSubscribe}
-                      disabled={loading}
-                      className="w-full py-4 px-6 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {loading ? (
-                        <span className="flex items-center justify-center gap-2">
-                          <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                          </svg>
-                          Processing...
-                        </span>
-                      ) : (
-                        'Subscribe Now'
-                      )}
-                    </button>
-                    <p className="text-center text-sm text-gray-500">
-                      Secure payment via Stripe
-                    </p>
-                    <Link
-                      href="/auth/signin"
-                      className="block text-center text-sm text-gray-500 hover:text-gray-700 transition-colors"
-                    >
-                      Already have an account? Sign in
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* Feature Comparison */}
-            <ScrollReveal delay={400} duration={800}>
-              <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
-                <div className="px-6 py-4 border-b border-gray-100">
-                  <h2 className="text-lg font-semibold text-gray-900">Feature Comparison</h2>
-                </div>
-                <div className="divide-y divide-gray-100">
-                  {/* Header Row */}
-                  <div className="grid grid-cols-3 px-6 py-3 bg-gray-50">
-                    <div className="text-sm font-medium text-gray-500">Feature</div>
-                    <div className="text-sm font-medium text-gray-500 text-center">Free</div>
-                    <div className="text-sm font-medium text-gray-500 text-center">Premium</div>
-                  </div>
-                  {/* Feature Rows */}
-                  {FEATURES.map((feature) => (
-                    <div key={feature.name} className="grid grid-cols-3 px-6 py-4 items-center">
-                      <div className="flex items-center gap-3">
-                        <span className="text-xl">{feature.icon}</span>
-                        <span className="text-gray-900 font-medium">{feature.name}</span>
-                      </div>
-                      <div className="text-center text-gray-500">{feature.free}</div>
-                      <div className="text-center text-green-600 font-medium">{feature.premium}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* FAQ */}
-            <ScrollReveal delay={500} duration={800}>
-              <div className="mt-16">
-                <h2 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
-                  Frequently Asked Questions
-                </h2>
-                <div className="space-y-4 max-w-2xl mx-auto">
-                  <div className="bg-white rounded-xl border border-gray-200 p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">Can I cancel anytime?</h3>
-                    <p className="text-gray-600">
-                      Yes! You can cancel your subscription at any time. You&apos;ll continue to have access until the end of your billing period.
-                    </p>
-                  </div>
-                  <div className="bg-white rounded-xl border border-gray-200 p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">What happens to my data if I cancel?</h3>
-                    <p className="text-gray-600">
-                      Your vehicle data and maintenance history are preserved. If you resubscribe, everything will be right where you left it.
-                    </p>
-                  </div>
-                  <div className="bg-white rounded-xl border border-gray-200 p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">How do maintenance notifications work?</h3>
-                    <p className="text-gray-600">
-                      Based on your vehicle&apos;s mileage and maintenance history, we&apos;ll send you email and push notifications when service is due.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* Back Link */}
-            <div className="text-center mt-12">
-              <Link href="/" className="text-gray-500 hover:text-gray-700 transition-colors">
-                &larr; Back to Home
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="px-6 py-8 border-t border-gray-100">
-          <div className="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Image
-                src="/og-image.png"
-                alt="Au7o mascot"
-                width={24}
-                height={24}
-                className="rounded-lg"
-              />
-              <span className="text-lg font-semibold text-gray-900">
-                Au<span className="text-blue-600">7</span>o
-              </span>
-            </div>
-            <p className="text-gray-400 text-sm">
-              Built for DIY mechanics. Privacy-first.
-            </p>
-          </div>
-        </footer>
+        <p style={{ textAlign: 'center', fontSize: 12, color: 'var(--slate-500, #64748B)', marginTop: 28 }}>
+          Secure checkout by Stripe · Cancel anytime · Plus + Pro: 30-day money back
+        </p>
       </main>
+
+      {/* Mobile layout — hidden over 760px. */}
+      <main className="subscribe-mobile" style={{ padding: '6px 16px 40px' }}>
+        <div style={{ textAlign: 'center', margin: '4px 0 18px' }}>
+          <h1 style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.025em', margin: 0 }}>Pick your plan</h1>
+          <p style={{ fontSize: 13, color: 'var(--slate-700, #334155)', margin: '6px 0 0' }}>
+            Start free. Upgrade when you want the full garage.
+          </p>
+        </div>
+
+        {error && (
+          <div
+            style={{
+              margin: '0 0 14px',
+              padding: '9px 12px',
+              background: 'var(--crit-bg, #FEE2E2)',
+              color: 'var(--crit, #EF4444)',
+              borderRadius: 10,
+              fontSize: 12.5,
+              textAlign: 'center',
+            }}
+          >
+            {error}
+          </div>
+        )}
+
+        <MobilePricing onSelect={handleSelect} loadingTierId={loadingTier} currentTierId={currentTier} />
+
+        <p style={{ textAlign: 'center', fontSize: 11, color: 'var(--slate-500, #64748B)', marginTop: 22 }}>
+          Secure checkout by Stripe · Cancel anytime
+        </p>
+      </main>
+
+      <style jsx global>{`
+        .subscribe-desktop {
+          display: block;
+        }
+        .subscribe-mobile {
+          display: none;
+        }
+        @media (max-width: 760px) {
+          .subscribe-desktop {
+            display: none;
+          }
+          .subscribe-mobile {
+            display: block;
+          }
+        }
+      `}</style>
     </div>
   );
 }

@@ -24,25 +24,34 @@ export const stripe = {
   },
 };
 
+import type { TierId } from './pricing/tiers';
+
+/**
+ * Single-tier legacy env var. Kept as the 'plus' price fallback so the
+ * old STRIPE_PRICE_ID keeps working until both new env vars are set in
+ * production.
+ */
 export const SUBSCRIPTION_PRICE_ID = process.env.STRIPE_PRICE_ID;
 
-export const SUBSCRIPTION_FEATURES = {
-  free: {
-    chatsPerWeek: 5,
-    savedVehicles: 0,
-    maintenanceTracking: false,
-    notifications: false,
-    adFree: false,
-    visualizer3D: false,
-    buildShowcase: false,
-  },
-  premium: {
-    chatsPerWeek: Infinity,
-    savedVehicles: 10,
-    maintenanceTracking: true,
-    notifications: true,
-    adFree: true,
-    visualizer3D: true,
-    buildShowcase: true,
-  },
-} as const;
+/**
+ * Resolve the Stripe price ID for a given tier.
+ *
+ * Env vars expected:
+ *   STRIPE_PRICE_ID_PLUS — $14.99/mo Plus plan
+ *   STRIPE_PRICE_ID_PRO  — $24.99/mo Pro plan
+ *
+ * Backwards compat: if STRIPE_PRICE_ID_PLUS is unset, fall back to the
+ * legacy STRIPE_PRICE_ID so existing deploys keep working through the
+ * cutover window. Returns null if no price is configured for that tier
+ * (callers must 500 — checkout cannot proceed without a price).
+ */
+export function getPriceIdForTier(tier: TierId): string | null {
+  switch (tier) {
+    case 'plus':
+      return process.env.STRIPE_PRICE_ID_PLUS || process.env.STRIPE_PRICE_ID || null;
+    case 'pro':
+      return process.env.STRIPE_PRICE_ID_PRO || null;
+    case 'free':
+      return null;
+  }
+}

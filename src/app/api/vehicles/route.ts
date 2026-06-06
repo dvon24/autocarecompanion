@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { z } from 'zod';
+import { checkVehicleLimit } from '@/lib/pricing/limits';
 
 const CreateVehicleSchema = z.object({
   year: z.number().min(1900).max(new Date().getFullYear() + 2),
@@ -66,30 +67,26 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check subscription status
-    const user = await prisma.user.findUnique({
-      where: { id: session.user.id },
-      select: { subscriptionStatus: true },
-    });
-
-    if (user?.subscriptionStatus !== 'active') {
+    // Tier-aware vehicle quota. Free gets 1 vehicle, Plus 3, Pro 10.
+    // (Was: blanket 403 unless subscriptionStatus === 'active'.) The
+    // upgrade target in the response lets the client deep-link to the
+    // right pricing tier instead of generic /subscribe.
+    const limit = await checkVehicleLimit(session.user.id);
+    if (!limit.allowed) {
+      const upgradeTo = limit.tier === 'free' ? 'plus' : 'pro';
       return NextResponse.json(
-        { error: 'Premium subscription required to save vehicles' },
+        {
+          error: 'vehicle_limit_reached',
+          message: `You've reached the ${limit.limit}-vehicle limit on the ${limit.tier} plan. Upgrade to ${upgradeTo} to add more.`,
+          tier: limit.tier,
+          current: limit.current,
+          limit: limit.limit,
+          upgradeTo,
+        },
         { status: 403 }
       );
     }
-
-    // Check vehicle limit (10 for premium)
-    const vehicleCount = await prisma.vehicle.count({
-      where: { userId: session.user.id },
-    });
-
-    if (vehicleCount >= 10) {
-      return NextResponse.json(
-        { error: 'Maximum vehicle limit reached (10)' },
-        { status: 400 }
-      );
-    }
+    const vehicleCount = limit.current;
 
     const body = await request.json();
     const parsed = CreateVehicleSchema.safeParse(body);
