@@ -59,7 +59,12 @@ export const VENDORS: Record<VendorKey, VendorConfig> = {
   rockauto: {
     key: 'rockauto',
     displayName: 'RockAuto',
-    searchUrlTemplate: 'https://www.rockauto.com/en/partsearch/?partnum={query}',
+    // RockAuto's partsearch endpoint is strict about format — it works
+    // for exact OEM/aftermarket numbers but returns "no match" for
+    // free-text queries. When we have a part number, use partsearch.
+    // When we don't, route through Google with site:rockauto.com so
+    // the user lands on a real product page instead of an empty SERP.
+    searchUrlTemplate: 'https://www.google.com/search?q=site%3Arockauto.com+{query}',
     partNumberUrlTemplate: 'https://www.rockauto.com/en/partsearch/?partnum={part_number}',
     partNumberSupport: 'native',
     bestForCategories: [
@@ -167,7 +172,12 @@ export const VENDORS: Record<VendorKey, VendorConfig> = {
   american_muscle: {
     key: 'american_muscle',
     displayName: 'American Muscle',
-    searchUrlTemplate: 'https://www.americanmuscle.com/searchresults?q={query}',
+    // AmericanMuscle's onsite search regularly misses on OEM part
+    // numbers (their catalog is keyed by part NAME and YMM, not OEM).
+    // Use Google site-search so a Mopar OEM number for a Challenger
+    // rotor actually lands on a relevant AmericanMuscle PDP instead
+    // of "0 results".
+    searchUrlTemplate: 'https://www.google.com/search?q=site%3Aamericanmuscle.com+{query}',
     partNumberSupport: 'searchable',
     bestForCategories: [
       'wheel', 'tire', 'suspension', 'body_panel', 'trim', 'badge',

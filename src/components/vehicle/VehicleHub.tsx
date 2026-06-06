@@ -334,12 +334,20 @@ export function VehicleHub({
       const data = await res.json() as { vision: VisionResult };
       // Capture enough of the result shape to diagnose "card renders but
       // looks blank" without exposing PII or full payload.
-      const v = data?.vision;
+      const v = data?.vision as VisionResult & { schemaVersion?: number; identifiedParts?: Array<{ id: string; category: string; vendorLinks: Array<{ vendor: string }> }>; primaryPartId?: string | null };
       pushTrace('body_done', {
         hasVision: !!v,
         isCarRelated: v?.isCarRelated,
         summaryLen: v?.summary?.length || 0,
         summaryHead: v?.summary?.slice(0, 80) || '',
+        // v2 multi-part diagnostics
+        schemaVersion: v?.schemaVersion,
+        identifiedCount: v?.identifiedParts?.length || 0,
+        identifiedCategories: v?.identifiedParts?.map(p => p.category) || [],
+        vendorLinkTotal: v?.identifiedParts?.reduce((s, p) => s + (p.vendorLinks?.length || 0), 0) || 0,
+        vendorKeysSample: v?.identifiedParts?.[0]?.vendorLinks?.map(vl => vl.vendor) || [],
+        primaryPartId: v?.primaryPartId,
+        // v1 legacy fields still populated server-side
         hasPrimary: !!v?.primaryPart,
         primaryName: v?.primaryPart?.name || null,
         kitCount: v?.kitItems?.length || 0,
