@@ -332,7 +332,23 @@ export function VehicleHub({
 
       pushTrace('body_start');
       const data = await res.json() as { vision: VisionResult };
-      pushTrace('body_done', { hasVision: !!data?.vision });
+      // Capture enough of the result shape to diagnose "card renders but
+      // looks blank" without exposing PII or full payload.
+      const v = data?.vision;
+      pushTrace('body_done', {
+        hasVision: !!v,
+        isCarRelated: v?.isCarRelated,
+        summaryLen: v?.summary?.length || 0,
+        summaryHead: v?.summary?.slice(0, 80) || '',
+        hasPrimary: !!v?.primaryPart,
+        primaryName: v?.primaryPart?.name || null,
+        kitCount: v?.kitItems?.length || 0,
+        consumablesCount: v?.consumables?.length || 0,
+        toolsCount: v?.toolsNeeded?.length || 0,
+        warningsCount: v?.warnings?.length || 0,
+        relatedCount: v?.relatedIssues?.length || 0,
+        confidence: v?.confidence ?? null,
+      });
       if (!data || !data.vision) {
         console.warn('[hub] /api/vision returned 200 but no vision payload', data);
         setMessages((prev) => {

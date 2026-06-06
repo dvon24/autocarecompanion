@@ -303,12 +303,12 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
   // AND the ~1500 tokens of JSON output we actually want. Earlier value (1800)
   // was getting fully consumed by reasoning, leaving message.content empty and
   // triggering the misleading "empty response" path.
-  // detail: 'low' fixes a hard 512×512 image input — the fastest tier
-  // per OpenAI docs. For "is this a rim/headlight/spark plug?" part-ID
-  // it's more than enough; we lose some ability to read tiny text or
-  // spot hairline cracks but gain ~3-5x latency improvement which is
-  // load-bearing for the MVP magic moment. Bumping to 'high' is a
-  // future opt-in for "show me a more detailed answer".
+  // detail: 'high' — 'low' (512×512) couldn't resolve enough on a
+  // tire sidewall to give a populated card; user reported "no analyse"
+  // even though the request succeeded. 'high' allows up to 2500
+  // patches which our 1920px downscaled photo fits comfortably under.
+  // gpt-5.2 + 'high' still completes well under 30s because gpt-5.2
+  // doesn't burn reasoning tokens like gpt-5.5 did.
   // max_completion_tokens: 2500 — gpt-5.2 is non-reasoning so it
   // doesn't need the 5500-token buffer gpt-5.5 was burning on thinking.
   const openaiBody = {
@@ -320,7 +320,7 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
         role: 'user',
         content: [
           { type: 'text', text: caption ? `My note: ${caption}\n\nWhat is this and what do I need to fix it?` : 'What is this and what do I need to fix it?' },
-          { type: 'image_url', image_url: { url: dataUrl, detail: 'low' } },
+          { type: 'image_url', image_url: { url: dataUrl, detail: 'high' } },
         ],
       },
     ],
@@ -465,6 +465,16 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
     quotaRemaining: quota.remaining,
     quotaResetAt: quota.resetAt.toISOString(),
   };
+
+  vlog('result_shaped', {
+    summaryLen: result.summary.length,
+    summaryHead: result.summary.slice(0, 120),
+    isCarRelated: result.isCarRelated,
+    hasPrimary: !!result.primaryPart,
+    kitCount: result.kitItems.length,
+    relatedCount: result.relatedIssues.length,
+    confidence: result.confidence,
+  });
 
   return respond({ vision: result });
 }
