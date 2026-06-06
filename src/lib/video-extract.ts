@@ -20,6 +20,9 @@ const FRAME_MAX_DIMENSION = 1024;
 const FRAME_JPEG_QUALITY = 0.82;
 const MAX_VIDEO_SECONDS = 30;
 const AUDIO_CAPTURE_TIMEOUT_MS = 35_000;
+const VIDEO_LOAD_TIMEOUT_MS = 12_000;
+const SEEK_TIMEOUT_MS = 4_000;
+const OVERALL_EXTRACT_TIMEOUT_MS = 45_000;
 
 export interface VideoExtractResult {
   frames: File[];
@@ -44,7 +47,21 @@ export async function extractVideoFrames(
     throw new Error('video-extract: server-side call');
   }
 
-  // Load the video into a hidden HTMLVideoElement.
+  // Hard wall-clock timeout on the whole extraction so a stuck
+  // HEVC decode or never-fired 'seeked' event surfaces as an error
+  // instead of pinning the spinner forever.
+  return Promise.race([
+    extractVideoFramesInner(file, frameCount),
+    new Promise<VideoExtractResult>((_, reject) =>
+      setTimeout(() => reject(new Error('extraction timed out — try a shorter clip or a different format (MP4 if possible)')), OVERALL_EXTRACT_TIMEOUT_MS),
+    ),
+  ]);
+}
+
+async function extractVideoFramesInner(
+  file: File,
+  frameCount: number,
+): Promise<VideoExtractResult> {
   const url = URL.createObjectURL(file);
   const video = await loadVideo(url);
   const rawDuration = Number.isFinite(video.duration) ? video.duration : 0;
@@ -52,6 +69,7 @@ export async function extractVideoFrames(
 
   if (duration <= 0) {
     URL.revokeObjectURL(url);
+    if (video.parentNode) video.parentNode.removeChild(video);
     throw new Error('video-extract: could not read duration');
   }
 
@@ -91,7 +109,7 @@ export async function extractVideoFrames(
   }
 
   URL.revokeObjectURL(url);
-  video.remove?.();
+  if (video.parentNode) video.parentNode.removeChild(video);
 
   return {
     frames,
@@ -106,20 +124,60 @@ export async function extractVideoFrames(
 function loadVideo(src: string): Promise<HTMLVideoElement> {
   return new Promise((resolve, reject) => {
     const video = document.createElement('video');
-    // iOS Safari requires these to allow programmatic seek + read.
+    // iOS Safari requires muted+playsInline to allow programmatic
+    // play() + read. DO NOT set crossOrigin on blob URLs — it puts
+    // the element into a tainted state that prevents canvas draw
+    // (and on some Safari versions blocks loadedmetadata entirely).
     video.muted = true;
     video.playsInline = true;
     video.preload = 'auto';
-    video.crossOrigin = 'anonymous';
+    video.setAttribute('webkit-playsinline', 'true');
+    // Position offscreen but ATTACH to DOM. iOS Safari does not fire
+    // loadedmetadata on detached <video> elements with HEVC MOV
+    // content from iPhone — that's the bug that caused
+    // extract_start with no extract_done on the user's 19MB MOV.
+    video.style.position = 'fixed';
+    video.style.left = '-9999px';
+    video.style.top = '-9999px';
+    video.style.width = '1px';
+    video.style.height = '1px';
+    video.style.opacity = '0';
+    video.style.pointerEvents = 'none';
+    document.body.appendChild(video);
     video.src = src;
+
+    let done = false;
     const cleanup = () => {
       video.removeEventListener('loadedmetadata', onMeta);
       video.removeEventListener('error', onErr);
+      clearTimeout(timer);
     };
-    const onMeta = () => { cleanup(); resolve(video); };
-    const onErr = () => { cleanup(); reject(new Error('video load failed')); };
+    const onMeta = () => {
+      if (done) return;
+      done = true;
+      cleanup();
+      resolve(video);
+    };
+    const onErr = () => {
+      if (done) return;
+      done = true;
+      cleanup();
+      if (video.parentNode) video.parentNode.removeChild(video);
+      reject(new Error('video load failed — format may be unsupported (try MP4)'));
+    };
+    const timer = setTimeout(() => {
+      if (done) return;
+      done = true;
+      cleanup();
+      if (video.parentNode) video.parentNode.removeChild(video);
+      reject(new Error('video metadata load timed out — try a shorter or different-format clip'));
+    }, VIDEO_LOAD_TIMEOUT_MS);
+
     video.addEventListener('loadedmetadata', onMeta);
     video.addEventListener('error', onErr);
+    // Kick the load explicitly (some Safari versions hold off when
+    // preload='auto' is the default).
+    try { video.load(); } catch { /* */ }
   });
 }
 
@@ -151,13 +209,20 @@ async function captureFrameAt(video: HTMLVideoElement, t: number, idx: number): 
 
 function seekTo(video: HTMLVideoElement, t: number): Promise<void> {
   return new Promise((resolve) => {
-    const onSeeked = () => {
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
       video.removeEventListener('seeked', onSeeked);
+      clearTimeout(timer);
       resolve();
     };
+    const onSeeked = () => finish();
+    // Hard timeout — if 'seeked' never fires (HEVC quirk, codec
+    // hiccup) we resolve anyway and the next captureFrameAt attempt
+    // either gets the current frame or fails downstream.
+    const timer = setTimeout(finish, SEEK_TIMEOUT_MS);
     video.addEventListener('seeked', onSeeked);
-    // Some browsers don't fire 'seeked' if the target is already the
-    // current time — guard with a small offset.
     video.currentTime = Math.max(0, t);
   });
 }
