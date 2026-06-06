@@ -144,6 +144,13 @@ export type VehicleMatch = 'confident' | 'uncertain' | 'likely_mismatch';
 
 export interface VisionResultV2 {
   schemaVersion: 2;
+  /** Which input flavor produced this response. */
+  mode?: 'photo' | 'video';
+  /** Whisper-1 transcript of the audio track when mode==='video' and
+   *  audio was extracted. Empty string / undefined otherwise. */
+  transcript?: string;
+  /** Number of frames analyzed when mode==='video'. */
+  framesAnalyzed?: number;
   summary: string;
   /** Overall confidence, weighted across parts. */
   confidence: number;

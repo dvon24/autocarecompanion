@@ -168,19 +168,47 @@ export async function POST(request: NextRequest) {
   }
   vlog('formdata_parsed');
 
-  const imageFile = form.get('image');
-  if (!(imageFile instanceof File)) {
-    return failWithRefund({ error: 'missing_image' }, 400);
-  }
-  if (imageFile.size > MAX_IMAGE_BYTES) {
-    return failWithRefund({ error: 'image_too_large', message: 'Image must be 10MB or smaller. Try a lower-quality phone setting or crop tighter.' }, 413);
-  }
-  // OpenAI vision accepts PNG, JPEG, WebP, and non-animated GIF only —
-  // NOT HEIC/HEIF. The downscaler is supposed to convert HEIC client-side
-  // before upload; if a HEIC slips through, reject early with a clear
-  // message rather than waste an OAI call that 400s.
-  if (!/^image\/(jpe?g|png|webp|gif)$/i.test(imageFile.type || '')) {
-    return failWithRefund({ error: 'unsupported_type', message: 'Use a JPEG, PNG, or WebP image. iPhone HEIC photos: enable "Most Compatible" in Settings → Camera → Formats, then try again.' }, 415);
+  // ─── Detect mode: single image (photo) vs multi-frame + audio (video) ─
+  //
+  // Photo flow (unchanged): form.get('image') → one File.
+  // Video flow (new):       form.getAll('frames') → N Files + optional
+  //                         form.get('audio') → one File for Whisper.
+  // Mode is implicit from which field is present.
+  const rawFrames = form.getAll('frames').filter((f): f is File => f instanceof File);
+  const isVideoMode = rawFrames.length > 0;
+
+  let images: File[] = [];
+  let audioFile: File | null = null;
+  let mode: 'photo' | 'video' = 'photo';
+
+  if (isVideoMode) {
+    mode = 'video';
+    images = rawFrames.slice(0, 6); // cap at 6 frames to bound cost
+    for (const f of images) {
+      if (f.size > MAX_IMAGE_BYTES) {
+        return failWithRefund({ error: 'image_too_large', message: 'One of your video frames is too large. Try a shorter clip.' }, 413);
+      }
+      if (!/^image\/(jpe?g|png|webp|gif)$/i.test(f.type || '')) {
+        return failWithRefund({ error: 'unsupported_type', message: 'Video frames must be JPEG/PNG/WebP — the client extractor should produce these automatically.' }, 415);
+      }
+    }
+    const rawAudio = form.get('audio');
+    if (rawAudio instanceof File && rawAudio.size > 200 && rawAudio.size < 20 * 1024 * 1024) {
+      audioFile = rawAudio;
+    }
+    vlog('video_mode', { frameCount: images.length, hasAudio: !!audioFile, audioSize: audioFile?.size || 0 });
+  } else {
+    const imageFile = form.get('image');
+    if (!(imageFile instanceof File)) {
+      return failWithRefund({ error: 'missing_image' }, 400);
+    }
+    if (imageFile.size > MAX_IMAGE_BYTES) {
+      return failWithRefund({ error: 'image_too_large', message: 'Image must be 10MB or smaller. Try a lower-quality phone setting or crop tighter.' }, 413);
+    }
+    if (!/^image\/(jpe?g|png|webp|gif)$/i.test(imageFile.type || '')) {
+      return failWithRefund({ error: 'unsupported_type', message: 'Use a JPEG, PNG, or WebP image. iPhone HEIC photos: enable "Most Compatible" in Settings → Camera → Formats, then try again.' }, 415);
+    }
+    images = [imageFile];
   }
 
   let vehicle: VehicleCtx | null = null;
@@ -191,13 +219,51 @@ export async function POST(request: NextRequest) {
 
   const caption = (form.get('caption') as string | null) || '';
 
-  vlog('image_validated', { size: imageFile.size, type: imageFile.type });
+  vlog('images_validated', { mode, count: images.length, totalBytes: images.reduce((s, f) => s + f.size, 0) });
 
-  // Convert to base64 data URL for the OpenAI vision call. In-memory
-  // only — never written to disk.
-  const buf = Buffer.from(await imageFile.arrayBuffer());
-  const dataUrl = `data:${imageFile.type};base64,${buf.toString('base64')}`;
-  vlog('buffer_built', { bytes: buf.length });
+  // ─── Whisper transcription for video audio (if present) ─────────
+  //
+  // OpenAI whisper-1 accepts the audio file directly (webm/mp4/m4a/
+  // mp3/wav/ogg). Cost is ~$0.006/min — basically free at 30s clips.
+  // Result transcript gets injected into the gpt-5.5 prompt as user
+  // context so the model can correlate spoken complaint with visual
+  // symptoms ("clicks when I brake" + frame showing rotor groove =
+  // higher diagnostic confidence).
+  let audioTranscript = '';
+  if (audioFile) {
+    try {
+      vlog('whisper_start', { audioSize: audioFile.size, audioType: audioFile.type });
+      const whisperForm = new FormData();
+      whisperForm.append('file', audioFile);
+      whisperForm.append('model', 'whisper-1');
+      whisperForm.append('response_format', 'text');
+      const whisperResp = await fetch('https://api.openai.com/v1/audio/transcriptions', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${OPENAI_KEY}` },
+        body: whisperForm,
+        signal: AbortSignal.timeout(25_000),
+      });
+      if (whisperResp.ok) {
+        audioTranscript = (await whisperResp.text()).trim().slice(0, 1000);
+        vlog('whisper_done', { transcriptLen: audioTranscript.length });
+      } else {
+        vlog('whisper_failed', { status: whisperResp.status });
+      }
+    } catch (err) {
+      vlog('whisper_error', { err: err instanceof Error ? err.message : String(err) });
+    }
+  }
+
+  // Convert each image to base64 data URL for the OpenAI vision call.
+  // In-memory only — never written to disk.
+  const dataUrls: string[] = [];
+  let totalBytes = 0;
+  for (const img of images) {
+    const buf = Buffer.from(await img.arrayBuffer());
+    totalBytes += buf.length;
+    dataUrls.push(`data:${img.type};base64,${buf.toString('base64')}`);
+  }
+  vlog('buffer_built', { count: dataUrls.length, totalBytes });
 
   // Load context: known issues + cached parts for this vehicle, so the
   // vision model's answer is grounded in YMMT-specific knowledge.
@@ -269,7 +335,11 @@ ${lines.join('\n')}`;
 
 Vehicle: ${vehicleDesc}.${specsContext}${knownIssuesContext}${cachedPartsContext}
 
-User's description (may be empty): ${caption || '(none provided)'}
+${mode === 'video'
+  ? `INPUT MODE: VIDEO — you are seeing ${images.length} frames sampled evenly across a short video clip the user uploaded. Look across the frames for symptoms that change over time: rotor pulsing under braking, fluid drip, dashboard warning light flicker, belt slap, smoke. Frame 1 is earliest, frame ${images.length} is latest. The frames are NOT separate photos of separate parts — they're moments of the SAME scene.${audioTranscript ? `\n\nAUDIO TRANSCRIPT (Whisper) from the same clip: "${audioTranscript}"\nUse this as additional context — the user's spoken complaint correlates with what you should look for visually. If the transcript mentions a noise ("clicking", "grinding", "whining"), call that out in the summary and weight your part identification toward the likely source.` : ''}`
+  : `INPUT MODE: PHOTO — single still image.`}
+
+User's typed description (may be empty): ${caption || '(none provided)'}
 
 Your job:
 1. Identify what's visible in the photo — be specific (e.g., "driver-side LED projector headlight assembly with cracked lens" not just "headlight").
@@ -358,15 +428,27 @@ Return ONLY a JSON object — no markdown fences, no preamble. Start with { end 
   //     so we don't need the extractJson fallback (kept anyway as a
   //     defensive belt-and-suspenders for upstream weirdness)
   //   - `max_output_tokens` replaces `max_completion_tokens`
+  const userContent: Array<{ type: string; text?: string; image_url?: string; detail?: string }> = [
+    {
+      type: 'input_text',
+      text: mode === 'video'
+        ? (caption
+            ? `My note: ${caption}\n\n${audioTranscript ? `What I said in the clip: "${audioTranscript}"\n\n` : ''}What's wrong and what do I need to fix it?`
+            : `${audioTranscript ? `What I said in the clip: "${audioTranscript}"\n\n` : ''}What's wrong and what do I need to fix it?`)
+        : (caption ? `My note: ${caption}\n\nWhat is this and what do I need to fix it?` : 'What is this and what do I need to fix it?'),
+    },
+  ];
+  for (const u of dataUrls) {
+    userContent.push({ type: 'input_image', image_url: u, detail: 'high' });
+  }
+
   const openaiBody = {
     model: MODEL,
     reasoning: { effort: 'low' },
     text: { format: { type: 'json_object' } },
-    // Bumped 2500 -> 4000 for the multi-part shape: each identifiedPart
-    // entry runs ~120 tokens (name, spec, position, oemPartNumbers,
-    // aftermarketPartNumbers, vendorLinks, notes). A 7-part wheel photo
-    // = ~840 tokens of parts alone, plus summary + tools + warnings.
-    max_output_tokens: 4000,
+    // 4000 for photo (single frame); 5500 for video (multiple frames +
+    // potentially noise classification in the summary).
+    max_output_tokens: mode === 'video' ? 5500 : 4000,
     input: [
       {
         role: 'system',
@@ -374,10 +456,7 @@ Return ONLY a JSON object — no markdown fences, no preamble. Start with { end 
       },
       {
         role: 'user',
-        content: [
-          { type: 'input_text', text: caption ? `My note: ${caption}\n\nWhat is this and what do I need to fix it?` : 'What is this and what do I need to fix it?' },
-          { type: 'input_image', image_url: dataUrl, detail: 'high' },
-        ],
+        content: userContent,
       },
     ],
   };
@@ -633,6 +712,9 @@ Return ONLY a JSON object — no markdown fences, no preamble. Start with { end 
   const vehicleMatchRaw = String(parsed.vehicleMatch || 'uncertain').toLowerCase();
   const result = {
     schemaVersion: 2 as const,
+    mode,
+    transcript: audioTranscript || undefined,
+    framesAnalyzed: mode === 'video' ? images.length : undefined,
     summary: String(parsed.summary || ''),
     confidence: typeof parsed.confidence === 'number' ? parsed.confidence : 0.5,
     isCarRelated: parsed.isCarRelated !== false,
