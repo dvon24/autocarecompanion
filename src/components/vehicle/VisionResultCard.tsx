@@ -20,6 +20,12 @@ export interface VisionResult {
   summary: string;
   confidence: number;
   isCarRelated: boolean;
+  /** AI's verdict on whether the photo is from the user's currently-viewed
+   *  vehicle. 'likely_mismatch' renders a prominent warning so users don't
+   *  buy Camaro parts for a Challenger photo. */
+  vehicleMatch?: 'confident' | 'uncertain' | 'likely_mismatch';
+  /** What visual cue the AI used to reach the vehicleMatch verdict. */
+  vehicleMatchNote?: string;
   primaryPart: VisionItem | null;
   kitItems: VisionItem[];
   consumables: VisionItem[];
@@ -80,9 +86,27 @@ export function VisionResultCard({ vision }: { vision: VisionResult }) {
 
   const difficultyLabel = vision.difficulty === 'easy' ? 'Easy' : vision.difficulty === 'hard' ? 'Hard' : 'Medium';
   const confidencePct = Math.round((vision.confidence || 0) * 100);
+  const isMismatch = vision.vehicleMatch === 'likely_mismatch';
+  const isUncertain = vision.vehicleMatch === 'uncertain';
 
   return (
     <div className="vr-card">
+      {/* Vehicle-match warning banner. Renders ABOVE everything else when
+          the AI flagged the photo as likely from a different vehicle than
+          the one the user is currently viewing. Without this, users buy
+          Camaro parts based on a Challenger photo and the trust is gone. */}
+      {isMismatch && (
+        <div className="vr-mismatch">
+          <div className="vr-mismatch-icon" aria-hidden>⚠️</div>
+          <div className="vr-mismatch-body">
+            <div className="vr-mismatch-title">This photo might not be from your vehicle</div>
+            {vision.vehicleMatchNote && (
+              <div className="vr-mismatch-note">What I saw: {vision.vehicleMatchNote}</div>
+            )}
+            <div className="vr-mismatch-cta">Switch to the correct vehicle before buying parts — fitment may be wrong.</div>
+          </div>
+        </div>
+      )}
       <div className="vr-head">
         {vision.imagePreviewUrl && (
           // eslint-disable-next-line @next/next/no-img-element
@@ -94,6 +118,11 @@ export function VisionResultCard({ vision }: { vision: VisionResult }) {
             AU7O VISION · {confidencePct}% CONFIDENT
           </div>
           <div className="vr-summary">{vision.summary}</div>
+          {isUncertain && vision.vehicleMatchNote && (
+            <div className="vr-uncertain">
+              Confirm this is from your vehicle before ordering — {vision.vehicleMatchNote.toLowerCase()}.
+            </div>
+          )}
         </div>
       </div>
 
@@ -221,6 +250,25 @@ const cardStyles = `
     50%     { box-shadow: 0 0 0 6px rgba(37,99,235,0); }
   }
   .vr-summary { color: #0B1220; font-size: 14px; line-height: 1.4; }
+  .vr-uncertain {
+    font-size: 12px; color: #92400E; font-style: italic;
+    margin-top: 6px; line-height: 1.4;
+  }
+  .vr-mismatch {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 12px 14px;
+    background: #FEF2F2; border-bottom: 1px solid #FECACA;
+  }
+  .vr-mismatch-icon { font-size: 20px; flex: 0 0 auto; line-height: 1; }
+  .vr-mismatch-body { flex: 1; min-width: 0; }
+  .vr-mismatch-title { font-size: 13.5px; font-weight: 600; color: #991B1B; line-height: 1.3; }
+  .vr-mismatch-note {
+    font-size: 11.5px; color: #7F1D1D; margin-top: 4px;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+  .vr-mismatch-cta {
+    font-size: 12px; color: #7F1D1D; margin-top: 6px; line-height: 1.4;
+  }
   .vr-section { padding: 12px 16px; border-bottom: 1px solid var(--paper-line, #E3DFD4); }
   .vr-section:last-of-type { border-bottom: 0; }
   .vr-section-label {

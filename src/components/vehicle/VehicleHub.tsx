@@ -1277,40 +1277,55 @@ function MobileHub({
             <div key={idx} className="m-row-au7o">
               <Image src="/og-image.png" alt="" width={22} height={22} className="m-mascot" />
               <div className="m-au7o-body">
-                {!m.content
-                  ? <span className="m-typing">…</span>
-                  : visibleBody.trim().length > 0
-                    ? renderMarkdownLite(visibleBody)
-                    : null}
-                {m.schedule && (
-                  <MaintenanceSchedule
-                    schedule={m.schedule}
-                    onTaskTap={(_typeId, name) => {
-                      onSend(`How do I do a ${name.toLowerCase()} on my ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}?`);
-                    }}
-                  />
-                )}
-                {matched.length > 0 && <IssueAttachmentGroup issues={matched} />}
-                {m.route ? (
-                  <MiniRoute
-                    route={m.route}
-                    onOpenDrive={() => {
-                      const dest = m.route!.destination.placeName || (drive?.destination ?? '');
-                      const href = dest ? `/drive?to=${encodeURIComponent(dest)}` : '/drive';
-                      window.location.href = href;
-                    }}
-                  />
+                {/* Rich attachment branches FIRST — mirror Au7oReply on
+                    desktop. Without these, m.vision and m.gate were
+                    silently swallowed: handlePhotoUpload sets
+                    {content:'', vision:VisionResult}, and the mobile
+                    renderer's `!m.content` typing-dots path took over,
+                    showing an empty bubble. Same bug for the gate card
+                    (subscription paywall) on mobile. */}
+                {m.vision ? (
+                  <VisionResultCard vision={m.vision} />
+                ) : m.gate ? (
+                  <InlineGateCard gate={m.gate} />
                 ) : (
-                  drive && <DriveHandoff destination={drive.destination} />
-                )}
-                {followUps.length > 0 && (
-                  <div className="m-followups">
-                    {followUps.map((q, i) => (
-                      <button key={i} className="m-followup-chip" onClick={() => onSend(q)} disabled={pending}>
-                        {q}
-                      </button>
-                    ))}
-                  </div>
+                  <>
+                    {!m.content
+                      ? <span className="m-typing">…</span>
+                      : visibleBody.trim().length > 0
+                        ? renderMarkdownLite(visibleBody)
+                        : null}
+                    {m.schedule && (
+                      <MaintenanceSchedule
+                        schedule={m.schedule}
+                        onTaskTap={(_typeId, name) => {
+                          onSend(`How do I do a ${name.toLowerCase()} on my ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}?`);
+                        }}
+                      />
+                    )}
+                    {matched.length > 0 && <IssueAttachmentGroup issues={matched} />}
+                    {m.route ? (
+                      <MiniRoute
+                        route={m.route}
+                        onOpenDrive={() => {
+                          const dest = m.route!.destination.placeName || (drive?.destination ?? '');
+                          const href = dest ? `/drive?to=${encodeURIComponent(dest)}` : '/drive';
+                          window.location.href = href;
+                        }}
+                      />
+                    ) : (
+                      drive && <DriveHandoff destination={drive.destination} />
+                    )}
+                    {followUps.length > 0 && (
+                      <div className="m-followups">
+                        {followUps.map((q, i) => (
+                          <button key={i} className="m-followup-chip" onClick={() => onSend(q)} disabled={pending}>
+                            {q}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             </div>

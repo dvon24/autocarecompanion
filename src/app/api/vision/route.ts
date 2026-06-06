@@ -272,16 +272,24 @@ User's description (may be empty): ${caption || '(none provided)'}
 Your job:
 1. Identify what's visible in the photo — be specific (e.g., "driver-side LED projector headlight assembly with cracked lens" not just "headlight").
 2. If the photo is NOT a car part or vehicle area, say so clearly — do not invent an answer. Set primaryPart = null in that case.
-3. If the part is visible, cross-reference the KNOWN ISSUES list above. If the photo matches a documented issue for THIS vehicle, link it via its id.
-4. Provide the COMPLETE repair kit: main part + fasteners (bolts/clips/washers) + consumables (gaskets/fluids/sealants) + tools needed. Owners under-purchase one of these and have to make a second trip — that's what we solve.
-5. For each part, give a search query Amazon would understand (with brand + part number when possible). Use the Au7o affiliate tag: au7o-20.
-6. Difficulty: easy / medium / hard. Estimated DIY time. Safety warnings if any.
+3. **Vehicle-match check.** The user is currently viewing their ${vehicleDesc}. Look for any visible cue that identifies the source vehicle of this photo: brand badges (Mopar, Honda, Ford), distinctive body lines, specific wheel/grille designs, license plate, interior trim. Compare against the user's vehicle and set vehicleMatch:
+   - "confident" — visible cues clearly match the user's vehicle OR the part is generic enough (e.g., universal tire, common spark plug) that source vehicle doesn't matter for fitment
+   - "uncertain" — you cannot tell from the photo what vehicle this is from (most common case for clean part close-ups)
+   - "likely_mismatch" — you see clear visual evidence this part is from a different make/model than the user's (e.g., a SRT badge or Mopar logo when user owns a Camaro)
+   Populate vehicleMatchNote with the actual visual cue you used to reach the verdict ("No identifying marks visible" / "Mopar logo visible on caliper" / "Bowtie badge consistent with Chevrolet").
+   If vehicleMatch is "likely_mismatch", DO NOT confidently recommend parts for the user's vehicle — populate summary with the mismatch warning and set primaryPart=null.
+4. If the part is visible AND vehicleMatch is not "likely_mismatch", cross-reference the KNOWN ISSUES list above. If the photo matches a documented issue for THIS vehicle, link it via its id.
+5. Provide the COMPLETE repair kit: main part + fasteners (bolts/clips/washers) + consumables (gaskets/fluids/sealants) + tools needed. Owners under-purchase one of these and have to make a second trip — that's what we solve.
+6. For each part, give a search query Amazon would understand (with brand + part number when possible). Use the Au7o affiliate tag: au7o-20.
+7. Difficulty: easy / medium / hard. Estimated DIY time. Safety warnings if any.
 
 Return ONLY a JSON object — no markdown fences, no preamble, no commentary before or after. Start your response with { and end it with }. Schema:
 {
   "summary": "1-2 sentence plain-English diagnosis the user can scan in 3 seconds",
   "confidence": 0.0-1.0,
   "isCarRelated": true|false,
+  "vehicleMatch": "confident"|"uncertain"|"likely_mismatch",
+  "vehicleMatchNote": "what visual cue you used — e.g. 'No identifying marks visible' or 'Mopar logo on caliper'",
   "primaryPart": null OR {
     "name": "...",
     "brand": "...",
@@ -490,10 +498,14 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
     } catch { /* silent */ }
   }
 
+  const validVehicleMatch = ['confident', 'uncertain', 'likely_mismatch'];
+  const vehicleMatchRaw = String(parsed.vehicleMatch || 'uncertain').toLowerCase();
   const result = {
     summary: String(parsed.summary || ''),
     confidence: typeof parsed.confidence === 'number' ? parsed.confidence : 0.5,
     isCarRelated: parsed.isCarRelated !== false,
+    vehicleMatch: (validVehicleMatch.includes(vehicleMatchRaw) ? vehicleMatchRaw : 'uncertain') as 'confident' | 'uncertain' | 'likely_mismatch',
+    vehicleMatchNote: String(parsed.vehicleMatchNote || '').slice(0, 300),
     primaryPart: primary,
     kitItems: (Array.isArray(parsed.kitItems) ? parsed.kitItems : []).map(decorateItem).filter(Boolean),
     consumables: (Array.isArray(parsed.consumables) ? parsed.consumables : []).map(decorateItem).filter(Boolean),
@@ -510,6 +522,8 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
     summaryLen: result.summary.length,
     summaryHead: result.summary.slice(0, 120),
     isCarRelated: result.isCarRelated,
+    vehicleMatch: result.vehicleMatch,
+    vehicleMatchNote: result.vehicleMatchNote.slice(0, 80),
     hasPrimary: !!result.primaryPart,
     kitCount: result.kitItems.length,
     relatedCount: result.relatedIssues.length,
