@@ -47,10 +47,12 @@ export const runtime = 'nodejs';
 
 const OPENAI_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
-// Vision model can be overridden via env without a redeploy. Defaults to
-// gpt-5.5 (same as hub-chat). If a model rejects vision OR json_object
-// mode, OPENAI_VISION_MODEL=gpt-5.2 (or gpt-4o) is a safer swap.
-const MODEL = process.env.OPENAI_VISION_MODEL || 'gpt-5.5';
+// Default to gpt-5.2 because gpt-5.5 (reasoning model) was consistently
+// hitting our 55s OpenAI timeout on production uploads — proven by the
+// diagnostic trace from build f155c5b showing 58.9s server response.
+// gpt-5.2 is a non-reasoning vision-capable model that responds in
+// ~5-10s reliably. Override via OPENAI_VISION_MODEL env var.
+const MODEL = process.env.OPENAI_VISION_MODEL || 'gpt-5.2';
 const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
 const SUBSCRIBER_MONTHLY_CAP = 10_000; // effective unlimited; throttles only runaway abuse
 
@@ -301,25 +303,24 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
   // AND the ~1500 tokens of JSON output we actually want. Earlier value (1800)
   // was getting fully consumed by reasoning, leaving message.content empty and
   // triggering the misleading "empty response" path.
-  // detail: 'high' explicitly. Per OpenAI docs, on gpt-5.5 `detail: 'auto'`
-  // is EQUIVALENT to 'original' (up to 10,000 patches / 6000px) — not a
-  // smart-pick-low-or-high. Our client downscales to 1920px max so the
-  // image is ~2040 patches either way; 'high' (≤2500 patch budget) is
-  // the right semantic choice — high-fidelity automotive part ID is
-  // exactly what 'high' is documented for, and 'auto'/'original' just
-  // adds patch budget headroom we don't need.
-  // 5500 covers gpt-5.5's reasoning burn (1-3k) + the ~1500 tokens of
-  // JSON output. The earlier 3500 was on the edge of clipping content.
+  // detail: 'low' fixes a hard 512×512 image input — the fastest tier
+  // per OpenAI docs. For "is this a rim/headlight/spark plug?" part-ID
+  // it's more than enough; we lose some ability to read tiny text or
+  // spot hairline cracks but gain ~3-5x latency improvement which is
+  // load-bearing for the MVP magic moment. Bumping to 'high' is a
+  // future opt-in for "show me a more detailed answer".
+  // max_completion_tokens: 2500 — gpt-5.2 is non-reasoning so it
+  // doesn't need the 5500-token buffer gpt-5.5 was burning on thinking.
   const openaiBody = {
     model: MODEL,
-    max_completion_tokens: 5500,
+    max_completion_tokens: 2500,
     messages: [
       { role: 'system', content: SYSTEM_PROMPT },
       {
         role: 'user',
         content: [
           { type: 'text', text: caption ? `My note: ${caption}\n\nWhat is this and what do I need to fix it?` : 'What is this and what do I need to fix it?' },
-          { type: 'image_url', image_url: { url: dataUrl, detail: 'high' } },
+          { type: 'image_url', image_url: { url: dataUrl, detail: 'low' } },
         ],
       },
     ],
