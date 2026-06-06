@@ -97,11 +97,24 @@ export default async function HomePage() {
   try {
     const session = await auth();
     if (session?.user?.id) {
-      const primary = await prisma.vehicle.findFirst({
-        where: { userId: session.user.id },
-        orderBy: [{ isPrimary: 'desc' }, { updatedAt: 'desc' }],
-        select: { year: true, make: true, model: true, trim: true },
-      });
+      const [user, primary] = await Promise.all([
+        prisma.user.findUnique({
+          where: { id: session.user.id },
+          select: { onboardingCompletedAt: true },
+        }),
+        prisma.vehicle.findFirst({
+          where: { userId: session.user.id },
+          orderBy: [{ isPrimary: 'desc' }, { updatedAt: 'desc' }],
+          select: { year: true, make: true, model: true, trim: true },
+        }),
+      ]);
+      // Phase 2 onboarding gate — anyone who hasn't completed it gets
+      // walked through it on their first visit to / after signup.
+      // Idempotent because /onboarding itself bounces completed users
+      // back here.
+      if (user && !user.onboardingCompletedAt) {
+        redirect('/onboarding');
+      }
       if (primary) {
         redirect(`/vehicle/${vehicleSlug(primary.year, primary.make, primary.model, primary.trim)}`);
       }

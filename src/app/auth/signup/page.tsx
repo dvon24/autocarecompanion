@@ -78,7 +78,14 @@ function SignUpForm() {
         return;
       }
 
-      window.location.href = callbackUrl;
+      // First-time signups land in onboarding. The /onboarding page is
+      // idempotent — if the user came from a deep-link with a real
+      // callbackUrl (rare, e.g. paste-into-browser from a marketing
+      // link), we honor that and skip onboarding. Otherwise everyone
+      // goes through the three-step flow before reaching the hub.
+      const goingDeep = callbackUrl && callbackUrl !== '/' && callbackUrl !== '/garage' && !callbackUrl.startsWith('/auth');
+      const target = goingDeep ? callbackUrl : '/onboarding';
+      window.location.href = target;
     } catch {
       setError('Network error. Try again.');
     } finally {

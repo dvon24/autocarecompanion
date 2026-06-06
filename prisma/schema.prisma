@@ -37,6 +37,12 @@ model User {
   // settings if they want chat/guides/parts AI lookups back.
   aiProcessingOptOut Boolean @default(false)
 
+  // Phase 2 onboarding — null until user finishes the first-run flow.
+  // Persisted as a timestamp so we can compute time-since-completion
+  // for cohort analytics; null means show onboarding on next /vehicle
+  // hub visit (one-shot).
+  onboardingCompletedAt DateTime?
+
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
 
