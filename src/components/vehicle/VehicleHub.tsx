@@ -1088,6 +1088,7 @@ export function VehicleHub({
         onOpenThreads={() => setThreadsOpen(true)}
         onCloseThreads={() => setThreadsOpen(false)}
         onPhotoUpload={handlePhotoUpload}
+        onVideoUpload={handleVideoUpload}
       />
 
       <style jsx>{`
@@ -1165,7 +1166,7 @@ function MobileHub({
   vehicle, slug, isAuthed, currentMileage, opener, schedule, attachableIssues,
   maintenanceSuggestions, recentThreads, user,
   messages, input, pending, threadsOpen,
-  onChangeInput, onSend, onOpenThreads, onCloseThreads, onSelectThread, onPhotoUpload,
+  onChangeInput, onSend, onOpenThreads, onCloseThreads, onSelectThread, onPhotoUpload, onVideoUpload,
 }: {
   vehicle: VehicleHubProps['vehicle'];
   slug: string;
@@ -1188,10 +1189,12 @@ function MobileHub({
   onCloseThreads: () => void;
   onSelectThread?: (threadId: string) => void;
   onPhotoUpload?: (file: File) => void;
+  onVideoUpload?: (file: File) => void;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const taRef = useRef<HTMLTextAreaElement>(null);
   const photoInputRef = useRef<HTMLInputElement>(null);
+  const videoInputRef = useRef<HTMLInputElement>(null);
   // Tap-to-expand for the greeting body. Starts collapsed (faded behind
   // the COMMON ISSUES card); tap reveals the full opener text.
   const [greetExpanded, setGreetExpanded] = useState(false);
@@ -1555,6 +1558,17 @@ function MobileHub({
             if (e.target) e.target.value = '';
           }}
         />
+        <input
+          ref={videoInputRef}
+          type="file"
+          accept="video/*"
+          style={{ display: 'none' }}
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file && onVideoUpload) onVideoUpload(file);
+            if (e.target) e.target.value = '';
+          }}
+        />
         <div className="m-composer">
           <Icon name="chat" size={13} style={{ color: 'var(--slate-400)' }} />
           <textarea
@@ -1577,8 +1591,15 @@ function MobileHub({
           >
             <Icon name="camera" size={13} />
           </button>
-          <button type="button" className="m-mic-btn" disabled aria-label="Voice (coming soon)" title="Voice — coming soon">
-            <Icon name="mic" size={13} />
+          <button
+            type="button"
+            className="m-mic-btn"
+            onClick={() => videoInputRef.current?.click()}
+            disabled={pending || !onVideoUpload}
+            aria-label="Record or upload a video for diagnosis"
+            title="Record a short clip — AI sees frames + hears noises to diagnose"
+          >
+            <Icon name="video" size={13} />
           </button>
           <button
             type="button"

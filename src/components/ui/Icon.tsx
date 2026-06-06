@@ -47,6 +47,7 @@ export type IconName =
   | 'dollar'
   | 'clock'
   | 'camera'
+  | 'video'
   | 'paperclip';
 
 interface IconProps {
@@ -139,6 +140,8 @@ export function Icon({ name, size = 18, stroke = 1.6, style, className, ...rest 
       return <svg style={s} className={className} {...common}><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>;
     case 'camera':
       return <svg style={s} className={className} {...common}><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2v11Z"/><circle cx="12" cy="13" r="4"/></svg>;
+    case 'video':
+      return <svg style={s} className={className} {...common}><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M17 10l4-2v8l-4-2z"/></svg>;
     case 'paperclip':
       return <svg style={s} className={className} {...common}><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>;
     default:
