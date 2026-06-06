@@ -49,6 +49,34 @@ export interface PhotoQuotaResult {
  * prefix of "photo:user:<id>" and store the month-start in weekStart.
  * Photo entries can co-exist with chat entries because the key is unique.
  */
+/**
+ * Decrement a previously-consumed photo quota credit. Use ONLY after a
+ * call to checkAndConsumePhotoQuota succeeded but the downstream work
+ * (OpenAI call, parse, etc.) failed — refunds the count so the user
+ * doesn't lose a credit to a server error they can't recover from.
+ *
+ * No-op if the current month bucket doesn't exist (impossible if the
+ * preceding consume succeeded, but defensive). Returns silently on
+ * any DB error — better to silently fail-to-refund than to crash a
+ * request that already failed for other reasons.
+ */
+export async function refundPhotoQuota(key: string): Promise<void> {
+  const monthStart = getMonthStartUTC();
+  try {
+    await prisma.chatQuota.updateMany({
+      where: {
+        key,
+        weekStart: monthStart,
+        count: { gt: 0 },
+      },
+      data: { count: { decrement: 1 } },
+    });
+  } catch {
+    // Refund failure is non-fatal; the user is already getting an
+    // error response and we don't want to mask it with a 500.
+  }
+}
+
 export async function checkAndConsumePhotoQuota(opts: {
   key: string;
   limit: number;

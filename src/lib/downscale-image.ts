@@ -20,24 +20,39 @@
 
 const MAX_DIMENSION = 1920;
 const JPEG_QUALITY = 0.85;
-const SKIP_UNDER_BYTES = 1_500_000;
+const SKIP_UNDER_BYTES = 700_000;
 
 export async function downscaleImage(file: File): Promise<File> {
   if (typeof window === 'undefined') return file;
-  if (file.size < SKIP_UNDER_BYTES) return file;
-  if (!/^image\/(jpe?g|png|webp|heic|heif)$/i.test(file.type)) return file;
+  if (!/^image\/(jpe?g|png|webp|heic|heif|gif)$/i.test(file.type)) return file;
+
+  // HEIC is NEVER passed through, regardless of size — OpenAI doesn't
+  // accept it. createImageBitmap can decode HEIC on iOS Safari but not on
+  // most other browsers, so for non-iOS the bitmap fetch below throws and
+  // we end up returning the original — which the server then rejects.
+  // We pre-flight HEIC and let the catch surface a clear error to the
+  // caller instead of letting it travel through silently.
+  const isHeic = /heic|heif/i.test(file.type);
+
+  // Skip the canvas roundtrip for already-small JPEGs/PNGs that don't
+  // need rotation fixup. Pre-rotated JPEGs from Android cameras and
+  // most desktop screenshots fall here. HEIC always re-encodes.
+  if (!isHeic && file.size < SKIP_UNDER_BYTES) return file;
 
   try {
     const bitmap = await createBitmap(file);
     const { width: srcW, height: srcH } = bitmap;
     const longEdge = Math.max(srcW, srcH);
 
-    if (longEdge <= MAX_DIMENSION) {
+    // For non-HEIC sources that are already within budget AND already
+    // decoded with the right orientation, return original. HEIC still
+    // re-encodes so the server sees JPEG.
+    if (!isHeic && longEdge <= MAX_DIMENSION) {
       release(bitmap);
       return file;
     }
 
-    const scale = MAX_DIMENSION / longEdge;
+    const scale = longEdge > MAX_DIMENSION ? MAX_DIMENSION / longEdge : 1;
     const dstW = Math.round(srcW * scale);
     const dstH = Math.round(srcH * scale);
 
@@ -57,19 +72,32 @@ export async function downscaleImage(file: File): Promise<File> {
     });
     if (!blob) return file;
 
-    const outName = file.name.replace(/\.(heic|heif|png|webp)$/i, '.jpg') || 'upload.jpg';
+    const outName = file.name.replace(/\.(heic|heif|png|webp|gif)$/i, '.jpg') || 'upload.jpg';
     return new File([blob], outName, { type: 'image/jpeg', lastModified: Date.now() });
   } catch {
+    // For HEIC sources we couldn't decode, the server-side type guard
+    // will catch it and surface a clear "enable Most Compatible in iPhone
+    // Camera settings" message. For other formats we just fall back to
+    // the original.
     return file;
   }
 }
 
 async function createBitmap(file: File): Promise<ImageBitmap | HTMLImageElement> {
+  // imageOrientation: 'from-image' bakes the EXIF rotation flag into the
+  // bitmap pixels. Without this, portrait-mode iPhone photos arrive
+  // sideways at OpenAI and vision quality drops dramatically — rotation
+  // is an explicit documented limitation of the vision model.
   if (typeof createImageBitmap === 'function') {
     try {
-      return await createImageBitmap(file);
+      return await createImageBitmap(file, { imageOrientation: 'from-image' });
     } catch { /* fall through to HTMLImageElement path */ }
   }
+  // Fallback path: HTMLImageElement honors EXIF orientation in all
+  // modern browsers via the image-orientation CSS default. We rely on
+  // that behavior here — no manual EXIF parsing needed for the common
+  // case. (If we ever support legacy browsers without that default,
+  // pull in exifr.)
   const url = URL.createObjectURL(file);
   try {
     const img = await new Promise<HTMLImageElement>((resolve, reject) => {

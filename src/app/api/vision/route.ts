@@ -8,6 +8,7 @@ import {
 } from '@/lib/rate-limit';
 import {
   checkAndConsumePhotoQuota,
+  refundPhotoQuota,
   DEFAULT_FREE_PHOTO_LIMIT,
 } from '@/lib/photo-quota';
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
@@ -94,11 +95,13 @@ export async function POST(request: NextRequest) {
   if (!burst.success) return rateLimitResponse(burst.reset);
 
   // Photo quota: free = 3/mo, subscriber = effectively unlimited.
+  // NOTE: this CONSUMES one credit immediately. Every failure path below
+  // must call refundPhotoQuota(quotaKey) before returning, or the user
+  // silently loses a free analysis to a server error. See the
+  // `refundOnFailure` flag pattern at the end of this function.
   const limit = isSubscriber ? SUBSCRIBER_MONTHLY_CAP : DEFAULT_FREE_PHOTO_LIMIT;
-  const quota = await checkAndConsumePhotoQuota({
-    key: `photo:user:${userId}`,
-    limit,
-  });
+  const quotaKey = `photo:user:${userId}`;
+  const quota = await checkAndConsumePhotoQuota({ key: quotaKey, limit });
   if (!quota.allowed) {
     return NextResponse.json({
       error: 'quota_exceeded',
@@ -112,23 +115,35 @@ export async function POST(request: NextRequest) {
     }, { status: 429 });
   }
 
+  // Helper that refunds the quota credit and returns the error response.
+  // Used on every post-consume failure path so users don't lose their
+  // free monthly photo analyses to server errors they can't recover from.
+  async function failWithRefund(body: Record<string, unknown>, status: number): Promise<NextResponse> {
+    await refundPhotoQuota(quotaKey);
+    return NextResponse.json(body, { status });
+  }
+
   // Parse multipart body.
   let form: FormData;
   try {
     form = await request.formData();
   } catch {
-    return NextResponse.json({ error: 'bad_form' }, { status: 400 });
+    return failWithRefund({ error: 'bad_form' }, 400);
   }
 
   const imageFile = form.get('image');
   if (!(imageFile instanceof File)) {
-    return NextResponse.json({ error: 'missing_image' }, { status: 400 });
+    return failWithRefund({ error: 'missing_image' }, 400);
   }
   if (imageFile.size > MAX_IMAGE_BYTES) {
-    return NextResponse.json({ error: 'image_too_large', message: 'Image must be 10MB or smaller. Try a lower-quality phone setting or crop tighter.' }, { status: 413 });
+    return failWithRefund({ error: 'image_too_large', message: 'Image must be 10MB or smaller. Try a lower-quality phone setting or crop tighter.' }, 413);
   }
-  if (!/^image\/(jpe?g|png|webp|heic|heif)$/i.test(imageFile.type || '')) {
-    return NextResponse.json({ error: 'unsupported_type', message: 'Use a JPEG, PNG, or WebP image.' }, { status: 415 });
+  // OpenAI vision accepts PNG, JPEG, WebP, and non-animated GIF only —
+  // NOT HEIC/HEIF. The downscaler is supposed to convert HEIC client-side
+  // before upload; if a HEIC slips through, reject early with a clear
+  // message rather than waste an OAI call that 400s.
+  if (!/^image\/(jpe?g|png|webp|gif)$/i.test(imageFile.type || '')) {
+    return failWithRefund({ error: 'unsupported_type', message: 'Use a JPEG, PNG, or WebP image. iPhone HEIC photos: enable "Most Compatible" in Settings → Camera → Formats, then try again.' }, 415);
   }
 
   let vehicle: VehicleCtx | null = null;
@@ -251,21 +266,25 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
   // AND the ~1500 tokens of JSON output we actually want. Earlier value (1800)
   // was getting fully consumed by reasoning, leaving message.content empty and
   // triggering the misleading "empty response" path.
-  // detail: 'auto' costs ~85 tokens/image vs 'high' which can hit 2125+ for a
-  // 1024px tile. Speed win is dramatic on mobile (first-token latency drops
-  // ~3-5x) and identification quality stays high for the typical
-  // single-part-in-frame photo this MVP targets. If users start uploading
-  // wide engine-bay shots where they need fine detail, revisit.
+  // detail: 'high' explicitly. Per OpenAI docs, on gpt-5.5 `detail: 'auto'`
+  // is EQUIVALENT to 'original' (up to 10,000 patches / 6000px) — not a
+  // smart-pick-low-or-high. Our client downscales to 1920px max so the
+  // image is ~2040 patches either way; 'high' (≤2500 patch budget) is
+  // the right semantic choice — high-fidelity automotive part ID is
+  // exactly what 'high' is documented for, and 'auto'/'original' just
+  // adds patch budget headroom we don't need.
+  // 5500 covers gpt-5.5's reasoning burn (1-3k) + the ~1500 tokens of
+  // JSON output. The earlier 3500 was on the edge of clipping content.
   const openaiBody = {
     model: MODEL,
-    max_completion_tokens: 3500,
+    max_completion_tokens: 5500,
     messages: [
       { role: 'system', content: SYSTEM_PROMPT },
       {
         role: 'user',
         content: [
           { type: 'text', text: caption ? `My note: ${caption}\n\nWhat is this and what do I need to fix it?` : 'What is this and what do I need to fix it?' },
-          { type: 'image_url', image_url: { url: dataUrl, detail: 'auto' } },
+          { type: 'image_url', image_url: { url: dataUrl, detail: 'high' } },
         ],
       },
     ],
@@ -284,21 +303,19 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
     });
   } catch (err) {
     console.error('[vision] OpenAI fetch failed:', err);
-    return NextResponse.json({ error: 'vision_failed', message: 'Photo analysis temporarily unavailable. Try again in a moment.' }, { status: 502 });
+    return failWithRefund({ error: 'vision_failed', message: 'Photo analysis temporarily unavailable. Try again in a moment.' }, 502);
   }
 
   if (!openaiResp.ok) {
     const txt = await openaiResp.text().catch(() => '');
     console.error('[vision] OpenAI', openaiResp.status, 'model=', MODEL, 'body=', txt.slice(0, 500));
-    // Surface the OpenAI status so the client knows it was an upstream
-    // issue (404 = bad model, 400 = bad request, 401 = bad key, 429 = OAI
-    // rate limit). Helps the user debug from devtools.
-    return NextResponse.json({
+    // Log upstream body server-side only; don't leak OAI internal error
+    // text to the client (could include internal IDs or sensitive hints).
+    return failWithRefund({
       error: 'vision_failed',
       message: `Photo analysis failed (upstream HTTP ${openaiResp.status}). Try a clearer photo or different angle.`,
       upstreamStatus: openaiResp.status,
-      upstreamBody: txt.slice(0, 300),
-    }, { status: 502 });
+    }, 502);
   }
 
   const data = await openaiResp.json();
@@ -312,18 +329,17 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
       'refusal=', refusal.slice(0, 200),
       'usage=', JSON.stringify(data?.usage || {}),
       'choices=', JSON.stringify(data?.choices || []).slice(0, 400));
-    let userMsg = 'Photo analysis returned no content. Try a clearer photo or different angle.';
+    let userMsg = 'Photo analysis returned no content. Try again — usually works on retry.';
     if (finishReason === 'length') {
-      userMsg = 'Photo analysis hit its thinking budget before answering. Try a simpler photo (one part in frame, well-lit).';
+      userMsg = 'Photo analysis hit its internal capacity. Try again — usually works on retry.';
     } else if (finishReason === 'content_filter' || refusal) {
       userMsg = 'Photo analysis declined to answer. Try a different photo of just the part.';
     }
-    return NextResponse.json({
+    return failWithRefund({
       error: 'empty_response',
       message: userMsg,
       finishReason,
-      refusal: refusal.slice(0, 200),
-    }, { status: 502 });
+    }, 502);
   }
 
   // Robust JSON extraction. Handles three cases the model might emit:
@@ -360,7 +376,7 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
   const parsed = extractJson(content);
   if (!parsed) {
     console.error('[vision] could not extract JSON from model output. content=', content.slice(0, 500));
-    return NextResponse.json({ error: 'parse_failed', message: 'Photo analysis returned an unexpected format. Try again.' }, { status: 502 });
+    return failWithRefund({ error: 'parse_failed', message: 'Photo analysis returned an unexpected format. Try again.' }, 502);
   }
 
   // Build affiliate URLs from the model's amazonSearch strings.
