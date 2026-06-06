@@ -228,86 +228,110 @@ function seekTo(video: HTMLVideoElement, t: number): Promise<void> {
 }
 
 /**
- * Pull audio out of the video via MediaElementAudioSource + MediaRecorder.
+ * Pull audio out of the video by decoding the file's raw bytes via
+ * Web Audio's `decodeAudioData`, then re-encode to a small WAV blob.
  *
- * The pattern: silently "play" the video into a MediaElementAudioSourceNode,
- * route its output into a MediaStreamDestinationNode (no speakers), and
- * MediaRecorder captures the stream into a webm/opus Blob.
+ * Why this approach (over the previous MediaElementAudioSource +
+ * MediaRecorder path):
+ *   - iPhone HEVC MOV silently failed to decode through the play()
+ *     + capture path — confirmed via user trace where audioOk was
+ *     false on a working 6s clip.
+ *   - decodeAudioData handles iOS-native containers including MOV
+ *     (it uses the same demuxer Safari uses for <audio>/<video>).
+ *   - No playback required — extracts in O(filesize) time, not
+ *     O(duration) like MediaRecorder.
+ *   - WAV output is uncompressed but tiny for short clips: a 6s
+ *     mono 16kHz clip is ~190KB. Whisper accepts WAV directly.
  *
- * Constraints:
- *   - Video element MUST have crossOrigin='anonymous' set BEFORE src
- *     (handled by loadVideo) or MediaElementAudioSource throws "tainted".
- *   - Only works on iOS Safari 14.1+; we catch and return null for older.
- *   - Plays back at 1x — a 20s video takes 20s to extract. Acceptable
- *     for MVP; future iteration could use OfflineAudioContext with
- *     decodeAudioData for instant extraction.
+ * Returns null on any failure so the caller can proceed
+ * frames-only with audioOk:false.
  */
 async function extractAudio(file: File): Promise<File | null> {
-  if (!('MediaRecorder' in window) || typeof AudioContext === 'undefined') {
-    return null;
-  }
-  const supportedMime = pickAudioMime();
-  if (!supportedMime) return null;
+  const win = window as unknown as { AudioContext?: typeof AudioContext; webkitAudioContext?: typeof AudioContext };
+  const AudioCtxCls = win.AudioContext || win.webkitAudioContext;
+  if (!AudioCtxCls) return null;
 
-  const url = URL.createObjectURL(file);
   try {
-    const video = await loadVideo(url);
-    const ctx = new AudioContext();
-    const source = ctx.createMediaElementSource(video);
-    const dest = ctx.createMediaStreamDestination();
-    source.connect(dest);
-
-    const recorder = new MediaRecorder(dest.stream, { mimeType: supportedMime });
-    const chunks: Blob[] = [];
-    recorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
-
-    const finished = new Promise<Blob>((resolve, reject) => {
-      const timer = setTimeout(() => {
-        try { recorder.stop(); } catch { /* */ }
-        reject(new Error('audio extract timeout'));
-      }, AUDIO_CAPTURE_TIMEOUT_MS);
-      recorder.onstop = () => {
-        clearTimeout(timer);
-        resolve(new Blob(chunks, { type: supportedMime }));
-      };
-      recorder.onerror = (e) => {
-        clearTimeout(timer);
-        reject(new Error(`MediaRecorder error: ${(e as ErrorEvent).message || 'unknown'}`));
-      };
+    const arrayBuffer = await file.arrayBuffer();
+    const ctx = new AudioCtxCls();
+    // decodeAudioData with the iOS/Safari signature (returns a promise
+    // on modern browsers, accepts callbacks on older). We pass a sliced
+    // ArrayBuffer because some implementations consume it in-place.
+    const audioBuffer = await new Promise<AudioBuffer>((resolve, reject) => {
+      try {
+        const maybePromise = ctx.decodeAudioData(arrayBuffer.slice(0), resolve, reject);
+        if (maybePromise && typeof (maybePromise as Promise<AudioBuffer>).then === 'function') {
+          (maybePromise as Promise<AudioBuffer>).then(resolve).catch(reject);
+        }
+      } catch (err) {
+        reject(err);
+      }
     });
-
-    recorder.start();
-    // Play the video so audio flows through the source node. Muted
-    // means no speaker output. We stop the recorder on 'ended'.
-    video.muted = true;
-    await video.play().catch(() => { /* play may reject if autoplay blocked */ });
-    video.addEventListener('ended', () => { try { recorder.stop(); } catch { /* */ } }, { once: true });
-
-    const blob = await finished;
     try { await ctx.close(); } catch { /* */ }
-    URL.revokeObjectURL(url);
 
-    if (blob.size < 1000) return null; // too small to be real audio
+    if (audioBuffer.duration < 0.3) return null;
 
-    const ext = supportedMime.includes('opus') ? 'webm' : supportedMime.includes('mp4') ? 'm4a' : 'webm';
-    return new File([blob], `audio.${ext}`, { type: supportedMime, lastModified: Date.now() });
+    // Re-encode to mono 16kHz WAV — Whisper's optimal input.
+    // Downmix multi-channel to mono by averaging samples.
+    const targetSampleRate = 16_000;
+    const ratio = audioBuffer.sampleRate / targetSampleRate;
+    const outLen = Math.floor(audioBuffer.length / ratio);
+    const mono = new Float32Array(outLen);
+    const channels = audioBuffer.numberOfChannels;
+    const channelData: Float32Array[] = [];
+    for (let c = 0; c < channels; c++) channelData.push(audioBuffer.getChannelData(c));
+    for (let i = 0; i < outLen; i++) {
+      const srcIdx = Math.floor(i * ratio);
+      let sum = 0;
+      for (let c = 0; c < channels; c++) sum += channelData[c][srcIdx] || 0;
+      mono[i] = sum / channels;
+    }
+
+    const wav = encodeWav(mono, targetSampleRate);
+    if (wav.byteLength < 5_000) return null; // sanity check
+
+    return new File([wav], 'audio.wav', { type: 'audio/wav', lastModified: Date.now() });
   } catch {
-    URL.revokeObjectURL(url);
     return null;
   }
 }
 
-function pickAudioMime(): string | null {
-  const candidates = [
-    'audio/webm;codecs=opus',
-    'audio/webm',
-    'audio/mp4',
-    'audio/ogg;codecs=opus',
-  ];
-  for (const c of candidates) {
-    try {
-      if (MediaRecorder.isTypeSupported(c)) return c;
-    } catch { /* not supported */ }
+/**
+ * Encode a Float32Array mono PCM buffer to a 16-bit PCM WAV file.
+ * Tiny pure-JS encoder — no deps. Whisper accepts this directly.
+ */
+function encodeWav(samples: Float32Array, sampleRate: number): ArrayBuffer {
+  const numSamples = samples.length;
+  const buffer = new ArrayBuffer(44 + numSamples * 2);
+  const view = new DataView(buffer);
+
+  // RIFF header
+  writeString(view, 0, 'RIFF');
+  view.setUint32(4, 36 + numSamples * 2, true);
+  writeString(view, 8, 'WAVE');
+  // fmt chunk
+  writeString(view, 12, 'fmt ');
+  view.setUint32(16, 16, true);                  // chunk size
+  view.setUint16(20, 1, true);                   // PCM format
+  view.setUint16(22, 1, true);                   // mono
+  view.setUint32(24, sampleRate, true);          // sample rate
+  view.setUint32(28, sampleRate * 2, true);      // byte rate (mono × 2 bytes)
+  view.setUint16(32, 2, true);                   // block align
+  view.setUint16(34, 16, true);                  // bits per sample
+  // data chunk
+  writeString(view, 36, 'data');
+  view.setUint32(40, numSamples * 2, true);
+
+  // PCM samples — clamp to [-1,1] and convert to 16-bit signed.
+  let offset = 44;
+  for (let i = 0; i < numSamples; i++) {
+    const s = Math.max(-1, Math.min(1, samples[i]));
+    view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+    offset += 2;
   }
-  return null;
+  return buffer;
+}
+
+function writeString(view: DataView, offset: number, str: string) {
+  for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
 }
