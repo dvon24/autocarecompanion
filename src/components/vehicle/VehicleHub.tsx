@@ -10,6 +10,7 @@ import { vehicleSlug } from '@/lib/vehicle-slug';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
 import { downscaleImage } from '@/lib/downscale-image';
+import { clearTrace, pushTrace, flushTrace, setReqId } from '@/lib/upload-trace';
 import type { VehicleSchedule } from '@/lib/owners-manual-schedule';
 // OwnersManualSchedule is no longer rendered as its own card — its data
 // lives in the `ownersManualSchedule` prop for the integration that
@@ -216,9 +217,29 @@ export function VehicleHub({
       return;
     }
 
+    // STEP 1 DIAGNOSTICS — reset trace and start logging phases. All
+    // pushTrace calls in this function are additive; never throw and
+    // never affect the upload itself. See src/lib/upload-trace.ts.
+    clearTrace();
+    pushTrace('start', { fileSize: file.size, fileType: file.type, fileName: file.name });
+
+    // Visibility listener so we can correlate "spinner sits forever"
+    // with iOS suspending the PWA mid-upload. Removed in finally.
+    const onVisibility = () => {
+      if (document.visibilityState === 'hidden') {
+        pushTrace('visibility_hidden');
+        flushTrace('visibility');
+      } else {
+        pushTrace('visibility_visible');
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
     setPending(true);
     const previewUrl = URL.createObjectURL(file);
+    pushTrace('downscale_start');
     const uploadFile = await downscaleImage(file);
+    pushTrace('downscale_done', { newSize: uploadFile.size, newType: uploadFile.type, same: uploadFile === file });
 
     // Capture the placeholder index synchronously here, OUTSIDE of any
     // setMessages updater. React batches updaters and runs them during
@@ -256,11 +277,15 @@ export function VehicleHub({
       // mobile Safari that backgrounds the tab can leave the fetch
       // suspended indefinitely — users see the "Analyzing your photo…"
       // placeholder forever.
+      pushTrace('fetch_start');
       const res = await fetch('/api/vision', {
         method: 'POST',
         body: formData,
         signal: AbortSignal.timeout(75_000),
       });
+      const serverReqId = res.headers.get('x-au7o-req-id');
+      if (serverReqId) setReqId(serverReqId);
+      pushTrace('headers_received', { status: res.status, ok: res.ok, reqId: serverReqId });
 
       // Resolve the placeholder index from the ref ONCE here, after
       // React has committed the placeholder append. From this point we
@@ -287,6 +312,7 @@ export function VehicleHub({
             copy[idx] = { ...copy[idx], content: '', gate };
             return copy;
           });
+          pushTrace('placeholder_replaced', { kind: 'gate', status: res.status });
           URL.revokeObjectURL(previewUrl);
           return;
         }
@@ -299,11 +325,14 @@ export function VehicleHub({
           copy[idx] = { ...copy[idx], content: msg };
           return copy;
         });
+        pushTrace('placeholder_replaced', { kind: 'error_response', status: res.status });
         URL.revokeObjectURL(previewUrl);
         return;
       }
 
+      pushTrace('body_start');
       const data = await res.json() as { vision: VisionResult };
+      pushTrace('body_done', { hasVision: !!data?.vision });
       if (!data || !data.vision) {
         console.warn('[hub] /api/vision returned 200 but no vision payload', data);
         setMessages((prev) => {
@@ -323,10 +352,19 @@ export function VehicleHub({
         copy[idx] = { ...copy[idx], content: '', vision: visionWithPreview };
         return copy;
       });
+      pushTrace('placeholder_replaced', { kind: 'vision' });
     } catch (err) {
       console.warn('[hub] photo upload failed:', err);
       const idx = placeholderIdx >= 0 ? placeholderIdx : streamingIdxRef.current;
       const isTimeout = err instanceof DOMException && (err.name === 'TimeoutError' || err.name === 'AbortError');
+      pushTrace('error', {
+        name: err instanceof Error ? err.name : 'unknown',
+        message: err instanceof Error ? err.message.slice(0, 200) : String(err).slice(0, 200),
+        isTimeout,
+      });
+      // Flush trace on every failure so the server captures evidence
+      // even if the user doesn't tap "Send debug report".
+      flushTrace('error');
       const msg = isTimeout
         ? 'Photo analysis timed out. Try a clearer single-part shot, or try again.'
         : 'Photo upload failed. Check your connection and try again.';
@@ -338,6 +376,7 @@ export function VehicleHub({
       });
       URL.revokeObjectURL(previewUrl);
     } finally {
+      document.removeEventListener('visibilitychange', onVisibility);
       streamingIdxRef.current = null;
       setPending(false);
     }

@@ -62,8 +62,29 @@ interface VehicleCtx {
 }
 
 export async function POST(request: NextRequest) {
+  // STEP 1 DIAGNOSTICS — every response now carries x-au7o-req-id so
+  // the client trace and server logs can be joined. vlog() writes a
+  // single JSON line greppable as `"tag":"vision"` in Vercel logs.
+  const reqId = (globalThis.crypto?.randomUUID?.() || `r${Date.now()}`).slice(0, 8);
+  const t0 = Date.now();
+  const vlog = (phase: string, extra?: Record<string, unknown>) => {
+    try {
+      console.log(JSON.stringify({ tag: 'vision', reqId, phase, dt: Date.now() - t0, ...(extra || {}) }));
+    } catch { /* logging must never throw */ }
+  };
+  // Wrap NextResponse.json so every response — including failures —
+  // emits the reqId header and a `responded` log line.
+  const respond = (body: unknown, init?: ResponseInit): NextResponse => {
+    const status = init?.status || 200;
+    vlog('responded', { status });
+    const res = NextResponse.json(body, init);
+    res.headers.set('x-au7o-req-id', reqId);
+    return res;
+  };
+  vlog('request_received', { contentLength: request.headers.get('content-length') });
+
   if (!OPENAI_KEY) {
-    return NextResponse.json({ error: 'service_unavailable', message: 'Vision is offline.' }, { status: 503 });
+    return respond({ error: 'service_unavailable', message: 'Vision is offline.' }, { status: 503 });
   }
 
   // GDPR opt-out short-circuit.
@@ -75,8 +96,9 @@ export async function POST(request: NextRequest) {
   // trial here. Free trial may come later if data shows it converts.
   let session;
   try { session = await auth(); } catch { session = null; }
+  vlog('auth_done', { authed: !!session?.user?.id });
   if (!session?.user?.id) {
-    return NextResponse.json({
+    return respond({
       error: 'login_required',
       message: 'Sign in free to analyze photos of your vehicle.',
       gated: true,
@@ -92,7 +114,10 @@ export async function POST(request: NextRequest) {
   // Burst protection — applies to everyone.
   const ip = getClientIp(request);
   const burst = hubChatMinuteLimiter.check(ip);
-  if (!burst.success) return rateLimitResponse(burst.reset);
+  if (!burst.success) {
+    vlog('burst_blocked');
+    return rateLimitResponse(burst.reset);
+  }
 
   // Photo quota: free = 3/mo, subscriber = effectively unlimited.
   // NOTE: this CONSUMES one credit immediately. Every failure path below
@@ -102,8 +127,9 @@ export async function POST(request: NextRequest) {
   const limit = isSubscriber ? SUBSCRIBER_MONTHLY_CAP : DEFAULT_FREE_PHOTO_LIMIT;
   const quotaKey = `photo:user:${userId}`;
   const quota = await checkAndConsumePhotoQuota({ key: quotaKey, limit });
+  vlog('quota_checked', { allowed: quota.allowed, remaining: quota.remaining });
   if (!quota.allowed) {
-    return NextResponse.json({
+    return respond({
       error: 'quota_exceeded',
       message: `You've used your ${DEFAULT_FREE_PHOTO_LIMIT} free photo analyses this month. Go unlimited with Au7o Pro.`,
       resetAt: quota.resetAt.toISOString(),
@@ -120,16 +146,18 @@ export async function POST(request: NextRequest) {
   // free monthly photo analyses to server errors they can't recover from.
   async function failWithRefund(body: Record<string, unknown>, status: number): Promise<NextResponse> {
     await refundPhotoQuota(quotaKey);
-    return NextResponse.json(body, { status });
+    return respond(body, { status });
   }
 
   // Parse multipart body.
   let form: FormData;
   try {
     form = await request.formData();
-  } catch {
+  } catch (err) {
+    vlog('formdata_failed', { err: err instanceof Error ? err.message : String(err) });
     return failWithRefund({ error: 'bad_form' }, 400);
   }
+  vlog('formdata_parsed');
 
   const imageFile = form.get('image');
   if (!(imageFile instanceof File)) {
@@ -154,10 +182,13 @@ export async function POST(request: NextRequest) {
 
   const caption = (form.get('caption') as string | null) || '';
 
+  vlog('image_validated', { size: imageFile.size, type: imageFile.type });
+
   // Convert to base64 data URL for the OpenAI vision call. In-memory
   // only — never written to disk.
   const buf = Buffer.from(await imageFile.arrayBuffer());
   const dataUrl = `data:${imageFile.type};base64,${buf.toString('base64')}`;
+  vlog('buffer_built', { bytes: buf.length });
 
   // Load context: known issues + cached parts for this vehicle, so the
   // vision model's answer is grounded in YMMT-specific knowledge.
@@ -216,8 +247,12 @@ ${lines.join('\n')}`;
         if (specs.lug) lines.push(`Lug: ${specs.lug.size} ${specs.lug.useBolts ? 'bolts' : 'nuts'}, ${specs.lug.torque}`);
         if (lines.length > 0) specsContext = `\n\nVEHICLE SPECS:\n${lines.join('\n')}`;
       }
-    } catch { /* non-blocking — vision still answers without context */ }
+    } catch (err) {
+      vlog('prisma_context_failed', { err: err instanceof Error ? err.message : String(err) });
+      /* non-blocking — vision still answers without context */
+    }
   }
+  vlog('prisma_context_done');
 
   const vehicleDesc = vehicle ? `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}` : 'unknown vehicle';
 
@@ -291,6 +326,7 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
   };
 
   let openaiResp: Response;
+  vlog('openai_fetch_start', { model: MODEL });
   try {
     openaiResp = await fetch(OPENAI_URL, {
       method: 'POST',
@@ -301,6 +337,7 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
       body: JSON.stringify(openaiBody),
       signal: AbortSignal.timeout(55_000),
     });
+    vlog('openai_headers_received', { status: openaiResp.status });
   } catch (err) {
     console.error('[vision] OpenAI fetch failed:', err);
     return failWithRefund({ error: 'vision_failed', message: 'Photo analysis temporarily unavailable. Try again in a moment.' }, 502);
@@ -319,6 +356,7 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
   }
 
   const data = await openaiResp.json();
+  vlog('openai_json_done', { usage: data?.usage, finishReason: data?.choices?.[0]?.finish_reason });
   const choice = data?.choices?.[0];
   const content: string = choice?.message?.content || '';
   const finishReason: string = choice?.finish_reason || '';
@@ -427,5 +465,5 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
     quotaResetAt: quota.resetAt.toISOString(),
   };
 
-  return NextResponse.json({ vision: result });
+  return respond({ vision: result });
 }

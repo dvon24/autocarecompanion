@@ -20,6 +20,7 @@ import { GoogleTranslate } from "@/components/shared/GoogleTranslate";
 import { FloatingAuthButton } from "@/components/auth/FloatingAuthButton";
 import { InstallPrompt } from "@/components/pwa/InstallPrompt";
 import { ServiceWorkerRefresh } from "@/components/pwa/ServiceWorkerRefresh";
+import { PhotoDebugOverlay } from "@/components/debug/PhotoDebugOverlay";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -131,6 +132,9 @@ export default function RootLayout({
             {children}
             <InstallPrompt />
             <ServiceWorkerRefresh />
+            {/* Debug overlay — renders null unless ?debug=1 or
+                localStorage.au7o_debug=on. Zero impact on production users. */}
+            <PhotoDebugOverlay />
           </AppProvider>
         </SessionProvider>
       </body>
