@@ -2037,14 +2037,6 @@ function MobileMaintenanceCard({
         <button
           type="button"
           className="mc-btn mc-btn-primary"
-          onClick={() => onSendPrompt?.('Help me schedule all my upcoming maintenance in one shop visit. Group what can be done together and give me a total estimated time + cost.')}
-          disabled={!onSendPrompt}
-        >
-          <Icon name="calendar" size={11} /> Book all at one visit
-        </button>
-        <button
-          type="button"
-          className="mc-btn"
           onClick={() => onSendPrompt?.('Give me an estimated total cost for all my upcoming maintenance — DIY vs shop labor for each item.')}
           disabled={!onSendPrompt}
         >

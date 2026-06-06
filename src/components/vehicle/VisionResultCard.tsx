@@ -518,14 +518,9 @@ function VisionResultCardV2({ vision }: { vision: VisionResult }) {
       </div>
 
       <style jsx>{cardStyles}</style>
-      {/* `global` is load-bearing — the .vr2-* selectors target elements
-          rendered by PartCardV2 + VendorButtonV2 (child components).
-          Without global, styled-jsx adds a scope hash className only to
-          elements in THIS component's render tree, so the child <a>s
-          never match .vr2-vendor-btn.jsx-<hash> and the buttons fall
-          back to default <a> styling (= inline text). Confirmed via
-          workflow ws21h7jc2. */}
-      <style jsx global>{v2Styles}</style>
+      {/* v2 styles (.vr2-*) live in src/app/globals.css — styled-jsx
+          global wasn't reliably applying in the production bundle.
+          Plain global CSS is bulletproof. */}
     </div>
   );
 }
@@ -625,105 +620,4 @@ function VendorButtonV2({ link }: { link: VendorLink }) {
   );
 }
 
-const v2Styles = `
-  .vr2-card { /* additional v2-specific overrides if needed */ }
-  .vr2-transcript {
-    display: flex; align-items: flex-start; gap: 6px;
-    margin-top: 6px; padding: 6px 8px;
-    background: rgba(37,99,235,0.08); border-left: 2px solid #2563EB;
-    border-radius: 4px;
-    font-size: 12px; line-height: 1.4; color: #1E40AF;
-  }
-  .vr2-transcript-icon { flex: 0 0 auto; font-size: 12px; line-height: 1.4; }
-  .vr2-transcript-label { font-weight: 600; flex: 0 0 auto; }
-  .vr2-transcript-text { font-style: italic; }
-  .vr2-hero { padding: 12px 16px; background: #FAFBFF; border-bottom: 1px solid var(--paper-line, #E3DFD4); }
-  .vr2-others { border-bottom: 1px solid var(--paper-line, #E3DFD4); }
-  .vr2-others-toggle {
-    width: 100%; background: transparent; border: 0; padding: 12px 16px;
-    display: flex; align-items: center; justify-content: space-between;
-    cursor: pointer; text-align: left;
-  }
-  .vr2-others-toggle:hover { background: #F8FAFC; }
-  .vr2-others-chevron { color: #94A3B8; font-size: 12px; }
-  .vr2-others-list { padding: 0 16px 12px; display: flex; flex-direction: column; gap: 10px; }
-
-  .vr2-part-card {
-    border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px;
-    background: #fff; display: flex; flex-direction: column; gap: 10px;
-  }
-  .vr2-part-card[data-role="consumable"] { background: #F8FAFC; }
-  .vr2-part-card[data-role="fastener"] { background: #FAFAFA; }
-  .vr2-part-compact { padding: 10px; }
-
-  .vr2-part-head { display: flex; gap: 10px; align-items: flex-start; }
-  .vr2-part-icon {
-    font-size: 22px; line-height: 1; flex: 0 0 auto;
-    width: 36px; height: 36px; border-radius: 8px;
-    background: #F1F5F9; display: flex; align-items: center; justify-content: center;
-  }
-  .vr2-part-meta { flex: 1; min-width: 0; }
-  .vr2-part-name {
-    font-size: 14px; font-weight: 600; color: #0B1220; line-height: 1.3;
-  }
-  .vr2-part-pos { color: #64748B; font-weight: 400; font-size: 12.5px; }
-  .vr2-part-line {
-    font-size: 12px; color: #475569; margin-top: 2px; line-height: 1.4;
-  }
-  .vr2-part-oem {
-    margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
-    font-size: 11.5px;
-  }
-  .vr2-oem-label {
-    color: #64748B; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.04em; font-size: 10px;
-  }
-  .vr2-oem-num {
-    background: #0B1220; color: #fff; border: 0;
-    font-family: 'SF Mono', Menlo, monospace;
-    padding: 2px 8px; border-radius: 4px; font-size: 11px;
-    cursor: pointer; line-height: 1.4;
-  }
-  .vr2-oem-num:hover { background: #1E293B; }
-  .vr2-part-cross {
-    font-size: 11px; color: #64748B; margin-top: 4px;
-    font-family: 'SF Mono', Menlo, monospace; line-height: 1.4;
-  }
-  .vr2-part-notes {
-    font-size: 11.5px; color: #475569; margin-top: 6px; line-height: 1.4;
-    font-style: italic;
-  }
-  .vr2-part-conf {
-    font-size: 11px; color: #92400E; margin-top: 4px;
-    background: #FEF3C7; padding: 4px 6px; border-radius: 4px;
-    display: inline-block;
-  }
-
-  .vr2-vendor-primary {
-    display: flex; align-items: center; justify-content: space-between;
-    background: #FFA500; color: #fff; border: 1px solid #FF8C00;
-    padding: 12px 14px; border-radius: 8px;
-    font-size: 13.5px; font-weight: 600;
-    text-decoration: none; min-height: 44px;
-  }
-  .vr2-vendor-primary:hover { background: #FF9500; }
-  .vr2-vendor-primary span:last-child { font-size: 12px; opacity: 0.9; }
-
-  .vr2-vendor-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px;
-  }
-  .vr2-vendor-btn {
-    display: flex; align-items: center; justify-content: space-between;
-    background: #fff; color: #0B1220; border: 1px solid #CBD5E1;
-    padding: 9px 11px; border-radius: 7px;
-    font-size: 12px; font-weight: 500;
-    text-decoration: none; min-height: 40px;
-  }
-  .vr2-vendor-btn:hover { background: #F1F5F9; }
-  .vr2-vendor-btn span:last-child { color: #64748B; font-size: 11px; }
-
-  @media (max-width: 380px) {
-    .vr2-vendor-grid { grid-template-columns: 1fr; }
-  }
-`;
 
