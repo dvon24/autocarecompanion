@@ -518,7 +518,14 @@ function VisionResultCardV2({ vision }: { vision: VisionResult }) {
       </div>
 
       <style jsx>{cardStyles}</style>
-      <style jsx>{v2Styles}</style>
+      {/* `global` is load-bearing — the .vr2-* selectors target elements
+          rendered by PartCardV2 + VendorButtonV2 (child components).
+          Without global, styled-jsx adds a scope hash className only to
+          elements in THIS component's render tree, so the child <a>s
+          never match .vr2-vendor-btn.jsx-<hash> and the buttons fall
+          back to default <a> styling (= inline text). Confirmed via
+          workflow ws21h7jc2. */}
+      <style jsx global>{v2Styles}</style>
     </div>
   );
 }
