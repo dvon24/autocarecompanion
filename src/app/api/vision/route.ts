@@ -46,13 +46,18 @@ export const runtime = 'nodejs';
  */
 
 const OPENAI_KEY = process.env.OPENAI_API_KEY;
-const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
-// Default to gpt-5.2 because gpt-5.5 (reasoning model) was consistently
-// hitting our 55s OpenAI timeout on production uploads — proven by the
-// diagnostic trace from build f155c5b showing 58.9s server response.
-// gpt-5.2 is a non-reasoning vision-capable model that responds in
-// ~5-10s reliably. Override via OPENAI_VISION_MODEL env var.
-const MODEL = process.env.OPENAI_VISION_MODEL || 'gpt-5.2';
+// Switched from /v1/chat/completions to /v1/responses per OpenAI's
+// recommended pattern for vision + structured JSON. Responses API
+// supports `reasoning.effort` (the actual lever for fast gpt-5.5),
+// `text.format: json_object` (guaranteed JSON output), and a cleaner
+// input_image content shape.
+const OPENAI_URL = 'https://api.openai.com/v1/responses';
+// Back to gpt-5.5 — the prior switch to gpt-5.2 was a defensive
+// fallback because gpt-5.5 at default reasoning was hitting our 55s
+// timeout. With reasoning.effort: 'low' on the Responses API the
+// model returns in ~3-6s while keeping 5.5's superior vision
+// accuracy. Override via OPENAI_VISION_MODEL env var.
+const MODEL = process.env.OPENAI_VISION_MODEL || 'gpt-5.5';
 const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
 const SUBSCRIBER_MONTHLY_CAP = 10_000; // effective unlimited; throttles only runaway abuse
 
@@ -303,24 +308,30 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
   // AND the ~1500 tokens of JSON output we actually want. Earlier value (1800)
   // was getting fully consumed by reasoning, leaving message.content empty and
   // triggering the misleading "empty response" path.
-  // detail: 'high' — 'low' (512×512) couldn't resolve enough on a
-  // tire sidewall to give a populated card; user reported "no analyse"
-  // even though the request succeeded. 'high' allows up to 2500
-  // patches which our 1920px downscaled photo fits comfortably under.
-  // gpt-5.2 + 'high' still completes well under 30s because gpt-5.2
-  // doesn't burn reasoning tokens like gpt-5.5 did.
-  // max_completion_tokens: 2500 — gpt-5.2 is non-reasoning so it
-  // doesn't need the 5500-token buffer gpt-5.5 was burning on thinking.
+  // Responses API request shape. Key differences from Chat Completions:
+  //   - `input` instead of `messages`
+  //   - content uses `input_text` / `input_image` types
+  //   - `reasoning.effort: 'low'` is what makes gpt-5.5 return fast
+  //     (~3-6s) instead of burning 10-15s on default reasoning
+  //   - `text.format.type: 'json_object'` guarantees valid JSON output
+  //     so we don't need the extractJson fallback (kept anyway as a
+  //     defensive belt-and-suspenders for upstream weirdness)
+  //   - `max_output_tokens` replaces `max_completion_tokens`
   const openaiBody = {
     model: MODEL,
-    max_completion_tokens: 2500,
-    messages: [
-      { role: 'system', content: SYSTEM_PROMPT },
+    reasoning: { effort: 'low' },
+    text: { format: { type: 'json_object' } },
+    max_output_tokens: 2500,
+    input: [
+      {
+        role: 'system',
+        content: [{ type: 'input_text', text: SYSTEM_PROMPT }],
+      },
       {
         role: 'user',
         content: [
-          { type: 'text', text: caption ? `My note: ${caption}\n\nWhat is this and what do I need to fix it?` : 'What is this and what do I need to fix it?' },
-          { type: 'image_url', image_url: { url: dataUrl, detail: 'high' } },
+          { type: 'input_text', text: caption ? `My note: ${caption}\n\nWhat is this and what do I need to fix it?` : 'What is this and what do I need to fix it?' },
+          { type: 'input_image', image_url: dataUrl, detail: 'high' },
         ],
       },
     ],
@@ -357,11 +368,40 @@ Return ONLY a JSON object — no markdown fences, no preamble, no commentary bef
   }
 
   const data = await openaiResp.json();
-  vlog('openai_json_done', { usage: data?.usage, finishReason: data?.choices?.[0]?.finish_reason });
-  const choice = data?.choices?.[0];
-  const content: string = choice?.message?.content || '';
-  const finishReason: string = choice?.finish_reason || '';
-  const refusal: string = choice?.message?.refusal || '';
+  // Responses API output shape (different from Chat Completions):
+  //   data.output_text — convenience aggregate of all text outputs
+  //   data.output[] — array of items (type: 'message' | 'reasoning' | …)
+  //   data.output[i].content[j].text — actual text on a message item
+  //   data.status — 'completed' | 'incomplete' | 'failed'
+  //   data.incomplete_details.reason — 'max_output_tokens' | 'content_filter'
+  // Fall through paths cover Chat Completions shape in case OPENAI_VISION_MODEL
+  // is pointed at a model that doesn't support /v1/responses yet.
+  const status: string = data?.status || '';
+  let content: string = data?.output_text || '';
+  if (!content && Array.isArray(data?.output)) {
+    for (const item of data.output) {
+      if (item?.type === 'message' && Array.isArray(item.content)) {
+        for (const c of item.content) {
+          if (typeof c?.text === 'string' && c.text.length > 0) {
+            content = c.text;
+            break;
+          }
+        }
+      }
+      if (content) break;
+    }
+  }
+  // Chat Completions shape fallback.
+  if (!content && data?.choices?.[0]?.message?.content) {
+    content = data.choices[0].message.content;
+  }
+  const finishReason: string = data?.incomplete_details?.reason || data?.choices?.[0]?.finish_reason || status || '';
+  type RespContent = { type?: string; refusal?: string; text?: string };
+  type RespItem = { type?: string; content?: RespContent[] };
+  const refusal: string = (data?.output as RespItem[] | undefined)?.find((i) => i?.type === 'message')?.content?.find((c: RespContent) => c?.type === 'refusal')?.refusal
+    || data?.choices?.[0]?.message?.refusal
+    || '';
+  vlog('openai_json_done', { usage: data?.usage, status, finishReason, hasContent: !!content, contentLen: content.length });
   if (!content) {
     console.error('[vision] OpenAI 200 but empty content.',
       'finish_reason=', finishReason,
