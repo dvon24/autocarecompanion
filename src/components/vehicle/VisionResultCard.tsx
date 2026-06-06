@@ -1,6 +1,8 @@
 'use client';
 
+import { useState, useCallback } from 'react';
 import Link from 'next/link';
+import type { IdentifiedPart, VendorLink, PartCategory } from '@/types/vision';
 
 export interface VisionItem {
   name: string;
@@ -38,6 +40,16 @@ export interface VisionResult {
    *  File object via URL.createObjectURL before the result returns. The
    *  server never echoes images back. */
   imagePreviewUrl?: string;
+
+  // ─── v2 fields (multi-part + per-part vendor links) ───
+  /** Schema version. v2 routes the render through VisionResultCardV2;
+   *  v1 (undefined or 1) falls through to the legacy renderer. */
+  schemaVersion?: 2;
+  /** Flat array of every buyable part the model identified. v2 only. */
+  identifiedParts?: IdentifiedPart[];
+  /** Hero pointer — id of the most likely "this is what you came for"
+   *  part. References an id present in identifiedParts. */
+  primaryPartId?: string | null;
 }
 
 /**
@@ -69,6 +81,13 @@ export interface VisionResult {
  *   └─────────────────────────────────────────────────────────┘
  */
 export function VisionResultCard({ vision }: { vision: VisionResult }) {
+  // v2 fan-out — when the API returned the new multi-part shape,
+  // hand off to VisionResultCardV2. Old saved responses + any
+  // fallback path stay on the legacy renderer below.
+  if (vision.schemaVersion === 2 && Array.isArray(vision.identifiedParts) && vision.identifiedParts.length > 0) {
+    return <VisionResultCardV2 vision={vision} />;
+  }
+
   if (!vision.isCarRelated) {
     return (
       <div className="vr-card vr-not-car">
@@ -330,3 +349,348 @@ const cardStyles = `
   .vr-not-car-title { font-size: 13.5px; font-weight: 600; color: #0B1220; }
   .vr-not-car-body { font-size: 12.5px; color: #475569; line-height: 1.45; margin-top: 4px; }
 `;
+
+// ──────────────────────────────────────────────────────────────────
+// VisionResultCard v2 — multi-part + per-part vendor links
+// ──────────────────────────────────────────────────────────────────
+
+const CATEGORY_ICONS: Partial<Record<PartCategory, string>> = {
+  rotor: '🛑',
+  brake_pad: '🅿️',
+  caliper: '🛑',
+  tire: '🛞',
+  wheel: '⚙️',
+  lug_nut: '🔩',
+  tpms: '📡',
+  filter: '🧰',
+  fluid: '💧',
+  wiper: '🌧️',
+  bulb: '💡',
+  battery: '🔋',
+  spark_plug: '⚡',
+  sensor: '📟',
+  belt: '➰',
+  hose: '🪢',
+  suspension: '🪜',
+  ignition: '🔑',
+  fuel_pump: '⛽',
+  alternator: '🔌',
+  starter: '🔋',
+  body_panel: '🚗',
+  trim: '✨',
+  badge: '🏷️',
+  emblem: '🏷️',
+  bracket: '🔧',
+  interior: '🪑',
+  accessory: '🎯',
+  tool: '🛠️',
+  oem_specific: '🏷️',
+  other: '🔧',
+};
+
+function VisionResultCardV2({ vision }: { vision: VisionResult }) {
+  const parts = vision.identifiedParts || [];
+  const primaryId = vision.primaryPartId || (parts.find((p) => p.role === 'primary')?.id);
+  const heroPart = parts.find((p) => p.id === primaryId) || parts[0] || null;
+  const otherParts = parts.filter((p) => p.id !== heroPart?.id);
+  const [expanded, setExpanded] = useState(otherParts.length <= 3);
+  const isMismatch = vision.vehicleMatch === 'likely_mismatch';
+  const isUncertain = vision.vehicleMatch === 'uncertain';
+  const confidencePct = Math.round((vision.confidence || 0) * 100);
+  const difficultyLabel = vision.difficulty === 'easy' ? 'Easy' : vision.difficulty === 'hard' ? 'Hard' : 'Medium';
+
+  return (
+    <div className="vr-card vr2-card">
+      {isMismatch && (
+        <div className="vr-mismatch">
+          <div className="vr-mismatch-icon" aria-hidden>⚠️</div>
+          <div className="vr-mismatch-body">
+            <div className="vr-mismatch-title">This photo might not be from your vehicle</div>
+            {vision.vehicleMatchNote && (
+              <div className="vr-mismatch-note">What I saw: {vision.vehicleMatchNote}</div>
+            )}
+            <div className="vr-mismatch-cta">Switch to the correct vehicle before buying parts — fitment may be wrong.</div>
+          </div>
+        </div>
+      )}
+
+      <div className="vr-head">
+        {vision.imagePreviewUrl && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={vision.imagePreviewUrl} alt="Your photo" className="vr-preview" />
+        )}
+        <div className="vr-summary-block">
+          <div className="vr-eyebrow">
+            <span className="vr-dot" aria-hidden />
+            AU7O VISION · {confidencePct}% · {parts.length} {parts.length === 1 ? 'PART' : 'PARTS'}
+          </div>
+          <div className="vr-summary">{vision.summary}</div>
+          {isUncertain && vision.vehicleMatchNote && (
+            <div className="vr-uncertain">
+              Confirm this is from your vehicle before ordering — {vision.vehicleMatchNote.toLowerCase()}.
+            </div>
+          )}
+        </div>
+      </div>
+
+      {heroPart && (
+        <div className="vr2-hero">
+          <div className="vr-section-label">MAIN PART</div>
+          <PartCardV2 part={heroPart} />
+        </div>
+      )}
+
+      {otherParts.length > 0 && (
+        <div className="vr2-others">
+          <button
+            type="button"
+            className="vr2-others-toggle"
+            onClick={() => setExpanded((e) => !e)}
+            aria-expanded={expanded}
+          >
+            <span className="vr-section-label">
+              {expanded ? "YOU'LL ALSO NEED" : `SHOW ${otherParts.length} MORE ${otherParts.length === 1 ? 'PART' : 'PARTS'}`}
+            </span>
+            <span className="vr2-others-chevron" aria-hidden>{expanded ? '▾' : '▸'}</span>
+          </button>
+          {expanded && (
+            <div className="vr2-others-list">
+              {otherParts.map((p) => <PartCardV2 key={p.id} part={p} compact />)}
+            </div>
+          )}
+        </div>
+      )}
+
+      {(vision.toolsNeeded.length > 0 || vision.estimatedTimeMinutes != null) && (
+        <div className="vr-meta-row">
+          <span className="vr-difficulty">{difficultyLabel}</span>
+          {vision.estimatedTimeMinutes != null && (
+            <span className="vr-time">~{vision.estimatedTimeMinutes} min</span>
+          )}
+          {vision.toolsNeeded.length > 0 && (
+            <span className="vr-tools">Tools: {vision.toolsNeeded.join(' · ')}</span>
+          )}
+        </div>
+      )}
+
+      {vision.warnings.length > 0 && (
+        <div className="vr-warnings">
+          {vision.warnings.map((w, i) => (
+            <div key={i} className="vr-warning">⚠️ {w}</div>
+          ))}
+        </div>
+      )}
+
+      {vision.relatedIssues.length > 0 && (
+        <div className="vr-section vr-related">
+          <div className="vr-section-label">RELATED KNOWN ISSUES</div>
+          <ul className="vr-list">
+            {vision.relatedIssues.map((iss) => (
+              <li key={iss.id}>
+                <Link href={`#${iss.id}`} className="vr-related-link">
+                  <span className={`vr-sev vr-sev-${iss.severity}`} />
+                  <span>{iss.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="vr-disclaimer">
+        AI-generated suggestions. Verify fitment by VIN or part number before purchase. Affiliate links may earn Au7o a commission.
+      </div>
+
+      <style jsx>{cardStyles}</style>
+      <style jsx>{v2Styles}</style>
+    </div>
+  );
+}
+
+function PartCardV2({ part, compact = false }: { part: IdentifiedPart; compact?: boolean }) {
+  const [copied, setCopied] = useState<string | null>(null);
+  const icon = CATEGORY_ICONS[part.category] || '🔧';
+  const primaryVendor = part.vendorLinks.find((v) => v.priority === 1) || part.vendorLinks[0];
+  const secondaryVendors = part.vendorLinks.filter((v) => v !== primaryVendor).slice(0, 5);
+  const confidencePct = Math.round((part.confidence || 0) * 100);
+
+  const copyPart = useCallback((n: string) => {
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(n).catch(() => { /* */ });
+    }
+    setCopied(n);
+    setTimeout(() => setCopied(null), 1200);
+  }, []);
+
+  return (
+    <div className={`vr2-part-card ${compact ? 'vr2-part-compact' : ''}`} data-role={part.role}>
+      <div className="vr2-part-head">
+        <div className="vr2-part-icon" aria-hidden>{icon}</div>
+        <div className="vr2-part-meta">
+          <div className="vr2-part-name">
+            {part.name}
+            {part.position && <span className="vr2-part-pos"> ({part.position})</span>}
+          </div>
+          {(part.brand || part.spec) && (
+            <div className="vr2-part-line">
+              {[part.brand, part.spec].filter(Boolean).join(' · ')}
+            </div>
+          )}
+          {part.oemPartNumbers.length > 0 && (
+            <div className="vr2-part-oem">
+              <span className="vr2-oem-label">OEM:</span>
+              {part.oemPartNumbers.map((n, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className="vr2-oem-num"
+                  onClick={() => copyPart(n)}
+                  title="Copy part number"
+                >
+                  {n}{copied === n ? ' ✓' : ''}
+                </button>
+              ))}
+            </div>
+          )}
+          {part.aftermarketPartNumbers && part.aftermarketPartNumbers.length > 0 && (
+            <div className="vr2-part-cross">
+              Cross: {part.aftermarketPartNumbers.map((x) => `${x.brand} ${x.partNumber}`).join(' · ')}
+            </div>
+          )}
+          {part.notes && <div className="vr2-part-notes">{part.notes}</div>}
+          {confidencePct < 70 && (
+            <div className="vr2-part-conf">Lower confidence ({confidencePct}%) — verify before ordering</div>
+          )}
+        </div>
+      </div>
+
+      {primaryVendor && (
+        <a
+          href={primaryVendor.url}
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          className="vr2-vendor-primary"
+        >
+          Shop at {primaryVendor.displayName}
+          <span aria-hidden>▸</span>
+        </a>
+      )}
+
+      {secondaryVendors.length > 0 && (
+        <div className="vr2-vendor-grid">
+          {secondaryVendors.map((v) => (
+            <VendorButtonV2 key={v.vendor} link={v} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function VendorButtonV2({ link }: { link: VendorLink }) {
+  return (
+    <a
+      href={link.url}
+      target="_blank"
+      rel="noopener noreferrer sponsored"
+      className="vr2-vendor-btn"
+      title={link.rationale || link.displayName}
+    >
+      <span>{link.displayName}</span>
+      <span aria-hidden>▸</span>
+    </a>
+  );
+}
+
+const v2Styles = `
+  .vr2-card { /* additional v2-specific overrides if needed */ }
+  .vr2-hero { padding: 12px 16px; background: #FAFBFF; border-bottom: 1px solid var(--paper-line, #E3DFD4); }
+  .vr2-others { border-bottom: 1px solid var(--paper-line, #E3DFD4); }
+  .vr2-others-toggle {
+    width: 100%; background: transparent; border: 0; padding: 12px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; text-align: left;
+  }
+  .vr2-others-toggle:hover { background: #F8FAFC; }
+  .vr2-others-chevron { color: #94A3B8; font-size: 12px; }
+  .vr2-others-list { padding: 0 16px 12px; display: flex; flex-direction: column; gap: 10px; }
+
+  .vr2-part-card {
+    border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px;
+    background: #fff; display: flex; flex-direction: column; gap: 10px;
+  }
+  .vr2-part-card[data-role="consumable"] { background: #F8FAFC; }
+  .vr2-part-card[data-role="fastener"] { background: #FAFAFA; }
+  .vr2-part-compact { padding: 10px; }
+
+  .vr2-part-head { display: flex; gap: 10px; align-items: flex-start; }
+  .vr2-part-icon {
+    font-size: 22px; line-height: 1; flex: 0 0 auto;
+    width: 36px; height: 36px; border-radius: 8px;
+    background: #F1F5F9; display: flex; align-items: center; justify-content: center;
+  }
+  .vr2-part-meta { flex: 1; min-width: 0; }
+  .vr2-part-name {
+    font-size: 14px; font-weight: 600; color: #0B1220; line-height: 1.3;
+  }
+  .vr2-part-pos { color: #64748B; font-weight: 400; font-size: 12.5px; }
+  .vr2-part-line {
+    font-size: 12px; color: #475569; margin-top: 2px; line-height: 1.4;
+  }
+  .vr2-part-oem {
+    margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+    font-size: 11.5px;
+  }
+  .vr2-oem-label {
+    color: #64748B; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.04em; font-size: 10px;
+  }
+  .vr2-oem-num {
+    background: #0B1220; color: #fff; border: 0;
+    font-family: 'SF Mono', Menlo, monospace;
+    padding: 2px 8px; border-radius: 4px; font-size: 11px;
+    cursor: pointer; line-height: 1.4;
+  }
+  .vr2-oem-num:hover { background: #1E293B; }
+  .vr2-part-cross {
+    font-size: 11px; color: #64748B; margin-top: 4px;
+    font-family: 'SF Mono', Menlo, monospace; line-height: 1.4;
+  }
+  .vr2-part-notes {
+    font-size: 11.5px; color: #475569; margin-top: 6px; line-height: 1.4;
+    font-style: italic;
+  }
+  .vr2-part-conf {
+    font-size: 11px; color: #92400E; margin-top: 4px;
+    background: #FEF3C7; padding: 4px 6px; border-radius: 4px;
+    display: inline-block;
+  }
+
+  .vr2-vendor-primary {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #FFA500; color: #fff; border: 1px solid #FF8C00;
+    padding: 12px 14px; border-radius: 8px;
+    font-size: 13.5px; font-weight: 600;
+    text-decoration: none; min-height: 44px;
+  }
+  .vr2-vendor-primary:hover { background: #FF9500; }
+  .vr2-vendor-primary span:last-child { font-size: 12px; opacity: 0.9; }
+
+  .vr2-vendor-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px;
+  }
+  .vr2-vendor-btn {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #fff; color: #0B1220; border: 1px solid #CBD5E1;
+    padding: 9px 11px; border-radius: 7px;
+    font-size: 12px; font-weight: 500;
+    text-decoration: none; min-height: 40px;
+  }
+  .vr2-vendor-btn:hover { background: #F1F5F9; }
+  .vr2-vendor-btn span:last-child { color: #64748B; font-size: 11px; }
+
+  @media (max-width: 380px) {
+    .vr2-vendor-grid { grid-template-columns: 1fr; }
+  }
+`;
+

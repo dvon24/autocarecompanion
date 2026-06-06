@@ -25,7 +25,9 @@ export type VendorKey =
   | 'gm_parts_giant'
   | 'oreilly'
   | 'advance_auto'
-  | 'ebay_motors';
+  | 'ebay_motors'
+  | 'american_muscle'
+  | 'summit_racing';
 
 export interface VendorLink {
   vendor: VendorKey;

@@ -64,31 +64,42 @@ export function resolveVendorLinks(input: ResolveInput): VendorLink[] {
 }
 
 /**
- * Step 1 — gather the candidate vendor set for this category, with
- * an OEM specialist injected for OEM-specific categories based on
- * the user's vehicle make.
+ * Step 1 — gather the candidate vendor set for this category. Three
+ * passes:
+ *   (a) Category-matched vendors from the catalog.
+ *   (b) OEM specialist (Mopar/GM Parts Giant) injected for OEM-specific
+ *       categories based on user's make.
+ *   (c) Drop any vendor with a `bestForMakes` filter that doesn't
+ *       include the user's make — American Muscle / Summit Racing
+ *       shouldn't surface on a Honda Civic.
  */
 function pickCandidateVendors(category: PartCategory, make: string | undefined): VendorKey[] {
   const oemCats: PartCategory[] = ['oem_specific', 'body_panel', 'trim', 'badge', 'bracket', 'interior', 'emblem'];
   const base = CATEGORY_TO_VENDORS.get(category) || [];
   const set = new Set<VendorKey>(base);
 
-  // For OEM-specific categories, inject the make-specific specialist
-  // (Mopar Parts Giant for Dodge/Jeep/Chrysler/RAM, GM Parts Giant
-  // for Chevy/GMC/Cadillac/Buick) regardless of what bestForCategories
-  // happens to list.
   if (oemCats.includes(category)) {
     set.add(oemSpecialistForMake(make));
-    // eBay Motors as the discontinued-parts fallback for OEM-specific.
     set.add('ebay_motors');
   }
 
-  // Always include Amazon as universal fallback for non-niche
-  // categories that aren't tires/wheels/OEM.
   const skipAmazonCats: PartCategory[] = ['tire', 'wheel', 'tpms'];
   if (!skipAmazonCats.includes(category)) set.add('amazon');
 
-  return Array.from(set);
+  // Make-specialist filter — vendors with bestForMakes set only
+  // surface when the user's make is in their list. Vendors without
+  // bestForMakes pass through unchanged.
+  const filtered: VendorKey[] = [];
+  for (const k of set) {
+    const cfg = VENDORS[k];
+    if (!cfg) continue;
+    if (cfg.bestForMakes && cfg.bestForMakes.length > 0) {
+      if (!make) continue; // no vehicle context → drop make-specialists
+      if (!cfg.bestForMakes.includes(make)) continue;
+    }
+    filtered.push(k);
+  }
+  return filtered;
 }
 
 /**
@@ -114,6 +125,13 @@ function applyPriorityRules(candidates: VendorKey[], input: ResolveInput): Vendo
     // RockAuto is best aftermarket default — when category overlaps,
     // bump it ahead of Amazon.
     if (cfg.bestForCategories.includes(cat) && v === 'rockauto') s += 50;
+    // Make-specialist boost — American Muscle on a Challenger, Summit
+    // on a Camaro. These outrank generic vendors but not the OEM
+    // specialist when there's an OEM part number to look up.
+    if (cfg.bestForMakes && cfg.bestForMakes.length > 0 && input.vehicle?.make
+        && cfg.bestForMakes.includes(input.vehicle.make)) {
+      s += 45;
+    }
     // Amazon is the universal fallback, but only when nothing better
     // is available — give it a small base score, then category match.
     if (v === 'amazon') s += 10;

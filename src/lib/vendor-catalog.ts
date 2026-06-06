@@ -28,6 +28,12 @@ export interface VendorConfig {
    *  surface. Order within the array doesn't matter; per-category
    *  priority is set in the resolver. */
   bestForCategories: PartCategory[];
+  /** Optional make-specific specialization. When set, this vendor
+   *  ONLY surfaces for users whose vehicle make is in this list — and
+   *  gets a priority boost over generic vendors when it matches.
+   *  Example: American Muscle covers Mustang/Camaro/Challenger/Charger
+   *  performance parts; it shouldn't appear for a Honda Civic. */
+  bestForMakes?: string[];
   /** True when the vendor URL accepts an affiliate tag append. The
    *  resolver wraps the URL accordingly if VENDOR_AFFILIATE_TAGS env
    *  has a tag for this vendor. Amazon is always tagged (au7o-20). */
@@ -157,6 +163,41 @@ export const VENDORS: Record<VendorKey, VendorConfig> = {
     bestForCategories: ['oem_specific', 'wheel'],
     affiliateProgram: 'epn',
     rationale: 'Fallback for discontinued / used OEM (factory take-offs, NLA parts)',
+  },
+  american_muscle: {
+    key: 'american_muscle',
+    displayName: 'American Muscle',
+    searchUrlTemplate: 'https://www.americanmuscle.com/searchresults?q={query}',
+    partNumberSupport: 'searchable',
+    bestForCategories: [
+      'wheel', 'tire', 'suspension', 'body_panel', 'trim', 'badge',
+      'emblem', 'bracket', 'interior', 'accessory', 'brake_pad', 'rotor',
+      'caliper', 'oem_specific',
+    ],
+    // Make-specific specialist — covers modern American muscle:
+    // Mustang (S550/S650), Camaro (5th/6th gen), Challenger/Charger
+    // (LX/LD chassis), and select trucks via AmericanTrucks brand.
+    bestForMakes: ['Ford', 'Chevrolet', 'Dodge'],
+    affiliateProgram: 'cj',
+    rationale: 'Modern American muscle specialist — Mustang/Camaro/Challenger performance parts',
+  },
+  summit_racing: {
+    key: 'summit_racing',
+    displayName: 'Summit Racing',
+    searchUrlTemplate: 'https://www.summitracing.com/search?searchTerm={query}',
+    partNumberSupport: 'searchable',
+    bestForCategories: [
+      'suspension', 'wheel', 'brake_pad', 'rotor', 'caliper', 'tire',
+      'ignition', 'spark_plug', 'belt', 'hose', 'filter', 'fluid',
+      'accessory', 'tool', 'oem_specific', 'body_panel',
+    ],
+    // Summit Racing covers everything from GM/Ford/Mopar performance
+    // to vintage muscle (Pontiac, Plymouth, Oldsmobile). Set as
+    // specialist for the major American makes — won't surface for a
+    // Honda Civic, will surface for any V8 American iron.
+    bestForMakes: ['Ford', 'Chevrolet', 'Dodge', 'Pontiac', 'Plymouth', 'Oldsmobile', 'Cadillac', 'Buick', 'GMC', 'Chrysler', 'RAM', 'Lincoln', 'Mercury'],
+    affiliateProgram: 'cj',
+    rationale: 'Performance + racing parts catalog — huge V8 selection',
   },
 };
 
