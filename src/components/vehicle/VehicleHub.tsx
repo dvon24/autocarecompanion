@@ -9,6 +9,11 @@ import { Icon, type IconName } from '@/components/ui/Icon';
 import { vehicleSlug } from '@/lib/vehicle-slug';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
+import { MaintenanceLogFlow } from '@/components/vehicle/MaintenanceLogFlow';
+// Re-export under a distinct name so ScheduleRow can resolve the
+// default interval for the log-completion next-due reset without
+// pulling in the rest of the schedule lib.
+import { MAINTENANCE_SCHEDULES as MAINTENANCE_SCHEDULES_FOR_LOG } from '@/lib/maintenance';
 import { downscaleImage } from '@/lib/downscale-image';
 import { extractVideoFrames } from '@/lib/video-extract';
 import { clearTrace, pushTrace, flushTrace, setReqId } from '@/lib/upload-trace';
@@ -101,6 +106,13 @@ export interface VehicleHubProps {
     trim: string | null;
     nickname: string | null;
   }>;
+  /** User vehicle ID for log-completion writes against the maintenance
+   *  schedule. Null when this YMMT isn't in the visitor's garage (or
+   *  they're anonymous). */
+  loggableVehicleId?: string | null;
+  /** Whether the visitor's tier (Plus / Pro) includes maintenance
+   *  logging. Free + anonymous → false. */
+  canLogMaintenance?: boolean;
 }
 
 interface RoutePreview {
@@ -158,7 +170,22 @@ export function VehicleHub({
   schedule,
   ownersManualSchedule,
   userVehicles = [],
+  loggableVehicleId,
+  canLogMaintenance,
 }: VehicleHubProps) {
+  // After a successful log POST, hard-reload the page so the SSR
+  // schedule reflects the new MaintenanceRecord (next-due interval
+  // resets, the just-logged row moves into "Recently completed").
+  // router.refresh() would be cleaner but the hub already shows the
+  // LogCompletionDone state inline, so a brief reload after that done
+  // confirmation reads as intentional + reliable.
+  const onLogged = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      // Small delay so the user sees "Logged to your history" before
+      // the page reloads and the row physically moves groups.
+      setTimeout(() => window.location.reload(), 1500);
+    }
+  }, []);
   // Seed the conversation with the pre-rendered opener so the page feels
   // alive on first paint. Subsequent turns get appended here and (in v2)
   // sent to /api/chat for the real reply.
@@ -1048,6 +1075,10 @@ export function VehicleHub({
                     isAuthed={isAuthed}
                     // Pick chip-able follow-up prompts to send next.
                     onFollowUp={(prompt) => send(prompt)}
+                    loggableVehicleId={loggableVehicleId}
+                    currentMileage={currentMileage}
+                    canLogMaintenance={canLogMaintenance}
+                    onLogged={onLogged}
                   />
                 )
             ))}
@@ -1087,6 +1118,9 @@ export function VehicleHub({
         onSend={(text) => send(text)}
         onOpenThreads={() => setThreadsOpen(true)}
         onCloseThreads={() => setThreadsOpen(false)}
+        loggableVehicleId={loggableVehicleId}
+        canLogMaintenance={canLogMaintenance}
+        onLogged={onLogged}
         onPhotoUpload={handlePhotoUpload}
         onVideoUpload={handleVideoUpload}
       />
@@ -1167,6 +1201,7 @@ function MobileHub({
   maintenanceSuggestions, recentThreads, user,
   messages, input, pending, threadsOpen,
   onChangeInput, onSend, onOpenThreads, onCloseThreads, onSelectThread, onPhotoUpload, onVideoUpload,
+  loggableVehicleId, canLogMaintenance, onLogged,
 }: {
   vehicle: VehicleHubProps['vehicle'];
   slug: string;
@@ -1190,6 +1225,9 @@ function MobileHub({
   onSelectThread?: (threadId: string) => void;
   onPhotoUpload?: (file: File) => void;
   onVideoUpload?: (file: File) => void;
+  loggableVehicleId?: string | null;
+  canLogMaintenance?: boolean;
+  onLogged?: () => void;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const taRef = useRef<HTMLTextAreaElement>(null);
@@ -1484,6 +1522,10 @@ function MobileHub({
                         onTaskTap={(_typeId, name) => {
                           onSend(`How do I do a ${name.toLowerCase()} on my ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}?`);
                         }}
+                        loggableVehicleId={loggableVehicleId}
+                        currentMileage={currentMileage}
+                        canLog={canLogMaintenance}
+                        onLogged={onLogged}
                       />
                     )}
                     {matched.length > 0 && <IssueAttachmentGroup issues={matched} />}
@@ -3220,6 +3262,7 @@ function relativeWhen(iso: string): string {
 /* ─── Au7o reply bubble ─── */
 function Au7oReply({
   content, attachments = [], driveHandoff = null, route, schedule, issues, gate, vision, slug, isAuthed, onFollowUp,
+  loggableVehicleId, currentMileage, canLogMaintenance, onLogged,
 }: {
   content: string;
   attachments?: AttachableIssue[];
@@ -3232,6 +3275,10 @@ function Au7oReply({
   slug?: string;
   isAuthed?: boolean;
   onFollowUp?: (prompt: string) => void;
+  loggableVehicleId?: string | null;
+  currentMileage?: number | null;
+  canLogMaintenance?: boolean;
+  onLogged?: () => void;
 }) {
   // Split out any "→ follow-up question" lines the AI emitted at the end
   // of the reply. Body shows the cleaned content; chips render below as
@@ -3273,6 +3320,10 @@ function Au7oReply({
               // established conversation resolves correctly.
               onFollowUp?.(`How do I do a ${name.toLowerCase()}?`);
             }}
+            loggableVehicleId={loggableVehicleId}
+            currentMileage={currentMileage}
+            canLog={canLogMaintenance}
+            onLogged={onLogged}
           />
         )}
         {/* Known Issues card — vehicle-level context, parallel to the
@@ -3745,8 +3796,25 @@ function DriveHandoff({ destination }: { destination: string | null }) {
  * marker + service dots, and grouped service rows. All inline styles to
  * survive styled-jsx oddities (same lesson as IssueAttachmentGroup). */
 function MaintenanceSchedule({
-  schedule, onTaskTap,
-}: { schedule: ScheduleData; onTaskTap?: (typeId: string, name: string) => void }) {
+  schedule, onTaskTap, loggableVehicleId, currentMileage, canLog, onLogged,
+}: {
+  schedule: ScheduleData;
+  onTaskTap?: (typeId: string, name: string) => void;
+  /** User vehicle ID to log maintenance against. Null when the visitor
+   *  doesn't have this YMMT in their garage (anonymous, or signed-in
+   *  but no matching vehicle). */
+  loggableVehicleId?: string | null;
+  /** Current mileage to pre-fill the log form. Null = use schedule's
+   *  nowMileage as fallback. */
+  currentMileage?: number | null;
+  /** True when this user is on a tier that includes maintenance logging.
+   *  Free tier gets the read-only schedule; Plus/Pro get the "Mark
+   *  complete" affordance. */
+  canLog?: boolean;
+  /** Called after a successful log POST so the host can refresh the
+   *  schedule (router.refresh on SSR pages). */
+  onLogged?: () => void;
+}) {
   const { services, stats, timelineMin, timelineMax } = schedule;
   const span = Math.max(1, timelineMax - timelineMin);
   const pct = (m: number) => Math.max(0, Math.min(100, ((m - timelineMin) / span) * 100));
@@ -3900,11 +3968,14 @@ function MaintenanceSchedule({
       {/* Service rows */}
       <div>
         <ScheduleGroup title="Overdue" subtitle="Past the recommended interval — handle this next."
-          color="#B45309" services={grouped.overdue} onTaskTap={onTaskTap}/>
+          color="#B45309" services={grouped.overdue} onTaskTap={onTaskTap}
+          loggableVehicleId={loggableVehicleId} currentMileage={currentMileage ?? stats.nowMileage} canLog={canLog} onLogged={onLogged}/>
         <ScheduleGroup title="Due now" subtitle="Pair these in one visit to save labor."
-          color="#3B82F6" services={grouped.due_now} onTaskTap={onTaskTap}/>
+          color="#3B82F6" services={grouped.due_now} onTaskTap={onTaskTap}
+          loggableVehicleId={loggableVehicleId} currentMileage={currentMileage ?? stats.nowMileage} canLog={canLog} onLogged={onLogged}/>
         <ScheduleGroup title="On the horizon" subtitle="More than 500 mi out — plan ahead."
-          color="#64748B" services={grouped.upcoming} onTaskTap={onTaskTap}/>
+          color="#64748B" services={grouped.upcoming} onTaskTap={onTaskTap}
+          loggableVehicleId={loggableVehicleId} currentMileage={currentMileage ?? stats.nowMileage} canLog={canLog} onLogged={onLogged}/>
         <ScheduleGroup title="Recently completed" subtitle="Logged in the last 12 months."
           color="#10B981" services={grouped.done} collapsed onTaskTap={onTaskTap}/>
       </div>
@@ -3914,7 +3985,19 @@ function MaintenanceSchedule({
 
 function ScheduleGroup({
   title, subtitle, color, services, collapsed, onTaskTap,
-}: { title: string; subtitle: string; color: string; services: ScheduleService[]; collapsed?: boolean; onTaskTap?: (typeId: string, name: string) => void }) {
+  loggableVehicleId, currentMileage, canLog, onLogged,
+}: {
+  title: string;
+  subtitle: string;
+  color: string;
+  services: ScheduleService[];
+  collapsed?: boolean;
+  onTaskTap?: (typeId: string, name: string) => void;
+  loggableVehicleId?: string | null;
+  currentMileage?: number;
+  canLog?: boolean;
+  onLogged?: () => void;
+}) {
   const [expanded, setExpanded] = useState(false);
   if (services.length === 0) return null;
   const visible = collapsed && !expanded ? services.slice(0, 1) : services;
@@ -3936,7 +4019,16 @@ function ScheduleGroup({
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         {visible.map((s, i) => (
-          <ScheduleRow key={i} service={s} accent={color} onTap={onTaskTap}/>
+          <ScheduleRow
+            key={i}
+            service={s}
+            accent={color}
+            onTap={onTaskTap}
+            loggableVehicleId={loggableVehicleId}
+            currentMileage={currentMileage}
+            canLog={canLog}
+            onLogged={onLogged}
+          />
         ))}
         {collapsed && services.length > 1 && (
           <button onClick={() => setExpanded((e) => !e)} style={{
@@ -3954,11 +4046,30 @@ function ScheduleGroup({
 
 function ScheduleRow({
   service, accent, onTap,
-}: { service: ScheduleService; accent: string; onTap?: (typeId: string, name: string) => void }) {
+  loggableVehicleId, currentMileage, canLog, onLogged,
+}: {
+  service: ScheduleService;
+  accent: string;
+  onTap?: (typeId: string, name: string) => void;
+  loggableVehicleId?: string | null;
+  currentMileage?: number;
+  canLog?: boolean;
+  onLogged?: () => void;
+}) {
   // When onTap is provided, render as a button so the entire row is
   // tappable and accessible. Click forwards (typeId, name) so the
   // host can pivot it into a chat prompt or guide-generation call.
   const interactive = !!onTap;
+  // Local state to expand the log-completion form inline when the
+  // user clicks "Mark complete". The form lives in the row's parent
+  // wrapper so it doesn't trigger the row's onTap handler.
+  const [logOpen, setLogOpen] = useState(false);
+  // Show "Mark complete" only for non-done services on a real user
+  // vehicle they're authorized to log against.
+  const showLogButton = canLog
+    && !!loggableVehicleId
+    && currentMileage != null
+    && service.status !== 'done';
   const baseStyle: React.CSSProperties = {
     display: 'flex', alignItems: 'center', gap: 14,
     padding: '10px 14px',
@@ -3997,19 +4108,73 @@ function ScheduleRow({
       )}
     </>
   );
-  if (interactive) {
-    return (
-      <button
-        type="button"
-        onClick={() => onTap?.(service.typeId, service.name)}
-        style={baseStyle}
-        aria-label={`Open guide for ${service.name}`}
-      >
-        {body}
-      </button>
-    );
+  // Wrapper: row + (optional) inline log form below it. The row stays
+  // tappable for the chat-pivot CTA; the log button + form live in a
+  // sibling block so clicking either doesn't fire onTap.
+  const rowEl = interactive ? (
+    <button
+      type="button"
+      onClick={() => onTap?.(service.typeId, service.name)}
+      style={baseStyle}
+      aria-label={`Open guide for ${service.name}`}
+    >
+      {body}
+    </button>
+  ) : (
+    <div style={baseStyle}>{body}</div>
+  );
+
+  if (!showLogButton) {
+    return rowEl;
   }
-  return <div style={baseStyle}>{body}</div>;
+
+  // Resolve interval miles for the next-due reset. Service.name may not
+  // match the schedule typeId 1:1 in human-readable form, but typeId
+  // does. Falls back to 5,000 mi if the type isn't in our table.
+  const sched = MAINTENANCE_SCHEDULES_FOR_LOG[service.typeId];
+  const intervalMiles = sched?.defaultIntervalMiles ?? 5000;
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      {rowEl}
+      {!logOpen && (
+        <button
+          type="button"
+          onClick={() => setLogOpen(true)}
+          style={{
+            alignSelf: 'flex-start',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+            padding: '7px 12px',
+            background: accent,
+            color: '#fff',
+            border: 'none',
+            borderRadius: 8,
+            fontSize: 12.5,
+            fontWeight: 600,
+            cursor: 'pointer',
+            fontFamily: 'inherit',
+          }}
+        >
+          ✓ Mark complete + log to history
+        </button>
+      )}
+      {logOpen && (
+        <MaintenanceLogFlow
+          vehicleId={loggableVehicleId!}
+          currentMileage={currentMileage!}
+          service={{
+            typeId: service.typeId,
+            label: service.name,
+            intervalMiles,
+          }}
+          accent={accent}
+          onLogged={onLogged}
+        />
+      )}
+    </div>
+  );
 }
 
 function statusGlyph(status: ScheduleServiceStatus): string {

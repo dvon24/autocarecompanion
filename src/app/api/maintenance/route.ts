@@ -81,15 +81,22 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Check premium status
+    // Tier gate — maintenance logging is a Plus/Pro feature
+    // (TIER_LIMITS.free.maintenanceTracking === false). For now we
+    // approximate that as "has an active Stripe subscription". The
+    // tier-aware path will plug in once the limits helper is wired
+    // server-wide.
     const user = await prisma.user.findUnique({
       where: { id: session.user.id },
-      select: { subscriptionStatus: true },
+      select: { subscriptionStatus: true, subscriptionId: true },
     });
 
-    if (user?.subscriptionStatus !== 'active') {
+    if (!user?.subscriptionId || user.subscriptionStatus !== 'active') {
       return NextResponse.json(
-        { error: 'Premium subscription required' },
+        {
+          error: 'tier_required',
+          message: 'Logging maintenance to history is a Plus / Pro feature. Upgrade to track services.',
+        },
         { status: 403 }
       );
     }

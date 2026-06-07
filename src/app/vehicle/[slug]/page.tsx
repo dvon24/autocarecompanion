@@ -370,6 +370,8 @@ export default async function VehicleProfilePage({
       schedule={maintenanceSchedule}
       ownersManualSchedule={ownersManualSchedule}
       userVehicles={userVehicles}
+      loggableVehicleId={userVehicleId}
+      canLogMaintenance={!!userInfo?.isSubscriber && !!userVehicleId}
     />
   );
 }
