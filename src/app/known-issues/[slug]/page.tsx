@@ -20,6 +20,7 @@ import { VehicleChatLink } from '@/components/known-issues/VehicleChatLink';
 import FutureModelYearNotice from '@/components/known-issues/FutureModelYearNotice';
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
+import { OpenHubLink } from '@/components/known-issues/OpenHubLink';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 import { sourceLabel, analysisAttribution, sourceFootnote, metaSourceTail, formatUpdatedLabel } from '@/lib/source-attribution';
@@ -377,15 +378,15 @@ export default async function KnownIssuesArticlePage({
             >
               Known Issues
             </Link>
-            {/* Was "Get Started" linking to /get-started, which now 301s
-                to home — sent users in a circle. Now routes straight to
-                the rich vehicle hub for THIS page's vehicle. */}
-            <Link
-              href={`/vehicle/${vehicleSlug(yearRange?.max ?? new Date().getFullYear(), make, model)}`}
+            {/* Open Hub — anonymous visitors land on the hub for THIS
+                page's vehicle (a free preview of what the hub looks like
+                for the model they're researching). Signed-in users route
+                to "/" so they land on their own primary vehicle's hub
+                instead of a stranger base-trim default. See OpenHubLink. */}
+            <OpenHubLink
+              articleSlug={vehicleSlug(yearRange?.max ?? new Date().getFullYear(), make, model)}
               className="px-3 sm:px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Open Hub
-            </Link>
+            />
           </div>
         </div>
       </header>

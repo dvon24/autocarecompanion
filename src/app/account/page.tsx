@@ -58,17 +58,25 @@ export default async function AccountPage() {
     where: { id: userId },
     select: { subscriptionId: true, subscriptionStatus: true, subscriptionTier: true },
   });
-  const resolvedTier = resolveTier(userSubInfo?.subscriptionStatus, userSubInfo?.subscriptionTier);
+  // Phantom-sub guard: a row can carry a paid status without an actual
+  // Stripe subscriptionId (legacy backfill, manual Stripe delete with
+  // no webhook delivery, etc.). Treat those as Free everywhere — never
+  // surface a "Cancel subscription" button when there's nothing real to
+  // cancel against.
+  const hasStripeSub = !!userSubInfo?.subscriptionId;
+  const effectiveStatus = hasStripeSub ? userSubInfo?.subscriptionStatus ?? null : null;
+  const effectiveTier = hasStripeSub ? userSubInfo?.subscriptionTier ?? null : null;
+  const resolvedTier = resolveTier(effectiveStatus, effectiveTier);
   let subCancelAtPeriodEnd = false;
   let subCurrentPeriodEnd: number | null = null;
   if (
-    userSubInfo?.subscriptionId &&
-    (userSubInfo.subscriptionStatus === 'active' ||
-      userSubInfo.subscriptionStatus === 'trialing' ||
-      userSubInfo.subscriptionStatus === 'past_due')
+    hasStripeSub &&
+    (effectiveStatus === 'active' ||
+      effectiveStatus === 'trialing' ||
+      effectiveStatus === 'past_due')
   ) {
     try {
-      const sub = await getStripe().subscriptions.retrieve(userSubInfo.subscriptionId);
+      const sub = await getStripe().subscriptions.retrieve(userSubInfo!.subscriptionId!);
       subCancelAtPeriodEnd = !!sub.cancel_at_period_end;
       // Stripe API 2025+ moved current_period_end onto subscription items.
       subCurrentPeriodEnd = sub.items?.data?.[0]?.current_period_end ?? null;
@@ -227,13 +235,52 @@ export default async function AccountPage() {
             see an upgrade CTA pointing at /subscribe. */}
         <SubscriptionControls
           initialTier={resolvedTier}
-          initialStatus={userSubInfo?.subscriptionStatus ?? null}
+          initialStatus={effectiveStatus}
           initialCancelAtPeriodEnd={subCancelAtPeriodEnd}
           initialCurrentPeriodEnd={subCurrentPeriodEnd}
         />
 
         {/* GDPR data-rights actions */}
         <AccountPrivacyActions email={session.user.email} />
+
+        {/* Site map — quick-jump links to everything reachable from
+            the account page. Helps both navigation and discoverability
+            of features that aren't currently surfaced in nav. */}
+        <section className="mt-8">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Site map</h2>
+          <div className="rounded-xl border border-gray-200 bg-white p-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
+              <div>
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">My stuff</p>
+                <ul className="space-y-1.5 text-sm">
+                  <li><Link href="/garage" className="text-blue-600 hover:text-blue-700">Garage</Link></li>
+                  <li><Link href="/account" className="text-blue-600 hover:text-blue-700">Account</Link></li>
+                  <li><Link href="/subscribe" className="text-blue-600 hover:text-blue-700">Plans &amp; pricing</Link></li>
+                  <li><Link href="/drive" className="text-blue-600 hover:text-blue-700">Drive (trip planner)</Link></li>
+                </ul>
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Diagnose &amp; research</p>
+                <ul className="space-y-1.5 text-sm">
+                  <li><Link href="/symptom-chat" className="text-blue-600 hover:text-blue-700">Symptom chat</Link></li>
+                  <li><Link href="/known-issues" className="text-blue-600 hover:text-blue-700">Known issues index</Link></li>
+                  <li><Link href="/known-issues/dtc" className="text-blue-600 hover:text-blue-700">DTC code lookup</Link></li>
+                  <li><Link href="/parts" className="text-blue-600 hover:text-blue-700">Parts finder</Link></li>
+                </ul>
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Company &amp; legal</p>
+                <ul className="space-y-1.5 text-sm">
+                  <li><Link href="/about" className="text-blue-600 hover:text-blue-700">About Au7o</Link></li>
+                  <li><Link href="/privacy" className="text-blue-600 hover:text-blue-700">Privacy policy</Link></li>
+                  <li><Link href="/terms" className="text-blue-600 hover:text-blue-700">Terms</Link></li>
+                  <li><Link href="/data-rights" className="text-blue-600 hover:text-blue-700">Data rights request</Link></li>
+                  <li><Link href="/sitemap.xml" className="text-blue-600 hover:text-blue-700">XML sitemap (SEO)</Link></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Recent Parts Searches section hidden 2026-05-30 — Parts
             Finder is temporarily unsurfaced pending verification. The
