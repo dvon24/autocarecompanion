@@ -42,11 +42,25 @@ export async function GET(
     return NextResponse.json({ error: 'not_found' }, { status: 404 });
   }
 
-  const raw = (row.messages as unknown) as Array<{ role: string; content: string }> | null;
+  // Preserve rich attachments (vision/schedule/issues/gate/route)
+  // alongside role+content when they're present in the stored jsonb.
+  // The diagnose-to-chat handoff seeds an assistant message with a
+  // full vision attachment so VehicleHub can render it via
+  // VisionResultCard — earlier this endpoint stripped to {role,
+  // content} which silently dropped the card on the round-trip.
+  const raw = (row.messages as unknown) as Array<Record<string, unknown>> | null;
   const messages = Array.isArray(raw)
     ? raw
         .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
-        .map((m) => ({ role: m.role as 'user' | 'assistant', content: m.content }))
+        .map((m) => ({
+          role: m.role as 'user' | 'assistant',
+          content: m.content as string,
+          ...(m.vision ? { vision: m.vision } : {}),
+          ...(m.schedule ? { schedule: m.schedule } : {}),
+          ...(m.issues ? { issues: m.issues } : {}),
+          ...(m.gate ? { gate: m.gate } : {}),
+          ...(m.route ? { route: m.route } : {}),
+        }))
     : [];
 
   return NextResponse.json({ sessionId: row.id, messages });
