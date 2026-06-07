@@ -21,7 +21,7 @@ import FutureModelYearNotice from '@/components/known-issues/FutureModelYearNoti
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
 import { OpenHubLink } from '@/components/known-issues/OpenHubLink';
-import { SiteMapSection } from '@/components/shared/SiteMapSection';
+import { SiteFooter } from '@/components/shared/SiteFooter';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 import { sourceLabel, analysisAttribution, sourceFootnote, metaSourceTail, formatUpdatedLabel } from '@/lib/source-attribution';
@@ -679,21 +679,21 @@ export default async function KnownIssuesArticlePage({
               </p>
             </div>
 
-{/* Cross-site sitemap for deep-link visitors. */}
-            <SiteMapSection className="mt-10" />
-
-            {/* Footer attribution */}
+            {/* Article-specific attribution stays inline so report
+                count + © sits close to the article body. */}
             <footer className="pt-6 mt-8 border-t border-gray-100 text-center">
               <p className="text-xs text-gray-400">
                 {sourceFootnote(totalReports)}
-              </p>
-              <p className="text-xs text-gray-400 mt-1">
-                &copy; {new Date().getFullYear()} Au7o. All rights reserved.
               </p>
             </footer>
           </div>
         </div>
       </article>
+
+      {/* Site-wide footer (legal links + share + AI disclaimer + brand).
+          Same component used on the home page and every other long-form
+          public page. */}
+      <SiteFooter />
 
       {/* Mobile fixed bottom bar — pass the requested year if valid,
           else the most recent documented year, so the Hub deep-link

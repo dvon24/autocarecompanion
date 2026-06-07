@@ -6,7 +6,7 @@ import { getAllDTCSlugs, getDTCWithIssues, getDTCDates, getRelatedDTCCodes } fro
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { CollapsibleMakeSection } from '@/components/known-issues/CollapsibleMakeSection';
 import { OBDScannerRecommendations } from '@/components/known-issues/OBDScannerRecommendations';
-import { SiteMapSection } from '@/components/shared/SiteMapSection';
+import { SiteFooter } from '@/components/shared/SiteFooter';
 import { ShareButtons } from '@/components/shared/ShareButtons';
 
 // --- ISR + dynamic params ---
@@ -621,7 +621,7 @@ export default async function DTCCodePage({
             </div>
 
             {/* Cross-site sitemap for deep-link visitors. */}
-            <SiteMapSection className="mt-10" />
+            <SiteFooter />
 
             {/* Footer */}
             <footer className="pt-6 mt-8 border-t border-gray-100 text-center">

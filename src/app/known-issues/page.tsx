@@ -7,7 +7,7 @@ import { IssueCategory } from '@/schemas/knownIssue.schema';
 import { IssueSearch } from '@/components/known-issues/IssueSearch';
 import { BreadcrumbJsonLd, CollectionPageJsonLd } from '@/components/seo/JsonLd';
 import { MakeLogo } from '@/components/shared/MakeLogo';
-import { SiteMapSection } from '@/components/shared/SiteMapSection';
+import { SiteFooter } from '@/components/shared/SiteFooter';
 import prisma from '@/lib/db';
 
 // --- ISR ---
@@ -314,7 +314,7 @@ export default async function KnownIssuesIndexPage() {
         {/* Cross-site sitemap — most known-issues traffic lands from
             Google and never sees the homepage, so surface the rest of
             the product here. */}
-        <SiteMapSection className="mt-10" />
+        <SiteFooter />
 
         {/* Footer */}
         <footer className="py-6 mt-8 border-t border-gray-100 text-center">

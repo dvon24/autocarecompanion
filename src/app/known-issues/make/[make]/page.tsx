@@ -6,7 +6,7 @@ import { makeSlug, getMakeDates } from '@/lib/known-issues';
 import { categoryConfig } from '@/lib/issue-categories';
 import { BreadcrumbJsonLd, TechnicalArticleJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
-import { SiteMapSection } from '@/components/shared/SiteMapSection';
+import { SiteFooter } from '@/components/shared/SiteFooter';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
 import prisma from '@/lib/db';
 
@@ -415,7 +415,7 @@ export default async function MakeLandingPage({
         </section>
 
         {/* Cross-site sitemap for deep-link visitors. */}
-        <SiteMapSection className="mt-10" />
+        <SiteFooter />
 
         {/* Footer */}
         <footer className="mt-8 pt-6 border-t border-gray-200 text-center">

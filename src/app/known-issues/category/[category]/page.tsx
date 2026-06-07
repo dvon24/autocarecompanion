@@ -6,7 +6,7 @@ import { makeSlug, getCategoryDates } from '@/lib/known-issues';
 import { categoryConfig } from '@/lib/issue-categories';
 import { BreadcrumbJsonLd, TechnicalArticleJsonLd } from '@/components/seo/JsonLd';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
-import { SiteMapSection } from '@/components/shared/SiteMapSection';
+import { SiteFooter } from '@/components/shared/SiteFooter';
 import { MakeLogo } from '@/components/shared/MakeLogo';
 import prisma from '@/lib/db';
 
@@ -319,7 +319,7 @@ export default async function CategoryPage({
             </div>
 
             {/* Cross-site sitemap for deep-link visitors. */}
-            <SiteMapSection className="mt-10" />
+            <SiteFooter />
 
             <footer className="pt-6 mt-8 border-t border-gray-100 text-center">
               <p className="text-xs text-gray-400">&copy; {new Date().getFullYear()} Au7o. All rights reserved.</p>

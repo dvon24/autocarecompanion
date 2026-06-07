@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { HeroVehicleSearch } from '@/components/discovery/HeroVehicleSearch';
-import { ShareButtons } from '@/components/shared/ShareButtons';
 import { Icon } from '@/components/ui/Icon';
+import { SiteFooter } from '@/components/shared/SiteFooter';
 
 /**
  * Landing page — Phase 4 redesign aligned with BMAD au7o(3)/10-
@@ -159,8 +159,14 @@ export default function LandingPage({ stats }: Props) {
               and the exact part. Or browse documented problems for your exact car, free.
             </p>
             <div style={{ display: 'flex', gap: 12, marginTop: 28, alignItems: 'center', flexWrap: 'wrap' }}>
-              <Link
-                href="/known-issues"
+              {/* Anchor-scroll to the vehicle picker on the right /
+                  stacked below on mobile. Picking a vehicle is the
+                  prerequisite for the photo flow (the hub at
+                  /vehicle/{slug} is where the upload composer lives),
+                  so the CTA naturally walks the user into the right
+                  next step instead of dumping them on the catalog. */}
+              <a
+                href="#vehicle-picker"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -177,19 +183,21 @@ export default function LandingPage({ stats }: Props) {
                 }}
               >
                 <Icon name="camera" size={15} /> Upload a photo to diagnose
-              </Link>
+              </a>
               <span style={{ fontSize: 13, color: 'var(--slate-500, #64748B)' }}>Free · no card needed</span>
             </div>
           </div>
 
           {/* RIGHT — the free vehicle picker tool */}
           <div
+            id="vehicle-picker"
             style={{
               background: '#fff',
               border: '1px solid var(--paper-line, #E3DFD4)',
               borderRadius: 18,
               padding: 24,
               boxShadow: '0 16px 36px rgba(11,18,32,0.08), 0 2px 8px rgba(11,18,32,0.04)',
+              scrollMarginTop: 80, // sticky nav clearance for anchor jump
             }}
           >
             <div
@@ -431,71 +439,8 @@ export default function LandingPage({ stats }: Props) {
         </div>
       </section>
 
-      {/* ─── Footer (legal links + AI disclaimer + share) ────────── */}
-      <footer
-        style={{
-          borderTop: '1px solid var(--paper-line, #E3DFD4)',
-          background: '#fff',
-          padding: '36px 22px 28px',
-          marginTop: 'auto',
-        }}
-      >
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div
-            className="flex flex-wrap justify-center gap-x-6 gap-y-3"
-            style={{ fontSize: 13, color: 'var(--slate-500, #64748B)' }}
-          >
-            <Link href="/known-issues" style={footerLink}>Known Issues</Link>
-            <Link href="/drive" style={footerLink}>Drive</Link>
-            <Link href="/subscribe" style={footerLink}>Pricing</Link>
-            <Link href="/about" style={footerLink}>About</Link>
-            <Link href="/terms" style={footerLink}>Terms</Link>
-            <Link href="/privacy" style={footerLink}>Privacy</Link>
-            <Link href="/cookies" style={footerLink}>Cookies</Link>
-            <a href="#" className="termly-display-preferences" style={footerLink}>Consent</a>
-            <Link href="/data-rights" style={footerLink}>Data rights</Link>
-            <Link href="/copyright" style={footerLink}>Copyright</Link>
-            <Link href="/feedback" style={footerLink}>Feedback</Link>
-          </div>
-          <div className="flex justify-center" style={{ marginTop: 22 }}>
-            <ShareButtons url="https://au7o.io" title="Au7o - Know Your Car's Weak Spots" />
-          </div>
-          <div
-            className="flex items-start gap-2 mx-auto"
-            style={{
-              maxWidth: 640,
-              marginTop: 24,
-              padding: '10px 14px',
-              background: 'var(--paper, #F7F6F2)',
-              border: '1px solid var(--paper-line, #E3DFD4)',
-              borderRadius: 10,
-            }}
-          >
-            <Icon name="alert" size={14} style={{ color: 'var(--slate-400, #94A3B8)', marginTop: 1, flexShrink: 0 }} />
-            <p style={{ fontSize: 11.5, color: 'var(--slate-500, #64748B)', lineHeight: 1.55, margin: 0 }}>
-              Vehicle data and repair guidance on this site are compiled with AI assistance and may contain errors. Always verify with your service manual or a qualified mechanic.
-            </p>
-          </div>
-          <div
-            className="flex justify-between items-center"
-            style={{
-              marginTop: 24,
-              paddingTop: 18,
-              borderTop: '1px solid var(--paper-line, #E3DFD4)',
-              fontSize: 12,
-              color: 'var(--slate-500, #64748B)',
-            }}
-          >
-            <div className="flex items-center gap-2">
-              <Image src="/og-image.png" alt="" width={20} height={20} className="rounded" />
-              <span>
-                Au<span style={{ color: 'var(--au7o-blue, #3B82F6)' }}>7</span>o · {new Date().getFullYear()}
-              </span>
-            </div>
-            <span>Built for DIY mechanics. Privacy-first.</span>
-          </div>
-        </div>
-      </footer>
+      {/* Shared footer — same component used on known-issues pages. */}
+      <SiteFooter />
 
       <style jsx global>{`
         .lp-hero-grid {
@@ -532,11 +477,6 @@ const navLink: React.CSSProperties = {
   fontSize: 13.5,
   color: 'var(--slate-700, #334155)',
   fontWeight: 500,
-  textDecoration: 'none',
-};
-
-const footerLink: React.CSSProperties = {
-  color: 'var(--slate-500, #64748B)',
   textDecoration: 'none',
 };
 
