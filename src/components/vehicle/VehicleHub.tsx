@@ -2854,46 +2854,9 @@ function VehicleSwitcher({
           </Link>
         </div>
       )}
-
-      <style jsx>{`
-        .vs { position: relative; display: inline-block; }
-        .vs-label {
-          font-size: 13px; font-weight: 500; color: #0B1220;
-          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 240px;
-        }
-        .vs-trigger {
-          display: inline-flex; align-items: center; gap: 6px;
-          padding: 5px 10px; border-radius: 999px;
-          background: #fff; border: 1px solid #E3DFD4;
-          cursor: pointer; color: #0B1220;
-        }
-        .vs-trigger:hover { background: #FAF8F2; }
-        .vs-trigger[aria-expanded="true"] { background: #FAF8F2; }
-        .vs-caret { transition: transform 150ms ease; color: #64748B; }
-        .vs-caret-open { transform: rotate(180deg); }
-        .vs-menu {
-          position: absolute; top: calc(100% + 6px); left: 0;
-          min-width: 260px; max-width: 320px;
-          background: #fff; border: 1px solid #E3DFD4; border-radius: 12px;
-          box-shadow: 0 10px 32px rgba(11, 18, 32, 0.08), 0 2px 6px rgba(11, 18, 32, 0.04);
-          padding: 6px; z-index: 50;
-        }
-        .vs-empty {
-          padding: 10px 12px; font-size: 12px; color: #64748B;
-        }
-        .vs-item {
-          display: flex; align-items: center; gap: 8px;
-          padding: 8px 10px; border-radius: 8px;
-          font-size: 13px; color: #0B1220; text-decoration: none;
-          cursor: pointer;
-        }
-        .vs-item:hover { background: #FAF8F2; }
-        .vs-item-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .vs-item-check { color: #2563EB; font-weight: 700; flex: 0 0 auto; }
-        .vs-item-current { font-weight: 600; }
-        .vs-item-action { color: #2563EB; font-weight: 500; font-size: 12.5px; }
-        .vs-divider { height: 1px; background: #E3DFD4; margin: 6px 0; }
-      `}</style>
+      {/* .vs-* styles live in src/app/globals.css — styled-jsx scoped
+         hashes weren't reliably reaching the next/link <a> children in
+         the production bundle, collapsing the dropdown into one line. */}
     </div>
   );
 }
