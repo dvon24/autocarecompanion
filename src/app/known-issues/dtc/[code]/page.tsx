@@ -6,6 +6,7 @@ import { getAllDTCSlugs, getDTCWithIssues, getDTCDates, getRelatedDTCCodes } fro
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { CollapsibleMakeSection } from '@/components/known-issues/CollapsibleMakeSection';
 import { OBDScannerRecommendations } from '@/components/known-issues/OBDScannerRecommendations';
+import { SiteMapSection } from '@/components/shared/SiteMapSection';
 import { ShareButtons } from '@/components/shared/ShareButtons';
 
 // --- ISR + dynamic params ---
@@ -212,8 +213,8 @@ export default async function DTCCodePage({
             <Link href="/known-issues" className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
               Known Issues
             </Link>
-            <Link href="/get-started" className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
-              Get Started
+            <Link href="/" className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
+              Diagnose my car
             </Link>
           </div>
         </div>
@@ -619,8 +620,11 @@ export default async function DTCCodePage({
               </p>
             </div>
 
+            {/* Cross-site sitemap for deep-link visitors. */}
+            <SiteMapSection className="mt-10" />
+
             {/* Footer */}
-            <footer className="pt-6 border-t border-gray-100 text-center">
+            <footer className="pt-6 mt-8 border-t border-gray-100 text-center">
               <p className="text-xs text-gray-400">
                 &copy; {new Date().getFullYear()} Au7o. All rights reserved.
               </p>

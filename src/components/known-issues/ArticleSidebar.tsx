@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
 import { categoryConfig } from '@/lib/issue-categories';
+import { vehicleSlug } from '@/lib/vehicle-slug';
 
 interface ArticleSidebarProps {
   grouped: { category: IssueCategory; count: number; highCount: number }[];
@@ -10,9 +11,13 @@ interface ArticleSidebarProps {
   recallCount: number;
   make: string;
   model: string;
+  /** Year to ground the vehicle-hub deep link. Pass the article's year
+   *  range max so the link lands on a real /vehicle/[slug] page. */
+  hubYear: number;
 }
 
-export function ArticleSidebar({ grouped, hasRecalls, recallCount, make, model }: ArticleSidebarProps) {
+export function ArticleSidebar({ grouped, hasRecalls, recallCount, make, model, hubYear }: ArticleSidebarProps) {
+  const hubSlug = vehicleSlug(hubYear, make, model);
   return (
     <aside className="hidden lg:block lg:w-56 xl:w-64 flex-shrink-0 border-r border-gray-200 pr-8 mr-8">
       <nav className="sticky top-8 space-y-6" aria-label="Article navigation">
@@ -75,19 +80,17 @@ export function ArticleSidebar({ grouped, hasRecalls, recallCount, make, model }
 
         {/* CTAs */}
         <div className="space-y-2">
+          {/* Routes to the rich /vehicle/[slug] hub (the new conversational
+              surface). Was previously /symptom-chat?make=... — that page is
+              the legacy chat and we don't want to send users there anymore. */}
           <Link
-            href={`/symptom-chat?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}`}
+            href={`/vehicle/${hubSlug}`}
             className="flex items-center justify-center gap-2 w-full py-2 px-3 text-sm font-medium text-blue-600 border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
-            Symptom Chat
+            Open Vehicle Hub
           </Link>
           {/* Find Parts CTA removed — was linking to /get-started which
               redirects to home. Restore when the parts-finder is seeded

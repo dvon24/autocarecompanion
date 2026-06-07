@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useVehicleContext } from '@/contexts/AppContext';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
+import { vehicleSlug } from '@/lib/vehicle-slug';
 
 interface VehicleChatLinkProps {
   /** Fallback make from the article slug */
@@ -39,11 +40,15 @@ export function VehicleChatLink({ make, model, issues, className, children }: Ve
       selectedVehicle.make.toLowerCase() === make.toLowerCase() &&
       selectedVehicle.model.toLowerCase() === model.toLowerCase();
 
+    // Was routing to /symptom-chat (the legacy chat surface). Now goes
+    // to the /vehicle/[slug] hub — the rich conversational surface that
+    // has photo, video, known issues, and maintenance in one place.
+    // Falls back to a current-year slug if we only have make+model.
     let href: string;
-    if (vehicleMatchesArticle) {
-      href = `/symptom-chat?year=${selectedVehicle.year}&make=${encodeURIComponent(selectedVehicle.make)}&model=${encodeURIComponent(selectedVehicle.model)}&trim=${encodeURIComponent(selectedVehicle.trim)}`;
+    if (vehicleMatchesArticle && selectedVehicle) {
+      href = `/vehicle/${vehicleSlug(selectedVehicle.year, selectedVehicle.make, selectedVehicle.model, selectedVehicle.trim || null)}`;
     } else {
-      href = `/symptom-chat?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}`;
+      href = `/vehicle/${vehicleSlug(new Date().getFullYear(), make, model)}`;
     }
 
     router.push(href);

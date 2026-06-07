@@ -21,6 +21,7 @@ import FutureModelYearNotice from '@/components/known-issues/FutureModelYearNoti
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
 import { OpenHubLink } from '@/components/known-issues/OpenHubLink';
+import { SiteMapSection } from '@/components/shared/SiteMapSection';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 import { sourceLabel, analysisAttribution, sourceFootnote, metaSourceTail, formatUpdatedLabel } from '@/lib/source-attribution';
@@ -472,7 +473,7 @@ export default async function KnownIssuesArticlePage({
               <>The most commonly reported issue is <strong className="text-gray-800">{topReported.title}</strong> with {topReported.reportCount.toLocaleString()} owner reports. </>
             )}
             Across all issues, repair costs range from ${getMinCost(issues)} to ${getMaxCost(issues)}.{' '}
-            <Link href="/get-started" className="text-blue-600 hover:text-blue-800 font-medium">
+            <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium">
               DIY maintenance guides
             </Link>{' '}
             at <strong className="text-gray-800">au7o.io</strong>.
@@ -488,6 +489,7 @@ export default async function KnownIssuesArticlePage({
             recallCount={recalls.length}
             make={make}
             model={model}
+            hubYear={yearIsValid ? initialYear! : (yearRange?.max ?? new Date().getFullYear())}
           />
 
           {/* Main content */}
@@ -619,7 +621,7 @@ export default async function KnownIssuesArticlePage({
                   Describe your symptoms
                 </VehicleChatLink>{' '}
                 to get a diagnosis, or{' '}
-                <Link href="/get-started" className="text-blue-600 hover:text-blue-800 font-medium">
+                <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium">
                   get a full repair guide
                 </Link>.
               </p>
@@ -677,8 +679,11 @@ export default async function KnownIssuesArticlePage({
               </p>
             </div>
 
+{/* Cross-site sitemap for deep-link visitors. */}
+            <SiteMapSection className="mt-10" />
+
             {/* Footer attribution */}
-            <footer className="pt-6 border-t border-gray-100 text-center">
+            <footer className="pt-6 mt-8 border-t border-gray-100 text-center">
               <p className="text-xs text-gray-400">
                 {sourceFootnote(totalReports)}
               </p>

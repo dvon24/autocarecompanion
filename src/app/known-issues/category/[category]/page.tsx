@@ -6,6 +6,7 @@ import { makeSlug, getCategoryDates } from '@/lib/known-issues';
 import { categoryConfig } from '@/lib/issue-categories';
 import { BreadcrumbJsonLd, TechnicalArticleJsonLd } from '@/components/seo/JsonLd';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
+import { SiteMapSection } from '@/components/shared/SiteMapSection';
 import { MakeLogo } from '@/components/shared/MakeLogo';
 import prisma from '@/lib/db';
 
@@ -184,7 +185,7 @@ export default async function CategoryPage({
           </Link>
           <div className="flex items-center gap-3">
             <Link href="/known-issues" className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Known Issues</Link>
-            <Link href="/get-started" className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">Get Started</Link>
+            <Link href="/" className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">Diagnose my car</Link>
           </div>
         </div>
       </header>
@@ -317,7 +318,10 @@ export default async function CategoryPage({
               </p>
             </div>
 
-            <footer className="pt-6 border-t border-gray-100 text-center">
+            {/* Cross-site sitemap for deep-link visitors. */}
+            <SiteMapSection className="mt-10" />
+
+            <footer className="pt-6 mt-8 border-t border-gray-100 text-center">
               <p className="text-xs text-gray-400">&copy; {new Date().getFullYear()} Au7o. All rights reserved.</p>
             </footer>
           </div>

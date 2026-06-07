@@ -7,6 +7,7 @@ import { IssueCategory } from '@/schemas/knownIssue.schema';
 import { IssueSearch } from '@/components/known-issues/IssueSearch';
 import { BreadcrumbJsonLd, CollectionPageJsonLd } from '@/components/seo/JsonLd';
 import { MakeLogo } from '@/components/shared/MakeLogo';
+import { SiteMapSection } from '@/components/shared/SiteMapSection';
 import prisma from '@/lib/db';
 
 // --- ISR ---
@@ -149,10 +150,10 @@ export default async function KnownIssuesIndexPage() {
           </Link>
           <div className="flex items-center gap-3">
             <Link
-              href="/get-started"
+              href="/"
               className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
             >
-              Get Started
+              Diagnose my car
             </Link>
           </div>
         </div>
@@ -310,8 +311,13 @@ export default async function KnownIssuesIndexPage() {
           </p>
         </div>
 
+        {/* Cross-site sitemap — most known-issues traffic lands from
+            Google and never sees the homepage, so surface the rest of
+            the product here. */}
+        <SiteMapSection className="mt-10" />
+
         {/* Footer */}
-        <footer className="py-6 border-t border-gray-100 text-center">
+        <footer className="py-6 mt-8 border-t border-gray-100 text-center">
           <p className="text-xs text-gray-400">
             &copy; {new Date().getFullYear()} Au7o. All rights reserved.
           </p>

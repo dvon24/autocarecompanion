@@ -6,6 +6,7 @@ import { makeSlug, getMakeDates } from '@/lib/known-issues';
 import { categoryConfig } from '@/lib/issue-categories';
 import { BreadcrumbJsonLd, TechnicalArticleJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
+import { SiteMapSection } from '@/components/shared/SiteMapSection';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
 import prisma from '@/lib/db';
 
@@ -260,10 +261,10 @@ export default async function MakeLandingPage({
               Known Issues
             </Link>
             <Link
-              href="/get-started"
+              href="/"
               className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
             >
-              Get Started
+              Diagnose my car
             </Link>
           </div>
         </div>
@@ -325,7 +326,7 @@ export default async function MakeLandingPage({
             </Link>{' '}
             with {models[0].issueCount} documented issues.{' '}
             Full technical analysis and{' '}
-            <Link href="/get-started" className="text-blue-600 hover:text-blue-800 font-medium">
+            <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium">
               DIY maintenance guides
             </Link>{' '}
             at <strong>au7o.io</strong>.
@@ -403,7 +404,7 @@ export default async function MakeLandingPage({
             AI-powered step-by-step repair and maintenance guides tailored to your exact vehicle. Enter your year, make, and model to get started.
           </p>
           <Link
-            href="/get-started"
+            href="/auth/signup"
             className="inline-flex items-center gap-2 bg-white text-gray-900 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors"
           >
             Get Started Free
@@ -412,6 +413,9 @@ export default async function MakeLandingPage({
             </svg>
           </Link>
         </section>
+
+        {/* Cross-site sitemap for deep-link visitors. */}
+        <SiteMapSection className="mt-10" />
 
         {/* Footer */}
         <footer className="mt-8 pt-6 border-t border-gray-200 text-center">

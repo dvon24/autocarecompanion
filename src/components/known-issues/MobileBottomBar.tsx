@@ -29,7 +29,7 @@ export function MobileBottomBar({ make, model, hubYear }: MobileBottomBarProps) 
     <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-3 py-2 z-50 flex gap-2 shadow-[0_-2px_8px_rgba(0,0,0,0.04)]">
       <Link
         href={`/vehicle/${hubSlug}`}
-        className="flex-[1.4] flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white bg-blue-600 rounded-lg active:bg-blue-700 transition-colors min-h-[44px]"
+        className="flex-1 flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white bg-blue-600 rounded-lg active:bg-blue-700 transition-colors min-h-[44px]"
         aria-label={`Open ${hubYear} ${make} ${model} vehicle hub`}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -37,21 +37,9 @@ export function MobileBottomBar({ make, model, hubYear }: MobileBottomBarProps) 
         </svg>
         Open Vehicle Hub
       </Link>
-      <Link
-        href={`/symptom-chat?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}`}
-        className="flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium text-blue-600 border border-blue-200 rounded-lg active:bg-blue-50 transition-colors min-h-[44px]"
-        aria-label="Open symptom chat"
-      >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-          />
-        </svg>
-        Chat
-      </Link>
+      {/* Secondary "Chat" button removed — it routed to the legacy
+          /symptom-chat surface. The primary "Open Vehicle Hub" already
+          covers the conversational entry point. */}
     </div>
   );
 }
