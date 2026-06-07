@@ -77,6 +77,30 @@ export function useAnonymousLimit(): UseAnonymousLimitReturn {
     setResetDate(limit.resetDate);
   }, [isAuthenticated]);
 
+  // Reconcile with the SERVER's authoritative per-identity weekly quota.
+  // The localStorage counter (checkAnonymousLimit) drifts from the server
+  // — shared IP, cleared storage, or the credit spent on another surface —
+  // and was promising chats the server rejects: the user clicks a CTA and
+  // gets "no chats left" with no answer. We peek the server (no consume)
+  // and trust it when it's STRICTER. Never raise the count from the peek
+  // (so it can't be used to game the local limit). setState lives only in
+  // the fetch callback, never synchronously in the effect body.
+  useEffect(() => {
+    if (isAuthenticated || typeof window === 'undefined') return;
+    let cancelled = false;
+    fetch('/api/hub-chat', { method: 'GET' })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (cancelled || !data || typeof data.remaining !== 'number') return;
+        setRemaining((prev) => Math.min(prev, data.remaining));
+        if (data.resetAt) setResetDate(new Date(data.resetAt));
+      })
+      .catch(() => {
+        /* keep the local value on failure */
+      });
+    return () => { cancelled = true; };
+  }, [isAuthenticated]);
+
   // Refresh limit check periodically (every minute)
   useEffect(() => {
     if (isAuthenticated || typeof window === 'undefined') return;

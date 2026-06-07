@@ -64,7 +64,7 @@ export function FloatingAuthButton() {
     return (
       <Link
         href="/auth/signin"
-        className="fixed top-3 right-[112px] z-[9999] text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors px-1 py-1"
+        className="fixed top-3 right-[112px] z-[9999] text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors rounded-full border border-gray-200 bg-white/85 backdrop-blur-sm shadow-sm px-3 py-1.5"
         aria-label="Sign in"
       >
         Sign in

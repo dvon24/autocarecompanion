@@ -11,6 +11,7 @@ import {
 import { mileageBucket } from '@/lib/vehicle-slug';
 import {
   checkAndConsumeChatQuota,
+  peekChatQuota,
   getOrSetAnonId,
   DEFAULT_ANON_LIMIT,
   getEffectiveFreeAuthedLimit,
@@ -19,6 +20,42 @@ import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 
 export const maxDuration = 60;
 export const runtime = 'nodejs';
+
+/**
+ * GET /api/hub-chat — peek the anonymous chat allowance WITHOUT
+ * consuming it. The client-side counter (useAnonymousLimit, localStorage)
+ * can drift from the server's authoritative per-identity weekly quota:
+ * on a shared IP, after clearing storage, or after the credit was spent
+ * on another surface, the client would otherwise promise "1 chat left"
+ * that the server immediately rejects — the user clicks a CTA and gets
+ * "no chats left" with no answer. This lets the client seed its display
+ * from the server truth on load.
+ *
+ * Returns { authenticated, remaining, limit, resetAt }. Authenticated
+ * users aren't anon-gated (remaining is null → client treats as
+ * unlimited). Peek-only: never increments the quota.
+ */
+export async function GET() {
+  let session;
+  try { session = await auth(); } catch { session = null; }
+  if (session?.user?.id) {
+    return NextResponse.json({ authenticated: true, remaining: null });
+  }
+  try {
+    const anonId = await getOrSetAnonId();
+    const peek = await peekChatQuota({ key: `anon:${anonId}`, limit: DEFAULT_ANON_LIMIT });
+    return NextResponse.json({
+      authenticated: false,
+      remaining: peek.remaining,
+      limit: peek.limit,
+      resetAt: peek.resetAt.toISOString(),
+    });
+  } catch {
+    // On any failure, don't block the UI — let the client fall back to
+    // its local counter.
+    return NextResponse.json({ authenticated: false, remaining: null });
+  }
+}
 
 /**
  * Hub chat endpoint — purpose-built for the conversation-first

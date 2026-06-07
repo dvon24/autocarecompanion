@@ -472,7 +472,6 @@ export function DiagnoseFlowClient() {
                   ref={fileInputRef}
                   type="file"
                   accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
-                  capture="environment"
                   style={{ display: 'none' }}
                   onChange={(e) => {
                     const f = e.target.files?.[0];
