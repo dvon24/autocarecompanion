@@ -94,7 +94,12 @@ export function DiagnoseFlowClient() {
     [ymmt, year, make, model]
   );
 
-  const ready = !!file && !!year && !!make && !!model && !!trim;
+  // Trim is OPTIONAL for the free diagnosis — many vehicles (esp. EU
+  // models) have no trim list in our data, which previously left the
+  // "Diagnose this" button permanently grayed out (the friend's "it
+  // didn't work" report). A photo + year/make/model is enough; trim is
+  // sent when picked but never required.
+  const ready = !!file && !!year && !!make && !!model;
 
   const onFileChosen = (f: File) => {
     if (!/^image\//.test(f.type)) {
@@ -549,6 +554,17 @@ export function DiagnoseFlowClient() {
                 )}
               </button>
             </div>
+            {/* Tell the user WHY the button is disabled so a grayed
+                button never reads as "broken / didn't work". */}
+            {!ready && state !== 'analyzing' && (
+              <p style={{ textAlign: 'center', marginTop: 10, fontSize: 12.5, color: 'var(--slate-500, #64748B)' }}>
+                {!file && (!year || !make || !model)
+                  ? 'Add a photo and pick your year, make & model to diagnose.'
+                  : !file
+                    ? 'Add a photo to diagnose.'
+                    : 'Pick your year, make & model to diagnose.'}
+              </p>
+            )}
           </div>
         )}
 
