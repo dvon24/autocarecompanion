@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import type { TierId } from '@/lib/pricing/tiers';
-import { AU7O_TIERS, getTier } from '@/lib/pricing/tiers';
+import { getTier } from '@/lib/pricing/tiers';
 import { regionDisplayName } from '@/lib/pricing/region';
 
 /**
@@ -35,6 +35,14 @@ interface Props {
   /** ISO country code from the Vercel edge geo header, or null on
    *  local dev. Used only for the user-facing notice copy. */
   country: string | null;
+  /** When true, render without the outer <section>/<h2> chrome so the
+   *  caller can wrap us in an AcctCard. Tier badge stays inside this
+   *  component (it owns the optimistic state) and is exposed via the
+   *  `renderTierBadge` ref-style render-prop pattern below — but for
+   *  simplicity v1 just keeps the badge rendering as a small pill at
+   *  the top of the body when frameless. The parent can use the same
+   *  tier prop to render its own header pill if needed. */
+  frameless?: boolean;
 }
 
 function formatDate(unixSeconds: number | null): string {
@@ -59,6 +67,7 @@ export default function SubscriptionControls({
   initialCurrentPeriodEnd,
   regionAllowed,
   country,
+  frameless = false,
 }: Props) {
   const [tier, setTier] = useState<TierId>(initialTier);
   const [status, setStatus] = useState(initialStatus);
@@ -131,6 +140,142 @@ export default function SubscriptionControls({
 
   // Free-tier user — show upgrade CTA, no Stripe controls yet.
   if (!isActiveSub) {
+    const freeBody = (
+      <div className={frameless ? '' : 'rounded-xl border border-gray-200 bg-white p-5'}>
+        {/* Tier badge — in frameless mode the AcctCard title slot is
+            owned by the (server-rendered) page, which can't reflect an
+            optimistic in-component tier change. So we render the colored
+            chip here from local `badge` (tracks `tier` state) to keep
+            the affordance AND keep it accurate after a change. */}
+        {frameless && (
+          <div className="flex justify-end mb-2">
+            <span
+              className="text-[10px] font-semibold uppercase tracking-wider px-2 py-1 rounded-full"
+              style={{ background: badge.bg, color: badge.fg }}
+            >
+              {badge.label}
+            </span>
+          </div>
+        )}
+        {/* CURRENT PLAN row — paper well showing the active tier so
+            the user always sees what they're on (even at Free). */}
+        <div
+          className="flex items-center gap-3 mb-3"
+          style={{
+            padding: '13px 15px',
+            background: '#F1F5F9',
+            border: '1px solid #E5E7EB',
+            borderRadius: 12,
+          }}
+        >
+          <div className="flex-1">
+            <div className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">
+              CURRENT PLAN
+            </div>
+            <div className="text-[17px] font-bold mt-0.5 text-slate-900">Free</div>
+          </div>
+          <span
+            className="text-[18px] font-bold text-slate-400 font-mono"
+            style={{ fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}
+          >
+            $0
+          </span>
+        </div>
+
+        <p className="text-[12.5px] text-slate-600 leading-relaxed mb-4">
+          You&apos;re on the Free plan — <strong className="text-slate-900">2 photo diagnoses / week</strong> and one vehicle. Unlock more diagnoses, alerts, and the full garage with a paid plan.
+        </p>
+
+        {!regionAllowed && (
+          <div
+            className="mb-4 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2.5 text-xs leading-relaxed text-amber-900"
+            role="note"
+          >
+            <strong>Paid plans aren&apos;t available in {regionDisplayName(country)} yet.</strong>{' '}
+            We&apos;re launching Plus and Pro in the US first while we work through tax and compliance in other regions. The free tier stays fully available.
+          </div>
+        )}
+
+        <div className="flex flex-col gap-2">
+          {(['plus', 'pro'] as const).map((id) => {
+            const t = getTier(id);
+            const popular = t.popular;
+            const lockedStyle = !regionAllowed
+              ? { background: '#F3F4F6', borderColor: '#E5E7EB', opacity: 0.6, cursor: 'not-allowed' as const }
+              : {};
+            const body = (
+              <div
+                className="flex items-center gap-3"
+                style={{
+                  padding: '12px 14px',
+                  background: '#fff',
+                  border: regionAllowed && popular ? '1.5px solid #3B82F6' : '1px solid #E5E7EB',
+                  borderRadius: 11,
+                  ...lockedStyle,
+                }}
+                aria-disabled={!regionAllowed || undefined}
+              >
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-bold text-slate-900">{t.name}</span>
+                    {regionAllowed && popular && (
+                      <span
+                        className="text-[8.5px] font-bold uppercase text-white bg-blue-600 rounded-full"
+                        style={{ padding: '2px 6px', letterSpacing: '0.05em' }}
+                      >
+                        POPULAR
+                      </span>
+                    )}
+                    {!regionAllowed && (
+                      <span
+                        className="text-[8.5px] font-bold uppercase text-slate-500 bg-stone-100 rounded-full"
+                        style={{ padding: '2px 6px', letterSpacing: '0.05em' }}
+                      >
+                        US only
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-[11.5px] text-slate-500 mt-0.5 truncate">
+                    {t.tagline}
+                  </div>
+                </div>
+                <span
+                  className="text-sm font-bold text-slate-900"
+                  style={{ fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}
+                >
+                  ${t.price}
+                </span>
+                <span
+                  className="flex-shrink-0 text-xs font-semibold rounded-lg"
+                  style={{
+                    padding: '7px 13px',
+                    background: !regionAllowed ? '#E5E7EB' : popular ? '#3B82F6' : '#0B1220',
+                    color: !regionAllowed ? '#6B7280' : '#fff',
+                  }}
+                >
+                  Upgrade
+                </span>
+              </div>
+            );
+            return regionAllowed ? (
+              <Link key={id} href={`/subscribe?tier=${id}`} className="block">
+                {body}
+              </Link>
+            ) : (
+              <div key={id}>{body}</div>
+            );
+          })}
+        </div>
+        <Link
+          href="/subscribe"
+          className="inline-flex items-center gap-1 text-[12.5px] text-blue-600 hover:text-blue-700 font-semibold mt-4"
+        >
+          Compare all plans →
+        </Link>
+      </div>
+    );
+
+    if (frameless) return freeBody;
     return (
       <section className="mt-8">
         <div className="flex items-center justify-between mb-4">
@@ -142,82 +287,55 @@ export default function SubscriptionControls({
             {badge.label}
           </span>
         </div>
-        <div className="rounded-xl border border-gray-200 bg-white p-5">
-          <h3 className="font-semibold text-gray-900 mb-1">Upgrade your plan</h3>
-          <p className="text-sm text-gray-600 leading-relaxed mb-4">
-            You&apos;re on the Free plan — {AU7O_TIERS[0].features.find((f) => f.t.includes('photo'))?.t.toLowerCase() ?? '2 photo diagnoses / week'} and one vehicle. Unlock more diagnoses, alerts, and the full garage with a paid plan.
-          </p>
-
-          {!regionAllowed && (
-            <div
-              className="mb-4 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2.5 text-xs leading-relaxed text-amber-900"
-              role="note"
-            >
-              <strong>Paid plans aren&apos;t available in {regionDisplayName(country)} yet.</strong>{' '}
-              We&apos;re launching Plus and Pro in the US first while we work through tax and compliance in other regions. The free tier stays fully available.
-            </div>
-          )}
-
-          <div className="grid sm:grid-cols-2 gap-3">
-            {(['plus', 'pro'] as const).map((id) => {
-              const t = getTier(id);
-              const baseClass = id === 'plus'
-                ? 'border-blue-200 bg-blue-50 hover:bg-blue-100'
-                : 'border-gray-900 bg-gray-900 hover:bg-gray-800 text-white';
-              const lockedClass = 'border-gray-200 bg-gray-100 cursor-not-allowed opacity-60';
-              const className = `block rounded-xl border p-4 transition-colors ${regionAllowed ? baseClass : lockedClass}`;
-              const nameColor = regionAllowed && id === 'pro' ? 'text-white' : 'text-gray-900';
-              const priceColor = regionAllowed && id === 'pro' ? 'text-gray-300' : 'text-gray-600';
-              const taglineColor = regionAllowed && id === 'pro' ? 'text-gray-300' : 'text-gray-600';
-              const body = (
-                <>
-                  <div className="flex items-baseline justify-between">
-                    <span className={`font-semibold ${nameColor}`}>{t.name}</span>
-                    <span className={`text-sm ${priceColor}`}>${t.price}/mo</span>
-                  </div>
-                  <p className={`text-xs mt-1 ${taglineColor}`}>{t.tagline}</p>
-                  {!regionAllowed && (
-                    <p className="text-[10px] uppercase tracking-wider text-gray-500 mt-2">US only for now</p>
-                  )}
-                </>
-              );
-              return regionAllowed ? (
-                <Link key={id} href={`/subscribe?tier=${id}`} className={className}>
-                  {body}
-                </Link>
-              ) : (
-                <div key={id} className={className} aria-disabled="true">
-                  {body}
-                </div>
-              );
-            })}
-          </div>
-          <Link
-            href="/subscribe"
-            className="block text-center text-sm text-blue-600 hover:text-blue-700 font-medium mt-4"
-          >
-            Compare all plans →
-          </Link>
-        </div>
+        {freeBody}
       </section>
     );
   }
 
   // Plus / Pro user — full self-service panel.
-  return (
-    <section className="mt-8">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold text-gray-900">Subscription</h2>
-        <span
-          className="text-[10px] font-semibold uppercase tracking-wider px-2 py-1 rounded-full"
-          style={{ background: badge.bg, color: badge.fg }}
+  const activeBody = (
+    <div className={frameless ? '' : 'rounded-xl border border-gray-200 bg-white p-5'}>
+      {/* Tier badge (frameless) — see freeBody note: rendered here from
+          local `badge` so it survives an optimistic Plus↔Pro change. */}
+      {frameless && (
+        <div className="flex justify-end mb-2">
+          <span
+            className="text-[10px] font-semibold uppercase tracking-wider px-2 py-1 rounded-full"
+            style={{ background: badge.bg, color: badge.fg }}
+          >
+            {badge.label}
+          </span>
+        </div>
+      )}
+      {/* CURRENT PLAN row — paper well */}
+      {frameless && (
+        <div
+          className="flex items-center gap-3 mb-3"
+          style={{
+            padding: '13px 15px',
+            background: '#F1F5F9',
+            border: '1px solid #E5E7EB',
+            borderRadius: 12,
+          }}
         >
-          {badge.label}
-        </span>
-      </div>
+          <div className="flex-1">
+            <div className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">
+              CURRENT PLAN
+            </div>
+            <div className="text-[17px] font-bold mt-0.5 text-slate-900">
+              {tierMeta.name}
+            </div>
+          </div>
+          <span
+            className="text-[18px] font-bold text-slate-900"
+            style={{ fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}
+          >
+            ${tierMeta.price}
+          </span>
+        </div>
+      )}
 
-      <div className="rounded-xl border border-gray-200 bg-white p-5">
-        {cancelAtPeriodEnd ? (
+      {cancelAtPeriodEnd ? (
           <>
             <h3 className="font-semibold text-gray-900 mb-1">Scheduled to cancel</h3>
             <p className="text-sm text-gray-600 leading-relaxed mb-4">
@@ -236,9 +354,11 @@ export default function SubscriptionControls({
           </>
         ) : (
           <>
-            <h3 className="font-semibold text-gray-900 mb-1">
-              Au7o {tierMeta.name} · ${tierMeta.price}/mo
-            </h3>
+            {!frameless && (
+              <h3 className="font-semibold text-gray-900 mb-1">
+                Au7o {tierMeta.name} · ${tierMeta.price}/mo
+              </h3>
+            )}
             <p className="text-sm text-gray-600 leading-relaxed mb-5">
               Auto-renews{' '}
               {periodEnd ? (<>on <strong>{formatDate(periodEnd)}</strong></>) : <>at the end of your current period</>}.
@@ -307,9 +427,24 @@ export default function SubscriptionControls({
           </>
         )}
 
-        {info && <p className="text-xs text-green-700 mt-3">{info}</p>}
-        {error && <p className="text-xs text-red-600 mt-3">{error}</p>}
+      {info && <p className="text-xs text-green-700 mt-3">{info}</p>}
+      {error && <p className="text-xs text-red-600 mt-3">{error}</p>}
+    </div>
+  );
+
+  if (frameless) return activeBody;
+  return (
+    <section className="mt-8">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-semibold text-gray-900">Subscription</h2>
+        <span
+          className="text-[10px] font-semibold uppercase tracking-wider px-2 py-1 rounded-full"
+          style={{ background: badge.bg, color: badge.fg }}
+        >
+          {badge.label}
+        </span>
       </div>
+      {activeBody}
     </section>
   );
 }

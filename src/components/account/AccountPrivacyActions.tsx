@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { signOut } from 'next-auth/react';
+import { AcctToggle } from './AcctToggle';
 
 /**
  * "Privacy & Data" section on the account page.
@@ -16,7 +17,15 @@ import { signOut } from 'next-auth/react';
  *      literal word DELETE to arm the button so a fat-fingered tap on
  *      mobile doesn't nuke an account.
  */
-export default function AccountPrivacyActions({ email }: { email: string }) {
+export default function AccountPrivacyActions({
+  email,
+  frameless = false,
+}: {
+  email: string;
+  /** When true, skip the outer section/h2 chrome so the caller can
+   *  wrap us in an AcctCard. */
+  frameless?: boolean;
+}) {
   const [deleting, setDeleting] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [confirmText, setConfirmText] = useState('');
@@ -101,55 +110,62 @@ export default function AccountPrivacyActions({ email }: { email: string }) {
     }
   };
 
-  return (
-    <section>
-      <h2 className="text-xl font-semibold text-gray-900 mb-4">Privacy & Data</h2>
-      <p className="text-sm text-gray-600 mb-4">
+  const body = (
+    <div className="flex flex-col gap-4">
+      <p className="text-[12.5px] text-slate-600 leading-relaxed m-0">
         Under GDPR and similar laws, you have the right to a copy of your data
         and the right to have it erased. Both controls below operate on your
-        Au7o account ({email}). For other request types (rectification,
-        restriction, automated-decision objection), use the{' '}
+        Au7o account (<b className="text-slate-700">{email}</b>). For other
+        request types (rectification, restriction, automated-decision
+        objection), use the{' '}
         <a
           href="/data-rights"
-          className="text-blue-600 hover:text-blue-700 underline"
+          className="text-blue-600 hover:text-blue-700 font-medium"
         >
           data rights form
         </a>
         .
       </p>
 
-      {/* AI processing opt-out — full-width above the export/delete
-          grid because it's a continuous toggle rather than a one-time
-          action. Lives in the same section so all GDPR-rights
-          controls are grouped together. */}
-      <div className="rounded-xl border border-gray-200 bg-white p-5 mb-3">
-        <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0 flex-1">
-            <h3 className="font-semibold text-gray-900 mb-1">AI processing</h3>
-            <p className="text-xs text-gray-500 leading-relaxed">
-              We use Anthropic and OpenAI to power chat, repair guides,
-              and parts lookups. Article 21 (right to object). If you
-              opt out, those features stop working for your account
-              until you re-enable them here.
-            </p>
-            {aiError && (
-              <p className="text-xs text-red-600 mt-2">{aiError}</p>
-            )}
+      {/* AI processing opt-out — paper well. Uses AcctToggle with
+          tone="negative" so the toggle renders RED when the user has
+          opted out (matches the prior safety-relevant semantic, NOT
+          BMAD's green-when-on default). */}
+      <div
+        className="flex items-center gap-3.5"
+        style={{
+          padding: '13px 15px',
+          background: '#F1F5F9',
+          border: '1px solid #E5E7EB',
+          borderRadius: 12,
+        }}
+      >
+        <div className="flex-1 min-w-0">
+          <div className="text-[13.5px] font-semibold text-slate-900">AI processing</div>
+          <div className="text-[11.5px] text-slate-500 mt-0.5 leading-snug">
+            Powers chat, repair guides, and parts lookups (Anthropic &amp; OpenAI). Article 21 — right to object. Opting out disables those features until re-enabled.
           </div>
-          <label className="flex-shrink-0 inline-flex items-center cursor-pointer">
-            <input
-              type="checkbox"
-              checked={aiOptOut === true}
-              onChange={toggleAiOptOut}
-              disabled={aiOptOut === null || aiSaving}
-              className="sr-only peer"
-            />
-            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all relative peer-checked:bg-red-600 peer-disabled:opacity-50" />
-            <span className="ml-2 text-xs font-medium text-gray-700">
-              {aiOptOut === null ? '…' : aiOptOut ? 'Opted out' : 'Allowed'}
-            </span>
-          </label>
+          {aiError && <p className="text-xs text-red-600 mt-1.5">{aiError}</p>}
         </div>
+        <label className="flex-shrink-0 inline-flex flex-col items-center gap-1.5 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={aiOptOut === true}
+            onChange={toggleAiOptOut}
+            disabled={aiOptOut === null || aiSaving}
+            className="sr-only"
+          />
+          <AcctToggle on={aiOptOut === true} tone="negative" />
+          <span
+            className="text-[10px] font-bold uppercase"
+            style={{
+              letterSpacing: '0.04em',
+              color: aiOptOut === true ? '#DC2626' : '#10B981',
+            }}
+          >
+            {aiOptOut === null ? '…' : aiOptOut ? 'OPTED OUT' : 'ALLOWED'}
+          </span>
+        </label>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -226,6 +242,14 @@ export default function AccountPrivacyActions({ email }: { email: string }) {
           )}
         </div>
       </div>
+    </div>
+  );
+
+  if (frameless) return body;
+  return (
+    <section>
+      <h2 className="text-xl font-semibold text-gray-900 mb-4">Privacy &amp; Data</h2>
+      {body}
     </section>
   );
 }
