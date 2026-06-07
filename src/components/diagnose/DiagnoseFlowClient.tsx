@@ -3,11 +3,20 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 import { Icon } from '@/components/ui/Icon';
 import { downscaleImage } from '@/lib/downscale-image';
 import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { type YMMTData, YMMTDataSchema } from '@/schemas/vehicle.schema';
+
+/**
+ * sessionStorage key shared with /diagnose/claim. Stashes everything
+ * the claim endpoint needs to re-create the diagnosis chat after the
+ * user signs up + lands back on /diagnose/claim. Cleared by the claim
+ * page on successful seed.
+ */
+const SNAPSHOT_KEY = 'au7o.diagSnapshot';
 
 /**
  * Phase 4.5 — anonymous-friendly "try-it-free" photo diagnose flow.
@@ -32,6 +41,8 @@ import { type YMMTData, YMMTDataSchema } from '@/schemas/vehicle.schema';
 type State = 'idle' | 'analyzing' | 'result' | 'gated' | 'error';
 
 export function DiagnoseFlowClient() {
+  const { status: sessionStatus } = useSession();
+  const isSignedIn = sessionStatus === 'authenticated';
   // YMMT picker
   const [ymmt, setYmmt] = useState<YMMTData | null>(null);
   const [year, setYear] = useState('');
@@ -172,6 +183,42 @@ export function DiagnoseFlowClient() {
       .replace(/(^-|-$)/g, '');
     return slug;
   }, [year, make, model, trim]);
+
+  /**
+   * "Save & open chat" handler. Snapshots the diagnosis into
+   * sessionStorage and navigates the user into the claim flow.
+   *
+   * - Anonymous user → /auth/signup?callbackUrl=/diagnose/claim.
+   *   The signup page renders a banner reading the snapshot back so
+   *   they see what they're saving. After signup, /diagnose/claim
+   *   POSTs to /api/diagnose/seed and routes them to their hub.
+   * - Signed-in user → /diagnose/claim directly. No signup detour.
+   *
+   * Snapshot is cleared by /diagnose/claim on successful seed.
+   */
+  const handleSaveAndOpenChat = () => {
+    if (!result) return;
+    try {
+      const snapshot = {
+        visionResult: result,
+        year: Number(year),
+        make,
+        model,
+        trim: trim || undefined,
+        caption: caption.trim() || undefined,
+      };
+      sessionStorage.setItem(SNAPSHOT_KEY, JSON.stringify(snapshot));
+    } catch {
+      /* sessionStorage can fail in private mode — let the navigation
+         continue so the user at least sees the claim-page fallback. */
+    }
+    const callback = '/diagnose/claim';
+    if (isSignedIn) {
+      window.location.href = callback;
+    } else {
+      window.location.href = `/auth/signup?callbackUrl=${encodeURIComponent(callback)}`;
+    }
+  };
 
   return (
     <div
@@ -551,36 +598,23 @@ export function DiagnoseFlowClient() {
                 <strong>Save your diagnosis</strong> by creating a free account.
               </div>
               <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
-                <Link
-                  href="/auth/signup"
+                <button
+                  type="button"
+                  onClick={handleSaveAndOpenChat}
                   style={{
                     padding: '10px 16px',
                     background: 'var(--au7o-blue, #3B82F6)',
                     color: '#fff',
+                    border: 'none',
                     borderRadius: 10,
                     fontSize: 13,
                     fontWeight: 600,
-                    textDecoration: 'none',
+                    cursor: 'pointer',
+                    fontFamily: 'inherit',
                   }}
                 >
-                  Save & open chat
-                </Link>
-                {vehicleSlug && (
-                  <Link
-                    href={`/vehicle/${vehicleSlug}`}
-                    style={{
-                      padding: '10px 16px',
-                      background: 'var(--ink, #0B1220)',
-                      color: '#fff',
-                      borderRadius: 10,
-                      fontSize: 13,
-                      fontWeight: 600,
-                      textDecoration: 'none',
-                    }}
-                  >
-                    Open my hub →
-                  </Link>
-                )}
+                  {isSignedIn ? 'Save to my garage' : 'Save & open chat'}
+                </button>
               </div>
             </div>
             <div style={{ textAlign: 'center' }}>

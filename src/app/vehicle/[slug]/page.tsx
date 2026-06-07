@@ -91,10 +91,13 @@ export async function generateMetadata({
 
 export default async function VehicleProfilePage({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ session?: string; from?: string }>;
 }) {
   const { slug } = await params;
+  const { session: sessionIdParam } = await searchParams;
   const vehicle = parseVehicleSlug(slug);
   if (!vehicle) notFound();
 
@@ -377,6 +380,7 @@ export default async function VehicleProfilePage({
       userVehicles={userVehicles}
       loggableVehicleId={userVehicleId}
       canLogMaintenance={!!userInfo?.isSubscriber && !!userVehicleId}
+      initialSessionId={sessionIdParam || null}
     />
   );
 }

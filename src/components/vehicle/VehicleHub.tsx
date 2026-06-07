@@ -113,6 +113,13 @@ export interface VehicleHubProps {
   /** Whether the visitor's tier (Plus / Pro) includes maintenance
    *  logging. Free + anonymous → false. */
   canLogMaintenance?: boolean;
+  /** When set, the hub loads this ChatSession on mount instead of
+   *  showing the auto-opener. Used by /diagnose/claim handoff: the
+   *  seed endpoint creates a ChatSession with the diagnosis pre-
+   *  rendered, then routes the user here with the session id in the
+   *  query string so the first thing they see is their saved
+   *  diagnosis at the top of the chat. */
+  initialSessionId?: string | null;
 }
 
 interface RoutePreview {
@@ -172,6 +179,7 @@ export function VehicleHub({
   userVehicles = [],
   loggableVehicleId,
   canLogMaintenance,
+  initialSessionId,
 }: VehicleHubProps) {
   // After a successful log POST, hard-reload the page so the SSR
   // schedule reflects the new MaintenanceRecord (next-due interval
@@ -615,18 +623,41 @@ export function VehicleHub({
     try {
       const res = await fetch(`/api/hub-chat/session/${encodeURIComponent(threadId)}`);
       if (!res.ok) return;
-      const data = await res.json() as { sessionId: string; messages: Array<{ role: 'user' | 'assistant'; content: string }> };
+      // Persisted ChatSession.messages is the raw jsonb — it can
+      // include rich attachments (vision result, schedule, etc.) that
+      // were seeded server-side. We preserve those verbatim instead of
+      // stripping to {role, content} like the old impl did.
+      const data = await res.json() as {
+        sessionId: string;
+        messages: Array<{
+          role: 'user' | 'assistant';
+          content: string;
+          vision?: VisionResult;
+          gate?: GateInfo;
+          schedule?: ScheduleData;
+          issues?: AttachableIssue[];
+          route?: RoutePreview;
+        }>;
+      };
       if (!Array.isArray(data.messages) || data.messages.length === 0) return;
       // Re-attach vehicle-level context cards (Maintenance Schedule
-      // + Known Issues) to the first assistant message in the restored
-      // history. These are per-vehicle, not per-conversation — they
-      // should follow you between threads. DB rows only persist
-      // role+content, so without this both rich cards vanish on
-      // thread-switch.
+      // + Known Issues) to the first assistant message that doesn't
+      // already carry a richer attachment. Persisted vision results
+      // (diagnose-to-chat handoff) take precedence — we don't want to
+      // overwrite the seeded VisionResultCard with a schedule card.
       let attached = false;
       const restored = data.messages.map((m) => {
-        const base = { role: m.role, content: m.content, timestamp: Date.now() };
-        if (!attached && m.role === 'assistant') {
+        const base = {
+          role: m.role,
+          content: m.content,
+          timestamp: Date.now(),
+          ...(m.vision ? { vision: m.vision } : {}),
+          ...(m.gate ? { gate: m.gate } : {}),
+          ...(m.schedule ? { schedule: m.schedule } : {}),
+          ...(m.issues ? { issues: m.issues } : {}),
+          ...(m.route ? { route: m.route } : {}),
+        };
+        if (!attached && m.role === 'assistant' && !m.vision && !m.schedule) {
           attached = true;
           return {
             ...base,
@@ -643,6 +674,18 @@ export function VehicleHub({
       console.warn('[hub] failed to load session', err);
     }
   }, [pending, schedule, openerIssues]);
+
+  // Auto-load on mount when initialSessionId is supplied — used by
+  // the /diagnose/claim handoff to land the user inside their seeded
+  // diagnosis thread instead of the default opener. One-shot via a
+  // ref so React 18 StrictMode's double-effect doesn't re-fetch.
+  const initialSessionLoaded = useRef(false);
+  useEffect(() => {
+    if (!initialSessionId) return;
+    if (initialSessionLoaded.current) return;
+    initialSessionLoaded.current = true;
+    void loadSession(initialSessionId);
+  }, [initialSessionId, loadSession]);
 
   const send = async (text: string) => {
     const trimmed = text.trim();

@@ -1,10 +1,64 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+
+/**
+ * Banner rendered above the signup form when the user came from the
+ * /diagnose flow ("Save & open chat"). Reads the sessionStorage
+ * snapshot to remind the user what they're saving — without this,
+ * the diagnosis result vanishes when /diagnose unmounts, the value
+ * prop of completing signup fades, and conversion tanks.
+ *
+ * Pure client-side — no PII / diagnosis content reaches the server
+ * until the post-signup /diagnose/claim POST.
+ */
+function DiagnoseClaimBanner() {
+  const [info, setInfo] = useState<{ vehicle: string; primaryPart: string | null } | null>(null);
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem('au7o.diagSnapshot');
+      if (!raw) return;
+      const snap = JSON.parse(raw) as {
+        year?: number;
+        make?: string;
+        model?: string;
+        trim?: string;
+        visionResult?: { primaryPartId?: string | null; identifiedParts?: Array<{ id: string; name: string }> };
+      };
+      if (!snap.year || !snap.make || !snap.model) return;
+      const vehicle = `${snap.year} ${snap.make} ${snap.model}${snap.trim ? ' ' + snap.trim : ''}`;
+      const parts = snap.visionResult?.identifiedParts || [];
+      const primary = snap.visionResult?.primaryPartId
+        ? parts.find((p) => p.id === snap.visionResult!.primaryPartId)?.name ?? null
+        : parts[0]?.name ?? null;
+      setInfo({ vehicle, primaryPart: primary });
+    } catch {
+      /* corrupted snapshot → just don't render the banner */
+    }
+  }, []);
+  if (!info) return null;
+  return (
+    <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-xl flex items-start gap-3">
+      <svg className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+      <div className="text-sm leading-snug">
+        <div className="font-semibold text-gray-900">
+          {info.primaryPart
+            ? `Finishing up: saving your ${info.primaryPart.toLowerCase()} diagnosis`
+            : 'Finishing up: saving your diagnosis'}
+        </div>
+        <div className="text-gray-600 mt-0.5">
+          We&apos;ll attach it to your <strong>{info.vehicle}</strong> right after you create your account.
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function SignUpForm() {
   const router = useRouter();
@@ -73,8 +127,11 @@ function SignUpForm() {
 
       if (signInResult?.error) {
         // Edge case: account was created but auto-signin failed.
-        // Send them to the signin page so they can try manually.
-        router.push('/auth/signin');
+        // Preserve the callbackUrl so /auth/signin can route them
+        // forward (e.g. /diagnose/claim) once they sign in manually.
+        // Dropping callbackUrl here was a documented gap during the
+        // diagnose-to-chat handoff design.
+        router.push('/auth/signin?callbackUrl=' + encodeURIComponent(callbackUrl));
         return;
       }
 
@@ -95,6 +152,7 @@ function SignUpForm() {
 
   return (
     <>
+      {callbackUrl.startsWith('/diagnose/claim') && <DiagnoseClaimBanner />}
       {error && (
         <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
           {error}
