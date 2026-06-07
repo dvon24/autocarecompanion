@@ -14,6 +14,7 @@ import {
 import { getRecallsForArticle } from '@/lib/recalls';
 import { categoryConfig } from '@/lib/issue-categories';
 import { ArticleIssuesList } from '@/components/known-issues/ArticleIssuesList';
+import { ConfirmWithPhotoCTA } from '@/components/diagnose/ConfirmWithPhotoCTA';
 import { ArticleSidebar } from '@/components/known-issues/ArticleSidebar';
 import { MobileBottomBar } from '@/components/known-issues/MobileBottomBar';
 import { VehicleChatLink } from '@/components/known-issues/VehicleChatLink';
@@ -540,6 +541,13 @@ export default async function KnownIssuesArticlePage({
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 All {issues.length} Known Issues
               </h2>
+              {/* Confirm-with-a-photo CTA at the peak "is this my problem?"
+                  moment. Server-rendered (crawlable, no hydration cost),
+                  links to the anonymous /diagnose flow. Additive — sits
+                  above the issue cards without displacing any content. */}
+              <div className="mb-5">
+                <ConfirmWithPhotoCTA />
+              </div>
               <ArticleIssuesList
                 issues={issues}
                 make={make}

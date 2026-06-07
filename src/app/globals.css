@@ -3,6 +3,24 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Au7o warm-paper design tokens (BMAD au7o(4)). Used by the redesigned
+     known-issues + account surfaces and SiteFooter. Plain custom
+     properties (referenced via var() in inline styles / arbitrary
+     Tailwind values), not Tailwind theme tokens. */
+  --paper: #F7F6F2;       /* page background */
+  --paper-2: #EFEDE6;     /* recessed wells, alt rows, chips */
+  --paper-line: #E3DFD4;  /* hairline borders on paper */
+  --ink: #0B1220;         /* primary text + dark surfaces */
+  --au7o-blue: #3B82F6;
+  --au7o-blue-50: rgba(59, 130, 246, 0.05);
+  --au7o-blue-100: rgba(59, 130, 246, 0.10);
+  --au7o-blue-700: #1D4ED8;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: #64748B;
+  --slate-400: #94A3B8;
+  --slate-300: #CBD5E1;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -5,6 +5,7 @@ import { makeSlug } from '@/lib/known-issues';
 import { categoryConfig } from '@/lib/issue-categories';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
 import { IssueSearch } from '@/components/known-issues/IssueSearch';
+import { DiagnoseBanner } from '@/components/diagnose/DiagnoseBanner';
 import { BreadcrumbJsonLd, CollectionPageJsonLd } from '@/components/seo/JsonLd';
 import { MakeLogo } from '@/components/shared/MakeLogo';
 import { SiteFooter } from '@/components/shared/SiteFooter';
@@ -116,7 +117,7 @@ export default async function KnownIssuesIndexPage() {
   const otherMakes = directory.filter(d => !POPULAR_MAKES.includes(d.make));
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: '#F7F6F2' }}>
       <BreadcrumbJsonLd items={[
         { name: 'Au7o', url: 'https://au7o.io' },
         { name: 'Known Issues', url: 'https://au7o.io/known-issues' },
@@ -133,25 +134,34 @@ export default async function KnownIssuesIndexPage() {
         }))}
       />
 
-      {/* Header */}
-      <header className="px-6 py-4 border-b border-gray-200">
+      {/* Header — BMAD KITopNav: sticky, blurred paper, brand + CTA */}
+      <header
+        className="sticky top-0 z-30 px-6 py-3"
+        style={{
+          background: 'rgba(247,246,242,0.85)',
+          backdropFilter: 'blur(20px) saturate(140%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(140%)',
+          borderBottom: '1px solid #E3DFD4',
+        }}
+      >
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image
               src="/og-image.png"
               alt="Au7o mascot"
-              width={32}
-              height={32}
+              width={28}
+              height={28}
               className="rounded-lg"
             />
-            <span className="text-2xl font-bold text-gray-900 tracking-tight">
-              Au<span className="text-blue-600">7</span>o
+            <span className="text-xl font-bold tracking-tight" style={{ color: '#0B1220' }}>
+              Au<span style={{ color: '#3B82F6' }}>7</span>o
             </span>
           </Link>
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+              className="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-opacity hover:opacity-90"
+              style={{ background: '#0B1220' }}
             >
               Diagnose my car
             </Link>
@@ -162,20 +172,31 @@ export default async function KnownIssuesIndexPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Hero */}
         <div className="py-10 sm:py-14">
-          <nav className="text-sm text-gray-400 mb-4" aria-label="Breadcrumb">
+          <nav className="text-sm mb-4" style={{ color: '#94A3B8' }} aria-label="Breadcrumb">
             <ol className="flex items-center gap-1.5">
               <li><Link href="/" className="hover:text-gray-600">Au7o</Link></li>
-              <li className="text-gray-300">/</li>
-              <li className="text-gray-700 font-medium">Known Issues</li>
+              <li style={{ color: '#CBD5E1' }}>/</li>
+              <li className="font-medium" style={{ color: '#334155' }}>Known Issues</li>
             </ol>
           </nav>
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+          <div
+            className="text-[11px] font-semibold uppercase mb-3"
+            style={{ letterSpacing: '0.08em', color: '#3B82F6' }}
+          >
+            Known Issues · NHTSA-Verified
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-3" style={{ color: '#0B1220', letterSpacing: '-0.02em' }}>
             Known Vehicle Issues
           </h1>
-          <p className="text-gray-500 max-w-xl">
+          <p className="max-w-xl" style={{ color: '#475569' }}>
             {totalIssues.toLocaleString()}+ documented problems across {directory.length} makes and {totalVehicles} models. Symptoms, costs, and solutions compiled from NHTSA recalls, manufacturer TSBs, and owner forums.
           </p>
         </div>
+
+        {/* Diagnose-by-photo banner — additive entry point to the
+            anonymous /diagnose flow for landers who can't find their
+            exact symptom. Purely additive (no SEO content displaced). */}
+        <DiagnoseBanner className="mb-8" />
 
         {/* Search */}
         <div className="mb-10">
@@ -184,18 +205,19 @@ export default async function KnownIssuesIndexPage() {
 
         {/* Popular Makes — featured cards */}
         <section className="mb-12">
-          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Popular Makes</h2>
+          <h2 className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: '#64748B' }}>Popular Makes</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {popularMakes.map(({ make, vehicles, totalIssues: makeTotal }) => (
               <Link
                 key={make}
                 href={`/known-issues/make/${make.toLowerCase().replace(/\s+/g, '-')}`}
-                className="group flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-gray-300 hover:shadow-sm transition-all"
+                className="group flex items-start gap-3 p-4 bg-white rounded-xl hover:shadow-sm hover:border-blue-300 transition-all"
+                style={{ border: '1px solid #E3DFD4' }}
               >
                 <MakeLogo make={make} size={36} />
                 <div className="min-w-0">
-                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{make}</h3>
-                  <p className="text-xs text-gray-400 mt-0.5">
+                  <h3 className="font-semibold group-hover:text-blue-600 transition-colors" style={{ color: '#0B1220' }}>{make}</h3>
+                  <p className="text-xs mt-0.5" style={{ color: '#64748B' }}>
                     {vehicles.length} models &middot; {makeTotal} issues
                   </p>
                 </div>
@@ -207,8 +229,8 @@ export default async function KnownIssuesIndexPage() {
         {/* All Makes — collapsible compact grid */}
         <section className="mb-12">
           <details className="group">
-            <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
-              <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">All Makes ({directory.length})</h2>
+            <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
+              <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider">All Makes ({directory.length})</h2>
               <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
@@ -218,7 +240,7 @@ export default async function KnownIssuesIndexPage() {
                 <Link
                   key={make}
                   href={`/known-issues/make/${make.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="group flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="group flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-[#EFEDE6]/70 transition-colors"
                 >
                   <MakeLogo make={make} size={24} />
                   <div className="min-w-0 flex-1">
@@ -237,8 +259,8 @@ export default async function KnownIssuesIndexPage() {
         {/* Browse by Category — collapsible */}
         <section className="mb-12">
           <details className="group">
-            <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
-              <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Browse by Category</h2>
+            <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
+              <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider">Browse by Category</h2>
               <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
@@ -250,7 +272,7 @@ export default async function KnownIssuesIndexPage() {
                   <Link
                     key={cat}
                     href={`/known-issues/category/${cat}`}
-                    className="group flex items-center gap-2 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="group flex items-center gap-2 px-3 py-2.5 rounded-lg hover:bg-[#EFEDE6]/70 transition-colors"
                   >
                     <span className="text-lg">{config.icon}</span>
                     <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">{config.label}</span>
@@ -264,8 +286,8 @@ export default async function KnownIssuesIndexPage() {
         {/* Common DTC Codes — collapsible */}
         <section className="mb-12">
           <details className="group">
-            <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
-              <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Common Error Codes</h2>
+            <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
+              <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider">Common Error Codes</h2>
               <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
@@ -277,7 +299,7 @@ export default async function KnownIssuesIndexPage() {
                   <Link
                     key={code}
                     href={`/known-issues/dtc/${code.toLowerCase()}`}
-                    className="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-[#EFEDE6]/70 transition-colors"
                   >
                     <span className="font-mono font-bold text-gray-500 group-hover:text-blue-600 text-xs w-14 flex-shrink-0">{code.toUpperCase()}</span>
                     {info && (
@@ -317,7 +339,7 @@ export default async function KnownIssuesIndexPage() {
         <SiteFooter />
 
         {/* Footer */}
-        <footer className="py-6 mt-8 border-t border-gray-100 text-center">
+        <footer className="py-6 mt-8 border-t border-[#E3DFD4] text-center">
           <p className="text-xs text-gray-400">
             &copy; {new Date().getFullYear()} Au7o. All rights reserved.
           </p>
