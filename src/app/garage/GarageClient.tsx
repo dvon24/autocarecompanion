@@ -226,7 +226,7 @@ export default function GarageClient() {
                   href="/subscribe"
                   className="inline-block px-5 py-2.5 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition-colors whitespace-nowrap"
                 >
-                  Subscribe - $9.99/mo
+                  Subscribe — from $14.99/mo
                 </Link>
               </div>
             </ContentCard>

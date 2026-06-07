@@ -29,7 +29,7 @@ export function UpgradePrompt({
         <p className="text-gray-600 text-sm mb-2">
           Free limit reached.{' '}
           <Link href="/subscribe" className="text-blue-600 hover:text-blue-700 font-medium">
-            Go unlimited — $9.99/mo →
+            Go unlimited — $14.99/mo →
           </Link>
         </p>
         <p className="text-xs text-gray-400">
@@ -50,7 +50,7 @@ export function UpgradePrompt({
               Free limit reached
             </p>
             <p className="text-xs text-gray-500 mt-0.5">
-              Resets {resetText} · or unlimited $9.99/mo
+              Resets {resetText} · or unlimited $14.99/mo
             </p>
           </div>
           <Link
@@ -90,7 +90,7 @@ export function UpgradePrompt({
       </h3>
 
       <p className="text-gray-600 mb-6 max-w-md mx-auto">
-        Unlimited symptom chat, photo-to-part, and video diagnosis — <strong>$9.99/mo</strong>.
+        Unlimited symptom chat, photo-to-part, and video diagnosis — <strong>$14.99/mo</strong>.
         One avoided wrong part pays for 8 months.
       </p>
 
@@ -99,7 +99,7 @@ export function UpgradePrompt({
           href="/subscribe"
           className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg shadow-blue-500/25"
         >
-          Go unlimited — $9.99/mo
+          Go unlimited — $14.99/mo
         </Link>
         <p className="text-sm text-gray-500">
           or wait until {resetText}

@@ -55,7 +55,7 @@ export const AU7O_TIERS: readonly Tier[] = [
     ctaStyle: 'primary',
     features: [
       { t: 'Everything in Free', on: true },
-      { t: 'Unlimited photo & video diagnosis', on: true },
+      { t: '10 photo & video diagnoses / week', on: true },
       { t: 'Full known-issue matching · your trim', on: true },
       { t: 'Up to 3 vehicles', on: true },
       { t: 'Maintenance tracking + history', on: true },
@@ -72,11 +72,11 @@ export const AU7O_TIERS: readonly Tier[] = [
     ctaStyle: 'dark',
     features: [
       { t: 'Everything in Plus', on: true },
+      { t: 'Unlimited photo & video diagnosis', on: true },
       { t: 'Up to 10 vehicles', on: true },
       { t: 'Priority AI — fastest, most detailed', on: true },
       { t: 'Parts ordering discounts', on: true },
       { t: 'Family / shop sharing (5 seats)', on: true },
-      { t: 'Export records & service logs', on: true },
     ],
   },
 ] as const;
@@ -102,7 +102,7 @@ export const TIER_LIMITS: Record<TierId, {
   },
   plus: {
     vehicles: 3,
-    diagnosesPerWeek: Infinity,
+    diagnosesPerWeek: 10,
     maintenanceTracking: true,
     alerts: true,
     prioritySupport: false,

@@ -7,6 +7,7 @@ import AccountPrivacyActions from '@/components/account/AccountPrivacyActions';
 import SubscriptionControls from '@/components/account/SubscriptionControls';
 import { getStripe } from '@/lib/stripe';
 import { vehicleSlug } from '@/lib/vehicle-slug';
+import { resolveTier } from '@/lib/pricing/tiers';
 
 export const dynamic = 'force-dynamic';
 
@@ -55,8 +56,9 @@ export default async function AccountPage() {
   // and we don't store these fields locally.
   const userSubInfo = await prisma.user.findUnique({
     where: { id: userId },
-    select: { subscriptionId: true, subscriptionStatus: true },
+    select: { subscriptionId: true, subscriptionStatus: true, subscriptionTier: true },
   });
+  const resolvedTier = resolveTier(userSubInfo?.subscriptionStatus, userSubInfo?.subscriptionTier);
   let subCancelAtPeriodEnd = false;
   let subCurrentPeriodEnd: number | null = null;
   if (
@@ -220,10 +222,11 @@ export default async function AccountPage() {
           )}
         </section>
 
-        {/* Subscription self-service — only renders for users with an
-            active / trialing / past_due Stripe subscription. Free-tier
-            users see nothing. */}
+        {/* Subscription self-service — surfaces current tier, in-app
+            upgrade/downgrade (Plus ↔ Pro), and cancel. Free-tier users
+            see an upgrade CTA pointing at /subscribe. */}
         <SubscriptionControls
+          initialTier={resolvedTier}
           initialStatus={userSubInfo?.subscriptionStatus ?? null}
           initialCancelAtPeriodEnd={subCancelAtPeriodEnd}
           initialCurrentPeriodEnd={subCurrentPeriodEnd}

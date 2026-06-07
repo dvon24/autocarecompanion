@@ -210,9 +210,9 @@ export default function SignInPage() {
                 <p className="text-xs text-gray-500">
                   or{' '}
                   <Link href="/subscribe" className="text-blue-600 hover:text-blue-700 underline">
-                    subscribe for $9.99/month
+                    pick a plan from $14.99/mo
                   </Link>{' '}
-                  to unlock premium features
+                  to unlock unlimited diagnoses + alerts
                 </p>
               </div>
             </div>

@@ -891,7 +891,7 @@ export async function POST(request: NextRequest) {
             limit: quotaLimit,
             gated: true,
             ctaUrl: '/account',
-            ctaLabel: 'Go unlimited — $9.99/mo',
+            ctaLabel: 'Go unlimited — from $14.99/mo',
             secondaryCtaUrl: undefined,
             secondaryCtaLabel: undefined,
           }, { status: 429 });

@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 /**
  * Floating Sign-in pill — sits in the top-right corner next to the
@@ -21,6 +22,12 @@ export function FloatingAuthButton() {
   const { data: session, status } = useSession();
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  // Don't render on auth pages — /auth/signin and /auth/signup are
+  // themselves the sign-in/up forms, so a floating "Sign in" link on
+  // top would be a duplicate of the page's primary action.
+  const onAuthPage = pathname?.startsWith('/auth/') ?? false;
 
   // Close dropdown on outside click.
   useEffect(() => {
@@ -33,6 +40,8 @@ export function FloatingAuthButton() {
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
   }, [open]);
+
+  if (onAuthPage) return null;
 
   // Skeleton while session resolves so the link doesn't pop in.
   if (status === 'loading') {
