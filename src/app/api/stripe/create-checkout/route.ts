@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
+import { headers } from 'next/headers';
 import { getStripe, getPriceIdForTier } from '@/lib/stripe';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import type { TierId } from '@/lib/pricing/tiers';
+import { isAllowedSubscriptionRegion } from '@/lib/pricing/region';
 
 /**
  * POST /api/stripe/create-checkout
@@ -31,10 +33,26 @@ export async function POST(request: Request) {
       );
     }
 
+    // Region gate — read country from Vercel's edge geo header. Free
+    // tier doesn't reach this endpoint (Free has no checkout), so any
+    // request here is for a paid plan and must be in an allowed region.
+    const h = await headers();
+    const country = h.get('x-vercel-ip-country');
+    if (!isAllowedSubscriptionRegion(country)) {
+      return NextResponse.json(
+        {
+          error: 'region_unavailable',
+          message: 'Paid plans are available in the US only right now. We\'re working on EU/UK availability.',
+          country: country ?? null,
+        },
+        { status: 403 }
+      );
+    }
+
     const priceId = getPriceIdForTier(requestedTier);
     if (!priceId) {
       return NextResponse.json(
-        { error: 'price_not_configured', message: `No Stripe price configured for tier "${requestedTier}".` },
+        { error: 'price_not_configured', message: `No Stripe price configured for tier "${requestedTier}". Set STRIPE_PRICE_ID_${requestedTier.toUpperCase()} in the environment.` },
         { status: 500 }
       );
     }
@@ -94,9 +112,27 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ url: checkoutSession.url });
   } catch (error) {
-    console.error('Error creating checkout session:', error);
+    // Surface the actual Stripe error so debugging from the Vercel
+    // function logs is possible. Stripe errors carry `.type`, `.code`,
+    // and `.message` — all safe to log and the message is safe to
+    // bubble up to the client (no secrets in it).
+    const err = error as { type?: string; code?: string; message?: string; raw?: unknown; statusCode?: number };
+    const errType = err.type || 'unknown';
+    const errCode = err.code || 'unknown';
+    const errMsg = err.message || 'Failed to create checkout session';
+    console.error('[stripe.create-checkout] failed', {
+      type: errType,
+      code: errCode,
+      statusCode: err.statusCode,
+      message: errMsg,
+    });
     return NextResponse.json(
-      { error: 'create_failed', message: 'Failed to create checkout session' },
+      {
+        error: 'create_failed',
+        type: errType,
+        code: errCode,
+        message: errMsg,
+      },
       { status: 500 }
     );
   }

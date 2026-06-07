@@ -37,7 +37,7 @@ export const AU7O_TIERS: readonly Tier[] = [
     ctaStyle: 'ghost',
     features: [
       { t: 'Browse all known issues', on: true },
-      { t: '5 photo diagnoses / week', on: true },
+      { t: '2 photo diagnoses / week', on: true },
       { t: '1 vehicle in your garage', on: true },
       { t: 'Maintenance tracking', on: false },
       { t: 'Recall & service alerts', on: false },
@@ -95,7 +95,7 @@ export const TIER_LIMITS: Record<TierId, {
 }> = {
   free: {
     vehicles: 1,
-    diagnosesPerWeek: 5,
+    diagnosesPerWeek: 2,
     maintenanceTracking: false,
     alerts: false,
     prioritySupport: false,

@@ -1,7 +1,7 @@
 'use client';
 
 import { Icon } from '@/components/ui/Icon';
-import { AU7O_TIERS, type Tier } from '@/lib/pricing/tiers';
+import { AU7O_TIERS, type Tier, type TierId } from '@/lib/pricing/tiers';
 
 /**
  * Mobile pricing — stacked tier cards. Same data as PricingTiers but
@@ -9,22 +9,33 @@ import { AU7O_TIERS, type Tier } from '@/lib/pricing/tiers';
  * tier are shown (BMAD pattern — full list is on the post-checkout
  * confirmation page).
  *
+ * `lockedTiers` + `lockedReason` mirror PricingTiers — grays out
+ * specific tiers (e.g. paid tiers for non-US visitors) without hiding
+ * the marketing copy.
+ *
  * Adapted from design/au7o (2)/bmad-handoff2/screens/12-Pricing.jsx.
  */
 export function MobilePricing({
   onSelect,
   loadingTierId,
   currentTierId,
+  lockedTiers,
+  lockedReason,
 }: {
   onSelect: (tier: Tier) => void;
   loadingTierId?: string | null;
   currentTierId?: string | null;
+  lockedTiers?: TierId[];
+  lockedReason?: string;
 }) {
+  const locked = new Set<TierId>(lockedTiers ?? []);
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
       {AU7O_TIERS.map((tier) => {
         const isCurrent = currentTierId === tier.id;
         const isLoading = loadingTierId === tier.id;
+        const isLocked = locked.has(tier.id);
+        const isDisabled = isCurrent || isLoading || isLocked;
         return (
           <div
             key={tier.id}
@@ -92,24 +103,34 @@ export function MobilePricing({
             </div>
             <button
               onClick={() => onSelect(tier)}
-              disabled={isLoading || isCurrent}
+              disabled={isDisabled}
+              aria-disabled={isDisabled}
+              title={isLocked && lockedReason ? lockedReason : undefined}
               style={{
                 width: '100%',
                 padding: '11px 0',
                 borderRadius: 10,
                 fontSize: 13.5,
                 fontWeight: 600,
-                cursor: isLoading || isCurrent ? 'not-allowed' : 'pointer',
-                opacity: isLoading || isCurrent ? 0.7 : 1,
+                cursor: isDisabled ? 'not-allowed' : 'pointer',
+                opacity: isDisabled ? (isLocked ? 0.5 : 0.7) : 1,
                 fontFamily: 'inherit',
-                ...(tier.ctaStyle === 'primary'
-                  ? { background: 'var(--au7o-blue)', color: '#fff', border: 'none' }
-                  : tier.ctaStyle === 'dark'
-                    ? { background: 'var(--ink)', color: '#fff', border: 'none' }
-                    : { background: '#fff', color: 'var(--slate-700, #334155)', border: '1px solid var(--paper-line)' }),
+                ...(isLocked
+                  ? { background: '#E2E8F0', color: '#64748B', border: '1px solid #CBD5E1' }
+                  : tier.ctaStyle === 'primary'
+                    ? { background: 'var(--au7o-blue)', color: '#fff', border: 'none' }
+                    : tier.ctaStyle === 'dark'
+                      ? { background: 'var(--ink)', color: '#fff', border: 'none' }
+                      : { background: '#fff', color: 'var(--slate-700, #334155)', border: '1px solid var(--paper-line)' }),
               }}
             >
-              {isLoading ? 'Loading…' : isCurrent ? 'Current plan' : tier.cta}
+              {isLoading
+                ? 'Loading…'
+                : isCurrent
+                  ? 'Current plan'
+                  : isLocked
+                    ? (lockedReason ?? 'Not available')
+                    : tier.cta}
             </button>
           </div>
         );

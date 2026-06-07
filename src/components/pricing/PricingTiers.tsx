@@ -1,7 +1,7 @@
 'use client';
 
 import { Icon } from '@/components/ui/Icon';
-import { AU7O_TIERS, type Tier, type TierCtaStyle } from '@/lib/pricing/tiers';
+import { AU7O_TIERS, type Tier, type TierCtaStyle, type TierId } from '@/lib/pricing/tiers';
 
 /**
  * Desktop 3-column pricing grid. Pure presentation — clicking any tier
@@ -9,22 +9,33 @@ import { AU7O_TIERS, type Tier, type TierCtaStyle } from '@/lib/pricing/tiers';
  * Stripe (Plus/Pro), show the "current plan" hint (Free), or open a
  * confirmation modal.
  *
+ * `lockedTiers` + `lockedReason` let the parent gray out specific tiers
+ * (e.g. paid tiers for non-US visitors during the geo-restriction phase)
+ * without hiding them — keeps the value prop visible.
+ *
  * Adapted from design/au7o (2)/bmad-handoff2/screens/12-Pricing.jsx.
  */
 export function PricingTiers({
   onSelect,
   loadingTierId,
   currentTierId,
+  lockedTiers,
+  lockedReason,
 }: {
   onSelect: (tier: Tier) => void;
   loadingTierId?: string | null;
   currentTierId?: string | null;
+  lockedTiers?: TierId[];
+  lockedReason?: string;
 }) {
+  const locked = new Set<TierId>(lockedTiers ?? []);
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, alignItems: 'start' }}>
       {AU7O_TIERS.map((tier) => {
         const isCurrent = currentTierId === tier.id;
         const isLoading = loadingTierId === tier.id;
+        const isLocked = locked.has(tier.id);
+        const isDisabled = isCurrent || isLoading || isLocked;
         return (
           <div
             key={tier.id}
@@ -37,6 +48,7 @@ export function PricingTiers({
                 ? '0 16px 40px rgba(59,130,246,0.16)'
                 : 'var(--shadow-1, 0 1px 2px rgba(11,18,32,0.06))',
               position: 'relative',
+              opacity: isLocked ? 0.7 : 1,
             }}
           >
             {tier.popular && (
@@ -77,7 +89,9 @@ export function PricingTiers({
               </div>
               <button
                 onClick={() => onSelect(tier)}
-                disabled={isLoading || isCurrent}
+                disabled={isDisabled}
+                aria-disabled={isDisabled}
+                title={isLocked && lockedReason ? lockedReason : undefined}
                 style={{
                   width: '100%',
                   marginTop: 16,
@@ -85,13 +99,19 @@ export function PricingTiers({
                   borderRadius: 11,
                   fontSize: 14,
                   fontWeight: 600,
-                  cursor: isLoading || isCurrent ? 'not-allowed' : 'pointer',
-                  opacity: isLoading || isCurrent ? 0.7 : 1,
+                  cursor: isDisabled ? 'not-allowed' : 'pointer',
+                  opacity: isDisabled ? (isLocked ? 0.5 : 0.7) : 1,
                   fontFamily: 'inherit',
-                  ...btnStyle(tier.ctaStyle),
+                  ...(isLocked ? lockedBtnStyle() : btnStyle(tier.ctaStyle)),
                 }}
               >
-                {isLoading ? 'Loading…' : isCurrent ? 'Current plan' : tier.cta}
+                {isLoading
+                  ? 'Loading…'
+                  : isCurrent
+                    ? 'Current plan'
+                    : isLocked
+                      ? (lockedReason ?? 'Not available')
+                      : tier.cta}
               </button>
             </div>
             <div style={{ padding: '16px 22px 22px', display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -133,6 +153,15 @@ export function PricingTiers({
       })}
     </div>
   );
+}
+
+function lockedBtnStyle(): React.CSSProperties {
+  return {
+    background: '#E2E8F0',
+    color: '#64748B',
+    border: '1px solid #CBD5E1',
+    boxShadow: 'none',
+  };
 }
 
 function btnStyle(s: TierCtaStyle): React.CSSProperties {
