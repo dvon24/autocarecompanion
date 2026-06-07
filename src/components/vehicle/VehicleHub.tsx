@@ -10,6 +10,7 @@ import { vehicleSlug } from '@/lib/vehicle-slug';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
 import { MaintenanceLogFlow } from '@/components/vehicle/MaintenanceLogFlow';
+import { MaintenanceUpgradeTile } from '@/components/vehicle/MaintenanceUpgradeTile';
 // Re-export under a distinct name so ScheduleRow can resolve the
 // default interval for the log-completion next-due reset without
 // pulling in the rest of the schedule lib.
@@ -120,6 +121,12 @@ export interface VehicleHubProps {
    *  query string so the first thing they see is their saved
    *  diagnosis at the top of the chat. */
   initialSessionId?: string | null;
+  /** True when the visitor is signed-in but on a free tier with
+   *  a matching garage vehicle — drives the inline "Upgrade to Plus"
+   *  tile that renders in place of the gated Maintenance Schedule
+   *  card. Page level computes this so the gating decision is
+   *  consistent with where `schedule` itself is gated. */
+  showMaintenanceUpgradeTile?: boolean;
 }
 
 interface RoutePreview {
@@ -180,6 +187,7 @@ export function VehicleHub({
   loggableVehicleId,
   canLogMaintenance,
   initialSessionId,
+  showMaintenanceUpgradeTile,
 }: VehicleHubProps) {
   // After a successful log POST, hard-reload the page so the SSR
   // schedule reflects the new MaintenanceRecord (next-due interval
@@ -1127,6 +1135,7 @@ export function VehicleHub({
                     currentMileage={currentMileage}
                     canLogMaintenance={canLogMaintenance}
                     onLogged={onLogged}
+                    showMaintenanceUpgradeTile={showMaintenanceUpgradeTile}
                   />
                 )
             ))}
@@ -1169,6 +1178,7 @@ export function VehicleHub({
         loggableVehicleId={loggableVehicleId}
         canLogMaintenance={canLogMaintenance}
         onLogged={onLogged}
+        showMaintenanceUpgradeTile={showMaintenanceUpgradeTile}
         onPhotoUpload={handlePhotoUpload}
         onVideoUpload={handleVideoUpload}
       />
@@ -1249,7 +1259,7 @@ function MobileHub({
   maintenanceSuggestions, recentThreads, user,
   messages, input, pending, threadsOpen,
   onChangeInput, onSend, onOpenThreads, onCloseThreads, onSelectThread, onPhotoUpload, onVideoUpload,
-  loggableVehicleId, canLogMaintenance, onLogged,
+  loggableVehicleId, canLogMaintenance, onLogged, showMaintenanceUpgradeTile,
 }: {
   vehicle: VehicleHubProps['vehicle'];
   slug: string;
@@ -1276,6 +1286,7 @@ function MobileHub({
   loggableVehicleId?: string | null;
   canLogMaintenance?: boolean;
   onLogged?: () => void;
+  showMaintenanceUpgradeTile?: boolean;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const taRef = useRef<HTMLTextAreaElement>(null);
@@ -1487,6 +1498,14 @@ function MobileHub({
             />
           </div>
         )}
+        {/* Free-tier upgrade tile in the same slot when the schedule
+            is gated off. Renders only for signed-in free users with a
+            matching garage vehicle (the page-level computes this). */}
+        {isAuthed && !schedule && showMaintenanceUpgradeTile && (
+          <div className="m-attach">
+            <MaintenanceUpgradeTile />
+          </div>
+        )}
 
         {/* Known issues attachment — ranked, on-trim. Anon path lifts this
             to be the FIRST attachment (no schedule above). */}
@@ -1564,7 +1583,7 @@ function MobileHub({
                       : visibleBody.trim().length > 0
                         ? renderMarkdownLite(visibleBody)
                         : null}
-                    {m.schedule && (
+                    {m.schedule ? (
                       <MaintenanceSchedule
                         schedule={m.schedule}
                         onTaskTap={(_typeId, name) => {
@@ -1575,7 +1594,9 @@ function MobileHub({
                         canLog={canLogMaintenance}
                         onLogged={onLogged}
                       />
-                    )}
+                    ) : (idx === 0 && showMaintenanceUpgradeTile ? (
+                      <MaintenanceUpgradeTile />
+                    ) : null)}
                     {matched.length > 0 && <IssueAttachmentGroup issues={matched} />}
                     {m.route ? (
                       <MiniRoute
@@ -3310,7 +3331,7 @@ function relativeWhen(iso: string): string {
 /* ─── Au7o reply bubble ─── */
 function Au7oReply({
   content, attachments = [], driveHandoff = null, route, schedule, issues, gate, vision, slug, isAuthed, onFollowUp,
-  loggableVehicleId, currentMileage, canLogMaintenance, onLogged,
+  loggableVehicleId, currentMileage, canLogMaintenance, onLogged, showMaintenanceUpgradeTile,
 }: {
   content: string;
   attachments?: AttachableIssue[];
@@ -3327,6 +3348,7 @@ function Au7oReply({
   currentMileage?: number | null;
   canLogMaintenance?: boolean;
   onLogged?: () => void;
+  showMaintenanceUpgradeTile?: boolean;
 }) {
   // Split out any "→ follow-up question" lines the AI emitted at the end
   // of the reply. Body shows the cleaned content; chips render below as
@@ -3358,7 +3380,7 @@ function Au7oReply({
         {visibleBody.trim().length > 0 && (
           <div className="bubble-au7o">{renderMarkdownLite(visibleBody)}</div>
         )}
-        {schedule && (
+        {schedule ? (
           <MaintenanceSchedule
             schedule={schedule}
             onTaskTap={(_typeId, name) => {
@@ -3373,7 +3395,9 @@ function Au7oReply({
             canLog={canLogMaintenance}
             onLogged={onLogged}
           />
-        )}
+        ) : showMaintenanceUpgradeTile ? (
+          <MaintenanceUpgradeTile />
+        ) : null}
         {/* Known Issues card — vehicle-level context, parallel to the
             Maintenance Schedule above. Reuses MobileIssuesCard since
             that component is fully inline-styled and works at any

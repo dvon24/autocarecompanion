@@ -336,9 +336,13 @@ export default async function VehicleProfilePage({
     // or DB is briefly unhappy.
   }
 
+  // Free users don't see a maintenance opener line (tier-gated alongside
+  // the schedule card). Inline gate here because the rest of the tier
+  // variables haven't been computed yet at this point in the function.
+  const _isSubForOpener = !!userInfo?.isSubscriber;
   const opener = renderOpener(
     { year, make, model, trim, currentMileage },
-    maintenanceSuggestions,
+    _isSubForOpener ? maintenanceSuggestions : [],
   );
 
   // Batch 3 data: recent threads (only when authed), trending intents
@@ -365,7 +369,22 @@ export default async function VehicleProfilePage({
   // Known Issues card stays on for everyone (it's the free SEO
   // product). Founder bypass on isSubscriber means this still
   // resolves to true for QA accounts.
-  const scheduleForHub = userInfo?.isSubscriber ? maintenanceSchedule : null;
+  const isSubscriberFlag = !!userInfo?.isSubscriber;
+  const scheduleForHub = isSubscriberFlag ? maintenanceSchedule : null;
+  // Same tier gate applied to the maintenance-suggestions text
+  // context. The opener-text generator (renderOpener) and the chat
+  // system prompt both read maintenanceSuggestions — leaving it on
+  // for free users would leak Plus-tier hints into chat ("your next
+  // oil change is due in 800 mi") even though the visual schedule
+  // card is hidden. Gate both at the source so the gating decision
+  // is unambiguous.
+  const suggestionsForHub = isSubscriberFlag ? maintenanceSuggestions : [];
+  // Show the inline "Upgrade to Plus" tile in the schedule slot
+  // when the visitor is signed in on a free tier with a matching
+  // garage vehicle. Anonymous users see neither schedule nor tile
+  // (they're upstream of the signup conversion). Subscribers see
+  // the real schedule. Quietly absent everywhere else.
+  const showMaintenanceUpgradeTile = isAuthed && !isSubscriberFlag && !!userVehicleId;
 
   return (
     <VehicleHub
@@ -378,7 +397,7 @@ export default async function VehicleProfilePage({
         partsCached: allParts.length,
       }}
       currentMileage={currentMileage}
-      maintenanceSuggestions={maintenanceSuggestions}
+      maintenanceSuggestions={suggestionsForHub}
       opener={opener}
       recentThreads={recentThreads}
       trending={trending}
@@ -390,6 +409,7 @@ export default async function VehicleProfilePage({
       loggableVehicleId={userVehicleId}
       canLogMaintenance={!!userInfo?.isSubscriber && !!userVehicleId}
       initialSessionId={sessionIdParam || null}
+      showMaintenanceUpgradeTile={showMaintenanceUpgradeTile}
     />
   );
 }
