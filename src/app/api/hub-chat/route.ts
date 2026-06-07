@@ -545,6 +545,10 @@ export async function POST(request: NextRequest) {
             messages: openaiMessages,
             max_completion_tokens: MAX_OUTPUT_TOKENS,
             stream: true,
+            // Keep full default reasoning — automotive diagnosis must be
+            // accurate (wrong part/cost advice is worse than a slow
+            // answer). Latency/no-response is handled on the timeout +
+            // client side instead, NOT by lowering reasoning quality.
             // Required for usage to appear in the final stream chunk —
             // without this we'd have no way to log token counts.
             stream_options: { include_usage: true },

@@ -92,7 +92,13 @@ export function useAnonymousLimit(): UseAnonymousLimitReturn {
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
         if (cancelled || !data || typeof data.remaining !== 'number') return;
-        setRemaining((prev) => Math.min(prev, data.remaining));
+        // Mirror the server's authoritative count EXACTLY (both up and
+        // down). An earlier Math.min(prev, server) only ever lowered the
+        // value, so a stale localStorage 0 (from prior testing) kept the
+        // user locked out of a chat the server would actually allow. The
+        // server enforces the limit on every send regardless, so there's
+        // nothing to "game" by trusting it for the display.
+        setRemaining(data.remaining);
         if (data.resetAt) setResetDate(new Date(data.resetAt));
       })
       .catch(() => {
