@@ -1579,7 +1579,7 @@ function MobileHub({
                 ) : (
                   <>
                     {!m.content
-                      ? <span className="m-typing">…</span>
+                      ? <ThinkingIndicator />
                       : visibleBody.trim().length > 0
                         ? renderMarkdownLite(visibleBody)
                         : null}
@@ -3368,6 +3368,42 @@ function relativeWhen(iso: string): string {
 }
 
 /* ─── Au7o reply bubble ─── */
+/**
+ * Animated "thinking" indicator shown while the assistant message is
+ * still empty (the model is reasoning before the first token streams).
+ * gpt-5.5 keeps full reasoning for diagnostic accuracy, so first-token
+ * latency can be 10-40s — without this the bubble was blank and the
+ * chat looked frozen / "no response". The copy escalates so a long
+ * reason-through reads as "working", not "stuck". Self-contained scoped
+ * styles so it renders identically in the desktop + mobile chat panes.
+ */
+function ThinkingIndicator() {
+  const [phase, setPhase] = useState(0);
+  useEffect(() => {
+    const t1 = setTimeout(() => setPhase(1), 8000);
+    const t2 = setTimeout(() => setPhase(2), 22000);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
+  const label =
+    phase === 0 ? 'Thinking…'
+    : phase === 1 ? 'Working through your vehicle’s details…'
+    : 'Still on it — almost there…';
+  return (
+    <div className="au7o-think" aria-live="polite" role="status">
+      <span className="au7o-think-dots" aria-hidden><i /><i /><i /></span>
+      <span className="au7o-think-label">{label}</span>
+      <style jsx>{`
+        .au7o-think { display: inline-flex; align-items: center; gap: 9px; padding: 6px 0; color: var(--slate-500, #64748B); font-size: 13px; }
+        .au7o-think-dots { display: inline-flex; gap: 4px; align-items: center; }
+        .au7o-think-dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--au7o-blue, #3B82F6); display: inline-block; animation: au7oThink 1.2s ease-in-out infinite; }
+        .au7o-think-dots i:nth-child(2) { animation-delay: 0.18s; }
+        .au7o-think-dots i:nth-child(3) { animation-delay: 0.36s; }
+        @keyframes au7oThink { 0%, 80%, 100% { opacity: 0.25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+      `}</style>
+    </div>
+  );
+}
+
 function Au7oReply({
   content, attachments = [], driveHandoff = null, route, schedule, issues, gate, vision, slug, isAuthed, onFollowUp,
   loggableVehicleId, currentMileage, canLogMaintenance, onLogged, showMaintenanceUpgradeTile,
@@ -3416,6 +3452,17 @@ function Au7oReply({
           <InlineGateCard gate={gate} />
         ) : (
           <>
+        {/* Reasoning wait — empty bubble with no attachments means the
+            model is still thinking before the first token. Show the
+            animated indicator instead of a blank/absent bubble. */}
+        {visibleBody.trim().length === 0
+          && !schedule
+          && (!issues || issues.length === 0)
+          && !route
+          && !driveHandoff
+          && attachments.length === 0 && (
+          <ThinkingIndicator />
+        )}
         {visibleBody.trim().length > 0 && (
           <div className="bubble-au7o">{renderMarkdownLite(visibleBody)}</div>
         )}
