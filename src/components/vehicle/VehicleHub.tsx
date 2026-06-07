@@ -641,10 +641,13 @@ export function VehicleHub({
       };
       if (!Array.isArray(data.messages) || data.messages.length === 0) return;
       // Re-attach vehicle-level context cards (Maintenance Schedule
-      // + Known Issues) to the first assistant message that doesn't
-      // already carry a richer attachment. Persisted vision results
-      // (diagnose-to-chat handoff) take precedence — we don't want to
-      // overwrite the seeded VisionResultCard with a schedule card.
+      // + Known Issues) to the first assistant message. Vision /
+      // schedule / issues render in independent slots — vision
+      // replaces the bubble body while schedule + issues render as
+      // sibling cards below — so attaching them all is safe even on
+      // the seeded diagnose-to-chat message that already has vision.
+      // Persisted attachments win over the page-level defaults if
+      // both happen to be set.
       let attached = false;
       const restored = data.messages.map((m) => {
         const base = {
@@ -657,12 +660,14 @@ export function VehicleHub({
           ...(m.issues ? { issues: m.issues } : {}),
           ...(m.route ? { route: m.route } : {}),
         };
-        if (!attached && m.role === 'assistant' && !m.vision && !m.schedule) {
+        if (!attached && m.role === 'assistant') {
           attached = true;
           return {
             ...base,
-            ...(schedule ? { schedule } : {}),
-            ...(openerIssues.length > 0 ? { issues: openerIssues } : {}),
+            // Only fill in defaults when the persisted message didn't
+            // already carry its own — never overwrite seeded data.
+            ...(!m.schedule && schedule ? { schedule } : {}),
+            ...(!m.issues && openerIssues.length > 0 ? { issues: openerIssues } : {}),
           };
         }
         return base;
