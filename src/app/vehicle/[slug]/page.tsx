@@ -358,6 +358,15 @@ export default async function VehicleProfilePage({
   // Camaro ZL1 (LT4); Phase 1 expands coverage to top 25 US vehicles.
   const ownersManualSchedule = getOwnersManualSchedule({ year, make, model, trim });
 
+  // Tier gate on the dynamic Maintenance Schedule card. Per
+  // TIER_LIMITS.free.maintenanceTracking = false, the schedule UI
+  // is a Plus/Pro feature — free users (and anonymous) don't see
+  // it attached to the hub opener or seeded chat messages. The
+  // Known Issues card stays on for everyone (it's the free SEO
+  // product). Founder bypass on isSubscriber means this still
+  // resolves to true for QA accounts.
+  const scheduleForHub = userInfo?.isSubscriber ? maintenanceSchedule : null;
+
   return (
     <VehicleHub
       vehicle={{ year, make, model, trim }}
@@ -375,7 +384,7 @@ export default async function VehicleProfilePage({
       trending={trending}
       attachableIssues={attachableIssues}
       user={userInfo}
-      schedule={maintenanceSchedule}
+      schedule={scheduleForHub}
       ownersManualSchedule={ownersManualSchedule}
       userVehicles={userVehicles}
       loggableVehicleId={userVehicleId}
