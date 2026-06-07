@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import type { TierId } from '@/lib/pricing/tiers';
 import { AU7O_TIERS, getTier } from '@/lib/pricing/tiers';
+import { regionDisplayName } from '@/lib/pricing/region';
 
 /**
  * Account-page subscription panel. Surfaces the current tier and the
@@ -28,6 +29,12 @@ interface Props {
   initialStatus: string | null;
   initialCancelAtPeriodEnd: boolean;
   initialCurrentPeriodEnd: number | null; // unix seconds
+  /** Resolved server-side: false when this visitor's IP country isn't
+   *  on the allow-list and their email isn't on the founder bypass. */
+  regionAllowed: boolean;
+  /** ISO country code from the Vercel edge geo header, or null on
+   *  local dev. Used only for the user-facing notice copy. */
+  country: string | null;
 }
 
 function formatDate(unixSeconds: number | null): string {
@@ -50,6 +57,8 @@ export default function SubscriptionControls({
   initialStatus,
   initialCancelAtPeriodEnd,
   initialCurrentPeriodEnd,
+  regionAllowed,
+  country,
 }: Props) {
   const [tier, setTier] = useState<TierId>(initialTier);
   const [status, setStatus] = useState(initialStatus);
@@ -138,31 +147,48 @@ export default function SubscriptionControls({
           <p className="text-sm text-gray-600 leading-relaxed mb-4">
             You&apos;re on the Free plan — {AU7O_TIERS[0].features.find((f) => f.t.includes('photo'))?.t.toLowerCase() ?? '2 photo diagnoses / week'} and one vehicle. Unlock more diagnoses, alerts, and the full garage with a paid plan.
           </p>
+
+          {!regionAllowed && (
+            <div
+              className="mb-4 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2.5 text-xs leading-relaxed text-amber-900"
+              role="note"
+            >
+              <strong>Paid plans aren&apos;t available in {regionDisplayName(country)} yet.</strong>{' '}
+              We&apos;re launching Plus and Pro in the US first while we work through tax and compliance in other regions. The free tier stays fully available.
+            </div>
+          )}
+
           <div className="grid sm:grid-cols-2 gap-3">
             {(['plus', 'pro'] as const).map((id) => {
               const t = getTier(id);
-              return (
-                <Link
-                  key={id}
-                  href={`/subscribe?tier=${id}`}
-                  className={`block rounded-xl border p-4 transition-colors ${
-                    id === 'plus'
-                      ? 'border-blue-200 bg-blue-50 hover:bg-blue-100'
-                      : 'border-gray-900 bg-gray-900 hover:bg-gray-800 text-white'
-                  }`}
-                >
+              const baseClass = id === 'plus'
+                ? 'border-blue-200 bg-blue-50 hover:bg-blue-100'
+                : 'border-gray-900 bg-gray-900 hover:bg-gray-800 text-white';
+              const lockedClass = 'border-gray-200 bg-gray-100 cursor-not-allowed opacity-60';
+              const className = `block rounded-xl border p-4 transition-colors ${regionAllowed ? baseClass : lockedClass}`;
+              const nameColor = regionAllowed && id === 'pro' ? 'text-white' : 'text-gray-900';
+              const priceColor = regionAllowed && id === 'pro' ? 'text-gray-300' : 'text-gray-600';
+              const taglineColor = regionAllowed && id === 'pro' ? 'text-gray-300' : 'text-gray-600';
+              const body = (
+                <>
                   <div className="flex items-baseline justify-between">
-                    <span className={`font-semibold ${id === 'pro' ? 'text-white' : 'text-gray-900'}`}>
-                      {t.name}
-                    </span>
-                    <span className={`text-sm ${id === 'pro' ? 'text-gray-300' : 'text-gray-600'}`}>
-                      ${t.price}/mo
-                    </span>
+                    <span className={`font-semibold ${nameColor}`}>{t.name}</span>
+                    <span className={`text-sm ${priceColor}`}>${t.price}/mo</span>
                   </div>
-                  <p className={`text-xs mt-1 ${id === 'pro' ? 'text-gray-300' : 'text-gray-600'}`}>
-                    {t.tagline}
-                  </p>
+                  <p className={`text-xs mt-1 ${taglineColor}`}>{t.tagline}</p>
+                  {!regionAllowed && (
+                    <p className="text-[10px] uppercase tracking-wider text-gray-500 mt-2">US only for now</p>
+                  )}
+                </>
+              );
+              return regionAllowed ? (
+                <Link key={id} href={`/subscribe?tier=${id}`} className={className}>
+                  {body}
                 </Link>
+              ) : (
+                <div key={id} className={className} aria-disabled="true">
+                  {body}
+                </div>
               );
             })}
           </div>
@@ -219,7 +245,10 @@ export default function SubscriptionControls({
               Cancel anytime — you keep access through the end of the period you&apos;ve paid for.
             </p>
 
-            {/* Upgrade / downgrade action — tier-aware. */}
+            {/* Upgrade / downgrade action — tier-aware. Upgrades are
+                gated by regionAllowed (Plus → Pro is a paid plan change).
+                Downgrades stay available everywhere — no compliance risk
+                in shrinking what we charge an existing subscriber. */}
             {tier === 'plus' && (
               <div className="mb-5 rounded-lg border border-gray-200 bg-gray-50 p-4">
                 <div className="flex items-start justify-between gap-3">
@@ -228,13 +257,21 @@ export default function SubscriptionControls({
                     <p className="text-xs text-gray-600 mt-1 leading-relaxed">
                       Unlimited photo &amp; video diagnosis, up to 10 vehicles, priority AI, family/shop sharing.
                     </p>
+                    {!regionAllowed && (
+                      <p className="text-[10px] uppercase tracking-wider text-amber-700 mt-1.5">US only for now</p>
+                    )}
                   </div>
                   <button
                     onClick={() => callChangeTier('pro')}
-                    disabled={pending !== null}
-                    className="flex-shrink-0 py-2 px-4 bg-gray-900 text-white text-sm font-semibold rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={pending !== null || !regionAllowed}
+                    title={!regionAllowed ? `Plus → Pro upgrades aren't available in ${regionDisplayName(country)} yet.` : undefined}
+                    className={`flex-shrink-0 py-2 px-4 text-sm font-semibold rounded-lg transition-colors disabled:cursor-not-allowed ${
+                      regionAllowed
+                        ? 'bg-gray-900 text-white hover:bg-gray-800 disabled:opacity-50'
+                        : 'bg-gray-200 text-gray-500 border border-gray-300 opacity-70'
+                    }`}
                   >
-                    {pending === 'pro' ? 'Upgrading…' : 'Upgrade'}
+                    {pending === 'pro' ? 'Upgrading…' : regionAllowed ? 'Upgrade' : 'US only'}
                   </button>
                 </div>
               </div>

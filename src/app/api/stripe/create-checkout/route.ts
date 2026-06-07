@@ -36,9 +36,11 @@ export async function POST(request: Request) {
     // Region gate — read country from Vercel's edge geo header. Free
     // tier doesn't reach this endpoint (Free has no checkout), so any
     // request here is for a paid plan and must be in an allowed region.
+    // Founder + ops bypass is keyed on session email so QA accounts can
+    // exercise the flow from anywhere.
     const h = await headers();
     const country = h.get('x-vercel-ip-country');
-    if (!isAllowedSubscriptionRegion(country)) {
+    if (!isAllowedSubscriptionRegion(country, session?.user?.email)) {
       return NextResponse.json(
         {
           error: 'region_unavailable',

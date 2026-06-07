@@ -52,7 +52,7 @@ export async function POST(request: Request) {
 
     const h = await headers();
     const country = h.get('x-vercel-ip-country');
-    if (!isAllowedSubscriptionRegion(country)) {
+    if (!isAllowedSubscriptionRegion(country, session.user.email)) {
       return NextResponse.json(
         {
           error: 'region_unavailable',

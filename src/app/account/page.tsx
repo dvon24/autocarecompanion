@@ -10,6 +10,8 @@ import { getStripe } from '@/lib/stripe';
 import { vehicleSlug } from '@/lib/vehicle-slug';
 import { resolveTier } from '@/lib/pricing/tiers';
 import { SiteMapSection } from '@/components/shared/SiteMapSection';
+import { headers } from 'next/headers';
+import { isAllowedSubscriptionRegion } from '@/lib/pricing/region';
 
 export const dynamic = 'force-dynamic';
 
@@ -50,6 +52,15 @@ export default async function AccountPage() {
   }
 
   const userId = session.user.id;
+
+  // Same geo gate as /subscribe — paid plan changes are US-only for now
+  // (VAT/GST + state sales-tax registration pending). Free users outside
+  // the US see a notice + grayed CTAs instead of clickable Plus/Pro tiles.
+  // Founder + ops emails (see SUBSCRIPTION_REGION_BYPASS_EMAILS) bypass
+  // the gate so they can QA the flow from anywhere.
+  const h = await headers();
+  const country = h.get('x-vercel-ip-country');
+  const regionAllowed = isAllowedSubscriptionRegion(country, session.user.email);
 
   // Pull subscriptionId + status for the cancel/reactivate UI. The
   // status column is kept in sync by the Stripe webhook, but we
@@ -240,6 +251,8 @@ export default async function AccountPage() {
           initialStatus={effectiveStatus}
           initialCancelAtPeriodEnd={subCancelAtPeriodEnd}
           initialCurrentPeriodEnd={subCurrentPeriodEnd}
+          regionAllowed={regionAllowed}
+          country={country}
         />
 
         {/* Account emails — login (read-only) + optional secondary

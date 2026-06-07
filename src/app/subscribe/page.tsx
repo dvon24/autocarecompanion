@@ -1,6 +1,7 @@
 import { headers } from 'next/headers';
 import { SubscribeClient } from '@/components/subscribe/SubscribeClient';
 import { isAllowedSubscriptionRegion } from '@/lib/pricing/region';
+import { auth } from '@/lib/auth';
 
 /**
  * /subscribe — server entry. Reads Vercel's edge-geo header so the
@@ -20,10 +21,16 @@ export const metadata = {
 export default async function SubscribePage() {
   const h = await headers();
   const country = h.get('x-vercel-ip-country');
+  // Founder + ops bypass — signed-in users whose login email is on the
+  // allow-list see the regular checkout buttons even from outside the
+  // US so the flow is QA-able. Anonymous + non-bypass users hit the
+  // geo gate.
+  const session = await auth().catch(() => null);
+  const email = session?.user?.email ?? null;
   return (
     <SubscribeClient
       country={country}
-      regionAllowed={isAllowedSubscriptionRegion(country)}
+      regionAllowed={isAllowedSubscriptionRegion(country, email)}
     />
   );
 }
