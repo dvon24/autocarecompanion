@@ -55,7 +55,7 @@ function formatDate(unixSeconds: number | null): string {
 }
 
 const TIER_BADGE: Record<TierId, { label: string; bg: string; fg: string }> = {
-  free: { label: 'Free',  bg: '#F1F5F9', fg: '#475569' },
+  free: { label: 'Free',  bg: '#EFEDE6', fg: '#475569' },
   plus: { label: 'Plus',  bg: '#DBEAFE', fg: '#1D4ED8' },
   pro:  { label: 'Pro',   bg: '#0B1220', fg: '#FFFFFF' },
 };
@@ -163,8 +163,8 @@ export default function SubscriptionControls({
           className="flex items-center gap-3 mb-3"
           style={{
             padding: '13px 15px',
-            background: '#F1F5F9',
-            border: '1px solid #E5E7EB',
+            background: '#EFEDE6',
+            border: '1px solid #E3DFD4',
             borderRadius: 12,
           }}
         >
@@ -182,96 +182,83 @@ export default function SubscriptionControls({
           </span>
         </div>
 
-        <p className="text-[12.5px] text-slate-600 leading-relaxed mb-4">
-          You&apos;re on the Free plan — <strong className="text-slate-900">2 photo diagnoses / week</strong> and one vehicle. Unlock more diagnoses, alerts, and the full garage with a paid plan.
-        </p>
+        {regionAllowed ? (
+          <>
+            <p className="text-[12.5px] text-slate-600 leading-relaxed mb-4">
+              You&apos;re on the Free plan — <strong className="text-slate-900">2 photo diagnoses / week</strong> and one vehicle. Unlock more diagnoses, alerts, and the full garage with a paid plan.
+            </p>
 
-        {!regionAllowed && (
+            <div className="flex flex-col gap-2">
+              {(['plus', 'pro'] as const).map((id) => {
+                const t = getTier(id);
+                const popular = t.popular;
+                return (
+                  <Link key={id} href={`/subscribe?tier=${id}`} className="block">
+                    <div
+                      className="flex items-center gap-3"
+                      style={{
+                        padding: '12px 14px',
+                        background: '#fff',
+                        border: popular ? '1.5px solid #3B82F6' : '1px solid #E3DFD4',
+                        borderRadius: 11,
+                      }}
+                    >
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-bold text-slate-900">{t.name}</span>
+                          {popular && (
+                            <span
+                              className="text-[8.5px] font-bold uppercase text-white bg-blue-600 rounded-full"
+                              style={{ padding: '2px 6px', letterSpacing: '0.05em' }}
+                            >
+                              POPULAR
+                            </span>
+                          )}
+                        </div>
+                        <div className="text-[11.5px] text-slate-500 mt-0.5 truncate">
+                          {t.tagline}
+                        </div>
+                      </div>
+                      <span
+                        className="text-sm font-bold text-slate-900"
+                        style={{ fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}
+                      >
+                        ${t.price}
+                      </span>
+                      <span
+                        className="flex-shrink-0 text-xs font-semibold rounded-lg"
+                        style={{
+                          padding: '7px 13px',
+                          background: popular ? '#3B82F6' : '#0B1220',
+                          color: '#fff',
+                        }}
+                      >
+                        Upgrade
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+            <Link
+              href="/subscribe"
+              className="inline-flex items-center gap-1 text-[12.5px] text-blue-600 hover:text-blue-700 font-semibold mt-4"
+            >
+              Compare all plans →
+            </Link>
+          </>
+        ) : (
+          /* Region not on the allow-list — no purchasable tiles at all,
+             just a clear "not available here yet" note. The free tier
+             is global so the user keeps everything they have. */
           <div
-            className="mb-4 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2.5 text-xs leading-relaxed text-amber-900"
+            className="rounded-lg border border-amber-300 bg-amber-50 px-3.5 py-3 text-xs leading-relaxed text-amber-900"
             role="note"
           >
-            <strong>Paid plans aren&apos;t available in {regionDisplayName(country)} yet.</strong>{' '}
-            We&apos;re launching Plus and Pro in the US first while we work through tax and compliance in other regions. The free tier stays fully available.
+            <strong>Plus &amp; Pro aren&apos;t available in {regionDisplayName(country)} yet.</strong>{' '}
+            We&apos;re launching paid plans in the US first while we work through tax and compliance elsewhere. Your free plan stays fully available — no charge, nothing to do.
           </div>
         )}
-
-        <div className="flex flex-col gap-2">
-          {(['plus', 'pro'] as const).map((id) => {
-            const t = getTier(id);
-            const popular = t.popular;
-            const lockedStyle = !regionAllowed
-              ? { background: '#F3F4F6', borderColor: '#E5E7EB', opacity: 0.6, cursor: 'not-allowed' as const }
-              : {};
-            const body = (
-              <div
-                className="flex items-center gap-3"
-                style={{
-                  padding: '12px 14px',
-                  background: '#fff',
-                  border: regionAllowed && popular ? '1.5px solid #3B82F6' : '1px solid #E5E7EB',
-                  borderRadius: 11,
-                  ...lockedStyle,
-                }}
-                aria-disabled={!regionAllowed || undefined}
-              >
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-bold text-slate-900">{t.name}</span>
-                    {regionAllowed && popular && (
-                      <span
-                        className="text-[8.5px] font-bold uppercase text-white bg-blue-600 rounded-full"
-                        style={{ padding: '2px 6px', letterSpacing: '0.05em' }}
-                      >
-                        POPULAR
-                      </span>
-                    )}
-                    {!regionAllowed && (
-                      <span
-                        className="text-[8.5px] font-bold uppercase text-slate-500 bg-stone-100 rounded-full"
-                        style={{ padding: '2px 6px', letterSpacing: '0.05em' }}
-                      >
-                        US only
-                      </span>
-                    )}
-                  </div>
-                  <div className="text-[11.5px] text-slate-500 mt-0.5 truncate">
-                    {t.tagline}
-                  </div>
-                </div>
-                <span
-                  className="text-sm font-bold text-slate-900"
-                  style={{ fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}
-                >
-                  ${t.price}
-                </span>
-                <span
-                  className="flex-shrink-0 text-xs font-semibold rounded-lg"
-                  style={{
-                    padding: '7px 13px',
-                    background: !regionAllowed ? '#E5E7EB' : popular ? '#3B82F6' : '#0B1220',
-                    color: !regionAllowed ? '#6B7280' : '#fff',
-                  }}
-                >
-                  Upgrade
-                </span>
-              </div>
-            );
-            return regionAllowed ? (
-              <Link key={id} href={`/subscribe?tier=${id}`} className="block">
-                {body}
-              </Link>
-            ) : (
-              <div key={id}>{body}</div>
-            );
-          })}
-        </div>
-        <Link
-          href="/subscribe"
-          className="inline-flex items-center gap-1 text-[12.5px] text-blue-600 hover:text-blue-700 font-semibold mt-4"
-        >
-          Compare all plans →
-        </Link>
       </div>
     );
 
@@ -313,8 +300,8 @@ export default function SubscriptionControls({
           className="flex items-center gap-3 mb-3"
           style={{
             padding: '13px 15px',
-            background: '#F1F5F9',
-            border: '1px solid #E5E7EB',
+            background: '#EFEDE6',
+            border: '1px solid #E3DFD4',
             borderRadius: 12,
           }}
         >

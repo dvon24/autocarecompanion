@@ -70,8 +70,8 @@ export default function SecondaryEmailEditor({
           className="flex items-center gap-2.5"
           style={{
             padding: '11px 13px',
-            background: '#F1F5F9',
-            border: '1px solid #E5E7EB',
+            background: '#EFEDE6',
+            border: '1px solid #E3DFD4',
             borderRadius: 10,
           }}
         >
@@ -94,7 +94,7 @@ export default function SecondaryEmailEditor({
           style={{
             padding: '11px 13px',
             background: '#fff',
-            border: '1px solid #E5E7EB',
+            border: '1px solid #E3DFD4',
             borderRadius: 10,
           }}
         >

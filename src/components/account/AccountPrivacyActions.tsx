@@ -135,8 +135,8 @@ export default function AccountPrivacyActions({
         className="flex items-center gap-3.5"
         style={{
           padding: '13px 15px',
-          background: '#F1F5F9',
-          border: '1px solid #E5E7EB',
+          background: '#EFEDE6',
+          border: '1px solid #E3DFD4',
           borderRadius: 12,
         }}
       >

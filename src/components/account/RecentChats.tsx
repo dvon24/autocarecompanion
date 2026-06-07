@@ -93,7 +93,7 @@ export function RecentChats({
           <div
             className="flex items-center gap-3 py-2.5"
             style={{
-              borderBottom: isLast ? 'none' : '1px solid #E5E7EB',
+              borderBottom: isLast ? 'none' : '1px solid #E3DFD4',
             }}
           >
             <ChatTypeIcon type={type} />

@@ -16,7 +16,7 @@ import { Icon } from '@/components/ui/Icon';
 import { getStripe } from '@/lib/stripe';
 import { vehicleSlug } from '@/lib/vehicle-slug';
 import { resolveTier } from '@/lib/pricing/tiers';
-import { SiteMapSection } from '@/components/shared/SiteMapSection';
+import { SiteFooter } from '@/components/shared/SiteFooter';
 import { headers } from 'next/headers';
 import { isAllowedSubscriptionRegion } from '@/lib/pricing/region';
 
@@ -126,29 +126,34 @@ export default async function AccountPage() {
   }
 
   return (
-    <PageLayout backLink={{ href: '/', label: 'Home' }}>
+    <PageLayout
+      backLink={{ href: '/', label: 'Home' }}
+      showBackground={false}
+      contentClassName="bg-[#F7F6F2]"
+    >
       <AccountShell>
-        {/* Single flat list of cards. Mobile uses flex with `order`
-            so the Subscription card slots in between Garage and
-            Recent Diagnoses (matching BMAD mobile ordering: garage →
-            subscription → chats → emails → privacy → sign out).
-            Desktop switches to a 2-col grid with explicit
-            `grid-column` / `grid-row` placement so Subscription +
-            Emails stack in the right rail without duplicating
-            markup. */}
+        {/*
+          Two columns that pack INDEPENDENTLY on desktop — main (garage,
+          diagnoses, chats, privacy) and a right rail (subscription,
+          emails). Each column is its own flex stack inside a 2-col grid,
+          so a tall Subscription card never leaves a gap under the short
+          Garage card (the bug a shared grid-row layout would create).
+
+          On mobile the two wrappers become `display: contents`, which
+          promotes all the cards to flex items of `.acct-grid` so `order`
+          can interleave them into the BMAD mobile sequence: garage →
+          subscription → diagnoses → chats → emails → privacy → sign out.
+        */}
         <style>{`
-          .acct-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-          }
-          .acct-grid > .acct-card--garage      { order: 1; }
-          .acct-grid > .acct-card--subscription{ order: 2; }
-          .acct-grid > .acct-card--diagnoses   { order: 3; }
-          .acct-grid > .acct-card--chats       { order: 4; }
-          .acct-grid > .acct-card--emails      { order: 5; }
-          .acct-grid > .acct-card--privacy     { order: 6; }
-          .acct-grid > .acct-card--signout     { order: 7; }
+          .acct-grid { display: flex; flex-direction: column; gap: 16px; }
+          .acct-col-main, .acct-col-rail { display: contents; }
+          .acct-card--garage       { order: 1; }
+          .acct-card--subscription { order: 2; }
+          .acct-card--diagnoses    { order: 3; }
+          .acct-card--chats        { order: 4; }
+          .acct-card--emails       { order: 5; }
+          .acct-card--privacy      { order: 6; }
+          .acct-card--signout      { order: 7; }
           @media (min-width: 900px) {
             .acct-grid {
               display: grid;
@@ -156,103 +161,97 @@ export default async function AccountPage() {
               gap: 22px;
               align-items: start;
             }
-            .acct-grid > .acct-card--garage,
-            .acct-grid > .acct-card--diagnoses,
-            .acct-grid > .acct-card--chats,
-            .acct-grid > .acct-card--privacy {
-              grid-column: 1;
+            .acct-col-main, .acct-col-rail {
+              display: flex;
+              flex-direction: column;
+              gap: 18px;
             }
-            .acct-grid > .acct-card--subscription,
-            .acct-grid > .acct-card--emails {
-              grid-column: 2;
-            }
-            .acct-grid > .acct-card--garage       { grid-row: 1; }
-            .acct-grid > .acct-card--diagnoses    { grid-row: 2; }
-            .acct-grid > .acct-card--chats        { grid-row: 3; }
-            .acct-grid > .acct-card--privacy      { grid-row: 4; }
-            .acct-grid > .acct-card--subscription { grid-row: 1; }
-            .acct-grid > .acct-card--emails       { grid-row: 2; }
-            .acct-grid > .acct-card--signout      { display: none; }
+            .acct-col-rail { position: sticky; top: 16px; }
+            .acct-card--signout { display: none; }
           }
         `}</style>
         <div className="acct-grid">
-          <div className="acct-card--garage">
-            <AcctCard
-              title="My Garage"
-              action={
-                <Link
-                  href="/garage"
-                  className="text-[12.5px] text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center gap-1"
-                >
-                  Manage <Icon name="chevron" size={11} />
-                </Link>
-              }
-            >
-              <GarageSummary vehicles={vehicles} columns={2} />
-            </AcctCard>
+          <div className="acct-col-main">
+            <div className="acct-card--garage">
+              <AcctCard
+                title="My Garage"
+                action={
+                  <Link
+                    href="/garage"
+                    className="text-[12.5px] text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center gap-1"
+                  >
+                    Manage <Icon name="chevron" size={11} />
+                  </Link>
+                }
+              >
+                <GarageSummary vehicles={vehicles} columns={2} />
+              </AcctCard>
+            </div>
+
+            <div className="acct-card--diagnoses">
+              <AcctCard title="Recent Diagnoses">
+                <RecentDiagnoses diagnoses={diagnoses} formatAgo={timeAgo} />
+              </AcctCard>
+            </div>
+
+            <div className="acct-card--chats">
+              <AcctCard title="Recent Chats">
+                <RecentChats
+                  chats={chats}
+                  vehicleSlugById={vehicleSlugById}
+                  formatAgo={timeAgo}
+                />
+              </AcctCard>
+            </div>
+
+            <div className="acct-card--privacy">
+              <AcctCard title="Privacy & Data">
+                <AccountPrivacyActions
+                  email={session.user.email ?? ''}
+                  frameless
+                />
+              </AcctCard>
+            </div>
           </div>
 
-          <div className="acct-card--subscription">
-            <AcctCard title="Subscription">
-              <SubscriptionControls
-                initialTier={resolvedTier}
-                initialStatus={effectiveStatus}
-                initialCancelAtPeriodEnd={subCancelAtPeriodEnd}
-                initialCurrentPeriodEnd={subCurrentPeriodEnd}
-                regionAllowed={regionAllowed}
-                country={country}
-                frameless
-              />
-            </AcctCard>
-          </div>
+          <div className="acct-col-rail">
+            <div className="acct-card--subscription">
+              <AcctCard title="Subscription">
+                <SubscriptionControls
+                  initialTier={resolvedTier}
+                  initialStatus={effectiveStatus}
+                  initialCancelAtPeriodEnd={subCancelAtPeriodEnd}
+                  initialCurrentPeriodEnd={subCurrentPeriodEnd}
+                  regionAllowed={regionAllowed}
+                  country={country}
+                  frameless
+                />
+              </AcctCard>
+            </div>
 
-          <div className="acct-card--diagnoses">
-            <AcctCard title="Recent Diagnoses">
-              <RecentDiagnoses diagnoses={diagnoses} formatAgo={timeAgo} />
-            </AcctCard>
-          </div>
+            <div className="acct-card--emails">
+              <AcctCard title="Emails">
+                <SecondaryEmailEditor
+                  loginEmail={session.user.email ?? ''}
+                  initialSecondary={userSubInfo?.secondaryEmail ?? null}
+                  frameless
+                />
+              </AcctCard>
+            </div>
 
-          <div className="acct-card--chats">
-            <AcctCard title="Recent Chats">
-              <RecentChats
-                chats={chats}
-                vehicleSlugById={vehicleSlugById}
-                formatAgo={timeAgo}
-              />
-            </AcctCard>
+            {/* Mobile-only sign out button. Desktop relies on the
+                top-nav UserMenu / FloatingAuthButton. */}
+            <div className="acct-card--signout">
+              <MobileSignOut />
+            </div>
           </div>
-
-          <div className="acct-card--emails">
-            <AcctCard title="Emails">
-              <SecondaryEmailEditor
-                loginEmail={session.user.email ?? ''}
-                initialSecondary={userSubInfo?.secondaryEmail ?? null}
-                frameless
-              />
-            </AcctCard>
-          </div>
-
-          <div className="acct-card--privacy">
-            <AcctCard title="Privacy & Data">
-              <AccountPrivacyActions
-                email={session.user.email ?? ''}
-                frameless
-              />
-            </AcctCard>
-          </div>
-
-          {/* Mobile-only sign out button. Desktop relies on the
-              top-nav UserMenu / FloatingAuthButton. */}
-          <div className="acct-card--signout">
-            <MobileSignOut />
-          </div>
-        </div>
-
-        {/* Site-map footer — desktop-only per BMAD. */}
-        <div className="hidden md:block">
-          <SiteMapSection className="mt-10" />
         </div>
       </AccountShell>
+
+      {/* Same footer the home page and known-issues pages use, so the
+          bottom of every page reads identically. Full-width, sits below
+          the paper content area. */}
+      <SiteFooter />
     </PageLayout>
   );
 }

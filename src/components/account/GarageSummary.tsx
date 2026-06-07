@@ -32,7 +32,10 @@ export function GarageSummary({
 }) {
   if (vehicles.length === 0) {
     return (
-      <div className="rounded-xl border border-dashed border-stone-300 p-6 text-center">
+      <div
+        className="rounded-xl border border-dashed p-6 text-center"
+        style={{ borderColor: '#D8D2C3' }}
+      >
         <p className="text-slate-600 text-sm">No vehicles yet.</p>
         <Link
           href="/garage"
@@ -60,12 +63,12 @@ export function GarageSummary({
           <Link
             key={v.id}
             href={`/vehicle/${vehicleSlug(v.year, v.make, v.model, v.trim)}`}
-            className="flex items-center gap-3 rounded-xl border border-stone-200 bg-stone-50 hover:bg-white hover:border-blue-300 hover:shadow-sm transition-all"
-            style={{ padding: '13px 14px' }}
+            className="flex items-center gap-3 rounded-xl border hover:bg-white hover:border-blue-300 hover:shadow-sm transition-all"
+            style={{ padding: '13px 14px', background: '#EFEDE6', borderColor: '#E3DFD4' }}
           >
             <span
-              className="inline-flex items-center justify-center bg-white border border-stone-200 text-slate-600 flex-shrink-0"
-              style={{ width: 40, height: 40, borderRadius: 10 }}
+              className="inline-flex items-center justify-center bg-white text-slate-600 flex-shrink-0 border"
+              style={{ width: 40, height: 40, borderRadius: 10, borderColor: '#E3DFD4' }}
             >
               <Icon name="car" size={20} />
             </span>

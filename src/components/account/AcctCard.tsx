@@ -26,11 +26,14 @@ export function AcctCard({
   return (
     <section
       id={id}
-      className="bg-white border border-stone-200 rounded-2xl overflow-hidden"
-      style={{ boxShadow: '0 1px 2px rgba(11,18,32,0.06)' }}
+      className="bg-white border rounded-2xl overflow-hidden"
+      style={{ borderColor: '#E3DFD4', boxShadow: '0 1px 2px rgba(11,18,32,0.06)' }}
     >
       {title && (
-        <div className="flex items-center justify-between px-[18px] py-[14px] border-b border-stone-200">
+        <div
+          className="flex items-center justify-between px-[18px] py-[14px] border-b"
+          style={{ borderColor: '#E3DFD4' }}
+        >
           <span className="text-sm font-bold tracking-[-0.01em] text-slate-900">{title}</span>
           {action}
         </div>
