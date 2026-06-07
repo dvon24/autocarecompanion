@@ -254,9 +254,30 @@ function SignUpForm() {
           </label>
         </div>
 
+        {/* Inline hint that names exactly what's blocking. The button
+            itself only goes disabled while submitting — for every
+            other failure (short password, mismatched confirm, missing
+            checkbox) the click is allowed through and handleSubmit
+            surfaces the specific error above the form. Previously the
+            button silently went gray with no explanation, which read
+            as "the site is broken." */}
+        {(() => {
+          const blockers: string[] = [];
+          if (password.length > 0 && password.length < 8) blockers.push('password needs 8+ characters');
+          if (confirm.length > 0 && password !== confirm) blockers.push('passwords don’t match');
+          if (!acceptedPolicies) blockers.push('accept the Privacy Policy & Terms');
+          if (!ageConfirmed) blockers.push('confirm you’re 16 or older');
+          if (blockers.length === 0) return null;
+          return (
+            <p className="text-xs text-gray-500 -mt-2">
+              Almost there — {blockers.join(' · ')}.
+            </p>
+          );
+        })()}
+
         <button
           type="submit"
-          disabled={loading || password.length < 8 || password !== confirm || !acceptedPolicies || !ageConfirmed}
+          disabled={loading}
           className="w-full py-3 px-4 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? 'Creating account...' : 'Create account'}
