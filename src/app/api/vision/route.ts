@@ -100,25 +100,18 @@ export async function POST(request: NextRequest) {
   const gate = await checkAiGate();
   if (isAiGateBlocked(gate)) return gate;
 
-  // Auth required for vision in v1 — it's the magic-moment subscription
-  // trigger, so anonymous users get bounced to signup instead of a free
-  // trial here. Free trial may come later if data shows it converts.
+  // Anonymous "try it free" is now enabled: 1 photo per IP per month
+  // before the signup gate fires. The /diagnose flow is the primary
+  // entry point for this — give visitors one real magic-moment so they
+  // understand what they're signing up for. After that one credit, all
+  // anon attempts get bounced with a login CTA (same response shape
+  // the existing client gate cards already handle).
   let session;
   try { session = await auth(); } catch { session = null; }
   vlog('auth_done', { authed: !!session?.user?.id });
-  if (!session?.user?.id) {
-    return respond({
-      error: 'login_required',
-      message: 'Sign in free to analyze photos of your vehicle.',
-      gated: true,
-      ctaUrl: '/auth/signup',
-      ctaLabel: 'Start free — sign in',
-      secondaryCtaUrl: '/auth/signin',
-      secondaryCtaLabel: 'Sign in',
-    }, { status: 401 });
-  }
-  const userId = session.user.id;
-  const isSubscriber = session.user.subscriptionStatus === 'active';
+
+  const userId: string | null = session?.user?.id ?? null;
+  const isSubscriber = !!session && session.user.subscriptionStatus === 'active';
 
   // Burst protection — applies to everyone.
   const ip = getClientIp(request);
@@ -128,16 +121,33 @@ export async function POST(request: NextRequest) {
     return rateLimitResponse(burst.reset);
   }
 
-  // Photo quota: free = 3/mo, subscriber = effectively unlimited.
-  // NOTE: this CONSUMES one credit immediately. Every failure path below
-  // must call refundPhotoQuota(quotaKey) before returning, or the user
-  // silently loses a free analysis to a server error. See the
-  // `refundOnFailure` flag pattern at the end of this function.
-  const limit = isSubscriber ? SUBSCRIBER_MONTHLY_CAP : DEFAULT_FREE_PHOTO_LIMIT;
-  const quotaKey = `photo:user:${userId}`;
+  // Quota: anon = 1/mo per IP, free authed = 3/mo, subscriber = effectively
+  // unlimited. checkAndConsumePhotoQuota CONSUMES one credit immediately —
+  // every failure path below must refundPhotoQuota(quotaKey) before
+  // returning so users don't lose a credit to a server error.
+  const ANON_FREE_PHOTO_LIMIT = 1;
+  const limit = userId
+    ? (isSubscriber ? SUBSCRIBER_MONTHLY_CAP : DEFAULT_FREE_PHOTO_LIMIT)
+    : ANON_FREE_PHOTO_LIMIT;
+  const quotaKey = userId ? `photo:user:${userId}` : `photo:anon:${ip}`;
   const quota = await checkAndConsumePhotoQuota({ key: quotaKey, limit });
-  vlog('quota_checked', { allowed: quota.allowed, remaining: quota.remaining });
+  vlog('quota_checked', { allowed: quota.allowed, remaining: quota.remaining, anon: !userId });
   if (!quota.allowed) {
+    // Anonymous gates route to signup; authed gates route to upgrade.
+    if (!userId) {
+      return respond({
+        error: 'login_required',
+        message: 'You\'ve used your free diagnosis. Sign up free to keep going.',
+        resetAt: quota.resetAt.toISOString(),
+        remaining: 0,
+        limit,
+        gated: true,
+        ctaUrl: '/auth/signup',
+        ctaLabel: 'Sign up free',
+        secondaryCtaUrl: '/auth/signin',
+        secondaryCtaLabel: 'Sign in',
+      }, { status: 401 });
+    }
     return respond({
       error: 'quota_exceeded',
       message: `You've used your ${DEFAULT_FREE_PHOTO_LIMIT} free photo analyses this month. Go unlimited with Au7o Pro.`,

@@ -159,14 +159,12 @@ export default function LandingPage({ stats }: Props) {
               and the exact part. Or browse documented problems for your exact car, free.
             </p>
             <div style={{ display: 'flex', gap: 12, marginTop: 28, alignItems: 'center', flexWrap: 'wrap' }}>
-              {/* Anchor-scroll to the vehicle picker on the right /
-                  stacked below on mobile. Picking a vehicle is the
-                  prerequisite for the photo flow (the hub at
-                  /vehicle/{slug} is where the upload composer lives),
-                  so the CTA naturally walks the user into the right
-                  next step instead of dumping them on the catalog. */}
-              <a
-                href="#vehicle-picker"
+              {/* Phase 4.5 try-it-free entry point. Anonymous visitors
+                  get 1 free diagnosis per IP per month (server-side
+                  enforced in /api/vision via the photo-quota anon
+                  bucket); after that, the gate surfaces a signup CTA. */}
+              <Link
+                href="/diagnose"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -183,7 +181,7 @@ export default function LandingPage({ stats }: Props) {
                 }}
               >
                 <Icon name="camera" size={15} /> Upload a photo to diagnose
-              </a>
+              </Link>
               <span style={{ fontSize: 13, color: 'var(--slate-500, #64748B)' }}>Free · no card needed</span>
             </div>
           </div>

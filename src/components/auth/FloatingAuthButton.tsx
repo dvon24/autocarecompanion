@@ -24,10 +24,14 @@ export function FloatingAuthButton() {
   const menuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  // Don't render on auth pages — /auth/signin and /auth/signup are
-  // themselves the sign-in/up forms, so a floating "Sign in" link on
-  // top would be a duplicate of the page's primary action.
+  // Don't render on:
+  //   - /auth/signin and /auth/signup — those pages are themselves
+  //     the sign-in/up forms.
+  //   - "/" — the new home page nav (LandingPage) already includes a
+  //     "Sign in" button next to the brand wordmark, so the floating
+  //     version next to the Translate widget is a duplicate.
   const onAuthPage = pathname?.startsWith('/auth/') ?? false;
+  const onHome = pathname === '/';
 
   // Close dropdown on outside click.
   useEffect(() => {
@@ -41,7 +45,7 @@ export function FloatingAuthButton() {
     return () => document.removeEventListener('mousedown', handler);
   }, [open]);
 
-  if (onAuthPage) return null;
+  if (onAuthPage || onHome) return null;
 
   // Skeleton while session resolves so the link doesn't pop in.
   if (status === 'loading') {
