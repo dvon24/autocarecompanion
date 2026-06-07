@@ -9,6 +9,7 @@ import { VehicleHub } from '@/components/vehicle/VehicleHub';
 import { getMaintenanceSuggestions, getMaintenanceSchedule, renderOpener, type MaintenanceSuggestion, type ScheduleData } from '@/lib/maintenance-suggestions';
 import { getRecentThreads, getTrendingForVehicle, getAttachableIssues } from '@/lib/hub-data';
 import { getOwnersManualSchedule } from '@/lib/owners-manual-schedule';
+import { isFounderEmail } from '@/lib/founder';
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -272,7 +273,11 @@ export default async function VehicleProfilePage({
         userInfo = {
           name: userRow.name || userRow.email.split('@')[0],
           joinedAt: userRow.createdAt.toISOString(),
-          isSubscriber: session.user.subscriptionStatus === 'active',
+          // Founder + ops accounts read as subscriber for UI gating so
+          // they can QA Plus/Pro surfaces (Mark complete, etc.) from a
+          // Free DB row. Matches the server-side bypass in
+          // /api/maintenance.
+          isSubscriber: session.user.subscriptionStatus === 'active' || isFounderEmail(userRow.email),
         };
       }
       // Pull ALL vehicles for the switcher dropdown — same query as

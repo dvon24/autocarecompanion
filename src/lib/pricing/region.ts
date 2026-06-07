@@ -14,30 +14,14 @@
  * testable without spoofing headers.
  */
 
+import { isFounderEmail } from '@/lib/founder';
+
 export const SUBSCRIPTION_ALLOWED_COUNTRIES = ['US'] as const;
 
-/**
- * Email allow-list that bypasses the geo gate — used by the founder to
- * QA the subscription flow from outside the US (and any future ops
- * accounts that need the same access). Hardcoded defaults plus an
- * optional comma-separated env var so new emails can be added without
- * a code change.
- */
-const FOUNDER_BYPASS_EMAILS = new Set(
-  [
-    'devonsroberson24@yahoo.com',
-    'dvoninvestllc@yahoo.com',
-    ...(process.env.SUBSCRIPTION_REGION_BYPASS_EMAILS ?? '')
-      .split(',')
-      .map((s) => s.trim().toLowerCase())
-      .filter(Boolean),
-  ].map((s) => s.toLowerCase())
-);
-
-export function isBypassEmail(email: string | null | undefined): boolean {
-  if (!email) return false;
-  return FOUNDER_BYPASS_EMAILS.has(email.toLowerCase());
-}
+/** Re-export so existing call-sites that imported isBypassEmail keep
+ *  working. Same allow-list as isFounderEmail — single source of truth
+ *  lives in lib/founder. */
+export const isBypassEmail = isFounderEmail;
 
 export function isAllowedSubscriptionRegion(
   country: string | null | undefined,
@@ -46,7 +30,7 @@ export function isAllowedSubscriptionRegion(
   // Founder + ops allow-list bypasses the country check entirely so
   // the subscription flow stays testable from anywhere. Done first so
   // the rest of the function never has to think about it.
-  if (isBypassEmail(email)) return true;
+  if (isFounderEmail(email)) return true;
   // Off-Vercel (local dev, custom hosting): allow everything so the
   // checkout flow stays testable. The gate only fires in real edge
   // requests, which is where the compliance risk actually lives.

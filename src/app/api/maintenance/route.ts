@@ -3,6 +3,7 @@ import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { z } from 'zod';
 import { MAINTENANCE_SCHEDULES } from '@/lib/maintenance';
+import { isFounderEmail } from '@/lib/founder';
 
 const CreateMaintenanceSchema = z.object({
   vehicleId: z.string().min(1),
@@ -82,23 +83,28 @@ export async function POST(request: Request) {
     }
 
     // Tier gate — maintenance logging is a Plus/Pro feature
-    // (TIER_LIMITS.free.maintenanceTracking === false). For now we
-    // approximate that as "has an active Stripe subscription". The
-    // tier-aware path will plug in once the limits helper is wired
-    // server-wide.
-    const user = await prisma.user.findUnique({
-      where: { id: session.user.id },
-      select: { subscriptionStatus: true, subscriptionId: true },
-    });
+    // (TIER_LIMITS.free.maintenanceTracking === false). Approximated
+    // as "has an active Stripe subscription"; the tier-aware helper
+    // will plug in once it's wired server-wide.
+    //
+    // Founder + ops bypass: the same allow-list used by the geo gate
+    // (see src/lib/founder.ts) skips this check so the founder can QA
+    // the log flow from a Free account.
+    if (!isFounderEmail(session.user.email)) {
+      const user = await prisma.user.findUnique({
+        where: { id: session.user.id },
+        select: { subscriptionStatus: true, subscriptionId: true },
+      });
 
-    if (!user?.subscriptionId || user.subscriptionStatus !== 'active') {
-      return NextResponse.json(
-        {
-          error: 'tier_required',
-          message: 'Logging maintenance to history is a Plus / Pro feature. Upgrade to track services.',
-        },
-        { status: 403 }
-      );
+      if (!user?.subscriptionId || user.subscriptionStatus !== 'active') {
+        return NextResponse.json(
+          {
+            error: 'tier_required',
+            message: 'Logging maintenance to history is a Plus / Pro feature. Upgrade to track services.',
+          },
+          { status: 403 }
+        );
+      }
     }
 
     const body = await request.json();
