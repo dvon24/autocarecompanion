@@ -1598,6 +1598,16 @@ function MobileHub({
                       <MaintenanceUpgradeTile />
                     ) : null)}
                     {matched.length > 0 && <IssueAttachmentGroup issues={matched} />}
+                    {/* Persisted issues attachment (e.g. seeded by
+                        /api/diagnose/seed and reattached via loadSession)
+                        renders independently of the content-match path
+                        above — the seeded markdown doesn't repeat known-
+                        issue titles verbatim so matchAttachments never
+                        fires. Falls through with the same component for
+                        layout parity. */}
+                    {m.issues && m.issues.length > 0 && matched.length === 0 && (
+                      <IssueAttachmentGroup issues={m.issues} />
+                    )}
                     {m.route ? (
                       <MiniRoute
                         route={m.route}
@@ -2772,7 +2782,10 @@ function TopBar({
   isAuthed: boolean;
   onOpenThreads: () => void;
 }) {
-  void user; // retained for future use; FloatingAuthButton handles avatar today
+  // Read subscriber state off the user prop so the vehicle switcher can
+  // surface an upgrade CTA instead of a dead-end "Add vehicle" link when
+  // the free quota is already used.
+  const isSubscriber = !!user?.isSubscriber;
   return (
     <div className="topbar">
       <div className="tb-left">
@@ -2792,6 +2805,7 @@ function TopBar({
           userVehicles={userVehicles}
           currentSlug={currentSlug}
           isAuthed={isAuthed}
+          isSubscriber={isSubscriber}
         />
       </div>
       <div className="tb-right">
@@ -2882,13 +2896,21 @@ function TopBar({
    viewers (or signed-in users with no saved vehicles) see a plain
    label with no dropdown affordance — there's nothing to switch to. */
 function VehicleSwitcher({
-  vehicle, userVehicles, currentSlug, isAuthed,
+  vehicle, userVehicles, currentSlug, isAuthed, isSubscriber,
 }: {
   vehicle: VehicleHubProps['vehicle'];
   userVehicles: NonNullable<VehicleHubProps['userVehicles']>;
   currentSlug: string;
   isAuthed: boolean;
+  /** Drives the "Add a vehicle" affordance: free users at their
+   *  1-vehicle limit see an upgrade CTA pointing at /subscribe instead
+   *  of a normal add link, which would dead-end at /garage's quota 403. */
+  isSubscriber?: boolean;
 }) {
+  // Free users hit the 1-vehicle quota with their first add — once they
+  // have a vehicle, surfacing "+ Add a vehicle" lies to them about
+  // what's possible. Upgrade CTA tells the real story.
+  const atFreeQuota = isAuthed && !isSubscriber && userVehicles.length >= 1;
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -2957,9 +2979,26 @@ function VehicleSwitcher({
             })
           )}
           <div className="vs-divider" />
-          <Link href="/garage" className="vs-item vs-item-action" onClick={() => setOpen(false)} role="menuitem">
-            + Add a vehicle
-          </Link>
+          {atFreeQuota ? (
+            <>
+              <Link
+                href="/subscribe?tier=plus"
+                className="vs-item vs-item-action"
+                onClick={() => setOpen(false)}
+                role="menuitem"
+                title="Free includes 1 vehicle — Plus adds up to 3"
+              >
+                ⚡ Upgrade to Plus · add more vehicles
+              </Link>
+              <div className="vs-empty" style={{ fontSize: 11, padding: '4px 12px 6px' }}>
+                {userVehicles.length} of 1 on Free
+              </div>
+            </>
+          ) : (
+            <Link href="/garage" className="vs-item vs-item-action" onClick={() => setOpen(false)} role="menuitem">
+              + Add a vehicle
+            </Link>
+          )}
           <Link href="/garage" className="vs-item vs-item-action" onClick={() => setOpen(false)} role="menuitem">
             Manage garage →
           </Link>
