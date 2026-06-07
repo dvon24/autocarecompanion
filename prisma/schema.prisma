@@ -16,6 +16,13 @@ datasource db {
 model User {
   id                 String    @id @default(cuid())
   email              String    @unique
+  // Optional contact email. The `email` field above is the login
+  // identity (NextAuth credentials match on it), so it can't be
+  // changed lightly. `secondaryEmail` is a soft contact slot for
+  // receipts, GDPR display, and "send updates here instead" without
+  // touching the login. Not @unique on purpose — same business email
+  // could legitimately appear on more than one personal account.
+  secondaryEmail     String?
   name               String?
   emailVerified      DateTime?
   image              String?

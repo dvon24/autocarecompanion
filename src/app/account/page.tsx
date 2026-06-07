@@ -5,6 +5,7 @@ import prisma from '@/lib/db';
 import { PageLayout } from '@/components/ui/PageLayout';
 import AccountPrivacyActions from '@/components/account/AccountPrivacyActions';
 import SubscriptionControls from '@/components/account/SubscriptionControls';
+import SecondaryEmailEditor from '@/components/account/SecondaryEmailEditor';
 import { getStripe } from '@/lib/stripe';
 import { vehicleSlug } from '@/lib/vehicle-slug';
 import { resolveTier } from '@/lib/pricing/tiers';
@@ -56,7 +57,7 @@ export default async function AccountPage() {
   // and we don't store these fields locally.
   const userSubInfo = await prisma.user.findUnique({
     where: { id: userId },
-    select: { subscriptionId: true, subscriptionStatus: true, subscriptionTier: true },
+    select: { subscriptionId: true, subscriptionStatus: true, subscriptionTier: true, secondaryEmail: true },
   });
   // Phantom-sub guard: a row can carry a paid status without an actual
   // Stripe subscriptionId (legacy backfill, manual Stripe delete with
@@ -239,6 +240,16 @@ export default async function AccountPage() {
           initialCancelAtPeriodEnd={subCancelAtPeriodEnd}
           initialCurrentPeriodEnd={subCurrentPeriodEnd}
         />
+
+        {/* Account emails — login (read-only) + optional secondary
+            contact email the user can edit. */}
+        <section className="mt-8">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Emails</h2>
+          <SecondaryEmailEditor
+            loginEmail={session.user.email ?? ''}
+            initialSecondary={userSubInfo?.secondaryEmail ?? null}
+          />
+        </section>
 
         {/* GDPR data-rights actions */}
         <AccountPrivacyActions email={session.user.email} />
