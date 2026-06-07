@@ -357,9 +357,17 @@ export default async function KnownIssuesArticlePage({
   }));
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: '#F7F6F2' }}>
       {/* Header */}
-      <header className="px-6 py-4 border-b border-gray-100">
+      <header
+        className="sticky top-0 z-30 px-6 py-4"
+        style={{
+          background: 'rgba(247,246,242,0.85)',
+          backdropFilter: 'blur(20px) saturate(140%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(140%)',
+          borderBottom: '1px solid #E3DFD4',
+        }}
+      >
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -369,14 +377,14 @@ export default async function KnownIssuesArticlePage({
               height={32}
               className="rounded-lg"
             />
-            <span className="text-2xl font-bold text-gray-900 tracking-tight">
-              Au<span className="text-blue-600">7</span>o
+            <span className="text-2xl font-bold tracking-tight" style={{ color: '#0B1220' }}>
+              Au<span style={{ color: '#3B82F6' }}>7</span>o
             </span>
           </Link>
           <div className="flex items-center gap-2 sm:gap-3">
             <Link
               href="/known-issues"
-              className="px-3 sm:px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden sm:inline-block"
+              className="px-3 sm:px-4 py-2 text-sm font-medium text-[#475569] hover:text-[#0B1220] transition-colors hidden sm:inline-block"
             >
               Known Issues
             </Link>
@@ -387,7 +395,7 @@ export default async function KnownIssuesArticlePage({
                 instead of a stranger base-trim default. See OpenHubLink. */}
             <OpenHubLink
               articleSlug={vehicleSlug(yearRange?.max ?? new Date().getFullYear(), make, model)}
-              className="px-3 sm:px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="px-3 sm:px-4 py-2 text-sm font-semibold bg-[#0B1220] text-white rounded-lg transition-opacity hover:opacity-90"
             />
           </div>
         </div>
@@ -411,25 +419,31 @@ export default async function KnownIssuesArticlePage({
 
       <article id="top" className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 pb-24 lg:pb-12">
         {/* Breadcrumb */}
-        <nav className="text-sm text-gray-400 mb-6" aria-label="Breadcrumb">
+        <nav className="text-sm mb-6" style={{ color: '#94A3B8' }} aria-label="Breadcrumb">
           <ol className="flex items-center gap-1.5">
             <li><Link href="/" className="hover:text-gray-600">Au7o</Link></li>
-            <li className="text-gray-300">/</li>
+            <li style={{ color: '#CBD5E1' }}>/</li>
             <li><Link href="/known-issues" className="hover:text-gray-600">Known Issues</Link></li>
-            <li className="text-gray-300">/</li>
+            <li style={{ color: '#CBD5E1' }}>/</li>
             <li><Link href={`/known-issues/make/${make.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-gray-600">{make}</Link></li>
-            <li className="text-gray-300">/</li>
-            <li className="text-gray-700 font-medium">{model}</li>
+            <li style={{ color: '#CBD5E1' }}>/</li>
+            <li className="font-medium" style={{ color: '#334155' }}>{model}</li>
           </ol>
         </nav>
 
         {/* Title */}
         <header className="mb-6">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+          <div
+            className="text-[11px] font-semibold uppercase mb-3"
+            style={{ letterSpacing: '0.08em', color: '#3B82F6' }}
+          >
+            {make} &middot; Known Issues
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: '#0B1220', letterSpacing: '-0.02em' }}>
             {title}
           </h1>
           <div className="flex items-center justify-between flex-wrap gap-2">
-            <p className="text-gray-400 text-sm">
+            <p className="text-sm" style={{ color: '#64748B' }}>
               {yearStr && `${yearStr} model year${yearRange && yearRange.min !== yearRange.max ? 's' : ''}`} &middot; {sourceLabel(totalReports)} &middot; {formatUpdatedLabel(articleDates.modified)}
             </p>
             <ShareButtons url={articleUrl} title={title} />
@@ -450,8 +464,8 @@ export default async function KnownIssuesArticlePage({
         )}
 
         {/* GEO Summary — blockquote style for AI citation */}
-        <blockquote className="border-l-4 border-blue-200 pl-5 mb-10">
-          <p className="text-gray-600 leading-relaxed">
+        <blockquote className="border-l-4 border-[#3B82F6] pl-5 mb-10">
+          <p className="leading-relaxed" style={{ color: '#475569' }}>
             According to {analysisAttribution(totalReports)}, the {yearStr} {vehicleName} has {issues.length} documented known issues
             {highCount > 0 ? (
               <>, with {highCount} rated critical. {criticalIssues.length > 0 && (
@@ -459,7 +473,7 @@ export default async function KnownIssuesArticlePage({
                   {criticalIssues.map((issue, i) => (
                     <span key={issue.id}>
                       {i > 0 && (i === criticalIssues.length - 1 ? ' and ' : ', ')}
-                      <strong className="text-gray-800">{issue.title}</strong>
+                      <strong className="text-[#0B1220]">{issue.title}</strong>
                       {issue.estimatedCost && (
                         <> (${issue.estimatedCost.low.toLocaleString()}-${issue.estimatedCost.high.toLocaleString()} repair)</>
                       )}
@@ -471,13 +485,13 @@ export default async function KnownIssuesArticlePage({
               <>. No issues are rated critical, indicating generally reliable ownership. </>
             )}
             {topReported && topReported.reportCount > 100 && (
-              <>The most commonly reported issue is <strong className="text-gray-800">{topReported.title}</strong> with {topReported.reportCount.toLocaleString()} owner reports. </>
+              <>The most commonly reported issue is <strong className="text-[#0B1220]">{topReported.title}</strong> with {topReported.reportCount.toLocaleString()} owner reports. </>
             )}
             Across all issues, repair costs range from ${getMinCost(issues)} to ${getMaxCost(issues)}.{' '}
-            <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium">
+            <Link href="/" className="text-[#3B82F6] hover:text-blue-700 font-medium">
               DIY maintenance guides
             </Link>{' '}
-            at <strong className="text-gray-800">au7o.io</strong>.
+            at <strong className="text-[#0B1220]">au7o.io</strong>.
           </p>
         </blockquote>
 
@@ -496,8 +510,8 @@ export default async function KnownIssuesArticlePage({
           {/* Main content */}
           <div className="min-w-0 flex-1">
             {/* Mobile TOC */}
-            <nav className="lg:hidden border border-gray-200 rounded-lg p-4 mb-6" aria-label="Issue categories">
-              <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">In This Article</h2>
+            <nav className="lg:hidden bg-white border border-[#E3DFD4] rounded-lg p-4 mb-6" aria-label="Issue categories">
+              <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-2">In This Article</h2>
               <ul className="space-y-1">
                 {grouped.map(([category, catIssues]) => {
                   const config = categoryConfig[category];
@@ -506,11 +520,11 @@ export default async function KnownIssuesArticlePage({
                     <li key={category}>
                       <a
                         href={`#${category}`}
-                        className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors py-1"
+                        className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] transition-colors py-1"
                       >
                         <span>{config.icon}</span>
                         <span>{config.label}</span>
-                        <span className="text-gray-300 text-xs ml-auto">{catIssues.length}</span>
+                        <span className="text-[#94A3B8] text-xs ml-auto">{catIssues.length}</span>
                         {catHigh > 0 && (
                           <span className="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0" />
                         )}
@@ -520,15 +534,15 @@ export default async function KnownIssuesArticlePage({
                 })}
                 {recalls.length > 0 && (
                   <li>
-                    <a href="#recalls" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors py-1">
+                    <a href="#recalls" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] transition-colors py-1">
                       <span>&#9888;&#65039;</span>
                       <span>Recalls</span>
-                      <span className="text-gray-300 text-xs ml-auto">{recalls.length}</span>
+                      <span className="text-[#94A3B8] text-xs ml-auto">{recalls.length}</span>
                     </a>
                   </li>
                 )}
-                <li className="pt-1 border-t border-gray-100 mt-1">
-                  <a href="#faq" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors py-1">
+                <li className="pt-1 border-t border-[#E3DFD4] mt-1">
+                  <a href="#faq" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] transition-colors py-1">
                     <span>&#10067;</span>
                     <span>FAQ</span>
                   </a>
@@ -538,7 +552,7 @@ export default async function KnownIssuesArticlePage({
 
             {/* Issues List */}
             <section>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-xl font-semibold mb-4" style={{ color: '#0B1220' }}>
                 All {issues.length} Known Issues
               </h2>
               {/* Confirm-with-a-photo CTA at the peak "is this my problem?"
@@ -563,13 +577,13 @@ export default async function KnownIssuesArticlePage({
 
             {/* NHTSA Recalls Section — same style as category dropdowns */}
             {recalls.length > 0 && (
-              <div id="recalls" className="scroll-mt-16 border border-gray-200 rounded-lg overflow-hidden mb-4">
+              <div id="recalls" className="scroll-mt-16 border border-[#E3DFD4] rounded-lg overflow-hidden mb-4">
                 <details className="group">
-                  <summary className="w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-3 cursor-pointer list-none">
+                  <summary className="w-full px-4 py-3 bg-[#EFEDE6] hover:bg-[#E3DFD4] transition-colors flex items-center gap-3 cursor-pointer list-none">
                     <span className="text-lg">⚠️</span>
-                    <span className="font-medium text-gray-900 flex-1 text-left">NHTSA Recalls</span>
-                    <span className="text-sm text-gray-500">{recalls.length} recall{recalls.length !== 1 ? 's' : ''}</span>
-                    <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <span className="font-medium text-[#0B1220] flex-1 text-left">NHTSA Recalls</span>
+                    <span className="text-sm text-[#64748B]">{recalls.length} recall{recalls.length !== 1 ? 's' : ''}</span>
+                    <svg className="w-5 h-5 text-[#94A3B8] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </summary>
@@ -588,9 +602,9 @@ export default async function KnownIssuesArticlePage({
                             <span className="text-xs font-bold bg-red-600 text-white px-2 py-0.5 rounded mt-0.5 flex-shrink-0">PARK IT</span>
                           )}
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-gray-900">{recall.component}</p>
-                            <p className="text-sm text-gray-600 mt-1 line-clamp-2">{recall.summary}</p>
-                            <div className="flex items-center gap-3 mt-2 text-xs text-gray-400">
+                            <p className="text-sm font-semibold text-[#0B1220]">{recall.component}</p>
+                            <p className="text-sm text-[#475569] mt-1 line-clamp-2">{recall.summary}</p>
+                            <div className="flex items-center gap-3 mt-2 text-xs text-[#94A3B8]">
                               <span>Campaign #{recall.campaignNumber}</span>
                               <span>{recall.reportDate}</span>
                             </div>
@@ -599,14 +613,14 @@ export default async function KnownIssuesArticlePage({
                       </div>
                     ))}
                     {recalls.length > 5 && (
-                      <p className="text-sm text-gray-500 mt-3 pl-4">
+                      <p className="text-sm text-[#64748B] mt-3 pl-4">
                         + {recalls.length - 5} more recalls.{' '}
                         <a href="https://www.nhtsa.gov/recalls" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">
                           Check all on NHTSA.gov
                         </a>
                       </p>
                     )}
-                    <p className="text-xs text-gray-400 mt-2 pl-4">
+                    <p className="text-xs text-[#94A3B8] mt-2 pl-4">
                       Enter your VIN at{' '}
                       <a href="https://www.nhtsa.gov/recalls" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">NHTSA.gov</a>{' '}
                       to check recalls specific to your vehicle.
@@ -617,19 +631,19 @@ export default async function KnownIssuesArticlePage({
             )}
 
             {/* Fallthrough CTA — simplified */}
-            <div className="text-center py-8 border-t border-gray-100">
-              <p className="text-sm text-gray-500">
+            <div className="text-center py-8 border-t border-[#E3DFD4]">
+              <p className="text-sm text-[#64748B]">
                 Don&apos;t see your problem?{' '}
                 <VehicleChatLink
                   make={make}
                   model={model}
                   issues={issues}
-                  className="text-blue-600 hover:text-blue-800 font-medium"
+                  className="text-[#3B82F6] hover:text-blue-700 font-medium"
                 >
                   Describe your symptoms
                 </VehicleChatLink>{' '}
                 to get a diagnosis, or{' '}
-                <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium">
+                <Link href="/" className="text-[#3B82F6] hover:text-blue-700 font-medium">
                   get a full repair guide
                 </Link>.
               </p>
@@ -638,7 +652,7 @@ export default async function KnownIssuesArticlePage({
             {/* Related Vehicles */}
             {related.length > 0 && (
               <section className="mb-10">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                <h2 className="text-xl font-semibold mb-4" style={{ color: '#0B1220' }}>
                   Other {make} Models
                 </h2>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -646,12 +660,12 @@ export default async function KnownIssuesArticlePage({
                     <Link
                       key={v.slug}
                       href={`/known-issues/${v.slug}`}
-                      className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors group"
+                      className="flex items-center justify-between p-3 bg-white border border-[#E3DFD4] rounded-lg hover:border-blue-300 transition-colors group"
                     >
-                      <span className="text-sm font-medium text-gray-700 group-hover:text-blue-600">
+                      <span className="text-sm font-medium text-[#475569] group-hover:text-[#3B82F6]">
                         {v.make} {v.model}
                       </span>
-                      <span className="text-xs text-gray-400">{v.issueCount}</span>
+                      <span className="text-xs text-[#94A3B8]">{v.issueCount}</span>
                     </Link>
                   ))}
                 </div>
@@ -660,16 +674,16 @@ export default async function KnownIssuesArticlePage({
 
             {/* FAQ Section */}
             <section id="faq" className="scroll-mt-16 mb-10">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">
+              <h2 className="text-xl font-semibold mb-6" style={{ color: '#0B1220' }}>
                 Frequently Asked Questions
               </h2>
               <div className="space-y-6">
                 {faqs.map((faq, i) => (
-                  <div key={i} className="border-b border-gray-100 pb-6 last:border-0">
-                    <h3 className="text-base font-semibold text-gray-900 mb-2">
+                  <div key={i} className="border-b border-[#E3DFD4] pb-6 last:border-0">
+                    <h3 className="text-base font-semibold mb-2" style={{ color: '#0B1220' }}>
                       {faq.question}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed text-sm">
+                    <p className="leading-relaxed text-sm" style={{ color: '#475569' }}>
                       {faq.answer}
                     </p>
                   </div>
@@ -679,18 +693,18 @@ export default async function KnownIssuesArticlePage({
 
             {/* AI content disclaimer */}
             <div className="flex items-start gap-2 py-3">
-              <svg className="w-4 h-4 text-gray-300 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-[#94A3B8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <p className="text-xs text-gray-400 leading-relaxed">
+              <p className="text-xs text-[#94A3B8] leading-relaxed">
                 Content on this page was compiled with AI assistance using NHTSA complaints, TSBs, owner reports, and public automotive data. While we strive for accuracy, this information may contain errors. Always verify repair procedures and specifications with your vehicle&apos;s service manual or a qualified mechanic.
               </p>
             </div>
 
             {/* Article-specific attribution stays inline so report
                 count + © sits close to the article body. */}
-            <footer className="pt-6 mt-8 border-t border-gray-100 text-center">
-              <p className="text-xs text-gray-400">
+            <footer className="pt-6 mt-8 border-t border-[#E3DFD4] text-center">
+              <p className="text-xs text-[#94A3B8]">
                 {sourceFootnote(totalReports)}
               </p>
             </footer>

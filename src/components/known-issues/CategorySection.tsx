@@ -62,22 +62,22 @@ export function CategorySection({ category, issues, defaultExpanded = false, def
   };
 
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden">
+    <div className="border border-[#E3DFD4] rounded-lg overflow-hidden">
       <button
         type="button"
         onClick={handleToggle}
-        className="w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-3"
+        className="w-full px-4 py-3 bg-[#EFEDE6] hover:bg-[#E3DFD4] transition-colors flex items-center gap-3"
       >
         <span className="text-lg">{config.icon}</span>
-        <span className="font-medium text-gray-900 flex-1 text-left">{config.label}</span>
-        <span className="text-sm text-gray-500">{issues.length} issue{issues.length !== 1 ? 's' : ''}</span>
+        <span className="font-medium text-[#0B1220] flex-1 text-left">{config.label}</span>
+        <span className="text-sm text-[#64748B]">{issues.length} issue{issues.length !== 1 ? 's' : ''}</span>
         {highCount > 0 && (
           <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full">
             {highCount} critical
           </span>
         )}
         <svg
-          className={`w-5 h-5 text-gray-400 transition-transform ${expanded ? 'rotate-180' : ''}`}
+          className={`w-5 h-5 text-[#94A3B8] transition-transform ${expanded ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

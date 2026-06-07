@@ -97,7 +97,7 @@ export async function getAllKnownIssueSlugs(): Promise<{ slug: string; make: str
  *
  * Format: YYYY-MM-DD. Update on every meaningful render/SEO refactor.
  */
-export const LAYOUT_LAST_REVISED = '2026-04-29';
+export const LAYOUT_LAST_REVISED = '2026-06-07';
 
 function maxDateString(...dates: string[]): string {
   // Each input is already YYYY-MM-DD; lexicographic max == chronological max.

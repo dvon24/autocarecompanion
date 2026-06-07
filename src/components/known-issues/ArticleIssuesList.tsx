@@ -129,14 +129,21 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
 
   return (
     <>
-      <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm border-b border-gray-200 px-4 py-3 -mx-4 sm:-mx-6 sm:px-6">
+      <div
+        className="sticky top-0 z-10 border-b border-[#E3DFD4] px-4 py-3 -mx-4 sm:-mx-6 sm:px-6"
+        style={{
+          background: 'rgba(247,246,242,0.85)',
+          backdropFilter: 'blur(20px) saturate(140%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(140%)',
+        }}
+      >
         <div className="flex items-center gap-3 flex-wrap">
           <SeverityFilter selected={severityFilter} onChange={setSeverityFilter} />
           {availableTrims.length > 0 && (
             <select
               value={trimFilter ?? ''}
               onChange={e => setTrimFilter(e.target.value || null)}
-              className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="px-3 py-1.5 text-sm border border-[#E3DFD4] rounded-lg bg-white text-[#475569] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             >
               <option value="">All Trims</option>
               {availableTrims.map(t => (
@@ -161,8 +168,8 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
                 href={pathname}
                 className={`flex-shrink-0 px-3 py-1 text-xs font-mono font-semibold rounded-full transition ${
                   yearFilter === null
-                    ? 'bg-gray-900 text-white'
-                    : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-100'
+                    ? 'bg-[#0B1220] text-white'
+                    : 'bg-white border border-[#E3DFD4] text-[#475569] hover:bg-[#EFEDE6]'
                 }`}
                 scroll={false}
                 prefetch={false}
@@ -175,8 +182,8 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
                   href={`${pathname}?year=${y}`}
                   className={`flex-shrink-0 px-3 py-1 text-xs font-mono font-semibold rounded-full transition ${
                     yearFilter === y
-                      ? 'bg-gray-900 text-white'
-                      : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-100'
+                      ? 'bg-[#0B1220] text-white'
+                      : 'bg-white border border-[#E3DFD4] text-[#475569] hover:bg-[#EFEDE6]'
                   }`}
                   scroll={false}
                   prefetch={false}
@@ -243,7 +250,7 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
 
       <div className="space-y-4 mt-4">
         {groupedIssues.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-center py-8 text-[#64748B]">
             <p>No issues match your selected filters.</p>
             <p className="text-sm mt-1">Try selecting different severity levels above.</p>
           </div>
