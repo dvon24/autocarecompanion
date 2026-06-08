@@ -66,8 +66,26 @@ export function DiagnoseFlowClient() {
   useEffect(() => {
     fetch('/data/ymmt.json')
       .then((r) => r.json())
-      .then((data) => setYmmt(YMMTDataSchema.parse(data)))
-      .catch(() => {});
+      .then((data) => {
+        // Resilient parse: never let one malformed entry (or a strict
+        // schema) blank the entire year/make/model picker. If validation
+        // fails, warn loudly but still use the raw fetched data so the
+        // dropdowns populate. (Prod bug: a swallowed parse error left the
+        // YEAR dropdown empty for a user in Germany.)
+        const parsed = YMMTDataSchema.safeParse(data);
+        if (parsed.success) {
+          setYmmt(parsed.data);
+        } else {
+          console.warn(
+            '[diagnose] ymmt.json failed schema validation; using raw data',
+            parsed.error
+          );
+          setYmmt(data as YMMTData);
+        }
+      })
+      .catch((err) => {
+        console.warn('[diagnose] failed to load ymmt.json', err);
+      });
   }, []);
 
   // Free the preview URL on unmount / replace.

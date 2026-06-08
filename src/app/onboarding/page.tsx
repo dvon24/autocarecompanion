@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { redirect } from 'next/navigation';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/db';
@@ -71,11 +72,19 @@ export default async function OnboardingPage({
   const params = await searchParams;
   const step = parseStep(params.step ?? '1');
 
+  // OnboardingClient calls useSearchParams(), which in Next.js App Router
+  // requires a <Suspense> boundary — without it the route blanks out for
+  // a freshly-signed-up user landing here (the founder is server-redirected
+  // away above before this ever renders, which is why the bug was invisible
+  // in dev/owner testing). Every other useSearchParams() page in this app
+  // (signin, signup, reset-password, error) wraps it the same way.
   return (
-    <OnboardingClient
-      step={step}
-      userName={user.name || (user.email ? user.email.split('@')[0] : 'there')}
-      hasVehicle={vehicleCount > 0}
-    />
+    <Suspense fallback={null}>
+      <OnboardingClient
+        step={step}
+        userName={user.name || (user.email ? user.email.split('@')[0] : 'there')}
+        hasVehicle={vehicleCount > 0}
+      />
+    </Suspense>
   );
 }

@@ -285,10 +285,14 @@ export function PartsFinderClient() {
     fetch('/data/ymmt.json')
       .then((res) => res.json())
       .then((data) => {
-        setYmmtData(YMMTDataSchema.parse(data));
+        // Resilient load (see HeroVehicleSearch): safeParse + raw fallback
+        // so a strict-parse throw never leaves the picker empty.
+        const parsed = YMMTDataSchema.safeParse(data);
+        if (!parsed.success) console.warn('[ymmt] schema validation failed, using raw data', parsed.error);
+        setYmmtData(parsed.success ? parsed.data : (data as YMMTData));
         setIsLoading(false);
       })
-      .catch(() => setIsLoading(false));
+      .catch((e) => { console.warn('[ymmt] load failed', e); setIsLoading(false); });
   }, []);
 
   // Fetch parts from API when task is selected or free-text search is triggered

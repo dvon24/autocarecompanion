@@ -57,8 +57,15 @@ async function fetchYMMTData(): Promise<YMMTData> {
 
   const data = await response.json();
 
-  // Validate with Zod schema
-  return YMMTDataSchema.parse(data);
+  // Validate with Zod schema, but fall back to the raw data if a strict
+  // parse throws (transient bundle/CDN edge case) — a validation hiccup
+  // must never leave the vehicle picker empty.
+  const parsed = YMMTDataSchema.safeParse(data);
+  if (!parsed.success) {
+    console.warn('[ymmt] schema validation failed, using raw data', parsed.error);
+    return data as YMMTData;
+  }
+  return parsed.data;
 }
 
 /**
