@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { type YMMTData, type Vehicle, YMMTDataSchema } from '@/schemas/vehicle.schema';
+import { type YMMTData, type Vehicle } from '@/schemas/vehicle.schema';
+import { loadYmmt } from '@/lib/load-ymmt';
 import { useVehicleContext } from '@/contexts/AppContext';
 
 /**
@@ -46,26 +47,11 @@ type UseVehicleReturn = {
 };
 
 /**
- * Fetch YMMT data from static JSON file
+ * Fetch YMMT data — resilient network-then-bundled-fallback loader so the
+ * picker never goes empty on a flaky fetch / broken SW precache.
  */
 async function fetchYMMTData(): Promise<YMMTData> {
-  const response = await fetch('/data/ymmt.json');
-
-  if (!response.ok) {
-    throw new Error(`Failed to load YMMT data: ${response.statusText}`);
-  }
-
-  const data = await response.json();
-
-  // Validate with Zod schema, but fall back to the raw data if a strict
-  // parse throws (transient bundle/CDN edge case) — a validation hiccup
-  // must never leave the vehicle picker empty.
-  const parsed = YMMTDataSchema.safeParse(data);
-  if (!parsed.success) {
-    console.warn('[ymmt] schema validation failed, using raw data', parsed.error);
-    return data as YMMTData;
-  }
-  return parsed.data;
+  return loadYmmt();
 }
 
 /**

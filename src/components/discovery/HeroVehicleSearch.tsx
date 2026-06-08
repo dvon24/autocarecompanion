@@ -3,7 +3,8 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useVehicleContext } from '@/contexts/AppContext';
-import { type YMMTData, YMMTDataSchema } from '@/schemas/vehicle.schema';
+import { type YMMTData } from '@/schemas/vehicle.schema';
+import { loadYmmt } from '@/lib/load-ymmt';
 
 /**
  * HeroVehicleSearch - Native select-based YMMT selector for the homepage hero.
@@ -31,19 +32,11 @@ export function HeroVehicleSearch() {
   const [selectedTrim, setSelectedTrim] = useState('');
 
   useEffect(() => {
-    fetch('/data/ymmt.json')
-      .then(res => res.json())
-      .then(data => {
-        // Resilient load: a strict .parse() throw (transient CDN hiccup
-        // on the ~1MB file, or a Zod prod-bundle edge case) used to leave
-        // this picker permanently empty. safeParse + raw fallback so the
-        // dropdowns always populate; warn instead of swallowing.
-        const parsed = YMMTDataSchema.safeParse(data);
-        if (!parsed.success) console.warn('[ymmt] schema validation failed, using raw data', parsed.error);
-        setYmmtData(parsed.success ? parsed.data : (data as YMMTData));
-        setIsLoading(false);
-      })
-      .catch((e) => { console.warn('[ymmt] load failed', e); setIsLoading(false); });
+    // Resilient loader: network fetch first, bundled-copy fallback on any
+    // failure so the homepage hero picker always populates.
+    loadYmmt()
+      .then(data => { setYmmtData(data); setIsLoading(false); })
+      .catch(() => setIsLoading(false));
   }, []);
 
   const availableYears = useMemo(() => {

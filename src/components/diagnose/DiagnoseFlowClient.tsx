@@ -8,7 +8,8 @@ import { Icon } from '@/components/ui/Icon';
 import { downscaleImage } from '@/lib/downscale-image';
 import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
-import { type YMMTData, YMMTDataSchema } from '@/schemas/vehicle.schema';
+import { type YMMTData } from '@/schemas/vehicle.schema';
+import { loadYmmt } from '@/lib/load-ymmt';
 
 /**
  * sessionStorage key shared with /diagnose/claim. Stashes everything
@@ -64,28 +65,13 @@ export function DiagnoseFlowClient() {
   const [dragOver, setDragOver] = useState(false);
 
   useEffect(() => {
-    fetch('/data/ymmt.json')
-      .then((r) => r.json())
-      .then((data) => {
-        // Resilient parse: never let one malformed entry (or a strict
-        // schema) blank the entire year/make/model picker. If validation
-        // fails, warn loudly but still use the raw fetched data so the
-        // dropdowns populate. (Prod bug: a swallowed parse error left the
-        // YEAR dropdown empty for a user in Germany.)
-        const parsed = YMMTDataSchema.safeParse(data);
-        if (parsed.success) {
-          setYmmt(parsed.data);
-        } else {
-          console.warn(
-            '[diagnose] ymmt.json failed schema validation; using raw data',
-            parsed.error
-          );
-          setYmmt(data as YMMTData);
-        }
-      })
-      .catch((err) => {
-        console.warn('[diagnose] failed to load ymmt.json', err);
-      });
+    // Resilient loader: network fetch first, bundled-copy fallback on any
+    // failure (interrupted 1MB download, broken SW precache, parse error)
+    // so the year/make/model dropdowns ALWAYS populate. (Prod bug: empty
+    // year dropdown for a user in Germany whose fetch never completed.)
+    loadYmmt()
+      .then(setYmmt)
+      .catch((err) => console.warn('[diagnose] ymmt load failed (network + bundled fallback)', err));
   }, []);
 
   // Free the preview URL on unmount / replace.
