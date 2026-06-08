@@ -220,7 +220,7 @@ export default async function MakeLandingPage({
   const articleDescription = `${totalIssues} documented ${make} problems across ${models.length} models${highCount > 0 ? `, including ${highCount} critical` : ''}. Known issues, repair costs, and solutions for every ${make} owner.`;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: '#F7F6F2' }}>
       {/* JSON-LD — TechArticle gives Google a structured signal with a
           dateModified that floors at LAYOUT_LAST_REVISED, prompting a
           re-crawl after layout/template revisions even when underlying
@@ -239,7 +239,15 @@ export default async function MakeLandingPage({
       ]} />
 
       {/* Header */}
-      <header className="px-6 py-4 border-b border-gray-100">
+      <header
+        className="sticky top-0 z-30 px-6 py-4"
+        style={{
+          background: 'rgba(247,246,242,0.85)',
+          backdropFilter: 'blur(20px) saturate(140%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(140%)',
+          borderBottom: '1px solid #E3DFD4',
+        }}
+      >
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -249,20 +257,20 @@ export default async function MakeLandingPage({
               height={32}
               className="rounded-lg"
             />
-            <span className="text-2xl font-bold text-gray-900 tracking-tight">
+            <span className="text-2xl font-bold text-[#0B1220] tracking-tight">
               Au<span className="text-blue-600">7</span>o
             </span>
           </Link>
           <div className="flex items-center gap-3">
             <Link
               href="/known-issues"
-              className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              className="px-4 py-2 text-sm font-medium text-[#475569] hover:text-[#0B1220] transition-colors"
             >
               Known Issues
             </Link>
             <Link
               href="/"
-              className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+              className="px-4 py-2 text-sm font-medium bg-[#0B1220] text-white rounded-lg hover:opacity-90 transition-opacity"
             >
               Diagnose my car
             </Link>
@@ -272,22 +280,22 @@ export default async function MakeLandingPage({
 
       <article className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
-        <nav className="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+        <nav className="text-sm text-[#64748B] mb-6" aria-label="Breadcrumb">
           <ol className="flex items-center gap-1.5">
-            <li><Link href="/" className="hover:text-gray-700">Au7o</Link></li>
+            <li><Link href="/" className="hover:text-[#334155]">Au7o</Link></li>
             <li>/</li>
-            <li><Link href="/known-issues" className="hover:text-gray-700">Known Issues</Link></li>
+            <li><Link href="/known-issues" className="hover:text-[#334155]">Known Issues</Link></li>
             <li>/</li>
-            <li className="text-gray-900 font-medium">{make}</li>
+            <li className="text-[#0B1220] font-medium">{make}</li>
           </ol>
         </nav>
 
         {/* Title */}
         <header className="mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+          <h1 className="text-3xl sm:text-4xl font-bold text-[#0B1220] mb-3">
             {make} Known Issues & Problems
           </h1>
-          <p className="text-gray-500 text-lg max-w-2xl">
+          <p className="text-[#475569] text-lg max-w-2xl">
             {totalIssues.toLocaleString()} documented problems across {models.length} {make} models. Every issue includes symptoms, repair costs, and solutions — compiled from NHTSA recalls, manufacturer TSBs, owner forums, and field reports.
           </p>
           <div className="mt-4">
@@ -297,13 +305,13 @@ export default async function MakeLandingPage({
 
         {/* Stats row */}
         <div className="grid grid-cols-3 gap-3 mb-10">
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-gray-900">{totalIssues.toLocaleString()}</div>
-            <div className="text-sm text-gray-500">Total Issues</div>
+          <div className="bg-white border border-[#E3DFD4] rounded-lg p-4 text-center">
+            <div className="text-2xl font-bold text-[#0B1220]">{totalIssues.toLocaleString()}</div>
+            <div className="text-sm text-[#64748B]">Total Issues</div>
           </div>
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-gray-900">{models.length}</div>
-            <div className="text-sm text-gray-500">Models Covered</div>
+          <div className="bg-white border border-[#E3DFD4] rounded-lg p-4 text-center">
+            <div className="text-2xl font-bold text-[#0B1220]">{models.length}</div>
+            <div className="text-sm text-[#64748B]">Models Covered</div>
           </div>
           <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
             <div className="text-2xl font-bold text-red-700">{highCount}</div>
@@ -312,8 +320,8 @@ export default async function MakeLandingPage({
         </div>
 
         {/* GEO Summary */}
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 sm:p-6 mb-10">
-          <p className="text-gray-800 leading-relaxed">
+        <div className="bg-[#EFEDE6] border border-[#E3DFD4] rounded-xl p-5 sm:p-6 mb-10">
+          <p className="text-[#334155] leading-relaxed">
             According to Au7o&apos;s analysis, {make} vehicles have {totalIssues.toLocaleString()} documented known issues across {models.length} models
             {highCount > 0 ? (
               <>, with {highCount} rated critical by the Au7o research team</>
@@ -335,7 +343,7 @@ export default async function MakeLandingPage({
 
         {/* Models grid */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl font-bold text-[#0B1220] mb-4">
             All {make} Models ({models.length})
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -343,14 +351,14 @@ export default async function MakeLandingPage({
               <Link
                 key={vehicle.slug}
                 href={`/known-issues/${vehicle.slug}`}
-                className="group flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 transition-colors"
+                className="group flex items-center justify-between p-4 rounded-lg border border-[#E3DFD4] hover:border-blue-300 hover:bg-blue-50/50 transition-colors"
               >
                 <div className="min-w-0">
-                  <div className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors truncate">
+                  <div className="font-medium text-[#0B1220] group-hover:text-blue-700 transition-colors truncate">
                     {vehicle.model}
                   </div>
                   {vehicle.yearRange && (
-                    <div className="text-xs text-gray-500 mt-0.5">
+                    <div className="text-xs text-[#64748B] mt-0.5">
                       {vehicle.yearRange.min}-{vehicle.yearRange.max}
                     </div>
                   )}
@@ -361,10 +369,10 @@ export default async function MakeLandingPage({
                       {vehicle.highCount} critical
                     </span>
                   )}
-                  <span className="text-sm text-gray-400">
+                  <span className="text-sm text-[#94A3B8]">
                     {vehicle.issueCount} issues
                   </span>
-                  <svg className="w-4 h-4 text-gray-300 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[#CBD5E1] group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
@@ -375,7 +383,7 @@ export default async function MakeLandingPage({
 
         {/* Category breakdown */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl font-bold text-[#0B1220] mb-4">
             Issues by Category
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -383,12 +391,12 @@ export default async function MakeLandingPage({
               <Link
                 key={category}
                 href={`/known-issues/category/${category}`}
-                className="group flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50/50 transition-colors"
+                className="group flex items-center gap-3 p-3 border border-[#E3DFD4] rounded-lg hover:border-blue-300 hover:bg-blue-50/50 transition-colors"
               >
                 <span className="text-lg flex-shrink-0">{icon}</span>
                 <div className="min-w-0">
-                  <div className="text-sm font-medium text-gray-900 group-hover:text-blue-700 truncate">{label}</div>
-                  <div className="text-xs text-gray-500">{count} issues</div>
+                  <div className="text-sm font-medium text-[#0B1220] group-hover:text-blue-700 truncate">{label}</div>
+                  <div className="text-xs text-[#64748B]">{count} issues</div>
                 </div>
               </Link>
             ))}
@@ -396,7 +404,7 @@ export default async function MakeLandingPage({
         </section>
 
         {/* CTA */}
-        <section className="mt-12 bg-gray-900 text-white rounded-xl p-6 sm:p-8 text-center">
+        <section className="mt-12 bg-[#0B1220] text-white rounded-xl p-6 sm:p-8 text-center">
           <h2 className="text-xl sm:text-2xl font-bold mb-3">
             Get DIY Repair Guides for Your {make}
           </h2>
@@ -405,7 +413,7 @@ export default async function MakeLandingPage({
           </p>
           <Link
             href="/auth/signup"
-            className="inline-flex items-center gap-2 bg-white text-gray-900 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+            className="inline-flex items-center gap-2 bg-white text-[#0B1220] font-semibold px-6 py-3 rounded-lg hover:bg-[#EFEDE6] transition-colors"
           >
             Get Started Free
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -418,12 +426,12 @@ export default async function MakeLandingPage({
         <SiteFooter />
 
         {/* Footer */}
-        <footer className="mt-8 pt-6 border-t border-gray-200 text-center">
-          <p className="text-xs text-gray-500">
+        <footer className="mt-8 pt-6 border-t border-[#E3DFD4] text-center">
+          <p className="text-xs text-[#64748B]">
             Data compiled from NHTSA recalls, manufacturer TSBs, owner forums, and AI-assisted research.
             Issues are verified where possible. Always consult a professional mechanic for diagnosis.
           </p>
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-[#64748B] mt-2">
             &copy; {new Date().getFullYear()} Au7o. All rights reserved.
           </p>
         </footer>

@@ -199,21 +199,29 @@ export default async function DTCCodePage({
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: '#F7F6F2' }}>
       {/* Header */}
-      <header className="px-6 py-4 border-b border-gray-200">
+      <header
+        className="sticky top-0 z-30 px-6 py-4"
+        style={{
+          background: 'rgba(247,246,242,0.85)',
+          backdropFilter: 'blur(20px) saturate(140%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(140%)',
+          borderBottom: '1px solid #E3DFD4',
+        }}
+      >
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image src="/og-image.png" alt="Au7o mascot" width={32} height={32} className="rounded-lg" />
-            <span className="text-2xl font-bold text-gray-900 tracking-tight">
-              Au<span className="text-blue-600">7</span>o
+            <span className="text-2xl font-bold tracking-tight" style={{ color: '#0B1220' }}>
+              Au<span style={{ color: '#3B82F6' }}>7</span>o
             </span>
           </Link>
           <div className="flex items-center gap-3">
-            <Link href="/known-issues" className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/known-issues" className="px-4 py-2 text-sm font-medium text-[#475569] hover:text-[#0B1220] transition-colors">
               Known Issues
             </Link>
-            <Link href="/" className="px-4 py-2 text-sm font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
+            <Link href="/" className="px-4 py-2 text-sm font-medium text-white rounded-lg hover:opacity-90 transition-opacity" style={{ background: '#0B1220' }}>
               Diagnose my car
             </Link>
           </div>
@@ -237,26 +245,26 @@ export default async function DTCCodePage({
 
       <article id="top" className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
-        <nav className="text-sm text-gray-400 mb-6" aria-label="Breadcrumb">
+        <nav className="text-sm text-[#94A3B8] mb-6" aria-label="Breadcrumb">
           <ol className="flex items-center gap-1.5">
-            <li><Link href="/" className="hover:text-gray-600">Au7o</Link></li>
-            <li className="text-gray-300">/</li>
-            <li><Link href="/known-issues" className="hover:text-gray-600">Known Issues</Link></li>
-            <li className="text-gray-300">/</li>
-            <li className="text-gray-700 font-medium">{data.code}</li>
+            <li><Link href="/" className="hover:text-[#475569]">Au7o</Link></li>
+            <li className="text-[#CBD5E1]">/</li>
+            <li><Link href="/known-issues" className="hover:text-[#475569]">Known Issues</Link></li>
+            <li className="text-[#CBD5E1]">/</li>
+            <li className="text-[#334155] font-medium">{data.code}</li>
           </ol>
         </nav>
 
         {/* Title */}
         <header className="mb-6">
           <div className="flex items-center gap-3 mb-3">
-            <span className="text-sm font-mono font-bold bg-gray-900 text-white px-3 py-1 rounded-md">
+            <span className="text-sm font-mono font-bold bg-[#0B1220] text-white px-3 py-1 rounded-md">
               {data.code}
             </span>
             <span className={`text-xs font-medium px-2 py-0.5 rounded ${severityColor}`}>
               {severityLabel}
             </span>
-            <span className="text-xs text-gray-400 font-medium">{data.system}</span>
+            <span className="text-xs text-[#94A3B8] font-medium">{data.system}</span>
           </div>
           {/* H1 — when the code maps to a SINGLE vehicle (only one unique
               make+model across all linked issues), bake the full YMMT
@@ -266,7 +274,7 @@ export default async function DTCCodePage({
               System Efficiency") since cramming 8 makes into the heading
               would read worse than letting the body's "Most Reported On"
               + per-make grid do that work. */}
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl sm:text-4xl font-bold text-[#0B1220] mb-2">
             {topVehicles.length === 1 && data.vehicleCount === 1 ? (
               <>
                 {data.code} on{' '}
@@ -285,7 +293,7 @@ export default async function DTCCodePage({
             )}
           </h1>
           <div className="flex items-center justify-between flex-wrap gap-2">
-            <p className="text-gray-400 text-sm">
+            <p className="text-[#94A3B8] text-sm">
               {data.vehicleCount} vehicles &middot; {data.makes.length} makes
               {minCost > 0 && <> &middot; ${minCost.toLocaleString()}-${maxCost.toLocaleString()} repair</>}
             </p>
@@ -302,7 +310,7 @@ export default async function DTCCodePage({
             full list. */}
         {data.issues.length > 0 && (
           <section aria-label="Most reported vehicles for this code" className="mb-8">
-            <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+            <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-2">
               Most Reported On
             </h2>
             <div className="flex flex-wrap gap-2">
@@ -316,14 +324,14 @@ export default async function DTCCodePage({
                   <Link
                     key={iss.id}
                     href={`/known-issues/${iss.slug}#${iss.id}`}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-colors text-sm"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#E3DFD4] hover:border-blue-300 hover:bg-blue-50 transition-colors text-sm"
                   >
-                    {yearLabel && <span className="font-mono text-xs text-gray-500">{yearLabel}</span>}
-                    <span className="font-medium text-gray-900">
+                    {yearLabel && <span className="font-mono text-xs text-[#64748B]">{yearLabel}</span>}
+                    <span className="font-medium text-[#0B1220]">
                       {iss.vehicleMatch.make} {iss.vehicleMatch.model}
                     </span>
                     {trims.length > 0 && (
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-[#64748B]">
                         {trims.length <= 2 ? trims.join(', ') : `${trims[0]} +${trims.length - 1}`}
                       </span>
                     )}
@@ -336,15 +344,15 @@ export default async function DTCCodePage({
 
         {/* GEO Summary — blockquote */}
         <blockquote className="border-l-4 border-blue-200 pl-5 mb-10">
-          <p className="text-gray-600 leading-relaxed">
-            <strong className="text-gray-800">{data.code}</strong> is an OBD-II diagnostic trouble code meaning &ldquo;{data.name}.&rdquo; {data.description}{' '}
+          <p className="text-[#475569] leading-relaxed">
+            <strong className="text-[#334155]">{data.code}</strong> is an OBD-II diagnostic trouble code meaning &ldquo;{data.name}.&rdquo; {data.description}{' '}
             This code is most commonly reported on{' '}
             {topVehicles.map((v, idx) => {
               const yearLabel = formatYearLabel(v);
               return (
                 <span key={`${v.make}-${v.model}`}>
                   {idx > 0 && (idx === topVehicles.length - 1 ? ', and ' : ', ')}
-                  <strong className="text-gray-800">
+                  <strong className="text-[#334155]">
                     {yearLabel && `${yearLabel} `}{v.make} {v.model}
                   </strong>
                   {v.trims.length > 0 && (
@@ -354,50 +362,50 @@ export default async function DTCCodePage({
               );
             })}
             {moreCount > 0 && <>, plus {moreCount} other vehicle{moreCount === 1 ? '' : 's'}</>}
-            {minCost > 0 && <>, with repair costs ranging from <strong className="text-gray-800">${minCost.toLocaleString()}</strong> to <strong className="text-gray-800">${maxCost.toLocaleString()}</strong></>}.
+            {minCost > 0 && <>, with repair costs ranging from <strong className="text-[#334155]">${minCost.toLocaleString()}</strong> to <strong className="text-[#334155]">${maxCost.toLocaleString()}</strong></>}.
           </p>
         </blockquote>
 
         {/* Two-column layout */}
         <div className="lg:flex lg:gap-0">
           {/* Sidebar TOC */}
-          <aside className="hidden lg:block lg:w-56 xl:w-64 flex-shrink-0 border-r border-gray-200 pr-8 mr-8">
+          <aside className="hidden lg:block lg:w-56 xl:w-64 flex-shrink-0 border-r border-[#E3DFD4] pr-8 mr-8">
             <nav className="sticky top-8 space-y-6" aria-label="Page navigation">
               <div>
-                <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">On This Page</h2>
+                <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-3">On This Page</h2>
                 <ul className="space-y-0.5">
                   <li>
-                    <a href="#causes" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 py-1.5 rounded-md hover:bg-gray-50 px-2 -mx-2 transition-colors">
+                    <a href="#causes" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] py-1.5 rounded-md hover:bg-[#EFEDE6]/70 px-2 -mx-2 transition-colors">
                       Common Causes
                     </a>
                   </li>
                   {minCost > 0 && (
                     <li>
-                      <a href="#cost" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 py-1.5 rounded-md hover:bg-gray-50 px-2 -mx-2 transition-colors">
+                      <a href="#cost" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] py-1.5 rounded-md hover:bg-[#EFEDE6]/70 px-2 -mx-2 transition-colors">
                         Repair Cost
                       </a>
                     </li>
                   )}
                   <li>
-                    <a href="#vehicles" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 py-1.5 rounded-md hover:bg-gray-50 px-2 -mx-2 transition-colors">
+                    <a href="#vehicles" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] py-1.5 rounded-md hover:bg-[#EFEDE6]/70 px-2 -mx-2 transition-colors">
                       Vehicles ({data.vehicleCount})
                     </a>
                   </li>
                   {relatedCodes.length > 0 && (
                     <li>
-                      <a href="#related" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 py-1.5 rounded-md hover:bg-gray-50 px-2 -mx-2 transition-colors">
+                      <a href="#related" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] py-1.5 rounded-md hover:bg-[#EFEDE6]/70 px-2 -mx-2 transition-colors">
                         Related Codes
                       </a>
                     </li>
                   )}
-                  <li className="pt-1.5 border-t border-gray-100 mt-1.5">
-                    <a href="#faq" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 py-1.5 rounded-md hover:bg-gray-50 px-2 -mx-2 transition-colors">
+                  <li className="pt-1.5 border-t border-[#E3DFD4] mt-1.5">
+                    <a href="#faq" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] py-1.5 rounded-md hover:bg-[#EFEDE6]/70 px-2 -mx-2 transition-colors">
                       FAQ
                     </a>
                   </li>
                   {citations.length > 0 && (
                     <li>
-                      <a href="#sources" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 py-1.5 rounded-md hover:bg-gray-50 px-2 -mx-2 transition-colors">
+                      <a href="#sources" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] py-1.5 rounded-md hover:bg-[#EFEDE6]/70 px-2 -mx-2 transition-colors">
                         Sources ({citations.length})
                       </a>
                     </li>
@@ -408,16 +416,16 @@ export default async function DTCCodePage({
               {/* Sidebar makes list */}
               {sortedMakes.length > 1 && (
                 <div>
-                  <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Makes</h2>
+                  <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-3">Makes</h2>
                   <ul className="space-y-0.5">
                     {sortedMakes.map(([make, issues]) => (
                       <li key={make}>
                         <a
                           href={`#dtc-${make.toLowerCase().replace(/\s+/g, '-')}`}
-                          className="flex items-center justify-between text-sm text-gray-500 hover:text-gray-900 py-1 rounded-md hover:bg-gray-50 px-2 -mx-2 transition-colors"
+                          className="flex items-center justify-between text-sm text-[#64748B] hover:text-[#0B1220] py-1 rounded-md hover:bg-[#EFEDE6]/70 px-2 -mx-2 transition-colors"
                         >
                           <span className="truncate">{make}</span>
-                          <span className="text-gray-300 text-xs">{issues.length}</span>
+                          <span className="text-[#CBD5E1] text-xs">{issues.length}</span>
                         </a>
                       </li>
                     ))}
@@ -425,7 +433,7 @@ export default async function DTCCodePage({
                 </div>
               )}
 
-              <a href="#top" className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-600 transition-colors">
+              <a href="#top" className="flex items-center gap-1.5 text-xs text-[#94A3B8] hover:text-[#475569] transition-colors">
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                 </svg>
@@ -439,19 +447,19 @@ export default async function DTCCodePage({
             {/* Common Causes — collapsible */}
             <section id="causes" className="scroll-mt-16 mb-8">
               <details className="group" open>
-                <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
-                  <h2 className="text-lg font-semibold text-gray-900">Common Causes</h2>
-                  <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
+                  <h2 className="text-lg font-semibold text-[#0B1220]">Common Causes</h2>
+                  <svg className="w-5 h-5 text-[#94A3B8] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-4">
                   {data.commonCauses.map((cause, i) => (
                     <div key={i} className="flex items-start gap-3 p-3 rounded-lg">
-                      <span className="flex-shrink-0 w-5 h-5 bg-gray-900 text-white text-xs font-bold rounded-full flex items-center justify-center mt-0.5">
+                      <span className="flex-shrink-0 w-5 h-5 bg-[#0B1220] text-white text-xs font-bold rounded-full flex items-center justify-center mt-0.5">
                         {i + 1}
                       </span>
-                      <span className="text-sm text-gray-700">{cause}</span>
+                      <span className="text-sm text-[#475569]">{cause}</span>
                     </div>
                   ))}
                 </div>
@@ -462,19 +470,19 @@ export default async function DTCCodePage({
             {minCost > 0 && (
               <section id="cost" className="scroll-mt-16 mb-8">
                 <details className="group" open>
-                  <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
-                    <h2 className="text-lg font-semibold text-gray-900">Typical Repair Cost</h2>
-                    <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
+                    <h2 className="text-lg font-semibold text-[#0B1220]">Typical Repair Cost</h2>
+                    <svg className="w-5 h-5 text-[#94A3B8] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </summary>
                   <div className="pt-4">
                     <div className="flex items-baseline gap-2 mb-1">
-                      <span className="text-2xl font-bold text-gray-900">
+                      <span className="text-2xl font-bold text-[#0B1220]">
                         ${minCost.toLocaleString()} - ${maxCost.toLocaleString()}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-[#64748B]">
                       Based on {data.issues.length} documented vehicle-specific issues. Actual cost depends on root cause and vehicle.
                     </p>
                   </div>
@@ -488,9 +496,9 @@ export default async function DTCCodePage({
             {/* Vehicles by Make — collapsible */}
             <section id="vehicles" className="scroll-mt-16 mb-8">
               <details className="group" open>
-                <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
-                  <h2 className="text-lg font-semibold text-gray-900">Vehicles Affected ({data.vehicleCount})</h2>
-                  <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
+                  <h2 className="text-lg font-semibold text-[#0B1220]">Vehicles Affected ({data.vehicleCount})</h2>
+                  <svg className="w-5 h-5 text-[#94A3B8] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
@@ -511,9 +519,9 @@ export default async function DTCCodePage({
             {relatedCodes.length > 0 && (
               <section id="related" className="scroll-mt-16 mb-8">
                 <details className="group" open>
-                  <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
-                    <h2 className="text-lg font-semibold text-gray-900">Related Codes ({relatedCodes.length})</h2>
-                    <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
+                    <h2 className="text-lg font-semibold text-[#0B1220]">Related Codes ({relatedCodes.length})</h2>
+                    <svg className="w-5 h-5 text-[#94A3B8] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </summary>
@@ -522,12 +530,12 @@ export default async function DTCCodePage({
                       <Link
                         key={rc.code}
                         href={`/known-issues/dtc/${rc.code.toLowerCase()}`}
-                        className="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
+                        className="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-[#EFEDE6]/70 transition-colors"
                       >
-                        <span className="font-mono font-bold text-sm text-gray-500 group-hover:text-blue-600 w-16 flex-shrink-0">
+                        <span className="font-mono font-bold text-sm text-[#64748B] group-hover:text-blue-600 w-16 flex-shrink-0">
                           {rc.code}
                         </span>
-                        <span className="text-sm text-gray-600 truncate">{rc.name}</span>
+                        <span className="text-sm text-[#475569] truncate">{rc.name}</span>
                       </Link>
                     ))}
                   </div>
@@ -538,17 +546,17 @@ export default async function DTCCodePage({
             {/* FAQ — collapsible */}
             <section id="faq" className="scroll-mt-16 mb-8">
               <details className="group">
-                <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
-                  <h2 className="text-lg font-semibold text-gray-900">FAQ</h2>
-                  <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
+                  <h2 className="text-lg font-semibold text-[#0B1220]">FAQ</h2>
+                  <svg className="w-5 h-5 text-[#94A3B8] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
                 <div className="space-y-6 pt-4">
                   {faqs.map((faq, i) => (
-                    <div key={i} className="border-b border-gray-100 pb-6 last:border-0">
-                      <h3 className="text-base font-semibold text-gray-900 mb-2">{faq.question}</h3>
-                      <p className="text-gray-600 leading-relaxed text-sm">{faq.answer}</p>
+                    <div key={i} className="border-b border-[#E3DFD4] pb-6 last:border-0">
+                      <h3 className="text-base font-semibold text-[#0B1220] mb-2">{faq.question}</h3>
+                      <p className="text-[#475569] leading-relaxed text-sm">{faq.answer}</p>
                     </div>
                   ))}
                 </div>
@@ -566,9 +574,9 @@ export default async function DTCCodePage({
             {citations.length > 0 && (
               <section id="sources" className="scroll-mt-16 mb-8">
                 <details className="group" open>
-                  <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-gray-200 list-none">
-                    <h2 className="text-lg font-semibold text-gray-900">Sources ({citations.length})</h2>
-                    <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
+                    <h2 className="text-lg font-semibold text-[#0B1220]">Sources ({citations.length})</h2>
+                    <svg className="w-5 h-5 text-[#94A3B8] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </summary>
@@ -583,22 +591,22 @@ export default async function DTCCodePage({
                       const typeColor = c.type === 'recall' ? 'bg-red-100 text-red-700'
                         : c.type === 'tsb' ? 'bg-blue-100 text-blue-700'
                         : c.type === 'nhtsa' ? 'bg-amber-100 text-amber-700'
-                        : 'bg-gray-100 text-gray-700';
+                        : 'bg-[#EFEDE6] text-[#334155]';
                       return (
                         <li key={c.url}>
                           <a
                             href={c.url}
                             target="_blank"
                             rel="nofollow noopener noreferrer"
-                            className="group flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 transition-colors"
+                            className="group flex items-start gap-3 p-3 rounded-lg border border-[#E3DFD4] hover:border-blue-300 hover:bg-blue-50/50 transition-colors"
                           >
                             <span className={`text-[10px] font-mono font-bold uppercase px-1.5 py-0.5 rounded flex-shrink-0 ${typeColor}`}>
                               {typeLabel}
                             </span>
-                            <span className="text-sm text-gray-700 group-hover:text-blue-700 transition-colors flex-1 min-w-0">
+                            <span className="text-sm text-[#475569] group-hover:text-blue-700 transition-colors flex-1 min-w-0">
                               {c.title}
                             </span>
-                            <svg className="w-4 h-4 text-gray-300 group-hover:text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-4 h-4 text-[#CBD5E1] group-hover:text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 3h7v7m0-7L10 14m-7 7h7a4 4 0 004-4v-7" />
                             </svg>
                           </a>
@@ -612,10 +620,10 @@ export default async function DTCCodePage({
 
             {/* AI disclaimer */}
             <div className="flex items-start gap-2 py-3">
-              <svg className="w-4 h-4 text-gray-300 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-[#CBD5E1] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <p className="text-xs text-gray-400 leading-relaxed">
+              <p className="text-xs text-[#64748B] leading-relaxed">
                 Content compiled with AI assistance using NHTSA complaints, TSBs, and owner reports. May contain errors. Always verify with your vehicle&apos;s service manual.
               </p>
             </div>
@@ -624,8 +632,8 @@ export default async function DTCCodePage({
             <SiteFooter />
 
             {/* Footer */}
-            <footer className="pt-6 mt-8 border-t border-gray-100 text-center">
-              <p className="text-xs text-gray-400">
+            <footer className="pt-6 mt-8 border-t border-[#E3DFD4] text-center">
+              <p className="text-xs text-[#94A3B8]">
                 &copy; {new Date().getFullYear()} Au7o. All rights reserved.
               </p>
             </footer>

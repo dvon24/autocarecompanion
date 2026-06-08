@@ -35,23 +35,23 @@ export function CollapsibleMakeSection({ make, issues, dtcCode }: CollapsibleMak
   return (
     <div
       id={`dtc-${make.toLowerCase().replace(/\s+/g, '-')}`}
-      className="scroll-mt-16 border border-gray-200 rounded-lg overflow-hidden"
+      className="scroll-mt-16 border border-[#E3DFD4] rounded-lg overflow-hidden"
     >
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
         aria-expanded={expanded}
         aria-label={`${expanded ? 'Collapse' : 'Expand'} ${make} issues`}
-        className="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors text-left"
+        className="w-full flex items-center justify-between p-4 bg-[#EFEDE6] hover:bg-[#E3DFD4] transition-colors text-left"
       >
         <div className="flex items-center gap-3">
-          <h3 className="text-lg font-bold text-gray-900">{make}</h3>
-          <span className="text-sm text-gray-500">
+          <h3 className="text-lg font-bold text-[#0B1220]">{make}</h3>
+          <span className="text-sm text-[#64748B]">
             {issues.length} {issues.length === 1 ? 'issue' : 'issues'}
           </span>
         </div>
         <svg
-          className={`w-5 h-5 text-gray-400 transition-transform ${expanded ? 'rotate-180' : ''}`}
+          className={`w-5 h-5 text-[#94A3B8] transition-transform ${expanded ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -70,7 +70,7 @@ export function CollapsibleMakeSection({ make, issues, dtcCode }: CollapsibleMak
               ? 'bg-red-100 text-red-700'
               : issue.severity === 'medium'
               ? 'bg-yellow-100 text-yellow-700'
-              : 'bg-gray-100 text-gray-700';
+              : 'bg-[#EFEDE6] text-[#334155]';
             const severityLabel = issue.severity === 'high'
               ? 'Critical'
               : issue.severity === 'medium'
@@ -98,11 +98,11 @@ export function CollapsibleMakeSection({ make, issues, dtcCode }: CollapsibleMak
               <Link
                 key={issue.id}
                 href={`/known-issues/${issue.slug}#${issue.id}`}
-                className="group flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 transition-colors"
+                className="group flex items-center justify-between p-4 rounded-lg border border-[#E3DFD4] hover:border-blue-300 hover:bg-blue-50/50 transition-colors"
               >
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                    <span className="font-medium text-[#0B1220] group-hover:text-blue-700 transition-colors">
                       {issue.vehicleMatch.model}
                     </span>
                     <span className={`inline-flex items-center gap-1 text-xs font-medium px-1.5 py-0.5 rounded ${severityColor}`} title={`${severityLabel} severity`}>
@@ -110,8 +110,8 @@ export function CollapsibleMakeSection({ make, issues, dtcCode }: CollapsibleMak
                       {severityLabel}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-600 truncate">{issue.title}</p>
-                  <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
+                  <p className="text-sm text-[#475569] truncate">{issue.title}</p>
+                  <div className="flex items-center gap-3 mt-1 text-xs text-[#64748B]">
                     <span>{minYear === maxYear ? minYear : `${minYear}-${maxYear}`}</span>
                     {issue.estimatedCost && (
                       <span>${issue.estimatedCost.low.toLocaleString()}-${issue.estimatedCost.high.toLocaleString()}</span>
@@ -119,7 +119,7 @@ export function CollapsibleMakeSection({ make, issues, dtcCode }: CollapsibleMak
                     <span>{issue.reportCount.toLocaleString()} reports</span>
                   </div>
                 </div>
-                <svg className="w-5 h-5 text-gray-300 group-hover:text-blue-500 transition-colors flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[#CBD5E1] group-hover:text-blue-500 transition-colors flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>

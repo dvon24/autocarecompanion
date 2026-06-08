@@ -134,7 +134,7 @@ export default async function PerMakeDTCPage({
   ];
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen" style={{ background: '#F7F6F2' }}>
       <TechnicalArticleJsonLd
         title={`${codeUpper} on ${make} — ${data.name}`}
         description={`${codeUpper} (${data.name}) documented on ${data.vehicleCount} ${make} model${data.vehicleCount === 1 ? '' : 's'} with common causes, fixes, and repair costs.`}
@@ -155,24 +155,24 @@ export default async function PerMakeDTCPage({
 
       <article className="max-w-4xl mx-auto px-4 py-8">
         {/* Breadcrumb */}
-        <nav className="text-sm text-gray-500 mb-4">
+        <nav className="text-sm text-[#64748B] mb-4">
           <Link href="/known-issues" className="hover:text-blue-600">Known Issues</Link>
           <span className="mx-2">/</span>
           <Link href={`/known-issues/dtc/${code.toLowerCase()}`} className="hover:text-blue-600">{codeUpper}</Link>
           <span className="mx-2">/</span>
-          <span className="text-gray-900">{make}</span>
+          <span className="text-[#0B1220]">{make}</span>
         </nav>
 
         <header className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-[#0B1220] mb-2">
             {codeUpper} on {make}
           </h1>
-          <p className="text-xl text-gray-700 mb-4">{data.name}</p>
+          <p className="text-xl text-[#334155] mb-4">{data.name}</p>
           <div className="flex items-center gap-3 flex-wrap">
             <span className={`px-3 py-1 rounded-full text-sm font-medium ${severityColor}`}>
               {severityLabel}
             </span>
-            <span className="px-3 py-1 rounded-full text-sm font-medium text-gray-700 bg-gray-100">
+            <span className="px-3 py-1 rounded-full text-sm font-medium text-[#334155] bg-[#EFEDE6]">
               {data.vehicleCount} {make} model{data.vehicleCount === 1 ? '' : 's'} affected
             </span>
             {minCost > 0 && (
@@ -180,7 +180,7 @@ export default async function PerMakeDTCPage({
                 ${minCost.toLocaleString()}-${maxCost.toLocaleString()} typical repair
               </span>
             )}
-            <span className="px-3 py-1 rounded-full text-sm font-medium text-gray-600 bg-white border border-gray-200">
+            <span className="px-3 py-1 rounded-full text-sm font-medium text-[#475569] bg-white border border-[#E3DFD4]">
               System: {data.system}
             </span>
           </div>
@@ -190,8 +190,8 @@ export default async function PerMakeDTCPage({
             "what does P0420 mean on a Honda" style queries. Names the
             specific make + top models + cost range so the citation has
             everything in one block. */}
-        <section className="bg-white border border-gray-200 rounded-2xl p-6 mb-6">
-          <p className="text-gray-700 leading-relaxed">
+        <section className="bg-white border border-[#E3DFD4] rounded-2xl p-6 mb-6">
+          <p className="text-[#334155] leading-relaxed">
             <strong>{codeUpper}</strong> on <strong>{make}</strong> vehicles indicates {data.name.toLowerCase()}.{' '}
             Au7o has documented this code across {data.vehicleCount} {make} model{data.vehicleCount === 1 ? '' : 's'}
             {sortedModels.length > 0 && (
@@ -206,11 +206,11 @@ export default async function PerMakeDTCPage({
         </section>
 
         {/* Common causes — universal for this DTC */}
-        <section className="bg-white border border-gray-200 rounded-2xl p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-3">Common Causes of {codeUpper}</h2>
+        <section className="bg-white border border-[#E3DFD4] rounded-2xl p-6 mb-6">
+          <h2 className="text-lg font-semibold text-[#0B1220] mb-3">Common Causes of {codeUpper}</h2>
           <ul className="space-y-2">
             {data.commonCauses.map((cause, i) => (
-              <li key={i} className="flex gap-2 text-gray-700">
+              <li key={i} className="flex gap-2 text-[#334155]">
                 <span className="text-blue-500 flex-shrink-0 mt-0.5">•</span>
                 <span>{cause}</span>
               </li>
@@ -220,20 +220,20 @@ export default async function PerMakeDTCPage({
 
         {/* Per-model breakdown — the meat of the page */}
         <section className="mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl font-bold text-[#0B1220] mb-4">
             {codeUpper} on {make} by Model
           </h2>
           <div className="space-y-6">
             {sortedModels.map(([model, modelIssues]) => (
-              <div key={model} className="bg-white border border-gray-200 rounded-2xl p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+              <div key={model} className="bg-white border border-[#E3DFD4] rounded-2xl p-6">
+                <h3 className="text-lg font-semibold text-[#0B1220] mb-3">
                   <Link
                     href={`/known-issues/${makeToSlug(make)}-${makeToSlug(model)}`}
                     className="hover:text-blue-600"
                   >
                     {make} {model}
                   </Link>
-                  <span className="ml-2 text-sm font-normal text-gray-500">
+                  <span className="ml-2 text-sm font-normal text-[#64748B]">
                     ({modelIssues.length} issue{modelIssues.length === 1 ? '' : 's'})
                   </span>
                 </h3>
@@ -248,19 +248,19 @@ export default async function PerMakeDTCPage({
                     return (
                       <li key={issue.id} className="border-l-2 border-blue-100 pl-3">
                         <div className="flex items-baseline gap-2 flex-wrap">
-                          <span className="font-medium text-gray-900">{issue.title}</span>
+                          <span className="font-medium text-[#0B1220]">{issue.title}</span>
                           {yearLabel && (
-                            <span className="text-xs text-gray-500">{yearLabel}</span>
+                            <span className="text-xs text-[#64748B]">{yearLabel}</span>
                           )}
                         </div>
                         {issue.description && (
-                          <p className="text-sm text-gray-600 mt-1 line-clamp-2">{issue.description}</p>
+                          <p className="text-sm text-[#475569] mt-1 line-clamp-2">{issue.description}</p>
                         )}
                       </li>
                     );
                   })}
                   {modelIssues.length > 5 && (
-                    <li className="text-sm text-gray-500 pl-3">
+                    <li className="text-sm text-[#64748B] pl-3">
                       + {modelIssues.length - 5} more issue{modelIssues.length - 5 === 1 ? '' : 's'} —{' '}
                       <Link
                         href={`/known-issues/${makeToSlug(make)}-${makeToSlug(model)}`}
@@ -278,7 +278,7 @@ export default async function PerMakeDTCPage({
 
         {/* Link out to generic DTC page */}
         <section className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-6 text-center">
-          <p className="text-sm text-gray-700 mb-2">
+          <p className="text-sm text-[#334155] mb-2">
             Looking for {codeUpper} on a different make?
           </p>
           <Link
@@ -290,16 +290,16 @@ export default async function PerMakeDTCPage({
         </section>
 
         {/* FAQs */}
-        <section className="bg-white border border-gray-200 rounded-2xl p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Frequently Asked Questions</h2>
+        <section className="bg-white border border-[#E3DFD4] rounded-2xl p-6 mb-6">
+          <h2 className="text-lg font-semibold text-[#0B1220] mb-4">Frequently Asked Questions</h2>
           <div className="space-y-4">
             {faqs.map((faq, i) => (
               <details key={i} className="group">
-                <summary className="cursor-pointer font-medium text-gray-900 hover:text-blue-600 list-none flex items-baseline justify-between">
+                <summary className="cursor-pointer font-medium text-[#0B1220] hover:text-blue-600 list-none flex items-baseline justify-between">
                   <span>{faq.question}</span>
-                  <span className="text-gray-400 group-open:rotate-180 transition-transform text-xs">▼</span>
+                  <span className="text-[#94A3B8] group-open:rotate-180 transition-transform text-xs">▼</span>
                 </summary>
-                <p className="mt-2 text-gray-700 text-sm">{faq.answer}</p>
+                <p className="mt-2 text-[#334155] text-sm">{faq.answer}</p>
               </details>
             ))}
           </div>
