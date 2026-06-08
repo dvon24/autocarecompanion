@@ -30,6 +30,8 @@ export default function AccountPrivacyActions({
   const [showConfirm, setShowConfirm] = useState(false);
   const [confirmText, setConfirmText] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [exporting, setExporting] = useState(false);
+  const [exportError, setExportError] = useState<string | null>(null);
 
   // GDPR Art. 21 — AI processing opt-out state. We fetch it once on
   // mount so the toggle reflects the persisted value, and PATCH on
@@ -76,11 +78,35 @@ export default function AccountPrivacyActions({
     }
   };
 
-  const handleExport = () => {
-    // Trigger the browser's download flow. The server response carries
-    // Content-Disposition: attachment so this navigates+downloads
-    // without leaving the page (for cookie-authenticated GETs).
-    window.location.href = '/api/account/export';
+  const handleExport = async () => {
+    // Fetch → blob → download so we can show real progress. The old
+    // window.location.href gave ZERO feedback — a user clicked it 5x not
+    // knowing it was already working. Now the button shows "Preparing
+    // your download…" while the server builds the JSON, then the file
+    // downloads.
+    if (exporting) return;
+    setExporting(true);
+    setExportError(null);
+    try {
+      const res = await fetch('/api/account/export');
+      if (!res.ok) throw new Error(`Export failed (HTTP ${res.status})`);
+      const cd = res.headers.get('content-disposition') || '';
+      const match = cd.match(/filename="?([^"]+)"?/i);
+      const filename = match?.[1] || 'au7o-data-export.json';
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      setExportError(e instanceof Error ? e.message : 'Could not prepare your download. Try again.');
+    } finally {
+      setExporting(false);
+    }
   };
 
   const handleDelete = async () => {
@@ -178,10 +204,16 @@ export default function AccountPrivacyActions({
           </p>
           <button
             onClick={handleExport}
-            className="w-full py-2.5 px-4 bg-gray-900 text-white text-sm font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+            disabled={exporting}
+            aria-busy={exporting}
+            className="w-full py-2.5 px-4 bg-gray-900 text-white text-sm font-semibold rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-70 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
           >
-            Download my data
+            {exporting && (
+              <span className="inline-block w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" aria-hidden />
+            )}
+            {exporting ? 'Preparing your download…' : 'Download my data'}
           </button>
+          {exportError && <p className="text-xs text-red-600 mt-2">{exportError}</p>}
         </div>
 
         {/* Delete */}
