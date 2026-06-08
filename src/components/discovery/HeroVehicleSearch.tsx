@@ -91,7 +91,10 @@ export function HeroVehicleSearch() {
 
   const [dtcQuery, setDtcQuery] = useState('');
 
-  const isComplete = selectedYear && selectedMake && selectedModel && selectedTrim;
+  // Trim is OPTIONAL — many EU models have no trim list, which used to
+  // leave this home-hero button permanently disabled (same "didn't work"
+  // symptom /diagnose already fixed). Year/make/model is enough.
+  const isComplete = selectedYear && selectedMake && selectedModel;
 
   const handleSubmit = useCallback(() => {
     if (!isComplete) return;
@@ -101,7 +104,7 @@ export function HeroVehicleSearch() {
       model: selectedModel,
       trim: selectedTrim,
     });
-    const vehicleSlug = `${selectedYear}-${selectedMake}-${selectedModel}-${selectedTrim}`
+    const vehicleSlug = `${selectedYear}-${selectedMake}-${selectedModel}${selectedTrim ? '-' + selectedTrim : ''}`
       .toLowerCase()
       .replace(/\s+/g, '-')
       .replace(/[^a-z0-9-]+/g, '')

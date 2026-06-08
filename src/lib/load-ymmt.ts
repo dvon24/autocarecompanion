@@ -24,7 +24,11 @@ import { type YMMTData, YMMTDataSchema } from '@/schemas/vehicle.schema';
  */
 export async function loadYmmt(): Promise<YMMTData> {
   try {
-    const res = await fetch('/data/ymmt.json');
+    // cache: 'no-store' forces revalidation past the HTTP cache so a
+    // stale browser-cached copy isn't reused. (The SW precache is handled
+    // separately by excluding /data/ymmt.json from precache in
+    // next.config.ts — see FIX B.)
+    const res = await fetch('/data/ymmt.json', { cache: 'no-store' });
     if (!res.ok) throw new Error(`ymmt fetch failed: ${res.status}`);
     const data = await res.json();
     return coerce(data);

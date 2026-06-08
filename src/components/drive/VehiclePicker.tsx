@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { loadYmmt } from '@/lib/load-ymmt';
 
 export interface DriveVehicle {
   year: number;
@@ -31,9 +32,10 @@ export function VehiclePicker({ value, onChange }: Props) {
 
   useEffect(() => {
     if (!open || ymmt) return;
-    fetch('/data/ymmt.json')
-      .then((r) => r.json())
-      .then((data: Ymmt) => setYmmt(data))
+    // Resilient loader (network + bundled fallback) so the dropdowns
+    // never go empty on a flaky fetch.
+    loadYmmt()
+      .then((data) => setYmmt(data as unknown as Ymmt))
       .catch(() => setYmmt({}));
   }, [open, ymmt]);
 

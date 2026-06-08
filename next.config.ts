@@ -14,6 +14,14 @@ const withPWA = withPWAInit({
   register: true,
   reloadOnOnline: true,
   cacheOnFrontEndNav: true,
+  // Keep the 1MB /data/ymmt.json OUT of the all-or-nothing precache.
+  // It was the install-failure trigger: on a flaky connection the new
+  // service worker could never finish precaching it, so it never
+  // activated and the user stayed on OLD cached JS indefinitely (the
+  // exact "deployed fix never reached the German user" failure). It's
+  // served NetworkFirst via runtimeCaching below instead. (Keep the
+  // package default exclude.)
+  publicExcludes: ['!noprecache/**/*', '!data/ymmt.json'],
   // skipWaiting + clientsClaim live inside workboxOptions in this
   // package, not at the top level.
   workboxOptions: {
@@ -27,6 +35,30 @@ const withPWA = withPWAInit({
     // network timeout keeps it snappy when offline but always prefers
     // a fresh response over a cached one.
     runtimeCaching: [
+      {
+        // The vehicle-picker data file — now excluded from precache (see
+        // publicExcludes). NetworkFirst so it's always fresh when online,
+        // with a short cache as the offline safety net.
+        urlPattern: /\/data\/ymmt\.json$/,
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'ymmt-data',
+          networkTimeoutSeconds: 5,
+          expiration: { maxEntries: 2, maxAgeSeconds: 60 * 60 * 24 },
+        },
+      },
+      {
+        // /diagnose HTML — same fast-refresh treatment as known-issues so
+        // a user on an old SW gets the fresh page (and the fixed bundle)
+        // instead of stale cached HTML.
+        urlPattern: /^https:\/\/au7o\.io\/diagnose(\/.*)?$/,
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'diagnose-html',
+          networkTimeoutSeconds: 4,
+          expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 },
+        },
+      },
       {
         urlPattern: /^https:\/\/au7o\.io\/known-issues(\/.*)?$/,
         handler: 'NetworkFirst',
