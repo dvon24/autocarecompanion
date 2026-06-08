@@ -78,8 +78,10 @@ export async function GET() {
     prisma.chatPromptInsight.findMany({ where: { userId } }),
     // Visual data flywheel (Phase 0) consented diagnosis samples. Phase
     // 0.0 rows are metadata-only (no image bytes); when Phase 0.1 adds
-    // stored crops, attach a signed download URL per row here.
-    prisma.diagnosisSample.findMany({ where: { userId } }),
+    // stored crops, attach a signed download URL per row here. Guarded so
+    // a missing table (deploy window before the DDL apply) degrades to an
+    // empty section instead of 500-ing the entire Art. 20 export.
+    prisma.diagnosisSample.findMany({ where: { userId } }).catch(() => []),
   ]);
 
   if (!user) {

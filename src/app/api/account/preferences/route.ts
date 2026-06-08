@@ -36,10 +36,21 @@ export async function GET() {
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
   }
-  const user = await prisma.user.findUnique({
-    where: { id: session.user.id },
-    select: { aiProcessingOptOut: true, visualDatasetOptIn: true },
-  });
+  // Read defensively: tolerate the window after a deploy but before the
+  // visualDatasetOptIn column DDL is applied, so the pre-existing Art. 21
+  // opt-out read never 500s if the new column isn't live yet.
+  let user: { aiProcessingOptOut: boolean; visualDatasetOptIn?: boolean } | null = null;
+  try {
+    user = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { aiProcessingOptOut: true, visualDatasetOptIn: true },
+    });
+  } catch {
+    user = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { aiProcessingOptOut: true },
+    });
+  }
   return NextResponse.json({
     aiProcessingOptOut: user?.aiProcessingOptOut ?? false,
     visualDatasetOptIn: user?.visualDatasetOptIn ?? false,
@@ -82,11 +93,28 @@ export async function PATCH(req: NextRequest) {
     data.visualDatasetConsentAt = new Date();
   }
 
-  const updated = await prisma.user.update({
-    where: { id: session.user.id },
-    data,
-    select: { aiProcessingOptOut: true, visualDatasetOptIn: true },
-  });
+  // Update defensively: if the visualDatasetOptIn column isn't live yet
+  // (deploy window before the DDL apply), don't break the pre-existing
+  // Art. 21 aiProcessingOptOut toggle — retry without the new column when
+  // the caller only touched legacy prefs.
+  let updated: { aiProcessingOptOut: boolean; visualDatasetOptIn?: boolean };
+  try {
+    updated = await prisma.user.update({
+      where: { id: session.user.id },
+      data,
+      select: { aiProcessingOptOut: true, visualDatasetOptIn: true },
+    });
+  } catch (err) {
+    if (body.visualDatasetOptIn === undefined) {
+      updated = await prisma.user.update({
+        where: { id: session.user.id },
+        data: { aiProcessingOptOut: body.aiProcessingOptOut },
+        select: { aiProcessingOptOut: true },
+      });
+    } else {
+      throw err;
+    }
+  }
 
   // Log consent toggles to server logs so we have a paper trail of when
   // consent for AI processing / visual-dataset retention was
