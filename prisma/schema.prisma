@@ -49,6 +49,16 @@ model User {
   // settings if they want chat/guides/parts AI lookups back.
   aiProcessingOptOut Boolean @default(false)
 
+  // Visual data flywheel (Phase 0) — SEPARATE, explicit opt-IN, default
+  // false. This is fresh GDPR Art. 6(1)(a) consent for a NEW purpose
+  // (keeping the diagnosed-component image + diagnosis metadata to
+  // improve future diagnoses). Deliberately NOT folded into
+  // aiProcessingOptOut, which is an Art. 21 opt-OUT for an existing
+  // legitimate-interest activity. `visualDatasetConsentAt` records WHEN
+  // consent was given so we can prove it (Art. 7(1)).
+  visualDatasetOptIn     Boolean   @default(false)
+  visualDatasetConsentAt DateTime?
+
   // Phase 2 onboarding — null until user finishes the first-run flow.
   // Persisted as a timestamp so we can compute time-since-completion
   // for cohort analytics; null means show onboarding on next /vehicle
@@ -65,6 +75,7 @@ model User {
   chatSessions       ChatSession[]
   insights           VehicleInsight[]
   passwordResetTokens PasswordResetToken[]
+  diagnosisSamples   DiagnosisSample[]
 }
 
 // Weekly chat quota for anonymous (and optionally free-tier signed-in)
@@ -574,4 +585,58 @@ model VehicleInsight {
   @@index([insightType])
   @@index([year, make, model])
   @@index([userId])
+}
+
+// Visual data flywheel (Phase 0). One row per CONSENTED photo diagnosis.
+// Mirrors VehicleInsight's nullable-user convention, but uses
+// onDelete: Cascade (NOT SetNull): unlike an aggregate insight, an image
+// sample's pixels are not anonymous merely by nulling userId, so account
+// deletion must ERASE the row (Recital 26). Phase 0.0 stores METADATA
+// ONLY (imageStored=false, storageKey=null) — no image bytes touch
+// storage until Phase 0.1 adds the private-bucket crop pipeline. The
+// image columns exist now so 0.1 needs no migration.
+model DiagnosisSample {
+  id              String   @id @default(cuid())
+
+  // Identity. Phase 0 is AUTHED-ONLY (the route gate requires a userId),
+  // so userId is set and anonId stays null. Both nullable so a future
+  // consented-anon path needs no migration.
+  userId          String?
+  anonId          String?
+
+  // Vehicle context (denormalized like VehicleInsight — survives vehicle
+  // deletion; needed to slice the dataset by YMMT).
+  year            Int?
+  make            String?
+  model           String?
+  trim            String?
+
+  // Diagnosis metadata (structured, low-PII, high training value).
+  mode            String   @default("photo") // "photo" | "video"
+  primaryCategory String?  // identifiedParts[primary].category, e.g. "rotor"
+  primaryPartName String?  // human label of the diagnosed component
+  dtcCodes        String[] @default([])
+  confidence      Float?
+  vehicleMatch    String?  // "confident" | "uncertain" | "likely_mismatch"
+  diagnosisJson   Json?    // PII-scrubbed subset of the shaped result
+
+  // Image reference (Phase 0.1). Null/false for Phase 0.0 metadata rows.
+  imageStored     Boolean  @default(false)
+  storageKey      String?  // private-bucket object path; null = no bytes
+  cropApplied     Boolean  @default(false) // true = component crop (Option B)
+  exifStripped    Boolean  @default(true)  // hard guarantee when bytes exist
+  contentType     String?
+  byteSize        Int?
+
+  // Provenance / consent audit.
+  consentSource   String   // "account_toggle" | "per_upload_checkbox"
+  consentVersion  String   @default("v1")
+  createdAt       DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([make, model])
+  @@index([primaryCategory])
+  @@index([createdAt])
 }

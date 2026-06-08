@@ -44,6 +44,7 @@ export async function GET() {
     notifications,
     issueFixes,
     promptInsights,
+    diagnosisSamples,
   ] = await Promise.all([
     prisma.user.findUnique({
       where: { id: userId },
@@ -75,6 +76,10 @@ export async function GET() {
     prisma.userIssueFix.findMany({ where: { userId } }),
     // ChatPromptInsight has no FK to User — match by userId column.
     prisma.chatPromptInsight.findMany({ where: { userId } }),
+    // Visual data flywheel (Phase 0) consented diagnosis samples. Phase
+    // 0.0 rows are metadata-only (no image bytes); when Phase 0.1 adds
+    // stored crops, attach a signed download URL per row here.
+    prisma.diagnosisSample.findMany({ where: { userId } }),
   ]);
 
   if (!user) {
@@ -83,7 +88,7 @@ export async function GET() {
 
   const payload = {
     exportedAt: new Date().toISOString(),
-    exportSchemaVersion: 1,
+    exportSchemaVersion: 2,
     legalNotice:
       'This file contains all personal data Au7o has stored for your account, ' +
       'exported under GDPR Article 20 (data portability). Keep it private — ' +
@@ -95,6 +100,7 @@ export async function GET() {
     notifications,
     issueFixes,
     promptInsights,
+    diagnosisSamples,
   };
 
   const filename = `au7o-account-export-${user.email.replace(/[^a-z0-9]+/gi, '-')}-${new Date().toISOString().slice(0, 10)}.json`;

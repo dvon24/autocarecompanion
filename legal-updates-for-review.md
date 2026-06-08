@@ -147,3 +147,34 @@ Email: dvoninvestllc@yahoo.com
 ---
 
 © 2026 Dvon Invest LLC. All rights reserved.
+
+---
+---
+
+# ADDENDUM — Visual Data Flywheel (Phase 0)
+
+**Prepared for:** Legal Review
+**Date:** June 8, 2026
+**Purpose:** New, opt-in processing that retains diagnosis data from the photo-diagnosis feature to improve future diagnoses.
+
+## What changed
+
+We added an **explicit, opt-in** ("off by default") setting that lets a **signed-in** user allow Au7o to retain data from the diagnoses they run, to improve the accuracy of future diagnoses. This is collected under **GDPR Art. 6(1)(a) consent**, is **separate** from the existing AI-processing objection (Art. 21), and records a timestamp of when consent was given. It can be withdrawn at any time, is included in the user's data export (Art. 20), and is **erased** when the account is deleted (Art. 17).
+
+### Phase 0.0 — what is retained NOW (this release)
+- **Diagnosis metadata only. NO images are stored.** Specifically: vehicle year/make/model/trim, the diagnosed component category and name, a **privacy-scrubbed** one-line diagnosis summary (license plates, VINs, emails and phone numbers stripped), and the structured part list. We deliberately do **not** store the user's uploaded photo, their free-text note, or any audio transcript.
+- Applies to **signed-in users only.** Anonymous "try-it-free" diagnoses are never retained.
+
+### Phase 0.1 — PLANNED (NOT in this release; requires sign-off)
+- Retaining a **cropped image of the diagnosed part** (e.g. a close-up of a brake rotor), with EXIF/location metadata stripped server-side and the crop chosen to exclude plates/faces/VINs by construction.
+- ⚠️ **BLOCKER for Phase 0.1:** our current public Privacy Policy is hosted in **Termly** (embedded at `/privacy`), and our marketing materials state **"no stored images."** Before any image bytes are retained, the **live Termly policy must be updated** to disclose opt-in image retention, and the "no stored images" marketing claim revisited. Phase 0.1 also constitutes a **scope expansion** of the consent (from metadata to images), so opted-in users should be **re-prompted** (consent version bumps to v2).
+
+## Suggested Privacy Policy language (for the metadata phase, Phase 0.0)
+
+> **Diagnosis Improvement Data (optional).** If you are signed in and turn on "Help improve Au7o's diagnoses" in your account settings (off by default), we retain information about the diagnoses you run — the vehicle, the part identified, and a privacy-scrubbed summary — to improve the quality of future diagnoses. We do **not** retain your uploaded photos or the notes you type under this setting. You can turn this off at any time in your account settings. This information is included in your data export and is permanently deleted when you delete your account. We rely on your consent (GDPR Art. 6(1)(a)) for this processing.
+
+## Key points for legal review
+1. **Opt-in, default off**, signed-in only, separate from the AI-processing objection.
+2. **Phase 0.0 stores metadata only — no images, no user free-text.**
+3. Consent is **withdrawable**, **exportable**, and **erased on account deletion**.
+4. **Phase 0.1 (images) is gated** on updating the live Termly policy and re-consent.

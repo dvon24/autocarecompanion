@@ -7,7 +7,16 @@
  * What gets hard-deleted:
  *   - User row → cascades (per prisma/schema.prisma):
  *       Account, Session, PasswordResetToken,
- *       Vehicle → MaintenanceRecord, Modification, MileageLog
+ *       Vehicle → MaintenanceRecord, Modification, MileageLog,
+ *       DiagnosisSample (visual data flywheel — onDelete: Cascade, so
+ *         the metadata rows are erased automatically, NOT depersonalized)
+ *
+ *   PHASE 0.1 NOTE: once DiagnosisSample rows carry a storageKey (stored
+ *   image crop), the blob objects must be purged from storage FIRST and
+ *   verified, BEFORE prisma.user.delete cascades the rows away — Postgres
+ *   cannot reach object storage, so a row cascaded before its blob is
+ *   deleted would orphan an un-erasable image. Phase 0.0 stores no bytes,
+ *   so the cascade alone is complete erasure.
  *   - ChatSession (manual — FK is SetNull, but messages contain
  *     user-entered content so we must purge, not anonymize)
  *   - ChatPromptInsight (manual — no FK relationship; the column

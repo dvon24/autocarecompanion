@@ -24,6 +24,10 @@ export const dynamic = 'force-dynamic';
 const PatchBody = z
   .object({
     aiProcessingOptOut: z.boolean().optional(),
+    // Visual data flywheel (Phase 0) opt-IN. Separate from
+    // aiProcessingOptOut. Flipping it true stamps visualDatasetConsentAt
+    // server-side for provable consent timing.
+    visualDatasetOptIn: z.boolean().optional(),
   })
   .strict();
 
@@ -34,10 +38,11 @@ export async function GET() {
   }
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },
-    select: { aiProcessingOptOut: true },
+    select: { aiProcessingOptOut: true, visualDatasetOptIn: true },
   });
   return NextResponse.json({
     aiProcessingOptOut: user?.aiProcessingOptOut ?? false,
+    visualDatasetOptIn: user?.visualDatasetOptIn ?? false,
   });
 }
 
@@ -64,18 +69,36 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: 'No fields to update' }, { status: 400 });
   }
 
+  // Stamp the consent timestamp when the visual-dataset opt-in flips
+  // true (provable consent timing, GDPR Art. 7(1)). We leave the
+  // timestamp in place on opt-out so the record of when consent was last
+  // given survives.
+  const data: {
+    aiProcessingOptOut?: boolean;
+    visualDatasetOptIn?: boolean;
+    visualDatasetConsentAt?: Date;
+  } = { ...body };
+  if (body.visualDatasetOptIn === true) {
+    data.visualDatasetConsentAt = new Date();
+  }
+
   const updated = await prisma.user.update({
     where: { id: session.user.id },
-    data: body,
-    select: { aiProcessingOptOut: true },
+    data,
+    select: { aiProcessingOptOut: true, visualDatasetOptIn: true },
   });
 
-  // Log the opt-out toggle to server logs so we have a paper trail of
-  // when consent for AI processing was withdrawn/restored — useful if
-  // a user later disputes that they opted out.
+  // Log consent toggles to server logs so we have a paper trail of when
+  // consent for AI processing / visual-dataset retention was
+  // withdrawn/restored — useful if a user later disputes their choice.
   if (body.aiProcessingOptOut !== undefined) {
     console.log(
       `[ai-optout] userId=${session.user.id} email=${session.user.email} aiProcessingOptOut=${body.aiProcessingOptOut} at=${new Date().toISOString()}`,
+    );
+  }
+  if (body.visualDatasetOptIn !== undefined) {
+    console.log(
+      `[visual-dataset-consent] userId=${session.user.id} email=${session.user.email} visualDatasetOptIn=${body.visualDatasetOptIn} at=${new Date().toISOString()}`,
     );
   }
 

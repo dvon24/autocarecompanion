@@ -55,6 +55,11 @@ export function DiagnoseFlowClient() {
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [caption, setCaption] = useState('');
+  // Visual data flywheel (Phase 0) per-upload opt-in. Default OFF. Only
+  // shown to (and only sent for) signed-in users — an anon visitor has no
+  // account to exercise deletion against, so we never collect a consent
+  // we couldn't honor.
+  const [keepPhoto, setKeepPhoto] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Flow state
@@ -134,6 +139,10 @@ export function DiagnoseFlowClient() {
         JSON.stringify({ year: Number(year), make, model, trim })
       );
       if (caption.trim()) fd.append('caption', caption.trim());
+      // Per-upload consent signal — only for signed-in users. '1' = keep,
+      // '0' = explicit decline (overrides any account-level opt-in for
+      // this upload). Anon sends nothing (server never stores anon).
+      if (isSignedIn) fd.append('keepPhoto', keepPhoto ? '1' : '0');
 
       const res = await fetch('/api/vision', {
         method: 'POST',
@@ -568,6 +577,34 @@ export function DiagnoseFlowClient() {
                     ? 'Add a photo to diagnose.'
                     : 'Pick your year, make & model to diagnose.'}
               </p>
+            )}
+
+            {/* Visual data flywheel (Phase 0) per-upload opt-in — signed-in
+                only, default OFF. Anon visitors never see it (no account to
+                exercise deletion against). Phase 0.0 keeps metadata only. */}
+            {isSignedIn && (
+              <label
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: 8,
+                  marginTop: 14,
+                  maxWidth: 520,
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  cursor: 'pointer',
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={keepPhoto}
+                  onChange={(e) => setKeepPhoto(e.target.checked)}
+                  style={{ marginTop: 2, width: 15, height: 15, flexShrink: 0, accentColor: 'var(--au7o-blue, #3B82F6)', cursor: 'pointer' }}
+                />
+                <span style={{ fontSize: 12, color: 'var(--slate-600, #475569)', lineHeight: 1.45 }}>
+                  Help improve Au7o — keep the details of this diagnosis (the part identified; plates &amp; location removed) to make future diagnoses smarter. No photo is kept. Optional.
+                </span>
+              </label>
             )}
           </div>
         )}

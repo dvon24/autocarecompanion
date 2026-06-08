@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse, after } from 'next/server';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/db';
 import {
@@ -14,6 +14,7 @@ import {
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 import { getVehicleSpecs } from '@/lib/maintenance';
 import { attachVendorLinks } from '@/lib/vendor-resolver';
+import { captureDiagnosisSample } from '@/lib/diagnosis-capture';
 import type { IdentifiedPart, PartCategory, PartRole } from '@/types/vision';
 
 export const maxDuration = 60;
@@ -33,10 +34,13 @@ export const runtime = 'nodejs';
  *   - Authed-free → 3 photos/month (per pricing brief)
  *   - Subscriber → unlimited
  *
- * Privacy: images are processed in-memory and NOT stored. The
- * vision model sees the base64 once; no copy is persisted to disk
- * or DB. GDPR opt-out (aiProcessingOptOut) short-circuits before
- * any API call.
+ * Privacy: the uploaded image is processed in-memory and is NOT
+ * stored — the vision model sees the base64 once and no copy is
+ * persisted to disk or storage. Signed-in users who explicitly opt in
+ * (Phase 0 visual dataset) have only low-PII DIAGNOSIS METADATA kept
+ * (a PII-scrubbed summary + the diagnosed component + YMMT) via
+ * captureDiagnosisSample — still no image bytes in this phase. GDPR
+ * opt-out (aiProcessingOptOut) short-circuits before any API call.
  *
  * Request: multipart/form-data
  *   - image: File (jpeg/png/webp, max 10MB)
@@ -228,6 +232,14 @@ export async function POST(request: NextRequest) {
   } catch { /* fall through; vehicle is optional but encouraged */ }
 
   const caption = (form.get('caption') as string | null) || '';
+
+  // Visual data flywheel (Phase 0) consent signal. '1' = opt-in this
+  // upload, '0' = explicit decline this upload (authoritative — overrides
+  // the account-level opt-in), absent = no per-upload checkbox was shown
+  // (fall back to User.visualDatasetOptIn server-side).
+  const keepPhotoRaw = form.get('keepPhoto');
+  const perUploadConsent: '1' | '0' | null =
+    keepPhotoRaw === '1' ? '1' : keepPhotoRaw === '0' ? '0' : null;
 
   vlog('images_validated', { mode, count: images.length, totalBytes: images.reduce((s, f) => s + f.size, 0) });
 
@@ -759,6 +771,24 @@ Return ONLY a JSON object — no markdown fences, no preamble. Start with { end 
     legacyHasPrimary: !!result.primaryPart,
     relatedCount: result.relatedIssues.length,
   });
+
+  // ─── Phase 0: consented visual-dataset capture (metadata only) ─────
+  // Runs AFTER the response is sent (via after()) so it can never delay
+  // or fail the diagnosis, and so opt-in status can never influence the
+  // answer the user gets (keeps consent "freely given"). Gated to
+  // signed-in PHOTO diagnoses of a car-related subject that is plausibly
+  // the user's own vehicle; the consent decision itself lives inside
+  // captureDiagnosisSample. Phase 0.0 persists NO image bytes.
+  if (userId && mode === 'photo' && result.isCarRelated && result.vehicleMatch !== 'likely_mismatch') {
+    const captureUserId = userId;
+    after(async () => {
+      try {
+        await captureDiagnosisSample({ userId: captureUserId, perUploadConsent, vehicle, mode, result });
+      } catch (err) {
+        vlog('capture_failed', { err: err instanceof Error ? err.message : String(err) });
+      }
+    });
+  }
 
   return respond({ vision: result });
 }

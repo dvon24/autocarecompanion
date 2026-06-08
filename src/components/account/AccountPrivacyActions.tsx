@@ -40,15 +40,27 @@ export default function AccountPrivacyActions({
   const [aiSaving, setAiSaving] = useState(false);
   const [aiError, setAiError] = useState<string | null>(null);
 
+  // Visual data flywheel (Phase 0) opt-IN. Separate, default-off consent.
+  // Optimistic like the AI opt-out; a failed write reverts.
+  const [visualOptIn, setVisualOptIn] = useState<boolean | null>(null);
+  const [visualSaving, setVisualSaving] = useState(false);
+  const [visualError, setVisualError] = useState<string | null>(null);
+
   useEffect(() => {
     let cancelled = false;
     fetch('/api/account/preferences')
       .then((r) => (r.ok ? r.json() : Promise.reject(r)))
       .then((data) => {
-        if (!cancelled) setAiOptOut(!!data.aiProcessingOptOut);
+        if (!cancelled) {
+          setAiOptOut(!!data.aiProcessingOptOut);
+          setVisualOptIn(!!data.visualDatasetOptIn);
+        }
       })
       .catch(() => {
-        if (!cancelled) setAiOptOut(false);
+        if (!cancelled) {
+          setAiOptOut(false);
+          setVisualOptIn(false);
+        }
       });
     return () => { cancelled = true; };
   }, []);
@@ -75,6 +87,31 @@ export default function AccountPrivacyActions({
       setAiError('Network error. Try again.');
     } finally {
       setAiSaving(false);
+    }
+  };
+
+  const toggleVisualOptIn = async () => {
+    if (visualOptIn === null || visualSaving) return;
+    const next = !visualOptIn;
+    setVisualOptIn(next); // optimistic
+    setVisualSaving(true);
+    setVisualError(null);
+    try {
+      const res = await fetch('/api/account/preferences', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ visualDatasetOptIn: next }),
+      });
+      if (!res.ok) {
+        setVisualOptIn(!next); // revert
+        const data = await res.json().catch(() => ({}));
+        setVisualError(data.error || `Update failed (HTTP ${res.status})`);
+      }
+    } catch {
+      setVisualOptIn(!next); // revert
+      setVisualError('Network error. Try again.');
+    } finally {
+      setVisualSaving(false);
     }
   };
 
@@ -190,6 +227,49 @@ export default function AccountPrivacyActions({
             }}
           >
             {aiOptOut === null ? '…' : aiOptOut ? 'OPTED OUT' : 'ALLOWED'}
+          </span>
+        </label>
+      </div>
+
+      {/* Visual data flywheel opt-IN — paper well. tone="positive" so the
+          toggle renders GREEN when on (opt-IN semantic, the opposite of
+          the red AI opt-OUT above). Default off. Copy describes ONLY what
+          Phase 0.0 keeps (diagnosis metadata, no photos) so consent is
+          accurate; adding stored image crops (Phase 0.1) is a scope change
+          that bumps consentVersion and re-prompts. */}
+      <div
+        className="flex items-center gap-3.5"
+        style={{
+          padding: '13px 15px',
+          background: '#EFEDE6',
+          border: '1px solid #E3DFD4',
+          borderRadius: 12,
+        }}
+      >
+        <div className="flex-1 min-w-0">
+          <div className="text-[13.5px] font-semibold text-slate-900">Help improve Au7o&apos;s diagnoses</div>
+          <div className="text-[11.5px] text-slate-500 mt-0.5 leading-snug">
+            Let Au7o keep the details of the diagnoses you run — the part identified plus a privacy-scrubbed summary (license plates, VINs, and location stripped) — to make future diagnoses smarter. No photos are kept. Off by default; turn it off anytime, and deleting your account erases it all.
+          </div>
+          {visualError && <p className="text-xs text-red-600 mt-1.5">{visualError}</p>}
+        </div>
+        <label className="flex-shrink-0 inline-flex flex-col items-center gap-1.5 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={visualOptIn === true}
+            onChange={toggleVisualOptIn}
+            disabled={visualOptIn === null || visualSaving}
+            className="sr-only"
+          />
+          <AcctToggle on={visualOptIn === true} tone="positive" />
+          <span
+            className="text-[10px] font-bold uppercase"
+            style={{
+              letterSpacing: '0.04em',
+              color: visualOptIn === true ? '#10B981' : '#94A3B8',
+            }}
+          >
+            {visualOptIn === null ? '…' : visualOptIn ? 'SHARING' : 'PRIVATE'}
           </span>
         </label>
       </div>
