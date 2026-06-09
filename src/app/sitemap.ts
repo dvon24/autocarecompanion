@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getAllKnownIssueSlugsWithDates } from '@/lib/known-issues';
 import { getAllDTCSlugsWithDates } from '@/lib/dtc-codes';
+import { getAllSymptomSlugs } from '@/lib/symptoms';
 import prisma from '@/lib/db';
 
 // Fixed launch date — static pages don't change frequently
@@ -55,6 +56,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/known-issues/dtc`,
+      lastModified: new Date('2026-06-09'),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/known-issues/symptom`,
       lastModified: new Date('2026-06-09'),
       changeFrequency: 'weekly',
       priority: 0.8,
@@ -136,6 +143,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
+  // Symptom landing pages — curated set, fixed layout date.
+  const symptomPages: MetadataRoute.Sitemap = getAllSymptomSlugs().map(slug => ({
+    url: `${baseUrl}/known-issues/symptom/${slug}`,
+    lastModified: new Date('2026-06-09'),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
   // Category landing pages — use most recent updatedAt per category
   const categoryDates = await prisma.$queryRaw<{ category: string; lastmod: Date }[]>`
     SELECT category, MAX("updatedAt") as lastmod
@@ -167,5 +182,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...knownIssuesPages, ...yearVariantPages, ...dtcPages, ...categoryPages, ...makePages];
+  return [...staticPages, ...knownIssuesPages, ...yearVariantPages, ...dtcPages, ...symptomPages, ...categoryPages, ...makePages];
 }

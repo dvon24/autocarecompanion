@@ -129,8 +129,11 @@ export default async function DTCIndexPage() {
             chassis, <strong>U</strong> = network. A &ldquo;P0&rdquo; prefix means it&apos;s a generic code defined
             for every manufacturer; &ldquo;P1&rdquo; means it&apos;s maker-specific. A code points you at the
             affected <em>system</em>, not the exact broken part — the same code can have several causes, which is
-            why Au7o pairs each code with the real failures owners actually find. Browse the{' '}
-            {total.toLocaleString()} codes below, or{' '}
+            why Au7o pairs each code with the real failures owners actually find. No code yet? Start from{' '}
+            <Link href="/known-issues/symptom" className="text-blue-600 hover:text-blue-800 font-medium">
+              what your car is doing
+            </Link>{' '}
+            instead. Browse the {total.toLocaleString()} codes below, or{' '}
             <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium">
               snap a photo of the problem
             </Link>{' '}
