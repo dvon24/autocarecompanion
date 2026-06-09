@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import { getAllKnownIssueSlugsWithDates } from '@/lib/known-issues';
 import { getAllDTCSlugsWithDates } from '@/lib/dtc-codes';
 import { getAllSymptomSlugs } from '@/lib/symptoms';
+import { getAllLocaleSlugParams } from '@/lib/i18n';
 import prisma from '@/lib/db';
 
 // Fixed launch date — static pages don't change frequently
@@ -182,5 +183,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...knownIssuesPages, ...yearVariantPages, ...dtcPages, ...symptomPages, ...categoryPages, ...makePages];
+  // Localized known-issues pages (pt-BR, es, …) — one entry per (locale, slug).
+  const localePages: MetadataRoute.Sitemap = getAllLocaleSlugParams().map(({ locale, slug }) => ({
+    url: `${baseUrl}/${locale}/known-issues/${slug}`,
+    lastModified: new Date('2026-06-09'),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...knownIssuesPages, ...yearVariantPages, ...dtcPages, ...symptomPages, ...categoryPages, ...makePages, ...localePages];
 }

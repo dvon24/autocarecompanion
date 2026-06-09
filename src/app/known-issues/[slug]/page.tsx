@@ -27,6 +27,7 @@ import { AdSlot } from '@/components/ads/AdSlot';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 import { sourceLabel, analysisAttribution, sourceFootnote, metaSourceTail, formatUpdatedLabel } from '@/lib/source-attribution';
 import { vehicleSlug } from '@/lib/vehicle-slug';
+import { getLocalesForSlug, hreflangFor } from '@/lib/i18n';
 
 // --- ISR + dynamic params ---
 
@@ -106,6 +107,11 @@ export async function generateMetadata({
   // follow the canonical we point to so link equity still flows."
   const isThinYearVariant = requestedYear != null && !yearIsValid;
 
+  // hreflang — only on the base (all-years) view, and only when a translated
+  // version of this slug actually exists. Links en ↔ pt-BR/es + x-default.
+  const hreflangLanguages =
+    !yearIsValid && getLocalesForSlug(slug).length > 0 ? hreflangFor(slug, baseUrl) : undefined;
+
   return {
     title,
     description,
@@ -126,6 +132,7 @@ export async function generateMetadata({
     },
     alternates: {
       canonical,
+      ...(hreflangLanguages ? { languages: hreflangLanguages } : {}),
     },
   };
 }
