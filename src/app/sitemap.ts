@@ -53,6 +53,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/known-issues/dtc`,
+      lastModified: new Date('2026-06-09'),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
     // /parts entry removed 2026-05-30 — Parts Finder is hidden from
     // the UI pending verification; pulling it from the sitemap nudges
     // Google to de-prioritize crawling/indexing while it's offline.

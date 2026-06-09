@@ -94,6 +94,30 @@ export async function getAllDTCSlugs(): Promise<{ code: string }[]> {
     .sort((a, b) => a.code.localeCompare(b.code));
 }
 
+export interface DTCDirectoryEntry {
+  code: string;
+  name: string;
+  system: string;
+  severity: string;
+}
+
+/**
+ * Directory of every DTC code that has a real page — i.e. codes that have
+ * reference data AND appear in at least one published KnownIssue (the
+ * /known-issues/dtc/[code] route 404s codes with no linked issues, so we
+ * only list ones that won't dead-end). Powers the /known-issues/dtc index.
+ */
+export async function getDTCDirectory(): Promise<DTCDirectoryEntry[]> {
+  const codesInIssues = await getAllDTCCodes(); // codes in published issues
+  if (codesInIssues.length === 0) return [];
+  const rows = await prisma.dTCCode.findMany({
+    where: { code: { in: codesInIssues } },
+    select: { code: true, name: true, system: true, severity: true },
+    orderBy: { code: 'asc' },
+  });
+  return rows;
+}
+
 /** Get the createdAt/updatedAt dates for a single DTC code (for JSON-LD). */
 export async function getDTCDates(code: string): Promise<{ published: string; modified: string }> {
   const dtc = await prisma.dTCCode.findUnique({
