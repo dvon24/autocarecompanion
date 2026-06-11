@@ -11,6 +11,7 @@ import "@/styles/au7o-utilities.css";
 import { AppProvider } from "@/contexts/AppContext";
 import { OfflineIndicator } from "@/components/offline/OfflineIndicator";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import { SessionProvider } from "@/components/auth/SessionProvider";
 import { AdSenseScript } from "@/components/ads/AdSenseScript";
 import { TermlyConsentBootstrap } from "@/components/consent/TermlyConsentBootstrap";
@@ -110,6 +111,7 @@ export default function RootLayout({
         <meta name="google-adsense-account" content="ca-pub-6245698513720418" />
         <AdSenseScript />
         <GoogleAnalytics />
+        <MicrosoftClarity />
         <OrganizationJsonLd />
         <WebSiteJsonLd />
         <SoftwareApplicationJsonLd />

@@ -37,7 +37,7 @@ export interface VehicleSlugParts {
  * apply the original kebab pass. Result: Citroën → citroen, Škoda → skoda,
  * Ñoño → nono, etc.
  */
-function slugNorm(s: string): string {
+export function slugNorm(s: string): string {
   return s
     .toLowerCase()
     .normalize('NFD')

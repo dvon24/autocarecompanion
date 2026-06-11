@@ -174,6 +174,9 @@ async function main() {
   const cost = stats.generated * (QUALITY === 'hd' ? 0.080 : 0.040);
   console.log(`\n  Done. Generated: ${stats.generated}, Skipped: ${stats.skipped}, Failed: ${stats.failed}`);
   console.log(`  Approx cost: $${cost.toFixed(2)}`);
+
+  // Keep the VehicleHero manifest in sync with the files on disk.
+  require('./build-hero-manifest').buildHeroManifest();
 }
 
 main().catch((err) => { console.error('Fatal:', err); process.exit(1); });
