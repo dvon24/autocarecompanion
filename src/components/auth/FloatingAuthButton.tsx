@@ -25,11 +25,18 @@ export function FloatingAuthButton() {
   // Don't render on:
   //   - /auth/signin and /auth/signup — those pages are themselves
   //     the sign-in/up forms.
-  //   - "/" — the new home page nav (LandingPage) already includes a
-  //     "Sign in" button next to the brand wordmark, so the floating
-  //     version next to the Translate widget is a duplicate.
+  //   - "/" — the home page nav already includes its own Sign in button.
+  //   - Pages that ship their OWN sticky header with buttons in the
+  //     top-right corner: the known-issues content surfaces ("Open Hub" /
+  //     "Diagnose my car") and the locale pages ("English" + diagnose CTA).
+  //     The fixed pill at top-3 right-3 sits ON TOP of those buttons on
+  //     mobile and on desktop windows narrower than ~1250px (z-9999 vs the
+  //     header's z-30), blocking the page's primary CTA.
   const onAuthPage = pathname?.startsWith('/auth/') ?? false;
   const onHome = pathname === '/';
+  // Keep the locale list in sync with LOCALES in src/lib/i18n.ts (not
+  // imported — that module pulls the translation JSON into the bundle).
+  const onHeaderedPage = /^\/(known-issues(\/|$)|(pt-br|es|de|fr|ko)(\/|$))/.test(pathname ?? '');
 
   // Close dropdown on outside click.
   useEffect(() => {
@@ -43,7 +50,7 @@ export function FloatingAuthButton() {
     return () => document.removeEventListener('mousedown', handler);
   }, [open]);
 
-  if (onAuthPage || onHome) return null;
+  if (onAuthPage || onHome || onHeaderedPage) return null;
 
   // Skeleton while session resolves so the link doesn't pop in.
   if (status === 'loading') {
