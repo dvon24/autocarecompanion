@@ -26,7 +26,12 @@ interface MobileBottomBarProps {
 export function MobileBottomBar({ make, model, hubYear }: MobileBottomBarProps) {
   const hubSlug = vehicleSlug(hubYear, make, model);
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-3 py-2 z-50 flex gap-2 shadow-[0_-2px_8px_rgba(0,0,0,0.04)]">
+    <div
+      className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-3 pt-2 z-50 flex gap-2 shadow-[0_-2px_8px_rgba(0,0,0,0.04)]"
+      // Clear the iPhone home indicator in installed-PWA mode (requires
+      // viewport-fit=cover, set in the root layout viewport export).
+      style={{ paddingBottom: 'max(8px, env(safe-area-inset-bottom))' }}
+    >
       <Link
         href={`/vehicle/${hubSlug}`}
         className="flex-1 flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white bg-blue-600 rounded-lg active:bg-blue-700 transition-colors min-h-[44px]"

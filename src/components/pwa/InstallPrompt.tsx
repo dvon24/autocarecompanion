@@ -95,7 +95,11 @@ export function InstallPrompt() {
   return (
     <>
       {/* Banner */}
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[min(92vw,440px)] rounded-2xl border border-blue-200 bg-white shadow-lg shadow-blue-200/40 px-4 py-3 flex items-center gap-3">
+      {/* bottom-20 + z-[60]: the known-issues MobileBottomBar is fixed
+          bottom-0 z-50 at ~60px tall — at bottom-4 z-40 this banner rendered
+          BEHIND it with its buttons covered, on the highest-traffic mobile
+          pages (2026-06-12 review finding). */}
+      <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-[60] w-[min(92vw,440px)] rounded-2xl border border-blue-200 bg-white shadow-lg shadow-blue-200/40 px-4 py-3 flex items-center gap-3">
         <div className="w-10 h-10 rounded-xl bg-blue-500 flex-shrink-0 flex items-center justify-center text-white text-xl font-bold">
           A
         </div>

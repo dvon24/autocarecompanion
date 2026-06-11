@@ -7,6 +7,7 @@ import type { MaintenanceSuggestion, ScheduleData, ScheduleService, ScheduleServ
 import type { RecentThread, TrendingChip, AttachableIssue } from '@/lib/hub-data';
 import { Icon, type IconName } from '@/components/ui/Icon';
 import { vehicleSlug } from '@/lib/vehicle-slug';
+import { isNativeApp } from '@/lib/native-app';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
 import { MaintenanceLogFlow } from '@/components/vehicle/MaintenanceLogFlow';
@@ -1695,7 +1696,7 @@ function MobileHub({
           <textarea
             ref={taRef}
             className="m-composer-input"
-            placeholder={remaining === 0 ? 'Subscribe to keep chatting…' : 'Ask Au7o anything…'}
+            placeholder={remaining === 0 ? (isNativeApp() ? 'Free limit reached — resets weekly' : 'Subscribe to keep chatting…') : 'Ask Au7o anything…'}
             value={input}
             onChange={(e) => onChangeInput(e.target.value)}
             onKeyDown={onKey}

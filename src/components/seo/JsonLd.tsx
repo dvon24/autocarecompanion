@@ -68,11 +68,10 @@ export function SoftwareApplicationJsonLd() {
       price: '0',
       priceCurrency: 'USD',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '150',
-    },
+    // NO aggregateRating: there is no review-collection mechanism, so any
+    // figure here is fabricated — a Google structured-data policy violation
+    // that risks a sitewide "spammy structured markup" manual action
+    // (2026-06-12 review finding). Re-add only with a real review system.
     description:
       'AI-powered car repair guides with step-by-step instructions tailored to your vehicle.',
   };

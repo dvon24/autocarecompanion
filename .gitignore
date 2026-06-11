@@ -44,9 +44,12 @@ next-env.d.ts
 .vscode/
 .claude/
 
-# PWA generated files (build artifacts from @ducanh2912/next-pwa)
-public/sw.js
-public/workbox-*.js
+# PWA generated files (build artifacts from @ducanh2912/next-pwa).
+# Globs cover the .map files and the swe-worker runtime too — these were
+# half-tracked before, deploying stale orphaned maps to production.
+public/sw.js*
+public/workbox-*
+public/swe-worker-*
 
 .vercel
 

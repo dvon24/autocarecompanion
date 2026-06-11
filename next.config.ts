@@ -98,6 +98,16 @@ const withPWA = withPWAInit({
         },
       },
       {
+        // Auth endpoints must NEVER be served from cache: a cached
+        // /api/auth/csrf no longer matches the live CSRF cookie (sign-in
+        // fails on slow connections when NetworkFirst times out to cache)
+        // and a cached /api/auth/session shows stale auth state after
+        // login/logout. Ordered BEFORE the generic /api rule — workbox
+        // uses first-match (2026-06-12 review finding).
+        urlPattern: /^https:\/\/au7o\.io\/api\/auth\/.*$/,
+        handler: 'NetworkOnly',
+      },
+      {
         urlPattern: /^https:\/\/au7o\.io\/api\/.*$/,
         handler: 'NetworkFirst',
         options: {

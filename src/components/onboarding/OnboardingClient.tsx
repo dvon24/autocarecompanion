@@ -201,7 +201,10 @@ function AddCar({ hasVehicle, onFinishBrowse, onFinishGarage, pending }: { hasVe
 
 const styles = `
   .ob-shell {
-    min-height: 100dvh; min-height: 100vh;
+    /* vh fallback FIRST so dvh (declared last) wins where supported —
+       reversed, 100vh overrode 100dvh everywhere and pushed the CTA below
+       the fold on iOS Safari with the address bar expanded. */
+    min-height: 100vh; min-height: 100dvh;
     background: #FAF8F2;
     display: flex; align-items: stretch; justify-content: center;
     color: #0B1220;

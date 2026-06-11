@@ -83,6 +83,11 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#3B82F6",
+  // Without viewport-fit=cover, iOS reports env(safe-area-inset-*) as 0 and
+  // every safe-area padding in the app (hub composer, bottom bars) is dead
+  // code — in installed-PWA mode the controls sat in the home-indicator
+  // gesture zone (2026-06-12 review finding).
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
