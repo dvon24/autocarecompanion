@@ -26,7 +26,7 @@ export function ArticleSidebar({ grouped, hasRecalls, recallCount, make, model, 
           <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-3">In This Article</h2>
           <ul className="space-y-0.5">
             {grouped.map(({ category, count, highCount }) => {
-              const config = categoryConfig[category];
+              const config = categoryConfig[category] ?? categoryConfig.other;
               // Anchor text now includes make + model so the link reads
               // "Dodge Avenger Transmission Issues" instead of just
               // "Transmission". Per Gemini's recommendation: descriptive

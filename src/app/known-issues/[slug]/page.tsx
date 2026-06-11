@@ -521,7 +521,9 @@ export default async function KnownIssuesArticlePage({
               <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-2">In This Article</h2>
               <ul className="space-y-1">
                 {grouped.map(([category, catIssues]) => {
-                  const config = categoryConfig[category];
+                  // Fallback guard: an unknown category must never crash the
+                  // page render (it gutted 39 models' articles on 2026-06-11).
+                  const config = categoryConfig[category] ?? categoryConfig.other;
                   const catHigh = catIssues.filter(i => i.severity === 'high').length;
                   return (
                     <li key={category}>

@@ -1,7 +1,28 @@
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 import prisma from '@/lib/db';
+import { categoryConfig } from '@/lib/issue-categories';
 
 // --- DB row to KnownIssue shape ---
+
+// The research/persist pipeline historically wrote categories from a wider
+// list than the UI's categoryConfig (fuel-system, electronics, ignition,
+// wheels-tires) and severity 'critical'. An unknown category crashes the
+// article page server-side (categoryConfig[cat].icon TypeError) — the page
+// streams its shell then dies, rendering zero issues. Normalize at the read
+// boundary so bad rows degrade to the nearest valid value instead.
+const CATEGORY_ALIASES: Record<string, string> = {
+  'fuel-system': 'fuel',
+  fuel_system: 'fuel',
+  electronics: 'electrical',
+  ignition: 'engine',
+  'wheels-tires': 'suspension',
+};
+
+function toUiCategory(cat: string | null | undefined): string {
+  const lower = (cat || '').toLowerCase();
+  if (lower in categoryConfig) return lower;
+  return CATEGORY_ALIASES[lower] ?? 'other';
+}
 
 function dbRowToKnownIssue(row: any): KnownIssue {
   return {
@@ -13,11 +34,11 @@ function dbRowToKnownIssue(row: any): KnownIssue {
       ...(row.trims.length > 0 ? { trims: row.trims } : {}),
       ...(row.engines.length > 0 ? { engines: row.engines } : {}),
     },
-    category: row.category,
+    category: toUiCategory(row.category),
     title: row.title,
     description: row.description,
     solution: row.solution,
-    severity: row.severity,
+    severity: normalizeSeverity(row.severity),
     confidence: row.confidence,
     symptoms: row.symptoms,
     affectedSystems: row.affectedSystems,

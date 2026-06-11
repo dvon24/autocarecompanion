@@ -53,7 +53,7 @@ export function CategorySection({ category, issues, defaultExpanded = false, def
     window.addEventListener('hashchange', checkHash);
     return () => window.removeEventListener('hashchange', checkHash);
   }, [category, issues]);
-  const config = categoryConfig[category];
+  const config = categoryConfig[category] ?? categoryConfig.other;
   const highCount = issues.filter(i => i.severity === 'high').length;
 
   const handleToggle = () => {
