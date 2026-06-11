@@ -9,7 +9,11 @@ export async function GET(
   try {
     const { slug } = await params;
 
-    // Try to find by showcase slug first, then by ID
+    // Try to find by showcase slug first, then by ID.
+    // Explicit select — `include` leaked vin + userId on this
+    // unauthenticated endpoint (2026-06-11 review finding). Mileage stays:
+    // the build page displays it as a stat. user.id dropped: display only
+    // needs name + avatar.
     let build = await prisma.vehicle.findFirst({
       where: {
         OR: [
@@ -18,10 +22,21 @@ export async function GET(
         ],
         isPublic: true,
       },
-      include: {
+      select: {
+        id: true,
+        year: true,
+        make: true,
+        model: true,
+        trim: true,
+        color: true,
+        nickname: true,
+        imageUrl: true,
+        showcaseSlug: true,
+        currentMileage: true,
+        createdAt: true,
+        updatedAt: true,
         user: {
           select: {
-            id: true,
             name: true,
             image: true,
           },

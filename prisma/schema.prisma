@@ -640,3 +640,41 @@ model DiagnosisSample {
   @@index([primaryCategory])
   @@index([createdAt])
 }
+
+// Leads + user feedback. Previously written to local files, which are
+// read-only on Vercel — every production submission 500'd and the
+// content was silently lost (2026-06-11 review finding).
+model InterestEmail {
+  id        String   @id @default(cuid())
+  email     String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model Feedback {
+  id        String   @id @default(cuid())
+  kind      String   // "bug" | "feature" | "general" | "vehicle-correction"
+  message   String
+  email     String?
+  meta      Json?    // userAgent + structured payloads (vehicle parse, etc.)
+  createdAt DateTime @default(now())
+
+  @@index([kind])
+  @@index([createdAt])
+}
+
+// Per-request AI spend log. Replaces the file-based costs.ts store that
+// lived in /tmp on Vercel (per-instance, wiped on cold start) — which
+// made the monthly budget cap a no-op in production.
+model AiCostLog {
+  id           String   @id @default(cuid())
+  route        String
+  model        String
+  inputTokens  Int      @default(0)
+  outputTokens Int      @default(0)
+  costUsd     Float
+  createdAt    DateTime @default(now())
+
+  @@index([createdAt])
+}

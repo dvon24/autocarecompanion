@@ -48,6 +48,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
+import { getStripe } from '@/lib/stripe';
 
 export const dynamic = 'force-dynamic';
 
@@ -66,6 +67,37 @@ export async function DELETE(req: NextRequest) {
 
   const userId = session.user.id;
   const userEmail = session.user.email;
+
+  // Cancel any active Stripe subscription BEFORE erasing the user. Deleting
+  // the row erases stripeCustomerId/subscriptionId, after which webhook
+  // events can't be mapped to anyone and the user has no portal session
+  // left to cancel from — Stripe would keep charging $9.99/mo forever.
+  // Immediate cancel (not period-end): the customer is leaving entirely.
+  // If Stripe is unreachable we ABORT the deletion rather than strand an
+  // uncancellable subscription; the user can retry.
+  const billing = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { subscriptionId: true, subscriptionStatus: true },
+  });
+  if (billing?.subscriptionId) {
+    try {
+      const stripe = getStripe();
+      await stripe.subscriptions.cancel(billing.subscriptionId);
+      console.log(`[account-delete] canceled Stripe subscription ${billing.subscriptionId} for userId=${userId}`);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Stripe error';
+      // "No such subscription" / already-canceled is fine to proceed past;
+      // anything else must block the erase.
+      const alreadyGone = /No such subscription|canceled/i.test(msg);
+      if (!alreadyGone) {
+        console.error(`[account-delete] Stripe cancel FAILED for userId=${userId}: ${msg} — aborting delete`);
+        return NextResponse.json(
+          { error: 'Could not cancel your subscription. Please cancel it from your account page first, then retry deletion.' },
+          { status: 502 },
+        );
+      }
+    }
+  }
 
   // Order matters when there are no FK relationships from the side
   // we're deleting. We do the manual purges first, then cascade-delete

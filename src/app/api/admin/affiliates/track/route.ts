@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { requireFounder } from '@/lib/admin-guard';
 import prisma from '@/lib/db';
 import { affiliateTrackLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
 
@@ -59,6 +60,8 @@ export async function POST(request: Request) {
 }
 
 export async function GET() {
+  const denied = await requireFounder();
+  if (denied) return denied;
   try {
     const clicks = await prisma.affiliateClick.findMany({
       orderBy: { clickedAt: 'desc' },

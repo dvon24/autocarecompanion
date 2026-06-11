@@ -1,5 +1,6 @@
 import { readFileSync, appendFileSync, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
+import { prisma } from '@/lib/db';
 
 /**
  * API Cost Tracking System
@@ -9,6 +10,16 @@ import { join } from 'path';
  * Story 7.3: Hard Budget Cap & Rate Limiting
  *
  * Tracks API costs by feature, provides budget alerts, and enforces hard cap.
+ *
+ * Storage: the AiCostLog table. The original implementation wrote JSONL to
+ * /tmp on Vercel, which is PER-INSTANCE and wiped on every cold start — so
+ * the monthly cap never accumulated and never enforced in production
+ * (2026-06-11 review finding). The local JSONL file is kept as a dev-only
+ * convenience mirror.
+ *
+ * isBudgetExceeded() stays synchronous (call sites are sync): it reads an
+ * in-memory snapshot of the month's DB spend that refreshes in the
+ * background at most once per minute per instance.
  */
 
 // Cost estimates per 1K tokens (GPT-4 class pricing)
@@ -100,16 +111,73 @@ export function logApiCost(
     model,
   };
 
+  // Durable log — fire-and-forget so the request path never blocks on it.
+  prisma.aiCostLog.create({
+    data: {
+      route: feature,
+      model: model || 'unknown',
+      inputTokens,
+      outputTokens,
+      costUsd: entry.estimatedCost,
+    },
+  }).then(() => {
+    // Keep the local snapshot roughly current so the cap reacts within
+    // the same instance without waiting for the next refresh window.
+    if (spendSnapshot.known) spendSnapshot.value += entry.estimatedCost;
+  }).catch((err) => {
+    console.error('Failed to log API cost to DB:', err);
+  });
+
+  // Dev-only convenience mirror (read-only FS on Vercel makes this a no-op).
   try {
     const filePath = getCostsFilePath();
     if (filePath) {
       appendFileSync(filePath, JSON.stringify(entry) + '\n');
     }
-  } catch (error) {
-    console.error('Failed to log API cost:', error);
+  } catch {
+    /* expected on serverless */
   }
 
   return entry;
+}
+
+// ── Month spend snapshot (per instance, refreshed from the DB) ──────────
+const SPEND_REFRESH_MS = 60_000;
+const spendSnapshot = { value: 0, fetchedAt: 0, known: false, refreshing: false };
+
+function refreshSpendSnapshot(): void {
+  if (spendSnapshot.refreshing) return;
+  spendSnapshot.refreshing = true;
+  prisma.aiCostLog.aggregate({
+    _sum: { costUsd: true },
+    where: { createdAt: { gte: getMonthStart() } },
+  }).then((agg) => {
+    spendSnapshot.value = agg._sum.costUsd ?? 0;
+    spendSnapshot.fetchedAt = Date.now();
+    spendSnapshot.known = true;
+  }).catch((err) => {
+    console.error('Failed to refresh AI spend snapshot:', err);
+  }).finally(() => {
+    spendSnapshot.refreshing = false;
+  });
+}
+
+/** Current-month spend straight from the DB (admin dashboard / async callers). */
+export async function getMonthlySpendFromDb(): Promise<{ totalCost: number; byRoute: Record<string, number>; byDay: Record<string, number> }> {
+  const rows = await prisma.aiCostLog.findMany({
+    where: { createdAt: { gte: getMonthStart() } },
+    select: { route: true, costUsd: true, createdAt: true },
+  });
+  const byRoute: Record<string, number> = {};
+  const byDay: Record<string, number> = {};
+  let totalCost = 0;
+  for (const r of rows) {
+    totalCost += r.costUsd;
+    byRoute[r.route] = (byRoute[r.route] || 0) + r.costUsd;
+    const day = r.createdAt.toISOString().split('T')[0];
+    byDay[day] = (byDay[day] || 0) + r.costUsd;
+  }
+  return { totalCost, byRoute, byDay };
 }
 
 /**
@@ -210,11 +278,17 @@ export function getMonthlyCostSummary(): CostSummary {
 }
 
 /**
- * Check if budget is exceeded (for rate limiting)
+ * Check if budget is exceeded (for rate limiting).
+ *
+ * Synchronous on purpose (call sites are sync): reads the per-instance
+ * snapshot of this month's DB spend and refreshes it in the background.
+ * Until the first refresh resolves we fail OPEN (allow) rather than block
+ * all AI features on every cold start.
  */
 export function isBudgetExceeded(): boolean {
-  const summary = getMonthlyCostSummary();
-  return summary.isRateLimited;
+  if (Date.now() - spendSnapshot.fetchedAt > SPEND_REFRESH_MS) refreshSpendSnapshot();
+  if (!spendSnapshot.known) return false;
+  return spendSnapshot.value >= MONTHLY_BUDGET;
 }
 
 /**

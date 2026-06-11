@@ -25,10 +25,15 @@ import {
   getOrSetAnonId,
   DEFAULT_ANON_LIMIT,
   getEffectiveFreeAuthedLimit,
+  refundChatQuota,
 } from '@/lib/chat-quota';
 
 // Allow up to 60s for tool-calling responses on Vercel
-export const maxDuration = 60;
+// 120s, not 60: the tool-calling path can make multiple sequential OpenAI
+// calls, each with a 25s budget — at 60s the platform killed the function
+// mid-flight (opaque 504, no JSON error, no quota refund). The catch block
+// must always get to run (2026-06-11 review finding).
+export const maxDuration = 120;
 
 /**
  * AI Symptom Chat API Route
@@ -43,7 +48,11 @@ export const maxDuration = 60;
  */
 
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
-const TIMEOUT_MS = 60000; // 60 second timeout (tool calls may need multiple rounds)
+// Per-call upstream timeout. Multiple tool-call rounds are sequential, so
+// keep each call well under maxDuration/number-of-worst-case-rounds (3) —
+// the route must always answer (and refund quota) itself rather than be
+// killed by the platform.
+const TIMEOUT_MS = 25_000;
 
 /**
  * PART_KEYWORDS — words that signal the user wants a part, not a diagnosis
@@ -824,6 +833,10 @@ function captureSymptoms(data: {
 }
 
 export async function POST(request: NextRequest) {
+  // Set once a weekly chat credit has been consumed, so the catch block
+  // can refund it — a transient OpenAI failure must not eat one of a
+  // free user's 5 weekly chats (2026-06-11 review finding).
+  let consumedQuotaKey: string | null = null;
   try {
     // GDPR Art. 21 right-to-object check — opted-out users never
     // reach the OpenAI/Anthropic call below.
@@ -865,6 +878,34 @@ export async function POST(request: NextRequest) {
         secondaryCtaLabel: 'Sign in',
       }, { status: 429 });
     }
+
+    // Story 7.3: Check budget before making API call
+    if (isBudgetExceeded()) {
+      return NextResponse.json(
+        {
+          error: 'Monthly API budget exceeded. Chat is temporarily limited.',
+          budgetExceeded: true,
+        },
+        { status: 429 }
+      );
+    }
+
+    // Parse and validate the request BEFORE consuming quota — a 400 or
+    // budget bounce must never burn one of a free user's weekly chats.
+    const body = await request.json();
+    const parseResult = ChatRequestSchema.safeParse(body);
+
+    if (!parseResult.success) {
+      return NextResponse.json(
+        {
+          error: 'Invalid request',
+          details: parseResult.error.issues.map((i) => i.message),
+        },
+        { status: 400 }
+      );
+    }
+
+    const { message, conversationHistory = [], vehicle, obdCodes } = parseResult.data;
 
     if (!isSubscriber) {
       // For authed users, fetch createdAt to apply grandfather logic.
@@ -911,34 +952,8 @@ export async function POST(request: NextRequest) {
           secondaryCtaLabel: 'Sign in',
         }, { status: 429 });
       }
+      consumedQuotaKey = quotaKey;
     }
-
-    // Story 7.3: Check budget before making API call
-    if (isBudgetExceeded()) {
-      return NextResponse.json(
-        {
-          error: 'Monthly API budget exceeded. Chat is temporarily limited.',
-          budgetExceeded: true,
-        },
-        { status: 429 }
-      );
-    }
-
-    // Parse and validate request
-    const body = await request.json();
-    const parseResult = ChatRequestSchema.safeParse(body);
-
-    if (!parseResult.success) {
-      return NextResponse.json(
-        {
-          error: 'Invalid request',
-          details: parseResult.error.issues.map((i) => i.message),
-        },
-        { status: 400 }
-      );
-    }
-
-    const { message, conversationHistory = [], vehicle, obdCodes } = parseResult.data;
 
     // Resolved above by the login-gate block; reuse to avoid a second
     // NextAuth round-trip.
@@ -1051,14 +1066,20 @@ export async function POST(request: NextRequest) {
       { role: 'user', content: message, timestamp: new Date().toISOString() },
       { role: 'assistant', content: responseContent, timestamp: new Date().toISOString() },
     ];
-    prisma.chatSession.create({
-      data: {
-        userId,
-        messages: allMessages,
-        diagnosis: diagnosis ? (diagnosis as any) : undefined,
-        anonymousId: sessionHash,
-      },
-    }).catch(() => {}); // Fire-and-forget
+    // Only persist the FIRST turn of a conversation: every later turn
+    // resends the full history, so a row per turn stored N copies of the
+    // same conversation, each one message longer (2026-06-11 review
+    // finding — pure DB bloat; per-turn analytics live in VehicleInsight).
+    if (conversationHistory.length === 0) {
+      prisma.chatSession.create({
+        data: {
+          userId,
+          messages: allMessages,
+          diagnosis: diagnosis ? (diagnosis as any) : undefined,
+          anonymousId: sessionHash,
+        },
+      }).catch(() => {}); // Fire-and-forget
+    }
 
     return NextResponse.json({
       message: assistantMessage,
@@ -1069,6 +1090,9 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Chat API error:', error);
+
+    // The user got no answer — give the weekly chat credit back.
+    if (consumedQuotaKey) await refundChatQuota(consumedQuotaKey);
 
     if (error instanceof Error && error.name === 'AbortError') {
       return NextResponse.json(

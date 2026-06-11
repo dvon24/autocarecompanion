@@ -1,7 +1,10 @@
 import { NextResponse } from 'next/server';
+import { requireFounder } from '@/lib/admin-guard';
 import prisma from '@/lib/db';
 
 export async function GET() {
+  const denied = await requireFounder();
+  if (denied) return denied;
   try {
     const issues = await prisma.knownIssue.findMany({
       where: { status: 'published' },
@@ -29,6 +32,8 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const denied = await requireFounder();
+  if (denied) return denied;
   try {
     const { issueId } = await request.json();
 

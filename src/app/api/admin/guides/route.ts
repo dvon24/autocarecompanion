@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireFounder } from '@/lib/admin-guard';
 import prisma from '@/lib/db';
 import { GuideSchema } from '@/schemas/guide.schema';
 import { getCacheStats } from '@/lib/guide-cache';
@@ -12,6 +13,8 @@ import { getCacheStats } from '@/lib/guide-cache';
  */
 
 export async function GET(request: NextRequest) {
+  const denied = await requireFounder();
+  if (denied) return denied;
   try {
     const { searchParams } = new URL(request.url);
     const status = searchParams.get('status');
@@ -71,6 +74,8 @@ export async function GET(request: NextRequest) {
 }
 
 export async function PUT(request: NextRequest) {
+  const denied = await requireFounder();
+  if (denied) return denied;
   try {
     const body = await request.json();
     const { id, guideJson, status, reviewNotes } = body;
@@ -133,6 +138,8 @@ export async function PUT(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  const denied = await requireFounder();
+  if (denied) return denied;
   try {
     const body = await request.json();
     const { ids } = body;

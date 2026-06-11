@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+import { requireFounder } from '@/lib/admin-guard';
 /**
  * Admin Symptom Patterns API
  *
@@ -44,6 +45,8 @@ const mockPatterns = [
 ];
 
 export async function GET() {
+  const denied = await requireFounder();
+  if (denied) return denied;
   try {
     // In production, query database for aggregated patterns
     // For now, return mock data

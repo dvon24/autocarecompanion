@@ -1,49 +1,37 @@
 import { NextResponse } from 'next/server';
-import { readFileSync, existsSync } from 'fs';
-import { join } from 'path';
+import { prisma } from '@/lib/db';
+import { auth } from '@/lib/auth';
+import { isFounderEmail } from '@/lib/founder';
 
+export const dynamic = 'force-dynamic';
+
+// Founder-only dump of captured leads + feedback for the admin dashboard.
+// Previously: unauthenticated AND read from local files that don't exist
+// on Vercel (2026-06-11 review finding — latent PII leak). Now founder-
+// gated and backed by the InterestEmail/Feedback tables.
 export async function GET() {
+  const session = await auth();
+  if (!isFounderEmail(session?.user?.email)) {
+    return NextResponse.json({ error: 'Not authorized' }, { status: 403 });
+  }
+
   try {
-    const dataDir = join(process.cwd(), 'data');
-    const emails: { timestamp: string; email: string }[] = [];
-    const feedback: { timestamp: string; type: string; message: string; email: string | null }[] = [];
+    const [emailRows, feedbackRows] = await Promise.all([
+      prisma.interestEmail.findMany({ orderBy: { createdAt: 'desc' }, take: 1000 }),
+      prisma.feedback.findMany({
+        where: { kind: { in: ['bug', 'feature', 'general'] } },
+        orderBy: { createdAt: 'desc' },
+        take: 1000,
+      }),
+    ]);
 
-    // Read interest emails
-    const emailsFile = join(dataDir, 'interest-emails.txt');
-    if (existsSync(emailsFile)) {
-      const content = readFileSync(emailsFile, 'utf-8');
-      const lines = content.trim().split('\n').filter(Boolean);
-      for (const line of lines) {
-        const [timestamp, email] = line.split(',');
-        if (timestamp && email) {
-          emails.push({ timestamp, email });
-        }
-      }
-    }
-
-    // Read feedback
-    const feedbackFile = join(dataDir, 'feedback.jsonl');
-    if (existsSync(feedbackFile)) {
-      const content = readFileSync(feedbackFile, 'utf-8');
-      const lines = content.trim().split('\n').filter(Boolean);
-      for (const line of lines) {
-        try {
-          const entry = JSON.parse(line);
-          feedback.push({
-            timestamp: entry.timestamp,
-            type: entry.type,
-            message: entry.message,
-            email: entry.email,
-          });
-        } catch {
-          // Skip invalid lines
-        }
-      }
-    }
-
-    // Sort by most recent first
-    emails.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-    feedback.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+    const emails = emailRows.map((r) => ({ timestamp: r.createdAt.toISOString(), email: r.email }));
+    const feedback = feedbackRows.map((r) => ({
+      timestamp: r.createdAt.toISOString(),
+      type: r.kind,
+      message: r.message,
+      email: r.email,
+    }));
 
     return NextResponse.json({ emails, feedback });
   } catch (error) {

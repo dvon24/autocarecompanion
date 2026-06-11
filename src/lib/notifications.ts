@@ -218,22 +218,33 @@ export async function sendPushNotification(
     return 0;
   }
 
+  // Real delivery via the Web Push protocol. This was a console.log stub
+  // behind a fully working subscribe UI — users granted permission, saw
+  // success, were logged as notified, and never received anything
+  // (2026-06-11 review finding).
+  const webpush = (await import('web-push')).default;
+  webpush.setVapidDetails(
+    process.env.VAPID_SUBJECT || 'mailto:devonsroberson24@yahoo.com',
+    vapidPublicKey,
+    vapidPrivateKey,
+  );
+
   let sent = 0;
 
   for (const sub of subscriptions) {
     try {
-      // In production, use web-push library
-      // For now, we'll just log
-      console.log(`[Push] Would send to endpoint: ${sub.endpoint.slice(0, 50)}...`);
-      console.log(`  Title: ${payload.title}`);
-      console.log(`  Body: ${payload.body}`);
+      await webpush.sendNotification(
+        { endpoint: sub.endpoint, keys: { p256dh: sub.p256dh, auth: sub.auth } },
+        JSON.stringify(payload),
+      );
       sent++;
     } catch (error) {
-      console.error('[Push] Failed to send:', error);
-      // Remove invalid subscription
-      await prisma.pushSubscription.delete({
-        where: { id: sub.id },
-      });
+      const statusCode = (error as { statusCode?: number })?.statusCode;
+      console.error(`[Push] Failed to send (${statusCode ?? 'unknown'}):`, error);
+      // 404/410 = the browser revoked this subscription — clean it up.
+      if (statusCode === 404 || statusCode === 410) {
+        await prisma.pushSubscription.delete({ where: { id: sub.id } }).catch(() => {});
+      }
     }
   }
 

@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server';
-import { auth } from '@/lib/auth';
+import { requireFounder } from '@/lib/admin-guard';
+import { prisma } from '@/lib/db';
 import {
-  getMonthlyCostSummary,
   getBudgetStatus,
   checkBudgetWarning,
-  getMonthlyEntries,
-  type CostSummary,
+  getMonthlySpendFromDb,
 } from '@/lib/costs';
 
 /**
@@ -15,50 +14,58 @@ import {
  * Story 7.2: Budget Warnings & Alerts
  * Story 7.3: Hard Budget Cap & Rate Limiting
  *
- * Returns cost summary, budget status, and usage breakdown.
- * Admin access only (requires subscriptionStatus = 'admin').
+ * Returns cost summary, budget status, and usage breakdown from the
+ * AiCostLog table (previously read per-instance /tmp files, which were
+ * always empty in production). Founder access only — was "any
+ * authenticated user" behind a TODO.
  */
 
+const MONTHLY_BUDGET = 25.0;
+
 export async function GET() {
+  const denied = await requireFounder();
+  if (denied) return denied;
+
   try {
-    const session = await auth();
+    const [spend, recentRows] = await Promise.all([
+      getMonthlySpendFromDb(),
+      prisma.aiCostLog.findMany({ orderBy: { createdAt: 'desc' }, take: 20 }),
+    ]);
 
-    // Check if user is admin
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    // TODO: Add proper admin check - for now allow any authenticated user
-    // In production, check session.user.subscriptionStatus === 'admin'
-
-    // Get cost data
-    const summary: CostSummary = getMonthlyCostSummary();
     const budgetStatus = getBudgetStatus();
     const warning = checkBudgetWarning();
-    const entries = getMonthlyEntries();
 
-    // Calculate additional stats
-    const totalCalls = entries.length;
-    const avgCostPerCall = totalCalls > 0 ? summary.totalCost / totalCalls : 0;
+    const totalCalls = await prisma.aiCostLog.count({
+      where: { createdAt: { gte: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)) } },
+    });
+    const avgCostPerCall = totalCalls > 0 ? spend.totalCost / totalCalls : 0;
 
-    // Get recent entries (last 20)
-    const recentEntries = entries
-      .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
-      .slice(0, 20);
+    const uniqueDays = Object.keys(spend.byDay).length;
+    const dailyAverage = uniqueDays > 0 ? spend.totalCost / uniqueDays : 0;
 
-    // Calculate daily average
-    const uniqueDays = new Set(entries.map(e => e.timestamp.split('T')[0])).size;
-    const dailyAverage = uniqueDays > 0 ? summary.totalCost / uniqueDays : 0;
-
-    // Projected monthly spend based on daily average and days in month
     const now = new Date();
     const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
     const projectedMonthly = dailyAverage * daysInMonth;
 
+    const budgetUsedPercent = (spend.totalCost / MONTHLY_BUDGET) * 100;
+
     return NextResponse.json({
-      summary,
+      summary: {
+        totalCost: Math.round(spend.totalCost * 100) / 100,
+        byFeature: Object.fromEntries(
+          Object.entries(spend.byRoute).map(([k, v]) => [k, Math.round(v * 100) / 100]),
+        ),
+        byDay: Object.fromEntries(
+          Object.entries(spend.byDay).map(([k, v]) => [k, Math.round(v * 100) / 100]),
+        ),
+        budgetUsedPercent: Math.round(budgetUsedPercent * 10) / 10,
+        remainingBudget: Math.round(Math.max(0, MONTHLY_BUDGET - spend.totalCost) * 100) / 100,
+        isRateLimited: budgetUsedPercent >= 100,
+      },
       budgetStatus: {
         ...budgetStatus,
+        used: Math.round(spend.totalCost * 100) / 100,
+        percent: Math.round(budgetUsedPercent * 10) / 10,
         monthName: now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
       },
       warning,
@@ -69,7 +76,14 @@ export async function GET() {
         projectedMonthly: Math.round(projectedMonthly * 100) / 100,
         uniqueDays,
       },
-      recentEntries,
+      recentEntries: recentRows.map((r) => ({
+        timestamp: r.createdAt.toISOString(),
+        feature: r.route,
+        inputTokens: r.inputTokens,
+        outputTokens: r.outputTokens,
+        estimatedCost: r.costUsd,
+        model: r.model,
+      })),
     });
   } catch (error) {
     console.error('Costs API error:', error);

@@ -15,6 +15,7 @@ import {
   getOrSetAnonId,
   DEFAULT_ANON_LIMIT,
   getEffectiveFreeAuthedLimit,
+  refundChatQuota,
 } from '@/lib/chat-quota';
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 
@@ -294,7 +295,13 @@ export async function POST(request: NextRequest) {
   if (!v || typeof v.year !== 'number' || !v.make || !v.model) {
     return NextResponse.json({ error: 'missing_vehicle' }, { status: 400 });
   }
-  const messages = Array.isArray(body.messages) ? body.messages : [];
+  // Sanitize the client-supplied history: only known roles, every turn
+  // content-capped. Previously only the FINAL message was length-checked,
+  // so prior array entries were forwarded to OpenAI with unbounded size
+  // and arbitrary roles (2026-06-11 review finding).
+  const messages = (Array.isArray(body.messages) ? body.messages : [])
+    .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+    .map((m) => ({ ...m, content: m.content.slice(0, 8_000) }));
   if (messages.length === 0 || messages[messages.length - 1].role !== 'user') {
     return NextResponse.json({ error: 'no_user_message' }, { status: 400 });
   }
@@ -351,6 +358,7 @@ export async function POST(request: NextRequest) {
   // grandfather-aware limit (existing users keep 25/week for 90 days,
   // new signups start on 5/week per the pricing brief).
   const isSubscriber = session?.user?.subscriptionStatus === 'active';
+  let consumedQuotaKey: string | null = null;
   if (!isSubscriber) {
     // For authed users, fetch createdAt to apply grandfather logic.
     // Cheap lookup; one row by indexed PK. Anonymous path skips this.
@@ -395,6 +403,7 @@ export async function POST(request: NextRequest) {
         secondaryCtaLabel: 'Sign in',
       }, { status: 429 });
     }
+    consumedQuotaKey = quotaKey;
   }
 
   // ── 4. Resolve which Vehicle row this corresponds to (authed only) ──
@@ -614,6 +623,23 @@ export async function POST(request: NextRequest) {
         send({ type: 'done', usage: { in: usageIn, out: usageOut } });
       } catch (err) {
         console.error('[hub-chat] stream error:', err);
+        // Nothing was delivered — give the weekly chat credit back.
+        if (consumedQuotaKey && !assistantText) {
+          await refundChatQuota(consumedQuotaKey);
+        }
+        // A partial reply WAS delivered: persist it so the session history
+        // matches what the user sees on screen — previously the client
+        // kept the partial while the server dropped it, and the next turn's
+        // context silently diverged (2026-06-11 review finding).
+        if (sessionId && assistantText) {
+          try {
+            const updated = [...sessionMessages, { role: 'assistant' as const, content: assistantText }].slice(-MAX_HISTORY_MESSAGES);
+            await prisma.chatSession.update({
+              where: { id: sessionId },
+              data: { messages: updated as unknown as object },
+            });
+          } catch { /* best effort */ }
+        }
         const message = err instanceof Error ? err.message : 'Chat failed.';
         send({ type: 'error', message });
       } finally {

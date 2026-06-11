@@ -415,9 +415,17 @@ export async function POST(request: Request) {
 
     const { message, conversationHistory = [], vehicleContext } = await request.json();
 
-    if (!message) {
+    if (!message || typeof message !== 'string' || message.length > 8_000) {
       return NextResponse.json({ error: 'Message required' }, { status: 400 });
     }
+
+    // Bound the client-supplied history before it reaches OpenAI — it was
+    // forwarded unvalidated and unbounded (2026-06-11 review finding).
+    const boundedHistory = (Array.isArray(conversationHistory) ? conversationHistory : [])
+      .filter((m: { role?: string; content?: string }) =>
+        m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+      .slice(-12)
+      .map((m: { role: string; content: string }) => ({ role: m.role, content: m.content.slice(0, 8_000) }));
 
     // Get user's vehicles for context
     const vehicles = await prisma.vehicle.findMany({
@@ -449,10 +457,7 @@ export async function POST(request: Request) {
 
     const messages = [
       { role: 'developer', content: getSystemPrompt(vehicleList, vehicleContext) },
-      ...conversationHistory.map((m: { role: string; content: string }) => ({
-        role: m.role,
-        content: m.content,
-      })),
+      ...boundedHistory,
       { role: 'user', content: message },
     ];
 
@@ -470,6 +475,7 @@ export async function POST(request: Request) {
         tool_choice: 'auto',
         max_completion_tokens: 500,
       }),
+      signal: AbortSignal.timeout(25_000),
     });
 
     if (!response.ok) {
@@ -538,6 +544,7 @@ export async function POST(request: Request) {
           messages: followUpMessages,
           max_completion_tokens: 500,
         }),
+        signal: AbortSignal.timeout(25_000),
       });
 
       if (!followUpResponse.ok) {

@@ -185,6 +185,25 @@ export async function checkAndConsumeChatQuota(opts: {
 }
 
 /**
+ * Refund one consumed chat — failure paths only (the user got no answer).
+ * Decrements the current week's count, floored at zero. Mirrors
+ * refundPhotoQuota in photo-quota.ts: a transient OpenAI error must not
+ * eat one of a free user's weekly chats (2026-06-11 review finding).
+ */
+export async function refundChatQuota(key: string): Promise<void> {
+  const weekStart = getWeekStartUTC();
+  try {
+    await prisma.chatQuota.updateMany({
+      where: { key, weekStart, count: { gt: 0 } },
+      data: { count: { decrement: 1 } },
+    });
+  } catch (err) {
+    // Refund is best-effort — never let it mask the original failure.
+    console.error(`[chat-quota] refund failed for ${key}:`, err);
+  }
+}
+
+/**
  * Peek at the current quota without consuming. Useful for surfacing
  * the remaining count on page load without burning a chat.
  */

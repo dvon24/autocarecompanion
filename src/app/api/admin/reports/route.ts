@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+import { requireFounder } from '@/lib/admin-guard';
 /**
  * Admin Issue Reports API
  *
@@ -39,6 +40,8 @@ const mockReports = [
 ];
 
 export async function GET() {
+  const denied = await requireFounder();
+  if (denied) return denied;
   try {
     // In production, query database for submitted reports
     // For now, return mock data

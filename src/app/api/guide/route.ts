@@ -341,6 +341,14 @@ async function callOpenAI(
       completionTokens: data.usage?.completion_tokens || 0,
     };
 
+    // Reasoning models can burn the whole completion budget on reasoning
+    // tokens and return EMPTY content (same trap the vision route hit) —
+    // JSON.parse('') downstream would 500. Fail with a retryable message.
+    if (!content.trim()) {
+      const reason = data.choices[0]?.finish_reason || 'unknown';
+      throw new Error(`Guide model returned empty content (finish_reason: ${reason}). Please try again.`);
+    }
+
     return { content, usage };
   } catch (error) {
     clearTimeout(timeoutId);
@@ -376,6 +384,14 @@ function parseGuideResponse(
     })),
     estimatedMinutes: step.estimatedMinutes,
   }));
+
+  // A degenerate response (no steps / empty instructions) must throw HERE,
+  // before the caller caches it — the guide cache is first-writer-wins, so
+  // a bad guide would poison this YMMT+type permanently (2026-06-11 review
+  // finding).
+  if (steps.length === 0 || steps.every((s) => !s.instruction.trim())) {
+    throw new Error('Guide model returned no usable steps. Please try again.');
+  }
 
   // Process tools with IDs
   const tools: Tool[] = (parsed.tools || []).map((tool: Record<string, unknown>, idx: number) => ({

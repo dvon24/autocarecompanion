@@ -1,6 +1,7 @@
 'use client';
 
 import Script from 'next/script';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 /**
@@ -8,8 +9,17 @@ import { useEffect, useState } from 'react';
  *
  * Styled wrapper around Google Translate that matches the Au7o theme.
  * Uses CSS overrides to restyle the injected Google iframe/elements.
+ *
+ * Hidden on natively-translated locale routes (/pt-br/, /es/) — those
+ * pages are already in the reader's language, and machine-translating
+ * a human translation only degrades it. Keep this prefix list in sync
+ * with LOCALES in src/lib/i18n.ts (not imported: that module pulls the
+ * full translation JSON into the client bundle).
  */
+const NATIVE_LOCALE_PREFIX = /^\/(pt-br|es)(\/|$)/;
+
 export function GoogleTranslate() {
+  const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -32,6 +42,7 @@ export function GoogleTranslate() {
   }, []);
 
   if (!mounted) return null;
+  if (pathname && NATIVE_LOCALE_PREFIX.test(pathname)) return null;
 
   return (
     <>

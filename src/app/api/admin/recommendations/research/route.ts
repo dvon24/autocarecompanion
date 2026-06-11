@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { requireFounder } from '@/lib/admin-guard';
 import Anthropic from '@anthropic-ai/sdk';
 import prisma from '@/lib/db';
 
@@ -7,6 +8,8 @@ const anthropic = new Anthropic({
 });
 
 export async function POST(request: Request) {
+  const denied = await requireFounder();
+  if (denied) return denied;
   try {
     const { issueId, title, vehicle, category, description } = await request.json();
 

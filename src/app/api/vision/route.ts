@@ -17,7 +17,13 @@ import { attachVendorLinks } from '@/lib/vendor-resolver';
 import { captureDiagnosisSample } from '@/lib/diagnosis-capture';
 import type { IdentifiedPart, PartCategory, PartRole } from '@/types/vision';
 
-export const maxDuration = 60;
+// 120s, not 60: video mode's sequential upstream budget (Whisper 25s +
+// vision 55s + multipart/auth/DB overhead) could exceed a 60s ceiling, and
+// when Vercel kills the function mid-flight failWithRefund never runs — the
+// user eats an opaque 504 AND loses the photo credit (2026-06-11 review
+// finding). 120s comfortably covers the worst-case sum so the route always
+// answers (and refunds) itself.
+export const maxDuration = 120;
 export const runtime = 'nodejs';
 
 /**
@@ -513,7 +519,15 @@ Return ONLY a JSON object — no markdown fences, no preamble. Start with { end 
     }, 502);
   }
 
-  const data = await openaiResp.json();
+  let data;
+  try {
+    data = await openaiResp.json();
+  } catch (err) {
+    // A 200 with an unparseable body still has to refund — this throw
+    // previously escaped to a generic 500 with the credit kept.
+    console.error('[vision] OpenAI response JSON parse failed:', err);
+    return failWithRefund({ error: 'vision_failed', message: 'Photo analysis returned an unreadable response. Please try again.' }, 502);
+  }
   // Responses API output shape (different from Chat Completions):
   //   data.output_text — convenience aggregate of all text outputs
   //   data.output[] — array of items (type: 'message' | 'reasoning' | …)

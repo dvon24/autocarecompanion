@@ -13,10 +13,23 @@ import crypto from 'crypto';
 import { prisma } from '@/lib/db';
 import { sendEmail, passwordResetEmail, appUrl } from '@/lib/email';
 import { z } from 'zod';
+import { RateLimiter } from '@/lib/rate-limit';
 
 const Body = z.object({
   email: z.string().email().max(254),
 });
+
+// Best-effort abuse brake (in-memory, per instance): without it any IP
+// could bomb an arbitrary address with reset emails in a loop and burn
+// Resend quota (2026-06-11 review finding). Limited callers still get
+// {ok:true} so neither rate limits nor registration status leak.
+const ipLimiter = new RateLimiter(60 * 60 * 1000, 10); // 10/hour per IP
+const emailLimiter = new RateLimiter(60 * 60 * 1000, 3); // 3/hour per target address
+
+function clientIp(request: Request): string {
+  const fwd = request.headers.get('x-forwarded-for');
+  return (fwd ? fwd.split(',')[0].trim() : '') || 'unknown';
+}
 
 // Lifetime of a reset link. 60 minutes is the industry sweet spot —
 // long enough that users finishing a meeting/dinner can still use it,
@@ -31,6 +44,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true }); // Don't leak validation errors here either.
   }
   const email = parsed.email.toLowerCase().trim();
+
+  if (!ipLimiter.check(clientIp(request)).success || !emailLimiter.check(email).success) {
+    return NextResponse.json({ ok: true }); // same shape — don't leak the limit
+  }
 
   const user = await prisma.user.findFirst({
     where: { email: { equals: email, mode: 'insensitive' } },

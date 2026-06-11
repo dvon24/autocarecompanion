@@ -1,29 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { appendFileSync, existsSync, mkdirSync } from 'fs';
-import { join } from 'path';
+import { prisma } from '@/lib/db';
 
+// Lead capture. Previously appended to data/interest-emails.txt, which is
+// read-only on Vercel — every production signup 500'd and the address was
+// lost (2026-06-11 review finding). Now a DB row.
 export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json();
 
-    if (!email || !email.includes('@')) {
+    if (!email || typeof email !== 'string' || !email.includes('@') || email.length > 320) {
       return NextResponse.json(
         { error: 'Invalid email address' },
         { status: 400 }
       );
     }
 
-    // Store email to a local file for now
-    // In production, this would go to a database
-    const dataDir = join(process.cwd(), 'data');
-    const filePath = join(dataDir, 'interest-emails.txt');
-
-    if (!existsSync(dataDir)) {
-      mkdirSync(dataDir, { recursive: true });
-    }
-
-    const timestamp = new Date().toISOString();
-    appendFileSync(filePath, `${timestamp},${email}\n`);
+    await prisma.interestEmail.create({ data: { email: email.trim().toLowerCase() } });
 
     return NextResponse.json({ success: true });
   } catch (error) {

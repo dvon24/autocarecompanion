@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { prisma } from '@/lib/db';
+import { auth } from '@/lib/auth';
+import { isFounderEmail } from '@/lib/founder';
 
 interface VehicleFeedback {
   timestamp: string;
@@ -16,31 +17,10 @@ interface VehicleFeedback {
   userAgent?: string;
 }
 
-const FEEDBACK_FILE = path.join(process.cwd(), 'data', 'vehicle-feedback.json');
-
-async function ensureDataDir() {
-  const dataDir = path.join(process.cwd(), 'data');
-  try {
-    await fs.access(dataDir);
-  } catch {
-    await fs.mkdir(dataDir, { recursive: true });
-  }
-}
-
-async function loadFeedback(): Promise<VehicleFeedback[]> {
-  try {
-    const data = await fs.readFile(FEEDBACK_FILE, 'utf-8');
-    return JSON.parse(data);
-  } catch {
-    return [];
-  }
-}
-
-async function saveFeedback(feedback: VehicleFeedback[]): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(FEEDBACK_FILE, JSON.stringify(feedback, null, 2));
-}
-
+// Vehicle-parse corrections. Previously persisted to data/vehicle-feedback.json,
+// which is read-only on Vercel — every production correction 500'd and was
+// lost, and the admin view always showed an empty list (2026-06-11 review
+// finding). Now Feedback rows with kind='vehicle-correction'.
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -53,17 +33,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const feedback: VehicleFeedback = {
-      timestamp: new Date().toISOString(),
-      userInput,
-      aiParsed,
-      userCorrection,
-      userAgent: request.headers.get('user-agent') || undefined,
-    };
-
-    const existing = await loadFeedback();
-    existing.push(feedback);
-    await saveFeedback(existing);
+    await prisma.feedback.create({
+      data: {
+        kind: 'vehicle-correction',
+        message: String(userCorrection).slice(0, 2_000),
+        meta: {
+          userInput: String(userInput).slice(0, 2_000),
+          aiParsed,
+          userAgent: request.headers.get('user-agent') || null,
+        },
+      },
+    });
 
     console.log('[Vehicle Feedback] New correction submitted:', {
       input: userInput,
@@ -82,8 +62,27 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET() {
+  // Founder-only: feeds the admin dashboard's corrections view.
+  const session = await auth();
+  if (!isFounderEmail(session?.user?.email)) {
+    return NextResponse.json({ error: 'Not authorized' }, { status: 403 });
+  }
   try {
-    const feedback = await loadFeedback();
+    const rows = await prisma.feedback.findMany({
+      where: { kind: 'vehicle-correction' },
+      orderBy: { createdAt: 'desc' },
+      take: 500,
+    });
+    const feedback: VehicleFeedback[] = rows.map((r) => {
+      const meta = (r.meta ?? {}) as Record<string, unknown>;
+      return {
+        timestamp: r.createdAt.toISOString(),
+        userInput: String(meta.userInput ?? ''),
+        aiParsed: (meta.aiParsed ?? {}) as VehicleFeedback['aiParsed'],
+        userCorrection: r.message,
+        userAgent: (meta.userAgent as string) ?? undefined,
+      };
+    });
     return NextResponse.json({ feedback, count: feedback.length });
   } catch (error) {
     console.error('Vehicle feedback fetch error:', error);

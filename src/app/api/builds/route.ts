@@ -29,9 +29,23 @@ export async function GET(request: NextRequest) {
     // Note: 'invested' sorting would require aggregation, handled in memory for now
 
     const [builds, total] = await Promise.all([
+      // Explicit select — `include` returned EVERY Vehicle scalar, leaking
+      // vin, currentMileage, and userId for all public builds via an
+      // unauthenticated endpoint (2026-06-11 review finding). Owners opted
+      // into showing their build, not their VIN/odometer.
       prisma.vehicle.findMany({
         where,
-        include: {
+        select: {
+          id: true,
+          year: true,
+          make: true,
+          model: true,
+          trim: true,
+          color: true,
+          nickname: true,
+          imageUrl: true,
+          showcaseSlug: true,
+          updatedAt: true,
           user: {
             select: {
               name: true,
