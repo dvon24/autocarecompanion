@@ -1,3 +1,4 @@
+import { ConfirmWithPhotoCTA } from '@/components/diagnose/ConfirmWithPhotoCTA';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -302,6 +303,11 @@ export default async function MakeLandingPage({
             <ShareButtons url={makeUrl} title={`${make} Known Issues & Problems | Au7o`} />
           </div>
         </header>
+
+        {/* Photo/video diagnose CTA — same banner as the article pages. */}
+        <div className="mb-6">
+          <ConfirmWithPhotoCTA />
+        </div>
 
         {/* Stats row */}
         <div className="grid grid-cols-3 gap-3 mb-10">

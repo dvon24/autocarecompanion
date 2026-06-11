@@ -1,3 +1,4 @@
+import { ConfirmWithPhotoCTA } from '@/components/diagnose/ConfirmWithPhotoCTA';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -164,6 +165,12 @@ export default async function SymptomPage({ params }: { params: Promise<{ slug: 
             </div>
           </section>
         )}
+
+        {/* Photo/video diagnose CTA — a symptom searcher is at peak
+            "what is wrong with MY car" intent; the photo flow answers it. */}
+        <div className="mb-8">
+          <ConfirmWithPhotoCTA />
+        </div>
 
         {/* Common causes */}
         <section className="mb-8">
