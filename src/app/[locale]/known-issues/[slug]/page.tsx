@@ -108,7 +108,7 @@ export default async function LocalizedKnownIssuesPage({
         }}
       >
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <Link href={`/${locale}/known-issues/${slug}`} className="flex items-center gap-2">
+          <Link href={`/${locale}`} className="flex items-center gap-2">
             <Image src="/og-image.png" alt="Au7o" width={32} height={32} className="rounded-lg" />
             <span className="text-2xl font-bold text-[#0B1220] tracking-tight">
               Au<span className="text-blue-600">7</span>o

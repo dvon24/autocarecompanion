@@ -17,7 +17,6 @@ import { AdSenseScript } from "@/components/ads/AdSenseScript";
 import { TermlyConsentBootstrap } from "@/components/consent/TermlyConsentBootstrap";
 import TermlyRouteReinit from "@/components/consent/TermlyRouteReinit";
 import { OrganizationJsonLd, WebSiteJsonLd, SoftwareApplicationJsonLd } from "@/components/seo/JsonLd";
-import { GoogleTranslate } from "@/components/shared/GoogleTranslate";
 import { FloatingAuthButton } from "@/components/auth/FloatingAuthButton";
 import { InstallPrompt } from "@/components/pwa/InstallPrompt";
 import { ServiceWorkerRefresh } from "@/components/pwa/ServiceWorkerRefresh";
@@ -123,11 +122,12 @@ export default function RootLayout({
             so its scope tracks pathname + query updates. The initial
             script load is done via <TermlyConsentBootstrap /> in <head>. */}
         <TermlyRouteReinit />
-        <GoogleTranslate />
+        {/* Google Translate widget removed 2026-06-12 — native locale pages
+            (/pt-br, /es, /de, /fr, /ko) replace machine translation, and the
+            widget's iframe weighed on LCP for every visitor. */}
         <SessionProvider>
-          {/* Floating sign-in pill — sits top-right next to GoogleTranslate
-              (positioned at right-[112px] to clear the Translate pill's
-              width at right-3). Inside SessionProvider so useSession() works. */}
+          {/* Floating sign-in pill — top-right. Inside SessionProvider so
+              useSession() works. */}
           <FloatingAuthButton />
           <AppProvider>
             <OfflineIndicator position="top" showFeatures />

@@ -6,16 +6,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 /**
- * Floating Sign-in pill — sits in the top-right corner next to the
- * GoogleTranslate widget (not behind it). Style mirrors the translate
- * pill (rounded, blurred white background, subtle border) so the two
- * controls read as a matched pair.
+ * Floating Sign-in pill — sits in the top-right corner (rounded, blurred
+ * white background, subtle border).
  *
  * Unauthed: "Sign in" pill link → /auth/signin
  * Authed:   user initials avatar → dropdown with Account / Garage / Sign out
  *
- * Positioning: fixed top-3 with right-3 + 120px reserved for the
- * Translate button at right-3 of the viewport. The container is itself
+ * Positioning: fixed top-3 right-3 (the Google Translate pill that
+ * used to occupy this corner was removed 2026-06-12). The container is
  * positioned, so the dropdown menu can anchor to the avatar correctly.
  */
 export function FloatingAuthButton() {
@@ -51,7 +49,7 @@ export function FloatingAuthButton() {
   if (status === 'loading') {
     return (
       <div
-        className="fixed top-3 right-[112px] z-[9999] w-[56px] h-[26px] bg-transparent"
+        className="fixed top-3 right-3 z-[9999] w-[56px] h-[26px] bg-transparent"
         aria-hidden
       />
     );
@@ -64,7 +62,7 @@ export function FloatingAuthButton() {
     return (
       <Link
         href="/auth/signin"
-        className="fixed top-3 right-[112px] z-[9999] text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors rounded-full border border-gray-200 bg-white/85 backdrop-blur-sm shadow-sm px-3 py-1.5"
+        className="fixed top-3 right-3 z-[9999] text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors rounded-full border border-gray-200 bg-white/85 backdrop-blur-sm shadow-sm px-3 py-1.5"
         aria-label="Sign in"
       >
         Sign in
@@ -79,7 +77,7 @@ export function FloatingAuthButton() {
     : session.user.email?.slice(0, 2).toUpperCase() || 'U';
 
   return (
-    <div ref={menuRef} className="fixed top-3 right-[112px] z-[9999]">
+    <div ref={menuRef} className="fixed top-3 right-3 z-[9999]">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}

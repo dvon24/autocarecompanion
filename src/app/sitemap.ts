@@ -183,13 +183,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // Localized known-issues pages (pt-BR, es, …) — one entry per (locale, slug).
-  const localePages: MetadataRoute.Sitemap = getAllLocaleSlugParams().map(({ locale, slug }) => ({
+  // Localized known-issues pages (pt-BR, es, de, fr, ko) — one entry per
+  // (locale, slug), plus each locale's landing page.
+  const localeParams = getAllLocaleSlugParams();
+  const localePages: MetadataRoute.Sitemap = localeParams.map(({ locale, slug }) => ({
     url: `${baseUrl}/${locale}/known-issues/${slug}`,
-    lastModified: new Date('2026-06-09'),
+    lastModified: new Date('2026-06-12'),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
+  for (const locale of [...new Set(localeParams.map((p) => p.locale))]) {
+    localePages.push({
+      url: `${baseUrl}/${locale}`,
+      lastModified: new Date('2026-06-12'),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    });
+  }
 
   return [...staticPages, ...knownIssuesPages, ...yearVariantPages, ...dtcPages, ...symptomPages, ...categoryPages, ...makePages, ...localePages];
 }

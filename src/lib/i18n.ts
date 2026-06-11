@@ -1,5 +1,8 @@
 import ptBr from '@/data/i18n/pt-br.json';
 import es from '@/data/i18n/es.json';
+import de from '@/data/i18n/de.json';
+import fr from '@/data/i18n/fr.json';
+import ko from '@/data/i18n/ko.json';
 
 /**
  * Locale-generic i18n layer. Adding a language is two lines: import its
@@ -18,9 +21,11 @@ export interface LocaleConfig {
 export const LOCALES: Record<string, LocaleConfig> = {
   'pt-br': { key: 'pt-br', code: 'pt-BR', label: 'Português (Brasil)', ogLocale: 'pt_BR', htmlLang: 'pt-BR' },
   es: { key: 'es', code: 'es', label: 'Español', ogLocale: 'es_ES', htmlLang: 'es' },
-  // To add German: import de from '@/data/i18n/de.json'; then add:
-  //   de: { key: 'de', code: 'de', label: 'Deutsch', ogLocale: 'de_DE', htmlLang: 'de' },
-  // and register it in DATA below.
+  de: { key: 'de', code: 'de', label: 'Deutsch', ogLocale: 'de_DE', htmlLang: 'de' },
+  fr: { key: 'fr', code: 'fr', label: 'Français', ogLocale: 'fr_FR', htmlLang: 'fr' },
+  ko: { key: 'ko', code: 'ko', label: '한국어', ogLocale: 'ko_KR', htmlLang: 'ko' },
+  // To add a language: import its data file, add a LOCALES entry, and
+  // register it in DATA below. Routes, sitemap, and hreflang follow.
 };
 
 export const LOCALE_KEYS = Object.keys(LOCALES);
@@ -56,6 +61,9 @@ export interface LocaleData {
 const DATA: Record<string, LocaleData> = {
   'pt-br': ptBr as unknown as LocaleData,
   es: es as unknown as LocaleData,
+  de: de as unknown as LocaleData,
+  fr: fr as unknown as LocaleData,
+  ko: ko as unknown as LocaleData,
 };
 
 export function isLocale(key: string): boolean {
