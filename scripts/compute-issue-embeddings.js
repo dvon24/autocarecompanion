@@ -24,14 +24,24 @@
  *     category. This pre-filter makes embeddings the second signal,
  *     not the only signal.
  *
+ * Phase 0.2 addition: every vector is also PERSISTED to the
+ * IssueEmbedding table (base64-encoded Float32Array inside the Json
+ * column — ~8KB/row vs ~29KB as a plain float array). Stored vectors
+ * are REUSED on subsequent runs, so after the initial backfill a re-run
+ * only pays OpenAI for issues that don't have a vector yet (i.e. newly
+ * published research). scripts/match-samples-to-issues.js reads these
+ * vectors to match DiagnosisSamples against the issue corpus.
+ *
  * Usage:
  *   node scripts/compute-issue-embeddings.js --dry-run           # no DB writes
  *   node scripts/compute-issue-embeddings.js                     # full run
  *   node scripts/compute-issue-embeddings.js --limit 200         # subset
  *   node scripts/compute-issue-embeddings.js --top-k 8           # neighbors per issue
+ *   node scripts/compute-issue-embeddings.js --re-embed          # ignore stored vectors
  *
  * Cost: ~$0.50 for the full corpus (4,300 issues × ~250 tokens each
- *       at $0.02/M for text-embedding-3-small).
+ *       at $0.02/M for text-embedding-3-small); near-$0 on incremental
+ *       re-runs thanks to the stored vectors.
  */
 require('dotenv').config({ path: '.env.local' });
 const { PrismaClient } = require('@prisma/client');
@@ -54,6 +64,7 @@ const REQUIRE_STRUCTURAL_OVERLAP = true; // Sarah's guardrail
 
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
+const reEmbed = args.includes('--re-embed');
 const topK = (() => {
   const i = args.indexOf('--top-k');
   return i >= 0 ? parseInt(args[i + 1], 10) : TOP_K_DEFAULT;
@@ -100,6 +111,23 @@ async function embedBatch(texts) {
     embeddings: data.data.map((d) => d.embedding),
     usage: data.usage || { prompt_tokens: 0, total_tokens: 0 },
   };
+}
+
+// ── Vector persistence codec (shared with match-samples-to-issues.js) ──
+// Float32Array → base64 keeps an IssueEmbedding row at ~8KB instead of
+// ~29KB for a plain JSON float array; loading 4k+ vectors stays fast.
+function encodeVec(vec) {
+  return {
+    enc: 'f32b64',
+    d: vec.length,
+    data: Buffer.from(new Float32Array(vec).buffer).toString('base64'),
+  };
+}
+function decodeVec(stored) {
+  if (!stored || stored.enc !== 'f32b64' || typeof stored.data !== 'string') return null;
+  const buf = Buffer.from(stored.data, 'base64');
+  const arr = new Float32Array(buf.buffer, buf.byteOffset, buf.byteLength / 4);
+  return Array.from(arr);
 }
 
 function dot(a, b) {
@@ -165,22 +193,58 @@ function structuralOverlap(a, b) {
   });
   console.log(`[embed] loaded ${issues.length} published issues from DB (${Date.now() - t0}ms)`);
 
-  // ── Embed in batches ───────────────────────────────────────────────
+  // ── Reuse stored vectors (Phase 0.2 incremental path) ──────────────
+  // Chunked load: 4k rows × ~8KB each is a heavy single query through
+  // the Supabase pooler, so page by id list.
+  const storedById = new Map();
+  if (!reEmbed) {
+    const allIds = issues.map((iss) => iss.id);
+    for (let i = 0; i < allIds.length; i += 500) {
+      const rows = await prisma.issueEmbedding.findMany({
+        where: { issueId: { in: allIds.slice(i, i + 500) }, model: EMBED_MODEL },
+        select: { issueId: true, vector: true },
+      });
+      for (const r of rows) {
+        const vec = decodeVec(r.vector);
+        if (vec && vec.length === EMBED_DIMENSIONS) storedById.set(r.issueId, vec);
+      }
+    }
+    console.log(`[embed] reusing ${storedById.size} stored vectors · ${issues.length - storedById.size} to embed fresh`);
+  }
+
+  // ── Embed in batches (only issues without a stored vector) ─────────
   const embeddings = [];
+  const toEmbed = issues.filter((iss) => !storedById.has(iss.id));
   let totalTokens = 0;
-  for (let i = 0; i < issues.length; i += BATCH_SIZE) {
-    const slice = issues.slice(i, i + BATCH_SIZE);
+  for (let i = 0; i < toEmbed.length; i += BATCH_SIZE) {
+    const slice = toEmbed.slice(i, i + BATCH_SIZE);
     const texts = slice.map(buildEmbeddingText);
     const { embeddings: vecs, usage } = await embedBatch(texts);
     if (vecs.length !== slice.length) {
       throw new Error(`Embedding count mismatch: got ${vecs.length} for ${slice.length} inputs`);
     }
+    // Persist each fresh vector immediately so a crash mid-run never
+    // loses paid-for embeddings. Sequential upserts — no $transaction
+    // with the PrismaPg adapter (known gotcha).
+    if (!dryRun) {
+      for (let j = 0; j < slice.length; j++) {
+        await prisma.issueEmbedding.upsert({
+          where: { issueId: slice[j].id },
+          create: { issueId: slice[j].id, model: EMBED_MODEL, vector: encodeVec(vecs[j]) },
+          update: { model: EMBED_MODEL, vector: encodeVec(vecs[j]) },
+        });
+      }
+    }
     for (let j = 0; j < slice.length; j++) {
-      embeddings.push({ id: slice[j].id, vec: vecs[j] });
+      storedById.set(slice[j].id, vecs[j]);
     }
     totalTokens += usage.total_tokens || usage.prompt_tokens || 0;
     const cost = (totalTokens / 1e6) * 0.02;
-    console.log(`[embed] ${i + slice.length}/${issues.length} · tokens=${totalTokens} · cost=$${cost.toFixed(3)}`);
+    console.log(`[embed] ${i + slice.length}/${toEmbed.length} · tokens=${totalTokens} · cost=$${cost.toFixed(3)}`);
+  }
+  for (const iss of issues) {
+    const vec = storedById.get(iss.id);
+    if (vec) embeddings.push({ id: iss.id, vec });
   }
 
   // ── Pre-compute norms once ──────────────────────────────────────────

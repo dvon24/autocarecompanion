@@ -628,6 +628,12 @@ model DiagnosisSample {
   contentType     String?
   byteSize        Int?
 
+  // Phase 0.2: published KnownIssue ids this sample's diagnosis text
+  // semantically matches (computed offline by
+  // scripts/match-samples-to-issues.js). Queryable, unlike the
+  // relatedIssueIds list inside diagnosisJson.
+  matchedIssueIds String[] @default([])
+
   // Provenance / consent audit.
   consentSource   String   // "account_toggle" | "per_upload_checkbox"
   consentVersion  String   @default("v1")
@@ -662,6 +668,18 @@ model Feedback {
 
   @@index([kind])
   @@index([createdAt])
+}
+
+// Phase 0.2 — persisted issue embedding vectors (text-embedding-3-small,
+// 1536 dims stored as a JSON float array; no pgvector by design — all
+// similarity math happens in offline batch scripts, never at runtime).
+// Written by scripts/compute-issue-embeddings.js, read by
+// scripts/match-samples-to-issues.js.
+model IssueEmbedding {
+  issueId   String   @id
+  model     String   @default("text-embedding-3-small")
+  vector    Json
+  updatedAt DateTime @updatedAt
 }
 
 // Per-request AI spend log. Replaces the file-based costs.ts store that
