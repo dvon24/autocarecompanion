@@ -4,3 +4,7 @@ node_modules
 .vscode
 .claude
 public/models
+# Capacitor shell — built with Android Studio, never part of the web deploy.
+# Its capacitor.config.ts otherwise gets swept into the Next.js typecheck
+# on Vercel, where mobile/node_modules doesn't exist (broke 2 deploys).
+mobile
