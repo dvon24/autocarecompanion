@@ -302,12 +302,15 @@ export async function POST(request: NextRequest) {
   }
 
   // Convert each image to base64 data URL for the OpenAI vision call.
-  // In-memory only — never written to disk.
+  // The first photo's buffer is retained for the (consent-gated) Phase 0.1
+  // capture below; everything else stays in-memory only.
   const dataUrls: string[] = [];
   let totalBytes = 0;
+  let firstImage: { buffer: Buffer; contentType: string } | null = null;
   for (const img of images) {
     const buf = Buffer.from(await img.arrayBuffer());
     totalBytes += buf.length;
+    if (!firstImage) firstImage = { buffer: buf, contentType: img.type };
     dataUrls.push(`data:${img.type};base64,${buf.toString('base64')}`);
   }
   vlog('buffer_built', { count: dataUrls.length, totalBytes });
@@ -814,9 +817,10 @@ Return ONLY a JSON object — no markdown fences, no preamble. Start with { end 
   // captureDiagnosisSample. Phase 0.0 persists NO image bytes.
   if (userId && mode === 'photo' && result.isCarRelated && result.vehicleMatch !== 'likely_mismatch') {
     const captureUserId = userId;
+    const captureImage = firstImage; // Phase 0.1 — stored only if consent passes
     after(async () => {
       try {
-        await captureDiagnosisSample({ userId: captureUserId, perUploadConsent, vehicle, mode, result });
+        await captureDiagnosisSample({ userId: captureUserId, perUploadConsent, vehicle, mode, result, image: captureImage });
       } catch (err) {
         vlog('capture_failed', { err: err instanceof Error ? err.message : String(err) });
       }

@@ -1,11 +1,15 @@
 /**
- * Visual data flywheel — Phase 0.0 capture (METADATA ONLY).
+ * Visual data flywheel — Phase 0.1 capture (metadata + PRIVATE image).
  *
  * Persists ONE DiagnosisSample row per CONSENTED, signed-in photo
- * diagnosis. Phase 0.0 stores NO image bytes — only structured,
- * low-PII metadata (YMMT, the diagnosed component, a scrubbed
- * diagnosis summary). The private-bucket cropped-image pipeline lands
- * in Phase 0.1 against the same schema.
+ * diagnosis: structured low-PII metadata (YMMT, the diagnosed component,
+ * a scrubbed diagnosis summary) plus — when consent allows AND blob
+ * storage is configured — the downscaled photo itself in the PRIVATE
+ * Vercel Blob store (server-side access only, purged on account
+ * deletion BEFORE the row cascades). The client pipeline has already
+ * re-encoded the image (EXIF metadata stripped as a canvas side-effect,
+ * 1920px max edge). Without BLOB_READ_WRITE_TOKEN this degrades to the
+ * Phase 0.0 metadata-only behavior.
  *
  * Consent model (three-state, by design — see the GDPR review):
  *   - perUploadConsent === '1'  → store (the user ticked the per-upload
@@ -27,6 +31,7 @@
  */
 
 import prisma from '@/lib/db';
+import { storeDiagnosisPhoto } from '@/lib/photo-storage';
 
 interface CapturePart {
   id?: string;
@@ -56,6 +61,9 @@ export interface CaptureInput {
   vehicle: { year?: number; make?: string; model?: string; trim?: string } | null;
   mode: 'photo' | 'video';
   result: CaptureResult;
+  /** Phase 0.1: the (client-downscaled, EXIF-stripped) photo bytes.
+      Stored only when the consent gate passes; null keeps metadata-only. */
+  image?: { buffer: Buffer; contentType: string } | null;
 }
 
 /**
@@ -120,7 +128,7 @@ export async function captureDiagnosisSample(input: CaptureInput): Promise<void>
       : [],
   };
 
-  await prisma.diagnosisSample.create({
+  const sample = await prisma.diagnosisSample.create({
     data: {
       userId: input.userId,
       year: input.vehicle?.year ?? null,
@@ -134,7 +142,8 @@ export async function captureDiagnosisSample(input: CaptureInput): Promise<void>
       confidence,
       vehicleMatch: input.result.vehicleMatch ?? null,
       diagnosisJson,
-      // Phase 0.0 — metadata only, zero image bytes.
+      // Image fields start false/null; flipped below after a successful
+      // blob upload so a failed upload can never leave a dangling key.
       imageStored: false,
       storageKey: null,
       cropApplied: false,
@@ -143,6 +152,22 @@ export async function captureDiagnosisSample(input: CaptureInput): Promise<void>
       consentVersion: 'v1',
     },
   });
+
+  // ── Phase 0.1: persist the photo itself (consent already granted) ──
+  if (input.image?.buffer?.length) {
+    const stored = await storeDiagnosisPhoto(sample.id, input.image.buffer, input.image.contentType);
+    if (stored) {
+      await prisma.diagnosisSample.update({
+        where: { id: sample.id },
+        data: {
+          imageStored: true,
+          storageKey: stored.key,
+          contentType: input.image.contentType,
+          byteSize: stored.byteSize,
+        },
+      });
+    }
+  }
 
   // Consent paper-trail (mirrors the /api/account/preferences audit log).
   console.log(

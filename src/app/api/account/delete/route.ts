@@ -49,6 +49,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { getStripe } from '@/lib/stripe';
+import { deleteDiagnosisPhotos } from '@/lib/photo-storage';
 
 export const dynamic = 'force-dynamic';
 
@@ -96,6 +97,28 @@ export async function DELETE(req: NextRequest) {
           { status: 502 },
         );
       }
+    }
+  }
+
+  // Phase 0.1: purge stored diagnosis photos from the private blob store
+  // BEFORE anything else — once the User row cascades, the
+  // DiagnosisSample rows (and their storageKeys) are gone and the blobs
+  // would be orphaned and un-erasable (the exact failure mode the schema
+  // comment warned about). A blob-purge failure ABORTS the deletion.
+  const samplesWithImages = await prisma.diagnosisSample.findMany({
+    where: { userId, imageStored: true, storageKey: { not: null } },
+    select: { storageKey: true },
+  });
+  if (samplesWithImages.length > 0) {
+    try {
+      await deleteDiagnosisPhotos(samplesWithImages.map((s) => s.storageKey!));
+      console.log(`[account-delete] purged ${samplesWithImages.length} stored diagnosis photo(s) for userId=${userId}`);
+    } catch (err) {
+      console.error(`[account-delete] blob purge FAILED for userId=${userId}:`, err);
+      return NextResponse.json(
+        { error: 'Could not erase your stored photos. Please try again in a moment — your account was NOT deleted.' },
+        { status: 502 },
+      );
     }
   }
 
