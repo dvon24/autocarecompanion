@@ -1,6 +1,7 @@
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 import prisma from '@/lib/db';
 import { cache } from 'react';
+import { unstable_cache } from 'next/cache';
 import { categoryConfig } from '@/lib/issue-categories';
 
 // --- DB row to KnownIssue shape ---
@@ -127,7 +128,7 @@ function maxDateString(...dates: string[]): string {
 }
 
 /** Get the earliest createdAt and latest updatedAt for a make+model's published issues. */
-export async function getArticleDates(make: string, model: string): Promise<{ published: string; modified: string }> {
+async function getArticleDatesImpl(make: string, model: string): Promise<{ published: string; modified: string }> {
   const result = await prisma.knownIssue.aggregate({
     where: {
       make: { equals: make, mode: 'insensitive' },
@@ -247,7 +248,7 @@ export function getYearRange(issues: KnownIssue[]): { min: number; max: number }
 
 // --- Related vehicles (for internal cross-linking) ---
 
-export async function getRelatedVehicles(make: string, model: string, limit = 6): Promise<{ slug: string; make: string; model: string; issueCount: number }[]> {
+async function getRelatedVehiclesImpl(make: string, model: string, limit = 6): Promise<{ slug: string; make: string; model: string; issueCount: number }[]> {
   // Get same-make vehicles (siblings)
   const sameMake = await prisma.knownIssue.findMany({
     where: {
@@ -489,9 +490,28 @@ export function normalizeStatus(s: string | undefined): string {
 // Request-scoped memoization: generateMetadata and the page component
 // each called getAllKnownIssueSlugs for the same params, doubling DB load on every
 // render/build (2026-06-12 review finding).
-export const getAllKnownIssueSlugs = cache(getAllKnownIssueSlugsImpl);
+// Cross-request data cache (1h, matches the page's revalidate) layered
+// under the per-request React cache. The article route is dynamic — it
+// reads searchParams for ?year variants — so WITHOUT this every visit
+// (user or Googlebot, across 9k advertised URLs) re-ran these queries
+// against Supabase. Cached data also keeps articles serving through a
+// DB hiccup instead of erroring sitewide (2026-06-12 review finding;
+// chosen over the ?year->path-segment migration to avoid re-indexing
+// 8.4k ranked URLs).
+export const getAllKnownIssueSlugs = cache(
+  unstable_cache(getAllKnownIssueSlugsImpl, ['known-issue-slugs'], { revalidate: 3600 }),
+);
 
 // Request-scoped memoization: generateMetadata and the page component
 // each called getKnownIssuesForArticle for the same params, doubling DB load on every
 // render/build (2026-06-12 review finding).
-export const getKnownIssuesForArticle = cache(getKnownIssuesForArticleImpl);
+export const getKnownIssuesForArticle = cache(
+  unstable_cache(getKnownIssuesForArticleImpl, ['ki-article'], { revalidate: 3600 }),
+);
+
+export const getArticleDates = cache(
+  unstable_cache(getArticleDatesImpl, ['ki-article-dates'], { revalidate: 3600 }),
+);
+export const getRelatedVehicles = cache(
+  unstable_cache(getRelatedVehiclesImpl, ['ki-related-vehicles'], { revalidate: 3600 }),
+);
