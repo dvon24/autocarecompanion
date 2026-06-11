@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllKnownIssueSlugsWithDates } from '@/lib/known-issues';
-import { getAllDTCSlugsWithDates } from '@/lib/dtc-codes';
+import { getAllDTCSlugsWithDates, getAllDTCMakeSlugs } from '@/lib/dtc-codes';
 import { getAllSymptomSlugs } from '@/lib/symptoms';
 import { getAllLocaleSlugParams } from '@/lib/i18n';
 import prisma from '@/lib/db';
@@ -144,6 +144,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
+  // Per-make DTC pages ("ford p0a09"-style SERP capture). These ~2,400
+  // pages were built and prerendered but NEVER advertised — absent from
+  // the sitemap and with zero internal links, Google couldn't discover
+  // them at all (2026-06-12 review finding). Paired with the make-header
+  // links now rendered on each /dtc/[code] page.
+  const dtcMakePages: MetadataRoute.Sitemap = (await getAllDTCMakeSlugs()).map(s => ({
+    url: `${baseUrl}/known-issues/dtc/${s.code}/${s.make}`,
+    lastModified: layoutDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.5,
+  }));
+
   // Symptom landing pages — curated set, fixed layout date.
   const symptomPages: MetadataRoute.Sitemap = getAllSymptomSlugs().map(slug => ({
     url: `${baseUrl}/known-issues/symptom/${slug}`,
@@ -201,5 +213,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
-  return [...staticPages, ...knownIssuesPages, ...yearVariantPages, ...dtcPages, ...symptomPages, ...categoryPages, ...makePages, ...localePages];
+  return [...staticPages, ...knownIssuesPages, ...yearVariantPages, ...dtcPages, ...dtcMakePages, ...symptomPages, ...categoryPages, ...makePages, ...localePages];
 }

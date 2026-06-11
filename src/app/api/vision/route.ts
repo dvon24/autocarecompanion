@@ -131,14 +131,33 @@ export async function POST(request: NextRequest) {
     return rateLimitResponse(burst.reset);
   }
 
-  // Quota: anon = 1/mo per IP, free authed = 3/mo, subscriber = effectively
-  // unlimited. checkAndConsumePhotoQuota CONSUMES one credit immediately —
-  // every failure path below must refundPhotoQuota(quotaKey) before
-  // returning so users don't lose a credit to a server error.
+  // Quota: anon = 1/mo per IP, free authed = 3/mo, Plus = 40/mo (the
+  // advertised "10/week" on a monthly window so it reuses the existing
+  // quota machinery), Pro = effectively unlimited. Previously EVERY active
+  // subscriber got the unlimited cap — the tier was never read, so $14.99
+  // Plus customers received the headline feature the $24.99 Pro tier is
+  // sold on (2026-06-12 review finding). checkAndConsumePhotoQuota
+  // CONSUMES one credit immediately — every failure path below must
+  // refundPhotoQuota(quotaKey) before returning so users don't lose a
+  // credit to a server error.
   const ANON_FREE_PHOTO_LIMIT = 1;
-  const limit = userId
-    ? (isSubscriber ? SUBSCRIBER_MONTHLY_CAP : DEFAULT_FREE_PHOTO_LIMIT)
-    : ANON_FREE_PHOTO_LIMIT;
+  const PLUS_MONTHLY_CAP = 40;
+  let limit = ANON_FREE_PHOTO_LIMIT;
+  if (userId) {
+    if (isSubscriber) {
+      // The session JWT only carries subscriptionStatus, so resolve the
+      // tier with one indexed read. Unknown/legacy tier defaults to the
+      // generous cap rather than punishing grandfathered subscribers.
+      let tier: string | null = null;
+      try {
+        const u = await prisma.user.findUnique({ where: { id: userId }, select: { subscriptionTier: true } });
+        tier = u?.subscriptionTier ?? null;
+      } catch { /* fall through to unlimited */ }
+      limit = tier === 'plus' ? PLUS_MONTHLY_CAP : SUBSCRIBER_MONTHLY_CAP;
+    } else {
+      limit = DEFAULT_FREE_PHOTO_LIMIT;
+    }
+  }
   const quotaKey = userId ? `photo:user:${userId}` : `photo:anon:${ip}`;
   const quota = await checkAndConsumePhotoQuota({ key: quotaKey, limit });
   vlog('quota_checked', { allowed: quota.allowed, remaining: quota.remaining, anon: !userId });

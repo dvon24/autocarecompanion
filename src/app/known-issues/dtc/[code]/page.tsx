@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getAllDTCSlugs, getDTCWithIssues, getDTCDates, getRelatedDTCCodes } from '@/lib/dtc-codes';
+import { getAllDTCSlugs, getDTCWithIssues, getDTCDates, getRelatedDTCCodes, makeToSlug } from '@/lib/dtc-codes';
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { CollapsibleMakeSection } from '@/components/known-issues/CollapsibleMakeSection';
 import { OBDScannerRecommendations } from '@/components/known-issues/OBDScannerRecommendations';
@@ -515,8 +515,27 @@ export default async function DTCCodePage({
                     <CollapsibleMakeSection
                       key={make}
                       make={make}
-                      issues={issues}
+                      // Slim DTO: passing the full Prisma rows serialized
+                      // EVERYTHING (descriptions, solutions, citations,
+                      // affiliate blobs) into the client RSC payload —
+                      // P0300 shipped 1.5MB of HTML even though the
+                      // component renders 7 small fields (2026-06-12
+                      // review finding).
+                      issues={issues.map((i) => ({
+                        id: i.id,
+                        slug: i.slug,
+                        title: i.title,
+                        severity: i.severity,
+                        reportCount: i.reportCount,
+                        estimatedCost: i.estimatedCost ?? null,
+                        vehicleMatch: {
+                          make: i.vehicleMatch.make,
+                          model: i.vehicleMatch.model,
+                          years: i.vehicleMatch.years,
+                        },
+                      }))}
                       dtcCode={data.code}
+                      makeHref={`/known-issues/dtc/${code.toLowerCase()}/${makeToSlug(make)}`}
                     />
                   ))}
                 </div>

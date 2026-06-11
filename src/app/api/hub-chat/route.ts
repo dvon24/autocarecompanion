@@ -108,7 +108,12 @@ const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL = 'gpt-5.5';
 const MAX_INPUT_TOKENS = 2000;       // hard cap on user input per turn
 const MAX_HISTORY_MESSAGES = 20;     // last N turns sent to the model
-const MAX_OUTPUT_TOKENS = 1500;
+// 4000, not 1500: on gpt-5.x chat completions, REASONING tokens count
+// against max_completion_tokens and this account's models burn 1-3k of
+// them before the first content token (see vision/route.ts) — at 1500 the
+// model could exhaust the whole budget reasoning and stream back an empty
+// reply that still consumed the user's credit (2026-06-12 review finding).
+const MAX_OUTPUT_TOKENS = 4000;
 
 interface HubVehicle {
   year: number;
@@ -435,7 +440,18 @@ export async function POST(request: NextRequest) {
   let sessionMessages: HubMessage[] = messages.slice(-MAX_HISTORY_MESSAGES);
   try {
     if (sessionId) {
-      const existing = await prisma.chatSession.findUnique({ where: { id: sessionId } });
+      // Ownership-scoped lookup — a bare findUnique let any caller continue
+      // (read + write into) any user's session by supplying its id, and the
+      // victim's stored history was sent to the model and streamed back
+      // (2026-06-12 review finding: IDOR). On no match we silently start a
+      // fresh session instead of continuing the foreign one — same behavior
+      // the GET session route already enforces.
+      const existing = await prisma.chatSession.findFirst({
+        where: {
+          id: sessionId,
+          ...(userId ? { userId } : { userId: null, anonymousId }),
+        },
+      });
       if (existing) {
         const prevMessages = (existing.messages as unknown as HubMessage[]) || [];
         sessionMessages = [...prevMessages, messages[messages.length - 1]].slice(-MAX_HISTORY_MESSAGES);
@@ -443,6 +459,8 @@ export async function POST(request: NextRequest) {
           where: { id: sessionId },
           data: { messages: sessionMessages as unknown as object },
         });
+      } else {
+        sessionId = null; // not yours (or gone) → new session below
       }
     }
     if (!sessionId) {
@@ -620,7 +638,15 @@ export async function POST(request: NextRequest) {
           }
         }
 
-        send({ type: 'done', usage: { in: usageIn, out: usageOut } });
+        // A "successful" stream that produced zero content (reasoning ate
+        // the whole token budget, or upstream sent nothing) must not eat
+        // the user's credit or leave a silent empty bubble.
+        if (!assistantText) {
+          if (consumedQuotaKey) await refundChatQuota(consumedQuotaKey);
+          send({ type: 'error', message: 'No reply generated — please try again.' });
+        } else {
+          send({ type: 'done', usage: { in: usageIn, out: usageOut } });
+        }
       } catch (err) {
         console.error('[hub-chat] stream error:', err);
         // Nothing was delivered — give the weekly chat credit back.

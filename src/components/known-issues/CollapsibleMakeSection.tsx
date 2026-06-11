@@ -21,9 +21,14 @@ interface CollapsibleMakeSectionProps {
   make: string;
   issues: DTCIssue[];
   dtcCode: string;
+  /** Link to the per-make DTC page (/known-issues/dtc/[code]/[make]).
+      Those ~2,400 pages were crawl-orphans — zero internal links anywhere —
+      so this header link is their primary discovery path (2026-06-12
+      review finding). */
+  makeHref?: string;
 }
 
-export function CollapsibleMakeSection({ make, issues, dtcCode }: CollapsibleMakeSectionProps) {
+export function CollapsibleMakeSection({ make, issues, dtcCode, makeHref }: CollapsibleMakeSectionProps) {
   // Default expanded so the SSR HTML contains the actual per-vehicle
   // issue list under each make. With useState(false) the issues were
   // conditionally rendered (`{expanded && ...}`) and the DTC page's
@@ -37,28 +42,39 @@ export function CollapsibleMakeSection({ make, issues, dtcCode }: CollapsibleMak
       id={`dtc-${make.toLowerCase().replace(/\s+/g, '-')}`}
       className="scroll-mt-16 border border-[#E3DFD4] rounded-lg overflow-hidden"
     >
-      <button
-        type="button"
-        onClick={() => setExpanded(!expanded)}
-        aria-expanded={expanded}
-        aria-label={`${expanded ? 'Collapse' : 'Expand'} ${make} issues`}
-        className="w-full flex items-center justify-between p-4 bg-[#EFEDE6] hover:bg-[#E3DFD4] transition-colors text-left"
-      >
-        <div className="flex items-center gap-3">
-          <h3 className="text-lg font-bold text-[#0B1220]">{make}</h3>
-          <span className="text-sm text-[#64748B]">
-            {issues.length} {issues.length === 1 ? 'issue' : 'issues'}
-          </span>
-        </div>
-        <svg
-          className={`w-5 h-5 text-[#94A3B8] transition-transform ${expanded ? 'rotate-180' : ''}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+      <div className="flex items-center bg-[#EFEDE6]">
+        <button
+          type="button"
+          onClick={() => setExpanded(!expanded)}
+          aria-expanded={expanded}
+          aria-label={`${expanded ? 'Collapse' : 'Expand'} ${make} issues`}
+          className="flex-1 flex items-center justify-between p-4 hover:bg-[#E3DFD4] transition-colors text-left min-w-0"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
+          <div className="flex items-center gap-3">
+            <h3 className="text-lg font-bold text-[#0B1220]">{make}</h3>
+            <span className="text-sm text-[#64748B]">
+              {issues.length} {issues.length === 1 ? 'issue' : 'issues'}
+            </span>
+          </div>
+          <svg
+            className={`w-5 h-5 text-[#94A3B8] transition-transform ${expanded ? 'rotate-180' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        {makeHref && (
+          <Link
+            href={makeHref}
+            className="flex-shrink-0 px-4 py-2 mr-2 text-xs font-semibold text-blue-700 hover:text-blue-900 whitespace-nowrap"
+            aria-label={`All ${make} ${dtcCode} issues`}
+          >
+            {make} {dtcCode} page →
+          </Link>
+        )}
+      </div>
 
       {expanded && (
         <div className="p-4 space-y-3 bg-white">

@@ -234,7 +234,7 @@ export default async function PerMakeDTCPage({
               <div key={model} className="bg-white border border-[#E3DFD4] rounded-2xl p-6">
                 <h3 className="text-lg font-semibold text-[#0B1220] mb-3">
                   <Link
-                    href={`/known-issues/${makeToSlug(make)}-${makeToSlug(model)}`}
+                    href={`/known-issues/${modelIssues[0].slug}`}
                     className="hover:text-blue-600"
                   >
                     {make} {model}
@@ -269,7 +269,7 @@ export default async function PerMakeDTCPage({
                     <li className="text-sm text-[#64748B] pl-3">
                       + {modelIssues.length - 5} more issue{modelIssues.length - 5 === 1 ? '' : 's'} —{' '}
                       <Link
-                        href={`/known-issues/${makeToSlug(make)}-${makeToSlug(model)}`}
+                        href={`/known-issues/${modelIssues[0].slug}`}
                         className="text-blue-600 hover:underline"
                       >
                         see all on {model} page

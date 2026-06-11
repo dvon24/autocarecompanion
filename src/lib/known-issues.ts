@@ -1,5 +1,6 @@
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 import prisma from '@/lib/db';
+import { cache } from 'react';
 import { categoryConfig } from '@/lib/issue-categories';
 
 // --- DB row to KnownIssue shape ---
@@ -93,7 +94,7 @@ export async function parseSlug(slug: string): Promise<{ make: string; model: st
 }
 
 /** Get all unique slugs for static generation. */
-export async function getAllKnownIssueSlugs(): Promise<{ slug: string; make: string; model: string }[]> {
+async function getAllKnownIssueSlugsImpl(): Promise<{ slug: string; make: string; model: string }[]> {
   const distinct = await prisma.knownIssue.findMany({
     where: { status: 'published' },
     distinct: ['make', 'model'],
@@ -210,7 +211,7 @@ export async function getAllKnownIssueSlugsWithDates(): Promise<{ slug: string; 
 const severityOrder: Record<string, number> = { high: 0, medium: 1, low: 2 };
 
 /** Get all published issues for a make+model across ALL years. */
-export async function getKnownIssuesForArticle(make: string, model: string): Promise<KnownIssue[]> {
+async function getKnownIssuesForArticleImpl(make: string, model: string): Promise<KnownIssue[]> {
   const rows = await prisma.knownIssue.findMany({
     where: {
       make: { equals: make, mode: 'insensitive' },
@@ -484,3 +485,13 @@ export function normalizeStatus(s: string | undefined): string {
   if (!s || s === 'active') return 'published';
   return s;
 }
+
+// Request-scoped memoization: generateMetadata and the page component
+// each called getAllKnownIssueSlugs for the same params, doubling DB load on every
+// render/build (2026-06-12 review finding).
+export const getAllKnownIssueSlugs = cache(getAllKnownIssueSlugsImpl);
+
+// Request-scoped memoization: generateMetadata and the page component
+// each called getKnownIssuesForArticle for the same params, doubling DB load on every
+// render/build (2026-06-12 review finding).
+export const getKnownIssuesForArticle = cache(getKnownIssuesForArticleImpl);

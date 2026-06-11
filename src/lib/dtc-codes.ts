@@ -1,4 +1,5 @@
 import prisma from '@/lib/db';
+import { cache } from 'react';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 import { makeSlug, LAYOUT_LAST_REVISED } from './known-issues';
 
@@ -201,7 +202,7 @@ export async function getRelatedDTCCodes(code: string, limit = 8): Promise<{ cod
 }
 
 /** Get full DTC data including all related vehicle issues. */
-export async function getDTCWithIssues(code: string): Promise<DTCWithIssues | null> {
+async function getDTCWithIssuesImpl(code: string): Promise<DTCWithIssues | null> {
   const upper = code.toUpperCase();
   const dtc = await prisma.dTCCode.findUnique({ where: { code: upper } });
   if (!dtc) return null;
@@ -244,7 +245,7 @@ export async function getDTCWithIssues(code: string): Promise<DTCWithIssues | nu
  * Returns null if the DTC doesn't exist OR if no published KnownIssue links
  * that DTC to that make (avoids generating empty pages).
  */
-export async function getDTCWithIssuesForMake(
+async function getDTCWithIssuesForMakeImpl(
   code: string,
   make: string,
 ): Promise<DTCWithIssues | null> {
@@ -326,3 +327,13 @@ export async function slugToMake(slug: string): Promise<string | null> {
   const match = rows.find(r => makeToSlug(r.make) === slug);
   return match?.make ?? null;
 }
+
+// Request-scoped memoization: generateMetadata and the page component
+// each called getDTCWithIssues for the same params, doubling DB load on every
+// render/build (2026-06-12 review finding).
+export const getDTCWithIssues = cache(getDTCWithIssuesImpl);
+
+// Request-scoped memoization: generateMetadata and the page component
+// each called getDTCWithIssuesForMake for the same params, doubling DB load on every
+// render/build (2026-06-12 review finding).
+export const getDTCWithIssuesForMake = cache(getDTCWithIssuesForMakeImpl);
