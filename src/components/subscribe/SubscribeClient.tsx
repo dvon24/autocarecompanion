@@ -30,11 +30,10 @@ export function SubscribeClient({
   const [loadingTier, setLoadingTier] = useState<TierId | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [currentTier, setCurrentTier] = useState<TierId | null>(null);
-  // Defaults to monthly until the annual Stripe prices exist in the
-  // environment (run scripts/create-annual-prices.js, then add the env
-  // vars in Vercel). Once they do, flip this default to 'year' — annual
-  // is the better deal and the retention play.
-  const [interval, setInterval] = useState<BillingInterval>('month');
+  // Annual is the default-selected interval — better deal for the user,
+  // retention play for us. Monthly is one tap away. (The annual Stripe
+  // prices + env vars went live 2026-06-12.)
+  const [interval, setInterval] = useState<BillingInterval>('year');
 
   useEffect(() => {
     let cancelled = false;
