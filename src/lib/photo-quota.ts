@@ -15,7 +15,11 @@ import { prisma } from '@/lib/db';
 // snapping a part and getting the complete kit forces an upgrade
 // quickly; loose enough that free users get to feel the value at
 // least once or twice without paying.
-export const DEFAULT_FREE_PHOTO_LIMIT = 3;
+// 8/month — the pricing page advertises "2 photo diagnoses / week" and the
+// old value (3/month) broke that promise at the exact conversion moment
+// (2026-06-12 review finding). Monthly window kept for the existing quota
+// machinery; 8/mo honors the advertised weekly rate.
+export const DEFAULT_FREE_PHOTO_LIMIT = 8;
 
 /**
  * Get UTC first-of-month timestamp for the date passed in (default = now).

@@ -14,11 +14,15 @@ export type TierFeature = { t: string; on: boolean };
 
 export type TierCtaStyle = 'ghost' | 'primary' | 'dark';
 
+export type BillingInterval = 'month' | 'year';
+
 export type Tier = {
   id: TierId;
   name: string;
   price: string;          // displayed monthly price, no $
   priceCents: number;     // for sanity checks against Stripe
+  priceAnnual: string;    // displayed annual price, no $ ('0' for free)
+  priceAnnualCents: number;
   tagline: string;
   cta: string;
   ctaStyle: TierCtaStyle;
@@ -32,6 +36,8 @@ export const AU7O_TIERS: readonly Tier[] = [
     name: 'Free',
     price: '0',
     priceCents: 0,
+    priceAnnual: '0',
+    priceAnnualCents: 0,
     tagline: 'Browse and try it out.',
     cta: 'Current plan',
     ctaStyle: 'ghost',
@@ -49,6 +55,8 @@ export const AU7O_TIERS: readonly Tier[] = [
     name: 'Plus',
     price: '14.99',
     priceCents: 1499,
+    priceAnnual: '99',
+    priceAnnualCents: 9900,
     tagline: 'For the hands-on owner.',
     popular: true,
     cta: 'Start Plus',
@@ -67,6 +75,8 @@ export const AU7O_TIERS: readonly Tier[] = [
     name: 'Pro',
     price: '24.99',
     priceCents: 2499,
+    priceAnnual: '199',
+    priceAnnualCents: 19900,
     tagline: 'For enthusiasts & small fleets.',
     cta: 'Start Pro',
     ctaStyle: 'dark',
@@ -74,8 +84,10 @@ export const AU7O_TIERS: readonly Tier[] = [
       { t: 'Everything in Plus', on: true },
       { t: 'Unlimited photo & video diagnosis', on: true },
       { t: 'Up to 10 vehicles', on: true },
-      { t: 'Priority AI — fastest, most detailed', on: true },
-      { t: 'Parts ordering discounts', on: true },
+      // 'Priority AI' and 'Parts ordering discounts' removed 2026-06-12 —
+      // neither exists in the product yet; advertising unbuilt features is
+      // FTC exposure and guaranteed churn. Re-add when real.
+      { t: 'Priority support', on: true },
       { t: 'Family / shop sharing (5 seats)', on: true },
     ],
   },

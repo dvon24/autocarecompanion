@@ -1,7 +1,7 @@
 'use client';
 
 import { Icon } from '@/components/ui/Icon';
-import { AU7O_TIERS, type Tier, type TierId } from '@/lib/pricing/tiers';
+import { AU7O_TIERS, type Tier, type TierId, type BillingInterval } from '@/lib/pricing/tiers';
 
 /**
  * Mobile pricing — stacked tier cards. Same data as PricingTiers but
@@ -21,12 +21,14 @@ export function MobilePricing({
   currentTierId,
   lockedTiers,
   lockedReason,
+  interval = 'month',
 }: {
   onSelect: (tier: Tier) => void;
   loadingTierId?: string | null;
   currentTierId?: string | null;
   lockedTiers?: TierId[];
   lockedReason?: string;
+  interval?: BillingInterval;
 }) {
   const locked = new Set<TierId>(lockedTiers ?? []);
   return (
@@ -75,9 +77,9 @@ export function MobilePricing({
                     fontFamily: 'var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace)',
                   }}
                 >
-                  ${tier.price}
+                  ${interval === 'year' ? tier.priceAnnual : tier.price}
                 </span>
-                <span style={{ fontSize: 11.5, color: 'var(--slate-500)' }}>/mo</span>
+                <span style={{ fontSize: 11.5, color: 'var(--slate-500)' }}>{interval === 'year' ? '/yr' : '/mo'}</span>
               </span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7, margin: '12px 0 14px' }}>

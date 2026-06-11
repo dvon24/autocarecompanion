@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { PricingTiers } from '@/components/pricing/PricingTiers';
 import { MobilePricing } from '@/components/pricing/MobilePricing';
-import type { Tier, TierId } from '@/lib/pricing/tiers';
+import type { Tier, TierId, BillingInterval } from '@/lib/pricing/tiers';
 import { regionDisplayName } from '@/lib/pricing/region';
 
 /**
@@ -30,6 +30,11 @@ export function SubscribeClient({
   const [loadingTier, setLoadingTier] = useState<TierId | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [currentTier, setCurrentTier] = useState<TierId | null>(null);
+  // Defaults to monthly until the annual Stripe prices exist in the
+  // environment (run scripts/create-annual-prices.js, then add the env
+  // vars in Vercel). Once they do, flip this default to 'year' — annual
+  // is the better deal and the retention play.
+  const [interval, setInterval] = useState<BillingInterval>('month');
 
   useEffect(() => {
     let cancelled = false;
@@ -63,7 +68,7 @@ export function SubscribeClient({
       const res = await fetch('/api/stripe/create-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tierId: tier.id }),
+        body: JSON.stringify({ tierId: tier.id, interval }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.url) {
@@ -134,6 +139,30 @@ export function SubscribeClient({
           </p>
         </div>
 
+        {/* Billing interval toggle */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 22 }}>
+          <div style={{ display: 'inline-flex', background: '#fff', border: '1px solid var(--paper-line, #E3DFD4)', borderRadius: 999, padding: 3 }}>
+            {(['month', 'year'] as const).map((iv) => (
+              <button
+                key={iv}
+                onClick={() => setInterval(iv)}
+                style={{
+                  padding: '7px 16px',
+                  borderRadius: 999,
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: 13,
+                  fontWeight: 600,
+                  background: interval === iv ? 'var(--ink, #0B1220)' : 'transparent',
+                  color: interval === iv ? '#fff' : 'var(--slate-500, #64748B)',
+                }}
+              >
+                {iv === 'month' ? 'Monthly' : 'Annual — save up to 45%'}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {error && (
           <div
             style={{
@@ -157,6 +186,7 @@ export function SubscribeClient({
           currentTierId={currentTier}
           lockedTiers={lockedTiers}
           lockedReason={lockedReason}
+          interval={interval}
         />
 
         <p style={{ textAlign: 'center', fontSize: 12, color: 'var(--slate-500, #64748B)', marginTop: 28 }}>
@@ -170,6 +200,30 @@ export function SubscribeClient({
           <p style={{ fontSize: 13, color: 'var(--slate-700, #334155)', margin: '6px 0 0' }}>
             Start free. Upgrade when you want the full garage.
           </p>
+        </div>
+
+        {/* Billing interval toggle */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 22 }}>
+          <div style={{ display: 'inline-flex', background: '#fff', border: '1px solid var(--paper-line, #E3DFD4)', borderRadius: 999, padding: 3 }}>
+            {(['month', 'year'] as const).map((iv) => (
+              <button
+                key={iv}
+                onClick={() => setInterval(iv)}
+                style={{
+                  padding: '7px 16px',
+                  borderRadius: 999,
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: 13,
+                  fontWeight: 600,
+                  background: interval === iv ? 'var(--ink, #0B1220)' : 'transparent',
+                  color: interval === iv ? '#fff' : 'var(--slate-500, #64748B)',
+                }}
+              >
+                {iv === 'month' ? 'Monthly' : 'Annual — save up to 45%'}
+              </button>
+            ))}
+          </div>
         </div>
 
         {error && (
@@ -194,6 +248,7 @@ export function SubscribeClient({
           currentTierId={currentTier}
           lockedTiers={lockedTiers}
           lockedReason={lockedReason}
+          interval={interval}
         />
 
         <p style={{ textAlign: 'center', fontSize: 11, color: 'var(--slate-500, #64748B)', marginTop: 22 }}>

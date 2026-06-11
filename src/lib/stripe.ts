@@ -24,7 +24,7 @@ export const stripe = {
   },
 };
 
-import type { TierId } from './pricing/tiers';
+import type { TierId, BillingInterval } from './pricing/tiers';
 
 /**
  * Single-tier legacy env var. Kept as the 'plus' price fallback so the
@@ -45,7 +45,20 @@ export const SUBSCRIPTION_PRICE_ID = process.env.STRIPE_PRICE_ID;
  * cutover window. Returns null if no price is configured for that tier
  * (callers must 500 — checkout cannot proceed without a price).
  */
-export function getPriceIdForTier(tier: TierId): string | null {
+export function getPriceIdForTier(tier: TierId, interval: BillingInterval = 'month'): string | null {
+  if (interval === 'year') {
+    // Annual plans (created by scripts/create-annual-prices.js):
+    //   STRIPE_PRICE_ID_PLUS_ANNUAL — $99/yr
+    //   STRIPE_PRICE_ID_PRO_ANNUAL  — $199/yr
+    switch (tier) {
+      case 'plus':
+        return process.env.STRIPE_PRICE_ID_PLUS_ANNUAL || null;
+      case 'pro':
+        return process.env.STRIPE_PRICE_ID_PRO_ANNUAL || null;
+      case 'free':
+        return null;
+    }
+  }
   switch (tier) {
     case 'plus':
       return process.env.STRIPE_PRICE_ID_PLUS || process.env.STRIPE_PRICE_ID || null;

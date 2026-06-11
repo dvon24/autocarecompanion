@@ -1,7 +1,7 @@
 'use client';
 
 import { Icon } from '@/components/ui/Icon';
-import { AU7O_TIERS, type Tier, type TierCtaStyle, type TierId } from '@/lib/pricing/tiers';
+import { AU7O_TIERS, type Tier, type TierCtaStyle, type TierId, type BillingInterval } from '@/lib/pricing/tiers';
 
 /**
  * Desktop 3-column pricing grid. Pure presentation — clicking any tier
@@ -21,12 +21,14 @@ export function PricingTiers({
   currentTierId,
   lockedTiers,
   lockedReason,
+  interval = 'month',
 }: {
   onSelect: (tier: Tier) => void;
   loadingTierId?: string | null;
   currentTierId?: string | null;
   lockedTiers?: TierId[];
   lockedReason?: string;
+  interval?: BillingInterval;
 }) {
   const locked = new Set<TierId>(lockedTiers ?? []);
   return (
@@ -83,10 +85,15 @@ export function PricingTiers({
                     fontFamily: 'var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace)',
                   }}
                 >
-                  {tier.price}
+                  {interval === 'year' ? tier.priceAnnual : tier.price}
                 </span>
-                <span style={{ fontSize: 13, color: 'var(--slate-500)' }}>/mo</span>
+                <span style={{ fontSize: 13, color: 'var(--slate-500)' }}>{interval === 'year' ? '/yr' : '/mo'}</span>
               </div>
+              {interval === 'year' && tier.priceAnnualCents > 0 && (
+                <div style={{ fontSize: 11.5, color: 'var(--ok, #16A34A)', fontWeight: 600, marginTop: 4 }}>
+                  ${(tier.priceAnnualCents / 1200).toFixed(2)}/mo billed yearly — save {Math.round((1 - tier.priceAnnualCents / (tier.priceCents * 12)) * 100)}%
+                </div>
+              )}
               <button
                 onClick={() => onSelect(tier)}
                 disabled={isDisabled}

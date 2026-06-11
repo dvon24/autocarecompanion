@@ -3,7 +3,7 @@ import { headers } from 'next/headers';
 import { getStripe, getPriceIdForTier } from '@/lib/stripe';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
-import type { TierId } from '@/lib/pricing/tiers';
+import type { TierId, BillingInterval } from '@/lib/pricing/tiers';
 import { isAllowedSubscriptionRegion } from '@/lib/pricing/region';
 
 /**
@@ -24,6 +24,7 @@ export async function POST(request: Request) {
     const session = await auth();
     const body = await request.json().catch(() => ({} as Record<string, unknown>));
     const requestedTier = (body.tierId as TierId | undefined) ?? 'plus';
+    const interval: BillingInterval = body.interval === 'year' ? 'year' : 'month';
     const { successUrl, cancelUrl } = body as { successUrl?: string; cancelUrl?: string };
 
     if (requestedTier !== 'plus' && requestedTier !== 'pro') {
@@ -51,10 +52,10 @@ export async function POST(request: Request) {
       );
     }
 
-    const priceId = getPriceIdForTier(requestedTier);
+    const priceId = getPriceIdForTier(requestedTier, interval);
     if (!priceId) {
       return NextResponse.json(
-        { error: 'price_not_configured', message: `No Stripe price configured for tier "${requestedTier}". Set STRIPE_PRICE_ID_${requestedTier.toUpperCase()} in the environment.` },
+        { error: 'price_not_configured', message: `No Stripe price configured for tier "${requestedTier}" (${interval}ly). Set the matching STRIPE_PRICE_ID_* env var.` },
         { status: 500 }
       );
     }
@@ -89,6 +90,7 @@ export async function POST(request: Request) {
             metadata: {
               userId: session.user.id,
               tier: requestedTier,
+              interval,
             },
           },
         });
