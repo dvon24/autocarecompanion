@@ -3,9 +3,9 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Au7o | Our Mission & Methodology',
+  title: 'About Au7o | Built by a Veteran Who Loves Cars',
   description:
-    'Learn how Au7o researches and documents vehicle problems. Our team analyzes TSBs, NHTSA complaints, recall data, and owner reports to help DIY mechanics make informed repair decisions.',
+    'Au7o was built by a U.S. military veteran and lifelong car enthusiast. Learn why it exists and how we research vehicle problems using TSBs, NHTSA complaints, recall data, and owner reports.',
   alternates: {
     canonical: 'https://au7o.io/about',
   },
@@ -37,6 +37,30 @@ export default function AboutPage() {
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">About Au7o</h1>
 
         <section className="prose prose-gray max-w-none">
+          <h2 className="text-xl font-semibold text-gray-900 mt-2 mb-3">Why I Built Au7o</h2>
+          <p className="text-gray-600 leading-relaxed mb-4">
+            I&apos;m Devon — a U.S. military veteran and the person behind Au7o. The military drills one
+            habit into you that never leaves: take care of your equipment, and it takes care of you.
+            Inspect it before you need it, know its weak points, fix small problems before they become
+            big ones. When I got out, I realized most car owners never get taught any of that — not
+            because they don&apos;t care, but because the knowledge is scattered across decades of forum
+            threads, buried TSBs, and the memories of good mechanics.
+          </p>
+          <p className="text-gray-600 leading-relaxed mb-4">
+            I&apos;ve loved cars my whole life. My own garage currently centers around a 2019 Camaro ZL1 1LE,
+            and like every enthusiast I&apos;ve spent countless nights digging through forums trying to figure
+            out whether a noise was nothing or a known failure everyone but me had heard of. That gap —
+            between what the owner community collectively knows and what any single owner can actually
+            find — is the reason Au7o exists. Every documented issue, every photo diagnosis, every repair
+            guide on this site is me trying to hand you what the military handed me: enough knowledge of
+            your machine to maintain it with confidence.
+          </p>
+          <p className="text-gray-600 leading-relaxed mb-4">
+            Au7o is independent and self-funded. There&apos;s no manufacturer money here, no dealership
+            network behind it — just one veteran who thinks you deserve to know what your car&apos;s weak
+            spots are before they cost you.
+          </p>
+
           <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-3">Our Mission</h2>
           <p className="text-gray-600 leading-relaxed mb-4">
             Au7o exists to give every car owner the information they need to make smart repair decisions &mdash;

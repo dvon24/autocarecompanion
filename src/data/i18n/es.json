@@ -1,6 +1,6 @@
 {
   "locale": "es",
-  "languageName": "Spanish",
+  "languageName": "Español",
   "chrome": {
     "knownIssues": "Problemas conocidos",
     "diagnoseCta": "Diagnosticar mi auto",
@@ -7540,6 +7540,1273 @@
             "P0920"
           ],
           "reportCount": 678
+        }
+      ]
+    },
+    {
+      "slug": "renault-clio",
+      "make": "Renault",
+      "model": "Clio",
+      "h1": "Renault Clio: problemas conocidos y puntos débiles",
+      "intro": "El Renault Clio acumula varios puntos débiles bien documentados: las fallas de inyectores y de bomba de inyección del diésel 1.5 dCi (K9K) y la rotura prematura del tensor de la correa de distribución pueden derivar en reparaciones muy costosas o en la destrucción del motor, mientras que la caja automática EDC de doble embrague sufre tirones, fallas de la TCU y desgaste del embrague. A esto se suman la falla de la columna de dirección asistida eléctrica del Clio III —que reapareció en el Clio V con un llamado a revisión (recall) en 2020— y un recall DVSA por chavetas de válvula defectuosas en el 1.2 de gasolina. Completan el cuadro problemas frecuentes pero menos graves: bobinas de encendido, tarjeta llave no detectada, rodamientos ruidosos en la caja de cambios, fugas de refrigerante en los TCe y la válvula EGR obstruida del 1.5 dCi.",
+      "issues": [
+        {
+          "id": "renault-clio-ignition-coil-failure",
+          "title": "Falla de las bobinas de encendido",
+          "description": "Los motores de gasolina del Clio II y III sufren fallas prematuras del paquete de bobinas de encendido, lo que provoca fallos de encendido y funcionamiento irregular. Las bobinas se agrietan por los ciclos térmicos y la entrada de humedad, especialmente en los motores 1.2 y 1.4.",
+          "solution": "Sustituir la bobina defectuosa. Se recomienda reemplazar todas las bobinas al mismo tiempo y utilizar unidades OEM Sagem. Inspeccionar y reemplazar las bujías en la misma intervención.",
+          "symptoms": [
+            "Fallos de encendido del motor",
+            "Ralentí inestable",
+            "Titubeo al acelerar",
+            "Testigo check engine parpadeando"
+          ],
+          "severity": "medium",
+          "category": "engine",
+          "costLow": 80,
+          "costHigh": 250,
+          "dtcCodes": [
+            "P0300",
+            "P0301",
+            "P0302"
+          ],
+          "reportCount": 130
+        },
+        {
+          "id": "renault-clio-timing-belt-tensioner",
+          "title": "Falla del tensor de la correa de distribución",
+          "description": "El rodamiento del tensor de la correa de distribución en los motores de la serie K del Clio puede fallar antes del intervalo programado de sustitución de la correa, causando daños catastróficos en el motor. La bomba de agua, accionada por la correa de distribución, también falla de forma prematura.",
+          "solution": "Sustituir la correa de distribución, el tensor, la polea guía y la bomba de agua como kit completo cada 72,000 millas o 5 años, lo que ocurra primero. No omitir el reemplazo de la bomba de agua.",
+          "symptoms": [
+            "Chirrido proveniente de la tapa de distribución",
+            "Fuga de refrigerante por la bomba de agua",
+            "Desgaste visible de la correa de distribución",
+            "Ruido de golpeteo ligero (tictac)"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 300,
+          "costHigh": 600,
+          "dtcCodes": [],
+          "reportCount": 100
+        },
+        {
+          "id": "renault-clio-1-5-dci-fuel-injector-injection-pump-failure",
+          "title": "Falla de inyectores y bomba de inyección en el 1.5 dCi (K9K)",
+          "description": "El diésel 1.5 dCi K9K sufre fallas de inyectores bien documentadas, a menudo provocadas por el desgaste de la bomba de inyección o por combustible contaminado que envía partículas metálicas a través del sistema common-rail hacia los inyectores. Honest John documentó un Clio 1.5 dCi de 2007 cuya bomba de inyección se desintegró y envió esquirlas a los inyectores, con un presupuesto de reparación superior a £3,600 más IVA. Los propietarios reportan fallas secuenciales de inyectores, avisos de 'injection fault' en el tablero, pérdida de potencia y motor que no arranca; una vez contaminado el riel, normalmente es necesario sustituir en conjunto la bomba, el riel y los cuatro inyectores.",
+          "solution": "Sustituir el o los inyectores averiados por unidades codificadas a la centralita (ECU) y renovar el filtro de combustible; algunos inyectores pueden reacondicionarse profesionalmente. Si la bomba de alta presión ha soltado partículas metálicas, la solución aceptada es reemplazar la bomba, el riel y los cuatro inyectores y limpiar a fondo el sistema de combustible; de lo contrario, la contaminación provoca fallas repetidas.",
+          "symptoms": [
+            "Aviso de 'injection fault' (falla de inyección) en el tablero",
+            "Pérdida de potencia al acelerar",
+            "Arranque difícil o imposibilidad total de arrancar",
+            "Motor que tiembla o funciona de forma irregular en ralentí",
+            "Testigo de bujías de precalentamiento que permanece encendido"
+          ],
+          "severity": "high",
+          "category": "fuel",
+          "costLow": 350,
+          "costHigh": 4500,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-clio-keycard-not-detected-card-reader-failure",
+          "title": "Tarjeta llave no detectada / falla del lector de tarjeta",
+          "description": "Los Clio III y IV con tarjeta llave habitualmente se niegan a arrancar mostrando el mensaje 'key card not detected' (tarjeta no detectada). Las tarjetas flexibles tipo tarjeta de crédito se doblan, se aplastan al sentarse sobre ellas y se caen, hasta terminar por dañar el chip interno —cerrajeros automotrices del Reino Unido señalan que tanto las tarjetas de 3 como de 4 botones tienen una falla de chip conocida—, mientras que el lector de tarjeta del tablero y su anillo de antena también pueden fallar e imitar los síntomas de una tarjeta dañada. El reemplazo en concesionario de una sola tarjeta codificada cuesta aproximadamente €250-400, por lo que los propietarios con frecuencia cambian el componente equivocado sin un diagnóstico adecuado.",
+          "solution": "Colocar primero una pila CR2032 nueva y luego realizar una revisión de diagnóstico que confirme si el lector realmente detecta la inserción de la tarjeta antes de comprar cualquier pieza. Sustituir la tarjeta llave averiada (los cerrajeros automotrices son mucho más económicos que los concesionarios) o, si la falla está en el lector, reemplazar el módulo lector de tarjeta.",
+          "symptoms": [
+            "Mensaje 'key card not detected' (tarjeta no detectada) en el tablero",
+            "El auto no arranca aun con pila nueva en la tarjeta",
+            "Los botones de cierre remoto dejan de funcionar",
+            "Reconocimiento intermitente: la tarjeta funciona tras reinsertarla o moverla"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 120,
+          "costHigh": 450,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-clio-gearbox-bearing",
+          "title": "Falla de rodamientos de la caja de cambios",
+          "description": "Las cajas de cambios manuales JH3 y JR5 del Clio desarrollan un ruido en los rodamientos del diferencial que empeora de forma progresiva. Los rodamientos fallan por lubricación insuficiente en el extremo del diferencial de la carcasa.",
+          "solution": "Sustituir los rodamientos del diferencial e inspeccionar la corona y el piñón en busca de daños. Un cambio de aceite de la caja con GL-5 75W-80 cada 60,000 millas puede prolongar la vida útil de los rodamientos.",
+          "symptoms": [
+            "Zumbido con marcha engranada",
+            "Silbido proporcional a la velocidad",
+            "Ruido que empeora al desacelerar",
+            "Partículas metálicas en el aceite de la caja"
+          ],
+          "severity": "medium",
+          "category": "transmission",
+          "costLow": 400,
+          "costHigh": 1000,
+          "dtcCodes": [],
+          "reportCount": 85
+        },
+        {
+          "id": "renault-clio-tce-turbo-coolant-leak",
+          "title": "Fuga de refrigerante del turbo en los motores TCe",
+          "description": "Los motores turboalimentados TCe desarrollan fugas de refrigerante en las líneas de refrigerante del turbocompresor y en la carcasa del termostato. Los conectores plásticos del circuito de refrigerante se vuelven quebradizos con el paso del tiempo y la exposición al calor, provocando rezumes y, finalmente, la falla total.",
+          "solution": "Sustituir las líneas de refrigerante del turbo por conexiones metálicas actualizadas cuando estén disponibles. Reemplazar el conjunto de la carcasa del termostato. Realizar una prueba de presión del sistema de refrigeración tras la reparación para verificar que no existan más fugas.",
+          "symptoms": [
+            "Pérdida de refrigerante",
+            "Olor dulce proveniente del vano motor",
+            "Aviso de nivel bajo de refrigerante",
+            "Riesgo de sobrecalentamiento"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 200,
+          "costHigh": 600,
+          "dtcCodes": [
+            "P0116",
+            "P0217"
+          ],
+          "reportCount": 60
+        },
+        {
+          "id": "renault-clio-edc-dual-clutch-gearbox-judder-tcu-faults-clutch-failure",
+          "title": "Tirones, fallas de la TCU y rotura del embrague en la caja EDC de doble embrague",
+          "description": "Los Clio IV con la caja automática EDC de seis velocidades (la Getrag DCT250 de embrague seco, de la misma familia que las problemáticas DSG/PowerShift) sufren tirones a baja velocidad, cambios bruscos de 1ª a 2ª, golpes al engranar Drive o Reversa, avisos de sobrecalentamiento en el tráfico y mensajes de 'Check auto gearbox'. Las causas van desde fallas de software y del módulo de la TCU (unidad de control de la transmisión) —que Renault corrigió en algunos autos— hasta superficies de fricción del embrague seco desgastadas y actuadores lentos. Una falla documentada en un Clio RS 200 EDC recibió un presupuesto de unos $4,500 solo por el paquete de embragues.",
+          "solution": "El primer paso es una actualización de software en el concesionario con reaprendizaje del punto de contacto del embrague y reinicio de las adaptaciones, lo que resuelve muchas quejas de tirones; en otros casos la sustitución de la TCU se realizó como gesto comercial de Renault. Los paquetes de embrague desgastados o las fallas de la mecatrónica requieren reemplazar el paquete de embragues o reparar la unidad mecatrónica en un especialista en cajas de cambios.",
+          "symptoms": [
+            "Tirones o vibración al arrancar desde parado",
+            "Cambios bruscos a baja velocidad en ciudad",
+            "Mensaje de advertencia 'Check auto gearbox'",
+            "Golpeteo al engranar Drive o Reversa",
+            "Aviso de sobrecalentamiento de la caja en tráfico con paradas y arranques"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 250,
+          "costHigh": 4000,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-clio-electric-power-steering-column-failure",
+          "title": "Falla de la columna de dirección asistida eléctrica (EPS)",
+          "description": "La columna de dirección con asistencia eléctrica del Clio III (2005-2012) es un punto de falla notorio: especialistas en dirección del Reino Unido describen la falla total de la columna como 'una avería muy común', causada por malas conexiones a masa del motor EPS o por una falla interna del motor y la unidad de control de la columna (código de falla C1608). La asistencia se vuelve pesada de forma intermitente —a veces solo hacia un lado— antes de fallar por completo, dejando el auto conducible pero con una dirección muy dura. El problema reapareció en el Clio V: un llamado a revisión (recall) de la UE/DVSA de febrero de 2020 cubrió unidades fabricadas en 2019 por falla interna del control del motor de la columna de dirección, con pérdida de asistencia en marcha.",
+          "solution": "Limpiar y rehacer primero las conexiones a masa del motor EPS; si la columna en sí ha fallado, montar una columna EPS remanufacturada o reparada (alrededor de £800 más IVA y codificación en el caso de una unidad nueva; las remanufacturadas son más económicas). Los propietarios de Clio V deben verificar el estado del recall DVSA/UE y, si su unidad está afectada, hacer que Renault sustituya la columna sin costo.",
+          "symptoms": [
+            "Testigo de dirección que aparece de forma intermitente",
+            "La dirección se endurece de manera intermitente, a veces solo hacia un lado",
+            "Mensaje 'STOP' y falla de dirección con pérdida total de asistencia",
+            "Vibración en el volante al girar"
+          ],
+          "severity": "high",
+          "category": "steering",
+          "costLow": 700,
+          "costHigh": 1800,
+          "dtcCodes": [
+            "C1608"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-clio-1-5-dci-egr-valve-sticking-clogging",
+          "title": "Válvula EGR del 1.5 dCi atascada y obstruida",
+          "description": "La válvula EGR del 1.5 dCi se obstruye con hollín y carbonilla y se atasca abierta o cerrada, una falla tan común en este motor que los especialistas en Renault describen que los 1.5 dCi sufren 'en grande' con los problemas de EGR, y Delphi publicó una guía de reparación dedicada al tema. Una válvula atascada abierta provoca funcionamiento irregular, humo negro y titubeos; atascada cerrada, eleva la temperatura de los gases de escape, algo que los expertos del foro de Honest John vinculan con fallas consecuentes de los rodamientos del turbo. La falla suele registrar el código P2413 (rendimiento del sistema EGR) y reaparece si no se limpia también la carcasa de la EGR repleta de carbonilla.",
+          "solution": "Desmontar la válvula EGR y limpiar a fondo la carbonilla de la válvula y de su carcasa; si la válvula presenta desgaste físico o su punta se ha roto, sustituirla. Los códigos persistentes tras el reemplazo apuntan al cableado de la EGR, a las líneas de vacío o al sensor de posición, que deben revisarse antes de montar otra válvula.",
+          "symptoms": [
+            "Humo negro al acelerar",
+            "Testigo de gestión del motor encendido",
+            "Titubeos o marcha a tirones bajo carga",
+            "Pérdida de potencia / modo de emergencia (limp mode)",
+            "Ralentí irregular o inestable"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 100,
+          "costHigh": 600,
+          "dtcCodes": [
+            "P2413"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-clio-1-2-petrol-valve-cotter-defect-engine-destruction",
+          "title": "Defecto en las chavetas de válvula del 1.2 de gasolina — destrucción del motor (recall DVSA)",
+          "description": "Los motores 1.2 de gasolina del Clio III fabricados entre el 17 de septiembre y el 30 de noviembre de 2010 fueron objeto de un llamado a revisión (recall) (referencia DVSA R/2011/118) porque chavetas de válvula fuera de especificación podían permitir que una válvula cayera dentro del cilindro, destruyendo el motor. 3,308 autos del Reino Unido resultaron afectados. Un auto sin la corrección aplicada puede sufrir una falla catastrófica y repentina del motor sin previo aviso, lo que supone la pérdida total del motor.",
+          "solution": "La solución del recall es la sustitución gratuita de las chavetas de válvula en un concesionario Renault; los propietarios de Clio 1.2 de 2010-2011 deben verificar el estado del recall por VIN en el verificador de recalls de GOV.UK. Si la falla ya se produjo, el motor requiere reconstrucción o reemplazo.",
+          "symptoms": [
+            "Ruido metálico fuerte y repentino proveniente del motor",
+            "Calado inmediato del motor que no vuelve a arrancar",
+            "Pérdida total de compresión",
+            "Sin señales previas de advertencia"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 0,
+          "costHigh": 4500,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "citroen-c3",
+      "make": "Citroen",
+      "model": "C3",
+      "h1": "Citroen C3: problemas conocidos y puntos débiles",
+      "intro": "El Citroen C3 arrastra varios puntos débiles bien documentados: fallas de la dirección asistida eléctrica que endurecen el volante sin previo aviso, la delaminación de la correa de distribución húmeda en los motores PureTech 1.2 (EB2) y averías del actuador de embrague en las cajas automatizadas SensoDrive/EGS/ETG. A ello se suman la rotura de resortes delanteros que motivó el llamado a revisión (recall) R/2005/147, las fallas eléctricas erráticas de la unidad BSI y la entrada de agua por los drenajes obstruidos bajo el parabrisas. En el plano mecánico menor destacan el desgaste prematuro de las bieletas de la barra estabilizadora y la vibración del embrague al arrancar en los C3 I manuales.",
+      "issues": [
+        {
+          "id": "citroen-c3-power-steering-failure",
+          "title": "Falla de la dirección asistida eléctrica",
+          "description": "El C3 Mark I y II presenta fallas de la dirección asistida eléctrica causadas por el motor EPS montado en la columna y su centralita (ECU) de control. La dirección se endurece sin previo aviso, algo particularmente peligroso a baja velocidad durante las maniobras de estacionamiento.",
+          "solution": "Reemplazar el conjunto de motor EPS y unidad de control. Algunos talleres especializados pueden reacondicionar la centralita (ECU) resoldando las soldaduras agrietadas. Verifique si existe un llamado a revisión (recall) de Citroën para su VIN.",
+          "symptoms": [
+            "Dirección repentinamente dura",
+            "Testigo de advertencia de la dirección asistida",
+            "Pérdida intermitente de la asistencia",
+            "Ruido en la columna de dirección"
+          ],
+          "severity": "high",
+          "category": "steering",
+          "costLow": 300,
+          "costHigh": 900,
+          "dtcCodes": [
+            "C1404",
+            "C1414",
+            "P0606"
+          ],
+          "reportCount": 95
+        },
+        {
+          "id": "citroen-c3-puretech-timing-chain",
+          "title": "Delaminación de la correa de distribución húmeda del PureTech 1.2",
+          "description": "Los motores PureTech 1.2 (EB2) de PSA/Stellantis utilizan una correa de distribución bañada en aceite (correa \"húmeda\") en lugar de una cadena. La capa exterior de caucho de la correa puede delaminarse y desprender partículas hacia la toma de aceite, obstruyendo el colador y dejando al motor sin lubricación. Stellantis revisó el material de la correa y acortó el intervalo de servicio (ahora 60,000 mi o 6 años, lo que ocurra primero), pero las correas con la especificación anterior que siguen en servicio continúan en riesgo.",
+          "solution": "Reemplazar la cadena de distribución, el tensor y los piñones con piezas revisadas. Verificar la elegibilidad para la garantía extendida de PSA (10 años/200,000 km). Utilizar únicamente el aceite especificado por el fabricante.",
+          "symptoms": [
+            "Traqueteo en el arranque en frío",
+            "Testigo de avería del motor",
+            "Fallos de encendido (misfires)",
+            "Pérdida de potencia"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 800,
+          "costHigh": 2000,
+          "dtcCodes": [
+            "P0016",
+            "P0017",
+            "P0335"
+          ],
+          "reportCount": 140
+        },
+        {
+          "id": "citroen-c3-front-anti-roll-bar-drop-link-wear-suspension-knock",
+          "title": "Desgaste de las bieletas de la barra estabilizadora delantera y golpeteo en la suspensión",
+          "description": "Las bieletas de la barra estabilizadora delantera del C3 se desgastan prematuramente: las pequeñas rótulas de cada extremo desarrollan juego y producen un traqueteo o golpeteo persistente en el tren delantero al circular por caminos irregulares. Los foros de propietarios lo describen como una de las fallas más comunes del C3, y las bieletas desgastadas son un motivo habitual de observación o rechazo en la inspección técnica (MOT). El ruido es más una molestia que un riesgo inmediato para la seguridad, pero unas bieletas muy desgastadas degradan el comportamiento dinámico y, con el tiempo, pueden llegar a separarse.",
+          "solution": "Reemplazar las bieletas, idealmente en pares; son una pieza de desgaste económica y el trabajo es sencillo en cualquier taller independiente. En algunos casos el ruido se debe simplemente a una fijación de la bieleta floja que puede reapretarse al par especificado.",
+          "symptoms": [
+            "Traqueteo o golpeteo en el frente al pasar por baches pequeños",
+            "El ruido disminuye o desaparece al tomar curvas",
+            "Suena como si el escape golpeara contra los bajos del auto",
+            "Juego visible en la bieleta al hacer palanca con la mano",
+            "Observación o rechazo en la inspección técnica (MOT) por las bieletas de la barra estabilizadora"
+          ],
+          "severity": "low",
+          "category": "suspension",
+          "costLow": 80,
+          "costHigh": 250,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c3-water-ingress-through-blocked-scuttle-panel-drains",
+          "title": "Entrada de agua por los drenajes obstruidos de la bandeja bajo el parabrisas",
+          "description": "La bandeja situada bajo el parabrisas drena a través de pequeños tubos de goma que se obstruyen fácilmente con hojas y suciedad. Una vez bloqueados, el agua de lluvia se acumula en la bandeja, empapa el filtro de polen expuesto y se cuela por la toma de la calefacción hacia los pozos de pies delanteros, dejando las alfombras empapadas y el habitáculo empañado. Como esa agua puede alcanzar la BSI y el cableado bajo el piso, las filtraciones no atendidas suelen derivar en las célebres fallas eléctricas erráticas del C3.",
+          "solution": "Despejar los orificios de drenaje de la bandeja (de unas pocas pulgadas de profundidad, fáciles de destapar con un alambre rígido), recolocar correctamente la bandeja y reemplazar el filtro de polen empapado; comprobar el resultado vertiendo agua en la bandeja y verificando que salga por los pasos de rueda. Secar a fondo las alfombras y la insonorización para evitar corrosión y malos olores.",
+          "symptoms": [
+            "Alfombra mojada en el pozo de pies del conductor o del acompañante después de llover",
+            "El parabrisas se empaña persistentemente por dentro",
+            "Filtro de polen completamente empapado",
+            "Olor a humedad en el habitáculo",
+            "Fallas eléctricas tras lluvias intensas",
+            "Goteo de agua detrás del tablero o en la zona del pedal del embrague"
+          ],
+          "severity": "medium",
+          "category": "body",
+          "costLow": 20,
+          "costHigh": 200,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c3-clutch-judder-when-pulling-away-premature-clutch-wear",
+          "title": "Vibración del embrague al iniciar la marcha y desgaste prematuro del embrague (C3 I manual)",
+          "description": "Los C3 de primera generación con caja manual, sobre todo los de gasolina 1.1 y 1.4, presentan reportes generalizados de vibraciones violentas al iniciar la marcha desde parado, con todo el frente del auto sacudiéndose. El consenso de los foros lo atribuye a la combinación de un soporte trasero del motor deteriorado, un punto de agarre del embrague alto y superficies de fricción del embrague que se cristalizan o se desgastan inusualmente pronto: los propietarios reportan embragues casi agotados a kilometrajes muy bajos, lo que sugiere una debilidad de diseño más que un maltrato del conductor. Si no se atiende, acelera el desgaste del embrague y vuelve desagradables los arranques en pendiente.",
+          "solution": "Reemplazar primero el soporte trasero del motor, ya que esto por sí solo elimina la vibración en muchos autos. Si la vibración persiste o el embrague está desgastado o contaminado, instalar un kit de embrague completo y compatible (el C3 tiene dos diámetros de embrague disponibles, por lo que las piezas deben coincidir con el volante motor).",
+          "symptoms": [
+            "Vibración o sacudida violenta al iniciar la marcha desde parado",
+            "Empeora con el motor caliente o en arranques en pendiente",
+            "Punto de agarre del embrague alto",
+            "Vibración que se siente en todo el frente del auto",
+            "Embrague agotado a un kilometraje inusualmente bajo"
+          ],
+          "severity": "medium",
+          "category": "drivetrain",
+          "costLow": 550,
+          "costHigh": 900,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c3-bsi-electrical-gremlins",
+          "title": "Fallas eléctricas erráticas de la BSI (Body Systems Interface)",
+          "description": "La unidad BSI actúa como computadora central de carrocería y caja de fusibles de la guantera en el C3, gestionando luces, limpiaparabrisas, cierre centralizado, ventanillas e inmovilizador. La humedad en los conectores, las malas conexiones a masa, los picos de tensión (por ejemplo, arranques con cables o cambios de batería realizados sin el procedimiento correcto) o la falla interna de los circuitos de control de la BSI provocan fallas fantasma: todos los testigos encendidos a la vez, el cierre centralizado actuando por su cuenta, ventanillas o limpiaparabrisas muertos e incluso condiciones de no arranque. La experiencia de los foros muestra que muchas supuestas fallas de la BSI son en realidad pines de masa o de conector corroídos, por lo que el diagnóstico erróneo y el reemplazo innecesario de la BSI son habituales.",
+          "solution": "Realizar primero el procedimiento documentado de reinicio de la BSI: resuelve muchas fallas fantasma sin costo alguno. Si los problemas persisten, hacer que un electricista del automóvil revise los puntos de masa y los pines de los conectores (especialmente por entrada de agua) antes de reemplazar la BSI; una unidad de reemplazo debe clonarse o codificarse para el vehículo.",
+          "symptoms": [
+            "Múltiples testigos del tablero encendidos a la vez, incluso con la llave fuera",
+            "El cierre centralizado bloquea o desbloquea por sí solo",
+            "Limpiaparabrisas o luces que funcionan al azar o dejan de responder",
+            "Las ventanillas eléctricas dejan de funcionar",
+            "Fallas intermitentes de arranque o del inmovilizador",
+            "Descarga de la batería con el auto estacionado"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 100,
+          "costHigh": 800,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c3-front-coil-spring-breakage",
+          "title": "Rotura de los resortes helicoidales delanteros (llamado a revisión DVSA R/2005/147)",
+          "description": "Los resortes helicoidales de la suspensión delantera de los primeros C3 (fabricados entre noviembre de 2001 y noviembre de 2003) podían fracturarse, y el extremo roto del resorte podía descender y entrar en contacto con el neumático delantero, con riesgo de dañar el flanco o destrozar el neumático. Citroen emitió en octubre de 2005 el llamado a revisión británico R/2005/147, que abarcó 56,604 vehículos e instaló una copela protectora a cada lado de la suspensión delantera para retener un resorte roto. Aun después del llamado a revisión, la rotura de resortes delanteros siguió siendo un problema de desgaste reportado con frecuencia en los C3 de primera generación, anunciado típicamente por un fuerte estallido y un tren delantero que golpetea.",
+          "solution": "Verificar con un concesionario Citroen o en la base de datos de llamados a revisión de la DVSA que el llamado R/2005/147 (instalación de la copela de suspensión) se haya realizado en los autos fabricados entre 2001 y 2003. Los resortes rotos deben reemplazarse en pares por eje, inspeccionando al mismo tiempo los soportes superiores de los amortiguadores.",
+          "symptoms": [
+            "Estallido fuerte proveniente de la suspensión delantera",
+            "Golpeteo o ruidos secos al pasar por baches después del incidente",
+            "El auto queda más bajo en una esquina delantera",
+            "Ruido de roce o daño en la cara interna de un neumático delantero",
+            "Sección rota del resorte visible detrás de la rueda delantera"
+          ],
+          "severity": "high",
+          "category": "suspension",
+          "costLow": 150,
+          "costHigh": 450,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c3-sensodrive-egs-etg-automated-manual-gearbox-clutch-actuator",
+          "title": "Falla de la caja de cambios automatizada SensoDrive/EGS/ETG y del actuador de embrague",
+          "description": "Los C3 equipados con las cajas de cambios manuales automatizadas de Citroen —SensoDrive en el C3 I y luego EGS6/ETG6 en los posteriores e-HDi y PureTech— sufren fallas bien documentadas del actuador electrónico de embrague, del actuador de cambios y de la centralita (ECU) de la caja. Los motores de actuador desgastados y los errores de adaptación de la posición del embrague provocan cambios de marcha violentamente bruscos, negativa a engranar las marchas, mensajes de advertencia de la caja con la transmisión bloqueada en una marcha (modo de emergencia) y, en algunas fallas de la ECU, un auto que no arranca. Los reconstructores especializados describen las fallas del actuador y de la ECU como debilidades inherentes de diseño, y las reparaciones en un concesionario pueden costar de varios cientos a varios miles de libras.",
+          "solution": "Hacer leer los códigos de falla almacenados por un especialista en PSA: los actuadores de embrague o de cambios averiados pueden reconstruirse o reemplazarse y reaprenderse la autocalibración del embrague, mientras que las centralitas (ECU) de la caja pueden probarse y reconstruirse por especialistas a un costo muy inferior al del reemplazo en concesionario. Un embrague desgastado debe reemplazarse y el actuador recalibrarse al mismo tiempo.",
+          "symptoms": [
+            "Cambios de marcha bruscos o violentos",
+            "Testigo o mensaje de advertencia de la caja de cambios, bloqueada en una sola marcha (modo de emergencia)",
+            "Negativa a engranar marchas desde punto muerto",
+            "El motor no arranca (falla de la ECU de la caja)",
+            "Vibraciones al iniciar la marcha",
+            "Acople demorado de la marcha de avance o de la reversa"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 600,
+          "costHigh": 3000,
+          "dtcCodes": [
+            "P0750",
+            "P0744",
+            "P1702",
+            "P0560"
+          ],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "peugeot-208",
+      "make": "Peugeot",
+      "model": "208",
+      "h1": "Peugeot 208: problemas conocidos y puntos débiles",
+      "intro": "El Peugeot 208 concentra sus puntos débiles más graves en el motor PureTech 1.2 (EB2), cuya correa de distribución húmeda puede delaminarse y obstruir la toma de aceite, y en las versiones diésel, afectadas por obstrucciones prematuras del DPF y fallas crónicas del sistema AdBlue/SCR en los BlueHDi, con una cuenta regresiva que termina por impedir el arranque. El eléctrico e-208 suma fallas del cargador de a bordo y varios llamados a revisión por riesgo de incendio y pérdida repentina de tracción. A esto se añaden cambios bruscos en las cajas automáticas EAT6/EAT8, congelamientos del sistema i-Cockpit y golpeteos en la suspensión delantera de la primera generación.",
+      "issues": [
+        {
+          "id": "peugeot-208-infotainment-freeze",
+          "title": "Congelamiento y reinicio del sistema de infoentretenimiento",
+          "description": "El sistema de infoentretenimiento i-Cockpit del 208 de segunda generación experimenta congelamientos aleatorios y reinicios espontáneos. La pantalla táctil deja de responder y el sistema puede perder la conectividad Bluetooth y de navegación.",
+          "solution": "Actualizar el firmware del sistema de infoentretenimiento a la versión más reciente en el concesionario. Realizar un reinicio forzado manteniendo presionado el botón de encendido durante 10 segundos. Los casos persistentes pueden requerir la sustitución de la unidad NAC/SMEG.",
+          "symptoms": [
+            "La pantalla se congela",
+            "Reinicios aleatorios",
+            "Desconexiones de Bluetooth",
+            "El navegador no responde"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 800,
+          "dtcCodes": [],
+          "reportCount": 70
+        },
+        {
+          "id": "peugeot-208-dpf-issues-diesel",
+          "title": "Obstrucción del filtro de partículas diésel (DPF)",
+          "description": "Los 208 diésel sufren una obstrucción prematura del DPF, sobre todo en vehículos utilizados predominantemente en trayectos urbanos cortos. El DPF no puede completar su ciclo de regeneración durante los recorridos cortos, lo que provoca una acumulación progresiva de hollín.",
+          "solution": "Realizar una regeneración forzada del DPF con equipo de diagnóstico. En filtros gravemente obstruidos se requiere una limpieza profesional del DPF o su sustitución. Se recomienda circular con regularidad por autopista para permitir la regeneración pasiva.",
+          "symptoms": [
+            "Testigo de advertencia del DPF",
+            "Pérdida de potencia del motor",
+            "Aumento del consumo de combustible",
+            "Fuerte olor a diésel"
+          ],
+          "severity": "high",
+          "category": "emissions",
+          "costLow": 300,
+          "costHigh": 2000,
+          "dtcCodes": [
+            "P2463",
+            "P244A"
+          ],
+          "reportCount": 110
+        },
+        {
+          "id": "peugeot-208-puretech-timing-chain",
+          "title": "Delaminación de la correa de distribución húmeda del PureTech 1.2",
+          "description": "El motor PureTech 1.2 (EB2) de PSA/Stellantis del 208 utiliza una correa de distribución bañada en aceite (\"húmeda\") en lugar de una cadena. La capa exterior de goma de la correa puede delaminarse con el tiempo, desprendiendo partículas en el aceite que obstruyen el colador de la toma de aceite y dejan al motor sin lubricación. Stellantis revisó el material de la correa y acortó los intervalos de mantenimiento (ahora 60,000 millas o 6 años), pero las correas de la especificación anterior siguen en riesgo. Suele manifestarse primero como un traqueteo al arrancar, seguido de avisos de presión de aceite.",
+          "solution": "Sustituir la cadena de distribución, el tensor y los piñones por las piezas de la revisión actualizada. PSA extendió la garantía a 10 años/200,000km para este problema específico en las fechas de producción afectadas.",
+          "symptoms": [
+            "Traqueteo del motor al arrancar",
+            "Testigo de check engine encendido",
+            "Pérdida de potencia",
+            "Fallos de encendido del motor"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 800,
+          "costHigh": 2000,
+          "dtcCodes": [
+            "P0016",
+            "P0017",
+            "P0335"
+          ],
+          "reportCount": 150
+        },
+        {
+          "id": "peugeot-208-e-208-onboard-charger-failure-ac-charging-stops-working",
+          "title": "Falla del cargador de a bordo (OBC) del e-208 — la carga en CA deja de funcionar",
+          "description": "El cargador de a bordo trifásico de 11 kW fabricado por Mahle (CAOBC1) que equipa los e-208 producidos entre 2019 y 2023 es propenso a fallas prematuras, que suelen comenzar alrededor de las 10,000-12,000 millas. Las unidades defectuosas primero cargan de forma errática o caen de los 11 kW trifásicos a unos 7 kW, y luego dejan de cargar en CA por completo, quedando utilizable únicamente la carga rápida en CC. La unidad de reemplazo debe ser codificada al vehículo en el concesionario, y un OBC nuevo cuesta aproximadamente EUR 2,200-3,800 en un concesionario.",
+          "solution": "Stellantis extendió la garantía del OBC a 4 años (desde abril de 2021) y reemplaza las unidades Mahle averiadas por un cargador VMAX más confiable; fuera de garantía, la solución es un OBC nuevo instalado en el concesionario o una unidad remanufacturada más económica (p. ej., ACtronics). Los propietarios con carga intermitente deberían hacer revisar el OBC antes de que la falla sea total.",
+          "symptoms": [
+            "El auto se niega de forma intermitente a cargar en un wallbox de CA o con el cable de carga doméstico",
+            "La velocidad de carga cae de 11 kW a unos 7 kW en corriente trifásica",
+            "Mensaje de 'carga imposible' o de falla de carga en el tablero",
+            "La carga rápida en CC sigue funcionando mientras que la carga en CA no",
+            "Sesiones de carga impredecibles que se interrumpen tras unos minutos"
+          ],
+          "severity": "high",
+          "category": "electrical",
+          "costLow": 1200,
+          "costHigh": 4000,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-208-e-208-battery-recalls-fire-risk-sudden-loss-drive",
+          "title": "Llamados a revisión por la batería del e-208 — riesgo de incendio y pérdida repentina de tracción",
+          "description": "El e-208 eléctrico ha sido objeto de varios llamados a revisión (recalls) de seguridad en la UE por sus sistemas de baterías. Los autos fabricados entre el 15 de enero y el 20 de junio de 2020 fueron llamados a revisión (código Peugeot KQJ) porque un error de fabricación en la batería de 12V situada bajo el capó puede provocar un cortocircuito y causar un incendio durante la carga o la conducción. Por separado, un software defectuoso de la unidad de control de la batería en autos 2022-2023 (llamado MV4, alerta RAPEX 16/2025, 23,704 vehículos; más una campaña de 21,349 vehículos registrada ante la KBA) puede hacer que el modo 'Ready' no esté disponible y cortar la propulsión sin previo aviso en marcha; una falla en el cableado del compresor del aire acondicionado (llamado MF9, producciones de octubre de 2019 a noviembre de 2022) también podía apagar el tren motriz.",
+          "solution": "Todas las reparaciones son trabajos de llamado a revisión gratuitos en el concesionario: sustitución/inspección de la batería para la campaña de riesgo de incendio de 2020 y actualizaciones de software para la unidad de control de la batería y la lógica del compresor del aire acondicionado. Los propietarios deben verificar su VIN en el comprobador de llamados a revisión de Peugeot y confirmar que las campañas KQJ, MF9 y MV4 hayan sido completadas.",
+          "symptoms": [
+            "Pérdida repentina de aceleración o de potencia de tracción en movimiento",
+            "Modo 'Ready' no disponible tras el arranque",
+            "El tren motriz se apaga con un aviso de falla eléctrica",
+            "Olor a quemado o sobrecalentamiento alrededor de la batería de 12V bajo el capó (lote con riesgo de incendio)",
+            "Carta de llamado a revisión o campaña abierta asociada al VIN"
+          ],
+          "severity": "high",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-208-eat6-eat8-automatic-gearbox-jerky-shifting-low-speed-hesitat",
+          "title": "Cambios bruscos y vacilación a baja velocidad en las cajas automáticas EAT6/EAT8",
+          "description": "Las cajas automáticas con convertidor de par de origen Aisin EAT6 (208 I tardío) y EAT8 (208 II) generan quejas generalizadas de los propietarios por cambios bruscos o secos a baja velocidad, retardo y patinamiento al engranar la 2.ª, vacilación al acelerar entre 2,000 y 3,000 rpm, y tirones al desacelerar con poco acelerador en el tráfico. El comportamiento se origina en una calibración de cambios agresiva orientada al ahorro de combustible y en el software de gestión de par, agravado por el envejecimiento del fluido de la transmisión; en una minoría de casos interviene el desgaste del cuerpo de válvulas o de los paquetes de embragues. Se reporta de forma consistente en Peugeot Forums, el 208 Owners Club y entre especialistas británicos en cajas de cambios, y no se trata de quejas aisladas.",
+          "solution": "Una actualización del software de la TCU en el concesionario y un reinicio de las adaptaciones resuelven la mayoría de los tirones a baja velocidad, y un servicio de fluido de la transmisión ayuda en autos con mayor kilometraje, aunque Peugeot considere la caja sellada de por vida. Si el patinamiento o el deslizamiento persiste, un especialista en cajas de cambios debe inspeccionar el cuerpo de válvulas y los embragues.",
+          "symptoms": [
+            "Cambios de marcha bruscos o secos a baja velocidad, especialmente de 1.ª a 3.ª",
+            "Retardo o patinamiento al engranar la 2.ª",
+            "Aceleración vacilante entre 2,000 y 3,000 rpm",
+            "Tirones al desacelerar lentamente en el tráfico",
+            "Los cambios se suavizan una vez que la caja está caliente"
+          ],
+          "severity": "medium",
+          "category": "transmission",
+          "costLow": 150,
+          "costHigh": 2500,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-208-front-suspension-knocking-drop-links-anti-roll-bar-bushes-da",
+          "title": "Golpeteo en la suspensión delantera — bieletas, bujes de la barra estabilizadora y golpeteo de amortiguadores",
+          "description": "Los 208 de primera generación suelen desarrollar golpeteos, ruidos secos o traqueteos en la suspensión delantera al pasar por baches y superficies irregulares. Los culpables habituales son las bieletas de la barra estabilizadora con rótulas desgastadas y los bujes deteriorados de la barra, pero el 'golpeteo de amortiguador' procedente de los puntales delanteros y las copelas superiores desgastadas también es un rasgo bien conocido de la suspensión delantera compartida por el 208/2008/308 (T9), razón por la cual algunos propietarios sustituyen las bieletas y siguen escuchando el ruido. El ruido es principalmente una molestia, pero unas bieletas y bujes muy desgastados degradan el comportamiento dinámico y terminarán por reprobar la inspección técnica (MOT).",
+          "solution": "Inspeccionar y sustituir primero las bieletas y los bujes desgastados de la barra estabilizadora — un trabajo económico en cualquier taller independiente. Si el golpeteo persiste, revisar las copelas de los puntales y los propios amortiguadores, ya que el golpeteo de amortiguador del 208 suele requerir amortiguadores delanteros nuevos.",
+          "symptoms": [
+            "Golpeteo o ruidos secos en la parte delantera al pasar por baches y hoyos",
+            "Traqueteo de un lado de la suspensión delantera en caminos en mal estado",
+            "Crujidos o chirridos cuando la carrocería se balancea o al pasar por reductores de velocidad",
+            "El ruido persiste tras haber sustituido las bieletas (golpeteo de amortiguador/copela)",
+            "Sensación imprecisa o con vibraciones en la dirección sobre superficies deterioradas"
+          ],
+          "severity": "low",
+          "category": "suspension",
+          "costLow": 80,
+          "costHigh": 600,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-208-adblue-scr-system-failure-bluehdi-diesels-urea-fault-start-p",
+          "title": "Falla del sistema AdBlue/SCR en los diésel BlueHDi — avería de urea con cuenta regresiva que impide el arranque",
+          "description": "Los 208 diésel BlueHDi sufren fallas crónicas del sistema de AdBlue (SCR): la bomba de inyección de urea y su electrónica de control están integradas en el depósito de AdBlue, y el agarrotamiento de la bomba, la cristalización de la urea, los sensores de nivel defectuosos y (en autos anteriores a 2018) un tapón de llenado sin ventilación que genera vacío en el depósito acaban con el suministro de urea. La centralita (ECU) registra entonces fallas como P20E8 (presión del reductor demasiado baja) o P20EE, enciende el testigo UREA/de motor e inicia una cuenta regresiva (normalmente 1,100 km) tras la cual se impide el arranque del motor. La solución oficial de Peugeot es un conjunto de depósito de AdBlue completamente nuevo con codificación de la ECU, cotizado en torno a GBP 1,100-1,300 en concesionarios del Reino Unido.",
+          "solution": "Diagnosticar qué componente del SCR falló — primero deben revisarse los sensores de NOx y el inyector de AdBlue, pero una bomba interna del depósito muerta implica sustituir el conjunto del depósito de AdBlue, que debe codificarse y cebarse en el vehículo. Los especialistas independientes y los kits de reparación del mercado de repuestos pueden costar bastante menos que el concesionario; no ignore la cuenta regresiva, porque el auto se negará a arrancar al llegar a cero.",
+          "symptoms": [
+            "Testigo de UREA o AdBlue con el mensaje 'Falla de motor: reparación necesaria'",
+            "Cuenta regresiva en km hasta el bloqueo del arranque mostrada en el tablero",
+            "El nivel de AdBlue marca vacío o un valor incorrecto a pesar de haberse rellenado",
+            "El motor se niega a arrancar cuando la cuenta regresiva llega a cero",
+            "Fallas repetidas del sensor de NOx o del sistema anticontaminación que reaparecen tras la sustitución"
+          ],
+          "severity": "high",
+          "category": "emissions",
+          "costLow": 350,
+          "costHigh": 1800,
+          "dtcCodes": [
+            "P20E8",
+            "P20EE"
+          ],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "chevrolet-onix",
+      "make": "Chevrolet",
+      "model": "Onix",
+      "h1": "Chevrolet Onix: problemas conocidos y puntos débiles",
+      "intro": "El Chevrolet Onix acumula puntos débiles bien documentados en Brasil, y el más grave es la degradación prematura de la correa de distribución bañada en aceite del 1.0 turbo CSS Prime, con roturas entre 50.000 y 100.000 km que pueden destruir el motor pese al intervalo oficial de 240.000 km. Se suman tres llamados a revisión por riesgo de incendio: la calibración defectuosa de la centralita (ECM) del 1.0 turbo, la entrada de agua en la caja de fusibles que activa el motor de arranque por sí solo y la fuga de combustible por la tuerca de la bomba en los 2013-2014. Completan el cuadro la válvula de expansión del aire acondicionado, que deja de enfriar a los pocos minutos de marcha, y los congelamientos y pantallas en negro del sistema multimedia MyLink.",
+      "issues": [
+        {
+          "id": "chevrolet-onix-air-conditioning-stops-cooling-expansion-valve-jamming",
+          "title": "El aire acondicionado deja de enfriar — atascamiento de la válvula de expansión",
+          "description": "Una falla crónica y ampliamente reportada del aire acondicionado afecta a los Onix y Onix Plus de segunda generación (2020 en adelante), y quejas similares del A/C también son comunes en la primera generación. El sistema enfría con normalidad durante los primeros minutos tras el arranque y luego comienza a soplar aire caliente aunque el compresor sigue acoplado y la presión del refrigerante se lee normal; el enfriamiento vuelve temporalmente después de apagar y volver a encender el auto. Especialistas brasileños en aire acondicionado rastrearon la falla recurrente hasta el atascamiento de la válvula de expansión, que reduce drásticamente la succión en el circuito. Como las presiones en los manómetros parecen normales, los talleres con frecuencia diagnostican mal el problema y reemplazan el compresor (alrededor de R$2.000) sin solucionar nada. El diseño de la válvula original se considera defectuoso, por lo que el reemplazo con la misma pieza OEM puede volver a fallar; algunos especialistas instalan una válvula alternativa por durabilidad. Las quejas sobre el A/C del Onix que sopla aire caliente y el 'olor a vinagre' de las salidas de ventilación figuran entre las entradas más comunes del modelo en Reclame Aqui y en la base de datos de fallas de Opinautos.",
+          "solution": "Reemplace la válvula de expansión del A/C (pieza de aproximadamente R$300) en lugar del compresor; confirme el diagnóstico verificando el comportamiento de succión del evaporador, no solo las presiones estáticas. Sustituya el filtro de cabina y sanitice el evaporador si hay olor agrio. En garantía de fábrica, los concesionarios Chevrolet reemplazan la válvula sin costo; fuera de garantía, algunos especialistas instalan una válvula alternativa más duradera para evitar la reincidencia.",
+          "symptoms": [
+            "El A/C enfría al principio y luego sopla aire caliente a los pocos minutos",
+            "El compresor permanece acoplado pero no sale aire frío",
+            "El enfriamiento vuelve temporalmente tras apagar y volver a encender el auto",
+            "Olor agrio o a vinagre en las salidas de ventilación",
+            "Flujo de aire débil en las salidas del tablero en clima caluroso"
+          ],
+          "severity": "medium",
+          "category": "hvac",
+          "costLow": 60,
+          "costHigh": 450,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "chevrolet-onix-fuel-pump-retaining-nut-leak-fire-risk-recall",
+          "title": "Fuga por la tuerca de fijación de la bomba de combustible — llamado a revisión por riesgo de incendio (2013-2014)",
+          "description": "En diciembre de 2014, GM do Brasil llamó a revisión 400.940 vehículos —Chevrolet Onix y Prisma de los años-modelo 2013-2014, además de Cobalt 2012-2014 y Spin 2013-2014— porque la tuerca plástica de fijación que asegura el módulo de la bomba de combustible a la parte superior del tanque podía no sellar correctamente. En situaciones atípicas, como un vuelco, el defecto podía permitir una fuga continua de combustible que, en contacto con una fuente de ignición externa, podía provocar un incendio con riesgo de lesiones para los ocupantes y terceros. El llamado a revisión fue difundido por el sistema de alertas de recalls de protección al consumidor del Ministerio de Justicia de Brasil. GM declaró que no tenía incendios confirmados vinculados al defecto al momento de la campaña. La reparación gratuita (reemplazo de la tuerca de fijación o, de ser necesario, del tanque de combustible completo) toma alrededor de una hora.",
+          "solution": "Verifique que el llamado a revisión se haya completado en cualquier Onix/Prisma 2013-2014 usando el número de chasis en el portal de recalls de Chevrolet Brasil o en un concesionario; los llamados a revisión en Brasil no tienen fecha de vencimiento y la reparación es gratuita. El servicio reemplaza la tuerca de fijación de la bomba de combustible (o el tanque, si las superficies de sellado están dañadas). Cualquier olor persistente a combustible, especialmente después de llenar el tanque, debe inspeccionarse de inmediato.",
+          "symptoms": [
+            "Olor a gasolina o etanol cerca de la parte trasera del auto",
+            "Olor a combustible más fuerte después de llenar el tanque por completo",
+            "Zonas húmedas o manchas de combustible en la parte superior del área del tanque",
+            "Fuga de combustible visible bajo la parte trasera del vehículo"
+          ],
+          "severity": "high",
+          "category": "fuel",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "chevrolet-onix-mylink-infotainment-freezing-black-screen-wireless-android-a",
+          "title": "Congelamiento del sistema MyLink, pantalla en negro y desconexiones de Android Auto inalámbrico",
+          "description": "Propietarios de Onix y Onix Plus 2020-2023 reportan fallas recurrentes del sistema de infoentretenimiento MyLink: la pantalla se congela en el logo de arranque o con una imagen estática, parpadea o se pone en negro, la pantalla táctil y los botones físicos dejan de responder y la unidad se reinicia de forma aleatoria. Un defecto de software distinto pero relacionado hace que Android Auto inalámbrico se desconecte de manera intermitente con un mensaje de 'interferencia de Wi-Fi'. Como la cámara de reversa se muestra a través de la unidad principal, una pantalla congelada o en negro también deja sin imagen a la cámara. Las quejas se concentran en Reclame Aqui y en el foro de propietarios Clube do Onix para vehículos de los años-modelo 2020-2023, y la solución de GM es una actualización de software aplicada mediante una memoria USB oficial en los concesionarios; algunos propietarios fuera de garantía reportan que les cobraron la actualización, lo que a su vez generó quejas.",
+          "solution": "Haga que el concesionario aplique la actualización de firmware más reciente del MyLink (procedimiento oficial de GM con memoria USB), gratuita en garantía. Una solución temporal para una pantalla congelada es reiniciar el sistema (mantener presionado el botón de encendido, o bloquear y desbloquear el auto y dejar que entre en reposo). Para las desconexiones de Android Auto inalámbrico, actualizar el firmware de la unidad principal y usar una conexión con cable USB de calidad evita el error de interferencia de Wi-Fi. Las fallas persistentes a nivel de hardware requieren el reemplazo de la unidad principal en garantía.",
+          "symptoms": [
+            "Pantalla congelada en el logo de arranque del MyLink",
+            "La pantalla táctil y los botones dejan de responder",
+            "La pantalla parpadea, titila o se pone en negro mientras se conduce",
+            "Android Auto inalámbrico se desconecta con un mensaje de interferencia de Wi-Fi",
+            "Imagen de la cámara de reversa no disponible cuando la pantalla se congela",
+            "El sistema se reinicia solo"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 150,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "chevrolet-onix-underhood-fuse-box-water-ingress-unintended-starter-activati",
+          "title": "Entrada de agua en la caja de fusibles del vano motor — activación involuntaria del motor de arranque y llamado a revisión por riesgo de incendio (2017-2019)",
+          "description": "GM do Brasil llamó a revisión vehículos Onix y Prisma (junto con Cobalt y Spin) producidos entre 2016 y 2018 —años-modelo 2017 a 2019—, además de vehículos que recibieron cajas de fusibles de repuesto genuinas GM en 2018, porque los terminales de los relés de la caja de fusibles del vano motor podían instalarse sin la protección aislante adecuada. El agua que entra y se acumula en los terminales de los relés en el compartimento del motor puede causar un cortocircuito que provoca la activación involuntaria y continua del motor de arranque. El arranque constantemente acoplado puede sobrecalentarse hasta el punto de incendiarse y, en un auto con caja de cambios manual estacionado con una marcha engranada, el giro del arranque puede mover el vehículo por sí solo. La solución es un servicio gratuito de 20 minutos en el que el concesionario aplica sellador aislante a los terminales de los relés de la caja de fusibles.",
+          "solution": "Verifique la realización del llamado a revisión por número de chasis en el portal de recalls de Chevrolet Brasil o por teléfono (0800 702 4200); el servicio de aislamiento es gratuito y toma unos 20 minutos. Las señales de alerta —el motor de arranque girando por sí solo, chasquidos desde la caja de fusibles del vano motor después de lluvia o de lavar el motor, u olor a quemado— exigen estacionar el auto lejos de estructuras, desconectar la batería y realizar el servicio en el concesionario de inmediato. Nunca deje un auto de caja manual sin reparar estacionado con una marcha engranada.",
+          "symptoms": [
+            "El motor de arranque gira por sí solo con la llave fuera",
+            "Chasquidos desde la caja de fusibles del vano motor después de lluvia o lavado",
+            "Olor a quemado proveniente del vano motor",
+            "El auto da tirones o se desplaza estando estacionado con una marcha engranada",
+            "Fallas intermitentes de arranque o eléctricas en clima húmedo"
+          ],
+          "severity": "high",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "chevrolet-onix-engine-fire-risk-from-ecm-calibration-defect-1-0-turbo",
+          "title": "Riesgo de incendio del motor por defecto de calibración de la centralita (ECM) — 1.0 Turbo (llamado a revisión en Brasil)",
+          "description": "Poco después del lanzamiento de la segunda generación del Onix en Brasil, GM llamó a revisión 19.055 sedanes Onix Plus del año-modelo 2020 (producidos del 29 de abril al 6 de noviembre de 2019, chasis LG100091-LG139164) porque una calibración defectuosa del módulo de control del motor en el nuevo 1.0 turbo de tres cilindros podía causar presión y temperatura anormales en la cámara de combustión bajo ciertas condiciones de presión atmosférica, humedad y composición del combustible. La preignición resultante podía romper pistones, bielas o incluso el bloque del motor, permitiendo que aceite caliente se rociara sobre componentes del escape y se inflamara. Se reportó al menos un incendio de un vehículo en el Nordeste de Brasil y otro ocurrió en la fábrica de Gravataí, y los videos de unidades en llamas presionaron a Procon-SP a notificar a GM antes de que el llamado a revisión se formalizara en noviembre de 2019. Algunos propietarios reportaron posteriormente una reducción de potencia tras la recalibración.",
+          "solution": "Recalibración gratuita del software de la centralita (ECM) en cualquier concesionario Chevrolet de Brasil (el servicio del llamado a revisión comenzó el 18 de noviembre de 2019; GM ofreció autos de cortesía durante las reparaciones). Verifique la realización del recall en cualquier Onix Plus/Onix 1.0 turbo MY2020 usado mediante el portal de recalls de Chevrolet Brasil con el número de chasis. Si el motor ya sufrió daños en pistones o en el bloque, GM reemplazó los componentes del motor bajo la campaña/garantía.",
+          "symptoms": [
+            "Pérdida repentina de potencia en marcha",
+            "Golpeteo fuerte o ruido metálico proveniente del motor",
+            "Fuga de aceite bajo el vano motor",
+            "Humo o llamas desde el compartimento del motor",
+            "Testigo de check engine después de una aceleración fuerte"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "chevrolet-onix-premature-failure-oil-bathed-timing-belt",
+          "title": "Falla prematura de la correa de distribución bañada en aceite (1.0 Turbo CSS Prime)",
+          "description": "El Onix y el Onix Plus 1.0 turbo de segunda generación (tres cilindros CSS Prime, introducido en 2019 para el año-modelo 2020) usan una correa de distribución que trabaja sumergida en el aceite del motor. GM especifica la correa para 240.000 km o 15 años, pero propietarios, mecánicos y la prensa automotriz de Brasil han documentado una degradación prematura generalizada y roturas de correa entre aproximadamente 50.000 y 100.000 km, a veces por debajo de los 50.000 km. El aceite que no cumple la especificación Dexos requerida (0W-20 para los atmosféricos, 5W-30 para el turbo), los intervalos de cambio de aceite extendidos, los lodos o el combustible contaminado atacan el caucho de la correa, que se reseca, pierde dientes y se desintegra; los residuos también pueden obstruir el captador de aceite. Cuando la correa se rompe en este motor de tipo interferencia, los pistones golpean las válvulas y la reparación puede implicar la reconstrucción completa de la culata o el reemplazo del motor, superando fácilmente los R$10.000. El problema se volvió lo bastante serio como para que GM South America anunciara una acción de servicio para inspeccionar y reemplazar las correas en las unidades afectadas de Onix, Onix Plus, Tracker y Montana, mientras que muchos reclamos de garantía fueron inicialmente rechazados por la documentación de la especificación del aceite.",
+          "solution": "Use únicamente aceite certificado Dexos de la especificación exacta (5W-30 Dexos 1 para el turbo) y cámbielo estrictamente según el programa, con intervalos reales más cortos. Mecánicos independientes brasileños recomiendan el reemplazo preventivo de la correa alrededor de los 60.000-70.000 km en lugar del intervalo de manual de 240.000 km. Haga inspeccionar la correa en busca de hinchazón, grietas o pérdida de dientes en cada cambio de aceite; si se encuentran residuos en el aceite, reemplace la correa y limpie el captador de aceite. Los vehículos con mantenimiento documentado en concesionario pueden acogerse a la campaña de verificación/reemplazo de GM o a la cobertura de garantía.",
+          "symptoms": [
+            "Tictac o traqueteo proveniente de la zona de la tapa de distribución",
+            "Residuos de caucho o lodo oscuro en el aceite del motor",
+            "Testigo de check engine con fallas de correlación árbol de levas/cigüeñal",
+            "El motor gira pero no arranca tras la rotura de la correa",
+            "Parada repentina del motor con pérdida de la asistencia de dirección"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 300,
+          "costHigh": 2500,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "honda-city",
+      "make": "Honda",
+      "model": "City",
+      "h1": "Honda City: problemas conocidos y puntos débiles",
+      "intro": "El Honda City acumula un historial de fallas bien documentadas en Brasil e India: la caja de cambios CVT presenta tirones y averías prematuras desde los 30.000 km, y la generación 2022+ con motor 1.5 de inyección directa sufre una falla de la bomba de combustible de alta presión (DTC P0087) con pérdida súbita de potencia, reconocida por boletines técnicos de Honda Brasil. A esto se suman el portaescobillas del motor de arranque que falla hacia los 50.000 km en unidades 2015-2018, ruido y holgura en la caja de dirección, óxido prematuro en el capó y el llamado a revisión (recall) global por los infladores de airbag Takata en unidades 2010-2014.",
+      "issues": [
+        {
+          "id": "honda-city-starter-motor-brush-holder-failure",
+          "title": "Falla del portaescobillas del motor de arranque (no arranca de forma intermitente)",
+          "description": "Las unidades del Honda City (y de su modelo hermano, el Fit) de aproximadamente 2015-2018 presentan una falla crónica del portaescobillas (porta-escova) del motor de arranque. El portaescobillas se desgasta de forma prematura y provoca fallos de arranque intermitentes: se gira la llave y no sucede nada, o el motor solo gira tras varios intentos, algo que suele aparecer alrededor de los 50.000 km — a menudo justo después de vencer la garantía de fábrica. El problema está tan extendido en Brasil que los proveedores del mercado de repuestos venden kits de reparación del portaescobillas específicos para el motor de arranque del City/Fit/Civic/CR-V 2015+, y los medios brasileños Vrum y Mobiauto lo incluyen entre los defectos crónicos característicos del modelo, con quejas recurrentes en Reclame Aqui e hilos del foro City Club que describen el mismo patrón de arranque intermitente.",
+          "solution": "Sustituir el portaescobillas del motor de arranque — los kits de reparación cuestan aproximadamente R$ 120-450 (USD 25-90) más una mano de obra moderada de electricista automotriz, mucho más barato que el motor de arranque completo, que los concesionarios cotizan en torno a R$ 1.400 (~USD 270). Como la falla es intermitente al principio, conviene atenderla ante el primer indicio de arranque demorado en lugar de esperar a que el auto deje de arrancar por completo. Algunos propietarios han obtenido asistencia de cortesía (goodwill) de Honda Brasil en casos de bajo kilometraje.",
+          "symptoms": [
+            "Se gira la llave y no sucede nada: el motor no gira",
+            "El auto arranca solo después de varios intentos",
+            "Arranque lento o demorado de forma intermitente que empeora con el tiempo",
+            "El problema aparece alrededor de los 50.000 km, a menudo recién vencida la garantía"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 50,
+          "costHigh": 300,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "honda-city-cvt-judder-premature-transmission-failure",
+          "title": "Tirones del CVT y falla prematura de la transmisión",
+          "description": "La caja CVT que equipa al City de sexta generación (Brasil, 2015+) y al City de cuarta generación del mercado indio (2014+) es una fuente crónica de quejas. Los propietarios reportan tirones o estremecimiento (judder) al salir desde detenido, patinamiento y subidas de revoluciones al acelerar, zumbidos y, en los peores casos, pérdida total de tracción. Propietarios brasileños en Reclame Aqui y la prensa automotriz (Vrum, Mobiauto) documentan fallas desde aproximadamente los 30.000 km en adelante, y un boletín interno de concesionarios habría reconocido problemas crónicos de rodamientos del CVT en unidades 2015; un City EXL 2019 sufrió una falla catastrófica apenas superados los 100.000 km. En Team-BHP, un City 1.5 CVT 2016 perdió por completo la tracción a los 56.500 km y el taller oficial cotizó aproximadamente Rs 4 lakh (~USD 4.800) por una caja de cambios de reemplazo. En Brasil son comunes los presupuestos de reparación de concesionario por encima de R$ 10.000-20.000. Los tirones en sí se atribuyen ampliamente a la contaminación del embrague de arranque (starter clutch) y a la degradación del fluido del CVT; Honda ha extendido históricamente la garantía del CVT en otros mercados por el mismo fenómeno de tirones.",
+          "solution": "Si los tirones aparecen temprano, un cambio completo del fluido del CVT (Honda HCF-2/CVT-F, incluido el filtro cuando lo lleva) siguiendo el protocolo de purga de Honda suele resolver o retrasar el síntoma — un simple drenado y rellenado con frecuencia no basta. Los tirones persistentes exigen sustituir el embrague de arranque; las fallas internas confirmadas (daños en correa/poleas/rodamientos) requieren un CVT reconstruido o nuevo. Conviene cambiar el fluido del CVT cada 40.000 km o menos (con mayor frecuencia que el plan oficial), evitar el uso prolongado y exigente en tráfico de arranques y paradas mientras haya tirones, y reclamar a Honda una participación de cortesía (goodwill) en fallas con bajo kilometraje, algo que se ha concedido en casos documentados.",
+          "symptoms": [
+            "Estremecimiento o tirones al acelerar desde detenido",
+            "Subida de revoluciones o sensación de patinamiento al acelerar",
+            "Zumbido o rechinido proveniente de la transmisión",
+            "Acoples bruscos o sacudidas a baja velocidad",
+            "Pérdida repentina de tracción con el auto en movimiento"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 600,
+          "costHigh": 4800,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "honda-city-high-pressure-fuel-pump-failure-sudden-power-loss-p0087",
+          "title": "Falla de la bomba de combustible de alta presión — pérdida súbita de potencia con P0087 (1.5 DI)",
+          "description": "El City de séptima generación (GN, Brasil 2022+) con el motor 1.5 i-VTEC de inyección directa sufre un defecto documentado de la bomba de combustible de alta presión. Los propietarios reportan pérdida súbita de potencia al acelerar, titubeos al intentar adelantar, el aviso de 'problema en el sistema de emisiones' en el tablero e incluso el apagado del motor a velocidad de carretera. Honda Brasil reconoció la falla en los boletines técnicos (technical tips) 010/22 (emitido el 18 de julio de 2022, con referencia al código DTC P0087 — presión del riel de combustible demasiado baja) y 004/23, atribuyéndola a la bomba de alta presión que alimenta el sistema de inyección directa. El caso fue cubierto por la columna de defensa del consumidor de Quatro Rodas (Autodefesa), AUTOO y Auto+TV, con múltiples propietarios reportando fallas repetidas tras pasar por el concesionario; se han documentado presupuestos fuera de garantía cercanos a R$ 9.000-10.000 (incluyendo bujías, inyectores y, en algunos casos, el convertidor catalítico). Las quejas se concentran en unidades fabricadas en 2022-2023 y, según los reportes, disminuyeron tras la actualización de 2024.",
+          "solution": "Solicitar al concesionario el diagnóstico según los boletines técnicos de Honda 010/22 / 004/23: leer los códigos de falla (P0087 y los códigos de fallos de encendido asociados), medir la presión del riel de combustible y sustituir la bomba de combustible de alta presión en garantía. Si hubo fallos de encendido, puede ser necesario inspeccionar o reemplazar también las bujías y los inyectores, y la reparación puede ir acompañada de una actualización de software. Las reparaciones en garantía son gratuitas; los propietarios con fallas repetidas deben escalar el caso a la atención al cliente de Honda Brasil citando los boletines técnicos. Quienes estén fuera de garantía deben solicitar una reparación de cortesía (goodwill) dado que existen boletines de fábrica documentados.",
+          "symptoms": [
+            "Pérdida súbita de potencia al acelerar",
+            "Aviso de 'problema en el sistema de emisiones' en el cuadro de instrumentos",
+            "Titubeo del motor o intentos de adelantamiento frustrados",
+            "Apagado del motor, incluso a velocidad de carretera",
+            "Testigo de check engine con funcionamiento similar al de fallos de encendido"
+          ],
+          "severity": "high",
+          "category": "fuel",
+          "costLow": 500,
+          "costHigh": 2000,
+          "dtcCodes": [
+            "P0087"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "honda-city-premature-hood-rust-paint-blistering",
+          "title": "Óxido prematuro en el capó y ampollas en la pintura",
+          "description": "Las unidades del City (y del Fit) fabricadas en Brasil a partir de aproximadamente 2015 muestran puntos de óxido prematuro y ampollas en la pintura, de forma más característica en el borde delantero del capó, a menudo con el auto todavía casi nuevo. Vrum y Mobiauto incluyen el óxido del capó entre las quejas crónicas del modelo, señalando que suele aflorar justo cuando comienza la discusión sobre la garantía anticorrosión, y blogs dedicados a quejas de propietarios documentan unidades del City con óxido no solo en el capó sino también en las bisagras de las puertas y en el panel metálico detrás del respaldo del asiento trasero — zonas que, según admitieron los propios concesionarios, no reciben tratamiento antióxido. En el clima costero cálido y húmedo de Brasil, las ampollas avanzan con rapidez. En muchos casos documentados de Fit/City, Honda analizó el vehículo y autorizó la sustitución completa del capó; a otros propietarios se les negó la cobertura una vez vencida la garantía.",
+          "solution": "Inspeccionar con regularidad el borde delantero del capó, las bisagras de las puertas y el panel de apoyo del asiento trasero, y fotografiar de inmediato cualquier burbuja en la pintura. Dentro del período de la garantía anticorrosión, presentar el reclamo en un concesionario Honda — existen precedentes documentados de sustitución gratuita del capó tras el análisis de fábrica. Fuera de garantía, la reparación exige lijar hasta el metal desnudo, tratar el óxido y repintar (o montar un capó de reemplazo), por aproximadamente R$ 1.500-3.500. Aplicar cera de cavidades o tratamiento anticorrosión en los paneles internos sin tratar es una medida preventiva que vale la pena en regiones costeras.",
+          "symptoms": [
+            "Puntos de óxido en el borde delantero del capó",
+            "Burbujas o ampollas en la pintura del capó con el auto todavía nuevo",
+            "Óxido en las bisagras de las puertas",
+            "Corrosión en el panel detrás del respaldo del asiento trasero"
+          ],
+          "severity": "low",
+          "category": "body",
+          "costLow": 300,
+          "costHigh": 800,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "honda-city-steering-rack-noise-play",
+          "title": "Ruido y holgura en la cremallera de dirección (clics/golpeteos al girar)",
+          "description": "Los propietarios del City de la generación GM (2009-2014) documentan extensamente el desgaste de la cremallera de la dirección asistida eléctrica: se genera holgura en el buje/base de la cremallera, lo que produce clics al girar el volante, golpes secos del tren delantero en pavimento irregular y una sensación de flojedad en la dirección. Los hilos del foro Honda City Club describen el desgaste del buje de la caja de dirección como un punto débil conocido, con propietarios que recurren a bujes maquinados a medida por el costo de una cremallera completa. La queja reapareció en la generación GN (2022-2023): Reclame Aqui registra múltiples quejas de 'barulho na caixa de direção' para el City 2022, Auto+TV incluye el ruido de la caja de dirección entre los problemas recurrentes del nuevo modelo (a menudo con bajo kilometraje, ~25.000 km), y un grupo de propietarios habría reunido a más de 40 participantes con la misma queja de ruido en la dirección.",
+          "solution": "Hacer revisar el tren delantero para descartar primero las causas baratas — las bieletas de la barra estabilizadora (~R$ 57 cada una), los terminales de dirección y los bujes de los brazos de suspensión son contribuyentes frecuentes. Si el ruido o la holgura se rastrea hasta la propia cremallera de dirección, las opciones son sustituir el buje de la cremallera (económico; los bujes maquinados del mercado de repuestos son una solución probada para el City en los foros) o, en casos de desgaste severo, sustituir la cremallera completa. En los modelos GN aún en garantía, exigir que el concesionario documente el ruido y lo repare en garantía en lugar de aceptar visitas repetidas de simple 'reapriete'.",
+          "symptoms": [
+            "Clics o golpeteos al girar el volante",
+            "Golpes secos del tren delantero en pavimento irregular o en mal estado",
+            "Holgura o flojedad perceptible en el volante",
+            "Traqueteo metálico a baja velocidad sobre baches",
+            "El ruido aparece con un kilometraje relativamente bajo"
+          ],
+          "severity": "medium",
+          "category": "steering",
+          "costLow": 60,
+          "costHigh": 1000,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "honda-city-takata-airbag-inflator-recall-metal-fragment-risk",
+          "title": "Llamado a revisión (recall) por infladores de airbag Takata — riesgo de fragmentos metálicos",
+          "description": "Los sedanes Honda City del mercado brasileño fabricados de 2010 a 2014 quedaron incluidos en el llamado a revisión global por los airbags Takata — el recall más grande de la historia automotriz. Los infladores de nitrato de amonio se degradan en climas cálidos y húmedos (exactamente las condiciones de Brasil); en una colisión que active el airbag, la carcasa del inflador puede romperse y disparar fragmentos metálicos contra los ocupantes, un defecto vinculado a por lo menos 21 muertes en el mundo al momento de las campañas brasileñas. Las olas del recall incluyeron unidades del City con chasis en el rango AZ100032-BZ213443 (2010-2011) y una campaña de enero de 2018 que cubrió 86.516 unidades de Fit/City (producción del City del 12 de abril de 2012 al 1 de julio de 2013). La campaña Takata global de Honda Brasil abarcó aproximadamente 943.000 vehículos que requerían 1,6 millones de infladores y, a enero de 2026, seguía en torno al 94% de cumplimiento — lo que significa que todavía circulan por las vías brasileñas unidades del City sin reparar.",
+          "solution": "Verificar la placa o el número de chasis del vehículo en el portal de recalls de Honda Brasil (honda.com.br/recall) o por teléfono (0800 701 3432) y hacer sustituir el o los infladores de airbag sin costo en cualquier concesionario Honda. La reparación es definitiva y toma unas pocas horas. Los compradores de autos usados deben verificar que el recall esté completado antes de la compra; no postergue esta reparación, ya que el riesgo de rotura del inflador aumenta con la edad del vehículo y la exposición a la humedad.",
+          "symptoms": [
+            "Sin señales de advertencia — el defecto solo se manifiesta cuando el airbag se despliega",
+            "El inflador puede romperse en una colisión frontal y expulsar fragmentos metálicos",
+            "El vehículo aparece en la consulta de recalls de Honda Brasil por placa o chasis",
+            "Carta de notificación de recall enviada por Honda"
+          ],
+          "severity": "high",
+          "category": "safety",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "hyundai-creta",
+      "make": "Hyundai",
+      "model": "Creta",
+      "h1": "Hyundai Creta: problemas conocidos y puntos débiles",
+      "intro": "Los puntos débiles más serios del Hyundai Creta se concentran en sus transmisiones: la caja DCT de doble embrague en seco de 7 velocidades del 1.4 T-GDI acumula fallas documentadas de actuador de embrague, sobrecalentamiento y pérdida de propulsión, y existen llamados a revisión oficiales por el servofreno en Brasil (pedal duro y mayor distancia de frenado) y por el controlador de la bomba de aceite de la caja IVT en India. A esto se suman la obstrucción del filtro de partículas diésel (DPF) en uso exclusivamente urbano, el desgaste prematuro del embrague en los diésel manuales y pérdidas intermitentes de enfriamiento del aire acondicionado por congelamiento del evaporador.",
+      "issues": [
+        {
+          "id": "hyundai-creta-7-speed-dry-dct-failures-1-4-t-gdi",
+          "title": "Fallas de la caja DCT de 7 velocidades de embrague en seco en el 1.4 T-GDI (actuador del embrague, sobrecalentamiento, pérdida de propulsión)",
+          "description": "La caja de cambios de doble embrague en seco de 7 velocidades del Creta SU2 con motor turbo de gasolina 1.4L presenta múltiples fallas bien documentadas en el tráfico de avance y detención de la India: falla del actuador del embrague (registrada con el código DTC P060194), negativa de la caja a engranar las marchas pares hasta reiniciar el motor, avisos de sobrecalentamiento de la transmisión al circular a paso de hombre, y tirones o acoplamiento retardado al arrancar desde detenido. Los hilos de propietarios de Team-BHP documentan autos que fallan a los pocos meses de la entrega y vuelven a fallar un año después de las reparaciones en el concesionario, con Hyundai gestionando los casos de forma reactiva en lugar de mediante un llamado a revisión (recall). Las reparaciones fuera de garantía son costosas: el reemplazo completo de la caja cuesta aproximadamente entre INR 80.000 y más de 1,2 lakh (más de INR 120.000).",
+          "solution": "Los concesionarios reemplazan el actuador del embrague o el conjunto de embragues averiado (sin costo bajo garantía); una transmisión destruida exige el reemplazo completo de la DCT. Los propietarios mitigan el riesgo evitando situaciones prolongadas de patinamiento del embrague (avanzar a paso de hombre en el tráfico o sostener el auto en pendientes con el acelerador) y extendiendo la garantía del tren motriz.",
+          "symptoms": [
+            "Aviso de transmisión caliente / sobrecalentada en tráfico lento",
+            "Tirones o vacilación al acelerar desde detenido",
+            "Las marchas pares no engranan hasta reiniciar el motor",
+            "Testigo de check engine con mensaje de error del tren motriz en el cuadro de instrumentos",
+            "Pérdida repentina de propulsión / modo de emergencia (limp mode)"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 400,
+          "costHigh": 1500,
+          "dtcCodes": [
+            "P060194"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "hyundai-creta-diesel-particulate-filter-clogging-city-only-driving",
+          "title": "Obstrucción del filtro de partículas diésel (DPF) en uso exclusivamente urbano (1.5 CRDi BS6)",
+          "description": "Los Creta diésel 1.5L CRDi conformes a la norma BS6 (desde 2020) utilizan un DPF sin elemento calefactor activo, por lo que el filtro depende de una conducción sostenida a velocidad de carretera para regenerarse. Los propietarios cuyo uso se limita principalmente a trayectos urbanos cortos y a baja velocidad reportan una acumulación de hollín que activa los avisos del DPF y del check engine, pérdida de potencia y, en casos graves, un filtro completamente obstruido: un caso documentado requirió el reemplazo del DPF con apenas 3.500 km. Si se ignora, el motor entra en modo de emergencia y el filtro puede requerir un reemplazo que cuesta aproximadamente INR 70.000-80.000 fuera de garantía.",
+          "solution": "Conducir con regularidad a velocidades sostenidas por encima de ~60 km/h durante 20-30 minutos para que la regeneración pasiva/activa pueda completarse; si aparece el aviso, el concesionario puede realizar una regeneración forzada. Un filtro completamente obstruido debe limpiarse profesionalmente o reemplazarse (cubierto por la garantía en los casos documentados).",
+          "symptoms": [
+            "Testigo de aviso del DPF en el cuadro de instrumentos",
+            "Testigo de check engine tras repetidos trayectos urbanos cortos",
+            "Pérdida de potencia notoria / modo de emergencia",
+            "Mayor consumo de combustible durante los intentos de regeneración",
+            "Ligero olor a diésel o ralentí elevado durante la regeneración activa"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 50,
+          "costHigh": 950,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "hyundai-creta-brake-booster-diaphragm-defect-official-brazil-recall",
+          "title": "Defecto del diafragma del servofreno — llamado a revisión oficial en Brasil (pedal duro, mayor distancia de frenado)",
+          "description": "Hyundai do Brasil llamó a revisión a unidades del Creta 1.0 turbo automático (años modelo 2024-2025, fabricadas entre el 12 de marzo y el 16 de julio de 2024) por un defecto en el servofreno: el desplazamiento del diafragma interno reduce el vacío en el sistema de asistencia de frenado. Esto endurece el pedal de freno, aumentando la fuerza necesaria para frenar y alargando el tiempo y la distancia de frenado — un riesgo directo de accidente. La campaña comenzó el 3 de septiembre de 2024 con el reemplazo gratuito del servofreno en los concesionarios Hyundai.",
+          "solution": "Verificar el chasis/VIN en la lista del llamado a revisión de Hyundai Brasil (o llamar al 0800-770-3355) y hacer reemplazar el servofreno sin costo en un concesionario Hyundai; el servicio toma alrededor de dos horas.",
+          "symptoms": [
+            "El pedal de freno se siente inusualmente duro / pesado",
+            "Se necesita más fuerza en el pedal para detener el auto",
+            "Mayores distancias de frenado",
+            "Asistencia de vacío reducida, perceptible al frenar repetidamente"
+          ],
+          "severity": "high",
+          "category": "brakes",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "hyundai-creta-premature-clutch-wear-heavy-clutch-diesel-manuals",
+          "title": "Desgaste prematuro del embrague y pedal de embrague pesado en los diésel manuales",
+          "description": "El alto par motor del Creta diésel, combinado con el tráfico denso de avance y detención, somete a fuerte estrés al embrague en las versiones manuales, y el desgaste prematuro es uno de los costos de propiedad más reportados: los problemas pueden aparecer desde los 20.000-30.000 km, y un propietario en CarWale documentó el reemplazo del conjunto de embrague tres veces en 30.000 km mientras Hyundai culpaba al estilo de conducción. Los propietarios describen un pedal progresivamente más pesado, tirones en el punto de fricción (peores en marchas altas) y dificultad para engranar las marchas con suavidad. Un reemplazo completo del embrague (disco, plato de presión, collarín de empuje) cuesta típicamente INR 15.000-25.000, más si el volante motor está dañado.",
+          "solution": "Reemplazar el kit de embrague (disco, plato de presión, collarín de empuje) e inspeccionar o rectificar el volante motor; los tirones persistentes también pueden requerir purgar el sistema hidráulico o reemplazar el cilindro maestro o esclavo. Minimizar el apoyo del pie en el embrague en el tráfico prolonga su vida útil.",
+          "symptoms": [
+            "El pedal de embrague se siente inusualmente pesado o duro en el tráfico",
+            "Tirones/vibración al soltar el embrague en el punto de fricción",
+            "Dificultad para engranar las marchas con suavidad",
+            "Olor a quemado tras conducir en tráfico de avance y detención",
+            "Patinamiento del embrague al acelerar a fondo"
+          ],
+          "severity": "medium",
+          "category": "transmission",
+          "costLow": 180,
+          "costHigh": 400,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "hyundai-creta-ivt-electronic-oil-pump-controller-defect-official-india-rec",
+          "title": "Defecto del controlador electrónico de la bomba de aceite de la caja IVT (CVT) — llamado a revisión oficial en India",
+          "description": "En marzo de 2024, Hyundai India llamó a revisión de forma voluntaria a 7.698 unidades de Creta y Verna con el motor de gasolina atmosférico 1.5L y caja automática IVT (CVT), fabricadas entre el 13 de febrero y el 6 de junio de 2023. El controlador electrónico de la bomba de aceite puede fallar, afectando el desempeño de la bomba de aceite eléctrica de la transmisión — el componente que mantiene la presión hidráulica (incluso durante el stop/start en ralentí) —, con riesgo de funcionamiento anormal de la IVT. Hyundai contacta a los propietarios de los Creta IVT pre-restyling afectados y el controlador se reemplaza sin costo.",
+          "solution": "Verificar el VIN en el sitio web oficial de Hyundai India o llamar a atención al cliente de Hyundai (1800-114-645); en los vehículos afectados se inspecciona y reemplaza el controlador electrónico de la bomba de aceite sin costo bajo la campaña de llamado a revisión.",
+          "symptoms": [
+            "VIN del vehículo listado en el buscador de llamados a revisión de Hyundai India",
+            "Testigo de advertencia de la transmisión o luz de check engine",
+            "Comportamiento anormal de la IVT, como vacilación o acoplamiento brusco",
+            "Fabricado entre febrero y junio de 2023 con motor 1.5 de gasolina e IVT"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "hyundai-creta-intermittent-ac-cooling-loss-premature-compressor-failure",
+          "title": "Pérdida intermitente de enfriamiento del aire acondicionado (congelamiento del evaporador) y falla prematura del compresor",
+          "description": "Los propietarios del Creta de primera generación (GS) en climas calurosos reportan que el aire acondicionado sopla aire apenas fresco de forma intermitente en viajes largos: se forma hielo alrededor de la zona del evaporador/termistor y en la manguera de descarga del A/C, y el enfriamiento solo regresa tras apagar el sistema durante 15-30 minutos para que el hielo se derrita — una falla recurrente vinculada a un control defectuoso del termistor/válvula de expansión y no a una simple falta de refrigerante. Por separado, están documentadas fallas del compresor del A/C alrededor de los 80.000-90.000 km, con asesores de servicio reconociendo que la falla del compresor después de unos cuatro años no es infrecuente. El resultado es un enfriamiento débil o ausente, un problema serio en los mercados de India, Oriente Medio y América Latina donde se vende el vehículo.",
+          "solution": "Hacer que un técnico revise el sensor de temperatura del evaporador (termistor) y la válvula de expansión y los reemplace si están defectuosos, en lugar de solo recargar refrigerante; realizar una prueba de fugas del sistema. Un compresor averiado requiere reemplazo, por lo que conviene limpiar el filtro de cabina y dar mantenimiento regular al A/C para prolongar su vida útil.",
+          "symptoms": [
+            "El A/C sopla aire tibio o apenas fresco de forma intermitente en viajes largos",
+            "El enfriamiento regresa tras apagar el A/C durante 15-30 minutos",
+            "Hielo visible en las líneas del A/C / manguera de descarga bajo el capó",
+            "Empañamiento del parabrisas cerca de la zona del sensor",
+            "Compresor ruidoso o con traqueteo antes de la falla total"
+          ],
+          "severity": "medium",
+          "category": "hvac",
+          "costLow": 60,
+          "costHigh": 600,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "renault-kwid",
+      "make": "Renault",
+      "model": "Kwid",
+      "h1": "Renault Kwid: problemas conocidos y puntos débiles",
+      "intro": "El Renault Kwid acumula en Brasil dos antecedentes graves de seguridad: la rotura del soporte de la columna de dirección en los primeros ejemplares —que puede dejar caer el volante sobre el regazo del conductor y por la cual Renault nunca emitió un recall— y las fisuras del soporte del eje trasero que motivaron el llamado a revisión de 2025 para la producción 2021-2023, además de los recalls de la época del lanzamiento por componentes de freno y la línea de combustible. A esto se suman quejas crónicas por el embrague duro y chirriante con rascado de la reversa, fallas del aire acondicionado por fugas en la manguera de refrigerante y compresores de corta vida, y la vibración de los frenos delanteros por los discos sólidos subdimensionados de las unidades anteriores al rediseño.",
+      "issues": [
+        {
+          "id": "renault-kwid-steering-column-support-bracket-breakage",
+          "title": "Rotura del soporte de la columna de dirección",
+          "description": "Uno de los defectos crónicos más graves y reportados en los primeros Kwid del mercado brasileño. El soporte que sujeta la columna de dirección asistida eléctrica puede agrietarse y romperse durante la conducción normal y, en casos extremos, dejar caer el volante sobre el regazo del conductor con pérdida del control del vehículo. Medios brasileños (Vrum, Grupo Sentinela, Mundo do Automóvel) documentan numerosos reportes de propietarios, concentrados en unidades fabricadas hasta 2019, y señalan que, pese al volumen de quejas, Renault nunca emitió un llamado a revisión (recall). Los presupuestos de concesionario reportados por los propietarios oscilaban entre aproximadamente R$3.000 y R$5.800 por el reemplazo del conjunto completo de la columna de dirección eléctrica, y varios propietarios solo obtuvieron reparaciones por cortesía tras escalar el caso públicamente.",
+          "solution": "Haga inspeccionar de inmediato el soporte de la columna de dirección ante cualquier señal de juego, golpeteo o ruido proveniente de la columna: se trata de un componente crítico para la seguridad de marcha. La reparación consiste en reemplazar el soporte de la columna o, en la mayoría de los casos documentados, el conjunto completo de la columna de dirección asistida eléctrica. Propietarios de unidades 2017-2019 han logrado, con éxito parcial, cobertura por cortesía (cortesia) de Renault Brasil incluso fuera de garantía, registrando reclamos a través del servicio de atención al cliente de Renault y de Procon/Reclame Aqui; documente el defecto con fotografías antes de la reparación.",
+          "symptoms": [
+            "Ruido de golpeteo o traqueteo proveniente de la columna de dirección",
+            "Juego excesivo u holgura en el volante",
+            "El volante cae repentinamente hacia el regazo del conductor",
+            "Fragmentos metálicos que caen en la zona de los pies del conductor",
+            "Pérdida del control de la dirección durante la marcha"
+          ],
+          "severity": "high",
+          "category": "steering",
+          "costLow": 550,
+          "costHigh": 1150,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-kwid-rear-axle-support-cracking-2025-safety-recall",
+          "title": "Fisuras en el soporte del eje trasero — llamado a revisión de seguridad de 2025 (producción 2021-2023)",
+          "description": "En junio de 2025, Renault do Brasil llamó a revisión a los Kwid fabricados entre el 5 de mayo de 2021 y el 12 de junio de 2023 (chasis J000006 a J986154) porque el soporte del eje trasero puede recibir impactos en condiciones específicas del camino y desarrollar fisuras, alterando las características de conducción originales del vehículo. En casos extremos el soporte puede fracturarse, aumentando el riesgo de un accidente con lesiones para los ocupantes y terceros. La prensa brasileña (Terra, Metrópoles, Autos Segredos) informó sobre la campaña, que también abarcó algunas unidades del Duster, y señaló que fue el resultado de una investigación a fondo con pruebas locales, un hallazgo coherente con las quejas de larga data de los propietarios sobre la fragilidad de la suspensión trasera en los caminos brasileños en mal estado.",
+          "solution": "Verifique el número de chasis en el portal de recalls de Renault Brasil (www.renault.com.br) o llame al 0800 055 5615 y agende el servicio gratuito del llamado a revisión, que comenzó el 5 de junio de 2025. El concesionario inspecciona el soporte del eje trasero y reemplaza componentes según sea necesario; el servicio toma desde 30 minutos hasta 8 horas, dependiendo de si se requiere el reemplazo. Hasta que se realice el recall, haga inspeccionar los puntos de anclaje del eje trasero si escucha golpeteos en la parte trasera o nota cambios en el comportamiento del vehículo.",
+          "symptoms": [
+            "Golpeteo o crujidos en la suspensión trasera al pasar por baches",
+            "La parte trasera del vehículo se siente inestable o tiende a desviarse",
+            "Fisuras visibles en los puntos de anclaje del eje trasero",
+            "Desgaste irregular de los neumáticos traseros",
+            "Cambio perceptible en el manejo o el comportamiento de marcha"
+          ],
+          "severity": "high",
+          "category": "suspension",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-kwid-heavy-squeaky-clutch-reverse-gear-grinding",
+          "title": "Embrague duro y chirriante y rascado al engranar la reversa",
+          "description": "El embrague de accionamiento por cable del Kwid es una queja crónica en todos los años-modelo en Brasil: el pedal se vuelve pesado y duro, chirría con fuerza al pisarlo (los propietarios lo comparan con una bisagra vieja o con un sonido de trompeta al dar marcha atrás), y la reversa rasca o se niega a engranar. Las causas documentadas son el cable del embrague que pierde lubricación y se atasca, la horquilla de desembrague que se deforma y los resortes de diafragma del plato de presión que se debilitan; varios propietarios reportan síntomas antes de los 5.000 km, y la prensa local (Diarinho) cubrió un caso en el que un concesionario descartó el ruido como 'normal'. Vrum documenta además un número menor de fallas de caja de cambios más graves, en las que primera, segunda o reversa dejan de engranar por completo, algunas a pocos meses de la compra.",
+          "solution": "Lubricar el cable de embrague viejo silencia el chirrido solo por unos días: la solución duradera documentada es reemplazar el kit de embrague (disco, plato de presión y rodamiento de desembrague) junto con un cable de embrague nuevo, y revisar la horquilla de desembrague en busca de deformación. Para el engrane duro de la reversa, pise a fondo el embrague y haga una breve pausa (o pase primero por una marcha hacia adelante), según la propia guía rápida de Renault; si el rascado persiste tras un embrague nuevo, indica que la reparación del cable o de la horquilla quedó incompleta. Las fallas totales de la caja de cambios en autos en garantía deben ser cubiertas por Renault con el reemplazo bajo garantía.",
+          "symptoms": [
+            "Pedal de embrague pesado o duro",
+            "Chirrido o crujido fuerte al pisar el embrague",
+            "Ruido de rascado al engranar la reversa",
+            "Dificultad para engranar la reversa o la primera marcha",
+            "Ruido similar a una trompeta al dar marcha atrás"
+          ],
+          "severity": "medium",
+          "category": "transmission",
+          "costLow": 230,
+          "costHigh": 500,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-kwid-air-conditioning-failure-refrigerant-hose-leak-early-compres",
+          "title": "Falla del aire acondicionado — fuga en la manguera de refrigerante y fallas prematuras del compresor",
+          "description": "Un patrón de quejas recurrente en el Kwid brasileño: el aire acondicionado deja de enfriar porque una manguera de refrigerante, tendida en posición baja cerca del motor, se dobla y desarrolla una microperforación que deja escapar el gas lentamente; el sistema aparenta seguir funcionando (las luces del panel encienden, el ventilador sopla) pero el aire sale tibio o apenas fresco. La fuga de la manguera se reporta como especialmente común en los modelos 2018, y los talleres con frecuencia la diagnostican erróneamente como una simple recarga de gas, que vuelve a fallar en cuestión de semanas. Existe también un grupo de quejas en Reclame Aqui sobre compresores que fallan muy temprano (uno documentado con apenas 20.000 km, que enfriaba solo a altas RPM) y sobre ruido y vibración anormales cuando el compresor se acopla.",
+          "solution": "Haga realizar una prueba de fugas con tinte UV o con detector electrónico antes de pagar recargas repetidas; revise el punto problemático conocido donde la manguera pasa por debajo o cerca del motor. Reemplace la manguera con fuga y recargue con la cantidad correcta de refrigerante; si el compresor solo enfría a altas RPM o hace ruido, pruebe la presión de salida del compresor y reemplácelo si está desgastado. En autos aún dentro de la garantía de fábrica de 3 años, exija la cobertura en garantía, ya que la falla prematura del compresor está bien documentada.",
+          "symptoms": [
+            "El aire acondicionado sopla aire tibio o apenas fresco",
+            "El aire acondicionado solo enfría a altas RPM del motor",
+            "Ruido o vibración cuando el compresor se acopla",
+            "La recarga de refrigerante deja de funcionar en pocas semanas",
+            "El aire acondicionado pierde gradualmente capacidad de enfriamiento con los meses"
+          ],
+          "severity": "medium",
+          "category": "hvac",
+          "costLow": 150,
+          "costHigh": 650,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-kwid-brake-judder-fade-from-undersized-solid-front-discs",
+          "title": "Vibración y pérdida de eficacia de frenado por discos delanteros sólidos subdimensionados (anteriores al rediseño)",
+          "description": "Los Kwid anteriores al rediseño usaban discos de freno delanteros sólidos (no ventilados) de apenas 215 mm que se sobrecalientan bajo uso sostenido o exigente, lo que provoca pérdida de eficacia (fading) en descensos largos y alabeo de los discos, que los propietarios perciben como una pulsación violenta del pedal y vibración del volante al frenar, a menudo acompañadas de ruido metálico incluso con pastillas nuevas. La revista especializada O Mecânico documenta que Renault reemplazó los discos sólidos por discos ventilados más grandes, de 238 mm, en la actualización de la línea 2019/2020, específicamente para mejorar la eficiencia de frenado sostenido y reducir el fading; las piezas de disco sólido y de disco ventilado (incluidas las pastillas) no son intercambiables. La vibración al frenar sigue siendo una de las quejas crónicas más citadas sobre los primeros ejemplares en los recuentos brasileños de problemas reportados por propietarios.",
+          "solution": "En autos anteriores al rediseño con pulsación del pedal, reemplace (no rectifique) los discos delanteros alabeados junto con las pastillas, como juego por eje: en Brasil se venden en el mercado de repuestos kits de disco ventilado para el cubo del modelo rediseñado, pero la solución directa es montar discos sólidos nuevos de calidad y pastillas acordes a la especificación original de 215 mm. Use el freno motor en descensos largos para limitar la acumulación de calor. Si la vibración persiste con discos nuevos, haga revisar el alabeo del cubo y el asiento del rodamiento de rueda, ya que un montaje incorrecto también causa vibración al frenar.",
+          "symptoms": [
+            "El pedal de freno pulsa o tiembla al detenerse",
+            "El volante vibra durante la frenada",
+            "Ruido metálico de rozamiento incluso con pastillas nuevas",
+            "Los frenos pierden eficacia en bajadas largas",
+            "Olor a quemado en las ruedas delanteras tras una frenada exigente"
+          ],
+          "severity": "medium",
+          "category": "brakes",
+          "costLow": 100,
+          "costHigh": 300,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-kwid-launch-era-recall-brake-component-cracks-fuel-line-perforati",
+          "title": "Llamado a revisión de la época del lanzamiento: fisuras en componentes de freno y perforación de la línea de combustible",
+          "description": "En noviembre de 2017, Renault do Brasil llamó a revisión a 21.802 Kwid fabricados entre el 1 de marzo de 2016 y el 2 de noviembre de 2017 (chasis HJ524902 a JJ999218) por dos defectos anunciados en conjunto. Primero, componentes del sistema de frenos podían desarrollar fisuras, con riesgo de ineficiencia de frenado o de bloqueo de las ruedas con pérdida del control direccional. Segundo, el tubo de alimentación de combustible estaba tendido o posicionado de forma incorrecta y podía rozar hasta perforarse, derramando combustible en el compartimiento del motor con riesgo de incendio. Un llamado a revisión relacionado, de enero de 2018, abarcó un lote de autos producidos en septiembre de 2017 cuyas soldaduras de la cuna del motor (subchasis) podían romperse debido a un defecto del proveedor. Todas las campañas figuran en la página oficial de recalls de Renault Brasil.",
+          "solution": "Verifique el número de chasis contra el llamado a revisión (portal de recalls de Renault Brasil o 0800 055 5615) y haga realizar el servicio sin costo en un concesionario Renault: inspección y reemplazo de los componentes de freno (hasta 1 día) e inspección y reposicionamiento o reemplazo del tubo de combustible (alrededor de 1 hora). Al comprar cualquier Kwid 2017-2018 usado, confirme que el recall fue realizado: los llamados a revisión pendientes se siguen atendiendo sin costo.",
+          "symptoms": [
+            "Pedal de freno blando o que se hunde",
+            "Eficiencia de frenado reducida",
+            "Bloqueo de las ruedas al frenar",
+            "Olor a combustible proveniente del vano motor",
+            "Fuga de combustible visible bajo el capó"
+          ],
+          "severity": "high",
+          "category": "brakes",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "volkswagen-polo",
+      "make": "Volkswagen",
+      "model": "Polo",
+      "h1": "Volkswagen Polo: problemas conocidos y puntos débiles",
+      "intro": "El Volkswagen Polo arrastra dos puntos débiles mayores: las fallas de la mecatrónica y del embrague en la caja DSG DQ200 de 7 velocidades y embrague seco, que pueden dejar la transmisión en neutral en plena marcha, y el estiramiento prematuro de la cadena de distribución del 1.2 TSI EA111 del Polo V, capaz de destruir el motor si la cadena salta un diente. Se suman llamados a revisión por seguridad: la hebilla del cinturón trasero del Polo VI que puede soltarse sola y, en Brasil, la fijación del embellecedor del pilar B que afecta al airbag lateral, además de un defecto de software que deja en negro el cuadro de instrumentos digital. En el Polo IV, la falla clásica son los módulos de cierre centralizado de las puertas.",
+      "issues": [
+        {
+          "id": "volkswagen-polo-door-lock-module-central-locking-microswitch-failure",
+          "title": "Falla del módulo de cierre de puerta / microinterruptores del cierre centralizado (Polo IV 9N)",
+          "description": "El Polo IV (9N/9N3, 2002-2009) presenta una debilidad de larga data, documentada en foros, en los módulos de cierre de sus puertas: los microinterruptores del conjunto de la cerradura (o sus puntos de soldadura en la pequeña placa electrónica de la cerradura) fallan con los años. El auto pierde entonces la lectura del estado de las puertas: una puerta deja de responder al cierre centralizado, el LED de la alarma no parpadea al bloquear, el tablero indica una puerta abierta cuando está cerrada y, en muchos casos, la alarma se dispara sola porque el módulo informa falsamente que la puerta se abre. La falla es intermitente al principio y empeora con el tiempo. Es uno de los temas más repetidos en los foros de propietarios dedicados al Polo (uk-polos.net) y afecta por igual a las puertas del conductor y del pasajero.",
+          "solution": "Sustituir el módulo de cerradura/cierre de la puerta afectada (la pieza cuesta normalmente entre 40 y 120 dólares, más 1-1,5 horas de mano de obra para desmontar el panel de la puerta). Los propietarios con conocimientos de electrónica a veces reparan la cerradura resoldando los puntos agrietados de la placa interna o cambiando el propio microinterruptor por unos pocos dólares. Tras la sustitución, verifique que el LED de la alarma parpadee al bloquear y que el tablero ya no muestre una puerta abierta fantasma.",
+          "symptoms": [
+            "Una puerta deja de bloquearse o desbloquearse con el mando a distancia o el cierre centralizado",
+            "El LED rojo de la alarma en la puerta no parpadea después de bloquear",
+            "El tablero indica una puerta abierta cuando está cerrada",
+            "La alarma suena de forma aleatoria con el auto estacionado y cerrado",
+            "La luz interior se enciende mientras se conduce"
+          ],
+          "severity": "low",
+          "category": "electrical",
+          "costLow": 100,
+          "costHigh": 450,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-polo-dq200-7-speed-dry-clutch-dsg-mechatronic-clutch-failure",
+          "title": "Falla de la mecatrónica y del embrague en la caja DSG DQ200 de 7 velocidades y embrague seco",
+          "description": "Los Polo V (6R/6C) y Polo VI vendidos en Europa, Sudáfrica, Australia y otros mercados con la caja DSG 0AM/DQ200 de 7 velocidades y embrague seco — incluido el Polo GTI 6R/6C — sufren fallas bien documentadas de la unidad mecatrónica. El cuerpo de válvulas tiene una debilidad de diseño conocida (la pared del alojamiento del acumulador es delgada, puede agrietarse y descargar de golpe la presión hidráulica), y la bomba hidráulica, los solenoides y la TCU también fallan, con frecuencia antes de los 80.000-100.000 km. Los síntomas van desde cambios bruscos y a tirones a baja velocidad y vibraciones del embrague, hasta que la transmisión pasa a neutral en plena marcha con el indicador de marcha parpadeando — un riesgo real de seguridad en el tráfico. VW realizó llamados a revisión (recalls) y garantías extendidas para la DQ200 en varios mercados (Asia, Oceanía), y el portal brasileño Reclame Aqui registra quejas persistentes sobre modelos VW/Audi equipados con la DQ200 (nota: el Polo VI 200TSI fabricado en Brasil usa una transmisión automática convencional Aisin de 6 velocidades, no la DSG — este problema aplica a los autos importados con DSG y a las unidades de Europa y otros mercados).",
+          "solution": "Haga escanear la caja de cambios para confirmar la falla. Una mecatrónica averiada puede ser reparada o reconstruida por un especialista en electrónica de transmisiones por aproximadamente 900-1.800 dólares, mientras que una mecatrónica nueva o un paquete de embragues en el concesionario cuesta entre 2.500 y 5.500 dólares (en Brasil se han cotizado reparaciones en autos con DQ200 de hasta R$20.000-30.000). Instale el acumulador/cuerpo de válvulas de la última revisión y utilice el fluido sintético correcto para la DQ200. Antes de pagar de su bolsillo, verifique si el auto estuvo cubierto por una campaña de servicio regional de la DQ200 o por una garantía extendida.",
+          "symptoms": [
+            "Cambios de marcha bruscos o a tirones a baja velocidad",
+            "Vibración o estremecimiento al arrancar desde detenido",
+            "La caja pasa repentinamente a neutral en marcha con el indicador de marcha parpadeando",
+            "El auto no engrana Drive ni Reversa",
+            "El testigo de advertencia de la transmisión permanece encendido"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 900,
+          "costHigh": 5500,
+          "dtcCodes": [
+            "P17BF"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-polo-rear-seat-belt-buckle-can-unlatch-itself",
+          "title": "La hebilla del cinturón de seguridad trasero puede soltarse sola (Polo VI, llamado a revisión 2017-2018)",
+          "description": "La revista finlandesa Tekniikan Maailma descubrió durante sus pruebas que, en el nuevo Polo VI (y en sus hermanos SEAT Ibiza/Arona), el cinturón trasero IZQUIERDO puede desabrocharse de manera involuntaria en marcha cuando la plaza central trasera también está ocupada: la hebilla central queda más alta, se superpone a la hebilla izquierda y puede presionar su botón de liberación, demasiado sensible, durante un cambio de carril brusco. Volkswagen confirmó el defecto y llamó a revisión a unos 220.000 Polo (años modelo 2017-2018) en todo el mundo; primero aplicó una solución provisional (asegurar ambas hebillas juntas con una brida/clip) y desde finales de 2018 un cierre de cinturón rediseñado. Nota para los propietarios brasileños: VW do Brasil declaró que los Polo/Virtus fabricados en Brasil usan una hebilla de otro proveedor y NO fueron afectados por esta campaña.",
+          "solution": "Confirme con un concesionario VW (o con el registro nacional de llamados a revisión de su país) que el recall del cinturón fue realizado y que se instaló el conjunto rediseñado de hebilla/cierre trasero — la reparación es gratuita dentro del llamado a revisión. Hasta confirmarlo, evite llevar tres pasajeros en la plaza trasera. Los autos atendidos antes de noviembre de 2018 solo con la solución provisional de la brida deben regresar para recibir la pieza definitiva rediseñada.",
+          "symptoms": [
+            "El cinturón trasero izquierdo se libera solo durante cambios de carril rápidos",
+            "Ocurre cuando las plazas trasera central y trasera izquierda están ocupadas a la vez",
+            "La hebilla trasera central se superpone y presiona el botón de liberación de la hebilla izquierda",
+            "No hay ningún aviso antes de que el cinturón se desabroche"
+          ],
+          "severity": "high",
+          "category": "safety",
+          "costLow": null,
+          "costHigh": null,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-polo-b-pillar-trim-fastening-defect-affecting-side-airbag-deploym",
+          "title": "Defecto de fijación del embellecedor del pilar B que afecta el despliegue del airbag lateral (llamado a revisión en Brasil, 2018-2019)",
+          "description": "Volkswagen do Brasil llamó a revisión a los Polo y Virtus (años modelo 2018-2019, fabricados entre el 10 de febrero de 2017 y el 9 de noviembre de 2018; chasis no secuenciales JP000001-JP900185 y KP000249-KP553822) por una falla de fijación del embellecedor central del pilar B en ambos lados del vehículo. Según el aviso oficial de recall de PROCON-SP (16 de abril de 2019), el embellecedor suelto podía interferir con el funcionamiento del airbag lateral (de cortina) en una colisión, con riesgo de lesiones para el conductor o el acompañante delantero. Las inspecciones en concesionarios comenzaron el 24 de abril de 2019, con sustitución gratuita de la fijación del embellecedor donde fuera necesaria.",
+          "solution": "Ingrese el número de chasis en el sitio de recalls de VW Brasil o en el portal del consumidor de gov.br para confirmar si el llamado a revisión fue realizado. Si no lo fue, agende una inspección gratuita en un concesionario VW: la fijación del embellecedor del pilar B se revisa en ambos lados y se reemplaza si es necesario sin costo. No hay ninguna reparación que el propietario deba pagar; la gravedad está en la protección en caso de choque, no en la conducción diaria.",
+          "symptoms": [
+            "Embellecedores del pilar B (pilar central) sueltos o mal asentados",
+            "Ruidos o movimiento en el revestimiento del pilar central",
+            "Sin síntomas de manejo — el riesgo aparece solo durante el despliegue del airbag lateral en un impacto",
+            "El chasis del vehículo está dentro de los rangos del recall (series JP/KP)"
+          ],
+          "severity": "high",
+          "category": "safety",
+          "costLow": null,
+          "costHigh": null,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-polo-1-2-tsi-timing-chain-stretch-tensioner-failure",
+          "title": "Estiramiento de la cadena de distribución y falla del tensor en el 1.2 TSI (EA111)",
+          "description": "El motor 1.2 TSI EA111 que equipa al Polo V (6R, 2010-2014) está ampliamente documentado por el estiramiento prematuro de la cadena de distribución y la falla del tensor hidráulico, a menudo entre los 60.000 y 100.000 km y a veces mucho antes. El tensor pierde presión de aceite con el auto estacionado, lo que produce un traqueteo metálico en el arranque en frío. Si la cadena estirada salta un diente en el piñón del árbol de levas montado a presión, el contacto entre válvulas y pistones puede destruir el motor. Volkswagen corrigió el diseño con una actualización técnica de servicio (cadena y tensor revisados y un árbol de levas con piñón integrado), pero muchos autos fallaron fuera de garantía. El problema está muy reportado en foros de propietarios del Reino Unido y de la UE, y afecta a las aplicaciones hermanas EA111 1.2/1.4 TSI en todo el Grupo VW.",
+          "solution": "Reemplace el kit de cadena de distribución con las piezas actualizadas de VW (cadena, guías y tensor revisados, y el árbol de levas rediseñado con piñón integrado, según la actualización de servicio de VW). Trate como urgente cualquier traqueteo en el arranque en frío que dure más de 1-2 segundos: deje de conducir y haga inspeccionar la cadena antes de que salte. La sustitución preventiva en un taller independiente cuesta normalmente entre 700 y 1.400 dólares; el precio en concesionario es mayor, y una cadena saltada con daño de válvulas puede superar los 3.000 dólares o exigir un motor de reemplazo.",
+          "symptoms": [
+            "Traqueteo metálico del motor durante varios segundos en el arranque en frío",
+            "Sonido de claqueteo tipo diésel al ralentí que empeora con el tiempo",
+            "Testigo de check engine con falla de correlación entre árbol de levas y cigüeñal",
+            "Ralentí inestable o fallos de encendido",
+            "El motor gira pero no arranca después de que la cadena salta"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 700,
+          "costHigh": 3000,
+          "dtcCodes": [
+            "P0016",
+            "P0011"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-polo-digital-instrument-cluster-software-failure-blank-panel-afte",
+          "title": "Falla de software del cuadro de instrumentos digital — panel en negro tras el arranque (llamado a revisión en Brasil, 2024-2026)",
+          "description": "En mayo de 2026, Volkswagen do Brasil llamó a revisión a más de 117.000 vehículos — incluido el Polo (años modelo 2024-2026, chasis dentro de los rangos RT644253 a TT640545, fabricados del 23 de octubre de 2020 al 14 de octubre de 2025, junto con Virtus, Nivus, T-Cross y Tera) — por un defecto de software en el panel de instrumentos digital combinado. El cuadro puede funcionar mal o quedar completamente inoperativo después de arrancar el auto, dejando al conductor sin velocímetro, indicador de combustible ni testigos de advertencia, lo que según VW aumenta el riesgo de accidente y puede poner al vehículo en infracción de las normas de tránsito. La solución es una actualización de software gratuita en los concesionarios, con atención a partir del 11 de mayo de 2026 (unas dos horas).",
+          "solution": "Verifique el número de chasis en la página de recalls de VW Brasil (vw.com.br) o en el portal de recalls de gov.br y agende la actualización gratuita de software del panel de instrumentos en cualquier concesionario VW autorizado (la campaña comenzó el 11 de mayo de 2026; prevea hasta dos horas). Si el cuadro se queda en negro antes de realizar la actualización, no siga conduciendo sin información de velocidad ni testigos de advertencia — haga llevar el auto a un concesionario.",
+          "symptoms": [
+            "Panel de instrumentos completamente en negro o congelado después de arrancar el auto",
+            "Sin indicación de velocímetro, nivel de combustible ni odómetro",
+            "Testigos de advertencia no visibles para el conductor",
+            "El cuadro no se recupera ni siquiera tras reiniciar el vehículo"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": null,
+          "costHigh": null,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "renault-sandero",
+      "make": "Renault",
+      "model": "Sandero",
+      "h1": "Renault Sandero: problemas conocidos y puntos débiles",
+      "intro": "El Renault Sandero, sobre todo el fabricado para el mercado brasileño, concentra sus quejas en la caja manual automatizada Easy-R, cuyo embrague y módulo actuador fallan de forma prematura y pueden dejar el auto inmovilizado, y en la dirección, objeto de varios llamados a revisión oficiales por rótulas axiales, cajas de dirección y mangueras hidráulicas defectuosas, además del desgaste crónico del rodamiento de la columna. En lo mecánico, el motor 1.6 8V K7M es propenso a fallas de la junta de culata con consumo excesivo de aceite, mientras que el 1.0 SCe sufre fugas de aceite por la tapa de válvulas que empapan bujías y bobinas y provocan fallos de encendido.",
+      "issues": [
+        {
+          "id": "renault-sandero-easy-r-automated-manual-gearbox-clutch-actuator-failures",
+          "title": "Fallas del embrague y del actuador de la caja manual automatizada Easy-R",
+          "description": "La transmisión manual automatizada Easy-R de 5 velocidades, suministrada por ZF y ofrecida en el Sandero y el Sandero Stepway 1.6 del mercado brasileño a partir de la producción de 2014 (años modelo 2015-2019), es uno de los componentes de Renault con más quejas en Reclame Aqui. Los propietarios reportan tirones y vibraciones al arrancar desde detenido que aparecen desde apenas 20.000-25.000 km, causados por el desgaste prematuro del disco de embrague; fallas del módulo actuador de embrague/cambios que dejan el auto trabado en una marcha (con frecuencia la 2ª) o inmovilizado; cambios bruscos o con retardo; y reportes aislados de comportamientos peligrosos, como el acople involuntario de la reversa y reducciones repentinas de marcha a velocidad de autopista. Los presupuestos de reparación en concesionarios han llegado a R$15.000 (~USD 2.800), y solo el módulo actuador cuesta más de R$4.400 como repuesto original. Renault descontinuó la caja Easy-R en Brasil en 2019, tras unos cinco años en el mercado, y las quejas continuaron mucho después de vencida la garantía de 3 años. Nunca se emitió un llamado a revisión por esta caja de cambios.",
+          "solution": "No existe llamado a revisión; fuera de garantía, las reparaciones corren por cuenta del propietario. Las vibraciones prematuras exigen sustituir el kit de embrague (disco, plato de presión y collarín de empuje) con las piezas actualizadas. Las fallas del actuador requieren recalibrar o reemplazar el módulo actuador de embrague/cambios — los especialistas independientes en transmisiones en Brasil cobran aproximadamente la mitad que los concesionarios (alrededor de R$3.000 frente a R$5.500 o más). Tras cualquier trabajo en el embrague o el actuador, el sistema debe reaprenderse/calibrarse con un equipo de diagnóstico compatible con Renault (CLIP). Quien compre un Sandero 2015-2019 usado con caja Easy-R debe comprobar antes de la compra si vibra al arrancar y si los acoples son dudosos, y presupuestar una vida útil del actuador y del embrague muy inferior a la de una caja manual convencional.",
+          "symptoms": [
+            "Tirones o vibración al arrancar desde detenido",
+            "Cambios de marcha bruscos, con retardo o a tirones",
+            "Caja trabada en una marcha (a menudo la 2ª) o que se niega a acoplar",
+            "Testigo de avería de la caja o mensaje 'check gearbox' en el tablero",
+            "Dificultad o demora para acoplar la reversa",
+            "Vehículo inmovilizado sin que entre ninguna marcha"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 500,
+          "costHigh": 2800,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-sandero-1-0-sce-valve-cover-oil-leak-soaking-spark-plug-wells-coils",
+          "title": "Fuga de aceite por la tapa de válvulas del 1.0 SCe que empapa los pozos de bujías y las bobinas",
+          "description": "El motor tricilíndrico 1.0 SCe utilizado en el Sandero brasileño desde el año modelo 2017 presenta una fuga crónica de aceite en la tapa de válvulas (de balancines) de plástico. El sellado de la tapa se degrada con los ciclos térmicos a bajo kilometraje — propietarios en Reclame Aqui lo describen como un defecto de diseño — y el aceite se filtra a los pozos de las bujías, empapando las bujías y las puntas de las bobinas de encendido. Esto provoca fallos de encendido, funcionamiento irregular y el engrasado repetido de bujías y bobinas nuevas. Las quejas en Reclame Aqui documentan fugas que aparecen en autos con apenas 20.000-30.000 km, a veces reincidentes tras la reparación en el concesionario, además de rezumes relacionados en la zona de la tapa de distribución, en el lateral del motor. Por separado, Renault emitió un llamado a revisión oficial (inicio del servicio en septiembre de 2020) para unidades con motor 1.0 producidas entre julio de 2019 y enero de 2020, porque un orificio de alimentación de aceite fuera de especificación podía dejar el motor sin lubricación, con riesgo de gripado o incendio — los propietarios afectados deben confirmar en un concesionario que la campaña fue realizada.",
+          "solution": "Sustituir o resellar la tapa de válvulas con la junta/sellador actualizados, limpiar los pozos de las bujías y reemplazar las bujías impregnadas de aceite y cualquier bobina de encendido saturada. Conviene inspeccionar al mismo tiempo la unión de la tapa de distribución, ya que es un punto de fuga secundario en el mismo motor. El trabajo es económico en un taller independiente; el mayor costo son las bobinas de repuesto si el aceite las dañó. En los autos fabricados en 2020, verifique en el portal oficial de llamados a revisión de Renault (renault.com.br/recall) la campaña abierta por el orificio de alimentación de aceite, cuya reparación es gratuita.",
+          "symptoms": [
+            "Rezume de aceite visible en los bordes de la tapa de válvulas",
+            "Aceite acumulado en los pozos de las bujías al retirarlas",
+            "Fallos de encendido o ralentí irregular",
+            "Bujías impregnadas de aceite y puntas de las bobinas de encendido aceitosas",
+            "Olor a aceite quemado proveniente del vano motor"
+          ],
+          "severity": "medium",
+          "category": "engine",
+          "costLow": 60,
+          "costHigh": 250,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-sandero-official-steering-safety-recalls-ball-joints-steering-box-hy",
+          "title": "Llamados a revisión oficiales de seguridad en la dirección: rótulas axiales, caja de dirección y manguera hidráulica",
+          "description": "Renault Brasil ha emitido varios llamados a revisión oficiales de seguridad del Sandero por defectos en la dirección, todos listados en el portal de recalls del fabricante. En 2012, un lote de cajas de dirección hidráulica (chasis 93YJA1CJ840383-93YJA1CJ932550) presentaba una no conformidad de fabricación que podía causar un mal funcionamiento o el bloqueo de la dirección. En enero de 2016 se llamaron a revisión 3.120 Sandero/Logan fabricados entre el 4 de noviembre y el 4 de diciembre de 2015, porque una materia prima fuera de especificación en las rótulas axiales (que conectan la cremallera de dirección con los extremos de rueda) podía provocar la rotura de la rótula, con la consiguiente pérdida del control de la dirección. En noviembre de 2017 se convocaron 13.026 Sandero, Logan, Duster y Duster Oroch fabricados entre el 29 de julio y el 6 de octubre de 2016, porque la manguera de baja presión de la dirección asistida podía romperse, derramando líquido y provocando el endurecimiento de la dirección o la pérdida de la asistencia. Un llamado relacionado de febrero de 2017 abarcó pernos de fijación de la suspensión/dirección de autos fabricados en 2016 apretados con un par incorrecto, que podían deformarse o romperse y alterar el comportamiento de la dirección. Todos conllevan riesgo de accidente con daños materiales y lesiones graves.",
+          "solution": "Verifique si un auto en particular está afectado introduciendo el número de chasis en la página de llamados a revisión de Renault Brasil (renault.com.br/recall) o llamando al 0800 055 5615, y haga realizar sin costo cualquier campaña pendiente en un concesionario Renault — la inspección/sustitución de las rótulas axiales toma unas 2,5 horas y el cambio de la manguera unos 90 minutos. Los llamados a revisión no caducan; quien compre un usado debe comprobar antes de la compra que estas campañas se hayan realizado en los autos de los años modelo 2012 y 2016-2017. Cualquier Sandero con juego en la dirección, dureza o fugas de líquido en la cremallera debe inspeccionarse de inmediato, independientemente de su situación de recall.",
+          "symptoms": [
+            "Endurecimiento repentino de la dirección o esfuerzo elevado al volante",
+            "Fuga de líquido de dirección asistida bajo la parte delantera del auto",
+            "Golpeteo o juego en la dirección al pasar por baches",
+            "Zumbido o quejido de la bomba de dirección a medida que se pierde líquido",
+            "Pérdida del control de la dirección (rotura de la rótula en casos extremos)"
+          ],
+          "severity": "high",
+          "category": "steering",
+          "costLow": null,
+          "costHigh": null,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-sandero-steering-column-bearing-wear-causing-play-knocking-steering",
+          "title": "Desgaste del rodamiento de la columna de dirección que provoca juego y golpeteo en el volante",
+          "description": "El Sandero y su gemelo Logan sufren un problema crónico de desgaste en el rodamiento superior de la columna de dirección. A medida que el rodamiento se desgasta, el volante desarrolla un juego libre perceptible y una sensación de golpeteo o traqueteo, que se siente sobre todo en el pavimento irregular brasileño y en las pequeñas correcciones en torno al centro. Varios canales de mecánicos brasileños independientes documentan la falla en ambas generaciones — incluidos autos tan recientes como el Logan 2020 — y la califican sistemáticamente de 'defeito crônico' de la plataforma. Hay concesionarios que han llegado a presupuestar la sustitución de la columna de dirección completa, pero la causa raíz documentada es solo el rodamiento de la columna, una pieza barata. Aunque en su mayor parte es una molestia, un juego pronunciado degrada la precisión de la dirección y varios mecánicos lo señalan como un riesgo de accidente si se ignora a largo plazo.",
+          "solution": "Confirme el diagnóstico comprobando el juego libre de rotación en el volante con las ruedas delanteras inmovilizadas — el desgaste del rodamiento de la columna produce juego y ruido en la propia columna y no en la cremallera ni en los terminales de dirección (descarte estos primero, en especial en los autos alcanzados por los llamados a revisión de la dirección). Sustituya el rodamiento superior de la columna de dirección; la pieza cuesta poco y el trabajo lleva unas horas de mano de obra en un taller independiente. Reemplazar el conjunto completo de la columna es innecesario en el caso típico y solo debería hacer falta si las estrías del eje o el tubo están dañados.",
+          "symptoms": [
+            "Juego libre en el volante antes de que las ruedas respondan",
+            "Golpeteo o traqueteo que se siente en el volante al pasar por baches",
+            "Chasquidos o ruido de traqueteo proveniente de la columna de dirección",
+            "Dirección vaga e imprecisa en torno al centro",
+            "Ruido al sacudir el volante con el auto estacionado"
+          ],
+          "severity": "medium",
+          "category": "steering",
+          "costLow": 30,
+          "costHigh": 120,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-sandero-1-6-8v-k7m-head-gasket-failure-excessive-oil-consumption",
+          "title": "Falla de la junta de culata y consumo excesivo de aceite en el 1.6 8V K7M",
+          "description": "Los Sandero con el motor 1.6 8V K7M (el motor de batalla de la gama brasileña desde el lanzamiento en 2008 hasta finales de la década de 2010) son ampliamente señalados por los propietarios por consumir aceite de motor a un ritmo anormal, con el nivel bajando de forma notoria entre cambios y humo oscuro por el escape. Fuentes brasileñas de reparación y recopilaciones de quejas de propietarios (Mobiauto, Sua Oficina Online) atribuyen los casos recurrentes a un defecto de la junta de culata que deja pasar aceite a las cámaras de combustión, donde se quema junto con la mezcla. Las quejas en Reclame Aqui lo describen como un problema crónico, y a algunos propietarios se les dijo que el motor era prácticamente desechable tras fallas repetidas. Las fugas externas de aceite en la unión de la junta de culata y en la tapa de válvulas también forman parte del patrón. Si no se atiende, un nivel de aceite bajo sostenido implica riesgo de desgaste acelerado o de avería del motor.",
+          "solution": "Revise el nivel de aceite con frecuencia — en cada parada a cargar combustible en los autos afectados — e investigue cualquier consumo superior a aproximadamente 0,5 L entre servicios. Los casos confirmados requieren sustituir la junta de culata, verificando la planitud de la culata y rectificándola si es necesario; con la culata desmontada, reemplace los retenes de válvula si el humo persiste. El cambio de la junta de culata en el K7M es mecánicamente sencillo y asequible en los talleres independientes brasileños en comparación con los concesionarios. Es importante usar la viscosidad correcta 10W-40/15W-40 especificada para el K7M, ya que los aceites más fluidos agravan el consumo en este motor.",
+          "symptoms": [
+            "Nivel de aceite que baja rápidamente entre cambios",
+            "Humo oscuro o azulado por el escape",
+            "Olor a aceite quemado después de conducir",
+            "Residuos de aceite alrededor de la unión de la junta de culata",
+            "Aviso de nivel de aceite bajo en viajes largos"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 300,
+          "costHigh": 700,
+          "dtcCodes": [],
+          "reportCount": 0
         }
       ]
     }
