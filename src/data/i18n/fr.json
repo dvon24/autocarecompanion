@@ -1,6 +1,6 @@
 {
   "locale": "fr",
-  "languageName": "French",
+  "languageName": "Français",
   "chrome": {
     "knownIssues": "Problèmes connus",
     "diagnoseCta": "Diagnostiquer ma voiture",
@@ -3024,6 +3024,1805 @@
             "P2293"
           ],
           "reportCount": 560
+        }
+      ]
+    },
+    {
+      "slug": "renault-clio",
+      "make": "Renault",
+      "model": "Clio",
+      "h1": "Renault Clio : problèmes connus et points faibles",
+      "intro": "La Renault Clio concentre ses points faibles autour de la mécanique : injecteurs et pompe d'injection fragiles sur le 1.5 dCi (K9K), vanne EGR qui s'encrasse, bobines d'allumage défaillantes sur les moteurs essence, galet tendeur de distribution à surveiller et rappel pour défaut de clavettes de soupapes sur le 1.2. Côté transmission, la boîte automatique EDC à double embrayage souffre d'à-coups, de défauts de calculateur et de défaillances d'embrayage, tandis que les boîtes manuelles JH3 et JR5 usent prématurément leurs roulements de différentiel. S'y ajoutent deux pannes notoires : la colonne de direction assistée électrique de la Clio III (avec un rappel sur la Clio V) et la carte mains libres des Clio III et IV qui finit par ne plus être détectée.",
+      "issues": [
+        {
+          "id": "renault-clio-ignition-coil-failure",
+          "title": "Défaillance des bobines d'allumage",
+          "description": "Les moteurs essence des Clio II et III souffrent d'une défaillance prématurée des bobines d'allumage, provoquant des ratés et un fonctionnement irrégulier. Les bobines se fissurent sous l'effet des cycles thermiques et des infiltrations d'humidité, en particulier sur les moteurs 1.2 et 1.4.",
+          "solution": "Remplacez la bobine défectueuse. Il est recommandé de remplacer toutes les bobines en même temps et d'utiliser des pièces d'origine Sagem. Contrôlez et remplacez les bougies d'allumage par la même occasion.",
+          "symptoms": [
+            "Ratés d'allumage",
+            "Ralenti instable",
+            "Hésitations à l'accélération",
+            "Voyant moteur clignotant"
+          ],
+          "severity": "medium",
+          "category": "engine",
+          "costLow": 80,
+          "costHigh": 250,
+          "dtcCodes": [
+            "P0300",
+            "P0301",
+            "P0302"
+          ],
+          "reportCount": 130
+        },
+        {
+          "id": "renault-clio-timing-belt-tensioner",
+          "title": "Défaillance du galet tendeur de courroie de distribution",
+          "description": "Le roulement du galet tendeur de la courroie de distribution des moteurs de la série K de la Clio peut lâcher avant l'échéance de remplacement prévue de la courroie, entraînant des dégâts moteur catastrophiques. La pompe à eau, entraînée par la courroie de distribution, connaît elle aussi une défaillance prématurée.",
+          "solution": "Remplacez la courroie de distribution, le galet tendeur, le galet enrouleur et la pompe à eau sous forme de kit complet tous les 72 000 miles ou tous les 5 ans, à la première échéance atteinte. Ne faites pas l'impasse sur le remplacement de la pompe à eau.",
+          "symptoms": [
+            "Couinement provenant du carter de distribution",
+            "Fuite de liquide de refroidissement au niveau de la pompe à eau",
+            "Usure visible de la courroie de distribution",
+            "Bruit de cliquetis"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 300,
+          "costHigh": 600,
+          "dtcCodes": [],
+          "reportCount": 100
+        },
+        {
+          "id": "renault-clio-1-5-dci-fuel-injector-injection-pump-failure",
+          "title": "1.5 dCi (K9K) : défaillance des injecteurs et de la pompe d'injection",
+          "description": "Le diesel 1.5 dCi K9K souffre de défaillances d'injecteurs bien documentées, souvent déclenchées par l'usure de la pompe d'injection ou par une contamination du carburant qui envoie des débris métalliques dans le circuit common rail jusqu'aux injecteurs. Honest John a documenté le cas d'une Clio 1.5 dCi de 2007 dont la pompe d'injection s'est désintégrée et a projeté des éclats dans les injecteurs, avec un devis de réparation de plus de 3 600 £ hors TVA. Les propriétaires signalent des défaillances d'injecteurs en série, des alertes « panne injection » au tableau de bord, des pertes de puissance et des refus de démarrage ; une fois la rampe contaminée, il faut généralement remplacer ensemble la pompe, la rampe et les quatre injecteurs.",
+          "solution": "Remplacez le ou les injecteurs défaillants par des unités codées au calculateur et changez le filtre à carburant ; certains injecteurs peuvent être reconditionnés par un professionnel. Si la pompe haute pression a libéré des débris, la réparation reconnue consiste à remplacer la pompe, la rampe et les quatre injecteurs et à rincer le circuit de carburant, faute de quoi la contamination provoque des pannes à répétition.",
+          "symptoms": [
+            "Alerte « panne injection » au tableau de bord",
+            "Perte de puissance à l'accélération",
+            "Démarrage difficile ou refus complet de démarrer",
+            "Moteur qui tremble ou tourne irrégulièrement au ralenti",
+            "Voyant de préchauffage qui reste allumé"
+          ],
+          "severity": "high",
+          "category": "fuel",
+          "costLow": 350,
+          "costHigh": 4500,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-clio-keycard-not-detected-card-reader-failure",
+          "title": "Carte non détectée / défaillance du lecteur de carte",
+          "description": "Les Clio III et IV à carte mains libres refusent fréquemment de démarrer en affichant le message « carte non détectée ». Ces cartes souples au format carte bancaire sont pliées, écrasées dans les poches et échappées au sol, ce qui finit par détruire la puce interne — les serruriers automobiles britanniques signalent une défaillance de puce connue sur les cartes 3 et 4 boutons — tandis que le lecteur de carte intégré à la planche de bord et son antenne annulaire peuvent eux aussi tomber en panne et imiter une carte défectueuse. Le remplacement d'une seule carte codée en concession coûte environ 250 à 400 €, si bien que les propriétaires remplacent souvent le mauvais composant faute d'un diagnostic correct.",
+          "solution": "Commencez par installer une pile CR2032 neuve, puis faites confirmer par un passage à la valise que le lecteur détecte réellement l'insertion de la carte avant tout achat. Remplacez la carte défaillante (les serruriers automobiles sont nettement moins chers que les concessions) ou, si le lecteur est en cause, remplacez le module lecteur de carte.",
+          "symptoms": [
+            "Message « carte non détectée » au tableau de bord",
+            "La voiture refuse de démarrer même avec une pile de carte neuve",
+            "Les boutons de verrouillage à distance ne fonctionnent plus",
+            "Reconnaissance intermittente — la carte fonctionne après réinsertion ou en la remuant"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 120,
+          "costHigh": 450,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-clio-gearbox-bearing",
+          "title": "Défaillance des roulements de boîte de vitesses",
+          "description": "Les boîtes manuelles JH3 et JR5 de la Clio développent un bruit de roulement de différentiel qui s'aggrave progressivement. Les roulements lâchent par manque de lubrification du côté différentiel du carter.",
+          "solution": "Remplacez les roulements de différentiel et contrôlez l'état de la couronne et du pignon d'attaque. Une vidange de boîte avec une huile GL-5 75W-80 tous les 60 000 miles peut prolonger la durée de vie des roulements.",
+          "symptoms": [
+            "Bourdonnement en prise",
+            "Sifflement proportionnel à la vitesse",
+            "Bruit plus marqué en décélération",
+            "Débris métalliques dans l'huile de boîte"
+          ],
+          "severity": "medium",
+          "category": "transmission",
+          "costLow": 400,
+          "costHigh": 1000,
+          "dtcCodes": [],
+          "reportCount": 85
+        },
+        {
+          "id": "renault-clio-tce-turbo-coolant-leak",
+          "title": "TCe : fuite de liquide de refroidissement du turbo",
+          "description": "Les moteurs turbocompressés TCe développent des fuites de liquide de refroidissement au niveau des conduites de refroidissement du turbocompresseur et du boîtier de thermostat. Les raccords plastiques du circuit de refroidissement deviennent cassants avec l'âge et la chaleur, provoquant des suintements puis une défaillance complète.",
+          "solution": "Remplacez les conduites de refroidissement du turbo par des raccords métalliques actualisés lorsqu'ils existent. Remplacez le boîtier de thermostat complet. Effectuez un test de mise sous pression du circuit de refroidissement après réparation pour vérifier l'absence de nouvelle fuite.",
+          "symptoms": [
+            "Perte de liquide de refroidissement",
+            "Odeur sucrée dans le compartiment moteur",
+            "Alerte de niveau de liquide de refroidissement bas",
+            "Risque de surchauffe"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 200,
+          "costHigh": 600,
+          "dtcCodes": [
+            "P0116",
+            "P0217"
+          ],
+          "reportCount": 60
+        },
+        {
+          "id": "renault-clio-edc-dual-clutch-gearbox-judder-tcu-faults-clutch-failure",
+          "title": "Boîte EDC à double embrayage : à-coups, défauts de calculateur et défaillance d'embrayage",
+          "description": "Les Clio IV équipées de la boîte automatique EDC à six rapports (la Getrag DCT250 à embrayage à sec, de la même famille que les boîtes DSG/PowerShift à problèmes) souffrent d'à-coups à basse vitesse, de passages 1-2 brusques, de claquements à l'engagement de la position Drive ou de la marche arrière, d'alertes de surchauffe dans les embouteillages et de messages « boîte auto à contrôler ». Les causes vont des défauts logiciels et matériels du TCU (calculateur de boîte) — corrigés par Renault sur certains véhicules — à l'usure des garnitures de l'embrayage à sec et à des actionneurs trop lents. Une défaillance documentée sur une Clio RS 200 EDC a donné lieu à un devis d'environ 4 500 $ pour le seul kit d'embrayage.",
+          "solution": "La première étape est une mise à jour logicielle en concession avec réapprentissage du point de léchage de l'embrayage et réinitialisation des valeurs adaptatives, qui élimine de nombreux cas d'à-coups ; le remplacement du TCU en a réglé d'autres dans le cadre de gestes commerciaux Renault. Un embrayage usé ou un défaut de mécatronique impose le remplacement du kit d'embrayage ou la réparation du bloc mécatronique chez un spécialiste des boîtes de vitesses.",
+          "symptoms": [
+            "À-coups ou broutement au démarrage",
+            "Passages de rapports saccadés à basse vitesse en ville",
+            "Message d'alerte « boîte auto à contrôler »",
+            "Claquements à l'engagement de la position Drive ou de la marche arrière",
+            "Alerte de surchauffe de la boîte dans les embouteillages"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 250,
+          "costHigh": 4000,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-clio-electric-power-steering-column-failure",
+          "title": "Défaillance de la colonne de direction assistée électrique (DAE)",
+          "description": "La colonne de direction à assistance électrique de la Clio III (2005-2012) est un point faible notoire : les spécialistes britanniques de la direction décrivent la défaillance complète de la colonne comme « une panne très courante », causée par de mauvaises connexions de masse du moteur d'assistance ou par une défaillance interne du moteur et du calculateur de la colonne (code défaut C1608). L'assistance devient lourde par intermittence — parfois dans un seul sens — avant de lâcher complètement, la voiture restant conduisible mais très dure à manœuvrer. Le problème a refait surface sur la Clio V : un rappel UE/DVSA de février 2020 a visé des exemplaires produits en 2019 pour une défaillance interne de la commande du moteur de colonne de direction provoquant une perte d'assistance en roulant.",
+          "solution": "Commencez par nettoyer et refaire les connexions de masse du moteur d'assistance ; si la colonne elle-même est en panne, montez une colonne DAE réparée ou en échange standard (environ 800 £ hors TVA plus le codage pour une unité neuve ; les unités reconditionnées sont moins chères). Les propriétaires de Clio V doivent vérifier le statut du rappel DVSA/UE et faire remplacer la colonne gratuitement par Renault si leur véhicule est concerné.",
+          "symptoms": [
+            "Voyant de direction qui s'allume par intermittence",
+            "Direction qui durcit par intermittence, parfois dans un seul sens",
+            "Message « STOP » et défaut de direction avec perte totale d'assistance",
+            "Vibrations dans le volant en tournant"
+          ],
+          "severity": "high",
+          "category": "steering",
+          "costLow": 700,
+          "costHigh": 1800,
+          "dtcCodes": [
+            "C1608"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-clio-1-5-dci-egr-valve-sticking-clogging",
+          "title": "1.5 dCi : vanne EGR grippée et encrassée",
+          "description": "La vanne EGR du 1.5 dCi s'encrasse de suie et de calamine et reste bloquée ouverte ou fermée — une panne si fréquente sur ce moteur que les spécialistes Renault décrivent les 1.5 dCi comme massivement touchés par les problèmes d'EGR, et que Delphi a publié un guide de réparation qui lui est dédié. Une vanne bloquée ouverte provoque un fonctionnement irrégulier, des fumées noires et des hésitations ; bloquée fermée, elle fait monter la température des gaz d'échappement, ce que les experts du forum Honest John relient à des casses de paliers de turbo en cascade. Le défaut enregistre couramment le code P2413 (performance du système EGR) et récidive si le boîtier d'EGR gorgé de calamine n'est pas nettoyé lui aussi.",
+          "solution": "Déposez la vanne EGR et nettoyez-la soigneusement, ainsi que son boîtier, de toute calamine ; si la vanne est physiquement usée ou si son extrémité s'est cassée, remplacez-la. Des codes persistants après remplacement orientent vers le câblage de l'EGR, les conduites de dépression ou le capteur de position, à contrôler avant de monter une nouvelle vanne.",
+          "symptoms": [
+            "Fumées noires à l'accélération",
+            "Voyant moteur allumé",
+            "Hésitations ou à-coups sous charge",
+            "Perte de puissance / mode dégradé",
+            "Ralenti irrégulier ou instable"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 100,
+          "costHigh": 600,
+          "dtcCodes": [
+            "P2413"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-clio-1-2-petrol-valve-cotter-defect-engine-destruction",
+          "title": "1.2 essence : défaut de clavettes de soupapes — destruction du moteur (rappel DVSA)",
+          "description": "Les Clio III 1.2 essence produites entre le 17 septembre et le 30 novembre 2010 ont fait l'objet d'un rappel (référence DVSA R/2011/118) : des clavettes de soupapes hors tolérances pouvaient laisser une soupape tomber dans le cylindre et détruire le moteur. 3 308 véhicules étaient concernés au Royaume-Uni. Une voiture non passée en rappel peut subir une casse moteur soudaine et catastrophique sans aucun signe avant-coureur, condamnant définitivement le moteur.",
+          "solution": "Le remède prévu par le rappel est le remplacement gratuit des clavettes de soupapes par un concessionnaire Renault ; les propriétaires de Clio 1.2 de 2010-2011 doivent vérifier le statut du rappel à partir du numéro VIN sur le vérificateur de rappels GOV.UK. Si la casse s'est déjà produite, le moteur doit être refait ou remplacé.",
+          "symptoms": [
+            "Bruit métallique fort et soudain provenant du moteur",
+            "Calage immédiat du moteur et impossibilité de redémarrer",
+            "Perte totale de compression",
+            "Aucun signe avant-coureur"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 0,
+          "costHigh": 4500,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "peugeot-206",
+      "make": "Peugeot",
+      "model": "206",
+      "h1": "Peugeot 206 : problèmes connus et points faibles",
+      "intro": "La Peugeot 206 souffre avant tout de fragilités moteur sur les blocs essence TU : un joint de culasse sensible à la surchauffe et des blocs bobine d'allumage capricieux, souvent à l'origine du fameux message « Défaut antipollution ». L'électronique multiplexée n'est pas en reste, avec les pannes notoires du BSI et du module COM2000, sans oublier les lève-vitres fragiles. Côté châssis, l'usure des roulements du train arrière reste le défaut le plus coûteux si on le laisse s'installer.",
+      "issues": [
+        {
+          "id": "peugeot-206-head-gasket-failure",
+          "title": "Défaillance du joint de culasse",
+          "description": "Les moteurs de la série TU qui équipent la 206 sont sujets à la défaillance du joint de culasse, en particulier lorsque le circuit de refroidissement est négligé. Les épisodes de surchauffe accélèrent la détérioration du joint, entraînant un mélange huile/liquide de refroidissement et une fumée blanche à l'échappement.",
+          "solution": "Remplacer le joint de culasse, rectifier le plan de joint de la culasse en cas de voilage et rincer le circuit de refroidissement. Contrôler et remplacer préventivement le thermostat et la pompe à eau.",
+          "symptoms": [
+            "Fumée blanche à l'échappement",
+            "Perte de liquide de refroidissement sans fuite visible",
+            "Émulsion huile/liquide de refroidissement sur la jauge",
+            "Surchauffe moteur"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 600,
+          "costHigh": 1200,
+          "dtcCodes": [
+            "P0116",
+            "P0217"
+          ],
+          "reportCount": 85
+        },
+        {
+          "id": "peugeot-206-power-steering-pump-leak",
+          "title": "Fuite de la pompe de direction assistée",
+          "description": "La pompe de direction assistée hydraulique développe avec le temps des fuites au niveau de ses joints, provoquant une perte de liquide et une direction de plus en plus dure. Les joints du corps de pompe durcissent avec l'âge et le kilométrage.",
+          "solution": "Remplacer les joints de la pompe de direction assistée ou la pompe complète. Rincer le circuit de direction assistée et refaire le plein de liquide.",
+          "symptoms": [
+            "Direction dure à basse vitesse",
+            "Sifflement ou couinement en braquant",
+            "Traces de liquide de direction assistée au sol",
+            "Niveau de liquide bas"
+          ],
+          "severity": "medium",
+          "category": "steering",
+          "costLow": 200,
+          "costHigh": 500,
+          "dtcCodes": [],
+          "reportCount": 60
+        },
+        {
+          "id": "peugeot-206-window-regulator-failure",
+          "title": "Défaillance des lève-vitres",
+          "description": "Les lève-vitres électriques de la 206 constituent un point faible bien connu : le mécanisme à câbles casse ou le moteur tombe en panne. Les vitres avant sont les plus touchées, la vitre tombant souvent au fond de la porte.",
+          "solution": "Remplacer le mécanisme de lève-vitre complet. Des mécanismes adaptables renforcés, avec câbles consolidés, existent et sont recommandés de préférence aux pièces d'origine.",
+          "symptoms": [
+            "Vitre qui tombe dans la porte",
+            "Bruit de grincement au fonctionnement",
+            "Vitre qui se déplace lentement",
+            "Fonctionnement intermittent"
+          ],
+          "severity": "low",
+          "category": "electrical",
+          "costLow": 100,
+          "costHigh": 300,
+          "dtcCodes": [],
+          "reportCount": 120
+        },
+        {
+          "id": "peugeot-206-com2000-indicator-wiper-stalk-unit-failure",
+          "title": "Défaillance du module COM2000 (commodos de clignotants et d'essuie-glaces)",
+          "description": "Le module COM2000 monté sur la colonne de direction — qui regroupe les commodos de clignotants et d'essuie-glaces, le contact d'avertisseur sonore et l'électronique multiplexée associée — est un point faible notoire de la 206, en particulier sur les versions multiplexées produites à partir de juillet 2001. Des contacts usés ou encrassés par la graisse provoquent des clignotants qui se déclenchent ou s'annulent de façon intempestive, ou qui ne fonctionnent que feux allumés, des appels de phares lors de l'utilisation des clignotants et un avertisseur sonore qui cesse de fonctionner. Le défaut était si répandu que Honest John rapporte que Peugeot a proposé une prise en charge gratuite en France à partir de décembre 2002, puis au Royaume-Uni à partir de janvier 2003, pour les véhicules sous garantie.",
+          "solution": "Remplacer le module COM2000 (environ 130 à 180 £ pour la pièce selon la finition, plus la main-d'œuvre pour le montage derrière le volant) ; les bricoleurs avertis parviennent parfois à nettoyer et regraisser les contacts internes, mais le remplacement du module reste la réparation durable reconnue.",
+          "symptoms": [
+            "Clignotants qui s'activent ou s'annulent tout seuls",
+            "Clignotants qui ne fonctionnent que feux allumés",
+            "Appels de phares lors de l'utilisation du commodo de clignotants",
+            "Avertisseur sonore qui ne fonctionne plus",
+            "Fonctions d'essuie-glaces erratiques"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 180,
+          "costHigh": 400,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-206-anti-pollution-fault-warning-emissions-system-faults",
+          "title": "Message « Défaut antipollution » — anomalies du système de dépollution",
+          "description": "L'une des plaintes les plus fréquentes sur les 206 multiplexées est l'apparition du message « Défaut antipollution » sur l'afficheur multifonction, souvent accompagné du voyant moteur, de ratés d'allumage, d'une perte de puissance ou d'un passage en mode dégradé. Il s'agit d'une alerte générique du système de dépollution déclenchée par toute une série de causes documentées sur les forums de propriétaires : bobines d'allumage défaillantes, sonde lambda (sonde à oxygène) en défaut, vanne EGR grippée, poussoirs hydrauliques collants et, sur les voitures mal entretenues, catalyseur endommagé par des ratés d'allumage prolongés. Le message étant générique, les propriétaires remplacent fréquemment les mauvaises pièces avant d'avoir lu les codes défaut enregistrés.",
+          "solution": "Lire les codes défaut enregistrés avec un outil de diagnostic compatible PSA plutôt que de procéder au hasard ; les réparations reconnues consistent à remplacer le composant précis en cause — le plus souvent une bobine d'allumage ou une sonde lambda —, à nettoyer ou remplacer la vanne EGR, ou à remplacer un catalyseur endommagé par les ratés d'allumage dans les cas avancés.",
+          "symptoms": [
+            "Message « Défaut antipollution » sur l'afficheur multifonction",
+            "Voyant moteur allumé",
+            "Ratés d'allumage ou à-coups, surtout en charge",
+            "Perte de puissance ou mode dégradé",
+            "Moteur qui cale peu après l'apparition du message"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 100,
+          "costHigh": 900,
+          "dtcCodes": [
+            "P0300",
+            "P0420",
+            "P0130"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-206-bsi-body-control-unit-faults",
+          "title": "Défaillances du BSI (Boîtier de Servitude Intelligent)",
+          "description": "Le calculateur d'habitacle BSI de la 206, qui gère le verrouillage centralisé, les essuie-glaces, l'éclairage, les fonctions du combiné d'instruments et l'antidémarrage, est sujet aux corruptions logicielles, aux soudures sèches et aux entrées d'eau — l'eau qui pénètre par la grille d'auvent et un bac d'auvent mal drainé peut goutter sur le boîtier et la platine fusibles. Un BSI perturbé ou en panne provoque un chaos électrique en apparence aléatoire : essuie-glaces et éclairage qui fonctionnent tout seuls, verrouillage centralisé hors service, affichages erratiques au tableau de bord et défauts d'antidémarrage empêchant le démarrage. Les clubs de propriétaires entretiennent une procédure bien connue de « reset BSI » par débranchement de la batterie, tant le défaut est répandu sur les versions multiplexées (à partir de mi-2001).",
+          "solution": "Tenter d'abord le reset BSI documenté (séquence contrôlée de débranchement et de redémarrage de la batterie) ; en cas de défauts persistants, faire reprendre les soudures du boîtier par un spécialiste ou monter un BSI de remplacement qui devra être codé/cloné sur le véhicule. Traiter les entrées d'eau au niveau de la grille d'auvent et des drains du bac d'auvent pour éviter toute récidive.",
+          "symptoms": [
+            "Véhicule qui ne démarre pas, avec défaut antidémarrage/antivol affiché",
+            "Verrouillage centralisé qui ne fonctionne plus ou s'active tout seul",
+            "Essuie-glaces ou phares qui se mettent en marche sans commande",
+            "Affichages erratiques au combiné et voyants intempestifs",
+            "Vitres électriques et essuie-glace arrière hors service simultanément"
+          ],
+          "severity": "high",
+          "category": "electrical",
+          "costLow": 150,
+          "costHigh": 700,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-206-rear-axle-torsion-beam-trailing-arm-bearing-wear",
+          "title": "Usure des roulements de bras tirés du train arrière à traverse déformante",
+          "description": "Le train arrière à traverse déformante de la 206 utilise, sur les axes de bras tirés, des roulements à aiguilles mal protégés contre les intempéries ; l'eau qui s'y infiltre fait rouiller les roulements, et les aiguilles détruites attaquent ensuite l'axe du bras et l'intérieur du tube de traverse. Le résultat est la défaillance de train arrière classique chez PSA : claquements sur les bosses, carrossage négatif visible aux roues arrière, voile de roue et usure rapide du bord intérieur des pneus. Sans intervention, un jeu important dégrade la tenue de route et le tube d'essieu lui-même est détruit, rendant impossible une simple réparation par kit de roulements.",
+          "solution": "Si le problème est pris à temps, monter un kit de réparation comprenant roulements et axes de bras ; une fois les portées de roulement du tube d'essieu marquées, la solution reconnue est un train arrière reconditionné en échange standard chez un spécialiste, suivi d'un contrôle de géométrie et de hauteur de caisse. La remise en état par ses propres moyens d'un essieu d'origine grippé et rouillé est généralement jugée irréaliste.",
+          "symptoms": [
+            "Claquements, cliquetis ou grincements à l'arrière sur les bosses",
+            "Roues arrière penchées vers l'intérieur en partie haute (carrossage négatif)",
+            "Voile des roues arrière visible en suivant le véhicule",
+            "Jeu excessif en secouant la roue arrière",
+            "Usure rapide du bord intérieur des pneus arrière",
+            "Hauteur de caisse arrière plus basse d'un côté"
+          ],
+          "severity": "high",
+          "category": "suspension",
+          "costLow": 450,
+          "costHigh": 1100,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-206-ignition-coil-pack-failure",
+          "title": "Défaillance du bloc bobine d'allumage (moteurs essence TU)",
+          "description": "Le bloc bobine à étincelle perdue des petits moteurs essence de la 206 (1.1 KFV, 1.4 KFW et blocs TU apparentés) est une pièce fréquemment défaillante : l'une des deux bobines internes lâche, supprimant l'étincelle sur une paire de cylindres (1/4 ou 2/3). Les propriétaires signalent des ratés d'allumage intermittents, un fonctionnement irrégulier, un moteur qui cale et refuse de redémarrer tant qu'il n'a pas refroidi, et un voyant moteur qui clignote. Le consensus des forums met aussi en garde contre les blocs bobine adaptables bon marché, qui retombent souvent en panne ou se positionnent mal, faisant réapparaître le défaut.",
+          "solution": "Remplacer le bloc bobine — les pièces de qualité d'origine (Sagem/Valeo/Bosch) sont fortement recommandées de préférence aux blocs adaptables bon marché — ainsi que les bougies si elles sont usées. L'intervention est un travail simple à réaliser soi-même, ou de moins d'une heure en atelier sur ces moteurs.",
+          "symptoms": [
+            "Ratés d'allumage sur deux cylindres, ralenti irrégulier",
+            "Calages ou coupures moteur intermittents, redémarrage après refroidissement",
+            "Voyant moteur clignotant ou allumé",
+            "Hésitations et perte de puissance à l'accélération",
+            "Démarrage difficile ou impossible par temps humide"
+          ],
+          "severity": "medium",
+          "category": "engine",
+          "costLow": 80,
+          "costHigh": 250,
+          "dtcCodes": [
+            "P0300",
+            "P0301",
+            "P0304",
+            "P0351",
+            "P0352"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-206-fuel-gauge-sender-unit-failure",
+          "title": "Défaillance de la jauge à carburant (sonde de niveau)",
+          "description": "La sonde de niveau de carburant située dans le réservoir de la 206 tombe fréquemment en panne ou donne des indications erronées : le bras du flotteur se coince à certains niveaux, la piste résistive s'use, ou les cosses du connecteur situé au-dessus du module pompe/jauge s'oxydent et perdent le contact. Les propriétaires constatent une jauge bloquée sur le plein ou sur le vide, des fluctuations brutales entre deux indications, ou un témoin de réserve allumé en permanence, avec à la clé un risque bien réel de panne sèche imprévue. Le défaut est bien documenté sur les forums de propriétaires de 206, avec des procédures d'accès et de réparation établies.",
+          "solution": "Accéder à la sonde par la trappe située sous l'assise de la banquette arrière, nettoyer et resserrer les cosses du connecteur et inspecter le câblage ; si le flotteur ou la piste résistive est usé, remplacer la sonde (ou l'ensemble pompe/jauge). La dépose du réservoir n'est pas nécessaire.",
+          "symptoms": [
+            "Jauge à carburant bloquée sur le plein ou sur le vide",
+            "Jauge qui fluctue brutalement entre deux indications",
+            "Témoin de réserve allumé réservoir plein",
+            "Indication de la jauge qui change après un passage sur bosse",
+            "Panne sèche alors que la jauge indiquait encore de l'autonomie"
+          ],
+          "severity": "low",
+          "category": "fuel",
+          "costLow": 100,
+          "costHigh": 350,
+          "dtcCodes": [
+            "P0460"
+          ],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "peugeot-3008",
+      "make": "Peugeot",
+      "model": "3008",
+      "h1": "Peugeot 3008 : problèmes connus et points faibles",
+      "intro": "Le Peugeot 3008 concentre ses faiblesses sur la chaîne cinématique : courroie de distribution humide du 1.2 PureTech qui se dégrade dans l'huile moteur (rappel R/2020/326), allongement de la chaîne de distribution sur les 1.6 THP/VTi (Prince EP6) et à-coups de la boîte automatique EAT6. Les versions diesel ajoutent des pannes récurrentes du système AdBlue et un colmatage prématuré du filtre à particules. L'électronique n'est pas épargnée : boîtier BSI capricieux, écran tactile NAC sujet aux écrans noirs et système HYbrid4 fragile sur les hybrides diesel.",
+      "issues": [
+        {
+          "id": "peugeot-3008-eat6-gearbox-shudder",
+          "title": "À-coups de la boîte automatique EAT6",
+          "description": "La boîte automatique à six rapports EAT6, d'origine Aisin, présente des à-coups et des hésitations lors des manœuvres à basse vitesse et au démarrage depuis l'arrêt. Le calibrage du pontage du convertisseur de couple et la dégradation de l'huile de boîte en sont les causes principales.",
+          "solution": "Effectuez une vidange complète de l'huile de boîte (ATF) et un remplissage avec le fluide Aisin préconisé. Mettez à jour le logiciel du calculateur de boîte (TCM) avec la dernière calibration. Les cas persistants peuvent nécessiter le remplacement du convertisseur de couple.",
+          "symptoms": [
+            "À-coups à basse vitesse",
+            "Hésitation au démarrage",
+            "Passage 1-2 brutal",
+            "Mode rampage saccadé"
+          ],
+          "severity": "medium",
+          "category": "transmission",
+          "costLow": 200,
+          "costHigh": 1500,
+          "dtcCodes": [
+            "P0741"
+          ],
+          "reportCount": 55
+        },
+        {
+          "id": "peugeot-3008-adblue-faults",
+          "title": "Dysfonctionnement du système AdBlue",
+          "description": "Les versions BlueHDi du 3008 de deuxième génération sont en proie à des pannes du système AdBlue, notamment de fausses lectures de niveau et des injecteurs cristallisés. Le véhicule affiche un compte à rebours avant blocage du démarrage moteur, même avec un réservoir d'AdBlue plein.",
+          "solution": "Remplacez le capteur de qualité d'AdBlue et la buse de l'injecteur. Rincez les conduites d'AdBlue pour éliminer la cristallisation. Mettez à jour le logiciel du système SCR et réinitialisez les compteurs.",
+          "symptoms": [
+            "Message d'alerte AdBlue",
+            "Fausse indication de réservoir vide",
+            "Compte à rebours avant blocage du moteur",
+            "Code défaut SCR"
+          ],
+          "severity": "high",
+          "category": "emissions",
+          "costLow": 300,
+          "costHigh": 1200,
+          "dtcCodes": [
+            "P20EE",
+            "P2BAD"
+          ],
+          "reportCount": 60
+        },
+        {
+          "id": "peugeot-3008-dpf-issues",
+          "title": "Colmatage prématuré du filtre à particules (FAP)",
+          "description": "Les versions diesel du 3008 connaissent un encrassement prématuré du FAP, le poids plus élevé du véhicule et un usage urbain favorisant des cycles de régénération incomplets. Le problème est plus marqué sur les modèles d'avant 2017, équipés de l'ancienne conception de FAP.",
+          "solution": "Forcez une régénération du FAP à l'aide d'un outil de diagnostic, complétez le niveau d'additif Eolys et recommandez une conduite soutenue sur autoroute. Les cas sévères imposent un nettoyage professionnel du FAP, voire son remplacement.",
+          "symptoms": [
+            "Voyant FAP allumé",
+            "Mode dégradé moteur",
+            "Hausse de la consommation de carburant",
+            "Fumée blanche pendant la régénération"
+          ],
+          "severity": "high",
+          "category": "emissions",
+          "costLow": 300,
+          "costHigh": 2500,
+          "dtcCodes": [
+            "P2463",
+            "P244A"
+          ],
+          "reportCount": 90
+        },
+        {
+          "id": "peugeot-3008-1-2-puretech-wet-timing-belt-degradation",
+          "title": "Dégradation de la courroie de distribution humide du 1.2 PureTech (contamination de l'huile, perte d'assistance de freinage)",
+          "description": "Le trois-cylindres essence 1.2 PureTech (EB2) utilise une courroie de distribution qui baigne dans l'huile moteur (« courroie humide »). Le caoutchouc de la courroie se dégrade prématurément dans une huile vieillie ou non conforme, libérant des particules qui colmatent la crépine d'aspiration d'huile, les canalisations de lubrification et la pompe à vide de freinage, provoquant un manque de lubrification, des dommages moteur et une perte d'assistance au freinage. Stellantis a lancé le rappel de sécurité britannique R/2020/326 (campagne JZR) couvrant 22 580 véhicules, dont des 3008 I et 3008 II produits de juin 2013 à avril 2017, et le problème plus large de courroie sur les productions ultérieures a été traité par des actions d'après-vente et des extensions de garantie.",
+          "solution": "Dans le cadre du rappel/de la campagne JZR, les concessionnaires mettent à jour le logiciel de détection d'usure de la courroie, inspectent puis remplacent la courroie de distribution et la pompe à vide de freinage si elles sont contaminées ; le carter d'huile et la crépine d'aspiration doivent être nettoyés des débris de courroie. Hors rappel, remplacez la courroie humide de manière anticipée (environ 6 ans/60 000 miles au lieu du plan d'entretien d'origine à 10 ans) et utilisez exclusivement l'huile préconisée PSA B71 2010 0W-30, avec des intervalles de vidange raccourcis.",
+          "symptoms": [
+            "Alerte « Défaut moteur : faites réparer le véhicule » au tableau de bord",
+            "Pédale de frein dure / perte d'assistance au freinage",
+            "Ralenti instable ou ratés d'allumage, perte de puissance",
+            "Voyant de pression d'huile insuffisante allumé",
+            "Dépôt noirâtre et caoutchouteux visible sous le bouchon de remplissage d'huile"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 500,
+          "costHigh": 2500,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-3008-hybrid4-diesel-hybrid-system-battery-faults",
+          "title": "Défaillances du système hybride et des batteries sur le HYbrid4 diesel",
+          "description": "Le 3008 HYbrid4 2012–2016 (diesel 2.0 HDi + moteur électrique arrière) souffre de pannes du système hybride ayant deux origines : le vieillissement du pack de traction haute tension Ni-MH logé sous la banquette arrière, dont la ventilation insuffisante accélère le déséquilibre des cellules, et une batterie auxiliaire 12V sous-dimensionnée, dont la tension trop faible déclenche des cascades de messages de défaut intempestifs et des impossibilités de démarrage. Les propriétaires signalent des alertes « Défaut système hybride » et de puissance réduite, la perte de la traction électrique (et avec elle de la transmission intégrale du véhicule), ainsi qu'une consommation en hausse lorsque la partie électrique cesse de contribuer.",
+          "solution": "Testez et remplacez toujours la batterie 12V en premier lieu, car de nombreux défauts hybrides fantômes disparaissent avec une batterie auxiliaire en bon état (un chargeur de maintien est utile pour les voitures cantonnées aux courts trajets). Les véritables défaillances du pack haute tension se traitent par des batteries reconditionnées ou réparées chez des spécialistes de l'hybride, pour une fraction du prix d'un pack neuf.",
+          "symptoms": [
+            "Alerte « Défaut système hybride » ou message de puissance réduite au tableau de bord",
+            "La traction électrique / le mode EV ne s'enclenche plus",
+            "Consommation de carburant nettement plus élevée",
+            "La voiture refuse de démarrer ou affiche des alertes multiples aléatoires",
+            "Mode 4 roues motrices indisponible (l'essieu arrière est entraîné uniquement en électrique)"
+          ],
+          "severity": "high",
+          "category": "electrical",
+          "costLow": 300,
+          "costHigh": 6500,
+          "dtcCodes": [
+            "P15B3"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-3008-bsi-module-faults-causing-erratic-electrics",
+          "title": "Pannes du boîtier BSI (Boîtier de Servitude Intelligent) provoquant des défauts électriques erratiques",
+          "description": "Le BSI est le boîtier central de l'électronique de carrosserie du 3008 (BSI2010 sur le Mk1, BSI EL3 sur le Mk2) : il pilote l'antidémarrage, le verrouillage centralisé, l'éclairage, les essuie-glaces et la communication avec le combiné. Les cycles thermiques fissurent ses soudures (en particulier autour du relais de verrouillage centralisé), et l'instabilité de tension provoquée par une batterie faible ou des changements de batterie mal réalisés le corrompt, entraînant impossibilités de démarrage, défauts d'antidémarrage, feux de détresse impossibles à couper, verrouillage des portes qui « rebondit » et cascades d'alertes aléatoires. C'est une faiblesse Peugeot/Citroën documentée de longue date, autour de laquelle s'est constituée une véritable filière de réparation indépendante.",
+          "solution": "Commencez par la procédure officielle de réinitialisation du BSI (débranchement contrôlé de la batterie) et vérifiez le bon état de la batterie et de l'alternateur, car les problèmes de tension imitent une panne de BSI. Les défauts persistants se règlent par la réparation de la carte du BSI chez un spécialiste (environ 100 à 200 $) ou par un boîtier de remplacement codé au véhicule ; de nombreux défauts apparus après un changement de batterie disparaissent après une réinitialisation à la valise de diagnostic chez le concessionnaire.",
+          "symptoms": [
+            "La voiture refuse de démarrer par intermittence / défaut antidémarrage",
+            "Feux de détresse ou clignotants qui clignotent sans pouvoir être coupés",
+            "Verrouillage centralisé qui se verrouille/déverrouille tout seul ou « rebondit »",
+            "Essuie-glaces ou éclairage au fonctionnement erratique",
+            "Multiples messages de défaut aléatoires affichés simultanément au tableau de bord"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 100,
+          "costHigh": 1000,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-3008-1-6-thp-vti-timing-chain-stretch-tensioner-failure",
+          "title": "1.6 THP/VTi (Prince EP6) : allongement de la chaîne de distribution et défaillance du tendeur",
+          "description": "Les 3008 de première génération équipés des moteurs essence 1.6 PSA/BMW Prince (THP 156 turbo et VTi 120 atmosphérique) souffrent d'un allongement prématuré de la chaîne de distribution, causé par une chaîne d'origine trop tendre et un tendeur insuffisamment alimenté en huile, le tout aggravé par la distribution variable agressive du moteur. Une chaîne détendue cliquette au démarrage à froid et peut sauter ou casser, désynchronisant le moteur avec un risque de contact soupapes-pistons et de casse moteur complète. Peugeot a diffusé des pièces révisées (chaîne et tendeur) ainsi qu'un bulletin technique (TSB), et des défaillances documentées sur les forums sont survenues bien avant 60 000 miles.",
+          "solution": "Remplacez le kit de distribution (chaîne, tendeur, guides, pignons) par les dernières pièces révisées dès l'apparition d'un cliquetis à froid ou de codes de corrélation arbre à cames/vilebrequin. Des vidanges fréquentes avec le grade d'huile correct ralentissent l'usure de la chaîne ; certains propriétaires ont obtenu un geste commercial ou une prise en charge sous garantie auprès de Peugeot UK au titre du TSB en vigueur.",
+          "symptoms": [
+            "Cliquetis métallique du moteur au démarrage à froid",
+            "Voyant moteur allumé avec défaut de calage/synchronisation",
+            "Fonctionnement irrégulier ou perte de puissance",
+            "Le moteur tourne au démarreur mais ne démarre pas (chaîne ayant sauté)",
+            "Bruit de ronronnement/grincement provenant du carter de distribution"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 600,
+          "costHigh": 1500,
+          "dtcCodes": [
+            "P0016",
+            "P0017"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-3008-i-cockpit-infotainment-touchscreen-black-screen-freezing",
+          "title": "Écran tactile de l'i-Cockpit (NAC) : écran noir / blocages",
+          "description": "Les 3008 de deuxième génération équipés de l'i-Cockpit et du système NAC (Navigation Audio Connectée) souffrent fréquemment d'un écran tactile central qui devient totalement noir, se fige ou redémarre en boucle toutes les quelques minutes, en raison de bugs du firmware du NAC. La climatisation, la caméra de recul et l'affichage des capteurs de stationnement passant par cet écran, les propriétaires perdent l'accès à ces fonctions tant qu'il est hors service ; le défaut fait l'objet de bulletins techniques Peugeot.",
+          "solution": "Tentez d'abord une réinitialisation logicielle en maintenant la touche téléphone/source enfoncée environ 10 secondes ; la solution durable est une mise à jour du firmware du NAC chez le concessionnaire (ou en libre-service par USB via Peugeot Update), conformément au bulletin technique. Les unités qui restent inertes après reprogrammation nécessitent le remplacement de l'écran tactile ou du module NAC.",
+          "symptoms": [
+            "L'écran tactile devient totalement noir en roulant",
+            "Écran figé, insensible au toucher",
+            "Le système redémarre tout seul toutes les quelques minutes",
+            "Perte du réglage de la climatisation, de la caméra de recul et de la radio",
+            "Coupures Bluetooth/navigation précédant la panne"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 100,
+          "costHigh": 1500,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-3008-rear-self-levelling-hydraulic-suspension-leaks",
+          "title": "Fuites de la suspension arrière hydraulique autonivelante (3008 I, 2.0 HDi/HYbrid4)",
+          "description": "Les 3008 de première génération équipés de la suspension arrière hydraulique autonivelante (principalement les versions 2.0 HDi 150 et HYbrid4) perdent fréquemment du fluide au niveau des raccords sertis des flexibles situés au centre de l'essieu arrière, des défaillances étant signalées dès 30 000 miles. Une fois le fluide écoulé, la suspension arrière cogne et talonne sur les bosses, la fonction d'autonivellement est perdue, et le bloc hydraulique d'origine est coûteux et enclin à retomber en panne.",
+          "solution": "La solution consacrée dans la communauté des propriétaires consiste à déposer entièrement le bloc hydraulique autonivelant et à convertir le train arrière en amortisseurs conventionnels (les amortisseurs de la version 1.6 se montent directement), une opération d'environ une demi-heure qui fait économiser plusieurs centaines de livres par rapport au remplacement du système hydraulique. La réparation du bloc d'origine est possible mais rarement rentable.",
+          "symptoms": [
+            "Cognements/claquements à l'arrière sur les bosses",
+            "Fuite d'huile visible autour du centre de l'essieu arrière",
+            "Hauteur de caisse arrière qui s'affaisse, surtout en charge",
+            "Comportement arrière rebondissant et sec",
+            "Film de fluide hydraulique sur les canalisations de la suspension arrière"
+          ],
+          "severity": "medium",
+          "category": "suspension",
+          "costLow": 300,
+          "costHigh": 900,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "peugeot-308",
+      "make": "Peugeot",
+      "model": "308",
+      "h1": "Peugeot 308 : problèmes connus et points faibles",
+      "intro": "La Peugeot 308 concentre ses faiblesses sur ses motorisations : courroie de distribution humide du 1.2 PureTech (EB2) sujette à une dégradation prématurée ayant donné lieu à des rappels, chaîne de distribution du 1.6 THP/VTi (EP6) qui s'allonge avec claquement à froid, et turbocompresseur du 1.6 HDi vulnérable au manque de lubrification. La boîte automatique EAT6 est par ailleurs connue pour ses broutements et à-coups à basse vitesse. Les diesels souffrent en outre de défaillances des systèmes antipollution (FAP, AdBlue/SCR, vanne EGR), et le frein de stationnement électrique des 308 II affiche des défauts récurrents.",
+      "issues": [
+        {
+          "id": "peugeot-308-egr-failure",
+          "title": "Défaillance de la vanne EGR",
+          "description": "La vanne de recirculation des gaz d'échappement (EGR) des 308 diesel s'encrasse de calamine, provoquant un ralenti instable et une baisse de performances. La vanne à commande électrique reste bloquée en position ouverte ou fermée.",
+          "solution": "Nettoyer ou remplacer la vanne EGR. Installer un kit d'obturation (bypass) du refroidisseur EGR si la réglementation de votre région l'autorise. Mettre à jour le logiciel du calculateur avec les cartographies de gestion EGR révisées.",
+          "symptoms": [
+            "Ralenti instable",
+            "Fumée noire à l'échappement",
+            "Perte de puissance",
+            "Voyant moteur allumé"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 200,
+          "costHigh": 600,
+          "dtcCodes": [
+            "P0401",
+            "P0403"
+          ],
+          "reportCount": 75
+        },
+        {
+          "id": "peugeot-308-adblue-system-fault",
+          "title": "Défaut du système AdBlue",
+          "description": "Le système AdBlue (SCR) des moteurs BlueHDi déclenche de fausses alertes de défaut et des comptes à rebours avant interdiction de démarrage du moteur. Le capteur NOx et l'injecteur AdBlue sont les principaux points de défaillance, souvent à cause de la cristallisation du liquide.",
+          "solution": "Remplacer le capteur NOx et nettoyer l'injecteur AdBlue. Rincer le réservoir d'AdBlue en cas de cristallisation. Réinitialiser les compteurs du système SCR avec un outil de diagnostic.",
+          "symptoms": [
+            "Voyant AdBlue allumé",
+            "Compte à rebours avant blocage du démarrage",
+            "Défaut du capteur NOx",
+            "Puissance réduite"
+          ],
+          "severity": "high",
+          "category": "emissions",
+          "costLow": 300,
+          "costHigh": 1200,
+          "dtcCodes": [
+            "P20EE",
+            "P2BAD"
+          ],
+          "reportCount": 65
+        },
+        {
+          "id": "peugeot-308-1-6-thp-vti-timing-chain-stretch-cold-start-rattle",
+          "title": "1.6 THP/VTi (EP6 « Prince ») : allongement de la chaîne de distribution et claquement au démarrage à froid",
+          "description": "Le moteur 1.6 « Prince » co-développé par PSA et BMW (EP6 VTi et EP6DT/EP6CDT THP) des 308 I et premières 308 II souffre d'un allongement bien documenté de la chaîne de distribution, souvent avant 100 000 km. La chaîne d'origine était trop étroite pour la charge encaissée et le tendeur hydraulique se vide pendant la nuit, produisant le claquement caractéristique (le fameux « death rattle ») au démarrage à froid ; sans intervention, la chaîne peut sauter des dents, décalant le calage de la distribution et risquant de graves dégâts aux soupapes et aux pistons. PSA a révisé la chaîne, le tendeur et les guides (passage des guides PVC marron aux guides blancs) vers 2012-2013, et les intervalles de vidange allongés sont un facteur aggravant connu.",
+          "solution": "Remplacer le kit de distribution (chaîne, tendeur, guides, pignons) par les dernières pièces révisées dès l'apparition du claquement ou de défauts de corrélation arbre à cames/vilebrequin — environ 800 à 2 000 $ chez un spécialiste indépendant. Raccourcir les intervalles de vidange à environ 10 000 km (6 000 miles) avec la bonne huile 5W-30 low-SAPS pour ralentir l'usure.",
+          "symptoms": [
+            "Claquement métallique pendant quelques secondes au démarrage à froid",
+            "Cliquetis permanent de la chaîne au ralenti lorsque l'allongement s'aggrave",
+            "Voyant moteur avec défauts de corrélation arbre à cames/vilebrequin",
+            "Ralenti instable et hésitations",
+            "Perte de puissance ou mode dégradé"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 800,
+          "costHigh": 2000,
+          "dtcCodes": [
+            "P0016",
+            "P0017"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-308-dpf-regen-issues",
+          "title": "Échecs de régénération du FAP",
+          "description": "Les 308 diesel connaissent de fréquents échecs de régénération du FAP, en particulier en conduite urbaine hachée. Le système de FAP à additif nécessite des appoints périodiques de liquide Eolys, souvent négligés lors des entretiens.",
+          "solution": "Faire l'appoint d'additif FAP Eolys, lancer une régénération forcée et nettoyer les tubes du capteur de pression du FAP. Remplacer le FAP si la charge en suie dépasse le seuil récupérable.",
+          "symptoms": [
+            "Voyant FAP allumé",
+            "Passage en mode dégradé",
+            "Tentatives de régénération échouées",
+            "Fumées à l'échappement pendant la régénération"
+          ],
+          "severity": "high",
+          "category": "emissions",
+          "costLow": 200,
+          "costHigh": 2500,
+          "dtcCodes": [
+            "P2463",
+            "P2002"
+          ],
+          "reportCount": 100
+        },
+        {
+          "id": "peugeot-308-1-6-thp-intake-valve-carbon-buildup",
+          "title": "1.6 THP : encrassement des soupapes d'admission par la calamine (injection directe)",
+          "description": "Le 1.6 THP turbocompressé (EP6DT/EP6CDT/EP6DTS) injectant le carburant directement dans le cylindre, aucun carburant ne vient lécher le dos des soupapes d'admission ; les vapeurs d'huile issues du recyclage des gaz de carter (PCV) cuisent sur les soupapes et les conduits d'admission sous forme de calamine dure. Les dépôts deviennent généralement symptomatiques entre 50 000 et 80 000 km, réduisant progressivement le passage d'air et provoquant un ralenti instable à froid, des ratés au démarrage à froid, une réponse molle à l'accélérateur et une consommation en hausse.",
+          "solution": "Le décalaminage par projection de coquilles de noix des conduits et soupapes d'admission est la solution reconnue (environ 350 à 900 $ chez un spécialiste indépendant ; les devis en concession peuvent être nettement plus élevés) et mérite d'être répété à titre préventif tous les 50 000 à 60 000 km. Un carburant de qualité et des vidanges régulières ralentissent la ré-accumulation, sans l'empêcher.",
+          "symptoms": [
+            "Ralenti instable, surtout à froid",
+            "Ratés d'allumage aléatoires au démarrage à froid",
+            "Hésitations et réponse molle à l'accélérateur",
+            "Perte de puissance sensible",
+            "Hausse de la consommation de carburant"
+          ],
+          "severity": "medium",
+          "category": "engine",
+          "costLow": 350,
+          "costHigh": 900,
+          "dtcCodes": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-308-1-2-puretech-wet-timing-belt-degradation-oil-starvation",
+          "title": "1.2 PureTech : dégradation de la courroie de distribution humide et manque de lubrification",
+          "description": "Le trois-cylindres essence 1.2 PureTech (EB2) équipant la 308 II et les premières 308 III utilise une courroie de distribution « humide » qui baigne dans l'huile moteur. Le caoutchouc de la courroie se dégrade prématurément — phénomène accéléré par une huile vieillie ou de spécification incorrecte et par la dilution au carburant — et libère des particules qui obstruent la crépine de la pompe à huile et le circuit de la pompe à vide de freinage, provoquant un manque de lubrification, une perte d'assistance au freinage et, dans les pires cas, une casse moteur soudaine. Peugeot a lancé des rappels de sécurité pour les années de production concernées, et Stellantis a ensuite ouvert un portail d'indemnisation au Royaume-Uni ainsi qu'une extension de garantie pouvant atteindre 10 ans/112 000 miles sur ces moteurs.",
+          "solution": "Faire inspecter la courroie (contrôle par le bouchon de remplissage d'huile : gonflement, débris) et la remplacer bien avant l'intervalle d'origine — les spécialistes britanniques recommandent environ 6 ans/60 000 miles. En présence de boues, il faut nettoyer la crépine d'huile, le circuit de la pompe à vide et les tamis VVT ; vérifier le statut des rappels à partir du VIN et faire valoir l'extension de garantie/le dispositif d'indemnisation Stellantis le cas échéant. Depuis 2023, Stellantis a fait passer l'EB2 à une distribution par chaîne.",
+          "symptoms": [
+            "Fonctionnement irrégulier ou ratés avec voyant moteur allumé",
+            "Voyant de pression d'huile allumé",
+            "Pédale de frein dure / assistance de freinage réduite",
+            "Débris de caoutchouc visibles sous le bouchon de remplissage d'huile",
+            "Cliquetis ou sifflement côté distribution",
+            "Message de défaut du système antipollution"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 500,
+          "costHigh": 6000,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-308-1-6-hdi-turbocharger-failure-from-oil-starvation-sludge",
+          "title": "1.6 HDi (DV6) : casse du turbocompresseur par manque de lubrification et boues d'huile",
+          "description": "Le 1.6 HDi diesel de la 308 I est tristement célèbre pour ses casses de turbocompresseur dues à un manque de lubrification : les boues de calamine — aggravées par des intervalles de vidange allongés, une huile de mauvaise spécification et des joints d'injecteurs fuyards — colmatent le minuscule filtre-tamis de la vis banjo d'alimentation en huile du turbo ainsi que les conduites d'alimentation et de retour, privant le palier du turbo d'huile. Des cas documentés montrent une pression d'huile au turbo très inférieure au minimum de 2,3 bars, et un turbo de remplacement casse à nouveau rapidement si les conduites encrassées, le carter et la crépine ne sont pas nettoyés en même temps.",
+          "solution": "Remplacer le turbocompresseur avec des conduites d'alimentation et de retour d'huile neuves et le filtre de la vis banjo, déposer et nettoyer le carter d'huile et la crépine, puis rincer le moteur — environ 1 200 à 2 600 $ tout compris chez un indépendant. Pour éviter la récidive, raccourcir strictement les intervalles de vidange avec la bonne huile low-SAPS et traiter sans tarder les fuites de joints d'injecteurs.",
+          "symptoms": [
+            "Sifflement ou bruit aigu provenant du turbo",
+            "Perte de puissance sensible / mode dégradé",
+            "Fumée bleue ou grise à l'échappement",
+            "Consommation d'huile moteur en hausse",
+            "Voyant moteur avec défaut de pression de suralimentation insuffisante"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 1200,
+          "costHigh": 2600,
+          "dtcCodes": [
+            "P0299"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-308-electric-parking-brake-faults-caliper-motor-switch-wiring",
+          "title": "Défauts du frein de stationnement électrique : moteur d'étrier, commande et câblage",
+          "description": "Les 308 II (T9) et modèles ultérieurs équipés du frein de stationnement électrique affichent fréquemment un message « Défaut frein de parking » avec un voyant clignotant, le frein refusant de se desserrer ou ne s'appliquant plus automatiquement. Les causes racines documentées sur les forums de propriétaires incluent la défaillance des moteurs d'actionneurs électriques des étriers arrière (entrée d'eau/panne électrique), une commande de console usée, des défauts de faisceau électrique et une batterie 12 V faiblissante ; les défauts apparaissent aussi souvent après un remplacement des plaquettes arrière si les actionneurs n'ont pas été rétractés et recalibrés avec un outil de diagnostic.",
+          "solution": "Diagnostiquer d'abord avec un outil de diagnostic compatible Peugeot : une commande usée ou une batterie faible se règlent à peu de frais, tandis qu'un moteur d'actionneur d'étrier défaillant impose le remplacement du moteur ou de l'étrier, suivi d'un recalibrage du frein de stationnement électrique. Après toute intervention sur les freins arrière, les actionneurs doivent être rétractés puis recalibrés électroniquement pour ne pas provoquer le défaut.",
+          "symptoms": [
+            "Message « Défaut frein de parking » au combiné d'instruments",
+            "Voyant de frein de stationnement clignotant",
+            "Frein de stationnement qui ne se desserre pas ou voiture qui semble retenue",
+            "Frein de stationnement qui ne s'applique plus automatiquement",
+            "Défaut intermittent ou apparaissant après le remplacement des plaquettes arrière"
+          ],
+          "severity": "medium",
+          "category": "brakes",
+          "costLow": 100,
+          "costHigh": 900,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-308-eat6-automatic-gearbox-shudder-jerky-low-speed-shifting",
+          "title": "Boîte automatique EAT6 : broutements et passages de rapports brusques à basse vitesse",
+          "description": "La boîte automatique EAT6 à six rapports fabriquée par Aisin et montée sur la 308 II a une réputation bien établie de broutements à basse vitesse et de passages de rapports brusques, en particulier à froid, dans la circulation au pas et juste après un redémarrage du Stop & Start. Les causes documentées par les spécialistes britanniques des boîtes de vitesses incluent un fluide de transmission dégradé perturbant le pontage du convertisseur de couple, des dépôts dans les tiroirs du bloc hydraulique, des embrayages usés et un logiciel de calculateur de boîte (TCU) obsolète ; un broutement ignoré accélère l'usure du convertisseur de couple et des embrayages.",
+          "solution": "Commencer par une vidange de boîte avec remplacement du filtre et un fluide à la spécification Aisin correcte, complétée par une mise à jour logicielle du calculateur de boîte en concession, ce qui règle de nombreux cas pour quelques centaines de dollars. Un broutement persistant oriente vers le convertisseur de couple ou le bloc hydraulique, dont la réparation ou le remplacement coûte environ 1 500 à 3 500 $ chez un spécialiste indépendant des boîtes de vitesses.",
+          "symptoms": [
+            "Broutement ou vibration au démarrage à basse vitesse",
+            "Passages de rapports brusques ou durs à froid",
+            "À-coup ou secousse après un redémarrage du Stop & Start",
+            "Engagement retardé lors du passage en Drive ou en marche arrière",
+            "Voyant de boîte de vitesses dans les cas avancés"
+          ],
+          "severity": "medium",
+          "category": "transmission",
+          "costLow": 300,
+          "costHigh": 3500,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "renault-captur",
+      "make": "Renault",
+      "model": "Captur",
+      "h1": "Renault Captur : problèmes connus et points faibles",
+      "intro": "Le Renault Captur n'est pas exempt de défauts : le 1.2 TCe (H5Ft) est au cœur du scandale « Motorgate » pour sa consommation d'huile excessive, les 0.9 et 1.2 TCe souffrent de chaînes de distribution qui se détendent prématurément, et la boîte EDC à double embrayage est connue pour ses broutements et ses à-coups. Les versions E-Tech hybrides ont par ailleurs fait l'objet d'un rappel massif pour une fuite d'huile interne à la boîte multimode, tandis que le 1.5 dCi encrasse son FAP et sa vanne EGR en usage urbain. S'y ajoutent des infiltrations d'eau dans l'habitacle sur la première génération, un rappel du frein de parking électrique sur les modèles récents et des dysfonctionnements du système multimédia.",
+      "issues": [
+        {
+          "id": "renault-captur-infotainment",
+          "title": "Dysfonctionnements du système multimédia",
+          "description": "Les systèmes multimédias MediaNav et Easy Link du Captur de seconde génération souffrent de blocages de l'écran tactile, de déconnexions Bluetooth et de temps de réponse anormalement longs. Les mises à jour à distance (OTA) introduisent parfois de nouveaux bugs.",
+          "solution": "Effectuez une réinitialisation d'usine du système multimédia. Faites installer la dernière version du logiciel chez le concessionnaire. Supprimez les appairages Bluetooth puis réappairez vos appareils. Remplacez l'unité multimédia si une défaillance matérielle est confirmée.",
+          "symptoms": [
+            "Écran tactile qui se fige",
+            "Déconnexions Bluetooth",
+            "Lenteur de réponse",
+            "Plantages de la navigation"
+          ],
+          "severity": "low",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 600,
+          "dtcCodes": [],
+          "reportCount": 55
+        },
+        {
+          "id": "renault-captur-edc-transmission-shudder",
+          "title": "Boîte EDC 6DCT250 à double embrayage humide : broutements et engagements saccadés",
+          "description": "La boîte EDC du Captur (Getrag 6DCT250/DC4) est une transmission à double embrayage humide qui développe broutements, hésitations et engagements saccadés au-delà d'environ 50 000 à 80 000 km. Causes principales identifiées : une huile d'embrayage dégradée, des embrayages usés et un calculateur de boîte (TCU) nécessitant une reprogrammation. Renault a diffusé plusieurs mises à jour logicielles et révisé les spécifications d'huile ; les symptômes disparaissent souvent après une vidange et une reprogrammation. Le remplacement complet du mécanisme d'embrayage coûte entre 1 500 et 2 500 €.",
+          "solution": "Effectuez une réinitialisation des adaptations d'embrayage de la boîte EDC à l'aide d'un outil de diagnostic. Remplacez le mécanisme d'embrayage si l'usure dépasse la plage d'adaptation. Mettez à jour le logiciel du calculateur de boîte avec la dernière calibration disponible.",
+          "symptoms": [
+            "Broutements à basse vitesse",
+            "Hésitations au démarrage en côte",
+            "Passages de rapports saccadés",
+            "Broutement en mode rampage (creep)"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 200,
+          "costHigh": 2000,
+          "dtcCodes": [],
+          "reportCount": 85
+        },
+        {
+          "id": "renault-captur-tce-turbo-issues",
+          "title": "Problèmes de turbocompresseur sur les moteurs TCe",
+          "description": "Les petits moteurs TCe turbo du Captur souffrent d'un cliquetis de la wastegate et de fuites aux joints d'huile du turbocompresseur. La tige de l'actionneur de wastegate prend du jeu, provoquant un bruit de cliquetis au ralenti et à faible charge.",
+          "solution": "Remplacez l'actionneur de wastegate du turbo en cas de cliquetis. En cas de fuite aux joints d'huile, une réfection ou un remplacement du turbo s'impose. Veillez à respecter la spécification d'huile et les intervalles de vidange préconisés.",
+          "symptoms": [
+            "Cliquetis au ralenti",
+            "Bruit de flottement de la wastegate",
+            "Hausse de la consommation d'huile",
+            "Fumée bleue au lever de pied"
+          ],
+          "severity": "medium",
+          "category": "engine",
+          "costLow": 200,
+          "costHigh": 1200,
+          "dtcCodes": [
+            "P0299",
+            "P0234"
+          ],
+          "reportCount": 50
+        },
+        {
+          "id": "renault-captur-e-tech-hybrid-gearbox-input-shaft-o-ring-oil-leak",
+          "title": "Fuite d'huile au joint torique de l'arbre primaire de la boîte E-Tech Hybrid (rappel de 155 825 véhicules)",
+          "description": "Sur les Captur II E-Tech hybrides et hybrides rechargeables, un joint torique défectueux sur l'arbre primaire creux du moteur électrique, à l'intérieur de la boîte multimode DB1, laisse l'huile de boîte fuir en interne. L'huile qui s'échappe endommage d'abord le capteur de température et, dans les cas graves, contamine et fait surchauffer le moteur électrique, entraînant une perte de puissance voire une perte totale de motricité ; hors garantie, le remplacement du moteur ou de la boîte se chiffre entre 3 000 et 8 000 €. Renault a rappelé 155 825 hybrides E-Tech produits entre le 5 avril 2019 et le 26 septembre 2022 (Clio 5, Captur 2, Arkana, Mégane 4, Dacia Jogger) pour contrôler ce joint.",
+          "solution": "Dans le cadre du rappel, les concessionnaires effectuent un test d'étanchéité du joint de l'arbre primaire creux et remplacent gratuitement le joint torique d'origine par un joint X-ring amélioré (environ 30 minutes si aucun dégât n'est constaté). Si l'huile a déjà contaminé le moteur électrique ou le capteur, les composants touchés ou la boîte complète doivent être remplacés ; les véhicules produits après septembre 2022 reçoivent le joint amélioré dès l'usine.",
+          "symptoms": [
+            "Défaut de boîte ou alerte « Danger défaillance électrique » au tableau de bord",
+            "Perte de puissance soudaine ou perte de motricité en roulant",
+            "Alerte de surchauffe de la chaîne de traction",
+            "Traces d'huile sous la zone boîte de vitesses/moteur électrique",
+            "Passages de rapports saccadés ou irréguliers de la boîte multimode"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 300,
+          "costHigh": 8500,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-captur-cabin-water-ingress-through-door-seals-blocked-sill-drains",
+          "title": "Infiltrations d'eau dans l'habitacle par les joints de portes et les orifices d'évacuation de bas de caisse bouchés",
+          "description": "Les Captur de première génération laissent fréquemment l'eau de pluie pénétrer dans l'habitacle, le plus souvent en détrempant les planchers arrière. Les causes recensées sur les forums de propriétaires : des joints de portes arrière trop fins qui se décollent ou se dégradent, un joint mal conçu entre le tablier et les bas de caisse, et des orifices d'évacuation des bas de caisse qui se bouchent avec la saleté — une fois le bas de caisse rempli d'eau, celle-ci déborde dans le plancher. Sans intervention, l'eau stagnante sous les moquettes provoque odeurs d'humidité, buée persistante, corrosion et pannes du câblage et des boîtiers électroniques situés sous le plancher.",
+          "solution": "Localisez le point d'entrée par un test au jet d'eau, puis remettez en place ou remplacez les joints de portes défaillants, débouchez les orifices d'évacuation et les bouchons en caoutchouc des bas de caisse, et refaites l'étanchéité de la jonction tablier/bas de caisse si nécessaire. Les moquettes et leur sous-couche doivent être déposées et entièrement séchées pour protéger le câblage et éviter les moisissures.",
+          "symptoms": [
+            "Moquette du plancher arrière détrempée après la pluie",
+            "Odeur d'humidité et de renfermé, vitres qui s'embuent de l'intérieur",
+            "Bruit d'eau qui clapote dans les bas de caisse ou eau retrouvée sous les bouchons de bas de caisse",
+            "Eau qui goutte de la garniture ou du joint de porte à l'ouverture",
+            "Pannes électriques aléatoires dues à l'humidité sous les moquettes"
+          ],
+          "severity": "medium",
+          "category": "body",
+          "costLow": 100,
+          "costHigh": 600,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-captur-0-9-1-2-tce-timing-chain-premature-stretch-tensioner-guide-f",
+          "title": "0.9/1.2 TCe : détente prématurée de la chaîne de distribution et défaillance du tendeur et des guides",
+          "description": "Les moteurs essence 0.9 TCe 90 (H4Bt) et 1.2 TCe 120 (H5Ft) utilisent une chaîne de distribution annoncée « à vie » qui, en pratique, peut se détendre prématurément dès 80 000 à 100 000 km, avec des tendeurs fragiles et des guides en plastique qui se fissurent ou cassent. Cause aggravante : le petit gicleur d'huile qui lubrifie la chaîne s'encrasse de calamine lorsque les vidanges sont trop espacées, ce qui accélère l'usure de la chaîne et des pignons. Des propriétaires rapportent sur les forums britanniques des cliquetis suivis de guides cassés et de chaînes ayant sauté, pouvant laisser la voiture immobilisée ou endommager les soupapes.",
+          "solution": "Remplacez le kit de distribution complet (chaîne, tendeur, guides et pignons) dès les premiers cliquetis, et vérifiez que le gicleur d'huile de la chaîne n'est pas obstrué pendant l'intervention. Des vidanges rapprochées et rigoureuses avec une huile à la bonne spécification constituent la prévention reconnue ; Renault a accordé des prises en charge commerciales (par exemple 75 %) sur certaines casses hors garantie.",
+          "symptoms": [
+            "Cliquetis métallique du moteur au démarrage à froid",
+            "Tic-tac ou cliquetis côté carter de distribution qui s'amplifie avec le régime",
+            "Perte de puissance accompagnée du voyant moteur",
+            "Codes défaut de synchronisation vilebrequin/arbre à cames enregistrés",
+            "Le moteur tourne au démarreur mais ne démarre plus après le saut de chaîne"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 900,
+          "costHigh": 1900,
+          "dtcCodes": [
+            "P0016"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-captur-1-5-dci-dpf-egr-clogging-adblue-scr-faults-short-trip-cars",
+          "title": "1.5 dCi : encrassement du FAP et de la vanne EGR et défauts AdBlue/SCR sur les voitures utilisées en trajets courts",
+          "description": "Le Captur diesel 1.5 dCi (K9K) est sujet au colmatage du filtre à particules lorsqu'il est utilisé principalement pour de courts trajets urbains qui ne permettent jamais d'achever une régénération active ; la vanne EGR se calamine généralement en parallèle, ce qui aggrave la restriction du circuit d'air. Après plusieurs régénérations avortées, le calculateur impose le mode dégradé avec le message « Contrôler antipollution ». Sur les versions Blue dCi Euro 6d plus récentes, des défauts AdBlue/SCR — cristallisation de l'injecteur, erreurs de capteur NOx et lecture erronée du niveau d'urée — déclenchent en plus le compte à rebours « Démarrage impossible dans xxx km ».",
+          "solution": "Une régénération forcée via un outil de diagnostic ou un nettoyage professionnel du FAP restaure généralement un filtre encrassé, avec nettoyage ou remplacement de la vanne EGR effectué au même moment ; les filtres totalement colmatés et les composants SCR défaillants (injecteur, capteur NOx) doivent être remplacés. En prévention : un trajet autoroutier de 20 à 30 minutes à allure soutenue tous les 300 à 400 km d'usage urbain et un niveau d'AdBlue maintenu avec du fluide frais.",
+          "symptoms": [
+            "Message « Contrôler antipollution » avec voyant moteur",
+            "Puissance réduite / mode dégradé",
+            "Régénérations actives fréquentes (ralenti relevé, ventilateur enclenché, odeur de chaud)",
+            "Consommation de carburant en hausse",
+            "Alerte AdBlue avec compte à rebours « Démarrage impossible dans xxx km » (versions Blue dCi)"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 150,
+          "costHigh": 2200,
+          "dtcCodes": [
+            "P2002"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-captur-electronic-parking-brake-fails-to-auto-engage-actuator-senso",
+          "title": "Frein de parking électrique qui ne se serre pas automatiquement — rappel pour le capteur de l'actionneur (RAPEX 37/2025)",
+          "description": "Les Captur II produits entre le 10 avril 2024 et le 16 janvier 2025 font l'objet d'un rappel de sécurité européen (alerte RAPEX 37/2025, réf. SR/03262/25) pour un capteur de position mal orienté à l'intérieur de l'actionneur du frein de parking électrique. Ce capteur désaligné peut positionner incorrectement le doigt d'arrêt, si bien que le frein de parking ne se serre pas correctement lorsque le conducteur engage P, coupe le moteur, détache sa ceinture ou ouvre la porte — avec un risque que le véhicule se mette à rouler seul. Le même défaut touche les Renault Austral, Mégane E-Tech, Scenic E-Tech, Espace VI et Rafale ; la fonction de secours Assisted Parking Brake reste opérationnelle.",
+          "solution": "Il s'agit d'un rappel de sécurité gratuit : les concessionnaires contrôlent l'alignement du capteur de position de l'actionneur et la position du doigt d'arrêt, puis appliquent l'action corrective prescrite ou une mise à jour logicielle. Les propriétaires des VIN concernés sont contactés par Renault ; dans l'attente de l'intervention, il est conseillé de laisser un rapport engagé et de vérifier que le témoin de frein s'allume bien.",
+          "symptoms": [
+            "Le frein de parking ne se serre pas automatiquement à l'engagement de P ou à la coupure du moteur",
+            "Le témoin de frein de parking ne s'allume pas après le stationnement",
+            "Le véhicule bouge ou se met à rouler une fois garé en pente",
+            "Message de défaut du frein de parking au combiné d'instrumentation"
+          ],
+          "severity": "high",
+          "category": "brakes",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-captur-1-2-tce-excessive-oil-consumption-motorgate-piston-ring-defe",
+          "title": "1.2 TCe (H5Ft) : consommation d'huile excessive — défaut de segmentation « Motorgate »",
+          "description": "Les Captur I équipés du 1.2 TCe 120 (H5Ft) produits entre 2012 et mi-2016 souffrent d'un défaut de fabrication : des tolérances trop larges entre les pistons, les segments et les parois de cylindres laissent l'huile moteur passer dans la chambre de combustion et y brûler. Les voitures touchées peuvent consommer 1 litre d'huile tous les 1 000 à 1 500 km, ce qui encrasse le catalyseur et les soupapes d'échappement et, dans les pires cas, prive le moteur d'huile jusqu'à la casse dès 40 000 à 60 000 km. Plus de 400 000 véhicules sont concernés en Europe ; l'action de groupe française « Motorgate » et une enquête de la DGCCRF visent Renault au sujet de ce moteur, corrigé en production en mai 2016 mais jamais officiellement rappelé.",
+          "solution": "La procédure Renault consiste en une mise à jour du calculateur qui augmente la pression du collecteur d'admission afin de réduire l'ingestion d'huile ; si la consommation reste supérieure à 0,25 L/1 000 km, les segments doivent être remplacés, et les moteurs très usés nécessitent une réfection ou un remplacement. Vérifiez le niveau d'huile tous les 1 000 km, conservez des justificatifs documentés de vos appoints pour appuyer une demande de prise en charge commerciale, et évitez les exemplaires 2012-2016 sans historique d'entretien.",
+          "symptoms": [
+            "Niveau d'huile qui baisse nettement entre les révisions (jusqu'à 1 L tous les 1 000-1 500 km)",
+            "Voyant de pression d'huile ou de niveau d'huile bas",
+            "Fumée bleue à l'échappement, surtout au démarrage",
+            "Ratés d'allumage et fonctionnement irrégulier dus aux bougies encrassées d'huile",
+            "Perte de puissance ou casse moteur soudaine dans les cas graves"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 2500,
+          "costHigh": 8500,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "citroen-c3",
+      "make": "Citroen",
+      "model": "C3",
+      "h1": "Citroen C3 : problèmes connus et points faibles",
+      "intro": "La Citroen C3 concentre ses faiblesses majeures sur la chaîne cinématique : la courroie de distribution humide du moteur PureTech 1.2 sujette au délaminage, et les boîtes manuelles pilotées SensoDrive/EGS/ETG dont les actionneurs d'embrayage et les calculateurs sont des points faibles reconnus. S'y ajoutent des pannes soudaines de direction assistée électrique, particulièrement dangereuses en manœuvre, et des ruptures de ressorts de suspension avant ayant donné lieu au rappel R/2005/147 sur les premières années. Au quotidien, les caprices électriques du BSI — souvent aggravés par des infiltrations d'eau dues aux drains d'auvent bouchés —, le broutement d'embrayage des premières C3 et l'usure des biellettes de barre stabilisatrice complètent le tableau.",
+      "issues": [
+        {
+          "id": "citroen-c3-power-steering-failure",
+          "title": "Panne de la direction assistée électrique",
+          "description": "Les C3 de première et de deuxième génération connaissent des pannes de direction assistée électrique causées par le moteur d'assistance monté sur la colonne de direction et son calculateur de commande. La direction devient dure sans prévenir, ce qui est particulièrement dangereux à basse vitesse, lors des manœuvres de stationnement.",
+          "solution": "Remplacez l'ensemble moteur d'assistance et calculateur. Certains réparateurs spécialisés peuvent reconditionner le calculateur en ressoudant les soudures fissurées. Vérifiez l'existence d'un rappel Citroën associé à votre VIN.",
+          "symptoms": [
+            "Direction soudainement dure",
+            "Voyant de direction assistée allumé",
+            "Perte d'assistance intermittente",
+            "Bruit dans la colonne de direction"
+          ],
+          "severity": "high",
+          "category": "steering",
+          "costLow": 300,
+          "costHigh": 900,
+          "dtcCodes": [
+            "C1404",
+            "C1414",
+            "P0606"
+          ],
+          "reportCount": 95
+        },
+        {
+          "id": "citroen-c3-puretech-timing-chain",
+          "title": "Délaminage de la courroie de distribution humide du PureTech 1.2",
+          "description": "Les moteurs PSA/Stellantis PureTech 1.2 (EB2) utilisent une courroie de distribution baignant dans l'huile (dite « humide ») au lieu d'une chaîne. La couche extérieure en caoutchouc de la courroie peut se délaminer et libérer des particules dans le circuit d'aspiration d'huile, colmatant la crépine et privant le moteur de lubrification. Stellantis a revu la matière de la courroie et raccourci l'intervalle d'entretien (désormais 60 000 miles ou 6 ans, au premier des deux termes atteint), mais les courroies à l'ancienne spécification encore en service restent à risque.",
+          "solution": "Remplacez la chaîne de distribution, le tendeur et les pignons par des pièces révisées. Vérifiez l'éligibilité à la garantie étendue PSA (10 ans/200 000 km). Utilisez exclusivement l'huile préconisée par le constructeur.",
+          "symptoms": [
+            "Cliquetis au démarrage à froid",
+            "Voyant moteur allumé",
+            "Ratés d'allumage",
+            "Perte de puissance"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 800,
+          "costHigh": 2000,
+          "dtcCodes": [
+            "P0016",
+            "P0017",
+            "P0335"
+          ],
+          "reportCount": 140
+        },
+        {
+          "id": "citroen-c3-front-anti-roll-bar-drop-link-wear-suspension-knock",
+          "title": "Usure des biellettes de barre stabilisatrice avant et claquements de suspension",
+          "description": "Les biellettes de barre stabilisatrice avant de la C3 s'usent prématurément : les petites rotules situées à chaque extrémité prennent du jeu et produisent un cliquetis ou un claquement persistant à l'avant sur routes dégradées. Les forums de propriétaires en font l'un des défauts les plus courants de la C3, et des biellettes usées valent régulièrement une observation, voire une contre-visite, au contrôle technique. Le bruit relève davantage de la nuisance que du danger immédiat, mais des biellettes fortement usées dégradent le comportement routier et peuvent finir par se désolidariser.",
+          "solution": "Remplacez les biellettes, idéalement par paire ; il s'agit d'une pièce d'usure bon marché et l'intervention est simple dans n'importe quel garage indépendant. Dans certains cas, le bruit provient simplement d'une fixation de biellette desserrée qu'il suffit de resserrer au couple.",
+          "symptoms": [
+            "Cliquetis ou claquements à l'avant sur les petites bosses",
+            "Bruit qui s'atténue ou disparaît en virage",
+            "Impression que l'échappement cogne sous la caisse",
+            "Jeu visible dans la biellette lorsqu'on fait levier à la main",
+            "Observation ou contre-visite au contrôle technique pour la timonerie de barre stabilisatrice"
+          ],
+          "severity": "low",
+          "category": "suspension",
+          "costLow": 80,
+          "costHigh": 250,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c3-water-ingress-through-blocked-scuttle-panel-drains",
+          "title": "Infiltrations d'eau par les drains d'auvent bouchés",
+          "description": "Le bac d'auvent situé sous le pare-brise s'évacue par de petits tubes de drainage en caoutchouc qui se bouchent facilement avec les feuilles et les saletés. Une fois les drains obstrués, l'eau de pluie stagne dans l'auvent, détrempe le filtre d'habitacle exposé et s'écoule par l'entrée d'air du chauffage jusque dans les planchers avant, laissant les moquettes trempées et l'habitacle embué. Comme cette eau peut atteindre le BSI et le câblage sous plancher, des infiltrations non traitées dégénèrent fréquemment en ces fameux caprices électriques dont la C3 est coutumière.",
+          "solution": "Débouchez les orifices de drainage de l'auvent (profonds de quelques centimètres, faciles à déboucher avec un fil de fer rigide), remontez correctement la grille d'auvent et remplacez le filtre d'habitacle détrempé ; vérifiez le résultat en versant de l'eau dans le bac d'auvent et en contrôlant qu'elle ressort au niveau des passages de roue. Séchez soigneusement les moquettes et leurs sous-couches pour prévenir corrosion et mauvaises odeurs.",
+          "symptoms": [
+            "Moquette mouillée dans le plancher conducteur ou passager après la pluie",
+            "Pare-brise qui s'embue en permanence de l'intérieur",
+            "Filtre d'habitacle retrouvé détrempé",
+            "Odeur de moisi dans l'habitacle",
+            "Dysfonctionnements électriques après de fortes pluies",
+            "Eau qui goutte derrière la planche de bord ou au niveau de la pédale d'embrayage"
+          ],
+          "severity": "medium",
+          "category": "body",
+          "costLow": 20,
+          "costHigh": 200,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c3-clutch-judder-when-pulling-away-premature-clutch-wear",
+          "title": "Broutement d'embrayage au démarrage et usure prématurée de l'embrayage (C3 I manuelle)",
+          "description": "Les C3 de première génération à boîte manuelle, en particulier les versions essence 1.1 et 1.4, sont très fréquemment signalées pour un broutement violent au démarrage à l'arrêt, tout l'avant de la voiture se mettant à trembler. Le consensus des forums l'attribue à la combinaison d'un support moteur arrière détérioré, d'un point de patinage d'embrayage haut et de garnitures d'embrayage qui se glacent ou s'usent anormalement tôt — des propriétaires rapportent des embrayages quasiment hors d'usage à très faible kilométrage, ce qui suggère une faiblesse de conception plutôt qu'une conduite brutale. Non traité, le phénomène accélère l'usure de l'embrayage et rend les démarrages en côte pénibles.",
+          "solution": "Remplacez d'abord le support moteur arrière : à lui seul, il élimine le broutement sur de nombreuses voitures. Si le broutement persiste ou si l'embrayage est usé ou contaminé, montez un kit d'embrayage complet et apparié (la C3 existe avec deux diamètres d'embrayage, les pièces doivent donc correspondre au volant moteur).",
+          "symptoms": [
+            "Broutement ou tremblement violent au démarrage à l'arrêt",
+            "Phénomène aggravé moteur chaud ou en démarrage en côte",
+            "Point de patinage d'embrayage haut",
+            "Vibrations ressenties dans tout l'avant de la voiture",
+            "Embrayage usé à un kilométrage anormalement faible"
+          ],
+          "severity": "medium",
+          "category": "drivetrain",
+          "costLow": 550,
+          "costHigh": 900,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c3-bsi-electrical-gremlins",
+          "title": "Caprices électriques du BSI (Boîtier de Servitude Intelligent)",
+          "description": "Le BSI fait office de calculateur central de carrosserie et de boîtier à fusibles de boîte à gants sur la C3 : il arbitre l'éclairage, les essuie-glaces, le verrouillage centralisé, les vitres et l'antidémarrage. L'humidité dans les connecteurs, de mauvaises masses, des pics de tension (par exemple un démarrage avec câbles ou un remplacement de batterie effectué sans respecter la procédure) ou une défaillance interne des circuits de commande du BSI provoquent des pannes fantômes : tous les voyants qui s'allument en même temps, verrouillage centralisé qui s'actionne tout seul, vitres ou essuie-glaces inopérants, voire impossibilité de démarrer. L'expérience des forums montre que de nombreuses pannes attribuées au BSI sont en réalité des masses ou des broches de connecteurs corrodées : les erreurs de diagnostic et les remplacements de BSI inutiles sont donc fréquents.",
+          "solution": "Effectuez d'abord la procédure documentée de réinitialisation du BSI — elle résout gratuitement de nombreuses pannes fantômes. Si les problèmes persistent, faites contrôler les points de masse et les broches de connecteurs (notamment les entrées d'eau) par un électricien automobile avant de remplacer le BSI ; un boîtier de remplacement doit être cloné ou codé au véhicule.",
+          "symptoms": [
+            "Plusieurs voyants du tableau de bord allumés en même temps, même clé retirée",
+            "Verrouillage centralisé qui se verrouille ou se déverrouille tout seul",
+            "Essuie-glaces ou éclairage qui fonctionnent de façon aléatoire ou ne répondent plus",
+            "Vitres électriques inopérantes",
+            "Démarrage impossible par intermittence ou défauts d'antidémarrage",
+            "Décharge de la batterie à l'arrêt"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 100,
+          "costHigh": 800,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c3-front-coil-spring-breakage",
+          "title": "Rupture des ressorts de suspension avant (rappel DVSA R/2005/147)",
+          "description": "Les ressorts hélicoïdaux de suspension avant des premières C3 (produites de novembre 2001 à novembre 2003) pouvaient se rompre, l'extrémité cassée du ressort risquant alors de descendre et d'entrer en contact avec le pneu avant, avec un danger d'endommagement du flanc, voire de pneu déchiqueté. Citroen a lancé le rappel britannique R/2005/147 en octobre 2005, couvrant 56 604 véhicules, afin de monter une coupelle de protection de chaque côté de la suspension avant pour retenir un ressort cassé. Les ruptures de ressorts avant sont restées un problème d'usure fréquemment signalé sur les C3 de première génération, même après le rappel, s'annonçant typiquement par une forte détonation suivie de claquements à l'avant.",
+          "solution": "Vérifiez auprès d'un concessionnaire Citroen ou dans la base de rappels de la DVSA que le rappel R/2005/147 (montage des coupelles de suspension) a bien été effectué sur les voitures produites entre 2001 et 2003. Les ressorts cassés doivent être remplacés par paire sur un même essieu, en inspectant au passage les butées supérieures de jambes de force.",
+          "symptoms": [
+            "Forte détonation provenant de la suspension avant",
+            "Cognements ou claquements sur les bosses par la suite",
+            "Voiture affaissée sur un angle avant",
+            "Bruit de frottement ou dégâts sur la face intérieure d'un pneu avant",
+            "Tronçon de ressort cassé visible derrière la roue avant"
+          ],
+          "severity": "high",
+          "category": "suspension",
+          "costLow": 150,
+          "costHigh": 450,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c3-sensodrive-egs-etg-automated-manual-gearbox-clutch-actuator",
+          "title": "Défaillance des boîtes manuelles pilotées SensoDrive/EGS/ETG et de l'actionneur d'embrayage",
+          "description": "Les C3 équipées des boîtes manuelles pilotées Citroen — SensoDrive sur la C3 I, puis EGS6/ETG6 sur les versions e-HDi et PureTech ultérieures — souffrent de défaillances bien documentées de l'actionneur d'embrayage électronique, de l'actionneur de passage des rapports et du calculateur de boîte. Des moteurs d'actionneurs usés et des erreurs d'adaptation de la position d'embrayage provoquent des passages de rapports violemment saccadés, des refus d'engager les vitesses, des messages d'alerte de boîte avec la transmission bloquée sur un rapport (mode dégradé) et, dans certains cas de panne du calculateur, une voiture qui refuse de démarrer. Les reconditionneurs spécialisés décrivent les défauts d'actionneur et de calculateur comme des faiblesses de conception inhérentes, et les réparations en concession peuvent aller de plusieurs centaines à plusieurs milliers de livres.",
+          "solution": "Faites lire les codes défauts mémorisés par un spécialiste PSA : les actionneurs d'embrayage et de passage des rapports défaillants peuvent être reconditionnés ou remplacés et l'auto-calibrage de l'embrayage relancé, tandis que les calculateurs de boîte peuvent être testés et reconditionnés par des spécialistes pour bien moins cher qu'un remplacement en concession. Un embrayage usé doit être remplacé avec recalibrage simultané de l'actionneur.",
+          "symptoms": [
+            "Passages de rapports saccadés ou brutaux",
+            "Voyant ou message d'alerte de boîte de vitesses, boîte bloquée sur un rapport (mode dégradé)",
+            "Refus d'engager un rapport depuis le point mort",
+            "Moteur qui refuse de démarrer (défaut du calculateur de boîte)",
+            "Broutement au démarrage",
+            "Engagement retardé de la marche avant ou de la marche arrière"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 600,
+          "costHigh": 3000,
+          "dtcCodes": [
+            "P0750",
+            "P0744",
+            "P1702",
+            "P0560"
+          ],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "citroen-c4",
+      "make": "Citroen",
+      "model": "C4",
+      "h1": "Citroen C4 : problèmes connus et points faibles",
+      "intro": "Sur le marché de l'occasion, la Citroen C4 traîne plusieurs points faibles moteurs bien identifiés : courroie de distribution humide fragile sur le 1.2 PureTech, chaîne de distribution qui se détend sur le 1.6 THP (EP6) et turbo du 1.6 HDi (DV6) victime de l'encrassement de son circuit d'huile, sans oublier le FAP et la vanne EGR capricieux des versions diesel. L'électronique n'est pas en reste, avec un boîtier BSI sujet à des blocages, et deux rappels majeurs visent le modèle : les ressorts arrière de l'e-C4 et les générateurs de gaz d'airbag « stop-drive » sur les C4 produites de 2010 à 2018.",
+      "issues": [
+        {
+          "id": "citroen-c4-dpf-issues",
+          "title": "Problèmes de régénération du FAP sur les versions diesel",
+          "description": "Les C4 diesel souffrent des problèmes de régénération du FAP classiques chez PSA, le système à additif exigeant des appoints réguliers de fluide Eolys. Une utilisation sur petits trajets empêche la régénération passive de s'effectuer complètement.",
+          "solution": "Faire l'appoint d'additif Eolys, forcer la régénération du FAP à l'aide d'un outil de diagnostic et privilégier des trajets réguliers sur autoroute. Les filtres fortement colmatés nécessitent un nettoyage professionnel ou un remplacement.",
+          "symptoms": [
+            "Voyant FAP allumé",
+            "Moteur en mode dégradé",
+            "Perte de puissance",
+            "Surconsommation de carburant"
+          ],
+          "severity": "high",
+          "category": "emissions",
+          "costLow": 300,
+          "costHigh": 2500,
+          "dtcCodes": [
+            "P2463",
+            "P2002"
+          ],
+          "reportCount": 85
+        },
+        {
+          "id": "citroen-c4-bsi-body-computer-faults-windows-wipers-spurious-warnings",
+          "title": "Défaillances du boîtier BSI — vitres, essuie-glaces et alertes intempestives",
+          "description": "Le calculateur d'habitacle BSI (Built-in Systems Interface) de la première génération de C4 et son module de colonne de direction COM2000 sont sujets à des blocages logiciels et à des défauts de communication, souvent déclenchés par une batterie faible ou un démarrage à l'aide de câbles. Parmi les symptômes : essuie-glaces qui se déclenchent seuls ou s'arrêtent complètement, vitres électriques au fonctionnement intermittent ou ayant perdu la commande séquentielle (une impulsion), et alertes STOP/service intempestives ; lorsque le COM2000 ne parvient plus à dialoguer avec le BSI, la voiture bascule en mode secours et allume d'elle-même les feux et les essuie-glaces. PSA a documenté le diagnostic des lève-vitres électriques liés au BSI de la C4 dans ses bulletins techniques officiels Infodiag.",
+          "solution": "Vérifier d'abord l'état de la batterie et du circuit de charge, puis effectuer la procédure officielle de réinitialisation du BSI (séquence de débranchement de la batterie) et réinitialiser les lève-vitres. Les défauts persistants exigent un diagnostic du BSI et du COM2000 sous Diagbox/Lexia ; la réparation ou le remplacement par un BSI recodé vient à bout des cas récalcitrants.",
+          "symptoms": [
+            "Essuie-glaces fonctionnant tout seuls ou impossibles à arrêter",
+            "Vitres électriques intermittentes ou perte de la commande séquentielle",
+            "Alertes STOP / service intempestives au tableau de bord",
+            "Feux ou ventilation s'activant sans commande",
+            "Plusieurs systèmes électriques en panne simultanément après une batterie déchargée"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 100,
+          "costHigh": 900,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c4-egr-valve-failure",
+          "title": "Encrassement de la vanne EGR par la calamine",
+          "description": "Sur les C4 diesel, la vanne EGR accumule des dépôts de calamine qui la font se bloquer en position ouverte ou fermée. Une vanne EGR colmatée augmente les émissions à l'échappement, provoque un ralenti instable et peut allumer le voyant de gestion moteur.",
+          "solution": "Déposer la vanne EGR et la nettoyer au nettoyant carburateur avec une brosse métallique. La remplacer si elle est endommagée ou si elle ne coulisse pas librement après nettoyage. Mettre à jour le logiciel du calculateur pour un meilleur pilotage de l'EGR.",
+          "symptoms": [
+            "Ralenti instable",
+            "Fumée noire à l'échappement",
+            "Perte de puissance",
+            "Voyant de gestion moteur allumé"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 150,
+          "costHigh": 500,
+          "dtcCodes": [
+            "P0401",
+            "P0403"
+          ],
+          "reportCount": 70
+        },
+        {
+          "id": "citroen-c4-1-6-thp-timing-chain-stretch-tensioner-failure",
+          "title": "1.6 THP (EP6) : détente de la chaîne de distribution et défaillance du tendeur",
+          "description": "Le moteur essence turbo 1.6 THP EP6 « Prince » (codéveloppé avec BMW), monté sur la C4 à partir de 2008, souffre d'une détente de la chaîne de distribution associée à un tendeur hydraulique trop faible — sur les moteurs antérieurs à 2016, la chaîne présente fréquemment des signes d'étirement entre 60 000 et 100 000 km. Une fois la chaîne détendue, le tendeur peut arriver en fin de course ; si la pression d'huile chute au ralenti, la chaîne peut sauter des dents, décalant le calage des arbres à cames et provoquant, dans les cas graves, un contact soupapes-pistons et de lourds dégâts moteur.",
+          "solution": "Remplacer la chaîne de distribution, le tendeur et les guides par les pièces de dernière évolution dès les premiers cliquetis à froid, puis vérifier le calage des arbres à cames avec un outil de diagnostic. Maintenir un niveau d'huile correct et raccourcir les intervalles de vidange prolonge sensiblement la durée de vie de la chaîne.",
+          "symptoms": [
+            "Cliquetis métallique « façon diesel » pendant quelques secondes au démarrage à froid",
+            "Voyant de gestion moteur avec codes défaut de calage d'arbre à cames",
+            "Ralenti instable",
+            "Perte de puissance ou hésitations",
+            "Moteur plus bruyant qu'à l'accoutumée au ralenti"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 750,
+          "costHigh": 2500,
+          "dtcCodes": [
+            "P0011",
+            "P0014",
+            "P0016",
+            "P0017"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c4-1-6-hdi-turbocharger-failure-from-oil-feed-sludge",
+          "title": "1.6 HDi (DV6) : casse du turbocompresseur due aux boues dans le circuit d'huile",
+          "description": "Le diesel 1.6 HDi DV6 est tristement célèbre pour le manque de lubrification de son turbocompresseur : des boues de calamine obstruent la crépine intégrée à la vis banjo d'alimentation en huile du turbo ainsi que la canalisation elle-même, privant d'huile les paliers du turbo. Le bouchon de vidange en retrait laisse environ 400 à 500 ml d'huile contaminée dans le carter à chaque vidange, ce qui accélère la formation de boues, et des casses sont signalées dès 30 000 miles lorsque les intervalles d'entretien ont été allongés. Les débris d'un turbo détruit recirculent dans le circuit d'huile et détruiront rapidement le turbo de remplacement si l'ensemble du circuit de lubrification n'est pas nettoyé.",
+          "solution": "Monter un turbo neuf ou en échange standard avec des canalisations d'alimentation et de retour d'huile neuves et de nouvelles vis banjo, déposer le carter pour nettoyer ou remplacer la crépine d'aspiration d'huile, rincer le moteur et poser un filtre neuf. Raccourcir ensuite les intervalles de vidange (10 000 km ou moins avec l'huile low-SAPS appropriée) et envisager la modification connue de l'alimentation en huile pour protéger le turbo neuf.",
+          "symptoms": [
+            "Sifflement ou bruit strident prononcé en provenance du turbo",
+            "Perte de puissance, surtout en charge",
+            "Fumée bleue/grise à l'échappement",
+            "Voyant STOP avec alerte de pression d'huile insuffisante",
+            "Hausse soudaine de la consommation d'huile"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 1100,
+          "costHigh": 2600,
+          "dtcCodes": [
+            "P0299"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c4-1-2-puretech-wet-timing-belt-premature-degradation",
+          "title": "1.2 PureTech : dégradation prématurée de la courroie de distribution humide",
+          "description": "Le trois-cylindres essence EB2 1.2 PureTech utilise une courroie de distribution qui tourne à l'intérieur du moteur, baignée dans l'huile (courroie dite « humide »). La contamination de l'huile par dilution de carburant et des intervalles d'entretien trop longs dégradent prématurément la courroie ; les débris de caoutchouc qu'elle libère colmatent la crépine d'aspiration de la pompe à huile et la pompe à vide de l'assistance de freinage, provoquant une chute de pression d'huile, une perte d'assistance au freinage et, dans les pires cas, une casse moteur complète. PSA/Stellantis a lancé des rappels pour les exemplaires produits en 2017-2018 et a ouvert en 2024 un dispositif d'indemnisation qui mentionne explicitement la Citroen C4 parmi les modèles concernés.",
+          "solution": "Remplacer la courroie humide (avec nettoyage de la crépine d'aspiration d'huile et contrôle de la pompe à vide) bien avant l'échéance d'origine — Stellantis a ramené l'intervalle à environ 6 ans/100 000 km, et de nombreux spécialistes conseillent d'intervenir encore plus tôt. Les propriétaires ayant payé de leur poche une casse de courroie ou une consommation d'huile excessive entre 2022 et 2024 peuvent déposer une demande via la plateforme d'indemnisation PureTech de Stellantis ; depuis 2023, le moteur a été repensé avec une chaîne de distribution.",
+          "symptoms": [
+            "Voyant de gestion moteur ou alerte de pression d'huile",
+            "Fonctionnement irrégulier ou ratés d'allumage",
+            "Pédale de frein dure / perte d'assistance au freinage",
+            "Consommation d'huile excessive",
+            "Débris de caoutchouc noirs visibles sous le bouchon de remplissage d'huile ou dans le filtre"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 500,
+          "costHigh": 4500,
+          "dtcCodes": [
+            "P0011",
+            "P0016",
+            "P0017"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c4-rear-coil-spring-detachment-e-c4",
+          "title": "Désolidarisation des ressorts arrière sur e-C4 (rappel HWH)",
+          "description": "Sur les e-C4 électriques produites entre mai 2020 et août 2021, les ressorts hélicoïdaux arrière et leurs supports de fixation peuvent se desserrer et se détacher du véhicule en roulant. Ce défaut compromet la stabilité de conduite et fait courir le risque qu'un ressort chute sur la chaussée ; Citroen a donc rappelé 8 770 voitures dans le monde en mars 2022 sous le code interne HWH (rappel également recensé par la DVSA britannique).",
+          "solution": "Réparation gratuite au titre du rappel : le réseau remplace les deux ressorts arrière ainsi que leurs supports de fixation, une intervention d'environ 30 minutes. Si l'opération n'est pas documentée, les propriétaires d'e-C4 2020-2021 doivent vérifier leur VIN sur l'outil officiel de vérification des rappels Citroen.",
+          "symptoms": [
+            "Cognements ou claquements à l'arrière sur les irrégularités de la route",
+            "Arrière de la voiture plus bas ou penché d'un côté",
+            "Comportement flou ou instable à vitesse élevée",
+            "Ressort arrière visiblement déplacé ou manquant"
+          ],
+          "severity": "high",
+          "category": "suspension",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "citroen-c4-airbag-inflator-stop-drive-recall",
+          "title": "Rappel « stop-drive » des générateurs de gaz d'airbag (C4 produites de 2010 à 2018)",
+          "description": "Les C4 de deuxième génération fabriquées entre le 2 février 2010 et le 20 mai 2018 sont visées par le rappel airbag « stop-drive » de Citroen, étendu en août 2025 : les générateurs de gaz des airbags (de type Takata) se dégradent avec l'âge et l'humidité et peuvent éclater lors du déploiement de l'airbag, projetant des fragments métalliques vers les occupants. Le défaut ne présente aucun signe avant-coureur, et la DVSA a publié la note spéciale MOT 03-25 imposant que les véhicules concernés ne soient pas conduits avant réparation.",
+          "solution": "Remplacement gratuit des générateurs de gaz d'airbag concernés par Citroen. Vérifiez immédiatement votre VIN sur l'outil officiel de vérification des rappels de sécurité Citroen et respectez la consigne d'immobilisation (« stop-drive ») jusqu'à la réalisation de la réparation.",
+          "symptoms": [
+            "Aucun signe avant-coureur — le générateur de gaz peut éclater lors du déploiement de l'airbag",
+            "Véhicule visé par une consigne d'immobilisation (« stop-drive ») de Citroen/DVSA",
+            "VIN signalé dans l'outil officiel de vérification des rappels Citroen"
+          ],
+          "severity": "high",
+          "category": "safety",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "peugeot-208",
+      "make": "Peugeot",
+      "model": "208",
+      "h1": "Peugeot 208 : problèmes connus et points faibles",
+      "intro": "La Peugeot 208 souffre avant tout du délaminage de la courroie de distribution humide du moteur PureTech 1.2 (EB2), qui peut colmater la crépine d'huile et priver le moteur de lubrification, ainsi que de défaillances chroniques du FAP et du système AdBlue/SCR sur les versions diesel BlueHDi. Les boîtes automatiques EAT6 et EAT8 sont par ailleurs critiquées pour leurs à-coups et hésitations à basse vitesse, tandis que l'e-208 cumule pannes du chargeur embarqué et rappels batterie pour risque d'incendie et perte soudaine de propulsion. S'y ajoutent des blocages du système i-Cockpit et des claquements de la suspension avant sur la première génération.",
+      "issues": [
+        {
+          "id": "peugeot-208-infotainment-freeze",
+          "title": "Blocage et redémarrage intempestif du système d'infodivertissement",
+          "description": "Le système d'infodivertissement i-Cockpit de la 208 de deuxième génération est sujet à des blocages aléatoires et à des redémarrages intempestifs. L'écran tactile cesse de répondre et le système peut perdre la connexion Bluetooth ainsi que la navigation.",
+          "solution": "Mettez à jour le firmware du système d'infodivertissement vers la dernière version chez un concessionnaire. Effectuez une réinitialisation forcée en maintenant le bouton d'alimentation enfoncé pendant 10 secondes. Dans les cas persistants, le remplacement du boîtier NAC/SMEG peut s'avérer nécessaire.",
+          "symptoms": [
+            "Écran qui se fige",
+            "Redémarrages intempestifs",
+            "Déconnexions Bluetooth",
+            "Navigation qui ne répond plus"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 800,
+          "dtcCodes": [],
+          "reportCount": 70
+        },
+        {
+          "id": "peugeot-208-dpf-issues-diesel",
+          "title": "Colmatage du filtre à particules (FAP)",
+          "description": "Les 208 diesel souffrent d'un colmatage prématuré du FAP, en particulier sur les véhicules utilisés principalement pour de courts trajets urbains. Le FAP ne peut pas mener à terme son cycle de régénération lors des trajets courts, ce qui entraîne une accumulation progressive de suies.",
+          "solution": "Effectuez une régénération forcée du FAP à l'aide d'un outil de diagnostic. Pour les filtres fortement colmatés, un nettoyage professionnel ou un remplacement du FAP est nécessaire. Privilégiez des trajets réguliers sur autoroute pour permettre la régénération passive.",
+          "symptoms": [
+            "Voyant FAP allumé",
+            "Perte de puissance moteur",
+            "Surconsommation de carburant",
+            "Forte odeur de gazole"
+          ],
+          "severity": "high",
+          "category": "emissions",
+          "costLow": 300,
+          "costHigh": 2000,
+          "dtcCodes": [
+            "P2463",
+            "P244A"
+          ],
+          "reportCount": 110
+        },
+        {
+          "id": "peugeot-208-puretech-timing-chain",
+          "title": "Délaminage de la courroie de distribution humide du PureTech 1.2",
+          "description": "Le moteur PSA/Stellantis PureTech 1.2 (EB2) de la 208 utilise une courroie de distribution baignant dans l'huile (dite « humide ») plutôt qu'une chaîne. La couche extérieure en caoutchouc de la courroie peut se délaminer avec le temps, libérant des particules dans l'huile qui colmatent la crépine d'aspiration et privent le moteur de lubrification. Stellantis a revu le matériau de la courroie et raccourci les intervalles d'entretien (désormais 60 000 miles ou 6 ans), mais les courroies de spécification antérieure restent à risque. Le problème se manifeste souvent d'abord par un cliquetis au démarrage, suivi d'alertes de pression d'huile.",
+          "solution": "Remplacez la chaîne de distribution, le tendeur et les pignons par les pièces de la révision mise à jour. PSA a étendu la garantie à 10 ans/200 000 km pour ce problème spécifique sur les dates de production concernées.",
+          "symptoms": [
+            "Cliquetis moteur au démarrage",
+            "Voyant moteur allumé",
+            "Perte de puissance",
+            "Ratés d'allumage"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 800,
+          "costHigh": 2000,
+          "dtcCodes": [
+            "P0016",
+            "P0017",
+            "P0335"
+          ],
+          "reportCount": 150
+        },
+        {
+          "id": "peugeot-208-e-208-onboard-charger-failure-ac-charging-stops-working",
+          "title": "Panne du chargeur embarqué (OBC) de l'e-208 — la recharge AC cesse de fonctionner",
+          "description": "Le chargeur embarqué triphasé 11 kW de fabrication Mahle (CAOBC1) équipant les e-208 produites entre 2019 et 2023 est sujet à des pannes prématurées, qui débutent souvent vers 10 000-12 000 miles. Les unités défaillantes commencent par charger de manière erratique ou passent de 11 kW en triphasé à environ 7 kW, puis cessent totalement la recharge AC, ne laissant utilisable que la recharge rapide DC. L'unité de remplacement doit être codée au véhicule par le concessionnaire, et un OBC neuf coûte environ 2 200 à 3 800 EUR en concession.",
+          "solution": "Stellantis a étendu la garantie de l'OBC à 4 ans (à partir d'avril 2021) et remplace les unités Mahle défaillantes par un chargeur VMAX plus fiable ; hors garantie, la solution est un OBC neuf posé en concession ou une unité reconditionnée moins coûteuse (par exemple ACtronics). En cas de recharges intermittentes, faites contrôler l'OBC avant que la panne ne devienne totale.",
+          "symptoms": [
+            "La voiture refuse par intermittence de charger sur wallbox AC ou câble de recharge domestique",
+            "La vitesse de charge chute de 11 kW à environ 7 kW en triphasé",
+            "Message « Recharge impossible » ou défaut de charge au tableau de bord",
+            "La recharge rapide DC fonctionne toujours alors que la recharge AC ne fonctionne plus",
+            "Sessions de charge imprévisibles qui s'interrompent après quelques minutes"
+          ],
+          "severity": "high",
+          "category": "electrical",
+          "costLow": 1200,
+          "costHigh": 4000,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-208-e-208-battery-recalls-fire-risk-sudden-loss-drive",
+          "title": "Rappels batterie de l'e-208 — risque d'incendie et perte soudaine de motricité",
+          "description": "L'e-208 électrique a fait l'objet de plusieurs rappels de sécurité européens concernant ses systèmes de batterie. Les voitures produites du 15 janvier au 20 juin 2020 ont été rappelées (code Peugeot KQJ) car un défaut de fabrication de la batterie 12V située sous le capot peut provoquer un court-circuit et déclencher un incendie pendant la charge ou la conduite. Par ailleurs, un logiciel défectueux du calculateur de batterie sur les voitures 2022-2023 (rappel MV4, alerte RAPEX 16/2025, 23 704 véhicules ; plus une campagne de 21 349 véhicules recensée par le KBA) peut rendre le mode « Ready » indisponible et couper la propulsion sans avertissement en roulant ; un défaut de câblage du compresseur de climatisation (rappel MF9, productions d'octobre 2019 à novembre 2022) pouvait également entraîner l'arrêt de la chaîne de traction.",
+          "solution": "Toutes les corrections sont des interventions de rappel gratuites en concession : remplacement/contrôle de la batterie pour la campagne « risque d'incendie » de 2020, et mises à jour logicielles pour le calculateur de batterie et la logique du compresseur de climatisation. Vérifiez votre VIN via l'outil de rappel Peugeot et confirmez que les campagnes KQJ, MF9 et MV4 ont bien été réalisées.",
+          "symptoms": [
+            "Perte soudaine d'accélération ou de motricité en roulant",
+            "Mode « Ready » indisponible après le démarrage",
+            "Arrêt de la chaîne de traction avec alerte de défaut électrique",
+            "Odeur de brûlé ou surchauffe autour de la batterie 12V sous le capot (lot à risque d'incendie)",
+            "Lettre de rappel ou campagne ouverte associée au VIN"
+          ],
+          "severity": "high",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-208-eat6-eat8-automatic-gearbox-jerky-shifting-low-speed-hesitat",
+          "title": "Boîtes automatiques EAT6/EAT8 : passages de rapports brusques et hésitations à basse vitesse",
+          "description": "Les boîtes automatiques à convertisseur de couple d'origine Aisin EAT6 (fin de carrière de la 208 I) et EAT8 (208 II) suscitent de très nombreuses plaintes de propriétaires : passages de rapports brusques ou secs à basse vitesse, temps de réponse et patinage à l'engagement de la 2e, hésitations à l'accélération entre 2 000 et 3 000 tr/min, et à-coups en décélération à faible charge dans la circulation. Ce comportement provient d'une calibration des passages de rapports agressive, orientée vers l'économie de carburant, et du logiciel de gestion du couple, le tout aggravé par le vieillissement de l'huile de boîte ; dans une minorité de cas, l'usure du bloc hydraulique ou des embrayages est en cause. Le phénomène est rapporté de façon constante sur les Peugeot Forums, le 208 Owners Club et chez les spécialistes britanniques des boîtes de vitesses, et ne relève donc pas de plaintes isolées.",
+          "solution": "Une mise à jour logicielle du calculateur de boîte (TCU) en concession et une réinitialisation des adaptations résolvent la plupart des à-coups à basse vitesse, et une vidange de boîte est bénéfique sur les voitures à fort kilométrage, même si Peugeot présente la boîte comme scellée à vie. Un patinage ou un glissement persistant nécessite l'inspection du bloc hydraulique et des embrayages par un spécialiste des boîtes de vitesses.",
+          "symptoms": [
+            "Passages de rapports brusques ou secs à basse vitesse, surtout de la 1re à la 3e",
+            "Temps de réponse ou emballement du régime à l'engagement de la 2e",
+            "Accélération hésitante entre 2 000 et 3 000 tr/min",
+            "À-coups en décélération lente dans la circulation",
+            "Passages de rapports plus doux une fois la boîte chaude"
+          ],
+          "severity": "medium",
+          "category": "transmission",
+          "costLow": 150,
+          "costHigh": 2500,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-208-front-suspension-knocking-drop-links-anti-roll-bar-bushes-da",
+          "title": "Claquements de la suspension avant — biellettes de barre stabilisatrice, silentblocs et claquement d'amortisseurs",
+          "description": "Les 208 de première génération développent fréquemment des claquements, cognements ou cliquetis provenant de la suspension avant sur les bosses et les revêtements dégradés. Les coupables habituels sont les biellettes de barre stabilisatrice à rotule usées et les silentblocs de barre stabilisatrice détériorés, mais le « claquement d'amortisseur » des jambes de force avant et l'usure des coupelles supérieures sont également des travers bien connus de la suspension avant commune aux 208/2008/308 (T9) — raison pour laquelle certains propriétaires remplacent les biellettes et entendent toujours le bruit. Ce bruit est avant tout une gêne, mais des biellettes et des silentblocs très usés dégradent le comportement routier et finiront par entraîner un refus au contrôle technique.",
+          "solution": "Inspectez et remplacez d'abord les biellettes et les silentblocs de barre stabilisatrice usés — une intervention peu coûteuse dans n'importe quel garage indépendant. Si le claquement persiste, contrôlez les coupelles d'amortisseur et les amortisseurs eux-mêmes, car le claquement d'amortisseur de la 208 impose souvent le remplacement des amortisseurs avant.",
+          "symptoms": [
+            "Claquements ou cognements à l'avant sur les bosses et les nids-de-poule",
+            "Cliquetis d'un côté de la suspension avant sur routes dégradées",
+            "Craquements ou grincements lors des mouvements de caisse ou au passage des ralentisseurs",
+            "Bruit persistant après remplacement des biellettes (claquement d'amortisseur/coupelle)",
+            "Direction floue ou parasitée sur les revêtements dégradés"
+          ],
+          "severity": "low",
+          "category": "suspension",
+          "costLow": 80,
+          "costHigh": 600,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "peugeot-208-adblue-scr-system-failure-bluehdi-diesels-urea-fault-start-p",
+          "title": "Défaillance du système AdBlue/SCR sur les diesels BlueHDi — défaut d'urée avec compte à rebours d'interdiction de démarrage",
+          "description": "Les 208 diesel BlueHDi souffrent de défaillances chroniques du système AdBlue (SCR) : la pompe d'injection d'urée et son électronique de commande sont intégrées au réservoir d'AdBlue, et le grippage de la pompe, la cristallisation de l'urée, des capteurs de niveau défectueux ainsi que (sur les voitures d'avant 2018) un bouchon de remplissage non ventilé créant une dépression dans le réservoir suffisent à interrompre l'alimentation en urée. Le calculateur enregistre alors des défauts tels que P20E8 (pression de réducteur trop basse) ou P20EE, allume le voyant UREA/moteur et déclenche un compte à rebours (généralement 1 100 km) au terme duquel le démarrage du moteur est interdit. La réparation officielle de Peugeot consiste à remplacer l'ensemble du réservoir d'AdBlue avec codage du calculateur, facturé environ 1 100 à 1 300 GBP dans les concessions britanniques.",
+          "solution": "Diagnostiquez quel composant du SCR est en cause — les sondes NOx et l'injecteur d'AdBlue doivent être contrôlés en premier, mais une pompe immergée hors service impose le remplacement de l'ensemble réservoir d'AdBlue, qui doit être codé et amorcé sur la voiture. Les spécialistes indépendants et les kits de réparation en pièces de rechange peuvent être nettement moins chers que la concession ; n'ignorez pas le compte à rebours, car la voiture refusera de redémarrer une fois arrivé à zéro.",
+          "symptoms": [
+            "Voyant UREA ou AdBlue avec message « Défaut moteur : faites réparer le véhicule »",
+            "Compte à rebours d'interdiction de démarrage en km affiché au tableau de bord",
+            "Niveau d'AdBlue indiqué vide ou erroné malgré un remplissage",
+            "Le moteur refuse de démarrer une fois le compte à rebours arrivé à zéro",
+            "Défauts répétés de sonde NOx ou d'antipollution qui reviennent après remplacement"
+          ],
+          "severity": "high",
+          "category": "emissions",
+          "costLow": 350,
+          "costHigh": 1800,
+          "dtcCodes": [
+            "P20E8",
+            "P20EE"
+          ],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "renault-megane",
+      "make": "Renault",
+      "model": "Megane",
+      "h1": "Renault Megane : problèmes connus et points faibles",
+      "intro": "La Renault Megane concentre ses points faibles autour du diesel 1.5 dCi (K9K), exposé à la rupture prématurée de la courroie de distribution à cause d'une poulie de pompe désaxée et à la casse du turbocompresseur par manque de lubrification, ainsi que de la boîte EDC à double embrayage, sujette aux broutements, à l'usure des embrayages et aux pannes de mécatronique. L'électricité n'est pas en reste : carte mains libres et boîtier UCH capricieux sur la Mégane II, sans oublier les lève-vitres fragiles. S'y ajoutent le grippage du frein à main dans les étriers arrière et un rappel officiel britannique (R/2020/189) pour fuite de la durite de carburant sur la Mégane IV.",
+      "issues": [
+        {
+          "id": "renault-megane-injection-fault",
+          "title": "Alerte de défaut du système d'injection",
+          "description": "La Mégane affiche une alerte « défaut d'injection » au tableau de bord, qui peut être déclenchée par de nombreux capteurs et composants. Les causes les plus fréquentes sont le capteur de position du vilebrequin (capteur PMH), le boîtier papillon et le régulateur de pression de carburant.",
+          "solution": "Faites diagnostiquer le véhicule avec la valise Renault CLIP ou un outil de diagnostic compatible afin d'identifier le code défaut précis. Les réparations courantes comprennent le remplacement du capteur PMH, le nettoyage du boîtier papillon et le remplacement du régulateur de pression de carburant.",
+          "symptoms": [
+            "Alerte de défaut d'injection",
+            "Calages moteur",
+            "Démarrage difficile",
+            "Perte de puissance"
+          ],
+          "severity": "medium",
+          "category": "engine",
+          "costLow": 100,
+          "costHigh": 500,
+          "dtcCodes": [
+            "P0335",
+            "P0120",
+            "P0190"
+          ],
+          "reportCount": 110
+        },
+        {
+          "id": "renault-megane-window-regulator",
+          "title": "Défaillance du mécanisme de lève-vitre",
+          "description": "Les Mégane II et III sont tristement connues pour leurs pannes de lève-vitres : le mécanisme à câbles et poulies casse ou le moteur grille. La vitre avant côté conducteur est la plus souvent touchée.",
+          "solution": "Remplacez le mécanisme de lève-vitre complet. Des mécanismes adaptables avec un cheminement de câble amélioré sont disponibles. Lubrifiez les coulisses de vitre pour réduire l'effort demandé au moteur.",
+          "symptoms": [
+            "Vitre qui tombe dans la porte",
+            "Claquements lors de la manœuvre",
+            "Montée et descente de vitre lentes",
+            "Fonctionnement intermittent"
+          ],
+          "severity": "low",
+          "category": "electrical",
+          "costLow": 100,
+          "costHigh": 300,
+          "dtcCodes": [],
+          "reportCount": 140
+        },
+        {
+          "id": "renault-megane-timing-belt",
+          "title": "K9K 1.5 dCi : rupture de la courroie de distribution due à une poulie de pompe à carburant désaxée",
+          "description": "Le moteur diesel K9K 1.5 dCi de Renault est sujet à une rupture prématurée de la courroie de distribution causée par une poulie de pompe à carburant haute pression désaxée. Le déport de la poulie fait frotter le dos de la courroie et l'effiloche ; à la rupture, ce moteur à distribution interférente détruit soupapes et pistons. Renault a revu le dessin de la poulie dans le cadre de la note technique TSB 04-040 et de campagnes similaires. Le kit courroie + poulie revient à 400-800 € en pièces ; le remplacement du moteur après une casse coûte 4 000-8 000 €.",
+          "solution": "Remplacez le kit de distribution à intervalles raccourcis (tous les 60 000 miles, soit environ 95 000 km). Contrôlez et remplacez le joint spi avant de vilebrequin pour éviter toute contamination de la courroie par l'huile. Incluez la pompe à eau dans le remplacement.",
+          "symptoms": [
+            "Couinement de courroie",
+            "Présence d'huile sur la courroie de distribution",
+            "Ralenti instable",
+            "Voyant moteur allumé"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 350,
+          "costHigh": 700,
+          "dtcCodes": [],
+          "reportCount": 90
+        },
+        {
+          "id": "renault-megane-keycard-card-not-detected-uch-body-control-module-failures",
+          "title": "Carte « non détectée » et défaillances du boîtier UCH (Mégane II)",
+          "description": "Le système de démarrage par carte de la Mégane II et son UCH (Unité Centrale Habitacle) sont des points de défaillance notoires. La bobine transpondeur à l'intérieur de la carte se désolidarise ou les contacts du lecteur de carte au tableau de bord s'usent, tandis que l'UCH développe elle-même des défauts internes de relais et de soudures. Résultat : impossibilité intermittente ou totale de démarrer, plus une cascade de caprices électriques, car l'UCH pilote l'antidémarrage, le verrouillage centralisé, les essuie-glaces, les clignotants et l'éclairage.",
+          "solution": "Remplacez ou réparez la carte (ressoudage de la bobine transpondeur) et nettoyez ou remplacez le lecteur de carte ; en cas de défauts persistants touchant plusieurs systèmes, faites réparer l'UCH par un spécialiste (environ 65-150 $ par envoi postal) ou remplacez-la et faites-la recoder. Une UCH d'occasion doit impérativement être programmée pour le véhicule.",
+          "symptoms": [
+            "Message « Carte non détectée » à l'insertion de la carte",
+            "Refus de démarrer intermittent, puis démarrage après réinsertion de la carte",
+            "Essuie-glaces ou éclairage qui se déclenchent tout seuls",
+            "Verrouillage centralisé ou ouverture de coffre qui cessent de fonctionner",
+            "Voyants du tableau de bord qui clignotent, avec cliquetis de relais en provenance de l'UCH"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 100,
+          "costHigh": 700,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-megane-1-5-dci-turbocharger-failure-from-oil-starvation",
+          "title": "1.5 dCi (K9K) : casse du turbocompresseur par manque de lubrification",
+          "description": "Le diesel K9K 1.5 dCi des Mégane II et III souffre de casses de turbocompresseur bien documentées, dues à un manque de lubrification : des intervalles de vidange trop espacés laissent la calamine obstruer l'étroite canalisation d'alimentation en huile du turbo et la crépine d'aspiration dans le carter, privant d'huile les paliers du turbo. Une vanne EGR grippée, qui fait monter la température des gaz d'échappement, accélère la destruction des paliers. Les propriétaires rapportent une perte de puissance soudaine, un turbo qui siffle et des fumées bleues ; si des débris du turbo détruit pénètrent dans le moteur, la facture s'envole.",
+          "solution": "Remplacez le turbocompresseur ainsi que les canalisations d'alimentation et de retour d'huile, déposez le carter pour nettoyer la crépine d'aspiration d'huile et effectuez une vidange avec remplacement du filtre — ne changer que le turbo garantit une nouvelle casse. Respectez des intervalles de vidange raccourcis (10 000 km maximum) avec la bonne huile C3 à faible teneur en cendres.",
+          "symptoms": [
+            "Perte de puissance soudaine / mode dégradé, vitesse plafonnée à environ 60 mph (95 km/h)",
+            "Sifflement ou bruit de sirène en provenance du turbo",
+            "Fumée bleue à l'échappement",
+            "Consommation d'huile excessive ou odeur d'huile près du turbo",
+            "Codes défaut de sous-pression de suralimentation enregistrés"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 1200,
+          "costHigh": 2800,
+          "dtcCodes": [
+            "P0299",
+            "P0234"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-megane-edc-dual-clutch-gearbox-judder-clutch-pack-wear-mechatronic",
+          "title": "Boîte EDC à double embrayage : broutements, usure des embrayages et panne de mécatronique/calculateur (Mégane III/IV)",
+          "description": "Les boîtes automatiques EDC à double embrayage à six et sept rapports d'origine Getrag, montées sur les Mégane III et IV, développent des broutements à basse vitesse au démarrage, des passages de rapports saccadés, des alertes de surchauffe dans la circulation en accordéon et un enclenchement de la marche arrière tardif ou brutal. Les causes profondes : l'usure des disques d'embrayage à sec (souvent dès 50 000-75 000 miles, soit 80 000-120 000 km), des restrictions dans le bloc hydraulique de la mécatronique et des défauts logiciels ou matériels du calculateur de boîte (TCU) — des concessionnaires ont reconnu les doubles embrayages défectueux comme un problème connu, et certaines pannes entraînent une perte totale de motricité.",
+          "solution": "Un broutement léger se corrige parfois par une reprogrammation du calculateur de boîte (TCM/TCU) et une réinitialisation des adaptations ; des embrayages usés doivent être remplacés (environ 1 000-2 000 $), et une panne de mécatronique ou de TCU impose la réparation ou le remplacement de l'unité, pour 1 500-3 000 $. Respectez le calendrier Renault de vidange de boîte et de mises à jour logicielles.",
+          "symptoms": [
+            "Broutement ou tremblements au démarrage depuis l'arrêt",
+            "Passages de rapports brusques et saccadés sur les bas rapports en ville",
+            "Alerte de surchauffe de boîte dans la circulation en accordéon",
+            "Temporisation ou claquement à l'enclenchement de la marche arrière",
+            "Message « boîte de vitesses à contrôler », parfois accompagné d'une perte de motricité"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 1000,
+          "costHigh": 3000,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-megane-rear-caliper-handbrake-mechanism-seizure-handbrake-won-t-hol",
+          "title": "Grippage du mécanisme de frein à main des étriers arrière — frein à main inefficace ou qui reste serré (Mégane II)",
+          "description": "Sur la Mégane II, le levier d'actionnement et le mécanisme de frein à main intégrés aux étriers de frein arrière se corrodent et grippent — propriétaires et mécaniciens sur les forums incriminent le revêtement galvanique du levier et les entrées d'eau dans les câbles et les soufflets de piston. Le mécanisme reste soit bloqué serré (freins arrière qui frottent et surchauffent), soit ne revient pas ou ne s'applique plus correctement, si bien que le frein à main ne retient plus la voiture en pente. C'est un motif récurrent de contre-visite au contrôle technique britannique (MOT) et cela crée un risque de voiture qui s'échappe au stationnement.",
+          "solution": "Dégrippez et lubrifiez le mécanisme de frein à main de l'étrier et les colonnettes de guidage si le problème est pris à temps ; la plupart des réparations durables exigent des câbles de frein à main arrière neufs et le remplacement des étriers arrière (neufs ou rénovés), suivis d'un réglage des câbles.",
+          "symptoms": [
+            "Levier de frein à main qui se tire très haut alors que la voiture roule encore en pente",
+            "Freins arrière qui frottent ou restent serrés après le stationnement",
+            "Roue arrière chaude et odeur de brûlé après avoir roulé",
+            "Contre-visite au contrôle technique (MOT) pour efficacité insuffisante ou déséquilibre du frein à main",
+            "Bruit de frottement ou de raclement à l'arrière"
+          ],
+          "severity": "medium",
+          "category": "brakes",
+          "costLow": 150,
+          "costHigh": 600,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-megane-fuel-supply-hose-leak-official-uk-recall-r-2020-189",
+          "title": "Fuite de la durite d'alimentation en carburant — rappel officiel britannique R/2020/189 (Mégane IV)",
+          "description": "Les Mégane IV produites entre le 1er septembre 2018 et le 31 mai 2019 ont fait l'objet d'un rappel en juin 2020 (rappel britannique R/2020/189), car une dégradation interne (« agression interne ») de la durite d'alimentation en carburant peut provoquer une fuite de carburant. Le carburant qui s'échappe peut atteindre des éléments chauds de l'échappement, créant un risque d'incendie, et se répandre sur la chaussée en mettant en danger les véhicules qui suivent.",
+          "solution": "Les concessionnaires Renault remplacent gratuitement la durite d'alimentation en carburant dans le cadre du rappel. Les propriétaires de voitures produites en 2018-2019 doivent vérifier leur VIN dans la base de rappels DVSA/Renault et faire effectuer l'intervention sans délai si elle est encore en attente.",
+          "symptoms": [
+            "Odeur d'essence ou de gazole autour du compartiment moteur",
+            "Traces ou gouttes de carburant visibles sous la voiture",
+            "Souvent aucun symptôme avant la défaillance de la durite — vérification du VIN indispensable"
+          ],
+          "severity": "high",
+          "category": "fuel",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "renault-koleos",
+      "make": "Renault",
+      "model": "Koleos",
+      "h1": "Renault Koleos : problèmes connus et points faibles",
+      "intro": "Le Renault Koleos souffre avant tout de sa boîte CVT X-Tronic d'origine Jatco, sujette au patinage, aux à-coups et à des casses complètes, souvent favorisées par une contamination de l'huile de boîte par le liquide de refroidissement, tandis que le 2.5 essence (2TR/QR25DE) cumule allongement de la chaîne de distribution et consommation d'huile excessive. Côté diesel, le 2.0 dCi est sujet au colmatage du FAP et, sur les versions 4x4, à des casses internes du différentiel arrière. S'y ajoutent des plantages du système multimédia R-Link 2 et un rappel lancé en 2013 pour un risque de rupture du bras de suspension avant sur les exemplaires produits en 2011.",
+      "issues": [
+        {
+          "id": "renault-koleos-cvt-judder",
+          "title": "À-coups et patinage de la boîte CVT",
+          "description": "La boîte CVT Jatco du Koleos développe des à-coups, du patinage et des symptômes de surchauffe. La courroie et les poulies de la CVT s'usent sous la charge plus élevée du SUV, et l'huile se dégrade plus rapidement que sur des véhicules plus légers.",
+          "solution": "Effectuez une vidange complète de la boîte CVT avec de l'huile d'origine Renault NS-2 ou NS-3. Remplacez la courroie et les poulies de la CVT si le patinage est confirmé. Mettez à jour le logiciel du calculateur de boîte CVT.",
+          "symptoms": [
+            "À-coups à l'accélération",
+            "Sensation de patinage",
+            "Sifflement de la boîte CVT",
+            "Alerte de surchauffe"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 300,
+          "costHigh": 3500,
+          "dtcCodes": [
+            "P0868",
+            "P0730"
+          ],
+          "reportCount": 45
+        },
+        {
+          "id": "renault-koleos-infotainment-freeze",
+          "title": "Plantages du système multimédia",
+          "description": "Le système multimédia R-Link 2 du Koleos II se fige, redémarre spontanément et perd la connexion avec les téléphones appairés. Le système est particulièrement sujet à ces dysfonctionnements après des sessions Android Auto ou Apple CarPlay.",
+          "solution": "Mettez à jour R-Link 2 vers la dernière version du firmware. Effectuez une réinitialisation d'usine et appairez de nouveau tous les appareils. Remplacez le boîtier multimédia si une dégradation matérielle est confirmée par un test de diagnostic.",
+          "symptoms": [
+            "Écran figé",
+            "Redémarrages intempestifs",
+            "Déconnexion du téléphone",
+            "Latence de l'affichage de la caméra"
+          ],
+          "severity": "low",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 700,
+          "dtcCodes": [],
+          "reportCount": 40
+        },
+        {
+          "id": "renault-koleos-2-5-petrol-timing-chain-stretch-oil-consumption",
+          "title": "2.5 essence (QR25DE/2TR) : allongement de la chaîne de distribution et consommation d'huile",
+          "description": "Le Koleos de première génération en 2.5 essence utilise le moteur Renault 2TR, en réalité le Nissan QR25DE. Au-delà d'environ 100 000 à 150 000 km, de nombreux propriétaires constatent une consommation d'huile excessive (segments de pistons usés) et un allongement de la chaîne de distribution, souvent signalé par un cliquetis au démarrage à froid. Des vidanges repoussées ou une viscosité d'huile inadaptée accélèrent l'usure du tendeur et des guides de chaîne.",
+          "solution": "Respectez scrupuleusement les intervalles de vidange avec la viscosité préconisée et surveillez le niveau d'huile entre les vidanges. Faites contrôler sans attendre tout cliquetis au démarrage à froid ; une chaîne détendue impose le remplacement de la chaîne, du tendeur et des guides, et une forte consommation d'huile peut nécessiter une réfection des segments et du haut moteur.",
+          "symptoms": [
+            "Cliquetis au démarrage à froid",
+            "Forte consommation d'huile / appoints fréquents",
+            "Fumée bleue à l'échappement",
+            "Voyant moteur allumé",
+            "Perte de puissance",
+            "Bruit de chaîne de distribution"
+          ],
+          "severity": "medium",
+          "category": "engine",
+          "costLow": 600,
+          "costHigh": 3000,
+          "dtcCodes": [
+            "P0011",
+            "P0014",
+            "P0340"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-koleos-x-tronic-cvt-transmission-failure",
+          "title": "Défaillance de la boîte CVT X-Tronic (patinage, à-coups, surrégime)",
+          "description": "La boîte CVT X-Tronic d'origine Jatco montée sur le Koleos est de loin le point de défaillance le plus signalé. Les propriétaires rapportent du patinage, des à-coups au passage des rapports, des hésitations à l'accélération et un moteur qui s'emballe à haut régime en position Drive (patinage de la courroie / perte de pression hydraulique), généralement au-delà d'environ 100 000 km. Une cause contributive connue est le refroidisseur d'huile de boîte, qui laisse le liquide de refroidissement se mélanger à l'huile de transmission, contaminant et détruisant les composants internes. Le remplacement complet de la boîte est fréquent et coûteux.",
+          "solution": "Vidangez l'huile de la CVT tous les 60 000 à 80 000 km environ (plus tôt en usage urbain intensif avec arrêts fréquents) avec une huile à la norme Renault/Jatco NS-3, et vérifiez l'absence de contamination par le liquide de refroidissement au niveau du refroidisseur. Une intervention précoce (huile + refroidisseur) peut éviter la casse ; une fois la courroie ou le bloc hydraulique endommagés, une réfection ou un remplacement de la boîte s'impose.",
+          "symptoms": [
+            "Patinage ou à-coups à l'accélération",
+            "Tremblements ou secousses au passage des rapports",
+            "Surrégime / moteur qui s'emballe en position Drive",
+            "Engagement des rapports retardé",
+            "Bruit de grincement ou de sifflement provenant de la boîte",
+            "Hésitations en charge"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 2500,
+          "costHigh": 6000,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-koleos-awd-rear-differential-transfer-case-internal-failure",
+          "title": "Casse interne du différentiel arrière / de la boîte de transfert (2.0 dCi 4x4)",
+          "description": "Sur les Koleos 2.0 dCi à transmission intégrale, le différentiel arrière peut casser en interne et aller jusqu'à fissurer son carter, généralement entre 80 000 et 100 000 km (parfois plus tôt). Les propriétaires constatent des fuites d'huile au niveau des demi-arbres et retrouvent des morceaux de métal de 1 à 5 mm dans l'huile du différentiel, signe d'une destruction des pignons. La panne peut se reproduire même après réparation si la cause d'origine (niveau d'huile insuffisant / surchauffe, contraintes sur le coupleur) n'est pas traitée.",
+          "solution": "Contrôlez régulièrement le niveau et l'état de l'huile du différentiel arrière et de la boîte de transfert à partir d'environ 60 000 km, et vidangez l'huile de pont à intervalle strict. Recherchez sans tarder toute contamination métallique ; une fois les pignons endommagés, le différentiel (et parfois le coupleur ou la boîte de transfert) doit être réparé ou remplacé.",
+          "symptoms": [
+            "Sifflement ou grondement provenant de l'arrière du véhicule",
+            "Fuite d'huile aux demi-arbres / au carter de différentiel",
+            "Particules métalliques dans l'huile de différentiel",
+            "Vibrations ou claquements lorsque la transmission intégrale est sollicitée",
+            "Voyant de transmission intégrale allumé"
+          ],
+          "severity": "high",
+          "category": "drivetrain",
+          "costLow": 800,
+          "costHigh": 2500,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-koleos-2-0-dci-diesel-particulate-filter-blockage",
+          "title": "2.0 dCi : colmatage du filtre à particules (FAP)",
+          "description": "Le Koleos diesel 2.0 dCi (versions 130, 150 et 175 ch) est sujet au colmatage du FAP, surtout lorsqu'il est utilisé principalement sur de courts trajets à faible vitesse qui ne permettent jamais au filtre d'atteindre sa température de régénération. Les symptômes comprennent une perte de puissance / un mode dégradé, des fumées visibles et un voyant FAP allumé. Des capteurs de pression différentielle ou de température d'échappement défectueux peuvent aggraver le problème ou le déclencher à tort, et une régénération forcée ratée en concession a, dans certains cas, détruit purement et simplement le filtre.",
+          "solution": "Effectuez périodiquement des trajets autoroutiers plus longs à régime moyen à soutenu pour permettre la régénération passive/active ; vérifiez le bon fonctionnement des capteurs de pression différentielle et de température d'échappement. Un filtre colmaté peut souvent être nettoyé par un professionnel (environ 100 €) ; un FAP détruit doit être remplacé (1 300 à plus de 2 000 £).",
+          "symptoms": [
+            "Voyant FAP / voyant moteur allumé",
+            "Perte de puissance / mode dégradé",
+            "Fumées d'échappement excessives",
+            "À-coups ou réponse molle à l'accélérateur",
+            "Démarrage à froid difficile",
+            "Cycles de régénération fréquents"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 150,
+          "costHigh": 2200,
+          "dtcCodes": [
+            "P2002",
+            "P2463",
+            "P244A",
+            "P244B"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "renault-koleos-front-lower-suspension-arm-fracture",
+          "title": "Rupture du bras de suspension avant inférieur (rappel des modèles 2011)",
+          "description": "Sur les Koleos produits de janvier à novembre 2011, le bras de suspension inférieur avant droit peut se rompre, en particulier au freinage. En cas de rupture, le véhicule peut déboîter brusquement vers la droite et la roue peut se bloquer dans le passage de roue, créant un risque d'accident grave. Renault a lancé un rappel officiel en 2013 pour remplacer le bras concerné.",
+          "solution": "Faites réaliser l'opération de rappel chez un concessionnaire Renault (gratuitement) : le bras de suspension inférieur défectueux est remplacé. Si vous possédez un exemplaire de 2011, vérifiez via le VIN que le rappel a bien été effectué.",
+          "symptoms": [
+            "Véhicule qui déboîte d'un côté au freinage",
+            "Claquements ou cognements dans la suspension avant",
+            "Roue bloquée dans le passage de roue / perte de contrôle"
+          ],
+          "severity": "high",
+          "category": "suspension",
+          "costLow": null,
+          "costHigh": null,
+          "dtcCodes": [],
+          "reportCount": 0
         }
       ]
     }
