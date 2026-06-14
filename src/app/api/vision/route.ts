@@ -414,6 +414,11 @@ Your job:
 5. Set primaryPartId to the id of the part the user most likely came for. For a wheel photo where the user might want any of rotor/pads/tire, pick the most expensive/important one (usually the rotor). The other identified parts stay in identifiedParts.
 6. Cross-reference the KNOWN ISSUES list above. If any identified part matches a documented issue for this vehicle, list the issue id in relatedKnownIssueIds.
 7. Difficulty: easy / medium / hard. Estimated DIY time. Safety warnings if any.
+8. urgency — classify how soon this needs attention, for a driver who may know nothing about cars:
+     - "stop_driving" = safety-critical; driving risks a crash or major damage (bald/cord-showing tires, brake failure, steering/suspension separation, active fluid loss that strands or overheats, fire risk).
+     - "fix_soon" = drivable carefully short-term but degrades or gets costly if ignored (worn-but-not-gone pads, a seeping leak, a failing-but-working component).
+     - "monitor" = no immediate danger; address at next service (cosmetic, early wear, minor weep).
+   Be conservative: when in doubt between two levels, pick the MORE urgent one. Never downplay a genuine safety risk.
 
 EXAMPLE — user uploads a photo of a Challenger SRT front wheel showing rim, tire sidewall, lug nuts, brake caliper through spokes, and rotor face. identifiedParts should contain:
 - rotor (role:primary, category:rotor, OEM 68249841AA, searchQuery:'Mopar 68249841AA Challenger SRT front rotor', visibleInPhoto:true)
@@ -454,6 +459,7 @@ Return ONLY a JSON object — no markdown fences, no preamble. Start with { end 
   "toolsNeeded": ["..."],
   "difficulty": "easy"|"medium"|"hard",
   "estimatedTimeMinutes": 30,
+  "urgency": "stop_driving"|"fix_soon"|"monitor",
   "warnings": ["..."],
   "relatedKnownIssueIds": ["existing-issue-id-1"]
 }`;
@@ -787,6 +793,9 @@ Return ONLY a JSON object — no markdown fences, no preamble. Start with { end 
     toolsNeeded: Array.isArray(parsed.toolsNeeded) ? parsed.toolsNeeded.filter((t: unknown): t is string => typeof t === 'string') : [],
     difficulty: ['easy','medium','hard'].includes(String(parsed.difficulty)) ? parsed.difficulty as string : 'medium',
     estimatedTimeMinutes: typeof parsed.estimatedTimeMinutes === 'number' ? parsed.estimatedTimeMinutes : null,
+    // Traffic-light urgency for the hero banner. Only pass through valid
+    // values; the renderer derives a conservative fallback when absent.
+    urgency: ['stop_driving','fix_soon','monitor'].includes(String(parsed.urgency)) ? parsed.urgency as string : undefined,
     warnings: Array.isArray(parsed.warnings) ? parsed.warnings.filter((w: unknown): w is string => typeof w === 'string') : [],
     relatedIssues,
     quotaRemaining: quota.remaining,

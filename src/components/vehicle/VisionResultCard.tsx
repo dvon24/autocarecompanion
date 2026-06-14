@@ -50,6 +50,11 @@ export interface VisionResult {
   /** Hero pointer — id of the most likely "this is what you came for"
    *  part. References an id present in identifiedParts. */
   primaryPartId?: string | null;
+  /** Cal-AI-style urgency verdict — drives the traffic-light hero banner so
+   *  a non-mechanic gets instant "what do I do" confidence. Optional: when
+   *  the model doesn't supply it we derive a conservative signal client-side
+   *  (and show nothing rather than guess "safe"). */
+  urgency?: 'stop_driving' | 'fix_soon' | 'monitor';
   /** Which input flavor produced this — 'photo' or 'video'. v2 only. */
   mode?: 'photo' | 'video';
   /** Whisper transcript of the video's audio track. Empty for photos
@@ -87,6 +92,65 @@ export interface VisionResult {
  *   │ → Headlight Moisture Intrusion on 2019-2024 (high)     │
  *   └─────────────────────────────────────────────────────────┘
  */
+type Urgency = 'stop_driving' | 'fix_soon' | 'monitor';
+
+/**
+ * Conservative urgency derivation for the traffic-light hero. The model's
+ * explicit `urgency` wins; otherwise we infer from safety-flavored warnings
+ * and the severity of matched known issues. CRITICAL SAFETY RULE: never
+ * fabricate a green "monitor / safe" verdict — if there's no real signal we
+ * return null and render no banner, so we never tell someone an unsafe car
+ * is fine. Green only ever comes from the model saying so explicitly.
+ */
+function deriveUrgency(vision: VisionResult): Urgency | null {
+  if (vision.urgency) return vision.urgency;
+  const warnings = vision.warnings || [];
+  const hasSafetyWord = warnings.some((w) =>
+    /stop driving|do not drive|don'?t drive|unsafe|pull over|blowout|loss of control|fire|brake fail|won'?t stop|steering|tire failure/i.test(w),
+  );
+  if (hasSafetyWord) return 'stop_driving';
+  const sev = (vision.relatedIssues || []).map((i) => i.severity);
+  if (sev.includes('critical')) return 'stop_driving';
+  if (warnings.length > 0 || sev.includes('high')) return 'fix_soon';
+  return null; // no signal → no banner (never guess "safe")
+}
+
+const URGENCY_UI: Record<Urgency, { icon: string; title: string; sub: string; cls: string }> = {
+  stop_driving: {
+    icon: '🛑',
+    title: "Stop driving — get this looked at now",
+    sub: 'This points to a safety-critical fault. Avoid driving until it’s checked.',
+    cls: 'vr-urg-stop',
+  },
+  fix_soon: {
+    icon: '⚠️',
+    title: 'Fix this soon',
+    sub: 'Safe to drive carefully short-term, but don’t let it sit — it gets worse (and pricier).',
+    cls: 'vr-urg-soon',
+  },
+  monitor: {
+    icon: '✅',
+    title: 'Not urgent — keep an eye on it',
+    sub: 'No immediate danger. Monitor it and address it at your next service.',
+    cls: 'vr-urg-monitor',
+  },
+};
+
+function UrgencyBanner({ vision }: { vision: VisionResult }) {
+  const u = deriveUrgency(vision);
+  if (!u) return null;
+  const ui = URGENCY_UI[u];
+  return (
+    <div className={`vr-urg ${ui.cls}`} role="status">
+      <span className="vr-urg-icon" aria-hidden>{ui.icon}</span>
+      <div className="vr-urg-text">
+        <div className="vr-urg-title">{ui.title}</div>
+        <div className="vr-urg-sub">{ui.sub}</div>
+      </div>
+    </div>
+  );
+}
+
 export function VisionResultCard({ vision }: { vision: VisionResult }) {
   // v2 fan-out — when the API returned the new multi-part shape,
   // hand off to VisionResultCardV2. Old saved responses + any
@@ -117,6 +181,10 @@ export function VisionResultCard({ vision }: { vision: VisionResult }) {
 
   return (
     <div className="vr-card">
+      {/* Traffic-light urgency hero — the Cal-AI-style "what do I do now"
+          signal. Suppressed on a likely vehicle mismatch (the whole verdict
+          is suspect when the photo isn't even the right car). */}
+      {!isMismatch && <UrgencyBanner vision={vision} />}
       {/* Vehicle-match warning banner. Renders ABOVE everything else when
           the AI flagged the photo as likely from a different vehicle than
           the one the user is currently viewing. Without this, users buy
@@ -250,6 +318,23 @@ const cardStyles = `
     overflow: hidden;
     margin-top: 4px;
   }
+  .vr-urg {
+    display: flex; gap: 11px; align-items: flex-start;
+    padding: 13px 16px; border-bottom: 1px solid transparent;
+  }
+  .vr-urg-icon { font-size: 22px; line-height: 1; flex: 0 0 auto; }
+  .vr-urg-text { flex: 1; min-width: 0; }
+  .vr-urg-title { font-size: 15px; font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; }
+  .vr-urg-sub { font-size: 12.5px; line-height: 1.4; margin-top: 3px; opacity: 0.9; }
+  .vr-urg-stop { background: #FEF2F2; border-bottom-color: #FECACA; }
+  .vr-urg-stop .vr-urg-title { color: #991B1B; }
+  .vr-urg-stop .vr-urg-sub { color: #7F1D1D; }
+  .vr-urg-soon { background: #FFFBEB; border-bottom-color: #FDE68A; }
+  .vr-urg-soon .vr-urg-title { color: #92400E; }
+  .vr-urg-soon .vr-urg-sub { color: #78350F; }
+  .vr-urg-monitor { background: #F0FDF4; border-bottom-color: #BBF7D0; }
+  .vr-urg-monitor .vr-urg-title { color: #166534; }
+  .vr-urg-monitor .vr-urg-sub { color: #15803D; }
   .vr-head {
     display: flex; gap: 12px; padding: 14px 16px;
     background: linear-gradient(135deg, #F4F7FF 0%, #FAFBFF 100%);
@@ -408,6 +493,7 @@ function VisionResultCardV2({ vision }: { vision: VisionResult }) {
 
   return (
     <div className="vr-card vr2-card">
+      {!isMismatch && <UrgencyBanner vision={vision} />}
       {isMismatch && (
         <div className="vr-mismatch">
           <div className="vr-mismatch-icon" aria-hidden>⚠️</div>
