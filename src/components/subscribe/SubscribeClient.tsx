@@ -20,7 +20,35 @@ import { regionDisplayName } from '@/lib/pricing/region';
  *   - As a backstop, the create-checkout API also returns 403 if the
  *     gate is somehow bypassed (e.g. direct API call)
  */
+/**
+ * Flip to true ONLY after the Apple/Google external-purchase-link
+ * entitlements are approved. When true, the in-app subscribe screen shows a
+ * "Continue in your browser" button that opens the real web checkout in the
+ * SYSTEM browser (not the WebView) — the US-allowed external-link path. Left
+ * false = pure informational (zero rejection risk) for the first submission.
+ */
+const EXTERNAL_SUBSCRIBE_ENABLED = false;
+
 export function SubscribeClient({
+  country,
+  regionAllowed,
+  appMode = false,
+}: {
+  country: string | null;
+  regionAllowed: boolean;
+  /** Native app (Au7oApp WebView) or ?app=1 preview — render the store-safe
+   *  informational state instead of in-WebView Stripe checkout. */
+  appMode?: boolean;
+}) {
+  // App-store compliance gate. The native shell can't run Stripe checkout in
+  // the WebView, so swap the whole purchase UI for an informational panel.
+  // Keyed on the UA marker (server-detected), never on screen size — phone
+  // browsers are plain web and keep full checkout.
+  if (appMode) return <AppSubscribeInfo />;
+  return <SubscribeCheckout country={country} regionAllowed={regionAllowed} />;
+}
+
+function SubscribeCheckout({
   country,
   regionAllowed,
 }: {
@@ -263,6 +291,135 @@ export function SubscribeClient({
           .subscribe-mobile { display: block; }
         }
       `}</style>
+    </div>
+  );
+}
+
+/**
+ * Store-safe subscribe screen for the native app (Au7oApp WebView).
+ * Shows NO in-app purchase mechanism — Apple/Google require their own
+ * billing for in-app digital goods, and an in-WebView Stripe checkout is a
+ * guaranteed rejection. This is the informational path: explain Au7o Pro,
+ * point to the website to manage it, no price/checkout. When
+ * EXTERNAL_SUBSCRIBE_ENABLED is flipped on (after the external-purchase-link
+ * entitlements are approved), it adds a button that opens the real checkout
+ * in the SYSTEM browser.
+ */
+function AppSubscribeInfo() {
+  const openInBrowser = () => {
+    // System-browser open. A raw window.open inside the WebView would load
+    // in-app (the ambiguous version reviewers dislike); once the Capacitor
+    // Browser plugin is wired, swap this for `Browser.open({ url })` so the
+    // checkout clearly happens OUTSIDE the app.
+    window.open('https://au7o.io/subscribe', '_blank', 'noopener');
+  };
+
+  const perks = [
+    'Unlimited photo & video diagnoses',
+    'Full diagnosis history saved to your garage',
+    'Unlimited follow-up questions in the hub',
+    'Recall & known-issue alerts for your vehicles',
+  ];
+
+  return (
+    <div
+      style={{
+        minHeight: '100dvh',
+        background: 'var(--paper, #F7F6F2)',
+        color: 'var(--ink, #0B1220)',
+        fontFamily: 'var(--font-sans, system-ui, -apple-system, sans-serif)',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <header style={{ padding: '14px 22px' }}>
+        <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none', color: 'inherit' }}>
+          <Image src="/og-image.png" alt="" width={28} height={28} style={{ borderRadius: 8 }} />
+          <span style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.02em' }}>
+            Au<span style={{ color: 'var(--au7o-blue, #3B82F6)' }}>7</span>o
+          </span>
+        </Link>
+      </header>
+
+      <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '12px 22px 60px' }}>
+        <div
+          style={{
+            maxWidth: 440,
+            width: '100%',
+            background: '#fff',
+            border: '1px solid var(--paper-line, #E3DFD4)',
+            borderRadius: 18,
+            padding: '26px 22px',
+            textAlign: 'center',
+            boxShadow: 'var(--shadow-1, 0 1px 2px rgba(11,18,32,0.06))',
+          }}
+        >
+          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--au7o-blue, #3B82F6)' }}>
+            AU7O PRO
+          </div>
+          <h1 style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.025em', margin: '8px 0 6px' }}>
+            More diagnoses, fewer guesses
+          </h1>
+          <p style={{ fontSize: 14, color: 'var(--slate-700, #334155)', margin: '0 0 18px', lineHeight: 1.5 }}>
+            Au7o Pro unlocks the full toolkit for keeping your car healthy.
+          </p>
+
+          <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 22px', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {perks.map((p) => (
+              <li key={p} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, color: 'var(--ink, #0B1220)' }}>
+                <span aria-hidden style={{ color: '#10B981', fontWeight: 700, lineHeight: 1.4 }}>✓</span>
+                <span style={{ lineHeight: 1.4 }}>{p}</span>
+              </li>
+            ))}
+          </ul>
+
+          {EXTERNAL_SUBSCRIBE_ENABLED ? (
+            <>
+              <button
+                type="button"
+                onClick={openInBrowser}
+                style={{
+                  width: '100%',
+                  padding: '14px 20px',
+                  borderRadius: 12,
+                  border: 'none',
+                  background: 'var(--au7o-blue, #3B82F6)',
+                  color: '#fff',
+                  fontSize: 15,
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  fontFamily: 'inherit',
+                }}
+              >
+                Continue in your browser →
+              </button>
+              <p style={{ fontSize: 12, color: 'var(--slate-500, #64748B)', margin: '12px 0 0', lineHeight: 1.45 }}>
+                You&apos;ll finish in your browser, then sign back into the app — your Pro features unlock automatically.
+              </p>
+            </>
+          ) : (
+            <div
+              style={{
+                padding: '14px 16px',
+                background: 'var(--paper-2, #EFEDE6)',
+                border: '1px solid var(--paper-line, #E3DFD4)',
+                borderRadius: 12,
+                fontSize: 13.5,
+                color: 'var(--slate-700, #334155)',
+                lineHeight: 1.5,
+              }}
+            >
+              Au7o Pro is managed on the web. Visit <strong>au7o.io</strong> in your browser and sign in to your account to upgrade — your Pro features then unlock here automatically.
+            </div>
+          )}
+
+          <div style={{ marginTop: 18 }}>
+            <Link href="/" style={{ fontSize: 13, color: 'var(--slate-500, #64748B)', textDecoration: 'underline' }}>
+              Back to Au7o
+            </Link>
+          </div>
+        </div>
+      </main>
     </div>
   );
 }
