@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { DiagnoseFlowClient } from '@/components/diagnose/DiagnoseFlowClient';
+import { SnapDiagnoseClient } from '@/components/diagnose/SnapDiagnoseClient';
 
 export const metadata: Metadata = {
   title: 'Try Au7o free — Diagnose from a photo',
@@ -37,5 +38,7 @@ export default async function DiagnosePage({
   const sp = await searchParams;
   const uaMobile = /android|iphone|ipod|ipad|mobile|silk|kindle/.test(ua);
   const isMobile = sp.mobile === '1' ? true : sp.desktop === '1' ? false : uaMobile;
-  return <DiagnoseFlowClient isMobile={isMobile} />;
+  // Mobile → the snap-first camera flow (au7oapp design). Desktop → the
+  // upload-first flow (no usable camera on desktop).
+  return isMobile ? <SnapDiagnoseClient /> : <DiagnoseFlowClient isMobile={false} />;
 }
