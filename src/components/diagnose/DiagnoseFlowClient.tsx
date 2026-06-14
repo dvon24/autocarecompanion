@@ -41,7 +41,7 @@ const SNAPSHOT_KEY = 'au7o.diagSnapshot';
 
 type State = 'idle' | 'analyzing' | 'result' | 'gated' | 'error';
 
-export function DiagnoseFlowClient() {
+export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean }) {
   const { status: sessionStatus } = useSession();
   const isSignedIn = sessionStatus === 'authenticated';
   // YMMT picker
@@ -61,6 +61,9 @@ export function DiagnoseFlowClient() {
   // we couldn't honor.
   const [keepPhoto, setKeepPhoto] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  // Second input WITHOUT `capture` so mobile users can pick an existing
+  // photo/video they shot earlier (the camera input forces a live capture).
+  const galleryInputRef = useRef<HTMLInputElement>(null);
 
   // Flow state
   const [state, setState] = useState<State>('idle');
@@ -103,12 +106,13 @@ export function DiagnoseFlowClient() {
     [ymmt, year, make, model]
   );
 
-  // Trim is OPTIONAL for the free diagnosis — many vehicles (esp. EU
-  // models) have no trim list in our data, which previously left the
-  // "Diagnose this" button permanently grayed out (the friend's "it
-  // didn't work" report). A photo + year/make/model is enough; trim is
-  // sent when picked but never required.
-  const ready = !!file && !!year && !!make && !!model;
+  // Photo is the ONLY hard requirement. Vehicle (YMMT) is now OPTIONAL —
+  // the /api/vision route already handles "unknown vehicle", it's just less
+  // accurate without it. So we never block on YMMT; we surface a disclaimer
+  // instead (desktop "skip & diagnose", and a note in the analyzing state).
+  // Trim was always optional. This fixes the grayed-button dead-ends.
+  const hasVehicle = !!year && !!make && !!model;
+  const ready = !!file;
 
   const onFileChosen = (f: File) => {
     if (!/^image\//.test(f.type)) {
@@ -294,7 +298,9 @@ export function DiagnoseFlowClient() {
             Show Au7o what&apos;s wrong
           </h1>
           <p style={{ fontSize: 15, color: 'var(--slate-700, #334155)', margin: '8px 0 0', maxWidth: 580, marginLeft: 'auto', marginRight: 'auto' }}>
-            Tell us your car, drop in a photo of the problem, and Au7o takes it from there. One free try — no account needed.
+            {isMobile
+              ? 'Snap a photo of the problem and Au7o takes it from there. Add your car for a sharper read — optional. One free try, no account needed.'
+              : 'Drop in a photo of the problem and Au7o takes it from there. Add your car for a sharper read — optional. One free try, no account needed.'}
           </p>
         </div>
 
@@ -310,9 +316,9 @@ export function DiagnoseFlowClient() {
             }}
           >
             <div className="dx-grid">
-              {/* LEFT — YMMT picker */}
-              <div>
-                <Eyebrow>YOUR VEHICLE</Eyebrow>
+              {/* LEFT — YMMT picker (now optional) */}
+              <div className="dx-col-vehicle">
+                <Eyebrow>YOUR VEHICLE · OPTIONAL</Eyebrow>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 10 }}>
                   <Select
                     label="Year"
@@ -348,9 +354,9 @@ export function DiagnoseFlowClient() {
                 </div>
               </div>
 
-              {/* RIGHT — upload zone */}
-              <div>
-                <Eyebrow>THE PROBLEM</Eyebrow>
+              {/* RIGHT — upload zone (ordered first on mobile = photo-first) */}
+              <div className="dx-col-photo">
+                <Eyebrow>{isMobile ? 'TAKE A PHOTO' : 'THE PROBLEM'}</Eyebrow>
                 {!file ? (
                   <button
                     type="button"
@@ -397,13 +403,19 @@ export function DiagnoseFlowClient() {
                       <Icon name="camera" size={20} />
                     </span>
                     <span style={{ fontSize: 15.5, fontWeight: 600, color: 'var(--ink, #0B1220)' }}>
-                      Drag a photo here
+                      {isMobile ? 'Tap to open your camera' : 'Drag a photo here'}
                     </span>
                     <span style={{ fontSize: 13, color: 'var(--slate-600, #475569)', marginTop: 4 }}>
-                      or{' '}
-                      <span style={{ color: 'var(--au7o-blue-700, #1D4ED8)', fontWeight: 600, textDecoration: 'underline' }}>
-                        browse your files
-                      </span>
+                      {isMobile ? (
+                        'Point it right at the problem'
+                      ) : (
+                        <>
+                          or{' '}
+                          <span style={{ color: 'var(--au7o-blue-700, #1D4ED8)', fontWeight: 600, textDecoration: 'underline' }}>
+                            browse your files
+                          </span>
+                        </>
+                      )}
                     </span>
                     <span style={{ fontSize: 11, color: 'var(--slate-400, #94A3B8)', marginTop: 14 }}>
                       JPG, PNG, or WebP · up to 10 MB
@@ -490,12 +502,48 @@ export function DiagnoseFlowClient() {
                   ref={fileInputRef}
                   type="file"
                   accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
+                  // On phones, open the rear camera directly (photo-first).
+                  // Ignored on desktop, where it falls back to the file dialog.
+                  capture={isMobile ? 'environment' : undefined}
                   style={{ display: 'none' }}
                   onChange={(e) => {
                     const f = e.target.files?.[0];
                     if (f) onFileChosen(f);
                   }}
                 />
+                {/* Gallery picker (no capture) — lets phone users choose a
+                    photo/video they already took. */}
+                <input
+                  ref={galleryInputRef}
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
+                  style={{ display: 'none' }}
+                  onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (f) onFileChosen(f);
+                  }}
+                />
+                {isMobile && !file && (
+                  <button
+                    type="button"
+                    onClick={() => galleryInputRef.current?.click()}
+                    style={{
+                      width: '100%',
+                      marginTop: 10,
+                      padding: '11px 13px',
+                      fontSize: 13,
+                      fontWeight: 600,
+                      background: 'transparent',
+                      border: '1px solid var(--paper-line, #E3DFD4)',
+                      borderRadius: 10,
+                      color: 'var(--slate-700, #334155)',
+                      cursor: 'pointer',
+                      fontFamily: 'inherit',
+                    }}
+                  >
+                    Upload an existing photo instead
+                  </button>
+                )}
                 <input
                   type="text"
                   value={caption}
@@ -567,15 +615,23 @@ export function DiagnoseFlowClient() {
                 )}
               </button>
             </div>
-            {/* Tell the user WHY the button is disabled so a grayed
-                button never reads as "broken / didn't work". */}
+            {/* Button is disabled only when there's no photo (YMMT is
+                optional now), so the hint just asks for a photo. */}
             {!ready && state !== 'analyzing' && (
               <p style={{ textAlign: 'center', marginTop: 10, fontSize: 12.5, color: 'var(--slate-500, #64748B)' }}>
-                {!file && (!year || !make || !model)
-                  ? 'Add a photo and pick your year, make & model to diagnose.'
-                  : !file
-                    ? 'Add a photo to diagnose.'
-                    : 'Pick your year, make & model to diagnose.'}
+                {isMobile ? 'Take or upload a photo to diagnose.' : 'Add a photo to diagnose.'} Your vehicle is optional — it makes the result more accurate.
+              </p>
+            )}
+            {/* Photo is in but no vehicle picked — nudge (don't block). */}
+            {ready && !hasVehicle && state !== 'analyzing' && (
+              <p style={{ textAlign: 'center', marginTop: 10, fontSize: 12.5, color: 'var(--slate-500, #64748B)' }}>
+                Tip: add your year, make &amp; model{isMobile ? ' above' : ''} for a more accurate diagnosis (optional).
+              </p>
+            )}
+            {/* Analyzing without a vehicle — the disclaimer Devon asked for. */}
+            {state === 'analyzing' && !hasVehicle && (
+              <p style={{ textAlign: 'center', marginTop: 10, fontSize: 12.5, color: 'var(--slate-600, #475569)' }}>
+                Diagnosing without your vehicle — results are more accurate when you add your year, make &amp; model.
               </p>
             )}
 
@@ -702,6 +758,8 @@ export function DiagnoseFlowClient() {
         }
         @media (max-width: 760px) {
           .dx-grid { grid-template-columns: 1fr; gap: 16px; }
+          /* Photo-first on phones: capture zone above the (optional) vehicle picker. */
+          .dx-col-photo { order: -1; }
         }
       `}</style>
     </div>

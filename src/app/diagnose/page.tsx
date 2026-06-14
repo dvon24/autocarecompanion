@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { headers } from 'next/headers';
 import { DiagnoseFlowClient } from '@/components/diagnose/DiagnoseFlowClient';
 
 export const metadata: Metadata = {
@@ -22,6 +23,19 @@ export const metadata: Metadata = {
  */
 export const dynamic = 'force-dynamic';
 
-export default function DiagnosePage() {
-  return <DiagnoseFlowClient />;
+export default async function DiagnosePage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  // Device split: phones get the photo-first capture layout (tap → camera),
+  // desktops get the upload-first layout (no usable camera). Detected from
+  // the UA server-side so the right layout is in the first paint — no flash.
+  // ?mobile=1 / ?desktop=1 force a layout for testing on the other device.
+  const h = await headers();
+  const ua = (h.get('user-agent') || '').toLowerCase();
+  const sp = await searchParams;
+  const uaMobile = /android|iphone|ipod|ipad|mobile|silk|kindle/.test(ua);
+  const isMobile = sp.mobile === '1' ? true : sp.desktop === '1' ? false : uaMobile;
+  return <DiagnoseFlowClient isMobile={isMobile} />;
 }
