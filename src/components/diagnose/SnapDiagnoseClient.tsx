@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { downscaleImage } from '@/lib/downscale-image';
-import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
+import { VisionResultCard, AnnotatedPhoto, type VisionResult } from '@/components/vehicle/VisionResultCard';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { type YMMTData } from '@/schemas/vehicle.schema';
 import { loadYmmt } from '@/lib/load-ymmt';
@@ -187,6 +187,11 @@ export function SnapDiagnoseClient() {
   if (stage === 'result' && result) {
     return (
       <div style={{ minHeight: '100dvh', background: 'var(--paper, #F7F6F2)', padding: '12px 12px 40px' }}>
+        {/* Annotated photo hero (part B) — pins on the user's real photo;
+            no-ops when the model returned no boxes. Then the full result. */}
+        <div style={{ background: '#fff', border: '1px solid var(--paper-line, #E3DFD4)', borderRadius: 14, overflow: 'hidden', marginBottom: 12 }}>
+          <AnnotatedPhoto vision={result} />
+        </div>
         <VisionResultCard vision={result} />
         <button type="button" onClick={retake} style={ghostBtn}>Diagnose another photo</button>
       </div>

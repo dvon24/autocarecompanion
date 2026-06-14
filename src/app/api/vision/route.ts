@@ -430,6 +430,9 @@ Your job:
      - confidence per part (lower for parts at edge or partially occluded)
      - searchQuery — brand + OEM number + name (e.g. 'Mopar 68249841AA front brake rotor'). The server will use this to construct vendor URLs. DO NOT generate URLs yourself.
      - notes for axle-pair rules, torque specs, anti-seize requirements
+     - box — the part's location IN the photo as { "x", "y", "w", "h" } in PERCENTAGES of image width/height (0-100, origin top-left): the tightest box around the part. ONLY for parts visibleInPhoto:true. Be accurate — these draw pins on the user's actual photo, so a wrong box looks broken.
+     - condition — your read of THIS specific part: "ok" (healthy/good), "warn" (worn/aging/plan-ahead), "critical" (failed/unsafe — do not drive), or "info" (just identified, e.g. a trim badge, no condition judgment)
+     - finding — a SHORT condition phrase for the callout (≤7 words), e.g. "Pads healthy · no fluid weeping" or "~4/32\\" tread — plan ahead"
 5. Set primaryPartId to the id of the part the user most likely came for. For a wheel photo where the user might want any of rotor/pads/tire, pick the most expensive/important one (usually the rotor). The other identified parts stay in identifiedParts.
 6. Cross-reference the KNOWN ISSUES list above. If any identified part matches a documented issue for this vehicle, list the issue id in relatedKnownIssueIds.
 7. Difficulty: easy / medium / hard. Estimated DIY time. Safety warnings if any.
@@ -472,7 +475,10 @@ Return ONLY a JSON object — no markdown fences, no preamble. Start with { end 
       "aftermarketPartNumbers": [{"brand": "Brembo", "partNumber": "09.C394.11"}],
       "searchQuery": "Mopar 68249841AA Challenger SRT front brake rotor",
       "estimatedPriceUsd": {"low": 180, "high": 340},
-      "notes": "Replace as axle pair — never one side only."
+      "notes": "Replace as axle pair — never one side only.",
+      "box": {"x": 40, "y": 38, "w": 34, "h": 30},
+      "condition": "ok",
+      "finding": "Surface smooth · no deep scoring"
     }
   ],
   "toolsNeeded": ["..."],
@@ -681,6 +687,8 @@ Return ONLY a JSON object — no markdown fences, no preamble. Start with { end 
     aftermarketPartNumbers: Array<{ brand: string; partNumber: string }>;
     searchQuery: string; estimatedPriceUsd: { low: number; high: number };
     notes: string;
+    box: { x: number; y: number; w: number; h: number };
+    condition: string; finding: string;
   }>;
   const VALID_ROLES = new Set<PartRole>(['primary', 'consumable', 'fastener', 'related']);
   const VALID_CATS = new Set<PartCategory>([
@@ -722,6 +730,19 @@ Return ONLY a JSON object — no markdown fences, no preamble. Start with { end 
           ? { low: p.estimatedPriceUsd.low, high: p.estimatedPriceUsd.high }
           : undefined,
         notes: typeof p.notes === 'string' ? p.notes : undefined,
+        // Annotated-pin fields. box = location in the photo (image %),
+        // clamped 0-100; only kept when present + visible. condition +
+        // finding drive the pin color and callout status line.
+        box: p.box && [p.box.x, p.box.y, p.box.w, p.box.h].every((n) => typeof n === 'number')
+          ? {
+              x: Math.max(0, Math.min(100, p.box.x)),
+              y: Math.max(0, Math.min(100, p.box.y)),
+              w: Math.max(1, Math.min(100, p.box.w)),
+              h: Math.max(1, Math.min(100, p.box.h)),
+            }
+          : undefined,
+        condition: ['ok', 'warn', 'critical', 'info'].includes(String(p.condition)) ? (p.condition as 'ok' | 'warn' | 'critical' | 'info') : undefined,
+        finding: typeof p.finding === 'string' ? p.finding.slice(0, 120) : undefined,
         // searchQuery is consumed by the resolver — store on a side
         // channel via a hidden field so attachVendorLinks can read it.
         // We don't include it in the public IdentifiedPart type.

@@ -134,6 +134,18 @@ export interface IdentifiedPart {
   /** Free-form helper text e.g. "Replace as axle pair — never one
    *  side only". */
   notes?: string;
+  /** Approximate location of the part IN the photo as percentages of
+   *  image width/height (0-100, origin top-left). Drives the annotated
+   *  detection pins drawn on the user's photo. Absent for parts not
+   *  visible in the frame. */
+  box?: { x: number; y: number; w: number; h: number };
+  /** Condition the model read for THIS part — drives the pin color and
+   *  the callout's status line. ok=healthy, warn=worn/aging,
+   *  critical=failed/unsafe, info=identified only. */
+  condition?: 'ok' | 'warn' | 'critical' | 'info';
+  /** Short condition phrase for the callout, e.g. 'Pads healthy · no
+   *  fluid weeping' or '~4/32" tread — plan ahead'. */
+  finding?: string;
 }
 
 // ─── Vehicle-match verdict ─────────────────────────────────────────

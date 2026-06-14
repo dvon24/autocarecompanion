@@ -171,6 +171,103 @@ function MultiPhotoUpsell({ vision }: { vision: VisionResult }) {
   );
 }
 
+const CONDITION_COLOR: Record<string, string> = { ok: '#10B981', warn: '#B45309', critical: '#DC2626', info: '#2563EB' };
+
+/**
+ * Annotated detection photo (au7oapp design, part B). Draws pulsing pins on
+ * the user's actual photo at each part's model-estimated box, with a
+ * tethered frosted callout for the active part + selectable chips. Renders
+ * nothing unless the result carries an image preview AND at least one part
+ * with a box — so callers can stack it above VisionResultCard and it simply
+ * no-ops on older/box-less results. The model's boxes are approximate; this
+ * is illustrative, not a precise bounding box.
+ */
+export function AnnotatedPhoto({ vision }: { vision: VisionResult }) {
+  const pinned = (vision.identifiedParts || []).filter((p) => p.box && p.visibleInPhoto !== false);
+  const [activeId, setActiveId] = useState<string | null>(pinned[0]?.id ?? null);
+  if (!vision.imagePreviewUrl || pinned.length === 0) return null;
+  const active = pinned.find((p) => p.id === activeId) || pinned[0];
+  const pinX = active.box!.x + active.box!.w / 2;
+  const pinY = active.box!.y + active.box!.h / 2;
+  const cond = active.condition || 'info';
+
+  return (
+    <div className="ap-wrap">
+      <style>{`
+        @keyframes apRadar { 0%{transform:scale(1);opacity:.5} 70%{transform:scale(2.6);opacity:0} 100%{opacity:0} }
+        .ap-photo { position:relative; background:#0B0E14; aspect-ratio:4/3; overflow:hidden; border-radius:14px 14px 0 0; }
+        .ap-photo > img { display:block; width:100%; height:100%; object-fit:cover; }
+        .ap-grad { position:absolute; inset:0; background:linear-gradient(180deg, rgba(11,14,20,0.30), transparent 26%, transparent 60%, rgba(11,14,20,0.55)); }
+        .ap-badge { position:absolute; top:10px; left:10px; display:inline-flex; align-items:center; gap:6px; padding:5px 10px; background:rgba(11,18,32,0.62); backdrop-filter:blur(8px); border-radius:999px; border:1px solid rgba(255,255,255,0.12); font-size:10px; font-weight:600; color:#fff; letter-spacing:0.03em; }
+        .ap-hs { position:absolute; transform:translate(-50%,-50%); cursor:pointer; border:none; background:transparent; padding:0; }
+        .ap-hs .ring { position:absolute; inset:0; margin:auto; width:18px; height:18px; border-radius:50%; }
+        .ap-hs .ring.r1 { animation: apRadar 2.4s ease-out infinite; }
+        .ap-hs .ring.r2 { animation: apRadar 2.4s ease-out infinite 1.2s; }
+        .ap-callout { position:absolute; left:10px; right:10px; bottom:10px; background:rgba(255,255,255,0.94); backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,0.7); border-radius:12px; box-shadow:0 12px 32px rgba(11,18,32,0.4); padding:10px 12px; z-index:6; }
+        .ap-chips { display:flex; gap:6px; overflow-x:auto; padding:10px 12px 2px; }
+        .ap-chip { flex-shrink:0; display:inline-flex; align-items:center; gap:7px; padding:7px 12px; border-radius:999px; cursor:pointer; font-family:inherit; font-size:12px; font-weight:600; white-space:nowrap; }
+      `}</style>
+      <div className="ap-photo">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={vision.imagePreviewUrl} alt="Your photo, annotated" />
+        <div className="ap-grad" />
+        <div className="ap-badge">
+          <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#3B82F6', display: 'inline-block' }} />
+          AU7O DETECTED {pinned.length} {pinned.length === 1 ? 'PART' : 'PARTS'}
+        </div>
+
+        {/* tether from active pin to the callout */}
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 3 }}>
+          <line x1={pinX} y1={pinY} x2={50} y2={88} stroke="#fff" strokeWidth="2.5" vectorEffect="non-scaling-stroke" strokeOpacity="0.55" strokeLinecap="round" />
+        </svg>
+
+        {pinned.map((p) => {
+          const c = CONDITION_COLOR[p.condition || 'info'];
+          const on = p.id === active.id;
+          const cx = p.box!.x + p.box!.w / 2;
+          const cy = p.box!.y + p.box!.h / 2;
+          return (
+            <button key={p.id} className="ap-hs" style={{ left: `${cx}%`, top: `${cy}%`, zIndex: on ? 5 : 4 }} onClick={() => setActiveId(p.id)} aria-label={p.name}>
+              {on && <><span className="ring r1" style={{ background: c }} /><span className="ring r2" style={{ background: c }} /></>}
+              <span style={{ position: 'relative', display: 'block', width: on ? 18 : 14, height: on ? 18 : 14, borderRadius: '50%', background: c, border: '2.5px solid #fff', boxShadow: '0 2px 8px rgba(0,0,0,0.45)' }} />
+            </button>
+          );
+        })}
+
+        {/* active callout */}
+        <div className="ap-callout">
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+            <span style={{ width: 8, height: 8, borderRadius: '50%', background: CONDITION_COLOR[cond], marginTop: 4, flexShrink: 0 }} />
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 12.5, fontWeight: 700, color: '#0B1220', lineHeight: 1.2 }}>
+                {active.name}{active.position ? ` (${active.position})` : ''}
+              </div>
+              {active.finding && <div style={{ fontSize: 11, fontWeight: 600, color: CONDITION_COLOR[cond], marginTop: 2 }}>{active.finding}</div>}
+              {active.oemPartNumbers[0] && (
+                <div style={{ fontSize: 9.5, fontFamily: "'SF Mono', Menlo, monospace", color: '#64748B', marginTop: 3 }}>OEM {active.oemPartNumbers[0]}</div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* selectable chips */}
+      <div className="ap-chips">
+        {pinned.map((p) => {
+          const on = p.id === active.id;
+          return (
+            <button key={p.id} className="ap-chip" onClick={() => setActiveId(p.id)}
+              style={{ background: on ? '#0B1220' : '#fff', color: on ? '#fff' : '#475569', border: `1px solid ${on ? '#0B1220' : '#E3DFD4'}` }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: CONDITION_COLOR[p.condition || 'info'] }} />
+              {p.name.split(' ').slice(0, 2).join(' ')}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export function VisionResultCard({ vision }: { vision: VisionResult }) {
   // v2 fan-out — when the API returned the new multi-part shape,
   // hand off to VisionResultCardV2. Old saved responses + any
