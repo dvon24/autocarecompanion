@@ -32,4 +32,14 @@
     <!-- Permissions -->
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Camera: the in-WebView photo/video diagnose (getUserMedia) needs this. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Location (foreground): /drive uses navigator.geolocation. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Mark hardware optional so the Play listing isn't restricted to devices
+         that have a camera/GPS. -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.location" android:required="false" />
 </manifest>
