@@ -10,6 +10,7 @@ import { VisionResultCard, type VisionResult } from '@/components/vehicle/Vision
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { type YMMTData } from '@/schemas/vehicle.schema';
 import { loadYmmt } from '@/lib/load-ymmt';
+import { diagnoseStrings } from '@/lib/diagnose-i18n';
 
 /**
  * sessionStorage key shared with /diagnose/claim. Stashes everything
@@ -44,6 +45,7 @@ type State = 'idle' | 'analyzing' | 'result' | 'gated' | 'error';
 export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean }) {
   const { status: sessionStatus } = useSession();
   const isSignedIn = sessionStatus === 'authenticated';
+  const t = diagnoseStrings();
   // YMMT picker
   const [ymmt, setYmmt] = useState<YMMTData | null>(null);
   const [year, setYear] = useState('');
@@ -124,7 +126,7 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
 
   const onFileChosen = (f: File) => {
     if (!/^image\//.test(f.type)) {
-      setError('Choose a photo (JPEG, PNG, or WebP).');
+      setError(t.chooseImageErr);
       setState('error');
       return;
     }
@@ -138,7 +140,7 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
   // primary + extras ≤ MAX_ANGLES.
   const onAngleChosen = (f: File) => {
     if (!/^image\//.test(f.type)) {
-      setError('Choose a photo (JPEG, PNG, or WebP).');
+      setError(t.chooseImageErr);
       setState('error');
       return;
     }
@@ -308,7 +310,7 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
             </span>
           </Link>
           <span style={{ fontSize: 12, color: 'var(--slate-500, #64748B)' }}>
-            Free diagnosis · no card needed
+            {t.freeNoCard}
           </span>
         </div>
       </header>
@@ -325,7 +327,7 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
               color: 'var(--au7o-blue, #3B82F6)',
             }}
           >
-            FREE DIAGNOSIS
+            {t.freeBadge}
           </div>
           <h1
             style={{
@@ -335,12 +337,10 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
               margin: '8px 0 0',
             }}
           >
-            Show Au7o what&apos;s wrong
+            {t.showWrong}
           </h1>
           <p style={{ fontSize: 15, color: 'var(--slate-700, #334155)', margin: '8px 0 0', maxWidth: 580, marginLeft: 'auto', marginRight: 'auto' }}>
-            {isMobile
-              ? 'Snap a photo of the problem and Au7o takes it from there. Add your car for a sharper read — optional. One free try, no account needed.'
-              : 'Drop in a photo of the problem and Au7o takes it from there. Add your car for a sharper read — optional. One free try, no account needed.'}
+            {t.intro(isMobile)}
           </p>
         </div>
 
@@ -358,37 +358,37 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
             <div className="dx-grid">
               {/* LEFT — YMMT picker (now optional) */}
               <div className="dx-col-vehicle">
-                <Eyebrow>YOUR VEHICLE · OPTIONAL</Eyebrow>
+                <Eyebrow>{t.vehicleOptional}</Eyebrow>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 10 }}>
                   <Select
-                    label="Year"
+                    label={t.yearLabel}
                     value={year}
                     onChange={(v) => { setYear(v); setMake(''); setModel(''); setTrim(''); }}
                     options={years.map((y) => String(y))}
-                    placeholder="Year"
+                    placeholder={t.yearLabel}
                   />
                   <Select
-                    label="Make"
+                    label={t.makeLabel}
                     value={make}
                     onChange={(v) => { setMake(v); setModel(''); setTrim(''); }}
                     options={makes}
-                    placeholder={year ? 'Make' : 'Pick a year first'}
+                    placeholder={year ? t.makeLabel : t.pickYearFirst}
                     disabled={!year}
                   />
                   <Select
-                    label="Model"
+                    label={t.modelLabel}
                     value={model}
                     onChange={(v) => { setModel(v); setTrim(''); }}
                     options={models}
-                    placeholder={make ? 'Model' : 'Pick a make first'}
+                    placeholder={make ? t.modelLabel : t.pickMakeFirst}
                     disabled={!make}
                   />
                   <Select
-                    label="Trim"
+                    label={t.trimLabel}
                     value={trim}
                     onChange={setTrim}
                     options={trims}
-                    placeholder={model ? 'Trim' : 'Pick a model first'}
+                    placeholder={model ? t.trimLabel : t.pickModelFirst}
                     disabled={!model}
                   />
                 </div>
@@ -396,7 +396,7 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
 
               {/* RIGHT — upload zone (ordered first on mobile = photo-first) */}
               <div className="dx-col-photo">
-                <Eyebrow>{isMobile ? 'TAKE A PHOTO' : 'THE PROBLEM'}</Eyebrow>
+                <Eyebrow>{isMobile ? t.takePhotoEyebrow : t.problemEyebrow}</Eyebrow>
                 {!file ? (
                   <button
                     type="button"
@@ -443,22 +443,22 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
                       <Icon name="camera" size={20} />
                     </span>
                     <span style={{ fontSize: 15.5, fontWeight: 600, color: 'var(--ink, #0B1220)' }}>
-                      {isMobile ? 'Tap to open your camera' : 'Drag a photo here'}
+                      {isMobile ? t.tapOpenCamera : t.dragPhoto}
                     </span>
                     <span style={{ fontSize: 13, color: 'var(--slate-600, #475569)', marginTop: 4 }}>
                       {isMobile ? (
-                        'Point it right at the problem'
+                        t.pointAtProblem
                       ) : (
                         <>
-                          or{' '}
+                          {t.orPrefix}
                           <span style={{ color: 'var(--au7o-blue-700, #1D4ED8)', fontWeight: 600, textDecoration: 'underline' }}>
-                            browse your files
+                            {t.browseFiles}
                           </span>
                         </>
                       )}
                     </span>
                     <span style={{ fontSize: 11, color: 'var(--slate-400, #94A3B8)', marginTop: 14 }}>
-                      JPG, PNG, or WebP · up to 10 MB
+                      {t.fileTypes}
                     </span>
                   </button>
                 ) : (
@@ -502,7 +502,7 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
                         color: '#fff',
                       }}
                     >
-                      <Icon name="check" size={11} /> Loaded
+                      <Icon name="check" size={11} /> {t.loaded}
                     </span>
                     <div
                       style={{
@@ -533,7 +533,7 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
                           fontFamily: 'inherit',
                         }}
                       >
-                        Replace
+                        {t.replace}
                       </button>
                     </div>
                   </div>
@@ -581,14 +581,14 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
                       fontFamily: 'inherit',
                     }}
                   >
-                    Upload an existing photo instead
+                    {t.uploadExisting}
                   </button>
                 )}
                 <input
                   type="text"
                   value={caption}
                   onChange={(e) => setCaption(e.target.value)}
-                  placeholder="Add a note — what does it sound or smell like? (optional)"
+                  placeholder={t.captionPlaceholder}
                   style={{
                     width: '100%',
                     marginTop: 10,
@@ -656,10 +656,8 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
                       )}
                     </div>
                     <p style={{ fontSize: 11.5, color: 'var(--slate-500, #64748B)', margin: '8px 0 0', lineHeight: 1.4 }}>
-                      {extraFiles.length > 0
-                        ? `${extraFiles.length + 1} angles — more angles help the AI pinpoint the issue.`
-                        : 'Add another angle for a sharper read.'}{' '}
-                      <span style={{ color: 'var(--au7o-blue-700, #1D4ED8)', fontWeight: 600 }}>Multiple angles is a Pro feature.</span>
+                      {extraFiles.length > 0 ? t.anglesCount(extraFiles.length + 1) : t.addAngleHint}{' '}
+                      <span style={{ color: 'var(--au7o-blue-700, #1D4ED8)', fontWeight: 600 }}>{t.proAngles}</span>
                     </p>
                   </div>
                 )}
@@ -707,11 +705,11 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
               >
                 {state === 'analyzing' ? (
                   <>
-                    <Spinner /> Analyzing…
+                    <Spinner /> {t.analyzingBtn}
                   </>
                 ) : (
                   <>
-                    <Icon name="camera" size={15} /> Diagnose this
+                    <Icon name="camera" size={15} /> {t.diagnoseThis}
                   </>
                 )}
               </button>
@@ -720,19 +718,19 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
                 optional now), so the hint just asks for a photo. */}
             {!ready && state !== 'analyzing' && (
               <p style={{ textAlign: 'center', marginTop: 10, fontSize: 12.5, color: 'var(--slate-500, #64748B)' }}>
-                {isMobile ? 'Take or upload a photo to diagnose.' : 'Add a photo to diagnose.'} Your vehicle is optional — it makes the result more accurate.
+                {t.needPhoto(isMobile)} {t.vehicleOptionalHint}
               </p>
             )}
             {/* Photo is in but no vehicle picked — nudge (don't block). */}
             {ready && !hasVehicle && state !== 'analyzing' && (
               <p style={{ textAlign: 'center', marginTop: 10, fontSize: 12.5, color: 'var(--slate-500, #64748B)' }}>
-                Tip: add your year, make &amp; model{isMobile ? ' above' : ''} for a more accurate diagnosis (optional).
+                {t.tipAddVehicle(isMobile)}
               </p>
             )}
             {/* Analyzing without a vehicle — the disclaimer Devon asked for. */}
             {state === 'analyzing' && !hasVehicle && (
               <p style={{ textAlign: 'center', marginTop: 10, fontSize: 12.5, color: 'var(--slate-600, #475569)' }}>
-                Diagnosing without your vehicle — results are more accurate when you add your year, make &amp; model.
+                {t.analyzingNoVehicle}
               </p>
             )}
 
@@ -759,7 +757,7 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
                   style={{ marginTop: 2, width: 15, height: 15, flexShrink: 0, accentColor: 'var(--au7o-blue, #3B82F6)', cursor: 'pointer' }}
                 />
                 <span style={{ fontSize: 12, color: 'var(--slate-600, #475569)', lineHeight: 1.45 }}>
-                  Help improve Au7o — keep the details of this diagnosis (the part identified; plates &amp; location removed) to make future diagnoses smarter. No photo is kept. Optional.
+                  {t.flywheelConsent}
                 </span>
               </label>
             )}
@@ -784,7 +782,7 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
                   fontFamily: 'inherit',
                 }}
               >
-                Start over
+                {t.startOver}
               </button>
             </div>
           </div>
@@ -807,8 +805,7 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
               }}
             >
               <div style={{ fontSize: 13, color: 'var(--slate-700, #334155)' }}>
-                Want to ask Au7o follow-up questions about this?{' '}
-                <strong>Save your diagnosis</strong> by creating a free account.
+                {t.handoffPrompt}
               </div>
               <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
                 <button
@@ -826,7 +823,7 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
                     fontFamily: 'inherit',
                   }}
                 >
-                  {isSignedIn ? 'Save to my garage' : 'Save & open chat'}
+                  {isSignedIn ? t.saveGarage : t.saveOpenChat}
                 </button>
               </div>
             </div>
@@ -844,7 +841,7 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
                   fontFamily: 'inherit',
                 }}
               >
-                Diagnose another photo
+                {t.diagnoseAnother}
               </button>
             </div>
           </div>
