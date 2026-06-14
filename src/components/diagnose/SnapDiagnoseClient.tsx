@@ -145,6 +145,8 @@ export function SnapDiagnoseClient() {
       const fd = new FormData();
       fd.append('image', ds, 'snap.jpg');
       fd.append('vehicle', JSON.stringify({ year: year ? Number(year) : undefined, make, model, trim }));
+      // Tell the API the user's language so the diagnosis comes back in it.
+      if (typeof navigator !== 'undefined' && navigator.language) fd.append('lang', navigator.language);
       if (isSignedIn) fd.append('keepPhoto', '0');
       const res = await fetch('/api/vision', { method: 'POST', body: fd, signal: AbortSignal.timeout(75_000) });
       const data = await res.json().catch(() => ({}));

@@ -178,6 +178,8 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
         JSON.stringify({ year: Number(year), make, model, trim })
       );
       if (caption.trim()) fd.append('caption', caption.trim());
+      // User's language → diagnosis responds in it (not English).
+      if (typeof navigator !== 'undefined' && navigator.language) fd.append('lang', navigator.language);
       // Per-upload consent signal — only for signed-in users. '1' = keep,
       // '0' = explicit decline (overrides any account-level opt-in for
       // this upload). Anon sends nothing (server never stores anon).

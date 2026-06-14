@@ -275,6 +275,20 @@ export async function POST(request: NextRequest) {
 
   const caption = (form.get('caption') as string | null) || '';
 
+  // Output language. The client passes the user's language (navigator.language
+  // or the locale they're browsing) so a German/French/etc. user gets the
+  // diagnosis IN their language — not English. Defaults to English. Only the
+  // natural-language text is translated; enums + part numbers + codes stay
+  // English machine values (see the LANGUAGE block in the prompt).
+  const LANG_NAMES: Record<string, string> = {
+    en: 'English', de: 'German', fr: 'French', es: 'Spanish', pt: 'Portuguese',
+    it: 'Italian', nl: 'Dutch', pl: 'Polish', sv: 'Swedish', da: 'Danish',
+    cs: 'Czech', tr: 'Turkish', ja: 'Japanese', ko: 'Korean', zh: 'Chinese', ru: 'Russian',
+  };
+  const langRaw = ((form.get('lang') as string | null) || 'en').toLowerCase();
+  const langKey = langRaw.startsWith('pt') ? 'pt' : langRaw.split('-')[0];
+  const respondLang = LANG_NAMES[langKey] || 'English';
+
   // Visual data flywheel (Phase 0) consent signal. '1' = opt-in this
   // upload, '0' = explicit decline this upload (authoritative — overrides
   // the account-level opt-in), absent = no per-upload checkbox was shown
@@ -452,7 +466,9 @@ EXAMPLE — user uploads a photo of a Challenger SRT front wheel showing rim, ti
 - brake fluid (role:consumable, category:fluid, visibleInPhoto:false — needed for the job)
 Seven entries, not one.
 
-Return ONLY a JSON object — no markdown fences, no preamble. Start with { end with }. Schema:
+${respondLang !== 'English' ? `LANGUAGE — IMPORTANT: The user speaks ${respondLang}. Write ALL human-readable text in ${respondLang}: the "summary", each part's "name"/"spec"/"finding"/"notes", and every "warnings" string. Do NOT translate (keep EXACTLY as given): the JSON keys; the enum values for role, category, condition, urgency, vehicleMatch; part numbers; DTC codes; brand names. Only natural-language sentences get translated.
+
+` : ''}Return ONLY a JSON object — no markdown fences, no preamble. Start with { end with }. Schema:
 {
   "summary": "1-2 sentence diagnosis",
   "confidence": 0.0-1.0,
