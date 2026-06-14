@@ -9,6 +9,7 @@ import { VisionResultCard, AnnotatedPhoto, type VisionResult } from '@/component
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { type YMMTData } from '@/schemas/vehicle.schema';
 import { loadYmmt } from '@/lib/load-ymmt';
+import { diagnoseStrings } from '@/lib/diagnose-i18n';
 
 /**
  * Mobile snap-first diagnose flow — production port of the au7oapp design
@@ -37,6 +38,7 @@ const BLUE = 'var(--au7o-blue, #3B82F6)';
 export function SnapDiagnoseClient() {
   const { status } = useSession();
   const isSignedIn = status === 'authenticated';
+  const t = diagnoseStrings();
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -195,7 +197,7 @@ export function SnapDiagnoseClient() {
           <AnnotatedPhoto vision={result} />
         </div>
         <VisionResultCard vision={result} />
-        <button type="button" onClick={retake} style={ghostBtn}>Diagnose another photo</button>
+        <button type="button" onClick={retake} style={ghostBtn}>{t.diagnoseAnother}</button>
       </div>
     );
   }
@@ -203,7 +205,7 @@ export function SnapDiagnoseClient() {
     return (
       <div style={{ minHeight: '100dvh', background: 'var(--paper, #F7F6F2)', padding: '16px 14px' }}>
         <InlineGateCard gate={gate} />
-        <button type="button" onClick={retake} style={ghostBtn}>Start over</button>
+        <button type="button" onClick={retake} style={ghostBtn}>{t.startOver}</button>
       </div>
     );
   }
@@ -234,7 +236,7 @@ export function SnapDiagnoseClient() {
       <div style={{ position: 'absolute', top: 12, left: 12, right: 12, zIndex: 6, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Link href="/" aria-label="Close" style={roundBtn}>✕</Link>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '7px 13px', background: 'rgba(0,0,0,0.42)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.14)', borderRadius: 999, color: '#fff', fontSize: 12, fontWeight: 600 }}>
-          {hasVehicle ? `${year} ${make} ${model}` : 'Add your car below'}
+          {hasVehicle ? `${year} ${make} ${model}` : t.addCar}
         </span>
         <span style={{ ...roundBtn, visibility: 'hidden' }}>·</span>
       </div>
@@ -243,11 +245,11 @@ export function SnapDiagnoseClient() {
       {stage === 'camera' && (
         <div style={{ position: 'absolute', top: 56, left: 12, right: 12, zIndex: 6, display: 'flex', alignItems: 'center', gap: 8 }}>
           <Link href="/known-issues" style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '7px 12px', background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: 999, color: '#fff', textDecoration: 'none', fontSize: 11.5, fontWeight: 600 }}>
-            Browse 4,500 known issues
+            {t.browseIssues}
           </Link>
           {!isSignedIn && (
             <span style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 5, padding: '6px 10px', background: 'rgba(59,130,246,0.9)', borderRadius: 999, color: '#fff', fontSize: 10.5, fontWeight: 700 }}>
-              1 free left
+              {t.freeLeft}
             </span>
           )}
         </div>
@@ -267,7 +269,7 @@ export function SnapDiagnoseClient() {
         <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, marginTop: 150, zIndex: 5, display: 'flex', justifyContent: 'center', padding: '0 24px' }}>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 13px', background: 'rgba(59,130,246,0.92)', backdropFilter: 'blur(10px)', borderRadius: 999, boxShadow: '0 6px 20px rgba(59,130,246,0.4)', color: '#fff', fontSize: 11, fontWeight: 600 }}>
             <Image src="/og-image.png" alt="" width={15} height={15} style={{ borderRadius: 4 }} />
-            {mode === 'parts' ? 'Frame the part you want to match' : 'Frame the problem — hold steady'}
+            {mode === 'parts' ? t.hintPart : t.hintProblem}
           </span>
         </div>
       )}
@@ -275,12 +277,12 @@ export function SnapDiagnoseClient() {
       {/* camera-denied fallback */}
       {stage === 'camera' && cameraDenied && (
         <div style={{ position: 'absolute', inset: 0, zIndex: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 28px', textAlign: 'center', color: '#fff' }}>
-          <p style={{ fontSize: 15, fontWeight: 600, margin: '0 0 6px' }}>Camera not available</p>
+          <p style={{ fontSize: 15, fontWeight: 600, margin: '0 0 6px' }}>{t.camTitle}</p>
           <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', margin: '0 0 18px', lineHeight: 1.45 }}>
-            Allow camera access in your browser, or upload a photo you already took.
+            {t.camBody}
           </p>
           <button type="button" onClick={() => galleryRef.current?.click()} style={{ padding: '13px 22px', background: BLUE, color: '#fff', border: 'none', borderRadius: 12, fontSize: 15, fontWeight: 600, fontFamily: 'inherit' }}>
-            Upload a photo
+            {t.uploadPhoto}
           </button>
         </div>
       )}
@@ -294,7 +296,7 @@ export function SnapDiagnoseClient() {
                 const on = m === mode;
                 return (
                   <button key={m} type="button" onClick={() => setMode(m)} style={{ padding: '7px 18px', borderRadius: 999, fontSize: 12.5, fontWeight: 600, cursor: 'pointer', border: 'none', fontFamily: 'inherit', background: on ? '#fff' : 'transparent', color: on ? '#0B1220' : 'rgba(255,255,255,0.7)' }}>
-                    {m === 'diagnosis' ? 'Diagnosis' : 'Parts'}
+                    {m === 'diagnosis' ? t.modeDiagnosis : t.modeParts}
                   </button>
                 );
               })}
@@ -307,7 +309,7 @@ export function SnapDiagnoseClient() {
             </button>
             <span style={{ width: 46 }} />
           </div>
-          <p style={{ textAlign: 'center', fontSize: 10, color: 'rgba(255,255,255,0.7)', margin: '8px 0 0' }}>Tap to capture</p>
+          <p style={{ textAlign: 'center', fontSize: 10, color: 'rgba(255,255,255,0.7)', margin: '8px 0 0' }}>{t.tapCapture}</p>
         </div>
       )}
 
@@ -315,12 +317,12 @@ export function SnapDiagnoseClient() {
       {stage === 'analyzing' && (
         <div style={{ position: 'absolute', left: 14, right: 14, bottom: 28, zIndex: 4, display: 'flex', flexDirection: 'column', gap: 9 }}>
           <style>{`@keyframes snapPulse { 0%,100%{opacity:1} 50%{opacity:.35} }`}</style>
-          {['Identifying parts in frame', 'Matching against 4,500 known issues', hasVehicle ? `Locking to your ${make} ${model}` : 'Cross-referencing TSBs & recalls', 'Pricing the fix'].map((t, i) => (
+          {[t.log1, t.log2, t.log3, t.log4].map((line, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ width: 18, height: 18, borderRadius: '50%', flexShrink: 0, background: i < 2 ? 'var(--ok, #10B981)' : i === 2 ? BLUE : 'rgba(255,255,255,0.14)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 11 }}>
                 {i < 2 ? '✓' : i === 2 ? <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff', animation: 'snapPulse 1s ease-in-out infinite' }} /> : null}
               </span>
-              <span style={{ fontSize: 12.5, fontWeight: i === 2 ? 600 : 500, color: i <= 2 ? '#fff' : 'rgba(255,255,255,0.5)' }}>{t}</span>
+              <span style={{ fontSize: 12.5, fontWeight: i === 2 ? 600 : 500, color: i <= 2 ? '#fff' : 'rgba(255,255,255,0.5)' }}>{line}</span>
             </div>
           ))}
         </div>
@@ -332,14 +334,14 @@ export function SnapDiagnoseClient() {
           <div style={{ width: 36, height: 4, borderRadius: 999, background: 'var(--paper-line, #E3DFD4)', margin: '0 auto 12px' }} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: BLUE, flexShrink: 0 }} />
-            <span style={{ fontSize: 11.5, color: 'var(--slate-600, #475569)' }}>Add your car for a sharper read — or skip, it&apos;s optional</span>
+            <span style={{ fontSize: 11.5, color: 'var(--slate-600, #475569)' }}>{t.sheetSub}</span>
           </div>
-          <h2 style={{ fontSize: 19, fontWeight: 700, letterSpacing: '-0.02em', margin: '0 0 12px' }}>Which car is this?</h2>
+          <h2 style={{ fontSize: 19, fontWeight: 700, letterSpacing: '-0.02em', margin: '0 0 12px' }}>{t.whichCar}</h2>
 
           {error && <p style={{ margin: '0 0 10px', padding: '8px 12px', background: 'var(--crit-bg, #FEE2E2)', color: 'var(--crit, #B91C1C)', borderRadius: 8, fontSize: 13 }}>{error}</p>}
 
           <div style={{ marginBottom: 9 }}>
-            <Eyebrow>YEAR</Eyebrow>
+            <Eyebrow>{t.year}</Eyebrow>
             <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 2, marginTop: 6 }}>
               {years.slice(0, 40).map((y) => {
                 const on = String(y) === year;
@@ -351,19 +353,19 @@ export function SnapDiagnoseClient() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 9 }}>
-            <SheetSelect label="MAKE" value={make} onChange={(v) => { setMake(v); setModel(''); setTrim(''); }} options={makes} disabled={!year} placeholder={year ? 'Make' : 'Year first'} />
-            <SheetSelect label="MODEL" value={model} onChange={(v) => { setModel(v); setTrim(''); }} options={models} disabled={!make} placeholder={make ? 'Model' : 'Make first'} />
+            <SheetSelect label={t.make} value={make} onChange={(v) => { setMake(v); setModel(''); setTrim(''); }} options={makes} disabled={!year} placeholder={year ? t.make : t.yearFirst} />
+            <SheetSelect label={t.model} value={model} onChange={(v) => { setModel(v); setTrim(''); }} options={models} disabled={!make} placeholder={make ? t.model : t.makeFirst} />
           </div>
           {trims.length > 0 && (
             <div style={{ marginBottom: 12 }}>
-              <SheetSelect label="TRIM · OPTIONAL" value={trim} onChange={setTrim} options={trims} disabled={!model} placeholder="Trim (optional)" />
+              <SheetSelect label={t.trimOptional} value={trim} onChange={setTrim} options={trims} disabled={!model} placeholder={t.trimOptional} />
             </div>
           )}
 
           <button type="button" onClick={submit} style={{ width: '100%', padding: '14px 0', background: BLUE, color: '#fff', border: 'none', borderRadius: 13, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginTop: 4 }}>
-            {hasVehicle ? `Diagnose my ${model}` : 'Diagnose anyway'}
+            {t.diagnose(hasVehicle ? model : null)}
           </button>
-          <button type="button" onClick={retake} style={{ width: '100%', padding: '10px 0 0', background: 'transparent', border: 'none', fontSize: 13, color: 'var(--slate-500, #64748B)', cursor: 'pointer', fontFamily: 'inherit' }}>Retake photo</button>
+          <button type="button" onClick={retake} style={{ width: '100%', padding: '10px 0 0', background: 'transparent', border: 'none', fontSize: 13, color: 'var(--slate-500, #64748B)', cursor: 'pointer', fontFamily: 'inherit' }}>{t.retake}</button>
         </div>
       )}
 
