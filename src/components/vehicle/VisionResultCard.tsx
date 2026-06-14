@@ -62,6 +62,11 @@ export interface VisionResult {
   transcript?: string;
   /** Number of frames the server analyzed. Video mode only. */
   framesAnalyzed?: number;
+  /** Multi-photo (Pro): how many still photos were analyzed this diagnosis. */
+  photosAnalyzed?: number;
+  /** True when a non-Pro user sent multiple photos and the server used only
+   *  the first — drives the "Pro uses every angle" upsell. */
+  multiPhotoCapped?: boolean;
 }
 
 /**
@@ -151,6 +156,21 @@ function UrgencyBanner({ vision }: { vision: VisionResult }) {
   );
 }
 
+/** "You sent multiple angles but only the first was used — go Pro" upsell.
+ *  Only renders for non-Pro users who actually sent extra photos. */
+function MultiPhotoUpsell({ vision }: { vision: VisionResult }) {
+  if (!vision.multiPhotoCapped) return null;
+  return (
+    <a href="/subscribe" className="vr-mpu">
+      <span className="vr-mpu-icon" aria-hidden>📸</span>
+      <span className="vr-mpu-text">
+        We used your first photo. <strong>Au7o Pro</strong> analyzes every angle you add for a sharper diagnosis.
+      </span>
+      <span className="vr-mpu-cta" aria-hidden>Upgrade ▸</span>
+    </a>
+  );
+}
+
 export function VisionResultCard({ vision }: { vision: VisionResult }) {
   // v2 fan-out — when the API returned the new multi-part shape,
   // hand off to VisionResultCardV2. Old saved responses + any
@@ -185,6 +205,7 @@ export function VisionResultCard({ vision }: { vision: VisionResult }) {
           signal. Suppressed on a likely vehicle mismatch (the whole verdict
           is suspect when the photo isn't even the right car). */}
       {!isMismatch && <UrgencyBanner vision={vision} />}
+      <MultiPhotoUpsell vision={vision} />
       {/* Vehicle-match warning banner. Renders ABOVE everything else when
           the AI flagged the photo as likely from a different vehicle than
           the one the user is currently viewing. Without this, users buy
@@ -335,6 +356,14 @@ const cardStyles = `
   .vr-urg-monitor { background: #F0FDF4; border-bottom-color: #BBF7D0; }
   .vr-urg-monitor .vr-urg-title { color: #166534; }
   .vr-urg-monitor .vr-urg-sub { color: #15803D; }
+  .vr-mpu {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; text-decoration: none;
+    background: #EFF6FF; border-bottom: 1px solid #DBEAFE;
+  }
+  .vr-mpu-icon { font-size: 17px; flex: 0 0 auto; }
+  .vr-mpu-text { flex: 1; min-width: 0; font-size: 12.5px; line-height: 1.4; color: #1E3A8A; }
+  .vr-mpu-cta { flex: 0 0 auto; font-size: 12px; font-weight: 700; color: #1D4ED8; white-space: nowrap; }
   .vr-head {
     display: flex; gap: 12px; padding: 14px 16px;
     background: linear-gradient(135deg, #F4F7FF 0%, #FAFBFF 100%);
@@ -494,6 +523,7 @@ function VisionResultCardV2({ vision }: { vision: VisionResult }) {
   return (
     <div className="vr-card vr2-card">
       {!isMismatch && <UrgencyBanner vision={vision} />}
+      <MultiPhotoUpsell vision={vision} />
       {isMismatch && (
         <div className="vr-mismatch">
           <div className="vr-mismatch-icon" aria-hidden>⚠️</div>

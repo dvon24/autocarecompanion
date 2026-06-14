@@ -64,6 +64,14 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
   // Second input WITHOUT `capture` so mobile users can pick an existing
   // photo/video they shot earlier (the camera input forces a live capture).
   const galleryInputRef = useRef<HTMLInputElement>(null);
+  // Multi-photo (Pro): additional angles of the SAME issue beyond the first
+  // photo. The /api/vision route accepts every `image` part and Pro-gates
+  // the extras (free users get the first only + an upsell). 1 primary + up
+  // to 4 extra = 5 total (matches the route's MAX_PHOTOS).
+  const [extraFiles, setExtraFiles] = useState<File[]>([]);
+  const [extraPreviews, setExtraPreviews] = useState<string[]>([]);
+  const addAngleInputRef = useRef<HTMLInputElement>(null);
+  const MAX_ANGLES = 5;
 
   // Flow state
   const [state, setState] = useState<State>('idle');
@@ -126,6 +134,28 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
     if (state === 'error') setState('idle');
   };
 
+  // Add another angle (multi-photo). Appends to the extras list, capped so
+  // primary + extras ≤ MAX_ANGLES.
+  const onAngleChosen = (f: File) => {
+    if (!/^image\//.test(f.type)) {
+      setError('Choose a photo (JPEG, PNG, or WebP).');
+      setState('error');
+      return;
+    }
+    setExtraFiles((prev) => (prev.length + 1 >= MAX_ANGLES ? prev : [...prev, f]));
+    setExtraPreviews((prev) => (prev.length + 1 >= MAX_ANGLES ? prev : [...prev, URL.createObjectURL(f)]));
+    if (state === 'error') setState('idle');
+  };
+
+  const removeAngle = (i: number) => {
+    setExtraPreviews((prev) => {
+      const url = prev[i];
+      if (url) URL.revokeObjectURL(url);
+      return prev.filter((_, idx) => idx !== i);
+    });
+    setExtraFiles((prev) => prev.filter((_, idx) => idx !== i));
+  };
+
   const submit = async () => {
     if (!ready || state === 'analyzing') return;
     setState('analyzing');
@@ -134,10 +164,15 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
 
     try {
       // Client-side downscale to keep us under Vercel's 4.5 MB body cap.
-      const downscaled = await downscaleImage(file!);
-
       const fd = new FormData();
-      fd.append('image', downscaled, file!.name || 'diagnose.jpg');
+      const primary = await downscaleImage(file!);
+      fd.append('image', primary, file!.name || 'diagnose.jpg');
+      // Additional angles (multi-photo). The route Pro-gates these — free
+      // users' extras are dropped server-side and flagged for an upsell.
+      for (let i = 0; i < extraFiles.length; i++) {
+        const angle = await downscaleImage(extraFiles[i]);
+        fd.append('image', angle, extraFiles[i].name || `angle-${i + 1}.jpg`);
+      }
       fd.append(
         'vehicle',
         JSON.stringify({ year: Number(year), make, model, trim })
@@ -186,8 +221,11 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
 
   const reset = () => {
     if (preview) URL.revokeObjectURL(preview);
+    extraPreviews.forEach((u) => URL.revokeObjectURL(u));
     setFile(null);
     setPreview(null);
+    setExtraFiles([]);
+    setExtraPreviews([]);
     setCaption('');
     setResult(null);
     setGate(null);
@@ -562,6 +600,67 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
                     fontFamily: 'inherit',
                   }}
                 />
+
+                {/* Multi-photo (Pro): add more angles of the same issue. */}
+                {file && (
+                  <div style={{ marginTop: 12 }}>
+                    <input
+                      ref={addAngleInputRef}
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
+                      capture={isMobile ? 'environment' : undefined}
+                      style={{ display: 'none' }}
+                      onChange={(e) => {
+                        const f = e.target.files?.[0];
+                        if (f) onAngleChosen(f);
+                        e.target.value = '';
+                      }}
+                    />
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
+                      {extraPreviews.map((src, i) => (
+                        <div key={i} style={{ position: 'relative', width: 54, height: 54, borderRadius: 8, overflow: 'hidden', border: '1px solid var(--paper-line, #E3DFD4)' }}>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={src} alt={`Angle ${i + 2}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <button
+                            type="button"
+                            onClick={() => removeAngle(i)}
+                            aria-label="Remove angle"
+                            style={{
+                              position: 'absolute', top: 2, right: 2, width: 18, height: 18, borderRadius: '50%',
+                              background: 'rgba(11,18,32,0.78)', color: '#fff', border: 'none', fontSize: 12, lineHeight: '18px',
+                              cursor: 'pointer', padding: 0,
+                            }}
+                          >
+                            ×
+                          </button>
+                        </div>
+                      ))}
+                      {extraFiles.length + 1 < MAX_ANGLES && (
+                        <button
+                          type="button"
+                          onClick={() => addAngleInputRef.current?.click()}
+                          style={{
+                            width: 54, height: 54, borderRadius: 8,
+                            border: '1px dashed var(--au7o-blue, #3B82F6)',
+                            background: 'var(--au7o-blue-50, #EFF6FF)',
+                            color: 'var(--au7o-blue-700, #1D4ED8)',
+                            fontSize: 22, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit',
+                            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                          }}
+                          title="Add another angle"
+                        >
+                          +
+                        </button>
+                      )}
+                    </div>
+                    <p style={{ fontSize: 11.5, color: 'var(--slate-500, #64748B)', margin: '8px 0 0', lineHeight: 1.4 }}>
+                      {extraFiles.length > 0
+                        ? `${extraFiles.length + 1} angles — more angles help the AI pinpoint the issue.`
+                        : 'Add another angle for a sharper read.'}{' '}
+                      <span style={{ color: 'var(--au7o-blue-700, #1D4ED8)', fontWeight: 600 }}>Multiple angles is a Pro feature.</span>
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
 
