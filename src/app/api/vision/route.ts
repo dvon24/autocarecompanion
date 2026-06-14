@@ -143,21 +143,28 @@ export async function POST(request: NextRequest) {
   const ANON_FREE_PHOTO_LIMIT = 1;
   const PLUS_MONTHLY_CAP = 40;
   let limit = ANON_FREE_PHOTO_LIMIT;
+  let subscriptionTier: string | null = null;
   if (userId) {
     if (isSubscriber) {
       // The session JWT only carries subscriptionStatus, so resolve the
       // tier with one indexed read. Unknown/legacy tier defaults to the
       // generous cap rather than punishing grandfathered subscribers.
-      let tier: string | null = null;
       try {
         const u = await prisma.user.findUnique({ where: { id: userId }, select: { subscriptionTier: true } });
-        tier = u?.subscriptionTier ?? null;
+        subscriptionTier = u?.subscriptionTier ?? null;
       } catch { /* fall through to unlimited */ }
-      limit = tier === 'plus' ? PLUS_MONTHLY_CAP : SUBSCRIBER_MONTHLY_CAP;
+      limit = subscriptionTier === 'plus' ? PLUS_MONTHLY_CAP : SUBSCRIBER_MONTHLY_CAP;
     } else {
       limit = DEFAULT_FREE_PHOTO_LIMIT;
     }
   }
+  // Multi-photo (several angles of the SAME issue in one diagnosis) is a Pro
+  // perk — more angles = better vision accuracy. Free/anon and Plus get a
+  // single image; the top subscriber tier (Pro) can send several. Unknown/
+  // legacy subscriber tiers count as Pro so grandfathered users aren't
+  // punished. Plus = 'plus'; Pro = anything else with an active sub.
+  const multiPhotoAllowed = isSubscriber && subscriptionTier !== 'plus';
+  const MAX_PHOTOS = 5;
   const quotaKey = userId ? `photo:user:${userId}` : `photo:anon:${ip}`;
   const quota = await checkAndConsumePhotoQuota({ key: quotaKey, limit });
   vlog('quota_checked', { allowed: quota.allowed, remaining: quota.remaining, anon: !userId });
@@ -219,6 +226,9 @@ export async function POST(request: NextRequest) {
   let images: File[] = [];
   let audioFile: File | null = null;
   let mode: 'photo' | 'video' = 'photo';
+  // True when a non-Pro user sent multiple photos and we dropped the extras
+  // — surfaced in the response so the client can show a Pro upsell.
+  let multiPhotoCapped = false;
 
   if (isVideoMode) {
     mode = 'video';
@@ -237,17 +247,24 @@ export async function POST(request: NextRequest) {
     }
     vlog('video_mode', { frameCount: images.length, hasAudio: !!audioFile, audioSize: audioFile?.size || 0 });
   } else {
-    const imageFile = form.get('image');
-    if (!(imageFile instanceof File)) {
+    // Multi-photo: accept every `image` part. Non-Pro users get only their
+    // first photo (the rest are silently dropped + flagged for an upsell);
+    // Pro users get up to MAX_PHOTOS angles fed into one diagnosis.
+    const imageFiles = form.getAll('image').filter((f): f is File => f instanceof File);
+    if (imageFiles.length === 0) {
       return failWithRefund({ error: 'missing_image' }, 400);
     }
-    if (imageFile.size > MAX_IMAGE_BYTES) {
-      return failWithRefund({ error: 'image_too_large', message: 'Image must be 10MB or smaller. Try a lower-quality phone setting or crop tighter.' }, 413);
+    multiPhotoCapped = imageFiles.length > 1 && !multiPhotoAllowed;
+    const chosen = multiPhotoAllowed ? imageFiles.slice(0, MAX_PHOTOS) : imageFiles.slice(0, 1);
+    for (const f of chosen) {
+      if (f.size > MAX_IMAGE_BYTES) {
+        return failWithRefund({ error: 'image_too_large', message: 'Image must be 10MB or smaller. Try a lower-quality phone setting or crop tighter.' }, 413);
+      }
+      if (!/^image\/(jpe?g|png|webp|gif)$/i.test(f.type || '')) {
+        return failWithRefund({ error: 'unsupported_type', message: 'Use a JPEG, PNG, or WebP image. iPhone HEIC photos: enable "Most Compatible" in Settings → Camera → Formats, then try again.' }, 415);
+      }
     }
-    if (!/^image\/(jpe?g|png|webp|gif)$/i.test(imageFile.type || '')) {
-      return failWithRefund({ error: 'unsupported_type', message: 'Use a JPEG, PNG, or WebP image. iPhone HEIC photos: enable "Most Compatible" in Settings → Camera → Formats, then try again.' }, 415);
-    }
-    images = [imageFile];
+    images = chosen;
   }
 
   let vehicle: VehicleCtx | null = null;
@@ -387,7 +404,9 @@ Vehicle: ${vehicleDesc}.${specsContext}${knownIssuesContext}${cachedPartsContext
 
 ${mode === 'video'
   ? `INPUT MODE: VIDEO — you are seeing ${images.length} frames sampled evenly across a short video clip the user uploaded. Look across the frames for symptoms that change over time: rotor pulsing under braking, fluid drip, dashboard warning light flicker, belt slap, smoke. Frame 1 is earliest, frame ${images.length} is latest. The frames are NOT separate photos of separate parts — they're moments of the SAME scene.${audioTranscript ? `\n\nAUDIO TRANSCRIPT (Whisper) from the same clip: "${audioTranscript}"\nUse this as additional context — the user's spoken complaint correlates with what you should look for visually. If the transcript mentions a noise ("clicking", "grinding", "whining"), call that out in the summary and weight your part identification toward the likely source.` : ''}`
-  : `INPUT MODE: PHOTO — single still image.`}
+  : images.length > 1
+    ? `INPUT MODE: PHOTO — ${images.length} still photos of the SAME issue from DIFFERENT ANGLES/distances the user took to help you see it clearly. They are NOT separate parts or separate problems — combine what you see across all ${images.length} images into ONE diagnosis, using whichever angle shows each detail best (e.g. one shot for the part, another for the wear/leak). Cross-check the angles to raise your confidence.`
+    : `INPUT MODE: PHOTO — single still image.`}
 
 User's typed description (may be empty): ${caption || '(none provided)'}
 
@@ -779,6 +798,10 @@ Return ONLY a JSON object — no markdown fences, no preamble. Start with { end 
     mode,
     transcript: audioTranscript || undefined,
     framesAnalyzed: mode === 'video' ? images.length : undefined,
+    // Multi-photo (Pro): how many angles were analyzed, and whether we had
+    // to drop extras because the user isn't on Pro (drives the upsell).
+    photosAnalyzed: mode === 'photo' ? images.length : undefined,
+    multiPhotoCapped,
     summary: String(parsed.summary || ''),
     confidence: typeof parsed.confidence === 'number' ? parsed.confidence : 0.5,
     isCarRelated: parsed.isCarRelated !== false,
