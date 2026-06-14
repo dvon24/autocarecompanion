@@ -11,6 +11,7 @@ import {
   type TIssue,
 } from '@/lib/i18n';
 import { LAYOUT_LAST_REVISED } from '@/lib/known-issues';
+import { getLinkableDtcCodes } from '@/lib/dtc-codes';
 import { TechnicalArticleJsonLd, BreadcrumbJsonLd, FAQJsonLd } from '@/components/seo/JsonLd';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 
@@ -63,6 +64,10 @@ export default async function LocalizedKnownIssuesPage({
   const cfg = getLocaleConfig(locale);
   const model = getTranslatedModel(locale, slug);
   if (!cfg || !model) notFound();
+
+  // Only link DTC chips for codes that have a real reference page —
+  // linking unknown codes creates internal links to 404s (GSC report).
+  const linkableDtc = new Set(await getLinkableDtcCodes());
 
   const url = `https://au7o.io/${locale}/known-issues/${slug}`;
   const enUrl = `https://au7o.io/known-issues/${slug}`;
@@ -190,15 +195,21 @@ export default async function LocalizedKnownIssuesPage({
                   ) : null}
                   {issue.dtcCodes.length > 0 && (
                     <span className="flex flex-wrap gap-1.5">
-                      {issue.dtcCodes.map((code) => (
-                        <Link
-                          key={code}
-                          href={`/known-issues/dtc/${code.toLowerCase()}`}
-                          className="font-mono text-xs font-semibold text-blue-700 hover:underline"
-                        >
-                          {code}
-                        </Link>
-                      ))}
+                      {issue.dtcCodes.map((code) =>
+                        linkableDtc.has(code.toLowerCase()) ? (
+                          <Link
+                            key={code}
+                            href={`/known-issues/dtc/${code.toLowerCase()}`}
+                            className="font-mono text-xs font-semibold text-blue-700 hover:underline"
+                          >
+                            {code}
+                          </Link>
+                        ) : (
+                          <span key={code} className="font-mono text-xs font-semibold text-[#475569]">
+                            {code}
+                          </span>
+                        ),
+                      )}
                     </span>
                   )}
                 </div>

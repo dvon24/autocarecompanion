@@ -34,9 +34,15 @@ interface KnownIssueCardProps {
   /** Other vehicles documented to share this issue (matched by DTC code).
    *  Server-pre-computed in page.tsx via findRelatedVehiclesForIssues. */
   relatedVehicles?: RelatedIssueVehicle[];
+  /** Lowercase DTC codes that have a real /known-issues/dtc/[code] page
+   *  (server-computed via getLinkableDtcCodes). When provided, chips for
+   *  codes NOT in this list render as plain text — linking them creates
+   *  internal links to 404s. When omitted (auth-gated surfaces Google
+   *  never crawls), all chips link as before. */
+  linkableDtcCodes?: string[];
 }
 
-export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUpdated, defaultExpanded = false, relatedVehicles }: KnownIssueCardProps) {
+export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUpdated, defaultExpanded = false, relatedVehicles, linkableDtcCodes }: KnownIssueCardProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showFixModal, setShowFixModal] = useState(false);
@@ -284,16 +290,25 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
             {(issue as any).dtcCodes && (issue as any).dtcCodes.length > 0 && (
               <span className="inline-flex items-center gap-1 flex-wrap">
                 <span className="text-[10px] text-[#64748B] font-medium">Error Codes:</span>
-                {(issue as any).dtcCodes.map((code: string) => (
-                  <Link
-                    key={code}
-                    href={`/known-issues/dtc/${code.toLowerCase()}`}
-                    className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-medium bg-[#EFEDE6] text-[#475569] rounded hover:bg-blue-100 hover:text-blue-700 transition-colors"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {code}
-                  </Link>
-                ))}
+                {(issue as any).dtcCodes.map((code: string) =>
+                  !linkableDtcCodes || linkableDtcCodes.includes(code.toLowerCase()) ? (
+                    <Link
+                      key={code}
+                      href={`/known-issues/dtc/${code.toLowerCase()}`}
+                      className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-medium bg-[#EFEDE6] text-[#475569] rounded hover:bg-blue-100 hover:text-blue-700 transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {code}
+                    </Link>
+                  ) : (
+                    <span
+                      key={code}
+                      className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-medium bg-[#EFEDE6] text-[#475569] rounded"
+                    >
+                      {code}
+                    </span>
+                  ),
+                )}
               </span>
             )}
           </div>

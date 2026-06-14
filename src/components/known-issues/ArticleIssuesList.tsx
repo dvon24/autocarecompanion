@@ -31,9 +31,11 @@ interface ArticleIssuesListProps {
   /** Per-issue cross-vehicle links (keyed by issue.id). Server pre-computes
    *  this from shared DTC codes — see findRelatedVehiclesForIssues. */
   relatedByIssueId?: Record<string, RelatedIssueVehicle[]>;
+  /** See KnownIssueCard.linkableDtcCodes — pass-through. */
+  linkableDtcCodes?: string[];
 }
 
-export function ArticleIssuesList({ issues, make, model, initialYear, allYears, relatedByIssueId }: ArticleIssuesListProps) {
+export function ArticleIssuesList({ issues, make, model, initialYear, allYears, relatedByIssueId, linkableDtcCodes }: ArticleIssuesListProps) {
   const { selectedVehicle } = useVehicleContext();
   const pathname = usePathname();
   const [severityFilter, setSeverityFilter] = useState<('high' | 'medium' | 'low')[]>(['high', 'medium', 'low']);
@@ -271,6 +273,7 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
                   defaultCardExpanded={true}
                   vehicleInfo={vehicleInfo}
                   relatedByIssueId={relatedByIssueId}
+                  linkableDtcCodes={linkableDtcCodes}
                 />
               </div>
               {/* Mid-content ad slot — uses Auto Ads (no hand-coded slot id). */}

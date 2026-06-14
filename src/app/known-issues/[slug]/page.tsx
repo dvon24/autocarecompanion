@@ -12,6 +12,7 @@ import {
   findRelatedVehiclesForIssues,
 } from '@/lib/known-issues';
 import { getRecallsForArticle } from '@/lib/recalls';
+import { getLinkableDtcCodes } from '@/lib/dtc-codes';
 import { categoryConfig } from '@/lib/issue-categories';
 import { ArticleIssuesList } from '@/components/known-issues/ArticleIssuesList';
 import { ConfirmWithPhotoCTA } from '@/components/diagnose/ConfirmWithPhotoCTA';
@@ -301,6 +302,10 @@ export default async function KnownIssuesArticlePage({
   for (const i of allIssues) for (const y of i.vehicleMatch.years) navYearsSet.add(y);
   const navYears = [...navYearsSet].sort((a, b) => b - a);
 
+  // Codes with a real /dtc/[code] page — chips for anything else render as
+  // plain text so we never internally link to a 404 (GSC not-indexed fix).
+  const linkableDtcCodes = await getLinkableDtcCodes();
+
   // Per-issue cross-vehicle links — issues that share DTC codes across
   // makes/models. Adds Gemini's "hub-and-spoke" internal-link network so
   // Google sees these pages as a connected library, not 900 isolated
@@ -578,6 +583,7 @@ export default async function KnownIssuesArticlePage({
                 initialYear={initialYear}
                 allYears={navYears}
                 relatedByIssueId={Object.fromEntries(relatedByIssue)}
+                linkableDtcCodes={linkableDtcCodes}
               />
             </section>
 

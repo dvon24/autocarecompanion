@@ -28,9 +28,11 @@ interface CategorySectionProps {
     trim?: string;
   };
   relatedByIssueId?: Record<string, RelatedIssueVehicle[]>;
+  /** See KnownIssueCard.linkableDtcCodes — pass-through. */
+  linkableDtcCodes?: string[];
 }
 
-export function CategorySection({ category, issues, defaultExpanded = false, defaultCardExpanded = false, vehicleInfo, relatedByIssueId }: CategorySectionProps) {
+export function CategorySection({ category, issues, defaultExpanded = false, defaultCardExpanded = false, vehicleInfo, relatedByIssueId, linkableDtcCodes }: CategorySectionProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
 
   // Auto-expand when navigating to this category or a child issue via hash anchor
@@ -94,6 +96,7 @@ export function CategorySection({ category, issues, defaultExpanded = false, def
               vehicleInfo={vehicleInfo}
               defaultExpanded={defaultCardExpanded}
               relatedVehicles={relatedByIssueId?.[issue.id]}
+              linkableDtcCodes={linkableDtcCodes}
             />
           ))}
         </div>

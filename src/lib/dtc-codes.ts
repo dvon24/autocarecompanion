@@ -1,5 +1,6 @@
 import prisma from '@/lib/db';
 import { cache } from 'react';
+import { unstable_cache } from 'next/cache';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 import { makeSlug, LAYOUT_LAST_REVISED } from './known-issues';
 
@@ -94,6 +95,25 @@ export async function getAllDTCSlugs(): Promise<{ code: string }[]> {
     .map(d => ({ code: d.code.toLowerCase() }))
     .sort((a, b) => a.code.localeCompare(b.code));
 }
+
+/**
+ * Lowercase codes that have a real /known-issues/dtc/[code] page (i.e. a
+ * DTCCode reference row exists). Issue-card DTC chips must only LINK codes
+ * in this list — ~70 codes cited by issues have no reference row, and
+ * linking them creates internal links to 404s from thousands of article
+ * pages (a chunk of the GSC "Crawled — currently not indexed" report).
+ * Cached 1h; React cache() dedupes within a single render pass.
+ */
+export const getLinkableDtcCodes = cache(
+  unstable_cache(
+    async (): Promise<string[]> => {
+      const slugs = await getAllDTCSlugs();
+      return slugs.map((s) => s.code);
+    },
+    ['linkable-dtc-codes'],
+    { revalidate: 3600 },
+  ),
+);
 
 export interface DTCDirectoryEntry {
   code: string;
