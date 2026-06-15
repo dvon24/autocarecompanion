@@ -10,6 +10,7 @@ import { vehicleSlug } from '@/lib/vehicle-slug';
 import { isNativeApp } from '@/lib/native-app';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
+import { trackEvent } from '@/components/analytics/GoogleAnalytics';
 import { MaintenanceLogFlow } from '@/components/vehicle/MaintenanceLogFlow';
 import { MaintenanceUpgradeTile } from '@/components/vehicle/MaintenanceUpgradeTile';
 // Re-export under a distinct name so ScheduleRow can resolve the
@@ -1710,7 +1711,7 @@ function MobileHub({
           <button
             type="button"
             className="m-mic-btn"
-            onClick={() => photoInputRef.current?.click()}
+            onClick={() => { trackEvent('hub_photo_click', { source: 'composer' }); photoInputRef.current?.click(); }}
             disabled={pending || !onPhotoUpload}
             aria-label="Snap a photo of a part"
             title="Snap a photo of a part — AI returns the complete repair kit"
@@ -3753,7 +3754,7 @@ const Composer = ({
               className="comp-chip comp-chip-photo"
               type="button"
               disabled={pending || !onPhotoUpload}
-              onClick={() => fileInputRef.current?.click()}
+              onClick={() => { trackEvent('hub_photo_click', { source: 'chip' }); fileInputRef.current?.click(); }}
               title="Snap a photo of a part — AI returns the complete repair kit"
             >
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>

@@ -10,6 +10,7 @@ import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCa
 import { type YMMTData } from '@/schemas/vehicle.schema';
 import { loadYmmt } from '@/lib/load-ymmt';
 import { diagnoseStrings } from '@/lib/diagnose-i18n';
+import { trackEvent } from '@/components/analytics/GoogleAnalytics';
 
 /**
  * Mobile snap-first diagnose flow — production port of the au7oapp design
@@ -51,6 +52,9 @@ export function SnapDiagnoseClient() {
   const [result, setResult] = useState<VisionResult | null>(null);
   const [gate, setGate] = useState<GateInfo | null>(null);
   const [error, setError] = useState<string | null>(null);
+  // Visual-flywheel per-upload consent (signed-in only, default OFF). Was
+  // hardcoded to decline; now the user can opt in like the desktop flow.
+  const [keepPhoto, setKeepPhoto] = useState(false);
 
   // YMMT (optional)
   const [ymmt, setYmmt] = useState<YMMTData | null>(null);
@@ -110,6 +114,7 @@ export function SnapDiagnoseClient() {
   const capture = () => {
     const v = videoRef.current;
     if (!v || !v.videoWidth) return;
+    trackEvent('snap_photo_capture', { mode });
     const canvas = document.createElement('canvas');
     canvas.width = v.videoWidth;
     canvas.height = v.videoHeight;
@@ -149,7 +154,8 @@ export function SnapDiagnoseClient() {
       fd.append('vehicle', JSON.stringify({ year: year ? Number(year) : undefined, make, model, trim }));
       // Tell the API the user's language so the diagnosis comes back in it.
       if (typeof navigator !== 'undefined' && navigator.language) fd.append('lang', navigator.language);
-      if (isSignedIn) fd.append('keepPhoto', '0');
+      if (isSignedIn) fd.append('keepPhoto', keepPhoto ? '1' : '0');
+      trackEvent('snap_diagnose_submit', { mode, has_vehicle: hasVehicle });
       const res = await fetch('/api/vision', { method: 'POST', body: fd, signal: AbortSignal.timeout(75_000) });
       const data = await res.json().catch(() => ({}));
       if ((res.status === 401 || res.status === 429) && data.gated) {
@@ -360,6 +366,15 @@ export function SnapDiagnoseClient() {
             <div style={{ marginBottom: 12 }}>
               <SheetSelect label={t.trimOptional} value={trim} onChange={setTrim} options={trims} disabled={!model} placeholder={t.trimOptional} />
             </div>
+          )}
+
+          {/* Visual-flywheel consent — signed-in only, default OFF. */}
+          {isSignedIn && (
+            <label style={{ display: 'flex', alignItems: 'flex-start', gap: 8, margin: '4px 0 10px', cursor: 'pointer' }}>
+              <input type="checkbox" checked={keepPhoto} onChange={(e) => setKeepPhoto(e.target.checked)}
+                style={{ marginTop: 2, width: 15, height: 15, flexShrink: 0, accentColor: BLUE, cursor: 'pointer' }} />
+              <span style={{ fontSize: 11.5, color: 'var(--slate-600, #475569)', lineHeight: 1.4 }}>{t.flywheelConsent}</span>
+            </label>
           )}
 
           <button type="button" onClick={submit} style={{ width: '100%', padding: '14px 0', background: BLUE, color: '#fff', border: 'none', borderRadius: 13, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginTop: 4 }}>

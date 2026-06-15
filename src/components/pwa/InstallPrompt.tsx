@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { trackEvent } from '@/components/analytics/GoogleAnalytics';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -49,6 +50,8 @@ export function InstallPrompt() {
     };
 
     const onInstalled = () => {
+      // GA4: the app was actually added to the home screen / installed.
+      trackEvent('pwa_installed', { platform: isIOS() ? 'ios' : 'android' });
       setShow(false);
       setInstallEvent(null);
     };
@@ -76,12 +79,17 @@ export function InstallPrompt() {
 
   const handleInstall = async () => {
     if (ios) {
+      // GA4: user tapped Install on iOS (shows the manual A2HS sheet).
+      trackEvent('pwa_install_click', { platform: 'ios' });
       setShowIOSSheet(true);
       return;
     }
     if (!installEvent) return;
+    // GA4: user tapped Install (before the native chooser resolves).
+    trackEvent('pwa_install_click', { platform: 'android' });
     await installEvent.prompt();
     const { outcome } = await installEvent.userChoice;
+    trackEvent('pwa_install_outcome', { platform: 'android', outcome });
     if (outcome === 'accepted') {
       setShow(false);
       setInstallEvent(null);

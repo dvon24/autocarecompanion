@@ -11,6 +11,7 @@ import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCa
 import { type YMMTData } from '@/schemas/vehicle.schema';
 import { loadYmmt } from '@/lib/load-ymmt';
 import { diagnoseStrings } from '@/lib/diagnose-i18n';
+import { trackEvent } from '@/components/analytics/GoogleAnalytics';
 
 /**
  * sessionStorage key shared with /diagnose/claim. Stashes everything
@@ -163,6 +164,11 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
     setState('analyzing');
     setError(null);
     setGate(null);
+    trackEvent('diagnose_photo_submit', {
+      source: isMobile ? 'mobile_upload' : 'desktop_upload',
+      has_vehicle: hasVehicle,
+      angles: extraFiles.length + 1,
+    });
 
     try {
       // Client-side downscale to keep us under Vercel's 4.5 MB body cap.
