@@ -78,8 +78,8 @@ export async function generateMetadata({
     ? `${requestedYear}`
     : (yearRange ? `${yearRange.min}-${yearRange.max}` : '');
   const title = titlePrefix
-    ? `${titlePrefix} ${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`
-    : `${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`;
+    ? `${titlePrefix} ${vehicleName} Problems: ${issues.length} Issue${issues.length === 1 ? '' : 's'} Every Owner Should Know`
+    : `${vehicleName} Problems: ${issues.length} Issue${issues.length === 1 ? '' : 's'} Every Owner Should Know`;
 
   const descPrefix = yearIsValid
     ? `${requestedYear} `
@@ -354,8 +354,8 @@ export default async function KnownIssuesArticlePage({
   // for these queries — owners search "2014 BMW 1 Series problems" 5x
   // more than the bare model.
   const title = yearStr
-    ? `${yearStr} ${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`
-    : `${vehicleName} Problems: ${issues.length} Issues Every Owner Should Know`;
+    ? `${yearStr} ${vehicleName} Problems: ${issues.length} Issue${issues.length === 1 ? '' : 's'} Every Owner Should Know`
+    : `${vehicleName} Problems: ${issues.length} Issue${issues.length === 1 ? '' : 's'} Every Owner Should Know`;
 
   // Find most critical issues for the GEO summary
   const criticalIssues = issues.filter(i => i.severity === 'high');

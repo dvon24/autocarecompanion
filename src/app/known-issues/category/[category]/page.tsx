@@ -80,7 +80,8 @@ export async function generateMetadata({
   const description = `${count} documented ${label.toLowerCase()} problems across all makes and models. Symptoms, repair costs, and solutions.`;
 
   return {
-    title,
+    // absolute so the layout's "%s | Au7o" template doesn't double the suffix.
+    title: { absolute: title },
     description,
     openGraph: { title, description, url: `https://au7o.io/known-issues/category/${category}`, siteName: 'Au7o' },
     alternates: { canonical: `https://au7o.io/known-issues/category/${category}` },

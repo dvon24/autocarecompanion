@@ -315,6 +315,9 @@ export function VehicleHub({
         model: vehicle.model,
         trim: vehicle.trim || '',
       }));
+      // Localize the diagnosis to the user's browser language (parity with
+      // the /diagnose flows; the API maps `lang` → a LANGUAGE prompt block).
+      if (typeof navigator !== 'undefined' && navigator.language) formData.append('lang', navigator.language);
 
       // 75s client-side timeout. The server caps OpenAI at 55s and the
       // Vercel function dies at 60s, so 75s leaves a buffer for upload
@@ -515,6 +518,7 @@ export function VehicleHub({
       formData.append('vehicle', JSON.stringify({
         year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim || '',
       }));
+      if (typeof navigator !== 'undefined' && navigator.language) formData.append('lang', navigator.language);
 
       // Update placeholder copy so the user knows we moved on from extraction.
       setMessages((prev) => {
@@ -3116,7 +3120,16 @@ function MobileThreadsDrawer({
           <Link href="/drive" className="md-link" onClick={onClose}>
             Drive
           </Link>
-          <Link href={`/known-issues/${slug}`} className="md-link" onClick={onClose}>
+          <Link
+            href={`/known-issues/${`${vehicle.make} ${vehicle.model}`
+              .toLowerCase()
+              .normalize('NFD')
+              .replace(/[̀-ͯ]/g, '')
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/(^-|-$)/g, '')}`}
+            className="md-link"
+            onClick={onClose}
+          >
             Known issues page
           </Link>
           {user ? (
@@ -3691,6 +3704,10 @@ const Composer = ({
         ref={fileInputRef}
         type="file"
         accept="image/*"
+        // Open the rear camera directly on mobile (Devon's ask: the photo
+        // button should go straight to the camera, not the chooser sheet).
+        // Ignored on desktop, where it falls back to the file dialog.
+        capture="environment"
         style={{ display: 'none' }}
         onChange={(e) => {
           const file = e.target.files?.[0];

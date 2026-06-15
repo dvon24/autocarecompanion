@@ -183,7 +183,9 @@ export async function generateMetadata({
   const url = `https://au7o.io/known-issues/make/${makeParam}`;
 
   return {
-    title,
+    // absolute so the root layout's "%s | Au7o" template doesn't double the
+    // suffix (was rendering "... | Au7o | Au7o").
+    title: { absolute: title },
     description,
     openGraph: {
       title,
