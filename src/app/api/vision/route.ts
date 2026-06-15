@@ -352,6 +352,7 @@ export async function POST(request: NextRequest) {
   let knownIssuesContext = '';
   let cachedPartsContext = '';
   let specsContext = '';
+  let dtcContext = '';
   if (vehicle && vehicle.year && vehicle.make && vehicle.model) {
     try {
       const [issues, cachedParts] = await Promise.all([
@@ -362,7 +363,7 @@ export async function POST(request: NextRequest) {
             years: { has: vehicle.year },
             status: 'published',
           },
-          select: { id: true, title: true, category: true, severity: true, symptoms: true },
+          select: { id: true, title: true, category: true, severity: true, symptoms: true, dtcCodes: true },
           take: 15,
           orderBy: { reportCount: 'desc' },
         }),
@@ -403,6 +404,22 @@ ${lines.join('\n')}`;
         if (specs.lug) lines.push(`Lug: ${specs.lug.size} ${specs.lug.useBolts ? 'bolts' : 'nuts'}, ${specs.lug.torque}`);
         if (lines.length > 0) specsContext = `\n\nVEHICLE SPECS:\n${lines.join('\n')}`;
       }
+
+      // DTC grounding: pull the reference NAMES for the trouble codes our own
+      // known issues cite for this vehicle, so the model names real, correct
+      // codes (and our /dtc/[code] pages) instead of guessing.
+      const issueCodes = Array.from(new Set(
+        issues.flatMap(i => (Array.isArray(i.dtcCodes) ? i.dtcCodes : [])).map(c => String(c).toUpperCase().trim()).filter(Boolean)
+      )).slice(0, 10);
+      if (issueCodes.length > 0) {
+        const dtcRows = await prisma.dTCCode.findMany({
+          where: { code: { in: issueCodes } },
+          select: { code: true, name: true },
+        });
+        const nameByCode = new Map(dtcRows.map(d => [d.code.toUpperCase(), d.name]));
+        const dtcLines = issueCodes.map(c => (nameByCode.has(c) ? `${c} — ${nameByCode.get(c)}` : c));
+        dtcContext = `\n\nDTC CODES commonly tied to this vehicle (if the photo/symptoms match one, name the exact code):\n${dtcLines.join('\n')}`;
+      }
     } catch (err) {
       vlog('prisma_context_failed', { err: err instanceof Error ? err.message : String(err) });
       /* non-blocking — vision still answers without context */
@@ -414,7 +431,7 @@ ${lines.join('\n')}`;
 
   const SYSTEM_PROMPT = `You are an expert automotive technician analyzing a photo from a vehicle owner.
 
-Vehicle: ${vehicleDesc}.${specsContext}${knownIssuesContext}${cachedPartsContext}
+Vehicle: ${vehicleDesc}.${specsContext}${knownIssuesContext}${dtcContext}${cachedPartsContext}
 
 ${mode === 'video'
   ? `INPUT MODE: VIDEO — you are seeing ${images.length} frames sampled evenly across a short video clip the user uploaded. Look across the frames for symptoms that change over time: rotor pulsing under braking, fluid drip, dashboard warning light flicker, belt slap, smoke. Frame 1 is earliest, frame ${images.length} is latest. The frames are NOT separate photos of separate parts — they're moments of the SAME scene.${audioTranscript ? `\n\nAUDIO TRANSCRIPT (Whisper) from the same clip: "${audioTranscript}"\nUse this as additional context — the user's spoken complaint correlates with what you should look for visually. If the transcript mentions a noise ("clicking", "grinding", "whining"), call that out in the summary and weight your part identification toward the likely source.` : ''}`
