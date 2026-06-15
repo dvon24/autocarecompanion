@@ -16883,6 +16883,1609 @@
           "reportCount": 0
         }
       ]
+    },
+    {
+      "slug": "volkswagen-t-roc",
+      "make": "Volkswagen",
+      "model": "T-Roc",
+      "h1": "Volkswagen T-Roc: problemas comunes y puntos débiles",
+      "intro": "El Volkswagen T-Roc es un SUV compacto fiable, pero tiene fallos conocidos que conviene vigilar: desde la centralita del DSG de 7 velocidades hasta tirones en frío del 1.5 TSI, llamadas a revisión de seguridad y filtraciones de agua. Aquí encontrarás los problemas más frecuentes del T-Roc y cómo solucionarlos.",
+      "issues": [
+        {
+          "id": "volkswagen-t-roc-engine-cover-fire-hazard-recall",
+          "title": "Llamada a revisión por riesgo de incendio de la tapa del motor (2.0 TSI)",
+          "description": "En los T-Roc de gasolina 2.0 TSI (incluido el T-Roc R), la tapa embellecedora de plástico del motor puede aflojarse de sus puntos de anclaje con el tiempo, sobre todo con una conducción deportiva o sobre firmes en mal estado. Una tapa suelta puede caer sobre la zona caliente del turbocompresor en el escape, con riesgo de que se queme/derrita y provoque un incendio. Esto motivó una llamada a revisión de seguridad del fabricante que afectó a unos 58.100 vehículos en todo el mundo fabricados entre el 28 de febrero de 2020 y el 3 de febrero de 2022.",
+          "solution": "Llamada a revisión del fabricante: el concesionario inspecciona la tapa del motor e instala una tapa/fijación revisada (o retira la tapa afectada) de forma gratuita. Los propietarios deben comprobar su número de bastidor (VIN) en la base de datos de campañas de Volkswagen; en algunos casos la reparación se demoró por la disponibilidad de la tapa revisada.",
+          "symptoms": [
+            "Ruido de traqueteo en el vano motor",
+            "Tapa del motor suelta o desplazada",
+            "Olor a plástico quemado o derretido",
+            "Riesgo de incendio"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-t-roc-tdi-diesel-dpf-clogging-egr-contamination-short-journeys",
+          "title": "Obstrucción del FAP y contaminación de la EGR en TDI diésel con trayectos cortos",
+          "description": "Los T-Roc diésel TDI (1.6 TDI y 2.0 TDI, EA288) usados principalmente para trayectos cortos y a baja velocidad sufren regeneraciones incompletas del FAP (filtro antipartículas), lo que provoca acumulación de hollín, el testigo de avería del FAP, pérdida de potencia o modo de emergencia y mayor consumo. Una válvula EGR pegada o carbonizada empeora la carga de hollín y acelera la obstrucción del filtro. También se reportan fallos de sensor del AdBlue/SCR o de software (el testigo no se apaga tras rellenar). Algunos propietarios del 2.0 TDI 4Motion notan ciclos de regeneración inusualmente frecuentes (cada ~190–210 km).",
+          "solution": "Conducir a velocidad de autopista sostenida durante 15–20 minutos para permitir una regeneración activa completa. Una obstrucción persistente requiere una regeneración forzada, una limpieza profesional del FAP o la sustitución del filtro; una válvula EGR sucia debe limpiarse o reemplazarse. Los fallos de AdBlue/SCR requieren cambiar el sensor o una actualización de software. Evita eliminar el FAP (ilegal para circular en la UE/Reino Unido y motivo de no pasar la ITV/TÜV).",
+          "symptoms": [
+            "Testigo de avería del FAP encendido",
+            "Pérdida de potencia o modo de emergencia",
+            "Ciclos de regeneración frecuentes",
+            "Mayor consumo de combustible",
+            "Humo en el escape",
+            "El aviso de AdBlue no se apaga"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 100,
+          "costHigh": 1800,
+          "dtcCodes": [
+            "P2002",
+            "P244A",
+            "P244B",
+            "P0401"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-t-roc-infotainment-freezing-rebooting",
+          "title": "El sistema de infoentretenimiento (Composition/Discover Media) se congela y se reinicia",
+          "description": "Propietarios del T-Roc en foros de España, Latinoamérica y Alemania reportan ampliamente que la unidad central MIB de infoentretenimiento se queda congelada, se apaga en negro, no responde o se reinicia de forma espontánea, a menudo durante la navegación, la reproducción de música o la conexión del teléfono. Las conexiones de Apple CarPlay / Android Auto se cortan o no llegan a iniciarse. Los concesionarios normalmente no detectan ningún fallo de hardware y lo atribuyen al software; en algunos casos, incluso sustituir la unidad central (módulo 5F) no lo solucionó, lo que apunta a un problema a nivel de firmware.",
+          "solution": "La primera solución es un reinicio forzado (mantener pulsado el mando de encendido/volumen unos 10 segundos o más para reiniciar la unidad MIB). La solución definitiva es una actualización de software/firmware de Volkswagen para la unidad de infoentretenimiento aplicada en el concesionario. Los casos persistentes pueden requerir sustituir la unidad central (5F), aunque los propietarios reportan resultados desiguales.",
+          "symptoms": [
+            "La pantalla táctil se congela o no responde",
+            "Pantalla en negro",
+            "Reinicio espontáneo",
+            "CarPlay/Android Auto se desconecta",
+            "Aviso de funciones limitadas en pantalla"
+          ],
+          "severity": "low",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 200,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-t-roc-7-speed-dq200-dry-clutch-dsg-jerky-shifts-shudder-hesitation",
+          "title": "DSG DQ200 de 7 velocidades con embrague en seco: cambios bruscos, vibraciones y titubeos",
+          "description": "Los T-Roc equipados con la caja automática DSG de embrague en seco de 7 velocidades (DQ200) presentan cambios de marcha bruscos o titubeantes, vibraciones o tirones a baja velocidad, titubeo al arrancar y, en ocasiones, modo de emergencia. Los puntos débiles son los paquetes de embrague en seco y la centralita (mecatrónica); el desgaste del embrague y el aceite de caja degradado o viejo causan un acoplamiento brusco, y los fallos de la mecatrónica pueden provocar cambios duros o una pérdida repentina de tracción. Las versiones de menor potencia 1.0/1.5 TSI usan la DQ200 de embrague en seco y son las más afectadas (los motores 2.0, de mayor par, usan la más robusta DQ381 de embrague húmedo).",
+          "solution": "Realiza el mantenimiento de la caja según el calendario: el cambio de aceite y filtro del DSG cada unos 60.000 km mantiene los cambios suaves. Las vibraciones o titubeos persistentes pueden requerir sustituir el paquete de embragues; los cambios duros o el modo de emergencia suelen indicar un fallo de la mecatrónica que requiere sustitución o reparación. Una actualización de software o de adaptación puede resolver algunos tirones relacionados con la calibración.",
+          "symptoms": [
+            "Cambios de marcha bruscos o titubeantes",
+            "Vibraciones o tirones a baja velocidad",
+            "Titubeo al arrancar",
+            "Modo de emergencia o pérdida de tracción",
+            "Acoplamiento retardado de la marcha"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 200,
+          "costHigh": 1800,
+          "dtcCodes": [
+            "P0841",
+            "P17BF",
+            "P189C"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-t-roc-1-5-tsi-evo-kangarooing-cold-start-judder-hesitation",
+          "title": "1.5 TSI EVO: tirones tipo 'canguro', sacudidas y titubeo en frío",
+          "description": "El motor de gasolina EA211 1.5 TSI EVO (código de motor DADA/DPCA) sufre titubeos, sacudidas y un efecto 'canguro' pronunciado al arrancar, sobre todo con el motor frío o en marchas cortas. Los propietarios notan oscilaciones del régimen a baja velocidad, tartamudeos y, en casos graves, calado en los cruces. La causa de fondo está en la gestión del motor y en la calibración del acelerador y la inyección durante la fase de calentamiento, agravada por la tecnología de desconexión de cilindros (ACT) del motor y la estrategia de arranque en frío con mezcla pobre. El Grupo VW reconoció una 'ligera vacilación en la fase de calentamiento' que afecta al Golf, T-Roc, SEAT León/Ateca, Skoda Karoq y Audi A3/Q2.",
+          "solution": "El Grupo VW publicó a partir de febrero de 2020 una actualización de software (centralita ECU) que recalibra el mapa de inyección y acelerador en frío. Se aplicaba de forma gratuita en garantía, pero NO fue una llamada a revisión formal: por lo general los propietarios tenían que reclamar primero para que se la cargaran. Si la actualización no lo corrige del todo, en algunos casos los concesionarios han comprobado fallos relacionados (bomba de alta presión, inyectores).",
+          "symptoms": [
+            "Tirones tipo 'canguro' al arrancar en frío",
+            "Titubeo al acelerar",
+            "Oscilaciones del régimen a baja velocidad",
+            "Tartamudeo o calado en los cruces"
+          ],
+          "severity": "medium",
+          "category": "engine",
+          "costLow": 0,
+          "costHigh": 150,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-t-roc-front-right-seatbelt-retractor-recall",
+          "title": "Llamada a revisión del retractor del cinturón delantero derecho (R/2021/115)",
+          "description": "Una campaña de seguridad sobre un lote reducido de T-Roc fabricados en 2021 detectó que el retractor automático del cinturón de tres puntos del asiento delantero derecho (acompañante) podría ser defectuoso y no bloquearse durante un frenado brusco o si el vehículo vuelca, aumentando el riesgo de lesiones en una colisión. Referencia de campaña en Reino Unido R/2021/115 (DVSA), que afecta a vehículos fabricados en torno al 24–25 de febrero de 2021 (un número reducido de coches dentro de un rango concreto de bastidores).",
+          "solution": "Llamada a revisión del fabricante: el conjunto del cinturón de tres puntos delantero derecho se sustituye gratuitamente en un concesionario oficial de Volkswagen. Los propietarios deben verificar su número de bastidor (VIN) frente a la campaña (R/2021/115).",
+          "symptoms": [
+            "El cinturón no se bloquea al frenar bruscamente",
+            "El retractor no retiene en caso de impacto"
+          ],
+          "severity": "high",
+          "category": "safety",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-t-roc-water-ingress-into-footwells-cabin",
+          "title": "Entrada de agua en los pisos delanteros y el habitáculo (Mk1)",
+          "description": "Los propietarios del T-Roc Mk1 (2017–2021) reportan acumulación de agua en los pisos delanteros (y ocasionalmente en el maletero), que provoca alfombras húmedas, olor a humedad y, en algunos casos, daños en los altavoces de las puertas y en la electrónica. Entre las causas se citan el agua que sortea la junta del alojamiento del filtro de habitáculo en la base del parabrisas, los canales de drenaje obstruidos (incluidos los desagües del techo panorámico, donde lo lleva) y las gomas de puertas o portón degradadas. Un caso documentado requirió varias visitas al concesionario y la sustitución de un altavoz tras repetirse la filtración.",
+          "solution": "Diagnostica el punto de entrada con una prueba de agua o manguera. Las soluciones incluyen reasentar y resellar la tapa del filtro de habitáculo y la zona del parabrisas, desatascar los canales de drenaje del techo solar y de la carrocería, y sustituir las gomas de puertas o portón resecas. Seca la alfombra y el aislante para evitar la corrosión y los fallos eléctricos; repara los altavoces o módulos dañados por el agua.",
+          "symptoms": [
+            "Alfombra del piso delantero mojada o húmeda",
+            "Olor a humedad en el habitáculo",
+            "Agua en el suelo del maletero",
+            "Fallo de altavoces por daños de agua",
+            "Cristales empañados"
+          ],
+          "severity": "medium",
+          "category": "body",
+          "costLow": 100,
+          "costHigh": 400,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-t-roc-interior-dashboard-door-trim-rattles-squeaks",
+          "title": "Ruidos y crujidos del salpicadero y los paneles de las puertas",
+          "description": "Una queja de calidad muy habitual: traqueteos, crujidos y chirridos procedentes del salpicadero (sobre todo alrededor o detrás de la pantalla de infoentretenimiento), los paneles de las puertas y los embellecedores, agravados por el uso extensivo de plásticos duros en el primer Mk1. Los propietarios los oyen al pasar por baches y firmes en mal estado. Es un problema de fabricación y ajuste (contacto plástico contra plástico, clips sueltos) más que un fallo mecánico, pero está muy reportado en los foros de propietarios de España, Latinoamérica y Alemania y afecta a la calidad percibida.",
+          "solution": "Concesionarios y propietarios localizan el origen y aplican cinta antirruido o de fieltro entre los paneles de plástico en contacto, reasientan o sustituyen los clips de los embellecedores y aprietan las fijaciones sueltas alrededor del salpicadero y del marco del infoentretenimiento. El restyling Mk2 mejoró algunos materiales, pero los ruidos siguen reportándose.",
+          "symptoms": [
+            "Traqueteo del salpicadero al pasar baches",
+            "Chirridos en los paneles de las puertas",
+            "Crujido detrás de la pantalla de infoentretenimiento",
+            "Zumbido de los embellecedores a ciertas velocidades"
+          ],
+          "severity": "low",
+          "category": "interior",
+          "costLow": 0,
+          "costHigh": 150,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "volkswagen-t-cross",
+      "make": "Volkswagen",
+      "model": "T-Cross",
+      "h1": "Volkswagen T-Cross: problemas conocidos y puntos débiles",
+      "intro": "El Volkswagen T-Cross es un SUV compacto fiable, pero acumula algunas averías recurrentes que conviene conocer. Aquí repasamos los problemas más comunes del Volkswagen T-Cross —desde la correa de distribución en baño de aceite del 1.0 TSI hasta los fallos de software del sistema multimedia— junto con sus soluciones y las llamadas a revisión oficiales.",
+      "issues": [
+        {
+          "id": "volkswagen-t-cross-curtain-airbag-gas-generator-weld-defect",
+          "title": "Defecto de soldadura en el generador de gas del airbag de cortina (puede no desplegarse por completo)",
+          "description": "En un lote de los primeros Volkswagen T-Cross, la unión de la boquilla de descarga del generador de gas del airbag de cortina (airbag lateral) pudo soldarse de forma inadecuada o incompleta. La soldadura no es totalmente fiable, por lo que en caso de colisión el airbag de cortina podría no inflarse por completo, reduciendo la protección frente a impactos en cabeza y costado de los ocupantes delanteros y traseros. Esto dio lugar a una llamada a revisión de seguridad oficial en la UE y el Reino Unido (referencia de campaña en Reino Unido R/2020/055; unos 35 vehículos en el Reino Unido, alerta de Safety Gate de la UE del 30/04/2020).",
+          "solution": "Llamada a revisión de seguridad gratuita: los módulos de airbag de cortina afectados se inspeccionan y sustituyen en un concesionario oficial Volkswagen sin coste alguno. Los propietarios pueden comprobar si su vehículo está afectado introduciendo el VIN en el verificador de campañas de su país.",
+          "symptoms": [
+            "Sin síntomas visibles durante la conducción normal",
+            "Posible despliegue incompleto del airbag de cortina en caso de accidente",
+            "El vehículo aparece con una campaña pendiente al verificar el VIN"
+          ],
+          "severity": "high",
+          "category": "safety",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-t-cross-start-stop-system-fails-causes-stalling",
+          "title": "El sistema Start/Stop falla o provoca caladas (sensibilidad de la batería y del sensor de batería)",
+          "description": "El sistema automático Start/Stop del Volkswagen T-Cross es muy sensible al estado de carga de la batería y al sensor de gestión de la batería. Los propietarios informan de que la función Start/Stop deja de funcionar (con aviso en el cuadro de instrumentos) y, en algunos casos, de caladas inesperadas del motor, a menudo bastante pronto en la vida del coche. Las causas más habituales son una batería de 12V deteriorada que ya no mantiene la capacidad que el sistema necesita, o un sensor de batería o de carga inteligente averiado que envía datos erróneos a la centralita del motor. Esa misma sensibilidad contribuye a la sensación de descarga parasitaria de la batería en trayectos cortos.",
+          "solution": "Conviene comprobar la capacidad de la batería y el sensor de gestión de la batería con el equipo de diagnosis VW. Sustituir una batería de 12V desgastada por el tipo AGM/EFB correcto (registrándola y codificándola en el BMS) restablece el Start/Stop; si el fallo persiste, hay que cambiar el sensor de batería. Las reparaciones del sensor rondan el equivalente a unos 200 dólares.",
+          "symptoms": [
+            "Mensaje de error del sistema Start/Stop en el cuadro de instrumentos",
+            "El motor no vuelve a arrancar automáticamente o no se apaga automáticamente",
+            "Caladas inesperadas",
+            "La batería se descarga en trayectos cortos"
+          ],
+          "severity": "low",
+          "category": "electrical",
+          "costLow": 180,
+          "costHigh": 400,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-t-cross-1-0-tsi-wet-timing-belt-service-interval-critical-to-avoid-b",
+          "title": "Correa de distribución en baño de aceite del 1.0 TSI: respetar el intervalo es clave para evitar su rotura",
+          "description": "La mayoría de los Volkswagen T-Cross 1.0 TSI (motor tricilíndrico EA211 / EA211 evo) usan una correa de distribución de goma en lugar de cadena y, en las variantes correspondientes, esa correa funciona sumergida en aceite (correa húmeda) dentro del motor. Las correas húmedas se degradan en el entorno del aceite y van desprendiendo material con el tiempo; si la correa se descuida pasado su intervalo (o se usa un aceite incorrecto o viejo), puede perder dientes o romperse, provocando daños catastróficos por contacto entre válvulas y pistones en este motor de interferencia. Algunos propietarios y la prensa alemana también informan de un cascabeleo metálico en frío en las variantes TSI; conviene confirmar el código de motor exacto, ya que una minoría de los EA211 montan cadena en lugar de correa.",
+          "solution": "Hay que sustituir la correa de distribución y el tensor según el plan de mantenimiento: VW indica aproximadamente 150.000 km / unos 5 años para el 1.0 TSI de correa húmeda (los especialistas independientes recomiendan acortarlo a unos 120.000 km en uso exigente o de trayectos cortos). Utilice únicamente el aceite con la especificación VW correcta y respete intervalos de cambio de aceite cortos, ya que la calidad del aceite influye directamente en la vida de la correa húmeda. Cualquier cascabeleo persistente en frío debe revisarse de inmediato.",
+          "symptoms": [
+            "Cascabeleo metálico al arrancar en frío",
+            "Ralentí irregular",
+            "Contaminación del aceite / restos de correa en el cárter",
+            "Fallo súbito del motor si la correa se rompe"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 400,
+          "costHigh": 900,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-t-cross-instrument-cluster-software-fault-disables-seatbelt-reminder",
+          "title": "Un fallo de software del cuadro de instrumentos desactiva el aviso de cinturón de seguridad",
+          "description": "Un fallo de software en la unidad de control del cuadro de instrumentos puede hacer que el recordatorio del cinturón de seguridad (el aviso visual y la señal acústica) funcione solo de forma intermitente en lugar de continua. Como consecuencia, un ocupante sin cinturón —sobre todo en el asiento trasero— puede no activar un aviso permanente, de modo que el conductor no recibe una alerta fiable de que alguien va sin sujetar. Esto dio lugar a una llamada a revisión oficial (código de campaña interno de VW 90S4; Reino Unido/UE 2021). VW indicó que se vieron afectados unos 13.464 Volkswagen T-Cross fabricados aproximadamente entre septiembre de 2020 y julio de 2021 en todo el mundo.",
+          "solution": "Llamada a revisión gratuita: se actualiza o reprograma el software de la unidad de control del cuadro de instrumentos en un concesionario VW. La intervención dura unos 30 minutos. No requiere sustituir ninguna pieza.",
+          "symptoms": [
+            "El aviso acústico del cinturón suena solo brevemente o no suena",
+            "El testigo del cinturón no permanece encendido con un ocupante sin abrochar",
+            "Sin aviso cuando un pasajero trasero va sin cinturón"
+          ],
+          "severity": "medium",
+          "category": "safety",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-t-cross-infotainment-electrical-software-glitches",
+          "title": "Fallos de software del sistema multimedia y eléctricos (bloqueos, reinicios, cámara de marcha atrás en negro)",
+          "description": "El Volkswagen T-Cross presenta de forma reiterada fallos de software y eléctricos que afectan al sistema multimedia y al cuadro de instrumentos. Entre los síntomas documentados están: la pantalla táctil que se congela o se reinicia, la imagen de la cámara de marcha atrás en negro o en blanco, el ordenador de a bordo o el reloj que se reinician (el reloj a las 00:00), el cargador inalámbrico que avisa falsamente de un objeto en la bandeja, las puertas que no se cierran automáticamente y una indicación de autonomía de combustible imprecisa. En un caso muy publicitado, VW no logró corregir los fallos de software recurrentes y acabó recomprando el vehículo, indicando que ni el cambio de la unidad multimedia ni el del cuadro de instrumentos lo solucionaron. Se trata de problemas de firmware o software, no (por lo general) de averías de hardware.",
+          "solution": "Muchos casos se resuelven con una actualización de software o firmware en el concesionario (por ejemplo, actualizando el sistema multimedia MIB a la última versión) o reprogramando el cuadro de instrumentos. Solución temporal a nivel de usuario para bloqueos o cámara en negro: mantener pulsado el botón de encendido del sistema multimedia unos 15-30 segundos para forzar un reinicio, o quitar y volver a poner la marcha atrás. Los fallos persistentes requieren diagnóstico en el concesionario dentro de la garantía.",
+          "symptoms": [
+            "La pantalla táctil del sistema multimedia se congela o se reinicia",
+            "La cámara de marcha atrás muestra la pantalla en negro o en blanco",
+            "El reloj y el ordenador de a bordo se reinician solos",
+            "El cargador inalámbrico pide 'retirar objetos' con la bandeja vacía",
+            "Las puertas no se cierran automáticamente; indicación de autonomía imprecisa",
+            "Crujidos en los altavoces / el puerto USB no funciona"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 300,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-t-cross-dq200-7-speed-dry-dual-clutch-juddering-hesitation-low-speed",
+          "title": "Tirones y titubeos a baja velocidad de la caja DSG de doble embrague en seco DQ200 de 7 velocidades",
+          "description": "Los Volkswagen T-Cross equipados con la caja automática de doble embrague en seco de 7 velocidades (DSG, código DQ200) suelen desarrollar quejas sobre la calidad de cambio a baja velocidad: tirones o sacudidas al arrancar, una respuesta retardada o titubeante en el tráfico de paradas y arranques, y cambios bruscos a poca velocidad. La causa suele estar en la unidad de control mecatrónica (hidráulica y electrónica) y en el desgaste de los discos de embrague en seco, más que en una avería puramente mecánica. Los síntomas tienden a aparecer en las primeras decenas de miles de km. Nota: solo se ven afectados los coches con DSG; los de cambio manual no lo están.",
+          "solution": "El primer paso es una actualización de software de la DSG o un reajuste de la adaptación del embrague en un concesionario VW, lo que resuelve muchos casos. Los problemas persistentes requieren reparar o sustituir la unidad mecatrónica o cambiar los discos de embrague. Respetar el mantenimiento de la DSG (cuando corresponda) y confirmar que el software de la caja está actualizado ayuda a prevenir el problema.",
+          "symptoms": [
+            "Sacudidas o tirones al arrancar desde parado",
+            "Embragado retardado o titubeante en el tráfico de paradas y arranques",
+            "Cambios de marcha bruscos o ásperos a baja velocidad",
+            "Breve pérdida de potencia entre cambios"
+          ],
+          "severity": "medium",
+          "category": "transmission",
+          "costLow": 150,
+          "costHigh": 2500,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-t-cross-1-5-tsi-ea211-evo-act-cylinder-deactivation-shudder-oil-cons",
+          "title": "Vibraciones por la desactivación de cilindros ACT y consumo de aceite del 1.5 TSI EA211 evo",
+          "description": "El Volkswagen T-Cross equipado con el 1.5 TSI (150 PS, EA211 evo) utiliza el sistema ACT (Active Cylinder Technology), que desactiva dos cilindros con carga ligera. Los propietarios notan una vibración o sacudida apreciable, o un zumbido, cuando el motor pasa entre el modo de 2 y el de 4 cilindros, sobre todo a bajas revoluciones combinado con el retardo del turbo, a veces acompañado de ralentí irregular o titubeos. Una parte también informa de un consumo de aceite mayor del esperado en este motor turbo de alta presión. VW ha publicado actualizaciones de software para suavizar las transiciones de activación y desactivación del ACT.",
+          "solution": "La actualización de software de la centralita en el concesionario para mejorar la transición del ACT es la solución principal para las vibraciones y sacudidas. En cuanto al consumo de aceite, conviene controlar el nivel entre revisiones, rellenar con el aceite de la especificación VW correcta y pedir al concesionario que realice una prueba de consumo si es excesivo (un periodo de rodaje normal puede mostrar cierto consumo en los primeros 15.000 km aproximadamente).",
+          "symptoms": [
+            "Vibración o sacudida al cambiar entre el modo de 2 y el de 4 cilindros",
+            "Zumbido o funcionamiento irregular a bajas revoluciones",
+            "Titubeos al soltar el acelerador o con poca carga",
+            "Consumo de aceite elevado"
+          ],
+          "severity": "low",
+          "category": "engine",
+          "costLow": 0,
+          "costHigh": 200,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "volkswagen-touran",
+      "make": "Volkswagen",
+      "model": "Touran",
+      "h1": "Volkswagen Touran: problemas comunes y puntos débiles",
+      "intro": "El Volkswagen Touran es un monovolumen familiar fiable, pero arrastra algunas averías típicas que conviene conocer. Aquí repasamos los problemas más frecuentes del Touran, sus síntomas y las soluciones recomendadas, desde fallos del cambio DSG y la cadena de distribución hasta entradas de agua y averías de la válvula EGR en los diésel TDI.",
+      "issues": [
+        {
+          "id": "volkswagen-touran-water-ingress-to-footwell-via-blocked-plenum-sunroof-drains",
+          "title": "Entrada de agua al piso del habitáculo por desagües del vano del parabrisas o del techo solar obstruidos, que provoca fallos eléctricos",
+          "description": "El agua se acumula en los pisos delanteros (y en la zona del montante A en los coches con techo solar panorámico) cuando los desagües del cubrejuntas/vano situado delante del parabrisas se obstruyen con hojas y suciedad, cuando se degrada la junta de espuma del filtro de habitáculo (filtro antipolen), o cuando se atascan los canales de drenaje del techo solar panorámico. El agua entonces se acumula y entra en el habitáculo. Más allá de mojar la moqueta, el agua alcanza los conectores eléctricos del piso y del montante A, corroe los terminales y provoca fallos: HELLA documenta los códigos de avería de la etapa de salida del calefactor adicional 148B/148C y la corrosión de conectores como consecuencia directa.",
+          "solution": "Limpiar los desagües del vano del parabrisas/cubrejuntas y los canales de drenaje del techo solar panorámico (verificar el caudal con agua y limpiar con un cepillo de desagües). Sustituir la junta de espuma degradada del filtro antipolen, sellándola con masilla no endurecible. Secar la moqueta y el aislante, y luego reparar o sustituir los conectores corroídos y borrar la memoria de averías.",
+          "symptoms": [
+            "Piso delantero mojado o húmedo / moqueta empapada",
+            "Olor a humedad o moho dentro del habitáculo",
+            "Condensación en la cara interior del parabrisas",
+            "Fallos eléctricos intermitentes y mensajes de advertencia",
+            "Avería del calefactor adicional / testigo del motor encendido",
+            "Conectores corroídos en el piso o en el montante A"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 80,
+          "costHigh": 600,
+          "dtcCodes": [
+            "148B",
+            "148C"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-touran-dq200-7-speed-dry-clutch-dsg-failure",
+          "title": "Avería del cambio DSG de 7 velocidades DQ200 con embrague en seco (mecatrónica y discos de embrague)",
+          "description": "Los Touran equipados con el cambio DSG de 7 velocidades montan la transmisión de doble embrague en seco DQ200 (códigos 0AM/0CW). La afectan dos modos de avería recurrentes: los discos del embrague en seco se desgastan de forma prematura (con frecuencia entre los 60.000 y 100.000 km en uso urbano con muchas paradas y arranques), y la unidad mecatrónica de control sufre fallos eléctricos/hidráulicos. La mecatrónica 0AM tiene un cuerpo de válvulas con un acumulador de paredes finas que puede agrietarse y perder la alta presión, además de un problema con el aceite sintético por el que el aceite de la caja podía volverse conductor y cortocircuitar la electrónica de control. Los síntomas van desde cambios bruscos hasta la pérdida total y repentina de tracción. VW emitió una llamada a revisión mundial por el problema de pérdida de tracción/aceite.",
+          "solution": "Sustituir o reacondicionar la unidad mecatrónica (o reparar el cuerpo de válvulas) y/o montar un nuevo conjunto de embrague. Para el fallo cubierto por la llamada a revisión, la solución del concesionario fue una actualización de software y el cambio del aceite de la caja por la especificación corregida. Un mantenimiento periódico del DSG (aceite y filtro, aproximadamente cada 60.000 km) reduce los fallos del embrague y de la mecatrónica.",
+          "symptoms": [
+            "Cambios de marcha bruscos, secos o con tirones",
+            "Vacilación al arrancar desde un cruce",
+            "Imposibilidad de seleccionar la marcha atrás o la 6.ª/7.ª",
+            "Testigos de advertencia / mensaje de avería de la caja en el cuadro",
+            "Pérdida total y repentina de la tracción",
+            "La transmisión entra en modo de emergencia"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 900,
+          "costHigh": 3500,
+          "dtcCodes": [
+            "P17BF",
+            "P189C",
+            "P173A"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-touran-1-4-tsi-timing-chain-stretch-tensioner-failure",
+          "title": "Estiramiento de la cadena de distribución y fallo del tensor en el 1.4 TSI",
+          "description": "Los motores de gasolina 1.4 TSI de primera generación (códigos de motor BMY, CAVA, CAXA y afines) utilizan una cadena de distribución con un tensor mal diseñado y de tamaño insuficiente. El tensor pierde presión de aceite en el arranque en frío y no logra mantener la cadena tensa, lo que permite que la cadena se estire y los piñones se desgasten. En casos graves la cadena salta dientes, el reglaje del árbol de levas se descuadra y las válvulas chocan con los pistones, destruyendo el motor. El aviso característico es un repiqueteo metálico de la cadena durante los primeros 3-5 segundos tras un arranque en frío, que desaparece a medida que sube la presión de aceite.",
+          "solution": "Sustituir la cadena de distribución, el tensor y las guías por las piezas del tensor más largo y reforzado actualizadas (posteriores a 2012) antes de que la cadena salte. Si se detecta a tiempo, es un trabajo de kit de cadena; si la cadena ya ha saltado, se requiere una reconstrucción completa de la culata o del motor. Cambios de aceite frecuentes con el grado correcto y no forzar el motor a bajas vueltas ayudan a retrasar la aparición del problema.",
+          "symptoms": [
+            "Ruido de repiqueteo metálico del motor durante unos segundos en el arranque en frío",
+            "Repiqueteo que desaparece una vez que el motor se calienta",
+            "Fallos de encendido o funcionamiento irregular del motor",
+            "Pérdida de potencia / bajo rendimiento",
+            "Testigo de avería del motor con fallos de correlación entre árbol de levas y cigüeñal"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 1200,
+          "costHigh": 2600,
+          "dtcCodes": [
+            "P0016",
+            "P0017",
+            "P0341"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-touran-1-6-2-0-tdi-egr-valve-failure-worsened-by-dieselgate-emissio",
+          "title": "Fallo de la válvula EGR en los 1.6 / 2.0 TDI (EA189), agravado por la actualización de emisiones del Dieselgate",
+          "description": "Los diésel TDI de la familia EA189 (1.6 y 2.0 TDI) sufren fallos frecuentes de la válvula EGR debido a la acumulación de carbonilla y hollín que la atasca. El problema empeoró notablemente tras la actualización de software de emisiones del Dieselgate, que hace que el sistema EGR trabaje más y se ha relacionado ampliamente con fallos prematuros de la EGR. Los propietarios reportan que la válvula se atasca y el motor entra en modo de emergencia, con presupuestos en torno a los 1.600-1.700 € para su sustitución. En muchos casos, Volkswagen ha reembolsado a los propietarios los fallos de EGR ocurridos tras la actualización de emisiones.",
+          "solution": "Limpiar o sustituir la válvula EGR (y el refrigerador de EGR si está obstruido). Cuando el fallo se produjo tras la actualización de emisiones, los propietarios deben reclamar a VW o al concesionario suministrador una reparación o reembolso gratuitos, ya que VW ha reembolsado muchas reclamaciones de este tipo. Conducir con regularidad en trayectos largos y un buen servicio de limpieza de la EGR ralentizan que vuelva a ensuciarse.",
+          "symptoms": [
+            "Testigo de gestión del motor / avería del motor encendido",
+            "Pérdida de potencia y modo de emergencia",
+            "Ralentí irregular y vacilaciones",
+            "Aumento del humo del escape",
+            "Mayor consumo de combustible"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 350,
+          "costHigh": 1500,
+          "dtcCodes": [
+            "P0401",
+            "P0402",
+            "P0404",
+            "P0489"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-touran-front-anti-roll-bar-drop-link-wear-suspension-knocking",
+          "title": "Desgaste de las bieletas de la barra estabilizadora delantera y ruidos en la suspensión",
+          "description": "Las bieletas de la barra estabilizadora delantera del Touran se desgastan relativamente pronto y producen un ruido de golpeteo, traqueteo o repiqueteo al pasar por baches y firmes en mal estado. Al ser un monovolumen pesado, la suspensión delantera soporta mucha carga, y los datos de ITV de HonestJohn muestran que los Touran más antiguos suspenden a tasas notablemente superiores a la media en componentes de suspensión y barras estabilizadoras (por ejemplo, alrededor de un 14 % en suspensión y un 8 % en la barra estabilizadora en coches de 2011). Las bieletas y los casquillos desgastados son la causa más habitual.",
+          "solution": "Sustituir las bieletas de la barra estabilizadora delantera (un trabajo rápido y económico que requiere desmontar la rueda y un par de tuercas). Inspeccionar y, si están desgastados, sustituir al mismo tiempo los casquillos de la barra estabilizadora y los casquillos del brazo inferior. Los muelles de la suspensión también son una pieza de desgaste habitual en coches con muchos kilómetros.",
+          "symptoms": [
+            "Golpeteo o ruidos secos al pasar por baches",
+            "Traqueteo en carreteras en mal estado",
+            "Tacto de dirección impreciso o con vibraciones sobre las irregularidades",
+            "Desgaste irregular de los neumáticos",
+            "Advertencia o suspenso en la ITV por la barra estabilizadora / suspensión"
+          ],
+          "severity": "low",
+          "category": "suspension",
+          "costLow": 40,
+          "costHigh": 250,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-touran-1-5-tsi-evo-kangarooing-hesitation-stalling",
+          "title": "Tirones a modo de \"caballito\", vacilaciones y caladas en el 1.5 TSI EVO",
+          "description": "Los Touran de segunda generación (a partir de abril de 2019) equipados con el motor de gasolina 1.5 TSI EVO, normalmente con DSG, sufren un fallo de conducción bien documentado. El coche da tirones bruscos (hace el \"caballito\") al acelerar suavemente, se nota perezoso o se cala al subir cuestas, vacila al arrancar desde los cruces y puede costar volver a arrancarlo. El problema está ligado a la calibración de combustión pobre/desactivación de cilindros del motor EVO y al mapeado del DSG. Honest John lo registra como un problema persistente sin una solución completa por parte de Volkswagen, aunque VW publicó actualizaciones de software que mejoraron (pero no curaron del todo) muchos coches.",
+          "solution": "Aplicar en el concesionario la última actualización de software de motor/transmisión de VW, que mejora los tirones y las vacilaciones a baja velocidad en la mayoría de los coches. Los casos persistentes pueden requerir adaptación del DSG o comprobaciones de la mecatrónica. No existe una solución universalmente eficaz, así que conviene probar el coche a fondo y documentar las quejas mientras esté en garantía.",
+          "symptoms": [
+            "Tirones / \"caballito\" al acelerar suavemente",
+            "Vacilación al arrancar desde los cruces",
+            "Falta de respuesta o caladas al subir cuestas",
+            "Respuesta brusca del acelerador a baja velocidad",
+            "Dificultad para volver a arrancar tras calarse"
+          ],
+          "severity": "medium",
+          "category": "engine",
+          "costLow": 0,
+          "costHigh": 500,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-touran-diesel-particulate-filter-clogging-tdi-models",
+          "title": "Obstrucción del filtro de partículas diésel (DPF) en los modelos TDI",
+          "description": "Los diésel TDI del Touran equipados con DPF son propensos a que el filtro se obstruya con hollín y cenizas, sobre todo en coches usados para trayectos cortos y a baja velocidad que nunca alcanzan la temperatura necesaria para la regeneración. Las cenizas suelen acumularse hasta niveles problemáticos en torno a los 130.000-160.000 km. Un DPF obstruido enciende un testigo de advertencia y activa el modo de emergencia; el problema suele agravarse por bujías de incandescencia averiadas o fallos de software que impiden una regeneración activa correcta (códigos de avería como 07388 / P2463).",
+          "solution": "Intentar una regeneración forzada/activa mediante un trayecto largo por autopista o una regeneración iniciada por el concesionario. Si el filtro está muy obstruido, la limpieza química (fuera del vehículo) cuesta aproximadamente 350-600 €; un DPF de recambio ronda los 1.100 € o más. Solucionar primero los fallos asociados (bujías de incandescencia, EGR, actualización de software para el código 07388/P2463). Realizar trayectos largos con regularidad evita que vuelva a ocurrir.",
+          "symptoms": [
+            "Testigo del DPF / emisiones del escape encendido",
+            "Testigo de las bujías de incandescencia parpadeando",
+            "Pérdida de potencia y modo de emergencia",
+            "Regeneraciones fallidas con frecuencia",
+            "Mayor consumo de combustible y olor a diésel sin quemar"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 300,
+          "costHigh": 1300,
+          "dtcCodes": [
+            "P2463",
+            "P242F",
+            "P244A",
+            "P244B"
+          ],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "volkswagen-id-3",
+      "make": "Volkswagen",
+      "model": "ID.3",
+      "h1": "Volkswagen ID.3: problemas conocidos y puntos débiles",
+      "intro": "El Volkswagen ID.3 es uno de los eléctricos más vendidos, pero arrastra fallos conocidos como cuelgues del sistema de infoentretenimiento, averías de la batería de 12V y problemas de carga rápida en corriente continua. Aquí repasamos los problemas más comunes del Volkswagen ID.3 y sus soluciones para que sepas qué revisar antes de comprar o reparar.",
+      "issues": [
+        {
+          "id": "volkswagen-id-3-high-voltage-battery-module-overheat-fire-risk-recall",
+          "title": "Sobrecalentamiento del módulo de la batería de alta tensión / llamada a revisión por riesgo de incendio",
+          "description": "Una llamada a revisión de seguridad afecta a los ID.3 cuya batería de alta tensión contiene un módulo de celdas que podría no cumplir las especificaciones, lo que genera riesgo de sobrecalentamiento durante la carga que podría provocar un incendio y, en algunas unidades, pérdida de autonomía. Registrada en las bases de datos de campañas de la UE, la acción afecta a los vehículos fabricados entre 2022 y 2024.",
+          "solution": "La solución de Volkswagen consiste en la inspección y sustitución gratuita del módulo o módulos de batería de alta tensión afectados. Los propietarios deben verificar el VIN frente a la campaña y no ignorar los avisos de batería o carga; VW realiza la reparación sin límite de tiempo.",
+          "symptoms": [
+            "Sobrecalentamiento de la batería durante la carga",
+            "Pérdida inesperada de autonomía",
+            "Mensajes de advertencia de batería o carga",
+            "Posible riesgo de incendio (objeto de la llamada a revisión)"
+          ],
+          "severity": "high",
+          "category": "safety",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-id-3-infotainment-freezing-black-screens-laggy-touchscreen",
+          "title": "Sistema de infoentretenimiento (ICAS3) que se congela, pantallas en negro y táctil con retardos",
+          "description": "El sistema central de infoentretenimiento basado en la controladora ICAS3 de VW sufre bloqueos, una pantalla táctil que no responde o reacciona con retardo, pantallas central y del conductor en negro o reiniciándose, pérdida de datos de navegación y tráfico, y desconexiones de Apple CarPlay/Android Auto. Los primeros vehículos de 2020 salieron con un software incompleto; los fallos suelen aparecer en los primeros miles de kilómetros y algunas versiones de software posteriores (por ejemplo, tras una actualización 3.x) introdujeron nuevos errores. Como los menús de navegación, climatización e iluminación dependen de esta unidad, un bloqueo degrada varias funciones a la vez.",
+          "solution": "Volkswagen lanzó actualizaciones de software por aire (OTA) y en concesionario, por fases (los relanzamientos del software ID 2.x y 3.x), que mejoraron la estabilidad. Los vehículos anteriores a febrero de 2021 a menudo necesitan una actualización de software en el concesionario porque no pueden recibir actualizaciones OTA. Mantener pulsado el control de volumen/encendido reinicia la unidad central de forma forzada como solución temporal; las unidades con fallos persistentes se reprograman o se sustituyen en garantía.",
+          "symptoms": [
+            "Pantalla táctil congelada o que no responde",
+            "Pantalla central o del conductor en negro",
+            "Reinicios espontáneos del sistema durante la conducción",
+            "CarPlay/Android Auto que se desconectan",
+            "Fallo de los datos de tráfico del navegador",
+            "Retardo general en los menús que empeora con el tiempo"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 400,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-id-3-electric-drive-system-fault-sudden-reduced-power-car-shuts-d",
+          "title": "\"Fallo del sistema de propulsión eléctrica\": pérdida repentina de potencia / el coche se apaga",
+          "description": "Los propietarios informan de fallos intermitentes y a veces graves del sistema de propulsión trasero: avisos en el cuadro como \"El sistema eléctrico no funciona correctamente\" o \"Propulsión eléctrica: fallo del sistema\", el coche entrando en modo de potencia reducida (modo tortuga) o negándose a moverse. Las causas detectadas en los concesionarios van desde fallos de red/comunicación con el inversor de potencia (inversor de impulsos APP310) hasta un fusible de alta tensión fundido y, en una minoría de casos, la sustitución completa del motor eléctrico trasero. Algunos episodios se resuelven reiniciando el vehículo, mientras que otros lo dejan inmovilizado.",
+          "solution": "El diagnóstico requiere la lectura de los códigos de avería en el concesionario. Entre las reparaciones documentadas están la actualización/reprogramación de las controladoras del sistema de propulsión, la sustitución del fusible de alta tensión, la reparación de fallos de comunicación del inversor/CAN y, en los casos graves, la sustitución del conjunto motriz trasero (motor + inversor) en garantía del sistema eléctrico/de alta tensión.",
+          "symptoms": [
+            "Aviso de \"Fallo del sistema de propulsión eléctrica\" o \"El sistema eléctrico no funciona correctamente\"",
+            "Pérdida repentina de potencia / modo tortuga (potencia reducida)",
+            "El coche no entra en modo listo/marcha",
+            "El vehículo se apaga durante la conducción",
+            "Fallo intermitente que desaparece al reiniciar"
+          ],
+          "severity": "high",
+          "category": "drivetrain",
+          "costLow": 0,
+          "costHigh": 4000,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-id-3-clunk-click-from-rear-when-pulling-away",
+          "title": "Golpeteo/chasquido en la parte trasera al arrancar (holgura del estriado del palier / junta homocinética)",
+          "description": "Un golpeteo o chasquido característico en la parte trasera (a menudo en el lado trasero derecho) al arrancar desde parado, y en la transición entre acelerar y desacelerar. La causa es la holgura en el estriado del palier trasero / junta homocinética exterior de la plataforma de tracción trasera. Es un problema conocido de la plataforma, compartido con el ID.4 y el Cupra Born, y tiende a aparecer a medida que se acumulan kilómetros.",
+          "solution": "La reparación documentada por VW en el concesionario consiste en desmontar el palier afectado y aplicar Loctite en el estriado / junta homocinética para eliminar la holgura (una solución aplicada en la plataforma ID desde 2021); las juntas o palieres muy desgastados se sustituyen. Algunos golpeteos traseros se deben en cambio al enganche del asiento trasero, que los concesionarios sustituyen.",
+          "symptoms": [
+            "Golpeteo o chasquido en la parte trasera al acelerar desde parado",
+            "Chasquido/golpeteo en la transición entre acelerar y soltar el acelerador",
+            "Ruido más perceptible en el lado trasero derecho",
+            "Golpeteo que aparece con el kilometraje"
+          ],
+          "severity": "low",
+          "category": "drivetrain",
+          "costLow": 150,
+          "costHigh": 600,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-id-3-dc-rapid-charging-failures-handshake-errors-refused-charge-s",
+          "title": "Fallos de carga rápida en corriente continua: errores de comunicación, carga rechazada y velocidades lentas",
+          "description": "Los propietarios del ID.3 sufren con frecuencia problemas de carga rápida CCS2 en corriente continua: el coche y el cargador establecen la comunicación inicial y a los pocos segundos pasan a un fallo (de verde a rojo), la app de VW muestra \"error de carga\" y el coche se niega a cargar, o las sesiones son anormalmente lentas. Existen dos problemas distintos: (1) incompatibilidad de comunicación con ciertas marcas de cargadores, y (2) carga lenta porque la batería de alta tensión no está preacondicionada, de modo que la potencia máxima solo se alcanza con un estado de carga bajo y la batería caliente. También se producen disparos por fallo de tierra cuando el conector o el puerto están mojados.",
+          "solution": "Mantén el coche con el software más reciente, ya que VW corrige periódicamente los problemas de comunicación CCS2 con redes de cargadores concretas. Soluciones prácticas: apagar y encender el cargador sin el coche conectado, secar el conector y el puerto CCS2 antes de enchufar, y llegar al cargador con la batería caliente (por ejemplo, tras conducir por autopista) y un estado de carga bajo para obtener la mejor velocidad. Si el rechazo persiste, se necesita un diagnóstico en el concesionario del hardware de carga y los contactores.",
+          "symptoms": [
+            "El cargador se conecta y falla (de verde a rojo) en pocos segundos",
+            "La app de VW muestra \"error de carga\" y el coche no carga",
+            "Velocidades de carga en corriente continua mucho más lentas de lo esperado",
+            "Disparos por fallo de tierra cuando el puerto está mojado",
+            "Funciona con algunas marcas de cargadores pero no con otras"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 300,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-id-3-12v-auxiliary-battery-drains-flat-car-dead-after-sitting-few",
+          "title": "La batería auxiliar de 12V se descarga: el coche queda \"muerto\" tras unos días parado",
+          "description": "En los primeros ID.3, la batería auxiliar de 12V (que activa el sistema de alta tensión) se descarga si el coche se deja parado un par de días. Un fallo de la controladora del bus CAN, módulos de control que no entran del todo en reposo e incluso los servidores de VW que \"despiertan\" el coche de forma remota van agotando la pequeña batería hasta que la tensión cae por debajo de la que necesitan los contactores de alta tensión para cerrarse. El coche queda entonces completamente inerte: sin luces, sin desbloqueo y sin poder encenderse. Muy reportado en los vehículos del primer año, antes del gran relanzamiento de software.",
+          "solution": "La actualización de software \"ME\" / 0783 de Volkswagen (y posteriormente el gran relanzamiento del software ID 2.x/3.x) corrigió el comportamiento de reposo/descarga para que los coches dejaran de quedarse inmovilizados; los casos persistentes reciben la sustitución de la batería de 12V y la reprogramación de los módulos en garantía. Se recomienda a los propietarios mantener el coche con el software más reciente y, si va a estar guardado, conectar la batería de 12V a un mantenedor de carga.",
+          "symptoms": [
+            "El coche queda completamente muerto tras estar parado 2-3 días",
+            "No responde a la llave/desbloqueo, sin luces ni sonidos",
+            "Aviso de batería de 12V baja",
+            "El vehículo no se enciende ni entra en modo listo"
+          ],
+          "severity": "high",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 350,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-id-3-rear-drum-brakes-corroding-binding-from-low-mechanical-use",
+          "title": "Frenos de tambor traseros que se corroen/agarrotan por poco uso mecánico",
+          "description": "El ID.3 utiliza frenos de tambor traseros, que apenas se accionan bajo frenada regenerativa. En coches de poco kilometraje y en los que permanecen estacionados durante largos periodos, los tambores y las zapatas se corroen y pueden agarrotarse, y el freno de mano eléctrico puede bloquear las ruedas traseras. Los propietarios también informan de vibración/temblor en la frenada al detenerse finalmente, porque las superficies de fricción corroídas no muerden de forma uniforme.",
+          "solution": "Frenar con firmeza desde cierta velocidad de forma periódica (con la regeneración reducida, por ejemplo desactivando el modo B o frenando con más fuerza de la que la regeneración puede aportar) ayuda a limpiar y asentar los tambores traseros. Los concesionarios o talleres independientes desmontan, descorroen o sustituyen los tambores y zapatas agarrotados y liberan el mecanismo del freno de mano. Conducir el coche con regularidad y no depender siempre de la regeneración de un solo pedal evita que vuelva a ocurrir.",
+          "symptoms": [
+            "Ruido áspero o agarrotamiento en las ruedas traseras",
+            "Vibración/temblor en la frenada al detenerse",
+            "Rueda trasera bloqueada/arrastrando tras aparcar",
+            "Frenos de tambor traseros corroídos y agarrotados en coches de poco kilometraje"
+          ],
+          "severity": "medium",
+          "category": "brakes",
+          "costLow": 120,
+          "costHigh": 500,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "volkswagen-id-3-optional-heat-pump-delivers-poor-cold-weather-efficiency-stu",
+          "title": "La bomba de calor opcional ofrece poca eficiencia en frío / se queda en modo deshumidificación",
+          "description": "Pruebas independientes (nextmove) demostraron que la bomba de calor reversible opcional, de 990 a 1.250 €, apenas aportaba beneficio real de autonomía en clima frío y, en algunos casos iniciales, hacía el coche menos eficiente que sin ella. VW reconoció que un fallo de software ponía el sistema en modo deshumidificador en lugar de calefacción, y que había sobrestimado la eficiencia a temperaturas muy bajas en un 10-20%. Los propietarios que pagaron por la opción obtuvieron una autonomía invernal peor de la esperada.",
+          "solution": "Volkswagen publicó una corrección de software por aire (OTA) y en concesionario para que el sistema caliente en lugar de deshumidificar, mejorando notablemente la eficiencia a baja temperatura (pruebas posteriores mostraron una pérdida de autonomía de en torno al 8% a -8 °C). VW también rebajó el precio de la opción de la bomba de calor (de 1.250 € a 990 € en Alemania) y pagó reembolsos/compensaciones a los clientes afectados.",
+          "symptoms": [
+            "Fuerte caída de autonomía en invierno pese a haber pagado por la bomba de calor",
+            "El habitáculo tarda en calentarse",
+            "La bomba de calor consume energía de la batería de alta tensión incluso enchufado",
+            "Sin ganancia de eficiencia apreciable frente a los coches sin bomba de calor en frío"
+          ],
+          "severity": "low",
+          "category": "hvac",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "audi-q2",
+      "make": "Audi",
+      "model": "Q2",
+      "h1": "Audi Q2: problemas conocidos y puntos débiles",
+      "intro": "El Audi Q2 es un SUV compacto fiable, pero tiene fallos recurrentes que conviene conocer: fugas de la bomba de agua en motores TFSI, embragues DSG con tirones, obstrucción del filtro de partículas (DPF) en los TDI y varias llamadas a revisión importantes. Aquí encontrarás los problemas más habituales del Audi Q2, sus síntomas y las soluciones recomendadas.",
+      "issues": [
+        {
+          "id": "audi-q2-coolant-water-pump-leak-tfsi-engines",
+          "title": "Fuga de refrigerante / bomba de agua en motores TFSI (carcasa de plástico agrietada)",
+          "description": "Los propietarios de Q2 de gasolina reportan pérdida de refrigerante por una bomba de agua que gotea con relativamente poco kilometraje; hay un caso documentado de un Q2 de 2018 con apenas unos 48.000 km. La familia TFSI EA888/EA211 utiliza una carcasa integrada de plástico para la bomba de agua y el termostato que se vuelve frágil y se agrieta (habitualmente en las bocas de los tubos de plástico o en el retén del eje, detrás del piñón de arrastre), provocando rezumes o una pérdida repentina de refrigerante. Un rodamiento de la bomba defectuoso también puede desalinear la polea. Si no se atiende, la pérdida de refrigerante provoca sobrecalentamiento; en motores accionados por correa, una bomba deteriorada puede además comprometer la integridad de la correa de distribución.",
+          "solution": "Sustituir la bomba de agua y la carcasa del termostato (normalmente por una pieza revisada y actualizada) y rellenar/purgar con el refrigerante G13 correcto; muchos talleres lo hacen junto con el servicio de la correa de distribución. Revisar al mismo tiempo los manguitos de refrigerante y el termostato.",
+          "symptoms": [
+            "Aviso de nivel bajo de refrigerante / rellenos frecuentes de refrigerante",
+            "Olor a refrigerante o residuo rosa/naranja visible en la parte delantera del motor",
+            "Subida del indicador de temperatura / sobrecalentamiento",
+            "Charco bajo la parte delantera del coche"
+          ],
+          "severity": "medium",
+          "category": "cooling",
+          "costLow": 400,
+          "costHigh": 1200,
+          "dtcCodes": [
+            "P0597",
+            "P00B7"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "audi-q2-electro-mechanical-parking-brake-can-release-its-own",
+          "title": "El freno de estacionamiento electromecánico puede soltarse solo (llamada a revisión 45H4)",
+          "description": "Una llamada a revisión oficial de seguridad afecta a los Q2 fabricados entre el 1 de enero de 2017 y el 30 de junio de 2018, en los que el freno de estacionamiento electromecánico (electrónico) puede liberarse de forma involuntaria al soltar el pedal del embrague. En un coche con cambio manual aparcado en una pendiente, esto genera riesgo de desplazamiento del vehículo. La causa es un fallo en el software de control del freno de estacionamiento. Hubo unos 3.650 vehículos afectados en el Reino Unido.",
+          "solution": "Solución de la campaña (referencia Audi 45H4): se reprograma/actualiza el software de la unidad de control del freno de estacionamiento en un concesionario oficial Audi sin coste. Como medida provisional hasta realizarla, se recomienda dejar el coche con una marcha puesta al aparcar en cuesta.",
+          "symptoms": [
+            "El freno de estacionamiento se desactiva inesperadamente al soltar el embrague",
+            "El coche se desplaza solo estando aparcado",
+            "Comportamiento inconsistente del aviso del freno de estacionamiento"
+          ],
+          "severity": "high",
+          "category": "brakes",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "audi-q2-mmi-infotainment-freezing-rebooting-intermittent-electrical",
+          "title": "El sistema de infoentretenimiento MMI se congela/reinicia y fallos eléctricos intermitentes",
+          "description": "Las encuestas de fiabilidad entre propietarios del Q2 señalan repetidamente los fallos del infoentretenimiento y los pequeños problemas eléctricos como el tipo de queja más habitual. La pantalla MMI puede congelarse, quedarse en negro y reiniciarse sola (a veces durante la marcha), y aparecen testigos de aviso en el cuadro sin causa aparente. Las causas suelen ser errores de software, datos corruptos de emparejamiento del teléfono/Bluetooth o fallos de comunicación entre módulos, más que un panel de pantalla averiado. Muchos de estos fallos salen baratos mientras dura la garantía de 3 años, pero pueden encarecerse después, y los propietarios reportan largos plazos de entrega de las piezas.",
+          "solution": "Aplicar la última actualización de software del MMI en un concesionario Audi; borrar/volver a emparejar el teléfono si los datos corruptos del móvil lo provocan. Un reinicio manual del MMI (mantener pulsado el mando de encendido/volumen unos 10 segundos) elimina los fallos temporales. Los fallos persistentes pueden requerir la sustitución de la unidad principal o de un módulo.",
+          "symptoms": [
+            "La pantalla MMI se congela o se queda en negro y luego se reinicia",
+            "El infoentretenimiento se reinicia durante la marcha",
+            "Testigos de aviso espurios en el cuadro de instrumentos",
+            "Cortes en la conexión Bluetooth/teléfono"
+          ],
+          "severity": "low",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 900,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "audi-q2-diesel-particulate-filter-clogging-tdi-engines-used-short-tr",
+          "title": "Obstrucción del filtro de partículas diésel (DPF) en motores TDI usados para trayectos cortos",
+          "description": "Los Q2 diésel TDI (1.6 TDI / 2.0 TDI) sufren obstrucción del DPF cuando el coche se usa mayoritariamente para trayectos urbanos cortos y a baja velocidad. El filtro de hollín nunca alcanza la temperatura de escape necesaria para completar una regeneración pasiva/activa, por lo que el hollín se acumula, se enciende el testigo del DPF y el coche puede entrar en un ciclo de regeneración forzada o en modo de emergencia. Las regeneraciones interrumpidas de forma repetida (el conductor frena/detiene el coche antes de que el ciclo termine) lo empeoran y pueden diluir el aceite del motor con gasóleo.",
+          "solution": "Circular a velocidad constante (>60 km/h) con carga moderada durante 15-30 minutos para permitir que se complete la regeneración; si está obstruido, el concesionario realiza una regeneración forzada/estática con el equipo de diagnóstico. Los filtros muy obstruidos requieren una limpieza profesional del DPF o su sustitución. A largo plazo: evitar hacer exclusivamente trayectos cortos.",
+          "symptoms": [
+            "Testigo del DPF / emisiones de escape encendido",
+            "Pérdida de potencia / modo de emergencia",
+            "Regeneraciones frecuentes, mayor consumo de combustible",
+            "Subida del nivel de aceite del motor (dilución por gasóleo)"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 200,
+          "costHigh": 2000,
+          "dtcCodes": [
+            "P2002",
+            "P242F",
+            "P244A",
+            "P244B"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "audi-q2-s-tronic-dual-clutch-transmission-jerking-hesitation-delayed",
+          "title": "Tirones, vacilaciones y cambios retardados en la transmisión de doble embrague S tronic (DSG)",
+          "description": "Los Q2 equipados con la caja de doble embrague S tronic de 7 velocidades presentan tirones al arrancar, un retraso/demora en la respuesta del cambio y cambios de marcha irregulares, especialmente perceptibles en el tráfico con paradas y arranques. Los reportes de propietarios y las encuestas de fiabilidad describen que estos síntomas aparecen relativamente pronto (a menudo entre los 20.000 y 40.000 km). Las causas subyacentes van desde el desgaste del paquete de embragues y electroválvulas gastadas hasta fallos de la unidad mecatrónica y aceite vencido; en los peores casos la caja entra en modo de emergencia.",
+          "solution": "Empezar con una actualización del software/adaptaciones de la transmisión y un servicio de aceite y filtro de la mecatrónica DSG en el intervalo correcto; si los síntomas persisten, diagnosticar y sustituir el paquete de embragues o la unidad mecatrónica según corresponda. Atenderlo cuanto antes para evitar el modo de emergencia y un mayor desgaste.",
+          "symptoms": [
+            "Tirones/sacudidas al arrancar",
+            "Vacilación o demora antes de que entre la marcha",
+            "Cambios de marcha bruscos o irregulares en el tráfico",
+            "Testigo de aviso de la transmisión / modo de emergencia"
+          ],
+          "severity": "medium",
+          "category": "transmission",
+          "costLow": 250,
+          "costHigh": 3000,
+          "dtcCodes": [
+            "P17BF",
+            "P189C"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "audi-q2-fuse-carrier-power-connector-recall-engine-instrument-cluste",
+          "title": "Llamada a revisión por el conector de alimentación del portafusibles: pueden fallar el motor, el cuadro o las luces (A3/Q2 con volante a la derecha)",
+          "description": "Una llamada a revisión oficial afecta a los Audi Q2 (y A3) con volante a la derecha fabricados entre 2019 y 2023, en los que el conector enchufable de la línea de alimentación del portafusibles interior podría no haberse montado correctamente. Con el tiempo, la conexión puede aflojarse y cortar la alimentación de múltiples funciones eléctricas. La consecuencia es el fallo del motor, de la pantalla del cuadro de instrumentos o del alumbrado y, si ocurre durante la marcha, el motor puede apagarse, creando riesgo de calado/accidente. La campaña afectó a unos 137.573 vehículos (cifra del Reino Unido: más de 104.000).",
+          "solution": "Solución de la campaña (código Audi 97HO; referencia KBA 013099): un taller oficial Audi inspecciona y fija/sustituye correctamente la conexión enchufable de la caja de fusibles sin coste. El propietario comprueba la elegibilidad por el VIN en un concesionario Audi.",
+          "symptoms": [
+            "El motor se apaga / se cala durante la marcha",
+            "El cuadro de instrumentos se queda en blanco",
+            "Fallan las luces exteriores/interiores",
+            "Corte eléctrico total intermitente"
+          ],
+          "severity": "high",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "audi-q2-premature-timing-belt-failure-1-0-1-4-tfsi-petrol-engines",
+          "title": "Rotura prematura de la correa de distribución en motores de gasolina 1.0 / 1.4 TFSI",
+          "description": "Propietarios de Q2 con motores tricilíndricos 1.0 TFSI y tetracilíndricos 1.4 TFSI han reportado la rotura de la correa de distribución dentada mucho antes del intervalo de sustitución indicado por Audi de 5 años / ~120.000 km, en varios casos documentados entre aproximadamente los 39.000 y 49.000 km, con historial de mantenimiento completo. Como se trata de motores de interferencia, una correa rota hace que las válvulas choquen con los pistones, provocando daños internos catastróficos y, con frecuencia, la sustitución completa del motor. Entre los factores agravantes citados por propietarios y moderadores de foros están la carga cíclica adicional sobre la correa por el sistema start/stop y los trayectos cortos frecuentes, además del aflojamiento del tensor/tornillo de la correa. Audi solo ofrecía habitualmente una cobertura parcial por buena voluntad en lugar de una cobertura total fuera de garantía.",
+          "solution": "Sustituir la correa de distribución, el tensor, los rodillos y la bomba de agua como kit bastante antes del intervalo indicado (muchos propietarios lo hacen ahora a los 4 años / 60.000-80.000 km como precaución); si la correa ya ha fallado, el resultado habitual es un motor de sustitución (a menudo una unidad reacondicionada/de segunda mano) más un nuevo kit de correa. Reclamar la buena voluntad de Audi a través del concesionario/defensor del cliente si existe historial de mantenimiento completo.",
+          "symptoms": [
+            "El motor se detiene/apaga de repente durante la marcha",
+            "Fuerte chasquido o traqueteo seguido de pérdida de potencia",
+            "El motor no gira/arranca después de fallar la correa",
+            "Válvulas dobladas / golpeteo del motor tras el incidente"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 1000,
+          "costHigh": 12000,
+          "dtcCodes": [
+            "P0016",
+            "P0017"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "audi-q2-rear-hub-carrier-fracture-recall",
+          "title": "Llamada a revisión por fractura de la mangueta trasera (soporte del rodamiento de rueda)",
+          "description": "Una llamada a revisión oficial temprana afecta a un pequeño lote de Q2 (unos 30 vehículos, identificados en agosto de 2017) en los que la carcasa del rodamiento de rueda / mangueta trasera podía fracturarse por un defecto de fabricación. Una mangueta trasera agrietada compromete la fijación de la rueda y la estabilidad del vehículo, creando riesgo de pérdida de control. Fue una campaña limitada por defecto de fabricación, no un fallo generalizado de la flota.",
+          "solution": "Solución de la campaña: las manguetas traseras afectadas se inspeccionan y se sustituyen en un concesionario oficial Audi sin coste. El propietario lo verifica por el VIN.",
+          "symptoms": [
+            "Golpeteo o ruido seco procedente del eje trasero",
+            "Comportamiento inestable del tren trasero / deriva",
+            "Desgaste irregular de los neumáticos traseros",
+            "Ruido audible del rodamiento de la rueda trasera"
+          ],
+          "severity": "high",
+          "category": "suspension",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "audi-a1",
+      "make": "Audi",
+      "model": "A1",
+      "h1": "Audi A1: problemas conocidos y puntos débiles",
+      "intro": "El Audi A1 es un utilitario premium fiable, pero arrastra fallos típicos en sus motores TFSI y TDI, la caja S tronic y el sistema de refrigeración. Aquí tienes los problemas más habituales del Audi A1, sus síntomas y las soluciones recomendadas para repararlos.",
+      "issues": [
+        {
+          "id": "audi-a1-1-4-tfsi-turbocharger-failure",
+          "title": "Avería del turbocompresor en el 1.4 TFSI",
+          "description": "El turbocompresor del A1 1.4 TFSI de gasolina es un punto débil reconocido. La carcasa central/turbina y los cojinetes pueden averiarse, a menudo agravados por la tendencia del motor a consumir aceite (falta de lubricación/carbonización del cojinete del turbo). Cuando falla provoca una notable pérdida de potencia y humo por el escape.",
+          "solution": "Sustituir el turbocompresor y, al mismo tiempo, resolver cualquier problema subyacente de alimentación de aceite o consumo de aceite. Utiliza el aceite del grado correcto y deja el motor al ralentí unos instantes antes de apagarlo tras una conducción exigente para proteger los cojinetes del turbo.",
+          "symptoms": [
+            "Pérdida importante de potencia",
+            "Humo negro o azul por el escape",
+            "Silbido o pitido procedente del vano motor",
+            "Aviso relacionado con la sobrealimentación / modo de emergencia"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 800,
+          "costHigh": 2500,
+          "dtcCodes": [
+            "P0234",
+            "P0299"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "audi-a1-7-speed-s-tronic-dual-clutch-mechatronic-failure",
+          "title": "Fallo de la mecatrónica de la caja S tronic de 7 velocidades de doble embrague (DQ200 / 0AM)",
+          "description": "Los A1 equipados con la caja automática S tronic de 7 velocidades con embrague en seco (DQ200, código VAG 0AM) sufren fallos de la mecatrónica (cuerpo de válvulas / unidad de control hidráulico). Un defecto de diseño en la pared del acumulador/depósito del cuerpo de válvulas puede agrietarse y perder la alta presión hidráulica, mientras que los discos del embrague en seco se desgastan y provocan tirones. Esto motivó una llamada a revisión de VAG que afectó a los A1 fabricados aproximadamente entre 2011 y 2016 (dentro de una campaña más amplia de unos 80.000 vehículos en el Reino Unido). El fallo puede provocar una pérdida total y repentina de tracción.",
+          "solution": "Reacondicionar o sustituir la unidad mecatrónica por el cuerpo de válvulas revisado/mejorado, actualizar el software de control de la transmisión e inspeccionar/sustituir el paquete de embrague si está desgastado. Comprueba que la llamada a revisión se haya realizado en cualquier coche de segunda mano. Un mantenimiento periódico de la DSG (cambio de aceite en las versiones de embrague húmedo) ayuda; en la DQ200 en seco, la reparación clave es la del cuerpo de válvulas.",
+          "symptoms": [
+            "Tirones / cambio brusco de 1ª a 2ª a baja velocidad",
+            "Testigo PRNDS / aviso de caja parpadeando en el cuadro",
+            "Cambios de marcha erráticos o bruscos",
+            "Pérdida repentina de tracción o ausencia de tracción",
+            "Modo de emergencia"
+          ],
+          "severity": "high",
+          "category": "transmission",
+          "costLow": 1200,
+          "costHigh": 2800,
+          "dtcCodes": [
+            "P189C",
+            "P17BF",
+            "P0841",
+            "P172A"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "audi-a1-ea211-water-pump-thermostat-housing-coolant-leak",
+          "title": "Fuga de refrigerante en la bomba de agua / carcasa del termostato EA211",
+          "description": "Los A1 más recientes con la familia de motores EA211 (1.0 TFSI tres cilindros y 1.4 TFSI revisado) montan una bomba de agua integrada accionada por correa con una carcasa de termostato de plástico atornillada a ella (dos termostatos: uno para el bloque y otro para la culata). La carcasa de plástico y las juntas se vuelven quebradizas y gotean, y el conjunto también puede verse dañado por el aceite de una válvula PCV con fugas. El refrigerante escapa por un orificio de drenaje o por la junta de la carcasa, lo que provoca bajo nivel de refrigerante y riesgo de sobrecalentamiento.",
+          "solution": "Sustituir el conjunto completo de bomba de refrigerante/termostato (en lugar de solo la bomba) por la pieza actualizada, ya que las carcasas de plástico se deforman durante un desmontaje parcial. Cambia las juntas y realiza una prueba de presión del sistema. Se necesitan herramientas especiales para los termostatos.",
+          "symptoms": [
+            "Bajada del nivel de refrigerante / aviso de bajo refrigerante",
+            "Olor dulzón a refrigerante",
+            "Restos de refrigerante visibles cerca de la bomba",
+            "Motor que calienta o temperatura inestable"
+          ],
+          "severity": "medium",
+          "category": "cooling",
+          "costLow": 250,
+          "costHigh": 700,
+          "dtcCodes": [
+            "P0597",
+            "P0116",
+            "P2181"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "audi-a1-tfsi-direct-injection-carbon-build-up-intake-valves",
+          "title": "Acumulación de carbonilla en las válvulas de admisión por la inyección directa TFSI",
+          "description": "Como los motores TFSI (1.2/1.4 EA111 y EA211) inyectan el combustible directamente en el cilindro, no hay gasolina que limpie las válvulas de admisión. Con el tiempo, los vapores de aceite del sistema de ventilación del cárter se cuecen sobre las válvulas calientes y los conductos de admisión, restringiendo el paso de aire y provocando fallos de encendido, ralentí inestable y tirones en arranque en frío; suele aparecer a partir de unos 60.000-100.000 km.",
+          "solution": "Limpiar físicamente las válvulas y los conductos de admisión, normalmente mediante chorro de cáscara de nuez con el colector de admisión desmontado. La instalación de un decantador de aceite (catch can) y un aceite de buena calidad ralentizan la nueva acumulación.",
+          "symptoms": [
+            "Ralentí inestable",
+            "Tirones / titubeo en arranque en frío",
+            "Fallos de encendido",
+            "Pérdida de potencia y de consumo",
+            "Testigo de avería del motor (check engine)"
+          ],
+          "severity": "medium",
+          "category": "engine",
+          "costLow": 300,
+          "costHigh": 1000,
+          "dtcCodes": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "audi-a1-1-2-1-4-tfsi-timing-chain-stretch-tensioner-failure",
+          "title": "Estiramiento de la cadena de distribución y fallo del tensor en el 1.2 / 1.4 TFSI (EA111)",
+          "description": "Los primeros Audi A1 8X de gasolina con los motores EA111 1.2 TFSI (CBZA/CBZB) y 1.4 TFSI (CAXA/CTHE/CAVG) sufren un tensor de cadena de distribución débil que pierde presión hidráulica, dejando que la cadena se afloje y se estire. Sumado al desgaste de los patines de plástico, la sincronización del árbol de levas se desfasa respecto al cigüeñal. Si la cadena salta un diente (algo habitual en el arranque en frío, antes de que se genere presión de aceite) los pistones pueden golpear las válvulas y destruir el motor. La cadena va en la parte trasera del motor (lado de la caja de cambios), lo que hace que su sustitución sea muy laboriosa.",
+          "solution": "Sustituir el kit completo de cadena de distribución (cadena, tensor y patines guía) por las piezas VAG mejoradas/actualizadas, calar la distribución con las herramientas de bloqueo correctas y reiniciar las adaptaciones. Mantener intervalos cortos de cambio de aceite (máximo 10.000 km / unas 6.000 millas) con el aceite VW 504/507 correcto frena el desgaste. Presta atención a un cascabeleo/zumbido en el arranque en frío como primer aviso.",
+          "symptoms": [
+            "Cascabeleo o zumbido metálico en el arranque en frío",
+            "Ruido de tableteo/cascabeleo bajo carga",
+            "Testigo de avería del motor",
+            "Funcionamiento irregular / fallos de encendido",
+            "Pérdida de potencia"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 700,
+          "costHigh": 1800,
+          "dtcCodes": [
+            "P0016",
+            "P0341",
+            "P0011"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "audi-a1-excessive-oil-consumption-1-2-1-4-tfsi-engines",
+          "title": "Consumo excesivo de aceite en los motores 1.2 / 1.4 TFSI (EA111)",
+          "description": "Los primeros motores TFSI EA111 del A1 son conocidos por consumir aceite a un ritmo anormal: los propietarios reportan cifras de entre 0,5 y 1,0 litros por cada 1.000 km. La causa de fondo es el diseño de los segmentos del pistón (en particular los segmentos rascadores de aceite), que dejan pasar aceite hacia la cámara de combustión, donde se quema. Con el tiempo empeora y puede rayar las paredes de los cilindros. Las versiones del 1.4 con doble sobrealimentación (compresor + turbo) se ven especialmente afectadas.",
+          "solution": "Confirmar el consumo con una prueba controlada de consumo de aceite. En casos leves, vigilar y rellenar; en casos avanzados, la reparación correcta es sustituir los pistones y los segmentos (e inspeccionar/rectificar las camisas). VAG introdujo juegos de pistones/segmentos actualizados. Mantener el nivel de aceite y los cambios al día evita el rayado de los cilindros y daños en el catalizador.",
+          "symptoms": [
+            "Bajada rápida del nivel de aceite entre revisiones",
+            "Baja presión de aceite / testigo de aceite",
+            "Humo azul por el escape al acelerar",
+            "Bujías engrasadas"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 300,
+          "costHigh": 4000,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "audi-a1-1-6-2-0-tdi-diesel-dpf-clogging-egr-valve-faults",
+          "title": "Obstrucción del FAP y fallos de la válvula EGR en los diésel 1.6 / 2.0 TDI",
+          "description": "El A1 se vende sobre todo como coche urbano, así que los propietarios de las versiones diésel (1.6 TDI / 2.0 TDI) que hacen trayectos cortos y con muchas paradas nunca calientan lo suficiente el filtro de partículas (FAP) para la regeneración pasiva. El FAP se obstruye de hollín, y una válvula EGR defectuosa/pegada lo acelera al aumentar la emisión de hollín. Las regeneraciones activas fallidas también pueden diluir el aceite del motor con gasóleo. Un FAP obstruido activa el modo de emergencia y es caro de sustituir.",
+          "solution": "Llevar el coche a un trayecto sostenido por autopista (unas 2.000+ rpm durante 15-20 minutos) para forzar la regeneración en cuanto aparezca el aviso. Limpia o sustituye una válvula EGR defectuosa, usa el aceite de bajo contenido en cenizas (504/507) correcto y, si está muy obstruido, recurre a una limpieza profesional/forzada del FAP; sustituye el FAP si la carga de hollín es irrecuperable. Comprueba que el nivel de aceite no esté subiendo por dilución de combustible.",
+          "symptoms": [
+            "Testigo del FAP / del calentadores (precalentamiento)",
+            "Pérdida de potencia / modo de emergencia",
+            "Aumento del consumo de combustible",
+            "Subida del nivel de aceite del motor (dilución por combustible)",
+            "Ciclos de regeneración frecuentes"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 200,
+          "costHigh": 1500,
+          "dtcCodes": [
+            "P2002",
+            "P242F",
+            "P0401",
+            "P0402"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "audi-a1-electrical-faults-sticking-windows-light-housings-sunroof-mo",
+          "title": "Fallos eléctricos: ventanillas atascadas, ópticas y motor del techo solar",
+          "description": "El A1 presenta varios fallos eléctricos/de acabado menores y recurrentes reportados por los propietarios en el Reino Unido: elevalunas eléctricos que se atascan o dejan de responder, ópticas (sobre todo con los faros de xenón, que generan calor) que sufren daños por temperatura, ruidos en el interior y en las puertas, y un techo solar que falla de forma intermitente o hace ruidos extraños por el desgaste del motor eléctrico. También hubo una llamada a revisión en febrero de 2017 relacionada con el riesgo de despliegue del airbag en ciertos coches.",
+          "solution": "Reinicializar/recalibrar las ventanillas que se atascan o sustituir el elevalunas/interruptor; reemplazar las ópticas dañadas; sustituir el motor del techo solar si es la causa; fijar los embellecedores que hacen ruido (una brida es una solución habitual para los ruidos de puerta). Verifica que la llamada a revisión del airbag de 2017 se haya realizado en cualquier coche de segunda mano.",
+          "symptoms": [
+            "Los elevalunas eléctricos se atascan o no funcionan",
+            "Ópticas dañadas/agrietadas (calor del xenón)",
+            "El techo solar falla o hace ruido",
+            "Ruidos en el interior y en las puertas",
+            "Fallos en la pantalla del sistema multimedia"
+          ],
+          "severity": "low",
+          "category": "electrical",
+          "costLow": 50,
+          "costHigh": 500,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "bmw-2-series-active-tourer",
+      "make": "BMW",
+      "model": "2 Series Active Tourer",
+      "h1": "BMW 2 Series Active Tourer: problemas conocidos y puntos débiles",
+      "intro": "El BMW 2 Series Active Tourer es un monovolumen compacto fiable, pero arrastra fallos típicos como fugas en el refrigerador de gases EGR de los diésel, ruidos en la suspensión delantera, averías del freno de estacionamiento eléctrico y, en la variante híbrida enchufable 225xe, riesgos en la batería de alto voltaje. Aquí repasamos los problemas más comunes del 2 Series Active Tourer y cómo solucionarlos.",
+      "issues": [
+        {
+          "id": "bmw-2-series-active-tourer-diesel-egr-cooler-glycol-leak-causing-intake-manifold-melt-f",
+          "title": "Fuga de glicol en el refrigerador EGR de los diésel: riesgo de fundir el colector de admisión / incendio",
+          "description": "En los modelos diésel, el refrigerador de la recirculación de gases de escape (EGR) puede agrietarse internamente en sus aletas de refrigeración, permitiendo que el etilenglicol del refrigerante se filtre hacia el conducto de admisión. Allí se mezcla con el hollín de carbonilla y, a altas temperaturas de los gases de escape, esa mezcla pegajosa puede inflamarse, fundiendo el colector de admisión de plástico y, en casos poco frecuentes, provocando un incendio en el vano motor. Forma parte de la campaña EGR más amplia de los motores BMW N47/B47/N57, que llegó a abarcar unos 800.000 vehículos en todo el mundo; el diésel del 2 Series Active Tourer/Gran Tourer se incorporó a la llamada a revisión, y en junio de 2023 se lanzó una segunda campaña en el Reino Unido (R/2023/172) que cubría fechas de fabricación entre febrero de 2015 y marzo de 2018. Algunos propietarios también informan de un segundo fallo de la válvula EGR tras montar el refrigerador de la campaña.",
+          "solution": "Sustituya el refrigerador EGR por el componente optimizado de forma gratuita dentro de la campaña de revisión (campaña del Reino Unido R/2023/172, ref. BMW 0011020700). Compruebe el número de bastidor (VIN) en los registros de llamadas a revisión de BMW/DVSA; si aparece pérdida de refrigerante, humo blanco en el escape u olor a refrigerante, deje de circular y lleve el coche al taller de inmediato.",
+          "symptoms": [
+            "Pérdida de refrigerante sin fuga visible",
+            "Humo blanco por el escape",
+            "Olor dulzón a refrigerante",
+            "Olor a quemado en el vano motor",
+            "Aviso de nivel bajo de refrigerante"
+          ],
+          "severity": "high",
+          "category": "emissions",
+          "costLow": 0,
+          "costHigh": 1200,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "bmw-2-series-active-tourer-front-suspension-strut-top-mount-creaking-knocking-over-bump",
+          "title": "Soporte superior del amortiguador delantero: crujidos y golpeteos al pasar baches",
+          "description": "Es habitual que los propietarios noten crujidos, ruidos secos o golpeteos en la suspensión delantera al circular por firmes irregulares y pequeños resaltos, que a menudo aparecen muy pronto (algunos a los 13.000-14.500 km). La causa suele ser el soporte/cojinete superior del amortiguador delantero, los cojines de espuma o las copelas de muelle desgastadas que generan holgura contra el vástago del amortiguador, además de los casquillos de la barra de unión. También se ha notificado la rotura de la barra estabilizadora delantera en un coche temprano. El ruido también se aprecia al girar la dirección a baja velocidad con el coche en frío.",
+          "solution": "Revise los soportes/cojinetes superiores del amortiguador, las copelas de muelle, los topes de suspensión y las bieletas de la barra estabilizadora; sustituya los soportes superiores y casquillos desgastados. Muchos coches tempranos se repararon en garantía. Confirme que el ruido no procede simplemente del capó o la rejilla de admisión, aislando los componentes con el coche en el elevador.",
+          "symptoms": [
+            "Crujido al girar la dirección a baja velocidad (sobre todo en frío)",
+            "Golpeteo/ruido seco al pasar baches y resaltos",
+            "Ruido en la zona del amortiguador delantero",
+            "Traqueteo al pasar por baches"
+          ],
+          "severity": "medium",
+          "category": "suspension",
+          "costLow": 150,
+          "costHigh": 600,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "bmw-2-series-active-tourer-electromechanical-parking-brake-failure-false-warning",
+          "title": "Fallo o aviso falso del freno de estacionamiento electromecánico (EMF)",
+          "description": "El freno de estacionamiento eléctrico puede mostrar el mensaje 'Avería del freno de estacionamiento' en el Check Control de la pantalla central incluso con el freno físicamente aplicado, y a veces no se libera hasta apagar y volver a arrancar el motor. Se documentan dos causas: un motor actuador EMF de una pinza trasera fabricado de forma incorrecta que puede averiarse, y (en los Gran Tourer de 2015-2016) el fallo 420106 provocado por un muelle defectuoso del selector de marchas que envía una señal falsa al módulo del freno de estacionamiento. Los códigos de avería se almacenan en el módulo EMF, no en la centralita principal, por lo que se necesita un equipo de diagnóstico compatible con BMW.",
+          "solution": "Diagnostique con equipo específico de BMW (p. ej. ISTA) para leer el módulo EMF. La solución pasa por sustituir el actuador de pinza EMF averiado o, en el caso de la señal falsa, reemplazar el muelle/interruptor defectuoso del selector de marchas. Muchos casos se cubrieron en garantía.",
+          "symptoms": [
+            "Mensaje 'Avería del freno de estacionamiento'",
+            "El freno de estacionamiento no se libera hasta reiniciar",
+            "Testigos de freno encendidos en el cuadro",
+            "Fallos intermitentes del freno de estacionamiento eléctrico"
+          ],
+          "severity": "medium",
+          "category": "brakes",
+          "costLow": 200,
+          "costHigh": 700,
+          "dtcCodes": [
+            "420106"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "bmw-2-series-active-tourer-b38-three-cylinder-petrol-timing-chain-stretch-cold-start-ra",
+          "title": "Estiramiento de la cadena de distribución del B38 tricilíndrico de gasolina: traqueteo en arranque en frío",
+          "description": "El motor de gasolina B38 de tres cilindros y 1,5 litros (216i/218i) puede sufrir alargamiento de la cadena de distribución. La mayor carga por cilindro de un tricilíndrico tensiona la cadena, y los tensores desgastados pierden la capacidad de mantener la tensión correcta. El síntoma clásico es un traqueteo metálico durante unos segundos en el arranque en frío, que suele aparecer en torno a los 80.000-120.000 km, acompañado de funcionamiento irregular y pérdida de potencia. El descuido de los cambios de aceite y la conducción extrema de trayectos cortos aceleran el desgaste. Si la cadena estirada salta un diente, los pistones pueden golpear las válvulas, causando daños graves al motor. Los primeros B38 con caja manual (anteriores a abril de 2015) también tuvieron fallos aislados del cojinete axial del cigüeñal.",
+          "solution": "Sustituya la cadena de distribución, las guías y el tensor como conjunto al primer indicio de traqueteo en arranque en frío, en lugar de esperar a que falle. Evite que vuelva a ocurrir con cambios de aceite puntuales empleando aceite de especificación BMW Longlife y evitando los trayectos muy cortos constantes.",
+          "symptoms": [
+            "Traqueteo/repiqueteo en el arranque en frío",
+            "Ralentí irregular",
+            "Pérdida de potencia",
+            "Testigo de avería del motor encendido",
+            "Códigos de avería relacionados con la distribución"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 900,
+          "costHigh": 2000,
+          "dtcCodes": [
+            "P0016",
+            "P0017"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "bmw-2-series-active-tourer-diesel-swirl-flap-sticking-carbon-build-up-causing-limp-mode",
+          "title": "Aletas de turbulencia (swirl flaps) del diésel agarrotadas por carbonilla: modo de emergencia",
+          "description": "Las aletas de turbulencia (swirl flaps) del colector de admisión del diésel se accionan mediante un actuador eléctrico y realizan una autocomprobación de abierto a cerrado cada vez que se da el contacto. La acumulación de carbonilla (agravada por el hollín de la EGR, frecuente en coches de trayectos cortos y afectados por la EGR) hace que las aletas y el varillaje se agarroten o recorran más de lo previsto. La centralita del diésel (DDE) lo interpreta entonces como un fallo del sistema de aletas de turbulencia y pone el coche en modo de emergencia con potencia reducida. Las aletas atascadas en cerrado restan en torno a un 10 % de potencia en altas; atascadas en abierto perjudican la conducción a baja velocidad.",
+          "solution": "Lea los códigos del actuador de las aletas de turbulencia en la DDE y, a continuación, limpie o libere de carbonilla las aletas y el varillaje, o sustituya el actuador/colector de admisión si está desgastado. Algunos propietarios montan placas de anulación (delete) de las aletas de turbulencia como solución permanente sin un cambio apreciable de prestaciones o consumo. Atajar el hollín de la EGR reduce que vuelva a ocurrir.",
+          "symptoms": [
+            "Modo de emergencia / potencia reducida",
+            "Tirones a bajas revoluciones",
+            "Pérdida de potencia en altas",
+            "Testigo de avería del motor encendido",
+            "Fallo del actuador de las aletas de turbulencia en el diagnóstico"
+          ],
+          "severity": "medium",
+          "category": "engine",
+          "costLow": 100,
+          "costHigh": 800,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "bmw-2-series-active-tourer-spurious-collision-warning-autonomous-emergency-braking-acti",
+          "title": "Avisos de colisión falsos / activación del frenado de emergencia autónomo",
+          "description": "Los coches equipados con el sistema de aviso de colisión del Driving Assistant han sufrido fallos en el aviso de colisión frontal y en el frenado de emergencia autónomo: en algunos coches de 2016 el sistema avisaba/intervenía repetidamente sin ningún obstáculo presente (los concesionarios sustituyeron los interruptores de freno sin resolverlo del todo), y un propietario de un coche de 2018 informó de que el frenado anticolisión bloqueaba de forma espuria las cuatro ruedas a unos 80 km/h. Es un problema de seguridad real, ya que un frenazo brusco inesperado puede provocar la pérdida del control o un alcance por detrás.",
+          "solution": "Haga que BMW diagnostique el módulo del Driving Assistant (cámara/radar) y el interruptor de la luz de freno; la solución puede implicar la sustitución del interruptor de freno, la recalibración de sensores o una actualización de software. Los casos persistentes deben elevarse a BMW y a la autoridad nacional (DVSA en el Reino Unido) dadas las implicaciones de seguridad.",
+          "symptoms": [
+            "Avisos de colisión fantasma",
+            "Frenado de emergencia sin motivo",
+            "Bloqueo de las ruedas sin obstáculo presente",
+            "Mensaje de avería del Driving Assistant"
+          ],
+          "severity": "high",
+          "category": "safety",
+          "costLow": 100,
+          "costHigh": 600,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "bmw-2-series-active-tourer-225xe-plug-hybrid-high-voltage-battery-fire-risk",
+          "title": "Riesgo de incendio de la batería de alto voltaje del híbrido enchufable 225xe (campaña de 2020)",
+          "description": "En los Active Tourer híbridos enchufables 225xe fabricados en 2020, un defecto de fabricación dejó partículas del cordón de soldadura y contaminación de las celdas dentro del paquete de batería de alto voltaje. Durante la carga, esos residuos pueden provocar un cortocircuito interno entre módulos, que a su vez puede desencadenar una reacción térmica en cadena y un incendio. BMW emitió una campaña mundial para sus híbridos enchufables (inicialmente unos 4.500 coches, ampliada después a unos 26.700 en 11 modelos PHEV). Se indicó a los propietarios afectados que NO cargaran el coche y que circularan solo con el motor de combustión hasta que se inspeccionara/sustituyera el paquete. Por otro lado, los propietarios del 225xe informan de desequilibrio entre celdas, fallos de comunicación del BMS, pérdida de capacidad y cargas irregulares a medida que envejece el paquete.",
+          "solution": "Compruebe el número de bastidor (VIN) frente a la campaña de la batería de los PHEV (alertas Rapex de la UE 41/2020 y 49/2020); BMW inspecciona y sustituye las baterías de alto voltaje afectadas de forma gratuita. Para los fallos por envejecimiento, un diagnóstico de alto voltaje en el concesionario identifica el módulo de celdas averiado; la solución es la sustitución del módulo o del paquete.",
+          "symptoms": [
+            "Aviso de avería en la transmisión",
+            "No carga / tiempos de carga irregulares",
+            "Autonomía eléctrica reducida",
+            "Mensaje de avería de la batería/híbrido",
+            "Fallo de un módulo de celdas en el diagnóstico"
+          ],
+          "severity": "high",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 5000,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "mercedes-benz-v-class",
+      "make": "Mercedes-Benz",
+      "model": "V-Class",
+      "h1": "Mercedes-Benz Clase V: problemas conocidos y puntos débiles",
+      "intro": "La Mercedes-Benz Clase V (Vito de pasajeros) es una furgoneta premium fiable, pero arrastra fallos típicos en motores diésel, cambio automático, sistema AdBlue/SCR y la puerta corredera eléctrica. Aquí tienes los problemas más comunes de la Mercedes-Benz Clase V y sus soluciones, para que sepas qué revisar y cómo repararlo.",
+      "issues": [
+        {
+          "id": "mercedes-benz-v-class-front-wheel-bearing-retaining-clip-defect",
+          "title": "Defecto en el clip de retención del rodamiento de rueda delantero (llamada a revisión de seguridad)",
+          "description": "Un defecto en el clip de retención del rodamiento de la rueda delantera en ciertos modelos Clase V W447 fue objeto de una acción del fabricante: el clip de retención podía quedar mal asentado, con el riesgo de que el rodamiento de la rueda no quedara correctamente fijado. Mercedes exigió que los vehículos afectados volvieran al concesionario para inspeccionar y reinstalar o sustituir el clip.",
+          "solution": "Solución de la campaña de revisión: inspeccionar el clip de retención del rodamiento delantero y reinstalarlo o sustituirlo según sea necesario, sin coste dentro de la campaña. Los propietarios deben comprobar si su VIN está incluido.",
+          "symptoms": [
+            "Posible ruido o juego en el rodamiento de la rueda delantera",
+            "Carta de notificación de la llamada a revisión"
+          ],
+          "severity": "high",
+          "category": "suspension",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "mercedes-benz-v-class-diesel-injector-seal-failure-carbon-build-up",
+          "title": "Fallo de la junta del inyector diésel / acumulación de carbonilla ('muerte negra')",
+          "description": "La arandela de cobre que sella la base de cada inyector diésel CDI se erosiona por el calor extremo y la presión de combustión, dejando escapar los gases de combustión que se carbonizan formando una costra dura, negra y alquitranada alrededor del inyector y sobre la culata. Es uno de los fallos más documentados en toda la gama Mercedes CDI/OM651, incluida la primera Clase V W447. Si se ignora, la carbonilla agarrota el inyector en la culata y convierte un cambio de junta barato en una pesadilla de extracción del inyector.",
+          "solution": "Detéctalo a tiempo: sustituye la arandela de cobre erosionada y el tornillo de dilatación (stretch bolt) del inyector y limpia el asiento. Si el inyector está agarrotado, se necesita un extractor de inyectores específico (o, en casos graves, desmontar la culata). Los inyectores defectuosos o con fugas deben sustituirse por piezas revisadas. Se recomienda sustituir las arandelas de forma preventiva en torno a los 100.000 km.",
+          "symptoms": [
+            "Olor químico o a diésel en el habitáculo",
+            "Costra negra tipo alquitrán visible alrededor de un inyector",
+            "Testigo de avería del motor encendido",
+            "Funcionamiento irregular / tirones al ralentí",
+            "Pérdida de potencia, modo de emergencia"
+          ],
+          "severity": "high",
+          "category": "fuel",
+          "costLow": 250,
+          "costHigh": 1700,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "mercedes-benz-v-class-adblue-scr-system-faults-triggering-limp-mode-no-start-count",
+          "title": "Fallos del sistema AdBlue/SCR que activan el modo de emergencia y la cuenta atrás de bloqueo de arranque",
+          "description": "En los diésel W447 Euro 6, el sistema de emisiones SCR depende de los sensores de NOx (antes y después del catalizador) y del sistema de dosificación de AdBlue. Un sensor de NOx averiado, un fallo de dosificación o un AdBlue bajo o contaminado escala de un aviso amarillo a uno rojo y, finalmente, a una cuenta atrás de 'No arrancará en X km', tras la cual el motor no volverá a arrancar una vez apagado. Antes de eso, el vehículo suele entrar en modo de emergencia (velocidad y potencia limitadas). El fallo del sensor de NOx es uno de los problemas de emisiones más mencionados en el W447.",
+          "solution": "Diagnostica el fallo concreto: sustituye el sensor de NOx averiado (se recomienda original/OE) o repara la bomba, el calefactor o el sistema de dosificación de AdBlue según corresponda, rellena con AdBlue nuevo, borra los códigos y reinicia el escenario de aviso del SCR (p. ej. 'Reset SCR Warnszenario' / reinicio en el diagnóstico de nivel concesionario). Borrar los códigos sin solucionar la causa raíz solo hace que el aviso vuelva a aparecer.",
+          "symptoms": [
+            "Testigo de AdBlue (amarillo y luego rojo)",
+            "Mensaje de 'No arrancará en 800 km' / cuenta atrás de arranque del motor",
+            "Modo de emergencia con potencia reducida",
+            "Avisos de emisiones repetidos tras un simple borrado de códigos"
+          ],
+          "severity": "high",
+          "category": "emissions",
+          "costLow": 300,
+          "costHigh": 900,
+          "dtcCodes": [
+            "P20EE",
+            "P2200",
+            "P229F",
+            "P2202",
+            "P229E"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "mercedes-benz-v-class-7g-tronic-automatic-gearbox-jerky-harsh-shifts",
+          "title": "Cambios bruscos o a tirones de la caja automática 7G-Tronic (722.9)",
+          "description": "Los modelos W447 con la caja automática 7G-Tronic 722.9 sufren cambios duros, a tirones o con retraso, a menudo peores en frío o cuando se mantiene una marcha demasiado tiempo antes de forzar el cambio. Dominan dos causas: la degradación del aceite de cambio supuestamente 'de por vida' (que en realidad no lo es) y el deterioro de la placa conductora del TCM dentro del cuerpo de válvulas, que altera la lectura del sensor de velocidad del eje de entrada y el bloqueo del convertidor de par. Si no se resuelve, evoluciona de intermitente a permanente y puede impedir la selección de marchas.",
+          "solution": "El primer paso es un cambio correcto de aceite y filtro de la caja según la especificación MB 236.14 (y un reinicio de las adaptaciones). Si los fallos de cambio persisten, sustituye la placa conductora / el cuerpo de válvulas. Pese a la etiqueta de 'sellado de por vida', se recomienda cambiar el aceite periódicamente (cada ~60.000 km).",
+          "symptoms": [
+            "Cambios de marcha duros o a tirones",
+            "Retraso en el engrane al seleccionar Drive/Reverse",
+            "Peor cambio en frío",
+            "Aviso de la transmisión / imposibilidad de seleccionar marchas en casos graves"
+          ],
+          "severity": "medium",
+          "category": "transmission",
+          "costLow": 250,
+          "costHigh": 1600,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "mercedes-benz-v-class-dpf-regeneration-failure-blockage",
+          "title": "Fallo de regeneración / obstrucción del DPF (uso en trayectos cortos)",
+          "description": "El filtro de partículas diésel Euro 6 del W447 necesita regeneraciones periódicas a alta temperatura para quemar el hollín. Las Clase V usadas en trayectos urbanos cortos nunca alcanzan la temperatura de regeneración, por lo que el hollín se acumula, los intentos de regeneración fallan y el DPF acaba obstruyéndose. Esto provoca testigos encendidos, rendimiento perezoso, mayor consumo de combustible y modo de emergencia (limitado en torno a las 2.500 rpm). El exigente equipamiento de emisiones Euro 6 hace que el W447 sea especialmente sensible al uso en trayectos cortos.",
+          "solution": "Atájalo a tiempo con una conducción sostenida en autopista de 30-40 minutos a 2.500-3.000 rpm para activar la regeneración pasiva; si está obstruido, realiza una regeneración forzada/activa con una herramienta de diagnóstico. Los filtros muy obstruidos requieren limpieza profesional o sustitución. Corrige cualquier causa previa (fallo de NOx, EGR o inyectores) que aborte la regeneración.",
+          "symptoms": [
+            "Testigo del DPF encendido",
+            "Rendimiento perezoso / modo de emergencia (límite ~2.500 rpm)",
+            "Mayor consumo de combustible",
+            "Regeneraciones fallidas frecuentes en trayectos cortos"
+          ],
+          "severity": "medium",
+          "category": "exhaust",
+          "costLow": 60,
+          "costHigh": 2500,
+          "dtcCodes": [
+            "P2002",
+            "P242F"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "mercedes-benz-v-class-om654-coolant-pump-vacuum-to-coolant-leak",
+          "title": "Fuga de vacío al circuito de refrigerante en la bomba de agua del OM654 (llamada a revisión de seguridad)",
+          "description": "En las Clase V W447 más recientes equipadas con el diésel OM654 de 2.0 L, la bomba de refrigerante es de control por vacío. Puede aparecer una fuga entre el sistema de vacío y el circuito de refrigerante, lo que permite que el refrigerante sea aspirado hacia el lado de vacío. Esto puede comprometer la refrigeración y el funcionamiento del motor. Mercedes emitió una llamada a revisión oficial en la UE que cubre los vehículos fabricados entre el 18/01/2019 y el 06/11/2021.",
+          "solution": "Solución de la campaña: inspeccionar y sustituir la bomba de refrigerante afectada / corregir la fuga entre el circuito de vacío y el de refrigerante según la campaña de revisión de Mercedes. Los propietarios deben comprobar si su VIN está incluido en la llamada y realizar el trabajo sin coste.",
+          "symptoms": [
+            "Pérdida de refrigerante / aviso de nivel bajo de refrigerante",
+            "Riesgo de sobrecalentamiento",
+            "Contaminación con refrigerante en el sistema de vacío",
+            "Carta de notificación de la llamada a revisión"
+          ],
+          "severity": "high",
+          "category": "cooling",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "mercedes-benz-v-class-om651-diesel-timing-chain-rattle-wear",
+          "title": "Cascabeleo y desgaste de la cadena de distribución del diésel OM651 (cadena/guías/tensor en la parte trasera del motor)",
+          "description": "Muchas Clase V W447 montan el diésel OM651 de 2.1 L con cadena de distribución símplex (de una sola hilera). Las guías de plástico de la cadena y el tensor hidráulico se degradan por el calor, la edad y el aceite sucio o escaso más rápido que la propia cadena, dejando que esta se afloje y se estire. Como la cadena está en la parte trasera del motor (contra el mamparo), el característico cascabeleo en arranque en frío suele atribuirse erróneamente. Si no se corrige, la cadena puede saltar la distribución o romperse, causando daños catastróficos en el motor. El posterior OM654 pasó a una cadena dúplex, una admisión tácita de que la símplex del OM651 era un punto débil.",
+          "solution": "Sustituye la cadena de distribución, las guías y el tensor como kit completo (en el OM651 esto suele requerir separar la caja de cambios para acceder por detrás). Usa únicamente aceite con especificación MB correcta (229.51/229.52) y respeta estrictamente los intervalos de servicio. Investiga de inmediato cualquier cascabeleo persistente en arranque en frío en lugar de seguir circulando.",
+          "symptoms": [
+            "Ruido de cascabeleo o traqueteo desde la parte trasera del motor al arrancar en frío",
+            "Ruido que desaparece tras unos segundos al subir la presión de aceite",
+            "Cascabeleo intermitente al acelerar a medida que se desgastan las guías",
+            "Fallo de correlación entre árbol de levas y cigüeñal, testigo de motor encendido",
+            "Restos de plástico encontrados en el aceite o en el filtro"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 1600,
+          "costHigh": 4500,
+          "dtcCodes": [
+            "P0016",
+            "P0017"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "mercedes-benz-v-class-electric-sliding-door-failure",
+          "title": "Fallo de la puerta corredera eléctrica (cable de la guía / mecanismo de engranajes desgastado)",
+          "description": "La puerta corredera lateral eléctrica del W447 Clase V/Vito/Viano funciona mediante un sistema de cable y polea que se desplaza por una guía en el umbral de la puerta. Los engranajes de plástico, la polea y el cable de accionamiento se desgastan, se deshilachan o se pelan, de modo que la puerta deja de abrirse o cerrarse automáticamente, se atasca a mitad de recorrido o hace ruidos de roce. El cable también puede quedar expuesto o engancharse. Es un fallo muy común y bien documentado del W447, con kits de reparación específicos a la venta en todo el mercado de recambios de la UE y el Reino Unido (familia de pieza A6398200442).",
+          "solution": "Repara o sustituye el cable de accionamiento de la guía / el juego de engranajes y los componentes de polea desgastados (hay kits de reparación para hacerlo uno mismo) en lugar de cambiar todo el conjunto del motor; comprueba también el pestillo inferior y el fusible de la puerta. En algunos casos se sustituye la unidad de motor/accionamiento completa.",
+          "symptoms": [
+            "La puerta corredera eléctrica deja de abrirse o cerrarse automáticamente",
+            "La puerta se atasca o se detiene a mitad de recorrido",
+            "Ruido de roce o chirrido en el mecanismo de la puerta",
+            "Cable de accionamiento expuesto o deshilachado en la guía"
+          ],
+          "severity": "medium",
+          "category": "body",
+          "costLow": 80,
+          "costHigh": 600,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "mercedes-benz-eqc",
+      "make": "Mercedes-Benz",
+      "model": "EQC",
+      "h1": "Mercedes-Benz EQC: problemas conocidos y puntos débiles",
+      "intro": "El Mercedes-Benz EQC es uno de los primeros SUV eléctricos de la marca y, como tal, arrastra algunos fallos conocidos. Aquí repasamos los problemas más habituales del EQC —desde fugas de refrigerante en el módulo de tracción hasta avisos de la batería auxiliar de 12V— junto con sus soluciones y las campañas de revisión correspondientes.",
+      "issues": [
+        {
+          "id": "mercedes-benz-eqc-electric-drive-module-coolant-leak",
+          "title": "Fuga de refrigerante en el módulo de tracción eléctrica (estanqueidad del reductor del motor)",
+          "description": "Debido a desviaciones de fabricación en el módulo de tracción eléctrica, el circuito de refrigeración interno puede no quedar bien sellado y provocar fugas de refrigerante; muchos propietarios lo compararon con una 'fuga de aceite' de un coche eléctrico. Si el refrigerante penetra en el motor, puede reducir con el tiempo la resistencia de aislamiento del sistema de alta tensión; en casos extremos se limita la potencia de salida del módulo de tracción o el vehículo no arranca. Esto motivó una amplia campaña de revisión en China que afectó a 10.104 unidades del EQC (ampliada después también al EQA/EQB) fabricadas entre el 30 de noviembre de 2018 y el 15 de diciembre de 2021.",
+          "solution": "Solución de la campaña: los servicios oficiales Mercedes sustituyen el conjunto de tracción eléctrica/módulo de tracción afectado (un trabajo laborioso, estimado en hasta unas 18 horas). Los propietarios fuera de China que detecten fugas deberían solicitar una inspección del grupo motriz en busca de filtraciones de refrigerante bajo garantía.",
+          "symptoms": [
+            "Fuga de refrigerante / líquido bajo el vehículo",
+            "Pérdida de potencia / aviso de limitación de potencia",
+            "El vehículo puede no arrancar en casos extremos",
+            "Aviso del sistema de alta tensión / de tracción"
+          ],
+          "severity": "high",
+          "category": "drivetrain",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "mercedes-benz-eqc-electric-power-steering-wiring-harness-water-ingress-short-c",
+          "title": "Entrada de agua / cortocircuito en el mazo de cables de la dirección asistida eléctrica",
+          "description": "El mazo de cables de la dirección asistida eléctrica (unidad de control de la dirección) puede dañarse durante el proceso de fabricación, lo que permite la entrada de agua/humedad en el cableado. Esto puede provocar un cortocircuito y una pérdida repentina de la asistencia de la dirección, además de un mayor riesgo de incendio. Las unidades EQC 400 4Matic afectadas se fabricaron principalmente entre finales de 2019 y principios de 2020 (la actuación del DVSA en el Reino Unido cita fechas de fabricación de diciembre de 2019 a marzo de 2020; la campaña de la UE a través de car-recalls.eu está fechada el 13/02/2021, con un seguimiento el 06/12/2021). Mercedes emitió varias campañas relacionadas con la dirección para el EQC.",
+          "solution": "Solución de la campaña: el concesionario inspecciona el mazo de cables de la unidad de control de la dirección y lo sustituye si está dañado, sin coste alguno. En muchos casos, el conductor recibe un aviso rojo en el cuadro de instrumentos antes del fallo; si aparece, el vehículo debe llevarse al taller de inmediato.",
+          "symptoms": [
+            "Pérdida o endurecimiento de la asistencia de la dirección",
+            "Aviso rojo de dirección en el cuadro de instrumentos",
+            "Olor a quemado o riesgo de incendio",
+            "Mensaje de avería de la dirección"
+          ],
+          "severity": "high",
+          "category": "steering",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "mercedes-benz-eqc-12v-auxiliary-battery-malfunction-drain",
+          "title": "Avería / descarga de la batería auxiliar de 12V",
+          "description": "Los propietarios del EQC informan de avisos recurrentes de 'Avería de la batería auxiliar', que a veces aparecen de forma repetida (casi cada minuto), junto con luces que parpadean, fallos intermitentes del sistema de infoentretenimiento y, en ocasiones, imposibilidad de arrancar. La pequeña batería auxiliar de 12V (AGM), que alimenta la electrónica, se debilita o sus conexiones se corroen o aflojan; como la electrónica del coche eléctrico tira constantemente de ella, una batería de 12V en mal estado provoca una cascada de avisos. Una tensión en reposo en torno a los 11,6V indica que la batería está fallando.",
+          "solution": "Comprueba primero los bornes de la batería auxiliar de 12V y límpialos o apriétalos (las conexiones flojas o corroídas imitan los síntomas de una batería agotada). Si la tensión en reposo es baja (<12,2V) o los fallos persisten tras la carga, sustituye la batería auxiliar por una del tipo AGM correcto y borra después los códigos de avería con un equipo de diagnosis. La sustitución suele ser económica.",
+          "symptoms": [
+            "Aviso recurrente de 'Avería de la batería auxiliar'",
+            "Luces que se atenúan o parpadean",
+            "Fallos intermitentes del infoentretenimiento/electrónica",
+            "Imposibilidad ocasional de arrancar"
+          ],
+          "severity": "medium",
+          "category": "electrical",
+          "costLow": 60,
+          "costHigh": 300,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "mercedes-benz-eqc-heavy-cold-weather-range-loss-inefficient-heat-pump",
+          "title": "Gran pérdida de autonomía en frío y bomba de calor poco eficiente",
+          "description": "Los propietarios del EQC informan de fuertes caídas de autonomía en invierno, habitualmente superiores al 25-30% en torno a los -10 °C, con casos reales que bajan de unos 370-385 km a unos 290-305 km. Aunque cierta pérdida con frío es normal en cualquier coche eléctrico, propietarios y especialistas señalan que la estrategia de la bomba de calor y el calefactor PTC del EQC es relativamente poco eficiente (el coche depende del calefactor PTC, muy ávido de energía, en lugar de la bomba de calor) y que el EQC carece del preacondicionamiento flexible programado de algunos rivales, lo que obliga a gestionar la autonomía invernal de forma muy manual. Una prueba independiente noruega en frío midió una pérdida de en torno al 25%.",
+          "solution": "No es un defecto con una única solución; se puede mitigar preacondicionando el habitáculo y la batería mientras el coche está enchufado, usando la calefacción de los asientos y del volante en lugar de la del habitáculo y seleccionando los modos eco/autonomía. Algunas actualizaciones de software de MBUX mejoraron la lógica de calefacción; asegúrate de tener el coche con el software más reciente. Verifica que la bomba de calor funciona correctamente si las pérdidas superan ampliamente el 30%.",
+          "symptoms": [
+            "La autonomía cae entre un 25 y un 40% con frío",
+            "Reducción de la autonomía indicada al encender la calefacción",
+            "Calentamiento lento del habitáculo",
+            "Consumo de energía elevado en invierno"
+          ],
+          "severity": "low",
+          "category": "hvac",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "mercedes-benz-eqc-inconsistent-brake-by-wire-pedal-feel",
+          "title": "Tacto irregular del pedal de freno por cable (mezcla de regeneración y fricción)",
+          "description": "Muchos propietarios describen un pedal de freno no lineal e irregular: 'esponjoso' o 'blando' al principio del recorrido y, de repente, 'mordiente' más abajo, lo que dificulta frenar con suavidad. Esto se debe al sistema de freno por cable (brake-by-wire) del EQC, que combina el frenado regenerativo y el de fricción; la transición no siempre es perfecta. Algunos propietarios también describen vibraciones o un fuerte ruido mecánico cuando entra en juego el ABS o la mezcla de frenado, así como un tacto del pedal distinto en la primera frenada tras arrancar. Es un rasgo reconocido en toda la gama EQ de Mercedes, no un defecto aislado.",
+          "solution": "Mercedes indica que cierta variación en el tacto del pedal es normal en el sistema de freno por cable/regeneración. Se han aplicado actualizaciones de software para mejorar la mezcla de frenado; si las vibraciones o el ruido persisten, deben diagnosticarse en el concesionario (revisión de la unidad de control de freno/actuador). El propietario también puede ajustar la regeneración mediante las levas del volante según su estilo de conducción.",
+          "symptoms": [
+            "Pedal de freno esponjoso/blando al inicio del recorrido",
+            "Frenada brusca y mordiente más abajo en el recorrido del pedal",
+            "Vibraciones o fuerte ruido mecánico durante la mezcla de frenado",
+            "Tacto del pedal distinto en la primera frenada tras arrancar"
+          ],
+          "severity": "medium",
+          "category": "brakes",
+          "costLow": 0,
+          "costHigh": 300,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "mercedes-benz-eqc-high-voltage-battery-housing-corrosion-from-inadequate-seali",
+          "title": "Corrosión de la carcasa de la batería de alta tensión por sellado deficiente",
+          "description": "En las primeras unidades del EQC 400 4Matic fabricadas en 2019, la carcasa de la batería de tracción de alta tensión no quedó bien protegida contra la corrosión ni sellada de fábrica. La humedad puede penetrar en la carcasa y corroer componentes internos y conexiones eléctricas. En el peor de los casos, el vehículo no puede volver a arrancarse y existe un mayor riesgo de incendio. Esto dio lugar a una campaña de revisión global (unas 1.463 unidades) y a otra campaña relacionada pero independiente en la UE (referencia de car-recalls.eu fechada el 09/07/2021).",
+          "solution": "Solución de la campaña de Mercedes: el concesionario inspecciona la carcasa de la batería de alta tensión y, cuando es necesario, sustituye la batería o aplica medidas de protección anticorrosión/sellado sin coste alguno. Antes de comprar un EQC de 2019 de segunda mano, conviene hacer una consulta de campañas por el VIN y confirmar que la reparación se llevó a cabo.",
+          "symptoms": [
+            "El vehículo no arranca / no puede volver a arrancarse",
+            "Aviso del sistema de alta tensión",
+            "Corrosión o humedad en la carcasa de la batería",
+            "Olor a quemado o riesgo de incendio en casos extremos"
+          ],
+          "severity": "high",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "mercedes-benz-eqc-side-impact-crash-sensor-connector-not-latched",
+          "title": "Conector del sensor de impacto lateral sin encajar (fallo del airbag/sistema de seguridad)",
+          "description": "El conector eléctrico de los sensores de impacto lateral (sensores de colisión) podría no haber quedado correctamente encajado durante el montaje y desconectarse. Si se pierde la conexión, es posible que el despliegue del airbag/sistema de retención lateral de ese lado no funcione como debería en caso de accidente, comprometiendo la protección de los ocupantes. La campaña de la UE a través de car-recalls.eu está fechada el 04/10/2021 y afecta a unidades del EQC fabricadas hacia 2020.",
+          "solution": "Solución de la campaña: el concesionario inspecciona y encaja/fija correctamente los conectores de los sensores de impacto lateral (y los sustituye si es necesario) sin coste alguno. Si la conexión se ha soltado, puede encenderse el testigo de aviso del airbag/sistema de retención.",
+          "symptoms": [
+            "Testigo de aviso del airbag / SRS",
+            "Mensaje de avería del sistema de retención",
+            "El airbag lateral podría no desplegarse en caso de accidente"
+          ],
+          "severity": "high",
+          "category": "safety",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
+    },
+    {
+      "slug": "opel-combo",
+      "make": "Opel",
+      "model": "Combo",
+      "h1": "Opel Combo: problemas conocidos y puntos débiles",
+      "intro": "El Opel Combo es una furgoneta práctica y versátil, pero como todo vehículo tiene sus fallos típicos. A continuación repasamos las averías más habituales del Opel Combo y sus soluciones, desde la correa de distribución del motor de gasolina 1.2 PureTech hasta los problemas del sistema AdBlue, el filtro de partículas (DPF) y el infoentretenimiento.",
+      "issues": [
+        {
+          "id": "opel-combo-1-2-puretech-petrol-wet-timing-belt-premature-failure",
+          "title": "Fallo prematuro de la correa de distribución húmeda del motor de gasolina 1.2 PureTech (riesgo de destrucción del motor)",
+          "description": "El motor de gasolina tricilíndrico 1.2 PureTech (familia EB2) montado en el Opel Combo / Combo Life utiliza una correa de distribución 'húmeda' que trabaja sumergida en el aceite del motor. El material de la correa se degrada de forma prematura cuando el aceite se deteriora (intervalos de mantenimiento alargados, especificación de aceite incorrecta o dilución del aceite por combustible). A medida que se descompone, la correa libera partículas de goma al aceite, que obstruyen la toma de la bomba de aceite, el colador de la bomba y las electroválvulas de distribución variable (VVT), provocando falta de lubricación. En el peor de los casos la correa se pela o se rompe y, al tratarse de un motor de tipo interferencia, las válvulas chocan con los pistones y el motor queda destruido. Stellantis ha reconocido el defecto, ha reducido los intervalos de mantenimiento y de sustitución de la correa, y ha ampliado la cobertura de garantía (hasta unos 10 años / unos 180.000 km) además de habilitar un portal de reclamaciones para el reembolso del coste de la reparación.",
+          "solution": "Realiza el mantenimiento del motor anualmente con el aceite de baja SAPS exacto que indica el fabricante y no superes nunca los intervalos (revisados y acortados) de cambio de aceite y de sustitución de la correa. Haz inspeccionar/sustituir de forma anticipada la correa de distribución húmeda y el colador de la bomba de aceite según el calendario actualizado de Stellantis. Si el coche reúne los requisitos, reclama los costes de reparación a través del portal de garantía/buena voluntad PureTech de Stellantis. Algunos especialistas reconvierten los motores afectados a una correa mejorada o recomiendan adelantar su renovación; una correa rota normalmente implica un motor de sustitución o reconstruido.",
+          "symptoms": [
+            "Ruido de traqueteo o zumbido en la zona de la correa de distribución",
+            "Restos de goma o lodos en el filtro de aceite o en el aceite",
+            "Testigo de aceite / baja presión de aceite",
+            "Consumo elevado de aceite (hasta ~1 L cada 1.600 km)",
+            "Pérdida de potencia o funcionamiento irregular",
+            "El motor no arranca o se gripa tras el fallo de la correa"
+          ],
+          "severity": "high",
+          "category": "engine",
+          "costLow": 1200,
+          "costHigh": 6500,
+          "dtcCodes": [
+            "P0011",
+            "P0016",
+            "P0521"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "opel-combo-air-conditioning-compressor-stator-wiring-fault-causing-powe",
+          "title": "Fallo en el cableado del estátor del compresor del aire acondicionado que provoca el apagado del grupo motopropulsor en marcha",
+          "description": "En los Combo afectados, el cableado del estátor del compresor del aire acondicionado puede sufrir un fallo que provoca una pérdida de corriente en el interior del compresor. Este fallo eléctrico puede activar un apagado completo del grupo motopropulsor con el vehículo en marcha, con pérdida repentina de tracción/potencia. El mismo defecto fue objeto de llamada a revisión en varios modelos de Stellantis/Vauxhall (Vivaro, Corsa-e, Mokka-e) y se gestionó a través de la DVSA en el Reino Unido.",
+          "solution": "Acude a un concesionario autorizado para completar la campaña de revisión de la DVSA/fabricante. La reparación consiste en inspeccionar y corregir el cableado del estátor del compresor del aire acondicionado (reparación o sustitución del cableado/compresor afectado) para evitar la pérdida de corriente y el apagado. Comprueba el VIN en la base de datos de llamadas a revisión para asegurarte de que la campaña se ha realizado.",
+          "symptoms": [
+            "Pérdida repentina de potencia / apagado del grupo motopropulsor en marcha",
+            "Testigos de aviso en el cuadro antes o durante el apagado",
+            "El vehículo se cala de forma inesperada",
+            "Avería del sistema de aire acondicionado"
+          ],
+          "severity": "high",
+          "category": "electrical",
+          "costLow": null,
+          "costHigh": null,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "opel-combo-1-5-bluehdi-diesel-fuel-rail-leak-engine-bay-fire-risk",
+          "title": "Fuga en la rampa de inyección del diésel 1.5 BlueHDi (DV5R) con riesgo de incendio en el vano motor",
+          "description": "En los Combo diésel equipados con el motor 1.5 BlueHDi DV5R, el cono del distribuidor de combustible common-rail (rampa de alta presión) puede no mantener su forma circular, lo que permite que la tuerca de fijación se afloje. El combustible puede entonces filtrarse entre la tuerca y la rosca, generando vapores de combustible. Si el gasóleo gotea sobre el escape o el turbo calientes puede inflamarse y provocar un incendio en el vano motor. Esto fue objeto de llamada a revisión en 14 modelos de Stellantis, incluido el Opel Combo fabricado entre julio y octubre de 2025. Una campaña de revisión más reciente del DV5 cubre además un sensor de NOx que podría no estar correctamente apretado.",
+          "solution": "Lleva el vehículo a un concesionario autorizado para la campaña de revisión. Los técnicos inspeccionan/sustituyen la rampa de combustible de alta presión y se aseguran de que la interfaz cono/tuerca de la rampa esté correctamente conformada y apretada al par para que no pueda escapar combustible. Los propietarios de Combo diésel recientes deben comprobar su VIN en la base de datos de llamadas a revisión y actuar de inmediato ante cualquier olor a gasóleo.",
+          "symptoms": [
+            "Olor a gasóleo en el vano motor",
+            "Fuga de combustible visible alrededor de la rampa de inyección",
+            "Vapores/humos de combustible",
+            "Riesgo de incendio en el vano motor"
+          ],
+          "severity": "high",
+          "category": "fuel",
+          "costLow": null,
+          "costHigh": null,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "opel-combo-diesel-adblue-scr-system-failure-preventing-engine-restart",
+          "title": "Fallo del sistema AdBlue / SCR del diésel que impide volver a arrancar el motor",
+          "description": "Los Combo diésel con el sistema de emisiones SCR (AdBlue) BlueHDi pueden mostrar avisos cada vez más graves, como 'Rellenar AdBlue: arranque imposible en X km' o 'Rearranque del motor desactivado en X km'. Más allá de quedarse simplemente sin AdBlue, estos avisos suelen estar provocados por fallos del SCR o del sensor de NOx, errores del sensor de nivel o de calidad del depósito de AdBlue, cristalización del AdBlue o el uso de un fluido que no cumple la norma ISO 22241. Cuando la cuenta atrás llega a cero, la centralita (ECU) desactiva el rearranque del motor por normativa de emisiones, dejando al propietario tirado.",
+          "solution": "Rellena con AdBlue genuino conforme a la norma ISO 22241 y realiza un ciclo de conducción constante para que la ECU valide la corrección. Si el aviso persiste, haz diagnosticar el sistema SCR, los sensores de NOx y los sensores de nivel/calidad de AdBlue (con la herramienta de diagnóstico Opel MDI) y sustituye el sensor o el inyector defectuoso. Evita el AdBlue barato o contaminado, que daña el catalizador SCR y los sensores. Las líneas de AdBlue cristalizadas pueden requerir limpieza o sustitución.",
+          "symptoms": [
+            "Mensaje de cuenta atrás 'Rellenar AdBlue – arranque impedido'",
+            "Testigo de avería del motor / testigo de emisiones",
+            "Pérdida de potencia / modo de emergencia",
+            "El motor no vuelve a arrancar una vez agotada la cuenta atrás"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 150,
+          "costHigh": 800,
+          "dtcCodes": [
+            "P204F",
+            "P20E8",
+            "P229F"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "opel-combo-front-seats-do-not-fully-recline",
+          "title": "Los asientos delanteros no se reclinan por completo (limitación de diseño, no un defecto)",
+          "description": "Una queja muy extendida entre los propietarios es que los asientos delanteros del Combo Life solo se reclinan parcialmente, hasta un ángulo de unos 45 grados como máximo, y no se pueden abatir en horizontal. Esto frustra a quienes quieren dormir en los asientos delanteros durante los viajes. Se trata de una limitación de diseño del bastidor del asiento, compartida con los modelos hermanos de plataforma (Citroën Berlingo y Peugeot Rifter), y no de una avería mecánica. No existe solución de fábrica.",
+          "solution": "No hay un remedio oficial porque es algo de diseño. Los propietarios lo solventan con cojines o extensores de asiento del mercado de accesorios, o duermen abatiendo los asientos traseros. Quienes necesiten reclinar por completo los asientos delanteros deberían probarlo antes de comprar, ya que la plataforma no lo permite.",
+          "symptoms": [
+            "El respaldo delantero solo se reclina hasta unos 45 grados",
+            "No se puede abatir el asiento delantero en horizontal",
+            "Ajuste de asiento limitado para dormir o descansar"
+          ],
+          "severity": "low",
+          "category": "interior",
+          "costLow": null,
+          "costHigh": null,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "opel-combo-diesel-egr-valve-dpf-clogging-short-journey-use",
+          "title": "Obstrucción de la válvula EGR y del filtro de partículas (DPF) del diésel en trayectos cortos",
+          "description": "Los Combo diésel (1.5 BlueHDi) usados principalmente en trayectos urbanos cortos y a baja velocidad sufren acumulación de carbonilla en la válvula EGR y obstrucción del filtro de partículas diésel (DPF). El motor nunca alcanza la temperatura necesaria para la regeneración pasiva/activa del DPF, por lo que la carbonilla se acumula. Un DPF obstruido aumenta la contrapresión de escape, lo que altera el caudal de la EGR, mientras que una EGR llena de carbonilla incrementa las emisiones de hollín, creando un círculo vicioso que genera varios fallos de emisiones a la vez. Los síntomas incluyen ralentí irregular, pérdida de potencia, mayor consumo y modo de emergencia. Es una característica bien conocida de los diésel PSA/Stellantis compartidos con el Berlingo/Rifter.",
+          "solution": "Conduce con regularidad durante al menos 10-15 minutos a 65 km/h o más para permitir la regeneración del DPF. Usa el aceite diésel de bajas cenizas (baja SAPS) correcto. Si ya está obstruido, realiza una regeneración forzada mediante diagnosis, limpia o sustituye la válvula EGR y limpia o sustituye el DPF. Corrige cualquier inyector con fugas o presión de turbo insuficiente que sobrecargue el DPF de hollín. Quien solo haga trayectos cortos debería plantearse la versión de gasolina en lugar de la diésel.",
+          "symptoms": [
+            "Testigo del DPF / testigo de avería del motor",
+            "Modo de emergencia / potencia reducida",
+            "Ralentí irregular y tirones",
+            "Mayor consumo de combustible",
+            "Regeneraciones del DPF frecuentes o incompletas",
+            "Olor a gasóleo sin quemar"
+          ],
+          "severity": "medium",
+          "category": "emissions",
+          "costLow": 200,
+          "costHigh": 1500,
+          "dtcCodes": [
+            "P2002",
+            "P242F",
+            "P0401",
+            "P0402"
+          ],
+          "reportCount": 0
+        },
+        {
+          "id": "opel-combo-steering-inner-tie-rods-steering-column-not-built-to-specifi",
+          "title": "Bieletas interiores de dirección / columna de dirección no fabricadas según especificación",
+          "description": "Dos llamadas a revisión oficiales independientes afectan a componentes de la dirección del Combo. En algunos vehículos de 2019-2020, las bieletas interiores de dirección se montaron con componentes incorrectos y, en algunos vehículos de 2019, la columna de dirección no se fabricó según especificación. Cualquiera de estos problemas puede comprometer la integridad del sistema de dirección y provocar un tacto anómalo de la dirección o, en el peor de los casos, la pérdida del control de la dirección.",
+          "solution": "Haz completar la campaña de revisión correspondiente de la DVSA/fabricante en un concesionario autorizado. Los técnicos inspeccionan y sustituyen las bieletas interiores o la columna de dirección afectadas por piezas con la especificación correcta. Los propietarios deben comprobar su VIN en la lista de llamadas a revisión y comunicar al concesionario cualquier ruido, holgura o tendencia a tirar de la dirección.",
+          "symptoms": [
+            "Holgura o golpeteo inusual en la dirección",
+            "La dirección se nota floja o imprecisa",
+            "El vehículo tira o vaga por la carretera",
+            "Ruido seco al pasar por badenes proveniente del tren delantero"
+          ],
+          "severity": "high",
+          "category": "steering",
+          "costLow": null,
+          "costHigh": null,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "opel-combo-parking-brake-lever-may-fail-to-lock-engaged-position",
+          "title": "La palanca del freno de mano puede no quedar bloqueada en posición accionada",
+          "description": "En los primeros Combo / Combo Life afectados existe una posible desalineación del trinquete en el mecanismo de enclavamiento de la palanca del freno de mano. Como consecuencia, el freno de mano puede no quedar bloqueado al accionarlo, o soltarse de forma inesperada. Un vehículo aparcado puede entonces desplazarse solo, sobre todo en pendiente. Esto fue objeto de una llamada a revisión oficial en la UE/Reino Unido (código de revisión Opel E19-190092; RAPEX). Otra campaña de revisión posterior del freno de mano cubre además un pequeño lote de vehículos de 2021 en los que la palanca puede no engranar correctamente.",
+          "solution": "Haz completar la campaña de revisión en un concesionario autorizado Opel/Vauxhall. Los técnicos inspeccionan el trinquete/mecanismo de enclavamiento de la palanca del freno de mano y corrigen la desalineación o sustituyen el conjunto de la palanca. Los propietarios deben comprobar su VIN en la base de datos de llamadas a revisión para confirmar que se ha aplicado la solución. Hasta repararlo, deja siempre el vehículo con una marcha puesta y calza las ruedas al aparcar en pendiente.",
+          "symptoms": [
+            "La palanca del freno de mano no retiene el coche",
+            "La palanca se nota floja o no hace clic/no engrana",
+            "El vehículo se desplaza al aparcar con el freno de mano puesto",
+            "El freno de mano se suelta solo"
+          ],
+          "severity": "high",
+          "category": "brakes",
+          "costLow": 0,
+          "costHigh": 0,
+          "dtcCodes": [],
+          "reportCount": 0
+        },
+        {
+          "id": "opel-combo-infotainment-touchscreen-freezing-crashing-failing-to-respon",
+          "title": "Pantalla táctil del infoentretenimiento que se congela, se bloquea y deja de responder",
+          "description": "Los propietarios del Combo Life informan de que la pantalla táctil del infoentretenimiento IntelliLink se congela al arrancar, deja de responder a los toques y a los botones físicos, o pierde la conexión Apple CarPlay/Android Auto. La pantalla puede seguir encendida pero ignorar cualquier entrada hasta que se reinicia el sistema. Suele ser un fallo de software más que de hardware, y es común a varios modelos de Stellantis/Vauxhall que usan la misma unidad central.",
+          "solution": "Fuerza el reinicio manteniendo pulsada la combinación de botones correspondiente (por ejemplo, mantener pulsado el botón del teléfono unos 5 segundos, o NAV + teléfono hasta que la pantalla se apague). Comprueba y aplica la última actualización de software del infoentretenimiento a través del concesionario o de la herramienta de actualización de Vauxhall/Opel. Los casos persistentes pueden requerir una reprogramación del software de la unidad central o su sustitución en garantía. Desconectar por completo la batería durante varios minutos puede resolver los bloqueos más rebeldes.",
+          "symptoms": [
+            "Pantalla táctil congelada / sin respuesta al arrancar",
+            "Los botones no hacen nada",
+            "Apple CarPlay / Android Auto se desconecta o no se conecta",
+            "Pantalla en negro o en blanco",
+            "El sistema se reinicia por sí solo"
+          ],
+          "severity": "low",
+          "category": "electrical",
+          "costLow": 0,
+          "costHigh": 350,
+          "dtcCodes": [],
+          "reportCount": 0
+        }
+      ]
     }
   ]
 }
