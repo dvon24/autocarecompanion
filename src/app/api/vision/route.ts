@@ -14,6 +14,7 @@ import {
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 import { getVehicleSpecs } from '@/lib/maintenance';
 import { attachVendorLinks } from '@/lib/vendor-resolver';
+import { validateAndFixVendorLinks } from '@/lib/vendor-link-validator';
 import { captureDiagnosisSample } from '@/lib/diagnosis-capture';
 import type { IdentifiedPart, PartCategory, PartRole } from '@/types/vision';
 
@@ -783,7 +784,7 @@ ${respondLang !== 'English' ? `LANGUAGE — IMPORTANT: The user speaks ${respond
     });
 
   // Attach per-part vendor links via the resolver.
-  const identifiedParts: IdentifiedPart[] = attachVendorLinks(normalizedParts, vehicle ? { year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim } : undefined)
+  const linkedParts: IdentifiedPart[] = attachVendorLinks(normalizedParts, vehicle ? { year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim } : undefined)
     .map((p, i) => ({
       ...p,
       vendorLinks: p.vendorLinks.length > 0 ? p.vendorLinks : (
@@ -800,6 +801,18 @@ ${respondLang !== 'English' ? `LANGUAGE — IMPORTANT: The user speaks ${respond
         }]
       ),
     }));
+
+  // Validate the constructed deep links so we never hand the user a 404
+  // (Devon hit a dead Tire Rack link from a tire photo). Confirmed-dead PDP
+  // links fall back to the vendor's search tier. Never throws / never blocks
+  // the response beyond its own short timeout; on any error we ship the
+  // unvalidated links rather than fail the diagnosis.
+  let identifiedParts: IdentifiedPart[] = linkedParts;
+  try {
+    identifiedParts = await validateAndFixVendorLinks(linkedParts);
+  } catch {
+    identifiedParts = linkedParts;
+  }
 
   // Resolve primaryPartId: prefer the model's value, fall back to the
   // first role='primary' part. Null when no parts identified.

@@ -240,6 +240,42 @@ function resolveQuery(input: ResolveInput): string {
   return fallback;
 }
 
+/**
+ * Search-tier ("always valid") URL for a vendor — used by the link
+ * validator to replace a DEEP link that returned a hard 404. For Tire Rack
+ * that's the guaranteed Google site-search; for every other vendor it's the
+ * vendor's own onsite search template with the part query. Returns null only
+ * when there's no query to search with.
+ */
+export function searchFallbackUrl(
+  vendorKey: VendorKey,
+  part: {
+    category: PartCategory;
+    name: string;
+    brand?: string;
+    oemPartNumbers: string[];
+    spec?: string;
+    searchQuery?: string;
+  },
+): string | null {
+  const cfg = VENDORS[vendorKey];
+  if (!cfg) return null;
+  if (vendorKey === 'tire_rack') {
+    const q = [part.brand, part.name || 'tires'].filter(Boolean).join(' ');
+    return `https://www.google.com/search?q=${encodeURIComponent(`site:tirerack.com ${q}`)}`;
+  }
+  const query = resolveQuery({
+    category: part.category,
+    name: part.name,
+    brand: part.brand,
+    oemPartNumbers: part.oemPartNumbers,
+    spec: part.spec,
+    searchQuery: part.searchQuery,
+  });
+  if (!query) return null;
+  return cfg.searchUrlTemplate.replace('{query}', encodeURIComponent(query));
+}
+
 function isDeepLink(cfg: VendorConfig, input: ResolveInput): boolean {
   if (cfg.key === 'tire_rack') {
     const { front } = parseTireSizes(
