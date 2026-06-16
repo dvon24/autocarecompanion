@@ -3,6 +3,7 @@ import { getAllKnownIssueSlugsWithDates } from '@/lib/known-issues';
 import { getAllDTCSlugsWithDates, getAllDTCMakeSlugs } from '@/lib/dtc-codes';
 import { getAllSymptomSlugs } from '@/lib/symptoms';
 import { getAllLocaleSlugParams } from '@/lib/i18n';
+import { getAllSpecSlugsWithDates } from '@/lib/specs';
 import prisma from '@/lib/db';
 
 // Fixed launch date — static pages don't change frequently
@@ -213,5 +214,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
-  return [...staticPages, ...knownIssuesPages, ...yearVariantPages, ...dtcPages, ...dtcMakePages, ...symptomPages, ...categoryPages, ...makePages, ...localePages];
+  // Vehicle fluid/spec reference pages — only verified (audited) entries.
+  const specSlugs = getAllSpecSlugsWithDates();
+  const specsPages: MetadataRoute.Sitemap = specSlugs.map((s) => ({
+    url: `${baseUrl}/specs/${s.slug}`,
+    lastModified: s.lastModified,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+  // /specs index — only worth listing once it has published entries.
+  if (specSlugs.length > 0) {
+    specsPages.push({
+      url: `${baseUrl}/specs`,
+      lastModified: new Date('2026-06-16'),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    });
+  }
+
+  return [...staticPages, ...knownIssuesPages, ...yearVariantPages, ...dtcPages, ...dtcMakePages, ...symptomPages, ...categoryPages, ...makePages, ...localePages, ...specsPages];
 }

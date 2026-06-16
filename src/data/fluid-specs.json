@@ -1,0 +1,61 @@
+{
+  "_note": "AUDITED public source for /specs pages. ONLY generations with verified:true render (generateStaticParams + sitemap + index all gate on it). Populated + maintained by the fluid-spec audit pipeline (web_search + adversarial verify against authoritative sources — owner's manuals, manufacturer specs). NEVER hand-edit a capacity without a citation; wrong fluid capacities are a safety hazard. source: 'curated' = ported from vehicle-specs.json pending an authoritative web audit; 'web-verified' = audited with citations.",
+  "vehicles": [
+    {
+      "make": "Chevrolet",
+      "model": "Camaro",
+      "slug": "chevrolet-camaro",
+      "generations": [
+        {
+          "label": "2016–2024 SS / 1LE — 6.2L V8 (LT1)",
+          "yearStart": 2016,
+          "yearEnd": 2024,
+          "engine": "6.2L V8 (LT1)",
+          "verified": true,
+          "source": "curated",
+          "auditedAt": "2026-06-16",
+          "citations": [],
+          "fluids": {
+            "engineOil": {
+              "type": "5W-30 full synthetic (dexos1 Gen 2 or newer)",
+              "capacity": "10.0 qt with filter",
+              "note": "The LT1 holds a FULL 10 quarts — do not assume the 6–8 qt typical of a V8.",
+              "buy": "Mobil 1 5W-30 dexos1 full synthetic motor oil"
+            },
+            "coolant": {
+              "type": "Dex-Cool (orange, extended life) — do NOT mix with green coolant",
+              "capacity": "10.6 qt total system",
+              "buy": "ACDelco Dex-Cool antifreeze coolant"
+            },
+            "transmission": {
+              "type": "Dexron HP (10L80 10-speed auto) · Dexron VI (TR-6060 6-speed manual)",
+              "capacity": "5.5 qt auto (drain & fill) · 2.4 qt manual",
+              "buy": "Dexron HP automatic transmission fluid"
+            },
+            "brakeFluid": {
+              "type": "DOT 4",
+              "buy": "DOT 4 brake fluid"
+            },
+            "rearDifferential": {
+              "type": "75W-90 GL-5 synthetic",
+              "capacity": "1.7 qt",
+              "buy": "75W-90 GL-5 synthetic gear oil"
+            }
+          },
+          "parts": {
+            "oilFilter": { "value": "ACDelco PF48", "buy": "ACDelco PF48 oil filter" },
+            "sparkPlugs": { "value": "ACDelco 41-162 iridium · 0.040 in gap · 11 ft-lb · ×8", "buy": "ACDelco 41-162 iridium spark plug" },
+            "lugNuts": { "value": "22 mm · 100 ft-lb" }
+          },
+          "safety": [
+            "LT1 holds 10 QUARTS of oil — underfilling to a typical V8's 6–8 qt will starve the engine.",
+            "dexos1-certified oil required — check the bottle label.",
+            "Belly pan (undertray) must come off for oil-drain access (7 mm + 10 mm fasteners).",
+            "Dex-Cool must NOT be mixed with green coolant — mixing gels and clogs the system.",
+            "Brembo brakes (SS 1LE): DOT 4 only, bleed with a scan tool for ABS."
+          ]
+        }
+      ]
+    }
+  ]
+}
