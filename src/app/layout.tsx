@@ -98,6 +98,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Resource hints — preconnect to the ONE render-blocking third party
+            (Termly's consent resource-blocker, which must load beforeInteractive
+            for GCM compliance and can't be deferred) so its DNS+TCP+TLS is warm
+            before it executes; dns-prefetch the now-deferred analytics/ads
+            origins so they resolve faster when they load post-interactive. */}
+        <link rel="preconnect" href="https://app.termly.io" />
+        <link rel="dns-prefetch" href="https://app.termly.io" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         {/* Termly resource-blocker — MUST be the first script in <head>
             so Consent Mode v2 default signals arrive before any Google
             tag fires. Loads beforeInteractive (via Next's <Script>) so
