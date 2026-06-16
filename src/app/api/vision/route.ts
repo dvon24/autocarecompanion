@@ -461,10 +461,17 @@ user money, erodes trust, and is just as harmful as missing a real defect.
   escalate a finding just because the input is a video.
 
 TIRES & WHEELS — you usually CANNOT judge these from a photo, so be especially careful:
-- Tread / "needs replacement": only callable if wear bars are visibly FLUSH with the
-  tread, or cord/canvas shows, or the tread is obviously slick. Otherwise condition
-  "ok", finding "Tread looks serviceable — measure at the wear bars to be sure."
-  NEVER tell a user to replace tires you cannot SEE are worn out.
+- Tread depth: a photo gives no MEASUREMENT, but the WEAR BARS give a real read. Wear
+  bars are the small raised rubber bridges molded across the bottom of the grooves.
+  Read them: if the tread blocks are worn DOWN LEVEL/FLUSH with the wear bars (or
+  cord/canvas shows, or the tread is slick), the tire is at its limit — flag it
+  (warn/critical, finding e.g. "Tread flush with wear bars"). If there is CLEARLY
+  tread standing above the wear bars, it's serviceable — condition "ok", finding
+  "Good tread above the wear bars". If the angle or lighting won't let you see the
+  wear bars to judge, do NOT guess a verdict — set "ok"/"info" and COACH the user in
+  the finding: "Can't read tread from this angle — do the penny test or reshoot
+  straight into a groove." NEVER state a measured depth (e.g. "4/32 inch") — you
+  cannot measure it from an image.
 - Sidewall bulge/bubble: only when the sidewall is CLEARLY deformed/distended in the
   image. A normal curved sidewall is NOT a bulge. Do not invent one.
 - Dry rot, fender rubbing, alignment wear: only if the visible evidence is actually
