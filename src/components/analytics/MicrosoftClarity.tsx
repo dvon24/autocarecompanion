@@ -9,19 +9,21 @@ import Script from 'next/script';
  * rather than routed through an env var that would also need to be set
  * in the Vercel dashboard.
  *
- * GDPR: loads beforeInteractive AFTER the Termly resource-blocker
- * (which is the first script in <head>), so Termly's autoblocker—which
- * recognizes clarity.ms as an analytics tracker—holds it until the
- * visitor grants analytics consent. Also enable "Consent Mode" in the
- * Clarity dashboard (Settings → Setup) so Clarity honors the Google
- * Consent Mode v2 signals Termly already emits.
+ * GDPR: Termly's resource-blocker (first script in <head>) recognizes
+ * clarity.ms as an analytics tracker and holds it until the visitor grants
+ * analytics consent — it gates by URL, so it works regardless of when this
+ * bootstrap runs. Loaded lazyOnload (NOT beforeInteractive) so the session-
+ * replay tag never blocks render — beforeInteractive was a major LCP/INP
+ * drag (Clarity field data 2026-06: LCP 16s). Also enable "Consent Mode" in
+ * the Clarity dashboard so it honors the Google Consent Mode v2 signals
+ * Termly already emits.
  */
 
 const CLARITY_PROJECT_ID = 'x4x8n6wh5z';
 
 export function MicrosoftClarity() {
   return (
-    <Script id="microsoft-clarity" strategy="beforeInteractive">
+    <Script id="microsoft-clarity" strategy="lazyOnload">
       {`
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
