@@ -152,6 +152,11 @@ function applyPriorityRules(candidates: VendorKey[], input: ResolveInput): Vendo
  * Amazon URLs always carry the au7o-20 affiliate tag.
  */
 function buildVendorUrl(cfg: VendorConfig, input: ResolveInput): string | null {
+  // Tire Rack's TireSearchResults.jsp is a FORM-results endpoint — it expects
+  // autoMake/autoYear/autoModel + width/ratio/diameter, NOT a free-text query.
+  // Feeding it ?btn={query} 404s. Build a real fitment URL instead.
+  if (cfg.key === 'tire_rack') return buildTireRackUrl(input);
+
   const part = input.oemPartNumbers?.[0];
   if (cfg.partNumberSupport === 'native' && cfg.partNumberUrlTemplate && part) {
     return cfg.partNumberUrlTemplate.replace('{part_number}', encodeURIComponent(part));
@@ -159,6 +164,72 @@ function buildVendorUrl(cfg: VendorConfig, input: ResolveInput): string | null {
   const query = resolveQuery(input);
   if (!query) return null;
   return cfg.searchUrlTemplate.replace('{query}', encodeURIComponent(query));
+}
+
+interface TireSize { width: string; ratio: string; diameter: string; }
+
+/**
+ * Parse tire sizes out of free text — "305/30R19", "305/30ZR19",
+ * "P275/40R18", or a staggered "305/30R19 front / 325/30R19 rear".
+ * Returns front (first match) + rear (first DISTINCT match, for
+ * staggered fitments like the Camaro ZL1 1LE: 305 front / 325 rear).
+ */
+function parseTireSizes(text: string | undefined): { front?: TireSize; rear?: TireSize } {
+  if (!text) return {};
+  const re = /\b[PpLT]?(\d{3})\/(\d{2})\s*Z?R\s*(\d{2})\b/g;
+  const found: TireSize[] = [];
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(text)) !== null) {
+    found.push({ width: m[1], ratio: m[2], diameter: m[3] });
+  }
+  if (found.length === 0) return {};
+  const front = found[0];
+  const rear = found.find(
+    (s) => s.width !== front.width || s.ratio !== front.ratio || s.diameter !== front.diameter,
+  );
+  return { front, rear };
+}
+
+/**
+ * Confident Tire Rack link. Tiers, best-first:
+ *   1. YMMT + OE tire size → vehicle results page pinned to the exact fitment.
+ *   2. Size only → fitment-correct by-size results.
+ *   3. Neither → guaranteed-valid Google site-search (lands on a real Tire
+ *      Rack page, NEVER a 404).
+ * Note: the exact-tire PDP form (frontTire=<SKU>) needs Tire Rack's proprietary
+ * catalog code, which only their affiliate datafeed/API provides — not buildable
+ * from our data, so we stop at the fitment results page.
+ */
+function buildTireRackUrl(input: ResolveInput): string {
+  const v = input.vehicle;
+  const { front, rear } = parseTireSizes(
+    [input.spec, input.name, input.searchQuery].filter(Boolean).join(' '),
+  );
+  const haveVehicle = !!(v?.make && v?.year && v?.model);
+
+  if (haveVehicle || front) {
+    const p = new URLSearchParams();
+    if (haveVehicle) {
+      p.set('autoMake', v!.make!);
+      p.set('autoYear', String(v!.year));
+      p.set('autoModel', v!.trim ? `${v!.model} ${v!.trim}` : v!.model!);
+    }
+    if (front) {
+      p.set('frontWidth', `${front.width}/`);
+      p.set('frontRatio', front.ratio);
+      p.set('frontDiameter', front.diameter);
+    }
+    if (rear) {
+      p.set('rearWidth', `${rear.width}/`);
+      p.set('rearRatio', rear.ratio);
+      p.set('rearDiameter', rear.diameter);
+    }
+    p.set('performance', 'ALL');
+    return `https://www.tirerack.com/tires/TireSearchResults.jsp?${p.toString()}`;
+  }
+
+  const q = [input.brand, input.name || 'tires'].filter(Boolean).join(' ');
+  return `https://www.google.com/search?q=${encodeURIComponent(`site:tirerack.com ${q}`)}`;
 }
 
 function resolveQuery(input: ResolveInput): string {
@@ -170,6 +241,14 @@ function resolveQuery(input: ResolveInput): string {
 }
 
 function isDeepLink(cfg: VendorConfig, input: ResolveInput): boolean {
+  if (cfg.key === 'tire_rack') {
+    const { front } = parseTireSizes(
+      [input.spec, input.name, input.searchQuery].filter(Boolean).join(' '),
+    );
+    // A fitment results page (vehicle- or size-pinned) is a confident deep
+    // link; the bare Google-site-search fallback is not.
+    return !!front || !!(input.vehicle?.make && input.vehicle?.year && input.vehicle?.model);
+  }
   return cfg.partNumberSupport === 'native'
     && !!cfg.partNumberUrlTemplate
     && (input.oemPartNumbers?.length ?? 0) > 0;
