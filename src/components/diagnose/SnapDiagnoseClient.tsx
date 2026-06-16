@@ -9,7 +9,7 @@ import { VisionResultCard, AnnotatedPhoto, type VisionResult } from '@/component
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { type YMMTData } from '@/schemas/vehicle.schema';
 import { loadYmmt } from '@/lib/load-ymmt';
-import { diagnoseStrings } from '@/lib/diagnose-i18n';
+import { useDiagnoseStrings } from '@/lib/diagnose-i18n';
 import { trackEvent } from '@/components/analytics/GoogleAnalytics';
 
 /**
@@ -39,7 +39,7 @@ const BLUE = 'var(--au7o-blue, #3B82F6)';
 export function SnapDiagnoseClient() {
   const { status } = useSession();
   const isSignedIn = status === 'authenticated';
-  const t = diagnoseStrings();
+  const t = useDiagnoseStrings();
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);

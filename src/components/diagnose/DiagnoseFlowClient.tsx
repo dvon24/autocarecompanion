@@ -10,7 +10,7 @@ import { VisionResultCard, type VisionResult } from '@/components/vehicle/Vision
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { type YMMTData } from '@/schemas/vehicle.schema';
 import { loadYmmt } from '@/lib/load-ymmt';
-import { diagnoseStrings } from '@/lib/diagnose-i18n';
+import { useDiagnoseStrings } from '@/lib/diagnose-i18n';
 import { trackEvent } from '@/components/analytics/GoogleAnalytics';
 
 /**
@@ -46,7 +46,7 @@ type State = 'idle' | 'analyzing' | 'result' | 'gated' | 'error';
 export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean }) {
   const { status: sessionStatus } = useSession();
   const isSignedIn = sessionStatus === 'authenticated';
-  const t = diagnoseStrings();
+  const t = useDiagnoseStrings();
   // YMMT picker
   const [ymmt, setYmmt] = useState<YMMTData | null>(null);
   const [year, setYear] = useState('');

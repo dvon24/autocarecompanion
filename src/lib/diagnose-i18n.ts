@@ -9,6 +9,8 @@
  * src/app/api/vision/route.ts (so the chrome + the AI answer match).
  */
 
+import { useEffect, useState } from 'react';
+
 export interface DiagnoseStrings {
   // ── Shared / mobile snap flow (SnapDiagnoseClient) ──
   addCar: string;
@@ -483,4 +485,26 @@ export function diagnoseStrings(): DiagnoseStrings {
   if (typeof navigator === 'undefined' || !navigator.language) return en;
   const key = navigator.language.toLowerCase().split('-')[0];
   return DICTS[key] || en;
+}
+
+/**
+ * SSR-safe accessor — USE THIS in components, not diagnoseStrings() directly.
+ *
+ * Returns English on the server AND on the client's first render (so the
+ * hydrated DOM matches the server HTML), then swaps to the browser-language
+ * strings in an effect after mount. Calling diagnoseStrings() inline during
+ * render returned localized text on the client but English on the server,
+ * producing a hydration mismatch (React #418) for every non-English visitor —
+ * React then discarded the server tree and re-rendered the whole page on the
+ * client, spiking LCP/INP. Non-English users now see one frame of English
+ * before it localizes, which is imperceptible and infinitely cheaper than a
+ * full client re-render.
+ */
+export function useDiagnoseStrings(): DiagnoseStrings {
+  const [strings, setStrings] = useState<DiagnoseStrings>(en);
+  useEffect(() => {
+    const localized = diagnoseStrings();
+    if (localized !== en) setStrings(localized);
+  }, []);
+  return strings;
 }
