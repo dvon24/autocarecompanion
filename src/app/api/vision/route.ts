@@ -435,12 +435,40 @@ ${lines.join('\n')}`;
 Vehicle: ${vehicleDesc}.${specsContext}${knownIssuesContext}${dtcContext}${cachedPartsContext}
 
 ${mode === 'video'
-  ? `INPUT MODE: VIDEO — you are seeing ${images.length} frames sampled evenly across a short video clip the user uploaded. Look across the frames for symptoms that change over time: rotor pulsing under braking, fluid drip, dashboard warning light flicker, belt slap, smoke. Frame 1 is earliest, frame ${images.length} is latest. The frames are NOT separate photos of separate parts — they're moments of the SAME scene.${audioTranscript ? `\n\nAUDIO TRANSCRIPT (Whisper) from the same clip: "${audioTranscript}"\nUse this as additional context — the user's spoken complaint correlates with what you should look for visually. If the transcript mentions a noise ("clicking", "grinding", "whining"), call that out in the summary and weight your part identification toward the likely source.` : ''}`
+  ? `INPUT MODE: VIDEO — you are seeing ${images.length} frames sampled evenly across a short video clip the user uploaded. Look across the frames for symptoms that change over time: rotor pulsing under braking, fluid drip, dashboard warning light flicker, belt slap, smoke. CRITICAL: a video does NOT let you see more detail than a photo — it just adds motion. If no symptom is clearly visible across the frames, report the area as normal. Do NOT invent a defect (e.g. a sidewall bulge, a leak) just because the input is a video; a healthy part must read "ok" whether it's a photo or a video of the same scene. Frame 1 is earliest, frame ${images.length} is latest. The frames are NOT separate photos of separate parts — they're moments of the SAME scene.${audioTranscript ? `\n\nAUDIO TRANSCRIPT (Whisper) from the same clip: "${audioTranscript}"\nUse this as additional context — the user's spoken complaint correlates with what you should look for visually. If the transcript mentions a noise ("clicking", "grinding", "whining"), call that out in the summary and weight your part identification toward the likely source.` : ''}`
   : images.length > 1
     ? `INPUT MODE: PHOTO — ${images.length} still photos of the SAME issue from DIFFERENT ANGLES/distances the user took to help you see it clearly. They are NOT separate parts or separate problems — combine what you see across all ${images.length} images into ONE diagnosis, using whichever angle shows each detail best (e.g. one shot for the part, another for the wear/leak). Cross-check the angles to raise your confidence.`
     : `INPUT MODE: PHOTO — single still image.`}
 
 User's typed description (may be empty): ${caption || '(none provided)'}
+
+DIAGNOSTIC HONESTY — THIS OVERRIDES EVERY INSTRUCTION BELOW:
+A photo shows APPEARANCE, not measurements. You are reporting only what is CLEARLY
+VISIBLE in the pixels — you are NOT a substitute for a hands-on inspection. A
+confident wrong call on a safety part (telling someone their good tires are bald,
+or inventing a sidewall bulge that isn't there) is a SERIOUS failure: it costs the
+user money, erodes trust, and is just as harmful as missing a real defect.
+- DEFAULT every part's condition to "ok" (or "info" for a mere ID like a badge).
+  Only use "warn"/"critical" when you can point to a SPECIFIC defect VISIBLE in the
+  image, and the "finding" MUST name that visible evidence (e.g. "cords showing
+  through tread", "pad ~2mm at backing plate", "sidewall visibly split"). If you
+  cannot describe the visible evidence, it is NOT warn/critical.
+- Do NOT infer a defect from the TYPE of part. A tire is not "worn" just because
+  it's a tire. If nothing looks wrong, say it looks serviceable.
+- Returning condition "ok" / urgency "monitor" with "No visible issues — looks
+  serviceable in these images" is a SUCCESS, not a failure. Say it often.
+- The SAME scene must read the same whether it's a photo or a video. Do not
+  escalate a finding just because the input is a video.
+
+TIRES & WHEELS — you usually CANNOT judge these from a photo, so be especially careful:
+- Tread / "needs replacement": only callable if wear bars are visibly FLUSH with the
+  tread, or cord/canvas shows, or the tread is obviously slick. Otherwise condition
+  "ok", finding "Tread looks serviceable — measure at the wear bars to be sure."
+  NEVER tell a user to replace tires you cannot SEE are worn out.
+- Sidewall bulge/bubble: only when the sidewall is CLEARLY deformed/distended in the
+  image. A normal curved sidewall is NOT a bulge. Do not invent one.
+- Dry rot, fender rubbing, alignment wear: only if the visible evidence is actually
+  in frame. Do not speculate.
 
 Your job:
 1. Identify what's visible in the photo — be specific (e.g., "driver-side LED projector headlight assembly with cracked lens" not just "headlight").
@@ -463,8 +491,8 @@ Your job:
      - searchQuery — brand + OEM number + name (e.g. 'Mopar 68249841AA front brake rotor'). The server will use this to construct vendor URLs. DO NOT generate URLs yourself.
      - notes for axle-pair rules, torque specs, anti-seize requirements
      - box — the part's location IN the photo as { "x", "y", "w", "h" } in PERCENTAGES of image width/height (0-100, origin top-left): the tightest box around the part. ONLY for parts visibleInPhoto:true. Be accurate — these draw pins on the user's actual photo, so a wrong box looks broken.
-     - condition — your read of THIS specific part: "ok" (healthy/good), "warn" (worn/aging/plan-ahead), "critical" (failed/unsafe — do not drive), or "info" (just identified, e.g. a trim badge, no condition judgment)
-     - finding — a SHORT condition phrase for the callout (≤7 words), e.g. "Pads healthy · no fluid weeping" or "~4/32\\" tread — plan ahead"
+     - condition — DEFAULT "ok". Use "warn"/"critical" ONLY with a visible defect you can name (see DIAGNOSTIC HONESTY above): "ok" (looks healthy/serviceable), "warn" (a VISIBLE early/aging defect), "critical" (a VISIBLE failure — do not drive), "info" (just identified, e.g. a trim badge). When unsure, "ok" or "info", never "warn".
+     - finding — a SHORT phrase for the callout (≤7 words). For "ok" describe what looks fine ("Pads healthy · no fluid weeping", "Tread looks serviceable"). For "warn"/"critical" it MUST name the visible evidence ("Cords showing through tread"). Do NOT state a measured value (e.g. "4/32\\" tread") you cannot actually measure from an image.
 5. Set primaryPartId to the id of the part the user most likely came for. For a wheel photo where the user might want any of rotor/pads/tire, pick the most expensive/important one (usually the rotor). The other identified parts stay in identifiedParts.
 6. Cross-reference the KNOWN ISSUES list above. If any identified part matches a documented issue for this vehicle, list the issue id in relatedKnownIssueIds.
 7. Difficulty: easy / medium / hard. Estimated DIY time. Safety warnings if any.
@@ -472,7 +500,7 @@ Your job:
      - "stop_driving" = safety-critical; driving risks a crash or major damage (bald/cord-showing tires, brake failure, steering/suspension separation, active fluid loss that strands or overheats, fire risk).
      - "fix_soon" = drivable carefully short-term but degrades or gets costly if ignored (worn-but-not-gone pads, a seeping leak, a failing-but-working component).
      - "monitor" = no immediate danger; address at next service (cosmetic, early wear, minor weep).
-   Be conservative: when in doubt between two levels, pick the MORE urgent one. Never downplay a genuine safety risk.
+   Base urgency on VISIBLE evidence, not on caution-as-default. If you cannot SEE a defect, urgency is "monitor" (or leave the part "ok"). Never downplay a genuine, visible safety risk — and never INVENT one "to be safe". A false "stop driving" on a healthy car is its own harm.
 
 EXAMPLE — user uploads a photo of a Challenger SRT front wheel showing rim, tire sidewall, lug nuts, brake caliper through spokes, and rotor face. identifiedParts should contain:
 - rotor (role:primary, category:rotor, OEM 68249841AA, searchQuery:'Mopar 68249841AA Challenger SRT front rotor', visibleInPhoto:true)
