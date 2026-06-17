@@ -38,6 +38,10 @@ export function DiagnoseCaptureSheet({
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [quality, setQuality] = useState<ImageQuality | null>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  // Optional crop box (display px, relative to the rendered image's top-left).
+  const [crop, setCrop] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
+  const dragRef = useRef<{ sx: number; sy: number } | null>(null);
 
   useEffect(() => () => { if (previewUrl) URL.revokeObjectURL(previewUrl); }, [previewUrl]);
   useEffect(() => {
@@ -51,15 +55,50 @@ export function DiagnoseCaptureSheet({
     setFile(f);
     setPreviewUrl(isPhoto ? URL.createObjectURL(f) : null);
     setQuality(null);
+    setCrop(null);
     // Photos: flag too-dark/blurry/small before the user diagnoses. (Video
     // quality is handled by best-frame selection at extraction time.)
     if (isPhoto) assessImageQuality(f).then(setQuality).catch(() => {});
   };
 
-  const diagnose = () => {
+  const diagnose = async () => {
     if (!file) return;
-    onSubmit(file);
+    let out = file;
+    const img = imgRef.current;
+    // If the user drew a crop box, send the cropped region — stripping the
+    // busy background measurably cuts the model's false calls and gives a
+    // cleaner component image (also a better consented-flywheel sample).
+    if (isPhoto && img && crop && crop.w > 12 && crop.h > 12) {
+      const cropped = await cropToFile(img, crop, file.name).catch(() => null);
+      if (cropped) out = cropped;
+    }
+    onSubmit(out);
     onClose();
+  };
+
+  // ── Drag-to-crop (pointer events = mouse + touch) ──
+  const onCropDown = (e: React.PointerEvent<HTMLImageElement>) => {
+    const img = imgRef.current;
+    if (!img) return;
+    e.preventDefault();
+    try { img.setPointerCapture(e.pointerId); } catch { /* */ }
+    const r = img.getBoundingClientRect();
+    dragRef.current = { sx: e.clientX - r.left, sy: e.clientY - r.top };
+    setCrop({ x: dragRef.current.sx, y: dragRef.current.sy, w: 0, h: 0 });
+  };
+  const onCropMove = (e: React.PointerEvent<HTMLImageElement>) => {
+    const img = imgRef.current;
+    if (!dragRef.current || !img) return;
+    const r = img.getBoundingClientRect();
+    const cx = Math.max(0, Math.min(r.width, e.clientX - r.left));
+    const cy = Math.max(0, Math.min(r.height, e.clientY - r.top));
+    const { sx, sy } = dragRef.current;
+    setCrop({ x: Math.min(sx, cx), y: Math.min(sy, cy), w: Math.abs(cx - sx), h: Math.abs(cy - sy) });
+  };
+  const onCropUp = () => {
+    dragRef.current = null;
+    // A tap (tiny drag) = no crop; clear it.
+    setCrop((c) => (c && (c.w < 12 || c.h < 12) ? null : c));
   };
 
   const tips = isPhoto
@@ -123,8 +162,34 @@ export function DiagnoseCaptureSheet({
         ) : (
           <>
             {isPhoto && previewUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={previewUrl} alt="preview" style={{ width: '100%', maxHeight: 320, objectFit: 'contain', borderRadius: 16, background: '#000', marginTop: 14 }} />
+              <div style={{ marginTop: 14 }}>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <div style={{ position: 'relative', touchAction: 'none', userSelect: 'none', lineHeight: 0 }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      ref={imgRef}
+                      src={previewUrl}
+                      alt="preview"
+                      draggable={false}
+                      onPointerDown={onCropDown}
+                      onPointerMove={onCropMove}
+                      onPointerUp={onCropUp}
+                      style={{ display: 'block', maxWidth: '100%', maxHeight: 320, width: 'auto', height: 'auto', borderRadius: 12, background: '#000', cursor: 'crosshair' }}
+                    />
+                    {crop && crop.w > 4 && crop.h > 4 && (
+                      <div style={{ position: 'absolute', left: crop.x, top: crop.y, width: crop.w, height: crop.h, border: `2px solid ${BLUE}`, boxShadow: '0 0 0 9999px rgba(0,0,0,0.34)', borderRadius: 4, pointerEvents: 'none' }} />
+                    )}
+                  </div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 7 }}>
+                  <span style={{ fontSize: 11.5, color: 'var(--slate-500, #64748B)' }}>
+                    {crop && crop.w > 12 ? 'Cropped to your selection' : 'Drag across the part to crop (optional)'}
+                  </span>
+                  {crop && crop.w > 12 && (
+                    <button type="button" onClick={() => setCrop(null)} style={{ fontSize: 12, fontWeight: 600, color: BLUE, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Clear</button>
+                  )}
+                </div>
+              </div>
             ) : (
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 14, borderRadius: 14, background: '#fff', border: '1px solid var(--paper-line, #E3DFD4)', marginTop: 14 }}>
                 <span style={{ fontSize: 22 }} aria-hidden>🎥</span>
@@ -142,7 +207,7 @@ export function DiagnoseCaptureSheet({
             <TipList tips={tips} />
             <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
               <button type="button"
-                onClick={() => { setFile(null); setQuality(null); if (previewUrl) { URL.revokeObjectURL(previewUrl); setPreviewUrl(null); } }}
+                onClick={() => { setFile(null); setQuality(null); setCrop(null); if (previewUrl) { URL.revokeObjectURL(previewUrl); setPreviewUrl(null); } }}
                 style={{ padding: '13px 16px', borderRadius: 12, border: '1px solid var(--paper-line, #E3DFD4)', background: '#fff', color: 'var(--ink, #0B1220)', fontSize: 14.5, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
                 Retake
               </button>
@@ -156,6 +221,33 @@ export function DiagnoseCaptureSheet({
       </div>
     </div>
   );
+}
+
+/** Crop an image element to the user's selection (display px → natural px). */
+async function cropToFile(
+  img: HTMLImageElement,
+  sel: { x: number; y: number; w: number; h: number },
+  name: string,
+): Promise<File | null> {
+  const r = img.getBoundingClientRect();
+  if (!r.width || !r.height) return null;
+  const scaleX = img.naturalWidth / r.width;
+  const scaleY = img.naturalHeight / r.height;
+  const sx = Math.max(0, Math.round(sel.x * scaleX));
+  const sy = Math.max(0, Math.round(sel.y * scaleY));
+  const sw = Math.min(img.naturalWidth - sx, Math.round(sel.w * scaleX));
+  const sh = Math.min(img.naturalHeight - sy, Math.round(sel.h * scaleY));
+  if (sw < 16 || sh < 16) return null;
+  const canvas = document.createElement('canvas');
+  canvas.width = sw;
+  canvas.height = sh;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return null;
+  ctx.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
+  const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.9));
+  if (!blob) return null;
+  const base = name.replace(/\.[^.]+$/, '');
+  return new File([blob], `${base}_crop.jpg`, { type: 'image/jpeg', lastModified: Date.now() });
 }
 
 function TipList({ tips }: { tips: string[] }) {
