@@ -10,6 +10,7 @@ import { vehicleSlug } from '@/lib/vehicle-slug';
 import { isNativeApp } from '@/lib/native-app';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
+import { DiagnoseCaptureSheet } from '@/components/vehicle/DiagnoseCaptureSheet';
 import { trackEvent } from '@/components/analytics/GoogleAnalytics';
 import { MaintenanceLogFlow } from '@/components/vehicle/MaintenanceLogFlow';
 import { MaintenanceUpgradeTile } from '@/components/vehicle/MaintenanceUpgradeTile';
@@ -1298,6 +1299,9 @@ function MobileHub({
   const taRef = useRef<HTMLTextAreaElement>(null);
   const photoInputRef = useRef<HTMLInputElement>(null);
   const videoInputRef = useRef<HTMLInputElement>(null);
+  // Designed capture sheet (mirrors /diagnose) — opened by the photo/video
+  // buttons instead of a bare file picker; feeds onPhotoUpload/onVideoUpload.
+  const [diagSheet, setDiagSheet] = useState<null | 'photo' | 'video'>(null);
   // Tap-to-expand for the greeting body. Starts collapsed (faded behind
   // the COMMON ISSUES card); tap reveals the full opener text.
   const [greetExpanded, setGreetExpanded] = useState(false);
@@ -1711,7 +1715,7 @@ function MobileHub({
           <button
             type="button"
             className="m-mic-btn"
-            onClick={() => { trackEvent('hub_photo_click', { source: 'composer' }); photoInputRef.current?.click(); }}
+            onClick={() => { trackEvent('hub_photo_click', { source: 'composer' }); setDiagSheet('photo'); }}
             disabled={pending || !onPhotoUpload}
             aria-label="Snap a photo of a part"
             title="Snap a photo of a part — AI returns the complete repair kit"
@@ -1721,7 +1725,7 @@ function MobileHub({
           <button
             type="button"
             className="m-mic-btn"
-            onClick={() => videoInputRef.current?.click()}
+            onClick={() => setDiagSheet('video')}
             disabled={pending || !onVideoUpload}
             aria-label="Record or upload a video for diagnosis"
             title="Record a short clip — AI sees frames + hears noises to diagnose"
@@ -1738,6 +1742,14 @@ function MobileHub({
             <Icon name="send" size={12} />
           </button>
         </div>
+
+        {diagSheet && (
+          <DiagnoseCaptureSheet
+            mode={diagSheet}
+            onClose={() => setDiagSheet(null)}
+            onSubmit={(f) => { (diagSheet === 'photo' ? onPhotoUpload : onVideoUpload)?.(f); }}
+          />
+        )}
 
         {/* Bottom nav removed — the chip strip above the composer
             (Maintenance / Recalls / Issues / Parts / Trip) already covers
@@ -3699,8 +3711,16 @@ const Composer = ({
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const videoInputRef = useRef<HTMLInputElement>(null);
+  const [diagSheet, setDiagSheet] = useState<null | 'photo' | 'video'>(null);
   return (
     <div className="composer-wrap">
+      {diagSheet && (
+        <DiagnoseCaptureSheet
+          mode={diagSheet}
+          onClose={() => setDiagSheet(null)}
+          onSubmit={(f) => { (diagSheet === 'photo' ? onPhotoUpload : onVideoUpload)?.(f); }}
+        />
+      )}
       <input
         ref={fileInputRef}
         type="file"
@@ -3754,7 +3774,7 @@ const Composer = ({
               className="comp-chip comp-chip-photo"
               type="button"
               disabled={pending || !onPhotoUpload}
-              onClick={() => { trackEvent('hub_photo_click', { source: 'chip' }); fileInputRef.current?.click(); }}
+              onClick={() => { trackEvent('hub_photo_click', { source: 'chip' }); setDiagSheet('photo'); }}
               title="Snap a photo of a part — AI returns the complete repair kit"
             >
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -3767,7 +3787,7 @@ const Composer = ({
               className="comp-chip comp-chip-video"
               type="button"
               disabled={pending || !onVideoUpload}
-              onClick={() => videoInputRef.current?.click()}
+              onClick={() => setDiagSheet('video')}
               title="Record a short clip — AI sees frames + hears noises to diagnose"
             >
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>
