@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import { assessImageQuality, type ImageQuality } from '@/lib/image-quality';
 
 const BLUE = 'var(--au7o-blue, #3B82F6)';
 
@@ -36,6 +37,7 @@ export function DiagnoseCaptureSheet({
   const libraryRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [quality, setQuality] = useState<ImageQuality | null>(null);
 
   useEffect(() => () => { if (previewUrl) URL.revokeObjectURL(previewUrl); }, [previewUrl]);
   useEffect(() => {
@@ -48,6 +50,10 @@ export function DiagnoseCaptureSheet({
     if (!f) return;
     setFile(f);
     setPreviewUrl(isPhoto ? URL.createObjectURL(f) : null);
+    setQuality(null);
+    // Photos: flag too-dark/blurry/small before the user diagnoses. (Video
+    // quality is handled by best-frame selection at extraction time.)
+    if (isPhoto) assessImageQuality(f).then(setQuality).catch(() => {});
   };
 
   const diagnose = () => {
@@ -128,10 +134,15 @@ export function DiagnoseCaptureSheet({
                 </div>
               </div>
             )}
+            {quality?.message && (
+              <div style={{ marginTop: 12, padding: '10px 12px', borderRadius: 12, background: '#FEF3C7', border: '1px solid #F59E0B', color: '#92400E', fontSize: 12.5, lineHeight: 1.45, display: 'flex', gap: 8 }}>
+                <span aria-hidden>⚠</span><span>{quality.message}</span>
+              </div>
+            )}
             <TipList tips={tips} />
             <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
               <button type="button"
-                onClick={() => { setFile(null); if (previewUrl) { URL.revokeObjectURL(previewUrl); setPreviewUrl(null); } }}
+                onClick={() => { setFile(null); setQuality(null); if (previewUrl) { URL.revokeObjectURL(previewUrl); setPreviewUrl(null); } }}
                 style={{ padding: '13px 16px', borderRadius: 12, border: '1px solid var(--paper-line, #E3DFD4)', background: '#fff', color: 'var(--ink, #0B1220)', fontSize: 14.5, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
                 Retake
               </button>
