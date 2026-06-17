@@ -32,6 +32,37 @@ import { MileageEditor } from '@/components/vehicle/MileageEditor';
 import { VehicleHero } from '@/components/vehicle/VehicleHero';
 
 /**
+ * Serialize a photo/video diagnosis into text the chat model can use as
+ * context. The hub stores a vision result on the message's `vision` field
+ * with EMPTY `content`, so without this the follow-up chat (/api/hub-chat)
+ * sees a blank turn and has no idea a part was just photographed — it ends
+ * up asking for a part number it could infer (Devon's coolant case: photo
+ * identified the coolant, then the follow-up asked him for the part number).
+ */
+function visionToContext(v: VisionResult): string {
+  const meta = v as VisionResult & {
+    identifiedParts?: Array<{ name: string; spec?: string; brand?: string; oemPartNumbers?: string[]; condition?: string; finding?: string }>;
+    urgency?: string;
+  };
+  const partLines: string[] = [];
+  for (const p of (meta.identifiedParts ?? []).slice(0, 8)) {
+    const bits = [p.name];
+    if (p.spec) bits.push(`(${p.spec})`);
+    const ids = [p.brand, ...(p.oemPartNumbers ?? [])].filter(Boolean).join(' ');
+    if (ids) bits.push(`[${ids}]`);
+    if (p.finding) bits.push(`— ${p.finding}`);
+    else if (p.condition) bits.push(`— ${p.condition}`);
+    partLines.push(bits.join(' '));
+  }
+  return [
+    '[The user just captured a photo/video that was analyzed — use this as context; do NOT ask them to re-describe it or give a part number you can infer from here.]',
+    v.summary ? `Diagnosis: ${v.summary}` : '',
+    partLines.length ? `Identified:\n- ${partLines.join('\n- ')}` : '',
+    meta.urgency ? `Urgency: ${meta.urgency}` : '',
+  ].filter(Boolean).join('\n');
+}
+
+/**
  * Conversation-first hub that lives at /vehicle/[slug]. The chat IS the
  * product — vehicle context lives in a slim left rail, and issues / recalls /
  * parts / Drive routes surface as rich attachments inside the conversation.
@@ -812,7 +843,7 @@ export function VehicleHub({
           },
           sessionId: sessionIdRef.current,
           messages: [
-            ...messages.map((m) => ({ role: m.role, content: m.content })),
+            ...messages.map((m) => ({ role: m.role, content: m.vision ? visionToContext(m.vision) : m.content })),
             { role: 'user' as const, content: trimmed },
           ],
           // Hand the assistant our exact KnownIssue titles so it can
