@@ -2,7 +2,9 @@
  * Client-side video processing for the multimodal /api/vision flow.
  *
  * The video-upload path sends:
- *   - 3-5 still frames sampled evenly across the clip → input_image
+ *   - N still frames, one per evenly-spaced slot, each the SHARPEST of a
+ *     few candidates in that slot (Laplacian-variance best-frame selection
+ *     drops motion-blurred frames that make the model hallucinate) → input_image
  *   - The audio track extracted and re-encoded → Whisper transcribes
  *     server-side → transcript injected into the gpt-5.5 prompt
  *
@@ -83,13 +85,35 @@ async function extractVideoFramesInner(
     stamps.push(Math.min(t, duration - 0.05));
   }
 
+  // Best-frame selection: for each evenly-spaced slot, sample a few
+  // candidate timestamps and keep ONLY the sharpest (highest Laplacian
+  // variance). A blurry frame is a leading cause of the vision model
+  // inventing defects (e.g. a "sidewall bulge" that isn't there), so
+  // dropping blur improves accuracy AND keeps token cost down (we encode
+  // only the winner per slot, not every candidate). Winners stay spread
+  // across the clip because each slot's candidates are local to it.
+  const CANDIDATES_PER_SLOT = 3;
+  const slotWindow = usableDuration / Math.max(1, frameCount);
   const frames: File[] = [];
   for (let i = 0; i < stamps.length; i++) {
-    try {
-      const frame = await captureFrameAt(video, stamps[i], i);
-      if (frame) frames.push(frame);
-    } catch {
-      /* skip individual frame failures, keep going */
+    let best: { canvas: HTMLCanvasElement; score: number } | null = null;
+    for (let k = 0; k < CANDIDATES_PER_SLOT; k++) {
+      const offset = (k - (CANDIDATES_PER_SLOT - 1) / 2) * (slotWindow / CANDIDATES_PER_SLOT);
+      const t = Math.min(Math.max(margin, stamps[i] + offset), duration - 0.05);
+      try {
+        const cand = await captureFrameCandidate(video, t);
+        if (cand && (!best || cand.score > best.score)) best = cand;
+      } catch {
+        /* skip individual candidate failures, keep going */
+      }
+    }
+    if (best) {
+      try {
+        const frame = await canvasToFile(best.canvas, i);
+        if (frame) frames.push(frame);
+      } catch {
+        /* skip encode failure */
+      }
     }
   }
 
@@ -181,7 +205,13 @@ function loadVideo(src: string): Promise<HTMLVideoElement> {
   });
 }
 
-async function captureFrameAt(video: HTMLVideoElement, t: number, idx: number): Promise<File | null> {
+/** Seek to t, draw the frame to a downscaled canvas, and score its
+ *  sharpness — WITHOUT encoding (encoding only the winning candidate
+ *  saves work). Returns the canvas + score, or null on failure. */
+async function captureFrameCandidate(
+  video: HTMLVideoElement,
+  t: number,
+): Promise<{ canvas: HTMLCanvasElement; score: number } | null> {
   await seekTo(video, t);
   const vw = video.videoWidth;
   const vh = video.videoHeight;
@@ -200,11 +230,47 @@ async function captureFrameAt(video: HTMLVideoElement, t: number, idx: number): 
   if (!ctx) return null;
   ctx.drawImage(video, 0, 0, dw, dh);
 
+  let score = 0;
+  try { score = laplacianVariance(ctx, dw, dh); } catch { score = 0; }
+  return { canvas, score };
+}
+
+/** Encode a chosen candidate canvas to a JPEG File for /api/vision. */
+async function canvasToFile(canvas: HTMLCanvasElement, idx: number): Promise<File | null> {
   const blob = await new Promise<Blob | null>((resolve) => {
     canvas.toBlob(resolve, 'image/jpeg', FRAME_JPEG_QUALITY);
   });
   if (!blob) return null;
   return new File([blob], `frame_${idx}.jpg`, { type: 'image/jpeg', lastModified: Date.now() });
+}
+
+/** Variance of the Laplacian — a standard, cheap focus/sharpness metric.
+ *  Higher = sharper (more high-frequency edge energy); a blurry frame
+ *  scores low. Computed on grayscale with a 4-neighbour Laplacian; a
+ *  pixel stride keeps it fast on big frames / low-end phones. */
+function laplacianVariance(ctx: CanvasRenderingContext2D, w: number, h: number): number {
+  if (w < 3 || h < 3) return 0;
+  const { data } = ctx.getImageData(0, 0, w, h);
+  const gray = new Float32Array(w * h);
+  for (let i = 0, p = 0; i < data.length; i += 4, p++) {
+    gray[p] = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+  }
+  const stride = Math.max(1, Math.floor(Math.max(w, h) / 512)); // cap work on huge frames
+  let sum = 0;
+  let sumSq = 0;
+  let n = 0;
+  for (let y = 1; y < h - 1; y += stride) {
+    for (let x = 1; x < w - 1; x += stride) {
+      const idx = y * w + x;
+      const lap = 4 * gray[idx] - gray[idx - 1] - gray[idx + 1] - gray[idx - w] - gray[idx + w];
+      sum += lap;
+      sumSq += lap * lap;
+      n++;
+    }
+  }
+  if (n === 0) return 0;
+  const mean = sum / n;
+  return sumSq / n - mean * mean;
 }
 
 function seekTo(video: HTMLVideoElement, t: number): Promise<void> {
