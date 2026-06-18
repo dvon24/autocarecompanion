@@ -4,7 +4,6 @@ import prisma from '@/lib/db';
 import {
   hubChatMinuteLimiter,
   getClientIp,
-  rateLimitResponse,
 } from '@/lib/rate-limit';
 import {
   checkAndConsumePhotoQuota,
@@ -129,7 +128,16 @@ export async function POST(request: NextRequest) {
   const burst = hubChatMinuteLimiter.check(ip);
   if (!burst.success) {
     vlog('burst_blocked');
-    return rateLimitResponse(burst.reset);
+    // Route through respond() so this carries x-au7o-req-id + the 'responded'
+    // log line, and ship a friendly, client-recognizable shape (gated:false,
+    // a message, Retry-After) instead of the raw {error:'Too many requests'}
+    // that fell into the client's generic "HTTP 429" dead-end.
+    return respond({
+      error: 'rate_limited',
+      message: "One moment — you're sending photos very fast. Try again in a few seconds.",
+      retryAfter: burst.reset,
+      gated: false,
+    }, { status: 429, headers: { 'Retry-After': String(burst.reset) } });
   }
 
   // Quota: anon = 1/mo per IP, free authed = 3/mo, Plus = 40/mo (the
@@ -403,6 +411,12 @@ ${lines.join('\n')}`;
         if (specs.engine) lines.push(`Engine: ${specs.engine}`);
         if (specs.oil) lines.push(`Oil: ${specs.oil.type}, filter ${specs.oil.filterPartNumber}`);
         if (specs.lug) lines.push(`Lug: ${specs.lug.size} ${specs.lug.useBolts ? 'bolts' : 'nuts'}, ${specs.lug.torque}`);
+        // Fluid specs — so a coolant/ATF/brake-fluid bottle photo can be
+        // matched against the SPEC this vehicle actually takes (the model was
+        // punting "what's the part number?" because it had nothing to compare).
+        if (specs.coolant?.type) lines.push(`Coolant: ${specs.coolant.type}`);
+        if (specs.brakeFluid?.type) lines.push(`Brake fluid: ${specs.brakeFluid.type}`);
+        if (specs.transmission?.type) lines.push(`Transmission fluid: ${specs.transmission.type}`);
         if (lines.length > 0) specsContext = `\n\nVEHICLE SPECS:\n${lines.join('\n')}`;
       }
 
@@ -477,6 +491,23 @@ TIRES & WHEELS — you usually CANNOT judge these from a photo, so be especially
 - Dry rot, fender rubbing, alignment wear: only if the visible evidence is actually
   in frame. Do not speculate.
 
+FLUIDS (coolant, oil, ATF, brake/power-steering/washer fluid) — when a fluid CONTAINER or
+fill point is the subject of the photo, this is a BUYABLE item, not a deferral:
+- READ THE LABEL: brand, product line, and the printed spec/standard (e.g. "Dex-Cool",
+  "OAT 50/50", "HOAT/G-05", "VW G13", "5W-30 full synthetic", "DOT 4", "ATF WS/Mercon LV").
+- Return it as a part: category "fluid", visibleInPhoto:true, role "primary" (the user wants
+  to buy/verify it). oemPartNumbers MUST be [] — fluids are bought by SPEC, not a part number;
+  an empty array here is EXPECTED, not a failure.
+- Put a concrete, buyable searchQuery of brand + product line + size, e.g.
+  "Prestone Dex-Cool 50/50 antifreeze 1 gallon" or "Valvoline 5W-30 full synthetic 5 quart".
+  If you can't read a brand, build the query from the SPEC the vehicle needs (see VEHICLE SPECS
+  above), e.g. "Toyota Super Long Life Coolant pink 1 gallon".
+- If the caption asks "is this the right X", COMPARE the label to the matching VEHICLE SPECS
+  line above and state in the summary whether it matches (e.g. "Yes — that's a Dex-Cool OAT
+  coolant, which is what your vehicle takes" or "That's a green IAT coolant, but your vehicle
+  needs Dex-Cool OAT — not a match").
+- NEVER ask the user for a part number for a fluid. Identify it by spec.
+
 Your job:
 1. Identify what's visible in the photo — be specific (e.g., "driver-side LED projector headlight assembly with cracked lens" not just "headlight").
 2. If the photo is NOT a car part or vehicle area, say so clearly — do not invent an answer. Set identifiedParts=[] and primaryPartId=null in that case.
@@ -508,6 +539,10 @@ Your job:
      - "fix_soon" = drivable carefully short-term but degrades or gets costly if ignored (worn-but-not-gone pads, a seeping leak, a failing-but-working component).
      - "monitor" = no immediate danger; address at next service (cosmetic, early wear, minor weep).
    Base urgency on VISIBLE evidence, not on caution-as-default. If you cannot SEE a defect, urgency is "monitor" (or leave the part "ok"). Never downplay a genuine, visible safety risk — and never INVENT one "to be safe". A false "stop driving" on a healthy car is its own harm.
+   CONSISTENCY: urgency must agree with the WORST part condition you reported. If ANY part is
+   "critical", urgency CANNOT be "monitor" — use "stop_driving", or "fix_soon" only if it's
+   genuinely drivable short-term. If any part is "warn", urgency is at least "fix_soon". A green
+   "monitor" verdict requires every part to be "ok"/"info".
 
 EXAMPLE — user uploads a photo of a Challenger SRT front wheel showing rim, tire sidewall, lug nuts, brake caliper through spokes, and rotor face. identifiedParts should contain:
 - rotor (role:primary, category:rotor, OEM 68249841AA, searchQuery:'Mopar 68249841AA Challenger SRT front rotor', visibleInPhoto:true)
@@ -766,13 +801,32 @@ ${respondLang !== 'English' ? `LANGUAGE — IMPORTANT: The user speaks ${respond
     'ignition','fuel_pump','alternator','starter','body_panel','trim','badge',
     'emblem','bracket','interior','accessory','tool','oem_specific','other',
   ]);
-  const rawParts: RawPart[] = Array.isArray(parsed.identifiedParts) ? parsed.identifiedParts as RawPart[] : [];
+  // Enforce the "non-car photo → no parts" invariant. The prompt asks the model
+  // to return identifiedParts=[] when isCarRelated is false, but it doesn't
+  // always comply; a stray speculative part would otherwise render a buyable
+  // card that contradicts the "not a vehicle part" summary.
+  const isCarRelated = parsed.isCarRelated !== false;
+  const rawParts: RawPart[] = (isCarRelated && Array.isArray(parsed.identifiedParts)) ? parsed.identifiedParts as RawPart[] : [];
+
+  // Map the model's condition to our 4-token enum, tolerating natural-language
+  // synonyms. A healthy part the model labels "good"/"serviceable" should still
+  // render as a green "ok" rather than being silently dropped to a neutral pin —
+  // that would undercut the honesty guardrail that makes "looks fine" a
+  // first-class, visible outcome.
+  const CONDITION_SYNONYMS: Record<string, 'ok' | 'warn' | 'critical' | 'info'> = {
+    ok: 'ok', good: 'ok', healthy: 'ok', serviceable: 'ok', normal: 'ok', fine: 'ok', pass: 'ok',
+    warn: 'warn', warning: 'warn', worn: 'warn', aging: 'warn', marginal: 'warn', caution: 'warn',
+    critical: 'critical', failed: 'critical', failure: 'critical', unsafe: 'critical', bad: 'critical',
+    info: 'info', identified: 'info', id: 'info', seen: 'info',
+  };
+  const normalizeCondition = (c: unknown): 'ok' | 'warn' | 'critical' | 'info' | undefined =>
+    CONDITION_SYNONYMS[String(c ?? '').toLowerCase().trim()] ?? undefined;
 
   // Normalize each part. Drop entries without a name.
   const normalizedParts = rawParts
     .filter((p) => typeof p?.name === 'string' && p.name.trim().length > 0)
     .slice(0, 12) // cap at 12 parts to bound response size
-    .map((p, i): Omit<IdentifiedPart, 'vendorLinks'> => {
+    .map((p, i): Omit<IdentifiedPart, 'vendorLinks'> & { searchQuery?: string } => {
       const role: PartRole = VALID_ROLES.has(p.role as PartRole) ? (p.role as PartRole) : 'primary';
       const category: PartCategory = VALID_CATS.has(p.category as PartCategory) ? (p.category as PartCategory) : 'other';
       const oemNums = Array.isArray(p.oemPartNumbers)
@@ -810,11 +864,13 @@ ${respondLang !== 'English' ? `LANGUAGE — IMPORTANT: The user speaks ${respond
               h: Math.max(1, Math.min(100, p.box.h)),
             }
           : undefined,
-        condition: ['ok', 'warn', 'critical', 'info'].includes(String(p.condition)) ? (p.condition as 'ok' | 'warn' | 'critical' | 'info') : undefined,
+        condition: normalizeCondition(p.condition),
         finding: typeof p.finding === 'string' ? p.finding.slice(0, 120) : undefined,
-        // searchQuery is consumed by the resolver — store on a side
-        // channel via a hidden field so attachVendorLinks can read it.
-        // We don't include it in the public IdentifiedPart type.
+        // Carry the model's purpose-built retailer query through to the resolver.
+        // (This was previously dropped — a "side channel" the code never actually
+        // wired up — so fluid/badge links fell back to the bare part name. The
+        // resolver reads this and prefers it over [brand, oem, name].)
+        searchQuery: typeof p.searchQuery === 'string' && p.searchQuery.trim() ? p.searchQuery.trim() : undefined,
       };
     });
 
@@ -849,12 +905,24 @@ ${respondLang !== 'English' ? `LANGUAGE — IMPORTANT: The user speaks ${respond
     identifiedParts = linkedParts;
   }
 
+  // Vehicle mismatch: when the model flags the photo as likely from a DIFFERENT
+  // vehicle than the one the user is viewing, don't hand them buy-it-now links
+  // for wrong-fitment parts. Keep the parts for identification but strip the
+  // vendor links (the card shows a "switch vehicle before buying" banner above).
+  const isLikelyMismatch = String(parsed.vehicleMatch || '').toLowerCase() === 'likely_mismatch';
+  if (isLikelyMismatch) {
+    identifiedParts = identifiedParts.map((p) => ({ ...p, vendorLinks: [] }));
+  }
+
   // Resolve primaryPartId: prefer the model's value, fall back to the
-  // first role='primary' part. Null when no parts identified.
+  // first role='primary' part. Null when no parts identified — and always
+  // null on a likely mismatch (don't auto-promote a wrong-vehicle part).
   const modelPrimaryId = typeof parsed.primaryPartId === 'string' ? parsed.primaryPartId : null;
-  const primaryPartId: string | null = modelPrimaryId && identifiedParts.some((p) => p.id === modelPrimaryId)
-    ? modelPrimaryId
-    : (identifiedParts.find((p) => p.role === 'primary')?.id ?? null);
+  const primaryPartId: string | null = isLikelyMismatch
+    ? null
+    : (modelPrimaryId && identifiedParts.some((p) => p.id === modelPrimaryId)
+      ? modelPrimaryId
+      : (identifiedParts.find((p) => p.role === 'primary')?.id ?? null));
 
   // ─── Legacy projection ────────────────────────────────────────────
   // Existing VisionResultCard v1 reads primaryPart + kitItems +
@@ -906,7 +974,7 @@ ${respondLang !== 'English' ? `LANGUAGE — IMPORTANT: The user speaks ${respond
     multiPhotoCapped,
     summary: String(parsed.summary || ''),
     confidence: typeof parsed.confidence === 'number' ? parsed.confidence : 0.5,
-    isCarRelated: parsed.isCarRelated !== false,
+    isCarRelated,
     vehicleMatch: (validVehicleMatch.includes(vehicleMatchRaw) ? vehicleMatchRaw : 'uncertain') as 'confident' | 'uncertain' | 'likely_mismatch',
     vehicleMatchNote: String(parsed.vehicleMatchNote || '').slice(0, 300),
     identifiedParts,

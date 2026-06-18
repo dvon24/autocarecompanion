@@ -215,6 +215,36 @@ export function SnapDiagnoseClient() {
       </div>
     );
   }
+  // ERROR — previously this stage had no render branch and fell through to the
+  // dark camera view, where nothing matches 'error': the user got a near-black
+  // screen with no message and no way forward but closing to '/'. Now we show
+  // the error inline with a Try again (re-submits the still-captured photo, no
+  // recapture) and Retake, mirroring the desktop flow.
+  if (stage === 'error') {
+    return (
+      <div style={{ minHeight: '100dvh', background: 'var(--paper, #F7F6F2)', padding: '20px 16px 40px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {photo && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={photo.url} alt="" style={{ width: 120, height: 120, objectFit: 'cover', borderRadius: 14, border: '1px solid var(--paper-line, #E3DFD4)', marginBottom: 16 }} />
+        )}
+        <div style={{ maxWidth: 440, width: '100%', background: '#fff', border: '1px solid var(--paper-line, #E3DFD4)', borderRadius: 16, padding: '18px 18px 20px', textAlign: 'center' }}>
+          <div style={{ fontSize: 30, lineHeight: 1, marginBottom: 8 }} aria-hidden>⚠️</div>
+          <div style={{ fontSize: 15.5, fontWeight: 700, color: 'var(--ink, #0B1220)', marginBottom: 6 }}>That didn&apos;t go through</div>
+          <p style={{ fontSize: 13.5, color: 'var(--slate-600, #475569)', lineHeight: 1.5, margin: '0 0 16px' }}>
+            {error || 'Something went wrong. Try again — it usually works on a retry.'}
+          </p>
+          <button type="button" onClick={submit} disabled={!photo}
+            style={{ width: '100%', padding: '13px 0', background: BLUE, color: '#fff', border: 'none', borderRadius: 12, fontSize: 15, fontWeight: 600, cursor: photo ? 'pointer' : 'default', fontFamily: 'inherit', opacity: photo ? 1 : 0.5 }}>
+            Try again
+          </button>
+          <button type="button" onClick={retake}
+            style={{ width: '100%', padding: '11px 0 0', background: 'transparent', border: 'none', fontSize: 13.5, color: 'var(--slate-500, #64748B)', cursor: 'pointer', fontFamily: 'inherit' }}>
+            {t.retake}
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   // ════════ CAMERA / CONFIRM / ANALYZING (dark, full-screen) ════════
   return (

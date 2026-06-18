@@ -285,7 +285,7 @@ export function VehicleHub({
   // Image preview URL is created client-side from the File so the
   // result card can show what the user uploaded — the server never
   // echoes images back (zero-storage privacy posture).
-  const handlePhotoUpload = useCallback(async (file: File) => {
+  const handlePhotoUpload = useCallback(async (file: File, caption?: string) => {
     if (!file || pending) return;
     if (file.size > 25 * 1024 * 1024) {
       setMessages((prev) => [
@@ -331,7 +331,7 @@ export function VehicleHub({
     setMessages((prev) => {
       const next = [
         ...prev,
-        { role: 'user' as const, content: '📷 Uploaded a photo for analysis', timestamp: Date.now() },
+        { role: 'user' as const, content: caption && caption.trim() ? `📷 ${caption.trim()}` : '📷 Uploaded a photo for analysis', timestamp: Date.now() },
         { role: 'assistant' as const, content: 'Analyzing your photo…', timestamp: Date.now() },
       ];
       placeholderIdx = next.length - 1;
@@ -351,6 +351,9 @@ export function VehicleHub({
       // Localize the diagnosis to the user's browser language (parity with
       // the /diagnose flows; the API maps `lang` → a LANGUAGE prompt block).
       if (typeof navigator !== 'undefined' && navigator.language) formData.append('lang', navigator.language);
+      // The user's question (e.g. "is this the right coolant?") becomes the
+      // model's literal user turn — parity with the /diagnose caption box.
+      if (caption && caption.trim()) formData.append('caption', caption.trim());
 
       // 75s client-side timeout. The server caps OpenAI at 55s and the
       // Vercel function dies at 60s, so 75s leaves a buffer for upload
@@ -490,7 +493,7 @@ export function VehicleHub({
   // Video upload — extracts frames + audio client-side, uploads to the
   // SAME /api/vision endpoint via the frames[] + audio multipart fields.
   // Server-side mode is implicit from which form fields are present.
-  const handleVideoUpload = useCallback(async (file: File) => {
+  const handleVideoUpload = useCallback(async (file: File, caption?: string) => {
     if (!file || pending) return;
     if (file.size > 200 * 1024 * 1024) {
       setMessages((prev) => [
@@ -509,7 +512,7 @@ export function VehicleHub({
     setMessages((prev) => {
       const next = [
         ...prev,
-        { role: 'user' as const, content: '🎥 Uploaded a video for diagnosis', timestamp: Date.now() },
+        { role: 'user' as const, content: caption && caption.trim() ? `🎥 ${caption.trim()}` : '🎥 Uploaded a video for diagnosis', timestamp: Date.now() },
         { role: 'assistant' as const, content: 'Extracting frames + audio…', timestamp: Date.now() },
       ];
       placeholderIdx = next.length - 1;
@@ -552,6 +555,7 @@ export function VehicleHub({
         year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim || '',
       }));
       if (typeof navigator !== 'undefined' && navigator.language) formData.append('lang', navigator.language);
+      if (caption && caption.trim()) formData.append('caption', caption.trim());
 
       // Update placeholder copy so the user knows we moved on from extraction.
       setMessages((prev) => {
@@ -1319,8 +1323,8 @@ function MobileHub({
   onOpenThreads: () => void;
   onCloseThreads: () => void;
   onSelectThread?: (threadId: string) => void;
-  onPhotoUpload?: (file: File) => void;
-  onVideoUpload?: (file: File) => void;
+  onPhotoUpload?: (file: File, caption?: string) => void;
+  onVideoUpload?: (file: File, caption?: string) => void;
   loggableVehicleId?: string | null;
   canLogMaintenance?: boolean;
   onLogged?: () => void;
@@ -1778,7 +1782,7 @@ function MobileHub({
           <DiagnoseCaptureSheet
             mode={diagSheet}
             onClose={() => setDiagSheet(null)}
-            onSubmit={(f) => { (diagSheet === 'photo' ? onPhotoUpload : onVideoUpload)?.(f); }}
+            onSubmit={(f, note) => { (diagSheet === 'photo' ? onPhotoUpload : onVideoUpload)?.(f, note); }}
           />
         )}
 
@@ -3735,8 +3739,8 @@ const Composer = ({
   value: string;
   onChange: (v: string) => void;
   onSend: () => void;
-  onPhotoUpload?: (file: File) => void;
-  onVideoUpload?: (file: File) => void;
+  onPhotoUpload?: (file: File, caption?: string) => void;
+  onVideoUpload?: (file: File, caption?: string) => void;
   pending: boolean;
   isAuthed: boolean;
 }) => {

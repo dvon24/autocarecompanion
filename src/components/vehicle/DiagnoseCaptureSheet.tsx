@@ -30,12 +30,16 @@ export function DiagnoseCaptureSheet({
   mode: Mode;
   vehicleLabel?: string;
   onClose: () => void;
-  onSubmit: (file: File) => void;
+  onSubmit: (file: File, caption?: string) => void;
 }) {
   const isPhoto = mode === 'photo';
   const cameraRef = useRef<HTMLInputElement>(null);
   const libraryRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
+  // Optional question/note — the model uses this as the literal user turn
+  // ("is this the right coolant?"). Without it the hub sent a generic "what is
+  // this" with zero intent, which is what made the coolant photo fall flat.
+  const [note, setNote] = useState('');
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [quality, setQuality] = useState<ImageQuality | null>(null);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -72,7 +76,7 @@ export function DiagnoseCaptureSheet({
       const cropped = await cropToFile(img, crop, file.name).catch(() => null);
       if (cropped) out = cropped;
     }
-    onSubmit(out);
+    onSubmit(out, note.trim() || undefined);
     onClose();
   };
 
@@ -204,18 +208,44 @@ export function DiagnoseCaptureSheet({
                 <span aria-hidden>⚠</span><span>{quality.message}</span>
               </div>
             )}
+            {/* Optional question — the API uses it as the literal user turn, so
+                "is this the right coolant?" actually reaches the model. */}
+            <textarea
+              value={note}
+              onChange={(e) => setNote(e.target.value.slice(0, 300))}
+              rows={2}
+              placeholder={isPhoto ? 'Optional — ask a question (e.g. “is this the right coolant?”)' : 'Optional — what should I listen or look for?'}
+              style={{ width: '100%', marginTop: 12, padding: '10px 12px', borderRadius: 12, border: '1px solid var(--paper-line, #E3DFD4)', background: '#fff', color: 'var(--ink, #0B1220)', fontSize: 13.5, fontFamily: 'inherit', lineHeight: 1.45, resize: 'none', outline: 'none', boxSizing: 'border-box' }}
+            />
             <TipList tips={tips} />
-            <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
-              <button type="button"
-                onClick={() => { setFile(null); setQuality(null); setCrop(null); if (previewUrl) { URL.revokeObjectURL(previewUrl); setPreviewUrl(null); } }}
-                style={{ padding: '13px 16px', borderRadius: 12, border: '1px solid var(--paper-line, #E3DFD4)', background: '#fff', color: 'var(--ink, #0B1220)', fontSize: 14.5, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
-                Retake
-              </button>
-              <button type="button" onClick={diagnose}
-                style={{ flex: 1, padding: '13px', borderRadius: 12, border: 'none', background: BLUE, color: '#fff', fontSize: 14.5, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>
-                Diagnose this →
-              </button>
-            </div>
+            {/* Sticky action bar so the CTA never scrolls off a short phone once
+                preview + caption + tips stack up. On a low-quality photo, emphasis
+                flips to Retake (Diagnose stays available as "Diagnose anyway"). */}
+            {(() => {
+              const badQuality = !!(isPhoto && quality && quality.level !== 'ok');
+              const retakeBtn = (
+                <button type="button" key="retake"
+                  onClick={() => { setFile(null); setQuality(null); setCrop(null); setNote(''); if (previewUrl) { URL.revokeObjectURL(previewUrl); setPreviewUrl(null); } }}
+                  style={badQuality
+                    ? { flex: 1, padding: '13px', borderRadius: 12, border: 'none', background: BLUE, color: '#fff', fontSize: 14.5, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }
+                    : { padding: '13px 16px', borderRadius: 12, border: '1px solid var(--paper-line, #E3DFD4)', background: '#fff', color: 'var(--ink, #0B1220)', fontSize: 14.5, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
+                  Retake
+                </button>
+              );
+              const goBtn = (
+                <button type="button" key="go" onClick={diagnose}
+                  style={badQuality
+                    ? { padding: '13px 16px', borderRadius: 12, border: '1px solid var(--paper-line, #E3DFD4)', background: '#fff', color: 'var(--ink, #0B1220)', fontSize: 14.5, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }
+                    : { flex: 1, padding: '13px', borderRadius: 12, border: 'none', background: BLUE, color: '#fff', fontSize: 14.5, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>
+                  {badQuality ? 'Diagnose anyway' : 'Diagnose this →'}
+                </button>
+              );
+              return (
+                <div style={{ position: 'sticky', bottom: 0, display: 'flex', gap: 10, marginTop: 14, paddingTop: 12, paddingBottom: 2, marginLeft: -16, marginRight: -16, paddingLeft: 16, paddingRight: 16, background: 'var(--paper, #F7F6F2)', borderTop: '1px solid var(--paper-line, #E3DFD4)' }}>
+                  {badQuality ? <>{goBtn}{retakeBtn}</> : <>{retakeBtn}{goBtn}</>}
+                </div>
+              );
+            })()}
           </>
         )}
       </div>

@@ -83,7 +83,10 @@ function pickCandidateVendors(category: PartCategory, make: string | undefined):
     set.add('ebay_motors');
   }
 
-  const skipAmazonCats: PartCategory[] = ['tire', 'wheel', 'tpms'];
+  // tire/wheel are big-ticket Tire Rack items where Amazon isn't the right
+  // backstop; a TPMS SENSOR, though, is a small electronic part real parts
+  // retailers (Amazon/RockAuto/AutoZone) stock — so it keeps the Amazon backstop.
+  const skipAmazonCats: PartCategory[] = ['tire', 'wheel'];
   if (!skipAmazonCats.includes(category)) set.add('amazon');
 
   // Make-specialist filter — vendors with bestForMakes set only
@@ -115,8 +118,10 @@ function applyPriorityRules(candidates: VendorKey[], input: ResolveInput): Vendo
     const cfg = VENDORS[v];
     if (!cfg) return -1;
     let s = 0;
-    // Tires → Tire Rack always wins.
-    if ((cat === 'tire' || cat === 'wheel' || cat === 'tpms') && v === 'tire_rack') s += 100;
+    // Tires/wheels → Tire Rack always wins. (A standalone TPMS sensor is NOT a
+    // tire — let RockAuto/Amazon win its primary slot so the user lands on a
+    // real sensor PDP, not a generic Tire Rack page.)
+    if ((cat === 'tire' || cat === 'wheel') && v === 'tire_rack') s += 100;
     // OEM-specific + we have a part number → OEM specialist wins.
     if (hasOemNumber && ['oem_specific', 'body_panel', 'trim', 'badge', 'bracket', 'interior', 'emblem'].includes(cat)) {
       if (v === oemSpecialistForMake(input.vehicle?.make)) s += 100;
@@ -295,10 +300,10 @@ function isDeepLink(cfg: VendorConfig, input: ResolveInput): boolean {
  * vendorLinks) and populate vendorLinks on each.
  */
 export function attachVendorLinks(
-  parts: Array<Omit<IdentifiedPart, 'vendorLinks'>>,
+  parts: Array<Omit<IdentifiedPart, 'vendorLinks'> & { searchQuery?: string }>,
   vehicle: ResolveInput['vehicle'],
 ): IdentifiedPart[] {
-  return parts.map((p) => ({
+  return parts.map(({ searchQuery, ...p }) => ({
     ...p,
     vendorLinks: resolveVendorLinks({
       category: p.category,
@@ -307,6 +312,11 @@ export function attachVendorLinks(
       name: p.name,
       brand: p.brand,
       spec: p.spec,
+      // The model's purpose-built retailer query (size for tires, exact fluid
+      // spec for coolant, OEM+context for brakes). resolveQuery prefers this
+      // over the [brand, oem, name] fallback — critical for fluids/badges that
+      // have no OEM number. Previously dropped on the floor.
+      searchQuery,
       vehicle,
     }),
   }));

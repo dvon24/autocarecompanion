@@ -323,17 +323,27 @@ async function extractAudio(file: File): Promise<File | null> {
     // decodeAudioData with the iOS/Safari signature (returns a promise
     // on modern browsers, accepts callbacks on older). We pass a sliced
     // ArrayBuffer because some implementations consume it in-place.
-    const audioBuffer = await new Promise<AudioBuffer>((resolve, reject) => {
-      try {
-        const maybePromise = ctx.decodeAudioData(arrayBuffer.slice(0), resolve, reject);
-        if (maybePromise && typeof (maybePromise as Promise<AudioBuffer>).then === 'function') {
-          (maybePromise as Promise<AudioBuffer>).then(resolve).catch(reject);
+    // Race the decode against a hard timeout. A hung decodeAudioData (the
+    // iPhone HEVC MOV failure mode this function was written for) must NOT take
+    // the whole extraction down with it — on timeout we resolve null and the
+    // caller proceeds frames-only with audioOk:false, instead of the entire
+    // clip's frames being thrown away by the 45s overall race.
+    const decoded = await Promise.race<AudioBuffer | null>([
+      new Promise<AudioBuffer>((resolve, reject) => {
+        try {
+          const maybePromise = ctx.decodeAudioData(arrayBuffer.slice(0), resolve, reject);
+          if (maybePromise && typeof (maybePromise as Promise<AudioBuffer>).then === 'function') {
+            (maybePromise as Promise<AudioBuffer>).then(resolve).catch(reject);
+          }
+        } catch (err) {
+          reject(err);
         }
-      } catch (err) {
-        reject(err);
-      }
-    });
+      }),
+      new Promise<null>((resolve) => setTimeout(() => resolve(null), AUDIO_CAPTURE_TIMEOUT_MS)),
+    ]);
     try { await ctx.close(); } catch { /* */ }
+    if (!decoded) return null;
+    const audioBuffer = decoded;
 
     if (audioBuffer.duration < 0.3) return null;
 
@@ -341,7 +351,14 @@ async function extractAudio(file: File): Promise<File | null> {
     // Downmix multi-channel to mono by averaging samples.
     const targetSampleRate = 16_000;
     const ratio = audioBuffer.sampleRate / targetSampleRate;
-    const outLen = Math.floor(audioBuffer.length / ratio);
+    // Cap the transcript window to the SAME span the frames cover
+    // (MAX_VIDEO_SECONDS) — no point transcribing 2 minutes of audio when the
+    // visual analysis only sees the first 30s. Bounds the WAV (~1MB) and keeps
+    // upload + Whisper well under their timeouts.
+    const outLen = Math.min(
+      Math.floor(audioBuffer.length / ratio),
+      MAX_VIDEO_SECONDS * targetSampleRate,
+    );
     const mono = new Float32Array(outLen);
     const channels = audioBuffer.numberOfChannels;
     const channelData: Float32Array[] = [];

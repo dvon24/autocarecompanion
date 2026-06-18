@@ -69,7 +69,7 @@ export const VENDORS: Record<VendorKey, VendorConfig> = {
     partNumberSupport: 'native',
     bestForCategories: [
       'brake_pad', 'rotor', 'caliper', 'filter', 'fluid', 'suspension',
-      'ignition', 'belt', 'hose', 'sensor', 'alternator', 'starter',
+      'ignition', 'belt', 'hose', 'sensor', 'tpms', 'alternator', 'starter',
       'fuel_pump', 'spark_plug',
     ],
     affiliateProgram: 'none',
@@ -93,7 +93,7 @@ export const VENDORS: Record<VendorKey, VendorConfig> = {
     partNumberSupport: 'searchable',
     bestForCategories: [
       'brake_pad', 'rotor', 'battery', 'filter', 'fluid', 'wiper',
-      'bulb', 'spark_plug', 'alternator', 'starter', 'belt',
+      'bulb', 'spark_plug', 'sensor', 'tpms', 'alternator', 'starter', 'belt',
     ],
     affiliateProgram: 'none',
     rationale: 'Same-day in-store pickup nationwide',
