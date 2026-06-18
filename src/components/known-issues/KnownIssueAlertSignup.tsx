@@ -19,6 +19,7 @@ export function KnownIssueAlertSignup({
   context,
   headline,
   blurb,
+  onDone,
 }: {
   /** Used in the success line ("new <vehicleName> findings"). For non-vehicle
    *  pages pass the subject (e.g. a make "Toyota" or a code "P0420"). */
@@ -28,6 +29,8 @@ export function KnownIssueAlertSignup({
   headline?: string;
   /** Override the supporting line. */
   blurb?: string;
+  /** Called after a successful capture (the popup uses it to auto-close). */
+  onDone?: () => void;
 }) {
   const heading = headline ?? `Stay ahead of ${vehicleName} problems`;
   const sub = blurb ?? `Get a free email the moment we add a new recall or known issue for your ${vehicleName}. No account needed.`;
@@ -49,7 +52,9 @@ export function KnownIssueAlertSignup({
       });
       if (res.ok) {
         setState('done');
+        try { localStorage.setItem('au7o.alertCapture', 'done'); } catch { /* private mode */ }
         try { trackEvent('lead_capture', { context }); } catch { /* analytics best-effort */ }
+        onDone?.();
       } else {
         setState('error');
       }

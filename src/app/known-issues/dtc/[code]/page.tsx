@@ -1,5 +1,6 @@
 import { ConfirmWithPhotoCTA } from '@/components/diagnose/ConfirmWithPhotoCTA';
 import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
+import { AlertSignupPopup } from '@/components/known-issues/AlertSignupPopup';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -655,6 +656,12 @@ export default async function DTCCodePage({
                 blurb={`We add new causes, fixes and affected vehicles for ${data.code} regularly — drop your email and we'll keep you posted. You can also diagnose your own car free.`}
               />
             </div>
+            <AlertSignupPopup
+              vehicleName={data.code}
+              context={`dtc:${data.code}`}
+              headline={`Get notified about ${data.code} fixes`}
+              blurb={`We add new causes, fixes and affected vehicles for ${data.code} regularly — drop your email and we'll keep you posted.`}
+            />
 
             {/* AI disclaimer */}
             <div className="flex items-start gap-2 py-3">

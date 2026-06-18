@@ -1,5 +1,6 @@
 import { ConfirmWithPhotoCTA } from '@/components/diagnose/ConfirmWithPhotoCTA';
 import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
+import { AlertSignupPopup } from '@/components/known-issues/AlertSignupPopup';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -435,6 +436,7 @@ export default async function MakeLandingPage({
         <div className="mb-8">
           <KnownIssueAlertSignup vehicleName={make} context={`make:${make}`} />
         </div>
+        <AlertSignupPopup vehicleName={make} context={`make:${make}`} />
 
         {/* Cross-site sitemap for deep-link visitors. */}
         <SiteFooter />

@@ -24,6 +24,7 @@ import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/component
 import { ShareButtons } from '@/components/shared/ShareButtons';
 import { OpenHubLink } from '@/components/known-issues/OpenHubLink';
 import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
+import { AlertSignupPopup } from '@/components/known-issues/AlertSignupPopup';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
@@ -652,6 +653,7 @@ export default async function KnownIssuesArticlePage({
             <div className="mb-8">
               <KnownIssueAlertSignup vehicleName={`${make} ${model}`} context={`known-issues:${make} ${model}`} />
             </div>
+            <AlertSignupPopup vehicleName={`${make} ${model}`} context={`known-issues:${make} ${model}`} />
 
             {/* Fallthrough CTA — simplified */}
             <div className="text-center py-8 border-t border-[#E3DFD4]">
