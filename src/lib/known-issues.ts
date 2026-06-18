@@ -313,6 +313,30 @@ function isGenericEngineToken(token: string): boolean {
   return false;
 }
 
+// Corporate-family groups — sibling brands that genuinely share platforms,
+// engines, and defects (so a cross-MAKE "also affects" between them is a real
+// link even when the `engines` field is too sparse to prove it). A Hemi issue
+// linking Dodge↔Chrysler↔RAM is right; Dodge↔Acura is not (different families).
+const MAKE_GROUP: Record<string, string> = {
+  dodge: 'stellantis', chrysler: 'stellantis', jeep: 'stellantis', ram: 'stellantis', 'ram trucks': 'stellantis', fiat: 'stellantis', 'alfa romeo': 'stellantis', maserati: 'stellantis', lancia: 'stellantis', plymouth: 'stellantis',
+  chevrolet: 'gm', chevy: 'gm', gmc: 'gm', cadillac: 'gm', buick: 'gm', pontiac: 'gm', saturn: 'gm', oldsmobile: 'gm', hummer: 'gm',
+  ford: 'ford', lincoln: 'ford', mercury: 'ford',
+  volkswagen: 'vw', vw: 'vw', audi: 'vw', porsche: 'vw', seat: 'vw', skoda: 'vw', 'škoda': 'vw', bentley: 'vw', lamborghini: 'vw', bugatti: 'vw', cupra: 'vw',
+  toyota: 'toyota', lexus: 'toyota', scion: 'toyota', daihatsu: 'toyota',
+  honda: 'honda', acura: 'honda',
+  nissan: 'nissan', infiniti: 'nissan', datsun: 'nissan',
+  hyundai: 'hyundai', kia: 'hyundai', genesis: 'hyundai',
+  bmw: 'bmw', mini: 'bmw', 'rolls-royce': 'bmw',
+  'mercedes-benz': 'mercedes', mercedes: 'mercedes', smart: 'mercedes', maybach: 'mercedes',
+  jaguar: 'jlr', 'land rover': 'jlr',
+  volvo: 'geely', polestar: 'geely', lotus: 'geely', 'lynk & co': 'geely',
+};
+function sameCorporateFamily(a: string, b: string): boolean {
+  const ga = MAKE_GROUP[a.toLowerCase().trim()];
+  const gb = MAKE_GROUP[b.toLowerCase().trim()];
+  return !!ga && ga === gb;
+}
+
 /**
  * For each issue on the current page, find up to N OTHER vehicles whose
  * own KnownIssue records share EITHER a DTC code OR a canonical engine
@@ -450,9 +474,13 @@ export async function findRelatedVehiclesForIssues(
       const semantic = issueSemanticIds.has(c.id);
       const sameMake = c.make.toLowerCase() === excludeMake.toLowerCase();
 
-      if (sharedSpecificEngine) return true; // real mechanical link across makes
+      if (sharedSpecificEngine) return true; // real engine platform — valid across any make
       if (sameMake && (sharedDtc || semantic || !!sharedEngineToken)) return true; // intra-brand
-      return false; // cross-make generic-DTC / generic-engine / semantic-only → not a real link
+      // Sibling brands (Stellantis, VW Group, Nissan/Infiniti, JLR…) genuinely
+      // share platforms — keep ANY shared signal (incl. a semantic neighbor)
+      // even when `engines` is too sparse to prove a specific family.
+      if (sameCorporateFamily(c.make, excludeMake) && (sharedDtc || semantic || !!sharedEngineToken)) return true;
+      return false; // cross-FAMILY generic-DTC / generic-engine / semantic-only → not a real link
     });
 
     matched.sort((a, b) => {
