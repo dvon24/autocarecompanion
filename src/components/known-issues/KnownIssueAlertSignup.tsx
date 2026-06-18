@@ -17,10 +17,20 @@ import { trackEvent } from '@/components/analytics/GoogleAnalytics';
 export function KnownIssueAlertSignup({
   vehicleName,
   context,
+  headline,
+  blurb,
 }: {
+  /** Used in the success line ("new <vehicleName> findings"). For non-vehicle
+   *  pages pass the subject (e.g. a make "Toyota" or a code "P0420"). */
   vehicleName: string;
   context: string;
+  /** Override the headline (defaults to vehicle framing). */
+  headline?: string;
+  /** Override the supporting line. */
+  blurb?: string;
 }) {
+  const heading = headline ?? `Stay ahead of ${vehicleName} problems`;
+  const sub = blurb ?? `Get a free email the moment we add a new recall or known issue for your ${vehicleName}. No account needed.`;
   const [email, setEmail] = useState('');
   const [state, setState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
 
@@ -72,10 +82,10 @@ export function KnownIssueAlertSignup({
         </span>
         <div style={{ minWidth: 0 }}>
           <div style={{ fontSize: 15.5, fontWeight: 700, color: '#0B1220', letterSpacing: '-0.01em' }}>
-            Stay ahead of {vehicleName} problems
+            {heading}
           </div>
           <div style={{ fontSize: 13, color: '#475569', lineHeight: 1.5, marginTop: 2 }}>
-            Get a free email the moment we add a new recall or known issue for your {vehicleName}. No account needed.
+            {sub}
           </div>
         </div>
       </div>
