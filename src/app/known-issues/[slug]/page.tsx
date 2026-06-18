@@ -23,6 +23,7 @@ import FutureModelYearNotice from '@/components/known-issues/FutureModelYearNoti
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
 import { OpenHubLink } from '@/components/known-issues/OpenHubLink';
+import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
@@ -644,6 +645,13 @@ export default async function KnownIssuesArticlePage({
                 </details>
               </div>
             )}
+
+            {/* Soft-conversion: low-friction vehicle-specific email alert
+                capture (no account). Turns the ~99% who won't sign up or run
+                a diagnosis on a first visit into a remarketable lead. */}
+            <div className="mb-8">
+              <KnownIssueAlertSignup vehicleName={`${make} ${model}`} context={`known-issues:${make} ${model}`} />
+            </div>
 
             {/* Fallthrough CTA — simplified */}
             <div className="text-center py-8 border-t border-[#E3DFD4]">

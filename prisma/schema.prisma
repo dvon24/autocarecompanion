@@ -653,6 +653,10 @@ model DiagnosisSample {
 model InterestEmail {
   id        String   @id @default(cuid())
   email     String
+  // What the lead asked to be alerted about, e.g. "known-issues:chevrolet-camaro"
+  // or "diagnose". Lets us send vehicle-specific recall/issue alerts (the hook
+  // that makes the capture convert) instead of a generic list.
+  context   String?
   createdAt DateTime @default(now())
 
   @@index([createdAt])

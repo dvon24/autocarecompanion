@@ -6,7 +6,7 @@ import { prisma } from '@/lib/db';
 // lost (2026-06-11 review finding). Now a DB row.
 export async function POST(request: NextRequest) {
   try {
-    const { email } = await request.json();
+    const { email, context } = await request.json();
 
     if (!email || typeof email !== 'string' || !email.includes('@') || email.length > 320) {
       return NextResponse.json(
@@ -15,7 +15,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    await prisma.interestEmail.create({ data: { email: email.trim().toLowerCase() } });
+    const ctx = typeof context === 'string' ? context.slice(0, 120) : null;
+    await prisma.interestEmail.create({ data: { email: email.trim().toLowerCase(), context: ctx } });
 
     return NextResponse.json({ success: true });
   } catch (error) {
