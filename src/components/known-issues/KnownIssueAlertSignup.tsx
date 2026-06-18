@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackEvent } from '@/components/analytics/GoogleAnalytics';
 
 /**
  * Low-friction soft-conversion for the known-issues pages: an EMAIL-ONLY
@@ -36,7 +37,12 @@ export function KnownIssueAlertSignup({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email.trim(), context }),
       });
-      setState(res.ok ? 'done' : 'error');
+      if (res.ok) {
+        setState('done');
+        try { trackEvent('lead_capture', { context }); } catch { /* analytics best-effort */ }
+      } else {
+        setState('error');
+      }
     } catch {
       setState('error');
     }
