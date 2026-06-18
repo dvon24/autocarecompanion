@@ -290,6 +290,29 @@ export interface RelatedIssueVehicle {
   title: string;
 }
 
+// Engine tokens too generic to be a real cross-MAKE mechanical link. "5.7L
+// Hemi" / "B58" / "EA888" / "Coyote" are specific engine families; "2.0L turbo"
+// / "V6" / "3.5L" are coincidences unrelated makes share. Used by
+// findRelatedVehiclesForIssues so a Hemi-specific defect never cross-links to a
+// non-Hemi vehicle just because both list a generic displacement.
+const GENERIC_ENGINE_TOKENS = new Set([
+  'v4', 'v6', 'v8', 'v10', 'v12', 'i3', 'i4', 'i5', 'i6', 'l4', 'l6',
+  'inline-4', 'inline-6', 'inline 4', 'inline 6', 'flat-4', 'flat-6', 'boxer',
+  '3-cylinder', '4-cylinder', '5-cylinder', '6-cylinder', '8-cylinder',
+  'turbo', 'twin-turbo', 'supercharged', 'diesel', 'hybrid', 'phev', 'ev',
+  'electric', 'gas', 'gasoline', 'petrol', 'naturally aspirated', 'na',
+]);
+function isGenericEngineToken(token: string): boolean {
+  const t = token.toLowerCase().trim();
+  if (!t) return true;
+  if (GENERIC_ENGINE_TOKENS.has(t)) return true;
+  // Pure displacement / displacement+layout with NO family name:
+  // "2.0l", "2.0", "2.0t", "2.0l turbo", "3.5l v6", "5.0 v8", "1.5l tsi".
+  // A token like "5.7l hemi" has a family word, fails this, and counts as specific.
+  if (/^\d(\.\d)?\s*l?(\s*(turbo|t|tdi|tsi|tfsi|v\d{1,2}|i\d|l\d|diesel|hybrid|na))?$/.test(t)) return true;
+  return false;
+}
+
 /**
  * For each issue on the current page, find up to N OTHER vehicles whose
  * own KnownIssue records share EITHER a DTC code OR a canonical engine
@@ -409,11 +432,27 @@ export async function findRelatedVehiclesForIssues(
     const issueSemanticIds = new Set(((issue as any).relatedIssueIds || []) as string[]);
     if (issueDtcs.size === 0 && issueEngs.size === 0 && issueSemanticIds.size === 0) continue;
 
+    // Mechanical-compatibility gate (2026-06-18). A shared GENERIC DTC (P0300
+    // misfire, P0420 cat) or a fuzzy embedding neighbor ("MDS" tick ↔ "MDX")
+    // is NOT a real mechanical link — that's how a HEMI/MDS lifter tick leaked
+    // onto an Acura MDX / Audi Q7, vehicles that don't even have a Hemi. Rule:
+    //   • a SPECIFIC shared engine family (hemi, ea888, b58, coyote…) is a real
+    //     cross-make link → keep (Hemi across Dodge/Chrysler/Jeep/RAM, etc.);
+    //   • within the SAME make, a shared DTC/engine/semantic neighbor is a
+    //     reasonable intra-brand spread → keep;
+    //   • a CROSS-make match on only a generic DTC, a generic engine, or a
+    //     semantic neighbor → DROP. Better to show fewer "also affects" than a
+    //     mechanically impossible one.
     const matched = candidates.filter((c) => {
-      if (c.dtcCodes.some((d) => issueDtcs.has(d.toUpperCase()))) return true;
-      if (c.engines.some((e) => issueEngs.has(e.toLowerCase()))) return true;
-      if (issueSemanticIds.has(c.id)) return true;
-      return false;
+      const sharedDtc = c.dtcCodes.some((d) => issueDtcs.has(d.toUpperCase()));
+      const sharedEngineToken = c.engines.find((e) => issueEngs.has(e.toLowerCase()));
+      const sharedSpecificEngine = !!sharedEngineToken && !isGenericEngineToken(sharedEngineToken);
+      const semantic = issueSemanticIds.has(c.id);
+      const sameMake = c.make.toLowerCase() === excludeMake.toLowerCase();
+
+      if (sharedSpecificEngine) return true; // real mechanical link across makes
+      if (sameMake && (sharedDtc || semantic || !!sharedEngineToken)) return true; // intra-brand
+      return false; // cross-make generic-DTC / generic-engine / semantic-only → not a real link
     });
 
     matched.sort((a, b) => {
