@@ -173,9 +173,12 @@ export function DiagnoseCaptureSheet({
         <div style={{ width: 36, height: 4, borderRadius: 999, background: 'var(--paper-line, #E3DFD4)', margin: '0 auto 12px' }} />
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <h2 style={{ fontSize: 18, fontWeight: 700, letterSpacing: '-0.02em', margin: 0, color: 'var(--ink, #0B1220)' }}>
-            {isPhoto ? 'Diagnose with a photo' : 'Diagnose with a video'}
-          </h2>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+            <h2 style={{ fontSize: 18, fontWeight: 700, letterSpacing: '-0.02em', margin: 0, color: 'var(--ink, #0B1220)' }}>
+              {isPhoto ? 'Diagnose with a photo' : 'Diagnose with a video'}
+            </h2>
+            <span style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: '0.06em', padding: '2px 6px', borderRadius: 6, background: '#EDE9FE', color: '#6D28D9' }}>BETA</span>
+          </div>
           <button type="button" onClick={onClose} aria-label="Close"
             style={{ width: 30, height: 30, borderRadius: 999, border: '1px solid var(--paper-line, #E3DFD4)', background: '#fff', color: 'var(--slate-500, #64748B)', fontSize: 15, cursor: 'pointer', lineHeight: 1 }}>✕</button>
         </div>

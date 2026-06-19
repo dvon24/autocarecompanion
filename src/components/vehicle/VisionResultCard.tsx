@@ -356,6 +356,7 @@ export function VisionResultCard({ vision }: { vision: VisionResult }) {
           <div className="vr-eyebrow">
             <span className="vr-dot" aria-hidden />
             AU7O VISION · {confidencePct}% CONFIDENT
+            <span style={{ fontSize: 8.5, fontWeight: 700, letterSpacing: '0.06em', padding: '1px 5px', borderRadius: 5, background: '#EDE9FE', color: '#6D28D9' }}>BETA</span>
           </div>
           <div className="vr-summary">{vision.summary}</div>
           {isUncertain && vision.vehicleMatchNote && (
@@ -675,6 +676,7 @@ function VisionResultCardV2({ vision }: { vision: VisionResult }) {
             {vision.mode === 'video' ? 'AU7O VIDEO' : 'AU7O VISION'} · {confidencePct}%
             {vision.mode === 'video' && vision.framesAnalyzed ? ` · ${vision.framesAnalyzed} FRAMES` : ''}
             {` · ${parts.length} ${parts.length === 1 ? 'PART' : 'PARTS'}`}
+            <span style={{ fontSize: 8.5, fontWeight: 700, letterSpacing: '0.06em', padding: '1px 5px', borderRadius: 5, background: '#EDE9FE', color: '#6D28D9' }}>BETA</span>
           </div>
           <div className="vr-summary">{vision.summary}</div>
           {vision.transcript && vision.transcript.trim().length > 0 && (

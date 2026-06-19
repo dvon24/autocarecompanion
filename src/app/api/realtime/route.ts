@@ -61,17 +61,27 @@ export async function POST(request: NextRequest) {
   } catch { /* body optional */ }
 
   try {
-    const r = await fetch('https://api.openai.com/v1/realtime/sessions', {
+    // Realtime GA endpoint + nested session schema (the beta /sessions endpoint
+    // + flat body were removed May 2026). voice → audio.output; turn_detection +
+    // transcription → audio.input; modalities → output_modalities.
+    const r = await fetch('https://api.openai.com/v1/realtime/client_secrets', {
       method: 'POST',
       headers: { Authorization: `Bearer ${OPENAI_KEY}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: REALTIME_MODEL,
-        voice: REALTIME_VOICE,
-        modalities: ['audio', 'text'],
-        instructions: buildInstructions(vehicle),
-        // Server-side VAD: the model auto-responds when the user stops talking.
-        turn_detection: { type: 'server_vad', threshold: 0.5, prefix_padding_ms: 300, silence_duration_ms: 600 },
-        input_audio_transcription: { model: 'whisper-1' },
+        session: {
+          type: 'realtime',
+          model: REALTIME_MODEL,
+          instructions: buildInstructions(vehicle),
+          output_modalities: ['audio', 'text'],
+          audio: {
+            input: {
+              transcription: { model: 'whisper-1' },
+              // Server-side VAD: the model auto-responds when the user stops talking.
+              turn_detection: { type: 'server_vad', threshold: 0.5, prefix_padding_ms: 300, silence_duration_ms: 600 },
+            },
+            output: { voice: REALTIME_VOICE },
+          },
+        },
       }),
       signal: AbortSignal.timeout(15_000),
     });
@@ -81,13 +91,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'mint_failed', message: 'Could not start a voice session. Try again.', upstreamStatus: r.status }, { status: 502 });
     }
     const data = await r.json();
-    const clientSecret = data?.client_secret?.value;
+    // GA returns the ephemeral token at the ROOT (data.value), not nested under
+    // client_secret like the old beta /sessions response did.
+    const clientSecret = data?.value;
     if (!clientSecret) {
       return NextResponse.json({ error: 'mint_failed', message: 'Voice session returned no token.' }, { status: 502 });
     }
     return NextResponse.json({
       client_secret: clientSecret,
-      expires_at: data?.client_secret?.expires_at ?? null,
+      expires_at: data?.expires_at ?? null,
       model: REALTIME_MODEL,
     });
   } catch (err) {

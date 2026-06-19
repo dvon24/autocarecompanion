@@ -77,10 +77,10 @@ export function VoiceMechanic({
     if (type === 'input_audio_buffer.speech_started') {
       setSpeaking(false);
       sendFrame();
-    } else if (type === 'response.audio_transcript.delta') {
+    } else if (type === 'response.output_audio_transcript.delta' || type === 'response.audio_transcript.delta') {
       asstLineRef.current += String((msg as { delta?: string }).delta || '');
       setSpeaking(true);
-    } else if (type === 'response.audio_transcript.done') {
+    } else if (type === 'response.output_audio_transcript.done' || type === 'response.audio_transcript.done') {
       const text = asstLineRef.current.trim();
       asstLineRef.current = '';
       setSpeaking(false);
@@ -130,7 +130,9 @@ export function VoiceMechanic({
       // 5. SDP offer → OpenAI → answer.
       const offer = await pc.createOffer();
       await pc.setLocalDescription(offer);
-      const sdpRes = await fetch(`https://api.openai.com/v1/realtime?model=${encodeURIComponent(tok.model)}`, {
+      // GA WebRTC endpoint: /v1/realtime/calls, no ?model= (the model is baked
+      // into the ephemeral token's session), no OpenAI-Beta header.
+      const sdpRes = await fetch('https://api.openai.com/v1/realtime/calls', {
         method: 'POST',
         body: offer.sdp,
         headers: { Authorization: `Bearer ${tok.client_secret}`, 'Content-Type': 'application/sdp' },
