@@ -8,6 +8,20 @@ const BLUE = 'var(--au7o-blue, #3B82F6)';
 
 type Mode = 'photo' | 'video';
 
+// Part-aware capture coaching. Picking "what are you showing me?" swaps in shot
+// guidance for that part — and for the parts where a real measurement is
+// possible, the scale-reference nudge (the cheap Depth Phase 1 unlock: a coin or
+// card in frame lets the model give a real size/tread reading).
+const SUBJECTS: Array<{ key: string; label: string; emoji: string; tips: string[]; scaleHint?: string }> = [
+  { key: 'tire', label: 'Tire', emoji: '🛞', tips: ['Shoot straight into the tread', 'Fill the frame with the tread blocks', 'Even light, no glare'], scaleHint: 'For a real tread-depth reading, stand a quarter upside-down in the deepest groove and shoot straight in.' },
+  { key: 'brakes', label: 'Brakes', emoji: '🛑', tips: ['Shoot the rotor face + pad edge through the spokes', 'Get close — fill the frame', 'A second angle helps'], scaleHint: 'Lay a coin flat next to the pad — it lets me gauge how much friction material is left.' },
+  { key: 'leak', label: 'Leak', emoji: '💧', tips: ['Wide shot of WHERE it’s dripping from', 'Then a close-up of the wet spot + fluid color', 'Wipe it and recheck to see if it’s active'] },
+  { key: 'fluid', label: 'Fluid bottle', emoji: '🧴', tips: ['Fill the frame with the label', 'Capture the brand + the spec/standard text', 'Ask “is this the right one?” below'] },
+  { key: 'dent', label: 'Dent / body', emoji: '🚗', tips: ['One straight-on shot + one raking-light angle', 'Fill the frame with the damage'], scaleHint: 'Hold a credit card flat next to it for a real size estimate.' },
+  { key: 'light', label: 'Dash light', emoji: '⚠️', tips: ['Photograph the lit dash cluster', 'Engine running so the light stays on', 'Hold steady — no motion blur'] },
+  { key: 'engine', label: 'Engine bay', emoji: '🔧', tips: ['Wide shot first, then the specific area', 'Point at the part you’re worried about', 'Engine off + cool for close-ups'] },
+];
+
 /**
  * Designed capture sheet for the vehicle hub.
  *
@@ -40,6 +54,9 @@ export function DiagnoseCaptureSheet({
   // ("is this the right coolant?"). Without it the hub sent a generic "what is
   // this" with zero intent, which is what made the coolant photo fall flat.
   const [note, setNote] = useState('');
+  // "What are you showing me?" — drives part-specific shot coaching + the
+  // scale-reference nudge. Optional; null = generic tips.
+  const [subject, setSubject] = useState<string | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [quality, setQuality] = useState<ImageQuality | null>(null);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -76,7 +93,11 @@ export function DiagnoseCaptureSheet({
       const cropped = await cropToFile(img, crop, file.name).catch(() => null);
       if (cropped) out = cropped;
     }
-    onSubmit(out, note.trim() || undefined);
+    // Fold the picked subject into the caption so the model gets the user's
+    // intent ("[Showing: Tire]") on top of any typed question.
+    const sd = subject ? SUBJECTS.find((s) => s.key === subject) : null;
+    const caption = [sd ? `[Showing: ${sd.label}]` : '', note.trim()].filter(Boolean).join(' ');
+    onSubmit(out, caption || undefined);
     onClose();
   };
 
@@ -105,9 +126,12 @@ export function DiagnoseCaptureSheet({
     setCrop((c) => (c && (c.w < 12 || c.h < 12) ? null : c));
   };
 
-  const tips = isPhoto
-    ? ['Get close — fill the frame with the part', 'Even lighting, no harsh glare', 'One issue at a time', 'A second angle raises confidence']
-    : ['Keep it short (5–15s)', 'Pan slowly around the area', 'Let it run if there’s a noise to hear', 'Steady hands — avoid motion blur'];
+  const subjectDef = subject ? SUBJECTS.find((s) => s.key === subject) || null : null;
+  const tips = !isPhoto
+    ? ['Keep it short (5–15s)', 'Pan slowly around the area', 'Let it run if there’s a noise to hear', 'Steady hands — avoid motion blur']
+    : subjectDef
+      ? subjectDef.tips
+      : ['Get close — fill the frame with the part', 'Even lighting, no harsh glare', 'One issue at a time', 'A second angle raises confidence'];
 
   return (
     <div
@@ -139,6 +163,24 @@ export function DiagnoseCaptureSheet({
 
         {!file ? (
           <>
+            {isPhoto && (
+              <div style={{ marginTop: 12 }}>
+                <div style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--slate-600, #475569)', marginBottom: 7 }}>
+                  What are you showing me? <span style={{ color: 'var(--slate-400, #94A3B8)', fontWeight: 500 }}>(optional — tailors the shot tips)</span>
+                </div>
+                <div style={{ display: 'flex', gap: 7, overflowX: 'auto', paddingBottom: 2 }}>
+                  {SUBJECTS.map((s) => {
+                    const on = s.key === subject;
+                    return (
+                      <button key={s.key} type="button" onClick={() => setSubject(on ? null : s.key)}
+                        style={{ flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: 5, padding: '7px 12px', borderRadius: 999, cursor: 'pointer', fontFamily: 'inherit', fontSize: 12.5, fontWeight: 600, whiteSpace: 'nowrap', background: on ? '#0B1220' : '#fff', color: on ? '#fff' : 'var(--slate-700, #334155)', border: `1px solid ${on ? '#0B1220' : 'var(--paper-line, #E3DFD4)'}` }}>
+                        <span aria-hidden>{s.emoji}</span>{s.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
             <button type="button" onClick={() => cameraRef.current?.click()}
               style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3', borderRadius: 16, border: 'none', background: 'var(--paper-2, #EFEDE6)', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, marginTop: 14 }}>
               {(['tl', 'tr', 'bl', 'br'] as const).map((p) => <Corner key={p} pos={p} />)}
@@ -206,6 +248,13 @@ export function DiagnoseCaptureSheet({
             {quality?.message && (
               <div style={{ marginTop: 12, padding: '10px 12px', borderRadius: 12, background: '#FEF3C7', border: '1px solid #F59E0B', color: '#92400E', fontSize: 12.5, lineHeight: 1.45, display: 'flex', gap: 8 }}>
                 <span aria-hidden>⚠</span><span>{quality.message}</span>
+              </div>
+            )}
+            {/* Scale-reference nudge — the cheap "real measurement" unlock. Only
+                shows for parts where a coin/card gives the model a true ruler. */}
+            {isPhoto && subjectDef?.scaleHint && (
+              <div style={{ marginTop: 12, padding: '10px 12px', borderRadius: 12, background: '#EFF6FF', border: '1px solid #BFDBFE', color: '#1E3A8A', fontSize: 12.5, lineHeight: 1.45, display: 'flex', gap: 8 }}>
+                <span aria-hidden>📐</span><span>{subjectDef.scaleHint}</span>
               </div>
             )}
             {/* Optional question — the API uses it as the literal user turn, so
