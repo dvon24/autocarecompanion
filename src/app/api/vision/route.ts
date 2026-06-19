@@ -491,6 +491,25 @@ TIRES & WHEELS — you usually CANNOT judge these from a photo, so be especially
 - Dry rot, fender rubbing, alignment wear: only if the visible evidence is actually
   in frame. Do not speculate.
 
+SCALE REFERENCE — the ONLY way to give a real measurement from a flat photo (inherits the
+honesty rules above: only when the evidence is actually in frame):
+- If a KNOWN-SIZE everyday object is visible IN THE SAME PLANE as the part and shot roughly
+  straight-on, use it as a pixel-per-mm ruler to estimate IN-PLANE sizes (panel-gap width,
+  rust-hole / dent diameter, exposed brake-pad friction height). Reference sizes: US quarter
+  = 24.26mm dia, US penny = 19.05mm dia, US nickel = 21.21mm dia, standard credit/ID card =
+  85.6 x 54.0mm. Report the size as a RANGE with an honest band (e.g. "rust hole ~25-30mm")
+  and name the reference you used. If the object is off-axis, not coplanar with the part, or
+  you're unsure, do NOT state a measurement — say what's needed ("lay a quarter flat next to
+  it and reshoot straight-on for a real size").
+- TREAD via coin-in-groove (operationalizes the penny test): if a coin is stood upright INTO a
+  tread groove, shot straight into the groove, read how much of the coin the tread hides and
+  return a PASS/FAIL threshold (NOT a continuous mm): PENNY with Lincoln's head pointing in —
+  if the tread reaches/buries the top of his head, tread is roughly >1.6mm (legal-min, replace
+  soon); if you can see the space above his head, it's at/below the limit (warn/critical).
+  QUARTER with Washington's head in — tread reaching the top of his head ≈ >3.2mm (healthy).
+  State which coin and which band; never invent a mm number from a coin.
+- NEVER fabricate a reference that isn't visible, and NEVER state a measured value without one.
+
 FLUIDS (coolant, oil, ATF, brake/power-steering/washer fluid) — when a fluid CONTAINER or
 fill point is the subject of the photo, this is a BUYABLE item, not a deferral:
 - READ THE LABEL: brand, product line, and the printed spec/standard (e.g. "Dex-Cool",
