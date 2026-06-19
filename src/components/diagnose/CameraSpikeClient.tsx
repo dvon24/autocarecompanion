@@ -30,6 +30,18 @@ const MODEL_URL = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/
 const WASM_URL = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm';
 const DETECTOR_MODEL = 'https://storage.googleapis.com/mediapipe-models/object_detector/efficientdet_lite0/float16/1/efficientdet_lite0.tflite';
 
+const MAX_RECORD_SECS = 15; // auto-stop the in-app recorder at 15s
+
+// Pick a MediaRecorder mime the browser actually supports (iOS Safari prefers
+// mp4; Chrome/Android prefer webm). Empty string lets the browser choose.
+function pickRecordMime(): string {
+  const candidates = ['video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm'];
+  for (const c of candidates) {
+    try { if (typeof MediaRecorder !== 'undefined' && MediaRecorder.isTypeSupported(c)) return c; } catch { /* */ }
+  }
+  return '';
+}
+
 export function CameraSpikeClient() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLCanvasElement>(null);
@@ -48,6 +60,17 @@ export function CameraSpikeClient() {
   const [framed, setFramed] = useState(false);
   const [captured, setCaptured] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  // In-app video recorder (the true countdown the native camera can't show).
+  const [recording, setRecording] = useState(false);
+  const [recordSecs, setRecordSecs] = useState(0);
+  const [recordedUrl, setRecordedUrl] = useState<string | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const mediaRecorderRef = useRef<any>(null);
+  const recordChunksRef = useRef<BlobPart[]>([]);
+  const recordTimerRef = useRef<number>(0);
+  // Press-and-hold gesture: tap = photo, hold (>350ms) = record video.
+  const holdTimerRef = useRef<number>(0);
+  const heldRef = useRef(false);
 
   // ── lazy-load the on-device detector (best-effort) ──
   const loadDetector = useCallback(async () => {
@@ -220,7 +243,54 @@ export function CameraSpikeClient() {
     setCaptured(c.toDataURL('image/jpeg', 0.9));
   }, []);
 
-  useEffect(() => () => stop(), [stop]);
+  const stopRecording = useCallback(() => {
+    try { mediaRecorderRef.current?.stop(); } catch { /* */ }
+  }, []);
+
+  const startRecording = useCallback(() => {
+    const stream = streamRef.current;
+    if (!stream || typeof MediaRecorder === 'undefined') { setErr('Recording isn\'t supported on this browser.'); return; }
+    try {
+      recordChunksRef.current = [];
+      const mime = pickRecordMime();
+      const mr = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream);
+      mediaRecorderRef.current = mr;
+      mr.ondataavailable = (e: BlobEvent) => { if (e.data && e.data.size > 0) recordChunksRef.current.push(e.data); };
+      mr.onstop = () => {
+        window.clearInterval(recordTimerRef.current);
+        const blob = new Blob(recordChunksRef.current, { type: mr.mimeType || 'video/webm' });
+        setRecordedUrl(URL.createObjectURL(blob));
+        setRecording(false);
+      };
+      mr.start();
+      setRecording(true);
+      setRecordSecs(0);
+      const t0 = performance.now();
+      recordTimerRef.current = window.setInterval(() => {
+        const secs = (performance.now() - t0) / 1000;
+        setRecordSecs(secs);
+        if (secs >= MAX_RECORD_SECS) stopRecording(); // auto-stop at 15s
+      }, 100);
+    } catch {
+      setErr('Could not start recording.');
+    }
+  }, [stopRecording]);
+
+  // Shutter press-and-hold: hold past 350ms → start recording; a quick tap →
+  // photo. Release (or 15s auto-stop) ends the recording.
+  const onShutterDown = useCallback((e: React.PointerEvent) => {
+    try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* */ }
+    heldRef.current = false;
+    holdTimerRef.current = window.setTimeout(() => { heldRef.current = true; startRecording(); }, 350);
+  }, [startRecording]);
+  const onShutterUp = useCallback(() => {
+    window.clearTimeout(holdTimerRef.current);
+    if (heldRef.current) stopRecording();
+    else capture();
+    heldRef.current = false;
+  }, [stopRecording, capture]);
+
+  useEffect(() => () => { stop(); window.clearInterval(recordTimerRef.current); window.clearTimeout(holdTimerRef.current); }, [stop]);
 
   return (
     <div style={{ position: 'fixed', inset: 0, background: '#0B0E14', color: '#fff', fontFamily: 'system-ui, sans-serif', overflow: 'hidden' }}>
@@ -254,13 +324,37 @@ export function CameraSpikeClient() {
             </span>
           </div>
 
+          {/* recording progress bar + countdown */}
+          {recording && (
+            <>
+              <div style={{ position: 'absolute', top: 0, left: 0, height: 4, width: `${Math.min(100, (recordSecs / MAX_RECORD_SECS) * 100)}%`, background: '#EF4444', transition: 'width 0.1s linear', zIndex: 7 }} />
+              <div style={{ position: 'absolute', top: 54, left: 0, right: 0, display: 'flex', justifyContent: 'center', zIndex: 7 }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '8px 14px', borderRadius: 999, background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(8px)' }}>
+                  <span style={{ width: 9, height: 9, borderRadius: '50%', background: '#EF4444', animation: 'au7oRecBlink 1s steps(2) infinite' }} />
+                  <span style={{ fontSize: 14, fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>0:{String(Math.min(MAX_RECORD_SECS, Math.floor(recordSecs))).padStart(2, '0')}</span>
+                  <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)' }}>/ 0:{MAX_RECORD_SECS}</span>
+                </div>
+              </div>
+              <style>{`@keyframes au7oRecBlink { 0%,50%{opacity:1} 51%,100%{opacity:0.15} }`}</style>
+            </>
+          )}
+
           {/* bottom controls */}
-          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '20px 0 30px', background: 'linear-gradient(180deg, transparent, rgba(11,14,20,0.9) 45%)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 34 }}>
-            <button type="button" onClick={stop} style={{ position: 'absolute', left: 24, bottom: 40, fontSize: 13, color: 'rgba(255,255,255,0.7)', background: 'none', border: 'none', cursor: 'pointer' }}>Close</button>
-            <button type="button" onClick={capture} aria-label="Capture"
-              style={{ width: 78, height: 78, borderRadius: '50%', background: 'transparent', border: `4px solid ${framed ? '#10B981' : '#fff'}`, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'border-color 0.15s' }}>
-              <span style={{ width: 62, height: 62, borderRadius: '50%', background: framed ? '#10B981' : '#fff' }} />
-            </button>
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '20px 0 30px', background: 'linear-gradient(180deg, transparent, rgba(11,14,20,0.9) 45%)' }}>
+            <button type="button" onClick={() => { stopRecording(); stop(); }} style={{ position: 'absolute', left: 24, bottom: 40, fontSize: 13, color: 'rgba(255,255,255,0.7)', background: 'none', border: 'none', cursor: 'pointer' }}>Close</button>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+              <button type="button"
+                onPointerDown={onShutterDown}
+                onPointerUp={onShutterUp}
+                onPointerCancel={onShutterUp}
+                aria-label="Tap for photo, hold to record video"
+                style={{ width: 82, height: 82, borderRadius: '50%', background: 'transparent', border: `4px solid ${recording ? '#EF4444' : framed ? '#10B981' : '#fff'}`, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'border-color 0.15s', touchAction: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}>
+                <span style={{ width: recording ? 32 : 64, height: recording ? 32 : 64, borderRadius: recording ? 8 : '50%', background: recording ? '#EF4444' : framed ? '#10B981' : '#fff', transition: 'width 0.15s, height 0.15s, border-radius 0.15s' }} />
+              </button>
+              <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.72)', fontWeight: 500 }}>
+                {recording ? 'Recording… release to stop' : 'Tap for photo · hold to record'}
+              </span>
+            </div>
           </div>
 
           {/* captured preview */}
@@ -271,6 +365,17 @@ export function CameraSpikeClient() {
               <img src={captured} alt="captured" style={{ maxWidth: '100%', maxHeight: '70dvh', borderRadius: 14, border: '1px solid rgba(255,255,255,0.15)' }} />
               <button type="button" onClick={() => setCaptured(null)} style={{ padding: '12px 22px', borderRadius: 12, border: 'none', background: '#3B82F6', color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
                 Retake
+              </button>
+            </div>
+          )}
+
+          {/* recorded clip preview */}
+          {recordedUrl && (
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(11,14,20,0.94)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 20, gap: 14, zIndex: 9 }}>
+              <div style={{ fontSize: 13, color: '#10B981', fontWeight: 700 }}>Recorded — auto-stops at {MAX_RECORD_SECS}s</div>
+              <video src={recordedUrl} controls playsInline style={{ maxWidth: '100%', maxHeight: '64dvh', borderRadius: 14, border: '1px solid rgba(255,255,255,0.15)', background: '#000' }} />
+              <button type="button" onClick={() => { if (recordedUrl) URL.revokeObjectURL(recordedUrl); setRecordedUrl(null); }} style={{ padding: '12px 22px', borderRadius: 12, border: 'none', background: '#3B82F6', color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
+                Record again
               </button>
             </div>
           )}
