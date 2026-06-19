@@ -21,7 +21,7 @@
 const FRAME_MAX_DIMENSION = 1024;
 const FRAME_JPEG_QUALITY = 0.82;
 const MAX_VIDEO_SECONDS = 30;
-const AUDIO_CAPTURE_TIMEOUT_MS = 35_000;
+const AUDIO_CAPTURE_TIMEOUT_MS = 14_000; // bounded so frames(≤~28s)+audio fits the 45s overall race
 const VIDEO_LOAD_TIMEOUT_MS = 12_000;
 const SEEK_TIMEOUT_MS = 4_000;
 const OVERALL_EXTRACT_TIMEOUT_MS = 45_000;
@@ -64,6 +64,7 @@ async function extractVideoFramesInner(
   file: File,
   frameCount: number,
 ): Promise<VideoExtractResult> {
+  const startedAt = performance.now();
   const url = URL.createObjectURL(file);
   const video = await loadVideo(url);
   const rawDuration = Number.isFinite(video.duration) ? video.duration : 0;
@@ -94,8 +95,16 @@ async function extractVideoFramesInner(
   // across the clip because each slot's candidates are local to it.
   const CANDIDATES_PER_SLOT = 3;
   const slotWindow = usableDuration / Math.max(1, frameCount);
+  // Soft deadline: bound frame capture so a slow-seeking clip (HEVC on an old
+  // phone) ships the frames it HAS by returning normally — instead of the
+  // 12×4s seek budget blowing the overall hard timeout, which REJECTS and
+  // throws away the good frames already captured. Leaves headroom for audio
+  // extraction + cleanup inside OVERALL_EXTRACT_TIMEOUT_MS.
+  const frameSoftDeadlineMs = OVERALL_EXTRACT_TIMEOUT_MS - 17_000;
   const frames: File[] = [];
   for (let i = 0; i < stamps.length; i++) {
+    // Always allow the first slot; bail subsequent slots once over the deadline.
+    if (frames.length > 0 && performance.now() - startedAt > frameSoftDeadlineMs) break;
     let best: { canvas: HTMLCanvasElement; score: number } | null = null;
     for (let k = 0; k < CANDIDATES_PER_SLOT; k++) {
       const offset = (k - (CANDIDATES_PER_SLOT - 1) / 2) * (slotWindow / CANDIDATES_PER_SLOT);

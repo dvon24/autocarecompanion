@@ -15,6 +15,7 @@ import { getVehicleSpecs } from '@/lib/maintenance';
 import { attachVendorLinks } from '@/lib/vendor-resolver';
 import { validateAndFixVendorLinks } from '@/lib/vendor-link-validator';
 import { captureDiagnosisSample } from '@/lib/diagnosis-capture';
+import { makeSlug } from '@/lib/known-issues';
 import type { IdentifiedPart, PartCategory, PartRole } from '@/types/vision';
 
 // 120s, not 60: video mode's sequential upstream budget (Whisper 25s +
@@ -665,34 +666,53 @@ ${respondLang !== 'English' ? `LANGUAGE — IMPORTANT: The user speaks ${respond
     ],
   };
 
-  let openaiResp: Response;
-  vlog('openai_fetch_start', { model: MODEL });
-  try {
-    openaiResp = await fetch(OPENAI_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_KEY}`,
-      },
-      body: JSON.stringify(openaiBody),
-      signal: AbortSignal.timeout(55_000),
-    });
-    vlog('openai_headers_received', { status: openaiResp.status });
-  } catch (err) {
-    console.error('[vision] OpenAI fetch failed:', err);
-    return failWithRefund({ error: 'vision_failed', message: 'Photo analysis temporarily unavailable. Try again in a moment.' }, 502);
+  // The PHOTO path gets ONE retry on a transient upstream failure (network error
+  // or 429/5xx) — a single OpenAI blip otherwise burns the user's whole
+  // magic-moment diagnosis. Video is excluded: Whisper(25s)+vision(55s)+a retry
+  // could exceed the 120s function ceiling. Never retry a 4xx (deterministic) or
+  // a content refusal. Two photo attempts use a shorter per-attempt timeout so
+  // they comfortably fit maxDuration.
+  const RETRYABLE_STATUS = new Set([429, 500, 502, 503, 504]);
+  const maxAttempts = mode === 'photo' ? 2 : 1;
+  const perAttemptTimeout = maxAttempts > 1 ? 40_000 : 55_000;
+  let openaiResp: Response | null = null;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    vlog('openai_fetch_start', { model: MODEL, attempt });
+    try {
+      const r = await fetch(OPENAI_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${OPENAI_KEY}` },
+        body: JSON.stringify(openaiBody),
+        signal: AbortSignal.timeout(perAttemptTimeout),
+      });
+      vlog('openai_headers_received', { status: r.status, attempt });
+      if (r.ok) { openaiResp = r; break; }
+      const txt = await r.text().catch(() => '');
+      console.error('[vision] OpenAI', r.status, 'model=', MODEL, 'attempt=', attempt, 'body=', txt.slice(0, 500));
+      if (RETRYABLE_STATUS.has(r.status) && attempt < maxAttempts) {
+        vlog('openai_retry', { status: r.status });
+        await new Promise((res) => setTimeout(res, 600));
+        continue;
+      }
+      // Log upstream body server-side only; don't leak OAI internal error text.
+      return failWithRefund({
+        error: 'vision_failed',
+        message: `Photo analysis failed (upstream HTTP ${r.status}). Try a clearer photo or different angle.`,
+        upstreamStatus: r.status,
+      }, 502);
+    } catch (err) {
+      console.error('[vision] OpenAI fetch failed (attempt', attempt, '):', err);
+      if (attempt < maxAttempts) {
+        vlog('openai_retry', { reason: 'network' });
+        await new Promise((res) => setTimeout(res, 600));
+        continue;
+      }
+      return failWithRefund({ error: 'vision_failed', message: 'Photo analysis temporarily unavailable. Try again in a moment.' }, 502);
+    }
   }
-
-  if (!openaiResp.ok) {
-    const txt = await openaiResp.text().catch(() => '');
-    console.error('[vision] OpenAI', openaiResp.status, 'model=', MODEL, 'body=', txt.slice(0, 500));
-    // Log upstream body server-side only; don't leak OAI internal error
-    // text to the client (could include internal IDs or sensitive hints).
-    return failWithRefund({
-      error: 'vision_failed',
-      message: `Photo analysis failed (upstream HTTP ${openaiResp.status}). Try a clearer photo or different angle.`,
-      upstreamStatus: openaiResp.status,
-    }, 502);
+  if (!openaiResp) {
+    // Loop always returns on terminal failure; this satisfies the type checker.
+    return failWithRefund({ error: 'vision_failed', message: 'Photo analysis temporarily unavailable. Try again in a moment.' }, 502);
   }
 
   let data;
@@ -969,14 +989,22 @@ ${respondLang !== 'English' ? `LANGUAGE — IMPORTANT: The user speaks ${respond
 
   // Look up related known-issue rows.
   const relatedIssueIds = Array.isArray(parsed.relatedKnownIssueIds) ? parsed.relatedKnownIssueIds.filter((x: unknown): x is string => typeof x === 'string').slice(0, 4) : [];
-  let relatedIssues: Array<{ id: string; title: string; severity: string }> = [];
+  let relatedIssues: Array<{ id: string; title: string; severity: string; url?: string }> = [];
   if (relatedIssueIds.length > 0) {
     try {
       const rows = await prisma.knownIssue.findMany({
         where: { id: { in: relatedIssueIds }, status: 'published' },
-        select: { id: true, title: true, severity: true },
+        select: { id: true, title: true, severity: true, make: true, model: true },
       });
-      relatedIssues = rows;
+      // Build a REAL destination URL so the "related known issues" links work on
+      // the /diagnose + mobile-snap surfaces (a bare #id anchor resolves to
+      // nothing there). Points at the public article page + the issue's anchor.
+      relatedIssues = rows.map((r) => ({
+        id: r.id,
+        title: r.title,
+        severity: r.severity,
+        url: `/known-issues/${makeSlug(r.make, r.model)}#${r.id}`,
+      }));
     } catch { /* silent */ }
   }
 

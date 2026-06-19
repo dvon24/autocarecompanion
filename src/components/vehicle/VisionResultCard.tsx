@@ -16,6 +16,9 @@ export interface VisionRelatedIssue {
   id: string;
   title: string;
   severity: string;
+  /** Real destination (/known-issues/<slug>#<id>) — the bare #id anchor only
+   *  exists inside the hub, so the diagnose/snap surfaces need a real URL. */
+  url?: string;
 }
 
 export interface VisionResult {
@@ -199,7 +202,7 @@ export function AnnotatedPhoto({ vision }: { vision: VisionResult }) {
         .ap-photo > img { display:block; width:100%; height:100%; object-fit:cover; }
         .ap-grad { position:absolute; inset:0; background:linear-gradient(180deg, rgba(11,14,20,0.30), transparent 26%, transparent 60%, rgba(11,14,20,0.55)); }
         .ap-badge { position:absolute; top:10px; left:10px; display:inline-flex; align-items:center; gap:6px; padding:5px 10px; background:rgba(11,18,32,0.62); backdrop-filter:blur(8px); border-radius:999px; border:1px solid rgba(255,255,255,0.12); font-size:10px; font-weight:600; color:#fff; letter-spacing:0.03em; }
-        .ap-hs { position:absolute; transform:translate(-50%,-50%); cursor:pointer; border:none; background:transparent; padding:0; }
+        .ap-hs { position:absolute; transform:translate(-50%,-50%); cursor:pointer; border:none; background:transparent; padding:0; min-width:44px; min-height:44px; display:flex; align-items:center; justify-content:center; }
         .ap-hs .ring { position:absolute; inset:0; margin:auto; width:18px; height:18px; border-radius:50%; }
         .ap-hs .ring.r1 { animation: apRadar 2.4s ease-out infinite; }
         .ap-hs .ring.r2 { animation: apRadar 2.4s ease-out infinite 1.2s; }
@@ -385,7 +388,7 @@ export function VisionResultCard({ vision }: { vision: VisionResult }) {
           <ul className="vr-list">
             {vision.relatedIssues.map((iss) => (
               <li key={iss.id}>
-                <Link href={`#${iss.id}`} className="vr-related-link">
+                <Link href={iss.url || `#${iss.id}`} className="vr-related-link">
                   <span className={`vr-sev vr-sev-${iss.severity}`} />
                   <span>{iss.title}</span>
                 </Link>
@@ -716,7 +719,7 @@ function VisionResultCardV2({ vision }: { vision: VisionResult }) {
           <ul className="vr-list">
             {vision.relatedIssues.map((iss) => (
               <li key={iss.id}>
-                <Link href={`#${iss.id}`} className="vr-related-link">
+                <Link href={iss.url || `#${iss.id}`} className="vr-related-link">
                   <span className={`vr-sev vr-sev-${iss.severity}`} />
                   <span>{iss.title}</span>
                 </Link>
