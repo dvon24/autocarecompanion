@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { VoiceMechanic } from './VoiceMechanic';
 
 /**
  * CAMERA SPIKE — live on-device camera guidance, the foundation of the
@@ -243,6 +244,21 @@ export function CameraSpikeClient() {
     setCaptured(c.toDataURL('image/jpeg', 0.9));
   }, []);
 
+  // Downscaled JPEG of the current frame for the voice mechanic to "see".
+  // Small (640px, q0.6) to keep the data-channel payload + cost down.
+  const captureFrameDataUrl = useCallback((): string | null => {
+    const video = videoRef.current;
+    if (!video || !video.videoWidth) return null;
+    const scale = Math.min(1, 640 / Math.max(video.videoWidth, video.videoHeight));
+    const w = Math.round(video.videoWidth * scale), h = Math.round(video.videoHeight * scale);
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    if (!ctx) return null;
+    ctx.drawImage(video, 0, 0, w, h);
+    return c.toDataURL('image/jpeg', 0.6);
+  }, []);
+
   const stopRecording = useCallback(() => {
     try { mediaRecorderRef.current?.stop(); } catch { /* */ }
   }, []);
@@ -310,6 +326,9 @@ export function CameraSpikeClient() {
         <>
           <video ref={videoRef} playsInline muted autoPlay style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
           <canvas ref={overlayRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }} />
+
+          {/* Live voice mechanic — talk to it while pointing the camera. */}
+          <VoiceMechanic getFrame={captureFrameDataUrl} />
 
           {/* model status chip */}
           <div style={{ position: 'absolute', top: 14, left: 14, display: 'inline-flex', alignItems: 'center', gap: 7, padding: '6px 11px', borderRadius: 999, background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(8px)', fontSize: 11.5, fontWeight: 600 }}>
