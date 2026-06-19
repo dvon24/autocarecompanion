@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
 :root {
+  /* au7o is a light "warm-paper" themed app. Force a light color-scheme so the
+     OS's dark mode can't render native form controls (select dropdowns + their
+     option lists, date pickers) dark-on-dark — which made dropdown text
+     unreadable in dark mode (reported June 2026). */
+  color-scheme: light;
+
   --background: #ffffff;
   --foreground: #171717;
 
