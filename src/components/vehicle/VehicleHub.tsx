@@ -3753,7 +3753,7 @@ const Composer = ({
         <DiagnoseCaptureSheet
           mode={diagSheet}
           onClose={() => setDiagSheet(null)}
-          onSubmit={(f) => { (diagSheet === 'photo' ? onPhotoUpload : onVideoUpload)?.(f); }}
+          onSubmit={(f, note) => { (diagSheet === 'photo' ? onPhotoUpload : onVideoUpload)?.(f, note); }}
         />
       )}
       <input

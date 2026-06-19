@@ -57,6 +57,11 @@ export function DiagnoseCaptureSheet({
   // "What are you showing me?" — drives part-specific shot coaching + the
   // scale-reference nudge. Optional; null = generic tips.
   const [subject, setSubject] = useState<string | null>(null);
+  // Duration (s) of a chosen video clip, read from metadata — shown in review
+  // so the user knows the length + that we analyze only the first 15s.
+  const [videoDuration, setVideoDuration] = useState<number | null>(null);
+  // Remaining free analyses this month (metered tiers only), for the header chip.
+  const [quota, setQuota] = useState<{ remaining: number; metered: boolean } | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [quality, setQuality] = useState<ImageQuality | null>(null);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -70,6 +75,15 @@ export function DiagnoseCaptureSheet({
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = prev; };
   }, []);
+  // One-shot read-only quota peek so we can show "N free left this month".
+  useEffect(() => {
+    let alive = true;
+    fetch('/api/vision', { method: 'GET' })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (alive && d && typeof d.remaining === 'number') setQuota({ remaining: d.remaining, metered: !!d.metered }); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
 
   const choose = (f?: File | null) => {
     if (!f) return;
@@ -77,9 +91,20 @@ export function DiagnoseCaptureSheet({
     setPreviewUrl(isPhoto ? URL.createObjectURL(f) : null);
     setQuality(null);
     setCrop(null);
+    setVideoDuration(null);
     // Photos: flag too-dark/blurry/small before the user diagnoses. (Video
     // quality is handled by best-frame selection at extraction time.)
-    if (isPhoto) assessImageQuality(f).then(setQuality).catch(() => {});
+    if (isPhoto) {
+      assessImageQuality(f).then(setQuality).catch(() => {});
+    } else {
+      // Read the clip's duration off its metadata for the review-state label.
+      const u = URL.createObjectURL(f);
+      const v = document.createElement('video');
+      v.preload = 'metadata';
+      v.onloadedmetadata = () => { setVideoDuration(Number.isFinite(v.duration) ? v.duration : null); URL.revokeObjectURL(u); };
+      v.onerror = () => URL.revokeObjectURL(u);
+      v.src = u;
+    }
   };
 
   const diagnose = async () => {
@@ -155,6 +180,12 @@ export function DiagnoseCaptureSheet({
             style={{ width: 30, height: 30, borderRadius: 999, border: '1px solid var(--paper-line, #E3DFD4)', background: '#fff', color: 'var(--slate-500, #64748B)', fontSize: 15, cursor: 'pointer', lineHeight: 1 }}>✕</button>
         </div>
         {vehicleLabel && <div style={{ fontSize: 12.5, color: 'var(--slate-500, #64748B)', marginTop: 2 }}>{vehicleLabel}</div>}
+        {quota?.metered && (
+          <a href="/subscribe" style={{ marginTop: 8, display: 'inline-flex', alignItems: 'center', gap: 6, padding: '5px 11px', borderRadius: 999, textDecoration: 'none', background: quota.remaining <= 2 ? '#FFF7ED' : '#EFF6FF', border: `1px solid ${quota.remaining <= 2 ? '#FED7AA' : '#BFDBFE'}`, fontSize: 11.5, fontWeight: 600, color: quota.remaining <= 2 ? '#9A3412' : '#1E3A8A' }}>
+            <span aria-hidden>{quota.remaining <= 2 ? '⚡' : '🔋'}</span>
+            {quota.remaining} free {quota.remaining === 1 ? 'analysis' : 'analyses'} left this month
+          </a>
+        )}
 
         <input ref={cameraRef} type="file" accept={isPhoto ? 'image/*' : 'video/*'} capture="environment" style={{ display: 'none' }}
           onChange={(e) => { choose(e.target.files?.[0]); if (e.target) e.target.value = ''; }} />
@@ -237,12 +268,21 @@ export function DiagnoseCaptureSheet({
                 </div>
               </div>
             ) : (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 14, borderRadius: 14, background: '#fff', border: '1px solid var(--paper-line, #E3DFD4)', marginTop: 14 }}>
-                <span style={{ fontSize: 22 }} aria-hidden>🎥</span>
-                <div style={{ minWidth: 0 }}>
-                  <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--ink, #0B1220)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{file.name}</div>
-                  <div style={{ fontSize: 11.5, color: 'var(--slate-500, #64748B)' }}>{(file.size / 1048576).toFixed(1)} MB · ready to diagnose</div>
+              <div style={{ marginTop: 14 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 14, borderRadius: 14, background: '#fff', border: '1px solid var(--paper-line, #E3DFD4)' }}>
+                  <span style={{ fontSize: 22 }} aria-hidden>🎥</span>
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--ink, #0B1220)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{file.name}</div>
+                    <div style={{ fontSize: 11.5, color: 'var(--slate-500, #64748B)' }}>
+                      {(file.size / 1048576).toFixed(1)} MB{videoDuration ? ` · ${fmtDuration(videoDuration)}` : ''} · ready to diagnose
+                    </div>
+                  </div>
                 </div>
+                {videoDuration != null && videoDuration > 15.5 && (
+                  <div style={{ marginTop: 10, padding: '10px 12px', borderRadius: 12, background: '#EFF6FF', border: '1px solid #BFDBFE', color: '#1E3A8A', fontSize: 12.5, lineHeight: 1.45, display: 'flex', gap: 8 }}>
+                    <span aria-hidden>⏱️</span><span>Your clip is {fmtDuration(videoDuration)} — I analyze the first <strong>0:15</strong>. Keep clips short (5–15s) and aimed at the problem for the best read.</span>
+                  </div>
+                )}
               </div>
             )}
             {quality?.message && (
@@ -274,7 +314,7 @@ export function DiagnoseCaptureSheet({
               const badQuality = !!(isPhoto && quality && quality.level !== 'ok');
               const retakeBtn = (
                 <button type="button" key="retake"
-                  onClick={() => { setFile(null); setQuality(null); setCrop(null); setNote(''); if (previewUrl) { URL.revokeObjectURL(previewUrl); setPreviewUrl(null); } }}
+                  onClick={() => { setFile(null); setQuality(null); setCrop(null); if (previewUrl) { URL.revokeObjectURL(previewUrl); setPreviewUrl(null); } }}
                   style={badQuality
                     ? { flex: 1, padding: '13px', borderRadius: 12, border: 'none', background: BLUE, color: '#fff', fontSize: 14.5, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }
                     : { padding: '13px 16px', borderRadius: 12, border: '1px solid var(--paper-line, #E3DFD4)', background: '#fff', color: 'var(--ink, #0B1220)', fontSize: 14.5, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
@@ -327,6 +367,12 @@ async function cropToFile(
   if (!blob) return null;
   const base = name.replace(/\.[^.]+$/, '');
   return new File([blob], `${base}_crop.jpg`, { type: 'image/jpeg', lastModified: Date.now() });
+}
+
+function fmtDuration(s: number): string {
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return `${m}:${String(sec).padStart(2, '0')}`;
 }
 
 function TipList({ tips }: { tips: string[] }) {

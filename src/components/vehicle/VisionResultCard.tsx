@@ -70,6 +70,31 @@ export interface VisionResult {
   /** True when a non-Pro user sent multiple photos and the server used only
    *  the first — drives the "Pro uses every angle" upsell. */
   multiPhotoCapped?: boolean;
+
+  // ─── Quota (free/metered tiers) ───
+  /** Analyses remaining in the user's monthly bucket after this one. */
+  quotaRemaining?: number;
+  /** The user's monthly cap (anon 1 / free 8 / plus 40). */
+  quotaLimit?: number;
+  /** True only for metered tiers — the counter is hidden for unlimited Pro. */
+  quotaMetered?: boolean;
+}
+
+/** "N free analyses left this month" — shown after a diagnosis for metered
+ *  (free/anon/Plus) tiers, nudging the upgrade right at the value moment. */
+function QuotaNote({ vision }: { vision: VisionResult }) {
+  if (!vision.quotaMetered || typeof vision.quotaRemaining !== 'number') return null;
+  const n = Math.max(0, vision.quotaRemaining);
+  const low = n <= 2;
+  return (
+    <a href="/subscribe" style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 16px', textDecoration: 'none', borderTop: '1px solid var(--paper-line, #E3DFD4)', background: low ? '#FFF7ED' : '#F8FAFC', color: low ? '#9A3412' : '#475569', fontSize: 12.5 }}>
+      <span aria-hidden>{low ? '⚡' : '🔋'}</span>
+      <span style={{ flex: 1 }}>
+        <strong>{n}</strong> free {n === 1 ? 'analysis' : 'analyses'} left this month{n === 0 ? '' : ''}.
+      </span>
+      <span style={{ fontWeight: 700, color: '#1D4ED8', whiteSpace: 'nowrap' }}>Go unlimited ▸</span>
+    </a>
+  );
 }
 
 /**
@@ -397,6 +422,8 @@ export function VisionResultCard({ vision }: { vision: VisionResult }) {
           </ul>
         </div>
       )}
+
+      <QuotaNote vision={vision} />
 
       <div className="vr-disclaimer">
         AI-generated suggestions. Verify fitment by VIN or part number before purchase.
@@ -728,6 +755,8 @@ function VisionResultCardV2({ vision }: { vision: VisionResult }) {
           </ul>
         </div>
       )}
+
+      <QuotaNote vision={vision} />
 
       <div className="vr-disclaimer">
         AI-generated suggestions. Verify fitment by VIN or part number before purchase. Affiliate links may earn Au7o a commission.

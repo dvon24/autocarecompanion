@@ -81,6 +81,24 @@ export async function refundPhotoQuota(key: string): Promise<void> {
   }
 }
 
+/**
+ * Read-only peek at the user's remaining monthly photo quota — does NOT consume.
+ * Powers the capture-UI "N free analyses left this month" counter. Never throws;
+ * on any DB error it optimistically returns the full limit (don't block capture
+ * on a read failure).
+ */
+export async function peekPhotoQuota(key: string, limit: number): Promise<{ remaining: number; limit: number; resetAt: Date }> {
+  const monthStart = getMonthStartUTC();
+  const resetAt = getMonthEndUTC(monthStart);
+  try {
+    const row = await prisma.chatQuota.findUnique({ where: { key }, select: { weekStart: true, count: true } });
+    const used = row && row.weekStart.getTime() === monthStart.getTime() ? row.count : 0;
+    return { remaining: Math.max(0, limit - used), limit, resetAt };
+  } catch {
+    return { remaining: limit, limit, resetAt };
+  }
+}
+
 export async function checkAndConsumePhotoQuota(opts: {
   key: string;
   limit: number;

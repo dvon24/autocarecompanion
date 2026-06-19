@@ -20,7 +20,7 @@
 
 const FRAME_MAX_DIMENSION = 1024;
 const FRAME_JPEG_QUALITY = 0.82;
-const MAX_VIDEO_SECONDS = 30;
+const MAX_VIDEO_SECONDS = 15; // we sample frames + transcribe only the first 15s (Devon: cap clips short)
 const AUDIO_CAPTURE_TIMEOUT_MS = 14_000; // bounded so frames(≤~28s)+audio fits the 45s overall race
 const VIDEO_LOAD_TIMEOUT_MS = 12_000;
 const SEEK_TIMEOUT_MS = 4_000;
@@ -97,16 +97,20 @@ async function extractVideoFramesInner(
   const slotWindow = usableDuration / Math.max(1, frameCount);
   // Soft deadline: bound frame capture so a slow-seeking clip (HEVC on an old
   // phone) ships the frames it HAS by returning normally — instead of the
-  // 12×4s seek budget blowing the overall hard timeout, which REJECTS and
-  // throws away the good frames already captured. Leaves headroom for audio
-  // extraction + cleanup inside OVERALL_EXTRACT_TIMEOUT_MS.
-  const frameSoftDeadlineMs = OVERALL_EXTRACT_TIMEOUT_MS - 17_000;
+  // per-slot seek budget blowing the overall hard timeout, which REJECTS and
+  // throws away the good frames already captured. Headroom = audio budget + ONE
+  // full worst-case slot (so even a slot that starts just under the deadline
+  // finishes before the overall race fires) + 2s cleanup margin.
+  const frameSoftDeadlineMs = OVERALL_EXTRACT_TIMEOUT_MS - (AUDIO_CAPTURE_TIMEOUT_MS + CANDIDATES_PER_SLOT * SEEK_TIMEOUT_MS + 2_000);
   const frames: File[] = [];
+  const overDeadline = () => frames.length > 0 && performance.now() - startedAt > frameSoftDeadlineMs;
   for (let i = 0; i < stamps.length; i++) {
-    // Always allow the first slot; bail subsequent slots once over the deadline.
-    if (frames.length > 0 && performance.now() - startedAt > frameSoftDeadlineMs) break;
+    // Always capture the first slot; bail later slots once over the deadline.
+    if (overDeadline()) break;
     let best: { canvas: HTMLCanvasElement; score: number } | null = null;
     for (let k = 0; k < CANDIDATES_PER_SLOT; k++) {
+      // Also bail mid-slot so a slow slot can't overrun the deadline by ~12s.
+      if (overDeadline()) break;
       const offset = (k - (CANDIDATES_PER_SLOT - 1) / 2) * (slotWindow / CANDIDATES_PER_SLOT);
       const t = Math.min(Math.max(margin, stamps[i] + offset), duration - 0.05);
       try {

@@ -8,6 +8,7 @@ import {
 import {
   checkAndConsumePhotoQuota,
   refundPhotoQuota,
+  peekPhotoQuota,
   DEFAULT_FREE_PHOTO_LIMIT,
 } from '@/lib/photo-quota';
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
@@ -1039,6 +1040,10 @@ ${respondLang !== 'English' ? `LANGUAGE — IMPORTANT: The user speaks ${respond
     warnings: Array.isArray(parsed.warnings) ? parsed.warnings.filter((w: unknown): w is string => typeof w === 'string') : [],
     relatedIssues,
     quotaRemaining: quota.remaining,
+    quotaLimit: limit,
+    // Whether this user is on a metered (free/anon/plus) tier — the client only
+    // shows the "N left this month" counter for metered tiers, not unlimited Pro.
+    quotaMetered: limit < 100,
     quotaResetAt: quota.resetAt.toISOString(),
   };
 
@@ -1077,4 +1082,43 @@ ${respondLang !== 'English' ? `LANGUAGE — IMPORTANT: The user speaks ${respond
   }
 
   return respond({ vision: result });
+}
+
+/**
+ * GET /api/vision — read-only quota peek for the capture UI. Returns how many
+ * free analyses the caller has left this month WITHOUT consuming one, so the
+ * capture sheet can show "N free left this month". Keyed by the caller's own
+ * userId (or anon IP), so it only ever reveals their own count.
+ */
+export async function GET(request: NextRequest) {
+  let session;
+  try { session = await auth(); } catch { session = null; }
+  const userId: string | null = session?.user?.id ?? null;
+  const isSubscriber = !!session && session.user.subscriptionStatus === 'active';
+  const ip = getClientIp(request);
+
+  const ANON_FREE_PHOTO_LIMIT = 1;
+  const PLUS_MONTHLY_CAP = 40;
+  let limit = ANON_FREE_PHOTO_LIMIT;
+  if (userId) {
+    if (isSubscriber) {
+      let subscriptionTier: string | null = null;
+      try {
+        const u = await prisma.user.findUnique({ where: { id: userId }, select: { subscriptionTier: true } });
+        subscriptionTier = u?.subscriptionTier ?? null;
+      } catch { /* default to unlimited cap */ }
+      limit = subscriptionTier === 'plus' ? PLUS_MONTHLY_CAP : SUBSCRIBER_MONTHLY_CAP;
+    } else {
+      limit = DEFAULT_FREE_PHOTO_LIMIT;
+    }
+  }
+  const key = userId ? `photo:user:${userId}` : `photo:anon:${ip}`;
+  const q = await peekPhotoQuota(key, limit);
+  return NextResponse.json({
+    remaining: q.remaining,
+    limit,
+    metered: limit < 100,
+    signedIn: !!userId,
+    resetAt: q.resetAt.toISOString(),
+  });
 }
