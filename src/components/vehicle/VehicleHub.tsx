@@ -10,7 +10,7 @@ import { vehicleSlug } from '@/lib/vehicle-slug';
 import { isNativeApp } from '@/lib/native-app';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
-import { DiagnoseCaptureSheet } from '@/components/vehicle/DiagnoseCaptureSheet';
+import { LiveCameraShutter } from '@/components/diagnose/LiveCameraShutter';
 import { trackEvent } from '@/components/analytics/GoogleAnalytics';
 import { MaintenanceLogFlow } from '@/components/vehicle/MaintenanceLogFlow';
 import { MaintenanceUpgradeTile } from '@/components/vehicle/MaintenanceUpgradeTile';
@@ -1192,6 +1192,7 @@ export function VehicleHub({
             onPhotoUpload={handlePhotoUpload}
             pending={pending}
             isAuthed={isAuthed}
+            vehicle={vehicle}
           />
         </section>
       </div>
@@ -1334,9 +1335,10 @@ function MobileHub({
   const taRef = useRef<HTMLTextAreaElement>(null);
   const photoInputRef = useRef<HTMLInputElement>(null);
   const videoInputRef = useRef<HTMLInputElement>(null);
-  // Designed capture sheet (mirrors /diagnose) — opened by the photo/video
-  // buttons instead of a bare file picker; feeds onPhotoUpload/onVideoUpload.
-  const [diagSheet, setDiagSheet] = useState<null | 'photo' | 'video'>(null);
+  // ONE shared live camera surface (same as /diagnose + the spike): tap =
+  // photo, hold = record video (15s), optional live voice. Replaces the old
+  // two-button photo/video sheet. Feeds onPhotoUpload/onVideoUpload.
+  const [camOpen, setCamOpen] = useState(false);
   // Tap-to-expand for the greeting body. Starts collapsed (faded behind
   // the COMMON ISSUES card); tap reveals the full opener text.
   const [greetExpanded, setGreetExpanded] = useState(false);
@@ -1750,22 +1752,12 @@ function MobileHub({
           <button
             type="button"
             className="m-mic-btn"
-            onClick={() => { trackEvent('hub_photo_click', { source: 'composer' }); setDiagSheet('photo'); }}
-            disabled={pending || !onPhotoUpload}
-            aria-label="Snap a photo of a part"
-            title="Snap a photo of a part — AI returns the complete repair kit"
+            onClick={() => { trackEvent('hub_camera_open', { source: 'composer' }); setCamOpen(true); }}
+            disabled={pending || (!onPhotoUpload && !onVideoUpload)}
+            aria-label="Open camera — tap for photo, hold to record, or talk to the mechanic"
+            title="Tap for a photo · hold to record a clip · talk to the live mechanic"
           >
             <Icon name="camera" size={13} />
-          </button>
-          <button
-            type="button"
-            className="m-mic-btn"
-            onClick={() => setDiagSheet('video')}
-            disabled={pending || !onVideoUpload}
-            aria-label="Record or upload a video for diagnosis"
-            title="Record a short clip — AI sees frames + hears noises to diagnose"
-          >
-            <Icon name="video" size={13} />
           </button>
           <button
             type="button"
@@ -1778,11 +1770,14 @@ function MobileHub({
           </button>
         </div>
 
-        {diagSheet && (
-          <DiagnoseCaptureSheet
-            mode={diagSheet}
-            onClose={() => setDiagSheet(null)}
-            onSubmit={(f, note) => { (diagSheet === 'photo' ? onPhotoUpload : onVideoUpload)?.(f, note); }}
+        {camOpen && (
+          <LiveCameraShutter
+            onPhoto={(f) => { setCamOpen(false); onPhotoUpload?.(f); }}
+            onVideo={(f) => { setCamOpen(false); onVideoUpload?.(f); }}
+            onClose={() => setCamOpen(false)}
+            vehicle={{ year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim || undefined }}
+            vehicleLabel={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+            enableVoice
           />
         )}
 
@@ -3733,7 +3728,7 @@ function inlineFormat(s: string): React.ReactNode {
 
 /* ─── Composer ─── */
 const Composer = ({
-  ref, value, onChange, onSend, onPhotoUpload, onVideoUpload, pending, isAuthed,
+  ref, value, onChange, onSend, onPhotoUpload, onVideoUpload, pending, isAuthed, vehicle,
 }: {
   ref: React.RefObject<HTMLTextAreaElement | null>;
   value: string;
@@ -3743,17 +3738,21 @@ const Composer = ({
   onVideoUpload?: (file: File, caption?: string) => void;
   pending: boolean;
   isAuthed: boolean;
+  vehicle: VehicleHubProps['vehicle'];
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const videoInputRef = useRef<HTMLInputElement>(null);
-  const [diagSheet, setDiagSheet] = useState<null | 'photo' | 'video'>(null);
+  const [camOpen, setCamOpen] = useState(false);
   return (
     <div className="composer-wrap">
-      {diagSheet && (
-        <DiagnoseCaptureSheet
-          mode={diagSheet}
-          onClose={() => setDiagSheet(null)}
-          onSubmit={(f, note) => { (diagSheet === 'photo' ? onPhotoUpload : onVideoUpload)?.(f, note); }}
+      {camOpen && (
+        <LiveCameraShutter
+          onPhoto={(f) => { setCamOpen(false); onPhotoUpload?.(f); }}
+          onVideo={(f) => { setCamOpen(false); onVideoUpload?.(f); }}
+          onClose={() => setCamOpen(false)}
+          vehicle={{ year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim || undefined }}
+          vehicleLabel={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+          enableVoice
         />
       )}
       <input
@@ -3808,28 +3807,15 @@ const Composer = ({
             <button
               className="comp-chip comp-chip-photo"
               type="button"
-              disabled={pending || !onPhotoUpload}
-              onClick={() => { trackEvent('hub_photo_click', { source: 'chip' }); setDiagSheet('photo'); }}
-              title="Snap a photo of a part — AI returns the complete repair kit"
+              disabled={pending || (!onPhotoUpload && !onVideoUpload)}
+              onClick={() => { trackEvent('hub_camera_open', { source: 'chip' }); setCamOpen(true); }}
+              title="Tap for a photo · hold to record a clip · talk to the live mechanic"
             >
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>
                 <path d="M3 7h3l2-3h8l2 3h3v13H3V7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <circle cx="12" cy="13" r="4" stroke="currentColor" strokeWidth="2"/>
               </svg>
-              Photo
-            </button>
-            <button
-              className="comp-chip comp-chip-video"
-              type="button"
-              disabled={pending || !onVideoUpload}
-              onClick={() => setDiagSheet('video')}
-              title="Record a short clip — AI sees frames + hears noises to diagnose"
-            >
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <rect x="3" y="6" width="14" height="12" rx="2" stroke="currentColor" strokeWidth="2"/>
-                <path d="M17 10l4-2v8l-4-2z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-              </svg>
-              Video
+              Camera
             </button>
           </div>
           <button className="icon-square icon-send" onClick={onSend} disabled={pending} title="Send">
