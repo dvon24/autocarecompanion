@@ -172,8 +172,10 @@ export function VoiceMechanic({
 
       {status === 'idle' || status === 'error' ? (
         <button type="button" onClick={start}
-          style={{ position: 'absolute', top: 14, right: 14, zIndex: 8, display: 'inline-flex', alignItems: 'center', gap: 8, padding: '9px 15px', borderRadius: 999, border: 'none', background: '#3B82F6', color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', boxShadow: '0 4px 16px rgba(59,130,246,0.45)' }}>
+          style={{ position: 'absolute', top: 14, right: 14, zIndex: 8, display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 16px', borderRadius: 999, border: 'none', background: '#3B82F6', color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', boxShadow: '0 4px 16px rgba(59,130,246,0.45)', animation: 'au7oVoiceAttn 2.6s ease-in-out infinite' }}>
+          <span style={{ position: 'absolute', inset: 0, borderRadius: 999, border: '2px solid #3B82F6', animation: 'au7oVoiceRing 2.6s ease-out infinite', pointerEvents: 'none' }} />
           <MicIcon /> Talk to the mechanic
+          <style>{`@keyframes au7oVoiceAttn { 0%,100%{box-shadow:0 4px 16px rgba(59,130,246,0.45)} 50%{box-shadow:0 4px 22px rgba(59,130,246,0.8)} } @keyframes au7oVoiceRing { 0%{transform:scale(1);opacity:0.7} 100%{transform:scale(1.35);opacity:0} }`}</style>
         </button>
       ) : (
         <div style={{ position: 'absolute', top: 12, right: 12, left: 12, zIndex: 8, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8, pointerEvents: 'none' }}>

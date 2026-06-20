@@ -269,8 +269,11 @@ export function LiveCameraShutter({
       )}
       <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(120% 75% at 50% 42%, transparent 42%, rgba(11,14,20,0.6) 100%)', pointerEvents: 'none' }} />
 
-      {/* live voice mechanic (auth/cost-gated) — positions itself top-right */}
-      {enableVoice && !cameraDenied && <VoiceMechanic getFrame={captureFrameDataUrl} vehicle={vehicle} />}
+      {/* live voice mechanic (auth/cost-gated) — positions itself top-right.
+          Shown whenever voice is enabled, even while the camera is still
+          starting or denied (you can talk to the mechanic without a live
+          frame; getFrame just returns null until the camera is up). */}
+      {enableVoice && <VoiceMechanic getFrame={captureFrameDataUrl} vehicle={vehicle} />}
 
       {/* top bar */}
       <div style={{ position: 'absolute', top: 12, left: 12, right: 12, zIndex: 6, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
