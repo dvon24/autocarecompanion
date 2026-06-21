@@ -58,15 +58,22 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   // card. We retry once at the longer delay if the first attempt missed.
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (window.location.hash !== `#${issue.id}`) return;
-    setExpanded(true);
-    const scrollTo = () => {
-      const el = document.getElementById(issue.id);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Runs on mount AND whenever the hash changes — so the per-model search
+    // (ModelIssueSearch) can jump to a matched issue by setting the hash and
+    // this card expands + scrolls to itself.
+    const check = () => {
+      if (window.location.hash !== `#${issue.id}`) return;
+      setExpanded(true);
+      const scrollTo = () => {
+        const el = document.getElementById(issue.id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+      setTimeout(scrollTo, 90);
+      setTimeout(scrollTo, 450);
     };
-    const t1 = setTimeout(scrollTo, 200);
-    const t2 = setTimeout(scrollTo, 600);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    check();
+    window.addEventListener('hashchange', check);
+    return () => window.removeEventListener('hashchange', check);
   }, [issue.id]);
 
   const severityConfig = {

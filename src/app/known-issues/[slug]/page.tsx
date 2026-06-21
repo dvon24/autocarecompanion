@@ -15,7 +15,7 @@ import { getRecallsForArticle } from '@/lib/recalls';
 import { getLinkableDtcCodes } from '@/lib/dtc-codes';
 import { categoryConfig } from '@/lib/issue-categories';
 import { ArticleIssuesList } from '@/components/known-issues/ArticleIssuesList';
-import { ConfirmWithPhotoCTA } from '@/components/diagnose/ConfirmWithPhotoCTA';
+import { ModelIssueSearch } from '@/components/known-issues/ModelIssueSearch';
 import { ArticleSidebar } from '@/components/known-issues/ArticleSidebar';
 import { MobileBottomBar } from '@/components/known-issues/MobileBottomBar';
 import { VehicleChatLink } from '@/components/known-issues/VehicleChatLink';
@@ -571,13 +571,15 @@ export default async function KnownIssuesArticlePage({
               <h2 className="text-xl font-semibold mb-4" style={{ color: '#0B1220' }}>
                 All {issues.length} Known Issues
               </h2>
-              {/* Confirm-with-a-photo CTA at the peak "is this my problem?"
-                  moment. Server-rendered (crawlable, no hydration cost),
-                  links to the anonymous /diagnose flow. Additive — sits
-                  above the issue cards without displacing any content. */}
-              <div className="mb-5">
-                <ConfirmWithPhotoCTA />
-              </div>
+              {/* Unified "find your issue" bar — free fuzzy/keyword search,
+                  Plus AI natural-language search, and a camera to snap a
+                  photo/video (quota-gated per tier). Replaces the old photo
+                  CTA. Client filter over already-SSR'd content (SEO-safe). */}
+              <ModelIssueSearch
+                issues={issues.map((i) => ({ id: i.id, title: i.title, symptoms: i.symptoms, dtcCodes: (i as { dtcCodes?: string[] }).dtcCodes, severity: i.severity }))}
+                make={make}
+                model={model}
+              />
               <ArticleIssuesList
                 issues={issues}
                 make={make}
