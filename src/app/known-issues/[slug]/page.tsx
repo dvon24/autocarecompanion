@@ -18,7 +18,6 @@ import { ArticleIssuesList } from '@/components/known-issues/ArticleIssuesList';
 import { ModelIssueSearch } from '@/components/known-issues/ModelIssueSearch';
 import { ArticleSidebar } from '@/components/known-issues/ArticleSidebar';
 import { MobileBottomBar } from '@/components/known-issues/MobileBottomBar';
-import BackToTop from '@/components/known-issues/BackToTop';
 import { VehicleChatLink } from '@/components/known-issues/VehicleChatLink';
 import FutureModelYearNotice from '@/components/known-issues/FutureModelYearNotice';
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
@@ -753,9 +752,6 @@ export default async function KnownIssuesArticlePage({
         model={model}
         hubYear={yearIsValid ? initialYear! : (yearRange?.max ?? new Date().getFullYear())}
       />
-
-      {/* Float-up button — escape "the sea of known issues" on long pages. */}
-      <BackToTop />
     </div>
   );
 }

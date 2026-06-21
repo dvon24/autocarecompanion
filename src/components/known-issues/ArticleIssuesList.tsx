@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useVehicleContext } from '@/contexts/AppContext';
@@ -86,6 +86,17 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
   }, [issues]);
 
   const [trimFilter, setTrimFilter] = useState<string | null>(userTrim);
+
+  // Back-to-top arrow that rides the right edge of the cards (Devon wanted it
+  // on the cards, not pinned to the window corner). Shown once you've scrolled
+  // into the sea of cards.
+  const [showTop, setShowTop] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShowTop(window.scrollY > 600);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const filteredIssues = useMemo(() =>
     issues.filter(i => {
@@ -250,7 +261,21 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
         );
       })()}
 
-      <div className="space-y-4 mt-4">
+      <div className="space-y-4 mt-4 relative">
+        {/* Back-to-top arrow — sticky on the RIGHT side of the cards column so
+            it's always within reach in a long list, without covering content. */}
+        <div className="sticky bottom-4 z-20 flex justify-end pr-1 pointer-events-none h-0 -mb-2">
+          <button
+            type="button"
+            aria-label="Back to top"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className={`pointer-events-auto -translate-y-2 flex h-10 w-10 items-center justify-center rounded-full bg-[#0B1220] text-white shadow-lg ring-1 ring-black/10 transition-opacity duration-200 hover:bg-[#1e293b] ${showTop ? 'opacity-90' : 'opacity-0'}`}
+          >
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+            </svg>
+          </button>
+        </div>
         {groupedIssues.length === 0 ? (
           <div className="text-center py-8 text-[#64748B]">
             <p>No issues match your selected filters.</p>
