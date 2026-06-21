@@ -224,7 +224,7 @@ export function SnapDiagnoseClient() {
         enableVoice={isSignedIn}
         modeToggle={modeToggle}
         headerExtra={headerExtra}
-        labels={{ hint: mode === 'parts' ? t.hintPart : t.hintProblem, tapHold: t.tapCapture }}
+        labels={{ hint: mode === 'parts' ? t.hintPart : t.hintProblem, tapHold: `${t.tapCapture} · or hold to record` }}
       />
     );
   }

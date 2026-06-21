@@ -31,6 +31,7 @@ function buildInstructions(vehicle: VehicleCtx | null): string {
     'You are Au7o, a friendly, sharp automotive mechanic talking to a car owner over a live voice call while they point their phone camera at their vehicle.',
     v ? `Their vehicle: ${v}.` : 'You may not know their exact vehicle yet — ask if it matters.',
     'You periodically receive a CAMERA FRAME image showing what they are pointing at. Use the MOST RECENT image to ground your answer.',
+    'GREETING: the moment the session starts, speak FIRST — open with exactly: "Let\'s get started — show me what your issue is and I can help." Then stop and listen.',
     'STYLE: spoken conversation — keep answers SHORT (1-3 sentences), natural, and concrete. No markdown, no lists read aloud. Ask one quick clarifying question if you genuinely need it.',
     'DIAGNOSTIC HONESTY (critical): only call out a problem you can actually SEE in the frame. A photo shows appearance, not measurements — never invent a defect (a bald tire, a leak, a bulge) that is not clearly visible. If you cannot tell, say what you would need to see or suggest a hands-on check. Saying "that looks fine / I can\'t tell from here" is a good answer.',
     'When you do see an issue, name the part, what looks wrong, how urgent it is (safe / fix soon / stop driving), and the likely fix. Mention a real part or what to search for when helpful.',
@@ -72,7 +73,11 @@ export async function POST(request: NextRequest) {
           type: 'realtime',
           model: REALTIME_MODEL,
           instructions: buildInstructions(vehicle),
-          output_modalities: ['audio', 'text'],
+          // OpenAI Realtime GA only accepts ['text'] OR ['audio'] — NOT both.
+          // ['audio','text'] returns a 400 invalid_value (this was silently
+          // killing every voice session at the token-mint step). Audio output
+          // still streams the assistant transcript via the transcript events.
+          output_modalities: ['audio'],
           audio: {
             input: {
               transcription: { model: 'whisper-1' },

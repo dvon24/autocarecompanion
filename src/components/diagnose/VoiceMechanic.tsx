@@ -5,16 +5,15 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 /**
  * VoiceMechanic — the live voice layer of the Live AI Mechanic.
  *
- * Opens a WebRTC speech-to-speech session with OpenAI Realtime (via a
- * short-lived token minted by /api/realtime), streams the mic up and the
- * model's voice down, and feeds a CAMERA FRAME on each user turn so the model
- * can answer about whatever the user is pointing at. Talk while pointing —
- * "what's wrong with this belt?" — and it answers out loud.
+ * Auto-activates the moment the camera opens, opens a WebRTC speech-to-speech
+ * session with OpenAI Realtime (token minted by /api/realtime), and the
+ * mechanic GREETS FIRST ("Let's get started — show me what your issue is and I
+ * can help"). Renders as a pulsing orb at the BOTTOM-RIGHT (opposite the photo
+ * library button), out of the way of the vehicle chip / YMMT up top.
  *
- * The browser talks WebRTC DIRECTLY to OpenAI (the heavy stream never touches
- * our serverless functions); our server only mints the ephemeral token.
- *
- * getFrame() returns a JPEG data URL of the current viewfinder frame (or null).
+ * A camera FRAME is fed on each user turn so the model can answer about
+ * whatever the user is pointing at. The browser talks WebRTC DIRECTLY to
+ * OpenAI; our server only mints the short-lived token.
  */
 
 type Status = 'idle' | 'connecting' | 'live' | 'error';
@@ -23,9 +22,11 @@ type Line = { role: 'you' | 'au7o'; text: string };
 export function VoiceMechanic({
   getFrame,
   vehicle,
+  autoStart = true,
 }: {
   getFrame: () => string | null;
   vehicle?: { year?: number; make?: string; model?: string; trim?: string };
+  autoStart?: boolean;
 }) {
   const [status, setStatus] = useState<Status>('idle');
   const [err, setErr] = useState<string | null>(null);
@@ -39,6 +40,7 @@ export function VoiceMechanic({
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const lastFrameSentRef = useRef(0);
   const asstLineRef = useRef<string>('');
+  const startedRef = useRef(false);
 
   const cleanup = useCallback(() => {
     try { dcRef.current?.close(); } catch { /* */ }
@@ -72,8 +74,6 @@ export function VoiceMechanic({
     let msg: Record<string, unknown>;
     try { msg = JSON.parse(ev.data); } catch { return; }
     const type = String(msg.type || '');
-    // User started talking → grab a frame so this turn is grounded in what
-    // they're pointing at (image lands before the auto-VAD response).
     if (type === 'input_audio_buffer.speech_started') {
       setSpeaking(false);
       sendFrame();
@@ -95,10 +95,11 @@ export function VoiceMechanic({
   }, [sendFrame]);
 
   const start = useCallback(async () => {
+    if (startedRef.current) return;
+    startedRef.current = true;
     setErr(null);
     setStatus('connecting');
     try {
-      // 1. Mint ephemeral token.
       const tokenRes = await fetch('/api/realtime', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -108,52 +109,64 @@ export function VoiceMechanic({
       if (!tokenRes.ok || !tok.client_secret) {
         setErr(tok.message || (tokenRes.status === 401 ? 'Sign in to use voice.' : 'Could not start voice.'));
         setStatus('error');
+        startedRef.current = false;
         return;
       }
 
-      // 2. Peer connection + remote audio sink.
       const pc = new RTCPeerConnection();
       pcRef.current = pc;
       pc.ontrack = (e) => { if (audioRef.current) audioRef.current.srcObject = e.streams[0]; };
 
-      // 3. Mic up.
       const mic = await navigator.mediaDevices.getUserMedia({ audio: true });
       micRef.current = mic;
       mic.getTracks().forEach((t) => pc.addTrack(t, mic));
 
-      // 4. Data channel for events (transcripts + sending frames).
       const dc = pc.createDataChannel('oai-events');
       dcRef.current = dc;
       dc.onmessage = onEvent;
-      dc.onopen = () => { setStatus('live'); sendFrame(); };
+      dc.onopen = () => {
+        setStatus('live');
+        sendFrame();
+        // Make the mechanic speak FIRST (the greeting). With server-VAD the
+        // model otherwise waits for the user — response.create triggers its
+        // opening turn immediately.
+        try { dc.send(JSON.stringify({ type: 'response.create' })); } catch { /* */ }
+      };
 
-      // 5. SDP offer → OpenAI → answer.
       const offer = await pc.createOffer();
       await pc.setLocalDescription(offer);
-      // GA WebRTC endpoint: /v1/realtime/calls, no ?model= (the model is baked
-      // into the ephemeral token's session), no OpenAI-Beta header.
       const sdpRes = await fetch('https://api.openai.com/v1/realtime/calls', {
         method: 'POST',
         body: offer.sdp,
         headers: { Authorization: `Bearer ${tok.client_secret}`, 'Content-Type': 'application/sdp' },
       });
       if (!sdpRes.ok) {
-        setErr('Voice connection failed. Try again.');
+        setErr('Voice connection failed. Tap to retry.');
         setStatus('error');
+        startedRef.current = false;
         cleanup();
         return;
       }
       const answer = await sdpRes.text();
       await pc.setRemoteDescription({ type: 'answer', sdp: answer });
     } catch (e) {
-      setErr(e instanceof Error && e.name === 'NotAllowedError' ? 'Microphone permission needed.' : 'Could not start voice.');
+      setErr(e instanceof Error && e.name === 'NotAllowedError' ? 'Allow the mic to talk to the mechanic.' : 'Could not start voice. Tap to retry.');
       setStatus('error');
+      startedRef.current = false;
       cleanup();
     }
   }, [vehicle, onEvent, sendFrame, cleanup]);
 
+  // Auto-activate shortly after mount (let the camera settle first).
+  useEffect(() => {
+    if (!autoStart) return;
+    const t = setTimeout(() => { start(); }, 700);
+    return () => clearTimeout(t);
+  }, [autoStart, start]);
+
   const end = useCallback(() => {
     cleanup();
+    startedRef.current = false;
     setStatus('idle');
     setSpeaking(false);
     asstLineRef.current = '';
@@ -165,52 +178,66 @@ export function VoiceMechanic({
     micRef.current?.getAudioTracks().forEach((t) => { t.enabled = !next; });
   }, [muted]);
 
+  // Orb color by state.
+  const orbColor = status === 'error' ? '#EF4444'
+    : status === 'connecting' ? '#F59E0B'
+    : muted ? '#9CA3AF'
+    : speaking ? '#3B82F6'
+    : status === 'live' ? '#10B981'
+    : '#3B82F6';
+  const statusText = status === 'connecting' ? 'Connecting…'
+    : status === 'error' ? (err || 'Tap to retry')
+    : muted ? 'Muted — tap to unmute'
+    : speaking ? 'Au7o is talking…'
+    : status === 'live' ? 'Listening — just talk'
+    : 'Tap to talk';
+
+  const onOrbTap = () => {
+    if (status === 'idle' || status === 'error') start();
+    else if (status === 'live') toggleMute();
+  };
+
   return (
     <>
-      {/* hidden sink for the model's voice */}
       <audio ref={audioRef} autoPlay style={{ display: 'none' }} />
 
-      {status === 'idle' || status === 'error' ? (
-        <button type="button" onClick={start}
-          style={{ position: 'absolute', top: 14, right: 14, zIndex: 8, display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 16px', borderRadius: 999, border: 'none', background: '#3B82F6', color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', boxShadow: '0 4px 16px rgba(59,130,246,0.45)', animation: 'au7oVoiceAttn 2.6s ease-in-out infinite' }}>
-          <span style={{ position: 'absolute', inset: 0, borderRadius: 999, border: '2px solid #3B82F6', animation: 'au7oVoiceRing 2.6s ease-out infinite', pointerEvents: 'none' }} />
-          <MicIcon /> Talk to the mechanic
-          <style>{`@keyframes au7oVoiceAttn { 0%,100%{box-shadow:0 4px 16px rgba(59,130,246,0.45)} 50%{box-shadow:0 4px 22px rgba(59,130,246,0.8)} } @keyframes au7oVoiceRing { 0%{transform:scale(1);opacity:0.7} 100%{transform:scale(1.35);opacity:0} }`}</style>
-        </button>
-      ) : (
-        <div style={{ position: 'absolute', top: 12, right: 12, left: 12, zIndex: 8, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8, pointerEvents: 'none' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '8px 14px', borderRadius: 999, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(10px)', pointerEvents: 'auto' }}>
-            <span style={{ width: 9, height: 9, borderRadius: '50%', background: status === 'live' ? (speaking ? '#3B82F6' : '#10B981') : '#F59E0B', animation: status === 'connecting' ? 'au7oVoicePulse 1s infinite' : speaking ? 'au7oVoicePulse 0.7s infinite' : 'none' }} />
-            <span style={{ fontSize: 12.5, fontWeight: 700, color: '#fff' }}>
-              {status === 'connecting' ? 'Connecting…' : speaking ? 'Au7o is talking…' : 'Listening — just ask'}
-            </span>
-            <button type="button" onClick={toggleMute} style={{ background: 'none', border: 'none', color: muted ? '#FCA5A5' : 'rgba(255,255,255,0.8)', cursor: 'pointer', fontSize: 12, fontWeight: 700, padding: 0 }}>{muted ? 'Unmute' : 'Mute'}</button>
-            <button type="button" onClick={end} style={{ background: '#EF4444', border: 'none', color: '#fff', cursor: 'pointer', fontSize: 12, fontWeight: 700, padding: '4px 10px', borderRadius: 999 }}>End</button>
-          </div>
-          {lines.length > 0 && (
-            <div style={{ maxWidth: 320, width: '100%', display: 'flex', flexDirection: 'column', gap: 6, pointerEvents: 'auto' }}>
-              {lines.slice(-4).map((l, i) => (
-                <div key={i} style={{ alignSelf: l.role === 'you' ? 'flex-end' : 'flex-start', maxWidth: '85%', padding: '7px 11px', borderRadius: 12, fontSize: 12.5, lineHeight: 1.35, background: l.role === 'you' ? 'rgba(59,130,246,0.92)' : 'rgba(255,255,255,0.94)', color: l.role === 'you' ? '#fff' : '#0B1220' }}>
-                  {l.text}
-                </div>
-              ))}
+      {/* Transcript bubbles, stacked above the orb (bottom-right). */}
+      {lines.length > 0 && status === 'live' && (
+        <div style={{ position: 'absolute', right: 14, bottom: 150, zIndex: 9, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 6, maxWidth: 300, pointerEvents: 'none' }}>
+          {lines.slice(-3).map((l, i) => (
+            <div key={i} style={{ alignSelf: l.role === 'you' ? 'flex-end' : 'flex-start', maxWidth: '90%', padding: '7px 11px', borderRadius: 12, fontSize: 12.5, lineHeight: 1.35, background: l.role === 'you' ? 'rgba(59,130,246,0.92)' : 'rgba(255,255,255,0.95)', color: l.role === 'you' ? '#fff' : '#0B1220', boxShadow: '0 2px 10px rgba(0,0,0,0.25)' }}>
+              {l.text}
             </div>
-          )}
-          <style>{`@keyframes au7oVoicePulse { 0%,100%{opacity:1} 50%{opacity:0.3} }`}</style>
+          ))}
         </div>
       )}
-      {err && (status === 'error') && (
-        <div style={{ position: 'absolute', top: 58, right: 14, zIndex: 8, padding: '7px 12px', borderRadius: 10, background: 'rgba(127,29,29,0.9)', color: '#FECACA', fontSize: 12, maxWidth: 260 }}>{err}</div>
-      )}
-    </>
-  );
-}
 
-function MicIcon() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z" />
-      <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4" />
-    </svg>
+      {/* The pulsing orb — bottom-right, opposite the photo-library button. */}
+      <div style={{ position: 'absolute', right: 24, bottom: 92, zIndex: 9, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+        <button type="button" onClick={onOrbTap} aria-label="Talk to the mechanic"
+          style={{ position: 'relative', width: 60, height: 60, borderRadius: '50%', border: 'none', background: orbColor, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 6px 22px ${orbColor}66`, transition: 'background 0.3s', WebkitTapHighlightColor: 'transparent' }}>
+          {/* pulsing rings */}
+          {status !== 'error' && status !== 'idle' && (
+            <>
+              <span style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: `2px solid ${orbColor}`, animation: `au7oOrbRing ${speaking ? 1 : 2}s ease-out infinite` }} />
+              <span style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: `2px solid ${orbColor}`, animation: `au7oOrbRing ${speaking ? 1 : 2}s ease-out infinite 0.6s` }} />
+            </>
+          )}
+          {muted ? (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 1l22 22M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6" /><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23" /></svg>
+          ) : (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4" /></svg>
+          )}
+        </button>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          <span style={{ fontSize: 11, fontWeight: 600, color: '#fff', textShadow: '0 1px 3px rgba(0,0,0,0.6)', whiteSpace: 'nowrap' }}>{statusText}</span>
+          {status === 'live' && (
+            <button type="button" onClick={end} aria-label="End voice" style={{ background: 'rgba(0,0,0,0.45)', border: 'none', color: '#fff', borderRadius: 999, fontSize: 10, fontWeight: 700, padding: '2px 7px', cursor: 'pointer' }}>End</button>
+          )}
+        </div>
+      </div>
+
+      <style>{`@keyframes au7oOrbRing { 0%{transform:scale(1);opacity:0.6} 100%{transform:scale(1.6);opacity:0} }`}</style>
+    </>
   );
 }
