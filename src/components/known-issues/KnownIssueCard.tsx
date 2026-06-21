@@ -409,11 +409,15 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
             <p className="text-sm text-green-700 leading-relaxed">{issue.solution}</p>
           </div>
 
-          {/* THE BUYABLE FIX — the exact part(s) to resolve this, PN-precise
-              with buy-links built from the verified part number. au7o's
-              differentiator: problem -> proven fix -> the exact part to buy,
-              no internet scavenger hunt. */}
-          {issue.fixParts && issue.fixParts.length > 0 && (
+          {/* THE BUYABLE FIX — one combined section: the OEM/verified part(s)
+              that resolve this (PN-precise, buy-links from the verified number)
+              PLUS what owners actually use (aftermarket cross-refs + community
+              upgrades/tips/warnings). au7o's differentiator: problem -> proven
+              fix -> the exact part to buy, no internet scavenger hunt. The two
+              part sources are LABELLED (OEM vs Owners use) so nothing reads as
+              redundant. */}
+          {((issue.fixParts && issue.fixParts.length > 0) ||
+            (issue.communityRecommendations && issue.communityRecommendations.length > 0)) && (
             <div className="rounded-lg p-3 bg-amber-50 border border-amber-200">
               <h4 className="text-sm font-semibold text-amber-900 mb-1 flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -421,17 +425,25 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                 </svg>
                 What you need to fix it
               </h4>
-              <p className="text-xs text-amber-700 mb-2">The exact part — skip the internet hunt.</p>
+              <p className="text-xs text-amber-700 mb-2">The exact parts — OEM, plus what owners actually use. Skip the internet hunt.</p>
+
+              {issue.fixParts && issue.fixParts.length > 0 && (
               <ul className="space-y-3">
                 {issue.fixParts.map((p, i) => (
                   <li key={i} className="bg-white border border-amber-200 rounded-md p-2.5">
                     <div className="text-sm font-medium text-[#0B1220]">{p.component}</div>
                     <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-[#475569]">
                       {p.oemPartNumber && (
-                        <span>OEM&nbsp;#&nbsp;<span className="font-mono font-medium text-[#0B1220]">{p.oemPartNumber}</span></span>
+                        <span className="inline-flex items-center gap-1">
+                          <span className="px-1.5 py-0.5 text-[10px] font-semibold rounded bg-amber-200 text-amber-900 uppercase tracking-wide">OEM</span>
+                          <span className="font-mono font-medium text-[#0B1220]">{p.oemPartNumber}</span>
+                        </span>
                       )}
                       {p.aftermarketXref && p.aftermarketXref.length > 0 && (
-                        <span className="text-[#64748B]">Also fits: {p.aftermarketXref.slice(0, 3).join(', ')}</span>
+                        <span className="inline-flex items-baseline gap-1 text-[#475569]">
+                          <span className="px-1.5 py-0.5 text-[10px] font-semibold rounded bg-purple-100 text-purple-700 uppercase tracking-wide">Owners use</span>
+                          {p.aftermarketXref.slice(0, 3).join(', ')}
+                        </span>
                       )}
                       {p.priceLow != null && (
                         <span className="font-medium text-[#0B1220]">
@@ -471,21 +483,17 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                   </li>
                 ))}
               </ul>
-              <p className="text-[10px] text-[#94A3B8] mt-2">Part links may earn au7o a commission. Confirm fitment by VIN before buying.</p>
-            </div>
-          )}
+              )}
 
-          {/* Common Fixes & Upgrades */}
-          {issue.communityRecommendations && issue.communityRecommendations.length > 0 && (
-            <div className={`rounded-lg p-3 ${hasPartRecommendations ? 'bg-purple-50 border border-purple-200' : 'bg-blue-50 border border-blue-200'}`}>
-              <h4 className={`text-sm font-medium mb-2 flex items-center gap-2 ${hasPartRecommendations ? 'text-purple-800' : 'text-blue-800'}`}>
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              {/* From owners — community upgrades, tips & warnings (the "what
+                  owners are using" half, now inside the same section). */}
+              {issue.communityRecommendations && issue.communityRecommendations.length > 0 && (
+              <div className={issue.fixParts && issue.fixParts.length > 0 ? 'mt-3 pt-3 border-t border-amber-200' : ''}>
+              <p className="text-xs font-semibold text-amber-900 mb-1.5 flex items-center gap-1.5">
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
                 </svg>
-                What Owners Are Using
-              </h4>
-              <p className={`text-xs mb-2 ${hasPartRecommendations ? 'text-purple-600' : 'text-blue-600'}`}>
-                Parts and tips from {issue.reportCount.toLocaleString()}+ owners who fixed this issue
+                From owners — upgrades &amp; tips ({issue.reportCount.toLocaleString()}+ fixed this)
               </p>
               <ul className="space-y-2">
                 {issue.communityRecommendations.map((rec, index) => (
@@ -557,6 +565,10 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                   </li>
                 ))}
               </ul>
+              </div>
+              )}
+
+              <p className="text-[10px] text-[#94A3B8] mt-2">Part links may earn au7o a commission. Confirm fitment by VIN before buying.</p>
             </div>
           )}
 

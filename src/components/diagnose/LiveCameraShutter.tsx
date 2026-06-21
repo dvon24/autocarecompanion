@@ -23,6 +23,23 @@ import { VoiceMechanic } from './VoiceMechanic';
 
 const DEFAULT_MAX_RECORD_SECS = 15;
 
+/**
+ * The live tap/hold viewfinder is a phone/tablet interaction — on a laptop or
+ * desktop it should NOT light up the webcam (Devon: "that shouldn't work, should
+ * only be for tablet and phone"). We gate on a real handheld signal: a mobile/
+ * tablet user-agent, or iPadOS-13+ which masquerades as desktop Safari but
+ * reports touch points. A touch-screen Windows laptop is intentionally treated
+ * as desktop (it isn't a phone/tablet) and falls through to file upload.
+ */
+function isHandheld(): boolean {
+  if (typeof navigator === 'undefined') return false;
+  const ua = navigator.userAgent || '';
+  if (/Android|iPhone|iPod|iPad|webOS|BlackBerry|IEMobile|Opera Mini|Mobile Safari|Silk/i.test(ua)) return true;
+  // iPadOS 13+ presents as "Macintosh" but exposes multi-touch.
+  if (/Macintosh/.test(ua) && (navigator.maxTouchPoints || 0) > 1) return true;
+  return false;
+}
+
 function pickRecordMime(): { mime: string; ext: string } {
   const candidates: Array<[string, string]> = [
     ['video/mp4', 'mp4'],
@@ -90,6 +107,7 @@ export function LiveCameraShutter({
   const heldRef = useRef(false);
 
   const [cameraDenied, setCameraDenied] = useState(false);
+  const [deviceBlocked, setDeviceBlocked] = useState(false); // desktop/laptop — upload only
   const [framed, setFramed] = useState(false);
   const [coach, setCoach] = useState(labels?.hint || 'Point at the part or problem');
   const [recording, setRecording] = useState(false);
@@ -150,6 +168,8 @@ export function LiveCameraShutter({
 
   const startCamera = useCallback(async () => {
     setErr(null);
+    // Desktop/laptop: never open the webcam — go straight to upload.
+    if (!isHandheld()) { setDeviceBlocked(true); setCameraDenied(true); return; }
     if (typeof navigator === 'undefined' || !navigator.mediaDevices?.getUserMedia) { setCameraDenied(true); return; }
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false });
@@ -273,7 +293,7 @@ export function LiveCameraShutter({
           Shown whenever voice is enabled, even while the camera is still
           starting or denied (you can talk to the mechanic without a live
           frame; getFrame just returns null until the camera is up). */}
-      {enableVoice && <VoiceMechanic getFrame={captureFrameDataUrl} vehicle={vehicle} />}
+      {enableVoice && !deviceBlocked && <VoiceMechanic getFrame={captureFrameDataUrl} vehicle={vehicle} />}
 
       {/* top bar */}
       <div style={{ position: 'absolute', top: 12, left: 12, right: 12, zIndex: 6, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -326,8 +346,11 @@ export function LiveCameraShutter({
       {/* camera-denied fallback */}
       {cameraDenied && (
         <div style={{ position: 'absolute', inset: 0, zIndex: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 28px', textAlign: 'center', color: '#fff' }}>
-          <p style={{ fontSize: 15, fontWeight: 600, margin: '0 0 6px' }}>{L.denyTitle}</p>
-          <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', margin: '0 0 18px', lineHeight: 1.45 }}>{L.denyBody}</p>
+          {deviceBlocked && (
+            <div style={{ width: 52, height: 52, borderRadius: 14, background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14, fontSize: 24 }}>📱</div>
+          )}
+          <p style={{ fontSize: 15, fontWeight: 600, margin: '0 0 6px' }}>{deviceBlocked ? 'Live capture is for phone & tablet' : L.denyTitle}</p>
+          <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', margin: '0 0 18px', lineHeight: 1.45 }}>{deviceBlocked ? 'Open au7o on your phone to point-and-shoot, or upload a photo or video from this computer.' : L.denyBody}</p>
           <div style={{ display: 'flex', gap: 10 }}>
             <button type="button" onClick={() => photoInputRef.current?.click()} style={{ padding: '12px 18px', background: accent, color: '#fff', border: 'none', borderRadius: 12, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Upload photo</button>
             <button type="button" onClick={() => videoInputRef.current?.click()} style={{ padding: '12px 18px', background: 'rgba(255,255,255,0.12)', color: '#fff', border: '1px solid rgba(255,255,255,0.3)', borderRadius: 12, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Upload video</button>
