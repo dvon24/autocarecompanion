@@ -26,10 +26,17 @@ function buyLinksByName(name) {
   const drops = (wrap.result && wrap.result.drops) || wrap.drops || [];
   // group dropped indices per issue id
   const byId = new Map();
+  let notChecked = 0;
   for (const d of drops) {
+    // ONLY clear a PN an auditor actually ran on and could not confirm.
+    // A drop with audited:false means the auditor never ran (e.g. the
+    // subscription session-limit killed the batch) — that is "not checked",
+    // NOT "wrong", so we must NOT wipe the PN. Re-run the re-audit later.
+    if (d.audited !== true) { notChecked++; continue; }
     if (!byId.has(d.id)) byId.set(d.id, new Set());
     byId.get(d.id).add(Number(d.i));
   }
+  if (notChecked) console.log('Skipped ' + notChecked + ' un-checked drops (auditor did not run — will re-audit later).');
   const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 2 });
   pool.on('error', () => {});
   const prisma = new PrismaClient({ adapter: new PrismaPg(pool) });
