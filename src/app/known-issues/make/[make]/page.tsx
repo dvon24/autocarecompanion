@@ -15,7 +15,7 @@ import prisma from '@/lib/db';
 
 // --- ISR + dynamic params ---
 
-export const revalidate = 3600; // Re-generate cached pages every 1 hour
+export const revalidate = 21600; // 6h — ~51 make pages, change rarely; cuts steady-state DB re-render load (article [slug] pages stay at 1h)
 export const dynamicParams = true; // Allow on-demand rendering of new makes
 
 // --- Make name utilities ---

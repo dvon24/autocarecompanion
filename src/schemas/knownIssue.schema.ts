@@ -26,6 +26,21 @@ export const communityRecommendationSchema = z.object({
 });
 
 /**
+ * fixParts — the buyable resolution: the exact part(s) to fix this issue,
+ * PN-precise with validated buy-links built from the verified part number.
+ * The au7o differentiator (problem -> proven fix -> the exact part to buy).
+ */
+export const fixPartSchema = z.object({
+  component: z.string(),
+  oemPartNumber: z.string().optional().default(''),
+  aftermarketXref: z.array(z.string()).optional().default([]),
+  priceLow: z.number().nullable().optional(),
+  priceHigh: z.number().nullable().optional(),
+  note: z.string().optional().default(''),
+  buyLinks: z.array(z.object({ vendor: z.string(), url: z.string() })).optional().default([]),
+});
+
+/**
  * Vehicle matching criteria
  */
 export const vehicleMatchSchema = z.object({
@@ -83,6 +98,7 @@ export const knownIssueSchema = z.object({
   }).optional(),
   citations: z.array(citationSchema),
   communityRecommendations: z.array(communityRecommendationSchema).optional(),
+  fixParts: z.array(fixPartSchema).optional(),
   source: z.enum(['nhtsa-verified', 'recall-related', 'ai-researched', 'manual']).optional(),
   humanApproved: z.boolean(),
   lastReportedByOwners: z.string(), // When owners last reported this issue
@@ -126,6 +142,7 @@ export const symptomCaptureSchema = z.object({
 // TypeScript types
 export type Citation = z.infer<typeof citationSchema>;
 export type CommunityRecommendation = z.infer<typeof communityRecommendationSchema>;
+export type FixPart = z.infer<typeof fixPartSchema>;
 export type VehicleMatch = z.infer<typeof vehicleMatchSchema>;
 export type IssueCategory = z.infer<typeof issueCategorySchema>;
 export type KnownIssue = z.infer<typeof knownIssueSchema>;

@@ -402,6 +402,72 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
             <p className="text-sm text-green-700 leading-relaxed">{issue.solution}</p>
           </div>
 
+          {/* THE BUYABLE FIX — the exact part(s) to resolve this, PN-precise
+              with buy-links built from the verified part number. au7o's
+              differentiator: problem -> proven fix -> the exact part to buy,
+              no internet scavenger hunt. */}
+          {issue.fixParts && issue.fixParts.length > 0 && (
+            <div className="rounded-lg p-3 bg-amber-50 border border-amber-200">
+              <h4 className="text-sm font-semibold text-amber-900 mb-1 flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                </svg>
+                What you need to fix it
+              </h4>
+              <p className="text-xs text-amber-700 mb-2">The exact part — skip the internet hunt.</p>
+              <ul className="space-y-3">
+                {issue.fixParts.map((p, i) => (
+                  <li key={i} className="bg-white border border-amber-200 rounded-md p-2.5">
+                    <div className="text-sm font-medium text-[#0B1220]">{p.component}</div>
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-[#475569]">
+                      {p.oemPartNumber && (
+                        <span>OEM&nbsp;#&nbsp;<span className="font-mono font-medium text-[#0B1220]">{p.oemPartNumber}</span></span>
+                      )}
+                      {p.aftermarketXref && p.aftermarketXref.length > 0 && (
+                        <span className="text-[#64748B]">Also fits: {p.aftermarketXref.slice(0, 3).join(', ')}</span>
+                      )}
+                      {p.priceLow != null && (
+                        <span className="font-medium text-[#0B1220]">
+                          ${p.priceLow}{p.priceHigh != null && p.priceHigh !== p.priceLow ? `–$${p.priceHigh}` : ''}
+                        </span>
+                      )}
+                    </div>
+                    {p.note && <p className="text-xs text-[#64748B] mt-1 leading-relaxed">{p.note}</p>}
+                    {p.buyLinks && p.buyLinks.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {p.buyLinks.map((b, j) => (
+                          <a
+                            key={j}
+                            href={b.url}
+                            target="_blank"
+                            rel="noopener noreferrer sponsored"
+                            onClick={() => trackAffiliateClick({
+                              issueId: issue.id,
+                              partBrand: b.vendor,
+                              partName: p.component,
+                              partNumber: p.oemPartNumber,
+                              linkUrl: b.url,
+                              recommendationIndex: i,
+                              vehicleMake: issue.vehicleMatch.make,
+                              vehicleModel: issue.vehicleMatch.model,
+                            })}
+                            className="inline-flex items-center gap-1 text-xs font-medium bg-[#0B1220] text-white px-2.5 py-1.5 rounded-md hover:bg-[#1e293b] transition-colors"
+                          >
+                            {b.vendor}
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-[10px] text-[#94A3B8] mt-2">Part links may earn au7o a commission. Confirm fitment by VIN before buying.</p>
+            </div>
+          )}
+
           {/* Common Fixes & Upgrades */}
           {issue.communityRecommendations && issue.communityRecommendations.length > 0 && (
             <div className={`rounded-lg p-3 ${hasPartRecommendations ? 'bg-purple-50 border border-purple-200' : 'bg-blue-50 border border-blue-200'}`}>

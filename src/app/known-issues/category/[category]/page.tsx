@@ -13,7 +13,7 @@ import prisma from '@/lib/db';
 
 // --- ISR + dynamic params ---
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 24h — only ~17 category pages, change rarely; cuts steady-state DB re-render load (article [slug] pages stay at 1h)
 export const dynamicParams = true;
 
 // --- Category helpers ---

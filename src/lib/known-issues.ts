@@ -52,6 +52,10 @@ function dbRowToKnownIssue(row: any): KnownIssue {
       : undefined,
     citations: row.citations as any[],
     communityRecommendations: row.communityRecommendations as any[],
+    // The buyable fix — exact part(s) + PN + validated buy-links. May be absent
+    // on queries that use a narrow `select` (e.g. related-vehicle lookups); the
+    // full article fetch returns all columns so the card gets it.
+    fixParts: (row.fixParts as any[]) || [],
     humanApproved: row.humanApproved,
     lastReportedByOwners: row.lastReportedByOwners,
     reviewedOn: row.reviewedOn,

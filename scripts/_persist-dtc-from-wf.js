@@ -38,8 +38,8 @@ const VALID_CODE = /^[PBCU][0-3][0-9A-F]{3}$/i; // standard 5-char DTC format
     };
     try {
       const existing = await prisma.dTCCode.findUnique({ where: { code }, select: { code: true } });
-      if (existing) { await prisma.dTCCode.update({ where: { code }, data }); upd++; }
-      else { await prisma.dTCCode.create({ data: { code, ...data } }); ins++; }
+      if (existing) { upd++; continue; } // insert-only: never overwrite existing curated content
+      await prisma.dTCCode.create({ data: { code, ...data } }); ins++;
     } catch (e) { console.error('  ! ' + code + ': ' + e.message); skip++; }
     void sym;
   }

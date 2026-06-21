@@ -475,6 +475,12 @@ model KnownIssue {
   typicalMileageHigh       Int?
   citations                Json      @default("[]")
   communityRecommendations Json      @default("[]")
+  // THE FIX, made buyable: the exact part(s) to resolve this issue — PN-precise,
+  // validated buy-links. The au7o differentiator (problem -> proven fix -> the
+  // exact part to buy, no internet scavenger hunt). Shape:
+  //   [{ component, oemPartNumber, aftermarketXref[], priceLow, priceHigh,
+  //      buyLinks[{vendor,url}], note }]
+  fixParts                 Json      @default("[]")
   humanApproved            Boolean   @default(false)
   reportCount              Int       @default(0)
   source                   String    @default("ai-researched")  // "nhtsa-verified", "ai-researched", "manual"
@@ -498,6 +504,13 @@ model KnownIssue {
   @@index([severity])
   @@index([status])
   @@index([category])
+  // Compound indexes for the hot SEO read paths (article + category pages).
+  @@index([status, make, model])
+  @@index([status, category])
+  // ALSO created directly in prod (raw SQL, not Prisma-managed, applied 2026-06-20):
+  //   GIN("dtcCodes")                        — serves dtcCodes @> array (DTC-per-make pages)
+  //   GIN(make gin_trgm_ops), GIN(model ...) — serve case-insensitive ILIKE make/model
+  //   requires: CREATE EXTENSION pg_trgm;
 }
 
 // ============================================
