@@ -221,7 +221,8 @@ export function SnapDiagnoseClient() {
         onClose={() => router.push('/')}
         vehicle={hasVehicle ? { year: Number(year), make, model, trim } : undefined}
         vehicleLabel={hasVehicle ? `${year} ${make} ${model}` : t.addCar}
-        enableVoice={isSignedIn}
+        enableVoice
+        voiceAutoStart={false}
         modeToggle={modeToggle}
         headerExtra={headerExtra}
         labels={{ hint: mode === 'parts' ? t.hintPart : t.hintProblem, tapHold: `${t.tapCapture} · or hold to record` }}

@@ -69,6 +69,7 @@ export function LiveCameraShutter({
   vehicle,
   vehicleLabel,
   enableVoice = false,
+  voiceAutoStart = true,
   maxRecordSeconds = DEFAULT_MAX_RECORD_SECS,
   modeToggle,
   headerExtra,
@@ -82,6 +83,10 @@ export function LiveCameraShutter({
   vehicle?: { year?: number; make?: string; model?: string; trim?: string };
   vehicleLabel?: string;
   enableVoice?: boolean;
+  /** Auto-start the voice mechanic on open (hub greeting). Public/anon flow
+   *  passes false so the demo is opt-in (tap-to-talk) and isn't burned on a
+   *  user who just wanted to snap a photo. */
+  voiceAutoStart?: boolean;
   maxRecordSeconds?: number;
   modeToggle?: React.ReactNode;
   headerExtra?: React.ReactNode;
@@ -293,7 +298,7 @@ export function LiveCameraShutter({
           Shown whenever voice is enabled, even while the camera is still
           starting or denied (you can talk to the mechanic without a live
           frame; getFrame just returns null until the camera is up). */}
-      {enableVoice && !deviceBlocked && <VoiceMechanic getFrame={captureFrameDataUrl} vehicle={vehicle} />}
+      {enableVoice && !deviceBlocked && <VoiceMechanic getFrame={captureFrameDataUrl} vehicle={vehicle} autoStart={voiceAutoStart} />}
 
       {/* top bar */}
       <div style={{ position: 'absolute', top: 12, left: 12, right: 12, zIndex: 6, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

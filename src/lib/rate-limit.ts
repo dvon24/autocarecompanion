@@ -76,6 +76,19 @@ export class RateLimiter {
   }
 
   /**
+   * Check availability WITHOUT recording a hit. Lets a caller verify a credit
+   * is available, do expensive work, then consume the credit only on success
+   * (so e.g. a failed token-mint doesn't burn a user's one-and-only demo).
+   */
+  peek(ip: string): boolean {
+    const now = Date.now();
+    const windowStart = now - this.interval;
+    const entry = this.store.get(ip);
+    if (!entry) return true;
+    return entry.timestamps.filter((t) => t > windowStart).length < this.limit;
+  }
+
+  /**
    * Remove entries whose entire window has expired.
    */
   private cleanup(): void {
@@ -112,6 +125,15 @@ export const driveTurnDayLimiter = new RateLimiter(24 * 60 * 60_000, 200);  // 2
 export const hubChatAnonDayLimiter = new RateLimiter(24 * 60 * 60_000, 1);   // 1 message / day / IP — login gate
 export const hubChatAuthedDayLimiter = new RateLimiter(24 * 60 * 60_000, 200); // 200 / day / IP authed
 export const hubChatMinuteLimiter = new RateLimiter(60_000, 12);             // 12 / min — protects against client-loop bugs
+
+// Live voice mechanic DEMO — non-paying callers (anonymous + signed-in free)
+// get a short, hard-capped live taste, then upsell. Realtime audio is
+// $-per-minute, so the cap is tight and the DEMO_SECONDS session length is the
+// real cost ceiling. Best-effort/in-memory (resets on cold start) — same
+// tolerance as the anon hub-chat cap above. Anon keyed by IP, free by userId.
+const THIRTY_DAYS = 30 * 24 * 60 * 60_000;
+export const voiceDemoAnonLimiter = new RateLimiter(THIRTY_DAYS, 1);  // 1 demo / IP / 30 days
+export const voiceDemoFreeLimiter = new RateLimiter(THIRTY_DAYS, 2);  // 2 demos / signed-in free user / 30 days
 
 /**
  * Extract client IP from a request. Vercel sets x-forwarded-for automatically.

@@ -18,6 +18,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 type Status = 'idle' | 'connecting' | 'live' | 'error';
 type Line = { role: 'you' | 'au7o'; text: string };
+type Upsell = { message: string; ctaUrl: string; ctaLabel: string };
 
 export function VoiceMechanic({
   getFrame,
@@ -33,6 +34,10 @@ export function VoiceMechanic({
   const [muted, setMuted] = useState(false);
   const [lines, setLines] = useState<Line[]>([]);
   const [speaking, setSpeaking] = useState(false);
+  // Demo (non-paying) state — a short capped live taste then an upsell.
+  const [demoLeft, setDemoLeft] = useState<number | null>(null);
+  const [upsell, setUpsell] = useState<Upsell | null>(null);
+  const [showUpsell, setShowUpsell] = useState(false);
 
   const pcRef = useRef<RTCPeerConnection | null>(null);
   const dcRef = useRef<RTCDataChannel | null>(null);
@@ -41,8 +46,11 @@ export function VoiceMechanic({
   const lastFrameSentRef = useRef(0);
   const asstLineRef = useRef<string>('');
   const startedRef = useRef(false);
+  const demoTimerRef = useRef<number>(0);
+  const maxSecondsRef = useRef<number | null>(null);
 
   const cleanup = useCallback(() => {
+    window.clearInterval(demoTimerRef.current);
     try { dcRef.current?.close(); } catch { /* */ }
     try { pcRef.current?.getSenders().forEach((s) => s.track?.stop()); } catch { /* */ }
     try { pcRef.current?.close(); } catch { /* */ }
@@ -51,6 +59,29 @@ export function VoiceMechanic({
   }, []);
 
   useEffect(() => () => cleanup(), [cleanup]);
+
+  // Demo countdown: once the live session opens for a non-payer, run a tight
+  // timer; at zero, tear the session down and surface the upsell (this IS the
+  // conversion moment — they just heard the mechanic talk about their car).
+  const startDemoCountdown = useCallback((secs: number) => {
+    setDemoLeft(secs);
+    const deadline = Date.now() + secs * 1000;
+    window.clearInterval(demoTimerRef.current);
+    demoTimerRef.current = window.setInterval(() => {
+      const left = Math.ceil((deadline - Date.now()) / 1000);
+      if (left <= 0) {
+        cleanup();
+        startedRef.current = false;
+        setStatus('idle');
+        setSpeaking(false);
+        asstLineRef.current = '';
+        setDemoLeft(null);
+        setShowUpsell(true);
+      } else {
+        setDemoLeft(left);
+      }
+    }, 250);
+  }, [cleanup]);
 
   // Append the current camera frame as a user image item so the model can SEE
   // what's being pointed at. Throttled — at most one per 1.2s.
@@ -107,11 +138,23 @@ export function VoiceMechanic({
       });
       const tok = await tokenRes.json().catch(() => ({}));
       if (!tokenRes.ok || !tok.client_secret) {
+        // Demo already used → this is a conversion moment, not an error: show
+        // the upsell (sign up / upgrade) instead of a red failure state.
+        if (tokenRes.status === 402 && tok.error === 'demo_used') {
+          setUpsell({ message: tok.message, ctaUrl: tok.ctaUrl, ctaLabel: tok.ctaLabel });
+          setShowUpsell(true);
+          setStatus('idle');
+          startedRef.current = false;
+          return;
+        }
         setErr(tok.message || (tokenRes.status === 401 ? 'Sign in to use voice.' : 'Could not start voice.'));
         setStatus('error');
         startedRef.current = false;
         return;
       }
+      // Tier from the token mint: 'demo' (non-payer, capped) or 'full' (Plus/Pro).
+      setUpsell(tok.upsell ?? null);
+      maxSecondsRef.current = (tok.tier === 'demo' && typeof tok.maxSeconds === 'number') ? tok.maxSeconds : null;
 
       const pc = new RTCPeerConnection();
       pcRef.current = pc;
@@ -127,6 +170,9 @@ export function VoiceMechanic({
       dc.onopen = () => {
         setStatus('live');
         sendFrame();
+        // Non-payer? Start the demo countdown the moment we're actually live
+        // (so the cap is real talk time, not handshake time).
+        if (maxSecondsRef.current) startDemoCountdown(maxSecondsRef.current);
         // Make the mechanic speak FIRST (the greeting). With server-VAD the
         // model otherwise waits for the user — response.create triggers its
         // opening turn immediately.
@@ -155,7 +201,7 @@ export function VoiceMechanic({
       startedRef.current = false;
       cleanup();
     }
-  }, [vehicle, onEvent, sendFrame, cleanup]);
+  }, [vehicle, onEvent, sendFrame, cleanup, startDemoCountdown]);
 
   // Auto-activate shortly after mount (let the camera settle first).
   useEffect(() => {
@@ -190,16 +236,32 @@ export function VoiceMechanic({
     : muted ? 'Muted — tap to unmute'
     : speaking ? 'Au7o is talking…'
     : status === 'live' ? 'Listening — just talk'
-    : 'Tap to talk';
+    : 'Tap to talk to a mechanic';
 
   const onOrbTap = () => {
     if (status === 'idle' || status === 'error') start();
     else if (status === 'live') toggleMute();
   };
 
+  const demoClock = demoLeft !== null ? `0:${String(Math.max(0, demoLeft)).padStart(2, '0')}` : null;
+
   return (
     <>
       <audio ref={audioRef} autoPlay style={{ display: 'none' }} />
+
+      {/* Demo-ended (or demo-used) upsell — the conversion moment. They just
+          heard the mechanic talk about THEIR car; now ask for the signup/upgrade. */}
+      {showUpsell && upsell && (
+        <div style={{ position: 'absolute', inset: 0, zIndex: 12, display: 'flex', alignItems: 'flex-end', justifyContent: 'center', padding: '0 18px 110px', pointerEvents: 'none' }}>
+          <div style={{ pointerEvents: 'auto', width: '100%', maxWidth: 340, background: 'rgba(17,21,28,0.96)', backdropFilter: 'blur(14px)', border: '1px solid rgba(255,255,255,0.14)', borderRadius: 18, padding: '18px 18px 16px', boxShadow: '0 12px 40px rgba(0,0,0,0.5)', textAlign: 'center', color: '#fff' }}>
+            <div style={{ fontSize: 22, marginBottom: 6 }}>🔧</div>
+            <p style={{ fontSize: 15, fontWeight: 700, margin: '0 0 4px' }}>That’s the free preview</p>
+            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.72)', margin: '0 0 14px', lineHeight: 1.4 }}>{upsell.message}</p>
+            <a href={upsell.ctaUrl} style={{ display: 'block', padding: '12px 16px', background: '#3B82F6', color: '#fff', textDecoration: 'none', borderRadius: 12, fontSize: 14, fontWeight: 700 }}>{upsell.ctaLabel}</a>
+            <button type="button" onClick={() => setShowUpsell(false)} style={{ marginTop: 10, background: 'none', border: 'none', color: 'rgba(255,255,255,0.55)', fontSize: 12.5, cursor: 'pointer' }}>Maybe later</button>
+          </div>
+        </div>
+      )}
 
       {/* Transcript bubbles, stacked above the orb (bottom-right). */}
       {lines.length > 0 && status === 'live' && (
@@ -231,6 +293,11 @@ export function VoiceMechanic({
         </button>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
           <span style={{ fontSize: 11, fontWeight: 600, color: '#fff', textShadow: '0 1px 3px rgba(0,0,0,0.6)', whiteSpace: 'nowrap' }}>{statusText}</span>
+          {status === 'live' && demoClock && (
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: 'rgba(245,158,11,0.92)', color: '#fff', borderRadius: 999, fontSize: 10, fontWeight: 800, padding: '2px 7px', whiteSpace: 'nowrap' }}>
+              Preview · {demoClock}
+            </span>
+          )}
           {status === 'live' && (
             <button type="button" onClick={end} aria-label="End voice" style={{ background: 'rgba(0,0,0,0.45)', border: 'none', color: '#fff', borderRadius: 999, fontSize: 10, fontWeight: 700, padding: '2px 7px', cursor: 'pointer' }}>End</button>
           )}

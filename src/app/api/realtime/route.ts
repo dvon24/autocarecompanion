@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
-import { hubChatMinuteLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
+import { hubChatMinuteLimiter, getClientIp, rateLimitResponse, voiceDemoAnonLimiter, voiceDemoFreeLimiter } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 
@@ -10,18 +10,30 @@ export const runtime = 'nodejs';
  * WITHOUT the real API key ever reaching the client.
  *
  * This powers the "Live AI Mechanic" voice layer (talk to it while pointing the
- * camera). Realtime audio is EXPENSIVE per minute, so this is:
- *   - auth-gated (signed-in only) — no anonymous cost abuse,
- *   - burst rate-limited per IP,
- *   - intended for the premium tier (kept on the noindex /camera-spike for now).
+ * camera). Realtime audio is EXPENSIVE per minute, so it is TIERED:
+ *   - Plus/Pro (active subscriber) → FULL voice (tier:'full').
+ *   - Anonymous + signed-in FREE → a short, hard-capped DEMO (tier:'demo',
+ *     maxSeconds), then an upsell. Anon = the signup hook; free = the upgrade
+ *     hook. Demo is capped per IP (anon) / per user (free) so the cost of the
+ *     give-away is bounded.
+ *   - burst rate-limited per IP on top.
  *
- * Returns { client_secret, model, expires_at }. The client uses client_secret
- * as the Bearer for the WebRTC SDP exchange; it expires in ~60s, which is only
- * the handshake window (the live session continues after connect).
+ * Returns { client_secret, model, expires_at, tier, maxSeconds, upsell }. The
+ * client uses client_secret as the Bearer for the WebRTC SDP exchange; it
+ * expires in ~60s (the handshake window — the live session continues after).
  */
 const OPENAI_KEY = process.env.OPENAI_API_KEY;
 const REALTIME_MODEL = process.env.OPENAI_REALTIME_MODEL || 'gpt-realtime';
 const REALTIME_VOICE = process.env.OPENAI_REALTIME_VOICE || 'verse';
+
+// Length of the free live-voice taste for non-payers. Short by design — long
+// enough to hear the greeting + one exchange (the "wow"), tight enough that the
+// give-away cost stays tiny. The client counts down and auto-ends at this mark.
+const DEMO_SECONDS = 40;
+
+type Upsell = { message: string; ctaUrl: string; ctaLabel: string };
+const ANON_UPSELL: Upsell = { message: 'Sign up free to keep talking to the mechanic.', ctaUrl: '/auth/signup', ctaLabel: 'Sign up free' };
+const FREE_UPSELL: Upsell = { message: 'Upgrade to Plus for unlimited live voice with the mechanic.', ctaUrl: '/subscribe', ctaLabel: 'Upgrade to Plus' };
 
 interface VehicleCtx { year?: number; make?: string; model?: string; trim?: string }
 
@@ -44,16 +56,30 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'service_unavailable', message: 'Voice is offline.' }, { status: 503 });
   }
 
-  // Auth gate — signed-in only (premium, cost-bearing feature).
+  // Tier resolution (no DB hit — subscriptionStatus rides in the JWT). Active
+  // subscribers (Plus + Pro) get FULL voice; everyone else gets a capped DEMO.
   let session;
   try { session = await auth(); } catch { session = null; }
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: 'login_required', message: 'Sign in to start a voice session.' }, { status: 401 });
-  }
+  const userId = session?.user?.id ?? null;
+  const isSubscriber = session?.user?.subscriptionStatus === 'active';
+  const tier: 'full' | 'demo' = isSubscriber ? 'full' : 'demo';
 
   // Burst protection (shared minute limiter).
-  const burst = hubChatMinuteLimiter.check(getClientIp(request));
+  const ip = getClientIp(request);
+  const burst = hubChatMinuteLimiter.check(ip);
   if (!burst.success) return rateLimitResponse(burst.reset);
+
+  // DEMO gating: non-payers get a short live taste, capped. Anon → keyed by IP
+  // + signup upsell; signed-in free → keyed by userId + upgrade upsell. We PEEK
+  // here (not consume) so a downstream mint failure doesn't burn the credit;
+  // the credit is consumed only after a successful mint, below.
+  const upsell: Upsell | null = tier === 'demo' ? (userId ? FREE_UPSELL : ANON_UPSELL) : null;
+  const demoLimiter = userId ? voiceDemoFreeLimiter : voiceDemoAnonLimiter;
+  const demoKey = userId ? `user:${userId}` : `ip:${ip}`;
+  if (tier === 'demo' && !demoLimiter.peek(demoKey)) {
+    // Demo already used — return the upsell instead of minting a paid session.
+    return NextResponse.json({ error: 'demo_used', gated: true, tier: 'demo', ...upsell }, { status: 402 });
+  }
 
   let vehicle: VehicleCtx | null = null;
   try {
@@ -102,10 +128,16 @@ export async function POST(request: NextRequest) {
     if (!clientSecret) {
       return NextResponse.json({ error: 'mint_failed', message: 'Voice session returned no token.' }, { status: 502 });
     }
+    // Mint succeeded — NOW consume the demo credit (so a failed mint above never
+    // burned it). Subscribers don't touch the demo limiter at all.
+    if (tier === 'demo') demoLimiter.check(demoKey);
     return NextResponse.json({
       client_secret: clientSecret,
       expires_at: data?.expires_at ?? null,
       model: REALTIME_MODEL,
+      tier,
+      maxSeconds: tier === 'demo' ? DEMO_SECONDS : null,
+      upsell, // shown when the demo auto-ends
     });
   } catch (err) {
     console.error('[realtime] mint error', err);
