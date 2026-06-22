@@ -7,6 +7,25 @@ import Image from 'next/image';
 interface EmailEntry {
   timestamp: string;
   email: string;
+  context?: string | null;
+}
+
+// Humanize the captured lead context, e.g. "known-issues:Chevrolet Camaro" ->
+// "Chevrolet Camaro · Known issues"; "diagnose" -> "Diagnose". This is what the
+// lead actually asked to be alerted about — the hook for following up.
+function formatLeadContext(ctx?: string | null): string {
+  if (!ctx) return '—';
+  const [sourceRaw, ...rest] = ctx.split(':');
+  const subject = rest.join(':').trim();
+  const sourceLabel: Record<string, string> = {
+    'known-issues': 'Known issues',
+    'diagnose': 'Diagnose',
+    'dtc': 'DTC code',
+    'recall': 'Recall alert',
+    'alert': 'Alert',
+  };
+  const src = sourceLabel[sourceRaw.trim().toLowerCase()] || sourceRaw.trim();
+  return subject ? `${subject} · ${src}` : src;
 }
 
 interface FeedbackEntry {
@@ -368,6 +387,7 @@ export default function AdminPage() {
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Interested in</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
@@ -377,6 +397,7 @@ export default function AdminPage() {
                         {new Date(entry.timestamp).toLocaleString()}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-900">{entry.email}</td>
+                      <td className="px-6 py-4 text-sm text-gray-700">{formatLeadContext(entry.context)}</td>
                     </tr>
                   ))}
                 </tbody>
