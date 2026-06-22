@@ -19,6 +19,10 @@ const { PrismaPg } = require('@prisma/adapter-pg');
 const { Pool } = require('pg');
 
 const SEND = process.argv.includes('--send');
+// --test=you@email.com → send ONE sample digest to that address (validates the
+// Resend key + domain + how it looks in a real inbox) WITHOUT emailing any real
+// lead or touching any watermark.
+const TEST_TO = (process.argv.find((a) => a.startsWith('--test=')) || '').split('=')[1] || null;
 const MAX_PER_DIGEST = 10; // newest N findings per email; "+more on the site"
 const APP_URL = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://au7o.io';
 const FROM = process.env.FROM_EMAIL || 'Au7o <onboarding@resend.dev>';
@@ -62,8 +66,8 @@ function digestHtml({ vehicle, issues, slug, unsubToken, isCatchUp }) {
 }
 
 (async () => {
-  if (SEND && !process.env.RESEND_API_KEY) { console.error('FAIL: --send but RESEND_API_KEY is not set. Aborting (no emails sent).'); process.exit(1); }
-  if (SEND && !MAILING_ADDRESS) { console.error('FAIL: --send requires AU7O_MAILING_ADDRESS (CAN-SPAM needs a physical address in the footer). Set it in .env.local. Aborting.'); process.exit(1); }
+  if ((SEND || TEST_TO) && !process.env.RESEND_API_KEY) { console.error('FAIL: RESEND_API_KEY is not set. Aborting (no emails sent).'); process.exit(1); }
+  if ((SEND || TEST_TO) && !MAILING_ADDRESS) { console.error('FAIL: AU7O_MAILING_ADDRESS is required (CAN-SPAM needs a physical address in the footer). Set it in .env.local. Aborting.'); process.exit(1); }
 
   const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 3 });
   pool.on('error', () => {});
@@ -74,7 +78,7 @@ function digestHtml({ vehicle, issues, slug, unsubToken, isCatchUp }) {
     where: { unsubscribedAt: null, context: { startsWith: 'known-issues:' } },
     select: { id: true, email: true, context: true, createdAt: true, lastNotifiedAt: true, unsubscribeToken: true },
   });
-  console.log('Active vehicle-context leads: ' + leads.length + (SEND ? '  [SEND MODE]' : '  [DRY RUN — no emails sent]'));
+  console.log('Active vehicle-context leads: ' + leads.length + (TEST_TO ? '  [TEST MODE → ' + TEST_TO + ', no leads emailed]' : SEND ? '  [SEND MODE]' : '  [DRY RUN — no emails sent]'));
 
   // Canonical (make,model) pairs from published issues → match a lead's subject
   // robustly (handles multi-word makes/models, e.g. "Land Rover Range Rover").
@@ -83,7 +87,7 @@ function digestHtml({ vehicle, issues, slug, unsubToken, isCatchUp }) {
   for (const p of pairs) pairBySubject.set(`${p.make} ${p.model}`.toLowerCase().trim(), p);
 
   let resend = null;
-  if (SEND) { const { Resend } = require('resend'); resend = new Resend(process.env.RESEND_API_KEY); }
+  if (SEND || TEST_TO) { const { Resend } = require('resend'); resend = new Resend(process.env.RESEND_API_KEY); }
 
   let sent = 0, skippedNoMatch = 0, skippedNoNew = 0, failed = 0;
   for (const lead of leads) {
@@ -112,6 +116,15 @@ function digestHtml({ vehicle, issues, slug, unsubToken, isCatchUp }) {
     const html = digestHtml({ vehicle, issues, slug: makeSlug(pair.make, pair.model), unsubToken: token, isCatchUp });
     const subjectLine = isCatchUp ? `Known issues for your ${vehicle} — au7o` : `New findings for your ${vehicle} — au7o`;
 
+    if (TEST_TO) {
+      // Send ONE realistic sample to the tester, then stop. No lead emailed, no
+      // watermark touched.
+      try {
+        await resend.emails.send({ from: FROM, to: TEST_TO, subject: '[TEST] ' + subjectLine, html });
+        console.log('  ✓ TEST sent → ' + TEST_TO + '  (sample: ' + vehicle + ', ' + issues.length + ' issues). No real leads emailed, no watermark changed.');
+      } catch (e) { console.error('  ! TEST send failed → ' + TEST_TO + ': ' + (e instanceof Error ? e.message : e)); }
+      break;
+    }
     if (!SEND) {
       console.log('  ✉  WOULD SEND → ' + lead.email + '  [' + vehicle + ', ' + issues.length + ' issue' + (issues.length > 1 ? 's' : '') + ']');
       for (const i of issues) console.log('       ' + sevDot(i.severity) + ' ' + i.title);
