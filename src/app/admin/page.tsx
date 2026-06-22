@@ -5,9 +5,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 interface EmailEntry {
+  id: string;
   timestamp: string;
   email: string;
   context?: string | null;
+  lastNotifiedAt?: string | null;
+  unsubscribedAt?: string | null;
 }
 
 // Humanize the captured lead context, e.g. "known-issues:Chevrolet Camaro" ->
@@ -174,7 +177,28 @@ export default function AdminPage() {
   const [savingGuide, setSavingGuide] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [removingEmailId, setRemovingEmailId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'emails' | 'feedback' | 'vehicle' | 'patterns' | 'reports' | 'costs' | 'review' | 'affiliates' | 'guides'>('emails');
+
+  // Remove a lead from the active list (suppress = set unsubscribedAt). Used to
+  // honor a "take me off" request. Optimistically marks the row unsubscribed.
+  async function removeEmail(entry: EmailEntry) {
+    if (entry.unsubscribedAt) return;
+    if (!confirm(`Remove ${entry.email} from the interest list? They'll get no more emails.`)) return;
+    setRemovingEmailId(entry.id);
+    try {
+      const res = await fetch('/api/admin/interest/remove', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: entry.id }),
+      });
+      if (res.ok) {
+        const now = new Date().toISOString();
+        setEmails((prev) => prev.map((e) => (e.id === entry.id ? { ...e, unsubscribedAt: now } : e)));
+      } else {
+        alert('Could not remove — try again.');
+      }
+    } catch { alert('Could not remove — try again.'); }
+    finally { setRemovingEmailId(null); }
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -388,16 +412,34 @@ export default function AdminPage() {
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Interested in</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Last emailed</th>
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Status</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
-                  {emails.map((entry, i) => (
-                    <tr key={i} className="hover:bg-gray-50">
+                  {emails.map((entry) => (
+                    <tr key={entry.id} className={`hover:bg-gray-50 ${entry.unsubscribedAt ? 'opacity-50' : ''}`}>
                       <td className="px-6 py-4 text-sm text-gray-500">
                         {new Date(entry.timestamp).toLocaleString()}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-900">{entry.email}</td>
                       <td className="px-6 py-4 text-sm text-gray-700">{formatLeadContext(entry.context)}</td>
+                      <td className="px-6 py-4 text-sm text-gray-500">
+                        {entry.lastNotifiedAt ? new Date(entry.lastNotifiedAt).toLocaleDateString() : <span className="text-gray-400">Never</span>}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-right">
+                        {entry.unsubscribedAt ? (
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-500">Unsubscribed</span>
+                        ) : (
+                          <button
+                            onClick={() => removeEmail(entry)}
+                            disabled={removingEmailId === entry.id}
+                            className="text-xs font-medium text-red-600 hover:text-red-800 disabled:opacity-40"
+                          >
+                            {removingEmailId === entry.id ? 'Removing…' : 'Remove'}
+                          </button>
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

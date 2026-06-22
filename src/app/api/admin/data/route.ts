@@ -25,7 +25,14 @@ export async function GET() {
       }),
     ]);
 
-    const emails = emailRows.map((r) => ({ timestamp: r.createdAt.toISOString(), email: r.email, context: r.context ?? null }));
+    const emails = emailRows.map((r) => ({
+      id: r.id,
+      timestamp: r.createdAt.toISOString(),
+      email: r.email,
+      context: r.context ?? null,
+      lastNotifiedAt: r.lastNotifiedAt ? r.lastNotifiedAt.toISOString() : null,
+      unsubscribedAt: r.unsubscribedAt ? r.unsubscribedAt.toISOString() : null,
+    }));
     const feedback = feedbackRows.map((r) => ({
       timestamp: r.createdAt.toISOString(),
       type: r.kind,
