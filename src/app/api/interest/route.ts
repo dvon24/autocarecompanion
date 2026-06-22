@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { randomBytes } from 'crypto';
 import { prisma } from '@/lib/db';
 
 // Lead capture. Previously appended to data/interest-emails.txt, which is
@@ -16,7 +17,10 @@ export async function POST(request: NextRequest) {
     }
 
     const ctx = typeof context === 'string' ? context.slice(0, 120) : null;
-    await prisma.interestEmail.create({ data: { email: email.trim().toLowerCase(), context: ctx } });
+    // Mint an unsubscribe token up front so the weekly digest can always include
+    // a one-click opt-out link (CAN-SPAM) without a follow-up write.
+    const unsubscribeToken = randomBytes(24).toString('base64url');
+    await prisma.interestEmail.create({ data: { email: email.trim().toLowerCase(), context: ctx, unsubscribeToken } });
 
     return NextResponse.json({ success: true });
   } catch (error) {

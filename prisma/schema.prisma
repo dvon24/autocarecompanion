@@ -671,6 +671,14 @@ model InterestEmail {
   // that makes the capture convert) instead of a generic list.
   context   String?
   createdAt DateTime @default(now())
+  // Weekly "new findings for your vehicle" digest plumbing:
+  //   unsubscribeToken — one-click CAN-SPAM unsubscribe link target.
+  //   unsubscribedAt   — set when they opt out; suppresses all future sends.
+  //   lastNotifiedAt   — watermark so each finding is emailed once (the digest
+  //                      only includes issues published after this).
+  unsubscribeToken String?   @unique
+  unsubscribedAt   DateTime?
+  lastNotifiedAt   DateTime?
 
   @@index([createdAt])
 }
