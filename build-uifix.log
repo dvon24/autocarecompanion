@@ -1,0 +1,203 @@
+
+> au7o@0.1.0 build
+> next build --webpack
+
+[@sentry/nextjs] DEPRECATION WARNING: disableLogger is deprecated and will be removed in a future version. Use webpack.treeshake.removeDebugLogging instead.
+▲ Next.js 16.1.6 (webpack)
+- Environments: .env.local, .env
+- Experiments (use with caution):
+  · clientTraceMetadata
+  ✓ viewTransition
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+ ✓ (pwa) Compiling for server...
+ ✓ (pwa) Compiling for server...
+ ✓ (pwa) Compiling for client (static)...
+ ○ (pwa) Service worker: C:\Users\devon\autocarecompanion\public\sw.js
+ ○ (pwa)   URL: /sw.js
+ ○ (pwa)   Scope: /
+ ○ (pwa) Custom runtimeCaching array found, using it instead of the default one.
+[@sentry/nextjs] DEPRECATION WARNING: It is recommended renaming your `sentry.client.config.ts` file, or moving its content to `instrumentation-client.ts`. When using Turbopack `sentry.client.config.ts` will no longer work. Read more about the `instrumentation-client.ts` file: https://nextjs.org/docs/app/api-reference/file-conventions/instrumentation-client
+⚠ Compiled with warnings in 30.4s
+
+/_next/static/chunks/9696-8cf836709d5e3197.js is 5.03 MB, and won't be precached. Configure maximumFileSizeToCacheInBytes to change this limit.
+
+  Running TypeScript ...
+  Collecting page data using 19 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+  Generating static pages using 19 workers (0/5033) ...
+  Generating static pages using 19 workers (1258/5033) 
+  Generating static pages using 19 workers (2516/5033) 
+  Generating static pages using 19 workers (3774/5033) 
+  Generating static pages using 19 workers (4977/5033) 
+✓ Generating static pages using 19 workers (5033/5033) in 2.9min
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)                                                  Revalidate  Expire
+┌ ƒ /
+├ ○ /_not-found
+├ ● /[locale]                                                        1h      1y
+│ ├ /pt-br                                                           1h      1y
+│ ├ /es                                                              1h      1y
+│ ├ /de                                                              1h      1y
+│ └ [+2 more paths]
+├ ● /[locale]/known-issues/[slug]                                    1h      1y
+│ ├ /pt-br/known-issues/honda-cr-v                                   1h      1y
+│ ├ /pt-br/known-issues/honda-civic                                  1h      1y
+│ ├ /pt-br/known-issues/chevrolet-silverado-1500                     1h      1y
+│ └ [+339 more paths]
+├ ○ /about
+├ ƒ /account
+├ ƒ /admin
+├ ƒ /api/account/cancel-subscription
+├ ƒ /api/account/delete
+├ ƒ /api/account/export
+├ ƒ /api/account/preferences
+├ ƒ /api/admin/affiliates/track
+├ ƒ /api/admin/costs
+├ ƒ /api/admin/data
+├ ƒ /api/admin/guides
+├ ƒ /api/admin/patterns
+├ ƒ /api/admin/recommendations
+├ ƒ /api/admin/recommendations/research
+├ ƒ /api/admin/reports
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /api/auth/checkout-signin
+├ ƒ /api/auth/dev-reset
+├ ƒ /api/auth/forgot-password
+├ ƒ /api/auth/reset-password
+├ ƒ /api/auth/signup
+├ ƒ /api/build-id
+├ ƒ /api/builds
+├ ƒ /api/builds/[slug]
+├ ƒ /api/chat
+├ ƒ /api/cron/maintenance-check
+├ ƒ /api/dev/activate-subscription
+├ ƒ /api/diag
+├ ƒ /api/diagnose/seed
+├ ƒ /api/drive/cameras
+├ ƒ /api/drive/fuel-prices
+├ ƒ /api/drive/plan-route
+├ ƒ /api/drive/poi-details
+├ ƒ /api/drive/poi-photo
+├ ƒ /api/drive/poi-rich-details
+├ ƒ /api/drive/pre-trip-check
+├ ƒ /api/drive/reroute
+├ ƒ /api/drive/suggest
+├ ƒ /api/feedback
+├ ƒ /api/feedback/vehicle
+├ ƒ /api/garage/assistant
+├ ƒ /api/guide
+├ ƒ /api/guide/help
+├ ƒ /api/hub-chat
+├ ƒ /api/hub-chat/session/[id]
+├ ƒ /api/interest
+├ ƒ /api/issue-fixes
+├ ƒ /api/issue-search
+├ ƒ /api/known-issues
+├ ƒ /api/known-issues/report
+├ ƒ /api/maintenance
+├ ƒ /api/maintenance/[id]
+├ ƒ /api/notifications/preferences
+├ ƒ /api/notifications/push-subscribe
+├ ƒ /api/parts
+├ ƒ /api/realtime
+├ ƒ /api/recalls
+├ ƒ /api/stripe/change-tier
+├ ƒ /api/stripe/create-checkout
+├ ƒ /api/stripe/portal
+├ ƒ /api/stripe/webhook
+├ ƒ /api/user/onboarding
+├ ƒ /api/user/secondary-email
+├ ƒ /api/user/tier
+├ ƒ /api/vehicle-mileage
+├ ƒ /api/vehicle/validate
+├ ƒ /api/vehicles
+├ ƒ /api/vehicles/[id]
+├ ƒ /api/vehicles/[id]/mileage
+├ ƒ /api/vehicles/[id]/modifications
+├ ƒ /api/vehicles/[id]/modifications/[modId]
+├ ƒ /api/vehicles/[id]/showcase
+├ ƒ /api/vin/decode
+├ ƒ /api/vision
+├ ○ /auth/error
+├ ○ /auth/forgot-password
+├ ○ /auth/reset-password
+├ ○ /auth/signin
+├ ○ /auth/signup
+├ ○ /builds
+├ ƒ /builds/[slug]
+├ ○ /camera-spike
+├ ○ /cookies
+├ ○ /copyright
+├ ○ /data-rights
+├ ○ /dev
+├ ○ /dev/guides-3d
+├ ○ /dev/guides-classic
+├ ○ /dev/wheel-customizer
+├ ƒ /diagnose
+├ ƒ /diagnose/claim
+├ ƒ /drive
+├ ƒ /features/[id]
+├ ○ /feedback
+├ ƒ /garage
+├ ƒ /garage/[id]
+├ ƒ /garage/[id]/maintenance
+├ ƒ /garage/[id]/showcase
+├ ○ /get-started
+├ ○ /guide
+├ ○ /known-issues                                                   30m      1y
+├ ƒ /known-issues/[slug]
+├ ● /known-issues/category/[category]                                1d      1y
+│ ├ /known-issues/category/drivetrain                                1d      1y
+│ ├ /known-issues/category/electrical                                1d      1y
+│ ├ /known-issues/category/suspension                                1d      1y
+│ └ [+14 more paths]
+├ ○ /known-issues/dtc                                                1h      1y
+├ ● /known-issues/dtc/[code]                                         1h      1y
+│ ├ /known-issues/dtc/00290                                          1h      1y
+│ ├ /known-issues/dtc/00301                                          1h      1y
+│ ├ /known-issues/dtc/00522                                          1h      1y
+│ └ [+824 more paths]
+├ ● /known-issues/dtc/[code]/[make]                                  1h      1y
+│ ├ /known-issues/dtc/p0087/acura                                    1h      1y
+│ ├ /known-issues/dtc/p0230/acura                                    1h      1y
+│ ├ /known-issues/dtc/p0300/acura                                    1h      1y
+│ └ [+2790 more paths]
+├ ● /known-issues/make/[make]                                        6h      1y
+│ ├ /known-issues/make/porsche                                       6h      1y
+│ ├ /known-issues/make/audi                                          6h      1y
+│ ├ /known-issues/make/cadillac                                      6h      1y
+│ └ [+51 more paths]
+├ ○ /known-issues/symptom                                            1h      1y
+├ ● /known-issues/symptom/[slug]                                     1h      1y
+│ ├ /known-issues/symptom/abs-and-traction-control-light-on          1h      1y
+│ ├ /known-issues/symptom/check-engine-light-on                      1h      1y
+│ ├ /known-issues/symptom/check-engine-light-flashing                1h      1y
+│ └ [+95 more paths]
+├ ○ /known-issues/visual-test
+├ ƒ /onboarding
+├ ƒ /opengraph-image
+├ ○ /parts
+├ ○ /privacy
+├ ○ /robots.txt
+├ ○ /sitemap.xml
+├ ○ /specs                                                           1h      1y
+├ ● /specs/[slug]                                                    1h      1y
+│ └ /specs/chevrolet-camaro                                          1h      1y
+├ ƒ /subscribe
+├ ○ /subscribe/success
+├ ○ /symptom-chat
+├ ○ /terms
+├ ƒ /twitter-image
+└ ƒ /vehicle/[slug]
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
