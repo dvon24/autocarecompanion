@@ -4,10 +4,10 @@ const { PrismaClient } = require('@prisma/client');
 const { PrismaPg } = require('@prisma/adapter-pg');
 const { Pool } = require('pg');
 const TARGETS = [
-  { make: 'Ford', model: 'F-150' },
-  { make: 'Chevrolet', model: 'Silverado 1500' },
-  { make: 'Jeep', model: 'Grand Cherokee' },
-  { make: 'Toyota', model: 'Camry' },
+  { make: 'Subaru', model: 'Forester' },
+  { make: 'Genesis', model: 'G70' },
+  { make: 'Lincoln', model: 'Nautilus' },
+  { make: 'Audi', model: 'S7' },
 ];
 (async () => {
   const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 3 }); pool.on('error', () => {});
