@@ -44,7 +44,10 @@ function buildDigestHtml(opts: {
     .join('');
   return `<!doctype html><html><body style="margin:0;background:#F7F6F2;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif">
   <div style="max-width:520px;margin:0 auto;padding:24px 16px">
-    <div style="font-size:15px;font-weight:800;color:#0B1220;margin-bottom:4px">au7o</div>
+    <div style="margin-bottom:8px">
+      <img src="${base}/icons/icon-192.png" alt="au7o" width="30" height="30" style="vertical-align:middle;border-radius:7px;display:inline-block">
+      <span style="font-size:16px;font-weight:800;color:#0B1220;vertical-align:middle;margin-left:8px">au7o</span>
+    </div>
     <div style="background:#fff;border:1px solid #E3DFD4;border-radius:16px;padding:22px">
       <h1 style="font-size:18px;margin:0 0 4px;color:#0B1220">${heading}</h1>
       <p style="font-size:14px;color:#475569;margin:0 0 14px;line-height:1.5">${intro}</p>
