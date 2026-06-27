@@ -120,9 +120,10 @@ function digestHtml({ vehicle, issues, slug, unsubToken, isCatchUp }) {
       // Send ONE realistic sample to the tester, then stop. No lead emailed, no
       // watermark touched.
       try {
-        await resend.emails.send({ from: FROM, to: TEST_TO, subject: '[TEST] ' + subjectLine, html });
-        console.log('  ✓ TEST sent → ' + TEST_TO + '  (sample: ' + vehicle + ', ' + issues.length + ' issues). No real leads emailed, no watermark changed.');
-      } catch (e) { console.error('  ! TEST send failed → ' + TEST_TO + ': ' + (e instanceof Error ? e.message : e)); }
+        const r = await resend.emails.send({ from: FROM, to: TEST_TO, subject: '[TEST] ' + subjectLine, html });
+        if (r && r.error) { console.error('  ! TEST send REJECTED by Resend → ' + TEST_TO + ': ' + JSON.stringify(r.error)); }
+        else console.log('  ✓ TEST sent → ' + TEST_TO + '  (sample: ' + vehicle + ', ' + issues.length + ' issues, id=' + (r.data && r.data.id) + '). No real leads emailed, no watermark changed.');
+      } catch (e) { console.error('  ! TEST send threw → ' + TEST_TO + ': ' + (e instanceof Error ? e.message : e)); }
       break;
     }
     if (!SEND) {
@@ -131,10 +132,11 @@ function digestHtml({ vehicle, issues, slug, unsubToken, isCatchUp }) {
       continue;
     }
     try {
-      await resend.emails.send({ from: FROM, to: lead.email, subject: subjectLine, html });
+      const r = await resend.emails.send({ from: FROM, to: lead.email, subject: subjectLine, html });
+      if (r && r.error) { failed++; console.error('  ! send REJECTED by Resend → ' + lead.email + ': ' + JSON.stringify(r.error) + '  (watermark NOT set)'); continue; }
       await prisma.interestEmail.update({ where: { id: lead.id }, data: { lastNotifiedAt: new Date() } });
       sent++; console.log('  ✓ sent → ' + lead.email + ' (' + vehicle + ', ' + issues.length + ')');
-    } catch (e) { failed++; console.error('  ! send failed → ' + lead.email + ': ' + (e instanceof Error ? e.message : e)); }
+    } catch (e) { failed++; console.error('  ! send threw → ' + lead.email + ': ' + (e instanceof Error ? e.message : e)); }
   }
 
   console.log('\n' + (SEND ? 'Sent ' + sent + ', ' : 'Dry run — ') + 'failed ' + failed + ', skipped ' + skippedNoMatch + ' (no vehicle match) + ' + skippedNoNew + ' (nothing new).');
