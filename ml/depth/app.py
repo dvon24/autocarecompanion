@@ -31,7 +31,9 @@ import modal
 # Pinned to a clone at build time; bump the commit to upgrade deliberately.
 image = (
     modal.Image.debian_slim(python_version="3.11")
-    .apt_install("git")
+    # libgl1 + libglib2.0-0: OpenCV (cv2, pulled in by DA3's gaussian-splat
+    # export code) needs libGL.so.1 / libgthread at import — absent in slim.
+    .apt_install("git", "libgl1", "libglib2.0-0")
     .pip_install("torch>=2", "torchvision", "xformers", "pillow", "numpy", "huggingface_hub", "fastapi[standard]")
     .run_commands(
         "git clone https://github.com/ByteDance-Seed/Depth-Anything-3 /opt/da3",

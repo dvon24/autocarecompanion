@@ -67,12 +67,12 @@ def main():
     payload = {"image": b64, "token": token}
     if focal:
         payload["focalPx"] = focal
-    print(f"→ POST {url}  (focalPx={focal or 'none → relative'})")
+    print(f"POST {url}  (focalPx={focal or 'none -> relative'})")
 
     req = urllib.request.Request(
         url, data=json.dumps(payload).encode(), headers={"Content-Type": "application/json"}
     )
-    with urllib.request.urlopen(req, timeout=120) as r:
+    with urllib.request.urlopen(req, timeout=300) as r:
         print(json.dumps(json.load(r), indent=2))
 
 
