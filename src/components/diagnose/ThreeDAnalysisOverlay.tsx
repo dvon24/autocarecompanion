@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { VoiceMechanic } from '@/components/diagnose/VoiceMechanic';
 import type { VisionResult } from '@/components/vehicle/VisionResultCard';
 
@@ -70,7 +70,42 @@ export function ThreeDAnalysisOverlay({
 }) {
   const callouts = buildCallouts(vision);
   const [sel, setSel] = useState<number | null>(null);
-  const isPlaceholder = splatUrl === '/lab/sample-splat.ply';
+  const [splat, setSplat] = useState(splatUrl);
+  const [gen, setGen] = useState<'idle' | 'building' | 'done' | 'error'>('idle');
+
+  // On open, build the REAL splat from the captured photo (SAM 3D -> Blob).
+  // No image (e.g. the founder lab) → keep whatever splatUrl was passed.
+  useEffect(() => {
+    const src = vision.imagePreviewUrl;
+    if (!src) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        setGen('building');
+        const blob = await fetch(src).then((r) => r.blob());
+        const b64 = await new Promise<string>((res, rej) => {
+          const fr = new FileReader();
+          fr.onload = () => res(String(fr.result).split(',')[1] || '');
+          fr.onerror = rej;
+          fr.readAsDataURL(blob);
+        });
+        const resp = await fetch('/api/diagnose-3d', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ image: b64 }),
+        });
+        const data = await resp.json().catch(() => null);
+        if (cancelled) return;
+        if (resp.ok && data?.splatUrl) { setSplat(data.splatUrl); setGen('done'); }
+        else setGen('error');
+      } catch {
+        if (!cancelled) setGen('error');
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [vision.imagePreviewUrl]);
+
+  const isPlaceholder = splat === '/lab/sample-splat.ply' || splat === '/lab/sam3d-sample.ply';
 
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 120, background: '#0B1220', display: 'flex', flexDirection: 'column' }}>
@@ -85,7 +120,7 @@ export function ThreeDAnalysisOverlay({
 
       {/* 3D + callouts */}
       <div style={{ position: 'relative', flex: 1, minHeight: 0 }}>
-        <SplatViewer splatUrl={splatUrl} />
+        <SplatViewer splatUrl={splat} />
         <div key="scan" className="t3d-scan" />
         {callouts.map((c, i) => (
           <div key={i} className="t3d-co" style={{ left: `${c.x}%`, top: `${c.y}%`, color: c.color, animationDelay: `${0.15 + i * 0.18}s` }}>
@@ -95,9 +130,23 @@ export function ThreeDAnalysisOverlay({
           </div>
         ))}
 
-        {isPlaceholder && (
+        {gen === 'building' && (
+          <div style={{ position: 'absolute', inset: 0, display: 'grid', placeItems: 'center', pointerEvents: 'none' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, color: '#fff', background: 'rgba(11,18,32,.78)', border: '1px solid rgba(255,255,255,.16)', borderRadius: 14, padding: '12px 18px', backdropFilter: 'blur(8px)' }}>
+              <span style={{ width: 16, height: 16, border: '2px solid rgba(255,255,255,.35)', borderTopColor: '#fff', borderRadius: '50%', display: 'inline-block', animation: 'spin 0.8s linear infinite' }} />
+              <span style={{ fontSize: 13, fontWeight: 600 }}>Building your 3D model… (~30s)</span>
+            </div>
+            <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+          </div>
+        )}
+        {gen === 'error' && (
+          <div style={{ position: 'absolute', top: 8, left: '50%', transform: 'translateX(-50%)', fontSize: 11, color: '#FCA5A5', background: 'rgba(127,29,29,.5)', border: '1px solid rgba(252,165,165,.4)', borderRadius: 999, padding: '3px 10px', pointerEvents: 'none', textAlign: 'center' }}>
+            couldn&apos;t build 3D this time (model warming up) — showing a sample
+          </div>
+        )}
+        {gen !== 'building' && gen !== 'error' && isPlaceholder && (
           <div style={{ position: 'absolute', top: 8, left: '50%', transform: 'translateX(-50%)', fontSize: 11, color: '#FDE68A', background: 'rgba(180,83,9,.4)', border: '1px solid rgba(253,230,138,.4)', borderRadius: 999, padding: '3px 10px', pointerEvents: 'none' }}>
-            placeholder model — SAM 3D splat wiring in progress
+            sample model — snap a part to build a real one
           </div>
         )}
 
