@@ -2,6 +2,9 @@
 
 import { useState, useCallback } from 'react';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { isFounderEmail } from '@/lib/founder';
+import { ThreeDAnalysisOverlay } from '@/components/diagnose/ThreeDAnalysisOverlay';
 import type { IdentifiedPart, VendorLink, PartCategory } from '@/types/vision';
 
 export interface VisionItem {
@@ -199,6 +202,30 @@ function MultiPhotoUpsell({ vision }: { vision: VisionResult }) {
   );
 }
 
+/** Pro/founder-only "View in 3D" — opens the full-screen 3D + animated callouts
+ *  + voice analysis overlay. Hidden for everyone else and for non-car results.
+ *  Additive + self-gating (useSession), so it changes nothing for free/anon. */
+function Open3DButton({ vision }: { vision: VisionResult }) {
+  const { data: session } = useSession();
+  const [open, setOpen] = useState(false);
+  const sub = (session?.user as { subscriptionStatus?: string } | undefined)?.subscriptionStatus;
+  const can3D = isFounderEmail(session?.user?.email) || sub === 'active';
+  if (!can3D || !vision.isCarRelated) return null;
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: 'calc(100% - 32px)', margin: '12px 16px 2px', padding: '11px 0', border: 'none', borderRadius: 11, cursor: 'pointer', background: 'linear-gradient(135deg,#6D28D9,#2563EB)', color: '#fff', fontSize: 13.5, fontWeight: 700, boxShadow: '0 6px 18px rgba(37,99,235,.3)' }}
+      >
+        🧊 View in 3D + talk to the AI
+        <span style={{ fontSize: 10, fontWeight: 700, background: 'rgba(255,255,255,.22)', borderRadius: 999, padding: '1px 7px' }}>PRO</span>
+      </button>
+      {open && <ThreeDAnalysisOverlay vision={vision} onClose={() => setOpen(false)} />}
+    </>
+  );
+}
+
 const CONDITION_COLOR: Record<string, string> = { ok: '#10B981', warn: '#B45309', critical: '#DC2626', info: '#2563EB' };
 
 /**
@@ -331,6 +358,7 @@ export function VisionResultCard({ vision }: { vision: VisionResult }) {
           is suspect when the photo isn't even the right car). */}
       {!isMismatch && <UrgencyBanner vision={vision} />}
       <MultiPhotoUpsell vision={vision} />
+      <Open3DButton vision={vision} />
       {/* Vehicle-match warning banner. Renders ABOVE everything else when
           the AI flagged the photo as likely from a different vehicle than
           the one the user is currently viewing. Without this, users buy
@@ -652,6 +680,7 @@ function VisionResultCardV2({ vision }: { vision: VisionResult }) {
     <div className="vr-card vr2-card">
       {!isMismatch && <UrgencyBanner vision={vision} />}
       <MultiPhotoUpsell vision={vision} />
+      <Open3DButton vision={vision} />
       {isMismatch && (
         <div className="vr-mismatch">
           <div className="vr-mismatch-icon" aria-hidden>⚠️</div>
