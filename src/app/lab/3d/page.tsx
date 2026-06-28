@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
+import { VoiceMechanic } from '@/components/diagnose/VoiceMechanic';
 
 // Splat viewer is client-only (WebGL + workers) — never SSR it.
 const SplatViewer = dynamic(() => import('@/components/lab/SplatViewer'), {
@@ -170,6 +171,11 @@ export default function Lab3dPage() {
           </div>
         </div>
       </div>
+
+      {/* Talk-to-the-AI voice layer (founder = full Realtime session). On the
+          live result screen getFrame() returns the analyzed photo so you can
+          ask "what's wrong with this?" — here it's a voice-only preview. */}
+      <VoiceMechanic getFrame={() => null} autoStart={false} vehicle={{ year: 2019, make: 'Chevrolet', model: 'Camaro', trim: 'ZL1' }} />
     </div>
   );
 }
