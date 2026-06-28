@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { VoiceMechanic } from '@/components/diagnose/VoiceMechanic';
 import type { VisionResult } from '@/components/vehicle/VisionResultCard';
 
@@ -73,37 +73,36 @@ export function ThreeDAnalysisOverlay({
   const [splat, setSplat] = useState(splatUrl);
   const [gen, setGen] = useState<'idle' | 'building' | 'done' | 'error'>('idle');
 
-  // On open, build the REAL splat from the captured photo (SAM 3D -> Blob).
-  // No image (e.g. the founder lab) → keep whatever splatUrl was passed.
-  useEffect(() => {
+  // Build the REAL splat from the captured photo (SAM 3D -> Blob). Exposed as a
+  // callback so the error state offers "Try again" — SAM 3D cold-starts, so the
+  // first tap warms it and a retry ~30-60s later succeeds. No image (founder
+  // lab) → keep whatever splatUrl was passed.
+  const runGen = useCallback(async () => {
     const src = vision.imagePreviewUrl;
     if (!src) return;
-    let cancelled = false;
-    (async () => {
-      try {
-        setGen('building');
-        const blob = await fetch(src).then((r) => r.blob());
-        const b64 = await new Promise<string>((res, rej) => {
-          const fr = new FileReader();
-          fr.onload = () => res(String(fr.result).split(',')[1] || '');
-          fr.onerror = rej;
-          fr.readAsDataURL(blob);
-        });
-        const resp = await fetch('/api/diagnose-3d', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ image: b64 }),
-        });
-        const data = await resp.json().catch(() => null);
-        if (cancelled) return;
-        if (resp.ok && data?.splatUrl) { setSplat(data.splatUrl); setGen('done'); }
-        else setGen('error');
-      } catch {
-        if (!cancelled) setGen('error');
-      }
-    })();
-    return () => { cancelled = true; };
+    try {
+      setGen('building');
+      const blob = await fetch(src).then((r) => r.blob());
+      const b64 = await new Promise<string>((res, rej) => {
+        const fr = new FileReader();
+        fr.onload = () => res(String(fr.result).split(',')[1] || '');
+        fr.onerror = rej;
+        fr.readAsDataURL(blob);
+      });
+      const resp = await fetch('/api/diagnose-3d', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ image: b64 }),
+      });
+      const data = await resp.json().catch(() => null);
+      if (resp.ok && data?.splatUrl) { setSplat(data.splatUrl); setGen('done'); }
+      else setGen('error');
+    } catch {
+      setGen('error');
+    }
   }, [vision.imagePreviewUrl]);
+
+  useEffect(() => { runGen(); }, [runGen]);
 
   const isPlaceholder = splat === '/lab/sample-splat.ply' || splat === '/lab/sam3d-sample.ply';
 
@@ -140,8 +139,11 @@ export function ThreeDAnalysisOverlay({
           </div>
         )}
         {gen === 'error' && (
-          <div style={{ position: 'absolute', top: 8, left: '50%', transform: 'translateX(-50%)', fontSize: 11, color: '#FCA5A5', background: 'rgba(127,29,29,.5)', border: '1px solid rgba(252,165,165,.4)', borderRadius: 999, padding: '3px 10px', pointerEvents: 'none', textAlign: 'center' }}>
-            couldn&apos;t build 3D this time (model warming up) — showing a sample
+          <div style={{ position: 'absolute', inset: 0, display: 'grid', placeItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 11, color: '#fff', background: 'rgba(11,18,32,.85)', border: '1px solid rgba(255,255,255,.16)', borderRadius: 14, padding: '18px 22px', backdropFilter: 'blur(8px)', textAlign: 'center', maxWidth: 290 }}>
+              <div style={{ fontSize: 13.5, lineHeight: 1.45 }}>The 3D model was warming up. Give it ~30s, then try again.</div>
+              <button onClick={runGen} style={{ background: 'linear-gradient(135deg,#6D28D9,#2563EB)', color: '#fff', border: 'none', borderRadius: 10, padding: '10px 20px', fontSize: 13.5, fontWeight: 700, cursor: 'pointer' }}>↻ Try again</button>
+            </div>
           </div>
         )}
         {gen !== 'building' && gen !== 'error' && isPlaceholder && (
