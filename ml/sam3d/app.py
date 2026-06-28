@@ -62,6 +62,11 @@ image = (
         # was the thing timing out the build. Base deps + the two inference
         # extras below are what's actually needed to produce a splat.
         "cd /opt/sam3d && PIP_EXTRA_INDEX_URL='https://pypi.ngc.nvidia.com https://download.pytorch.org/whl/cu121' pip install -e .",
+        # pytorch3d compiles all objects with g++/nvcc but its final shared-lib
+        # LINK invokes clang++ (Modal's python was built with clang). Install
+        # clang so that link step finds clang++. Kept out of the base apt layer
+        # so the cached base/flash-attn build above isn't invalidated.
+        "apt-get update && apt-get install -y clang",
         "cd /opt/sam3d && PIP_EXTRA_INDEX_URL='https://download.pytorch.org/whl/cu121' pip install -e '.[p3d]'",
         "cd /opt/sam3d && PIP_FIND_LINKS='https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.5.1_cu121.html' pip install -e '.[inference]'",
         # Hydra patch the repo ships (best-effort; don't fail the build if absent).
