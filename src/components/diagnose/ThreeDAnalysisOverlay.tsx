@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { VoiceMechanic } from '@/components/diagnose/VoiceMechanic';
 import type { VisionResult } from '@/components/vehicle/VisionResultCard';
 
@@ -106,8 +107,11 @@ export function ThreeDAnalysisOverlay({
 
   const isPlaceholder = splat === '/lab/sample-splat.ply' || splat === '/lab/sam3d-sample.ply';
 
-  return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 120, background: '#0B1220', display: 'flex', flexDirection: 'column' }}>
+  if (typeof document === 'undefined') return null;
+  // Portal to <body> with a max z-index so it sits ABOVE the hub's fixed chat
+  // input + suggestion chips (which live in a separate stacking context).
+  return createPortal(
+    <div style={{ position: 'fixed', inset: 0, zIndex: 2147483646, background: '#0B1220', display: 'flex', flexDirection: 'column' }}>
       <style>{CSS}</style>
 
       {/* top bar */}
@@ -169,6 +173,7 @@ export function ThreeDAnalysisOverlay({
       {/* voice (founder = full Realtime). getFrame null = voice-only (the
           preview is a blob: URL, not a base64 frame, so we don't send it). */}
       <VoiceMechanic getFrame={() => null} autoStart={false} />
-    </div>
+    </div>,
+    document.body,
   );
 }
