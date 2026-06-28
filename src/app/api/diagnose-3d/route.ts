@@ -4,7 +4,10 @@ import { auth } from '@/lib/auth';
 import { isFounderEmail } from '@/lib/founder';
 
 export const runtime = 'nodejs';
-export const maxDuration = 120; // SAM 3D inference + cold start
+// 300s: a COLD SAM 3D container loads a ~1.1GB model + DINO + 2 checkpoints
+// (~60-120s) before inference (~30s). 120s wasn't enough — the route timed out
+// while SAM 3D was still loading (it then finished, but we'd already errored).
+export const maxDuration = 300;
 
 /**
  * POST /api/diagnose-3d — Pro/founder only. Turns the captured photo into a
@@ -50,7 +53,7 @@ export async function POST(request: NextRequest) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ image, token, seed: 42 }),
-      signal: AbortSignal.timeout(110_000),
+      signal: AbortSignal.timeout(290_000),
     });
     if (!r.ok) {
       return NextResponse.json({ error: 'sam3d_failed', status: r.status }, { status: 502 });

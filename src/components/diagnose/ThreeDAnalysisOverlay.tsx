@@ -137,7 +137,7 @@ export function ThreeDAnalysisOverlay({
           <div style={{ position: 'absolute', inset: 0, display: 'grid', placeItems: 'center', pointerEvents: 'none' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, color: '#fff', background: 'rgba(11,18,32,.78)', border: '1px solid rgba(255,255,255,.16)', borderRadius: 14, padding: '12px 18px', backdropFilter: 'blur(8px)' }}>
               <span style={{ width: 16, height: 16, border: '2px solid rgba(255,255,255,.35)', borderTopColor: '#fff', borderRadius: '50%', display: 'inline-block', animation: 'spin 0.8s linear infinite' }} />
-              <span style={{ fontSize: 13, fontWeight: 600 }}>Building your 3D model… (~30s)</span>
+              <span style={{ fontSize: 13, fontWeight: 600 }}>Building your 3D model… (first build can take 1–2 min)</span>
             </div>
             <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
           </div>
