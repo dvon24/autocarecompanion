@@ -116,6 +116,12 @@ class Sam3d:
             else:  # fallback: use the download root directly
                 ckpt_dir = dl
 
+        # inference.py assumes a conda env: line 5 does
+        # os.environ["CUDA_HOME"] = os.environ["CONDA_PREFIX"]. We're on plain
+        # Python (no conda), so point both at the image's CUDA toolkit before
+        # importing, else it KeyErrors on CONDA_PREFIX.
+        os.environ.setdefault("CONDA_PREFIX", "/usr/local/cuda")
+        os.environ.setdefault("CUDA_HOME", "/usr/local/cuda")
         sys.path.append("/opt/sam3d/notebook")
         from inference import Inference  # noqa: E402
 
