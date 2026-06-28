@@ -45,7 +45,9 @@ image = (
         "torch==2.5.1", "torchvision==0.20.1",
         extra_options="--index-url https://download.pytorch.org/whl/cu121",
     )
-    .pip_install("huggingface-hub[cli]<1.0", "numpy", "pillow", "fastapi[standard]")
+    # wheel+setuptools needed in the image so the --no-build-isolation
+    # nvidia-pyindex build below has `bdist_wheel`.
+    .pip_install("wheel", "setuptools", "huggingface-hub[cli]<1.0", "numpy", "pillow", "fastapi[standard]")
     .run_commands(
         "git clone https://github.com/facebookresearch/sam-3d-objects /opt/sam3d",
         # nvidia-pyindex (a transitive dep) is a pip-config hack whose setup.py
