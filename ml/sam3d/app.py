@@ -33,7 +33,14 @@ image = (
     modal.Image.from_registry("nvidia/cuda:12.1.1-devel-ubuntu22.04", add_python="3.11")
     .apt_install("git", "build-essential", "ninja-build", "libgl1", "libglib2.0-0")
     # A10G = sm_86. Set arch list so any source build targets the right GPU.
-    .env({"TORCH_CUDA_ARCH_LIST": "8.6", "FORCE_CUDA": "1"})
+    # PIP_DEFAULT_TIMEOUT/PIP_RETRIES: the .[dev] extra pulls many/large pkgs and
+    # Modal's pip mirror occasionally ReadTimeouts on a big one — give pip room.
+    .env({
+        "TORCH_CUDA_ARCH_LIST": "8.6",
+        "FORCE_CUDA": "1",
+        "PIP_DEFAULT_TIMEOUT": "300",
+        "PIP_RETRIES": "10",
+    })
     .pip_install(
         "torch==2.5.1", "torchvision==0.20.1",
         extra_options="--index-url https://download.pytorch.org/whl/cu121",
@@ -41,8 +48,11 @@ image = (
     .pip_install("huggingface-hub[cli]<1.0", "numpy", "pillow", "fastapi[standard]")
     .run_commands(
         "git clone https://github.com/facebookresearch/sam-3d-objects /opt/sam3d",
-        # Per doc/setup.md — 3-step extras install with the special index/find-links.
-        "cd /opt/sam3d && PIP_EXTRA_INDEX_URL='https://pypi.ngc.nvidia.com https://download.pytorch.org/whl/cu121' pip install -e '.[dev]'",
+        # Base package only — NOT '.[dev]'. The dev extra drags in bpy (Blender,
+        # 377MB) + viz/test tooling we don't need for headless inference, and it
+        # was the thing timing out the build. Base deps + the two inference
+        # extras below are what's actually needed to produce a splat.
+        "cd /opt/sam3d && PIP_EXTRA_INDEX_URL='https://pypi.ngc.nvidia.com https://download.pytorch.org/whl/cu121' pip install -e .",
         "cd /opt/sam3d && PIP_EXTRA_INDEX_URL='https://download.pytorch.org/whl/cu121' pip install -e '.[p3d]'",
         "cd /opt/sam3d && PIP_FIND_LINKS='https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.5.1_cu121.html' pip install -e '.[inference]'",
         # Hydra patch the repo ships (best-effort; don't fail the build if absent).
