@@ -14,8 +14,8 @@ const SplatViewer = dynamic(() => import('@/components/lab/SplatViewer'), {
 // this. `pos` = callout anchor (%) — in production these anchor to the 3D points
 // and track as the model rotates / as the phone pans over the part.
 const SAMPLE = {
-  source: 'SAMPLE (sphere + animated callout mock) — replace with SAM 3D output',
-  splatUrl: '/lab/sample-splat.ply',
+  source: 'REAL SAM 3D output (238k gaussians, reconstructed from the og-image test) — snap a car part for a real one',
+  splatUrl: '/lab/sam3d-sample.ply',
   vehicle: '2019 Chevrolet Camaro ZL1',
   summary:
     'Front-left corner impact. Bumper cover cracked at the fascia seam; headlight housing tab broken; no structural/rail deformation visible.',

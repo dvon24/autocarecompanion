@@ -16,7 +16,7 @@ PREREQS (Devon, one-time):
   2. Modal secret `huggingface` with HF_TOKEN=hf_... (a HF read token)
   3. Modal secret `au7o-depth-token` already exists (reused for auth here)
 
-Deploy:  python -m modal deploy ml\sam3d\app.py
+Deploy:  python -m modal deploy ml/sam3d/app.py
 """
 
 import base64
