@@ -60,6 +60,32 @@ function buildCallouts(vision: VisionResult): Callout[] {
   return items.map((it, i) => ({ name: it!.name, color: COND_COLOR.info, x: spread[i].x, y: spread[i].y, url: it!.amazonUrl }));
 }
 
+/** Downscale a captured image to a small JPEG base64 before POSTing — a full-res
+ *  phone photo base64 blows past Vercel's ~4.5MB request-body limit (-> 413).
+ *  SAM 3D works fine on ~1024px. Falls back to raw base64 if canvas fails. */
+async function downscaleToB64(blob: Blob, max = 1024, quality = 0.85): Promise<string> {
+  try {
+    const bmp = await createImageBitmap(blob);
+    const scale = Math.min(1, max / Math.max(bmp.width, bmp.height));
+    const w = Math.max(1, Math.round(bmp.width * scale));
+    const h = Math.max(1, Math.round(bmp.height * scale));
+    const canvas = document.createElement('canvas');
+    canvas.width = w; canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error('no 2d ctx');
+    ctx.drawImage(bmp, 0, 0, w, h);
+    bmp.close?.();
+    return canvas.toDataURL('image/jpeg', quality).split(',')[1] || '';
+  } catch {
+    return await new Promise<string>((res, rej) => {
+      const fr = new FileReader();
+      fr.onload = () => res(String(fr.result).split(',')[1] || '');
+      fr.onerror = rej;
+      fr.readAsDataURL(blob);
+    });
+  }
+}
+
 export function ThreeDAnalysisOverlay({
   vision,
   splatUrl = '/lab/sample-splat.ply',
@@ -84,12 +110,7 @@ export function ThreeDAnalysisOverlay({
     try {
       setGen('building');
       const blob = await fetch(src).then((r) => r.blob());
-      const b64 = await new Promise<string>((res, rej) => {
-        const fr = new FileReader();
-        fr.onload = () => res(String(fr.result).split(',')[1] || '');
-        fr.onerror = rej;
-        fr.readAsDataURL(blob);
-      });
+      const b64 = await downscaleToB64(blob); // shrink so we never hit the 4.5MB body limit
       const resp = await fetch('/api/diagnose-3d', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
