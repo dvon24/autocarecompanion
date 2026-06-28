@@ -17,6 +17,7 @@ import { attachVendorLinks } from '@/lib/vendor-resolver';
 import { validateAndFixVendorLinks } from '@/lib/vendor-link-validator';
 import { captureDiagnosisSample } from '@/lib/diagnosis-capture';
 import { makeSlug } from '@/lib/known-issues';
+import { getDepthContext } from '@/lib/depth';
 import type { IdentifiedPart, PartCategory, PartRole } from '@/types/vision';
 
 // 120s, not 60: video mode's sequential upstream budget (Whisper 25s +
@@ -357,6 +358,14 @@ export async function POST(request: NextRequest) {
   }
   vlog('buffer_built', { count: dataUrls.length, totalBytes });
 
+  // Phase 1a depth grounding: kick off the depth call NOW (concurrent with the
+  // DB context loads below) so it adds ~no latency on the warm path. Photo only
+  // (one frame); inert unless DEPTH_ENDPOINT_URL is set; always fail-soft.
+  const depthPromise: Promise<string | null> =
+    mode !== 'video' && firstImage
+      ? getDepthContext(firstImage.buffer).catch(() => null)
+      : Promise.resolve(null);
+
   // Load context: known issues + cached parts for this vehicle, so the
   // vision model's answer is grounded in YMMT-specific knowledge.
   // Cheap parallel reads.
@@ -634,15 +643,18 @@ ${respondLang !== 'English' ? `LANGUAGE — IMPORTANT: The user speaks ${respond
   //     so we don't need the extractJson fallback (kept anyway as a
   //     defensive belt-and-suspenders for upstream weirdness)
   //   - `max_output_tokens` replaces `max_completion_tokens`
+  const baseUserText = mode === 'video'
+    ? (caption
+        ? `My note: ${caption}\n\n${audioTranscript ? `What I said in the clip: "${audioTranscript}"\n\n` : ''}What's wrong and what do I need to fix it?`
+        : `${audioTranscript ? `What I said in the clip: "${audioTranscript}"\n\n` : ''}What's wrong and what do I need to fix it?`)
+    : (caption ? `My note: ${caption}\n\nWhat is this and what do I need to fix it?` : 'What is this and what do I need to fix it?');
+  // Inject depth grounding if the (concurrent) depth call returned in time.
+  const depthContext = await depthPromise;
+  if (depthContext) vlog('depth_ok', { len: depthContext.length });
+  const userText = depthContext ? `${baseUserText}\n\n${depthContext}` : baseUserText;
+
   const userContent: Array<{ type: string; text?: string; image_url?: string; detail?: string }> = [
-    {
-      type: 'input_text',
-      text: mode === 'video'
-        ? (caption
-            ? `My note: ${caption}\n\n${audioTranscript ? `What I said in the clip: "${audioTranscript}"\n\n` : ''}What's wrong and what do I need to fix it?`
-            : `${audioTranscript ? `What I said in the clip: "${audioTranscript}"\n\n` : ''}What's wrong and what do I need to fix it?`)
-        : (caption ? `My note: ${caption}\n\nWhat is this and what do I need to fix it?` : 'What is this and what do I need to fix it?'),
-    },
+    { type: 'input_text', text: userText },
   ];
   for (const u of dataUrls) {
     userContent.push({ type: 'input_image', image_url: u, detail: 'high' });
