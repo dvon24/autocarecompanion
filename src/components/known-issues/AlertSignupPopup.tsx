@@ -75,7 +75,10 @@ export function AlertSignupPopup(props: {
         >
           ✕
         </button>
-        <KnownIssueAlertSignup {...props} onDone={() => { window.setTimeout(() => setClosed(true), 1600); }} />
+        {/* No auto-close on success: the confirmation now shows the Monday-cadence
+            note + a feedback box, so the reader stays in the modal and closes it
+            themselves via ✕. The localStorage flag is set on capture either way. */}
+        <KnownIssueAlertSignup {...props} />
       </div>
     </div>
   );

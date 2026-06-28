@@ -36,6 +36,26 @@ export function KnownIssueAlertSignup({
   const sub = blurb ?? `Get a free email the moment we add a new recall or known issue for your ${vehicleName}. No account needed.`;
   const [email, setEmail] = useState('');
   const [state, setState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
+  // Post-signup feedback box (shown on the confirmation): "help us make the site better".
+  const [fb, setFb] = useState('');
+  const [fbState, setFbState] = useState<'idle' | 'sending' | 'sent'>('idle');
+
+  const submitFeedback = async () => {
+    const msg = fb.trim();
+    if (!msg) return;
+    setFbState('sending');
+    try {
+      await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'general', message: msg, email: email.trim() || undefined }),
+      });
+      setFbState('sent');
+      try { trackEvent('feedback_submit', { context }); } catch { /* analytics best-effort */ }
+    } catch {
+      setFbState('idle'); // fail-soft: let them retry, never block
+    }
+  };
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,8 +116,35 @@ export function KnownIssueAlertSignup({
       </div>
 
       {state === 'done' ? (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '11px 14px', borderRadius: 11, background: '#ECFDF5', border: '1px solid #A7F3D0', color: '#065F46', fontSize: 13.5, fontWeight: 600 }}>
-          <span aria-hidden>✓</span> You&apos;re on the list — we&apos;ll email you about new {vehicleName} findings.
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '12px 14px', borderRadius: 11, background: '#ECFDF5', border: '1px solid #A7F3D0', color: '#065F46', fontSize: 13.5, lineHeight: 1.5 }}>
+            <span aria-hidden style={{ marginTop: 1 }}>✓</span>
+            <span><strong>We&apos;ve got your request.</strong> We&apos;ll email you on Mondays when there&apos;s something new for your {vehicleName} — and only then. Quiet week, no email. No spam, unsubscribe anytime.</span>
+          </div>
+          {fbState === 'sent' ? (
+            <div style={{ fontSize: 13, color: '#475569', lineHeight: 1.5 }}>🙏 Thanks — feedback like yours is how au7o gets better.</div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <label style={{ fontSize: 13, color: '#475569', lineHeight: 1.5 }}>
+                Have an idea to make au7o better? We read every note:
+              </label>
+              <textarea
+                value={fb}
+                onChange={(e) => setFb(e.target.value)}
+                placeholder="What would make this more useful for you?"
+                rows={3}
+                style={{ width: '100%', boxSizing: 'border-box', padding: '10px 12px', borderRadius: 11, border: '1px solid #E3DFD4', fontSize: 13.5, color: '#0B1220', background: '#FBFAF7', outline: 'none', resize: 'vertical', fontFamily: 'inherit' }}
+              />
+              <button
+                type="button"
+                onClick={submitFeedback}
+                disabled={fbState === 'sending' || !fb.trim()}
+                style={{ alignSelf: 'flex-start', padding: '9px 16px', borderRadius: 11, border: '1px solid #E3DFD4', background: '#fff', color: '#0B1220', fontSize: 13.5, fontWeight: 600, cursor: fb.trim() ? 'pointer' : 'default', opacity: fb.trim() && fbState !== 'sending' ? 1 : 0.6 }}
+              >
+                {fbState === 'sending' ? 'Sending…' : 'Send feedback'}
+              </button>
+            </div>
+          )}
         </div>
       ) : (
         <form onSubmit={submit} style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>

@@ -56,7 +56,7 @@ function buildDigestHtml(opts: {
       <p style="font-size:13px;color:#64748B;margin:16px 0 0;line-height:1.5">Got a noise, leak, or warning light? Point your phone at it and the au7o mechanic will tell you what it is — <a href="${base}/diagnose" style="color:#2563EB">try a free diagnosis</a>.</p>
     </div>
     <p style="font-size:11px;color:#94A3B8;text-align:center;margin:16px 0 0;line-height:1.5">
-      You're getting this because you asked au7o to alert you about new findings for your ${esc(vehicle)}.<br>
+      You're getting this because you asked au7o to alert you about new findings for your ${esc(vehicle)}. We only email when there's something new — usually no more than once a week (Mondays).<br>
       <a href="${unsub}" style="color:#94A3B8">Unsubscribe</a>${mailing ? ` &nbsp;·&nbsp; ${esc(mailing)}` : ''}
     </p>
   </div></body></html>`;
