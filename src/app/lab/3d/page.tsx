@@ -10,33 +10,59 @@ const SplatViewer = dynamic(() => import('@/components/lab/SplatViewer'), {
 });
 
 // Placeholder analysis until the real pipeline (vision + depth + SAM 3/3D) feeds
-// this. Shape mirrors what the live data will look like so the UI is final.
-// `pos` = screen-anchored callout position (%) — in production these anchor to
-// the 3D points and track as the model rotates.
+// this. `pos` = callout anchor (%) — in production these anchor to the 3D points
+// and track as the model rotates / as the phone pans over the part.
 const SAMPLE = {
-  source: 'SAMPLE (sphere placeholder + mock callouts) — replace with SAM 3D output',
+  source: 'SAMPLE (sphere + animated callout mock) — replace with SAM 3D output',
   splatUrl: '/lab/sample-splat.ply',
   vehicle: '2019 Chevrolet Camaro ZL1',
   summary:
     'Front-left corner impact. Bumper cover cracked at the fascia seam; headlight housing tab broken; no structural/rail deformation visible.',
   severity: 'medium',
   parts: [
-    { name: 'Front bumper cover', confidence: 0.94, status: 'cracked', pos: { x: 32, y: 64 }, pn: '84134333', price: '$310–480' },
-    { name: 'Left headlight assembly', confidence: 0.88, status: 'mount tab broken', pos: { x: 62, y: 38 }, pn: '84078625', price: '$520–700' },
-    { name: 'Fender (left front)', confidence: 0.71, status: 'minor scuff', pos: { x: 78, y: 70 }, pn: '23390377', price: '$240–390' },
+    { name: 'Front bumper cover', confidence: 0.94, status: 'cracked', pos: { x: 30, y: 66 }, pn: '84134333', price: '$310–480' },
+    { name: 'Left headlight assembly', confidence: 0.88, status: 'mount tab broken', pos: { x: 58, y: 34 }, pn: '84078625', price: '$520–700' },
+    { name: 'Fender (left front)', confidence: 0.71, status: 'minor scuff', pos: { x: 76, y: 72 }, pn: '23390377', price: '$240–390' },
   ],
   geometry: { unit: 'relative', nearest: 0.31, median: 0.55, farthest: 0.92, note: 'depth from DA3 — macro shape only' },
 };
 
-const sevColor = (s: string) => (s === 'high' ? '#DC2626' : s === 'medium' ? '#D97706' : '#16A34A');
+const sevColor = (s: string) => (s === 'high' ? '#EF4444' : s === 'medium' ? '#F59E0B' : '#22C55E');
+
+const CALLOUT_CSS = `
+@keyframes auScan { 0% { transform: translateY(-100%); opacity: 0 } 12% { opacity: .9 } 100% { transform: translateY(120%); opacity: 0 } }
+@keyframes auPop { 0% { opacity: 0; transform: translateY(-50%) scale(.7) } 60% { opacity: 1; transform: translateY(-50%) scale(1.04) } 100% { opacity: 1; transform: translateY(-50%) scale(1) } }
+@keyframes auPing { 0% { transform: scale(.6); opacity: .7 } 80%,100% { transform: scale(2.6); opacity: 0 } }
+@keyframes auStem { from { width: 0; opacity: 0 } to { width: 22px; opacity: 1 } }
+@keyframes auLabel { from { opacity: 0; transform: translateX(-6px) } to { opacity: 1; transform: translateX(0) } }
+@keyframes auCard { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+.au-co { position:absolute; transform:translateY(-50%); display:flex; align-items:center; animation: auPop .45s cubic-bezier(.2,.8,.2,1) both; }
+.au-dot { position:relative; width:13px; height:13px; border-radius:999px; flex-shrink:0; cursor:pointer; }
+.au-dot::before { content:''; position:absolute; inset:-6px; border-radius:999px; background:currentColor; opacity:.55; animation: auPing 1.8s ease-out infinite; }
+.au-dot::after { content:''; position:absolute; inset:0; border-radius:999px; background:currentColor; box-shadow:0 0 0 3px rgba(255,255,255,.85), 0 2px 10px rgba(0,0,0,.5); }
+.au-stem { height:1.5px; background:linear-gradient(90deg, rgba(255,255,255,.9), rgba(255,255,255,.35)); animation: auStem .35s ease-out both; animation-delay:.2s; }
+.au-label { animation: auLabel .35s ease-out both; animation-delay:.32s; cursor:pointer; display:flex; align-items:center; gap:8px;
+  padding:7px 12px; border-radius:12px; background:rgba(13,18,32,.72); backdrop-filter:blur(10px) saturate(1.3);
+  border:1px solid rgba(255,255,255,.16); box-shadow:0 8px 26px rgba(0,0,0,.4); color:#fff; white-space:nowrap; }
+.au-label b { font-size:12.5px; font-weight:700; letter-spacing:-.01em; }
+.au-label span { font-size:11px; color:#9FB0C6; }
+.au-card { animation: auCard .3s ease-out both; }
+.au-scan { position:absolute; left:0; right:0; height:34%; pointer-events:none;
+  background:linear-gradient(180deg, rgba(56,189,248,0) 0%, rgba(56,189,248,.18) 50%, rgba(56,189,248,0) 100%);
+  animation: auScan 1.1s ease-in-out both; }
+`;
 
 export default function Lab3dPage() {
   const d = SAMPLE;
   const [showCallouts, setShowCallouts] = useState(true);
   const [selected, setSelected] = useState<number | null>(null);
+  const [scanKey, setScanKey] = useState(0); // bump to replay the "detect" animation
+
+  const rescan = () => { setSelected(null); setScanKey((k) => k + 1); };
 
   return (
     <div style={{ minHeight: '100vh', background: '#F7F6F2', padding: '20px 16px', fontFamily: 'system-ui,-apple-system,Segoe UI,Roboto,sans-serif' }}>
+      <style>{CALLOUT_CSS}</style>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 4 }}>
           <h1 style={{ fontSize: 20, fontWeight: 800, color: '#0B1220', margin: 0 }}>3D Analysis</h1>
@@ -47,39 +73,36 @@ export default function Lab3dPage() {
         </p>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.3fr) minmax(0,1fr)', gap: 18, alignItems: 'stretch' }}>
-          {/* 3D viewer + callout overlay */}
-          <div style={{ position: 'relative', height: 460, minHeight: 320 }}>
+          {/* 3D viewer + animated callout overlay */}
+          <div style={{ position: 'relative', height: 460, minHeight: 320, borderRadius: 14, overflow: 'hidden' }}>
             <SplatViewer splatUrl={d.splatUrl} />
 
-            {/* Callout overlay — pointer-events pass through to the viewer except
-                on the pins/labels, so orbit still works. In production each pin
-                anchors to a 3D point and tracks rotation. */}
+            {/* scan sweep replays each "detect" */}
+            {showCallouts && <div key={`scan-${scanKey}`} className="au-scan" />}
+
+            {/* callouts — pointer-events pass through except on dots/labels */}
             {showCallouts && (
-              <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+              <div key={`co-${scanKey}`} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
                 {d.parts.map((p, i) => (
-                  <button
+                  <div
                     key={p.name}
-                    onClick={() => setSelected(selected === i ? null : i)}
-                    style={{
-                      position: 'absolute', left: `${p.pos.x}%`, top: `${p.pos.y}%`,
-                      transform: 'translate(-50%,-50%)', pointerEvents: 'auto',
-                      display: 'flex', alignItems: 'center', gap: 7, padding: '5px 10px 5px 6px',
-                      background: selected === i ? '#2563EB' : 'rgba(11,18,32,0.82)',
-                      color: '#fff', border: '1px solid rgba(255,255,255,0.18)', borderRadius: 999,
-                      fontSize: 12, fontWeight: 600, cursor: 'pointer', backdropFilter: 'blur(4px)',
-                      boxShadow: '0 4px 14px rgba(0,0,0,0.35)', whiteSpace: 'nowrap',
-                    }}
+                    className="au-co"
+                    style={{ left: `${p.pos.x}%`, top: `${p.pos.y}%`, color: sevColor(d.severity), animationDelay: `${0.15 + i * 0.18}s`, pointerEvents: 'auto' }}
                   >
-                    <span style={{ width: 9, height: 9, borderRadius: 999, background: sevColor(d.severity), boxShadow: '0 0 0 3px rgba(255,255,255,0.25)' }} />
-                    {p.name}
-                  </button>
+                    <span className="au-dot" onClick={() => setSelected(selected === i ? null : i)} />
+                    <span className="au-stem" />
+                    <span className="au-label" onClick={() => setSelected(selected === i ? null : i)}>
+                      <b>{p.name}</b>
+                      <span>{p.price} ›</span>
+                    </span>
+                  </div>
                 ))}
               </div>
             )}
 
             {/* selected part → live part-finder card (mock buy links) */}
             {selected !== null && (
-              <div style={{ position: 'absolute', left: 12, right: 12, bottom: 12, background: '#fff', border: '1px solid #E3DFD4', borderRadius: 14, padding: 14, boxShadow: '0 8px 30px rgba(0,0,0,0.25)' }}>
+              <div className="au-card" style={{ position: 'absolute', left: 12, right: 12, bottom: 12, background: '#fff', border: '1px solid #E3DFD4', borderRadius: 14, padding: 14, boxShadow: '0 10px 34px rgba(0,0,0,0.3)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
                   <div style={{ minWidth: 0 }}>
                     <div style={{ fontSize: 14, fontWeight: 700, color: '#0B1220' }}>{d.parts[selected].name}</div>
@@ -95,13 +118,11 @@ export default function Lab3dPage() {
               </div>
             )}
 
-            {/* callout toggle (mimics the live viewfinder control) */}
-            <button
-              onClick={() => setShowCallouts((s) => !s)}
-              style={{ position: 'absolute', top: 10, right: 10, pointerEvents: 'auto', background: 'rgba(11,18,32,0.82)', color: '#fff', border: '1px solid rgba(255,255,255,0.18)', borderRadius: 999, padding: '6px 12px', fontSize: 12, fontWeight: 600, cursor: 'pointer', backdropFilter: 'blur(4px)' }}
-            >
-              {showCallouts ? 'Hide callouts' : 'Show callouts'}
-            </button>
+            {/* viewfinder-style controls */}
+            <div style={{ position: 'absolute', top: 10, right: 10, display: 'flex', gap: 8 }}>
+              <button onClick={rescan} style={ctrlBtn}>↻ Rescan</button>
+              <button onClick={() => setShowCallouts((s) => !s)} style={ctrlBtn}>{showCallouts ? 'Callouts on' : 'Callouts off'}</button>
+            </div>
           </div>
 
           {/* analysis panel */}
@@ -134,7 +155,7 @@ export default function Lab3dPage() {
                   </button>
                 ))}
               </div>
-              <div style={{ fontSize: 11.5, color: '#94A3B8', marginTop: 10 }}>Tap a part → callout highlights on the model + buy links.</div>
+              <div style={{ fontSize: 11.5, color: '#94A3B8', marginTop: 10 }}>Tap a part → its callout highlights on the model + buy links. ↻ Rescan replays the detect animation.</div>
             </div>
 
             <div style={{ background: '#fff', border: '1px solid #E3DFD4', borderRadius: 14, padding: 18 }}>
@@ -152,3 +173,8 @@ export default function Lab3dPage() {
     </div>
   );
 }
+
+const ctrlBtn: React.CSSProperties = {
+  pointerEvents: 'auto', background: 'rgba(13,18,32,.72)', color: '#fff', border: '1px solid rgba(255,255,255,.16)',
+  borderRadius: 999, padding: '6px 12px', fontSize: 12, fontWeight: 600, cursor: 'pointer', backdropFilter: 'blur(8px)',
+};
