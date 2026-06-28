@@ -40,7 +40,7 @@ const CALLOUT_CSS = `
 .au-co { position:absolute; transform:translateY(-50%); display:flex; align-items:center; animation: auPop .45s cubic-bezier(.2,.8,.2,1) both; }
 .au-dot { position:relative; width:13px; height:13px; border-radius:999px; flex-shrink:0; cursor:pointer; }
 .au-dot::before { content:''; position:absolute; inset:-6px; border-radius:999px; background:currentColor; opacity:.55; animation: auPing 1.8s ease-out infinite; }
-.au-dot::after { content:''; position:absolute; inset:0; border-radius:999px; background:currentColor; box-shadow:0 0 0 3px rgba(255,255,255,.85), 0 2px 10px rgba(0,0,0,.5); }
+.au-dot::after { content:''; position:absolute; inset:0; border-radius:999px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.55); }
 .au-stem { height:1.5px; background:linear-gradient(90deg, rgba(255,255,255,.9), rgba(255,255,255,.35)); animation: auStem .35s ease-out both; animation-delay:.2s; }
 .au-label { animation: auLabel .35s ease-out both; animation-delay:.32s; cursor:pointer; display:flex; align-items:center; gap:8px;
   padding:7px 12px; border-radius:12px; background:rgba(13,18,32,.72); backdrop-filter:blur(10px) saturate(1.3);
