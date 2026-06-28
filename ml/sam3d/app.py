@@ -48,6 +48,13 @@ image = (
     .pip_install("huggingface-hub[cli]<1.0", "numpy", "pillow", "fastapi[standard]")
     .run_commands(
         "git clone https://github.com/facebookresearch/sam-3d-objects /opt/sam3d",
+        # nvidia-pyindex (a transitive dep) is a pip-config hack whose setup.py
+        # shells out to `pip` — which doesn't exist in pip's ISOLATED build env
+        # ("No module named 'pip'"). Pre-install it with --no-build-isolation so
+        # it uses the container's real pip; then the editable install sees it
+        # satisfied and won't rebuild it. (We don't need its index hack anyway —
+        # PIP_EXTRA_INDEX_URL already points at NVIDIA's index.)
+        "pip install --no-build-isolation nvidia-pyindex",
         # Base package only — NOT '.[dev]'. The dev extra drags in bpy (Blender,
         # 377MB) + viz/test tooling we don't need for headless inference, and it
         # was the thing timing out the build. Base deps + the two inference
