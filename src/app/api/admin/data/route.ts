@@ -16,12 +16,22 @@ export async function GET() {
   }
 
   try {
-    const [emailRows, feedbackRows] = await Promise.all([
+    const [emailRows, feedbackRows, userRows] = await Promise.all([
       prisma.interestEmail.findMany({ orderBy: { createdAt: 'desc' }, take: 1000 }),
       prisma.feedback.findMany({
         where: { kind: { in: ['bug', 'feature', 'general'] } },
         orderBy: { createdAt: 'desc' },
         take: 1000,
+      }),
+      prisma.user.findMany({
+        orderBy: { createdAt: 'desc' },
+        take: 1000,
+        select: {
+          id: true, email: true, name: true, createdAt: true,
+          subscriptionStatus: true, subscriptionTier: true, passwordHash: true,
+          accounts: { select: { provider: true } },
+          _count: { select: { vehicles: true } },
+        },
       }),
     ]);
 
@@ -34,13 +44,24 @@ export async function GET() {
       unsubscribedAt: r.unsubscribedAt ? r.unsubscribedAt.toISOString() : null,
     }));
     const feedback = feedbackRows.map((r) => ({
+      id: r.id,
       timestamp: r.createdAt.toISOString(),
       type: r.kind,
       message: r.message,
       email: r.email,
     }));
+    const users = userRows.map((u) => ({
+      id: u.id,
+      email: u.email,
+      name: u.name ?? null,
+      createdAt: u.createdAt.toISOString(),
+      provider: u.accounts[0]?.provider ?? (u.passwordHash ? 'email' : 'unknown'),
+      tier: u.subscriptionTier ?? null,
+      subscriptionStatus: u.subscriptionStatus ?? null,
+      vehicleCount: u._count.vehicles,
+    }));
 
-    return NextResponse.json({ emails, feedback });
+    return NextResponse.json({ emails, feedback, users });
   } catch (error) {
     console.error('Admin data error:', error);
     return NextResponse.json(

@@ -32,10 +32,22 @@ function formatLeadContext(ctx?: string | null): string {
 }
 
 interface FeedbackEntry {
+  id: string;
   timestamp: string;
   type: string;
   message: string;
   email: string | null;
+}
+
+interface UserEntry {
+  id: string;
+  email: string;
+  name: string | null;
+  createdAt: string;
+  provider: string;
+  tier: string | null;
+  subscriptionStatus: string | null;
+  vehicleCount: number;
 }
 
 interface VehicleFeedback {
@@ -160,6 +172,7 @@ interface CostData {
 export default function AdminPage() {
   const [emails, setEmails] = useState<EmailEntry[]>([]);
   const [feedback, setFeedback] = useState<FeedbackEntry[]>([]);
+  const [users, setUsers] = useState<UserEntry[]>([]);
   const [vehicleFeedback, setVehicleFeedback] = useState<VehicleFeedback[]>([]);
   const [symptomPatterns, setSymptomPatterns] = useState<SymptomPattern[]>([]);
   const [issueReports, setIssueReports] = useState<IssueReport[]>([]);
@@ -178,7 +191,8 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [removingEmailId, setRemovingEmailId] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'emails' | 'feedback' | 'vehicle' | 'patterns' | 'reports' | 'costs' | 'review' | 'affiliates' | 'guides'>('emails');
+  const [removingFeedbackId, setRemovingFeedbackId] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'emails' | 'users' | 'feedback' | 'vehicle' | 'patterns' | 'reports' | 'costs' | 'review' | 'affiliates' | 'guides'>('emails');
 
   // Remove a lead from the active list (suppress = set unsubscribedAt). Used to
   // honor a "take me off" request. Optimistically marks the row unsubscribed.
@@ -200,6 +214,24 @@ export default function AdminPage() {
     finally { setRemovingEmailId(null); }
   }
 
+  // Dismiss a feedback item once it's been read/acted on (hard-delete — feedback
+  // is a triage inbox, not a suppression record like leads).
+  async function removeFeedback(entry: FeedbackEntry) {
+    if (!confirm('Dismiss this feedback? This permanently deletes it.')) return;
+    setRemovingFeedbackId(entry.id);
+    try {
+      const res = await fetch('/api/admin/feedback/remove', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: entry.id }),
+      });
+      if (res.ok) {
+        setFeedback((prev) => prev.filter((f) => f.id !== entry.id));
+      } else {
+        alert('Could not dismiss — try again.');
+      }
+    } catch { alert('Could not dismiss — try again.'); }
+    finally { setRemovingFeedbackId(null); }
+  }
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -209,6 +241,7 @@ export default function AdminPage() {
           const data = await response.json();
           setEmails(data.emails || []);
           setFeedback(data.feedback || []);
+          setUsers(data.users || []);
         }
 
         // Fetch vehicle feedback
@@ -304,6 +337,16 @@ export default function AdminPage() {
             }`}
           >
             Interest Emails ({emails.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('users')}
+            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              activeTab === 'users'
+                ? 'bg-green-700 text-white'
+                : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+            }`}
+          >
+            Signups ({users.length})
           </button>
           <button
             onClick={() => setActiveTab('feedback')}
@@ -413,6 +456,7 @@ export default function AdminPage() {
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Interested in</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Last emailed</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Removed</th>
                     <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Status</th>
                   </tr>
                 </thead>
@@ -426,6 +470,9 @@ export default function AdminPage() {
                       <td className="px-6 py-4 text-sm text-gray-700">{formatLeadContext(entry.context)}</td>
                       <td className="px-6 py-4 text-sm text-gray-500">
                         {entry.lastNotifiedAt ? new Date(entry.lastNotifiedAt).toLocaleDateString() : <span className="text-gray-400">Never</span>}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-500">
+                        {entry.unsubscribedAt ? new Date(entry.unsubscribedAt).toLocaleDateString() : <span className="text-gray-400">—</span>}
                       </td>
                       <td className="px-6 py-4 text-sm text-right">
                         {entry.unsubscribedAt ? (
@@ -448,6 +495,48 @@ export default function AdminPage() {
           </div>
         )}
 
+        {!loading && !error && activeTab === 'users' && (
+          <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            {users.length === 0 ? (
+              <div className="p-8 text-center text-gray-500">
+                No account signups yet
+              </div>
+            ) : (
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b border-gray-200">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Signed up</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Via</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Plan</th>
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Vehicles</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {users.map((u) => (
+                    <tr key={u.id} className="hover:bg-gray-50">
+                      <td className="px-6 py-4 text-sm text-gray-500">{new Date(u.createdAt).toLocaleString()}</td>
+                      <td className="px-6 py-4 text-sm text-gray-900">
+                        {u.email}
+                        {u.name && <span className="text-gray-400"> · {u.name}</span>}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-600 capitalize">{u.provider}</td>
+                      <td className="px-6 py-4 text-sm">
+                        {u.subscriptionStatus === 'active' ? (
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-700 capitalize">{u.tier || 'paid'}</span>
+                        ) : (
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-500">free</span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-right text-gray-600">{u.vehicleCount}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        )}
+
         {!loading && !error && activeTab === 'feedback' && (
           <div className="space-y-4">
             {feedback.length === 0 ? (
@@ -455,8 +544,8 @@ export default function AdminPage() {
                 No feedback submitted yet
               </div>
             ) : (
-              feedback.map((entry, i) => (
-                <div key={i} className="bg-white rounded-xl border border-gray-200 p-6">
+              feedback.map((entry) => (
+                <div key={entry.id} className="bg-white rounded-xl border border-gray-200 p-6">
                   <div className="flex items-center gap-3 mb-3">
                     <span className={`px-2 py-1 rounded text-xs font-medium ${
                       entry.type === 'bug' ? 'bg-red-100 text-red-700' :
@@ -473,8 +562,23 @@ export default function AdminPage() {
                         from {entry.email}
                       </span>
                     )}
+                    <button
+                      onClick={() => removeFeedback(entry)}
+                      disabled={removingFeedbackId === entry.id}
+                      className="ml-auto text-xs font-medium text-red-600 hover:text-red-800 disabled:opacity-40"
+                    >
+                      {removingFeedbackId === entry.id ? 'Dismissing…' : 'Dismiss'}
+                    </button>
                   </div>
                   <p className="text-gray-700 whitespace-pre-wrap">{entry.message}</p>
+                  {entry.email && (
+                    <a
+                      href={`mailto:${entry.email}?subject=${encodeURIComponent('Re: your au7o feedback')}`}
+                      className="inline-block mt-3 text-xs font-medium text-blue-600 hover:text-blue-800"
+                    >
+                      Reply by email →
+                    </a>
+                  )}
                 </div>
               ))
             )}
