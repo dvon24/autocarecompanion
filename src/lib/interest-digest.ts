@@ -17,6 +17,16 @@ const MAX_PER_DIGEST = 10;
 const esc = (s: unknown) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const sevDot = (sev: string) => (sev === 'critical' || sev === 'high' ? '🔴' : sev === 'medium' ? '🟡' : '⚪');
 
+// Weekly cohort cutoff: only email leads who signed up BEFORE this week's Monday
+// (00:00 UTC). Signups during the week auto-queue for next Monday (deepened by
+// then). Clean weekly cohort, no manual management.
+function mondayUTC(now = new Date()): Date {
+  const x = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  const day = x.getUTCDay(); // 0 Sun .. 6 Sat
+  x.setUTCDate(x.getUTCDate() - (day === 0 ? 6 : day - 1));
+  return x;
+}
+
 function buildDigestHtml(opts: {
   vehicle: string;
   issues: { id: string; title: string; severity: string }[];
@@ -80,11 +90,14 @@ export async function runInterestDigest(): Promise<DigestResult> {
     where: { unsubscribedAt: null, context: { startsWith: 'known-issues:' } },
     select: { id: true, email: true, context: true, createdAt: true, lastNotifiedAt: true, unsubscribeToken: true },
   });
+  // Weekly cohort: only leads who signed up before this Monday; the rest queue.
+  const weekStart = mondayUTC();
+  const eligible = leads.filter((l) => new Date(l.createdAt) < weekStart);
   const pairs = await prisma.knownIssue.findMany({ where: { status: 'published' }, distinct: ['make', 'model'], select: { make: true, model: true } });
   const pairBySubject = new Map<string, { make: string; model: string }>();
   for (const p of pairs) pairBySubject.set(`${p.make} ${p.model}`.toLowerCase().trim(), p);
 
-  for (const lead of leads) {
+  for (const lead of eligible) {
     const subject = String(lead.context || '').slice('known-issues:'.length).trim();
     const pair = pairBySubject.get(subject.toLowerCase());
     if (!pair) { result.skippedNoMatch++; continue; }

@@ -28,6 +28,17 @@ const APP_URL = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'https
 const FROM = process.env.FROM_EMAIL || 'Au7o <onboarding@resend.dev>';
 const MAILING_ADDRESS = process.env.AU7O_MAILING_ADDRESS || '';
 
+// Weekly cohort cutoff: a lead is eligible for this Monday's digest only if they
+// signed up BEFORE this week's Monday (00:00 UTC). Signups during the week
+// auto-queue for next Monday — by which point the auto-deepen loop has deepened
+// their vehicle. Keeps a clean weekly cohort with no manual management.
+function mondayUTC(now = new Date()) {
+  const x = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  const day = x.getUTCDay(); // 0 Sun .. 6 Sat
+  x.setUTCDate(x.getUTCDate() - (day === 0 ? 6 : day - 1));
+  return x;
+}
+
 // Canonical /known-issues/{slug} builder — MUST match makeSlug() in
 // src/lib/known-issues.ts (NFD-normalize + diacritic-strip) so links never 404.
 function makeSlug(make, model) {
@@ -83,6 +94,12 @@ function digestHtml({ vehicle, issues, slug, unsubToken, isCatchUp }) {
   });
   console.log('Active vehicle-context leads: ' + leads.length + (TEST_TO ? '  [TEST MODE → ' + TEST_TO + ', no leads emailed]' : SEND ? '  [SEND MODE]' : '  [DRY RUN — no emails sent]'));
 
+  // Weekly cohort: only leads who signed up before this Monday. (TEST mode keeps
+  // all so a sample can always be produced.)
+  const weekStart = mondayUTC();
+  const eligible = TEST_TO ? leads : leads.filter((l) => new Date(l.createdAt) < weekStart);
+  console.log('Eligible (signed up before ' + weekStart.toISOString().slice(0, 10) + '): ' + eligible.length + '  |  queued for next Monday: ' + (leads.length - eligible.length));
+
   // Canonical (make,model) pairs from published issues → match a lead's subject
   // robustly (handles multi-word makes/models, e.g. "Land Rover Range Rover").
   const pairs = await prisma.knownIssue.findMany({ where: { status: 'published' }, distinct: ['make', 'model'], select: { make: true, model: true } });
@@ -93,7 +110,7 @@ function digestHtml({ vehicle, issues, slug, unsubToken, isCatchUp }) {
   if (SEND || TEST_TO) { const { Resend } = require('resend'); resend = new Resend(process.env.RESEND_API_KEY); }
 
   let sent = 0, skippedNoMatch = 0, skippedNoNew = 0, failed = 0;
-  for (const lead of leads) {
+  for (const lead of eligible) {
     const subject = String(lead.context || '').slice('known-issues:'.length).trim();
     const pair = pairBySubject.get(subject.toLowerCase());
     if (!pair) { skippedNoMatch++; console.log('  · skip (no vehicle match): ' + lead.email + ' — "' + subject + '"'); continue; }
