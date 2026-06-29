@@ -99,6 +99,7 @@ export function ThreeDAnalysisOverlay({
   const [sel, setSel] = useState<number | null>(null);
   const [splat, setSplat] = useState(splatUrl);
   const [gen, setGen] = useState<'idle' | 'building' | 'done' | 'error'>('idle');
+  const [genErr, setGenErr] = useState<string>(''); // surfaced failure reason for diagnosis
 
   // Build the REAL splat from the captured photo (SAM 3D -> Blob). Exposed as a
   // callback so the error state offers "Try again" — SAM 3D cold-starts, so the
@@ -118,8 +119,9 @@ export function ThreeDAnalysisOverlay({
       });
       const data = await resp.json().catch(() => null);
       if (resp.ok && data?.splatUrl) { setSplat(data.splatUrl); setGen('done'); }
-      else setGen('error');
-    } catch {
+      else { setGenErr(`${data?.error || 'http_' + resp.status}${data?.status ? ' (' + data.status + ')' : ''}${data?.detail ? ': ' + String(data.detail).slice(0, 80) : ''}`); setGen('error'); }
+    } catch (e) {
+      setGenErr(`client: ${e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)}`);
       setGen('error');
     }
   }, [vision.imagePreviewUrl]);
@@ -166,7 +168,8 @@ export function ThreeDAnalysisOverlay({
         {gen === 'error' && (
           <div style={{ position: 'absolute', inset: 0, display: 'grid', placeItems: 'center' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 11, color: '#fff', background: 'rgba(11,18,32,.85)', border: '1px solid rgba(255,255,255,.16)', borderRadius: 14, padding: '18px 22px', backdropFilter: 'blur(8px)', textAlign: 'center', maxWidth: 290 }}>
-              <div style={{ fontSize: 13.5, lineHeight: 1.45 }}>The 3D model was warming up. Give it ~30s, then try again.</div>
+              <div style={{ fontSize: 13.5, lineHeight: 1.45 }}>Couldn&apos;t build the 3D model.</div>
+              {genErr && <div style={{ fontSize: 11, color: '#FCA5A5', fontFamily: 'monospace', wordBreak: 'break-word' }}>{genErr}</div>}
               <button onClick={runGen} style={{ background: 'linear-gradient(135deg,#6D28D9,#2563EB)', color: '#fff', border: 'none', borderRadius: 10, padding: '10px 20px', fontSize: 13.5, fontWeight: 700, cursor: 'pointer' }}>↻ Try again</button>
             </div>
           </div>
