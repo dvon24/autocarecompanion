@@ -11,6 +11,10 @@ import "@/styles/au7o-utilities.css";
 import { AppProvider } from "@/contexts/AppContext";
 import { OfflineIndicator } from "@/components/offline/OfflineIndicator";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+// Vercel Web Analytics — cookieless, counts EVERY visitor (no consent gate),
+// so it captures the traffic GA4 misses now that analytics_storage defaults to
+// denied. Numbers live in the Vercel dashboard (Project → Analytics).
+import { Analytics } from "@vercel/analytics/next";
 import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import { SessionProvider } from "@/components/auth/SessionProvider";
 import { AdSenseScript } from "@/components/ads/AdSenseScript";
@@ -154,6 +158,7 @@ export default function RootLayout({
             <PhotoDebugOverlay />
           </AppProvider>
         </SessionProvider>
+        <Analytics />
       </body>
     </html>
   );
