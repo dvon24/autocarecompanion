@@ -16,7 +16,11 @@ function formatRetryAfter(seconds: number): string {
   return `${hours} hour${hours === 1 ? '' : 's'}`;
 }
 
-export const maxDuration = 30;
+// 60s: the hub "Trip" chip now asks Claude to actually pick a destination +
+// plot it (geocode + directions), which can exceed the old 30s budget on a
+// cold call and surface "operation aborted due to timeout". The client shows
+// a "Plotting…" state while it works.
+export const maxDuration = 60;
 
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
 const MAPBOX_TOKEN = process.env.MAPBOX_ACCESS_TOKEN || process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
