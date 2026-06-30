@@ -180,10 +180,10 @@ function LogCompletionForm({
         </span>
         <div>
           <div style={{ fontSize: 13, fontWeight: 600, letterSpacing: '-0.005em' }}>
-            Log this service to your history
+            When did you last do this?
           </div>
           <div style={{ fontSize: 11, color: '#64748B' }}>
-            {service.label} · we&apos;ll reset the next-due interval automatically.
+            {service.label} · set the date + odometer (past dates are fine) and we&apos;ll recalculate what&apos;s due.
           </div>
         </div>
       </div>

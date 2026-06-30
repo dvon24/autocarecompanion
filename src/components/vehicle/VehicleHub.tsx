@@ -1347,6 +1347,8 @@ function MobileHub({
   // Tap-to-expand for the greeting body. Starts collapsed (faded behind
   // the COMMON ISSUES card); tap reveals the full opener text.
   const [greetExpanded, setGreetExpanded] = useState(false);
+  // Back-to-top FAB — appears once the conversation is scrolled down.
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     if (!scrollRef.current) return;
@@ -1508,8 +1510,30 @@ function MobileHub({
         </div>
       </header>
 
+      {/* Back-to-top arrow — appears once scrolled down. */}
+      {showScrollTop && (
+        <button
+          type="button"
+          aria-label="Scroll to top"
+          onClick={() => scrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' })}
+          style={{
+            position: 'fixed', right: 16, bottom: 92, zIndex: 40,
+            width: 40, height: 40, borderRadius: '50%',
+            background: '#0B1220', color: '#fff', border: 'none',
+            boxShadow: '0 4px 14px rgba(11,18,32,.28)', cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18,
+          }}
+        >
+          ↑
+        </button>
+      )}
+
       {/* Scrollable conversation surface */}
-      <div ref={scrollRef} className="m-body">
+      <div
+        ref={scrollRef}
+        className="m-body"
+        onScroll={(e) => setShowScrollTop(e.currentTarget.scrollTop > 400)}
+      >
         <div className="m-greet">
           <div className="m-eyebrow-row">
             <span className="au7o-pulse-soft m-pulse-dot" />
@@ -1542,6 +1566,9 @@ function MobileHub({
             <MobileMaintenanceCard
               schedule={schedule}
               currentMileage={currentMileage}
+              loggableVehicleId={loggableVehicleId}
+              canLog={canLogMaintenance}
+              onLogged={onLogged}
               onTaskTap={(_typeId, name) => {
                 // Tapping a maintenance item surfaces the PARTS needed for it
                 // right in the chat (Devon: tap cabin filter → see the parts
@@ -2078,8 +2105,11 @@ function MobileHub({
 
 /* ─── Mobile maintenance schedule card (vertical timeline) ─── */
 function MobileMaintenanceCard({
-  schedule, currentMileage, onTaskTap, onSendPrompt,
-}: { schedule: ScheduleData; currentMileage: number | null; onTaskTap?: (typeId: string, name: string) => void; onSendPrompt?: (prompt: string) => void }) {
+  schedule, currentMileage, onTaskTap, onSendPrompt, loggableVehicleId, canLog, onLogged,
+}: { schedule: ScheduleData; currentMileage: number | null; onTaskTap?: (typeId: string, name: string) => void; onSendPrompt?: (prompt: string) => void; loggableVehicleId?: string | null; canLog?: boolean; onLogged?: () => void }) {
+  // Which row's "update when I did it" form is open (typeId), null = none.
+  const [logOpenType, setLogOpenType] = useState<string | null>(null);
+  const canEdit = !!canLog && !!loggableVehicleId && currentMileage != null;
   const services = schedule.services.filter((s) => s.status !== 'done').slice(0, 5);
   const overdueCount = schedule.stats.overdueCount;
   const dueSoonCount = services.filter((s) => s.status === 'due_now').length;
@@ -2197,9 +2227,8 @@ function MobileMaintenanceCard({
             // When onTaskTap is provided, render as a button so every
             // service row is tappable. Falls back to a plain div in the
             // (unlikely) case the host hasn't provided a handler.
-            return interactive ? (
+            const rowEl = interactive ? (
               <button
-                key={s.typeId + i}
                 type="button"
                 className="mc-row mc-row-btn"
                 onClick={() => onTaskTap?.(s.typeId, s.name)}
@@ -2208,7 +2237,37 @@ function MobileMaintenanceCard({
                 {rowInner}
               </button>
             ) : (
-              <div key={s.typeId + i} className="mc-row">{rowInner}</div>
+              <div className="mc-row">{rowInner}</div>
+            );
+            // Editable: a pencil that opens the "when did you last do this"
+            // form (same flow as desktop) so mobile reaches parity.
+            if (!canEdit) return <div key={s.typeId + i}>{rowEl}</div>;
+            const intervalMiles = MAINTENANCE_SCHEDULES_FOR_LOG[s.typeId]?.defaultIntervalMiles ?? 5000;
+            const open = logOpenType === s.typeId;
+            return (
+              <div key={s.typeId + i} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {rowEl}
+                {!open && (
+                  <button
+                    type="button"
+                    onClick={() => setLogOpenType(s.typeId)}
+                    style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 11px', marginLeft: 22, background: '#fff', color: c, border: `1px solid ${c}`, borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}
+                  >
+                    ✏️ Update when I last did this
+                  </button>
+                )}
+                {open && (
+                  <div style={{ marginLeft: 22 }}>
+                    <MaintenanceLogFlow
+                      vehicleId={loggableVehicleId!}
+                      currentMileage={currentMileage!}
+                      service={{ typeId: s.typeId, label: s.name, intervalMiles }}
+                      accent={c}
+                      onLogged={onLogged}
+                    />
+                  </div>
+                )}
+              </div>
             );
           })}
         </div>
@@ -4345,12 +4404,13 @@ function ScheduleRow({
   // user clicks "Mark complete". The form lives in the row's parent
   // wrapper so it doesn't trigger the row's onTap handler.
   const [logOpen, setLogOpen] = useState(false);
-  // Show "Mark complete" only for non-done services on a real user
-  // vehicle they're authorized to log against.
+  // Show the edit/log affordance on EVERY service (including done ones) for a
+  // real user vehicle they can log against — Devon: a pencil to update when a
+  // service was last done. Setting a real last-done baseline also fixes the
+  // absurd "125,000 mi past due" math (which assumes never-serviced).
   const showLogButton = canLog
     && !!loggableVehicleId
-    && currentMileage != null
-    && service.status !== 'done';
+    && currentMileage != null;
   const baseStyle: React.CSSProperties = {
     display: 'flex', alignItems: 'center', gap: 14,
     padding: '10px 14px',
@@ -4428,9 +4488,9 @@ function ScheduleRow({
             alignItems: 'center',
             gap: 6,
             padding: '7px 12px',
-            background: accent,
-            color: '#fff',
-            border: 'none',
+            background: service.status === 'done' ? '#fff' : accent,
+            color: service.status === 'done' ? accent : '#fff',
+            border: service.status === 'done' ? `1px solid ${accent}` : 'none',
             borderRadius: 8,
             fontSize: 12.5,
             fontWeight: 600,
@@ -4438,7 +4498,7 @@ function ScheduleRow({
             fontFamily: 'inherit',
           }}
         >
-          ✓ Mark complete + log to history
+          ✏️ {service.status === 'done' ? 'Update when I last did this' : 'Mark done / set when I did it'}
         </button>
       )}
       {logOpen && (
