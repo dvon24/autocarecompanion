@@ -1,5 +1,6 @@
 import prisma from '@/lib/db';
 import { mileageBucket } from '@/lib/vehicle-slug';
+import { getVehicleSpecs } from '@/lib/maintenance';
 import type { KnownIssue } from '@/schemas/knownIssue.schema';
 
 /**
@@ -123,6 +124,9 @@ export async function getAttachableIssues(args: {
 }): Promise<AttachableIssue[]> {
   const limit = args.limit ?? 12;
   try {
+    // Over-fetch, then filter to the user's exact trim/engine below — a
+    // Hellcat-only issue must NOT show on an NA SRT 392 (Devon). Mirrors the
+    // article page's filter so the hub cards match the user's actual car.
     const rows = await prisma.knownIssue.findMany({
       where: {
         make: { equals: args.make, mode: 'insensitive' },
@@ -131,15 +135,34 @@ export async function getAttachableIssues(args: {
         status: 'published',
       },
       orderBy: [{ severity: 'asc' }, { reportCount: 'desc' }],
-      take: limit,
+      take: Math.max(limit * 4, 48),
       select: {
         id: true, title: true, category: true, severity: true,
         description: true, estimatedCostLow: true, estimatedCostHigh: true,
-        years: true,
+        years: true, engines: true, trims: true,
       },
     });
+    // Engine/trim gate: when an issue is tagged to specific engines or trims,
+    // only show it if THIS vehicle matches. Untagged issues apply model-wide.
+    const trimLower = (args.trim || '').toLowerCase();
+    const engineStr = (getVehicleSpecs({ year: args.year, make: args.make, model: args.model, trim: args.trim })?.engine || '').toLowerCase();
+    const matches = (r: { engines?: string[] | null; trims?: string[] | null }) => {
+      // Trim is the most reliable signal — when an issue is trim-tagged,
+      // decide on trim alone (a Hellcat-only issue has no "SRT 392" trim, so
+      // it drops off the 392; engine-string substring matching is too brittle
+      // to gate on). Fall back to engine match only when no trims are tagged.
+      const trims = r.trims || [];
+      if (trims.length > 0 && trimLower) {
+        return trims.some((t) => { const tl = t.toLowerCase(); return trimLower.includes(tl) || tl.includes(trimLower); });
+      }
+      const eng = r.engines || [];
+      if (eng.length > 0) {
+        return eng.some((e) => { const el = e.toLowerCase(); return trimLower.includes(el) || el.includes(trimLower) || (!!engineStr && engineStr.includes(el)); });
+      }
+      return true; // untagged → applies model-wide
+    };
     const slug = `${args.make.toLowerCase().replace(/\s+/g, '-')}-${args.model.toLowerCase().replace(/\s+/g, '-')}`;
-    return rows.map((r) => ({
+    return rows.filter(matches).slice(0, limit).map((r) => ({
       id: r.id,
       title: r.title,
       category: r.category,
