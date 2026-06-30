@@ -1428,7 +1428,10 @@ function MobileHub({
     { label: 'Recalls', prompt: 'Are there any recalls on my vehicle?' },
     { label: 'Issues', prompt: 'What problems are common at my mileage?' },
     { label: 'Parts', prompt: 'What parts do I need next?' },
-    { label: 'Trip', prompt: 'Plan a nice drive for me' },
+    // Directive so plan-route picks a concrete destination + plots geometry
+    // (a vague "plan a nice drive" makes Claude clarify instead of navigate,
+    // so no preview map renders). Bounded round-trip keeps it nearby.
+    { label: 'Trip', prompt: 'Plan a scenic round-trip drive from my location — pick a specific destination about 20–30 minutes away and plot the route.' },
   ];
 
   const submit = () => {
@@ -1540,11 +1543,10 @@ function MobileHub({
               schedule={schedule}
               currentMileage={currentMileage}
               onTaskTap={(_typeId, name) => {
-                // Turn the tap into a chat prompt — keeps the user in the
-                // hub conversation instead of yanking them to a separate
-                // guide page. The opener phrasing matches what an owner
-                // would naturally ask.
-                onSend(`How do I do a ${name.toLowerCase()} on my ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}?`);
+                // Tapping a maintenance item surfaces the PARTS needed for it
+                // right in the chat (Devon: tap cabin filter → see the parts
+                // to order). The hub agent returns clickable Amazon links.
+                onSend(`What parts and supplies do I need for a ${name.toLowerCase()} on my ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}? List each part with its part number and a link to buy it.`);
               }}
               onSendPrompt={(prompt) => onSend(prompt)}
             />
@@ -1644,7 +1646,7 @@ function MobileHub({
                       <MaintenanceSchedule
                         schedule={m.schedule}
                         onTaskTap={(_typeId, name) => {
-                          onSend(`How do I do a ${name.toLowerCase()} on my ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}?`);
+                          onSend(`What parts and supplies do I need for a ${name.toLowerCase()} on my ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}? List each part with its part number and a link to buy it.`);
                         }}
                         loggableVehicleId={loggableVehicleId}
                         currentMileage={currentMileage}
@@ -3562,11 +3564,10 @@ function Au7oReply({
           <MaintenanceSchedule
             schedule={schedule}
             onTaskTap={(_typeId, name) => {
-              // Au7oReply doesn't have direct vehicle context, but the
-              // hub chat agent already has it from the system prompt.
-              // Sending "How do I do an oil change?" inside an
-              // established conversation resolves correctly.
-              onFollowUp?.(`How do I do a ${name.toLowerCase()}?`);
+              // Tapping a maintenance item surfaces the PARTS needed for it.
+              // Au7oReply has no direct vehicle context, but the hub agent
+              // has it from the system prompt, so this resolves correctly.
+              onFollowUp?.(`What parts and supplies do I need for a ${name.toLowerCase()}? List each part with its part number and a link to buy it.`);
             }}
             loggableVehicleId={loggableVehicleId}
             currentMileage={currentMileage}
@@ -3639,8 +3640,8 @@ function Au7oReply({
         :global(.bubble-au7o em) { font-style: italic; color: #64748B; }
         :global(.bubble-au7o ul) { padding-left: 0; margin: 8px 0; list-style: none; }
         :global(.bubble-au7o li) { padding: 2px 0; }
-        :global(.bubble-au7o .au7o-link) { color: #2563EB; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(37,99,235,0.35); }
-        :global(.bubble-au7o .au7o-link:hover) { border-bottom-color: #2563EB; }
+        :global(.bubble-au7o .au7o-link) { color: #2563EB; font-weight: 600; text-decoration: underline; text-decoration-color: #2563EB; text-underline-offset: 2px; }
+        :global(.bubble-au7o .au7o-link:hover) { color: #1D4ED8; }
         /* Follow-up suggestion chips — moved from a nested <style jsx>
            block into the main one because styled-jsx doesn't allow more
            than one style block per component. */

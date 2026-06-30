@@ -210,6 +210,11 @@ function Open3DButton({ vision }: { vision: VisionResult }) {
   const [open, setOpen] = useState(false);
   const sub = (session?.user as { subscriptionStatus?: string } | undefined)?.subscriptionStatus;
   const can3D = isFounderEmail(session?.user?.email) || sub === 'active';
+  // 3D is parked for now (Devon, June 30) — the splat isn't photoreal enough
+  // and we're moving perception to DA3 depth + SAM 3, not SAM 3D. Keep the
+  // wiring intact but render nothing so the diagnosis result stays in-feature.
+  const ENABLE_3D = false;
+  if (!ENABLE_3D) return null;
   if (!can3D || !vision.isCarRelated) return null;
   return (
     <>
