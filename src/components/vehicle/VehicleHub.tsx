@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { MaintenanceSuggestion, ScheduleData, ScheduleService, ScheduleServiceStatus } from '@/lib/maintenance-suggestions';
@@ -223,19 +224,15 @@ export function VehicleHub({
   initialSessionId,
   showMaintenanceUpgradeTile,
 }: VehicleHubProps) {
-  // After a successful log POST, hard-reload the page so the SSR
-  // schedule reflects the new MaintenanceRecord (next-due interval
-  // resets, the just-logged row moves into "Recently completed").
-  // router.refresh() would be cleaner but the hub already shows the
-  // LogCompletionDone state inline, so a brief reload after that done
-  // confirmation reads as intentional + reliable.
+  const router = useRouter();
+  // After a successful log POST, soft-refresh so the SSR schedule reflects
+  // the new MaintenanceRecord (next-due resets, the row moves into "Recently
+  // completed") WITHOUT a full-page reload — window.location.reload() caused
+  // a jarring white flash (Devon). router.refresh() re-runs the server
+  // component in place; the inline "Logged to your history" state stays put.
   const onLogged = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      // Small delay so the user sees "Logged to your history" before
-      // the page reloads and the row physically moves groups.
-      setTimeout(() => window.location.reload(), 1500);
-    }
-  }, []);
+    setTimeout(() => router.refresh(), 1200);
+  }, [router]);
   // Seed the conversation with the pre-rendered opener so the page feels
   // alive on first paint. Subsequent turns get appended here and (in v2)
   // sent to /api/chat for the real reply.
@@ -1701,7 +1698,7 @@ function MobileHub({
                     {m.issues && m.issues.length > 0 && matched.length === 0 && (
                       <IssueAttachmentGroup issues={m.issues} />
                     )}
-                    {m.route ? (
+                    {m.route && (m.route.loading || m.route.error || m.route.geometry.length > 1) ? (
                       <MiniRoute
                         route={m.route}
                         onOpenDrive={() => {
@@ -1856,9 +1853,12 @@ function MobileHub({
           .m-shell { display: flex; }
         }
         /* Phone in landscape (short viewport) — use the mobile shell, matching
-           portrait, instead of the desktop layout leaking in. */
+           portrait, instead of the desktop layout leaking in. Add side padding
+           (incl. notch safe-area) so content isn't edge-to-edge in landscape. */
         @media (orientation: landscape) and (max-height: 600px) {
           .m-shell { display: flex; }
+          .m-body { padding-left: max(20px, env(safe-area-inset-left)); padding-right: max(20px, env(safe-area-inset-right)); }
+          .m-head { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
         }
 
         /* ─── Header ─── */
@@ -2251,33 +2251,33 @@ function MobileMaintenanceCard({
             ) : (
               <div className="mc-row">{rowInner}</div>
             );
-            // Editable: a pencil that opens the "when did you last do this"
-            // form (same flow as desktop) so mobile reaches parity.
+            // Editable: a pencil icon on the FAR RIGHT of the row (Devon),
+            // inline with the task. Opens the "when did you last do this"
+            // form below — same flow as desktop, so mobile reaches parity.
             if (!canEdit) return <div key={s.typeId + i}>{rowEl}</div>;
             const intervalMiles = MAINTENANCE_SCHEDULES_FOR_LOG[s.typeId]?.defaultIntervalMiles ?? 5000;
             const open = logOpenType === s.typeId;
             return (
               <div key={s.typeId + i} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {rowEl}
-                {!open && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>{rowEl}</div>
                   <button
                     type="button"
-                    onClick={() => setLogOpenType(s.typeId)}
-                    style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 11px', marginLeft: 22, background: '#fff', color: c, border: `1px solid ${c}`, borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}
+                    onClick={() => setLogOpenType(open ? null : s.typeId)}
+                    aria-label={`Update when ${s.name} was last done`}
+                    style={{ flexShrink: 0, width: 34, height: 34, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: open ? c : '#fff', color: open ? '#fff' : c, border: `1px solid ${c}`, borderRadius: 8, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit' }}
                   >
-                    ✏️ Update when I last did this
+                    ✏️
                   </button>
-                )}
+                </div>
                 {open && (
-                  <div style={{ marginLeft: 22 }}>
-                    <MaintenanceLogFlow
-                      vehicleId={loggableVehicleId!}
-                      currentMileage={currentMileage!}
-                      service={{ typeId: s.typeId, label: s.name, intervalMiles }}
-                      accent={c}
-                      onLogged={onLogged}
-                    />
-                  </div>
+                  <MaintenanceLogFlow
+                    vehicleId={loggableVehicleId!}
+                    currentMileage={currentMileage!}
+                    service={{ typeId: s.typeId, label: s.name, intervalMiles }}
+                    accent={c}
+                    onLogged={onLogged}
+                  />
                 )}
               </div>
             );
@@ -3282,6 +3282,11 @@ function MobileThreadsDrawer({
           pointer-events: none;
         }
         @media (max-width: 900px) {
+          .md-shell { display: block; }
+        }
+        /* Landscape phone: the mobile shell is active here too, so the menu
+           drawer must be available even though width can exceed 900px. */
+        @media (orientation: landscape) and (max-height: 600px) {
           .md-shell { display: block; }
         }
         .md-backdrop {
