@@ -1240,6 +1240,13 @@ export function VehicleHub({
         @media (max-width: 900px) {
           .hub-desktop { display: none; }
         }
+        /* Phone in landscape: width can exceed 900px (e.g. 932px) and wrongly
+           trigger the desktop shell. A landscape PHONE is short (<600px tall)
+           while any real desktop/laptop is taller, so force the mobile shell
+           here without touching desktop. */
+        @media (orientation: landscape) and (max-height: 600px) {
+          .hub-desktop { display: none; }
+        }
         .hub-stage {
           height: 100vh;
           background: #ECE9DF;
@@ -1846,6 +1853,11 @@ function MobileHub({
           position: relative;
         }
         @media (max-width: 900px) {
+          .m-shell { display: flex; }
+        }
+        /* Phone in landscape (short viewport) — use the mobile shell, matching
+           portrait, instead of the desktop layout leaking in. */
+        @media (orientation: landscape) and (max-height: 600px) {
           .m-shell { display: flex; }
         }
 
