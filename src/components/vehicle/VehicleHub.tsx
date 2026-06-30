@@ -261,6 +261,9 @@ export function VehicleHub({
   // the top bar opens this slide-in panel instead.
   const [threadsOpen, setThreadsOpen] = useState(false);
   const composerRef = useRef<HTMLTextAreaElement>(null);
+  // Bumped to ask the Composer to open its camera from outside (the Photo
+  // Diagnosis context card). Counter so repeat taps re-fire the effect.
+  const [camSignal, setCamSignal] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll on new messages.
@@ -1178,6 +1181,7 @@ export function VehicleHub({
                     canLogMaintenance={canLogMaintenance}
                     onLogged={onLogged}
                     showMaintenanceUpgradeTile={showMaintenanceUpgradeTile}
+                    onStartDiagnosis={() => setCamSignal((s) => s + 1)}
                   />
                 )
             ))}
@@ -1193,6 +1197,7 @@ export function VehicleHub({
             pending={pending}
             isAuthed={isAuthed}
             vehicle={vehicle}
+            openSignal={camSignal}
           />
         </section>
       </div>
@@ -1561,6 +1566,11 @@ function MobileHub({
             <MobileIssuesCard issues={topIssues} slug={slug} authed={isAuthed} />
           </div>
         )}
+
+        {/* Photo & video diagnosis card — opens the in-hub camera. */}
+        <div className="m-attach">
+          <PhotoDiagnosisCard onStart={() => { trackEvent('hub_camera_open', { source: 'photo_card_mobile' }); setCamOpen(true); }} />
+        </div>
 
         {/* Suggested follow-up rows */}
         {suggestions.length > 0 && (
@@ -3461,9 +3471,33 @@ function ThinkingIndicator() {
   );
 }
 
+/* ─── Photo & video diagnosis card ───
+   Vehicle-level context card, parallel to Maintenance Schedule + Known
+   Issues. Surfaces the photo/video feature right in the hub rail (Devon:
+   users don't know it exists) and its CTA opens the in-hub camera. */
+function PhotoDiagnosisCard({ onStart }: { onStart?: () => void }) {
+  return (
+    <div style={{ background: '#fff', border: '1px solid #E3DFD4', borderRadius: 16, padding: 16, margin: '10px 0' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+        <span style={{ fontSize: 18 }}>📷</span>
+        <span style={{ fontSize: 14, fontWeight: 700, color: '#0B1220' }}>Photo &amp; video diagnosis</span>
+      </div>
+      <p style={{ fontSize: 13, color: '#475569', margin: '0 0 12px', lineHeight: 1.5 }}>
+        Got a noise, leak, warning light, or a part you can&rsquo;t name? Show Au7o &mdash; it identifies the problem and the exact part to fix it.
+      </p>
+      <button
+        onClick={() => { trackEvent('hub_camera_open', { source: 'photo_card' }); onStart?.(); }}
+        style={{ background: '#0B1220', color: '#fff', border: 'none', borderRadius: 10, padding: '11px 16px', fontSize: 14, fontWeight: 700, cursor: 'pointer', width: '100%' }}
+      >
+        Diagnose with a photo or video
+      </button>
+    </div>
+  );
+}
+
 function Au7oReply({
   content, attachments = [], driveHandoff = null, route, schedule, issues, gate, vision, slug, isAuthed, onFollowUp,
-  loggableVehicleId, currentMileage, canLogMaintenance, onLogged, showMaintenanceUpgradeTile,
+  loggableVehicleId, currentMileage, canLogMaintenance, onLogged, showMaintenanceUpgradeTile, onStartDiagnosis,
 }: {
   content: string;
   attachments?: AttachableIssue[];
@@ -3481,6 +3515,7 @@ function Au7oReply({
   canLogMaintenance?: boolean;
   onLogged?: () => void;
   showMaintenanceUpgradeTile?: boolean;
+  onStartDiagnosis?: () => void;
 }) {
   // Split out any "→ follow-up question" lines the AI emitted at the end
   // of the reply. Body shows the cleaned content; chips render below as
@@ -3548,6 +3583,12 @@ function Au7oReply({
             built for the mobile shell first). */}
         {issues && issues.length > 0 && slug && (
           <MobileIssuesCard issues={issues} slug={slug} authed={!!isAuthed} />
+        )}
+        {/* Photo & video diagnosis card — appears alongside the other
+            vehicle-level context cards on the first reply. Surfaces the
+            feature + opens the in-hub camera. */}
+        {onStartDiagnosis && (schedule || (issues && issues.length > 0)) && (
+          <PhotoDiagnosisCard onStart={onStartDiagnosis} />
         )}
         {attachments.length > 0 && <IssueAttachmentGroup issues={attachments} />}
         {/* Trip preview hierarchy: when we have a real Mapbox route
@@ -3745,7 +3786,7 @@ function inlineFormat(s: string): React.ReactNode {
 
 /* ─── Composer ─── */
 const Composer = ({
-  ref, value, onChange, onSend, onPhotoUpload, onVideoUpload, pending, isAuthed, vehicle,
+  ref, value, onChange, onSend, onPhotoUpload, onVideoUpload, pending, isAuthed, vehicle, openSignal,
 }: {
   ref: React.RefObject<HTMLTextAreaElement | null>;
   value: string;
@@ -3756,10 +3797,14 @@ const Composer = ({
   pending: boolean;
   isAuthed: boolean;
   vehicle: VehicleHubProps['vehicle'];
+  // Incremented by the parent (e.g. the Photo Diagnosis card) to open the
+  // camera from outside the composer. 0 = no request yet.
+  openSignal?: number;
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const videoInputRef = useRef<HTMLInputElement>(null);
   const [camOpen, setCamOpen] = useState(false);
+  useEffect(() => { if (openSignal && openSignal > 0) setCamOpen(true); }, [openSignal]);
   return (
     <div className="composer-wrap">
       {camOpen && (
