@@ -246,6 +246,21 @@ export default async function VehicleProfilePage({
 
   const allParts = [...cachedParts, ...specsParts];
 
+  // Map of maintenance typeId → buyable parts, so the hub can show "order
+  // these" links right on each overdue/due maintenance row (the affiliate
+  // moment — the overdue list IS a shopping list). Ensure every part has an
+  // affiliate URL (fall back to a tagged Amazon search).
+  const partsByTask: Record<string, { name: string; spec?: string; partNumber?: string; affiliateUrl: string }[]> = {};
+  for (const p of allParts) {
+    const list = (Array.isArray(p.parts) ? p.parts : []).map((pt: any) => ({
+      name: String(pt.name || '').trim(),
+      spec: pt.spec ? String(pt.spec) : undefined,
+      partNumber: pt.partNumber ? String(pt.partNumber) : undefined,
+      affiliateUrl: pt.affiliateUrl || `https://www.amazon.com/s?k=${encodeURIComponent(pt.searchQuery || pt.name || '')}&tag=${tag}`,
+    })).filter((pt) => pt.name);
+    if (list.length > 0) partsByTask[p.task] = list;
+  }
+
   // ── Auth + maintenance suggestions for the new conversation hub ──
   // Anonymous visitors hit this page with no Vehicle row to look up, so
   // they get a generic opener. Signed-in users with a matching Vehicle in
@@ -403,6 +418,7 @@ export default async function VehicleProfilePage({
       trending={trending}
       attachableIssues={attachableIssues}
       recalls={recalls.map((r) => ({ campaignNumber: r.campaignNumber, component: r.component, summary: r.summary, remedy: r.remedy, severity: r.severity }))}
+      partsByTask={partsByTask}
       user={userInfo}
       schedule={scheduleForHub}
       ownersManualSchedule={ownersManualSchedule}

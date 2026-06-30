@@ -91,6 +91,13 @@ export interface HubRecall {
   severity: 'critical' | 'high' | 'medium';
 }
 
+export interface MaintPart {
+  name: string;
+  spec?: string;
+  partNumber?: string;
+  affiliateUrl: string;
+}
+
 export interface VehicleHubProps {
   vehicle: {
     year: number;
@@ -126,6 +133,9 @@ export interface VehicleHubProps {
   /** Live NHTSA recalls for this vehicle (server-fetched, 24h cached). The
    *  "something new arrived" renewal signal — rendered as a hub card. */
   recalls?: HubRecall[];
+  /** Buyable parts keyed by maintenance typeId (oil_change, brake_fluid, …) —
+   *  powers the inline "order these" affiliate links on overdue rows. */
+  partsByTask?: Record<string, MaintPart[]>;
   /** Authed user identity for the rail footer. Null when anonymous. */
   user: {
     name: string;
@@ -227,6 +237,7 @@ export function VehicleHub({
   trending,
   attachableIssues,
   recalls = [],
+  partsByTask = {},
   user,
   schedule,
   ownersManualSchedule,
@@ -1221,6 +1232,7 @@ export function VehicleHub({
         schedule={schedule}
         attachableIssues={attachableIssues}
         recalls={recalls}
+        partsByTask={partsByTask}
         maintenanceSuggestions={maintenanceSuggestions}
         trending={trending}
         recentThreads={recentThreads}
@@ -1321,7 +1333,7 @@ export function VehicleHub({
    are rendered side-by-side; CSS toggles which one is visible based on
    viewport width. */
 function MobileHub({
-  vehicle, slug, isAuthed, currentMileage, opener, schedule, attachableIssues, recalls = [],
+  vehicle, slug, isAuthed, currentMileage, opener, schedule, attachableIssues, recalls = [], partsByTask = {},
   maintenanceSuggestions, recentThreads, user,
   messages, input, pending, threadsOpen,
   onChangeInput, onSend, onOpenThreads, onCloseThreads, onSelectThread, onPhotoUpload, onVideoUpload,
@@ -1335,6 +1347,7 @@ function MobileHub({
   schedule: ScheduleData | null;
   attachableIssues: AttachableIssue[];
   recalls?: HubRecall[];
+  partsByTask?: Record<string, MaintPart[]>;
   maintenanceSuggestions: MaintenanceSuggestion[];
   trending: TrendingChip[];
   recentThreads: RecentThread[];
@@ -1588,6 +1601,7 @@ function MobileHub({
               loggableVehicleId={loggableVehicleId}
               canLog={canLogMaintenance}
               onLogged={onLogged}
+              partsByTask={partsByTask}
               onTaskTap={(_typeId, name) => {
                 // Tapping a maintenance item surfaces the PARTS needed for it
                 // right in the chat (Devon: tap cabin filter → see the parts
@@ -2137,10 +2151,33 @@ function MobileHub({
   );
 }
 
+/* ─── Buyable parts for a maintenance task (the affiliate moment) ───
+   Renders the part(s) needed for an overdue/due item as tappable buy chips.
+   The overdue list IS a shopping list — collapse the gap to "in cart". */
+function MaintPartsLinks({ parts }: { parts?: MaintPart[] }) {
+  if (!parts || parts.length === 0) return null;
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 6 }}>
+      {parts.slice(0, 4).map((p, i) => (
+        <a
+          key={i}
+          href={p.affiliateUrl}
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          onClick={() => trackEvent('maint_part_click', { part: p.name })}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '5px 10px', borderRadius: 999, fontSize: 11.5, fontWeight: 600, background: '#FFF7ED', color: '#9A3412', border: '1px solid #FED7AA', textDecoration: 'none' }}
+        >
+          🛒 {p.name}{p.partNumber ? ` · ${p.partNumber}` : ''}
+        </a>
+      ))}
+    </div>
+  );
+}
+
 /* ─── Mobile maintenance schedule card (vertical timeline) ─── */
 function MobileMaintenanceCard({
-  schedule, currentMileage, onTaskTap, onSendPrompt, loggableVehicleId, canLog, onLogged,
-}: { schedule: ScheduleData; currentMileage: number | null; onTaskTap?: (typeId: string, name: string) => void; onSendPrompt?: (prompt: string) => void; loggableVehicleId?: string | null; canLog?: boolean; onLogged?: () => void }) {
+  schedule, currentMileage, onTaskTap, onSendPrompt, loggableVehicleId, canLog, onLogged, partsByTask = {},
+}: { schedule: ScheduleData; currentMileage: number | null; onTaskTap?: (typeId: string, name: string) => void; onSendPrompt?: (prompt: string) => void; loggableVehicleId?: string | null; canLog?: boolean; onLogged?: () => void; partsByTask?: Record<string, MaintPart[]> }) {
   // Which row's "update when I did it" form is open (typeId), null = none.
   const [logOpenType, setLogOpenType] = useState<string | null>(null);
   const canEdit = !!canLog && !!loggableVehicleId && currentMileage != null;
@@ -2276,7 +2313,10 @@ function MobileMaintenanceCard({
             // Editable: a pencil icon on the FAR RIGHT of the row (Devon),
             // inline with the task. Opens the "when did you last do this"
             // form below — same flow as desktop, so mobile reaches parity.
-            if (!canEdit) return <div key={s.typeId + i}>{rowEl}</div>;
+            // Buy-links for overdue/due items (the affiliate moment).
+            const showParts = s.status === 'overdue' || s.status === 'due_now';
+            const partsEl = showParts ? <MaintPartsLinks parts={partsByTask[s.typeId]} /> : null;
+            if (!canEdit) return <div key={s.typeId + i}>{rowEl}{partsEl}</div>;
             const intervalMiles = MAINTENANCE_SCHEDULES_FOR_LOG[s.typeId]?.defaultIntervalMiles ?? 5000;
             const open = logOpenType === s.typeId;
             return (
@@ -2292,6 +2332,7 @@ function MobileMaintenanceCard({
                     ✏️
                   </button>
                 </div>
+                {partsEl}
                 {open && (
                   <MaintenanceLogFlow
                     vehicleId={loggableVehicleId!}
