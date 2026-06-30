@@ -402,6 +402,7 @@ export default async function VehicleProfilePage({
       recentThreads={recentThreads}
       trending={trending}
       attachableIssues={attachableIssues}
+      recalls={recalls.map((r) => ({ campaignNumber: r.campaignNumber, component: r.component, summary: r.summary, remedy: r.remedy, severity: r.severity }))}
       user={userInfo}
       schedule={scheduleForHub}
       ownersManualSchedule={ownersManualSchedule}

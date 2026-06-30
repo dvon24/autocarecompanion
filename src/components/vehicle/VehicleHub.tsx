@@ -83,6 +83,14 @@ function visionToContext(v: VisionResult): string {
  *   - "Trending for your car" chip group from TrendingIntent
  */
 
+export interface HubRecall {
+  campaignNumber: string;
+  component: string;
+  summary: string;
+  remedy: string;
+  severity: 'critical' | 'high' | 'medium';
+}
+
 export interface VehicleHubProps {
   vehicle: {
     year: number;
@@ -115,6 +123,9 @@ export interface VehicleHubProps {
   /** Top KnownIssue records for this vehicle, ready to render as inline
    *  attachments when the assistant mentions one in a reply. Bounded to 12. */
   attachableIssues: AttachableIssue[];
+  /** Live NHTSA recalls for this vehicle (server-fetched, 24h cached). The
+   *  "something new arrived" renewal signal — rendered as a hub card. */
+  recalls?: HubRecall[];
   /** Authed user identity for the rail footer. Null when anonymous. */
   user: {
     name: string;
@@ -215,6 +226,7 @@ export function VehicleHub({
   recentThreads,
   trending,
   attachableIssues,
+  recalls = [],
   user,
   schedule,
   ownersManualSchedule,
@@ -1167,6 +1179,7 @@ export function VehicleHub({
                     route={m.route}
                     schedule={m.schedule}
                     issues={m.issues}
+                    recalls={recalls}
                     gate={m.gate}
                     vision={m.vision}
                     slug={slug}
@@ -1207,6 +1220,7 @@ export function VehicleHub({
         opener={opener}
         schedule={schedule}
         attachableIssues={attachableIssues}
+        recalls={recalls}
         maintenanceSuggestions={maintenanceSuggestions}
         trending={trending}
         recentThreads={recentThreads}
@@ -1307,7 +1321,7 @@ export function VehicleHub({
    are rendered side-by-side; CSS toggles which one is visible based on
    viewport width. */
 function MobileHub({
-  vehicle, slug, isAuthed, currentMileage, opener, schedule, attachableIssues,
+  vehicle, slug, isAuthed, currentMileage, opener, schedule, attachableIssues, recalls = [],
   maintenanceSuggestions, recentThreads, user,
   messages, input, pending, threadsOpen,
   onChangeInput, onSend, onOpenThreads, onCloseThreads, onSelectThread, onPhotoUpload, onVideoUpload,
@@ -1320,6 +1334,7 @@ function MobileHub({
   opener: VehicleHubProps['opener'];
   schedule: ScheduleData | null;
   attachableIssues: AttachableIssue[];
+  recalls?: HubRecall[];
   maintenanceSuggestions: MaintenanceSuggestion[];
   trending: TrendingChip[];
   recentThreads: RecentThread[];
@@ -1589,6 +1604,13 @@ function MobileHub({
         {isAuthed && !schedule && showMaintenanceUpgradeTile && (
           <div className="m-attach">
             <MaintenanceUpgradeTile />
+          </div>
+        )}
+
+        {/* Safety recalls — highest priority, free dealer fix. */}
+        {recalls.length > 0 && (
+          <div className="m-attach">
+            <RecallCard recalls={recalls} />
           </div>
         )}
 
@@ -3573,8 +3595,38 @@ function PhotoDiagnosisCard({ onStart }: { onStart?: () => void }) {
   );
 }
 
+/* ─── Safety recalls card ───
+   Live NHTSA recalls for this vehicle. The "something new arrived for your
+   car" signal — open recalls are free dealer fixes, so this is pure value. */
+function RecallCard({ recalls }: { recalls: HubRecall[] }) {
+  if (!recalls || recalls.length === 0) return null;
+  const dot = (s: string) => (s === 'critical' || s === 'high' ? '#DC2626' : '#F59E0B');
+  return (
+    <div style={{ background: '#fff', border: '1px solid #FECACA', borderRadius: 16, overflow: 'hidden', margin: '10px 0' }}>
+      <div style={{ padding: '12px 16px', borderBottom: '1px solid #FEE2E2', display: 'flex', alignItems: 'center', gap: 8, background: '#FEF2F2' }}>
+        <span style={{ fontSize: 15 }}>🛡️</span>
+        <span style={{ fontSize: 13, fontWeight: 700, color: '#0B1220' }}>{recalls.length} open safety recall{recalls.length > 1 ? 's' : ''}</span>
+        <span style={{ marginLeft: 'auto', fontSize: 11, color: '#B91C1C', fontWeight: 600 }}>Free fix at dealer</span>
+      </div>
+      {recalls.slice(0, 4).map((r) => (
+        <div key={r.campaignNumber} style={{ padding: '11px 16px', borderBottom: '1px solid #F1F5F9' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 3 }}>
+            <span style={{ width: 7, height: 7, borderRadius: '50%', background: dot(r.severity), flexShrink: 0 }} />
+            <span style={{ fontSize: 13, fontWeight: 600, color: '#0B1220' }}>{r.component || 'Recall'}</span>
+            <span style={{ marginLeft: 'auto', fontFamily: 'var(--font-geist-mono, ui-monospace, monospace)', fontSize: 10, color: '#94A3B8' }}>{r.campaignNumber}</span>
+          </div>
+          <p style={{ fontSize: 12, color: '#475569', margin: 0, lineHeight: 1.45 }}>{(r.summary || '').slice(0, 160)}{(r.summary || '').length > 160 ? '…' : ''}</p>
+        </div>
+      ))}
+      <a href="https://www.nhtsa.gov/recalls" target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#2563EB', textDecoration: 'none' }}>
+        Check your VIN + schedule the free repair →
+      </a>
+    </div>
+  );
+}
+
 function Au7oReply({
-  content, attachments = [], driveHandoff = null, route, schedule, issues, gate, vision, slug, isAuthed, onFollowUp,
+  content, attachments = [], driveHandoff = null, route, schedule, issues, recalls = [], gate, vision, slug, isAuthed, onFollowUp,
   loggableVehicleId, currentMileage, canLogMaintenance, onLogged, showMaintenanceUpgradeTile, onStartDiagnosis,
 }: {
   content: string;
@@ -3583,6 +3635,7 @@ function Au7oReply({
   route?: RoutePreview;
   schedule?: ScheduleData;
   issues?: AttachableIssue[];
+  recalls?: HubRecall[];
   gate?: GateInfo;
   vision?: VisionResult;
   slug?: string;
@@ -3653,6 +3706,9 @@ function Au7oReply({
         ) : showMaintenanceUpgradeTile ? (
           <MaintenanceUpgradeTile />
         ) : null}
+        {/* Safety recalls — highest priority, free dealer fix. Gated to the
+            first reply (same as the other context cards) so it shows once. */}
+        {recalls.length > 0 && (schedule || (issues && issues.length > 0)) && <RecallCard recalls={recalls} />}
         {/* Known Issues card — vehicle-level context, parallel to the
             Maintenance Schedule above. Reuses MobileIssuesCard since
             that component is fully inline-styled and works at any
