@@ -3555,7 +3555,7 @@ function Au7oReply({
             fall back to the simple Drive handoff button (for trips
             where intent was detected but the route fetch hasn't fired
             yet, or for the user's GPS denial case). */}
-        {route ? (
+        {route && (route.loading || route.error || route.geometry.length > 1) ? (
           <MiniRoute
             route={route}
             onOpenDrive={() => {
@@ -3598,6 +3598,8 @@ function Au7oReply({
         :global(.bubble-au7o em) { font-style: italic; color: #64748B; }
         :global(.bubble-au7o ul) { padding-left: 0; margin: 8px 0; list-style: none; }
         :global(.bubble-au7o li) { padding: 2px 0; }
+        :global(.bubble-au7o .au7o-link) { color: #2563EB; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(37,99,235,0.35); }
+        :global(.bubble-au7o .au7o-link:hover) { border-bottom-color: #2563EB; }
         /* Follow-up suggestion chips — moved from a nested <style jsx>
            block into the main one because styled-jsx doesn't allow more
            than one style block per component. */
@@ -3699,13 +3701,28 @@ function renderMarkdownLite(text: string) {
   flushList('end');
   return out;
 }
+// Matches a Markdown link [label](https://url) — used to make the AI's parts /
+// store links clickable (the hub prompt emits Amazon affiliate links in this
+// exact shape; without this they rendered as dead text). Anchored at i.
+const MD_LINK = /^\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/;
 function inlineFormat(s: string): React.ReactNode {
   const parts: React.ReactNode[] = [];
   let buffer = '';
   let i = 0;
   let key = 0;
   while (i < s.length) {
-    if (s.slice(i, i + 2) === '**') {
+    if (s[i] === '[') {
+      const m = MD_LINK.exec(s.slice(i));
+      if (m) {
+        if (buffer) { parts.push(buffer); buffer = ''; }
+        parts.push(
+          <a key={`a-${key++}`} href={m[2]} target="_blank" rel="noopener noreferrer sponsored" className="au7o-link">{m[1]}</a>
+        );
+        i += m[0].length;
+        continue;
+      }
+      buffer += s[i]; i++;
+    } else if (s.slice(i, i + 2) === '**') {
       const end = s.indexOf('**', i + 2);
       if (end === -1) { buffer += s[i]; i++; continue; }
       if (buffer) { parts.push(buffer); buffer = ''; }
