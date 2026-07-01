@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { VoiceMechanic } from './VoiceMechanic';
+import { TapToIdentifyPhoto } from './TapToIdentifyPhoto';
 
 /**
  * LiveCameraShutter — the ONE shared in-app camera surface for diagnosis.
@@ -118,6 +119,10 @@ export function LiveCameraShutter({
   const [recording, setRecording] = useState(false);
   const [recordSecs, setRecordSecs] = useState(0);
   const [err, setErr] = useState<string | null>(null);
+  // Identify mode: tap the LIVE viewfinder → freeze that frame + identify the
+  // tapped part (reuses the /api/vision/identify engine on a still).
+  const [identifyMode, setIdentifyMode] = useState(false);
+  const [frozen, setFrozen] = useState<{ url: string; point: { x: number; y: number } } | null>(null);
 
   const L = {
     hint: labels?.hint || 'Point at the part or problem',
@@ -234,6 +239,41 @@ export function LiveCameraShutter({
     return c.toDataURL('image/jpeg', 0.6);
   }, []);
 
+  // ── live identify: map a tap on the (object-fit:cover) video to a
+  // source-percent point, then freeze the current frame as a still so the
+  // highlight + callout line up with what the user tapped.
+  const videoTapToSource = useCallback((clientX: number, clientY: number) => {
+    const v = videoRef.current;
+    if (!v || !v.videoWidth) return null;
+    const rect = v.getBoundingClientRect();
+    const scale = Math.max(rect.width / v.videoWidth, rect.height / v.videoHeight); // cover
+    const cW = v.videoWidth * scale, cH = v.videoHeight * scale;
+    const offX = (rect.width - cW) / 2, offY = (rect.height - cH) / 2;
+    const sx = (clientX - rect.left - offX) / scale;
+    const sy = (clientY - rect.top - offY) / scale;
+    return {
+      x: Math.max(0, Math.min(100, (sx / v.videoWidth) * 100)),
+      y: Math.max(0, Math.min(100, (sy / v.videoHeight) * 100)),
+    };
+  }, []);
+
+  const freezeAt = useCallback((clientX: number, clientY: number) => {
+    const v = videoRef.current;
+    if (!v || !v.videoWidth) return;
+    const point = videoTapToSource(clientX, clientY);
+    if (!point) return;
+    const scale = Math.min(1, 1600 / Math.max(v.videoWidth, v.videoHeight));
+    const w = Math.round(v.videoWidth * scale), h = Math.round(v.videoHeight * scale);
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    if (!ctx) return;
+    try {
+      ctx.drawImage(v, 0, 0, w, h);
+      setFrozen({ url: c.toDataURL('image/jpeg', 0.9), point });
+    } catch { /* draw/encode failed — ignore, stay live */ }
+  }, [videoTapToSource]);
+
   // ── video ──
   const stopRecording = useCallback(() => {
     try { mediaRecorderRef.current?.stop(); } catch { /* */ }
@@ -324,8 +364,16 @@ export function LiveCameraShutter({
         </div>
       )}
 
+      {/* live-identify tap layer — captures a tap anywhere on the viewfinder */}
+      {!cameraDenied && identifyMode && !frozen && (
+        <div
+          onPointerUp={(e) => freezeAt(e.clientX, e.clientY)}
+          style={{ position: 'absolute', inset: 0, zIndex: 5, cursor: 'crosshair', touchAction: 'none' }}
+        />
+      )}
+
       {/* coach pill */}
-      {!cameraDenied && !recording && (
+      {!cameraDenied && !recording && !identifyMode && (
         <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, marginTop: 150, zIndex: 5, display: 'flex', justifyContent: 'center', padding: '0 24px' }}>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 15px', background: framed ? 'rgba(16,185,129,0.92)' : 'rgba(0,0,0,0.55)', backdropFilter: 'blur(10px)', borderRadius: 999, boxShadow: framed ? '0 6px 20px rgba(16,185,129,0.42)' : 'none', color: '#fff', fontSize: 12.5, fontWeight: 600 }}>
             {framed ? '✓ ' : ''}{coach}
@@ -367,29 +415,66 @@ export function LiveCameraShutter({
       {/* bottom controls */}
       {!cameraDenied && (
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 6, padding: '18px 0 26px', background: 'linear-gradient(180deg, transparent, rgba(11,14,20,0.9) 42%)' }}>
-          {modeToggle && <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>{modeToggle}</div>}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 34px' }}>
-            <button type="button" onClick={() => photoInputRef.current?.click()} aria-label={L.upload}
-              style={{ width: 46, height: 46, borderRadius: 11, border: '1px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.12)', color: '#fff', fontSize: 20, cursor: 'pointer' }}>⊕</button>
-            <button type="button"
-              onPointerDown={onShutterDown}
-              onPointerUp={onShutterUp}
-              onPointerCancel={onShutterUp}
-              aria-label="Tap for photo, hold to record video"
-              style={{ width: 82, height: 82, borderRadius: '50%', background: 'transparent', border: `4px solid ${recording ? '#EF4444' : framed ? '#10B981' : '#fff'}`, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'border-color 0.15s', touchAction: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}>
-              <span style={{ width: recording ? 32 : 64, height: recording ? 32 : 64, borderRadius: recording ? 8 : '50%', background: recording ? '#EF4444' : framed ? '#10B981' : '#fff', transition: 'width 0.15s, height 0.15s, border-radius 0.15s' }} />
-            </button>
-            <span style={{ width: 46 }} />
-          </div>
-          <p style={{ textAlign: 'center', fontSize: 11, color: 'rgba(255,255,255,0.72)', margin: '9px 0 0', fontWeight: 500 }}>
-            {recording ? L.recording : L.tapHold}
-          </p>
+          {/* Diagnose ↔ Identify segmented toggle */}
+          {!recording && (
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 14 }}>
+              <div style={{ display: 'inline-flex', gap: 3, padding: 3, borderRadius: 999, background: 'rgba(0,0,0,0.42)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.14)' }}>
+                <button type="button" onClick={() => setIdentifyMode(false)} style={segBtn(!identifyMode, accent)}>📷 Diagnose</button>
+                <button type="button" onClick={() => setIdentifyMode(true)} style={segBtn(identifyMode, accent)}>🔍 Identify</button>
+              </div>
+            </div>
+          )}
+
+          {!identifyMode ? (
+            <>
+              {modeToggle && <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>{modeToggle}</div>}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 34px' }}>
+                <button type="button" onClick={() => photoInputRef.current?.click()} aria-label={L.upload}
+                  style={{ width: 46, height: 46, borderRadius: 11, border: '1px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.12)', color: '#fff', fontSize: 20, cursor: 'pointer' }}>⊕</button>
+                <button type="button"
+                  onPointerDown={onShutterDown}
+                  onPointerUp={onShutterUp}
+                  onPointerCancel={onShutterUp}
+                  aria-label="Tap for photo, hold to record video"
+                  style={{ width: 82, height: 82, borderRadius: '50%', background: 'transparent', border: `4px solid ${recording ? '#EF4444' : framed ? '#10B981' : '#fff'}`, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'border-color 0.15s', touchAction: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}>
+                  <span style={{ width: recording ? 32 : 64, height: recording ? 32 : 64, borderRadius: recording ? 8 : '50%', background: recording ? '#EF4444' : framed ? '#10B981' : '#fff', transition: 'width 0.15s, height 0.15s, border-radius 0.15s' }} />
+                </button>
+                <span style={{ width: 46 }} />
+              </div>
+              <p style={{ textAlign: 'center', fontSize: 11, color: 'rgba(255,255,255,0.72)', margin: '9px 0 0', fontWeight: 500 }}>
+                {recording ? L.recording : L.tapHold}
+              </p>
+            </>
+          ) : (
+            <p style={{ textAlign: 'center', fontSize: 12.5, color: '#fff', margin: '2px 0 0', fontWeight: 600 }}>
+              👆 Tap any part in view to identify &amp; shop it
+            </p>
+          )}
         </div>
       )}
 
       {err && (
         <div style={{ position: 'absolute', bottom: 120, left: 0, right: 0, display: 'flex', justifyContent: 'center', zIndex: 8 }}>
           <span style={{ padding: '8px 14px', borderRadius: 10, background: 'rgba(127,29,29,0.92)', color: '#FECACA', fontSize: 12.5 }}>{err}</span>
+        </div>
+      )}
+
+      {/* frozen-frame identify overlay — reuses the /api/vision/identify engine.
+          The camera stays live underneath; "Scan another part" returns to it. */}
+      {frozen && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 80, background: '#0B0E14', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px' }}>
+            <span style={{ color: '#fff', fontSize: 14, fontWeight: 700 }}>Identify a part</span>
+            <button type="button" onClick={() => setFrozen(null)} aria-label="Back to camera"
+              style={{ width: 34, height: 34, borderRadius: '50%', background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: 15, cursor: 'pointer' }}>✕</button>
+          </div>
+          <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch', padding: '0 12px 16px' }}>
+            <TapToIdentifyPhoto imageUrl={frozen.url} vehicle={vehicle} autoIdentifyPoint={frozen.point} />
+          </div>
+          <div style={{ padding: '12px 14px calc(14px + env(safe-area-inset-bottom))' }}>
+            <button type="button" onClick={() => setFrozen(null)}
+              style={{ width: '100%', padding: 14, borderRadius: 12, background: accent, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Scan another part</button>
+          </div>
         </div>
       )}
 
@@ -400,6 +485,15 @@ export function LiveCameraShutter({
         onChange={(e) => { const f = e.target.files?.[0]; if (f) onGalleryVideo(f); e.target.value = ''; }} />
     </div>
   );
+}
+
+function segBtn(active: boolean, accent: string): React.CSSProperties {
+  return {
+    padding: '8px 15px', borderRadius: 999, border: 'none', cursor: 'pointer',
+    fontSize: 12.5, fontWeight: 700, whiteSpace: 'nowrap',
+    background: active ? accent : 'transparent', color: '#fff', opacity: active ? 1 : 0.65,
+    transition: 'background 0.15s, opacity 0.15s',
+  };
 }
 
 function Bracket({ pos, framed, accent }: { pos: 'tl' | 'tr' | 'bl' | 'br'; framed: boolean; accent: string }) {

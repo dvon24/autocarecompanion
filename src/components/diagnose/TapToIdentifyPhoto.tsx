@@ -22,6 +22,8 @@
 import { useCallback, useRef, useState } from 'react';
 import type { IdentifiedPart } from '@/types/vision';
 
+interface SourcePoint { x: number; y: number }
+
 export interface TapVehicle {
   year?: number | string;
   make?: string;
@@ -47,16 +49,22 @@ export function TapToIdentifyPhoto({
   imageUrl,
   vehicle,
   className,
+  autoIdentifyPoint,
 }: {
   imageUrl: string;
   vehicle?: TapVehicle;
   className?: string;
+  /** Source-percent point (0-100) to identify automatically once the image
+   *  loads — used by the live viewfinder, which already knows where the user
+   *  tapped on the frame it just froze. Runs once. */
+  autoIdentifyPoint?: SourcePoint;
 }) {
   const imgRef = useRef<HTMLImageElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const [sel, setSel] = useState<IdentifyState | null>(null);
   const [dragRect, setDragRect] = useState<BoxPct | null>(null);
   const drag = useRef<{ x: number; y: number; moved: boolean } | null>(null);
+  const autoRan = useRef(false);
 
   // ── geometry: map a client point to the source image (object-fit:contain)
   const contentGeom = useCallback(() => {
@@ -143,6 +151,26 @@ export function TapToIdentifyPhoto({
     }
   }, [cropToDataUrl, vehicle]);
 
+  // identify a source-percent POINT (shared by taps + autoIdentifyPoint)
+  const identifyPoint = useCallback((p: SourcePoint) => {
+    const half = CROP_SQUARE_PCT / 2;
+    const box: BoxPct = {
+      x: Math.max(0, Math.min(p.x - half, 100 - CROP_SQUARE_PCT)),
+      y: Math.max(0, Math.min(p.y - half, 100 - CROP_SQUARE_PCT)),
+      w: CROP_SQUARE_PCT,
+      h: CROP_SQUARE_PCT,
+    };
+    runIdentify(box, { kind: 'point', x: p.x, y: p.y });
+  }, [runIdentify]);
+
+  // when the image is ready, fire the pre-supplied point once (live viewfinder)
+  const onImgLoad = useCallback(() => {
+    if (autoIdentifyPoint && !autoRan.current) {
+      autoRan.current = true;
+      identifyPoint(autoIdentifyPoint);
+    }
+  }, [autoIdentifyPoint, identifyPoint]);
+
   // ── pointer handlers (tap OR drag-box)
   const onDown = useCallback((e: React.PointerEvent) => {
     const p = toSourcePct(e.clientX, e.clientY);
@@ -190,15 +218,8 @@ export function TapToIdentifyPhoto({
     const p = toSourcePct(e.clientX, e.clientY);
     setDragRect(null);
     if (!p) return;
-    const half = CROP_SQUARE_PCT / 2;
-    const box: BoxPct = {
-      x: Math.max(0, Math.min(p.x - half, 100 - CROP_SQUARE_PCT)),
-      y: Math.max(0, Math.min(p.y - half, 100 - CROP_SQUARE_PCT)),
-      w: CROP_SQUARE_PCT,
-      h: CROP_SQUARE_PCT,
-    };
-    runIdentify(box, { kind: 'point', x: p.x, y: p.y });
-  }, [dragRect, runIdentify, toSourcePct]);
+    identifyPoint(p);
+  }, [dragRect, runIdentify, toSourcePct, identifyPoint]);
 
   // ── highlight overlay geometry: source-percent box → element px
   const overlayStyle = useCallback((box: BoxPct): React.CSSProperties | null => {
@@ -247,7 +268,7 @@ export function TapToIdentifyPhoto({
         onPointerCancel={() => { drag.current = null; setDragRect(null); }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img ref={imgRef} src={imageUrl} alt="Tap a part to identify it" crossOrigin="anonymous" />
+        <img ref={imgRef} src={imageUrl} alt="Tap a part to identify it" crossOrigin="anonymous" onLoad={onImgLoad} />
         <div className="t2i-hint">Tap a part — or drag a box — to identify &amp; shop it</div>
 
         {activeBox && overlayStyle(activeBox) && (
