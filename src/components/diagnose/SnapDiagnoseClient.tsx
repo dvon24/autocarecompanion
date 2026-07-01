@@ -8,6 +8,7 @@ import { downscaleImage } from '@/lib/downscale-image';
 import { extractVideoFrames } from '@/lib/video-extract';
 import { LiveCameraShutter } from '@/components/diagnose/LiveCameraShutter';
 import { VisionResultCard, AnnotatedPhoto, type VisionResult } from '@/components/vehicle/VisionResultCard';
+import { TapToIdentifyPhoto } from '@/components/diagnose/TapToIdentifyPhoto';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { type YMMTData } from '@/schemas/vehicle.schema';
 import { loadYmmt } from '@/lib/load-ymmt';
@@ -153,6 +154,15 @@ export function SnapDiagnoseClient() {
           <AnnotatedPhoto vision={result} />
         </div>
         <VisionResultCard vision={result} />
+        {(result.imagePreviewUrl || photo?.url) && (
+          <div style={{ background: '#fff', border: '1px solid var(--paper-line, #E3DFD4)', borderRadius: 14, padding: 12, marginTop: 12 }}>
+            <div style={{ fontSize: 13, fontWeight: 800, color: '#0B1220', marginBottom: 8 }}>Tap to identify any part</div>
+            <TapToIdentifyPhoto
+              imageUrl={(result.imagePreviewUrl || photo?.url)!}
+              vehicle={hasVehicle ? { year, make, model, trim } : undefined}
+            />
+          </div>
+        )}
         <button type="button" onClick={retake} style={ghostBtn}>{t.diagnoseAnother}</button>
       </div>
     );

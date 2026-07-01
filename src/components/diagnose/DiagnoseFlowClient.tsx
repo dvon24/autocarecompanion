@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react';
 import { Icon } from '@/components/ui/Icon';
 import { downscaleImage } from '@/lib/downscale-image';
 import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
+import { TapToIdentifyPhoto } from '@/components/diagnose/TapToIdentifyPhoto';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { type YMMTData } from '@/schemas/vehicle.schema';
 import { loadYmmt } from '@/lib/load-ymmt';
@@ -798,6 +799,15 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
         {state === 'result' && result && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
             <VisionResultCard vision={result} />
+            {(result.imagePreviewUrl || preview) && (
+              <div style={{ padding: '14px 18px', background: '#fff', border: '1px solid var(--paper-line, #E3DFD4)', borderRadius: 14 }}>
+                <div style={{ fontSize: 14, fontWeight: 800, color: '#0B1220', marginBottom: 10 }}>Tap to identify any part</div>
+                <TapToIdentifyPhoto
+                  imageUrl={(result.imagePreviewUrl || preview)!}
+                  vehicle={year && make && model ? { year, make, model, trim } : undefined}
+                />
+              </div>
+            )}
             <div
               style={{
                 display: 'flex',
