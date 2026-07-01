@@ -1190,7 +1190,10 @@ export function VehicleHub({
                     route={m.route}
                     schedule={m.schedule}
                     issues={m.issues}
-                    recalls={recalls}
+                    // Recalls fold into the issues card, but only on the
+                    // context-bearing first reply (else they'd repeat under
+                    // every assistant turn).
+                    recalls={(m.issues && m.issues.length) || m.schedule ? recalls : []}
                     gate={m.gate}
                     vision={m.vision}
                     slug={slug}
@@ -1621,18 +1624,12 @@ function MobileHub({
           </div>
         )}
 
-        {/* Safety recalls — highest priority, free dealer fix. */}
-        {recalls.length > 0 && (
-          <div className="m-attach">
-            <RecallCard recalls={recalls} />
-          </div>
-        )}
-
-        {/* Known issues attachment — ranked, on-trim. Anon path lifts this
-            to be the FIRST attachment (no schedule above). */}
-        {topIssues.length > 0 && (
+        {/* Known issues attachment — ranked, on-trim, with any open safety
+            recalls folded into the TOP of the same card (fewer cards). Anon
+            path lifts this to be the FIRST attachment (no schedule above). */}
+        {(topIssues.length > 0 || recalls.length > 0) && (
           <div className={`m-attach ${isAuthed ? 'm-attach-indent' : ''}`}>
-            <MobileIssuesCard issues={topIssues} slug={slug} authed={isAuthed} />
+            <MobileIssuesCard issues={topIssues} slug={slug} authed={isAuthed} recalls={recalls} />
           </div>
         )}
 
@@ -2463,8 +2460,8 @@ function MobileMaintenanceCard({
 
 /* ─── Mobile inline known-issues card (ranked) ─── */
 function MobileIssuesCard({
-  issues, slug, authed,
-}: { issues: AttachableIssue[]; slug: string; authed: boolean }) {
+  issues, slug, authed, recalls = [],
+}: { issues: AttachableIssue[]; slug: string; authed: boolean; recalls?: HubRecall[] }) {
   // Count high-severity items so the eyebrow can hint at urgency
   // ("X KNOWN · YOUR TRIM · Y HIGH" without overcrowding).
   const highCount = issues.filter((i) => i.severity === 'critical' || i.severity === 'high').length;
@@ -2480,6 +2477,28 @@ function MobileIssuesCard({
     : 'COMMONLY REPORTED ISSUES';
   return (
     <div className="ic">
+      {/* Safety recalls folded into the top of the issues card (fewer cards).
+          Highest priority — free dealer fix. */}
+      {recalls.length > 0 && (
+        <div>
+          <div style={{ padding: '11px 18px', display: 'flex', alignItems: 'center', gap: 8, background: '#FEF2F2', borderBottom: '1px solid #FEE2E2' }}>
+            <span style={{ fontSize: 14 }}>🛡️</span>
+            <span className="eyebrow" style={{ fontSize: 10, color: '#B91C1C', fontWeight: 800 }}>{recalls.length} OPEN SAFETY RECALL{recalls.length > 1 ? 'S' : ''}</span>
+            <span style={{ marginLeft: 'auto', fontSize: 10, color: '#B91C1C', fontWeight: 600 }}>FREE FIX AT DEALER</span>
+          </div>
+          {recalls.slice(0, 3).map((r) => (
+            <div key={r.campaignNumber} style={{ padding: '10px 18px', borderBottom: '1px solid var(--paper-line)', display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+              <span style={{ width: 7, height: 7, borderRadius: '50%', background: r.severity === 'critical' || r.severity === 'high' ? '#DC2626' : '#F59E0B', flex: '0 0 auto', marginTop: 5 }} />
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontSize: 12.5, fontWeight: 600, color: '#0B1220', lineHeight: 1.3 }}>{r.component || 'Recall'}</div>
+                <div style={{ fontSize: 11.5, color: '#64748B', lineHeight: 1.4 }}>{(r.summary || '').slice(0, 120)}{(r.summary || '').length > 120 ? '…' : ''}</div>
+              </div>
+            </div>
+          ))}
+          <a href="https://www.nhtsa.gov/recalls" target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '9px 18px', fontSize: 12, fontWeight: 600, color: '#B91C1C', textDecoration: 'none', borderBottom: issues.length > 0 ? '1px solid var(--paper-line)' : 'none' }}>Check your VIN + book the free repair →</a>
+        </div>
+      )}
+      {issues.length > 0 && (<>
       <div
         className="ic-head"
         style={{
@@ -2585,6 +2604,7 @@ function MobileIssuesCard({
           See all known issues
         </Link>
       </div>
+      </>)}
       <style jsx>{`
         .ic {
           background: #fff; border: 1px solid var(--paper-line); border-radius: var(--r-3);
@@ -3636,36 +3656,6 @@ function PhotoDiagnosisCard({ onStart }: { onStart?: () => void }) {
   );
 }
 
-/* ─── Safety recalls card ───
-   Live NHTSA recalls for this vehicle. The "something new arrived for your
-   car" signal — open recalls are free dealer fixes, so this is pure value. */
-function RecallCard({ recalls }: { recalls: HubRecall[] }) {
-  if (!recalls || recalls.length === 0) return null;
-  const dot = (s: string) => (s === 'critical' || s === 'high' ? '#DC2626' : '#F59E0B');
-  return (
-    <div style={{ background: '#fff', border: '1px solid #FECACA', borderRadius: 16, overflow: 'hidden', margin: '10px 0' }}>
-      <div style={{ padding: '12px 16px', borderBottom: '1px solid #FEE2E2', display: 'flex', alignItems: 'center', gap: 8, background: '#FEF2F2' }}>
-        <span style={{ fontSize: 15 }}>🛡️</span>
-        <span style={{ fontSize: 13, fontWeight: 700, color: '#0B1220' }}>{recalls.length} open safety recall{recalls.length > 1 ? 's' : ''}</span>
-        <span style={{ marginLeft: 'auto', fontSize: 11, color: '#B91C1C', fontWeight: 600 }}>Free fix at dealer</span>
-      </div>
-      {recalls.slice(0, 4).map((r) => (
-        <div key={r.campaignNumber} style={{ padding: '11px 16px', borderBottom: '1px solid #F1F5F9' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 3 }}>
-            <span style={{ width: 7, height: 7, borderRadius: '50%', background: dot(r.severity), flexShrink: 0 }} />
-            <span style={{ fontSize: 13, fontWeight: 600, color: '#0B1220' }}>{r.component || 'Recall'}</span>
-            <span style={{ marginLeft: 'auto', fontFamily: 'var(--font-geist-mono, ui-monospace, monospace)', fontSize: 10, color: '#94A3B8' }}>{r.campaignNumber}</span>
-          </div>
-          <p style={{ fontSize: 12, color: '#475569', margin: 0, lineHeight: 1.45 }}>{(r.summary || '').slice(0, 160)}{(r.summary || '').length > 160 ? '…' : ''}</p>
-        </div>
-      ))}
-      <a href="https://www.nhtsa.gov/recalls" target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#2563EB', textDecoration: 'none' }}>
-        Check your VIN + schedule the free repair →
-      </a>
-    </div>
-  );
-}
-
 function Au7oReply({
   content, attachments = [], driveHandoff = null, route, schedule, issues, recalls = [], gate, vision, slug, isAuthed, onFollowUp,
   loggableVehicleId, currentMileage, canLogMaintenance, onLogged, showMaintenanceUpgradeTile, onStartDiagnosis,
@@ -3747,16 +3737,13 @@ function Au7oReply({
         ) : showMaintenanceUpgradeTile ? (
           <MaintenanceUpgradeTile />
         ) : null}
-        {/* Safety recalls — highest priority, free dealer fix. Gated to the
-            first reply (same as the other context cards) so it shows once. */}
-        {recalls.length > 0 && (schedule || (issues && issues.length > 0)) && <RecallCard recalls={recalls} />}
         {/* Known Issues card — vehicle-level context, parallel to the
-            Maintenance Schedule above. Reuses MobileIssuesCard since
-            that component is fully inline-styled and works at any
-            viewport width (the "Mobile" prefix is historical — it was
-            built for the mobile shell first). */}
-        {issues && issues.length > 0 && slug && (
-          <MobileIssuesCard issues={issues} slug={slug} authed={!!isAuthed} />
+            Maintenance Schedule above, with open safety recalls folded into
+            its top (fewer cards). Reuses MobileIssuesCard since that
+            component is fully inline-styled and works at any viewport width
+            (the "Mobile" prefix is historical). */}
+        {((issues && issues.length > 0) || recalls.length > 0) && slug && (
+          <MobileIssuesCard issues={issues || []} slug={slug} authed={!!isAuthed} recalls={recalls} />
         )}
         {/* Photo & video diagnosis card — appears alongside the other
             vehicle-level context cards on the first reply. Surfaces the
