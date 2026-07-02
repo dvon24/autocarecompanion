@@ -123,6 +123,16 @@ export function LiveCameraShutter({
   // tapped part (reuses the /api/vision/identify engine on a still).
   const [identifyMode, setIdentifyMode] = useState(false);
   const [frozen, setFrozen] = useState<{ url: string; point: { x: number; y: number } } | null>(null);
+  // Continuous "Auto-scan" (Phase 3 taste): while on, sample the center every
+  // few seconds and call out the part. Hard-capped so it can't run away on cost;
+  // true hands-free masklet tracking arrives with the SAM endpoint.
+  const [autoScan, setAutoScan] = useState(false);
+  const [scanLabel, setScanLabel] = useState<string | null>(null);
+  const scanTimerRef = useRef<number>(0);
+  const scanCountRef = useRef(0);
+  const scanBusyRef = useRef(false);
+  const SCAN_INTERVAL_MS = 4500;   // ≤ the 12/min identify burst limit
+  const SCAN_MAX = 10;             // auto-stop after 10 calls (~45s)
 
   const L = {
     hint: labels?.hint || 'Point at the part or problem',
@@ -274,6 +284,60 @@ export function LiveCameraShutter({
     } catch { /* draw/encode failed — ignore, stay live */ }
   }, [videoTapToSource]);
 
+  // ── Auto-scan: crop the CENTER of the current frame and identify it, then
+  // call out the part name (+ speak). One gpt call per tick; hard-capped.
+  const scanCenter = useCallback(async () => {
+    const v = videoRef.current;
+    if (!v || !v.videoWidth || scanBusyRef.current) return;
+    // center 40% square crop
+    const side = Math.min(v.videoWidth, v.videoHeight) * 0.4;
+    const sx = (v.videoWidth - side) / 2, sy = (v.videoHeight - side) / 2;
+    const out = Math.min(560, side);
+    const c = document.createElement('canvas');
+    c.width = out; c.height = out;
+    const ctx = c.getContext('2d');
+    if (!ctx) return;
+    let dataUrl: string;
+    try { ctx.drawImage(v, sx, sy, side, side, 0, 0, out, out); dataUrl = c.toDataURL('image/jpeg', 0.82); }
+    catch { return; }
+    scanBusyRef.current = true;
+    try {
+      const res = await fetch('/api/vision/identify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          imageDataUrl: dataUrl,
+          prompt: { kind: 'point', x: 50, y: 50 },
+          vehicle: vehicle && vehicle.make && vehicle.model
+            ? { year: Number(vehicle.year) || undefined, make: vehicle.make, model: vehicle.model, trim: vehicle.trim }
+            : undefined,
+        }),
+      });
+      const data = await res.json();
+      if (data?.ok && data.part?.name && data.part.category !== 'other') {
+        setScanLabel(data.part.name);
+        speakLive(data.part.name);
+      }
+    } catch { /* skip this tick */ }
+    finally { scanBusyRef.current = false; }
+  }, [vehicle]);
+
+  // drive the auto-scan interval
+  useEffect(() => {
+    window.clearInterval(scanTimerRef.current);
+    if (!identifyMode || !autoScan || frozen) return;
+    scanCountRef.current = 0;
+    setScanLabel(null);
+    scanCenter(); // immediate first read
+    scanCountRef.current = 1;
+    scanTimerRef.current = window.setInterval(() => {
+      if (scanCountRef.current >= SCAN_MAX) { setAutoScan(false); return; }
+      scanCountRef.current += 1;
+      scanCenter();
+    }, SCAN_INTERVAL_MS);
+    return () => window.clearInterval(scanTimerRef.current);
+  }, [identifyMode, autoScan, frozen, scanCenter]);
+
   // ── video ──
   const stopRecording = useCallback(() => {
     try { mediaRecorderRef.current?.stop(); } catch { /* */ }
@@ -328,7 +392,7 @@ export function LiveCameraShutter({
   const onGalleryVideo = (f: File) => { if (/^video\//.test(f.type)) onVideo(f, 0); };
 
   return (
-    <div style={{ position: 'fixed', inset: 0, background: '#0B0E14', color: '#fff', overflow: 'hidden', fontFamily: 'var(--font-sans, system-ui, sans-serif)', zIndex: 60 }}>
+    <div style={{ position: 'fixed', inset: 0, background: '#0B0E14', color: '#fff', overflow: 'hidden', fontFamily: 'var(--font-sans, system-ui, sans-serif)', zIndex: 60, userSelect: 'none', WebkitUserSelect: 'none', WebkitTouchCallout: 'none' }}>
       {!cameraDenied && (
         <video ref={videoRef} playsInline muted autoPlay style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
       )}
@@ -364,12 +428,44 @@ export function LiveCameraShutter({
         </div>
       )}
 
-      {/* live-identify tap layer — captures a tap anywhere on the viewfinder */}
+      {/* live-identify tap layer — captures a tap anywhere on the viewfinder.
+          The inset leaves the top bar + bottom controls tappable. All the
+          no-select props stop iOS from firing a text-selection/copy callout
+          on the underlying chrome when you tap. */}
       {!cameraDenied && identifyMode && !frozen && (
         <div
-          onPointerUp={(e) => freezeAt(e.clientX, e.clientY)}
-          style={{ position: 'absolute', inset: 0, zIndex: 5, cursor: 'crosshair', touchAction: 'none' }}
+          onPointerDown={(e) => { e.preventDefault(); }}
+          onPointerUp={(e) => { e.preventDefault(); freezeAt(e.clientX, e.clientY); }}
+          onContextMenu={(e) => e.preventDefault()}
+          style={{
+            position: 'absolute', top: 56, left: 0, right: 0, bottom: 150, zIndex: 5,
+            cursor: 'crosshair', touchAction: 'none',
+            userSelect: 'none', WebkitUserSelect: 'none', WebkitTouchCallout: 'none',
+          }}
         />
+      )}
+
+      {/* auto-scan rolling call-out — tap it to freeze + open the full result */}
+      {!cameraDenied && identifyMode && !frozen && (autoScan || scanLabel) && (
+        <button
+          type="button"
+          onClick={() => {
+            const v = videoRef.current;
+            if (!v) return;
+            const r = v.getBoundingClientRect();
+            freezeAt(r.left + r.width / 2, r.top + r.height / 2);
+          }}
+          style={{
+            position: 'absolute', top: 64, left: '50%', transform: 'translateX(-50%)', zIndex: 6,
+            maxWidth: '82%', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '9px 15px',
+            borderRadius: 999, background: 'rgba(37,99,235,0.92)', backdropFilter: 'blur(8px)',
+            border: '1px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: 13, fontWeight: 700,
+            cursor: 'pointer', boxShadow: '0 6px 20px rgba(37,99,235,0.4)',
+          }}
+        >
+          🔎 <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{scanLabel || 'Scanning…'}</span>
+          {scanLabel ? <span style={{ opacity: 0.8, fontWeight: 600 }}>· tap to shop</span> : null}
+        </button>
       )}
 
       {/* coach pill */}
@@ -419,7 +515,7 @@ export function LiveCameraShutter({
           {!recording && (
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 14 }}>
               <div style={{ display: 'inline-flex', gap: 3, padding: 3, borderRadius: 999, background: 'rgba(0,0,0,0.42)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.14)' }}>
-                <button type="button" onClick={() => setIdentifyMode(false)} style={segBtn(!identifyMode, accent)}>📷 Diagnose</button>
+                <button type="button" onClick={() => { setIdentifyMode(false); setAutoScan(false); }} style={segBtn(!identifyMode, accent)}>📷 Diagnose</button>
                 <button type="button" onClick={() => setIdentifyMode(true)} style={segBtn(identifyMode, accent)}>🔍 Identify</button>
               </div>
             </div>
@@ -446,9 +542,25 @@ export function LiveCameraShutter({
               </p>
             </>
           ) : (
-            <p style={{ textAlign: 'center', fontSize: 12.5, color: '#fff', margin: '2px 0 0', fontWeight: 600 }}>
-              👆 Tap any part in view to identify &amp; shop it
-            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+              <p style={{ textAlign: 'center', fontSize: 12.5, color: '#fff', margin: 0, fontWeight: 600 }}>
+                👆 Tap any part to identify &amp; shop it
+              </p>
+              <button
+                type="button"
+                onClick={() => setAutoScan((s) => !s)}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 7, padding: '9px 16px', borderRadius: 999,
+                  border: `1px solid ${autoScan ? '#EF4444' : 'rgba(255,255,255,0.3)'}`,
+                  background: autoScan ? 'rgba(239,68,68,0.9)' : 'rgba(255,255,255,0.12)',
+                  color: '#fff', fontSize: 12.5, fontWeight: 700, cursor: 'pointer',
+                }}
+              >
+                {autoScan
+                  ? <><span style={{ width: 8, height: 8, borderRadius: '50%', background: '#fff', animation: 'au7oRecBlink 1s steps(2) infinite' }} /> Scanning… tap to stop</>
+                  : <>🔎 Auto-scan (beta)</>}
+              </button>
+            </div>
           )}
         </div>
       )}
@@ -485,6 +597,19 @@ export function LiveCameraShutter({
         onChange={(e) => { const f = e.target.files?.[0]; if (f) onGalleryVideo(f); e.target.value = ''; }} />
     </div>
   );
+}
+
+let lastSpoken = '';
+function speakLive(text: string) {
+  try {
+    const synth = window.speechSynthesis;
+    if (!synth || text === lastSpoken) return; // don't repeat the same call-out
+    lastSpoken = text;
+    synth.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 1.03;
+    synth.speak(u);
+  } catch { /* best-effort */ }
 }
 
 function segBtn(active: boolean, accent: string): React.CSSProperties {

@@ -3,7 +3,7 @@ import prisma from '@/lib/db';
 import { hubChatMinuteLimiter, getClientIp } from '@/lib/rate-limit';
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 import { getVehicleSpecs } from '@/lib/maintenance';
-import { attachVendorLinks } from '@/lib/vendor-resolver';
+import { attachVendorLinks, searchFallbackUrl } from '@/lib/vendor-resolver';
 import { validateAndFixVendorLinks } from '@/lib/vendor-link-validator';
 import { refineRegion, promptToBox, samEnabled, type SamPrompt, type SamBox } from '@/lib/sam';
 import type { IdentifiedPart, PartCategory } from '@/types/vision';
@@ -121,18 +121,25 @@ export async function POST(request: NextRequest) {
   // hot path) — the client already sent a tight crop; SAM's refined box
   // is returned to the client so a future in-browser path can re-crop.
   let refinedBox: SamBox | null = body.box ?? (body.prompt ? promptToBox(body.prompt) : null);
+  let refinedPolygon: Array<{ x: number; y: number }> | null = null;
   if (samEnabled() && body.fullImageDataUrl && body.prompt) {
     try {
       const b64 = body.fullImageDataUrl.split(',')[1] || '';
       const buf = Buffer.from(b64, 'base64');
       const sam = await refineRegion(buf, body.prompt);
       if (sam?.box) refinedBox = sam.box;
-    } catch { /* fail soft — keep the client box */ }
+      if (sam?.polygon && sam.polygon.length >= 3) refinedPolygon = sam.polygon;
+    } catch { /* fail soft — keep the client box, no mask */ }
   }
 
   // ─── WHICH: load the candidate parts / issues / specs for THIS vehicle.
   let candidateContext = '';
   let issueIdByHint: Array<{ id: string; title: string }> = [];
+  // OEM part numbers we can CORROBORATE from our own verified catalog. A
+  // model-emitted PN is only trusted enough to build a part-number DEEP link
+  // (which soft-404s when wrong) if it appears here; otherwise we downgrade
+  // that vendor to a search link.
+  const catalogPNs = new Set<string>();
   if (vehicle) {
     try {
       const [issues, cachedParts] = await Promise.all([
@@ -165,6 +172,7 @@ export async function POST(request: NextRequest) {
           ? (cp.parts as Array<{ brand?: string; partNumber?: string; name?: string }>)
           : [];
         for (const p of arr.slice(0, 2)) {
+          if (p.partNumber) catalogPNs.add(String(p.partNumber).toUpperCase().replace(/\s+/g, ''));
           const line = `${p.name || ''}${p.partNumber ? ` — OEM ${p.partNumber}` : ''}${p.brand ? ` (${p.brand})` : ''}`.trim();
           if (line) parts.push(`- ${line}  [for: ${cp.task}]`);
         }
@@ -195,12 +203,17 @@ export async function POST(request: NextRequest) {
     ? `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}`
     : 'an unknown vehicle';
 
-  const SYSTEM_PROMPT = `You are an expert automotive parts technician. The user tapped a spot on a photo of ${vehicleDesc}; you are shown a TIGHT CROP centered on the ONE component they pointed at. Identify that single component and nothing else in the frame.${candidateContext}
+  const SYSTEM_PROMPT = `You are an expert automotive parts technician. The user tapped a spot on a photo; the vehicle in their garage is ${vehicleDesc}, but the photo may be of a DIFFERENT vehicle. You are shown a TIGHT CROP centered on the ONE component they pointed at. Identify that single component and nothing else in the frame.${candidateContext}
+
+READ THE IMAGE FIRST — this overrides everything:
+- Look for any visible TEXT, BADGE, LOGO, or MODEL NAME in the crop (e.g. a word stamped on a steering wheel, an emblem, a casting mark).
+- If what you see CONTRADICTS the garage vehicle "${vehicleDesc}" (e.g. the wheel says "Camaro" but the garage says Challenger), TRUST THE IMAGE. Identify the part for the vehicle the IMAGE shows, set vehicleMismatch=true, and say what you saw in vehicleMismatchNote (e.g. "Steering wheel is badged Camaro, not your Challenger"). NEVER force the part to be from ${vehicleDesc} when the image clearly shows another vehicle — that is the worst possible error.
+- Only treat the part as belonging to ${vehicleDesc} when nothing visible contradicts it (vehicleMismatch=false).
 
 RULES:
 - Identify the ONE main automotive component in the crop. Ignore background, other parts, hands, tools.
-- Prefer an EXACT match from the VERIFIED PARTS CATALOG above when the crop clearly shows one of those parts — reuse its exact name and part number.
-- PART NUMBER HONESTY: only put a value in oemPartNumbers/aftermarketPartNumbers if you are genuinely confident it is correct for THIS exact ${vehicleDesc}. A wrong or wrong-generation part number is worse than none — when unsure, leave the arrays EMPTY and let the search query find it. Never guess a plausible-looking number.
+- Use the VERIFIED PARTS CATALOG above ONLY to confirm/number a part that genuinely matches what you see — do NOT bend a clearly-branded part to fit the catalog.
+- PART NUMBER HONESTY: only put a value in oemPartNumbers/aftermarketPartNumbers if you are genuinely confident it is correct for the vehicle the IMAGE shows. A wrong or wrong-generation part number is worse than none — when unsure, leave the arrays EMPTY and let the search query find it. Never guess a plausible-looking number. If vehicleMismatch=true, leave oemPartNumbers EMPTY unless you are certain.
 - WEAR/CONDITION HONESTY: a photo shows appearance, not measurements. DEFAULT condition to "ok" (or "info" for a mere identification like a badge). Only use "warn"/"critical" when a SPECIFIC defect is CLEARLY VISIBLE in the crop, and make "finding" name that visible evidence. Do not invent wear.
 - If the crop is not an automotive part (finger, sky, blurry), set category "other", confidence low, and say so in name.
 - category MUST be one of: rotor, brake_pad, caliper, tire, wheel, lug_nut, tpms, filter, fluid, wiper, bulb, battery, spark_plug, sensor, belt, hose, suspension, ignition, fuel_pump, alternator, starter, body_panel, trim, badge, emblem, bracket, interior, accessory, tool, oem_specific, other.
@@ -216,7 +229,9 @@ Return ONLY a JSON object:
   "confidence": 0.0,
   "condition": "ok|warn|critical|info",
   "finding": "short visible-condition phrase, or \\"\\" ",
-  "searchQuery": "the best retailer search string for this exact part on this vehicle",
+  "vehicleMismatch": false,
+  "vehicleMismatchNote": "what the image shows if it differs from ${vehicleDesc}, else \\"\\" ",
+  "searchQuery": "the best retailer search string for this exact part on the vehicle the image shows",
   "relatedKnownIssueId": "an id from KNOWN ISSUES above if this part is its subject, else \\"\\" "
 }`;
 
@@ -281,6 +296,8 @@ Return ONLY a JSON object:
     ? (parsed.condition as IdentifiedPart['condition'])
     : 'info';
   const confidence = clamp01(Number(parsed.confidence));
+  const vehicleMismatch = parsed.vehicleMismatch === true;
+  const vehicleMismatchNote = typeof parsed.vehicleMismatchNote === 'string' ? parsed.vehicleMismatchNote.trim() : '';
 
   const [withLinks] = attachVendorLinks(
     [
@@ -304,6 +321,24 @@ Return ONLY a JSON object:
     vehicle ?? undefined,
   );
 
+  // Deep-link safety: a part-number PDP link (Mopar/GM Parts Giant, RockAuto)
+  // built from an AI-GUESSED OEM number soft-404s (200 status, "no results"
+  // page) so the HEAD validator can't catch it. Only trust a PN enough to
+  // deep-link it when our own verified catalog corroborates it; otherwise
+  // downgrade that vendor to its always-valid search tier. On a vehicle
+  // mismatch, nothing is corroborated — everything routes to search.
+  const pnTrusted = !vehicleMismatch &&
+    oemPartNumbers.some(pn => catalogPNs.has(pn.toUpperCase().replace(/\s+/g, '')));
+  if (!pnTrusted) {
+    withLinks.vendorLinks = withLinks.vendorLinks.map((l) => {
+      if (l.linkType !== 'deep') return l;
+      const fb = searchFallbackUrl(l.vendor, {
+        category, name, brand: withLinks.brand, oemPartNumbers, spec: withLinks.spec, searchQuery: l.searchQuery,
+      });
+      return fb ? { ...l, url: fb, linkType: 'search' as const } : l;
+    });
+  }
+
   const part = await safeValidate(withLinks);
 
   const relatedId = typeof parsed.relatedKnownIssueId === 'string' ? parsed.relatedKnownIssueId.trim() : '';
@@ -313,7 +348,10 @@ Return ONLY a JSON object:
     ok: true,
     part,
     box: refinedBox,
-    samRefined: samEnabled(),
+    polygon: refinedPolygon, // full-image PERCENT points; null when SAM off/failed
+    samRefined: !!refinedPolygon,
+    vehicleMismatch,
+    vehicleMismatchNote: vehicleMismatch ? vehicleMismatchNote : '',
     relatedIssue: relatedIssue ? { id: relatedIssue.id, title: relatedIssue.title } : null,
   });
 }

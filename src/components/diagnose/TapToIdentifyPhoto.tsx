@@ -38,7 +38,18 @@ interface IdentifyState {
   loading: boolean;
   part?: IdentifiedPart;
   relatedIssue?: { id: string; title: string } | null;
+  /** SAM mask outline (full-image PERCENT points) when SAM is live; null =
+   *  fall back to the box highlight. */
+  polygon?: Array<{ x: number; y: number }> | null;
+  /** Set when the image shows a different vehicle than the garage car. */
+  mismatch?: string;
   error?: string;
+}
+
+/** A part the user has tapped this session (multi-tap "parts found" list). */
+interface FoundPart {
+  key: string;
+  part: IdentifiedPart;
 }
 
 const CROP_SQUARE_PCT = 24; // default single-component crop for a tap
@@ -63,8 +74,12 @@ export function TapToIdentifyPhoto({
   const wrapRef = useRef<HTMLDivElement>(null);
   const [sel, setSel] = useState<IdentifyState | null>(null);
   const [dragRect, setDragRect] = useState<BoxPct | null>(null);
-  const drag = useRef<{ x: number; y: number; moved: boolean } | null>(null);
+  const [found, setFound] = useState<FoundPart[]>([]); // multi-tap parts list
+  const [voiceOn, setVoiceOn] = useState(false);
+  const drag = useRef<{ x: number; y: number; moved: boolean; id: number } | null>(null);
   const autoRan = useRef(false);
+  const voiceOnRef = useRef(false);
+  voiceOnRef.current = voiceOn;
 
   // ── geometry: map a client point to the source image (object-fit:contain)
   const contentGeom = useCallback(() => {
@@ -120,6 +135,27 @@ export function TapToIdentifyPhoto({
     }
   }, []);
 
+  // full frame (downscaled) so a live SAM endpoint can segment the exact
+  // object on the WHOLE image and return a mask; ignored server-side when SAM
+  // is off. Small enough (~≤960px jpeg) to keep the tap round-trip snappy.
+  const fullFrameDataUrl = useCallback((): string | null => {
+    const img = imgRef.current;
+    if (!img || !img.naturalWidth) return null;
+    const scale = Math.min(1, 960 / Math.max(img.naturalWidth, img.naturalHeight));
+    const w = Math.max(1, Math.round(img.naturalWidth * scale));
+    const h = Math.max(1, Math.round(img.naturalHeight * scale));
+    const canvas = document.createElement('canvas');
+    canvas.width = w; canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return null;
+    try {
+      ctx.drawImage(img, 0, 0, w, h);
+      return canvas.toDataURL('image/jpeg', 0.8);
+    } catch {
+      return null;
+    }
+  }, []);
+
   const runIdentify = useCallback(async (box: BoxPct, prompt: { kind: 'point'; x: number; y: number } | { kind: 'box'; x: number; y: number; w: number; h: number }) => {
     const dataUrl = cropToDataUrl(box);
     if (!dataUrl) {
@@ -133,6 +169,7 @@ export function TapToIdentifyPhoto({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           imageDataUrl: dataUrl,
+          fullImageDataUrl: fullFrameDataUrl() || undefined,
           prompt,
           box,
           vehicle: vehicle
@@ -145,11 +182,30 @@ export function TapToIdentifyPhoto({
         setSel({ box, loading: false, error: data?.message || "Couldn't identify that part." });
         return;
       }
-      setSel({ box: data.box || box, loading: false, part: data.part, relatedIssue: data.relatedIssue });
+      const part = data.part as IdentifiedPart;
+      setSel({
+        box: data.box || box,
+        loading: false,
+        part,
+        polygon: Array.isArray(data.polygon) && data.polygon.length >= 3 ? data.polygon : null,
+        relatedIssue: data.relatedIssue,
+        mismatch: data.vehicleMismatch
+          ? (data.vehicleMismatchNote || 'This looks like a different vehicle than your garage car.')
+          : undefined,
+      });
+      // multi-tap "parts found" list — dedupe by lowercased name.
+      if (part?.name && part.category !== 'other') {
+        const key = part.name.toLowerCase().trim();
+        setFound((prev) => (prev.some((f) => f.key === key) ? prev : [...prev, { key, part }]));
+      }
+      // voice narration
+      if (voiceOnRef.current && part?.name) {
+        speak(`${part.name}.${part.finding ? ' ' + part.finding + '.' : ''}`);
+      }
     } catch {
       setSel({ box, loading: false, error: 'Network hiccup — try tapping again.' });
     }
-  }, [cropToDataUrl, vehicle]);
+  }, [cropToDataUrl, fullFrameDataUrl, vehicle]);
 
   // identify a source-percent POINT (shared by taps + autoIdentifyPoint)
   const identifyPoint = useCallback((p: SourcePoint) => {
@@ -173,15 +229,18 @@ export function TapToIdentifyPhoto({
 
   // ── pointer handlers (tap OR drag-box)
   const onDown = useCallback((e: React.PointerEvent) => {
+    // Ignore secondary touches — a second finger (pinch/zoom) must NOT be
+    // read as a box-drag. Only the first/primary pointer drives selection.
+    if (!e.isPrimary || drag.current) return;
     const p = toSourcePct(e.clientX, e.clientY);
     if (!p) return;
     (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
-    drag.current = { x: e.clientX, y: e.clientY, moved: false };
+    drag.current = { x: e.clientX, y: e.clientY, moved: false, id: e.pointerId };
     setDragRect(null);
   }, [toSourcePct]);
 
   const onMove = useCallback((e: React.PointerEvent) => {
-    if (!drag.current) return;
+    if (!drag.current || drag.current.id !== e.pointerId) return;
     const dx = e.clientX - drag.current.x;
     const dy = e.clientY - drag.current.y;
     if (Math.abs(dx) < DRAG_THRESHOLD_PX && Math.abs(dy) < DRAG_THRESHOLD_PX) return;
@@ -199,8 +258,8 @@ export function TapToIdentifyPhoto({
 
   const onUp = useCallback((e: React.PointerEvent) => {
     const d = drag.current;
+    if (!d || d.id !== e.pointerId) return;
     drag.current = null;
-    if (!d) return;
     if (d.moved && dragRect && dragRect.w > 4 && dragRect.h > 4) {
       // padded box selection
       const pad = 4;
@@ -234,14 +293,23 @@ export function TapToIdentifyPhoto({
     };
   }, [contentGeom]);
 
+  // the rendered image content rectangle (for placing an SVG whose viewBox is
+  // 0..100 percent of the SOURCE image — SAM polygon points are in that space)
+  const contentRectStyle = useCallback((): React.CSSProperties | null => {
+    const g = contentGeom();
+    if (!g) return null;
+    return { position: 'absolute', left: g.offX, top: g.offY, width: g.cW, height: g.cH, pointerEvents: 'none', zIndex: 5 };
+  }, [contentGeom]);
+
   const activeBox = dragRect || sel?.box || null;
   const cond = sel?.part?.condition || 'info';
+  const showPolygon = !dragRect && !sel?.loading && sel?.polygon && sel.polygon.length >= 3;
 
   return (
     <div className={`t2i-wrap ${className || ''}`} ref={wrapRef}>
       <style>{`
-        .t2i-wrap { position:relative; }
-        .t2i-stage { position:relative; width:100%; background:#0B0E14; border-radius:14px; overflow:hidden; touch-action:none; user-select:none; -webkit-user-select:none; aspect-ratio:4/3; }
+        .t2i-wrap { position:relative; user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; }
+        .t2i-stage { position:relative; width:100%; background:#0B0E14; border-radius:14px; overflow:hidden; touch-action:none; user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; aspect-ratio:4/3; }
         .t2i-stage > img { display:block; width:100%; height:100%; object-fit:contain; pointer-events:none; }
         .t2i-hint { position:absolute; top:10px; left:50%; transform:translateX(-50%); z-index:6; padding:6px 12px; border-radius:999px; background:rgba(11,18,32,0.66); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.14); color:#fff; font-size:11px; font-weight:600; letter-spacing:.02em; white-space:nowrap; pointer-events:none; }
         .t2i-box { z-index:5; border:2.5px solid #3B82F6; border-radius:8px; box-shadow:0 0 0 9999px rgba(11,14,20,0.34); pointer-events:none; }
@@ -258,6 +326,16 @@ export function TapToIdentifyPhoto({
         .t2i-conf { font-size:10px; font-weight:700; color:#94A3B8; margin-top:8px; letter-spacing:.03em; }
         .t2i-issue { display:inline-block; margin-top:8px; font-size:12px; font-weight:700; color:#B91C1C; text-decoration:none; }
         .t2i-err { margin-top:8px; font-size:12px; font-weight:600; color:#B45309; background:#FEF3C7; border:1px solid #FDE68A; border-radius:10px; padding:8px 10px; }
+        @keyframes t2iMask { from { stroke-dashoffset:0 } to { stroke-dashoffset:-12 } }
+        .t2i-voice { position:absolute; top:10px; right:10px; z-index:7; width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,0.2); background:rgba(11,18,32,0.6); backdrop-filter:blur(8px); color:#fff; font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+        .t2i-voice.on { background:#2563EB; border-color:#2563EB; }
+        .t2i-tray { margin-top:10px; background:#fff; border:1px solid #E3DFD4; border-radius:12px; overflow:hidden; }
+        .t2i-tray-h { display:flex; align-items:center; justify-content:space-between; padding:10px 12px; font-size:12px; font-weight:800; color:#0B1220; border-bottom:1px solid #F1EEE6; }
+        .t2i-tray-row { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:9px 12px; border-bottom:1px solid #F5F3EC; }
+        .t2i-tray-row:last-child { border-bottom:none; }
+        .t2i-tray-name { font-size:12.5px; font-weight:700; color:#0B1220; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .t2i-tray-buy { flex-shrink:0; font-size:11.5px; font-weight:800; text-decoration:none; color:#fff; background:#0B1220; padding:6px 11px; border-radius:999px; }
+        .t2i-tray-clear { font-size:11px; font-weight:700; color:#94A3B8; background:none; border:none; cursor:pointer; }
       `}</style>
 
       <div
@@ -271,7 +349,31 @@ export function TapToIdentifyPhoto({
         <img ref={imgRef} src={imageUrl} alt="Tap a part to identify it" crossOrigin="anonymous" onLoad={onImgLoad} />
         <div className="t2i-hint">Tap a part — or drag a box — to identify &amp; shop it</div>
 
-        {activeBox && overlayStyle(activeBox) && (
+        <button
+          type="button"
+          className={`t2i-voice ${voiceOn ? 'on' : ''}`}
+          onClick={() => setVoiceOn((v) => { const n = !v; if (!n) cancelSpeak(); return n; })}
+          aria-label={voiceOn ? 'Voice on' : 'Voice off'}
+          title="Read the part out loud"
+        >{voiceOn ? '🔊' : '🔈'}</button>
+
+        {/* SAM segmentation mask (when a SAM endpoint is live) — else the box */}
+        {showPolygon && contentRectStyle() && (
+          <svg style={contentRectStyle()!} viewBox="0 0 100 100" preserveAspectRatio="none">
+            <polygon
+              points={sel!.polygon!.map((p) => `${p.x},${p.y}`).join(' ')}
+              fill={CONDITION_COLOR[cond]}
+              fillOpacity={0.16}
+              stroke={CONDITION_COLOR[cond]}
+              strokeWidth={2.5}
+              strokeLinejoin="round"
+              vectorEffect="non-scaling-stroke"
+              style={{ strokeDasharray: '5 3', animation: 't2iMask 1s linear infinite' }}
+            />
+          </svg>
+        )}
+
+        {activeBox && !showPolygon && overlayStyle(activeBox) && (
           <div className={`t2i-box ${cond}`} style={overlayStyle(activeBox)!} />
         )}
         {sel?.loading && overlayStyle(sel.box) && (
@@ -289,6 +391,11 @@ export function TapToIdentifyPhoto({
 
       {sel?.part && !sel.loading && (
         <div className="t2i-card">
+          {sel.mismatch && (
+            <div style={{ fontSize: 11.5, fontWeight: 700, color: '#B45309', background: '#FEF3C7', border: '1px solid #FDE68A', borderRadius: 10, padding: '7px 10px', marginBottom: 8 }}>
+              ⚠ {sel.mismatch}
+            </div>
+          )}
           <div className="t2i-name">{sel.part.name}{sel.part.position ? ` (${sel.part.position})` : ''}</div>
           {sel.part.finding && (
             <div className="t2i-find" style={{ color: CONDITION_COLOR[cond] }}>{sel.part.finding}</div>
@@ -323,8 +430,46 @@ export function TapToIdentifyPhoto({
           </div>
         </div>
       )}
+
+      {/* multi-tap running list — every part you tapped, with a buy button */}
+      {found.length > 0 && (
+        <div className="t2i-tray">
+          <div className="t2i-tray-h">
+            <span>🛒 Parts found ({found.length})</span>
+            <button type="button" className="t2i-tray-clear" onClick={() => setFound([])}>Clear</button>
+          </div>
+          {found.map((f) => {
+            const buy = f.part.vendorLinks?.[0];
+            return (
+              <div className="t2i-tray-row" key={f.key}>
+                <span className="t2i-tray-name">{f.part.name}</span>
+                {buy && (
+                  <a className="t2i-tray-buy" href={buy.url} target="_blank" rel="noopener noreferrer nofollow sponsored"
+                    onClick={() => track('identify_tray_buy', { vendor: buy.vendor })}>Buy</a>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
+}
+
+function speak(text: string) {
+  try {
+    const synth = window.speechSynthesis;
+    if (!synth) return;
+    synth.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 1.02;
+    u.pitch = 1;
+    synth.speak(u);
+  } catch { /* speech is best-effort */ }
+}
+
+function cancelSpeak() {
+  try { window.speechSynthesis?.cancel(); } catch { /* */ }
 }
 
 const CONDITION_COLOR: Record<string, string> = {
