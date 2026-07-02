@@ -29,7 +29,10 @@
  */
 
 const SAM_URL = process.env.SAM_ENDPOINT_URL;
-const SAM_TOKEN = process.env.SAM_TOKEN;
+// Reuse the existing DEPTH_TOKEN when a dedicated SAM_TOKEN isn't set — the
+// Modal SAM service (ml/sam/app.py) shares the same au7o-depth-token secret,
+// so you only need to set SAM_ENDPOINT_URL in Vercel to go live.
+const SAM_TOKEN = process.env.SAM_TOKEN || process.env.DEPTH_TOKEN;
 const SAM_TIMEOUT_MS = Number(process.env.SAM_TIMEOUT_MS || 6000);
 
 /** Normalized selection prompt from the client, in PERCENT of image
