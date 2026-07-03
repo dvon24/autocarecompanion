@@ -23,7 +23,13 @@ export const revalidate = 3600;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  return await getAllDTCMakeSlugs();
+  // COST: these ~2,500 code×make pages were rebuilt in full on EVERY deploy
+  // (the dominant Vercel Build-CPU-Minutes charge). They're already ISR
+  // (revalidate 3600 + dynamicParams true), so we pre-render only a small
+  // warm set at build and generate the long tail on-demand on first visit,
+  // then cache. Fully indexable; also fixes the Supabase build-timeouts (no
+  // 19-worker parallel DB storm at build). Bump the slice to pre-warm more.
+  return (await getAllDTCMakeSlugs()).slice(0, 50);
 }
 
 export async function generateMetadata({

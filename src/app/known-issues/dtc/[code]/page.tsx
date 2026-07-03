@@ -20,7 +20,12 @@ export const dynamicParams = true;
 // --- Static generation ---
 
 export async function generateStaticParams() {
-  return await getAllDTCSlugs();
+  // COST: ~2,500 code pages were rebuilt in full on EVERY deploy (the dominant
+  // Vercel Build-CPU-Minutes charge). Already ISR (revalidate 3600 +
+  // dynamicParams true), so pre-render a small warm set at build and generate
+  // the rest on-demand on first visit, then cache. Fully indexable; also fixes
+  // the Supabase build-timeouts. Bump the slice to pre-warm more.
+  return (await getAllDTCSlugs()).slice(0, 50);
 }
 
 // --- Dynamic metadata ---
