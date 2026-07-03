@@ -1229,6 +1229,7 @@ export function VehicleHub({
       <MobileHub
         vehicle={vehicle}
         slug={slug}
+        userVehicles={userVehicles}
         isAuthed={isAuthed}
         currentMileage={currentMileage}
         opener={opener}
@@ -1335,8 +1336,72 @@ export function VehicleHub({
    suggestion chips, and bottom tab bar. The desktop and mobile shells
    are rendered side-by-side; CSS toggles which one is visible based on
    viewport width. */
+/* ─── Mobile vehicle switcher ─── Tapping the top-bar vehicle name drops down
+   a list to switch cars WHEN the user has more than one; with a single vehicle
+   it's plain, non-interactive text (no more black-screen /garage round-trip). */
+function MobileVehicleSwitcher({
+  vehicle, userVehicles, currentSlug,
+}: {
+  vehicle: VehicleHubProps['vehicle'];
+  userVehicles: NonNullable<VehicleHubProps['userVehicles']>;
+  currentSlug: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const hasOthers = userVehicles.length > 1;
+  const name = `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener('mousedown', onDown);
+    return () => document.removeEventListener('mousedown', onDown);
+  }, [open]);
+
+  // Single vehicle → nothing to switch to; render a plain label.
+  if (!hasOthers) return <span className="m-veh-name">{name}</span>;
+
+  return (
+    <div ref={ref} style={{ position: 'relative', minWidth: 0 }}>
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        aria-label="Switch vehicle"
+        style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'none', border: 'none', padding: 0, color: 'inherit', font: 'inherit', cursor: 'pointer', minWidth: 0 }}
+      >
+        <span className="m-veh-name">{name}</span>
+        <Icon name="chevron-down" size={11} style={{ color: 'var(--slate-400)' }} />
+      </button>
+      {open && (
+        <div role="menu" style={{ position: 'absolute', top: 'calc(100% + 8px)', left: 0, zIndex: 40, minWidth: 210, background: '#fff', border: '1px solid var(--paper-line, #E3DFD4)', borderRadius: 12, boxShadow: '0 12px 32px rgba(11,18,32,0.18)', overflow: 'hidden' }}>
+          {userVehicles.map((v) => {
+            const vSlug = vehicleSlug(v.year, v.make, v.model, v.trim);
+            const isCurrent = vSlug === currentSlug;
+            const label = v.nickname || `${v.year} ${v.make} ${v.model}`;
+            return (
+              <Link
+                key={v.id}
+                href={`/vehicle/${vSlug}`}
+                onClick={() => setOpen(false)}
+                role="menuitem"
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, padding: '11px 14px', textDecoration: 'none', color: '#0B1220', fontSize: 13.5, fontWeight: isCurrent ? 700 : 500, background: isCurrent ? '#F5F3EC' : 'transparent' }}
+              >
+                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{label}</span>
+                {isCurrent && <span aria-hidden style={{ color: '#10B981' }}>✓</span>}
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function MobileHub({
-  vehicle, slug, isAuthed, currentMileage, opener, schedule, attachableIssues, recalls = [], partsByTask = {},
+  vehicle, slug, userVehicles = [], isAuthed, currentMileage, opener, schedule, attachableIssues, recalls = [], partsByTask = {},
   maintenanceSuggestions, recentThreads, user,
   messages, input, pending, threadsOpen,
   onChangeInput, onSend, onOpenThreads, onCloseThreads, onSelectThread, onPhotoUpload, onVideoUpload,
@@ -1344,6 +1409,7 @@ function MobileHub({
 }: {
   vehicle: VehicleHubProps['vehicle'];
   slug: string;
+  userVehicles?: NonNullable<VehicleHubProps['userVehicles']>;
   isAuthed: boolean;
   currentMileage: number | null;
   opener: VehicleHubProps['opener'];
@@ -1512,14 +1578,7 @@ function MobileHub({
         </button>
         <div className="m-veh-pill" aria-label={`Vehicle: ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}`}>
           <div className="m-veh-meta">
-            <Link
-              href="/garage"
-              aria-label="Change vehicle"
-              style={{ display: 'flex', alignItems: 'center', gap: 4, textDecoration: 'none', color: 'inherit', minWidth: 0 }}
-            >
-              <span className="m-veh-name">{vehicle.year} {vehicle.make} {vehicle.model}</span>
-              <Icon name="chevron-down" size={11} style={{ color: 'var(--slate-400)' }} />
-            </Link>
+            <MobileVehicleSwitcher vehicle={vehicle} userVehicles={userVehicles} currentSlug={slug} />
             <div className="m-veh-sub mono" style={{ marginTop: 6 }}>
               {vehicle.trim ? <span>{vehicle.trim}</span> : null}
               {vehicle.trim ? <span style={{ margin: '0 6px' }}>·</span> : null}
@@ -3323,7 +3382,10 @@ function MobileThreadsDrawer({
         <div className="md-spacer" />
 
         <div className="md-foot">
-          <Link href="/garage" className="md-link" onClick={onClose}>
+          {/* /garage redirects a signed-in owner back to their hub (black-flash
+              dead-end), so point signed-in users at account/vehicle management
+              instead; anon keeps the demo garage. */}
+          <Link href={user ? '/account' : '/garage'} className="md-link" onClick={onClose}>
             Garage
           </Link>
           <Link href="/drive" className="md-link" onClick={onClose}>

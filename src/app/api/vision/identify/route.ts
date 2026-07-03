@@ -7,6 +7,8 @@ import { attachVendorLinks, searchFallbackUrl } from '@/lib/vendor-resolver';
 import { validateAndFixVendorLinks } from '@/lib/vendor-link-validator';
 import { refineRegion, promptToBox, samEnabled, type SamPrompt, type SamBox } from '@/lib/sam';
 import type { IdentifiedPart, PartCategory } from '@/types/vision';
+import Anthropic from '@anthropic-ai/sdk';
+import sharp from 'sharp';
 
 export const maxDuration = 30;
 export const runtime = 'nodejs';
@@ -46,9 +48,10 @@ export const runtime = 'nodejs';
  *   }
  */
 
-const OPENAI_KEY = process.env.OPENAI_API_KEY;
-const OPENAI_URL = 'https://api.openai.com/v1/responses';
-const MODEL = process.env.OPENAI_VISION_MODEL || 'gpt-5.5';
+// Identify runs on Anthropic Fable 5 vision (Devon's call — best-in-class part
+// recognition). Override via IDENTIFY_MODEL to A/B against another model.
+const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
+const IDENTIFY_MODEL = process.env.IDENTIFY_MODEL || 'claude-fable-5';
 
 interface VehicleCtx {
   year: number;
@@ -67,7 +70,7 @@ const VALID_CATEGORIES = new Set<PartCategory>([
 ]);
 
 export async function POST(request: NextRequest) {
-  if (!OPENAI_KEY) {
+  if (!ANTHROPIC_KEY) {
     return NextResponse.json({ error: 'not_configured', message: 'Identify is not configured.' }, { status: 503 });
   }
 
@@ -115,13 +118,15 @@ export async function POST(request: NextRequest) {
         }
       : null;
 
-  // ─── WHERE (optional, dark): let a live SAM endpoint tighten the
-  // region. Inert unless SAM_ENDPOINT_URL is set; on null we just echo
-  // the client's box. We do NOT re-crop server-side (no image lib on the
-  // hot path) — the client already sent a tight crop; SAM's refined box
-  // is returned to the client so a future in-browser path can re-crop.
+  // ─── WHERE: let the live SAM endpoint tighten the region to the actual
+  // object mask. When it does, we RE-CROP the full frame to that mask (via
+  // sharp) and feed the model THAT tight crop instead of the loose client
+  // square — the model sees just the part, which is the biggest lever
+  // against "guessing" on cluttered shots. Falls back to the client crop
+  // when SAM is off/failed.
   let refinedBox: SamBox | null = body.box ?? (body.prompt ? promptToBox(body.prompt) : null);
   let refinedPolygon: Array<{ x: number; y: number }> | null = null;
+  let vlmImageDataUrl = imageDataUrl; // what the model actually sees
   if (samEnabled() && body.fullImageDataUrl && body.prompt) {
     try {
       const b64 = body.fullImageDataUrl.split(',')[1] || '';
@@ -129,7 +134,11 @@ export async function POST(request: NextRequest) {
       const sam = await refineRegion(buf, body.prompt);
       if (sam?.box) refinedBox = sam.box;
       if (sam?.polygon && sam.polygon.length >= 3) refinedPolygon = sam.polygon;
-    } catch { /* fail soft — keep the client box, no mask */ }
+      if (sam?.box) {
+        const tight = await cropToBox(buf, sam.box, 0.10); // 10% padding
+        if (tight) vlmImageDataUrl = tight;
+      }
+    } catch { /* fail soft — keep the client crop, no mask */ }
   }
 
   // ─── WHICH: load the candidate parts / issues / specs for THIS vehicle.
@@ -235,43 +244,39 @@ Return ONLY a JSON object:
   "relatedKnownIssueId": "an id from KNOWN ISSUES above if this part is its subject, else \\"\\" "
 }`;
 
-  const openaiBody = {
-    model: MODEL,
-    reasoning: { effort: 'low' },
-    text: { format: { type: 'json_object' } },
-    max_output_tokens: 2000,
-    input: [
-      { role: 'system', content: [{ type: 'input_text', text: SYSTEM_PROMPT }] },
-      {
-        role: 'user',
-        content: [
-          { type: 'input_text', text: 'What exact part is this, and where can I buy it for my vehicle?' },
-          { type: 'input_image', image_url: imageDataUrl, detail: 'high' },
-        ],
-      },
-    ],
-  };
-
-  let data: unknown;
+  // ─── WHAT: Fable 5 vision on the tight crop. Fable 5 = adaptive-thinking
+  // family: no temperature/top_p, and we omit the thinking param entirely
+  // (identify is a fast structured read; add adaptive later if it needs it).
+  const img = parseDataUrl(vlmImageDataUrl);
+  if (!img) {
+    return NextResponse.json({ error: 'bad_request', message: 'A cropped image is required.' }, { status: 400 });
+  }
+  const anthropic = new Anthropic({ apiKey: ANTHROPIC_KEY });
+  let content = '';
   try {
-    const r = await fetch(OPENAI_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${OPENAI_KEY}` },
-      body: JSON.stringify(openaiBody),
-      signal: AbortSignal.timeout(25_000),
-    });
-    if (!r.ok) {
-      const txt = await r.text().catch(() => '');
-      console.error('[identify] OpenAI', r.status, txt.slice(0, 300));
-      return NextResponse.json({ error: 'identify_failed', message: 'Could not identify that part. Try tapping again or zooming in.' }, { status: 502 });
-    }
-    data = await r.json();
+    const msg = await anthropic.messages.create({
+      model: IDENTIFY_MODEL,
+      max_tokens: 1500,
+      system: SYSTEM_PROMPT,
+      messages: [
+        {
+          role: 'user',
+          content: [
+            { type: 'image', source: { type: 'base64', media_type: img.mediaType, data: img.data } },
+            { type: 'text', text: 'What exact part is this, and where can I buy it for my vehicle? Reply with ONLY the JSON object.' },
+          ],
+        },
+      ],
+    }, { timeout: 28_000 });
+    content = msg.content
+      .filter((b): b is Anthropic.TextBlock => b.type === 'text')
+      .map((b) => b.text)
+      .join('\n');
   } catch (err) {
-    console.error('[identify] fetch failed:', err);
+    console.error('[identify] anthropic failed:', err instanceof Error ? err.message : String(err));
     return NextResponse.json({ error: 'identify_failed', message: 'Identify is temporarily unavailable. Try again in a moment.' }, { status: 502 });
   }
 
-  const content = extractContent(data);
   const parsed = content ? extractJson(content) : null;
   if (!parsed) {
     return NextResponse.json({ error: 'identify_failed', message: 'Could not read the part. Try a tighter tap on the part.' }, { status: 502 });
@@ -372,24 +377,39 @@ function clamp01(n: number): number {
   return Math.max(0, Math.min(1, n));
 }
 
-function extractContent(data: unknown): string {
-  const d = data as {
-    output_text?: string;
-    output?: Array<{ type?: string; content?: Array<{ text?: string }> }>;
-    choices?: Array<{ message?: { content?: string } }>;
-  };
-  if (d?.output_text) return d.output_text;
-  if (Array.isArray(d?.output)) {
-    for (const item of d.output) {
-      if (item?.type === 'message' && Array.isArray(item.content)) {
-        for (const c of item.content) {
-          if (typeof c?.text === 'string' && c.text.length) return c.text;
-        }
-      }
-    }
+type AnthropicMedia = 'image/jpeg' | 'image/png' | 'image/gif' | 'image/webp';
+
+/** Split a data URL into an Anthropic-compatible media type + base64 body. */
+function parseDataUrl(url: string): { mediaType: AnthropicMedia; data: string } | null {
+  const m = url.match(/^data:(image\/(?:jpeg|png|gif|webp));base64,(.+)$/);
+  if (m) return { mediaType: m[1] as AnthropicMedia, data: m[2] };
+  const idx = url.indexOf(',');
+  if (idx > -1) return { mediaType: 'image/jpeg', data: url.slice(idx + 1) };
+  return null;
+}
+
+/** Crop the full frame to a SAM box (PERCENT) + padding via sharp, returning a
+ *  jpeg data URL. This is what tightens the model's input to just the part. */
+async function cropToBox(buf: Buffer, box: SamBox, pad = 0.1): Promise<string | null> {
+  try {
+    const meta = await sharp(buf).metadata();
+    const W = meta.width || 0, H = meta.height || 0;
+    if (!W || !H) return null;
+    const padW = box.w * pad, padH = box.h * pad;
+    const x = Math.max(0, Math.round(((box.x - padW) / 100) * W));
+    const y = Math.max(0, Math.round(((box.y - padH) / 100) * H));
+    const w = Math.min(W - x, Math.round(((box.w + 2 * padW) / 100) * W));
+    const h = Math.min(H - y, Math.round(((box.h + 2 * padH) / 100) * H));
+    if (w < 8 || h < 8) return null;
+    const out = await sharp(buf)
+      .extract({ left: x, top: y, width: w, height: h })
+      .resize({ width: 768, height: 768, fit: 'inside', withoutEnlargement: true })
+      .jpeg({ quality: 88 })
+      .toBuffer();
+    return `data:image/jpeg;base64,${out.toString('base64')}`;
+  } catch {
+    return null;
   }
-  if (d?.choices?.[0]?.message?.content) return d.choices[0].message.content;
-  return '';
 }
 
 function extractJson(text: string): Record<string, unknown> | null {
