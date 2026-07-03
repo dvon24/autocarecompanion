@@ -10,7 +10,7 @@ import type { IdentifiedPart, PartCategory } from '@/types/vision';
 import Anthropic from '@anthropic-ai/sdk';
 import sharp from 'sharp';
 
-export const maxDuration = 30;
+export const maxDuration = 45; // headroom for an occasional web-search grounding pass
 export const runtime = 'nodejs';
 
 /**
@@ -52,6 +52,14 @@ export const runtime = 'nodejs';
 // recognition). Override via IDENTIFY_MODEL to A/B against another model.
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
 const IDENTIFY_MODEL = process.env.IDENTIFY_MODEL || 'claude-fable-5';
+// Web-search grounding: Fable 5 may search the web to VERIFY a part / part
+// number when it can't determine it confidently from the image + catalog.
+// ON by default; set IDENTIFY_WEB_SEARCH=off to disable without a deploy. The
+// prompt tells it to search ONLY when unsure, so easy taps stay fast + free.
+const WEB_SEARCH = process.env.IDENTIFY_WEB_SEARCH !== 'off';
+const WEB_SEARCH_RULE = `
+
+WEB SEARCH: You have a web_search tool. Use it ONLY when you cannot confidently determine the exact part OR its correct OEM part number for this specific vehicle from the image + the catalog above (e.g. to verify a part number, or to pin down an unusual/badged part). For parts you already recognize with confidence, answer directly WITHOUT searching. Never search more than necessary. After any search, still reply with ONLY the JSON object.`;
 
 interface VehicleCtx {
   year: number;
@@ -252,12 +260,18 @@ Return ONLY a JSON object:
     return NextResponse.json({ error: 'bad_request', message: 'A cropped image is required.' }, { status: 400 });
   }
   const anthropic = new Anthropic({ apiKey: ANTHROPIC_KEY });
+  // Anthropic server-side web-search tool. Executed inside the single request
+  // (no client loop); the final text blocks already incorporate any results.
+  const tools = WEB_SEARCH
+    ? ([{ type: 'web_search_20250305', name: 'web_search', max_uses: 2 }] as unknown as Anthropic.MessageCreateParams['tools'])
+    : undefined;
   let content = '';
   try {
     const msg = await anthropic.messages.create({
       model: IDENTIFY_MODEL,
       max_tokens: 1500,
-      system: SYSTEM_PROMPT,
+      system: WEB_SEARCH ? SYSTEM_PROMPT + WEB_SEARCH_RULE : SYSTEM_PROMPT,
+      tools,
       messages: [
         {
           role: 'user',
@@ -267,7 +281,7 @@ Return ONLY a JSON object:
           ],
         },
       ],
-    }, { timeout: 28_000 });
+    }, { timeout: 40_000 });
     content = msg.content
       .filter((b): b is Anthropic.TextBlock => b.type === 'text')
       .map((b) => b.text)
