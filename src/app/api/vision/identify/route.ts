@@ -6,6 +6,7 @@ import { getVehicleSpecs } from '@/lib/maintenance';
 import { attachVendorLinks, searchFallbackUrl } from '@/lib/vendor-resolver';
 import { validateAndFixVendorLinks } from '@/lib/vendor-link-validator';
 import { refineRegion, promptToBox, samEnabled, type SamPrompt, type SamBox } from '@/lib/sam';
+import { webDetect, googleVisionEnabled, webDetectPromptBlock } from '@/lib/google-vision';
 import type { IdentifiedPart, PartCategory } from '@/types/vision';
 import Anthropic from '@anthropic-ai/sdk';
 import sharp from 'sharp';
@@ -259,6 +260,18 @@ Return ONLY a JSON object:
   if (!img) {
     return NextResponse.json({ error: 'bad_request', message: 'A cropped image is required.' }, { status: 400 });
   }
+
+  // ─── Google Vision "Lens-style" grounding: run Web Detection on the same
+  // tight crop and fold Google's best-guess + matched entities into the model
+  // prompt. Dark unless GOOGLE_VISION_API_KEY is set; fail-soft.
+  let visionGround = '';
+  if (googleVisionEnabled()) {
+    try {
+      const wd = await webDetect(img.data);
+      if (wd) visionGround = webDetectPromptBlock(wd);
+    } catch { /* fail soft — Fable 5 answers without it */ }
+  }
+
   const anthropic = new Anthropic({ apiKey: ANTHROPIC_KEY });
   // Anthropic server-side web-search tool. Executed inside the single request
   // (no client loop); the final text blocks already incorporate any results.
@@ -270,7 +283,7 @@ Return ONLY a JSON object:
     const msg = await anthropic.messages.create({
       model: IDENTIFY_MODEL,
       max_tokens: 1500,
-      system: WEB_SEARCH ? SYSTEM_PROMPT + WEB_SEARCH_RULE : SYSTEM_PROMPT,
+      system: (WEB_SEARCH ? SYSTEM_PROMPT + WEB_SEARCH_RULE : SYSTEM_PROMPT) + visionGround,
       tools,
       messages: [
         {
