@@ -53,7 +53,6 @@ interface FoundPart {
 }
 
 const CROP_SQUARE_PCT = 24; // default single-component crop for a tap
-const DRAG_THRESHOLD_PX = 10; // below this = a tap, above = a box
 const MAX_CROP_OUT_PX = 640; // cap crop payload dimension
 
 export function TapToIdentifyPhoto({
@@ -73,10 +72,9 @@ export function TapToIdentifyPhoto({
   const imgRef = useRef<HTMLImageElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const [sel, setSel] = useState<IdentifyState | null>(null);
-  const [dragRect, setDragRect] = useState<BoxPct | null>(null);
   const [found, setFound] = useState<FoundPart[]>([]); // multi-tap parts list
   const [voiceOn, setVoiceOn] = useState(false);
-  const drag = useRef<{ x: number; y: number; moved: boolean; id: number } | null>(null);
+  const tapId = useRef<number | null>(null); // active primary pointer id
   const autoRan = useRef(false);
   const voiceOnRef = useRef(false);
   voiceOnRef.current = voiceOn;
@@ -227,58 +225,21 @@ export function TapToIdentifyPhoto({
     }
   }, [autoIdentifyPoint, identifyPoint]);
 
-  // ── pointer handlers (tap OR drag-box)
+  // ── tap handlers (tap-only; SAM segments from a single point, so the
+  // finicky drag-box is gone). Ignore secondary touches so a pinch/zoom
+  // never fires an identify.
   const onDown = useCallback((e: React.PointerEvent) => {
-    // Ignore secondary touches — a second finger (pinch/zoom) must NOT be
-    // read as a box-drag. Only the first/primary pointer drives selection.
-    if (!e.isPrimary || drag.current) return;
-    const p = toSourcePct(e.clientX, e.clientY);
-    if (!p) return;
+    if (!e.isPrimary || tapId.current !== null) return;
     (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
-    drag.current = { x: e.clientX, y: e.clientY, moved: false, id: e.pointerId };
-    setDragRect(null);
-  }, [toSourcePct]);
-
-  const onMove = useCallback((e: React.PointerEvent) => {
-    if (!drag.current || drag.current.id !== e.pointerId) return;
-    const dx = e.clientX - drag.current.x;
-    const dy = e.clientY - drag.current.y;
-    if (Math.abs(dx) < DRAG_THRESHOLD_PX && Math.abs(dy) < DRAG_THRESHOLD_PX) return;
-    drag.current.moved = true;
-    const a = toSourcePct(drag.current.x, drag.current.y);
-    const b = toSourcePct(e.clientX, e.clientY);
-    if (!a || !b) return;
-    setDragRect({
-      x: Math.min(a.x, b.x),
-      y: Math.min(a.y, b.y),
-      w: Math.abs(b.x - a.x),
-      h: Math.abs(b.y - a.y),
-    });
-  }, [toSourcePct]);
+    tapId.current = e.pointerId;
+  }, []);
 
   const onUp = useCallback((e: React.PointerEvent) => {
-    const d = drag.current;
-    if (!d || d.id !== e.pointerId) return;
-    drag.current = null;
-    if (d.moved && dragRect && dragRect.w > 4 && dragRect.h > 4) {
-      // padded box selection
-      const pad = 4;
-      const box: BoxPct = {
-        x: Math.max(0, dragRect.x - pad),
-        y: Math.max(0, dragRect.y - pad),
-        w: Math.min(100, dragRect.w + pad * 2),
-        h: Math.min(100, dragRect.h + pad * 2),
-      };
-      setDragRect(null);
-      runIdentify(box, { kind: 'box', x: box.x, y: box.y, w: box.w, h: box.h });
-      return;
-    }
-    // tap → fixed square around the point
+    if (tapId.current !== e.pointerId) return;
+    tapId.current = null;
     const p = toSourcePct(e.clientX, e.clientY);
-    setDragRect(null);
-    if (!p) return;
-    identifyPoint(p);
-  }, [dragRect, runIdentify, toSourcePct, identifyPoint]);
+    if (p) identifyPoint(p);
+  }, [toSourcePct, identifyPoint]);
 
   // ── highlight overlay geometry: source-percent box → element px
   const overlayStyle = useCallback((box: BoxPct): React.CSSProperties | null => {
@@ -301,9 +262,9 @@ export function TapToIdentifyPhoto({
     return { position: 'absolute', left: g.offX, top: g.offY, width: g.cW, height: g.cH, pointerEvents: 'none', zIndex: 5 };
   }, [contentGeom]);
 
-  const activeBox = dragRect || sel?.box || null;
+  const activeBox = sel?.box || null;
   const cond = sel?.part?.condition || 'info';
-  const showPolygon = !dragRect && !sel?.loading && sel?.polygon && sel.polygon.length >= 3;
+  const showPolygon = !sel?.loading && sel?.polygon && sel.polygon.length >= 3;
 
   return (
     <div className={`t2i-wrap ${className || ''}`} ref={wrapRef}>
@@ -341,13 +302,12 @@ export function TapToIdentifyPhoto({
       <div
         className="t2i-stage"
         onPointerDown={onDown}
-        onPointerMove={onMove}
         onPointerUp={onUp}
-        onPointerCancel={() => { drag.current = null; setDragRect(null); }}
+        onPointerCancel={() => { tapId.current = null; }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img ref={imgRef} src={imageUrl} alt="Tap a part to identify it" crossOrigin="anonymous" onLoad={onImgLoad} />
-        <div className="t2i-hint">Tap a part — or drag a box — to identify &amp; shop it</div>
+        <div className="t2i-hint">Tap a part to identify &amp; shop it</div>
 
         <button
           type="button"
