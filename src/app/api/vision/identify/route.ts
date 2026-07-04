@@ -49,10 +49,15 @@ export const runtime = 'nodejs';
  *   }
  */
 
-// Identify runs on Anthropic Fable 5 vision (Devon's call — best-in-class part
-// recognition). Override via IDENTIFY_MODEL to A/B against another model.
+// Identify model is provider-switchable via IDENTIFY_MODEL:
+//   'gpt-5.5' (default, OpenAI)  |  'claude-fable-5' / any claude-* (Anthropic)
+// Flip the Vercel env var to A/B without a code change. A model string
+// containing 'claude' or 'fable' routes to Anthropic; anything else → OpenAI.
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
-const IDENTIFY_MODEL = process.env.IDENTIFY_MODEL || 'claude-fable-5';
+const OPENAI_KEY = process.env.OPENAI_API_KEY;
+const OPENAI_URL = 'https://api.openai.com/v1/responses';
+const IDENTIFY_MODEL = process.env.IDENTIFY_MODEL || 'gpt-5.5';
+const USE_ANTHROPIC = /claude|fable/i.test(IDENTIFY_MODEL);
 // Web-search grounding: Fable 5 may search the web to VERIFY a part / part
 // number when it can't determine it confidently from the image + catalog.
 // ON by default; set IDENTIFY_WEB_SEARCH=off to disable without a deploy. The
@@ -79,7 +84,7 @@ const VALID_CATEGORIES = new Set<PartCategory>([
 ]);
 
 export async function POST(request: NextRequest) {
-  if (!ANTHROPIC_KEY) {
+  if (USE_ANTHROPIC ? !ANTHROPIC_KEY : !OPENAI_KEY) {
     return NextResponse.json({ error: 'not_configured', message: 'Identify is not configured.' }, { status: 503 });
   }
 
@@ -272,35 +277,69 @@ Return ONLY a JSON object:
     } catch { /* fail soft — Fable 5 answers without it */ }
   }
 
-  const anthropic = new Anthropic({ apiKey: ANTHROPIC_KEY });
-  // Anthropic server-side web-search tool. Executed inside the single request
-  // (no client loop); the final text blocks already incorporate any results.
-  const tools = WEB_SEARCH
-    ? ([{ type: 'web_search_20250305', name: 'web_search', max_uses: 2 }] as unknown as Anthropic.MessageCreateParams['tools'])
-    : undefined;
+  // Web-search grounding runs on BOTH providers (Anthropic tool / OpenAI tool).
+  const fullSystem = (WEB_SEARCH ? SYSTEM_PROMPT + WEB_SEARCH_RULE : SYSTEM_PROMPT) + visionGround;
+  const userQ = 'What exact part is this, and where can I buy it for my vehicle? Reply with ONLY the JSON object.';
   let content = '';
   try {
-    const msg = await anthropic.messages.create({
-      model: IDENTIFY_MODEL,
-      max_tokens: 1500,
-      system: (WEB_SEARCH ? SYSTEM_PROMPT + WEB_SEARCH_RULE : SYSTEM_PROMPT) + visionGround,
-      tools,
-      messages: [
-        {
+    if (USE_ANTHROPIC) {
+      const anthropic = new Anthropic({ apiKey: ANTHROPIC_KEY });
+      const tools = WEB_SEARCH
+        ? ([{ type: 'web_search_20250305', name: 'web_search', max_uses: 2 }] as unknown as Anthropic.MessageCreateParams['tools'])
+        : undefined;
+      const msg = await anthropic.messages.create({
+        model: IDENTIFY_MODEL,
+        max_tokens: 1500,
+        system: fullSystem,
+        tools,
+        messages: [{
           role: 'user',
           content: [
             { type: 'image', source: { type: 'base64', media_type: img.mediaType, data: img.data } },
-            { type: 'text', text: 'What exact part is this, and where can I buy it for my vehicle? Reply with ONLY the JSON object.' },
+            { type: 'text', text: userQ },
           ],
-        },
-      ],
-    }, { timeout: 40_000 });
-    content = msg.content
-      .filter((b): b is Anthropic.TextBlock => b.type === 'text')
-      .map((b) => b.text)
-      .join('\n');
+        }],
+      }, { timeout: 40_000 });
+      content = msg.content.filter((b): b is Anthropic.TextBlock => b.type === 'text').map((b) => b.text).join('\n');
+    } else {
+      // OpenAI Responses API (gpt-5.5). reasoning low + json_object. Web search
+      // via the Responses `web_search` tool when enabled; if that param is
+      // rejected we retry WITHOUT it so identify never hard-fails on a tool
+      // mismatch. Google Vision grounding is already folded into the system.
+      const body = (withSearch: boolean) => JSON.stringify({
+        model: IDENTIFY_MODEL,
+        reasoning: { effort: 'low' },
+        text: { format: { type: 'json_object' } },
+        max_output_tokens: 2000,
+        ...(withSearch ? { tools: [{ type: 'web_search' }] } : {}),
+        input: [
+          { role: 'system', content: [{ type: 'input_text', text: fullSystem }] },
+          { role: 'user', content: [
+            { type: 'input_text', text: userQ },
+            { type: 'input_image', image_url: vlmImageDataUrl, detail: 'high' },
+          ] },
+        ],
+      });
+      const callOA = (withSearch: boolean) => fetch(OPENAI_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${OPENAI_KEY}` },
+        body: body(withSearch),
+        signal: AbortSignal.timeout(40_000),
+      });
+      let r = await callOA(WEB_SEARCH);
+      if (!r.ok && WEB_SEARCH) {
+        console.error('[identify] openai web_search rejected, retrying plain; status', r.status);
+        r = await callOA(false);
+      }
+      if (!r.ok) {
+        const t = await r.text().catch(() => '');
+        console.error('[identify] openai', r.status, t.slice(0, 300));
+        return NextResponse.json({ error: 'identify_failed', message: 'Could not identify that part. Try tapping again or zooming in.' }, { status: 502 });
+      }
+      content = extractOpenAIText(await r.json());
+    }
   } catch (err) {
-    console.error('[identify] anthropic failed:', err instanceof Error ? err.message : String(err));
+    console.error('[identify]', USE_ANTHROPIC ? 'anthropic' : 'openai', 'failed:', err instanceof Error ? err.message : String(err));
     return NextResponse.json({ error: 'identify_failed', message: 'Identify is temporarily unavailable. Try again in a moment.' }, { status: 502 });
   }
 
@@ -437,6 +476,22 @@ async function cropToBox(buf: Buffer, box: SamBox, pad = 0.1): Promise<string | 
   } catch {
     return null;
   }
+}
+
+function extractOpenAIText(data: unknown): string {
+  const d = data as {
+    output_text?: string;
+    output?: Array<{ type?: string; content?: Array<{ text?: string }> }>;
+  };
+  if (d?.output_text) return d.output_text;
+  if (Array.isArray(d?.output)) {
+    for (const item of d.output) {
+      if (item?.type === 'message' && Array.isArray(item.content)) {
+        for (const c of item.content) if (typeof c?.text === 'string' && c.text.length) return c.text;
+      }
+    }
+  }
+  return '';
 }
 
 function extractJson(text: string): Record<string, unknown> | null {
