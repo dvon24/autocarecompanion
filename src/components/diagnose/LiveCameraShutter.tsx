@@ -299,6 +299,16 @@ export function LiveCameraShutter({
     let dataUrl: string;
     try { ctx.drawImage(v, sx, sy, side, side, 0, 0, out, out); dataUrl = c.toDataURL('image/jpeg', 0.82); }
     catch { return; }
+    // Full frame too — lets the identifier read badges/logos (ZL1, SRT…) and
+    // body-panel shape for make/model, not just the center crop.
+    let fullUrl: string | undefined;
+    try {
+      const fs = Math.min(1, 960 / Math.max(v.videoWidth, v.videoHeight));
+      const fw = Math.round(v.videoWidth * fs), fh = Math.round(v.videoHeight * fs);
+      const fc = document.createElement('canvas'); fc.width = fw; fc.height = fh;
+      const fctx = fc.getContext('2d');
+      if (fctx) { fctx.drawImage(v, 0, 0, fw, fh); fullUrl = fc.toDataURL('image/jpeg', 0.8); }
+    } catch { /* full frame optional */ }
     scanBusyRef.current = true;
     try {
       const res = await fetch('/api/vision/identify', {
@@ -306,6 +316,7 @@ export function LiveCameraShutter({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           imageDataUrl: dataUrl,
+          fullImageDataUrl: fullUrl,
           prompt: { kind: 'point', x: 50, y: 50 },
           vehicle: vehicle && vehicle.make && vehicle.model
             ? { year: Number(vehicle.year) || undefined, make: vehicle.make, model: vehicle.model, trim: vehicle.trim }

@@ -270,16 +270,30 @@ Return ONLY a JSON object:
   // tight crop and fold Google's best-guess + matched entities into the model
   // prompt. Dark unless GOOGLE_VISION_API_KEY is set; fail-soft.
   let visionGround = '';
+  let visionMatch = ''; // diagnostic: what Google matched (shown in response)
   if (googleVisionEnabled()) {
     try {
-      const wd = await webDetect(img.data);
-      if (wd) visionGround = webDetectPromptBlock(wd);
-    } catch { /* fail soft — Fable 5 answers without it */ }
+      // Web Detection IS the Google Lens engine — it needs the FULL frame
+      // (badges, body-panel shape) to match, NOT the tight tap crop (which
+      // strips the identifying badge, e.g. "ZL1"). Feed it the full image the
+      // client already sent for SAM.
+      const gvB64 = body.fullImageDataUrl ? (body.fullImageDataUrl.split(',')[1] || img.data) : img.data;
+      const wd = await webDetect(gvB64);
+      if (wd) { visionGround = webDetectPromptBlock(wd); visionMatch = wd.bestGuess || wd.entities[0] || ''; }
+    } catch { /* fail soft */ }
   }
 
   // Web-search grounding runs on BOTH providers (Anthropic tool / OpenAI tool).
   const fullSystem = (WEB_SEARCH ? SYSTEM_PROMPT + WEB_SEARCH_RULE : SYSTEM_PROMPT) + visionGround;
-  const userQ = 'What exact part is this, and where can I buy it for my vehicle? Reply with ONLY the JSON object.';
+  // The tight crop nails WHERE the tap was, but strips identifying context —
+  // badges/logos ("ZL1", "SRT"), body-panel shape, adjacent trim. We send the
+  // model BOTH: the tight crop (focus) + the full frame (badge/context), so it
+  // can read the badge the way Google Lens does instead of guessing the part.
+  const fullFrame = body.fullImageDataUrl && body.fullImageDataUrl !== vlmImageDataUrl ? body.fullImageDataUrl : '';
+  const fullFrameParsed = fullFrame ? parseDataUrl(fullFrame) : null;
+  const userQ = 'What exact part is this, and where can I buy it for my vehicle?' +
+    (fullFrame ? ' The FIRST image is a tight crop of the exact part I tapped (identify THIS). The SECOND image is the wider scene — use it ONLY to read visible badges/logos/text (e.g. "ZL1", "SRT", "AMG") and the body-panel shape to pin down the make/model; do not identify a different part from it.' : '') +
+    ' Reply with ONLY the JSON object.';
   let content = '';
   try {
     if (USE_ANTHROPIC) {
@@ -296,6 +310,7 @@ Return ONLY a JSON object:
           role: 'user',
           content: [
             { type: 'image', source: { type: 'base64', media_type: img.mediaType, data: img.data } },
+            ...(fullFrameParsed ? [{ type: 'image' as const, source: { type: 'base64' as const, media_type: fullFrameParsed.mediaType, data: fullFrameParsed.data } }] : []),
             { type: 'text', text: userQ },
           ],
         }],
@@ -317,6 +332,7 @@ Return ONLY a JSON object:
           { role: 'user', content: [
             { type: 'input_text', text: userQ },
             { type: 'input_image', image_url: vlmImageDataUrl, detail: 'high' },
+            ...(fullFrame ? [{ type: 'input_image', image_url: fullFrame, detail: 'high' }] : []),
           ] },
         ],
       });
@@ -421,6 +437,7 @@ Return ONLY a JSON object:
     box: refinedBox,
     polygon: refinedPolygon, // full-image PERCENT points; null when SAM off/failed
     samRefined: !!refinedPolygon,
+    visionMatch, // diagnostic: Google Vision's best guess ('' if disabled/no match)
     vehicleMismatch,
     vehicleMismatchNote: vehicleMismatch ? vehicleMismatchNote : '',
     relatedIssue: relatedIssue ? { id: relatedIssue.id, title: relatedIssue.title } : null,

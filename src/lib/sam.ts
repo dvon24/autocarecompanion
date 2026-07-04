@@ -33,7 +33,11 @@ const SAM_URL = process.env.SAM_ENDPOINT_URL;
 // Modal SAM service (ml/sam/app.py) shares the same au7o-depth-token secret,
 // so you only need to set SAM_ENDPOINT_URL in Vercel to go live.
 const SAM_TOKEN = process.env.SAM_TOKEN || process.env.DEPTH_TOKEN;
-const SAM_TIMEOUT_MS = Number(process.env.SAM_TIMEOUT_MS || 6000);
+// 9s default: a WARM Modal T4 predicts in ~0.3-0.8s, but the first tap after
+// the container idles down (scaledown 4min) spends several seconds loading SAM
+// weights onto the GPU. 6s clipped those cold taps → silent box fallback; 9s
+// lets the mask land on the first tap too. Still well under the identify wait.
+const SAM_TIMEOUT_MS = Number(process.env.SAM_TIMEOUT_MS || 9000);
 
 /** Normalized selection prompt from the client, in PERCENT of image
  *  width/height (0-100, origin top-left) so it is resolution-agnostic. */
