@@ -32,6 +32,11 @@ export interface WebDetectResult {
   bestGuess?: string;
   /** Top matched web entities (things Google recognizes in the image). */
   entities: string[];
+  /** OCR text read off the image — badges ("ZL1", "SRT", "AMG"), stamped/
+   *  cast part numbers, warning labels. The single HIGHEST-signal feature on
+   *  most car parts; injected into the prompt as an explicit hard hint so the
+   *  model reads the badge instead of guessing from silhouette. */
+  text?: string;
 }
 
 interface GVWebEntity { entityId?: string; score?: number; description?: string }
@@ -41,6 +46,10 @@ interface GVResponse {
       bestGuessLabels?: Array<{ label?: string; languageCode?: string }>;
       webEntities?: GVWebEntity[];
     };
+    // TEXT_DETECTION: textAnnotations[0].description is the full aggregated
+    // OCR string for the image.
+    textAnnotations?: Array<{ description?: string }>;
+    fullTextAnnotation?: { text?: string };
   }>;
 }
 
@@ -57,22 +66,30 @@ export async function webDetect(base64: string): Promise<WebDetectResult | null>
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        requests: [{ image: { content: base64 }, features: [{ type: 'WEB_DETECTION', maxResults: 10 }] }],
+        requests: [{
+          image: { content: base64 },
+          // WEB_DETECTION = "what is this" (Lens engine); TEXT_DETECTION = OCR
+          // the badges/part-numbers, the single highest-signal ID feature.
+          features: [{ type: 'WEB_DETECTION', maxResults: 10 }, { type: 'TEXT_DETECTION', maxResults: 1 }],
+        }],
       }),
       signal: controller.signal,
     });
     if (!res.ok) return null;
     const data = (await res.json()) as GVResponse;
-    const wd = data?.responses?.[0]?.webDetection;
-    if (!wd) return null;
-    const bestGuess = wd.bestGuessLabels?.[0]?.label?.trim() || undefined;
-    const entities = (wd.webEntities || [])
+    const resp = data?.responses?.[0];
+    const wd = resp?.webDetection;
+    const bestGuess = wd?.bestGuessLabels?.[0]?.label?.trim() || undefined;
+    const entities = (wd?.webEntities || [])
       .filter((e) => e.description && (e.score ?? 0) > 0.3)
       .slice(0, 6)
       .map((e) => e.description!.trim())
       .filter(Boolean);
-    if (!bestGuess && entities.length === 0) return null;
-    return { bestGuess, entities };
+    // OCR: collapse whitespace/newlines, cap length — a badge is a few chars.
+    const rawText = resp?.textAnnotations?.[0]?.description || resp?.fullTextAnnotation?.text || '';
+    const text = rawText.replace(/\s+/g, ' ').trim().slice(0, 160) || undefined;
+    if (!bestGuess && entities.length === 0 && !text) return null;
+    return { bestGuess, entities, text };
   } catch {
     return null; // timeout / network / parse — fail soft
   } finally {
@@ -82,8 +99,18 @@ export async function webDetect(base64: string): Promise<WebDetectResult | null>
 
 /** Build the grounding block we append to the model prompt. */
 export function webDetectPromptBlock(r: WebDetectResult): string {
+  let block = '';
+  // OCR text is the single highest-signal feature — a badge like "ZL1" or a
+  // stamped part number pins the make/model/part harder than any silhouette.
+  // Surface it FIRST and as a hard instruction to read it.
+  if (r.text) {
+    block += `\n\nTEXT READ ON THE PART/VEHICLE (OCR — badges, stamps, part numbers): "${r.text}". This is the STRONGEST identifying signal — a badge ("ZL1", "SRT", "AMG") names the exact trim/vehicle; a stamped/cast number can be the part number. Read it and let it drive the make/model/trim identification, even over the garage vehicle.`;
+  }
   const bits: string[] = [];
   if (r.bestGuess) bits.push(`best guess: "${r.bestGuess}"`);
   if (r.entities.length) bits.push(`visually similar to: ${r.entities.join(', ')}`);
-  return `\n\nGOOGLE VISUAL MATCH (from Google's image index — a STRONG hint, the same engine as Google Lens; reconcile it with the image + catalog, but weight it heavily when it names a specific part or vehicle): ${bits.join('; ')}.`;
+  if (bits.length) {
+    block += `\n\nGOOGLE VISUAL MATCH (from Google's image index — a STRONG hint, the same engine as Google Lens; reconcile it with the image + catalog, but weight it heavily when it names a specific part or vehicle): ${bits.join('; ')}.`;
+  }
+  return block;
 }

@@ -326,11 +326,13 @@ export function LiveCameraShutter({
       const data = await res.json();
       if (data?.ok && data.part?.name && data.part.category !== 'other') {
         setScanLabel(data.part.name);
-        speakLive(data.part.name);
+        // Only narrate here when the VoiceMechanic isn't already the voice —
+        // otherwise the two talk over each other (Devon's "two voices" bug).
+        if (!enableVoice) speakLive(data.part.name);
       }
     } catch { /* skip this tick */ }
     finally { scanBusyRef.current = false; }
-  }, [vehicle]);
+  }, [vehicle, enableVoice]);
 
   // drive the auto-scan interval
   useEffect(() => {
@@ -551,22 +553,20 @@ export function LiveCameraShutter({
         </div>
       )}
 
-      {/* frozen-frame identify overlay — reuses the /api/vision/identify engine.
-          The camera stays live underneath; "Scan another part" returns to it. */}
+      {/* frozen-frame Identify-&-Shop surface — in-place over the frozen frame
+          (no separate screen, no rectangle). SAM mask + shop callout + kit tray
+          all live here. The ✕ returns to the live camera. speakResults is off
+          when the VoiceMechanic already owns audio, so there's ONE voice. */}
       {frozen && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 80, background: '#0B0E14', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px' }}>
-            <span style={{ color: '#fff', fontSize: 14, fontWeight: 700 }}>Identify a part</span>
-            <button type="button" onClick={() => setFrozen(null)} aria-label="Back to camera"
-              style={{ width: 34, height: 34, borderRadius: '50%', background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: 15, cursor: 'pointer' }}>✕</button>
-          </div>
-          <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch', padding: '0 12px 16px' }}>
-            <TapToIdentifyPhoto imageUrl={frozen.url} vehicle={vehicle} autoIdentifyPoint={frozen.point} />
-          </div>
-          <div style={{ padding: '12px 14px calc(14px + env(safe-area-inset-bottom))' }}>
-            <button type="button" onClick={() => setFrozen(null)}
-              style={{ width: '100%', padding: 14, borderRadius: 12, background: accent, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Scan another part</button>
-          </div>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 80 }}>
+          <TapToIdentifyPhoto
+            embedded
+            imageUrl={frozen.url}
+            vehicle={vehicle}
+            autoIdentifyPoint={frozen.point}
+            speakResults={!enableVoice}
+            onClose={() => setFrozen(null)}
+          />
         </div>
       )}
 

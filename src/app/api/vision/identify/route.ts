@@ -279,7 +279,7 @@ Return ONLY a JSON object:
       // client already sent for SAM.
       const gvB64 = body.fullImageDataUrl ? (body.fullImageDataUrl.split(',')[1] || img.data) : img.data;
       const wd = await webDetect(gvB64);
-      if (wd) { visionGround = webDetectPromptBlock(wd); visionMatch = wd.bestGuess || wd.entities[0] || ''; }
+      if (wd) { visionGround = webDetectPromptBlock(wd); visionMatch = [wd.text ? `text:"${wd.text}"` : '', wd.bestGuess || wd.entities[0] || ''].filter(Boolean).join(' · '); }
     } catch { /* fail soft */ }
   }
 
