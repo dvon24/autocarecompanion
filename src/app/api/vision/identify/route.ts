@@ -7,6 +7,7 @@ import { attachVendorLinks, searchFallbackUrl } from '@/lib/vendor-resolver';
 import { validateAndFixVendorLinks } from '@/lib/vendor-link-validator';
 import { refineRegion, promptToBox, samEnabled, type SamPrompt, type SamBox } from '@/lib/sam';
 import { webDetect, googleVisionEnabled, webDetectPromptBlock } from '@/lib/google-vision';
+import { ebayEnabled, ebayIsPrimaryFor, resolveEbay } from '@/lib/ebay-resolver';
 import type { IdentifiedPart, PartCategory } from '@/types/vision';
 import Anthropic from '@anthropic-ai/sdk';
 import sharp from 'sharp';
@@ -427,6 +428,30 @@ Return ONLY a JSON object:
   }
 
   const part = await safeValidate(withLinks);
+
+  // ─── WHICH → FACTS: eBay Browse resolver. The model classifies; eBay's live
+  // listings supply the VERIFIED part number (≥3 agreeing item-specifics) and
+  // real buy links. Dark unless EBAY_APP_ID/CERT are set; eBay-primary
+  // categories only (body/trim/OEM-specific — Amazon returns knockoffs there).
+  if (ebayEnabled() && ebayIsPrimaryFor(part.category)) {
+    try {
+      // On a vehicle mismatch, the OCR/visual match (e.g. "ZL1 · Camaro ZL1
+      // hood") is the right vehicle seed; otherwise use the garage vehicle.
+      const vehSeed = vehicleMismatch
+        ? visionMatch.replace(/text:"([^"]*)"/, '$1').replace(/·/g, ' ')
+        : [vehicle?.year, vehicle?.make, vehicle?.model, vehicle?.trim].filter(Boolean).join(' ');
+      const q = [part.brand, vehSeed, part.name, part.spec].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+      const r = await resolveEbay(q, part.oemPartNumbers[0]);
+      if (r) {
+        if (r.listings.length) part.ebayListings = r.listings.slice(0, 3);
+        if (r.verifiedPartNumber) {
+          const v = r.verifiedPartNumber;
+          part.oemPartNumbers = [v, ...part.oemPartNumbers.filter((p) => p.toUpperCase().replace(/\s+/g, '') !== v)].slice(0, 4);
+          part.partNumberVerified = true;
+        }
+      }
+    } catch { /* fail soft — keep the model's part + search links */ }
+  }
 
   const relatedId = typeof parsed.relatedKnownIssueId === 'string' ? parsed.relatedKnownIssueId.trim() : '';
   const relatedIssue = relatedId ? issueIdByHint.find(i => i.id === relatedId) || null : null;

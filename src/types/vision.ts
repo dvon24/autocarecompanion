@@ -146,6 +146,13 @@ export interface IdentifiedPart {
   /** Short condition phrase for the callout, e.g. 'Pads healthy · no
    *  fluid weeping' or '~4/32" tread — plan ahead'. */
   finding?: string;
+  /** True when oemPartNumbers[0] was CORROBORATED by ≥3 agreeing live eBay
+   *  listings (the fabrication gate), not just emitted by the model. Drives a
+   *  "verified" tick in the callout. */
+  partNumberVerified?: boolean;
+  /** Live eBay listings for real buy links (affiliate-tagged via EPN when
+   *  configured). Present only when the eBay resolver ran for this part. */
+  ebayListings?: Array<{ title: string; price: number | null; currency: string; condition: string; url: string }>;
 }
 
 // ─── Vehicle-match verdict ─────────────────────────────────────────

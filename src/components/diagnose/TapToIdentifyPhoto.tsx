@@ -426,7 +426,7 @@ export function TapToIdentifyPhoto({
 
               <div className="t2i-meta">
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div className="t2i-lbl">PART NUMBER</div>
+                  <div className="t2i-lbl">PART NUMBER {sel.part.partNumberVerified && <span style={{ color: '#38E1B0', fontWeight: 800 }} title="Verified across live listings">✓ VERIFIED</span>}</div>
                   <div className="t2i-pn">{sel.part.oemPartNumbers?.[0] || sel.part.aftermarketPartNumbers?.[0]?.partNumber || '—'}</div>
                 </div>
                 <div style={{ width: 84, flexShrink: 0 }}>
@@ -444,10 +444,14 @@ export function TapToIdentifyPhoto({
 
               <div className="t2i-cbuy">
                 <div>
-                  {sel.part.estimatedPriceUsd
-                    ? <span className="t2i-price">${sel.part.estimatedPriceUsd.low}{sel.part.estimatedPriceUsd.high > sel.part.estimatedPriceUsd.low ? '+' : ''}</span>
-                    : <span className="t2i-price" style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)' }}>See price</span>}
-                  {sel.part.vendorLinks?.[0] && <div className="t2i-ret">{sel.part.vendorLinks[0].displayName}</div>}
+                  {sel.part.ebayListings?.[0]?.price
+                    ? <span className="t2i-price">${sel.part.ebayListings[0].price}</span>
+                    : sel.part.estimatedPriceUsd
+                      ? <span className="t2i-price">${sel.part.estimatedPriceUsd.low}{sel.part.estimatedPriceUsd.high > sel.part.estimatedPriceUsd.low ? '+' : ''}</span>
+                      : <span className="t2i-price" style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)' }}>See price</span>}
+                  {sel.part.ebayListings?.[0]
+                    ? <div className="t2i-ret">eBay{sel.part.ebayListings[0].condition ? ` · ${sel.part.ebayListings[0].condition}` : ''}</div>
+                    : sel.part.vendorLinks?.[0] && <div className="t2i-ret">{sel.part.vendorLinks[0].displayName}</div>}
                 </div>
                 <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
                   <button
@@ -457,13 +461,13 @@ export function TapToIdentifyPhoto({
                   >
                     {inKit(sel.part) ? '✓ In kit' : '＋ Add to kit'}
                   </button>
-                  {sel.part.vendorLinks?.[0] && (
+                  {(sel.part.ebayListings?.[0] || sel.part.vendorLinks?.[0]) && (
                     <a
                       className="t2i-btn t2i-buy"
-                      href={sel.part.vendorLinks[0].url}
+                      href={sel.part.ebayListings?.[0]?.url || sel.part.vendorLinks![0].url}
                       target="_blank"
                       rel="noopener noreferrer nofollow sponsored"
-                      onClick={() => { if (sel.part) addToKit(sel.part, sel.polygon); track('identify_buy_click', { vendor: sel.part?.vendorLinks?.[0]?.vendor, part: sel.part?.category }); }}
+                      onClick={() => { if (sel.part) addToKit(sel.part, sel.polygon); track('identify_buy_click', { vendor: sel.part?.ebayListings?.[0] ? 'ebay' : sel.part?.vendorLinks?.[0]?.vendor, part: sel.part?.category }); }}
                     >Buy</a>
                   )}
                 </div>
