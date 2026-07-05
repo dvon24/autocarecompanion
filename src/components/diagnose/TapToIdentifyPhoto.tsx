@@ -319,6 +319,7 @@ export function TapToIdentifyPhoto({
         .t2i-sub { font-size:11.5px; font-weight:500; color:rgba(255,255,255,0.62); margin-top:3px; }
         .t2i-x { width:24px; height:24px; border-radius:50%; border:1px solid rgba(255,255,255,0.16); background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.7); display:grid; place-items:center; flex-shrink:0; padding:0; cursor:pointer; font-size:12px; }
         .t2i-mism { font-size:11px; font-weight:600; color:#FCD34D; background:rgba(245,158,11,0.14); border:1px solid rgba(245,158,11,0.3); border-radius:9px; padding:6px 9px; margin-top:10px; }
+        .t2i-fits { font-size:11.5px; font-weight:600; color:#38E1B0; background:rgba(56,225,176,0.12); border:1px solid rgba(56,225,176,0.3); border-radius:9px; padding:6px 9px; margin-top:10px; display:inline-flex; align-items:center; gap:6px; }
         .t2i-meta { display:flex; align-items:center; gap:12px; margin-top:11px; }
         .t2i-lbl { font-size:8.5px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.4); }
         .t2i-pn { font-family:'SF Mono',Menlo,monospace; font-size:12.5px; font-weight:600; color:#fff; margin-top:2px; word-break:break-all; }
@@ -422,19 +423,34 @@ export function TapToIdentifyPhoto({
                 <button className="t2i-x" onClick={() => setSel(null)} aria-label="close">✕</button>
               </div>
 
-              {sel.mismatch && <div className="t2i-mism">⚠ {sel.mismatch}</div>}
+              {/* Fitment is a BINARY trust signal from vehicle context — not a
+                  raw model %. Mismatch → warn; else "✓ Fits your <vehicle>". */}
+              {sel.mismatch
+                ? <div className="t2i-mism">⚠ {sel.mismatch}</div>
+                : (vehicle && [vehicle.year, vehicle.make, vehicle.model].some(Boolean)) && (
+                    <div className="t2i-fits">✓ Fits your {[vehicle.year, vehicle.make, vehicle.model].filter(Boolean).join(' ')}</div>
+                  )}
 
               <div className="t2i-meta">
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div className="t2i-lbl">PART NUMBER {sel.part.partNumberVerified && <span style={{ color: '#38E1B0', fontWeight: 800 }} title="Verified across live listings">✓ VERIFIED</span>}</div>
+                  {/* PART NUMBER carries the fabrication-gate state: verified
+                      (≥3 agreeing live listings) vs reported (model/uncorroborated). */}
+                  <div className="t2i-lbl">
+                    PART NUMBER{' '}
+                    {(sel.part.oemPartNumbers?.[0] || sel.part.aftermarketPartNumbers?.[0]?.partNumber) && (
+                      sel.part.partNumberVerified
+                        ? <span style={{ color: '#38E1B0', fontWeight: 800 }} title="Confirmed across ≥3 live listings">✓ VERIFIED</span>
+                        : <span style={{ color: '#F59E0B', fontWeight: 800 }} title="Model-reported — not yet cross-checked against live listings">• REPORTED</span>
+                    )}
+                  </div>
                   <div className="t2i-pn">{sel.part.oemPartNumbers?.[0] || sel.part.aftermarketPartNumbers?.[0]?.partNumber || '—'}</div>
                 </div>
-                <div style={{ width: 84, flexShrink: 0 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                    <span className="t2i-lbl">MATCH</span>
-                    <span style={{ fontFamily: "'SF Mono',Menlo,monospace", fontSize: 11, fontWeight: 600, color: accent }}>{Math.round((sel.part.confidence || 0) * 100)}%</span>
+                {/* ID confidence as a TIER, never a naked % (uncalibrated). */}
+                <div style={{ flexShrink: 0, textAlign: 'right' }}>
+                  <div className="t2i-lbl">READ</div>
+                  <div style={{ fontSize: 11.5, fontWeight: 700, marginTop: 2, color: (sel.part.confidence || 0) >= 0.75 ? '#38E1B0' : (sel.part.confidence || 0) >= 0.45 ? '#CBD5E1' : '#F59E0B' }}>
+                    {(sel.part.confidence || 0) >= 0.75 ? 'Strong' : (sel.part.confidence || 0) >= 0.45 ? 'Likely' : 'Closer photo'}
                   </div>
-                  <div className="t2i-matchbar"><div style={{ width: `${Math.round((sel.part.confidence || 0) * 100)}%`, height: '100%', background: accent, borderRadius: 99 }} /></div>
                 </div>
               </div>
 
@@ -502,7 +518,7 @@ export function TapToIdentifyPhoto({
           <span className="t2i-kit-icon">🛒{kit.length > 0 && <span className="t2i-kit-badge">{kit.length}</span>}</span>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: '#0B1220', letterSpacing: '-0.01em' }}>{kit.length ? 'Your kit' : 'Your kit is empty'}</div>
-            <div style={{ fontSize: 11, color: '#64748B' }}>{kit.length ? 'Tap to review & order' : 'Tap a part to start building your repair'}</div>
+            <div style={{ fontSize: 11, color: '#64748B' }}>{kit.length ? 'Review — each part orders from its own store' : 'Tap a part to start building your repair'}</div>
           </div>
           {kitTotal > 0 && <span style={{ fontFamily: "'SF Mono',Menlo,monospace", fontSize: 17, fontWeight: 700, color: '#0B1220' }}>${kitTotal}</span>}
         </div>
