@@ -127,12 +127,18 @@ function extractTitlePNs(title: string): string[] {
   for (const raw of String(title).toUpperCase().split(/[^A-Z0-9-]+/)) {
     const v = raw.replace(/^-+|-+$/g, '');
     if (!v) continue;
+    if (/^(19|20)\d{2}-(19|20)\d{2}$/.test(v)) continue;   // year RANGE (e.g. 2017-2023)
     const bare = v.replace(/-/g, '');
     if (bare.length < 6 || bare.length > 17) continue;
     if (!/[0-9]/.test(bare)) continue;              // must contain a digit
     if (/^(19|20)\d{2}$/.test(bare)) continue;       // a year
-    // Need a letter (Mopar/Ford style) OR ≥7 digits (GM 8-digit numbers).
-    if (!/[A-Z]/.test(bare) && bare.length < 7) continue;
+    if (/^(19|20)\d{2}(19|20)\d{2}$/.test(bare)) continue; // two years concatenated
+    // A GM-style pure-numeric PN is ≥7 digits BUT must not read as year-ish; a
+    // real one (84243751) won't start with 19/20. Mopar/Ford have letters.
+    if (!/[A-Z]/.test(bare)) {
+      if (bare.length < 7) continue;
+      if (/^(19|20)/.test(bare)) continue;           // numeric starting like a year → skip
+    }
     out.push(v);
   }
   return out;
