@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { VehiclePicker, type DriveVehicle } from './VehiclePicker';
+import { DriveCopilot, type DriveCopilotHandle } from './DriveCopilot';
 
 const LS_VEHICLE = 'au7o-drive-vehicle';
 const LS_PREFS = 'au7o-drive-prefs';
@@ -299,6 +300,7 @@ interface DriveClientProps {
 
 export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = false, prefillDestination = null }: DriveClientProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
+  const copilotRef = useRef<DriveCopilotHandle>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const originMarker = useRef<mapboxgl.Marker | null>(null);
   const destMarker = useRef<mapboxgl.Marker | null>(null);
@@ -2129,6 +2131,35 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
       style={{ height: '100vh' }}
     >
       <div ref={mapContainer} className="absolute inset-0" style={{ width: '100%', height: '100%' }} />
+
+      {/* Drive copilot — hands-free "Jarvis in the map" voice (bottom-left orb).
+          Fed a live drive snapshot; proactive interjections wired in a follow-up. */}
+      <DriveCopilot
+        ref={copilotRef}
+        vehicle={vehicle ? { year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim } : undefined}
+        lang={language === 'de' ? 'German' : 'English'}
+        getContext={() => {
+          const parts: string[] = [];
+          if (driverSpeedMph != null) parts.push(`Speed: ${Math.round(driverSpeedMph)} mph`);
+          if (currentLimit?.speed) parts.push(`Speed limit: ${currentLimit.speed}${currentLimit.unit ? ' ' + currentLimit.unit : ''}`);
+          const ar = activeRouteRef.current;
+          if (ar) parts.push(`Navigating to ${ar.destination} — about ${Math.round(ar.miles)} mi / ${Math.round(ar.minutes)} min total.`);
+          else if (route?.destination) parts.push(`Trip planned to ${route.destination}.`);
+          if (currentStepInstruction) parts.push(`Next maneuver: ${currentStepInstruction}`);
+          const fmr = route?.fuelMilesRemaining;
+          if (typeof fmr === 'number') parts.push(`Estimated fuel range: about ${Math.round(fmr)} mi remaining.`);
+          const fuel = fuelStationsRef.current;
+          if (fuel && fuel.length) {
+            const f = fuel[0];
+            const price = f.prices?.e5 ?? f.prices?.e10 ?? f.prices?.diesel;
+            parts.push(`Nearest gas: ${f.name}${f.brand ? ` (${f.brand})` : ''}${price ? ` at ${price} ${f.prices.currency}/${f.prices.unit}` : ''}.`);
+          }
+          const cams = camerasRef.current;
+          if (cams && cams.length) parts.push(`${cams.length} speed camera${cams.length === 1 ? '' : 's'} nearby.`);
+          if (!parts.length) return origin ? 'Free-driving (no destination set yet).' : null;
+          return parts.join('\n');
+        }}
+      />
 
       {/* Vehicle picker — top-left. When the user isn't signed in we show a
           subtle "Sign in to save" pill next to it so anonymous users learn

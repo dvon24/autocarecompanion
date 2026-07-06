@@ -37,6 +37,29 @@ const FREE_UPSELL: Upsell = { message: 'Upgrade to Plus for unlimited live voice
 
 interface VehicleCtx { year?: number; make?: string; model?: string; trim?: string }
 
+/**
+ * Drive copilot ("Jarvis in the map"): hands-free, safety-first, PROACTIVE.
+ * The live route/fuel/hazard context is streamed from the client over the data
+ * channel during the drive; these are the standing instructions.
+ */
+function buildDriveInstructions(vehicle: VehicleCtx | null, lang?: string): string {
+  const v = vehicle && vehicle.make ? `${vehicle.year || ''} ${vehicle.make} ${vehicle.model || ''}${vehicle.trim ? ' ' + vehicle.trim : ''}`.trim() : null;
+  const language = (lang || '').trim();
+  return [
+    'You are Au7o, a calm, sharp in-car driving copilot — think Jarvis from Iron Man, but for the road. The user is DRIVING and cannot look at a screen. Safety is the absolute priority: everything you say is brief, glanceable-by-ear, and never distracting.',
+    v ? `Their vehicle: ${v}. You know its common issues and maintenance.` : null,
+    'You periodically receive DRIVE CONTEXT updates (a system/user message) with the live situation: location, speed, ETA, distance and time remaining, fuel range if available, the next turn, nearby gas stations, speed cameras, hazards, weather, and any car alert. ALWAYS ground what you say in the MOST RECENT context; ignore stale numbers.',
+    'PROACTIVE — this is the whole point. Speak up UNPROMPTED only when something genuinely matters: you will run low on fuel before the destination (name the SPECIFIC gas stop already added to the route and how far it is), a speed camera or hazard is coming up, the route changed or traffic is bad, you are arriving soon, or there is a maintenance/known-issue alert for their car. When nothing matters, STAY SILENT. Never chatter, never fill dead air, never re-state what you already said.',
+    'STYLE: usually ONE sentence. Calm, confident, specific. No lists, no markdown, no preamble like "sure" or "okay". Numbers rounded and human ("about 12 miles", "in a quarter mile").',
+    'FUEL: if the fuel range is less than the distance remaining, proactively tell them they won\'t make it and name the exact gas station already planned on the route and its distance. Do not wait to be asked.',
+    'COACHING (gentle, occasional, safety-first): if the context shows they are losing speed on an uphill grade, a single brief cue is fine ("slight grade — ease into the throttle to hold your speed"). Never nag; at most once in a while, and never about something they can\'t safely act on.',
+    'TRANSLATION: you are fully multilingual. If the user reads a foreign road sign aloud or asks what something means, translate it plainly. If they are driving in a country whose language differs from theirs, help them read signs and speak to locals.',
+    language ? `The user's language is ${language} — speak ${language} by default, and switch if they switch.` : 'Speak the user\'s language; match whatever they speak to you.',
+    'MUTE: to save power and avoid road noise, your mic may be muted between exchanges. You will STILL receive drive context while muted and you can and should speak up for the important triggers above. When the user taps to talk, listen and answer, then it\'s fine to go quiet again.',
+    'GREETING: when the session opens, say ONE short line only — something like "I\'m with you — I\'ll pipe up if anything comes up." Then go quiet and wait.',
+  ].filter(Boolean).join(' ');
+}
+
 function buildInstructions(vehicle: VehicleCtx | null): string {
   const v = vehicle && vehicle.make ? `${vehicle.year || ''} ${vehicle.make} ${vehicle.model || ''}${vehicle.trim ? ' ' + vehicle.trim : ''}`.trim() : null;
   return [
@@ -83,10 +106,17 @@ export async function POST(request: NextRequest) {
   }
 
   let vehicle: VehicleCtx | null = null;
+  let mode: 'mechanic' | 'drive' = 'mechanic';
+  let lang: string | undefined;
   try {
     const body = await request.json();
-    if (body && typeof body === 'object' && body.vehicle) vehicle = body.vehicle as VehicleCtx;
+    if (body && typeof body === 'object') {
+      if (body.vehicle) vehicle = body.vehicle as VehicleCtx;
+      if (body.mode === 'drive') mode = 'drive';
+      if (typeof body.lang === 'string') lang = body.lang;
+    }
   } catch { /* body optional */ }
+  const instructions = mode === 'drive' ? buildDriveInstructions(vehicle, lang) : buildInstructions(vehicle);
 
   try {
     // Realtime GA endpoint + nested session schema (the beta /sessions endpoint
@@ -99,7 +129,7 @@ export async function POST(request: NextRequest) {
         session: {
           type: 'realtime',
           model: REALTIME_MODEL,
-          instructions: buildInstructions(vehicle),
+          instructions,
           // OpenAI Realtime GA only accepts ['text'] OR ['audio'] — NOT both.
           // ['audio','text'] returns a 400 invalid_value (this was silently
           // killing every voice session at the token-mint step). Audio output
