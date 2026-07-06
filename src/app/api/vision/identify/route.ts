@@ -7,7 +7,7 @@ import { attachVendorLinks, searchFallbackUrl } from '@/lib/vendor-resolver';
 import { validateAndFixVendorLinks } from '@/lib/vendor-link-validator';
 import { refineRegion, promptToBox, samEnabled, type SamPrompt, type SamBox } from '@/lib/sam';
 import { webDetect, googleVisionEnabled, webDetectPromptBlock } from '@/lib/google-vision';
-import { ebayEnabled, ebayIsPrimaryFor, resolveEbay } from '@/lib/ebay-resolver';
+import { ebayEnabled, resolveEbay } from '@/lib/ebay-resolver';
 import type { IdentifiedPart, PartCategory } from '@/types/vision';
 import Anthropic from '@anthropic-ai/sdk';
 import sharp from 'sharp';
@@ -430,10 +430,11 @@ Return ONLY a JSON object:
   const part = await safeValidate(withLinks);
 
   // ─── WHICH → FACTS: eBay Browse resolver. The model classifies; eBay's live
-  // listings supply the VERIFIED part number (≥3 agreeing item-specifics) and
-  // real buy links. Dark unless EBAY_APP_ID/CERT are set; eBay-primary
-  // categories only (body/trim/OEM-specific — Amazon returns knockoffs there).
-  if (ebayEnabled() && ebayIsPrimaryFor(part.category)) {
+  // listings supply the VERIFIED part number (≥2 agreeing listings) + real
+  // affiliate buy links. Runs for EVERY identified part (was body-panel-only,
+  // which left common parts — rotors, filters, sensors — with no part number).
+  // Dark unless EBAY_APP_ID/CERT are set; fail-soft.
+  if (ebayEnabled() && part.category && part.category !== 'other') {
     try {
       // On a vehicle mismatch, the OCR/visual match (e.g. "ZL1 · Camaro ZL1
       // hood") is the right vehicle seed; otherwise use the garage vehicle.

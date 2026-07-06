@@ -480,15 +480,13 @@ export function TapToIdentifyPhoto({
                   >
                     {inKit(sel.part) ? '✓ In kit' : '＋ Add to kit'}
                   </button>
-                  {(sel.part.ebayListings?.[0] || sel.part.vendorLinks?.[0]) && (
-                    <a
-                      className="t2i-btn t2i-buy"
-                      href={sel.part.ebayListings?.[0]?.url || sel.part.vendorLinks![0].url}
-                      target="_blank"
-                      rel="noopener noreferrer nofollow sponsored"
-                      onClick={() => { if (sel.part) addToKit(sel.part, sel.polygon); track('identify_buy_click', { vendor: sel.part?.ebayListings?.[0] ? 'ebay' : sel.part?.vendorLinks?.[0]?.vendor, part: sel.part?.category }); }}
-                    >Buy</a>
-                  )}
+                  <a
+                    className="t2i-btn t2i-buy"
+                    href={buyHref(sel.part, vehicle)}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow sponsored"
+                    onClick={() => { if (sel.part) addToKit(sel.part, sel.polygon); track('identify_buy_click', { vendor: sel.part?.ebayListings?.[0] ? 'ebay' : (sel.part?.vendorLinks?.[0]?.vendor || 'search'), part: sel.part?.category }); }}
+                  >Buy</a>
                 </div>
               </div>
             </div>
@@ -511,7 +509,7 @@ export function TapToIdentifyPhoto({
                   <div className="t2i-kit-sku">{k.part.oemPartNumbers?.[0] || '—'}{buy ? ` · ${buy.displayName}` : ''}</div>
                 </div>
                 {k.part.estimatedPriceUsd && <span style={{ fontFamily: "'SF Mono',Menlo,monospace", fontSize: 13, fontWeight: 700, color: '#0B1220' }}>${k.part.estimatedPriceUsd.low}</span>}
-                {buy && <a className="t2i-btn t2i-buy" style={{ padding: '7px 11px', fontSize: 12 }} href={buy.url} target="_blank" rel="noopener noreferrer nofollow sponsored" onClick={() => track('identify_kit_buy', { vendor: buy.vendor })}>Buy</a>}
+                <a className="t2i-btn t2i-buy" style={{ padding: '7px 11px', fontSize: 12 }} href={buyHref(k.part)} target="_blank" rel="noopener noreferrer nofollow sponsored" onClick={() => track('identify_kit_buy', { vendor: buy?.vendor || 'search' })}>Buy</a>
                 <button onClick={() => removeFromKit(k.key)} aria-label="remove" style={{ width: 24, height: 24, borderRadius: '50%', border: 'none', background: 'transparent', color: '#94A3B8', cursor: 'pointer', fontSize: 13, flexShrink: 0 }}>✕</button>
               </div>
             );
@@ -533,6 +531,16 @@ export function TapToIdentifyPhoto({
 /** Short shop sub-line: condition/finding first, then spec, then position. */
 function subLine(p: IdentifiedPart): string {
   return (p.finding || p.spec || (p.brand ? `${p.brand}` : '') || '').trim();
+}
+
+/** Always resolve a Buy link: eBay listing (affiliate) → vendor link (Amazon
+ *  affiliate / RockAuto) → a plain web search so it never dead-ends. */
+function buyHref(p: IdentifiedPart, vehicle?: TapVehicle): string {
+  if (p.ebayListings?.[0]?.url) return p.ebayListings[0].url;
+  if (p.vendorLinks?.[0]?.url) return p.vendorLinks[0].url;
+  const q = [p.brand, p.oemPartNumbers?.[0], vehicle?.year, vehicle?.make, vehicle?.model, p.name]
+    .filter(Boolean).join(' ').trim();
+  return 'https://www.google.com/search?q=' + encodeURIComponent(q + ' buy');
 }
 
 function speak(text: string) {
