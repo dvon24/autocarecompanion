@@ -23,9 +23,9 @@
  *   4. Redeploy. Free tier = 5,000 Browse calls/day (plenty w/ session cache).
  */
 
-const APP_ID = process.env.EBAY_APP_ID;
-const CERT_ID = process.env.EBAY_CERT_ID;
-const CAMPAIGN_ID = process.env.EBAY_CAMPAIGN_ID; // eBay Partner Network (EPN)
+const APP_ID = process.env.EBAY_APP_ID?.trim();
+const CERT_ID = process.env.EBAY_CERT_ID?.trim();
+const CAMPAIGN_ID = process.env.EBAY_CAMPAIGN_ID?.trim(); // eBay Partner Network (EPN)
 const MARKETPLACE = process.env.EBAY_MARKETPLACE_ID || 'EBAY_US';
 const OAUTH_URL = 'https://api.ebay.com/identity/v1/oauth2/token';
 const BROWSE_URL = 'https://api.ebay.com/buy/browse/v1';
