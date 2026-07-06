@@ -283,6 +283,18 @@ export function LiveCameraShutter({
     } catch { /* draw/encode failed — ignore, stay live */ }
   }, [videoTapToSource]);
 
+  // ── voice "surface_parts" tool: the mechanic (hands-free) asked to put the
+  // parts for the fix on screen. Freeze the CENTER of the live frame + open the
+  // Identify-&-Shop callout, exactly as if the user had tapped the middle. The
+  // mechanic is looking at the same frame, so center is what it's talking about.
+  const surfacePartsFromVoice = useCallback((partQuery: string) => {
+    const v = videoRef.current;
+    if (!v) return;
+    const r = v.getBoundingClientRect();
+    setScanLabel(partQuery || null); // brief on-screen echo of what it's finding
+    freezeAt(r.left + r.width / 2, r.top + r.height / 2);
+  }, [freezeAt]);
+
   // ── Auto-scan: crop the CENTER of the current frame and identify it, then
   // call out the part name (+ speak). One gpt call per tick; hard-capped.
   const scanCenter = useCallback(async () => {
@@ -414,7 +426,7 @@ export function LiveCameraShutter({
           Shown whenever voice is enabled, even while the camera is still
           starting or denied (you can talk to the mechanic without a live
           frame; getFrame just returns null until the camera is up). */}
-      {enableVoice && !deviceBlocked && <VoiceMechanic getFrame={captureFrameDataUrl} vehicle={vehicle} autoStart={voiceAutoStart} />}
+      {enableVoice && !deviceBlocked && <VoiceMechanic getFrame={captureFrameDataUrl} vehicle={vehicle} autoStart={voiceAutoStart} onSurfaceParts={surfacePartsFromVoice} />}
 
       {/* top bar */}
       <div style={{ position: 'absolute', top: 12, left: 12, right: 12, zIndex: 6, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

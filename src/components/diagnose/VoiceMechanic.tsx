@@ -24,10 +24,14 @@ export function VoiceMechanic({
   getFrame,
   vehicle,
   autoStart = true,
+  onSurfaceParts,
 }: {
   getFrame: () => string | null;
   vehicle?: { year?: number; make?: string; model?: string; trim?: string };
   autoStart?: boolean;
+  /** Hands-free "surface_parts" tool: the mechanic asks the screen to freeze the
+   *  live frame and show buyable part callouts for the given query. */
+  onSurfaceParts?: (partQuery: string) => void;
 }) {
   const [status, setStatus] = useState<Status>('idle');
   const [err, setErr] = useState<string | null>(null);
@@ -45,6 +49,8 @@ export function VoiceMechanic({
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const lastFrameSentRef = useRef(0);
   const asstLineRef = useRef<string>('');
+  const onSurfacePartsRef = useRef(onSurfaceParts);
+  onSurfacePartsRef.current = onSurfaceParts;
   const startedRef = useRef(false);
   const demoTimerRef = useRef<number>(0);
   const maxSecondsRef = useRef<number | null>(null);
@@ -119,6 +125,22 @@ export function VoiceMechanic({
     } else if (type === 'conversation.item.input_audio_transcription.completed') {
       const text = String((msg as { transcript?: string }).transcript || '').trim();
       if (text) setLines((p) => [...p, { role: 'you' as const, text }].slice(-12));
+    } else if (type === 'response.function_call_arguments.done') {
+      // The mechanic asked to put parts on the screen, hands-free. Freeze the
+      // frame + surface callouts, then ack the tool call so the turn completes.
+      const m = msg as { name?: string; call_id?: string; arguments?: string };
+      let partQuery = '';
+      try { partQuery = String(JSON.parse(m.arguments || '{}').partQuery || '').trim(); } catch { /* */ }
+      if (m.name === 'surface_parts' && partQuery) {
+        try { onSurfacePartsRef.current?.(partQuery); } catch { /* */ }
+      }
+      const dc = dcRef.current;
+      if (dc && dc.readyState === 'open' && m.call_id) {
+        try {
+          dc.send(JSON.stringify({ type: 'conversation.item.create', item: { type: 'function_call_output', call_id: m.call_id, output: JSON.stringify({ ok: true, surfaced: partQuery }) } }));
+          dc.send(JSON.stringify({ type: 'response.create' }));
+        } catch { /* */ }
+      }
     } else if (type === 'error') {
       const m = (msg as { error?: { message?: string } }).error?.message;
       if (m) console.error('[realtime event error]', m);

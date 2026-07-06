@@ -73,6 +73,7 @@ function buildInstructions(vehicle: VehicleCtx | null): string {
     'TIRES: don\'t guess "bald" or a depth from the look. If the tread is worn flush with the wear bars or cord is showing, call it. Otherwise route them to the penny test — "drop a penny in the groove upside down; if you can see all of Lincoln\'s head, it\'s time to replace." For any other measurement, have them lay a coin or card in frame for scale.',
     'SAFETY: never confidently tell someone a safety item (tires, brakes, steering) is "fine" when you cannot actually see that it is — but never invent a problem "to be safe" either. A false "you\'re good" and a false "stop driving" are both harmful; go on what is visibly there.',
     'When you do see an issue, name the part, what looks wrong, how urgent it is (safe / fix soon / stop driving), and the likely fix. Mention a real part or what to search for when helpful.',
+    'TOOL — surface_parts: you can put the parts a fix needs ON THE SCREEN as tappable buy cards, hands-free. Whenever the owner asks what parts they need, what to buy, or how to fix what you\'re both looking at — OR when you\'ve just named a repair and buyable parts would help — CALL surface_parts with a short partQuery describing the part (e.g. "front brake rotors and pads", "serpentine belt", "upper radiator hose"). The screen will identify it against the live camera and show real part numbers with buy buttons. Do this instead of just reading a part name aloud. After you call it, say ONE short line like "Putting the parts on your screen now."',
   ].filter(Boolean).join(' ');
 }
 
@@ -137,6 +138,19 @@ export async function POST(request: NextRequest) {
     },
   ] : undefined;
 
+  // Mechanic tools — the live-camera voice can surface buyable parts on-screen,
+  // hands-free, when the owner asks what they need for the fix. The client
+  // freezes the current frame, runs identify, and renders the callout cards.
+  const mechanicTools = mode === 'mechanic' ? [
+    {
+      type: 'function',
+      name: 'surface_parts',
+      description: "Put the parts needed for a repair on the owner's screen as tappable buy cards (real part numbers + buy buttons), grounded against the live camera frame. Call this whenever the owner asks what parts they need, what to buy, or how to fix the problem you're looking at — or right after you name a repair that needs parts.",
+      parameters: { type: 'object', properties: { partQuery: { type: 'string', description: 'Short description of the part(s) to surface, e.g. "front brake rotors and pads", "serpentine belt", "upper radiator hose".' } }, required: ['partQuery'] },
+    },
+  ] : undefined;
+  const tools = driveTools ?? mechanicTools;
+
   try {
     // Realtime GA endpoint + nested session schema (the beta /sessions endpoint
     // + flat body were removed May 2026). voice → audio.output; turn_detection +
@@ -149,7 +163,7 @@ export async function POST(request: NextRequest) {
           type: 'realtime',
           model: REALTIME_MODEL,
           instructions,
-          ...(driveTools ? { tools: driveTools, tool_choice: 'auto' } : {}),
+          ...(tools ? { tools, tool_choice: 'auto' } : {}),
           // OpenAI Realtime GA only accepts ['text'] OR ['audio'] — NOT both.
           // ['audio','text'] returns a 400 invalid_value (this was silently
           // killing every voice session at the token-mint step). Audio output
