@@ -327,18 +327,18 @@ export const DriveCopilot = forwardRef<DriveCopilotHandle, {
       )}
 
       {lines.length > 0 && status === 'live' && (
-        <div style={{ position: 'absolute', left: 14, bottom: 150, zIndex: 9, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6, maxWidth: 320, pointerEvents: 'none' }}>
-          {lines.slice(-2).map((l, i) => (
-            <div key={i} style={{ maxWidth: '92%', padding: '8px 12px', borderRadius: 13, fontSize: 13, lineHeight: 1.35, background: l.role === 'you' ? 'rgba(59,130,246,0.92)' : 'rgba(255,255,255,0.97)', color: l.role === 'you' ? '#fff' : '#0B1220', boxShadow: '0 2px 12px rgba(0,0,0,0.3)' }}>
+        <div style={{ position: 'absolute', right: 14, bottom: 150, zIndex: 9, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 6, maxWidth: 300, pointerEvents: 'none' }}>
+          {lines.slice(-3).map((l, i) => (
+            <div key={i} style={{ alignSelf: l.role === 'you' ? 'flex-end' : 'flex-start', maxWidth: '90%', padding: '7px 11px', borderRadius: 12, fontSize: 12.5, lineHeight: 1.35, background: l.role === 'you' ? 'rgba(59,130,246,0.92)' : 'rgba(255,255,255,0.95)', color: l.role === 'you' ? '#fff' : '#0B1220', boxShadow: '0 2px 10px rgba(0,0,0,0.25)' }}>
               {l.text}
             </div>
           ))}
         </div>
       )}
 
-      <div style={{ position: 'absolute', left: 20, bottom: 92, zIndex: 9, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+      <div style={{ position: 'absolute', right: 24, bottom: 92, zIndex: 9, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
         <button type="button" onClick={onOrbTap} aria-label="Drive copilot"
-          style={{ position: 'relative', width: 58, height: 58, borderRadius: '50%', border: 'none', background: orbColor, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 6px 22px ${orbColor}66`, transition: 'background 0.3s', WebkitTapHighlightColor: 'transparent' }}>
+          style={{ position: 'relative', width: 60, height: 60, borderRadius: '50%', border: 'none', background: orbColor, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 6px 22px ${orbColor}66`, transition: 'background 0.3s', WebkitTapHighlightColor: 'transparent' }}>
           {status !== 'error' && status !== 'idle' && !dozing && (
             <>
               <span style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: `2px solid ${orbColor}`, animation: `au7oCopilotRing ${speaking ? 1 : 2}s ease-out infinite` }} />
