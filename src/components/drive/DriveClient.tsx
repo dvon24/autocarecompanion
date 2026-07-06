@@ -6,6 +6,10 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { VehiclePicker, type DriveVehicle } from './VehiclePicker';
 import { DriveCopilot, type DriveCopilotHandle } from './DriveCopilot';
 
+// Bridge so the module-level speak() can hand off to the live GPT copilot voice
+// (replaces the robotic browser TTS). Kept in sync by the component below.
+const copilotBus: { handle: DriveCopilotHandle | null } = { handle: null };
+
 const LS_VEHICLE = 'au7o-drive-vehicle';
 const LS_PREFS = 'au7o-drive-prefs';
 const LS_HISTORY = 'au7o-drive-history';
@@ -219,6 +223,9 @@ function speak(text: string, mode: VoiceMode = 'all', priority: 'alert' | 'norma
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
   if (mode === 'mute') return;
   if (mode === 'alerts' && priority !== 'alert') return;
+  // Prefer the natural GPT (Realtime) voice when the live copilot is running.
+  // Only browser TTS remains as the fallback for non-subscribers.
+  if (copilotBus.handle?.isLive()) { copilotBus.handle.say(text); return; }
   try {
     window.speechSynthesis.cancel();
     const utter = new SpeechSynthesisUtterance(text);
@@ -229,6 +236,16 @@ function speak(text: string, mode: VoiceMode = 'all', priority: 'alert' | 'norma
     utter.pitch = 1.0;
     window.speechSynthesis.speak(utter);
   } catch { /* ignore */ }
+}
+
+/** Great-circle distance in meters between two lat/lng points. */
+function haversineM(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371_000;
+  const toRad = (d: number) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.min(1, Math.sqrt(a)));
 }
 
 // Lazy-init AudioContext for the camera-approach chime. Cached at
@@ -301,6 +318,10 @@ interface DriveClientProps {
 export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = false, prefillDestination = null }: DriveClientProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const copilotRef = useRef<DriveCopilotHandle>(null);
+  // One-shot flags for proactive copilot interjections (reset per new route).
+  const arrivedAnnouncedRef = useRef(false);
+  const fuelMentionedRef = useRef(false);
+  const lastCopilotDestRef = useRef<string | undefined>(undefined);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const originMarker = useRef<mapboxgl.Marker | null>(null);
   const destMarker = useRef<mapboxgl.Marker | null>(null);
@@ -1275,7 +1296,12 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
                 : cam.type === 'red-light' ? tr('cam_red', lang)
                 : isSuppressed ? tr('cam_zone', lang)
                 : tr('cam_speed', lang);
-              speak(tr('cam_ahead', lang, { label, dist: Math.round(distM) }), voiceModeRef.current, 'alert', lang);
+              const camMsg = tr('cam_ahead', lang, { label, dist: Math.round(distM) });
+              // When the live copilot is on, IT voices the alert (richer,
+              // conversational) and the browser TTS stays quiet — no double
+              // voice. Precise turn-by-turn still goes through browser TTS.
+              if (copilotRef.current?.isLive()) copilotRef.current.interject(camMsg);
+              else speak(camMsg, voiceModeRef.current, 'alert', lang);
             }
           }
           // Remove markers for cameras that are no longer in render range —
@@ -2128,6 +2154,37 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
     setListening(false);
   }, []);
 
+  // Keep the module speak() bridge pointed at the live copilot handle so all
+  // existing announcements route through the GPT voice when it's running.
+  useEffect(() => { copilotBus.handle = copilotRef.current; });
+  useEffect(() => () => { copilotBus.handle = null; }, []);
+
+  // Proactive copilot interjections — planned fuel stop + arrival. Fires only
+  // when the live copilot is on (precise turn-by-turn stays on the fast path).
+  useEffect(() => {
+    if (route?.destination !== lastCopilotDestRef.current) {
+      lastCopilotDestRef.current = route?.destination;
+      arrivedAnnouncedRef.current = false;
+      fuelMentionedRef.current = false;
+    }
+    const cp = copilotRef.current;
+    if (!cp?.isLive() || !origin) return;
+    const ar = activeRouteRef.current;
+    if (!fuelMentionedRef.current && ar && Array.isArray(route?.fuelStops) && route.fuelStops.length) {
+      fuelMentionedRef.current = true;
+      const stop = route.fuelStops[0] as { name?: string } | undefined;
+      cp.interject(`This trip needs fuel — I've added ${stop?.name || 'a gas stop'} on your route.`);
+    }
+    const dc = ar?.destinationCoords || route?.destinationCoords;
+    if (!arrivedAnnouncedRef.current && dc) {
+      const d = haversineM(origin.lat, origin.lng, dc.lat, dc.lng);
+      if (d < 500) {
+        arrivedAnnouncedRef.current = true;
+        cp.interject(`You're arriving at ${ar?.destination || 'your destination'}.`);
+      }
+    }
+  }, [origin, route]);
+
   return (
     <div
       className="relative w-full bg-gray-950 overflow-hidden"
@@ -2139,6 +2196,7 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
           Fed a live drive snapshot; proactive interjections wired in a follow-up. */}
       <DriveCopilot
         ref={copilotRef}
+        autoStart={following}
         vehicle={vehicle ? { year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim } : undefined}
         lang={language === 'de' ? 'German' : 'English'}
         onToolCall={async (name, args) => {

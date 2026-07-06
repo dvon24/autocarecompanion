@@ -32,6 +32,8 @@ export interface DriveCopilotHandle {
   /** Speak a proactive alert now (grounds on latest context first). If
    *  `listen` is true the mic wakes so the driver can reply. */
   interject: (text: string, opts?: { listen?: boolean }) => void;
+  /** Speak an exact line immediately, verbatim (turn-by-turn nav cues). */
+  say: (text: string) => void;
   /** Push the latest drive context silently (no spoken response). */
   syncContext: () => void;
   isLive: () => boolean;
@@ -136,11 +138,24 @@ export const DriveCopilot = forwardRef<DriveCopilotHandle, {
     if (opts?.listen) wake();
   }, [syncContext, wake]);
 
+  // Verbatim TTS via the Realtime voice — for exact nav cues ("in 500 feet,
+  // turn left") where wording + timing matter, so we replace the robotic
+  // browser voice with the natural GPT voice.
+  const say = useCallback((text: string) => {
+    const dc = dcRef.current;
+    if (!dc || dc.readyState !== 'open') return;
+    try {
+      dc.send(JSON.stringify({ type: 'conversation.item.create', item: { type: 'message', role: 'user', content: [{ type: 'input_text', text: `Say this to me now, out loud, verbatim and nothing else: "${text}"` }] } }));
+      dc.send(JSON.stringify({ type: 'response.create' }));
+    } catch { /* */ }
+  }, []);
+
   useImperativeHandle(ref, () => ({
     interject,
+    say,
     syncContext,
     isLive: () => status === 'live',
-  }), [interject, syncContext, status]);
+  }), [interject, say, syncContext, status]);
 
   // Execute a copilot tool call → return its output → let the model speak it.
   const handleTool = useCallback(async (name: string, callId: string, argsStr: string) => {
@@ -185,7 +200,7 @@ export const DriveCopilot = forwardRef<DriveCopilotHandle, {
     }
   }, [armIdle, handleTool]);
 
-  const start = useCallback(async () => {
+  const start = useCallback(async (auto = false) => {
     if (startedRef.current) return;
     startedRef.current = true;
     setErr(null); setGated(null);
@@ -201,7 +216,9 @@ export const DriveCopilot = forwardRef<DriveCopilotHandle, {
         // Drive copilot is Plus-only — no mid-drive demo cutoff. Any non-full
         // tier (demo/used/401) resolves to an upgrade prompt.
         if (tokenRes.status === 402 || tok.tier === 'demo' || tokenRes.status === 401) {
-          setGated({
+          // Auto-start (nav began) for a non-subscriber → fall back silently to
+          // browser TTS; only an explicit tap shows the upgrade card.
+          if (!auto) setGated({
             message: tok.message || 'The live drive copilot is a Plus feature.',
             ctaUrl: tok.ctaUrl || '/subscribe',
             ctaLabel: tok.ctaLabel || 'Upgrade to Plus',
@@ -210,13 +227,13 @@ export const DriveCopilot = forwardRef<DriveCopilotHandle, {
           startedRef.current = false;
           return;
         }
-        setErr(tok.message || 'Could not start the copilot.');
-        setStatus('error');
+        if (!auto) setErr(tok.message || 'Could not start the copilot.');
+        setStatus(auto ? 'idle' : 'error');
         startedRef.current = false;
         return;
       }
       if (tok.tier === 'demo') {
-        setGated({ message: 'The live drive copilot is a Plus feature.', ctaUrl: '/subscribe', ctaLabel: 'Upgrade to Plus' });
+        if (!auto) setGated({ message: 'The live drive copilot is a Plus feature.', ctaUrl: '/subscribe', ctaLabel: 'Upgrade to Plus' });
         setStatus('idle'); startedRef.current = false; return;
       }
 
@@ -264,7 +281,7 @@ export const DriveCopilot = forwardRef<DriveCopilotHandle, {
 
   useEffect(() => {
     if (!autoStart) return;
-    const t = setTimeout(() => { start(); }, 500);
+    const t = setTimeout(() => { start(true); }, 500);
     return () => clearTimeout(t);
   }, [autoStart, start]);
 
