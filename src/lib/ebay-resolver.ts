@@ -220,8 +220,26 @@ export async function ebayHealthProbe(query = 'Chevrolet Camaro ZL1 1LE hood ins
   enabled: boolean; tokenOk: boolean; searchStatus: number | null; listings: number; verifiedPartNumber: string | null; campaignTagged: boolean; error?: string;
 }> {
   if (!APP_ID || !CERT_ID) return { enabled: false, tokenOk: false, searchStatus: null, listings: 0, verifiedPartNumber: null, campaignTagged: false };
-  const token = await getToken();
-  if (!token) return { enabled: true, tokenOk: false, searchStatus: null, listings: 0, verifiedPartNumber: null, campaignTagged: false, error: 'oauth_failed — check EBAY_CERT_ID' };
+  // Direct mint so we can surface eBay's EXACT rejection (invalid_client, etc.).
+  let token: string | null = null;
+  try {
+    const basic = Buffer.from(`${APP_ID.trim()}:${CERT_ID.trim()}`).toString('base64');
+    const res = await fetch(OAUTH_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded', Authorization: `Basic ${basic}` },
+      body: 'grant_type=client_credentials&scope=' + encodeURIComponent('https://api.ebay.com/oauth/api_scope'),
+      signal: AbortSignal.timeout(EBAY_TIMEOUT_MS),
+    });
+    if (!res.ok) {
+      const t = await res.text().catch(() => '');
+      return { enabled: true, tokenOk: false, searchStatus: null, listings: 0, verifiedPartNumber: null, campaignTagged: !!CAMPAIGN_ID, error: `oauth_${res.status}: ${t.slice(0, 220)}`, appIdPrefix: APP_ID.slice(0, 10), certIdLen: CERT_ID.length } as never;
+    }
+    const j = (await res.json()) as { access_token?: string };
+    token = j.access_token || null;
+  } catch {
+    return { enabled: true, tokenOk: false, searchStatus: null, listings: 0, verifiedPartNumber: null, campaignTagged: !!CAMPAIGN_ID, error: 'oauth_network_or_timeout' };
+  }
+  if (!token) return { enabled: true, tokenOk: false, searchStatus: null, listings: 0, verifiedPartNumber: null, campaignTagged: !!CAMPAIGN_ID, error: 'oauth_no_token_in_response' };
   try {
     const url = `${BROWSE_URL}/item_summary/search?q=${encodeURIComponent(query)}&category_ids=${PARTS_CATEGORY}&limit=3`;
     const res = await fetch(url, { headers: browseHeaders(token), signal: AbortSignal.timeout(EBAY_TIMEOUT_MS) });
