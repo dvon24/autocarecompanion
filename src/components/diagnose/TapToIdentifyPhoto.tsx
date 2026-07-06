@@ -249,6 +249,9 @@ export function TapToIdentifyPhoto({
   // never fires an identify.
   const onDown = useCallback((e: React.PointerEvent) => {
     if (!e.isPrimary || tapId.current !== null) return;
+    // Don't hijack taps on the callout / kit / buttons / links — otherwise the
+    // pointer-capture below steals the click and Buy/Add-to-kit do nothing.
+    if ((e.target as HTMLElement).closest?.('.t2i-callout, .t2i-kit, button, a, .t2i-close')) return;
     (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
     tapId.current = e.pointerId;
   }, []);
@@ -297,7 +300,7 @@ export function TapToIdentifyPhoto({
         .t2i-stage > img { display:block; width:100%; height:100%; object-fit:contain; pointer-events:none; }
         .t2i-hint { position:absolute; top:10px; left:50%; transform:translateX(-50%); z-index:8; padding:7px 14px; border-radius:999px; background:rgba(8,12,20,0.62); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.14); color:#fff; font-size:12px; font-weight:600; white-space:nowrap; pointer-events:none; display:inline-flex; align-items:center; gap:7px; }
         .t2i-hint .dot { width:6px; height:6px; border-radius:50%; background:#38E1B0; box-shadow:0 0 8px #38E1B0; }
-        .t2i-close { position:absolute; top:calc(10px + env(safe-area-inset-top)); right:12px; z-index:9; width:34px; height:34px; border-radius:50%; background:rgba(8,12,20,0.5); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.16); color:#fff; font-size:15px; cursor:pointer; display:grid; place-items:center; }
+        .t2i-close { position:absolute; top:calc(10px + env(safe-area-inset-top)); left:12px; z-index:50; display:inline-flex; align-items:center; gap:7px; padding:9px 14px; border-radius:999px; background:rgba(8,12,20,0.66); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.2); color:#fff; font-size:13px; font-weight:600; cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,0.4); }
         .t2i-nametag { position:absolute; transform:translate(-50%,-50%); z-index:20; pointer-events:none; display:inline-flex; align-items:center; gap:6px; padding:5px 10px; border-radius:999px; background:rgba(8,12,20,0.72); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.16); white-space:nowrap; box-shadow:0 6px 20px rgba(0,0,0,0.4); animation:t2iTagIn .3s ease both; }
         .t2i-nametag .nm { font-size:11px; font-weight:600; color:#fff; letter-spacing:-0.01em; }
         .t2i-nametag .cf { font-size:9.5px; font-weight:600; }
@@ -348,7 +351,7 @@ export function TapToIdentifyPhoto({
       `}</style>
 
       {embedded && onClose && (
-        <button type="button" className="t2i-close" onClick={onClose} aria-label="Back to camera">✕</button>
+        <button type="button" className="t2i-close" onClick={onClose} aria-label="Back to live camera">✕ Live camera</button>
       )}
 
       <div
