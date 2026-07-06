@@ -345,6 +345,9 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
 
   const [origin, setOrigin] = useState<{ lng: number; lat: number } | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
+  // Copilot tool results shown on the map (place lookup card + vision prompt).
+  const [placeCard, setPlaceCard] = useState<{ name: string; rating: number | null; ratingCount: number | null; openNow: boolean | null; priceLevel: string | null; address: string; summary: string; topReview: string; mapsUri: string } | null>(null);
+  const [visionPrompt, setVisionPrompt] = useState(false);
   const [driverSpeedMph, setDriverSpeedMph] = useState<number | null>(null);
   // Last GPS fix used to compute speed when pos.coords.speed is null. Many
   // browsers (Chrome on desktop, some Android setups) return null for speed
@@ -2138,6 +2141,30 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
         ref={copilotRef}
         vehicle={vehicle ? { year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim } : undefined}
         lang={language === 'de' ? 'German' : 'English'}
+        onToolCall={async (name, args) => {
+          if (name === 'open_vision') {
+            setVisionPrompt(true);
+            return { ok: true, spoken: "I've put an Open au7o vision button on your screen — tap it when you're safely stopped." };
+          }
+          if (name === 'lookup_place') {
+            const q = String((args as { query?: string }).query || '').trim();
+            if (!q) return { ok: false, error: 'no_query' };
+            if (!origin) return { ok: false, error: 'no_location_yet' };
+            try {
+              const res = await fetch('/api/drive/poi-rich-details', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: q, lng: origin.lng, lat: origin.lat, language }),
+              });
+              const d = await res.json();
+              if (!d || d.available === false || d.found === false) return { ok: false, error: 'not_found', query: q };
+              const rv = Array.isArray(d.reviews) ? d.reviews[0] : null;
+              const topReview = rv ? String(typeof rv.text === 'string' ? rv.text : (rv.text?.text || '')).slice(0, 240) : '';
+              setPlaceCard({ name: d.name, rating: d.rating ?? null, ratingCount: d.ratingCount ?? null, openNow: d.openNow ?? null, priceLevel: d.priceLevel ?? null, address: d.address || '', summary: d.summary || '', topReview, mapsUri: d.googleMapsUri || '' });
+              return { ok: true, name: d.name, rating: d.rating, ratingCount: d.ratingCount, openNow: d.openNow, priceLevel: d.priceLevel, todaysHours: d.todaysHours, summary: d.summary, topReview, address: d.address };
+            } catch { return { ok: false, error: 'lookup_failed' }; }
+          }
+          return { ok: false, error: 'unknown_tool' };
+        }}
         getContext={() => {
           const parts: string[] = [];
           if (driverSpeedMph != null) parts.push(`Speed: ${Math.round(driverSpeedMph)} mph`);
@@ -2160,6 +2187,41 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
           return parts.join('\n');
         }}
       />
+
+      {/* Copilot place-lookup card (Google Places reviews/hours/rating). */}
+      {placeCard && (
+        <div className="absolute left-4 right-4 bottom-24 z-20 mx-auto max-w-sm rounded-2xl bg-white shadow-2xl overflow-hidden">
+          <div className="p-4">
+            <div className="flex items-start gap-2">
+              <div className="flex-1 min-w-0">
+                <div className="text-[15px] font-bold text-gray-900 leading-tight">{placeCard.name}</div>
+                <div className="mt-0.5 flex items-center gap-2 text-xs text-gray-500">
+                  {placeCard.rating != null && <span className="font-semibold text-amber-600">★ {placeCard.rating}{placeCard.ratingCount != null ? ` (${placeCard.ratingCount})` : ''}</span>}
+                  {placeCard.priceLevel && <span>· {String(placeCard.priceLevel).replace('PRICE_LEVEL_', '').toLowerCase()}</span>}
+                  {placeCard.openNow != null && <span className={placeCard.openNow ? 'text-green-600 font-semibold' : 'text-red-500 font-semibold'}>· {placeCard.openNow ? 'Open now' : 'Closed'}</span>}
+                </div>
+              </div>
+              <button onClick={() => setPlaceCard(null)} className="text-gray-400 text-lg leading-none px-1" aria-label="Close">×</button>
+            </div>
+            {placeCard.summary && <p className="mt-2 text-[12.5px] text-gray-600 leading-snug">{placeCard.summary}</p>}
+            {placeCard.topReview && <p className="mt-2 text-[12px] text-gray-500 italic leading-snug">“{placeCard.topReview}”</p>}
+            {placeCard.address && <p className="mt-2 text-[11px] text-gray-400">{placeCard.address}</p>}
+            {placeCard.mapsUri && <a href={placeCard.mapsUri} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-[12px] font-semibold text-blue-600">Open in Maps →</a>}
+          </div>
+        </div>
+      )}
+
+      {/* Copilot asked to pull up au7o vision — safe tap-to-confirm. */}
+      {visionPrompt && (
+        <div className="absolute left-4 right-4 bottom-24 z-20 mx-auto max-w-sm rounded-2xl bg-gray-900 text-white shadow-2xl p-4 flex items-center gap-3">
+          <div className="flex-1">
+            <div className="text-sm font-bold">Open au7o vision?</div>
+            <div className="text-xs text-white/70">Point the camera at the problem or part.</div>
+          </div>
+          <a href="/diagnose" className="px-3 py-2 rounded-lg bg-blue-600 text-white text-sm font-semibold">Open</a>
+          <button onClick={() => setVisionPrompt(false)} className="text-white/60 text-lg px-1" aria-label="Dismiss">×</button>
+        </div>
+      )}
 
       {/* Vehicle picker — top-left. When the user isn't signed in we show a
           subtle "Sign in to save" pill next to it so anonymous users learn

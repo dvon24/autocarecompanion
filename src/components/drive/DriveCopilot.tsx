@@ -49,7 +49,10 @@ export const DriveCopilot = forwardRef<DriveCopilotHandle, {
   /** Start the session automatically on mount. */
   autoStart?: boolean;
   onClose?: () => void;
-}>(function DriveCopilot({ getContext, lang, vehicle, autoStart = false, onClose }, ref) {
+  /** Executes a copilot tool call (lookup_place, open_vision). Returns a
+   *  JSON-serializable result the model speaks back. */
+  onToolCall?: (name: string, args: Record<string, unknown>) => Promise<unknown>;
+}>(function DriveCopilot({ getContext, lang, vehicle, autoStart = false, onClose, onToolCall }, ref) {
   const [status, setStatus] = useState<Status>('idle');
   const [err, setErr] = useState<string | null>(null);
   const [dozing, setDozing] = useState(false);
@@ -66,6 +69,8 @@ export const DriveCopilot = forwardRef<DriveCopilotHandle, {
   // Always read the LATEST snapshot from intervals/closures (no stale context).
   const getContextRef = useRef(getContext);
   getContextRef.current = getContext;
+  const onToolCallRef = useRef(onToolCall);
+  onToolCallRef.current = onToolCall;
   const idleTimerRef = useRef<number>(0);
   const lastContextRef = useRef(0);
   const contextTimerRef = useRef<number>(0);
@@ -137,6 +142,21 @@ export const DriveCopilot = forwardRef<DriveCopilotHandle, {
     isLive: () => status === 'live',
   }), [interject, syncContext, status]);
 
+  // Execute a copilot tool call → return its output → let the model speak it.
+  const handleTool = useCallback(async (name: string, callId: string, argsStr: string) => {
+    let args: Record<string, unknown> = {};
+    try { args = JSON.parse(argsStr || '{}'); } catch { /* */ }
+    let result: unknown;
+    try { result = (await onToolCallRef.current?.(name, args)) ?? { ok: false, error: 'unavailable' }; }
+    catch { result = { ok: false, error: 'failed' }; }
+    const dc = dcRef.current;
+    if (!dc || dc.readyState !== 'open') return;
+    try {
+      dc.send(JSON.stringify({ type: 'conversation.item.create', item: { type: 'function_call_output', call_id: callId, output: JSON.stringify(result) } }));
+      dc.send(JSON.stringify({ type: 'response.create' }));
+    } catch { /* */ }
+  }, []);
+
   const onEvent = useCallback((ev: MessageEvent) => {
     let msg: Record<string, unknown>;
     try { msg = JSON.parse(ev.data); } catch { return; }
@@ -156,11 +176,14 @@ export const DriveCopilot = forwardRef<DriveCopilotHandle, {
     } else if (type === 'conversation.item.input_audio_transcription.completed') {
       const text = String((msg as { transcript?: string }).transcript || '').trim();
       if (text) setLines((p) => [...p, { role: 'you' as const, text }].slice(-8));
+    } else if (type === 'response.function_call_arguments.done') {
+      const m2 = msg as { name?: string; call_id?: string; arguments?: string };
+      if (m2.name && m2.call_id) handleTool(String(m2.name), String(m2.call_id), String(m2.arguments || '{}'));
     } else if (type === 'error') {
       const m = (msg as { error?: { message?: string } }).error?.message;
       if (m) console.error('[drive-copilot event error]', m);
     }
-  }, [armIdle]);
+  }, [armIdle, handleTool]);
 
   const start = useCallback(async () => {
     if (startedRef.current) return;

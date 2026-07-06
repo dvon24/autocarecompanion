@@ -55,6 +55,7 @@ function buildDriveInstructions(vehicle: VehicleCtx | null, lang?: string): stri
     'COACHING (gentle, occasional, safety-first): if the context shows they are losing speed on an uphill grade, a single brief cue is fine ("slight grade — ease into the throttle to hold your speed"). Never nag; at most once in a while, and never about something they can\'t safely act on.',
     'TRANSLATION: you are fully multilingual. If the user reads a foreign road sign aloud or asks what something means, translate it plainly. If they are driving in a country whose language differs from theirs, help them read signs and speak to locals.',
     language ? `The user's language is ${language} — speak ${language} by default, and switch if they switch.` : 'Speak the user\'s language; match whatever they speak to you.',
+    'TOOLS — you can DO things, not just talk. Use lookup_place when the driver asks about a place, its reviews, rating, hours, price, or "is it any good" (e.g. "what\'s the Thai place ahead like?"). Use open_vision when they want to SHOW you something on the car — a warning light, a noise, a leak, or to identify a part. After a tool returns, say ONE short spoken line with the key facts (e.g. "Four-point-five stars, open till 10, a bit pricey — want me to route there?").',
     'MUTE: to save power and avoid road noise, your mic may be muted between exchanges. You will STILL receive drive context while muted and you can and should speak up for the important triggers above. When the user taps to talk, listen and answer, then it\'s fine to go quiet again.',
     'GREETING: when the session opens, say ONE short line only — something like "I\'m with you — I\'ll pipe up if anything comes up." Then go quiet and wait.',
   ].filter(Boolean).join(' ');
@@ -118,6 +119,24 @@ export async function POST(request: NextRequest) {
   } catch { /* body optional */ }
   const instructions = mode === 'drive' ? buildDriveInstructions(vehicle, lang) : buildInstructions(vehicle);
 
+  // Drive copilot tools — function-calling so the voice can DO things (look up
+  // a place's reviews via Google Places, pull up au7o vision). The client
+  // executes each call and returns the result over the data channel.
+  const driveTools = mode === 'drive' ? [
+    {
+      type: 'function',
+      name: 'lookup_place',
+      description: "Look up a specific place near the driver (restaurant, cafe, gas station, hotel, shop, attraction) to get its star rating, review highlights, whether it is open now, price level, and address. Use whenever the driver asks about a place, its reviews, hours, price, or whether it's any good.",
+      parameters: { type: 'object', properties: { query: { type: 'string', description: 'Place name or description, e.g. "Olive Garden", "coffee near me", "that ramen spot on Main".' } }, required: ['query'] },
+    },
+    {
+      type: 'function',
+      name: 'open_vision',
+      description: 'Pull up au7o vision — the live camera diagnostic — so the driver or passenger can show a car problem (warning light, leak, noise, worn part) or identify a part. Use when they want to SHOW you something on the vehicle.',
+      parameters: { type: 'object', properties: { reason: { type: 'string', description: 'Short reason, e.g. "check engine light" or "identify a part".' } } },
+    },
+  ] : undefined;
+
   try {
     // Realtime GA endpoint + nested session schema (the beta /sessions endpoint
     // + flat body were removed May 2026). voice → audio.output; turn_detection +
@@ -130,6 +149,7 @@ export async function POST(request: NextRequest) {
           type: 'realtime',
           model: REALTIME_MODEL,
           instructions,
+          ...(driveTools ? { tools: driveTools, tool_choice: 'auto' } : {}),
           // OpenAI Realtime GA only accepts ['text'] OR ['audio'] — NOT both.
           // ['audio','text'] returns a 400 invalid_value (this was silently
           // killing every voice session at the token-mint step). Audio output
