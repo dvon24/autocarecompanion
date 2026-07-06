@@ -210,3 +210,33 @@ function nowMs(): number {
   // Date.now is fine at runtime (this module never runs inside a workflow VM).
   return Date.now();
 }
+
+/**
+ * Founder-only health probe: reports whether OAuth mints, the Browse search
+ * HTTP status (a 403 here = Buy API production access not granted), how many
+ * listings came back, and whether the ≥3-listing gate found a verified PN.
+ */
+export async function ebayHealthProbe(query = 'Chevrolet Camaro ZL1 1LE hood insert carbon fiber'): Promise<{
+  enabled: boolean; tokenOk: boolean; searchStatus: number | null; listings: number; verifiedPartNumber: string | null; campaignTagged: boolean; error?: string;
+}> {
+  if (!APP_ID || !CERT_ID) return { enabled: false, tokenOk: false, searchStatus: null, listings: 0, verifiedPartNumber: null, campaignTagged: false };
+  const token = await getToken();
+  if (!token) return { enabled: true, tokenOk: false, searchStatus: null, listings: 0, verifiedPartNumber: null, campaignTagged: false, error: 'oauth_failed — check EBAY_CERT_ID' };
+  try {
+    const url = `${BROWSE_URL}/item_summary/search?q=${encodeURIComponent(query)}&category_ids=${PARTS_CATEGORY}&limit=3`;
+    const res = await fetch(url, { headers: browseHeaders(token), signal: AbortSignal.timeout(EBAY_TIMEOUT_MS) });
+    const searchStatus = res.status;
+    if (!res.ok) {
+      const txt = await res.text().catch(() => '');
+      return { enabled: true, tokenOk: true, searchStatus, listings: 0, verifiedPartNumber: null, campaignTagged: !!CAMPAIGN_ID, error: `search_${searchStatus}: ${txt.slice(0, 160)}` };
+    }
+    const j = (await res.json()) as { itemSummaries?: BrowseSummary[] };
+    const summaries = j.itemSummaries || [];
+    const listings = summaries.length;
+    const campaignTagged = !!CAMPAIGN_ID && !!summaries[0]?.itemAffiliateWebUrl;
+    const r = await resolveEbay(query, '');
+    return { enabled: true, tokenOk: true, searchStatus, listings, verifiedPartNumber: r?.verifiedPartNumber ?? null, campaignTagged };
+  } catch {
+    return { enabled: true, tokenOk: true, searchStatus: null, listings: 0, verifiedPartNumber: null, campaignTagged: !!CAMPAIGN_ID, error: 'network' };
+  }
+}
