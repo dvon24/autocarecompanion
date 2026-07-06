@@ -50,11 +50,14 @@ export const DriveCopilot = forwardRef<DriveCopilotHandle, {
   vehicle?: { year?: number; make?: string; model?: string; trim?: string };
   /** Start the session automatically on mount. */
   autoStart?: boolean;
+  /** If set, the copilot opens with this exact line (the drive briefing)
+   *  instead of the generic greeting. */
+  greeting?: string;
   onClose?: () => void;
   /** Executes a copilot tool call (lookup_place, open_vision). Returns a
    *  JSON-serializable result the model speaks back. */
   onToolCall?: (name: string, args: Record<string, unknown>) => Promise<unknown>;
-}>(function DriveCopilot({ getContext, lang, vehicle, autoStart = false, onClose, onToolCall }, ref) {
+}>(function DriveCopilot({ getContext, lang, vehicle, autoStart = false, greeting, onClose, onToolCall }, ref) {
   const [status, setStatus] = useState<Status>('idle');
   const [err, setErr] = useState<string | null>(null);
   const [dozing, setDozing] = useState(false);
@@ -73,6 +76,8 @@ export const DriveCopilot = forwardRef<DriveCopilotHandle, {
   getContextRef.current = getContext;
   const onToolCallRef = useRef(onToolCall);
   onToolCallRef.current = onToolCall;
+  const greetingRef = useRef(greeting);
+  greetingRef.current = greeting;
   const idleTimerRef = useRef<number>(0);
   const lastContextRef = useRef(0);
   const contextTimerRef = useRef<number>(0);
@@ -252,8 +257,9 @@ export const DriveCopilot = forwardRef<DriveCopilotHandle, {
         setStatus('live');
         syncContext();
         armIdle();
-        // Greet once, then go quiet.
-        try { dc.send(JSON.stringify({ type: 'response.create' })); } catch { /* */ }
+        // Open with the briefing line if we have one, else the generic greeting.
+        if (greetingRef.current) say(greetingRef.current);
+        else try { dc.send(JSON.stringify({ type: 'response.create' })); } catch { /* */ }
         // Keep grounding fresh throughout the drive (silent).
         window.clearInterval(contextTimerRef.current);
         contextTimerRef.current = window.setInterval(() => syncContext(), CONTEXT_EVERY_MS);

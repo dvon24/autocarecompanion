@@ -369,6 +369,9 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
   // Copilot tool results shown on the map (place lookup card + vision prompt).
   const [placeCard, setPlaceCard] = useState<{ name: string; rating: number | null; ratingCount: number | null; openNow: boolean | null; priceLevel: string | null; address: string; summary: string; topReview: string; mapsUri: string } | null>(null);
   const [visionPrompt, setVisionPrompt] = useState(false);
+  // "Get in the car" briefing — usual route + live traffic + destination weather.
+  const [briefing, setBriefing] = useState<{ line: string; destination: string; coords: { lng: number; lat: number } } | null>(null);
+  const briefingFetchedRef = useRef(false);
   const [driverSpeedMph, setDriverSpeedMph] = useState<number | null>(null);
   // Last GPS fix used to compute speed when pos.coords.speed is null. Many
   // browsers (Chrome on desktop, some Android setups) return null for speed
@@ -2159,6 +2162,42 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
   useEffect(() => { copilotBus.handle = copilotRef.current; });
   useEffect(() => () => { copilotBus.handle = null; }, []);
 
+  // "Get in the car" briefing — once, when location + history are available.
+  // Pick the usual destination for this time-of-day from local history, then
+  // fetch live traffic + destination weather + the spoken line.
+  useEffect(() => {
+    if (briefingFetchedRef.current || !origin) return;
+    const hist = routeHistoryRef.current;
+    if (!hist || hist.length < 2) return;
+    briefingFetchedRef.current = true;
+    const now = new Date();
+    const nowHour = now.getHours();
+    const isWeekend = now.getDay() === 0 || now.getDay() === 6;
+    const near = hist.filter((h) => {
+      const d = new Date(h.at);
+      const we = d.getDay() === 0 || d.getDay() === 6;
+      return Math.abs(d.getHours() - nowHour) <= 2 && we === isWeekend;
+    });
+    const counts: Record<string, number> = {};
+    for (const h of near) counts[h.destination] = (counts[h.destination] || 0) + 1;
+    const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
+    if (!top || top[1] < 2) return; // no established pattern for this time yet
+    const dest = top[0];
+    const mins = near.filter((h) => h.destination === dest).map((h) => h.minutes).filter(Boolean).sort((a, b) => a - b);
+    const typicalMin = mins.length ? mins[Math.floor(mins.length / 2)] : null;
+    const greetWord = nowHour < 12 ? 'Morning' : nowHour < 18 ? 'Afternoon' : 'Evening';
+    (async () => {
+      try {
+        const res = await fetch('/api/drive/briefing', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ origin, destination: dest, typicalMin, greetWord, lang: language }),
+        });
+        const d = await res.json();
+        if (d?.ok && d.line && d.coords) setBriefing({ line: d.line, destination: d.destination || dest, coords: d.coords });
+      } catch { /* briefing is best-effort */ }
+    })();
+  }, [origin, language]);
+
   // Proactive copilot interjections — planned fuel stop + arrival. Fires only
   // when the live copilot is on (precise turn-by-turn stays on the fast path).
   useEffect(() => {
@@ -2197,6 +2236,7 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
       <DriveCopilot
         ref={copilotRef}
         autoStart={following}
+        greeting={briefing?.line}
         vehicle={vehicle ? { year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim } : undefined}
         lang={language === 'de' ? 'German' : 'English'}
         onToolCall={async (name, args) => {
@@ -2245,6 +2285,30 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
           return parts.join('\n');
         }}
       />
+
+      {/* "Get in the car" briefing — usual route + live traffic + destination
+          weather + what to pack. Shows on open when a pattern is recognized;
+          Start hands it to the router and the copilot voices it on the way. */}
+      {briefing && (
+        <div className="absolute top-20 left-4 right-4 z-30 mx-auto max-w-sm rounded-2xl overflow-hidden shadow-2xl"
+          style={{ background: 'linear-gradient(180deg, rgba(17,22,33,0.94), rgba(11,15,24,0.96))', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: '1px solid rgba(255,255,255,0.14)' }}>
+          <div style={{ height: 3, background: 'linear-gradient(90deg, transparent, #3B82F6, transparent)' }} />
+          <div className="p-4 text-white">
+            <div className="flex items-start gap-2">
+              <span className="text-base leading-none mt-0.5">🛰️</span>
+              <p className="flex-1 text-[13.5px] leading-snug text-white/95">{briefing.line}</p>
+              <button onClick={() => setBriefing(null)} className="text-white/50 text-lg leading-none px-1" aria-label="Dismiss">×</button>
+            </div>
+            <div className="mt-3 flex gap-2">
+              <button
+                onClick={() => { const b = briefing; setBriefing(null); submitTranscript(b.destination, { lng: b.coords.lng, lat: b.coords.lat, placeName: b.destination }); }}
+                className="flex-1 py-2 rounded-lg bg-blue-600 text-white text-sm font-semibold"
+              >Start drive to {briefing.destination}</button>
+              <button onClick={() => setBriefing(null)} className="px-3 py-2 rounded-lg bg-white/10 border border-white/15 text-white text-sm">Not now</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Copilot place-lookup card (Google Places reviews/hours/rating). */}
       {placeCard && (
