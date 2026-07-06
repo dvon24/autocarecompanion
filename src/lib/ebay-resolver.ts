@@ -34,8 +34,8 @@ const EBAY_TIMEOUT_MS = Number(process.env.EBAY_TIMEOUT_MS || 7000);
 const PARTS_CATEGORY = '6028';
 // How many top listings to inspect for part-number agreement, and the minimum
 // that must agree before we call a number "verified" (acceptance test #4).
-const INSPECT_N = 6;
-const AGREE_MIN = 3;
+const INSPECT_N = 8;
+const AGREE_MIN = 2;
 
 /** Categories where eBay is the PRIMARY source (used-OEM body/trim/OEM-specific
  *  parts live on eBay with real part numbers; Amazon returns knockoffs). Small
@@ -119,6 +119,25 @@ function normPN(s: string): string {
   return String(s || '').toUpperCase().replace(/\s+/g, '').replace(/[^A-Z0-9-]/g, '').trim();
 }
 
+// Extract candidate OEM part numbers from a free-text listing title. Noisy by
+// design — the ≥AGREE_MIN cross-listing gate downstream keeps only tokens that
+// recur across independent listings, which junk (years, tire sizes) won't.
+function extractTitlePNs(title: string): string[] {
+  const out: string[] = [];
+  for (const raw of String(title).toUpperCase().split(/[^A-Z0-9-]+/)) {
+    const v = raw.replace(/^-+|-+$/g, '');
+    if (!v) continue;
+    const bare = v.replace(/-/g, '');
+    if (bare.length < 6 || bare.length > 17) continue;
+    if (!/[0-9]/.test(bare)) continue;              // must contain a digit
+    if (/^(19|20)\d{2}$/.test(bare)) continue;       // a year
+    // Need a letter (Mopar/Ford style) OR ≥7 digits (GM 8-digit numbers).
+    if (!/[A-Z]/.test(bare) && bare.length < 7) continue;
+    out.push(v);
+  }
+  return out;
+}
+
 interface BrowseSummary { itemId?: string; title?: string; itemWebUrl?: string; itemAffiliateWebUrl?: string; condition?: string; price?: { value?: string; currency?: string } }
 interface BrowseItemDetail { localizedAspects?: Array<{ type?: string; name?: string; value?: string }> }
 
@@ -185,22 +204,27 @@ export async function resolveEbay(q: string, modelHintPN?: string): Promise<Ebay
   // Pull item-specifics part numbers from the top listings in parallel.
   const ids = summaries.map((s) => s.itemId).filter((x): x is string => !!x).slice(0, INSPECT_N);
   const pnLists = await Promise.all(ids.map((id) => fetchDetailPNs(token, id)));
+  const idPNs = new Map<string, string[]>();
+  ids.forEach((id, k) => idPNs.set(id, pnLists[k] || []));
 
-  // Count agreement across listings (one vote per listing per distinct PN).
+  // ONE vote per LISTING per distinct PN — pulled from BOTH the structured
+  // item-specifics AND the title (sellers routinely put "OEM 84243751" right in
+  // the title). Cross-listing agreement filters out title noise (years/sizes).
   const counts = new Map<string, number>();
-  for (const pns of pnLists) {
-    for (const pn of new Set(pns)) counts.set(pn, (counts.get(pn) || 0) + 1);
+  for (const s of summaries.slice(0, INSPECT_N)) {
+    const set = new Set<string>();
+    for (const pn of extractTitlePNs(s.title || '')) set.add(pn);
+    const dp = s.itemId ? idPNs.get(s.itemId) : null;
+    if (dp) for (const pn of dp) set.add(pn);
+    for (const pn of set) counts.set(pn, (counts.get(pn) || 0) + 1);
   }
-  // Fold in the model's hint PN as ONE corroborating vote (never enough alone).
-  const hint = modelHintPN ? normPN(modelHintPN) : '';
-  if (hint && PN_VALUE_RE.test(hint.replace(/-/g, ''))) counts.set(hint, (counts.get(hint) || 0) + 1);
-
   const partNumbers = [...counts.entries()]
     .map(([value, count]) => ({ value, count, verified: count >= AGREE_MIN }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 5);
   const top = partNumbers[0];
   const verifiedPartNumber = top && top.verified ? top.value : null;
+  void modelHintPN; // the model's PN stays the "reported" fallback upstream — never a vote
 
   if (partNumbers.length === 0 && listings.length === 0) return null;
   return { partNumbers, verifiedPartNumber, listings };
