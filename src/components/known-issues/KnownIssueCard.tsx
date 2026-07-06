@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { triggerHaptic } from '@/hooks/useHaptic';
 import { IssueFix } from '@/hooks/useIssueFixes';
 import { trackAffiliateClick } from '@/lib/analytics';
+import { ebayAffiliate } from '@/lib/ebay-affiliate';
 
 interface RelatedIssueVehicle {
   slug: string;
@@ -457,7 +458,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                         {p.buyLinks.map((b, j) => (
                           <a
                             key={j}
-                            href={b.url}
+                            href={b.vendor === 'eBay' ? ebayAffiliate(b.url, issue.id) : b.url}
                             target="_blank"
                             rel="noopener noreferrer sponsored"
                             onClick={() => trackAffiliateClick({
