@@ -27,6 +27,7 @@
 
 import { useCallback, useRef, useState } from 'react';
 import type { IdentifiedPart } from '@/types/vision';
+import { ebayAffiliate } from '@/lib/ebay-affiliate';
 
 interface SourcePoint { x: number; y: number }
 
@@ -533,14 +534,33 @@ function subLine(p: IdentifiedPart): string {
   return (p.finding || p.spec || (p.brand ? `${p.brand}` : '') || '').trim();
 }
 
-/** Always resolve a Buy link: eBay listing (affiliate) → vendor link (Amazon
- *  affiliate / RockAuto) → a plain web search so it never dead-ends. */
+/** Always resolve a Buy link that lands on a MONETIZED MARKETPLACE, never a
+ *  generic web search:
+ *    1. a resolved eBay listing (affiliate item link), then
+ *    2. the first server vendor link that isn't itself a search-engine URL
+ *       (the Tire Rack fallback is a google.com site-search — skip it here so
+ *       the Buy button never dead-ends on Google), then
+ *    3. a marketplace SEARCH deep link built from the structured part fields —
+ *       eBay Parts & Accessories for cosmetic/OEM-specific parts (where used/OEM
+ *       stock lives), Amazon (au7o-20 tag) for everything else. Both monetized.
+ *  We build the query server-side-of-truth (never let the model write a URL). */
+const EBAY_SEARCH_CATEGORIES = new Set(['body_panel', 'trim', 'badge', 'emblem', 'bracket', 'interior', 'oem_specific']);
+
+function marketplaceSearchHref(p: IdentifiedPart, vehicle?: TapVehicle): string {
+  const q = [p.brand, p.oemPartNumbers?.[0], vehicle?.year, vehicle?.make, vehicle?.model, p.name]
+    .filter(Boolean).join(' ').replace(/\s+/g, ' ').trim() || (p.name || 'auto part');
+  if (EBAY_SEARCH_CATEGORIES.has(String(p.category))) {
+    // 6028 = eBay "eBay Motors > Parts & Accessories" category node.
+    return ebayAffiliate(`https://www.ebay.com/sch/6028/i.html?_nkw=${encodeURIComponent(q)}`);
+  }
+  return `https://www.amazon.com/s?k=${encodeURIComponent(q)}&tag=au7o-20`;
+}
+
 function buyHref(p: IdentifiedPart, vehicle?: TapVehicle): string {
   if (p.ebayListings?.[0]?.url) return p.ebayListings[0].url;
-  if (p.vendorLinks?.[0]?.url) return p.vendorLinks[0].url;
-  const q = [p.brand, p.oemPartNumbers?.[0], vehicle?.year, vehicle?.make, vehicle?.model, p.name]
-    .filter(Boolean).join(' ').trim();
-  return 'https://www.google.com/search?q=' + encodeURIComponent(q + ' buy');
+  const realVendor = p.vendorLinks?.find((l) => l.url && !/(^https?:\/\/)?(www\.)?google\.[a-z.]+\/search/i.test(l.url));
+  if (realVendor?.url) return realVendor.url;
+  return marketplaceSearchHref(p, vehicle);
 }
 
 function speak(text: string) {
