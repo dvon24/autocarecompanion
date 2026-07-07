@@ -26,7 +26,7 @@
  */
 
 import { useCallback, useRef, useState } from 'react';
-import type { IdentifiedPart } from '@/types/vision';
+import type { IdentifiedPart, IssuePart, VendorKey } from '@/types/vision';
 import { ebayAffiliate } from '@/lib/ebay-affiliate';
 
 interface SourcePoint { x: number; y: number }
@@ -45,6 +45,9 @@ interface IdentifyState {
   loading: boolean;
   part?: IdentifiedPart;
   relatedIssue?: { id: string; title: string } | null;
+  /** Curated fix parts from the matched known issue (top-of-trust, already
+   *  affiliate-tagged) — the diagnosis's own "everything you need" repair kit. */
+  issueParts?: IssuePart[];
   /** SAM mask outline (full-image PERCENT points) when SAM is live; null =
    *  no mask (we then just float the callout, still no rectangle). */
   polygon?: Array<{ x: number; y: number }> | null;
@@ -213,6 +216,7 @@ export function TapToIdentifyPhoto({
         part,
         polygon,
         relatedIssue: data.relatedIssue,
+        issueParts: Array.isArray(data.relatedIssueParts) ? (data.relatedIssueParts as IssuePart[]) : [],
         mismatch: data.vehicleMismatch
           ? (data.vehicleMismatchNote || 'This looks like a different vehicle than your garage car.')
           : undefined,
@@ -329,6 +333,14 @@ export function TapToIdentifyPhoto({
         .t2i-pn { font-family:'SF Mono',Menlo,monospace; font-size:12.5px; font-weight:600; color:#fff; margin-top:2px; word-break:break-all; }
         .t2i-matchbar { height:4px; border-radius:99px; background:rgba(255,255,255,0.12); margin-top:4px; overflow:hidden; }
         .t2i-issue { display:block; margin-top:10px; font-size:11.5px; font-weight:600; color:#FCA5A5; text-decoration:none; }
+        .t2i-fixkit { margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.1); }
+        .t2i-fixkit-hd { display:flex; align-items:center; justify-content:space-between; font-size:11px; font-weight:700; letter-spacing:0.03em; color:rgba(255,255,255,0.72); margin-bottom:9px; }
+        .t2i-fixkit-tag { font-size:8.5px; font-weight:800; letter-spacing:0.06em; color:#38E1B0; background:rgba(56,225,176,0.14); border:1px solid rgba(56,225,176,0.3); border-radius:6px; padding:2px 6px; }
+        .t2i-fixrow { display:flex; align-items:center; gap:9px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.07); }
+        .t2i-fixrow:last-of-type { border-bottom:none; }
+        .t2i-fixnm { font-size:12.5px; font-weight:600; color:#fff; line-height:1.25; }
+        .t2i-fixsku { font-family:'SF Mono',Menlo,monospace; font-size:10px; color:rgba(255,255,255,0.5); margin-top:2px; }
+        .t2i-fixall { width:100%; margin-top:10px; padding:9px; border-radius:11px; border:1px dashed rgba(56,225,176,0.4); background:rgba(56,225,176,0.08); color:#38E1B0; font-size:12.5px; font-weight:700; cursor:pointer; font-family:inherit; }
         .t2i-cbuy { display:flex; align-items:center; gap:10px; margin-top:13px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.1); }
         .t2i-price { font-family:'SF Mono',Menlo,monospace; font-size:19px; font-weight:700; color:#fff; }
         .t2i-ret { font-size:10px; color:rgba(255,255,255,0.5); margin-top:1px; }
@@ -490,6 +502,38 @@ export function TapToIdentifyPhoto({
                   >Buy</a>
                 </div>
               </div>
+
+              {/* Known-issue fix parts — the curated, verified "everything you
+                  need" repair kit that hangs off the matched issue. Top of the
+                  trust hierarchy: shown when Stage 2 matched an issue w/ parts. */}
+              {sel.issueParts && sel.issueParts.length > 0 && (
+                <div className="t2i-fixkit">
+                  <div className="t2i-fixkit-hd">
+                    <span>🔧 Fix parts for this issue</span>
+                    <span className="t2i-fixkit-tag">✓ VERIFIED</span>
+                  </div>
+                  {sel.issueParts.map((ip, i) => {
+                    const adapted = issuePartToIdentified(ip);
+                    const inK = kit.some((k) => k.key === adapted.id);
+                    return (
+                      <div className="t2i-fixrow" key={i}>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div className="t2i-fixnm">{ip.name}</div>
+                          <div className="t2i-fixsku">{ip.oemPartNumber || '—'}{ip.priceLow != null ? ` · $${ip.priceLow}${ip.priceHigh && ip.priceHigh > ip.priceLow ? '+' : ''}` : ''}</div>
+                        </div>
+                        <button className={`t2i-btn t2i-add ${inK ? 'in' : ''}`} disabled={inK} onClick={() => addToKit(adapted)} aria-label="add fix part to kit">{inK ? '✓' : '＋'}</button>
+                        <a className="t2i-btn t2i-buy" style={{ padding: '7px 11px', fontSize: 12 }} href={buyHref(adapted)} target="_blank" rel="noopener noreferrer nofollow sponsored" onClick={() => { addToKit(adapted); track('identify_issuepart_buy', { vendor: ip.buyLinks[0]?.vendor || 'search' }); }}>Buy</a>
+                      </div>
+                    );
+                  })}
+                  {sel.issueParts.length > 1 && (
+                    <button
+                      className="t2i-fixall"
+                      onClick={() => { sel.issueParts?.forEach((ip) => addToKit(issuePartToIdentified(ip))); setKitOpen(true); track('identify_issuekit_addall', { count: sel.issueParts?.length }); }}
+                    >＋ Add all {sel.issueParts.length} to kit</button>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -561,6 +605,50 @@ function buyHref(p: IdentifiedPart, vehicle?: TapVehicle): string {
   const realVendor = p.vendorLinks?.find((l) => l.url && !/(^https?:\/\/)?(www\.)?google\.[a-z.]+\/search/i.test(l.url));
   if (realVendor?.url) return realVendor.url;
   return marketplaceSearchHref(p, vehicle);
+}
+
+/** Map a stored buy-link vendor name to a VendorKey (best-effort; only affects
+ *  the kit-row label — buyHref reads the URL directly). */
+function vendorKeyFromName(name: string): VendorKey {
+  const n = (name || '').toLowerCase();
+  if (n.includes('rockauto')) return 'rockauto';
+  if (n.includes('ebay')) return 'ebay_motors';
+  if (n.includes('mopar')) return 'mopar_parts_giant';
+  if (n.includes('gm ')) return 'gm_parts_giant';
+  if (n.includes('summit')) return 'summit_racing';
+  if (n.includes('muscle')) return 'american_muscle';
+  return 'amazon';
+}
+
+/** Stable kit key for a known-issue fix part (dedup with tapped parts). */
+function issueKey(ip: IssuePart): string {
+  return 'issue_' + (ip.oemPartNumber || ip.name).toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 28);
+}
+
+/** Adapt a curated IssuePart into an IdentifiedPart so it drops into the same
+ *  Kit tray + buyHref path. Marked verified (human/DB-sourced) with known_issue
+ *  provenance. */
+function issuePartToIdentified(ip: IssuePart): IdentifiedPart {
+  return {
+    id: issueKey(ip),
+    role: 'primary',
+    category: 'oem_specific',
+    name: ip.name,
+    confidence: 1,
+    visibleInPhoto: false,
+    oemPartNumbers: ip.oemPartNumber ? [ip.oemPartNumber] : [],
+    vendorLinks: ip.buyLinks.map((b, i) => ({
+      vendor: vendorKeyFromName(b.vendor),
+      displayName: b.vendor || 'Buy',
+      url: b.url,
+      searchQuery: ip.name,
+      linkType: 'search' as const,
+      priority: i + 1,
+    })),
+    estimatedPriceUsd: ip.priceLow != null ? { low: ip.priceLow, high: ip.priceHigh ?? ip.priceLow } : undefined,
+    partNumberVerified: true,
+    source: 'known_issue',
+  };
 }
 
 function speak(text: string) {

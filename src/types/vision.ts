@@ -53,6 +53,35 @@ export interface VendorLink {
 export type PartRole = 'primary' | 'consumable' | 'fastener' | 'related';
 
 /**
+ * Provenance of a surfaced part's data / part number — HIGHEST TRUST FIRST.
+ * Set server-side; drives the callout's trust badge and is the first question
+ * when debugging a wrong-part report ("which path served it?").
+ *   known_issue          — from a matched KnownIssue.fixParts (human/DB-verified,
+ *                           curated against the actual failure). Top of the stack.
+ *   ebay_verified        — PN corroborated by ≥2 agreeing live eBay listings.
+ *   catalog              — PN corroborated by our own VehiclePartLookup catalog.
+ *   model_search_fallback— model-emitted PN, not corroborated → search links only.
+ */
+export type PartSource = 'known_issue' | 'ebay_verified' | 'catalog' | 'model_search_fallback';
+
+/**
+ * A buyable part attached to a MATCHED known issue (KnownIssue.fixParts). This
+ * is the curated, double-verified, already-affiliate-tagged fix — surfaced
+ * ABOVE anything the model or eBay resolver re-derives from the image. A single
+ * issue's fixParts is the natural "repair kit" (hose + clamps + coolant).
+ */
+export interface IssuePart {
+  name: string;
+  oemPartNumber?: string;
+  priceLow?: number;
+  priceHigh?: number;
+  note?: string;
+  /** Vendor buy links stored on the issue — already affiliate-tagged. */
+  buyLinks: Array<{ vendor: string; url: string }>;
+  source: 'known_issue';
+}
+
+/**
  * Part category enum used by the vendor resolver to intersect with
  * each vendor's `bestForCategories` list. The AI model populates this
  * field; the resolver does the vendor selection. Keeps the model out
@@ -146,13 +175,15 @@ export interface IdentifiedPart {
   /** Short condition phrase for the callout, e.g. 'Pads healthy · no
    *  fluid weeping' or '~4/32" tread — plan ahead'. */
   finding?: string;
-  /** True when oemPartNumbers[0] was CORROBORATED by ≥3 agreeing live eBay
+  /** True when oemPartNumbers[0] was CORROBORATED by ≥2 agreeing live eBay
    *  listings (the fabrication gate), not just emitted by the model. Drives a
    *  "verified" tick in the callout. */
   partNumberVerified?: boolean;
   /** Live eBay listings for real buy links (affiliate-tagged via EPN when
    *  configured). Present only when the eBay resolver ran for this part. */
   ebayListings?: Array<{ title: string; price: number | null; currency: string; condition: string; url: string }>;
+  /** Provenance of this part's data / PN (see PartSource). Set server-side. */
+  source?: PartSource;
 }
 
 // ─── Vehicle-match verdict ─────────────────────────────────────────

@@ -8,7 +8,8 @@ import { validateAndFixVendorLinks } from '@/lib/vendor-link-validator';
 import { refineRegion, promptToBox, samEnabled, type SamPrompt, type SamBox } from '@/lib/sam';
 import { webDetect, googleVisionEnabled, webDetectPromptBlock } from '@/lib/google-vision';
 import { ebayEnabled, resolveEbay } from '@/lib/ebay-resolver';
-import type { IdentifiedPart, PartCategory } from '@/types/vision';
+import { ebayAffiliate } from '@/lib/ebay-affiliate';
+import type { IdentifiedPart, PartCategory, IssuePart } from '@/types/vision';
 import Anthropic from '@anthropic-ai/sdk';
 import sharp from 'sharp';
 
@@ -159,6 +160,9 @@ export async function POST(request: NextRequest) {
   // ─── WHICH: load the candidate parts / issues / specs for THIS vehicle.
   let candidateContext = '';
   let issueIdByHint: Array<{ id: string; title: string }> = [];
+  // Matched-issue → its curated fixParts (the top-of-trust buyable list). Kept
+  // by issue id so a relatedKnownIssueId match can surface the verified parts.
+  const fixPartsById = new Map<string, unknown>();
   // OEM part numbers we can CORROBORATE from our own verified catalog. A
   // model-emitted PN is only trusted enough to build a part-number DEEP link
   // (which soft-404s when wrong) if it appears here; otherwise we downgrade
@@ -174,7 +178,7 @@ export async function POST(request: NextRequest) {
             years: { has: vehicle.year },
             status: 'published',
           },
-          select: { id: true, title: true },
+          select: { id: true, title: true, fixParts: true },
           take: 12,
           orderBy: { reportCount: 'desc' },
         }),
@@ -188,7 +192,8 @@ export async function POST(request: NextRequest) {
           take: 16,
         }),
       ]);
-      issueIdByHint = issues;
+      issueIdByHint = issues.map((i) => ({ id: i.id, title: i.title }));
+      for (const it of issues) fixPartsById.set(it.id, it.fixParts);
 
       const parts: string[] = [];
       for (const cp of cachedParts) {
@@ -454,8 +459,19 @@ Return ONLY a JSON object:
     } catch { /* fail soft — keep the model's part + search links */ }
   }
 
+  // Provenance (which path served this part's PN) — highest trust first. Note a
+  // model web-search "verified" PN gets NO bypass: it only reaches 'catalog' if
+  // corroborated in catalogPNs, else it's 'model_search_fallback' (search links).
+  if (part.partNumberVerified) part.source = 'ebay_verified';
+  else if (part.oemPartNumbers.length && pnTrusted) part.source = 'catalog';
+  else if (part.oemPartNumbers.length) part.source = 'model_search_fallback';
+
   const relatedId = typeof parsed.relatedKnownIssueId === 'string' ? parsed.relatedKnownIssueId.trim() : '';
   const relatedIssue = relatedId ? issueIdByHint.find(i => i.id === relatedId) || null : null;
+  // TOP OF THE TRUST HIERARCHY: the matched issue's curated fixParts (human/DB-
+  // verified, already affiliate-tagged). These are surfaced ABOVE the model/eBay
+  // re-derivation — the diagnosis's own "everything you need" repair kit.
+  const relatedIssueParts: IssuePart[] = relatedIssue ? toIssueParts(fixPartsById.get(relatedIssue.id)) : [];
 
   return NextResponse.json({
     ok: true,
@@ -467,7 +483,44 @@ Return ONLY a JSON object:
     vehicleMismatch,
     vehicleMismatchNote: vehicleMismatch ? vehicleMismatchNote : '',
     relatedIssue: relatedIssue ? { id: relatedIssue.id, title: relatedIssue.title } : null,
+    relatedIssueParts, // [] unless the matched issue carries verified fixParts
   });
+}
+
+/** Map a KnownIssue.fixParts JSON blob into the buyable IssuePart shape. Keeps
+ *  only rows with a name + at least one buy link; eBay links get EPN-tagged. */
+function toIssueParts(raw: unknown): IssuePart[] {
+  if (!Array.isArray(raw)) return [];
+  const out: IssuePart[] = [];
+  for (const item of raw) {
+    if (!item || typeof item !== 'object') continue;
+    const o = item as Record<string, unknown>;
+    const name = String(o.component || o.name || '').trim();
+    if (!name) continue;
+    const buyLinks = Array.isArray(o.buyLinks)
+      ? (o.buyLinks as unknown[])
+          .map((b) => {
+            const bb = (b || {}) as Record<string, unknown>;
+            const vendor = String(bb.vendor || '');
+            let url = String(bb.url || '');
+            if (!url) return null;
+            if (/(^|\.)ebay\./i.test(url)) url = ebayAffiliate(url);
+            return { vendor, url };
+          })
+          .filter((b): b is { vendor: string; url: string } => !!b)
+      : [];
+    if (buyLinks.length === 0) continue;
+    out.push({
+      name: name.length > 90 ? name.slice(0, 90).trim() : name,
+      oemPartNumber: o.oemPartNumber ? String(o.oemPartNumber) : undefined,
+      priceLow: typeof o.priceLow === 'number' ? o.priceLow : undefined,
+      priceHigh: typeof o.priceHigh === 'number' ? o.priceHigh : undefined,
+      note: o.note ? String(o.note) : undefined,
+      buyLinks,
+      source: 'known_issue',
+    });
+  }
+  return out.slice(0, 8);
 }
 
 // ─── helpers ─────────────────────────────────────────────────────────
