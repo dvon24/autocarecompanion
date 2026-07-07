@@ -179,7 +179,11 @@ export async function POST(request: NextRequest) {
             status: 'published',
           },
           select: { id: true, title: true, fixParts: true },
-          take: 12,
+          // Load up to 50 (was 12): a tapped part tied to issue #13+ used to
+          // silently never match — indistinguishable from "no issue exists".
+          // id+title is a few tokens each (<1% of the image cost), so the cap
+          // was false economy. 50 covers every real model's published set.
+          take: 50,
           orderBy: { reportCount: 'desc' },
         }),
         prisma.vehiclePartLookup.findMany({
