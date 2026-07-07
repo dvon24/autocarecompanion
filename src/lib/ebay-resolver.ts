@@ -7,8 +7,11 @@
  * Camaro ZL1 hood insert when the real number is 84243751). This module turns
  * the model's classification into FACTS by querying live eBay listings, whose
  * structured item specifics (localizedAspects) carry the real OEM/MPN number.
- * We only surface a number when ≥3 independent listings agree on it — the
- * fabrication gate. Buy links come from eBay, not the model's imagination.
+ * TWO-TIER, SELLER-DEDUPED gate (independence does the trust work, not raw
+ * count — two listings from the same parts-out seller are one opinion posted
+ * twice): a number needs ≥3 DISTINCT SELLERS to be "verified", ≥2 distinct to
+ * be "reported" (surfaced with a softer badge so sparse-listing parts still show
+ * a number instead of nothing). Buy links come from eBay, not the model.
  *
  * Ships DARK like sam.ts / google-vision.ts: inert unless EBAY_APP_ID +
  * EBAY_CERT_ID are set. Always fail-soft (any error/non-200/timeout → null);
@@ -32,10 +35,14 @@ const BROWSE_URL = 'https://api.ebay.com/buy/browse/v1';
 const EBAY_TIMEOUT_MS = Number(process.env.EBAY_TIMEOUT_MS || 7000);
 // Motors → Parts & Accessories. Scopes the search so we don't match whole cars.
 const PARTS_CATEGORY = '6028';
-// How many top listings to inspect for part-number agreement, and the minimum
-// that must agree before we call a number "verified" (acceptance test #4).
-const INSPECT_N = 8;
-const AGREE_MIN = 2;
+// How many top listings to inspect for part-number agreement. Bumped from 8 →
+// 12 so the seller-distinct gate has a real chance to see 3 independent sellers.
+const INSPECT_N = 12;
+// Two-tier gate, counted by DISTINCT SELLER (not listing — one seller relisting
+// the same part in 3 conditions is one opinion, not three): ≥3 distinct sellers
+// → VERIFIED (strong badge), ≥2 distinct → REPORTED (softer badge, still shown).
+const VERIFY_SELLERS = 3;
+const REPORT_SELLERS = 2;
 
 /** Categories where eBay is the PRIMARY source (used-OEM body/trim/OEM-specific
  *  parts live on eBay with real part numbers; Amazon returns knockoffs). Small
@@ -63,11 +70,14 @@ export interface EbayListing {
 }
 
 export interface EbayResolution {
-  /** Part numbers found in listing item-specifics, ordered by how many listings
-   *  agreed. `verified` = the top number cleared the ≥AGREE_MIN gate. */
-  partNumbers: Array<{ value: string; count: number; verified: boolean }>;
-  /** The single best verified OEM part number, or null if none cleared the gate. */
+  /** Part numbers found in listing item-specifics / titles, ordered by DISTINCT
+   *  SELLER agreement. verified = ≥3 distinct sellers; reported = ≥2 distinct. */
+  partNumbers: Array<{ value: string; sellerCount: number; verified: boolean; reported: boolean }>;
+  /** Best number with ≥3 distinct sellers (strong "verified" badge), else null. */
   verifiedPartNumber: string | null;
+  /** Best number with ≥2 distinct sellers (softer "reported" badge), else null.
+   *  Equals verifiedPartNumber when that number also cleared the ≥3 tier. */
+  reportedPartNumber: string | null;
   /** Top listings for buy links (affiliate-tagged when EPN is configured). */
   listings: EbayListing[];
 }
@@ -144,7 +154,7 @@ function extractTitlePNs(title: string): string[] {
   return out;
 }
 
-interface BrowseSummary { itemId?: string; title?: string; itemWebUrl?: string; itemAffiliateWebUrl?: string; condition?: string; price?: { value?: string; currency?: string } }
+interface BrowseSummary { itemId?: string; title?: string; itemWebUrl?: string; itemAffiliateWebUrl?: string; condition?: string; price?: { value?: string; currency?: string }; seller?: { username?: string } }
 interface BrowseItemDetail { localizedAspects?: Array<{ type?: string; name?: string; value?: string }> }
 
 async function fetchDetailPNs(token: string, itemId: string): Promise<string[]> {
@@ -213,27 +223,36 @@ export async function resolveEbay(q: string, modelHintPN?: string): Promise<Ebay
   const idPNs = new Map<string, string[]>();
   ids.forEach((id, k) => idPNs.set(id, pnLists[k] || []));
 
-  // ONE vote per LISTING per distinct PN — pulled from BOTH the structured
-  // item-specifics AND the title (sellers routinely put "OEM 84243751" right in
-  // the title). Cross-listing agreement filters out title noise (years/sizes).
-  const counts = new Map<string, number>();
+  // Count DISTINCT SELLERS per PN — pulled from BOTH structured item-specifics
+  // AND the title (sellers routinely put "OEM 84243751" right in the title).
+  // Independence is the trust signal: 3 listings from one parts-out seller is
+  // one opinion posted thrice, so we dedupe by seller before counting. A missing
+  // seller username falls back to the itemId (still counts as its own source).
+  const pnSellers = new Map<string, Set<string>>();
   for (const s of summaries.slice(0, INSPECT_N)) {
+    const seller = (s.seller?.username || s.itemId || Math.random().toString()).toLowerCase();
     const set = new Set<string>();
     for (const pn of extractTitlePNs(s.title || '')) set.add(pn);
     const dp = s.itemId ? idPNs.get(s.itemId) : null;
     if (dp) for (const pn of dp) set.add(pn);
-    for (const pn of set) counts.set(pn, (counts.get(pn) || 0) + 1);
+    for (const pn of set) {
+      if (!pnSellers.has(pn)) pnSellers.set(pn, new Set());
+      pnSellers.get(pn)!.add(seller);
+    }
   }
-  const partNumbers = [...counts.entries()]
-    .map(([value, count]) => ({ value, count, verified: count >= AGREE_MIN }))
-    .sort((a, b) => b.count - a.count)
+  const partNumbers = [...pnSellers.entries()]
+    .map(([value, sellers]) => {
+      const sellerCount = sellers.size;
+      return { value, sellerCount, verified: sellerCount >= VERIFY_SELLERS, reported: sellerCount >= REPORT_SELLERS };
+    })
+    .sort((a, b) => b.sellerCount - a.sellerCount)
     .slice(0, 5);
-  const top = partNumbers[0];
-  const verifiedPartNumber = top && top.verified ? top.value : null;
+  const verifiedPartNumber = partNumbers.find((p) => p.verified)?.value || null;
+  const reportedPartNumber = partNumbers.find((p) => p.reported)?.value || null;
   void modelHintPN; // the model's PN stays the "reported" fallback upstream — never a vote
 
   if (partNumbers.length === 0 && listings.length === 0) return null;
-  return { partNumbers, verifiedPartNumber, listings };
+  return { partNumbers, verifiedPartNumber, reportedPartNumber, listings };
 }
 
 function nowMs(): number {
@@ -242,12 +261,14 @@ function nowMs(): number {
 }
 
 /**
- * Founder-only health probe: reports whether OAuth mints, the Browse search
- * HTTP status (a 403 here = Buy API production access not granted), how many
- * listings came back, and whether the ≥3-listing gate found a verified PN.
+ * Founder-only health probe / Path-B eval harness: reports whether OAuth mints,
+ * the Browse search HTTP status (a 403 here = Buy API production access not
+ * granted), how many listings came back, and the FULL seller-distinct tier
+ * breakdown (partNumbers[] with sellerCount + verified/reported) so a query like
+ * "2015 Dodge Challenger 392 front brake rotor" doubles as an eval fixture.
  */
 export async function ebayHealthProbe(query = 'Chevrolet Camaro ZL1 1LE hood insert carbon fiber'): Promise<{
-  enabled: boolean; tokenOk: boolean; searchStatus: number | null; listings: number; verifiedPartNumber: string | null; campaignTagged: boolean; error?: string;
+  enabled: boolean; tokenOk: boolean; searchStatus: number | null; listings: number; verifiedPartNumber: string | null; reportedPartNumber?: string | null; partNumbers?: Array<{ value: string; sellerCount: number; verified: boolean; reported: boolean }>; sampleListings?: Array<{ title: string; price: number | null }>; campaignTagged: boolean; error?: string;
 }> {
   if (!APP_ID || !CERT_ID) return { enabled: false, tokenOk: false, searchStatus: null, listings: 0, verifiedPartNumber: null, campaignTagged: false };
   // Direct mint so we can surface eBay's EXACT rejection (invalid_client, etc.).
@@ -283,7 +304,14 @@ export async function ebayHealthProbe(query = 'Chevrolet Camaro ZL1 1LE hood ins
     const listings = summaries.length;
     const campaignTagged = !!CAMPAIGN_ID && !!summaries[0]?.itemAffiliateWebUrl;
     const r = await resolveEbay(query, '');
-    return { enabled: true, tokenOk: true, searchStatus, listings, verifiedPartNumber: r?.verifiedPartNumber ?? null, campaignTagged };
+    return {
+      enabled: true, tokenOk: true, searchStatus, listings,
+      verifiedPartNumber: r?.verifiedPartNumber ?? null,
+      reportedPartNumber: r?.reportedPartNumber ?? null,
+      partNumbers: r?.partNumbers ?? [],
+      sampleListings: (r?.listings ?? []).slice(0, 3).map((l) => ({ title: l.title, price: l.price })),
+      campaignTagged,
+    };
   } catch {
     return { enabled: true, tokenOk: true, searchStatus: null, listings: 0, verifiedPartNumber: null, campaignTagged: !!CAMPAIGN_ID, error: 'network' };
   }

@@ -58,11 +58,12 @@ export type PartRole = 'primary' | 'consumable' | 'fastener' | 'related';
  * when debugging a wrong-part report ("which path served it?").
  *   known_issue          — from a matched KnownIssue.fixParts (human/DB-verified,
  *                           curated against the actual failure). Top of the stack.
- *   ebay_verified        — PN corroborated by ≥2 agreeing live eBay listings.
+ *   ebay_verified        — PN agreed on by ≥3 DISTINCT live-eBay sellers.
+ *   ebay_reported        — PN agreed on by ≥2 distinct sellers (softer tier).
  *   catalog              — PN corroborated by our own VehiclePartLookup catalog.
  *   model_search_fallback— model-emitted PN, not corroborated → search links only.
  */
-export type PartSource = 'known_issue' | 'ebay_verified' | 'catalog' | 'model_search_fallback';
+export type PartSource = 'known_issue' | 'ebay_verified' | 'ebay_reported' | 'catalog' | 'model_search_fallback';
 
 /**
  * A buyable part attached to a MATCHED known issue (KnownIssue.fixParts). This

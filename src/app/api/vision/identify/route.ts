@@ -443,6 +443,7 @@ Return ONLY a JSON object:
   // affiliate buy links. Runs for EVERY identified part (was body-panel-only,
   // which left common parts — rotors, filters, sensors — with no part number).
   // Dark unless EBAY_APP_ID/CERT are set; fail-soft.
+  let ebayReported = false; // PN came from the ≥2-seller "reported" tier (not verified)
   if (ebayEnabled() && part.category && part.category !== 'other') {
     try {
       // On a vehicle mismatch, the OCR/visual match (e.g. "ZL1 · Camaro ZL1
@@ -454,10 +455,14 @@ Return ONLY a JSON object:
       const r = await resolveEbay(q, part.oemPartNumbers[0]);
       if (r) {
         if (r.listings.length) part.ebayListings = r.listings.slice(0, 3);
-        if (r.verifiedPartNumber) {
-          const v = r.verifiedPartNumber;
-          part.oemPartNumbers = [v, ...part.oemPartNumbers.filter((p) => p.toUpperCase().replace(/\s+/g, '') !== v)].slice(0, 4);
-          part.partNumberVerified = true;
+        // Promote the best eBay number we have — verified (≥3 sellers) OR
+        // reported (≥2). partNumberVerified (the strong badge) only when verified.
+        const pn = r.verifiedPartNumber || r.reportedPartNumber;
+        if (pn) {
+          const norm = pn.toUpperCase().replace(/\s+/g, '');
+          part.oemPartNumbers = [pn, ...part.oemPartNumbers.filter((p) => p.toUpperCase().replace(/\s+/g, '') !== norm)].slice(0, 4);
+          part.partNumberVerified = !!r.verifiedPartNumber;
+          ebayReported = !r.verifiedPartNumber; // reported-only tier
         }
       }
     } catch { /* fail soft — keep the model's part + search links */ }
@@ -467,6 +472,7 @@ Return ONLY a JSON object:
   // model web-search "verified" PN gets NO bypass: it only reaches 'catalog' if
   // corroborated in catalogPNs, else it's 'model_search_fallback' (search links).
   if (part.partNumberVerified) part.source = 'ebay_verified';
+  else if (ebayReported) part.source = 'ebay_reported';
   else if (part.oemPartNumbers.length && pnTrusted) part.source = 'catalog';
   else if (part.oemPartNumbers.length) part.source = 'model_search_fallback';
 

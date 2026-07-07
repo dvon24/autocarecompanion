@@ -455,8 +455,8 @@ export function TapToIdentifyPhoto({
                     PART NUMBER{' '}
                     {(sel.part.oemPartNumbers?.[0] || sel.part.aftermarketPartNumbers?.[0]?.partNumber) && (
                       sel.part.partNumberVerified
-                        ? <span style={{ color: '#38E1B0', fontWeight: 800 }} title="Confirmed across ≥3 live listings">✓ VERIFIED</span>
-                        : <span style={{ color: '#F59E0B', fontWeight: 800 }} title="Model-reported — not yet cross-checked against live listings">• REPORTED</span>
+                        ? <span style={{ color: '#38E1B0', fontWeight: 800 }} title="Agreed on by ≥3 independent eBay sellers">✓ VERIFIED</span>
+                        : <span style={{ color: '#F59E0B', fontWeight: 800 }} title="≥2 sellers or model-reported — not yet strongly confirmed">• REPORTED</span>
                     )}
                   </div>
                   <div className="t2i-pn">{sel.part.oemPartNumbers?.[0] || sel.part.aftermarketPartNumbers?.[0]?.partNumber || '—'}</div>
