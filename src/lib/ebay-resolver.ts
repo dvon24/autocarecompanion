@@ -173,7 +173,10 @@ async function fetchDetailPNs(token: string, itemId: string): Promise<string[]> 
         // an aspect value can be a comma/slash list of numbers
         for (const raw of String(a.value).split(/[,/;]/)) {
           const v = normPN(raw);
-          if (v && PN_VALUE_RE.test(v.replace(/-/g, ''))) out.push(v);
+          // Real auto part numbers contain a digit — require one so marketing
+          // phrases in mislabeled aspect fields ("FRONTWINDOWWIPERS", "CLEANWINDOW")
+          // don't masquerade as candidate PNs.
+          if (v && /\d/.test(v) && PN_VALUE_RE.test(v.replace(/-/g, ''))) out.push(v);
         }
       }
     }
