@@ -452,7 +452,12 @@ Return ONLY a JSON object:
         ? visionMatch.replace(/text:"([^"]*)"/, '$1').replace(/·/g, ' ')
         : [vehicle?.year, vehicle?.make, vehicle?.model, vehicle?.trim].filter(Boolean).join(' ');
       const q = [part.brand, vehSeed, part.name, part.spec].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
-      const r = await resolveEbay(q, part.oemPartNumbers[0]);
+      // Pass category + garage trim so the resolver can trim-filter listings for
+      // performance packages (SRT/392 → Brembo). Skip on a mismatch — the garage
+      // trim isn't the vehicle in the photo then.
+      const r = await resolveEbay(q, part.oemPartNumbers[0], vehicleMismatch ? undefined : {
+        category: part.category, make: vehicle?.make, model: vehicle?.model, trim: vehicle?.trim,
+      });
       if (r) {
         if (r.listings.length) part.ebayListings = r.listings.slice(0, 3);
         // Promote the best eBay number we have — verified (≥3 sellers) OR

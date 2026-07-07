@@ -193,7 +193,11 @@ async function fetchDetailPNs(token: string, itemId: string): Promise<string[]> 
  * @param q free-text query, e.g. "Chevrolet Camaro ZL1 1LE hood insert carbon"
  * Returns null when eBay is disabled, errors, or finds nothing.
  */
-export async function resolveEbay(q: string, modelHintPN?: string): Promise<EbayResolution | null> {
+export async function resolveEbay(
+  q: string,
+  modelHintPN?: string,
+  opts?: { category?: string; make?: string; model?: string; trim?: string },
+): Promise<EbayResolution | null> {
   const token = await getToken();
   if (!token) return null;
   const controller = new AbortController();
@@ -211,6 +215,27 @@ export async function resolveEbay(q: string, modelHintPN?: string): Promise<Ebay
     clearTimeout(timer);
   }
   if (summaries.length === 0) return null;
+
+  // TRIM-AWARE FITMENT GUARD. Agreement proves a number is REAL, not that it
+  // FITS. For performance trims on system-sensitive parts (brakes/cooling/
+  // suspension), a listing must POSITIVELY name the trim/package (SRT / 392 /
+  // Brembo…) — a generic multi-platform set that merely fails to exclude the car
+  // is the classic wrong-part hit (an SRT 392 runs 390mm Brembos; a
+  // "Challenger/Charger/Magnum/300" rotor set does not fit it). If nothing
+  // positively matches, we drop eBay entirely so the caller's trim-in-query
+  // marketplace search handles the buy — never surface a wrong-fit part.
+  const perfTokens = opts && PERF_SYSTEM_CATEGORIES.has(String(opts.category))
+    ? perfFitmentTokens(opts.trim, opts.model)
+    : null;
+  if (perfTokens) {
+    summaries = summaries.filter((s) => {
+      const t = String(s.title || '').toUpperCase();
+      return perfTokens.some((tok) => t.includes(tok));
+    });
+    if (summaries.length === 0) {
+      return { partNumbers: [], verifiedPartNumber: null, reportedPartNumber: null, listings: [] };
+    }
+  }
 
   const listings: EbayListing[] = summaries.slice(0, INSPECT_N).map((s) => ({
     title: String(s.title || '').slice(0, 140),
@@ -263,6 +288,36 @@ function nowMs(): number {
   return Date.now();
 }
 
+// Categories where the performance PACKAGE changes the physical part (brakes,
+// cooling, suspension) — a base-trim part with the same model name won't fit.
+const PERF_SYSTEM_CATEGORIES = new Set(['rotor', 'brake_pad', 'caliper', 'suspension', 'hose']);
+
+/**
+ * Positive-match tokens a listing title MUST contain to be trusted as fitting a
+ * performance trim (any-of). Returns null for non-performance trims (no filter
+ * applied — a base LX/SXT rotor is a normal multi-brand wear part). Heuristic +
+ * extensible; seeded with the domestic-muscle + common import performance trims.
+ */
+function perfFitmentTokens(trim?: string, model?: string): string[] | null {
+  const t = `${trim || ''} ${model || ''}`.toUpperCase();
+  const out = new Set<string>();
+  // Mopar: SRT / 392 / Scat Pack / Hellcat / Redeye / Demon / TRX all run Brembo.
+  if (/\bSRT-?8?\b|\b392\b|HELLCAT|SCAT ?PACK|REDEYE|\bTRX\b|DEMON/.test(t)) {
+    ['SRT', '392', 'HELLCAT', 'SCAT PACK', 'SCAT', 'REDEYE', 'BREMBO', 'SRT8', 'TRX', 'DEMON'].forEach((x) => out.add(x));
+  }
+  // GM: ZL1 / Z06 / ZR1 (SS omitted — too generic a token to match safely).
+  if (/\bZL1\b|\bZ06\b|\bZR1\b/.test(t)) ['ZL1', 'Z06', 'ZR1', 'BREMBO'].forEach((x) => out.add(x));
+  // Ford: Shelby GT350/GT500, Raptor.
+  if (/GT350|GT500|SHELBY|RAPTOR/.test(t)) ['GT350', 'GT500', 'SHELBY', 'RAPTOR', 'BREMBO'].forEach((x) => out.add(x));
+  // Import performance.
+  if (/\bAMG\b/.test(t)) out.add('AMG');
+  if (/TYPE ?-? ?R\b/.test(t)) { out.add('TYPE R'); out.add('TYPE-R'); }
+  if (/\bM[2345]\b/.test(t)) ['M2', 'M3', 'M4', 'M5'].forEach((x) => out.add(x));
+  if (/\bSTI\b/.test(t)) out.add('STI');
+  if (/NISMO/.test(t)) out.add('NISMO');
+  return out.size ? [...out] : null;
+}
+
 /**
  * Founder-only health probe / Path-B eval harness: reports whether OAuth mints,
  * the Browse search HTTP status (a 403 here = Buy API production access not
@@ -270,7 +325,10 @@ function nowMs(): number {
  * breakdown (partNumbers[] with sellerCount + verified/reported) so a query like
  * "2015 Dodge Challenger 392 front brake rotor" doubles as an eval fixture.
  */
-export async function ebayHealthProbe(query = 'Chevrolet Camaro ZL1 1LE hood insert carbon fiber'): Promise<{
+export async function ebayHealthProbe(
+  query = 'Chevrolet Camaro ZL1 1LE hood insert carbon fiber',
+  opts?: { category?: string; make?: string; model?: string; trim?: string },
+): Promise<{
   enabled: boolean; tokenOk: boolean; searchStatus: number | null; listings: number; verifiedPartNumber: string | null; reportedPartNumber?: string | null; partNumbers?: Array<{ value: string; sellerCount: number; verified: boolean; reported: boolean }>; sampleListings?: Array<{ title: string; price: number | null }>; campaignTagged: boolean; error?: string;
 }> {
   if (!APP_ID || !CERT_ID) return { enabled: false, tokenOk: false, searchStatus: null, listings: 0, verifiedPartNumber: null, campaignTagged: false };
@@ -306,7 +364,7 @@ export async function ebayHealthProbe(query = 'Chevrolet Camaro ZL1 1LE hood ins
     const summaries = j.itemSummaries || [];
     const listings = summaries.length;
     const campaignTagged = !!CAMPAIGN_ID && !!summaries[0]?.itemAffiliateWebUrl;
-    const r = await resolveEbay(query, '');
+    const r = await resolveEbay(query, '', opts);
     return {
       enabled: true, tokenOk: true, searchStatus, listings,
       verifiedPartNumber: r?.verifiedPartNumber ?? null,

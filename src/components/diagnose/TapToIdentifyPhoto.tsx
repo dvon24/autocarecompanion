@@ -63,6 +63,12 @@ interface KitPart {
   polygon?: Array<{ x: number; y: number }> | null;
 }
 
+// OEM-specific = vehicle-specific by nature (one part fits one vehicle) → a
+// clean "✓ Fits" is honest. Trim-sensitive = sizes / performance packages vary
+// within a model (SRT Brembos vs base), so fitment needs confirmation.
+const OEM_SPECIFIC_CATS = new Set(['body_panel', 'trim', 'badge', 'emblem', 'bracket', 'interior', 'oem_specific']);
+const FITMENT_SENSITIVE_CATS = new Set(['rotor', 'brake_pad', 'caliper', 'suspension', 'hose', 'tire', 'wheel', 'wiper']);
+
 const CROP_SQUARE_PCT = 24; // default single-component crop for a tap
 const MAX_CROP_OUT_PX = 640; // cap crop payload dimension
 
@@ -328,6 +334,7 @@ export function TapToIdentifyPhoto({
         .t2i-x { width:24px; height:24px; border-radius:50%; border:1px solid rgba(255,255,255,0.16); background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.7); display:grid; place-items:center; flex-shrink:0; padding:0; cursor:pointer; font-size:12px; }
         .t2i-mism { font-size:11px; font-weight:600; color:#FCD34D; background:rgba(245,158,11,0.14); border:1px solid rgba(245,158,11,0.3); border-radius:9px; padding:6px 9px; margin-top:10px; }
         .t2i-fits { font-size:11.5px; font-weight:600; color:#38E1B0; background:rgba(56,225,176,0.12); border:1px solid rgba(56,225,176,0.3); border-radius:9px; padding:6px 9px; margin-top:10px; display:inline-flex; align-items:center; gap:6px; }
+        .t2i-check { font-size:11px; font-weight:600; color:#CBD5E1; background:rgba(148,163,184,0.12); border:1px solid rgba(148,163,184,0.28); border-radius:9px; padding:6px 9px; margin-top:10px; }
         .t2i-meta { display:flex; align-items:center; gap:12px; margin-top:11px; }
         .t2i-lbl { font-size:8.5px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.4); }
         .t2i-pn { font-family:'SF Mono',Menlo,monospace; font-size:12.5px; font-weight:600; color:#fff; margin-top:2px; word-break:break-all; }
@@ -439,13 +446,21 @@ export function TapToIdentifyPhoto({
                 <button className="t2i-x" onClick={() => setSel(null)} aria-label="close">✕</button>
               </div>
 
-              {/* Fitment is a BINARY trust signal from vehicle context — not a
-                  raw model %. Mismatch → warn; else "✓ Fits your <vehicle>". */}
-              {sel.mismatch
-                ? <div className="t2i-mism">⚠ {sel.mismatch}</div>
-                : (vehicle && [vehicle.year, vehicle.make, vehicle.model].some(Boolean)) && (
-                    <div className="t2i-fits">✓ Fits your {[vehicle.year, vehicle.make, vehicle.model].filter(Boolean).join(' ')}</div>
-                  )}
+              {/* Fitment honesty: a VERIFIED part NUMBER means the number is
+                  real, NOT that it fits. Only an OEM-specific part (body panel,
+                  trim, emblem — vehicle-specific by nature) earns "✓ Fits your
+                  <vehicle>". Trim-sensitive wear parts (brakes/suspension/tires:
+                  sizes + performance packages vary) get an honest "confirm
+                  fitment" nudge instead of an unearned green check. */}
+              {(() => {
+                const cat = String(sel.part?.category || '');
+                const vehLabel = [vehicle?.year, vehicle?.make, vehicle?.model].filter(Boolean).join(' ');
+                if (sel.mismatch) return <div className="t2i-mism">⚠ {sel.mismatch}</div>;
+                if (!vehLabel) return null;
+                if (OEM_SPECIFIC_CATS.has(cat)) return <div className="t2i-fits">✓ Fits your {vehLabel}</div>;
+                if (FITMENT_SENSITIVE_CATS.has(cat)) return <div className="t2i-check">Confirm this fits your trim — sizes &amp; packages vary</div>;
+                return null;
+              })()}
 
               <div className="t2i-meta">
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -455,7 +470,7 @@ export function TapToIdentifyPhoto({
                     PART NUMBER{' '}
                     {(sel.part.oemPartNumbers?.[0] || sel.part.aftermarketPartNumbers?.[0]?.partNumber) && (
                       sel.part.partNumberVerified
-                        ? <span style={{ color: '#38E1B0', fontWeight: 800 }} title="Agreed on by ≥3 independent eBay sellers">✓ VERIFIED</span>
+                        ? <span style={{ color: '#38E1B0', fontWeight: 800 }} title="Real part number — agreed on by ≥3 independent eBay sellers. Confirms the NUMBER, not that it fits your trim.">✓ VERIFIED</span>
                         : <span style={{ color: '#F59E0B', fontWeight: 800 }} title="≥2 sellers or model-reported — not yet strongly confirmed">• REPORTED</span>
                     )}
                   </div>

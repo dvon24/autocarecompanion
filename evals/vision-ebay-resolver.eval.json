@@ -1,51 +1,48 @@
 {
-  "_about": "Path-B (generic buyable-part) eval fixtures for the eBay resolver's two-tier, seller-distinct gate. Run each `query` against GET /api/vision/ebay-health?q=... (founder-only, prod) and compare to `expect`. The KEY assertion is category-dependent: OEM-specific parts should resolve one canonical PN; multi-brand wear parts (rotors/pads/wipers/filters) legitimately have MANY valid SKUs, so a null verifiedPartNumber is CORRECT there — confidence comes from spec + live listings, not PN agreement. Seeded from the first live run 2026-07-07.",
+  "_about": "Path-B (buyable-part) eval for the eBay resolver. Live-marketplace evals churn, so assertions are split: INVARIANTS must hold on every run forever (a fail is a regression); SNAPSHOTS are dated observations expected to drift (informational only — the runner never fails on them). Run: `node scripts/eval-vision-resolver.js` (needs EVAL_TOKEN set to match the server env; hits the founder/eval-gated /api/vision/ebay-health).",
+  "baseUrl": "https://au7o.io",
   "gate": { "verifiedDistinctSellers": 3, "reportedDistinctSellers": 2, "inspectN": 12 },
   "cases": [
     {
-      "query": "2015 Dodge Challenger 392 front brake rotor",
-      "category": "rotor",
-      "categoryType": "multi_brand_wear",
-      "observed_2026_07_07": {
-        "verifiedPartNumber": null,
-        "reportedPartNumber": null,
-        "topCandidates": ["KT22J8", "530-2242", "68184587AE", "4R53326"],
-        "listings": 3,
-        "campaignTagged": true
+      "name": "rotor-srt392-trim-filter",
+      "query": "2015 Dodge Challenger SRT 392 front brake rotor",
+      "params": { "category": "rotor", "make": "Dodge", "model": "Challenger", "trim": "SRT 392" },
+      "invariants": {
+        "tokenOk": true,
+        "searchStatus": 200,
+        "affiliateWhenListings": true,
+        "allListingsMatchAnyToken": ["SRT", "392", "BREMBO", "SCAT", "HELLCAT"]
       },
-      "expect": {
-        "verifiedPartNumber": null,
-        "note": "CORRECT null — rotors are multi-brand (OEM 68184587AE + Centric/PowerStop/EBC each with own SKU), so no single number clears the seller gate. User still gets real affiliate listings + should see the rotor SPEC (diameter/vented) as the confidence signal.",
-        "mustHave": ["listings>=1", "campaignTagged==true", "no fabricated verifiedPartNumber"]
+      "snapshot_2026_07_07": {
+        "note": "The dangerous regression: BEFORE the trim filter a $232 'Front Rear Drilled Rotors for Challenger Charger Magnum Chrysler 300' generic multi-platform set surfaced for an SRT 392 (which runs 390mm Brembos). Trim filter must keep that out. verifiedPartNumber legitimately null here — rotors are multi-brand."
       }
     },
     {
+      "name": "wiper-verifies-but-fitment-is-size",
       "query": "2015 Dodge Challenger wiper blades",
-      "category": "wiper",
-      "categoryType": "multi_brand_wear",
-      "observed_2026_07_07": {
-        "verifiedPartNumber": "4022-42",
-        "reportedPartNumber": "4022-42",
-        "topSellerCount": 3,
-        "listings": 3,
-        "campaignTagged": true,
-        "fitmentNuance": "listings disagree on size — 22\"+22\" vs 21\"+21\"; the SPEC (blade lengths) is the real answer, not the SKU"
+      "params": { "category": "wiper", "make": "Dodge", "model": "Challenger", "trim": "SRT 392" },
+      "invariants": {
+        "tokenOk": true,
+        "searchStatus": 200,
+        "affiliateWhenListings": true
       },
-      "expect": {
-        "verifiedTierReachable": true,
-        "note": "A number CAN verify here (3 sellers on 4022-42), but wiper fitment is by SIZE; spec should carry the fitment truth. Watch that the surfaced size matches the vehicle (2015 SRT 392).",
-        "mustHave": ["listings>=1", "campaignTagged==true"]
+      "snapshot_2026_07_07": {
+        "verifiedPartNumber": "4022-42",
+        "note": "A number CAN verify (3 sellers), but wiper fitment is by SIZE and listings disagreed (22+22 vs 21+21). The VERIFIED badge means the number is real, NOT that the size fits — spec carries fitment. PN + counts are snapshots, expected to drift."
       }
     },
     {
+      "name": "oem-specific-hood-verifies",
       "query": "Chevrolet Camaro ZL1 1LE hood insert carbon fiber",
-      "category": "body_panel",
-      "categoryType": "oem_specific",
-      "observed_prior": { "verifiedPartNumber": "84243751" },
-      "expect": {
+      "params": { "category": "body_panel", "make": "Chevrolet", "model": "Camaro", "trim": "ZL1" },
+      "invariants": {
+        "tokenOk": true,
+        "searchStatus": 200,
+        "verifiedNonNull": true
+      },
+      "snapshot_prior": {
         "verifiedPartNumber": "84243751",
-        "note": "OEM-specific canonical part — the seller-agreement gate is exactly right here; this is the case the gate was built for.",
-        "mustHave": ["verifiedPartNumber==84243751"]
+        "note": "OEM-specific canonical part — the seller-agreement gate is exactly what it was built for; a verified PN here is the expected win. Specific PN is a snapshot; 'a PN verifies' is the invariant."
       }
     }
   ]
