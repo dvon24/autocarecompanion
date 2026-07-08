@@ -34,8 +34,21 @@ export function appUrl(): string {
   );
 }
 
+/**
+ * The sender address, normalized so a slightly-malformed FROM_EMAIL env value
+ * (stray whitespace/quotes, or a bare "Name email@x.com" missing the angle
+ * brackets) can't break every send with Resend's "Invalid `from` field" error.
+ * Accepts "email@x.com" or "Name <email@x.com>"; otherwise extracts the email
+ * and wraps it; falls back to the Resend test sender only if there's no email.
+ */
 function fromAddress(): string {
-  return process.env.FROM_EMAIL || 'Au7o <onboarding@resend.dev>';
+  const raw = (process.env.FROM_EMAIL || '').trim().replace(/^["']|["']$/g, '');
+  const bare = /^[^<>@\s]+@[^<>@\s]+\.[^<>@\s]+$/;
+  const named = /^.+<[^<>@\s]+@[^<>@\s]+\.[^<>@\s]+>$/;
+  if (bare.test(raw) || named.test(raw)) return raw;
+  const m = raw.match(/[^<>@\s]+@[^<>@\s]+\.[^<>@\s]+/);
+  if (m) return `Au7o <${m[0]}>`;
+  return 'Au7o <onboarding@resend.dev>';
 }
 
 interface SendArgs {
