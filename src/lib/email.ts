@@ -49,11 +49,17 @@ interface SendArgs {
 }
 
 /** Returns true if the send appeared to succeed (or was a no-op in dev). */
-export async function sendEmail({ to, subject, html, text, replyTo }: SendArgs): Promise<boolean> {
+export async function sendEmail(args: SendArgs): Promise<boolean> {
+  return (await sendEmailDetailed(args)).ok;
+}
+
+/** Like sendEmail but returns the actual failure reason (for surfacing to a
+ *  founder-only admin action instead of a generic "failed"). */
+export async function sendEmailDetailed({ to, subject, html, text, replyTo }: SendArgs): Promise<{ ok: boolean; error?: string }> {
   const c = client();
   if (!c) {
     console.warn('[email] RESEND_API_KEY not set; skipping send. To:', to, 'Subject:', subject);
-    return false;
+    return { ok: false, error: 'RESEND_API_KEY is not set in this environment' };
   }
   try {
     const result = await c.emails.send({
@@ -62,16 +68,20 @@ export async function sendEmail({ to, subject, html, text, replyTo }: SendArgs):
       subject,
       html,
       text,
-      ...(replyTo ? { replyTo } : {}),
+      // Only a valid-looking address (guards against a bad env value breaking the send).
+      ...(replyTo && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(replyTo) ? { replyTo } : {}),
     });
     if (result.error) {
+      const e = result.error as { message?: string; name?: string };
+      const msg = e.message || e.name || JSON.stringify(result.error);
       console.error('[email] Resend error:', result.error);
-      return false;
+      return { ok: false, error: msg };
     }
-    return true;
+    return { ok: true };
   } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
     console.error('[email] send threw:', err);
-    return false;
+    return { ok: false, error: msg };
   }
 }
 

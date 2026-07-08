@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { auth } from '@/lib/auth';
 import { isFounderEmail } from '@/lib/founder';
-import { sendEmail } from '@/lib/email';
+import { sendEmailDetailed } from '@/lib/email';
 
 export const runtime = 'nodejs';
 
@@ -48,14 +48,15 @@ export async function POST(request: NextRequest) {
   </div></body></html>`;
   const text = `${reply}\n\n— The au7o team\n\n---\nYou wrote to au7o:\n${String(fb.message || '').slice(0, 2000)}`;
 
-  const ok = await sendEmail({
+  const { ok, error } = await sendEmailDetailed({
     to: fb.email,
     subject: 'Re: your au7o feedback',
     html,
     text,
     replyTo,
   });
-  if (!ok) return NextResponse.json({ error: 'Email failed to send (check RESEND_API_KEY / FROM_EMAIL).' }, { status: 502 });
+  // Founder-only endpoint, so it's safe to surface the real Resend error.
+  if (!ok) return NextResponse.json({ error: `Send failed: ${error || 'unknown'}` }, { status: 502 });
 
   return NextResponse.json({ success: true });
 }
