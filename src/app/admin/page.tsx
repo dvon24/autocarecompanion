@@ -192,6 +192,10 @@ export default function AdminPage() {
   const [error, setError] = useState<string | null>(null);
   const [removingEmailId, setRemovingEmailId] = useState<string | null>(null);
   const [removingFeedbackId, setRemovingFeedbackId] = useState<string | null>(null);
+  const [replyingId, setReplyingId] = useState<string | null>(null);
+  const [replyDraft, setReplyDraft] = useState<Record<string, string>>({});
+  const [sendingReplyId, setSendingReplyId] = useState<string | null>(null);
+  const [sentReplyIds, setSentReplyIds] = useState<Set<string>>(new Set());
   const [activeTab, setActiveTab] = useState<'emails' | 'users' | 'feedback' | 'vehicle' | 'patterns' | 'reports' | 'costs' | 'review' | 'affiliates' | 'guides'>('emails');
 
   // Remove a lead from the active list (suppress = set unsubscribedAt). Used to
@@ -230,6 +234,28 @@ export default function AdminPage() {
       }
     } catch { alert('Could not dismiss — try again.'); }
     finally { setRemovingFeedbackId(null); }
+  }
+
+  // ── In-admin reply: compose + send an email to the feedback submitter from
+  // au7o's own sender (no mailto handoff). Their response routes back to you.
+  async function sendReply(entry: FeedbackEntry) {
+    const body = (replyDraft[entry.id] || '').trim();
+    if (!body) return;
+    setSendingReplyId(entry.id);
+    try {
+      const res = await fetch('/api/admin/feedback/reply', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: entry.id, message: body }),
+      });
+      if (res.ok) {
+        setSentReplyIds((prev) => new Set(prev).add(entry.id));
+        setReplyingId(null);
+        setReplyDraft((prev) => { const n = { ...prev }; delete n[entry.id]; return n; });
+      } else {
+        const j = await res.json().catch(() => ({}));
+        alert(j.error || 'Could not send reply — check email config.');
+      }
+    } catch { alert('Could not send reply — try again.'); }
+    finally { setSendingReplyId(null); }
   }
 
   useEffect(() => {
@@ -572,12 +598,45 @@ export default function AdminPage() {
                   </div>
                   <p className="text-gray-700 whitespace-pre-wrap">{entry.message}</p>
                   {entry.email && (
-                    <a
-                      href={`mailto:${entry.email}?subject=${encodeURIComponent('Re: your au7o feedback')}`}
-                      className="inline-block mt-3 text-xs font-medium text-blue-600 hover:text-blue-800"
-                    >
-                      Reply by email →
-                    </a>
+                    <div className="mt-3">
+                      {sentReplyIds.has(entry.id) ? (
+                        <span className="text-xs font-medium text-green-600">✓ Reply sent to {entry.email}</span>
+                      ) : replyingId === entry.id ? (
+                        <div className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                          <div className="text-xs text-gray-500 mb-2">Reply to <span className="font-medium">{entry.email}</span> (sent from au7o; their reply comes back to you)</div>
+                          <textarea
+                            autoFocus
+                            value={replyDraft[entry.id] || ''}
+                            onChange={(e) => setReplyDraft((prev) => ({ ...prev, [entry.id]: e.target.value }))}
+                            rows={4}
+                            placeholder="Type your reply…"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"
+                          />
+                          <div className="flex items-center gap-2 mt-2">
+                            <button
+                              onClick={() => sendReply(entry)}
+                              disabled={sendingReplyId === entry.id || !(replyDraft[entry.id] || '').trim()}
+                              className="px-3 py-1.5 rounded-lg bg-blue-600 text-white text-xs font-medium hover:bg-blue-700 disabled:opacity-40"
+                            >
+                              {sendingReplyId === entry.id ? 'Sending…' : 'Send reply'}
+                            </button>
+                            <button
+                              onClick={() => setReplyingId(null)}
+                              className="px-3 py-1.5 rounded-lg text-xs font-medium text-gray-500 hover:text-gray-700"
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => setReplyingId(entry.id)}
+                          className="inline-block text-xs font-medium text-blue-600 hover:text-blue-800"
+                        >
+                          Reply by email →
+                        </button>
+                      )}
+                    </div>
                   )}
                 </div>
               ))

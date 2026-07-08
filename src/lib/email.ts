@@ -43,10 +43,13 @@ interface SendArgs {
   subject: string;
   html: string;
   text?: string;
+  /** Where replies from the recipient should go (e.g. a founder replying to
+   *  feedback wants the user's response routed back to their inbox). */
+  replyTo?: string;
 }
 
 /** Returns true if the send appeared to succeed (or was a no-op in dev). */
-export async function sendEmail({ to, subject, html, text }: SendArgs): Promise<boolean> {
+export async function sendEmail({ to, subject, html, text, replyTo }: SendArgs): Promise<boolean> {
   const c = client();
   if (!c) {
     console.warn('[email] RESEND_API_KEY not set; skipping send. To:', to, 'Subject:', subject);
@@ -59,6 +62,7 @@ export async function sendEmail({ to, subject, html, text }: SendArgs): Promise<
       subject,
       html,
       text,
+      ...(replyTo ? { replyTo } : {}),
     });
     if (result.error) {
       console.error('[email] Resend error:', result.error);
