@@ -24,6 +24,8 @@ import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/component
 import { ShareButtons } from '@/components/shared/ShareButtons';
 import { OpenHubLink } from '@/components/known-issues/OpenHubLink';
 import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
+import { ToolRecommendations } from '@/components/known-issues/ToolRecommendations';
+import { toolsForIssues } from '@/lib/affiliate-tools';
 import { AlertSignupPopup } from '@/components/known-issues/AlertSignupPopup';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import { AdSlot } from '@/components/ads/AdSlot';
@@ -590,6 +592,16 @@ export default async function KnownIssuesArticlePage({
                 linkableDtcCodes={linkableDtcCodes}
               />
             </section>
+
+            {/* Context-matched universal tools (affiliate) — highest-convert,
+                no-fitment items keyed to these problems (OBD2 for codes, battery
+                gear for electrical, Level-2 charger for EVs). */}
+            <ToolRecommendations
+              tools={toolsForIssues(issues, make, model)}
+              make={make}
+              model={model}
+              issueId={`ki:${make}-${model}`}
+            />
 
             {/* Single ad slot — after issues, before recalls */}
             <AdSlot slotId="auto" format="horizontal" className="my-10" />

@@ -1,6 +1,8 @@
 import { ConfirmWithPhotoCTA } from '@/components/diagnose/ConfirmWithPhotoCTA';
 import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
 import { AlertSignupPopup } from '@/components/known-issues/AlertSignupPopup';
+import { ToolRecommendations } from '@/components/known-issues/ToolRecommendations';
+import { toolsForDtc } from '@/lib/affiliate-tools';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -652,8 +654,16 @@ export default async function DTCCodePage({
               </section>
             )}
 
+            {/* An OBD2 scanner is the highest-intent match on a trouble-code
+                page — the visitor literally needs one to read/clear this code. */}
+            <ToolRecommendations
+              tools={toolsForDtc()}
+              heading={`Read & clear ${data.code} yourself`}
+              issueId={`dtc:${data.code}`}
+            />
+
             {/* Soft-conversion: DTC-level email alert capture (SEO-safe, additive). */}
-            <div className="mb-8">
+            <div className="mb-8 mt-8">
               <KnownIssueAlertSignup
                 vehicleName={data.code}
                 context={`dtc:${data.code}`}
