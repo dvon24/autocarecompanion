@@ -23,7 +23,7 @@ export const obdScanners: OBDScanner[] = [
       'I/M readiness status',
       'No batteries or app needed',
     ],
-    amazonUrl: 'https://www.amazon.com/dp/ASIN_AD310?tag=au7o-20',
+    amazonUrl: 'https://www.amazon.com/s?k=ANCEL+AD310+OBD2+scanner&tag=au7o-20',
     tier: 'budget',
   },
   {
@@ -38,7 +38,7 @@ export const obdScanners: OBDScanner[] = [
       'Smog check readiness',
       'Free app (iOS & Android)',
     ],
-    amazonUrl: 'https://www.amazon.com/dp/ASIN_BLUEDRIVER?tag=au7o-20',
+    amazonUrl: 'https://www.amazon.com/s?k=BlueDriver+Bluetooth+Pro+OBD2+scanner&tag=au7o-20',
     tier: 'midrange',
   },
   {
@@ -53,7 +53,7 @@ export const obdScanners: OBDScanner[] = [
       'AutoVIN for vehicle identification',
       'Free lifetime updates via Wi-Fi',
     ],
-    amazonUrl: 'https://www.amazon.com/dp/ASIN_CRP123X?tag=au7o-20',
+    amazonUrl: 'https://www.amazon.com/s?k=LAUNCH+CRP123X+OBD2+scanner&tag=au7o-20',
     tier: 'advanced',
   },
   {
@@ -68,7 +68,7 @@ export const obdScanners: OBDScanner[] = [
       'Oil reset, EPB, BMS, TPMS, injector coding',
       '7-inch touchscreen with Android OS',
     ],
-    amazonUrl: 'https://www.amazon.com/dp/ASIN_MK808S?tag=au7o-20',
+    amazonUrl: 'https://www.amazon.com/s?k=Autel+MaxiCOM+MK808S+diagnostic+scanner&tag=au7o-20',
     tier: 'professional',
   },
 ];
