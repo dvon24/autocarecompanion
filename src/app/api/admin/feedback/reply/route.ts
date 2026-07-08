@@ -36,7 +36,10 @@ export async function POST(request: NextRequest) {
   const reply = message.trim().slice(0, 5000);
   const safeReply = reply.replace(/&/g, '&amp;').replace(/</g, '&lt;');
   const quoted = String(fb.message || '').slice(0, 2000).replace(/&/g, '&amp;').replace(/</g, '&lt;');
-  const replyTo = process.env.FEEDBACK_NOTIFY_EMAIL || (isFounderEmail(founderEmail) ? founderEmail || undefined : undefined);
+  // NEVER expose the founder's personal email. Only use a dedicated support
+  // address if one is configured (FEEDBACK_NOTIFY_EMAIL); otherwise omit
+  // reply-to entirely so replies default to the au7o FROM address (alerts@au7o.io).
+  const replyTo = process.env.FEEDBACK_NOTIFY_EMAIL || undefined;
 
   const html = `<!doctype html><html><body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#0b1220;background:#f7f6f2;padding:24px;">
   <div style="max-width:520px;margin:0 auto;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:24px;">
