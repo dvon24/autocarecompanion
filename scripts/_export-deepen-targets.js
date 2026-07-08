@@ -3,11 +3,12 @@ const fs = require('fs');
 const { PrismaClient } = require('@prisma/client');
 const { PrismaPg } = require('@prisma/adapter-pg');
 const { Pool } = require('pg');
+// ERA WAVE re-run — the 4 models throttled out both prior runs
 const TARGETS = [
-  { make: 'Subaru', model: 'Forester' },
-  { make: 'Genesis', model: 'G70' },
-  { make: 'Lincoln', model: 'Nautilus' },
-  { make: 'Audi', model: 'S7' },
+  { make: 'Toyota', model: 'RAV4' },
+  { make: 'Ram', model: '1500' },
+  { make: 'Honda', model: 'Civic' },
+  { make: 'Toyota', model: '4Runner' },
 ];
 (async () => {
   const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 3 }); pool.on('error', () => {});
