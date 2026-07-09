@@ -23,7 +23,11 @@ export const runtime = 'nodejs';
  * expires in ~60s (the handshake window — the live session continues after).
  */
 const OPENAI_KEY = process.env.OPENAI_API_KEY;
-const REALTIME_MODEL = process.env.OPENAI_REALTIME_MODEL || 'gpt-realtime';
+// Default to gpt-realtime-2.1 (25% p95 latency cut + better alphanumeric
+// recognition — matters because the mechanic reads PART NUMBERS aloud). Set
+// OPENAI_REALTIME_MODEL in Vercel to override (e.g. 'gpt-realtime-2.1-mini'
+// for cheaper demo-tier sessions, or 'gpt-realtime' to roll back).
+const REALTIME_MODEL = process.env.OPENAI_REALTIME_MODEL || 'gpt-realtime-2.1';
 const REALTIME_VOICE = process.env.OPENAI_REALTIME_VOICE || 'verse';
 
 // Length of the free live-voice taste for non-payers. Short by design — long
