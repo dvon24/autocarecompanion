@@ -539,6 +539,11 @@ Return ONLY a JSON object:
     // FOUNDER-ONLY pipeline trace — the full Stage 1→4 decision trail for debugging.
     ...(isFounder ? {
       trace: {
+        // vehicleReceived is the SMOKING GUN for "why did Amazon drop year/trim":
+        // if this is null (or missing trim), the query falls back to the model's
+        // bare "make model" text — exactly the wrong-trim symptom.
+        vehicleReceived: vehicle,
+        vehicleRaw: body.vehicle ?? null,
         stage1_where: { samEnabled: samEnabled(), usedSamCrop: !!refinedPolygon, box: refinedBox, voiceQueryHint: queryHint || null },
         stage2_grounding: { model: IDENTIFY_MODEL, catalogPnCount: catalogPNs.size, catalogPnSample: [...catalogPNs].slice(0, 8), knownIssueCandidates: issueIdByHint.length, visionMatch },
         stage3_model: { category, name, brand: part.brand, spec: part.spec, oemPartNumbers_raw: oemPartNumbers, searchQuery: typeof parsed.searchQuery === 'string' ? parsed.searchQuery : null, confidence, vehicleMismatch, relatedKnownIssueId: relatedId || null },

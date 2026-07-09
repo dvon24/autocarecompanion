@@ -701,9 +701,19 @@ function TraceView({ trace }: { trace: Record<string, unknown> }) {
   const vendorLinks = Array.isArray(s4.vendorLinks) ? (s4.vendorLinks as Array<Record<string, unknown>>) : [];
   const ebay = (s4.ebay || {}) as Record<string, unknown>;
   const voiceHint = get(['stage1_where', 'voiceQueryHint']);
+  const vehRecv = get(['vehicleReceived']) as Record<string, unknown> | null;
+  const vehStr = vehRecv ? [vehRecv.year, vehRecv.make, vehRecv.model, vehRecv.trim].filter(Boolean).join(' ') : '';
+  const trimMissing = !vehRecv || !vehRecv.trim;
 
   return (
     <div className="t2i-trace-body">
+      <div className="t2i-trace-row">
+        <div className="t2i-trace-k">Vehicle the server received {trimMissing ? '⚠' : '✓'}</div>
+        <div className={`t2i-trace-v ${trimMissing ? 't2i-trace-warn' : 't2i-trace-q'}`}>
+          {vehRecv ? (vehStr || '(object present but empty)') : 'NULL — no vehicle reached the server → query falls back to bare make/model'}
+          {vehRecv && !vehRecv.trim ? ' — TRIM MISSING' : ''}
+        </div>
+      </div>
       {typeof voiceHint === 'string' && voiceHint && (
         <div className="t2i-trace-row"><div className="t2i-trace-k">Voice request</div><div className="t2i-trace-v t2i-trace-q">“{voiceHint}”</div></div>
       )}
