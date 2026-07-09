@@ -166,9 +166,30 @@ function buildVendorUrl(cfg: VendorConfig, input: ResolveInput): string | null {
   if (cfg.partNumberSupport === 'native' && cfg.partNumberUrlTemplate && part) {
     return cfg.partNumberUrlTemplate.replace('{part_number}', encodeURIComponent(part));
   }
-  const query = resolveQuery(input);
+  // VENDOR DIALECT: only some vendors' search actually MATCHES an OEM part number
+  // (used-parts + OEM catalogs — eBay/RockAuto/Mopar-GM Parts Giant). Retail
+  // vendors (Amazon/Summit/AutoZone/NAPA/O'Reilly/Advance/American Muscle) index
+  // by DESCRIPTIVE terms + aftermarket brand SKUs, so feeding them a raw Mopar
+  // OEM PN returns ZERO results. Give those a descriptive query instead — which
+  // also surfaces the aftermarket options (Power Stop, EBC, etc.) shoppers want.
+  const query = PN_SEARCHABLE_VENDORS.has(cfg.key)
+    ? resolveQuery(input)
+    : (descriptiveQuery(input) || resolveQuery(input));
   if (!query) return null;
   return cfg.searchUrlTemplate.replace('{query}', encodeURIComponent(query));
+}
+
+/** Vendors whose on-site search actually surfaces an OEM part number. Everyone
+ *  else is a retail/descriptive search and must NOT be fed a raw OEM PN. */
+const PN_SEARCHABLE_VENDORS = new Set<VendorKey>(['rockauto', 'mopar_parts_giant', 'gm_parts_giant', 'ebay_motors']);
+
+/** A descriptive, shopper-style query (no raw OEM PN, no OEM brand): "<year make
+ *  model trim> <part name>" — what actually resolves on Amazon/Summit/AutoZone,
+ *  and deliberately broad so the aftermarket brands (Power Stop, EBC…) show. */
+function descriptiveQuery(input: ResolveInput): string {
+  const v = input.vehicle;
+  return [v?.year, v?.make, v?.model, v?.trim, input.name]
+    .filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
 }
 
 interface TireSize { width: string; ratio: string; diameter: string; }
