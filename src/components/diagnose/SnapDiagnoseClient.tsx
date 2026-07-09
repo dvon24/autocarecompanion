@@ -230,7 +230,7 @@ export function SnapDiagnoseClient() {
         onVideo={(f) => onCaptured('video', f)}
         onClose={() => router.push('/')}
         vehicle={hasVehicle ? { year: Number(year), make, model, trim } : undefined}
-        vehicleLabel={hasVehicle ? `${year} ${make} ${model}` : t.addCar}
+        vehicleLabel={hasVehicle ? `${year} ${make} ${model}${trim ? ' ' + trim : ''}` : t.addCar}
         enableVoice
         voiceAutoStart={false}
         modeToggle={modeToggle}

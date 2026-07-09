@@ -1911,7 +1911,7 @@ function MobileHub({
             onVideo={(f) => { setCamOpen(false); onVideoUpload?.(f); }}
             onClose={() => setCamOpen(false)}
             vehicle={{ year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim || undefined }}
-            vehicleLabel={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+            vehicleLabel={`${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}`}
             enableVoice
           />
         )}
@@ -4036,7 +4036,7 @@ const Composer = ({
           onVideo={(f) => { setCamOpen(false); onVideoUpload?.(f); }}
           onClose={() => setCamOpen(false)}
           vehicle={{ year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim || undefined }}
-          vehicleLabel={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+          vehicleLabel={`${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}`}
           enableVoice
         />
       )}

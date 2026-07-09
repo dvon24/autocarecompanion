@@ -666,7 +666,9 @@ function subLine(p: IdentifiedPart): string {
 const EBAY_SEARCH_CATEGORIES = new Set(['body_panel', 'trim', 'badge', 'emblem', 'bracket', 'interior', 'oem_specific']);
 
 function marketplaceSearchHref(p: IdentifiedPart, vehicle?: TapVehicle): string {
-  const q = [p.brand, p.oemPartNumbers?.[0], vehicle?.year, vehicle?.make, vehicle?.model, p.name]
+  // Include TRIM — a "2015 Dodge Challenger SRT 392" query must not collapse to a
+  // generic Challenger search (Devon's report). Trim goes right after model.
+  const q = [p.brand, p.oemPartNumbers?.[0], vehicle?.year, vehicle?.make, vehicle?.model, vehicle?.trim, p.name]
     .filter(Boolean).join(' ').replace(/\s+/g, ' ').trim() || (p.name || 'auto part');
   if (EBAY_SEARCH_CATEGORIES.has(String(p.category))) {
     // 6028 = eBay "eBay Motors > Parts & Accessories" category node.
