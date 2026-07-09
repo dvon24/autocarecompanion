@@ -366,6 +366,16 @@ export function TapToIdentifyPhoto({
         .t2i-fixnm { font-size:12.5px; font-weight:600; color:#fff; line-height:1.25; }
         .t2i-fixsku { font-family:'SF Mono',Menlo,monospace; font-size:10px; color:rgba(255,255,255,0.5); margin-top:2px; }
         .t2i-fixall { width:100%; margin-top:10px; padding:9px; border-radius:11px; border:1px dashed rgba(56,225,176,0.4); background:rgba(56,225,176,0.08); color:#38E1B0; font-size:12.5px; font-weight:700; cursor:pointer; font-family:inherit; }
+        /* performance-upgrade tier — intentionally lower-confidence than OEM */
+        .t2i-upgrade { margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.1); }
+        .t2i-upgrade-hd { display:flex; align-items:center; justify-content:space-between; font-size:11px; font-weight:700; letter-spacing:0.03em; color:rgba(255,255,255,0.68); margin-bottom:8px; }
+        .t2i-upgrade-tag { font-size:8px; font-weight:800; letter-spacing:0.05em; color:#FCD34D; background:rgba(245,158,11,0.13); border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:2px 6px; }
+        .t2i-upgrow { display:flex; align-items:center; gap:9px; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.07); text-decoration:none; }
+        .t2i-upgrow:last-of-type { border-bottom:none; }
+        .t2i-upgnm { font-size:12.5px; font-weight:600; color:#fff; line-height:1.25; }
+        .t2i-upgnote { font-size:10.5px; color:rgba(255,255,255,0.5); margin-top:2px; }
+        .t2i-upgcta { font-size:12px; font-weight:700; color:#93C5FD; white-space:nowrap; flex-shrink:0; }
+        .t2i-upgfoot { font-size:10px; color:rgba(255,255,255,0.4); margin-top:8px; line-height:1.35; }
         .t2i-cbuy { display:flex; align-items:center; gap:10px; margin-top:13px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.1); }
         .t2i-price { font-family:'SF Mono',Menlo,monospace; font-size:19px; font-weight:700; color:#fff; }
         .t2i-ret { font-size:10px; color:rgba(255,255,255,0.5); margin-top:1px; }
@@ -565,6 +575,38 @@ export function TapToIdentifyPhoto({
                       onClick={() => { sel.issueParts?.forEach((ip) => addToKit(issuePartToIdentified(ip))); setKitOpen(true); track('identify_issuekit_addall', { count: sel.issueParts?.length }); }}
                     >＋ Add all {sel.issueParts.length} to kit</button>
                   )}
+                </div>
+              )}
+
+              {/* PERFORMANCE-UPGRADE TIER — curated aftermarket brands for owners
+                  who run aftermarket, not OEM. Styled DELIBERATELY lower-confidence
+                  than the OEM row above: no verified badge, "Shop … options →"
+                  (these are searches, fitment NOT confirmed). The tier split must
+                  be visible so a Summit search never inherits the OEM row's earned
+                  trust. Phase B graduates these into exact-SKU cards with prices. */}
+              {sel.part.upgradeOptions && sel.part.upgradeOptions.length > 0 && (
+                <div className="t2i-upgrade">
+                  <div className="t2i-upgrade-hd">
+                    <span>⚡ Performance upgrades</span>
+                    <span className="t2i-upgrade-tag">AFTERMARKET · CONFIRM FIT</span>
+                  </div>
+                  {sel.part.upgradeOptions.map((o, i) => (
+                    <a
+                      key={i}
+                      className="t2i-upgrow"
+                      href={o.url}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow sponsored"
+                      onClick={() => track('identify_upgrade_click', { brand: o.brand, vendor: o.vendor, part: sel.part?.category })}
+                    >
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div className="t2i-upgnm">{o.brand}</div>
+                        {o.note && <div className="t2i-upgnote">{o.note}</div>}
+                      </div>
+                      <span className="t2i-upgcta">Shop options →</span>
+                    </a>
+                  ))}
+                  <div className="t2i-upgfoot">Aftermarket search at {sel.part.upgradeOptions[0].displayName} — fitment not verified; confirm before buying.</div>
                 </div>
               )}
             </div>

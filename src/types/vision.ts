@@ -185,6 +185,23 @@ export interface IdentifiedPart {
   ebayListings?: Array<{ title: string; price: number | null; currency: string; condition: string; url: string }>;
   /** Provenance of this part's data / PN (see PartSource). Set server-side. */
   source?: PartSource;
+  /** Performance-upgrade tier: curated aftermarket-brand SEARCH links (Power
+   *  Stop, EBC…) for owners who run aftermarket instead of OEM. These are NOT
+   *  verified fitment — render as "Shop <brand> options →" with no verified
+   *  badge (the OEM row above earned that badge; a descriptive search hasn't).
+   *  Built server-side from the data-driven brand table. */
+  upgradeOptions?: UpgradeOption[];
+}
+
+/** One curated aftermarket-brand option in the "Performance upgrade" row. A
+ *  descriptive vendor SEARCH, not a resolved part — the UI styles it lower-
+ *  confidence than the OEM row. Phase B graduates these into exact-SKU cards. */
+export interface UpgradeOption {
+  brand: string;
+  note?: string;
+  vendor: VendorKey;
+  displayName: string;
+  url: string;
 }
 
 // ─── Vehicle-match verdict ─────────────────────────────────────────

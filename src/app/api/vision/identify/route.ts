@@ -10,6 +10,7 @@ import { validateAndFixVendorLinks } from '@/lib/vendor-link-validator';
 import { refineRegion, promptToBox, samEnabled, type SamPrompt, type SamBox } from '@/lib/sam';
 import { webDetect, googleVisionEnabled, webDetectPromptBlock } from '@/lib/google-vision';
 import { ebayEnabled, resolveEbay } from '@/lib/ebay-resolver';
+import { buildUpgradeOptions } from '@/lib/aftermarket-tier';
 import { ebayAffiliate } from '@/lib/ebay-affiliate';
 import type { IdentifiedPart, PartCategory, IssuePart } from '@/types/vision';
 import Anthropic from '@anthropic-ai/sdk';
@@ -507,6 +508,15 @@ Return ONLY a JSON object:
   else if (ebayReported) part.source = 'ebay_reported';
   else if (part.oemPartNumbers.length && pnTrusted) part.source = 'catalog';
   else if (part.oemPartNumbers.length) part.source = 'model_search_fallback';
+
+  // PERFORMANCE-UPGRADE TIER — curated aftermarket-brand search links (Power
+  // Stop, EBC…) next to the OEM row, for owners who run aftermarket. Data-gated
+  // (only categories in the brand table get options). On a vehicle mismatch we
+  // don't trust the garage trim for platform selection, so drop it → category
+  // default brands with a generic search. Honesty: these are searches, not
+  // verified parts — the UI styles them lower-confidence than the OEM row.
+  const upgradeOptions = buildUpgradeOptions(part.category, part.name, vehicleMismatch ? undefined : (vehicle ?? undefined));
+  if (upgradeOptions.length) part.upgradeOptions = upgradeOptions;
 
   const relatedId = typeof parsed.relatedKnownIssueId === 'string' ? parsed.relatedKnownIssueId.trim() : '';
   const relatedIssue = relatedId ? issueIdByHint.find(i => i.id === relatedId) || null : null;
