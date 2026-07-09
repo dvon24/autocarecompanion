@@ -87,7 +87,7 @@ export function buildUpgradeOptions(
   category: PartCategory | undefined,
   partName: string | undefined,
   vehicle?: UpgradeVehicle,
-  max = 3,
+  max = 4,
 ): UpgradeOption[] {
   if (!category) return [];
   const table = AFTERMARKET_BRANDS[category];

@@ -56,6 +56,15 @@ export type PlatformKey =
  * category → recommended aftermarket brands. Only categories present here get a
  * "Performance upgrade" row (the presence of an entry is the gate). v1: brakes.
  */
+// NUANCE — Brembo is the OE caliper supplier on the 6-piston performance
+// packages (SRT/392/Hellcat, SS/ZL1, GT PP/Shelby, M/AMG). On THOSE platforms a
+// Brembo OE-replacement disc is functionally the OEM tier, not an upgrade —
+// listing "Brembo" flat here would surface OE-equivalent discs styled as
+// performance parts, and Brembo's genuine upgrade (GT big-brake kits) is a
+// different, far pricier product. So Brembo is DROPPED from the perf-platform
+// upgrade lists (it belongs next to the OEM row) and the shortlist is the brands
+// the owner community actually cross-shops. Brembo stays in the category DEFAULT
+// because on a base (non-Brembo) car a Brembo kit really is an upgrade.
 export const AFTERMARKET_BRANDS: Partial<Record<PartCategory, CategoryBrandTable>> = {
   rotor: {
     default: [
@@ -66,23 +75,26 @@ export const AFTERMARKET_BRANDS: Partial<Record<PartCategory, CategoryBrandTable
     byPlatform: {
       mopar_srt: [
         { brand: 'Power Stop', note: 'Z26 Extreme kits for the 392/Hellcat' },
-        { brand: 'Brembo', note: '6-piston OE + upgrade discs' },
-        { brand: 'StopTech', note: 'slotted big-brake' },
+        { brand: 'StopTech', note: 'slotted / big-brake' },
+        { brand: 'EBC', note: 'sport rotors' },
+        { brand: 'DBA', note: 'T3 slotted, track-favorite' },
       ],
       gm_fbody_perf: [
-        { brand: 'Brembo', note: '6-piston OE (SS/ZL1)' },
         { brand: 'Power Stop', note: 'track kits' },
-        { brand: 'PFC', note: 'track pads/discs' },
+        { brand: 'StopTech', note: 'slotted / big-brake' },
+        { brand: 'EBC', note: 'sport rotors' },
+        { brand: 'PFC', note: 'track discs' },
       ],
       ford_mustang_perf: [
-        { brand: 'Brembo', note: 'GT/PP 6-piston' },
         { brand: 'Power Stop', note: 'Z-series kits' },
-        { brand: 'StopTech', note: 'BBK' },
+        { brand: 'StopTech', note: 'BBK / slotted' },
+        { brand: 'EBC', note: 'sport rotors' },
+        { brand: 'DBA', note: 'T3 slotted' },
       ],
       euro_perf: [
-        { brand: 'Zimmermann', note: 'OE sport discs' },
-        { brand: 'Brembo', note: 'upgrade kits' },
         { brand: 'EBC', note: 'sport rotors' },
+        { brand: 'StopTech', note: 'slotted / BBK' },
+        { brand: 'Zimmermann', note: 'OE-sport discs' },
       ],
     },
   },
@@ -115,5 +127,11 @@ export const AFTERMARKET_BRANDS: Partial<Record<PartCategory, CategoryBrandTable
       { brand: 'Power Stop', note: 'remanufactured + big-brake kits' },
       { brand: 'Brembo', note: 'upgrade calipers' },
     ],
+    byPlatform: {
+      // Brembo is the OE caliper here → not an "upgrade"; see nuance note above.
+      mopar_srt: [{ brand: 'Power Stop', note: 'big-brake kits' }, { brand: 'StopTech', note: 'ST-40/ST-60 BBK' }],
+      gm_fbody_perf: [{ brand: 'Power Stop', note: 'big-brake kits' }, { brand: 'StopTech', note: 'BBK' }],
+      ford_mustang_perf: [{ brand: 'Power Stop', note: 'big-brake kits' }, { brand: 'StopTech', note: 'BBK' }],
+    },
   },
 };
