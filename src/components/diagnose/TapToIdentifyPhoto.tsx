@@ -54,6 +54,9 @@ interface IdentifyState {
   /** Set when the image shows a different vehicle than the garage car. */
   mismatch?: string;
   error?: string;
+  /** Founder-only pipeline trace (server returns it only for the founder). Its
+   *  presence gates the in-app debug panel — non-founders never receive it. */
+  trace?: Record<string, unknown>;
 }
 
 /** A part in the buy-selection kit (dedup by id or lowercased name). */
@@ -112,6 +115,7 @@ export function TapToIdentifyPhoto({
   const [sel, setSel] = useState<IdentifyState | null>(null);
   const [kit, setKit] = useState<KitPart[]>([]);
   const [kitOpen, setKitOpen] = useState(false);
+  const [traceOpen, setTraceOpen] = useState(false);
   const tapId = useRef<number | null>(null); // active primary pointer id
   const autoRan = useRef(false);
 
@@ -238,6 +242,7 @@ export function TapToIdentifyPhoto({
         mismatch: data.vehicleMismatch
           ? (data.vehicleMismatchNote || 'This looks like a different vehicle than your garage car.')
           : undefined,
+        trace: data.trace && typeof data.trace === 'object' ? data.trace : undefined,
       });
       // voice narration (only when this surface owns the voice)
       if (speakResults && part?.name) {
@@ -376,6 +381,16 @@ export function TapToIdentifyPhoto({
         .t2i-upgnote { font-size:10.5px; color:rgba(255,255,255,0.5); margin-top:2px; }
         .t2i-upgcta { font-size:12px; font-weight:700; color:#93C5FD; white-space:nowrap; flex-shrink:0; }
         .t2i-upgfoot { font-size:10px; color:rgba(255,255,255,0.4); margin-top:8px; line-height:1.35; }
+        /* founder debug trace */
+        .t2i-trace { margin-top:12px; padding-top:10px; border-top:1px dashed rgba(255,255,255,0.14); }
+        .t2i-trace-hd { width:100%; display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:9px; padding:8px 11px; color:#A5B4FC; font-size:11.5px; font-weight:700; cursor:pointer; font-family:inherit; }
+        .t2i-trace-body { margin-top:9px; display:flex; flex-direction:column; gap:9px; }
+        .t2i-trace-row { }
+        .t2i-trace-k { font-size:8.5px; font-weight:800; letter-spacing:0.07em; color:rgba(255,255,255,0.42); text-transform:uppercase; }
+        .t2i-trace-v { font-family:'SF Mono',Menlo,monospace; font-size:11px; color:#E2E8F0; margin-top:2px; word-break:break-all; line-height:1.4; }
+        .t2i-trace-v a { color:#93C5FD; text-decoration:none; }
+        .t2i-trace-q { color:#38E1B0; }
+        .t2i-trace-warn { color:#FCD34D; }
         .t2i-cbuy { display:flex; align-items:center; gap:10px; margin-top:13px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.1); }
         .t2i-price { font-family:'SF Mono',Menlo,monospace; font-size:19px; font-weight:700; color:#fff; }
         .t2i-ret { font-size:10px; color:rgba(255,255,255,0.5); margin-top:1px; }
@@ -609,6 +624,20 @@ export function TapToIdentifyPhoto({
                   <div className="t2i-upgfoot">Aftermarket search at {sel.part.upgradeOptions[0].displayName} — fitment not verified; confirm before buying.</div>
                 </div>
               )}
+
+              {/* FOUNDER-ONLY pipeline trace — server returns `trace` only for the
+                  founder, so its presence gates this panel. Shows every stage +
+                  the EXACT vendor URLs, so "what query hit Amazon" is visible on
+                  the phone instead of only in devtools. */}
+              {sel.trace && (
+                <div className="t2i-trace">
+                  <button type="button" className="t2i-trace-hd" onClick={() => setTraceOpen((o) => !o)}>
+                    <span>🔎 Debug trace — what actually ran</span>
+                    <span>{traceOpen ? '▲' : '▼'}</span>
+                  </button>
+                  {traceOpen && <TraceView trace={sel.trace} />}
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -643,6 +672,74 @@ export function TapToIdentifyPhoto({
           </div>
           {kitTotal > 0 && <span style={{ fontFamily: "'SF Mono',Menlo,monospace", fontSize: 17, fontWeight: 700, color: '#0B1220' }}>${kitTotal}</span>}
         </div>
+      </div>
+    </div>
+  );
+}
+
+/** Decode the human-readable search query out of a vendor search URL (the
+ *  ?k= / ?searchTerm= / ?_nkw= param) so the trace shows what we actually asked
+ *  the store for — the fastest way to see if year/trim made it in. */
+function queryFromUrl(url: string): string | null {
+  try {
+    const u = new URL(url);
+    for (const key of ['k', 'searchTerm', '_nkw', 'searchText', 'text', 'q', 'search_string']) {
+      const v = u.searchParams.get(key);
+      if (v) return decodeURIComponent(v);
+    }
+    return null;
+  } catch { return null; }
+}
+
+/** Founder-only pipeline trace renderer. Surfaces the facts that matter for
+ *  debugging a "wrong link / missing trim" report: the exact query each vendor
+ *  got, the model's read, the eBay resolve, and the voice hint. */
+function TraceView({ trace }: { trace: Record<string, unknown> }) {
+  const get = (path: string[]): unknown => path.reduce<unknown>((o, k) => (o && typeof o === 'object' ? (o as Record<string, unknown>)[k] : undefined), trace);
+  const s3 = (get(['stage3_model']) || {}) as Record<string, unknown>;
+  const s4 = (get(['stage4_facts']) || {}) as Record<string, unknown>;
+  const vendorLinks = Array.isArray(s4.vendorLinks) ? (s4.vendorLinks as Array<Record<string, unknown>>) : [];
+  const ebay = (s4.ebay || {}) as Record<string, unknown>;
+  const voiceHint = get(['stage1_where', 'voiceQueryHint']);
+
+  return (
+    <div className="t2i-trace-body">
+      {typeof voiceHint === 'string' && voiceHint && (
+        <div className="t2i-trace-row"><div className="t2i-trace-k">Voice request</div><div className="t2i-trace-v t2i-trace-q">“{voiceHint}”</div></div>
+      )}
+      <div className="t2i-trace-row">
+        <div className="t2i-trace-k">Model read</div>
+        <div className="t2i-trace-v">{String(s3.name || '—')}{s3.confidence != null ? ` · conf ${s3.confidence}` : ''}{s3.vehicleMismatch ? <span className="t2i-trace-warn"> · MISMATCH</span> : null}</div>
+      </div>
+      {typeof s3.searchQuery === 'string' && s3.searchQuery && (
+        <div className="t2i-trace-row"><div className="t2i-trace-k">Model searchQuery</div><div className="t2i-trace-v">{s3.searchQuery}</div></div>
+      )}
+      <div className="t2i-trace-row">
+        <div className="t2i-trace-k">Vendor links + the query each got</div>
+        <div className="t2i-trace-v">
+          {vendorLinks.length === 0 ? '(none)' : vendorLinks.map((l, i) => {
+            const url = String(l.url || '');
+            const q = queryFromUrl(url);
+            return (
+              <div key={i} style={{ marginBottom: 6 }}>
+                <span style={{ color: '#fff', fontWeight: 700 }}>{String(l.vendor || '?')}</span>
+                <span style={{ opacity: 0.6 }}> · {String(l.linkType || '')}</span>
+                {q ? <><br /><span className="t2i-trace-q">q: {q}</span></> : null}
+                <br /><a href={url} target="_blank" rel="noopener noreferrer nofollow">{url.slice(0, 120)}{url.length > 120 ? '…' : ''}</a>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      {(ebay.query != null) && (
+        <div className="t2i-trace-row">
+          <div className="t2i-trace-k">eBay resolve</div>
+          <div className="t2i-trace-v">q: <span className="t2i-trace-q">{String(ebay.query)}</span><br />verified: {String(ebay.verifiedPartNumber ?? 'null')} · reported: {String(ebay.reportedPartNumber ?? 'null')} · listings: {String(ebay.listings ?? 0)}</div>
+        </div>
+      )}
+      <div className="t2i-trace-row">
+        <div className="t2i-trace-k">Provenance</div>
+        <div className="t2i-trace-v">{String(s4.source ?? '—')} · PN: {String(s4.finalOemPartNumbers ?? '—')}</div>
       </div>
     </div>
   );
