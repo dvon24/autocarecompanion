@@ -77,6 +77,7 @@ export function TapToIdentifyPhoto({
   vehicle,
   className,
   autoIdentifyPoint,
+  queryHint,
   embedded = false,
   speakResults = true,
   onClose,
@@ -88,6 +89,10 @@ export function TapToIdentifyPhoto({
    *  loads — used by the live viewfinder, which already knows where the user
    *  tapped on the frame it just froze. Runs once. */
   autoIdentifyPoint?: SourcePoint;
+  /** What the user asked for out loud ("show me the brake rotor"). Passed to
+   *  the identify API so it resolves the part they NAMED within the frozen
+   *  frame, not just whatever is centered. Voice-surface path only. */
+  queryHint?: string;
   /** Full-bleed over a dark stage (frozen live-camera frame). */
   embedded?: boolean;
   /** Narrate the identified part via speechSynthesis. Off when a parent voice
@@ -207,6 +212,7 @@ export function TapToIdentifyPhoto({
           vehicle: vehicle
             ? { year: Number(vehicle.year) || undefined, make: vehicle.make, model: vehicle.model, trim: vehicle.trim }
             : undefined,
+          queryHint: queryHint || undefined,
         }),
       });
       const data = await res.json();
@@ -234,7 +240,7 @@ export function TapToIdentifyPhoto({
     } catch {
       setSel({ box, loading: false, error: 'Network hiccup — try tapping again.' });
     }
-  }, [cropToDataUrl, fullFrameDataUrl, vehicle, speakResults]);
+  }, [cropToDataUrl, fullFrameDataUrl, vehicle, speakResults, queryHint]);
 
   // identify a source-percent POINT (shared by taps + autoIdentifyPoint)
   const identifyPoint = useCallback((p: SourcePoint) => {

@@ -121,7 +121,7 @@ export function LiveCameraShutter({
   const [err, setErr] = useState<string | null>(null);
   // Identify mode: tap the LIVE viewfinder → freeze that frame + identify the
   // tapped part (reuses the /api/vision/identify engine on a still).
-  const [frozen, setFrozen] = useState<{ url: string; point: { x: number; y: number } } | null>(null);
+  const [frozen, setFrozen] = useState<{ url: string; point: { x: number; y: number }; queryHint?: string } | null>(null);
   // Continuous "Auto-scan" (Phase 3 taste): while on, sample the center every
   // few seconds and call out the part. Hard-capped so it can't run away on cost;
   // true hands-free masklet tracking arrives with the SAM endpoint.
@@ -266,7 +266,7 @@ export function LiveCameraShutter({
     };
   }, []);
 
-  const freezeAt = useCallback((clientX: number, clientY: number) => {
+  const freezeAt = useCallback((clientX: number, clientY: number, queryHint?: string) => {
     const v = videoRef.current;
     if (!v || !v.videoWidth) return;
     const point = videoTapToSource(clientX, clientY);
@@ -279,7 +279,7 @@ export function LiveCameraShutter({
     if (!ctx) return;
     try {
       ctx.drawImage(v, 0, 0, w, h);
-      setFrozen({ url: c.toDataURL('image/jpeg', 0.9), point });
+      setFrozen({ url: c.toDataURL('image/jpeg', 0.9), point, queryHint });
     } catch { /* draw/encode failed — ignore, stay live */ }
   }, [videoTapToSource]);
 
@@ -292,7 +292,9 @@ export function LiveCameraShutter({
     if (!v) return;
     const r = v.getBoundingClientRect();
     setScanLabel(partQuery || null); // brief on-screen echo of what it's finding
-    freezeAt(r.left + r.width / 2, r.top + r.height / 2);
+    // Carry the spoken request into the identify so the search resolves the part
+    // they NAMED, not just whatever is centered in the frame.
+    freezeAt(r.left + r.width / 2, r.top + r.height / 2, partQuery || undefined);
   }, [freezeAt]);
 
   // ── Auto-scan: crop the CENTER of the current frame and identify it, then
@@ -576,6 +578,7 @@ export function LiveCameraShutter({
             imageUrl={frozen.url}
             vehicle={vehicle}
             autoIdentifyPoint={frozen.point}
+            queryHint={frozen.queryHint}
             speakResults={!enableVoice}
             onClose={() => setFrozen(null)}
           />

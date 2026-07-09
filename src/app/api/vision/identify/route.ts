@@ -120,6 +120,7 @@ export async function POST(request: NextRequest) {
     prompt?: SamPrompt;
     box?: SamBox;
     vehicle?: Partial<VehicleCtx>;
+    queryHint?: string;
   };
   try {
     body = await request.json();
@@ -131,6 +132,15 @@ export async function POST(request: NextRequest) {
   if (!imageDataUrl.startsWith('data:image/')) {
     return NextResponse.json({ error: 'bad_request', message: 'A cropped image is required.' }, { status: 400 });
   }
+
+  // Spoken/typed disambiguation hint. When the user asked the voice mechanic
+  // "show me the brake rotor", we freeze the center of the frame — but the crop
+  // may contain several parts. This hint tells the model WHICH part they meant,
+  // so the identify (and thus the search + buy links) reflects what they asked
+  // for, not just whatever happened to be centered. Length-capped; sanitized.
+  const queryHint = typeof body.queryHint === 'string'
+    ? body.queryHint.replace(/[\r\n]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 120)
+    : '';
 
   const vehicle: VehicleCtx | null =
     body.vehicle && body.vehicle.make && body.vehicle.model && body.vehicle.year
@@ -244,7 +254,14 @@ export async function POST(request: NextRequest) {
     ? `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}`
     : 'an unknown vehicle';
 
-  const SYSTEM_PROMPT = `You are an expert automotive parts technician. The user tapped a spot on a photo; the vehicle in their garage is ${vehicleDesc}, but the photo may be of a DIFFERENT vehicle. You are shown a TIGHT CROP centered on the ONE component they pointed at. Identify that single component and nothing else in the frame.${candidateContext}
+  // When the request carries a spoken/typed hint, tell the model what the user
+  // actually asked for so it resolves the RIGHT part in the crop (not just the
+  // centered one) — this is what makes the search reflect the voice request.
+  const voiceHintBlock = queryHint
+    ? `\n\nWHAT THE USER ASKED FOR (spoken): "${queryHint}". The crop is centered where they were pointing, but may contain more than one part. If the component they named IS visible in the crop, identify THAT one. If it is clearly NOT in the crop, identify the main component that is, and note the mismatch in "finding".`
+    : '';
+
+  const SYSTEM_PROMPT = `You are an expert automotive parts technician. The user tapped a spot on a photo; the vehicle in their garage is ${vehicleDesc}, but the photo may be of a DIFFERENT vehicle. You are shown a TIGHT CROP centered on the ONE component they pointed at. Identify that single component and nothing else in the frame.${voiceHintBlock}${candidateContext}
 
 READ THE IMAGE FIRST — this overrides everything:
 - Look for any visible TEXT, BADGE, LOGO, or MODEL NAME in the crop (e.g. a word stamped on a steering wheel, an emblem, a casting mark).
@@ -512,7 +529,7 @@ Return ONLY a JSON object:
     // FOUNDER-ONLY pipeline trace — the full Stage 1→4 decision trail for debugging.
     ...(isFounder ? {
       trace: {
-        stage1_where: { samEnabled: samEnabled(), usedSamCrop: !!refinedPolygon, box: refinedBox },
+        stage1_where: { samEnabled: samEnabled(), usedSamCrop: !!refinedPolygon, box: refinedBox, voiceQueryHint: queryHint || null },
         stage2_grounding: { model: IDENTIFY_MODEL, catalogPnCount: catalogPNs.size, catalogPnSample: [...catalogPNs].slice(0, 8), knownIssueCandidates: issueIdByHint.length, visionMatch },
         stage3_model: { category, name, brand: part.brand, spec: part.spec, oemPartNumbers_raw: oemPartNumbers, searchQuery: typeof parsed.searchQuery === 'string' ? parsed.searchQuery : null, confidence, vehicleMismatch, relatedKnownIssueId: relatedId || null },
         stage4_facts: {
