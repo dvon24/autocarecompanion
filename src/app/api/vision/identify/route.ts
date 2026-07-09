@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 import { hubChatMinuteLimiter, getClientIp } from '@/lib/rate-limit';
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
+import { auth } from '@/lib/auth';
+import { isFounderEmail } from '@/lib/founder';
 import { getVehicleSpecs } from '@/lib/maintenance';
 import { attachVendorLinks, searchFallbackUrl } from '@/lib/vendor-resolver';
 import { validateAndFixVendorLinks } from '@/lib/vendor-link-validator';
@@ -105,6 +107,12 @@ export async function POST(request: NextRequest) {
   // vision routes use.
   const gate = await checkAiGate();
   if (isAiGateBlocked(gate)) return gate;
+
+  // Founder-only pipeline trace: when a founder taps, the response echoes the
+  // full Stage 1-4 decision trail (model output, catalog grounding, eBay resolve,
+  // per-vendor link build) so "why did it link there" is always inspectable.
+  let isFounder = false;
+  try { const s = await auth(); isFounder = isFounderEmail(s?.user?.email); } catch { /* anon */ }
 
   let body: {
     imageDataUrl?: string;
@@ -444,6 +452,7 @@ Return ONLY a JSON object:
   // which left common parts — rotors, filters, sensors — with no part number).
   // Dark unless EBAY_APP_ID/CERT are set; fail-soft.
   let ebayReported = false; // PN came from the ≥2-seller "reported" tier (not verified)
+  let ebayDebug: Record<string, unknown> | null = null;
   if (ebayEnabled() && part.category && part.category !== 'other') {
     try {
       // On a vehicle mismatch, the OCR/visual match (e.g. "ZL1 · Camaro ZL1
@@ -458,6 +467,7 @@ Return ONLY a JSON object:
       const r = await resolveEbay(q, part.oemPartNumbers[0], vehicleMismatch ? undefined : {
         category: part.category, make: vehicle?.make, model: vehicle?.model, trim: vehicle?.trim,
       });
+      if (isFounder) ebayDebug = { query: q, verifiedPartNumber: r?.verifiedPartNumber ?? null, reportedPartNumber: r?.reportedPartNumber ?? null, partNumbers: r?.partNumbers ?? [], listings: r?.listings?.length ?? 0 };
       if (r) {
         if (r.listings.length) part.ebayListings = r.listings.slice(0, 3);
         // Promote the best eBay number we have — verified (≥3 sellers) OR
@@ -499,6 +509,23 @@ Return ONLY a JSON object:
     vehicleMismatchNote: vehicleMismatch ? vehicleMismatchNote : '',
     relatedIssue: relatedIssue ? { id: relatedIssue.id, title: relatedIssue.title } : null,
     relatedIssueParts, // [] unless the matched issue carries verified fixParts
+    // FOUNDER-ONLY pipeline trace — the full Stage 1→4 decision trail for debugging.
+    ...(isFounder ? {
+      trace: {
+        stage1_where: { samEnabled: samEnabled(), usedSamCrop: !!refinedPolygon, box: refinedBox },
+        stage2_grounding: { model: IDENTIFY_MODEL, catalogPnCount: catalogPNs.size, catalogPnSample: [...catalogPNs].slice(0, 8), knownIssueCandidates: issueIdByHint.length, visionMatch },
+        stage3_model: { category, name, brand: part.brand, spec: part.spec, oemPartNumbers_raw: oemPartNumbers, searchQuery: typeof parsed.searchQuery === 'string' ? parsed.searchQuery : null, confidence, vehicleMismatch, relatedKnownIssueId: relatedId || null },
+        stage4_facts: {
+          pnTrusted, ebay: ebayDebug,
+          source: part.source ?? null, partNumberVerified: !!part.partNumberVerified,
+          finalOemPartNumbers: part.oemPartNumbers,
+          vendorLinks: (part.vendorLinks || []).map((l) => ({ vendor: l.vendor, linkType: l.linkType, url: l.url })),
+          ebayListingCount: part.ebayListings?.length ?? 0,
+        },
+        relatedIssue: relatedIssue?.title ?? null,
+        relatedIssuePartsCount: relatedIssueParts.length,
+      },
+    } : {}),
   });
 }
 
