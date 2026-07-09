@@ -1,8 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { VoiceMechanic } from './VoiceMechanic';
+import { VoiceMechanic, type VoiceMechanicHandle } from './VoiceMechanic';
 import { TapToIdentifyPhoto } from './TapToIdentifyPhoto';
+import type { IdentifiedPart, IssuePart } from '@/types/vision';
 
 /**
  * LiveCameraShutter — the ONE shared in-app camera surface for diagnosis.
@@ -297,6 +298,34 @@ export function LiveCameraShutter({
     freezeAt(r.left + r.width / 2, r.top + r.height / 2, partQuery || undefined);
   }, [freezeAt]);
 
+  // ── Close the voice loop: when a part is identified (by tap OR by voice), tell
+  // the LIVE voice session what's on screen so the mechanic can talk about it
+  // naturally ("that's your front brake rotor — verified #…, known warping issue
+  // on your 392"). Guarded so the same part isn't announced twice in a row.
+  const voiceRef = useRef<VoiceMechanicHandle | null>(null);
+  const lastAnnouncedRef = useRef<string>('');
+  const handleIdentified = useCallback((part: IdentifiedPart, ctx: { relatedIssue?: { id: string; title: string } | null; issueParts?: IssuePart[] }) => {
+    if (!enableVoice || !voiceRef.current?.isLive()) return;
+    const key = (part.id || part.name || '').toLowerCase().trim();
+    if (!key || key === lastAnnouncedRef.current) return;
+    lastAnnouncedRef.current = key;
+    const pn = part.oemPartNumbers?.[0] || part.aftermarketPartNumbers?.[0]?.partNumber || '';
+    const pnState = part.partNumberVerified ? 'verified' : (pn ? 'unconfirmed' : '');
+    const price = part.ebayListings?.[0]?.price
+      ? `about $${part.ebayListings[0].price} on eBay`
+      : part.estimatedPriceUsd ? `roughly $${part.estimatedPriceUsd.low}` : '';
+    const facts = [
+      `The owner just selected this on screen: ${part.name}${part.position ? ` (${part.position})` : ''}.`,
+      part.finding ? `Visible condition: ${part.finding}.` : '',
+      pn ? `Part number ${pn}${pnState ? ` (${pnState})` : ''}.` : '',
+      price ? `Price ${price}.` : '',
+      ctx.relatedIssue ? `This matches a known issue: ${ctx.relatedIssue.title}.` : '',
+      ctx.issueParts && ctx.issueParts.length ? `${ctx.issueParts.length} verified fix part(s) are on the screen.` : '',
+      'Briefly acknowledge what they selected and offer the next step. Keep it short and natural.',
+    ].filter(Boolean).join(' ');
+    voiceRef.current.injectContext(facts, { respond: true });
+  }, [enableVoice]);
+
   // ── Auto-scan: crop the CENTER of the current frame and identify it, then
   // call out the part name (+ speak). One gpt call per tick; hard-capped.
   const scanCenter = useCallback(async () => {
@@ -428,7 +457,7 @@ export function LiveCameraShutter({
           Shown whenever voice is enabled, even while the camera is still
           starting or denied (you can talk to the mechanic without a live
           frame; getFrame just returns null until the camera is up). */}
-      {enableVoice && !deviceBlocked && <VoiceMechanic getFrame={captureFrameDataUrl} vehicle={vehicle} autoStart={voiceAutoStart} onSurfaceParts={surfacePartsFromVoice} />}
+      {enableVoice && !deviceBlocked && <VoiceMechanic ref={voiceRef} getFrame={captureFrameDataUrl} vehicle={vehicle} autoStart={voiceAutoStart} onSurfaceParts={surfacePartsFromVoice} />}
 
       {/* top bar */}
       <div style={{ position: 'absolute', top: 12, left: 12, right: 12, zIndex: 6, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -580,8 +609,17 @@ export function LiveCameraShutter({
             autoIdentifyPoint={frozen.point}
             queryHint={frozen.queryHint}
             speakResults={!enableVoice}
-            onClose={() => setFrozen(null)}
+            onIdentified={handleIdentified}
+            onClose={() => { lastAnnouncedRef.current = ''; setFrozen(null); }}
           />
+          {/* Persist the voice presence THROUGH the freeze so it's clear the
+              mechanic is still with you and now knows what you selected. */}
+          {enableVoice && voiceRef.current?.isLive() && (
+            <div style={{ position: 'absolute', top: 'calc(12px + env(safe-area-inset-top))', right: 12, zIndex: 90, display: 'inline-flex', alignItems: 'center', gap: 7, padding: '8px 13px', borderRadius: 999, background: 'rgba(16,185,129,0.16)', border: '1px solid rgba(16,185,129,0.5)', backdropFilter: 'blur(10px)', color: '#6EE7B7', fontSize: 12, fontWeight: 700, pointerEvents: 'none' }}>
+              <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#10B981', boxShadow: '0 0 8px #10B981' }} />
+              Mechanic’s listening
+            </div>
+          )}
         </div>
       )}
 

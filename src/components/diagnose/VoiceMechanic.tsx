@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
 /**
  * VoiceMechanic — the live voice layer of the Live AI Mechanic.
@@ -20,19 +20,30 @@ type Status = 'idle' | 'connecting' | 'live' | 'error';
 type Line = { role: 'you' | 'au7o'; text: string };
 type Upsell = { message: string; ctaUrl: string; ctaLabel: string };
 
-export function VoiceMechanic({
-  getFrame,
-  vehicle,
-  autoStart = true,
-  onSurfaceParts,
-}: {
+/** Imperative handle so the camera surface can push CONTEXT into the live voice
+ *  session — e.g. "the owner just tapped the front brake rotor" — closing the
+ *  loop so the mechanic can talk about what's actually selected on screen. */
+export type VoiceMechanicHandle = {
+  /** Inject a grounded context line into the session. respond=true makes the
+   *  mechanic speak a turn immediately (a natural acknowledgment). Returns
+   *  false if the session isn't live yet. */
+  injectContext: (text: string, opts?: { respond?: boolean }) => boolean;
+  isLive: () => boolean;
+};
+
+export const VoiceMechanic = forwardRef<VoiceMechanicHandle, {
   getFrame: () => string | null;
   vehicle?: { year?: number; make?: string; model?: string; trim?: string };
   autoStart?: boolean;
   /** Hands-free "surface_parts" tool: the mechanic asks the screen to freeze the
    *  live frame and show buyable part callouts for the given query. */
   onSurfaceParts?: (partQuery: string) => void;
-}) {
+}>(function VoiceMechanic({
+  getFrame,
+  vehicle,
+  autoStart = true,
+  onSurfaceParts,
+}, ref) {
   const [status, setStatus] = useState<Status>('idle');
   const [err, setErr] = useState<string | null>(null);
   const [muted, setMuted] = useState(false);
@@ -54,6 +65,7 @@ export function VoiceMechanic({
   const startedRef = useRef(false);
   const demoTimerRef = useRef<number>(0);
   const maxSecondsRef = useRef<number | null>(null);
+  const statusRef = useRef<Status>('idle');
 
   const cleanup = useCallback(() => {
     window.clearInterval(demoTimerRef.current);
@@ -65,6 +77,7 @@ export function VoiceMechanic({
   }, []);
 
   useEffect(() => () => cleanup(), [cleanup]);
+  useEffect(() => { statusRef.current = status; }, [status]);
 
   // Demo countdown: once the live session opens for a non-payer, run a tight
   // timer; at zero, tear the session down and surface the upsell (this IS the
@@ -106,6 +119,27 @@ export function VoiceMechanic({
       }));
     } catch { /* */ }
   }, [getFrame]);
+
+  // Push a grounded CONTEXT line into the live session (what the owner just
+  // selected on screen) so the mechanic can talk about it naturally. Sent as a
+  // user text item; respond=true kicks off an immediate spoken turn.
+  const injectContext = useCallback((text: string, opts?: { respond?: boolean }) => {
+    const dc = dcRef.current;
+    if (!dc || dc.readyState !== 'open' || !text.trim()) return false;
+    try {
+      dc.send(JSON.stringify({
+        type: 'conversation.item.create',
+        item: { type: 'message', role: 'user', content: [{ type: 'input_text', text: text.trim().slice(0, 600) }] },
+      }));
+      if (opts?.respond) dc.send(JSON.stringify({ type: 'response.create' }));
+      return true;
+    } catch { return false; }
+  }, []);
+
+  useImperativeHandle(ref, () => ({
+    injectContext,
+    isLive: () => statusRef.current === 'live',
+  }), [injectContext]);
 
   const onEvent = useCallback((ev: MessageEvent) => {
     let msg: Record<string, unknown>;
@@ -329,4 +363,4 @@ export function VoiceMechanic({
       <style>{`@keyframes au7oOrbRing { 0%{transform:scale(1);opacity:0.6} 100%{transform:scale(1.6);opacity:0} }`}</style>
     </>
   );
-}
+});

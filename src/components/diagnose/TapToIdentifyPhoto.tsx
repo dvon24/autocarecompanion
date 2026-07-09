@@ -81,6 +81,7 @@ export function TapToIdentifyPhoto({
   embedded = false,
   speakResults = true,
   onClose,
+  onIdentified,
 }: {
   imageUrl: string;
   vehicle?: TapVehicle;
@@ -101,6 +102,10 @@ export function TapToIdentifyPhoto({
   speakResults?: boolean;
   /** Close / retake — shown as the ✕ in embedded mode. */
   onClose?: () => void;
+  /** Fired after a successful identify so a parent (the live camera) can feed
+   *  the selected part back into an active voice session — closing the loop so
+   *  the mechanic can talk about what's on screen. */
+  onIdentified?: (part: IdentifiedPart, ctx: { relatedIssue?: { id: string; title: string } | null; issueParts?: IssuePart[] }) => void;
 }) {
   const imgRef = useRef<HTMLImageElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -222,13 +227,14 @@ export function TapToIdentifyPhoto({
       }
       const part = data.part as IdentifiedPart;
       const polygon = Array.isArray(data.polygon) && data.polygon.length >= 3 ? data.polygon : null;
+      const issueParts = Array.isArray(data.relatedIssueParts) ? (data.relatedIssueParts as IssuePart[]) : [];
       setSel({
         box: data.box || box,
         loading: false,
         part,
         polygon,
         relatedIssue: data.relatedIssue,
-        issueParts: Array.isArray(data.relatedIssueParts) ? (data.relatedIssueParts as IssuePart[]) : [],
+        issueParts,
         mismatch: data.vehicleMismatch
           ? (data.vehicleMismatchNote || 'This looks like a different vehicle than your garage car.')
           : undefined,
@@ -237,10 +243,16 @@ export function TapToIdentifyPhoto({
       if (speakResults && part?.name) {
         speak(`${part.name}.${part.finding ? ' ' + part.finding + '.' : ''}`);
       }
+      // Close the loop: hand the identified part up so an active voice session
+      // gets told what's on screen (the mechanic can then talk about it). Fires
+      // whether the identify came from a tap or a voice "surface_parts" request.
+      if (part?.name && part.category !== 'other') {
+        try { onIdentified?.(part, { relatedIssue: data.relatedIssue ?? null, issueParts }); } catch { /* non-blocking */ }
+      }
     } catch {
       setSel({ box, loading: false, error: 'Network hiccup — try tapping again.' });
     }
-  }, [cropToDataUrl, fullFrameDataUrl, vehicle, speakResults, queryHint]);
+  }, [cropToDataUrl, fullFrameDataUrl, vehicle, speakResults, queryHint, onIdentified]);
 
   // identify a source-percent POINT (shared by taps + autoIdentifyPoint)
   const identifyPoint = useCallback((p: SourcePoint) => {
