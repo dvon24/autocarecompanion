@@ -791,6 +791,12 @@ function marketplaceSearchHref(p: IdentifiedPart, vehicle?: TapVehicle): string 
 }
 
 function buyHref(p: IdentifiedPart, vehicle?: TapVehicle): string {
+  // Prefer a web-search-VERIFIED deep product page (server marks it linkType
+  // 'deep', priority 0) so the Buy button lands straight on the part — not a
+  // generic search. Then a resolved eBay listing, then any non-search vendor
+  // link, then the built marketplace search as the last resort.
+  const deep = p.vendorLinks?.find((l) => l.linkType === 'deep' && l.url);
+  if (deep?.url) return deep.url;
   if (p.ebayListings?.[0]?.url) return p.ebayListings[0].url;
   const realVendor = p.vendorLinks?.find((l) => l.url && !/(^https?:\/\/)?(www\.)?google\.[a-z.]+\/search/i.test(l.url));
   if (realVendor?.url) return realVendor.url;

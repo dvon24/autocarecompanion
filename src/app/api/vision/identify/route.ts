@@ -276,6 +276,7 @@ RULES:
 - WEAR/CONDITION HONESTY: a photo shows appearance, not measurements. DEFAULT condition to "ok" (or "info" for a mere identification like a badge). Only use "warn"/"critical" when a SPECIFIC defect is CLEARLY VISIBLE in the crop, and make "finding" name that visible evidence. Do not invent wear.
 - If the crop is not an automotive part (finger, sky, blurry), set category "other", confidence low, and say so in name.
 - category MUST be one of: rotor, brake_pad, caliper, tire, wheel, lug_nut, tpms, filter, fluid, wiper, bulb, battery, spark_plug, sensor, belt, hose, suspension, ignition, fuel_pump, alternator, starter, body_panel, trim, badge, emblem, bracket, interior, accessory, tool, oem_specific, other.
+- DEEP BUY LINK: use web search to find the DEEPEST verified BUY link — a REAL product page for THIS exact part on the ${vehicleDesc} (use the full year + make + model + trim so it fits THIS vehicle). It MUST be a live buyable product page (e.g. a Mopar eStore / MoparPartsGiant / RockAuto / manufacturer product page, or a specific eBay item /itm/ or Amazon /dp/ page). It must NEVER be a search-results page (no Amazon /s?k=, no eBay /sch/, no RockAuto /partsearch/, no google search) and never a homepage. Prefer the most-CORRECT + deepest page regardless of whether it's affiliate. If you cannot confirm a real product page, leave verifiedProductUrl EMPTY (a search link is built automatically). NEVER invent a URL.
 
 Return ONLY a JSON object:
 {
@@ -291,6 +292,8 @@ Return ONLY a JSON object:
   "vehicleMismatch": false,
   "vehicleMismatchNote": "what the image shows if it differs from ${vehicleDesc}, else \\"\\" ",
   "searchQuery": "the best retailer search string for this exact part on the vehicle the image shows",
+  "verifiedProductUrl": "a REAL product page URL for this exact part on ${vehicleDesc} found via web search — never a search/homepage, else \\"\\"",
+  "verifiedVendor": "the store name for verifiedProductUrl (e.g. \\"Mopar eStore\\", \\"RockAuto\\", \\"eBay\\"), else \\"\\"",
   "relatedKnownIssueId": "an id from KNOWN ISSUES above if this part is its subject, else \\"\\" "
 }`;
 
@@ -509,6 +512,26 @@ Return ONLY a JSON object:
   else if (part.oemPartNumbers.length && pnTrusted) part.source = 'catalog';
   else if (part.oemPartNumbers.length) part.source = 'model_search_fallback';
 
+  // DEEP BUY LINK — a web-search-verified PRODUCT page for THIS part on the YMMT
+  // vehicle, prepended as the PRIMARY buy link so the Buy button deep-links
+  // straight to the product (not a generic search). Rejected if it looks like a
+  // search-results / homepage URL. Skipped on a vehicle mismatch (garage YMMT
+  // wouldn't be the right vehicle then).
+  const vProdUrl = typeof parsed.verifiedProductUrl === 'string' ? parsed.verifiedProductUrl.trim() : '';
+  const vVendor = typeof parsed.verifiedVendor === 'string' ? parsed.verifiedVendor.trim().slice(0, 40) : '';
+  const looksLikeSearch = (u: string) => /\/s\?k=|[?&]k=|\/sch\/|[?&]_nkw=|\/search\?|[?&]q=|\/partsearch\/|google\.[a-z.]+\/search|\/dp\/$|\.(com|net|org)\/?$/i.test(u);
+  let verifiedDeepUrl: string | null = null;
+  if (vProdUrl && /^https?:\/\/[^\s]+$/i.test(vProdUrl) && !looksLikeSearch(vProdUrl) && !vehicleMismatch) {
+    verifiedDeepUrl = vProdUrl;
+    const vk = /mopar/i.test(vVendor) ? 'mopar_parts_giant' : /gm\b/i.test(vVendor) ? 'gm_parts_giant'
+      : /rockauto/i.test(vVendor) ? 'rockauto' : /ebay/i.test(vVendor) ? 'ebay_motors'
+      : /amazon/i.test(vVendor) ? 'amazon' : /summit/i.test(vVendor) ? 'summit_racing' : 'rockauto';
+    part.vendorLinks = [
+      { vendor: vk as IdentifiedPart['vendorLinks'][number]['vendor'], displayName: vVendor || 'Buy the part', url: vProdUrl, searchQuery: name, linkType: 'deep', priority: 0, rationale: 'web-search-verified product page' },
+      ...(part.vendorLinks || []),
+    ];
+  }
+
   // PERFORMANCE-UPGRADE TIER — curated aftermarket-brand search links (Power
   // Stop, EBC…) next to the OEM row, for owners who run aftermarket. Data-gated
   // (only categories in the brand table get options). On a vehicle mismatch we
@@ -546,7 +569,7 @@ Return ONLY a JSON object:
         vehicleRaw: body.vehicle ?? null,
         stage1_where: { samEnabled: samEnabled(), usedSamCrop: !!refinedPolygon, box: refinedBox, voiceQueryHint: queryHint || null },
         stage2_grounding: { model: IDENTIFY_MODEL, catalogPnCount: catalogPNs.size, catalogPnSample: [...catalogPNs].slice(0, 8), knownIssueCandidates: issueIdByHint.length, visionMatch },
-        stage3_model: { category, name, brand: part.brand, spec: part.spec, oemPartNumbers_raw: oemPartNumbers, searchQuery: typeof parsed.searchQuery === 'string' ? parsed.searchQuery : null, confidence, vehicleMismatch, relatedKnownIssueId: relatedId || null },
+        stage3_model: { category, name, brand: part.brand, spec: part.spec, oemPartNumbers_raw: oemPartNumbers, searchQuery: typeof parsed.searchQuery === 'string' ? parsed.searchQuery : null, verifiedProductUrl: verifiedDeepUrl, verifiedVendor: vVendor || null, confidence, vehicleMismatch, relatedKnownIssueId: relatedId || null },
         stage4_facts: {
           pnTrusted, ebay: ebayDebug,
           source: part.source ?? null, partNumberVerified: !!part.partNumberVerified,
