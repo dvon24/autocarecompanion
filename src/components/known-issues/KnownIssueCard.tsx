@@ -12,6 +12,24 @@ import { IssueFix } from '@/hooks/useIssueFixes';
 import { trackAffiliateClick } from '@/lib/analytics';
 import { ebayAffiliate } from '@/lib/ebay-affiliate';
 
+/**
+ * Strip the verification worker's INTERNAL reasoning log out of a fixPart note
+ * before it renders — users must see the conclusion + fitment guidance, never
+ * the "GATE 1 / GATE 2 / reconciled from / Sources:" machinery (that's provenance
+ * metadata, kept in the DB, not page copy). Interim guard until the audit writes
+ * a proper internal verification_notes vs short display_caveat split.
+ */
+function cleanFixNote(note?: string | null): string | null {
+  if (!note) return null;
+  const MACHINERY = /(GATE\s*\d|both gates|web-confirmed|reconciled from|Sources?:|I returned|returned .* as it covers|GATE 1|GATE 2)/i;
+  const sentences = note.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean);
+  const kept = sentences.filter((s) => !MACHINERY.test(s));
+  const guidance = kept.filter((s) => /(confirm|verify|fits|by vin|amp\b|engine|year-specific|do not|not interchangeable|per axle|as a pair)/i.test(s));
+  const chosen = (guidance.length ? guidance : kept).slice(0, 2).join(' ').trim();
+  if (chosen.length < 8) return null;
+  return chosen.length > 240 ? chosen.slice(0, 237) + '…' : chosen;
+}
+
 interface RelatedIssueVehicle {
   slug: string;
   make: string;
@@ -452,7 +470,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                         </span>
                       )}
                     </div>
-                    {p.note && <p className="text-xs text-[#64748B] mt-1 leading-relaxed">{p.note}</p>}
+                    {(() => { const c = cleanFixNote(p.note); return c ? <p className="text-xs text-[#64748B] mt-1 leading-relaxed">{c}</p> : null; })()}
                     {p.buyLinks && p.buyLinks.length > 0 && (
                       <div className="flex flex-wrap gap-2 mt-2">
                         {p.buyLinks.map((b, j) => (

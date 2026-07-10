@@ -52,8 +52,11 @@ export interface ResolvedPartCard {
    *  PN stays unverified. */
   partNumberVerified: boolean;
   provenance: PartSource | 'unresolved';
-  vendorLinks: Array<{ vendor: string; displayName: string; url: string; linkType: string }>;
-  /** Best single buy link (real listing > non-search vendor > first). */
+  vendorLinks: Array<{ vendor: string; displayName: string; url: string; linkType: string; affiliate: boolean }>;
+  /** Best single buy link. Ranked CORRECTNESS > DEPTH > MONETIZATION: a verified
+   *  live listing or a corroborated deep PDP always beats a monetized search;
+   *  affiliate status is a tiebreaker only. A tagged link to the wrong/vague
+   *  place is churn with a tracking param, not revenue. */
   primaryUrl: string;
   upgradeOptions: UpgradeOption[];
   /** Set when there is NO corroborated PN — the honest fitment caveat. */
@@ -154,7 +157,8 @@ export async function resolveParts(
       if (provenance === 'ebay_reported') provenance = 'catalog';
     }
 
-    const vendorLinks = linked.vendorLinks.map((l) => ({ vendor: l.vendor, displayName: l.displayName, url: l.url, linkType: l.linkType }));
+    const isAffiliate = (u: string) => /tag=au7o-20|campid=|mkcid=/i.test(u);
+    const vendorLinks = linked.vendorLinks.map((l) => ({ vendor: l.vendor, displayName: l.displayName, url: l.url, linkType: l.linkType, affiliate: isAffiliate(l.url) }));
     // Always offer eBay too, EPN-affiliate-wrapped (ships dark until
     // NEXT_PUBLIC_EBAY_CAMPAIGN_ID is set). eBay Motors P&A search — great for
     // OEM/used parts. Prefer a live-resolved listing URL (already tagged) when
@@ -164,15 +168,22 @@ export async function resolveParts(
         .filter(Boolean).join(' ').replace(/\s+/g, ' ').trim() || name;
       const ebayUrl = listingUrl || ebayAffiliate(`https://www.ebay.com/sch/6028/i.html?_nkw=${encodeURIComponent(ebayQuery)}`);
       if (!vendorLinks.some((l) => l.vendor === 'ebay_motors')) {
-        vendorLinks.push({ vendor: 'ebay_motors', displayName: 'eBay', url: ebayUrl, linkType: 'search' });
+        vendorLinks.push({ vendor: 'ebay_motors', displayName: 'eBay', url: ebayUrl, linkType: listingUrl ? 'deep' : 'search', affiliate: isAffiliate(ebayUrl) });
       }
     }
-    // Prefer, in order: a real eBay listing, then a MONETIZED link (au7o-20 /
-    // eBay campaign — so we don't default the buy button to an unmonetized
-    // Summit search), then any non-search-engine link, then the first.
-    const monetized = vendorLinks.find((l) => /tag=au7o-20|campid=|mkcid=|mkrid=/i.test(l.url));
-    const nonSearch = vendorLinks.find((l) => l.url && !/(^https?:\/\/)?(www\.)?google\.[a-z.]+\/search/i.test(l.url));
-    const primaryUrl = listingUrl || monetized?.url || nonSearch?.url || vendorLinks[0]?.url || '';
+    // CORRECTNESS > DEPTH > MONETIZATION. Depth score: a verified live listing (3)
+    // > a corroborated deep PDP (2) > a descriptive retail search (1) > a
+    // synthesized search-engine URL (0, worst). Affiliate is only a tiebreaker
+    // within equal depth — it never reorders a better link below a paying one.
+    const isSearchEngine = (u: string) => /(^https?:\/\/)?(www\.)?google\.[a-z.]+\/search/i.test(u);
+    const depth = (l: { url: string; linkType: string }): number => {
+      if (l.url === listingUrl) return 3;
+      if (l.linkType === 'deep' && provenance !== 'unresolved') return 2; // deep PDP only counts when the PN is corroborated
+      if (!isSearchEngine(l.url)) return 1;
+      return 0;
+    };
+    const ranked = [...vendorLinks].sort((a, b) => (depth(b) - depth(a)) || (Number(b.affiliate) - Number(a.affiliate)));
+    const primaryUrl = ranked.find((l) => depth(l) > 0)?.url || ranked[0]?.url || '';
 
     const upgradeOptions = buildUpgradeOptions(category, name, vehicle);
     const fitmentNote = oemPartNumber ? undefined : 'varies by build date — verify by VIN';
