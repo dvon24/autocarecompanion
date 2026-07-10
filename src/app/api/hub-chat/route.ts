@@ -311,8 +311,11 @@ async function resolveMarkerToMarkdown(
   const seen = new Set<string>();
   const primaryVl = card.vendorLinks.find((l) => l.url === card.primaryUrl);
   if (primaryVl) { picks.push(primaryVl); seen.add(primaryVl.vendor); }
+  // Make sure eBay (affiliate) is in the mix even if it's last in the list.
+  const ebayVl = card.vendorLinks.find((l) => l.vendor === 'ebay_motors');
+  if (ebayVl && !seen.has('ebay_motors')) { picks.push({ displayName: ebayVl.displayName, url: ebayVl.url }); seen.add('ebay_motors'); }
   for (const l of card.vendorLinks) {
-    if (picks.length >= 4) break;
+    if (picks.length >= 5) break;
     if (l.url && !seen.has(l.vendor)) { seen.add(l.vendor); picks.push({ displayName: l.displayName, url: l.url }); }
   }
   const linkRow = picks.map((l) => `[${l.displayName}](${l.url})`).join(' · ');

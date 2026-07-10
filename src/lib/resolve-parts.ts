@@ -23,6 +23,7 @@ import { attachVendorLinks } from './vendor-resolver';
 import { ebayEnabled, resolveEbay } from './ebay-resolver';
 import { buildUpgradeOptions, type UpgradeOption } from './aftermarket-tier';
 import { VENDORS } from './vendor-catalog';
+import { ebayAffiliate } from './ebay-affiliate';
 
 export interface PartIntent {
   /** What the part is, in shopper words: "lower radiator hose", "front brake rotor". */
@@ -154,6 +155,18 @@ export async function resolveParts(
     }
 
     const vendorLinks = linked.vendorLinks.map((l) => ({ vendor: l.vendor, displayName: l.displayName, url: l.url, linkType: l.linkType }));
+    // Always offer eBay too, EPN-affiliate-wrapped (ships dark until
+    // NEXT_PUBLIC_EBAY_CAMPAIGN_ID is set). eBay Motors P&A search — great for
+    // OEM/used parts. Prefer a live-resolved listing URL (already tagged) when
+    // eBay verify ran; otherwise a tagged descriptive search. Skip fluids.
+    if (category !== 'fluid') {
+      const ebayQuery = [vehicle?.year, vehicle?.make, vehicle?.model, vehicle?.trim, name]
+        .filter(Boolean).join(' ').replace(/\s+/g, ' ').trim() || name;
+      const ebayUrl = listingUrl || ebayAffiliate(`https://www.ebay.com/sch/6028/i.html?_nkw=${encodeURIComponent(ebayQuery)}`);
+      if (!vendorLinks.some((l) => l.vendor === 'ebay_motors')) {
+        vendorLinks.push({ vendor: 'ebay_motors', displayName: 'eBay', url: ebayUrl, linkType: 'search' });
+      }
+    }
     // Prefer, in order: a real eBay listing, then a MONETIZED link (au7o-20 /
     // eBay campaign — so we don't default the buy button to an unmonetized
     // Summit search), then any non-search-engine link, then the first.
