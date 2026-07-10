@@ -28,6 +28,7 @@
 import { useCallback, useRef, useState } from 'react';
 import type { IdentifiedPart, IssuePart, VendorKey } from '@/types/vision';
 import { ebayAffiliate } from '@/lib/ebay-affiliate';
+import { trackVisionBuyClick } from '@/lib/analytics';
 
 interface SourcePoint { x: number; y: number }
 
@@ -556,7 +557,12 @@ export function TapToIdentifyPhoto({
                     href={buyHref(sel.part, vehicle)}
                     target="_blank"
                     rel="noopener noreferrer nofollow sponsored"
-                    onClick={() => { if (sel.part) addToKit(sel.part, sel.polygon); track('identify_buy_click', { vendor: sel.part?.ebayListings?.[0] ? 'ebay' : (sel.part?.vendorLinks?.[0]?.vendor || 'search'), part: sel.part?.category }); }}
+                    onClick={() => {
+                      if (sel.part) {
+                        addToKit(sel.part, sel.polygon);
+                        trackVisionBuyClick({ link: buyHref(sel.part, vehicle), partName: sel.part.name, partBrand: sel.part.brand, vendor: sel.part.ebayListings?.[0] ? 'ebay' : (sel.part.vendorLinks?.[0]?.vendor || 'search'), category: sel.part.category, issueId: sel.relatedIssue?.id });
+                      }
+                    }}
                   >Buy</a>
                 </div>
               </div>
@@ -580,7 +586,7 @@ export function TapToIdentifyPhoto({
                           <div className="t2i-fixsku">{ip.oemPartNumber || '—'}{ip.priceLow != null ? ` · $${ip.priceLow}${ip.priceHigh && ip.priceHigh > ip.priceLow ? '+' : ''}` : ''}</div>
                         </div>
                         <button className={`t2i-btn t2i-add ${inK ? 'in' : ''}`} disabled={inK} onClick={() => addToKit(adapted)} aria-label="add fix part to kit">{inK ? '✓' : '＋'}</button>
-                        <a className="t2i-btn t2i-buy" style={{ padding: '7px 11px', fontSize: 12 }} href={buyHref(adapted)} target="_blank" rel="noopener noreferrer nofollow sponsored" onClick={() => { addToKit(adapted); track('identify_issuepart_buy', { vendor: ip.buyLinks[0]?.vendor || 'search' }); }}>Buy</a>
+                        <a className="t2i-btn t2i-buy" style={{ padding: '7px 11px', fontSize: 12 }} href={buyHref(adapted)} target="_blank" rel="noopener noreferrer nofollow sponsored" onClick={() => { addToKit(adapted); trackVisionBuyClick({ link: buyHref(adapted), partName: ip.name, vendor: ip.buyLinks[0]?.vendor || 'search', category: 'oem_specific', issueId: sel.relatedIssue?.id }); }}>Buy</a>
                       </div>
                     );
                   })}
@@ -612,7 +618,7 @@ export function TapToIdentifyPhoto({
                       href={o.url}
                       target="_blank"
                       rel="noopener noreferrer nofollow sponsored"
-                      onClick={() => track('identify_upgrade_click', { brand: o.brand, vendor: o.vendor, part: sel.part?.category })}
+                      onClick={() => trackVisionBuyClick({ link: o.url, partName: sel.part?.name, partBrand: o.brand, vendor: o.vendor, category: sel.part?.category })}
                     >
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div className="t2i-upgnm">{o.brand}</div>
@@ -658,7 +664,7 @@ export function TapToIdentifyPhoto({
                   <div className="t2i-kit-sku">{k.part.oemPartNumbers?.[0] || '—'}{buy ? ` · ${buy.displayName}` : ''}</div>
                 </div>
                 {k.part.estimatedPriceUsd && <span style={{ fontFamily: "'SF Mono',Menlo,monospace", fontSize: 13, fontWeight: 700, color: '#0B1220' }}>${k.part.estimatedPriceUsd.low}</span>}
-                <a className="t2i-btn t2i-buy" style={{ padding: '7px 11px', fontSize: 12 }} href={buyHref(k.part)} target="_blank" rel="noopener noreferrer nofollow sponsored" onClick={() => track('identify_kit_buy', { vendor: buy?.vendor || 'search' })}>Buy</a>
+                <a className="t2i-btn t2i-buy" style={{ padding: '7px 11px', fontSize: 12 }} href={buyHref(k.part)} target="_blank" rel="noopener noreferrer nofollow sponsored" onClick={() => trackVisionBuyClick({ link: buyHref(k.part), partName: k.part.name, partBrand: k.part.brand, vendor: buy?.vendor || 'search', category: k.part.category })}>Buy</a>
                 <button onClick={() => removeFromKit(k.key)} aria-label="remove" style={{ width: 24, height: 24, borderRadius: '50%', border: 'none', background: 'transparent', color: '#94A3B8', cursor: 'pointer', fontSize: 13, flexShrink: 0 }}>✕</button>
               </div>
             );

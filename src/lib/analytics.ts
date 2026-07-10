@@ -53,3 +53,35 @@ export function trackAffiliateClick(params: AffiliateClickParams): void {
     // Silently ignore tracking failures — don't block the user
   });
 }
+
+interface VisionBuyClickParams {
+  link: string;
+  partName?: string;
+  partBrand?: string;
+  vendor?: string;
+  category?: string;
+  /** Matched known-issue id when the tapped part came from a diagnosis. */
+  issueId?: string;
+}
+
+/**
+ * Track an outbound buy/shop click from au7o vision (tap-to-identify + voice).
+ * Fires the GA4 event AND records it in AffiliateClick via /api/vision/track-buy
+ * so the vision surface stops being an attribution black hole. Fire-and-forget.
+ */
+export function trackVisionBuyClick(params: VisionBuyClickParams): void {
+  trackEvent('vision_buy_click', {
+    link_url: params.link,
+    part_name: params.partName || '',
+    part_brand: params.partBrand || '',
+    vendor: params.vendor || '',
+    part_category: params.category || '',
+  });
+  fetch('/api/vision/track-buy', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(params),
+  }).catch(() => {
+    // Never block the purchase on telemetry.
+  });
+}
