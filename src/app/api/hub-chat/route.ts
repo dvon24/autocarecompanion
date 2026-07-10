@@ -302,8 +302,21 @@ async function resolveMarkerToMarkdown(
   let card;
   try { [card] = await resolveParts([intent], vehicle, { useEbay: false }); } catch { /* */ }
   const label = brand ? `${brand} ${partName}` : partName;
-  if (!card || !card.primaryUrl) return `**${label}**`;
-  let md = `[${label}](${card.primaryUrl})`;
+  if (!card || !card.vendorLinks.length) return `**${label}**`;
+
+  // Surface SEVERAL retailers, not just Amazon — put the monetized/primary link
+  // first, then up to 3 more distinct vendors (RockAuto, AutoZone, NAPA,
+  // O'Reilly, Summit…). Owners want a choice of stores + price comparison.
+  const picks: Array<{ displayName: string; url: string }> = [];
+  const seen = new Set<string>();
+  const primaryVl = card.vendorLinks.find((l) => l.url === card.primaryUrl);
+  if (primaryVl) { picks.push(primaryVl); seen.add(primaryVl.vendor); }
+  for (const l of card.vendorLinks) {
+    if (picks.length >= 4) break;
+    if (l.url && !seen.has(l.vendor)) { seen.add(l.vendor); picks.push({ displayName: l.displayName, url: l.url }); }
+  }
+  const linkRow = picks.map((l) => `[${l.displayName}](${l.url})`).join(' · ');
+  let md = `**${label}** — ${linkRow}`;
   // Honest OEM caveat only when the user/model asked for OEM and we have no
   // corroborated number — never imply a specific PN we can't back.
   if (tier === 'oem' && card.fitmentNote && card.fitmentLink) {
