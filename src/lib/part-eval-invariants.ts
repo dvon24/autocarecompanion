@@ -41,14 +41,38 @@ export async function runPartInvariants(): Promise<InvariantResult[]> {
   const out: InvariantResult[] = [];
   const veh = { year: 2015, make: 'Dodge', model: 'Challenger', trim: 'SRT 392' };
 
-  // INV-1 — no fabricated PN on an uncorroborated part (eBay off → nothing can
-  // corroborate, so a PN would have to be invented). The exact fabrication case.
+  // INV-1 — STRUCTURAL, not a blocklist. The guarantee lives in resolveParts:
+  // oemPartNumber is ONLY ever assigned from a corroboration source (eBay seller
+  // agreement or our catalog) — never from the model/intent — so a PN is
+  // un-fabricable by construction. This asserts the OBSERVABLE consequence over
+  // several parts + vehicles: (a) every non-null PN carries a real provenance
+  // (never 'unresolved'), and (b) with no corroboration available (eBay off) no
+  // PN appears and the honest fitment note does. Adding a new wrong number can't
+  // pass this the way a "known-bad-number blocklist" would miss it.
   try {
-    const [hose] = await resolveParts([{ partName: 'lower radiator hose', category: 'hose', tier: 'oem' }], veh, { useEbay: false });
-    const ok = !!hose && hose.oemPartNumber === null && !hose.partNumberVerified && !!hose.fitmentNote;
-    out.push({ name: 'INV-1 no-fabricated-PN', ok, detail: ok ? undefined : `oemPartNumber=${hose?.oemPartNumber} verified=${hose?.partNumberVerified} note=${hose?.fitmentNote}` });
+    const CASES = [
+      { veh, intent: { partName: 'lower radiator hose', category: 'hose' as const, tier: 'oem' as const } },
+      { veh, intent: { partName: 'water pump', category: 'other' as const, tier: 'oem' as const } },
+      { veh: { year: 2020, make: 'Toyota', model: 'Camry', trim: 'LE' }, intent: { partName: 'front brake pads', category: 'brake_pad' as const, tier: 'oem' as const } },
+    ];
+    const bad: string[] = [];
+    const GOOD_PROV = new Set(['ebay_verified', 'ebay_reported', 'catalog']);
+    for (const c of CASES) {
+      const [card] = await resolveParts([c.intent], c.veh, { useEbay: false });
+      if (!card) { bad.push(`${c.intent.partName}: no card`); continue; }
+      // (a) any PN must have provenance — never a PN with 'unresolved'.
+      if (card.oemPartNumber !== null && !GOOD_PROV.has(card.provenance)) {
+        bad.push(`${c.intent.partName}: PN ${card.oemPartNumber} has provenance "${card.provenance}" (un-sourced)`);
+      }
+      // (b) uncorroborated (eBay off) ⇒ null PN + honest fitment note.
+      if (card.oemPartNumber !== null || !card.fitmentNote) {
+        bad.push(`${c.intent.partName}: expected null PN + fitment note, got PN=${card.oemPartNumber} note=${card.fitmentNote}`);
+      }
+    }
+    const ok = bad.length === 0;
+    out.push({ name: 'INV-1 no-fabricated-PN (structural: PN⇒provenance)', ok, detail: ok ? undefined : bad.join(' | ') });
   } catch (e) {
-    out.push({ name: 'INV-1 no-fabricated-PN', ok: false, detail: e instanceof Error ? e.message : String(e) });
+    out.push({ name: 'INV-1 no-fabricated-PN (structural: PN⇒provenance)', ok: false, detail: e instanceof Error ? e.message : String(e) });
   }
 
   // INV-2 — feed the vendor resolver a real OEM PN and confirm RETAIL vendors
