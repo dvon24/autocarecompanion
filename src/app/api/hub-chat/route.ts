@@ -18,6 +18,8 @@ import {
   refundChatQuota,
 } from '@/lib/chat-quota';
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
+import { resolveParts, type PartIntent } from '@/lib/resolve-parts';
+import type { PartCategory } from '@/types/vision';
 
 export const maxDuration = 60;
 export const runtime = 'nodejs';
@@ -166,23 +168,18 @@ How to help:
 - For maintenance questions, ground answers in the manufacturer's recommended interval when known.
 - For diagnostic questions, list the most likely 2-3 causes for THIS year/make/model first; flag safety-critical items prominently.
 - For repair-cost estimates, give a realistic range. Distinguish DIY vs shop labor when relevant.
-- For parts questions, suggest specific OEM part numbers when you know them.
 - Format with light markdown: **bold** for key terms, _italic_ for asides, "- " bullets for lists. Keep responses scannable, not wall-of-text.
 
-PARTS RECOMMENDATIONS & AFFILIATE LINKS (mandatory format):
-- EVERY time you mention a specific replaceable part, fluid, tool, or consumable, include an Amazon affiliate link in this exact Markdown format:
-  [Brand PartNumber Description](https://www.amazon.com/s?k=URL_ENCODED_SEARCH&tag=au7o-20)
-- The tag au7o-20 MUST appear in every Amazon URL. Without it, the user gets no affiliate revenue.
-- Example for parts: [Motorcraft SP-546 Spark Plug](https://www.amazon.com/s?k=Motorcraft+SP-546&tag=au7o-20)
-- Example for fluids: [Mobil 1 0W-20 Full Synthetic](https://www.amazon.com/s?k=Mobil+1+0W-20+full+synthetic&tag=au7o-20)
-- Example for tools: [OTC 6918 Triton 3V Spark Plug Extractor](https://www.amazon.com/s?k=OTC+6918+spark+plug+extractor&tag=au7o-20)
-- For repairs, also include the COMPLETE KIT (main part + fasteners + consumables), not just the headline part. Owners under-purchase fasteners/seals and have to make a second trip — solve that.
-- When you have OEM AND aftermarket options, give BOTH with separate links. Example:
-  OEM: [Mopar 68144432AA Brake Pad Set](https://www.amazon.com/s?k=Mopar+68144432AA&tag=au7o-20)
-  Aftermarket: [Akebono ACT1606 Ceramic Pads](https://www.amazon.com/s?k=Akebono+ACT1606&tag=au7o-20)
-- DO NOT use phrases like "search Amazon" or "you can find it online" — always provide the actual URL with the tag.
-- For maintenance fluids, include the brand + viscosity even if "any" brand works (helps user find it).
-- For parts where OEM-only is required (torque-to-yield bolts, specific gaskets), say so — link the OEM source.
+PARTS — EMIT MARKERS, NEVER WRITE PART NUMBERS OR LINKS YOURSELF (mandatory):
+- You do NOT know exact part numbers or store URLs, and guessing one is the single worst error you can make (a plausible number from an adjacent model — e.g. a Ram number on a Challenger — is a fabrication). So NEVER write a part number, brand SKU, or store URL in your prose.
+- Instead, EVERY time you name a specific replaceable part, fluid, tool, or consumable, emit a PART MARKER exactly in this format, right where you'd mention it:
+  [[PART: <plain part name> || <category> || <brand or blank> || <oem or aftermarket>]]
+- The app replaces each marker in place with a real, fitment-checked buy link — and a corroborated part number ONLY when it can actually verify one, otherwise an honest "varies by build date — verify by VIN" note. You just name the part; the app grounds it.
+- Example: "You'll want a fresh [[PART: lower radiator hose || hose ||  || oem]], new [[PART: hose clamps || bracket ||  || aftermarket]], and top it off with [[PART: coolant || fluid || Mopar || oem]]."
+- category MUST be one of: rotor, brake_pad, caliper, tire, wheel, lug_nut, tpms, filter, fluid, wiper, bulb, battery, spark_plug, sensor, belt, hose, suspension, ignition, fuel_pump, alternator, starter, body_panel, trim, badge, emblem, bracket, interior, accessory, tool, oem_specific, other. Use "other" if unsure.
+- Emit the COMPLETE KIT as separate markers (main part + fasteners + gaskets + consumables) so owners don't make a second trip.
+- When both OEM and aftermarket make sense, emit a marker for each (tier "oem" and "aftermarket").
+- If the user asks "what's the exact part number," do NOT invent one — say the verified number will appear under the part once the app checks it, or that it varies by build date and should be confirmed by VIN.
 
 Strict scope (refuse politely if asked):
 - You ONLY help with topics related to the user's vehicle, vehicles in general, or driving.
@@ -278,6 +275,51 @@ async function logPromptInsight(args: {
   } catch (err) {
     console.warn('[hub-chat] insight log failed:', err);
   }
+}
+
+// ── Part-marker grounding ────────────────────────────────────────────────
+// The model emits [[PART: name || category || brand || tier]] markers instead
+// of writing part numbers / store URLs itself (the fabrication fix). We replace
+// each marker IN THE STREAM with a grounded link via resolveParts — no model PN
+// ever reaches the user, and retail links are descriptive (never a bare OEM PN).
+const PART_MARK_OPEN = '[[PART:';
+
+/** Resolve one marker's inner text ("name || category || brand || tier") into
+ *  grounded markdown. useEbay:false keeps it synchronous-fast for the stream —
+ *  so there is NO corroborated PN inline; we link the descriptive/affiliate
+ *  buy URL and, for an OEM ask, add the honest verify-by-VIN fitment link. */
+async function resolveMarkerToMarkdown(
+  inner: string,
+  vehicle: { year?: number; make?: string; model?: string; trim?: string },
+): Promise<string> {
+  const fields = inner.split('||').map((s) => s.trim());
+  const partName = fields[0] || '';
+  if (!partName) return '';
+  const category = fields[1] || undefined;
+  const brand = fields[2] || undefined;
+  const tier = fields[3] === 'aftermarket' ? 'aftermarket' : fields[3] === 'oem' ? 'oem' : undefined;
+  const intent: PartIntent = { partName, category: category as PartCategory | undefined, brand, tier };
+  let card;
+  try { [card] = await resolveParts([intent], vehicle, { useEbay: false }); } catch { /* */ }
+  const label = brand ? `${brand} ${partName}` : partName;
+  if (!card || !card.primaryUrl) return `**${label}**`;
+  let md = `[${label}](${card.primaryUrl})`;
+  // Honest OEM caveat only when the user/model asked for OEM and we have no
+  // corroborated number — never imply a specific PN we can't back.
+  if (tier === 'oem' && card.fitmentNote && card.fitmentLink) {
+    md += ` _(OEM ${card.fitmentNote} — [verify by VIN](${card.fitmentLink}))_`;
+  }
+  return md;
+}
+
+/** Longest suffix of `s` that is a proper prefix of the marker opener — held
+ *  back so a marker split across stream deltas isn't emitted raw. */
+function partialOpenHold(s: string): number {
+  const max = Math.min(s.length, PART_MARK_OPEN.length - 1);
+  for (let k = max; k > 0; k--) {
+    if (PART_MARK_OPEN.startsWith(s.slice(s.length - k))) return k;
+  }
+  return 0;
 }
 
 export async function POST(request: NextRequest) {
@@ -552,9 +594,40 @@ export async function POST(request: NextRequest) {
 
       send({ type: 'session', sessionId });
 
-      let assistantText = '';
+      let assistantText = ''; // CLEANED output (markers already grounded) — what the user + history see
       let usageIn = 0;
       let usageOut = 0;
+
+      // Streaming marker rewriter: buffer the model's raw output, replace each
+      // complete [[PART:…]] marker with a grounded link before it reaches the
+      // client, and hold back a marker that's split across deltas.
+      let rawModel = '';
+      let flushedLen = 0;
+      const pump = async (final: boolean) => {
+        for (;;) {
+          const rest = rawModel.slice(flushedLen);
+          const open = rest.indexOf(PART_MARK_OPEN);
+          if (open === -1) {
+            let emit = rest;
+            if (!final) emit = rest.slice(0, rest.length - partialOpenHold(rest));
+            if (emit) { assistantText += emit; flushedLen += emit.length; send({ type: 'token', text: emit }); }
+            return;
+          }
+          const before = rest.slice(0, open);
+          if (before) { assistantText += before; flushedLen += before.length; send({ type: 'token', text: before }); }
+          const rest2 = rawModel.slice(flushedLen); // now begins with PART_MARK_OPEN
+          const close = rest2.indexOf(']]');
+          if (close === -1) {
+            if (final) flushedLen = rawModel.length; // incomplete marker at EOF — drop it, never leak raw
+            return;
+          }
+          const innerText = rest2.slice(PART_MARK_OPEN.length, close);
+          const md = await resolveMarkerToMarkdown(innerText, v);
+          if (md) { assistantText += md; send({ type: 'token', text: md }); }
+          flushedLen += close + 2;
+        }
+      };
+
       try {
         const openaiMessages = [
           { role: 'system' as const, content: systemContent },
@@ -613,8 +686,8 @@ export async function POST(request: NextRequest) {
               const parsed = JSON.parse(payload);
               const delta = parsed.choices?.[0]?.delta?.content;
               if (typeof delta === 'string' && delta) {
-                assistantText += delta;
-                send({ type: 'token', text: delta });
+                rawModel += delta;
+                await pump(false);
               }
               if (parsed.usage) {
                 usageIn = parsed.usage.prompt_tokens || 0;
@@ -623,6 +696,8 @@ export async function POST(request: NextRequest) {
             } catch { /* skip malformed chunk — usually a keep-alive */ }
           }
         }
+        // Flush any held-back tail (final marker / partial-open guard).
+        await pump(true);
 
         // Persist the assistant reply back to the session so next turn's
         // history includes it.

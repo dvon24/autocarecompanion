@@ -154,8 +154,12 @@ export async function resolveParts(
     }
 
     const vendorLinks = linked.vendorLinks.map((l) => ({ vendor: l.vendor, displayName: l.displayName, url: l.url, linkType: l.linkType }));
+    // Prefer, in order: a real eBay listing, then a MONETIZED link (au7o-20 /
+    // eBay campaign — so we don't default the buy button to an unmonetized
+    // Summit search), then any non-search-engine link, then the first.
+    const monetized = vendorLinks.find((l) => /tag=au7o-20|campid=|mkcid=|mkrid=/i.test(l.url));
     const nonSearch = vendorLinks.find((l) => l.url && !/(^https?:\/\/)?(www\.)?google\.[a-z.]+\/search/i.test(l.url));
-    const primaryUrl = listingUrl || nonSearch?.url || vendorLinks[0]?.url || '';
+    const primaryUrl = listingUrl || monetized?.url || nonSearch?.url || vendorLinks[0]?.url || '';
 
     const upgradeOptions = buildUpgradeOptions(category, name, vehicle);
     const fitmentNote = oemPartNumber ? undefined : 'varies by build date — verify by VIN';
