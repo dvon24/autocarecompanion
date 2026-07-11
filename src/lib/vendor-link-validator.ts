@@ -38,6 +38,13 @@ const CACHE_TTL_MS = 60 * 60 * 1000; // 1h
 const PER_REQ_TIMEOUT_MS = 1800;
 const UA = 'Mozilla/5.0 (compatible; Au7oLinkCheck/1.0; +https://au7o.io)';
 
+/** Public single-URL liveness check (HEAD, 404/410 → 'dead', fail-open on
+ *  bot-walls/timeouts → 'unknown'). Used by verified-parts to gate a buy link
+ *  on it actually resolving before we ever label it "verified". */
+export async function checkLinkLive(url: string): Promise<Verdict> {
+  return checkUrl(url);
+}
+
 async function checkUrl(url: string): Promise<Verdict> {
   const cached = CACHE.get(url);
   if (cached && Date.now() - cached.ts < CACHE_TTL_MS) return cached.status;

@@ -21,6 +21,7 @@
 import prisma from './db';
 import { runFreetextPipeline, type PipelinePart, type WebVerificationLog } from './parts-pipeline';
 import { ebayAffiliate } from './ebay-affiliate';
+import { checkLinkLive } from './vendor-link-validator';
 
 export interface VerifiedPartHit {
   name: string;
@@ -178,16 +179,23 @@ function bestPart(parts: PipelinePart[], partName: string): PipelinePart | null 
   return best || parts?.[0] || null;
 }
 
-/** Turn a fresh pipeline result into a VerifiedPartHit (or null if no real deep
- *  link was confirmed — we never surface a search page as "verified"). */
-function hitFromResult(result: Awaited<ReturnType<typeof runFreetextPipeline>>, partName: string): VerifiedPartHit | null {
+/** Turn a fresh pipeline result into a VerifiedPartHit (or null if no real,
+ *  LIVE retailer product link was confirmed — we never surface a search page or
+ *  a dead link as "verified"). */
+async function hitFromResult(result: Awaited<ReturnType<typeof runFreetextPipeline>>, partName: string): Promise<VerifiedPartHit | null> {
   const p = bestPart(result.parts || [], partName);
   if (!p) return null;
   const logs = (result.verificationLog || []).filter((v) => v.found && Array.isArray(v.sourceUrls) && v.sourceUrls.length);
   const mine = p.partNumber ? logs.find((v) => v.partNumber === p.partNumber) : undefined;
-  const rawDeep = [mine, ...logs].filter(Boolean).flatMap((v) => v!.sourceUrls).find(isRetailerProductUrl);
-  if (!rawDeep) return null;
-  const deep = ownAffiliate(rawDeep);
+  // Retailer product candidates (part-matched first), then confirm each RESOLVES
+  // (HEAD check, 404/410 dropped) — never present a link we didn't verify is live.
+  const candidates = [mine, ...logs].filter(Boolean).flatMap((v) => v!.sourceUrls).filter(isRetailerProductUrl).slice(0, 5);
+  let live: string | undefined;
+  for (const c of candidates) {
+    if ((await checkLinkLive(c)) !== 'dead') { live = c; break; }
+  }
+  if (!live) return null;
+  const deep = ownAffiliate(live);
   return {
     name: p.name,
     partNumber: p.partNumber,
@@ -226,7 +234,7 @@ async function runAndPersist(
       verifiedAt: new Date(),
     },
   }).catch(() => {});
-  return hitFromResult(result, partName);
+  return await hitFromResult(result, partName);
 }
 
 /**
