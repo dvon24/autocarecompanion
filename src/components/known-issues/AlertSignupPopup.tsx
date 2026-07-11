@@ -28,6 +28,15 @@ export function AlertSignupPopup(props: {
   const [closed, setClosed] = useState(false);
 
   useEffect(() => {
+    // Force-show override for testing: append ?popup=1 to any known-issues URL
+    // and it opens immediately, ignoring the once-per-visitor flag.
+    try {
+      if (new URLSearchParams(window.location.search).get('popup') === '1') {
+        setOpen(true);
+        return;
+      }
+    } catch { /* SSR guard */ }
+
     let flag: string | null = null;
     try { flag = localStorage.getItem(FLAG_KEY); } catch { /* private mode */ }
     if (flag) return; // already captured or dismissed → never show
