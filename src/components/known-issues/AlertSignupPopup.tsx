@@ -78,7 +78,7 @@ export function AlertSignupPopup(props: {
         {/* No auto-close on success: the confirmation now shows the Monday-cadence
             note + a feedback box, so the reader stays in the modal and closes it
             themselves via ✕. The localStorage flag is set on capture either way. */}
-        <KnownIssueAlertSignup {...props} />
+        <KnownIssueAlertSignup {...props} showCarousel={false} />
       </div>
     </div>
   );

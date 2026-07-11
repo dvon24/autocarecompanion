@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { trackEvent } from '@/components/analytics/GoogleAnalytics';
+import { AuthValueCarousel } from '@/components/auth/AuthValueCarousel';
 
 /**
  * Low-friction soft-conversion for the known-issues pages: an EMAIL-ONLY
@@ -20,6 +21,7 @@ export function KnownIssueAlertSignup({
   headline,
   blurb,
   onDone,
+  showCarousel = true,
 }: {
   /** Used in the success line ("new <vehicleName> findings"). For non-vehicle
    *  pages pass the subject (e.g. a make "Toyota" or a code "P0420"). */
@@ -31,9 +33,18 @@ export function KnownIssueAlertSignup({
   blurb?: string;
   /** Called after a successful capture (the popup uses it to auto-close). */
   onDone?: () => void;
+  /** Show the value carousel above the CTAs (inline yes; popup no). */
+  showCarousel?: boolean;
 }) {
-  const heading = headline ?? `Stay ahead of ${vehicleName} problems`;
-  const sub = blurb ?? `Get a free email the moment we add a new recall or known issue for your ${vehicleName}. No account needed.`;
+  const heading = headline ?? `Get ahead of ${vehicleName} problems — free`;
+  const sub = blurb ?? `Create a free account and we'll watch your ${vehicleName} for new recalls & known issues, save your diagnoses, and give you the AI mechanic that knows your exact car.`;
+  // Send cold known-issues traffic into a full account (worth far more than an
+  // email-only lead) — carry the current page as the post-signup destination.
+  const signupHref = (() => {
+    let path = '/';
+    try { path = window.location.pathname + window.location.search; } catch { /* SSR */ }
+    return `/auth/signup?callbackUrl=${encodeURIComponent(path)}`;
+  })();
   const [email, setEmail] = useState('');
   const [state, setState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
   // Post-signup feedback box (shown on the confirmation): "help us make the site better".
@@ -95,6 +106,8 @@ export function KnownIssueAlertSignup({
         gap: 12,
       }}
     >
+      {showCarousel && state !== 'done' && <AuthValueCarousel />}
+
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
         <span
           aria-hidden
@@ -147,25 +160,39 @@ export function KnownIssueAlertSignup({
           )}
         </div>
       ) : (
-        <form onSubmit={submit} style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          <input
-            type="email"
-            inputMode="email"
-            autoComplete="email"
-            placeholder="you@email.com"
-            value={email}
-            onChange={(e) => { setEmail(e.target.value); if (state === 'error') setState('idle'); }}
-            disabled={state === 'loading'}
-            style={{ flex: '1 1 200px', minWidth: 0, padding: '11px 14px', borderRadius: 11, border: '1px solid #E3DFD4', fontSize: 14, color: '#0B1220', background: '#FBFAF7', outline: 'none' }}
-          />
-          <button
-            type="submit"
-            disabled={state === 'loading'}
-            style={{ flexShrink: 0, padding: '11px 18px', borderRadius: 11, border: 'none', background: '#3B82F6', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {/* PRIMARY: full account (worth far more than an email-only lead). */}
+          <a
+            href={signupHref}
+            onClick={() => { try { trackEvent('signup_cta_click', { context }); } catch { /* */ } }}
+            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '12px 18px', borderRadius: 11, background: '#3B82F6', color: '#fff', fontSize: 14.5, fontWeight: 700, textDecoration: 'none' }}
           >
-            {state === 'loading' ? '…' : 'Notify me'}
-          </button>
-        </form>
+            Create a free account →
+          </a>
+          {/* SECONDARY, lower-friction: just email me (no account). */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 12, color: '#94A3B8' }}>
+            <div style={{ flex: 1, height: 1, background: '#EDE9DE' }} /> or just email me <div style={{ flex: 1, height: 1, background: '#EDE9DE' }} />
+          </div>
+          <form onSubmit={submit} style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <input
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              placeholder="you@email.com"
+              value={email}
+              onChange={(e) => { setEmail(e.target.value); if (state === 'error') setState('idle'); }}
+              disabled={state === 'loading'}
+              style={{ flex: '1 1 200px', minWidth: 0, padding: '11px 14px', borderRadius: 11, border: '1px solid #E3DFD4', fontSize: 14, color: '#0B1220', background: '#FBFAF7', outline: 'none' }}
+            />
+            <button
+              type="submit"
+              disabled={state === 'loading'}
+              style={{ flexShrink: 0, padding: '11px 18px', borderRadius: 11, border: '1px solid #E3DFD4', background: '#fff', color: '#0B1220', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}
+            >
+              {state === 'loading' ? '…' : 'Email me'}
+            </button>
+          </form>
+        </div>
       )}
       {state === 'error' && (
         <div style={{ fontSize: 12.5, color: '#B91C1C' }}>Enter a valid email and try again.</div>
