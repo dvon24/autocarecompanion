@@ -5,6 +5,8 @@ import { signIn } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton';
+import { AuthValueCarousel } from '@/components/auth/AuthValueCarousel';
 
 /**
  * Banner rendered above the signup form when the user came from the
@@ -68,12 +70,11 @@ function SignUpForm() {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-  const [confirm, setConfirm] = useState('');
-  // GDPR Art. 6/7/8 require capturing both before account creation:
-  // explicit policy acceptance and confirmation the user meets the
-  // age of consent (16 in the EU default).
-  const [acceptedPolicies, setAcceptedPolicies] = useState(false);
-  const [ageConfirmed, setAgeConfirmed] = useState(false);
+  // ONE consent line covers both required affirmations (Terms/Privacy acceptance
+  // AND 16+). Combining into a single checkbox cut signup friction that was
+  // killing conversion; the API still records both flags. Dropped confirm-
+  // password entirely (pure friction on a fast signup).
+  const [consented, setConsented] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -83,16 +84,8 @@ function SignUpForm() {
       setError('Password must be at least 8 characters.');
       return;
     }
-    if (password !== confirm) {
-      setError('Passwords don\'t match.');
-      return;
-    }
-    if (!acceptedPolicies) {
-      setError('Please accept the Privacy Policy and Terms to continue.');
-      return;
-    }
-    if (!ageConfirmed) {
-      setError('Please confirm you are at least 16 years old.');
+    if (!consented) {
+      setError('Please confirm you agree to the Terms & Privacy Policy and are 16+.');
       return;
     }
     setLoading(true);
@@ -107,8 +100,8 @@ function SignUpForm() {
           email,
           password,
           name: name.trim() || undefined,
-          acceptedPolicies,
-          ageConfirmed,
+          acceptedPolicies: consented,
+          ageConfirmed: consented,
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -153,6 +146,17 @@ function SignUpForm() {
   return (
     <>
       {callbackUrl.startsWith('/diagnose/claim') && <DiagnoseClaimBanner />}
+
+      {/* One-tap Google — the lowest-friction path, up top. Dark until
+          NEXT_PUBLIC_GOOGLE_AUTH=1 + the OAuth creds are set. */}
+      <GoogleSignInButton callbackUrl={callbackUrl} />
+      {process.env.NEXT_PUBLIC_GOOGLE_AUTH === '1' && (
+        <div className="relative my-5">
+          <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-200" /></div>
+          <div className="relative flex justify-center text-sm"><span className="px-3 bg-white text-gray-500">or sign up with email</span></div>
+        </div>
+      )}
+
       {error && (
         <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
           {error}
@@ -204,74 +208,32 @@ function SignUpForm() {
             placeholder="At least 8 characters"
           />
         </div>
-        <div>
-          <label htmlFor="confirm" className="block text-sm font-medium text-gray-700 mb-1">
-            Confirm password
-          </label>
+        {/* ONE consent line — Terms/Privacy acceptance + 16+ in a single
+            affirmative action. Unchecked by default (valid-consent guideline);
+            drives both API flags. This replaced two separate checkboxes +
+            confirm-password that were killing signup conversion. */}
+        <label className="flex items-start gap-2 text-xs text-gray-600 cursor-pointer pt-1">
           <input
-            id="confirm"
-            type="password"
-            value={confirm}
-            onChange={(e) => setConfirm(e.target.value)}
-            required
-            minLength={8}
-            autoComplete="new-password"
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-            placeholder="Type it again"
+            type="checkbox"
+            checked={consented}
+            onChange={(e) => setConsented(e.target.checked)}
+            className="mt-0.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
           />
-        </div>
-        {/* GDPR consent gates — both required before the submit
-            button enables. Kept as unchecked checkboxes (not
-            pre-ticked) per EDPB guidelines on valid consent. */}
-        <div className="space-y-3 pt-1">
-          <label className="flex items-start gap-2 text-xs text-gray-600 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={acceptedPolicies}
-              onChange={(e) => setAcceptedPolicies(e.target.checked)}
-              className="mt-0.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-            />
-            <span>
-              I&apos;ve read and agree to the{' '}
-              <Link href="/privacy" target="_blank" className="text-blue-600 hover:text-blue-700 underline">
-                Privacy Policy
-              </Link>
-              {' '}and{' '}
-              <Link href="/terms" target="_blank" className="text-blue-600 hover:text-blue-700 underline">
-                Terms
-              </Link>
-              .
-            </span>
-          </label>
-          <label className="flex items-start gap-2 text-xs text-gray-600 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={ageConfirmed}
-              onChange={(e) => setAgeConfirmed(e.target.checked)}
-              className="mt-0.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-            />
-            <span>I confirm I am at least 16 years old.</span>
-          </label>
-        </div>
+          <span>
+            I&apos;m 16+ and agree to the{' '}
+            <Link href="/terms" target="_blank" className="text-blue-600 hover:text-blue-700 underline">Terms</Link>
+            {' '}&amp;{' '}
+            <Link href="/privacy" target="_blank" className="text-blue-600 hover:text-blue-700 underline">Privacy Policy</Link>.
+          </span>
+        </label>
 
-        {/* Inline hint that names exactly what's blocking. The button
-            itself only goes disabled while submitting — for every
-            other failure (short password, mismatched confirm, missing
-            checkbox) the click is allowed through and handleSubmit
-            surfaces the specific error above the form. Previously the
-            button silently went gray with no explanation, which read
-            as "the site is broken." */}
         {(() => {
           const blockers: string[] = [];
           if (password.length > 0 && password.length < 8) blockers.push('password needs 8+ characters');
-          if (confirm.length > 0 && password !== confirm) blockers.push('passwords don’t match');
-          if (!acceptedPolicies) blockers.push('accept the Privacy Policy & Terms');
-          if (!ageConfirmed) blockers.push('confirm you’re 16 or older');
+          if (!consented) blockers.push('check the box below to agree');
           if (blockers.length === 0) return null;
           return (
-            <p className="text-xs text-gray-500 -mt-2">
-              Almost there — {blockers.join(' · ')}.
-            </p>
+            <p className="text-xs text-gray-500 -mt-2">Almost there — {blockers.join(' · ')}.</p>
           );
         })()}
 
@@ -333,12 +295,16 @@ export default function SignUpPage() {
         <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
           <div className="w-full max-w-md">
             <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
-              <h1 className="text-2xl font-bold text-gray-900 text-center mb-2">
-                Create your account
+              <h1 className="text-2xl font-bold text-gray-900 text-center mb-1.5">
+                Create your free account
               </h1>
-              <p className="text-gray-500 text-center mb-6">
-                Save your vehicle, mileage, and chat history.
+              <p className="text-gray-500 text-center mb-5 text-sm">
+                Free forever — your car, your diagnoses, your alerts. Takes 20 seconds.
               </p>
+
+              <div className="mb-5">
+                <AuthValueCarousel />
+              </div>
 
               <Suspense fallback={<div className="text-center text-gray-500">Loading...</div>}>
                 <SignUpForm />

@@ -5,6 +5,7 @@ import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
+import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton';
 
 function SignInForm() {
   const searchParams = useSearchParams();
@@ -42,6 +43,15 @@ function SignInForm() {
 
   return (
     <>
+      {/* One-tap Google, up top (dark until NEXT_PUBLIC_GOOGLE_AUTH=1 + creds). */}
+      <GoogleSignInButton callbackUrl={callbackUrl} />
+      {process.env.NEXT_PUBLIC_GOOGLE_AUTH === '1' && (
+        <div className="relative my-5">
+          <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-200" /></div>
+          <div className="relative flex justify-center text-sm"><span className="px-3 bg-white text-gray-500">or with email</span></div>
+        </div>
+      )}
+
       {/* Error Messages */}
       {(urlError || errorMessage) && (
         <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
