@@ -361,14 +361,13 @@ async function resolveMarkerToMarkdown(
   let card;
   try { [card] = await resolveParts([intent], vehicle, { useEbay: false }); } catch { /* */ }
 
-  // Only WORKING, correctly-tagged links get shown. The static vendor row had
-  // broken entries (RockAuto → google search, Summit → homepage) and could carry
-  // a foreign affiliate tag — so we drop it. We trust: (1) the web-verified
-  // retailer product page, (2) our own au7o-20 Amazon search, (3) our EPN eBay
-  // search. A google/search-engine URL is never shown as a buy link.
+  // Show only: (1) the web-verified RETAILER PRODUCT page (real part, live,
+  // your tag), or (2) your working au7o-20 Amazon search as an honest fallback.
+  // We DROP everything that brought back nonsense: the static RockAuto→google /
+  // Summit→home row, the moparpartsgiant "verify by VIN" search (404s), and the
+  // eBay auto-parts-category search (empty for generic supplies).
   const isSearchEngineUrl = (u: string) => /(^https?:\/\/)?(www\.)?(google|bing|duckduckgo)\.[a-z.]+\/(search|s\?)/i.test(u);
   const amazonVl = card?.vendorLinks?.find((l) => /amazon/i.test(l.vendor) && !isSearchEngineUrl(l.url));
-  const ebayVl = card?.vendorLinks?.find((l) => l.vendor === 'ebay_motors' && !isSearchEngineUrl(l.url));
 
   const aftNote = (): string => {
     if (!verified?.aftermarket?.length) return '';
@@ -378,24 +377,13 @@ async function resolveMarkerToMarkdown(
 
   if (verified?.buyUrl) {
     const pn = verified.partNumber ? ` \`${verified.partNumber}\`` : '';
-    const alts: string[] = [];
-    if (ebayVl) alts.push(`[eBay](${ebayVl.url})`); // price-compare, our EPN tag
-    let md = `**${label}**${pn} — [${verified.buyVendor || 'Buy'} — verified](${verified.buyUrl})`;
-    if (alts.length) md += ` · ${alts.join(' · ')}`;
-    return md + aftNote();
+    return `**${label}**${pn} — [${verified.buyVendor || 'Buy'} — verified](${verified.buyUrl})` + aftNote();
   }
 
-  // No verified product page yet — show ONE honest, working, correctly-tagged
-  // link (Amazon au7o-20 search, else eBay EPN), plus the OEM verify-by-VIN
-  // fitment link for OEM asks. Never the broken static brand row.
-  const fallback = amazonVl || ebayVl;
-  if (!fallback) return `**${label}**`;
-  let md = `**${label}** — [${fallback.displayName}](${fallback.url})`;
-  if (ebayVl && fallback !== ebayVl) md += ` · [eBay](${ebayVl.url})`;
-  if (tier === 'oem' && card?.fitmentNote && card?.fitmentLink && !isSearchEngineUrl(card.fitmentLink)) {
-    md += ` _(OEM ${card.fitmentNote} — [verify by VIN](${card.fitmentLink}))_`;
-  }
-  return md + aftNote();
+  // No verified product page — one honest, working, correctly-tagged Amazon
+  // search. If we don't even have that, just name the part (no fake link).
+  if (!amazonVl) return `**${label}**`;
+  return `**${label}** — [${amazonVl.displayName}](${amazonVl.url})` + aftNote();
 }
 
 /** Longest suffix of `s` that is a proper prefix of the marker opener — held

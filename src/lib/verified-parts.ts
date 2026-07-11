@@ -43,17 +43,26 @@ const partKey = (name: string) => `part:${norm(name)}`;
 // link, even though it mentions the PN).
 const RETAILER_HOST = /(^|\.)(amazon\.[a-z.]+|rockauto\.com|ebay\.[a-z.]+|autozone\.com|oreillyauto\.com|napaonline\.com|summitracing\.com|partsgeek\.com|1aauto\.com|carid\.com|walmart\.com|moparpartsgiant\.com|gmpartsgiant\.com|mopar\.com|advanceautoparts\.com|americanmuscle\.com|tirerack\.com|simpleautoparts\.com|rockauto\.ca)$/i;
 
-/** A real retailer PRODUCT page — on an allowlisted store, and NOT a search
- *  results page (we want the exact part, not a keyword search). */
-function isRetailerProductUrl(u: string): boolean {
+/** A real retailer PRODUCT page — on an allowlisted store, NOT a search results
+ *  page, and NOT a bare category/landing page. We require a product SIGNAL:
+ *  the part number appears in the URL, or the path matches a known product-page
+ *  pattern (/dp/, /itm/, /moreinfo, /product/, …). A live category page like
+ *  moparpartsgiant.com/oem-dodge-challenger-differential.html is NOT the part. */
+function isRetailerProductUrl(u: string, partNumber?: string): boolean {
   if (!/^https?:\/\//i.test(u)) return false;
-  let host = '';
-  try { host = new URL(u).hostname; } catch { return false; }
+  let host = '', path = '';
+  try { const url = new URL(u); host = url.hostname; path = url.pathname.toLowerCase(); } catch { return false; }
   if (!RETAILER_HOST.test(host)) return false;
   // reject search-result pages (amazon /s?k=, ebay /sch/, generic ?q=/?search=)
   if (/[?&](k|q|_nkw|searchstring|search|keyword|text|searchterm)=/i.test(u)) return false;
   if (/\/search(\/|\?|$)|\/s\?|\/sch\//i.test(u)) return false;
-  return true;
+  // product SIGNAL: the exact PN in the URL...
+  const pn = (partNumber || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (pn.length >= 5 && u.toLowerCase().replace(/[^a-z0-9]/g, '').includes(pn)) return true;
+  // ...or a real product-page path (not a bare category .html landing page)
+  if (/\/(dp|gp\/product|itm|ipd|moreinfo|product|products)\//i.test(path)) return true;
+  if (/rockauto\.com/i.test(host) && /partnum=/i.test(u)) return true;
+  return false;
 }
 
 /** Force OUR affiliate identity onto a retailer URL — strip any foreign tag a
@@ -148,7 +157,7 @@ export async function getCachedVerifiedPart(
       const rawDeep = [mine, ...logs]
         .filter(Boolean)
         .flatMap((v) => v!.sourceUrls)
-        .find(isRetailerProductUrl);
+        .find((u) => isRetailerProductUrl(u, p.partNumber));
       const deep = rawDeep ? ownAffiliate(rawDeep) : undefined;
 
       best = {
@@ -189,7 +198,7 @@ async function hitFromResult(result: Awaited<ReturnType<typeof runFreetextPipeli
   const mine = p.partNumber ? logs.find((v) => v.partNumber === p.partNumber) : undefined;
   // Retailer product candidates (part-matched first), then confirm each RESOLVES
   // (HEAD check, 404/410 dropped) — never present a link we didn't verify is live.
-  const candidates = [mine, ...logs].filter(Boolean).flatMap((v) => v!.sourceUrls).filter(isRetailerProductUrl).slice(0, 5);
+  const candidates = [mine, ...logs].filter(Boolean).flatMap((v) => v!.sourceUrls).filter((u) => isRetailerProductUrl(u, p.partNumber)).slice(0, 5);
   let live: string | undefined;
   for (const c of candidates) {
     if ((await checkLinkLive(c)) !== 'dead') { live = c; break; }

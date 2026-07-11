@@ -1668,7 +1668,7 @@ function MobileHub({
                 // Tapping a maintenance item surfaces the PARTS needed for it
                 // right in the chat (Devon: tap cabin filter → see the parts
                 // to order). The hub agent returns clickable Amazon links.
-                onSend(`What parts and supplies do I need for a ${name.toLowerCase()} on my ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}? List each part with its part number and a link to buy it.`);
+                onSend(`What do I need for a ${name.toLowerCase()} on my ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}? Keep it short and to the point — the main part/fluid with its exact spec and a buy link; mention essential extras in one short line, no long tool lists.`);
               }}
               onSendPrompt={(prompt) => onSend(prompt)}
             />
@@ -1769,7 +1769,7 @@ function MobileHub({
                       <MaintenanceSchedule
                         schedule={m.schedule}
                         onTaskTap={(_typeId, name) => {
-                          onSend(`What parts and supplies do I need for a ${name.toLowerCase()} on my ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}? List each part with its part number and a link to buy it.`);
+                          onSend(`What do I need for a ${name.toLowerCase()} on my ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}? Keep it short and to the point — the main part/fluid with its exact spec and a buy link; mention essential extras in one short line, no long tool lists.`);
                         }}
                         loggableVehicleId={loggableVehicleId}
                         currentMileage={currentMileage}
@@ -3789,7 +3789,7 @@ function Au7oReply({
               // Tapping a maintenance item surfaces the PARTS needed for it.
               // Au7oReply has no direct vehicle context, but the hub agent
               // has it from the system prompt, so this resolves correctly.
-              onFollowUp?.(`What parts and supplies do I need for a ${name.toLowerCase()}? List each part with its part number and a link to buy it.`);
+              onFollowUp?.(`What do I need for a ${name.toLowerCase()}? Keep it short and to the point — the main part/fluid with its exact spec and a buy link; essential extras in one short line, no long tool lists.`);
             }}
             loggableVehicleId={loggableVehicleId}
             currentMileage={currentMileage}
