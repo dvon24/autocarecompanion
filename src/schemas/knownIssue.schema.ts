@@ -32,12 +32,33 @@ export const communityRecommendationSchema = z.object({
  */
 export const fixPartSchema = z.object({
   component: z.string(),
-  oemPartNumber: z.string().optional().default(''),
+  oemPartNumber: z.string().nullable().optional().default(''),
   aftermarketXref: z.array(z.string()).optional().default([]),
   priceLow: z.number().nullable().optional(),
   priceHigh: z.number().nullable().optional(),
   note: z.string().optional().default(''),
-  buyLinks: z.array(z.object({ vendor: z.string(), url: z.string() })).optional().default([]),
+  buyLinks: z.array(z.object({
+    vendor: z.string(),
+    url: z.string(),
+    linkType: z.string().optional(),
+    verified: z.boolean().optional(),
+    affiliate: z.boolean().optional(),
+  })).optional().default([]),
+  // ── record-store audit fields (from the parts-audit persist) ──
+  /** Year/engine/package-keyed PN rows when fitment splits (TIPM-style). */
+  variants: z.array(z.object({
+    scope: z.string(),
+    oemPartNumber: z.string(),
+    note: z.string().optional().default(''),
+  })).optional().default([]),
+  /** True when this issue is recall-covered → the primary CTA is a free VIN check. */
+  recallFirst: z.boolean().optional(),
+  /** Guaranteed-live descriptive search — the fallback if a deep link rots. */
+  fallbackUrl: z.string().optional(),
+  /** The buy links were web-search-verified to real product pages. */
+  verified: z.boolean().optional(),
+  provenance: z.string().optional(),
+  confidence: z.number().nullable().optional(),
 });
 
 /**

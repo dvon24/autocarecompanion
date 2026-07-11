@@ -446,13 +446,50 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               </h4>
               <p className="text-xs text-amber-700 mb-2">The exact parts — OEM, plus what owners actually use. Skip the internet hunt.</p>
 
+              {/* Recall-first: when the audit flagged this issue as recall-covered,
+                  the honest first action is a FREE VIN recall check — a dealer
+                  fixes recalled parts at no charge. Trust > a $400 alternator sale. */}
+              {issue.fixParts && issue.fixParts.some((p) => p.recallFirst) && (
+                <a
+                  href="https://www.nhtsa.gov/recalls"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-2 mb-3 p-2.5 rounded-md bg-emerald-50 border border-emerald-300 hover:bg-emerald-100 transition-colors"
+                >
+                  <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                  <span className="text-xs">
+                    <span className="font-semibold text-emerald-900">Check your VIN for open recalls first — it may be free.</span>
+                    <span className="block text-emerald-700 mt-0.5">This is covered by a manufacturer recall on some builds; a dealer fixes recalled parts at no charge. Look up your VIN on NHTSA before buying below.</span>
+                  </span>
+                </a>
+              )}
+
               {issue.fixParts && issue.fixParts.length > 0 && (
               <ul className="space-y-3">
                 {issue.fixParts.map((p, i) => (
                   <li key={i} className="bg-white border border-amber-200 rounded-md p-2.5">
                     <div className="text-sm font-medium text-[#0B1220]">{p.component}</div>
+
+                    {/* Variant rows: when fitment splits by year/engine/package the
+                        part number is different per build (e.g. the TIPM: 2011 vs
+                        2012-13 vs 2014). Show every variant so a reader picks the one
+                        that matches their car — never one PN with a buried caveat. */}
+                    {p.variants && p.variants.length > 1 && (
+                      <div className="mt-1.5 rounded-md bg-amber-100/60 border border-amber-200 p-2 space-y-1">
+                        <div className="text-[10px] font-semibold text-amber-800 uppercase tracking-wide">⚠ Part # varies — match yours by year/engine</div>
+                        {p.variants.map((v, vi) => (
+                          <div key={vi} className="flex items-baseline gap-2 text-xs">
+                            <span className="font-mono font-medium text-[#0B1220] whitespace-nowrap">{v.oemPartNumber}</span>
+                            <span className="text-[#64748B] leading-snug">{v.scope}{v.note ? ` — ${v.note}` : ''}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
                     <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-[#475569]">
-                      {p.oemPartNumber && (
+                      {p.oemPartNumber && (!p.variants || p.variants.length <= 1) && (
                         <span className="inline-flex items-center gap-1">
                           <span className="px-1.5 py-0.5 text-[10px] font-semibold rounded bg-amber-200 text-amber-900 uppercase tracking-wide">OEM</span>
                           <span className="font-mono font-medium text-[#0B1220]">{p.oemPartNumber}</span>
@@ -483,7 +520,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                               issueId: issue.id,
                               partBrand: b.vendor,
                               partName: p.component,
-                              partNumber: p.oemPartNumber,
+                              partNumber: p.oemPartNumber || undefined,
                               linkUrl: b.url,
                               recommendationIndex: i,
                               vehicleMake: issue.vehicleMatch.make,
