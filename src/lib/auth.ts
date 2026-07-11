@@ -28,6 +28,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           Google({
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            // Auto-link Google to an existing same-email account. Safe here:
+            // Google verifies email ownership, so there's no takeover risk.
+            // Without this, anyone who already signed up with email/password
+            // (e.g. Devon's own account) gets "OAuthAccountNotLinked" when they
+            // try the Google button — which surfaces as the generic error.
+            allowDangerousEmailAccountLinking: true,
           }),
         ]
       : []),
