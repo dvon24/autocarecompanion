@@ -87,12 +87,12 @@ export default function LandingPage({ stats }: Props) {
             <Link href="/known-issues" style={navLink}>Known Issues</Link>
             <Link href="/drive" style={navLink}>Drive</Link>
             <Link href="/subscribe" style={navLink}>Pricing</Link>
-            {/* FloatingAuthButton renders the auth-aware Sign in pill
-                in the corner already — the nav link here is a
-                redundant deeplink for users who scan headers instead
-                of corners. Kept for parity with the BMAD design. */}
+            {/* Signup-first: "Sign in" is a quiet link, "Get started free" is
+                the filled primary. On mobile the CSS below keeps only the last
+                child (the primary), so the signup CTA is what survives. */}
+            <Link href="/auth/signin" style={navLink}>Sign in</Link>
             <Link
-              href="/auth/signin"
+              href="/auth/signup"
               style={{
                 padding: '8px 16px',
                 background: 'var(--ink, #0B1220)',
@@ -103,7 +103,7 @@ export default function LandingPage({ stats }: Props) {
                 textDecoration: 'none',
               }}
             >
-              Sign in
+              Get started free
             </Link>
           </nav>
         </div>
@@ -312,7 +312,18 @@ export default function LandingPage({ stats }: Props) {
       </section>
 
       {/* ─── Premium upsell ─────────────────────────────────────── */}
-      <section style={{ padding: '0 22px 64px', maxWidth: 860, margin: '0 auto', width: '100%' }}>
+      <section style={{ padding: '72px 22px 80px', maxWidth: 900, margin: '0 auto', width: '100%' }}>
+        <div style={{ textAlign: 'center', marginBottom: 26 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--au7o-blue, #3B82F6)' }}>
+            Free to start
+          </div>
+          <h2 style={{ fontSize: 'clamp(24px, 4.5vw, 30px)', fontWeight: 700, letterSpacing: '-0.025em', margin: '8px 0 0' }}>
+            Ready to go further?
+          </h2>
+          <p style={{ fontSize: 15, color: 'var(--slate-700, #334155)', lineHeight: 1.5, margin: '10px auto 0', maxWidth: 520 }}>
+            Everything above is free. Plus &amp; Pro add unlimited diagnoses, service reminders, and your full garage.
+          </p>
+        </div>
         <div
           className="lp-upsell"
           style={{
