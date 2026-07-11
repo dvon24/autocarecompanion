@@ -20,6 +20,7 @@ import {
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 import { resolveParts, type PartIntent } from '@/lib/resolve-parts';
 import { getCachedVerifiedPart, warmVerifiedPart, verifyPartNow } from '@/lib/verified-parts';
+import { getVehicleSpecs } from '@/lib/maintenance';
 import type { PartCategory } from '@/types/vision';
 
 export const maxDuration = 60;
@@ -224,6 +225,37 @@ function buildVehicleBlock(vehicle: HubVehicle, knownIssues: KnownIssueRef[]): s
   const v = vehicle;
   const mileage = v.currentMileage ? `, currently at ~${v.currentMileage.toLocaleString()} miles` : '';
   let block = `Active vehicle context: the user is asking about a ${v.year} ${v.make} ${v.model}${v.trim ? ` ${v.trim}` : ''}${mileage}. Use this make and model in every reply that references the car.`;
+
+  // Ground fluid/spec answers in the authoritative vehicle-specs data so the
+  // model doesn't invent (and vary) fluid types/capacities. Without this the
+  // hub gave a different differential fluid spec on every ask (75W-140 then
+  // 75W-85). These are the SAME numbers the maintenance schedule uses.
+  try {
+    const specs = getVehicleSpecs({ year: v.year, make: v.make, model: v.model, trim: v.trim || '' });
+    if (specs) {
+      const fmt = (val: unknown): string =>
+        val && typeof val === 'object'
+          ? Object.entries(val as Record<string, unknown>)
+              .map(([k, x]) => `${k}: ${x && typeof x === 'object' ? JSON.stringify(x) : String(x)}`)
+              .join(', ')
+          : String(val);
+      const s = specs as unknown as Record<string, unknown>;
+      const rows: string[] = [];
+      const add = (label: string, key: string) => { if (s[key]) rows.push(`- ${label}: ${fmt(s[key])}`); };
+      add('Engine oil', 'oil');
+      add('Coolant', 'coolant');
+      add('Transmission fluid', 'transmission');
+      add('Differential fluid', 'differentials');
+      add('Brake fluid', 'brakeFluid');
+      add('Spark plugs', 'sparkPlugs');
+      if (rows.length) {
+        block += `\n\nVERIFIED FACTORY SPECS for this exact ${v.year} ${v.make} ${v.model}${v.trim ? ` ${v.trim}` : ''} (authoritative — from Au7o's spec database):
+${rows.join('\n')}
+When the user asks about a fluid type, weight, viscosity, capacity, or spec, use these EXACT values — do not invent, round, or vary them, and give the SAME answer every time. If a spec they ask about is NOT listed here, say you'd verify it by VIN rather than guessing.`;
+      }
+    }
+  } catch { /* specs optional — never block the reply */ }
+
   if (knownIssues.length > 0) {
     block += `\n\nDocumented known issues for this vehicle (from Au7o's database):
 ${knownIssues.map((i) => `- ${i.title}`).join('\n')}
