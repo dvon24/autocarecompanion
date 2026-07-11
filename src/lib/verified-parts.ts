@@ -20,6 +20,7 @@
 
 import prisma from './db';
 import { runFreetextPipeline, type PipelinePart, type WebVerificationLog } from './parts-pipeline';
+import { ebayAffiliate } from './ebay-affiliate';
 
 export interface VerifiedPartHit {
   name: string;
@@ -36,13 +37,41 @@ export interface VerifiedPartHit {
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 const partKey = (name: string) => `part:${norm(name)}`;
 
-/** A deep link is a real product/listing page — not a search results page. */
-function isDeepUrl(u: string): boolean {
-  if (!u) return false;
-  if (/google\.[a-z.]+\/search/i.test(u)) return false;
-  if (/[?&](_nkw|q|searchstring|search|keyword|text)=/i.test(u)) return false;
+// Only these are real parts RETAILERS — a "verified" buy link must land on one
+// of them (a page on edmunds.com / carsandbids.com / a dealer blog is NOT a buy
+// link, even though it mentions the PN).
+const RETAILER_HOST = /(^|\.)(amazon\.[a-z.]+|rockauto\.com|ebay\.[a-z.]+|autozone\.com|oreillyauto\.com|napaonline\.com|summitracing\.com|partsgeek\.com|1aauto\.com|carid\.com|walmart\.com|moparpartsgiant\.com|gmpartsgiant\.com|mopar\.com|advanceautoparts\.com|americanmuscle\.com|tirerack\.com|simpleautoparts\.com|rockauto\.ca)$/i;
+
+/** A real retailer PRODUCT page — on an allowlisted store, and NOT a search
+ *  results page (we want the exact part, not a keyword search). */
+function isRetailerProductUrl(u: string): boolean {
+  if (!/^https?:\/\//i.test(u)) return false;
+  let host = '';
+  try { host = new URL(u).hostname; } catch { return false; }
+  if (!RETAILER_HOST.test(host)) return false;
+  // reject search-result pages (amazon /s?k=, ebay /sch/, generic ?q=/?search=)
+  if (/[?&](k|q|_nkw|searchstring|search|keyword|text|searchterm)=/i.test(u)) return false;
   if (/\/search(\/|\?|$)|\/s\?|\/sch\//i.test(u)) return false;
-  return /^https?:\/\//i.test(u);
+  return true;
+}
+
+/** Force OUR affiliate identity onto a retailer URL — strip any foreign tag a
+ *  web-found link carried (e.g. someone else's Amazon SiteStripe tag) and apply
+ *  ours. Correctness first, but never send commission to a competitor. */
+function ownAffiliate(u: string): string {
+  try {
+    const url = new URL(u);
+    if (/amazon\./i.test(url.hostname)) {
+      // drop any foreign associate params, set ours
+      for (const p of ['tag', 'linkCode', 'ascsubtag', 'ref_', 'linkId']) url.searchParams.delete(p);
+      url.searchParams.set('tag', 'au7o-20');
+      return url.toString();
+    }
+    if (/ebay\./i.test(url.hostname)) return ebayAffiliate(u);
+    return u;
+  } catch {
+    return u;
+  }
 }
 
 const VENDOR_LABELS: Array<[RegExp, string]> = [
@@ -115,10 +144,11 @@ export async function getCachedVerifiedPart(
       // Find a verified deep source URL for this part (matched by PN, else any).
       const logs = vlog.filter((v) => v.found && Array.isArray(v.sourceUrls) && v.sourceUrls.length);
       const mine = p.partNumber ? logs.find((v) => v.partNumber === p.partNumber) : undefined;
-      const deep = [mine, ...logs]
+      const rawDeep = [mine, ...logs]
         .filter(Boolean)
         .flatMap((v) => v!.sourceUrls)
-        .find(isDeepUrl);
+        .find(isRetailerProductUrl);
+      const deep = rawDeep ? ownAffiliate(rawDeep) : undefined;
 
       best = {
         name: p.name,
@@ -155,8 +185,9 @@ function hitFromResult(result: Awaited<ReturnType<typeof runFreetextPipeline>>, 
   if (!p) return null;
   const logs = (result.verificationLog || []).filter((v) => v.found && Array.isArray(v.sourceUrls) && v.sourceUrls.length);
   const mine = p.partNumber ? logs.find((v) => v.partNumber === p.partNumber) : undefined;
-  const deep = [mine, ...logs].filter(Boolean).flatMap((v) => v!.sourceUrls).find(isDeepUrl);
-  if (!deep) return null;
+  const rawDeep = [mine, ...logs].filter(Boolean).flatMap((v) => v!.sourceUrls).find(isRetailerProductUrl);
+  if (!rawDeep) return null;
+  const deep = ownAffiliate(rawDeep);
   return {
     name: p.name,
     partNumber: p.partNumber,

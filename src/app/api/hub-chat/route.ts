@@ -323,49 +323,41 @@ async function resolveMarkerToMarkdown(
   let card;
   try { [card] = await resolveParts([intent], vehicle, { useEbay: false }); } catch { /* */ }
 
+  // Only WORKING, correctly-tagged links get shown. The static vendor row had
+  // broken entries (RockAuto → google search, Summit → homepage) and could carry
+  // a foreign affiliate tag — so we drop it. We trust: (1) the web-verified
+  // retailer product page, (2) our own au7o-20 Amazon search, (3) our EPN eBay
+  // search. A google/search-engine URL is never shown as a buy link.
+  const isSearchEngineUrl = (u: string) => /(^https?:\/\/)?(www\.)?(google|bing|duckduckgo)\.[a-z.]+\/(search|s\?)/i.test(u);
+  const amazonVl = card?.vendorLinks?.find((l) => /amazon/i.test(l.vendor) && !isSearchEngineUrl(l.url));
+  const ebayVl = card?.vendorLinks?.find((l) => l.vendor === 'ebay_motors' && !isSearchEngineUrl(l.url));
+
+  const aftNote = (): string => {
+    if (!verified?.aftermarket?.length) return '';
+    const aft = verified.aftermarket.slice(0, 2).map((a) => `${a.brand} ${a.partNumber}`).join(', ');
+    return ` _(aftermarket: ${aft})_`;
+  };
+
   if (verified?.buyUrl) {
     const pn = verified.partNumber ? ` \`${verified.partNumber}\`` : '';
-    const parts: string[] = [`[${verified.buyVendor || 'Buy'} — verified](${verified.buyUrl})`];
-    // Add a couple of descriptive alternates for price choice.
-    if (card?.vendorLinks?.length) {
-      const seen = new Set<string>();
-      for (const l of card.vendorLinks) {
-        if (parts.length >= 4) break;
-        if (l.url && !seen.has(l.vendor)) { seen.add(l.vendor); parts.push(`[${l.displayName}](${l.url})`); }
-      }
-    }
-    let md = `**${label}**${pn} — ${parts.join(' · ')}`;
-    if (verified.aftermarket?.length) {
-      const aft = verified.aftermarket.slice(0, 2).map((a) => `${a.brand} ${a.partNumber}`).join(', ');
-      md += ` _(aftermarket: ${aft})_`;
-    }
-    return md;
+    const alts: string[] = [];
+    if (ebayVl) alts.push(`[eBay](${ebayVl.url})`); // price-compare, our EPN tag
+    let md = `**${label}**${pn} — [${verified.buyVendor || 'Buy'} — verified](${verified.buyUrl})`;
+    if (alts.length) md += ` · ${alts.join(' · ')}`;
+    return md + aftNote();
   }
 
-  if (!card || !card.vendorLinks.length) return `**${label}**`;
-
-  // Surface SEVERAL retailers, not just Amazon — put the monetized/primary link
-  // first, then up to 3 more distinct vendors (RockAuto, AutoZone, NAPA,
-  // O'Reilly, Summit…). Owners want a choice of stores + price comparison.
-  const picks: Array<{ displayName: string; url: string }> = [];
-  const seen = new Set<string>();
-  const primaryVl = card.vendorLinks.find((l) => l.url === card.primaryUrl);
-  if (primaryVl) { picks.push(primaryVl); seen.add(primaryVl.vendor); }
-  // Make sure eBay (affiliate) is in the mix even if it's last in the list.
-  const ebayVl = card.vendorLinks.find((l) => l.vendor === 'ebay_motors');
-  if (ebayVl && !seen.has('ebay_motors')) { picks.push({ displayName: ebayVl.displayName, url: ebayVl.url }); seen.add('ebay_motors'); }
-  for (const l of card.vendorLinks) {
-    if (picks.length >= 5) break;
-    if (l.url && !seen.has(l.vendor)) { seen.add(l.vendor); picks.push({ displayName: l.displayName, url: l.url }); }
-  }
-  const linkRow = picks.map((l) => `[${l.displayName}](${l.url})`).join(' · ');
-  let md = `**${label}** — ${linkRow}`;
-  // Honest OEM caveat only when the user/model asked for OEM and we have no
-  // corroborated number — never imply a specific PN we can't back.
-  if (tier === 'oem' && card.fitmentNote && card.fitmentLink) {
+  // No verified product page yet — show ONE honest, working, correctly-tagged
+  // link (Amazon au7o-20 search, else eBay EPN), plus the OEM verify-by-VIN
+  // fitment link for OEM asks. Never the broken static brand row.
+  const fallback = amazonVl || ebayVl;
+  if (!fallback) return `**${label}**`;
+  let md = `**${label}** — [${fallback.displayName}](${fallback.url})`;
+  if (ebayVl && fallback !== ebayVl) md += ` · [eBay](${ebayVl.url})`;
+  if (tier === 'oem' && card?.fitmentNote && card?.fitmentLink && !isSearchEngineUrl(card.fitmentLink)) {
     md += ` _(OEM ${card.fitmentNote} — [verify by VIN](${card.fitmentLink}))_`;
   }
-  return md;
+  return md + aftNote();
 }
 
 /** Longest suffix of `s` that is a proper prefix of the marker opener — held
