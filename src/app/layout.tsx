@@ -38,6 +38,13 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://au7o.io'),
+  // Google Search Console ownership — a permanent <meta google-site-verification>
+  // that's ALWAYS in <head> (unlike GA/DNS verification, which can drift or be
+  // consent-gated). Set GOOGLE_SITE_VERIFICATION in Vercel to the token from GSC
+  // → Settings → Ownership verification → "HTML tag" (the content="..." value).
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+  },
   title: {
     default: 'Au7o - AI-Powered Automotive Repair Guides',
     template: '%s | Au7o',
