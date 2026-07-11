@@ -1,22 +1,22 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { KnownIssueAlertSignup } from './KnownIssueAlertSignup';
+import { KnownIssuesCaptureSplit } from './KnownIssuesCaptureSplit';
 
-// v2: the popup changed from email-only to the value carousel + "create a free
-// account" CTA. Bumping the key re-shows it once to everyone who dismissed the
-// old email-only version — the new offer is materially different.
+// v2: the popup now carries the live hub-demo "carousel" (not the old email-
+// only card). Bumping the key re-shows it once to everyone who dismissed the
+// old version — the offer is materially different.
 const FLAG_KEY = 'au7o.alertCapture.v2';
 
 /**
- * Engagement-triggered popup wrapper around the alert capture. The inline
- * card sits at the bottom and gets missed (Devon: "almost didn't notice it"),
- * so this surfaces the same capture in a modal AFTER the reader engages.
+ * Engagement popup around the known-issues capture. Surfaces the live
+ * hub-demo carousel (KnownIssuesCaptureSplit) in a modal ~5s after the reader
+ * lands — Devon wants it to "pop up within 5 seconds," the way the old email
+ * popup did. It ALSO fires on a deep scroll, whichever comes first.
  *
- * SEO-safe: it NEVER appears on page load — only after the user scrolls past
- * ~40% OR ~25s in. Google penalizes load-time interstitials; an
- * engagement-triggered one is fine. Dismissal/submission is remembered in
- * localStorage (shared with the inline card) so a visitor is never asked twice.
+ * SEO-safe: it never appears on first paint. Dismissal/submission is
+ * remembered in localStorage (shared with the inline card) so a visitor is
+ * never asked twice.
  */
 export function AlertSignupPopup(props: {
   vehicleName: string;
@@ -49,7 +49,8 @@ export function AlertSignupPopup(props: {
       cleanup();
       setOpen(true);
     }
-    timer = window.setTimeout(fire, 25000);
+    // Primary trigger: 5 seconds in. Scroll is a faster secondary trigger.
+    timer = window.setTimeout(fire, 5000);
     window.addEventListener('scroll', onScroll, { passive: true });
     return cleanup;
   }, []);
@@ -66,22 +67,22 @@ export function AlertSignupPopup(props: {
       role="dialog"
       aria-modal="true"
       onClick={dismiss}
-      style={{ position: 'fixed', inset: 0, zIndex: 90, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16, background: 'rgba(11,14,20,0.5)', backdropFilter: 'blur(2px)' }}
+      style={{ position: 'fixed', inset: 0, zIndex: 90, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16, background: 'rgba(11,14,20,0.6)', backdropFilter: 'blur(3px)', overflowY: 'auto' }}
     >
-      <style>{`@keyframes alertPopIn { from { opacity: 0; transform: translateY(12px) scale(0.98) } to { opacity: 1; transform: none } }`}</style>
-      <div onClick={(e) => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: 440, animation: 'alertPopIn 0.2s ease-out' }}>
+      <style>{`@keyframes alertPopIn { from { opacity: 0; transform: translateY(12px) scale(0.985) } to { opacity: 1; transform: none } }`}</style>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{ position: 'relative', width: '100%', maxWidth: 960, maxHeight: '92vh', overflowY: 'auto', animation: 'alertPopIn 0.22s ease-out', margin: 'auto', borderRadius: 24 }}
+      >
         <button
           type="button"
           onClick={dismiss}
           aria-label="Close"
-          style={{ position: 'absolute', top: -10, right: -10, zIndex: 1, width: 30, height: 30, borderRadius: 999, border: '1px solid #E3DFD4', background: '#fff', color: '#64748B', fontSize: 15, lineHeight: 1, cursor: 'pointer', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
+          style={{ position: 'absolute', top: 10, right: 10, zIndex: 2, width: 32, height: 32, borderRadius: 999, border: '1px solid rgba(255,255,255,0.25)', background: 'rgba(11,18,32,0.55)', color: '#fff', fontSize: 15, lineHeight: 1, cursor: 'pointer', backdropFilter: 'blur(6px)' }}
         >
           ✕
         </button>
-        {/* No auto-close on success: the confirmation now shows the Monday-cadence
-            note + a feedback box, so the reader stays in the modal and closes it
-            themselves via ✕. The localStorage flag is set on capture either way. */}
-        <KnownIssueAlertSignup {...props} showCarousel />
+        <KnownIssuesCaptureSplit {...props} />
       </div>
     </div>
   );

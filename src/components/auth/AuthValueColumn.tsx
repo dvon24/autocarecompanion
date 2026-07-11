@@ -43,18 +43,6 @@ export function AuthValueColumn({
         <div className="mt-7 flex justify-center lg:justify-start">
           <LiveHubDemo />
         </div>
-
-        {/* social proof */}
-        <div className="mt-7 flex items-center gap-3">
-          <div className="flex">
-            {['#0166B1', '#1a1a1a', '#7a1f1f'].map((c, i) => (
-              <span key={i} style={{ width: 24, height: 24, borderRadius: '50%', background: c, border: '2px solid #0B1220', marginLeft: i ? -8 : 0 }} />
-            ))}
-          </div>
-          <span className="text-[12.5px]" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            <b className="text-white">26,000+ owners</b> track their cars with Au7o
-          </span>
-        </div>
       </div>
     </div>
   );

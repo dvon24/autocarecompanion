@@ -23,7 +23,8 @@ import FutureModelYearNotice from '@/components/known-issues/FutureModelYearNoti
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
 import { OpenHubLink } from '@/components/known-issues/OpenHubLink';
-import { KnownIssuesCaptureSplit } from '@/components/known-issues/KnownIssuesCaptureSplit';
+import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
+import { AlertSignupPopup } from '@/components/known-issues/AlertSignupPopup';
 import { ToolRecommendations } from '@/components/known-issues/ToolRecommendations';
 import { toolsForIssues } from '@/lib/affiliate-tools';
 import { SiteFooter } from '@/components/shared/SiteFooter';
@@ -660,18 +661,22 @@ export default async function KnownIssuesArticlePage({
               </div>
             )}
 
-            {/* Conversion surface (design/15-FeatureCarousel "Split"): the
-                left proves + asks (account/email capture); the right is a live,
-                auto-rotating demo of the hub for THIS vehicle. Replaces the old
-                email-only popup — the value is shown before the ask. */}
+            {/* Always-visible lightweight capture (SEO-friendly, low weight).
+                The rich live-demo "carousel" pops as a modal ~5s in (below). */}
             <div className="mb-8">
-              <KnownIssuesCaptureSplit
+              <KnownIssueAlertSignup
                 vehicleName={`${make} ${model}`}
                 context={`known-issues:${make} ${model}`}
-                headline={`Your whole ${make}, in one chat`}
-                blurb={`You found your issue. Create a free account and Au7o tracks maintenance, recalls, and known issues for your ${make} ${model} — and diagnoses new ones from a photo.`}
               />
             </div>
+            {/* Engagement popup — the live hub-demo carousel, ~5s after load
+                (design/15-FeatureCarousel "Split"). Speaks about THIS vehicle. */}
+            <AlertSignupPopup
+              vehicleName={`${make} ${model}`}
+              context={`known-issues:${make} ${model}`}
+              headline={`Your whole ${make}, in one chat`}
+              blurb={`You found your issue. Create a free account and Au7o tracks maintenance, recalls, and known issues for your ${make} ${model} — and diagnoses new ones from a photo.`}
+            />
 
             {/* Fallthrough CTA — simplified */}
             <div className="text-center py-8 border-t border-[#E3DFD4]">
