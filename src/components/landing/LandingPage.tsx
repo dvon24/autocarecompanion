@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { HeroVehicleSearch } from '@/components/discovery/HeroVehicleSearch';
 import { Icon } from '@/components/ui/Icon';
 import { SiteFooter } from '@/components/shared/SiteFooter';
+import { LiveHubDemo } from '@/components/marketing/LiveHubDemo';
 
 /**
  * Landing page — Phase 4 redesign aligned with BMAD au7o(3)/10-
@@ -253,6 +254,60 @@ export default function LandingPage({ stats }: Props) {
               <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 4 }}>{l}</div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ─── Live hub demo (design/15-FeatureCarousel) ──────────── */}
+      <section style={{ background: 'linear-gradient(180deg,#0B1220,#111a2e)', padding: '64px 22px' }}>
+        <div
+          className="lp-hubdemo"
+          style={{
+            maxWidth: 1100,
+            margin: '0 auto',
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0,1fr) minmax(0,408px)',
+            gap: 44,
+            alignItems: 'center',
+          }}
+        >
+          <style>{`@media (max-width: 900px){ .lp-hubdemo{ grid-template-columns:1fr !important; justify-items:center; text-align:center; } .lp-hubdemo .lp-hubdemo-cta{ justify-content:center; } }`}</style>
+          {/* LEFT — copy + CTA */}
+          <div>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '5px 11px', borderRadius: 999, background: 'rgba(59,130,246,0.15)', border: '1px solid rgba(59,130,246,0.3)', marginBottom: 16 }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#3B82F6' }} />
+              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', color: '#93C5FD' }}>ONE CHAT, YOUR WHOLE CAR</span>
+            </div>
+            <h2 style={{ fontSize: 34, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1.1, margin: 0 }}>
+              A mechanic that <span style={{ color: '#93C5FD' }}>knows your car</span>.
+            </h2>
+            <p style={{ fontSize: 16, lineHeight: 1.6, color: 'rgba(255,255,255,0.72)', marginTop: 14, maxWidth: 460 }}>
+              Au7o tracks maintenance, open recalls, and known issues for your exact year, make, model &amp; trim — and diagnoses new problems from a photo, with the exact part and where to buy it. Watch it work →
+            </p>
+            <ul style={{ listStyle: 'none', padding: 0, margin: '20px 0 0', display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {[
+                'Maintenance & recalls tracked automatically',
+                'Snap a photo → exact part + verified buy link',
+                'Answers tuned to your trim, saved to your garage',
+              ].map((t) => (
+                <li key={t} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 14.5, color: 'rgba(255,255,255,0.85)' }}>
+                  <span style={{ width: 20, height: 20, borderRadius: 999, background: 'rgba(16,185,129,0.18)', color: '#34D399', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, flex: '0 0 auto' }}>✓</span>
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <div className="lp-hubdemo-cta" style={{ display: 'flex', gap: 12, marginTop: 26, flexWrap: 'wrap' }}>
+              <Link href="/auth/signup" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '13px 22px', borderRadius: 12, background: '#3B82F6', color: '#fff', fontSize: 15, fontWeight: 700, textDecoration: 'none' }}>
+                Create a free account →
+              </Link>
+              <Link href="/known-issues" style={{ display: 'inline-flex', alignItems: 'center', padding: '13px 20px', borderRadius: 12, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', color: '#fff', fontSize: 15, fontWeight: 600, textDecoration: 'none' }}>
+                Browse known issues
+              </Link>
+            </div>
+          </div>
+          {/* RIGHT — the live rotating hub demo */}
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <LiveHubDemo />
+          </div>
         </div>
       </section>
 

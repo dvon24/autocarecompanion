@@ -23,10 +23,9 @@ import FutureModelYearNotice from '@/components/known-issues/FutureModelYearNoti
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
 import { OpenHubLink } from '@/components/known-issues/OpenHubLink';
-import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
+import { KnownIssuesCaptureSplit } from '@/components/known-issues/KnownIssuesCaptureSplit';
 import { ToolRecommendations } from '@/components/known-issues/ToolRecommendations';
 import { toolsForIssues } from '@/lib/affiliate-tools';
-import { AlertSignupPopup } from '@/components/known-issues/AlertSignupPopup';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
@@ -661,13 +660,18 @@ export default async function KnownIssuesArticlePage({
               </div>
             )}
 
-            {/* Soft-conversion: low-friction vehicle-specific email alert
-                capture (no account). Turns the ~99% who won't sign up or run
-                a diagnosis on a first visit into a remarketable lead. */}
+            {/* Conversion surface (design/15-FeatureCarousel "Split"): the
+                left proves + asks (account/email capture); the right is a live,
+                auto-rotating demo of the hub for THIS vehicle. Replaces the old
+                email-only popup — the value is shown before the ask. */}
             <div className="mb-8">
-              <KnownIssueAlertSignup vehicleName={`${make} ${model}`} context={`known-issues:${make} ${model}`} />
+              <KnownIssuesCaptureSplit
+                vehicleName={`${make} ${model}`}
+                context={`known-issues:${make} ${model}`}
+                headline={`Your whole ${make}, in one chat`}
+                blurb={`You found your issue. Create a free account and Au7o tracks maintenance, recalls, and known issues for your ${make} ${model} — and diagnoses new ones from a photo.`}
+              />
             </div>
-            <AlertSignupPopup vehicleName={`${make} ${model}`} context={`known-issues:${make} ${model}`} />
 
             {/* Fallthrough CTA — simplified */}
             <div className="text-center py-8 border-t border-[#E3DFD4]">
