@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton';
-import { AuthValueCarousel } from '@/components/auth/AuthValueCarousel';
+import { AuthValueColumn } from '@/components/auth/AuthValueColumn';
 
 function SignInForm() {
   const searchParams = useSearchParams();
@@ -44,10 +44,6 @@ function SignInForm() {
 
   return (
     <>
-      {/* Sell the "why sign in" the old page never did (conversion was ~0%). */}
-      <div className="mb-5">
-        <AuthValueCarousel />
-      </div>
       {/* One-tap Google, up top (dark until NEXT_PUBLIC_GOOGLE_AUTH=1 + creds). */}
       <GoogleSignInButton callbackUrl={callbackUrl} />
       {process.env.NEXT_PUBLIC_GOOGLE_AUTH === '1' && (
@@ -147,53 +143,39 @@ function SignInFormLoading() {
 
 export default function SignInPage() {
   return (
-    <div className="min-h-screen bg-white font-[system-ui,sans-serif] relative overflow-hidden">
-      {/* Subtle gradient blobs for depth */}
-      <div
-        className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%)',
-          filter: 'blur(80px)',
-          transform: 'translate(20%, -30%)',
-          zIndex: 1,
-        }}
-      />
+    <div className="min-h-screen bg-white font-[system-ui,sans-serif]">
+      {/* Same split as signup (design/"Au7o - Signup Redesign"): value + live
+          demo left, the sign-in ask on the right. Returning users still see
+          why the account matters; new visitors get pushed to create one. */}
+      <div className="grid lg:grid-cols-2 min-h-screen">
+        {/* LEFT — value + live hub demo */}
+        <AuthValueColumn
+          eyebrow="WELCOME BACK"
+          headline={<>Your garage, right where you left it.</>}
+          sub={<>Sign in for your saved vehicles, diagnoses, and chat history — plus every new recall and known issue we&apos;ve found for your car since you were last here.</>}
+        />
 
-      {/* Main content */}
-      <main className="relative flex flex-col min-h-screen" style={{ zIndex: 2 }}>
-        {/* Header */}
-        <header className="px-6 py-4">
-          <div className="max-w-5xl mx-auto flex items-center justify-between">
+        {/* RIGHT — the ask */}
+        <div className="relative flex flex-col px-5 py-6 sm:px-8">
+          <header className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/og-image.png"
-                alt="Au7o mascot"
-                width={32}
-                height={32}
-                className="rounded-lg"
-              />
-              <span className="text-2xl font-bold text-gray-900 tracking-tight">
+              <Image src="/og-image.png" alt="Au7o mascot" width={30} height={30} className="rounded-lg" />
+              <span className="text-xl font-bold text-gray-900 tracking-tight">
                 Au<span className="text-blue-600">7</span>o
               </span>
             </Link>
-            <Link
-              href="/subscribe"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
+            <Link href="/subscribe" className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
               Subscribe
             </Link>
-          </div>
-        </header>
+          </header>
 
-        {/* Sign In Form */}
-        <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
-          <div className="w-full max-w-md">
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
-              <h1 className="text-2xl font-bold text-gray-900 text-center mb-2">
-                Welcome Back
+          <div className="flex-1 flex flex-col items-center justify-center py-8">
+            <div className="w-full max-w-md">
+              <h1 className="text-[26px] font-bold text-gray-900 tracking-tight mb-1.5">
+                Welcome back
               </h1>
-              <p className="text-gray-500 text-center mb-6">
-                Sign in to access your garage
+              <p className="text-gray-500 mb-6 text-sm">
+                Sign in to access your garage.
               </p>
 
               <Suspense fallback={<SignInFormLoading />}>
@@ -202,45 +184,27 @@ export default function SignInPage() {
 
               {/* Divider */}
               <div className="relative my-6">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-200"></div>
-                </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-4 bg-white text-gray-500">or</span>
-                </div>
+                <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-200" /></div>
+                <div className="relative flex justify-center text-sm"><span className="px-4 bg-white text-gray-500">new here?</span></div>
               </div>
 
-              {/* Account creation CTAs — free account is the primary
-                  path; subscription remains as the premium upgrade. */}
-              <div className="text-center space-y-3">
-                <p className="text-gray-600">
-                  Don&apos;t have an account?
-                </p>
-                <Link
-                  href="/auth/signup"
-                  className="block w-full py-3 px-4 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-colors text-center"
-                >
-                  Create a free account
-                </Link>
-                <p className="text-xs text-gray-500">
-                  or{' '}
-                  <Link href="/subscribe" className="text-blue-600 hover:text-blue-700 underline">
-                    pick a plan from $14.99/mo
-                  </Link>{' '}
-                  to unlock unlimited diagnoses + alerts
-                </p>
-              </div>
-            </div>
-
-            {/* Back Link */}
-            <div className="text-center mt-6">
-              <Link href="/" className="text-gray-500 hover:text-gray-700 transition-colors">
-                &larr; Back to Home
+              <Link
+                href="/auth/signup"
+                className="block w-full py-3 px-4 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-colors text-center"
+              >
+                Create a free account
               </Link>
+              <p className="text-xs text-gray-500 text-center mt-3">
+                or{' '}
+                <Link href="/subscribe" className="text-blue-600 hover:text-blue-700 underline">
+                  pick a plan from $14.99/mo
+                </Link>{' '}
+                to unlock unlimited diagnoses + alerts
+              </p>
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

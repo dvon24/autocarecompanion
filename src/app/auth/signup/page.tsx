@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton';
-import { AuthValueCarousel } from '@/components/auth/AuthValueCarousel';
+import { AuthValueColumn } from '@/components/auth/AuthValueColumn';
 
 /**
  * Banner rendered above the signup form when the user came from the
@@ -257,58 +257,53 @@ function SignUpForm() {
 
 export default function SignUpPage() {
   return (
-    <div className="min-h-screen bg-white font-[system-ui,sans-serif] relative overflow-hidden">
-      <div
-        className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%)',
-          filter: 'blur(80px)',
-          transform: 'translate(20%, -30%)',
-          zIndex: 1,
-        }}
-      />
+    <div className="min-h-screen bg-white font-[system-ui,sans-serif]">
+      {/* Signup-first split (design/"Au7o - Signup Redesign"): value + live
+          demo on the left proves it before the ask; the account form is on
+          the right. Sign-in is demoted to a small link. On mobile the value
+          column caps the top and the form sits below. */}
+      <div className="grid lg:grid-cols-2 min-h-screen">
+        {/* LEFT — value + live hub demo */}
+        <AuthValueColumn
+          headline={<>Knows your car.</>}
+          sub={<>A mechanic tuned to your exact year, make, model &amp; trim — it tracks maintenance &amp; recalls, diagnoses a problem from a photo, and finds the exact part. Free to start.</>}
+        />
 
-      <main className="relative flex flex-col min-h-screen" style={{ zIndex: 2 }}>
-        <header className="px-6 py-4">
-          <div className="max-w-5xl mx-auto flex items-center justify-between">
+        {/* RIGHT — the ask */}
+        <div className="relative flex flex-col px-5 py-6 sm:px-8">
+          <header className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/og-image.png"
-                alt="Au7o mascot"
-                width={32}
-                height={32}
-                className="rounded-lg"
-              />
-              <span className="text-2xl font-bold text-gray-900 tracking-tight">
+              <Image src="/og-image.png" alt="Au7o mascot" width={30} height={30} className="rounded-lg" />
+              <span className="text-xl font-bold text-gray-900 tracking-tight">
                 Au<span className="text-blue-600">7</span>o
               </span>
             </Link>
-            <Link
-              href="/auth/signin"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
+            <Link href="/auth/signin" className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
               Sign in
             </Link>
-          </div>
-        </header>
+          </header>
 
-        <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
-          <div className="w-full max-w-md">
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
-              <h1 className="text-2xl font-bold text-gray-900 text-center mb-1.5">
+          <div className="flex-1 flex flex-col items-center justify-center py-8">
+            <div className="w-full max-w-md">
+              <h1 className="text-[26px] font-bold text-gray-900 tracking-tight mb-1.5">
                 Create your free account
               </h1>
-              <p className="text-gray-500 text-center mb-5 text-sm">
-                Free forever — your car, your diagnoses, your alerts. Takes 20 seconds.
+              <p className="text-gray-500 mb-6 text-sm">
+                Free forever — your car, your diagnoses, your alerts. Takes about 20 seconds.
               </p>
-
-              <div className="mb-5">
-                <AuthValueCarousel />
-              </div>
 
               <Suspense fallback={<div className="text-center text-gray-500">Loading...</div>}>
                 <SignUpForm />
               </Suspense>
+
+              {/* Plus nudge — free is intentionally complete; Plus is the layer on top. */}
+              <div className="mt-6 rounded-xl border border-blue-100 bg-blue-50/60 px-4 py-3 text-xs text-gray-600 leading-relaxed">
+                Want SMS reminders, cross-device sync, and push alerts?{' '}
+                <Link href="/subscribe" className="text-blue-600 hover:text-blue-700 font-medium underline">
+                  Au7o Plus
+                </Link>{' '}
+                layers on top — start free, upgrade anytime.
+              </div>
 
               <div className="text-center mt-6">
                 <span className="text-gray-500 text-sm">Already have an account? </span>
@@ -317,15 +312,9 @@ export default function SignUpPage() {
                 </Link>
               </div>
             </div>
-
-            <div className="text-center mt-6">
-              <Link href="/" className="text-gray-500 hover:text-gray-700 text-sm">
-                &larr; Back to Home
-              </Link>
-            </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
