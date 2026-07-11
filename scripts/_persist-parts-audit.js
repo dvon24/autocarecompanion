@@ -35,6 +35,12 @@ const isSearchUrl = (u) => !u || /\/s\?k=|[?&]k=|\/sch\/|[?&]_nkw=|\/search\?|\/
 function toUnifiedFixPart(rec, item) {
   const variants = (rec.variants || []).filter((v) => v && (v.oemPartNumber || v.note));
   const primaryPN = variants.find((v) => v.oemPartNumber)?.oemPartNumber || '';
+  // FALLBACK (Layer 1): a guaranteed-live descriptive search so the Buy button
+  // never dead-ends if a verified deep link later rots. Amazon (au7o-20) always
+  // resolves. The TTL re-verify sweep + render use this when a deep link 404s.
+  const veh = [item.years && item.years.length ? Math.min(...item.years) + '-' + Math.max(...item.years) : '', item.make, item.model].filter(Boolean).join(' ');
+  const fbQuery = [item.make, item.model, item.part.component].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim().slice(0, 120) || (item.part.component || 'auto part');
+  const fallbackUrl = `https://www.amazon.com/s?k=${encodeURIComponent(fbQuery)}&tag=au7o-20`;
   // Keep only VERIFIED, non-search vendor links; order as the auditor returned
   // (correctness>depth>monetization). eBay links get EPN-tagged at render.
   const buyLinks = (rec.vendorLinks || [])
@@ -51,6 +57,7 @@ function toUnifiedFixPart(rec, item) {
     verificationNotes: (rec.verificationNotes || '').slice(0, 2000),
     variants: variants.map((v) => ({ scope: v.scope || '', oemPartNumber: v.oemPartNumber || '', note: v.note || '' })),
     buyLinks,
+    fallbackUrl,             // Layer 1 safety net — guaranteed-live descriptive search
     recallFirst: !!rec.recallFirst,
     provenance: rec.status === 'verified' ? 'audit_verified' : 'audit_corrected',
     confidence: typeof rec.confidence === 'number' ? rec.confidence : null,
