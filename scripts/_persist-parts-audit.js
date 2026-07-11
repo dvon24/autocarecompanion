@@ -30,6 +30,25 @@ const prisma = new PrismaClient({ adapter: new PrismaPg(pool) });
 
 const isSearchUrl = (u) => !u || /\/s\?k=|[?&]k=|\/sch\/|[?&]_nkw=|\/search\?|\/partsearch\/|google\.[a-z.]+\/search/i.test(u);
 
+// BRAND FIDELITY: drop a deep link only when it points at manufacturer B's OWN
+// site while the component explicitly NAMES a different brand A (the Fluidyne/
+// CSF radiator → mishimoto.com class). Conservative: retailer links (RockAuto/
+// Amazon/eBay/Summit/Mopar) never trigger; a component with no brand token never
+// triggers (so a Dorman PN 926-959 → dormanproducts.com stays).
+const MFR_DOMAINS = { 'mishimoto.com': 'mishimoto', 'csfrace.com': 'csf', 'dormanproducts.com': 'dorman', 'powerstop.com': 'power stop', 'driveshaftshop.com': 'driveshaft shop', 'energysuspension': 'energy suspension', 'teamenergysuspension.com': 'energy suspension', 'hawkperformance': 'hawk', 'ebcbrakes': 'ebc', 'stoptech.com': 'stoptech', 'dbabrakes': 'dba', 'mishimoto': 'mishimoto' };
+const BRAND_TOKENS = ['mishimoto', 'csf', 'fluidyne', 'power stop', 'ebc', 'hawk', 'brembo', 'stoptech', 'dba', 'moog', 'energy suspension', 'gates', 'denso', 'bosch', 'fel-pro', 'spicer', 'driveshaft shop', 'koni', 'bilstein', 'eibach', 'borla', 'corsa', 'afe', 'mishimoto'];
+function brandConflict(componentText, url) {
+  const u = (url || '').toLowerCase();
+  let linkBrand = null;
+  for (const [dom, b] of Object.entries(MFR_DOMAINS)) { if (u.includes(dom)) { linkBrand = b; break; } }
+  if (!linkBrand) return false; // retailer, not a manufacturer's own site
+  const comp = (componentText || '').toLowerCase();
+  for (const t of BRAND_TOKENS) {
+    if (comp.includes(t) && t !== linkBrand && !linkBrand.includes(t) && !t.includes(linkBrand)) return true;
+  }
+  return false;
+}
+
 // Build the unified fixPart from an audit record (+ its original input item for
 // component name / price fallback).
 function toUnifiedFixPart(rec, item) {
@@ -43,8 +62,9 @@ function toUnifiedFixPart(rec, item) {
   const fallbackUrl = `https://www.amazon.com/s?k=${encodeURIComponent(fbQuery)}&tag=au7o-20`;
   // Keep only VERIFIED, non-search vendor links; order as the auditor returned
   // (correctness>depth>monetization). eBay links get EPN-tagged at render.
+  const comp = item.part.component || rec.component || '';
   const buyLinks = (rec.vendorLinks || [])
-    .filter((l) => l && l.url && l.verified && !isSearchUrl(l.url))
+    .filter((l) => l && l.url && l.verified && !isSearchUrl(l.url) && !brandConflict(comp, l.url))
     .map((l) => ({ vendor: l.vendor, url: l.url, linkType: l.linkType || 'product', verified: true, affiliate: !!l.affiliate }));
   return {
     component: item.part.component || rec.component || '',
