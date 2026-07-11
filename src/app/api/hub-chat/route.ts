@@ -369,6 +369,26 @@ function partialOpenHold(s: string): number {
   return 0;
 }
 
+/** Neutralize any link the MODEL wrote in its prose (it's told to emit markers,
+ *  never links — but it sometimes disobeys and writes a fabricated store/Google
+ *  search URL). Keep the label, drop the URL. The resolver's grounded links are
+ *  sent as separate tokens and never pass through here, so they survive. */
+function stripModelLinks(s: string): string {
+  return s
+    .replace(/\[([^\]]*)\]\((?:[^)]*)\)/g, '$1') // [label](url) → label
+    .replace(/\bhttps?:\/\/\S+/gi, '');           // any bare URL the model wrote
+}
+
+/** How many trailing chars to hold back so we never emit a markdown link that's
+ *  still arriving across deltas (else stripModelLinks can't see it whole). */
+function partialLinkHold(s: string): number {
+  let m = s.match(/\[[^\]]*$/);            // '[' with no closing ']' yet
+  if (m) return m[0].length;
+  m = s.match(/\[[^\]]*\]\([^)]*$/);       // '[label](' with no closing ')' yet
+  if (m) return m[0].length;
+  return 0;
+}
+
 export async function POST(request: NextRequest) {
   if (!OPENAI_KEY) {
     return NextResponse.json({ error: 'service_unavailable', message: 'Chat is offline.' }, { status: 503 });
@@ -658,13 +678,23 @@ export async function POST(request: NextRequest) {
           const rest = rawModel.slice(flushedLen);
           const open = rest.indexOf(PART_MARK_OPEN);
           if (open === -1) {
-            let emit = rest;
-            if (!final) emit = rest.slice(0, rest.length - partialOpenHold(rest));
-            if (emit) { assistantText += emit; flushedLen += emit.length; send({ type: 'token', text: emit }); }
+            // Hold back a partial marker OR a partial markdown link at the tail so
+            // we never emit half a link the sanitizer can't see whole.
+            const hold = final ? 0 : Math.max(partialOpenHold(rest), partialLinkHold(rest));
+            const rawEmit = rest.slice(0, rest.length - hold);
+            if (rawEmit) {
+              flushedLen += rawEmit.length; // advance by RAW length (positions in rawModel)
+              const clean = stripModelLinks(rawEmit);
+              if (clean) { assistantText += clean; send({ type: 'token', text: clean }); }
+            }
             return;
           }
           const before = rest.slice(0, open);
-          if (before) { assistantText += before; flushedLen += before.length; send({ type: 'token', text: before }); }
+          if (before) {
+            flushedLen += before.length;
+            const clean = stripModelLinks(before);
+            if (clean) { assistantText += clean; send({ type: 'token', text: clean }); }
+          }
           const rest2 = rawModel.slice(flushedLen); // now begins with PART_MARK_OPEN
           const close = rest2.indexOf(']]');
           if (close === -1) {
