@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse, after } from 'next/server';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/db';
 import {
@@ -19,6 +19,7 @@ import {
 } from '@/lib/chat-quota';
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 import { resolveParts, type PartIntent } from '@/lib/resolve-parts';
+import { getCachedVerifiedPart, warmVerifiedPart } from '@/lib/verified-parts';
 import type { PartCategory } from '@/types/vision';
 
 export const maxDuration = 60;
@@ -291,6 +292,7 @@ const PART_MARK_OPEN = '[[PART:';
 async function resolveMarkerToMarkdown(
   inner: string,
   vehicle: { year?: number; make?: string; model?: string; trim?: string },
+  warmSet?: Set<string>,
 ): Promise<string> {
   const fields = inner.split('||').map((s) => s.trim());
   const partName = fields[0] || '';
@@ -299,9 +301,38 @@ async function resolveMarkerToMarkdown(
   const brand = fields[2] || undefined;
   const tier = fields[3] === 'aftermarket' ? 'aftermarket' : fields[3] === 'oem' ? 'oem' : undefined;
   const intent: PartIntent = { partName, category: category as PartCategory | undefined, brand, tier };
+  const label = brand ? `${brand} ${partName}` : partName;
+
+  // FIRST: a web-search-VERIFIED deep link from the record store (same source as
+  // the known-issues fix links). If we have one, lead with the real product page
+  // + PN, then add the descriptive multi-vendor row for choice. On a miss, queue
+  // a background warm so this part is verified next time.
+  let verified = null as Awaited<ReturnType<typeof getCachedVerifiedPart>>;
+  try { verified = await getCachedVerifiedPart(vehicle, partName); } catch { /* */ }
+  if (!verified?.buyUrl && warmSet) warmSet.add(partName);
+
   let card;
   try { [card] = await resolveParts([intent], vehicle, { useEbay: false }); } catch { /* */ }
-  const label = brand ? `${brand} ${partName}` : partName;
+
+  if (verified?.buyUrl) {
+    const pn = verified.partNumber ? ` \`${verified.partNumber}\`` : '';
+    const parts: string[] = [`[${verified.buyVendor || 'Buy'} — verified](${verified.buyUrl})`];
+    // Add a couple of descriptive alternates for price choice.
+    if (card?.vendorLinks?.length) {
+      const seen = new Set<string>();
+      for (const l of card.vendorLinks) {
+        if (parts.length >= 4) break;
+        if (l.url && !seen.has(l.vendor)) { seen.add(l.vendor); parts.push(`[${l.displayName}](${l.url})`); }
+      }
+    }
+    let md = `**${label}**${pn} — ${parts.join(' · ')}`;
+    if (verified.aftermarket?.length) {
+      const aft = verified.aftermarket.slice(0, 2).map((a) => `${a.brand} ${a.partNumber}`).join(', ');
+      md += ` _(aftermarket: ${aft})_`;
+    }
+    return md;
+  }
+
   if (!card || !card.vendorLinks.length) return `**${label}**`;
 
   // Surface SEVERAL retailers, not just Amazon — put the monetized/primary link
@@ -619,6 +650,9 @@ export async function POST(request: NextRequest) {
       // client, and hold back a marker that's split across deltas.
       let rawModel = '';
       let flushedLen = 0;
+      // Part names that had no verified deep link yet — warmed in the background
+      // (after the response) so the record store fills and the next ask is verified.
+      const warmParts = new Set<string>();
       const pump = async (final: boolean) => {
         for (;;) {
           const rest = rawModel.slice(flushedLen);
@@ -638,7 +672,7 @@ export async function POST(request: NextRequest) {
             return;
           }
           const innerText = rest2.slice(PART_MARK_OPEN.length, close);
-          const md = await resolveMarkerToMarkdown(innerText, v);
+          const md = await resolveMarkerToMarkdown(innerText, v, warmParts);
           if (md) { assistantText += md; send({ type: 'token', text: md }); }
           flushedLen += close + 2;
         }
@@ -714,6 +748,14 @@ export async function POST(request: NextRequest) {
         }
         // Flush any held-back tail (final marker / partial-open guard).
         await pump(true);
+
+        // Background: web-search-verify any parts we couldn't deep-link yet, so
+        // the record store fills and the NEXT ask returns a verified deep link
+        // (same source as the known-issues fix links). Runs after the response.
+        if (warmParts.size && v?.make && v?.model) {
+          const toWarm = [...warmParts].slice(0, 6);
+          after(() => Promise.allSettled(toWarm.map((n) => warmVerifiedPart(v, n))));
+        }
 
         // Persist the assistant reply back to the session so next turn's
         // history includes it.
