@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton';
+import { AuthValueCarousel } from '@/components/auth/AuthValueCarousel';
 
 function SignInForm() {
   const searchParams = useSearchParams();
@@ -43,6 +44,10 @@ function SignInForm() {
 
   return (
     <>
+      {/* Sell the "why sign in" the old page never did (conversion was ~0%). */}
+      <div className="mb-5">
+        <AuthValueCarousel />
+      </div>
       {/* One-tap Google, up top (dark until NEXT_PUBLIC_GOOGLE_AUTH=1 + creds). */}
       <GoogleSignInButton callbackUrl={callbackUrl} />
       {process.env.NEXT_PUBLIC_GOOGLE_AUTH === '1' && (

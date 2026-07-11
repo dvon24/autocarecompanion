@@ -6,8 +6,8 @@ const { Pool } = require('pg');
 const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 2 });
 pool.on('error', () => {});
 const prisma = new PrismaClient({ adapter: new PrismaPg(pool) });
-const CODES = ['P0300','P0171','P0174','P0420','P0430','P0128','P0442','P0455','P0700','P0741','P0016','P0011','P0301','P0302','P0303'];
-const VEHICLES = [['Ford','F-150'],['Chevrolet','Silverado 1500'],['RAM','1500'],['Toyota','Camry'],['Toyota','Corolla'],['Toyota','RAV4'],['Honda','CR-V'],['Honda','Civic'],['Honda','Accord'],['Nissan','Rogue'],['Nissan','Altima'],['Ford','Escape'],['Ford','Explorer'],['Chevrolet','Equinox'],['Chevrolet','Malibu'],['Jeep','Wrangler'],['Jeep','Grand Cherokee'],['Toyota','Tacoma'],['Ford','Mustang'],['Hyundai','Sonata'],['Hyundai','Elantra'],['Kia','Sorento'],['Subaru','Outback'],['Nissan','Sentra'],['GMC','Sierra 1500']];
+const CODES = ['P0300','P0171','P0174','P0420','P0430','P0128','P0442','P0455','P0700','P0741','P0016','P0011','P0301','P0302','P0303','P0446','P0135','P0401','P0325','P0113'];
+const VEHICLES = [['Toyota','Highlander'],['Toyota','Sienna'],['Toyota','4Runner'],['Honda','Pilot'],['Honda','Odyssey'],['Honda','HR-V'],['Nissan','Pathfinder'],['Nissan','Frontier'],['Ford','Edge'],['Ford','Fusion'],['Ford','Focus'],['Chevrolet','Traverse'],['Chevrolet','Cruze'],['Chevrolet','Impala'],['Chevrolet','Colorado'],['GMC','Acadia'],['GMC','Terrain'],['Jeep','Cherokee'],['Jeep','Compass'],['Dodge','Charger'],['Dodge','Challenger'],['Hyundai','Tucson'],['Hyundai','Santa Fe'],['Kia','Sportage'],['Subaru','Forester']];
 (async () => {
   const names = {};
   const nrows = await prisma.dTCCode.findMany({ where: { code: { in: CODES } }, select: { code: true, name: true } });
@@ -16,7 +16,7 @@ const VEHICLES = [['Ford','F-150'],['Chevrolet','Silverado 1500'],['RAM','1500']
   for (const [make, model] of VEHICLES) {
     const rows = await prisma.$queryRawUnsafe(`SELECT DISTINCT unnest("dtcCodes") c FROM "KnownIssue" WHERE status='published' AND make ILIKE $1 AND model ILIKE $2`, make, model);
     const have = new Set(rows.map(r => r.c));
-    const missing = CODES.filter(c => !have.has(c)).map(c => ({ code: c, name: names[c] || c }));
+    const missing = CODES.filter(c => !have.has(c)).map(c => ({ code: c, name: names[c] || c })).slice(0, 8);
     if (missing.length) targets.push({ make, model, missing });
   }
   const totalGaps = targets.reduce((s,t)=>s+t.missing.length,0);

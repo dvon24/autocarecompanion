@@ -1,42 +1,84 @@
 export const meta = {
   name: 'dtc-vehicle-gap-wave',
-  description: 'Build known-issues FROM DTCs: research each top OBD-II code as it presents on a specific popular vehicle (fills 112 thin code x vehicle gaps across 24 models), auto-populating the /dtc/[code]/[make] money pages',
+  description: 'Build known-issues FROM DTCs: research each top OBD-II code as it presents on a specific popular vehicle (fills 198 thin code x vehicle gaps across 25 models), auto-populating the /dtc/[code]/[make] money pages',
   phases: [ { title: 'Discover' }, { title: 'Verify' } ],
 }
 const TARGETS = [
   {
-    "make": "Ford",
-    "model": "F-150",
+    "make": "Toyota",
+    "model": "Highlander",
     "missing": [
+      {
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
       {
         "code": "P0700",
         "name": "Transmission Control System Malfunction"
-      }
-    ]
-  },
-  {
-    "make": "Chevrolet",
-    "model": "Silverado 1500",
-    "missing": [
+      },
       {
-        "code": "P0700",
-        "name": "Transmission Control System Malfunction"
-      }
-    ]
-  },
-  {
-    "make": "RAM",
-    "model": "1500",
-    "missing": [
+        "code": "P0016",
+        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
+      },
       {
         "code": "P0011",
         "name": "Intake Camshaft Position Timing - Over-Advanced (Bank 1)"
+      },
+      {
+        "code": "P0135",
+        "name": "O2 Sensor Heater Circuit Malfunction (Bank 1, Sensor 1)"
+      },
+      {
+        "code": "P0325",
+        "name": "Knock Sensor 1 Circuit Malfunction (Bank 1)"
+      },
+      {
+        "code": "P0113",
+        "name": "Intake Air Temperature Sensor 1 Circuit High"
       }
     ]
   },
   {
     "make": "Toyota",
-    "model": "Camry",
+    "model": "Sienna",
+    "missing": [
+      {
+        "code": "P0300",
+        "name": "Random/Multiple Cylinder Misfire Detected"
+      },
+      {
+        "code": "P0430",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
+      },
+      {
+        "code": "P0128",
+        "name": "Coolant Thermostat Below Regulating Temperature"
+      },
+      {
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
+      {
+        "code": "P0700",
+        "name": "Transmission Control System Malfunction"
+      },
+      {
+        "code": "P0741",
+        "name": "Torque Converter Clutch Circuit Performance/Stuck Off"
+      },
+      {
+        "code": "P0016",
+        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
+      },
+      {
+        "code": "P0301",
+        "name": "Cylinder 1 Misfire Detected"
+      }
+    ]
+  },
+  {
+    "make": "Toyota",
+    "model": "4Runner",
     "missing": [
       {
         "code": "P0171",
@@ -47,8 +89,16 @@ const TARGETS = [
         "name": "System Too Lean (Bank 2)"
       },
       {
-        "code": "P0430",
-        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
+        "code": "P0128",
+        "name": "Coolant Thermostat Below Regulating Temperature"
+      },
+      {
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
+      {
+        "code": "P0455",
+        "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
       },
       {
         "code": "P0016",
@@ -57,59 +107,105 @@ const TARGETS = [
       {
         "code": "P0011",
         "name": "Intake Camshaft Position Timing - Over-Advanced (Bank 1)"
+      },
+      {
+        "code": "P0302",
+        "name": "Cylinder 2 Misfire Detected"
       }
     ]
   },
   {
-    "make": "Toyota",
-    "model": "Corolla",
+    "make": "Honda",
+    "model": "Pilot",
     "missing": [
       {
-        "code": "P0741",
-        "name": "Torque Converter Clutch Circuit Performance/Stuck Off"
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
+      {
+        "code": "P0016",
+        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
+      },
+      {
+        "code": "P0011",
+        "name": "Intake Camshaft Position Timing - Over-Advanced (Bank 1)"
+      },
+      {
+        "code": "P0446",
+        "name": "Evaporative Emission Control System Vent Control Circuit"
+      },
+      {
+        "code": "P0135",
+        "name": "O2 Sensor Heater Circuit Malfunction (Bank 1, Sensor 1)"
+      },
+      {
+        "code": "P0325",
+        "name": "Knock Sensor 1 Circuit Malfunction (Bank 1)"
+      },
+      {
+        "code": "P0113",
+        "name": "Intake Air Temperature Sensor 1 Circuit High"
       }
     ]
   },
   {
-    "make": "Toyota",
-    "model": "RAV4",
+    "make": "Honda",
+    "model": "Odyssey",
     "missing": [
+      {
+        "code": "P0300",
+        "name": "Random/Multiple Cylinder Misfire Detected"
+      },
+      {
+        "code": "P0430",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
+      },
+      {
+        "code": "P0128",
+        "name": "Coolant Thermostat Below Regulating Temperature"
+      },
+      {
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
+      {
+        "code": "P0455",
+        "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
+      },
+      {
+        "code": "P0301",
+        "name": "Cylinder 1 Misfire Detected"
+      },
+      {
+        "code": "P0302",
+        "name": "Cylinder 2 Misfire Detected"
+      },
+      {
+        "code": "P0303",
+        "name": "Cylinder 3 Misfire Detected"
+      }
+    ]
+  },
+  {
+    "make": "Honda",
+    "model": "HR-V",
+    "missing": [
+      {
+        "code": "P0300",
+        "name": "Random/Multiple Cylinder Misfire Detected"
+      },
+      {
+        "code": "P0171",
+        "name": "System Too Lean (Bank 1)"
+      },
       {
         "code": "P0174",
         "name": "System Too Lean (Bank 2)"
-      }
-    ]
-  },
-  {
-    "make": "Honda",
-    "model": "CR-V",
-    "missing": [
-      {
-        "code": "P0430",
-        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
       },
       {
-        "code": "P0442",
-        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+        "code": "P0420",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 1)"
       },
-      {
-        "code": "P0455",
-        "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
-      },
-      {
-        "code": "P0700",
-        "name": "Transmission Control System Malfunction"
-      },
-      {
-        "code": "P0741",
-        "name": "Torque Converter Clutch Circuit Performance/Stuck Off"
-      }
-    ]
-  },
-  {
-    "make": "Honda",
-    "model": "Civic",
-    "missing": [
       {
         "code": "P0430",
         "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
@@ -125,35 +221,17 @@ const TARGETS = [
       {
         "code": "P0741",
         "name": "Torque Converter Clutch Circuit Performance/Stuck Off"
-      }
-    ]
-  },
-  {
-    "make": "Honda",
-    "model": "Accord",
-    "missing": [
-      {
-        "code": "P0442",
-        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
-      },
-      {
-        "code": "P0741",
-        "name": "Torque Converter Clutch Circuit Performance/Stuck Off"
-      },
-      {
-        "code": "P0016",
-        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
-      },
-      {
-        "code": "P0011",
-        "name": "Intake Camshaft Position Timing - Over-Advanced (Bank 1)"
       }
     ]
   },
   {
     "make": "Nissan",
-    "model": "Rogue",
+    "model": "Pathfinder",
     "missing": [
+      {
+        "code": "P0171",
+        "name": "System Too Lean (Bank 1)"
+      },
       {
         "code": "P0174",
         "name": "System Too Lean (Bank 2)"
@@ -161,6 +239,48 @@ const TARGETS = [
       {
         "code": "P0128",
         "name": "Coolant Thermostat Below Regulating Temperature"
+      },
+      {
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
+      {
+        "code": "P0455",
+        "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
+      },
+      {
+        "code": "P0741",
+        "name": "Torque Converter Clutch Circuit Performance/Stuck Off"
+      },
+      {
+        "code": "P0016",
+        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
+      },
+      {
+        "code": "P0302",
+        "name": "Cylinder 2 Misfire Detected"
+      }
+    ]
+  },
+  {
+    "make": "Nissan",
+    "model": "Frontier",
+    "missing": [
+      {
+        "code": "P0420",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 1)"
+      },
+      {
+        "code": "P0430",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
+      },
+      {
+        "code": "P0128",
+        "name": "Coolant Thermostat Below Regulating Temperature"
+      },
+      {
+        "code": "P0700",
+        "name": "Transmission Control System Malfunction"
       },
       {
         "code": "P0741",
@@ -181,34 +301,8 @@ const TARGETS = [
     ]
   },
   {
-    "make": "Nissan",
-    "model": "Altima",
-    "missing": [
-      {
-        "code": "P0171",
-        "name": "System Too Lean (Bank 1)"
-      },
-      {
-        "code": "P0174",
-        "name": "System Too Lean (Bank 2)"
-      },
-      {
-        "code": "P0128",
-        "name": "Coolant Thermostat Below Regulating Temperature"
-      },
-      {
-        "code": "P0741",
-        "name": "Torque Converter Clutch Circuit Performance/Stuck Off"
-      },
-      {
-        "code": "P0016",
-        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
-      }
-    ]
-  },
-  {
     "make": "Ford",
-    "model": "Escape",
+    "model": "Edge",
     "missing": [
       {
         "code": "P0420",
@@ -227,23 +321,43 @@ const TARGETS = [
         "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
       },
       {
-        "code": "P0741",
-        "name": "Torque Converter Clutch Circuit Performance/Stuck Off"
+        "code": "P0446",
+        "name": "Evaporative Emission Control System Vent Control Circuit"
       },
       {
-        "code": "P0016",
-        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
+        "code": "P0135",
+        "name": "O2 Sensor Heater Circuit Malfunction (Bank 1, Sensor 1)"
       },
       {
-        "code": "P0011",
-        "name": "Intake Camshaft Position Timing - Over-Advanced (Bank 1)"
+        "code": "P0401",
+        "name": "Exhaust Gas Recirculation Flow Insufficient"
+      },
+      {
+        "code": "P0325",
+        "name": "Knock Sensor 1 Circuit Malfunction (Bank 1)"
       }
     ]
   },
   {
-    "make": "Chevrolet",
-    "model": "Equinox",
+    "make": "Ford",
+    "model": "Fusion",
     "missing": [
+      {
+        "code": "P0300",
+        "name": "Random/Multiple Cylinder Misfire Detected"
+      },
+      {
+        "code": "P0171",
+        "name": "System Too Lean (Bank 1)"
+      },
+      {
+        "code": "P0174",
+        "name": "System Too Lean (Bank 2)"
+      },
+      {
+        "code": "P0420",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 1)"
+      },
       {
         "code": "P0430",
         "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
@@ -255,147 +369,17 @@ const TARGETS = [
       {
         "code": "P0700",
         "name": "Transmission Control System Malfunction"
-      }
-    ]
-  },
-  {
-    "make": "Chevrolet",
-    "model": "Malibu",
-    "missing": [
-      {
-        "code": "P0174",
-        "name": "System Too Lean (Bank 2)"
-      },
-      {
-        "code": "P0420",
-        "name": "Catalyst System Efficiency Below Threshold (Bank 1)"
-      },
-      {
-        "code": "P0430",
-        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
-      },
-      {
-        "code": "P0128",
-        "name": "Coolant Thermostat Below Regulating Temperature"
-      },
-      {
-        "code": "P0442",
-        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
-      },
-      {
-        "code": "P0455",
-        "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
-      },
-      {
-        "code": "P0302",
-        "name": "Cylinder 2 Misfire Detected"
-      },
-      {
-        "code": "P0303",
-        "name": "Cylinder 3 Misfire Detected"
-      }
-    ]
-  },
-  {
-    "make": "Jeep",
-    "model": "Wrangler",
-    "missing": [
-      {
-        "code": "P0430",
-        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
-      },
-      {
-        "code": "P0442",
-        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
-      },
-      {
-        "code": "P0011",
-        "name": "Intake Camshaft Position Timing - Over-Advanced (Bank 1)"
-      }
-    ]
-  },
-  {
-    "make": "Jeep",
-    "model": "Grand Cherokee",
-    "missing": [
-      {
-        "code": "P0171",
-        "name": "System Too Lean (Bank 1)"
-      },
-      {
-        "code": "P0174",
-        "name": "System Too Lean (Bank 2)"
-      },
-      {
-        "code": "P0442",
-        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
-      }
-    ]
-  },
-  {
-    "make": "Toyota",
-    "model": "Tacoma",
-    "missing": [
-      {
-        "code": "P0430",
-        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
-      },
-      {
-        "code": "P0128",
-        "name": "Coolant Thermostat Below Regulating Temperature"
       },
       {
         "code": "P0016",
         "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
-      },
-      {
-        "code": "P0011",
-        "name": "Intake Camshaft Position Timing - Over-Advanced (Bank 1)"
-      },
-      {
-        "code": "P0302",
-        "name": "Cylinder 2 Misfire Detected"
-      },
-      {
-        "code": "P0303",
-        "name": "Cylinder 3 Misfire Detected"
       }
     ]
   },
   {
     "make": "Ford",
-    "model": "Mustang",
+    "model": "Focus",
     "missing": [
-      {
-        "code": "P0420",
-        "name": "Catalyst System Efficiency Below Threshold (Bank 1)"
-      },
-      {
-        "code": "P0430",
-        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
-      },
-      {
-        "code": "P0442",
-        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
-      },
-      {
-        "code": "P0016",
-        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
-      }
-    ]
-  },
-  {
-    "make": "Hyundai",
-    "model": "Sonata",
-    "missing": [
-      {
-        "code": "P0171",
-        "name": "System Too Lean (Bank 1)"
-      },
-      {
-        "code": "P0174",
-        "name": "System Too Lean (Bank 2)"
-      },
       {
         "code": "P0420",
         "name": "Catalyst System Efficiency Below Threshold (Bank 1)"
@@ -423,12 +407,130 @@ const TARGETS = [
       {
         "code": "P0011",
         "name": "Intake Camshaft Position Timing - Over-Advanced (Bank 1)"
+      },
+      {
+        "code": "P0446",
+        "name": "Evaporative Emission Control System Vent Control Circuit"
       }
     ]
   },
   {
-    "make": "Hyundai",
-    "model": "Elantra",
+    "make": "Chevrolet",
+    "model": "Traverse",
+    "missing": [
+      {
+        "code": "P0171",
+        "name": "System Too Lean (Bank 1)"
+      },
+      {
+        "code": "P0174",
+        "name": "System Too Lean (Bank 2)"
+      },
+      {
+        "code": "P0420",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 1)"
+      },
+      {
+        "code": "P0430",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
+      },
+      {
+        "code": "P0700",
+        "name": "Transmission Control System Malfunction"
+      },
+      {
+        "code": "P0011",
+        "name": "Intake Camshaft Position Timing - Over-Advanced (Bank 1)"
+      },
+      {
+        "code": "P0446",
+        "name": "Evaporative Emission Control System Vent Control Circuit"
+      },
+      {
+        "code": "P0135",
+        "name": "O2 Sensor Heater Circuit Malfunction (Bank 1, Sensor 1)"
+      }
+    ]
+  },
+  {
+    "make": "Chevrolet",
+    "model": "Cruze",
+    "missing": [
+      {
+        "code": "P0174",
+        "name": "System Too Lean (Bank 2)"
+      },
+      {
+        "code": "P0420",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 1)"
+      },
+      {
+        "code": "P0430",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
+      },
+      {
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
+      {
+        "code": "P0455",
+        "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
+      },
+      {
+        "code": "P0700",
+        "name": "Transmission Control System Malfunction"
+      },
+      {
+        "code": "P0016",
+        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
+      },
+      {
+        "code": "P0011",
+        "name": "Intake Camshaft Position Timing - Over-Advanced (Bank 1)"
+      }
+    ]
+  },
+  {
+    "make": "Chevrolet",
+    "model": "Impala",
+    "missing": [
+      {
+        "code": "P0300",
+        "name": "Random/Multiple Cylinder Misfire Detected"
+      },
+      {
+        "code": "P0420",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 1)"
+      },
+      {
+        "code": "P0430",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
+      },
+      {
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
+      {
+        "code": "P0455",
+        "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
+      },
+      {
+        "code": "P0700",
+        "name": "Transmission Control System Malfunction"
+      },
+      {
+        "code": "P0016",
+        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
+      },
+      {
+        "code": "P0011",
+        "name": "Intake Camshaft Position Timing - Over-Advanced (Bank 1)"
+      }
+    ]
+  },
+  {
+    "make": "Chevrolet",
+    "model": "Colorado",
     "missing": [
       {
         "code": "P0171",
@@ -451,18 +553,136 @@ const TARGETS = [
         "name": "Coolant Thermostat Below Regulating Temperature"
       },
       {
-        "code": "P0016",
-        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
       },
       {
-        "code": "P0011",
-        "name": "Intake Camshaft Position Timing - Over-Advanced (Bank 1)"
+        "code": "P0700",
+        "name": "Transmission Control System Malfunction"
+      },
+      {
+        "code": "P0135",
+        "name": "O2 Sensor Heater Circuit Malfunction (Bank 1, Sensor 1)"
       }
     ]
   },
   {
-    "make": "Kia",
-    "model": "Sorento",
+    "make": "GMC",
+    "model": "Acadia",
+    "missing": [
+      {
+        "code": "P0300",
+        "name": "Random/Multiple Cylinder Misfire Detected"
+      },
+      {
+        "code": "P0171",
+        "name": "System Too Lean (Bank 1)"
+      },
+      {
+        "code": "P0174",
+        "name": "System Too Lean (Bank 2)"
+      },
+      {
+        "code": "P0420",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 1)"
+      },
+      {
+        "code": "P0430",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
+      },
+      {
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
+      {
+        "code": "P0455",
+        "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
+      },
+      {
+        "code": "P0700",
+        "name": "Transmission Control System Malfunction"
+      }
+    ]
+  },
+  {
+    "make": "GMC",
+    "model": "Terrain",
+    "missing": [
+      {
+        "code": "P0430",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
+      },
+      {
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
+      {
+        "code": "P0455",
+        "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
+      },
+      {
+        "code": "P0700",
+        "name": "Transmission Control System Malfunction"
+      },
+      {
+        "code": "P0741",
+        "name": "Torque Converter Clutch Circuit Performance/Stuck Off"
+      },
+      {
+        "code": "P0301",
+        "name": "Cylinder 1 Misfire Detected"
+      },
+      {
+        "code": "P0302",
+        "name": "Cylinder 2 Misfire Detected"
+      },
+      {
+        "code": "P0303",
+        "name": "Cylinder 3 Misfire Detected"
+      }
+    ]
+  },
+  {
+    "make": "Jeep",
+    "model": "Cherokee",
+    "missing": [
+      {
+        "code": "P0300",
+        "name": "Random/Multiple Cylinder Misfire Detected"
+      },
+      {
+        "code": "P0430",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
+      },
+      {
+        "code": "P0128",
+        "name": "Coolant Thermostat Below Regulating Temperature"
+      },
+      {
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
+      {
+        "code": "P0455",
+        "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
+      },
+      {
+        "code": "P0016",
+        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
+      },
+      {
+        "code": "P0301",
+        "name": "Cylinder 1 Misfire Detected"
+      },
+      {
+        "code": "P0302",
+        "name": "Cylinder 2 Misfire Detected"
+      }
+    ]
+  },
+  {
+    "make": "Jeep",
+    "model": "Compass",
     "missing": [
       {
         "code": "P0300",
@@ -495,32 +715,36 @@ const TARGETS = [
       {
         "code": "P0302",
         "name": "Cylinder 2 Misfire Detected"
-      },
-      {
-        "code": "P0303",
-        "name": "Cylinder 3 Misfire Detected"
       }
     ]
   },
   {
-    "make": "Subaru",
-    "model": "Outback",
+    "make": "Dodge",
+    "model": "Charger",
     "missing": [
+      {
+        "code": "P0171",
+        "name": "System Too Lean (Bank 1)"
+      },
+      {
+        "code": "P0174",
+        "name": "System Too Lean (Bank 2)"
+      },
+      {
+        "code": "P0420",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 1)"
+      },
       {
         "code": "P0430",
         "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
       },
       {
+        "code": "P0128",
+        "name": "Coolant Thermostat Below Regulating Temperature"
+      },
+      {
         "code": "P0442",
         "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
-      },
-      {
-        "code": "P0455",
-        "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
-      },
-      {
-        "code": "P0741",
-        "name": "Torque Converter Clutch Circuit Performance/Stuck Off"
       },
       {
         "code": "P0016",
@@ -533,8 +757,8 @@ const TARGETS = [
     ]
   },
   {
-    "make": "Nissan",
-    "model": "Sentra",
+    "make": "Dodge",
+    "model": "Challenger",
     "missing": [
       {
         "code": "P0171",
@@ -545,6 +769,48 @@ const TARGETS = [
         "name": "System Too Lean (Bank 2)"
       },
       {
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
+      {
+        "code": "P0016",
+        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
+      },
+      {
+        "code": "P0011",
+        "name": "Intake Camshaft Position Timing - Over-Advanced (Bank 1)"
+      },
+      {
+        "code": "P0446",
+        "name": "Evaporative Emission Control System Vent Control Circuit"
+      },
+      {
+        "code": "P0135",
+        "name": "O2 Sensor Heater Circuit Malfunction (Bank 1, Sensor 1)"
+      },
+      {
+        "code": "P0401",
+        "name": "Exhaust Gas Recirculation Flow Insufficient"
+      }
+    ]
+  },
+  {
+    "make": "Hyundai",
+    "model": "Tucson",
+    "missing": [
+      {
+        "code": "P0171",
+        "name": "System Too Lean (Bank 1)"
+      },
+      {
+        "code": "P0174",
+        "name": "System Too Lean (Bank 2)"
+      },
+      {
+        "code": "P0420",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 1)"
+      },
+      {
         "code": "P0430",
         "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
       },
@@ -553,14 +819,22 @@ const TARGETS = [
         "name": "Coolant Thermostat Below Regulating Temperature"
       },
       {
-        "code": "P0741",
-        "name": "Torque Converter Clutch Circuit Performance/Stuck Off"
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
+      {
+        "code": "P0455",
+        "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
+      },
+      {
+        "code": "P0016",
+        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
       }
     ]
   },
   {
-    "make": "GMC",
-    "model": "Sierra 1500",
+    "make": "Hyundai",
+    "model": "Santa Fe",
     "missing": [
       {
         "code": "P0420",
@@ -587,12 +861,88 @@ const TARGETS = [
         "name": "Transmission Control System Malfunction"
       },
       {
+        "code": "P0741",
+        "name": "Torque Converter Clutch Circuit Performance/Stuck Off"
+      },
+      {
+        "code": "P0016",
+        "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
+      }
+    ]
+  },
+  {
+    "make": "Kia",
+    "model": "Sportage",
+    "missing": [
+      {
+        "code": "P0300",
+        "name": "Random/Multiple Cylinder Misfire Detected"
+      },
+      {
+        "code": "P0171",
+        "name": "System Too Lean (Bank 1)"
+      },
+      {
+        "code": "P0174",
+        "name": "System Too Lean (Bank 2)"
+      },
+      {
+        "code": "P0420",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 1)"
+      },
+      {
+        "code": "P0430",
+        "name": "Catalyst System Efficiency Below Threshold (Bank 2)"
+      },
+      {
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
+      {
+        "code": "P0455",
+        "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
+      },
+      {
+        "code": "P0700",
+        "name": "Transmission Control System Malfunction"
+      }
+    ]
+  },
+  {
+    "make": "Subaru",
+    "model": "Forester",
+    "missing": [
+      {
+        "code": "P0442",
+        "name": "Evaporative Emission Control System Leak Detected (Small Leak)"
+      },
+      {
+        "code": "P0455",
+        "name": "Evaporative Emission Control System Leak Detected (Gross Leak)"
+      },
+      {
+        "code": "P0741",
+        "name": "Torque Converter Clutch Circuit Performance/Stuck Off"
+      },
+      {
         "code": "P0016",
         "name": "Crankshaft/Camshaft Position Correlation - Bank 1 Sensor A"
       },
       {
-        "code": "P0011",
-        "name": "Intake Camshaft Position Timing - Over-Advanced (Bank 1)"
+        "code": "P0446",
+        "name": "Evaporative Emission Control System Vent Control Circuit"
+      },
+      {
+        "code": "P0135",
+        "name": "O2 Sensor Heater Circuit Malfunction (Bank 1, Sensor 1)"
+      },
+      {
+        "code": "P0401",
+        "name": "Exhaust Gas Recirculation Flow Insufficient"
+      },
+      {
+        "code": "P0325",
+        "name": "Knock Sensor 1 Circuit Malfunction (Bank 1)"
       }
     ]
   }
@@ -614,4 +964,4 @@ const per = await pipeline(TARGETS,
 const confirmed=[]; let kept=0
 for(const r of per){ if(!r||!r.t)continue; for(const iss of r.confirmed){ if(typeof iss.confidence==='number'&&iss.confidence>=0.7){ confirmed.push({make:r.t.make,model:r.t.model,...iss,_verdictConfidence:iss.confidence}); kept++ } } }
 log('Confirmed '+kept+' code-specific issues across '+TARGETS.length+' vehicles')
-return { confirmed, visualEvidence:[], stats:{ vehicles:TARGETS.length, gaps:112, confirmed:kept } }
+return { confirmed, visualEvidence:[], stats:{ vehicles:TARGETS.length, gaps:198, confirmed:kept } }
