@@ -3,7 +3,10 @@
 import { useEffect, useState } from 'react';
 import { KnownIssueAlertSignup } from './KnownIssueAlertSignup';
 
-const FLAG_KEY = 'au7o.alertCapture';
+// v2: the popup changed from email-only to the value carousel + "create a free
+// account" CTA. Bumping the key re-shows it once to everyone who dismissed the
+// old email-only version — the new offer is materially different.
+const FLAG_KEY = 'au7o.alertCapture.v2';
 
 /**
  * Engagement-triggered popup wrapper around the alert capture. The inline

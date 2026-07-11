@@ -83,7 +83,7 @@ export function KnownIssueAlertSignup({
       });
       if (res.ok) {
         setState('done');
-        try { localStorage.setItem('au7o.alertCapture', 'done'); } catch { /* private mode */ }
+        try { localStorage.setItem('au7o.alertCapture.v2', 'done'); } catch { /* private mode */ }
         try { trackEvent('lead_capture', { context }); } catch { /* analytics best-effort */ }
         onDone?.();
       } else {
