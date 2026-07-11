@@ -137,10 +137,96 @@ export async function getCachedVerifiedPart(
 
 const RECENT_MS = 1000 * 60 * 60 * 24 * 30; // don't re-warm the same part within 30d
 
+/** Best-matching pipeline part for the requested name. */
+function bestPart(parts: PipelinePart[], partName: string): PipelinePart | null {
+  let best: PipelinePart | null = null;
+  let bs = 0.3;
+  for (const p of parts || []) {
+    const s = nameScore(partName, p.name);
+    if (s > bs) { bs = s; best = p; }
+  }
+  return best || parts?.[0] || null;
+}
+
+/** Turn a fresh pipeline result into a VerifiedPartHit (or null if no real deep
+ *  link was confirmed — we never surface a search page as "verified"). */
+function hitFromResult(result: Awaited<ReturnType<typeof runFreetextPipeline>>, partName: string): VerifiedPartHit | null {
+  const p = bestPart(result.parts || [], partName);
+  if (!p) return null;
+  const logs = (result.verificationLog || []).filter((v) => v.found && Array.isArray(v.sourceUrls) && v.sourceUrls.length);
+  const mine = p.partNumber ? logs.find((v) => v.partNumber === p.partNumber) : undefined;
+  const deep = [mine, ...logs].filter(Boolean).flatMap((v) => v!.sourceUrls).find(isDeepUrl);
+  if (!deep) return null;
+  return {
+    name: p.name,
+    partNumber: p.partNumber,
+    oemBrand: p.oemBrand,
+    buyUrl: deep,
+    buyVendor: vendorFromUrl(deep),
+    aftermarket: (p.crossReferences || []).map((c) => ({ brand: c.brand, partNumber: c.partNumber })),
+    sourceTask: partKey(partName),
+  };
+}
+
+/** Run the web-search pipeline for ONE part and persist under a `part:<name>`
+ *  key. Returns the verified hit (deep link + PN + aftermarket) or null. */
+async function runAndPersist(
+  year: number, make: string, model: string, trim: string, partName: string,
+): Promise<VerifiedPartHit | null> {
+  const task = partKey(partName);
+  // Claim the slot so concurrent asks don't double-run the pipeline.
+  await prisma.vehiclePartLookup.upsert({
+    where: { year_make_model_trim_task: { year, make, model, trim, task } },
+    create: { year, make, model, trim, task, parts: [], source: 'pipeline-freetext', status: 'pending' },
+    update: { updatedAt: new Date() },
+  }).catch(() => {});
+
+  const result = await runFreetextPipeline(year, make, model, trim, partName);
+  const confirmed = (result.verificationLog || []).some((v) => v.found);
+  await prisma.vehiclePartLookup.update({
+    where: { year_make_model_trim_task: { year, make, model, trim, task } },
+    data: {
+      parts: result.parts as unknown as object,
+      unverifiedParts: result.unverifiedParts as unknown as object,
+      verificationLog: result.verificationLog as unknown as object,
+      source: 'pipeline-freetext',
+      status: confirmed ? 'verified' : 'partial',
+      webSearchConfirmed: confirmed,
+      verifiedAt: new Date(),
+    },
+  }).catch(() => {});
+  return hitFromResult(result, partName);
+}
+
 /**
- * Fire-and-forget cache warm for ONE part: run the freetext pipeline (web
- * search) and upsert a `part:<name>` record so future lookups are instant
- * verified hits. Call from after(); it never throws to the caller.
+ * FIRST-ASK inline verify: run the web-search pipeline NOW and return a verified
+ * deep link within `timeoutMs`. On timeout the pipeline keeps running in the
+ * background and still persists (so the next lookup is an instant hit), but this
+ * call returns null so the caller can fall back to honest descriptive links.
+ */
+export async function verifyPartNow(
+  vehicle: { year?: number | string; make?: string; model?: string; trim?: string },
+  partName: string,
+  timeoutMs = 12000,
+): Promise<VerifiedPartHit | null> {
+  try {
+    const make = vehicle.make?.trim();
+    const model = vehicle.model?.trim();
+    const year = Number(vehicle.year);
+    const trim = (vehicle.trim || '').trim() || 'Base';
+    if (!make || !model || !year || !partName?.trim() || !process.env.ANTHROPIC_API_KEY) return null;
+
+    const run = runAndPersist(year, make, model, trim, partName).catch(() => null);
+    const timed = new Promise<null>((res) => setTimeout(() => res(null), timeoutMs));
+    return await Promise.race([run, timed]);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Fire-and-forget cache warm for ONE part (background, from after()). Skips if
+ * a fresh/verified record already exists so we don't re-run the pipeline.
  */
 export async function warmVerifiedPart(
   vehicle: { year?: number | string; make?: string; model?: string; trim?: string },
@@ -151,38 +237,23 @@ export async function warmVerifiedPart(
     const model = vehicle.model?.trim();
     const year = Number(vehicle.year);
     const trim = (vehicle.trim || '').trim() || 'Base';
-    if (!make || !model || !year || !partName?.trim()) return;
-    if (!process.env.ANTHROPIC_API_KEY) return;
+    if (!make || !model || !year || !partName?.trim() || !process.env.ANTHROPIC_API_KEY) return;
 
     const task = partKey(partName);
     const existing = await prisma.vehiclePartLookup.findUnique({
       where: { year_make_model_trim_task: { year, make, model, trim, task } },
     }).catch(() => null);
-    // Skip if we already verified this recently (warm or in-flight placeholder).
-    if (existing && (existing.webSearchConfirmed || Date.now() - existing.updatedAt.getTime() < RECENT_MS)) return;
+    if (existing) {
+      const age = Date.now() - existing.updatedAt.getTime();
+      // Verified/partial → don't re-run for 30d. A `pending` row means an inline
+      // verify claimed the slot; only skip it briefly (5m) so a cut-off inline
+      // (function ended mid-pipeline) still gets retried instead of stuck 30d.
+      if (existing.webSearchConfirmed) return;
+      if (existing.status !== 'pending' && age < RECENT_MS) return;
+      if (existing.status === 'pending' && age < 5 * 60 * 1000) return;
+    }
 
-    // Claim the slot so concurrent requests don't double-run the pipeline.
-    await prisma.vehiclePartLookup.upsert({
-      where: { year_make_model_trim_task: { year, make, model, trim, task } },
-      create: { year, make, model, trim, task, parts: [], source: 'pipeline-freetext', status: 'pending' },
-      update: { updatedAt: new Date() },
-    }).catch(() => {});
-
-    const result = await runFreetextPipeline(year, make, model, trim, partName);
-    const confirmed = (result.verificationLog || []).some((v) => v.found);
-
-    await prisma.vehiclePartLookup.update({
-      where: { year_make_model_trim_task: { year, make, model, trim, task } },
-      data: {
-        parts: result.parts as unknown as object,
-        unverifiedParts: result.unverifiedParts as unknown as object,
-        verificationLog: result.verificationLog as unknown as object,
-        source: 'pipeline-freetext',
-        status: confirmed ? 'verified' : 'partial',
-        webSearchConfirmed: confirmed,
-        verifiedAt: new Date(),
-      },
-    }).catch(() => {});
+    await runAndPersist(year, make, model, trim, partName);
   } catch {
     /* background best-effort — never surfaces */
   }

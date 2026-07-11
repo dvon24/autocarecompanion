@@ -19,7 +19,7 @@ import {
 } from '@/lib/chat-quota';
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 import { resolveParts, type PartIntent } from '@/lib/resolve-parts';
-import { getCachedVerifiedPart, warmVerifiedPart } from '@/lib/verified-parts';
+import { getCachedVerifiedPart, warmVerifiedPart, verifyPartNow } from '@/lib/verified-parts';
 import type { PartCategory } from '@/types/vision';
 
 export const maxDuration = 60;
@@ -293,6 +293,7 @@ async function resolveMarkerToMarkdown(
   inner: string,
   vehicle: { year?: number; make?: string; model?: string; trim?: string },
   warmSet?: Set<string>,
+  inline?: { left: number },
 ): Promise<string> {
   const fields = inner.split('||').map((s) => s.trim());
   const partName = fields[0] || '';
@@ -309,6 +310,14 @@ async function resolveMarkerToMarkdown(
   // a background warm so this part is verified next time.
   let verified = null as Awaited<ReturnType<typeof getCachedVerifiedPart>>;
   try { verified = await getCachedVerifiedPart(vehicle, partName); } catch { /* */ }
+  // FIRST-ASK inline verify: on a cache miss, web-search-verify this part NOW
+  // (bounded budget per request so a long list can't stall the stream) so the
+  // deep link shows on the first hit. Timeouts fall back to descriptive links,
+  // and the pipeline keeps running in the background to warm the cache.
+  if (!verified?.buyUrl && inline && inline.left > 0) {
+    inline.left--;
+    try { verified = await verifyPartNow(vehicle, partName, 10000); } catch { /* */ }
+  }
   if (!verified?.buyUrl && warmSet) warmSet.add(partName);
 
   let card;
@@ -673,6 +682,10 @@ export async function POST(request: NextRequest) {
       // Part names that had no verified deep link yet — warmed in the background
       // (after the response) so the record store fills and the next ask is verified.
       const warmParts = new Set<string>();
+      // First-ask inline-verify budget: verify up to N missed parts LIVE this
+      // request (so the deep link shows immediately on the first hit); the rest
+      // warm in the background. Bounded so a long list can't stall the stream.
+      const inlineVerify = { left: 2 };
       const pump = async (final: boolean) => {
         for (;;) {
           const rest = rawModel.slice(flushedLen);
@@ -702,7 +715,7 @@ export async function POST(request: NextRequest) {
             return;
           }
           const innerText = rest2.slice(PART_MARK_OPEN.length, close);
-          const md = await resolveMarkerToMarkdown(innerText, v, warmParts);
+          const md = await resolveMarkerToMarkdown(innerText, v, warmParts, inlineVerify);
           if (md) { assistantText += md; send({ type: 'token', text: md }); }
           flushedLen += close + 2;
         }
