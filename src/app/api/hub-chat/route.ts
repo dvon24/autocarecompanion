@@ -21,6 +21,7 @@ import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 import { resolveParts, type PartIntent } from '@/lib/resolve-parts';
 import { getCachedVerifiedPart, warmVerifiedPart, verifyPartNow } from '@/lib/verified-parts';
 import { getVehicleSpecs } from '@/lib/maintenance';
+import { getWebSpecs } from '@/lib/verified-specs';
 import type { PartCategory } from '@/types/vision';
 
 export const maxDuration = 60;
@@ -221,16 +222,18 @@ Honesty:
  * names ("Sway bar end links" / "Header gaskets") that don't match
  * anything in our DB and the cards never render.
  */
-function buildVehicleBlock(vehicle: HubVehicle, knownIssues: KnownIssueRef[]): string {
+function buildVehicleBlock(vehicle: HubVehicle, knownIssues: KnownIssueRef[], webSpecRows?: string[]): string {
   const v = vehicle;
   const mileage = v.currentMileage ? `, currently at ~${v.currentMileage.toLocaleString()} miles` : '';
   let block = `Active vehicle context: the user is asking about a ${v.year} ${v.make} ${v.model}${v.trim ? ` ${v.trim}` : ''}${mileage}. Use this make and model in every reply that references the car.`;
 
-  // Ground fluid/spec answers in the authoritative vehicle-specs data so the
-  // model doesn't invent (and vary) fluid types/capacities. Without this the
-  // hub gave a different differential fluid spec on every ask (75W-140 then
-  // 75W-85). These are the SAME numbers the maintenance schedule uses.
+  // Ground fluid/spec answers so the model doesn't invent (and vary) fluid
+  // types/capacities. Prefer the authoritative spec DB; if this vehicle isn't
+  // in the DB, fall back to web-searched specs (verified-specs.getWebSpecs).
+  // Without this the hub gave a different differential fluid spec every ask.
   try {
+    let rows: string[] = [];
+    let sourceLabel = "from Au7o's spec database";
     const specs = getVehicleSpecs({ year: v.year, make: v.make, model: v.model, trim: v.trim || '' });
     if (specs) {
       const fmt = (val: unknown): string =>
@@ -240,7 +243,6 @@ function buildVehicleBlock(vehicle: HubVehicle, knownIssues: KnownIssueRef[]): s
               .join(', ')
           : String(val);
       const s = specs as unknown as Record<string, unknown>;
-      const rows: string[] = [];
       const add = (label: string, key: string) => { if (s[key]) rows.push(`- ${label}: ${fmt(s[key])}`); };
       add('Engine oil', 'oil');
       add('Coolant', 'coolant');
@@ -248,11 +250,15 @@ function buildVehicleBlock(vehicle: HubVehicle, knownIssues: KnownIssueRef[]): s
       add('Differential fluid', 'differentials');
       add('Brake fluid', 'brakeFluid');
       add('Spark plugs', 'sparkPlugs');
-      if (rows.length) {
-        block += `\n\nVERIFIED FACTORY SPECS for this exact ${v.year} ${v.make} ${v.model}${v.trim ? ` ${v.trim}` : ''} (authoritative — from Au7o's spec database):
+    }
+    if (!rows.length && webSpecRows?.length) {
+      rows = webSpecRows;
+      sourceLabel = 'web-verified from manufacturer/service sources';
+    }
+    if (rows.length) {
+      block += `\n\nVERIFIED FACTORY SPECS for this exact ${v.year} ${v.make} ${v.model}${v.trim ? ` ${v.trim}` : ''} (${sourceLabel}):
 ${rows.join('\n')}
 When the user asks about a fluid type, weight, viscosity, capacity, or spec, use these EXACT values — do not invent, round, or vary them, and give the SAME answer every time. If a spec they ask about is NOT listed here, say you'd verify it by VIN rather than guessing.`;
-      }
     }
   } catch { /* specs optional — never block the reply */ }
 
@@ -637,7 +643,17 @@ export async function POST(request: NextRequest) {
   // long system message still gets cache hits — just managed by
   // OpenAI's cache rather than declared by us.
   const knownIssueTitles = Array.isArray(body.knownIssueTitles) ? body.knownIssueTitles.slice(0, 12) : [];
-  const vehicleBlock = buildVehicleBlock(v, knownIssueTitles);
+  // If this vehicle isn't in the spec DB, web-search its factory fluid specs
+  // (cache-first, bounded) so the chat still grounds instead of guessing.
+  let webSpecRows: string[] | undefined;
+  try {
+    const hasDbSpecs = !!getVehicleSpecs({ year: v.year, make: v.make, model: v.model, trim: v.trim || '' });
+    if (!hasDbSpecs) {
+      const ws = await getWebSpecs(v);
+      webSpecRows = ws?.rows;
+    }
+  } catch { /* grounding is best-effort */ }
+  const vehicleBlock = buildVehicleBlock(v, knownIssueTitles, webSpecRows);
 
   // ── Location grounding for trip suggestions ───────────────────
   // Reverse-geocode the user's GPS into a city/country string so the
