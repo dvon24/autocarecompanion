@@ -90,8 +90,11 @@ function isRetailerProductUrl(u: string, partNumber?: string): boolean {
   // product SIGNAL: the exact PN in the URL...
   const pn = (partNumber || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   if (pn.length >= 5 && u.toLowerCase().replace(/[^a-z0-9]/g, '').includes(pn)) return true;
-  // ...or a real product-page path (not a bare category .html landing page)
-  if (/\/(dp|gp\/product|itm|ipd|moreinfo|product|products)\//i.test(path)) return true;
+  // ...or a real product-page path (not a bare category .html landing page).
+  // `oem-parts` = the OEM-store product path (store.mopar.com / moparpartsgiant /
+  // gmpartsgiant use /oem-parts/<name>-<pn>) — a real product page even when the
+  // model's claimed PN is the superseded one and doesn't literally match the URL.
+  if (/\/(dp|gp\/product|itm|ipd|moreinfo|product|products|oem-parts)\//i.test(path)) return true;
   if (/rockauto\.com/i.test(host) && /partnum=/i.test(u)) return true;
   return false;
 }
@@ -248,7 +251,8 @@ Component: ${partName}${specLine}
 RULES (a wrong-fitment or wrong-spec deep link converts then refunds — correctness is the product):
 - COMPONENT FIDELITY: find the correct OEM part number for THIS EXACT component. Verify the part TYPE matches (a drain plug is not a fluid; a seal is not a plug; a fill plug is not a drain plug). NEVER borrow a sibling/related part's number.
 - SPEC MATCH: FIRST determine the correct factory specification for this component on THIS exact vehicle (e.g. the exact gear-oil viscosity — 75W-140 vs 75W-85 is NOT interchangeable). The product you link MUST match that spec. A product with a different viscosity/grade/type is WRONG — reject it.
-- AVAILABILITY: the product must be CURRENTLY AVAILABLE for sale. If the listing is DISCONTINUED / superseded / no-longer-available, find the current replacement (superseding PN) instead, or status "drop". Do NOT link a discontinued page.
+- AVAILABILITY: the product must be CURRENTLY AVAILABLE for sale. Do NOT link a discontinued/out-of-stock page.
+- SUPERSESSION IS NORMAL, NOT A REASON TO DROP: OEM part numbers get superseded constantly. If the spec'd PN is superseded/obsolete BUT a correct-spec product IS for sale (under the superseding PN, or as the same fluid/part sold by brand — e.g. a "Mopar 75W-85 gear oil" listing), you MUST verify with THAT available product and note the supersession in "caveat". Only "drop" if NO correct-spec product exists for sale at ANY retailer. Finding a live, in-stock, correct-spec product page and still returning "drop" because the original PN is obsolete is a BUG — surface the available product.
 - The part number MUST come FROM a real product page you actually opened via search — NOT from memory.
 - DEEP LINKS (multi-vendor): find a verified product page on AS MANY stores as you can actually confirm — Amazon, RockAuto, eBay, the OEM catalog (Mopar eStore / MoparPartsGiant / GM Parts Giant), AutoZone, etc. EACH url must be a real, in-stock, correct-spec PRODUCT page for THIS exact part (same standard). Include ONLY vendors you actually verified; omit any you couldn't. NEVER a search-results url, category/landing page, or homepage.
 - If you CANNOT find this component's own part number AND at least one real, in-stock, correct-spec product page, return status "drop" with empty fields. Do NOT substitute a different part's number or a search link.
