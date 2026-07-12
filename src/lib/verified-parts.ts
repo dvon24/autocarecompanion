@@ -132,14 +132,28 @@ function vendorFromUrl(u: string): string {
   try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return 'Buy'; }
 }
 
-/** How well a cached part name matches the requested part (0..1 token overlap). */
+/** How well a cached part name matches the requested part (0..1). Uses JACCARD
+ *  (intersection / union) so a mismatched distinguishing token is PENALIZED —
+ *  "engine oil filter" vs "engine air filter" = 2/4 = 0.5 (air ≠ oil), while
+ *  vs "oil filter" = 2/3 = 0.67, so the right record wins. Plain overlap tied
+ *  them and let the air filter hijack "oil filter". */
 function nameScore(target: string, candidate: string): number {
-  const a = new Set(norm(target).split(' ').filter((w) => w.length > 2));
-  const b = new Set(norm(candidate).split(' ').filter((w) => w.length > 2));
+  const at = norm(target).split(' ').filter((w) => w.length > 2);
+  const bt = norm(candidate).split(' ').filter((w) => w.length > 2);
+  const a = new Set(at);
+  const b = new Set(bt);
   if (!a.size || !b.size) return 0;
-  let hit = 0;
-  for (const w of a) if (b.has(w)) hit++;
-  return hit / a.size;
+  let inter = 0;
+  for (const w of a) if (b.has(w)) inter++;
+  const union = a.size + b.size - inter;
+  let score = union ? inter / union : 0;
+  // Head-noun bonus: the last significant word is the part TYPE ("engine oil
+  // FILTER" is a filter, not oil). Reward a candidate that shares it, so
+  // "engine oil filter" prefers "oil filter" over "engine oil" (both tie on Jaccard).
+  const ah = at[at.length - 1], bh = bt[bt.length - 1];
+  if (ah && bh && ah === bh) score += 0.2;
+  else if (ah && bh && ah !== bh && (a.has(bh) || b.has(ah))) score -= 0.1; // head mismatch on shared token
+  return Math.max(0, Math.min(1, score));
 }
 
 /**
