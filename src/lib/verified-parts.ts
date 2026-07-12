@@ -46,6 +46,18 @@ function specForPart(
   else if (/engine oil\b|motor oil/.test(n)) key = 'oil';
   else if (/spark plug/.test(n)) key = 'sparkPlugs';
   if (!key || !specs[key]) return undefined;
+  // Conditional fluids (e.g. RAM axle fluid varies SRW vs DRW / by gear ratio):
+  // render the STRUCTURED variants as an explicit by-condition hint, never a
+  // prose "varies" string the verifier can't gate on. Matches the verifier's
+  // dual-spec handling (surface a product for one variant, name the conditions).
+  if (key === 'differentials') {
+    const rear = (specs.differentials as { rear?: { variants?: Array<{ spec: string; capacity?: string; condition: string; partNumber?: string }> } } | undefined)?.rear;
+    const variants = rear?.variants;
+    if (Array.isArray(variants) && variants.length) {
+      const lines = variants.map((x) => `${x.spec}${x.capacity ? ` (~${x.capacity.replace(/^~/, '')})` : ''}${x.partNumber ? ` [${x.partNumber}]` : ''} — ${x.condition}`);
+      return `rear differential fluid VARIES BY AXLE/BUILD (confirm by VIN): ${lines.join(' | ')}. Match the product to ONE variant and name the conditions in the caveat.`;
+    }
+  }
   return fmt(specs[key]);
 }
 

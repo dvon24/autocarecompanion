@@ -49,9 +49,24 @@ export interface LugSpecs {
   useBolts: boolean; // German brands use lug bolts, not nuts
 }
 
+/** A single conditional fluid variant — the structured shape that replaces
+ *  prose "varies by axle" specs. The verifier and chat consume `variants` when
+ *  present; `type`/`capacity` stay as a human display summary for legacy readers. */
+export interface FluidVariant {
+  spec: string;         // e.g. "75W-85 Synthetic GL-5 LS"
+  capacity?: string;    // e.g. "~2.4 qt"
+  condition: string;    // e.g. "SRW (single rear wheel)"
+  partNumber?: string;
+  source?: string;
+  verifiedAt?: string;
+}
+
 export interface DifferentialSpecs {
   type: string;
   capacity: string;
+  /** When the fluid genuinely varies by axle/gear/build, the structured truth.
+   *  Present ⇒ consumers should prefer this over the `type`/`capacity` summary. */
+  variants?: FluidVariant[];
 }
 
 export interface TransferCaseSpecs {
@@ -142,6 +157,10 @@ export interface VehicleSpecs {
   procedures?: Record<string, ProcedureHints>;
   fuelEconomy?: FuelEconomySpecs;
   tankCapacity?: TankCapacitySpecs;
+  /** Per-field audit provenance (source + date) for values that have had their
+   *  first real verification pass. Present ⇒ this block is audited, not raw
+   *  generated data — lets consumers label "verified" honestly. */
+  specProvenance?: Record<string, { source?: string; verifiedAt?: string; note?: string }>;
 }
 
 // ─── Maintenance Specs Map ─────────────────────────────────────────────
@@ -319,6 +338,7 @@ export function getVehicleSpecs(vehicle: { year: number; make: string; model: st
     jackPoints: rawSpecs.jackPoints,
     safety: rawSpecs.safety,
     procedures: rawSpecs.procedures,
+    specProvenance: rawSpecs.specProvenance,
   };
 }
 

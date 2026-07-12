@@ -144,6 +144,17 @@ export async function runPartInvariants(): Promise<InvariantResult[]> {
         bad.push(`trim "${trim}" mis-resolved to "${s?.sparkPlugs?.partNumber || 'NULL'}" (should reach the 6.4L block, not V6)`);
       }
     }
+    // (c) Mopar V8-family fixtures (from the systemic audit). The V6 cartridge
+    // filter 68191349AC must never be the V8's ONLY filter; the old copper plug
+    // LZFR5CI must be gone; the 6.4 TRUCK plug must stay distinct from the car's.
+    type Blk = { sparkPlugs?: { partNumber?: string }; oil?: { filterPartNumber?: string }; differentials?: { rear?: { variants?: unknown[] } } } | null;
+    const charger = getVehicleSpecs({ year: 2018, make: 'Dodge', model: 'Charger', trim: 'R/T' }) as Blk;
+    if (!/SP143877AB/i.test(charger?.sparkPlugs?.partNumber || '')) bad.push(`Charger 5.7 plug regressed: "${charger?.sparkPlugs?.partNumber}" (want iridium SP143877AB)`);
+    const cf = charger?.oil?.filterPartNumber || '';
+    if (!/04892339|MO-339/i.test(cf)) bad.push(`Charger 5.7 filter missing V8 spin-on: "${cf}" (68191349AC alone is the V6 cartridge)`);
+    const ram3500 = getVehicleSpecs({ year: 2021, make: 'RAM', model: '3500', trim: 'Tradesman' }) as Blk;
+    if (!/SP138239AC/i.test(ram3500?.sparkPlugs?.partNumber || '')) bad.push(`RAM 3500 6.4 truck plug regressed: "${ram3500?.sparkPlugs?.partNumber}" (want SP138239AC, distinct from car SP149212AC)`);
+    if (!(ram3500?.differentials?.rear?.variants?.length)) bad.push('RAM 3500 diff lost its conditional variants (SRW/DRW)');
     const ok = bad.length === 0;
     out.push({ name: 'INV-4 spec-DB no-cross-engine-contamination', ok, detail: ok ? undefined : bad.join(' | ') });
   } catch (e) {

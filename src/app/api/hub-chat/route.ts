@@ -206,7 +206,16 @@ function buildVehicleBlock(vehicle: HubVehicle, knownIssues: KnownIssueRef[], we
       add('Engine oil', 'oil');
       add('Coolant', 'coolant');
       add('Transmission fluid', 'transmission');
-      add('Differential fluid', 'differentials');
+      // Differential fluid: if it genuinely varies by axle/build, render the
+      // STRUCTURED variants as a by-condition line (not a JSON blob or a prose
+      // "varies" string the model would flatten into one wrong answer).
+      const diffRear = (s.differentials as { rear?: { type?: string; capacity?: string; variants?: Array<{ spec: string; capacity?: string; condition: string }> } } | undefined)?.rear;
+      if (diffRear?.variants?.length) {
+        const parts = diffRear.variants.map((x) => `${x.spec}${x.capacity ? ` (${x.capacity})` : ''} for ${x.condition}`);
+        rows.push(`- Differential fluid: VARIES BY AXLE — ${parts.join('; ')}. Tell the user it depends on their axle/build and to confirm by VIN if unsure; do NOT state a single value as if universal.`);
+      } else {
+        add('Differential fluid', 'differentials');
+      }
       add('Brake fluid', 'brakeFluid');
       add('Spark plugs', 'sparkPlugs');
     }
@@ -215,7 +224,14 @@ function buildVehicleBlock(vehicle: HubVehicle, knownIssues: KnownIssueRef[], we
       sourceLabel = 'web-verified from manufacturer/service sources';
     }
     if (rows.length) {
-      block += `\n\nVERIFIED FACTORY SPECS for this exact ${v.year} ${v.make} ${v.model}${v.trim ? ` ${v.trim}` : ''} (${sourceLabel}):
+      // Only claim "VERIFIED" when the block has actually had its audit pass
+      // (carries provenance). Raw generated data gets an honest, softer header —
+      // the word "verified" is a claim unaudited data can't back.
+      const audited = !!(specs && (specs as { specProvenance?: unknown }).specProvenance);
+      const header = audited
+        ? `VERIFIED FACTORY SPECS for this exact ${v.year} ${v.make} ${v.model}${v.trim ? ` ${v.trim}` : ''} (${sourceLabel}, audited & source-cited)`
+        : `Factory specs for this ${v.year} ${v.make} ${v.model}${v.trim ? ` ${v.trim}` : ''} (${sourceLabel} — not yet independently audited; treat as a strong default, not gospel)`;
+      block += `\n\n${header}:
 ${rows.join('\n')}
 When the user asks about a fluid type, weight, viscosity, capacity, or spec, use these EXACT values — do not invent, round, or vary them, and give the SAME answer every time. If a spec they ask about is NOT listed here, say you'd verify it by VIN rather than guessing.`;
     }
