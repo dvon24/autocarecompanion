@@ -15,10 +15,32 @@ import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 import { getVehicleSpecs } from '@/lib/maintenance';
 import { attachVendorLinks } from '@/lib/vendor-resolver';
 import { validateAndFixVendorLinks } from '@/lib/vendor-link-validator';
+import { resolvePartLink } from '@/lib/resolve-part-link';
+import { warmVerifiedPart } from '@/lib/verified-parts';
 import { captureDiagnosisSample } from '@/lib/diagnosis-capture';
 import { makeSlug } from '@/lib/known-issues';
 import { getDepthContext } from '@/lib/depth';
-import type { IdentifiedPart, PartCategory, PartRole } from '@/types/vision';
+import type { IdentifiedPart, PartCategory, PartRole, VendorKey, VendorLink } from '@/types/vision';
+
+/** Map a verified-record vendor label (free string) to the vision VendorKey enum
+ *  (drives the button icon). Unknown vendors fall back to amazon's icon; the real
+ *  name is preserved in displayName. */
+function toVendorKey(vendor: string): VendorKey {
+  const v = vendor.toLowerCase();
+  if (/amazon/.test(v)) return 'amazon';
+  if (/rockauto/.test(v)) return 'rockauto';
+  if (/ebay/.test(v)) return 'ebay_motors';
+  if (/summit/.test(v)) return 'summit_racing';
+  if (/american\s*muscle/.test(v)) return 'american_muscle';
+  if (/mopar/.test(v)) return 'mopar_parts_giant';
+  if (/gm\s*parts|gmparts/.test(v)) return 'gm_parts_giant';
+  if (/autozone/.test(v)) return 'autozone';
+  if (/napa/.test(v)) return 'napa_online';
+  if (/o'?reilly/.test(v)) return 'oreilly';
+  if (/advance/.test(v)) return 'advance_auto';
+  if (/tire\s*rack/.test(v)) return 'tire_rack';
+  return 'amazon';
+}
 
 // 120s, not 60: video mode's sequential upstream budget (Whisper 25s +
 // vision 55s + multipart/auth/DB overhead) could exceed a 60s ceiling, and
@@ -926,24 +948,59 @@ ${respondLang !== 'English' ? `LANGUAGE — IMPORTANT: The user speaks ${respond
       };
     });
 
-  // Attach per-part vendor links via the resolver.
-  const linkedParts: IdentifiedPart[] = attachVendorLinks(normalizedParts, vehicle ? { year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim } : undefined)
-    .map((p, i) => ({
+  // Attach per-part vendor links — VERIFIED RECORD STORE FIRST (the SAME shared
+  // decision tree the hub calls via resolvePartLink), so a tapped part that has a
+  // web-verified record shows the RIGHT deep link instead of a catalog/search
+  // guess (this is the fix for vision surfacing Summit/aftermarket while the hub
+  // was already correct). Parts with no verified record fall back to the catalog
+  // resolver; misses are queued for a background warm so the store fills for next
+  // time — closing the same loop the hub has.
+  const vehForResolve = vehicle && vehicle.make ? { year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim } : null;
+  const catalogParts = attachVendorLinks(normalizedParts, vehForResolve || undefined);
+  const warmSet = new Set<string>();
+  const linkedParts: IdentifiedPart[] = await Promise.all(catalogParts.map(async (p, i) => {
+    const lookupName = (rawParts[i]?.searchQuery as string | undefined)?.trim() || p.name;
+    let r = null as Awaited<ReturnType<typeof resolvePartLink>> | null;
+    if (vehForResolve) { try { r = await resolvePartLink({ partName: lookupName, brand: p.brand }, vehForResolve, warmSet); } catch { /* */ } }
+
+    // Verified/supply record → use those links (verified deep links, your tag).
+    if (r && (r.kind === 'verified' || r.kind === 'supply') && r.buyLinks.length) {
+      const vendorLinks: VendorLink[] = r.buyLinks.map((l, j) => ({
+        vendor: toVendorKey(l.vendor),
+        displayName: l.vendor,
+        url: l.url,
+        searchQuery: lookupName,
+        linkType: l.verified ? 'deep' : 'search',
+        priority: j + 1,
+        rationale: l.verified ? 'Web-verified product page' : undefined,
+      }));
+      const oemPartNumbers = r.partNumber
+        ? [r.partNumber, ...p.oemPartNumbers.filter((n) => n !== r!.partNumber)].slice(0, 6)
+        : p.oemPartNumbers;
+      return { ...p, oemPartNumbers, vendorLinks };
+    }
+
+    // Miss → the catalog resolver's links, or a single Amazon search fallback so
+    // the user always has SOMETHING to click.
+    return {
       ...p,
-      vendorLinks: p.vendorLinks.length > 0 ? p.vendorLinks : (
-        // Resolver returned no vendors (rare — e.g. a category with no
-        // matching vendor catalog entry). Fall back to a single Amazon
-        // search link so the user always has SOMETHING to click.
-        [{
-          vendor: 'amazon' as const,
-          displayName: 'Amazon',
-          url: `https://www.amazon.com/s?k=${encodeURIComponent((rawParts[i]?.searchQuery as string | undefined) || `${p.brand || ''} ${p.oemPartNumbers[0] || ''} ${p.name}`.trim())}&tag=au7o-20`,
-          searchQuery: (rawParts[i]?.searchQuery as string | undefined) || p.name,
-          linkType: 'search' as const,
-          priority: 1,
-        }]
-      ),
-    }));
+      vendorLinks: p.vendorLinks.length > 0 ? p.vendorLinks : [{
+        vendor: 'amazon' as const,
+        displayName: 'Amazon',
+        url: `https://www.amazon.com/s?k=${encodeURIComponent(lookupName || `${p.brand || ''} ${p.oemPartNumbers[0] || ''} ${p.name}`.trim())}&tag=au7o-20`,
+        searchQuery: lookupName,
+        linkType: 'search' as const,
+        priority: 1,
+      }],
+    };
+  }));
+
+  // Fill the record store for the misses (capped, so a 12-part photo can't fan
+  // out to 12 paid verifies) — next tap on any surface gets the deep link.
+  if (vehForResolve && warmSet.size) {
+    const toWarm = [...warmSet].slice(0, 4);
+    after(() => Promise.allSettled(toWarm.map((n) => warmVerifiedPart(vehForResolve, n))));
+  }
 
   // Validate the constructed deep links so we never hand the user a 404
   // (Devon hit a dead Tire Rack link from a tire photo). Confirmed-dead PDP

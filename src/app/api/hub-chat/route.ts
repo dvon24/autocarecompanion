@@ -19,10 +19,10 @@ import {
 } from '@/lib/chat-quota';
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 import { resolveParts, type PartIntent } from '@/lib/resolve-parts';
-import { getCachedVerifiedPart, warmVerifiedPart } from '@/lib/verified-parts';
+import { warmVerifiedPart } from '@/lib/verified-parts';
+import { resolvePartLink } from '@/lib/resolve-part-link';
 import { getVehicleSpecs } from '@/lib/maintenance';
 import { getWebSpecs } from '@/lib/verified-specs';
-import { matchSupply } from '@/data/supplies-catalog';
 import { canonicalizePart } from '@/lib/part-vocabulary';
 import { STATIC_SYSTEM_PROMPT } from '@/lib/hub-chat-prompt';
 import type { PartCategory } from '@/types/vision';
@@ -313,76 +313,43 @@ async function resolveMarkerToMarkdown(
   if (!partName) return '';
   const brand = fields[2] || undefined;
   const tier = fields[3] === 'aftermarket' ? 'aftermarket' : fields[3] === 'oem' ? 'oem' : undefined;
-  // Canonical-key contract: map the marker to the vocabulary for a clean display
-  // name + category (the model may emit a slug like "oil_filter" or free text
-  // like "oil filter" — both canonicalize). Falls back to the raw fields for
-  // parts outside the vocabulary.
   const canon = canonicalizePart(partName);
-  const displayName = canon?.display || partName;
   const category = fields[1] || canon?.category || undefined;
-  const intent: PartIntent = { partName: displayName, category: category as PartCategory | undefined, brand, tier };
+
+  // THE shared decision tree — same one vision calls. supply → verified record
+  // store → miss (+ background warm queued). This is the "same workflow" contract.
+  const r = await resolvePartLink({ partName, brand }, vehicle, warmSet);
+
+  // Supply → its own clean generic Amazon link.
+  if (r.kind === 'supply') return `**${r.displayName}** — [Amazon](${r.buyLinks[0].url})`;
+
   // Don't double the brand ("Mopar" + "Mopar OAT coolant" = "Mopar Mopar OAT").
-  const label = brand && !displayName.toLowerCase().startsWith(brand.toLowerCase())
-    ? `${brand} ${displayName}`
-    : displayName;
+  const label = brand && !r.displayName.toLowerCase().startsWith(brand.toLowerCase())
+    ? `${brand} ${r.displayName}`
+    : r.displayName;
+  const aftNote = r.aftermarket.length
+    ? ` _(aftermarket: ${r.aftermarket.slice(0, 2).map((a) => `${a.brand} ${a.partNumber}`).join(', ')})_`
+    : '';
 
-  // Universal supply (gloves, drain pan, brake cleaner, transfer pump…) → clean
-  // generic Amazon link, NEVER a per-vehicle verify (that's how "nitrile gloves"
-  // for a Challenger returned Polaris drain plugs). Route it out entirely.
-  const supply = matchSupply(displayName);
-  if (supply) return `**${supply.label}** — [Amazon](${supply.url})`;
-
-  // FIRST: a web-search-VERIFIED deep link from the record store (same source as
-  // the known-issues fix links). If we have one, lead with the real product page
-  // + PN, then add the descriptive multi-vendor row for choice. On a miss, queue
-  // a background warm so this part is verified next time.
-  // Cache-read ONLY in the message path (fable's veto: no synchronous A-grade
-  // verify in a live message). Hit → verified deep link now; miss → honest
-  // fallback below + queue an A-standard background verify (writes the record so
-  // the next asker gets the deep link). Maintenance parts are pre-seeded so taps
-  // usually hit the cache.
-  let verified = null as Awaited<ReturnType<typeof getCachedVerifiedPart>>;
-  try { verified = await getCachedVerifiedPart(vehicle, displayName); } catch { /* */ }
-  if (!verified?.buyUrl && warmSet) warmSet.add(displayName);
-
-  let card;
-  try { [card] = await resolveParts([intent], vehicle, { useEbay: false }); } catch { /* */ }
-
-  // Show only: (1) the web-verified RETAILER PRODUCT page (real part, live,
-  // your tag), or (2) your working au7o-20 Amazon search as an honest fallback.
-  // We DROP everything that brought back nonsense: the static RockAuto→google /
-  // Summit→home row, the moparpartsgiant "verify by VIN" search (404s), and the
-  // eBay auto-parts-category search (empty for generic supplies).
-  const isSearchEngineUrl = (u: string) => /(^https?:\/\/)?(www\.)?(google|bing|duckduckgo)\.[a-z.]+\/(search|s\?)/i.test(u);
-  const amazonVl = card?.vendorLinks?.find((l) => /amazon/i.test(l.vendor) && !isSearchEngineUrl(l.url));
-
-  const aftNote = (): string => {
-    if (!verified?.aftermarket?.length) return '';
-    const aft = verified.aftermarket.slice(0, 2).map((a) => `${a.brand} ${a.partNumber}`).join(', ');
-    return ` _(aftermarket: ${aft})_`;
-  };
-
-  if (verified?.buyUrl) {
-    const pn = verified.partNumber ? ` \`${verified.partNumber}\`` : '';
-    // Gate 4: primary verified link + up to 2 more stores for price choice.
-    const links = (verified.buyLinks?.length ? verified.buyLinks : [{ vendor: verified.buyVendor || 'Buy', url: verified.buyUrl }]).slice(0, 3);
+  // Verified record → primary verified deep link + up to 2 more stores for choice.
+  if (r.kind === 'verified') {
+    const pn = r.partNumber ? ` \`${r.partNumber}\`` : '';
+    const links = r.buyLinks;
     const row = [`[${links[0].vendor} — verified](${links[0].url})`, ...links.slice(1).map((l) => `[${l.vendor}](${l.url})`)].join(' · ');
-    // Display caveat = ONE short clause, not the verifier's audit note. Take the
-    // first clause and cap length so "Multiple part numbers exist… verify fitment
-    // location (engine inlet, outlet, or radiator end) before ordering quantity"
-    // becomes a single readable aside.
-    const shortCaveat = (c: string): string => {
-      const first = c.split(/[.;]/)[0].trim();
-      return first.length > 80 ? first.slice(0, 77).trimEnd() + '…' : first;
-    };
-    const caveat = verified.caveat ? ` _(${shortCaveat(verified.caveat)})_` : '';
-    return `**${label}**${pn} — ${row}${caveat}` + aftNote();
+    const caveat = r.caveat ? ` _(${r.caveat})_` : '';
+    return `**${label}**${pn} — ${row}${caveat}` + aftNote;
   }
 
-  // No verified product page — one honest, working, correctly-tagged Amazon
-  // search. If we don't even have that, just name the part (no fake link).
+  // Miss → one honest, working, correctly-tagged Amazon search (the hub's
+  // surface-specific fallback; the warm has already been queued). If we don't
+  // even have that, just name the part (no fake link).
+  const intent: PartIntent = { partName: r.displayName, category: category as PartCategory | undefined, brand, tier };
+  let card;
+  try { [card] = await resolveParts([intent], vehicle, { useEbay: false }); } catch { /* */ }
+  const isSearchEngineUrl = (u: string) => /(^https?:\/\/)?(www\.)?(google|bing|duckduckgo)\.[a-z.]+\/(search|s\?)/i.test(u);
+  const amazonVl = card?.vendorLinks?.find((l) => /amazon/i.test(l.vendor) && !isSearchEngineUrl(l.url));
   if (!amazonVl) return `**${label}**`;
-  return `**${label}** — [${amazonVl.displayName}](${amazonVl.url})` + aftNote();
+  return `**${label}** — [${amazonVl.displayName}](${amazonVl.url})` + aftNote;
 }
 
 /** Longest suffix of `s` that is a proper prefix of the marker opener — held
