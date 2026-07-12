@@ -84,7 +84,7 @@ Component: ${partName}
 
 RULES (a wrong-fitment or wrong-spec deep link converts then refunds — correctness is the product):
 - COMPONENT FIDELITY: correct OEM part number for THIS EXACT component. Verify the part TYPE matches. NEVER borrow a sibling part's number.
-- SPEC MATCH: FIRST determine the correct factory specification for this component on THIS exact vehicle (e.g. the exact gear-oil viscosity — 75W-140 vs 75W-85 is NOT interchangeable). The product you link MUST match that spec. A product with a different viscosity/grade/type is WRONG — reject it.
+- SPEC MATCH: determine the correct factory specification for this component on THIS exact vehicle. The product should match a legitimate factory spec. NOTE: some specs are genuinely axle/build-dependent where official sources DIFFER (e.g. a rear diff documented as BOTH 75W-85 and 75W-140 by axle code) — in that case do NOT reject a legitimately-documented alternative; pick a product matching a real factory spec and set "caveat" to flag it ("verify by VIN/axle — sources list X and Y"). Only reject a CLEARLY wrong spec (e.g. engine oil for a differential).
 - AVAILABILITY: the product must be CURRENTLY AVAILABLE for sale. If the listing is DISCONTINUED / superseded / no-longer-available, find the current replacement (superseding PN) or status "drop". Do NOT link a discontinued page.
 - The part number MUST come FROM a real product page you opened via search — NOT memory.
 - DEEP LINKS (multi-vendor): find a verified product page on AS MANY stores as you can confirm — Amazon, RockAuto, eBay, the OEM catalog (Mopar eStore/MoparPartsGiant/GM Parts Giant), AutoZone, etc. EACH must be a real, in-stock, correct-spec PRODUCT page. Include ONLY vendors you verified. NEVER a search/category/homepage.
@@ -125,7 +125,7 @@ Return ONLY JSON: {"status":"verified"|"drop","partNumber":"","oemBrand":"","buy
   const pnNorm = pn.toLowerCase().replace(/[^a-z0-9]/g, '');
   const pnInUrl = pnNorm.length >= 5 && liveLinks.some((l) => l.url.toLowerCase().replace(/[^a-z0-9]/g, '').includes(pnNorm));
   const aftermarket = Array.isArray(j.aftermarket) ? j.aftermarket.filter((a) => a && a.brand && a.partNumber).map((a) => ({ brand: String(a.brand), partNumber: String(a.partNumber) })).slice(0, 2) : [];
-  return { partNumber: pnInUrl ? pn : '', oemBrand: j.oemBrand || '', buyLinks: liveLinks, aftermarket };
+  return { partNumber: pnInUrl ? pn : '', oemBrand: j.oemBrand || '', buyLinks: liveLinks, aftermarket, caveat: (j.caveat || '').trim() };
 }
 
 async function main() {
@@ -155,7 +155,7 @@ async function main() {
 
       const hit = await aStandardVerify(vehicleStr, partName).catch(() => null);
       const confirmed = !!(hit && hit.buyLinks && hit.buyLinks.length);
-      const parts = hit ? [{ name: partName, partNumber: hit.partNumber, oemBrand: hit.oemBrand, crossReferences: hit.aftermarket, searchQuery: partName, confidence: 'oem-verified' }] : [];
+      const parts = hit ? [{ name: partName, partNumber: hit.partNumber, oemBrand: hit.oemBrand, crossReferences: hit.aftermarket, displayCaveat: hit.caveat || '', searchQuery: partName, confidence: 'oem-verified' }] : [];
       const verificationLog = confirmed ? [{ partNumber: hit.partNumber || '', searchQuery: partName, found: true, retailers: hit.buyLinks.map((l) => l.vendor), sourceUrls: hit.buyLinks.map((l) => l.url), retried: false }] : [];
       // No upsert — PrismaPg adapter doesn't support it. findUnique → update/create.
       const key = { year: v.year, make: v.make, model: v.model, trim: v.trim, task };

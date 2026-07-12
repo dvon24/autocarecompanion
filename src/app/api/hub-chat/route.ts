@@ -383,7 +383,8 @@ async function resolveMarkerToMarkdown(
     // Gate 4: primary verified link + up to 2 more stores for price choice.
     const links = (verified.buyLinks?.length ? verified.buyLinks : [{ vendor: verified.buyVendor || 'Buy', url: verified.buyUrl }]).slice(0, 3);
     const row = [`[${links[0].vendor} — verified](${links[0].url})`, ...links.slice(1).map((l) => `[${l.vendor}](${l.url})`)].join(' · ');
-    return `**${label}**${pn} — ${row}` + aftNote();
+    const caveat = verified.caveat ? ` _(${verified.caveat})_` : '';
+    return `**${label}**${pn} — ${row}${caveat}` + aftNote();
   }
 
   // No verified product page — one honest, working, correctly-tagged Amazon

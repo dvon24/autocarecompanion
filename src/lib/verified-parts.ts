@@ -61,6 +61,8 @@ export interface VerifiedPartHit {
   buyLinks?: Array<{ vendor: string; url: string }>;
   /** Aftermarket equivalents found by application (not by PN cross-map). */
   aftermarket: Array<{ brand: string; partNumber: string }>;
+  /** Honest fitment caveat (e.g. axle/build-dependent spec — verify by VIN). */
+  caveat?: string;
   sourceTask: string;
 }
 
@@ -197,6 +199,7 @@ export async function getCachedVerifiedPart(
         buyVendor: buyLinks[0]?.vendor,
         buyLinks,
         aftermarket: (p.crossReferences || []).map((c) => ({ brand: c.brand, partNumber: c.partNumber })),
+        caveat: ((p as unknown as { displayCaveat?: string }).displayCaveat || '').trim() || undefined,
         sourceTask: row.task,
       };
       bestScore = score;
@@ -221,7 +224,7 @@ async function runAStandardVerify(
   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
   const vehicle = `${year} ${make} ${model} ${trim}`.replace(/\s+/g, ' ').trim();
   const specLine = specHint
-    ? `\nREQUIRED FACTORY SPEC (authoritative — from Au7o's spec DB): ${specHint}\nThe product you link MUST match this exact spec (e.g. the exact viscosity/type). Reject any product with a different spec.`
+    ? `\nDOCUMENTED FACTORY SPEC (from Au7o's spec DB): ${specHint}\nThe product should match a legitimate factory spec for THIS vehicle. IMPORTANT: some vehicles have a genuinely axle/build-dependent spec where official sources differ (e.g. a rear diff documented as BOTH 75W-85 and 75W-140 depending on axle code). In that case do NOT reject a legitimately-documented alternative — pick a product matching a real factory spec and set "caveat" to flag the ambiguity ("verify by VIN/axle — sources list X and Y"). Only reject a CLEARLY wrong spec (e.g. engine oil for a differential, or a viscosity no source supports).`
     : '';
   const prompt = `You are an OEM parts auditor for au7o. USE WEB SEARCH — never answer from memory. Find the buyable part for ONE component on ONE vehicle, to a strict standard.
 
@@ -295,6 +298,7 @@ Return ONLY JSON, no prose:
     buyVendor: liveLinks[0].vendor,
     buyLinks: liveLinks,
     aftermarket,
+    caveat: (j.caveat || '').trim() || undefined,
     sourceTask: partKey(partName),
   };
 }
@@ -327,7 +331,7 @@ async function runAndPersist(
   const confirmed = !!hit?.buyUrl;
   // Store in the PipelinePart-shaped format getCachedVerifiedPart reads.
   const parts = hit
-    ? [{ name: partName, partNumber: hit.partNumber, oemBrand: hit.oemBrand, crossReferences: hit.aftermarket, searchQuery: partName, spec: '', confidence: 'oem-verified' }]
+    ? [{ name: partName, partNumber: hit.partNumber, oemBrand: hit.oemBrand, crossReferences: hit.aftermarket, displayCaveat: hit.caveat || '', searchQuery: partName, spec: '', confidence: 'oem-verified' }]
     : [];
   const verificationLog = hit?.buyLinks?.length
     ? [{ partNumber: hit.partNumber || '', searchQuery: partName, found: true, retailers: hit.buyLinks.map((l) => l.vendor), sourceUrls: hit.buyLinks.map((l) => l.url), retried: false }]
