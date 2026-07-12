@@ -24,6 +24,7 @@ import type { PipelinePart, WebVerificationLog } from './parts-pipeline';
 import { ebayAffiliate } from './ebay-affiliate';
 import { checkLinkLive } from './vendor-link-validator';
 import { getVehicleSpecs } from './maintenance';
+import { canonicalSlug } from './part-vocabulary';
 
 /** The authoritative factory spec string for a part (fluids especially), from
  *  the spec DB — passed to the verifier so it matches the RIGHT product (e.g.
@@ -204,11 +205,24 @@ export async function getCachedVerifiedPart(
   let best: VerifiedPartHit | null = null;
   let bestScore = 0.5; // require a real overlap
 
+  // Canonical-key contract: the requested part's canonical slug (null for free
+  // text outside the vocabulary). An EXACT slug match is authoritative (score 1)
+  // and can't collide the way fuzzy nameScore did ("oil filter" ~ "air filter").
+  // Free text with no slug falls through to the fuzzy lane, so nothing regresses.
+  const reqSlug = canonicalSlug(partName);
+
   for (const row of rows) {
     const parts = (row.parts as unknown as PipelinePart[]) || [];
     const vlog = (row.verificationLog as unknown as WebVerificationLog[]) || [];
     for (const p of parts) {
-      const score = nameScore(partName, p.name);
+      const pSlug = (p as unknown as { canonicalKey?: string }).canonicalKey || canonicalSlug(p.name);
+      // Exact canonical hit → 1. Both have slugs but they DIFFER → this is the
+      // wrong part, skip the fuzzy lane entirely (a mismatched slug is a veto,
+      // not a low score — that's what stops the air-filter hijack). Otherwise
+      // (one side has no slug) fall back to fuzzy overlap.
+      let score: number;
+      if (reqSlug && pSlug) score = pSlug === reqSlug ? 1 : 0;
+      else score = nameScore(partName, p.name);
       if (score <= bestScore) continue;
 
       // Find a verified deep source URL for this part (matched by PN, else any).
@@ -361,6 +375,7 @@ async function runAndPersist(
   year: number, make: string, model: string, trim: string, partName: string,
 ): Promise<VerifiedPartHit | null> {
   const task = partKey(partName);
+  const canonicalKey = canonicalSlug(partName) || undefined; // canonical-key contract: exact-match lane
   const specHint = specForPart({ year, make, model, trim }, partName);
   // Asymmetric verification: verified-once is verified, but dropped-once is NOT
   // cached as a drop — a single drop is usually search variance, so require a
@@ -369,9 +384,10 @@ async function runAndPersist(
   let hit = await runAStandardVerify(year, make, model, trim, partName, specHint);
   if (!hit?.buyUrl) hit = await runAStandardVerify(year, make, model, trim, partName, specHint);
   const confirmed = !!hit?.buyUrl;
-  // Store in the PipelinePart-shaped format getCachedVerifiedPart reads.
+  // Store in the PipelinePart-shaped format getCachedVerifiedPart reads, stamped
+  // with the canonical slug so future lookups hit the exact-match lane.
   const parts = hit
-    ? [{ name: partName, partNumber: hit.partNumber, oemBrand: hit.oemBrand, crossReferences: hit.aftermarket, displayCaveat: hit.caveat || '', searchQuery: partName, spec: '', confidence: 'oem-verified' }]
+    ? [{ name: partName, canonicalKey, partNumber: hit.partNumber, oemBrand: hit.oemBrand, crossReferences: hit.aftermarket, displayCaveat: hit.caveat || '', searchQuery: partName, spec: '', confidence: 'oem-verified' }]
     : [];
   const verificationLog = hit?.buyLinks?.length
     ? [{ partNumber: hit.partNumber || '', searchQuery: partName, found: true, retailers: hit.buyLinks.map((l) => l.vendor), sourceUrls: hit.buyLinks.map((l) => l.url), retried: false }]

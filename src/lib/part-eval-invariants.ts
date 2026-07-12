@@ -18,6 +18,7 @@
 import { resolveParts } from './resolve-parts';
 import { attachVendorLinks } from './vendor-resolver';
 import { getVehicleSpecs } from './maintenance';
+import { canonicalSlug } from './part-vocabulary';
 
 export interface InvariantResult {
   name: string;
@@ -159,6 +160,35 @@ export async function runPartInvariants(): Promise<InvariantResult[]> {
     out.push({ name: 'INV-4 spec-DB no-cross-engine-contamination', ok, detail: ok ? undefined : bad.join(' | ') });
   } catch (e) {
     out.push({ name: 'INV-4 spec-DB no-cross-engine-contamination', ok: false, detail: e instanceof Error ? e.message : String(e) });
+  }
+
+  // INV-5 — canonical-key contract. The record-store match is EXACT on canonical
+  // slug, not fuzzy, so distinct parts get distinct keys and can't hijack each
+  // other (the "oil filter" ~ "air filter" collision that motivated the contract).
+  // Pure, no network.
+  try {
+    const bad: string[] = [];
+    const eq: Array<[string, string]> = [
+      ['oil filter', 'oil_filter'], ['engine air filter', 'air_filter'],
+      ['front brake pads', 'brake_pad_front'], ['rear differential fluid', 'differential_fluid_rear'],
+      ['diff fluid', 'differential_fluid_rear'], ['spark plugs', 'spark_plug'],
+    ];
+    for (const [text, slug] of eq) {
+      const got = canonicalSlug(text);
+      if (got !== slug) bad.push(`canonicalSlug("${text}")="${got}" (want "${slug}")`);
+    }
+    // Distinct parts MUST get distinct slugs (the anti-collision guarantee).
+    const distinct: Array<[string, string]> = [['oil filter', 'air filter'], ['oil filter', 'fuel filter'], ['front brake pads', 'rear brake pads']];
+    for (const [a, b] of distinct) {
+      const sa = canonicalSlug(a), sb = canonicalSlug(b);
+      if (sa && sb && sa === sb) bad.push(`"${a}" and "${b}" collide on slug "${sa}"`);
+    }
+    // Free text outside the vocabulary must be null (falls to the fuzzy/supply lane).
+    if (canonicalSlug('nitrile gloves') !== null) bad.push('"nitrile gloves" should be null (supply, not a vocab part)');
+    const ok = bad.length === 0;
+    out.push({ name: 'INV-5 canonical-key no-collision', ok, detail: ok ? undefined : bad.join(' | ') });
+  } catch (e) {
+    out.push({ name: 'INV-5 canonical-key no-collision', ok: false, detail: e instanceof Error ? e.message : String(e) });
   }
 
   return out;
