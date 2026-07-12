@@ -23,6 +23,7 @@ import { getCachedVerifiedPart, warmVerifiedPart } from '@/lib/verified-parts';
 import { getVehicleSpecs } from '@/lib/maintenance';
 import { getWebSpecs } from '@/lib/verified-specs';
 import { matchSupply } from '@/data/supplies-catalog';
+import { canonicalizePart } from '@/lib/part-vocabulary';
 import { STATIC_SYSTEM_PROMPT } from '@/lib/hub-chat-prompt';
 import type { PartCategory } from '@/types/vision';
 
@@ -310,19 +311,25 @@ async function resolveMarkerToMarkdown(
   const fields = inner.split('||').map((s) => s.trim());
   const partName = fields[0] || '';
   if (!partName) return '';
-  const category = fields[1] || undefined;
   const brand = fields[2] || undefined;
   const tier = fields[3] === 'aftermarket' ? 'aftermarket' : fields[3] === 'oem' ? 'oem' : undefined;
-  const intent: PartIntent = { partName, category: category as PartCategory | undefined, brand, tier };
+  // Canonical-key contract: map the marker to the vocabulary for a clean display
+  // name + category (the model may emit a slug like "oil_filter" or free text
+  // like "oil filter" — both canonicalize). Falls back to the raw fields for
+  // parts outside the vocabulary.
+  const canon = canonicalizePart(partName);
+  const displayName = canon?.display || partName;
+  const category = fields[1] || canon?.category || undefined;
+  const intent: PartIntent = { partName: displayName, category: category as PartCategory | undefined, brand, tier };
   // Don't double the brand ("Mopar" + "Mopar OAT coolant" = "Mopar Mopar OAT").
-  const label = brand && !partName.toLowerCase().startsWith(brand.toLowerCase())
-    ? `${brand} ${partName}`
-    : partName;
+  const label = brand && !displayName.toLowerCase().startsWith(brand.toLowerCase())
+    ? `${brand} ${displayName}`
+    : displayName;
 
   // Universal supply (gloves, drain pan, brake cleaner, transfer pump…) → clean
   // generic Amazon link, NEVER a per-vehicle verify (that's how "nitrile gloves"
   // for a Challenger returned Polaris drain plugs). Route it out entirely.
-  const supply = matchSupply(partName);
+  const supply = matchSupply(displayName);
   if (supply) return `**${supply.label}** — [Amazon](${supply.url})`;
 
   // FIRST: a web-search-VERIFIED deep link from the record store (same source as
@@ -335,8 +342,8 @@ async function resolveMarkerToMarkdown(
   // the next asker gets the deep link). Maintenance parts are pre-seeded so taps
   // usually hit the cache.
   let verified = null as Awaited<ReturnType<typeof getCachedVerifiedPart>>;
-  try { verified = await getCachedVerifiedPart(vehicle, partName); } catch { /* */ }
-  if (!verified?.buyUrl && warmSet) warmSet.add(partName);
+  try { verified = await getCachedVerifiedPart(vehicle, displayName); } catch { /* */ }
+  if (!verified?.buyUrl && warmSet) warmSet.add(displayName);
 
   let card;
   try { [card] = await resolveParts([intent], vehicle, { useEbay: false }); } catch { /* */ }
