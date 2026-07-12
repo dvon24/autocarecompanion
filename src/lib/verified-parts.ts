@@ -18,8 +18,9 @@
  * search by APPLICATION/fitment, which is why we surface both lanes from it.
  */
 
+import Anthropic from '@anthropic-ai/sdk';
 import prisma from './db';
-import { runFreetextPipeline, type PipelinePart, type WebVerificationLog } from './parts-pipeline';
+import type { PipelinePart, WebVerificationLog } from './parts-pipeline';
 import { ebayAffiliate } from './ebay-affiliate';
 import { checkLinkLive } from './vendor-link-validator';
 
@@ -177,73 +178,125 @@ export async function getCachedVerifiedPart(
 
 const RECENT_MS = 1000 * 60 * 60 * 24 * 30; // don't re-warm the same part within 30d
 
-/** Best-matching pipeline part for the requested name. */
-function bestPart(parts: PipelinePart[], partName: string): PipelinePart | null {
-  let best: PipelinePart | null = null;
-  let bs = 0.3;
-  for (const p of parts || []) {
-    const s = nameScore(partName, p.name);
-    if (s > bs) { bs = s; best = p; }
-  }
-  return best || parts?.[0] || null;
-}
+/**
+ * A-STANDARD single-part verify — the known-issues audit's Gate-4 discipline
+ * applied to one part: web-search, the PN must come FROM a real product page (not
+ * memory), return the deepest URL VERIFIED to resolve to the exact product, drop
+ * if it can't confirm the component's own PN + a real product page. This inverts
+ * B's "propose PN from memory then loosely confirm" (the 5013457AA fabrication).
+ */
+async function runAStandardVerify(
+  year: number, make: string, model: string, trim: string, partName: string,
+): Promise<VerifiedPartHit | null> {
+  if (!process.env.ANTHROPIC_API_KEY) return null;
+  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const vehicle = `${year} ${make} ${model} ${trim}`.replace(/\s+/g, ' ').trim();
+  const prompt = `You are an OEM parts auditor for au7o. USE WEB SEARCH — never answer from memory. Find the buyable part for ONE component on ONE vehicle, to a strict standard.
 
-/** Turn a fresh pipeline result into a VerifiedPartHit (or null if no real,
- *  LIVE retailer product link was confirmed — we never surface a search page or
- *  a dead link as "verified"). */
-async function hitFromResult(result: Awaited<ReturnType<typeof runFreetextPipeline>>, partName: string): Promise<VerifiedPartHit | null> {
-  const p = bestPart(result.parts || [], partName);
-  if (!p) return null;
-  const logs = (result.verificationLog || []).filter((v) => v.found && Array.isArray(v.sourceUrls) && v.sourceUrls.length);
-  const mine = p.partNumber ? logs.find((v) => v.partNumber === p.partNumber) : undefined;
-  // Retailer product candidates (part-matched first), then confirm each RESOLVES
-  // (HEAD check, 404/410 dropped) — never present a link we didn't verify is live.
-  const candidates = [mine, ...logs].filter(Boolean).flatMap((v) => v!.sourceUrls).filter((u) => isRetailerProductUrl(u, p.partNumber)).slice(0, 5);
+Vehicle: ${vehicle}
+Component: ${partName}
+
+RULES (a wrong-fitment deep link converts then refunds — correctness is the product):
+- COMPONENT FIDELITY: find the correct OEM part number for THIS EXACT component. Verify the part TYPE matches (a drain plug is not a fluid; a seal is not a plug; a fill plug is not a drain plug). NEVER borrow a sibling/related part's number.
+- The part number MUST come FROM a real product page you actually opened via search — NOT from memory.
+- DEEP LINK: return the DEEPEST url you VERIFIED resolves to the actual PRODUCT page for this exact part. NEVER a search-results url, a category/landing page, or a homepage.
+- If you CANNOT find this component's own part number AND a real product page, return status "drop" with empty fields. Do NOT substitute another part's number or a search link.
+- aftermarket: up to 2 equivalents (brand + their OWN part number), found by APPLICATION/fitment — not by converting the OEM number.
+
+Return ONLY JSON, no prose:
+{"status":"verified"|"drop","partNumber":"<from the product page, or empty>","oemBrand":"<brand or empty>","productUrl":"<deep product page url, or empty>","aftermarket":[{"brand":"","partNumber":""}],"caveat":"<one short fitment note or empty>"}`;
+
+  let msg;
+  try {
+    msg = await client.messages.create({
+      model: 'claude-haiku-4-5',
+      max_tokens: 1200,
+      tools: [{ type: 'web_search_20250305' as unknown as 'web_search_20250305', name: 'web_search', max_uses: 4 } as never],
+      messages: [{ role: 'user', content: prompt }],
+    });
+  } catch { return null; }
+
+  let text = '';
+  const searchUrls: string[] = [];
+  for (const b of msg.content as unknown as Array<Record<string, unknown>>) {
+    if (b.type === 'text' && typeof b.text === 'string') text += b.text;
+    if (b.type === 'web_search_tool_result' && Array.isArray(b.content)) {
+      for (const r of b.content as unknown as Array<Record<string, unknown>>) {
+        if (r.type === 'web_search_result' && typeof r.url === 'string') searchUrls.push(r.url);
+      }
+    }
+  }
+  const m = text.replace(/```json/g, '').replace(/```/g, '').match(/\{[\s\S]*\}/);
+  if (!m) return null;
+  let j: { status?: string; partNumber?: string; oemBrand?: string; productUrl?: string; aftermarket?: Array<{ brand?: string; partNumber?: string }>; caveat?: string };
+  try { j = JSON.parse(m[0]); } catch { return null; }
+  if (j.status !== 'verified') return null;
+
+  // Candidate product pages: the model's claimed productUrl + any retailer
+  // product pages from the actual search results. Shape-gated, then liveness-gated.
+  const pn = (j.partNumber || '').trim();
+  const cands = [j.productUrl, ...searchUrls]
+    .filter((u): u is string => typeof u === 'string' && u.length > 0)
+    .filter((u) => isRetailerProductUrl(u, pn));
   let live: string | undefined;
-  for (const c of candidates) {
+  for (const c of cands) {
     if ((await checkLinkLive(c)) !== 'dead') { live = c; break; }
   }
-  if (!live) return null;
+  if (!live) return null; // no verified LIVE product page → not verified, full stop
+
   const deep = ownAffiliate(live);
+  // STRUCTURAL PN gate: only claim a part number if it's corroborated by
+  // appearing in the live product URL. Kills fabricate-then-rationalize.
+  const pnNorm = pn.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const pnInUrl = pnNorm.length >= 5 && deep.toLowerCase().replace(/[^a-z0-9]/g, '').includes(pnNorm);
+  const aftermarket = Array.isArray(j.aftermarket)
+    ? j.aftermarket.filter((a) => a && a.brand && a.partNumber).map((a) => ({ brand: String(a.brand), partNumber: String(a.partNumber) })).slice(0, 2)
+    : [];
   return {
-    name: p.name,
-    partNumber: p.partNumber,
-    oemBrand: p.oemBrand,
+    name: partName,
+    partNumber: pnInUrl ? pn : undefined,
+    oemBrand: j.oemBrand || undefined,
     buyUrl: deep,
     buyVendor: vendorFromUrl(deep),
-    aftermarket: (p.crossReferences || []).map((c) => ({ brand: c.brand, partNumber: c.partNumber })),
+    aftermarket,
     sourceTask: partKey(partName),
   };
 }
 
-/** Run the web-search pipeline for ONE part and persist under a `part:<name>`
- *  key. Returns the verified hit (deep link + PN + aftermarket) or null. */
+/** Run the A-standard verify for ONE part and persist under a `part:<name>` key
+ *  (record-store format the readers already understand). Returns the hit or null. */
 async function runAndPersist(
   year: number, make: string, model: string, trim: string, partName: string,
 ): Promise<VerifiedPartHit | null> {
   const task = partKey(partName);
-  // Claim the slot so concurrent asks don't double-run the pipeline.
+  // Claim the slot so concurrent asks don't double-run the verify.
   await prisma.vehiclePartLookup.upsert({
     where: { year_make_model_trim_task: { year, make, model, trim, task } },
     create: { year, make, model, trim, task, parts: [], source: 'pipeline-freetext', status: 'pending' },
     update: { updatedAt: new Date() },
   }).catch(() => {});
 
-  const result = await runFreetextPipeline(year, make, model, trim, partName);
-  const confirmed = (result.verificationLog || []).some((v) => v.found);
+  const hit = await runAStandardVerify(year, make, model, trim, partName);
+  const confirmed = !!hit?.buyUrl;
+  // Store in the PipelinePart-shaped format getCachedVerifiedPart reads.
+  const parts = hit
+    ? [{ name: partName, partNumber: hit.partNumber, oemBrand: hit.oemBrand, crossReferences: hit.aftermarket, searchQuery: partName, spec: '', confidence: 'oem-verified' }]
+    : [];
+  const verificationLog = hit?.buyUrl
+    ? [{ partNumber: hit.partNumber || '', searchQuery: partName, found: true, retailers: [hit.buyVendor || ''], sourceUrls: [hit.buyUrl], retried: false }]
+    : [];
   await prisma.vehiclePartLookup.update({
     where: { year_make_model_trim_task: { year, make, model, trim, task } },
     data: {
-      parts: result.parts as unknown as object,
-      unverifiedParts: result.unverifiedParts as unknown as object,
-      verificationLog: result.verificationLog as unknown as object,
+      parts: parts as unknown as object,
+      verificationLog: verificationLog as unknown as object,
       source: 'pipeline-freetext',
-      status: confirmed ? 'verified' : 'partial',
+      status: confirmed ? 'verified' : 'failed',
       webSearchConfirmed: confirmed,
       verifiedAt: new Date(),
     },
   }).catch(() => {});
-  return await hitFromResult(result, partName);
+  return hit;
 }
 
 /**
