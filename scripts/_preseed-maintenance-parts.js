@@ -87,11 +87,11 @@ RULES (a wrong-fitment or wrong-spec deep link converts then refunds — correct
 - SPEC MATCH: FIRST determine the correct factory specification for this component on THIS exact vehicle (e.g. the exact gear-oil viscosity — 75W-140 vs 75W-85 is NOT interchangeable). The product you link MUST match that spec. A product with a different viscosity/grade/type is WRONG — reject it.
 - AVAILABILITY: the product must be CURRENTLY AVAILABLE for sale. If the listing is DISCONTINUED / superseded / no-longer-available, find the current replacement (superseding PN) or status "drop". Do NOT link a discontinued page.
 - The part number MUST come FROM a real product page you opened via search — NOT memory.
-- DEEP LINK: the DEEPEST url you VERIFIED resolves to the actual, AVAILABLE PRODUCT page. NEVER a search/category/homepage.
-- If you cannot find this component's own part number AND a real, in-stock, correct-spec product page, status "drop".
+- DEEP LINKS (multi-vendor): find a verified product page on AS MANY stores as you can confirm — Amazon, RockAuto, eBay, the OEM catalog (Mopar eStore/MoparPartsGiant/GM Parts Giant), AutoZone, etc. EACH must be a real, in-stock, correct-spec PRODUCT page. Include ONLY vendors you verified. NEVER a search/category/homepage.
+- If you cannot find this component's own part number AND at least one real, in-stock, correct-spec product page, status "drop".
 - aftermarket: up to 2 equivalents (brand + own part number) by fitment.
 
-Return ONLY JSON: {"status":"verified"|"drop","partNumber":"","oemBrand":"","productUrl":"","aftermarket":[{"brand":"","partNumber":""}],"caveat":""}`;
+Return ONLY JSON: {"status":"verified"|"drop","partNumber":"","oemBrand":"","buyLinks":[{"vendor":"","url":""}],"aftermarket":[{"brand":"","partNumber":""}],"caveat":""}`;
 
   let msg;
   try {
@@ -113,16 +113,19 @@ Return ONLY JSON: {"status":"verified"|"drop","partNumber":"","oemBrand":"","pro
   if (j.status !== 'verified') return null;
 
   const pn = (j.partNumber || '').trim();
-  const cands = [j.productUrl, ...urls].filter((u) => typeof u === 'string' && u).filter((u) => isRetailerProductUrl(u, pn));
-  let live;
-  for (const c of cands) { if ((await checkLive(c)) !== 'dead') { live = c; break; } }
-  if (!live) return null;
+  const vname = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return u; } };
+  const claimed = Array.isArray(j.buyLinks) ? j.buyLinks.map((b) => b && b.url).filter(Boolean) : [];
+  const cands = [...claimed, ...urls].filter((u) => typeof u === 'string' && u).filter((u) => isRetailerProductUrl(u, pn));
+  const byVendor = new Map();
+  for (const u of cands) { const v = vname(u); if (!byVendor.has(v)) byVendor.set(v, u); if (byVendor.size >= 6) break; }
+  const checked = await Promise.all([...byVendor.entries()].map(async ([v, u]) => ({ v, u, live: (await checkLive(u)) !== 'dead' })));
+  const liveLinks = checked.filter((c) => c.live).map((c) => ({ vendor: c.v, url: ownAffiliate(c.u) }));
+  if (!liveLinks.length) return null;
 
-  const deep = ownAffiliate(live);
   const pnNorm = pn.toLowerCase().replace(/[^a-z0-9]/g, '');
-  const pnInUrl = pnNorm.length >= 5 && deep.toLowerCase().replace(/[^a-z0-9]/g, '').includes(pnNorm);
+  const pnInUrl = pnNorm.length >= 5 && liveLinks.some((l) => l.url.toLowerCase().replace(/[^a-z0-9]/g, '').includes(pnNorm));
   const aftermarket = Array.isArray(j.aftermarket) ? j.aftermarket.filter((a) => a && a.brand && a.partNumber).map((a) => ({ brand: String(a.brand), partNumber: String(a.partNumber) })).slice(0, 2) : [];
-  return { partNumber: pnInUrl ? pn : '', oemBrand: j.oemBrand || '', buyUrl: deep, buyVendor: (new URL(deep)).hostname.replace(/^www\./, ''), aftermarket };
+  return { partNumber: pnInUrl ? pn : '', oemBrand: j.oemBrand || '', buyLinks: liveLinks, aftermarket };
 }
 
 async function main() {
@@ -151,9 +154,9 @@ async function main() {
       if (existing && existing.webSearchConfirmed) { skipped++; continue; }
 
       const hit = await aStandardVerify(vehicleStr, partName).catch(() => null);
-      const confirmed = !!(hit && hit.buyUrl);
+      const confirmed = !!(hit && hit.buyLinks && hit.buyLinks.length);
       const parts = hit ? [{ name: partName, partNumber: hit.partNumber, oemBrand: hit.oemBrand, crossReferences: hit.aftermarket, searchQuery: partName, confidence: 'oem-verified' }] : [];
-      const verificationLog = confirmed ? [{ partNumber: hit.partNumber || '', searchQuery: partName, found: true, retailers: [hit.buyVendor], sourceUrls: [hit.buyUrl], retried: false }] : [];
+      const verificationLog = confirmed ? [{ partNumber: hit.partNumber || '', searchQuery: partName, found: true, retailers: hit.buyLinks.map((l) => l.vendor), sourceUrls: hit.buyLinks.map((l) => l.url), retried: false }] : [];
       // No upsert — PrismaPg adapter doesn't support it. findUnique → update/create.
       const key = { year: v.year, make: v.make, model: v.model, trim: v.trim, task };
       const data = { parts, verificationLog, source: 'pipeline-freetext', status: confirmed ? 'verified' : 'failed', webSearchConfirmed: confirmed, verifiedAt: new Date() };

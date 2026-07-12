@@ -53,9 +53,12 @@ export interface VerifiedPartHit {
   name: string;
   partNumber?: string;
   oemBrand?: string;
-  /** A verified retailer PRODUCT/LISTING page (never a search page). */
+  /** The PRIMARY verified retailer PRODUCT page (never a search page). */
   buyUrl?: string;
   buyVendor?: string;
+  /** Gate 4 (multi-vendor): a verified live product page per store, so the user
+   *  gets price choice. buyUrl is buyLinks[0]. */
+  buyLinks?: Array<{ vendor: string; url: string }>;
   /** Aftermarket equivalents found by application (not by PN cross-map). */
   aftermarket: Array<{ brand: string; partNumber: string }>;
   sourceTask: string;
@@ -180,18 +183,19 @@ export async function getCachedVerifiedPart(
       // Find a verified deep source URL for this part (matched by PN, else any).
       const logs = vlog.filter((v) => v.found && Array.isArray(v.sourceUrls) && v.sourceUrls.length);
       const mine = p.partNumber ? logs.find((v) => v.partNumber === p.partNumber) : undefined;
-      const rawDeep = [mine, ...logs]
-        .filter(Boolean)
-        .flatMap((v) => v!.sourceUrls)
-        .find((u) => isRetailerProductUrl(u, p.partNumber));
-      const deep = rawDeep ? ownAffiliate(rawDeep) : undefined;
+      // Gate 4: build a verified link PER vendor from the stored product URLs.
+      const allUrls = [mine, ...logs].filter(Boolean).flatMap((v) => v!.sourceUrls).filter((u) => isRetailerProductUrl(u, p.partNumber));
+      const byVendor = new Map<string, string>();
+      for (const u of allUrls) { const vd = vendorFromUrl(u); if (!byVendor.has(vd)) byVendor.set(vd, ownAffiliate(u)); }
+      const buyLinks = [...byVendor.entries()].map(([vendor, url]) => ({ vendor, url }));
 
       best = {
         name: p.name,
         partNumber: p.partNumber,
         oemBrand: p.oemBrand,
-        buyUrl: deep,
-        buyVendor: deep ? vendorFromUrl(deep) : undefined,
+        buyUrl: buyLinks[0]?.url,
+        buyVendor: buyLinks[0]?.vendor,
+        buyLinks,
         aftermarket: (p.crossReferences || []).map((c) => ({ brand: c.brand, partNumber: c.partNumber })),
         sourceTask: row.task,
       };
@@ -229,12 +233,12 @@ RULES (a wrong-fitment or wrong-spec deep link converts then refunds — correct
 - SPEC MATCH: FIRST determine the correct factory specification for this component on THIS exact vehicle (e.g. the exact gear-oil viscosity — 75W-140 vs 75W-85 is NOT interchangeable). The product you link MUST match that spec. A product with a different viscosity/grade/type is WRONG — reject it.
 - AVAILABILITY: the product must be CURRENTLY AVAILABLE for sale. If the listing is DISCONTINUED / superseded / no-longer-available, find the current replacement (superseding PN) instead, or status "drop". Do NOT link a discontinued page.
 - The part number MUST come FROM a real product page you actually opened via search — NOT from memory.
-- DEEP LINK: return the DEEPEST url you VERIFIED resolves to the actual, AVAILABLE PRODUCT page for this exact part. NEVER a search-results url, a category/landing page, or a homepage.
-- If you CANNOT find this component's own part number AND a real, in-stock, correct-spec product page, return status "drop" with empty fields. Do NOT substitute a different part's number or a search link.
+- DEEP LINKS (multi-vendor): find a verified product page on AS MANY stores as you can actually confirm — Amazon, RockAuto, eBay, the OEM catalog (Mopar eStore / MoparPartsGiant / GM Parts Giant), AutoZone, etc. EACH url must be a real, in-stock, correct-spec PRODUCT page for THIS exact part (same standard). Include ONLY vendors you actually verified; omit any you couldn't. NEVER a search-results url, category/landing page, or homepage.
+- If you CANNOT find this component's own part number AND at least one real, in-stock, correct-spec product page, return status "drop" with empty fields. Do NOT substitute a different part's number or a search link.
 - aftermarket: up to 2 equivalents (brand + their OWN part number), found by APPLICATION/fitment — not by converting the OEM number.
 
 Return ONLY JSON, no prose:
-{"status":"verified"|"drop","partNumber":"<from the product page, or empty>","oemBrand":"<brand or empty>","productUrl":"<deep product page url, or empty>","aftermarket":[{"brand":"","partNumber":""}],"caveat":"<one short fitment note or empty>"}`;
+{"status":"verified"|"drop","partNumber":"<from the product page, or empty>","oemBrand":"<brand or empty>","buyLinks":[{"vendor":"<store>","url":"<deep product page url>"}],"aftermarket":[{"brand":"","partNumber":""}],"caveat":"<one short fitment note or empty>"}`;
 
   let msg;
   try {
@@ -258,27 +262,28 @@ Return ONLY JSON, no prose:
   }
   const m = text.replace(/```json/g, '').replace(/```/g, '').match(/\{[\s\S]*\}/);
   if (!m) return null;
-  let j: { status?: string; partNumber?: string; oemBrand?: string; productUrl?: string; aftermarket?: Array<{ brand?: string; partNumber?: string }>; caveat?: string };
+  let j: { status?: string; partNumber?: string; oemBrand?: string; buyLinks?: Array<{ vendor?: string; url?: string }>; aftermarket?: Array<{ brand?: string; partNumber?: string }>; caveat?: string };
   try { j = JSON.parse(m[0]); } catch { return null; }
   if (j.status !== 'verified') return null;
 
-  // Candidate product pages: the model's claimed productUrl + any retailer
-  // product pages from the actual search results. Shape-gated, then liveness-gated.
+  // Candidates: the model's claimed buyLinks + retailer product pages from the
+  // actual search results. Shape-gate, dedupe by vendor, then liveness-check ALL
+  // in parallel (Gate 4 = a verified product page per store).
   const pn = (j.partNumber || '').trim();
-  const cands = [j.productUrl, ...searchUrls]
+  const claimed = Array.isArray(j.buyLinks) ? j.buyLinks.map((b) => b?.url).filter(Boolean) as string[] : [];
+  const cands = [...claimed, ...searchUrls]
     .filter((u): u is string => typeof u === 'string' && u.length > 0)
     .filter((u) => isRetailerProductUrl(u, pn));
-  let live: string | undefined;
-  for (const c of cands) {
-    if ((await checkLinkLive(c)) !== 'dead') { live = c; break; }
-  }
-  if (!live) return null; // no verified LIVE product page → not verified, full stop
+  const byVendor = new Map<string, string>();
+  for (const u of cands) { const v = vendorFromUrl(u); if (!byVendor.has(v)) byVendor.set(v, u); if (byVendor.size >= 6) break; }
+  const checked = await Promise.all([...byVendor.entries()].map(async ([vendor, url]) => ({ vendor, url, live: (await checkLinkLive(url)) !== 'dead' })));
+  const liveLinks = checked.filter((c) => c.live).map((c) => ({ vendor: c.vendor, url: ownAffiliate(c.url) }));
+  if (!liveLinks.length) return null; // no verified LIVE product page → not verified
 
-  const deep = ownAffiliate(live);
-  // STRUCTURAL PN gate: only claim a part number if it's corroborated by
-  // appearing in the live product URL. Kills fabricate-then-rationalize.
+  // STRUCTURAL PN gate: only claim a part number if it appears in one of the
+  // live product URLs. Kills fabricate-then-rationalize.
   const pnNorm = pn.toLowerCase().replace(/[^a-z0-9]/g, '');
-  const pnInUrl = pnNorm.length >= 5 && deep.toLowerCase().replace(/[^a-z0-9]/g, '').includes(pnNorm);
+  const pnInUrl = pnNorm.length >= 5 && liveLinks.some((l) => l.url.toLowerCase().replace(/[^a-z0-9]/g, '').includes(pnNorm));
   const aftermarket = Array.isArray(j.aftermarket)
     ? j.aftermarket.filter((a) => a && a.brand && a.partNumber).map((a) => ({ brand: String(a.brand), partNumber: String(a.partNumber) })).slice(0, 2)
     : [];
@@ -286,8 +291,9 @@ Return ONLY JSON, no prose:
     name: partName,
     partNumber: pnInUrl ? pn : undefined,
     oemBrand: j.oemBrand || undefined,
-    buyUrl: deep,
-    buyVendor: vendorFromUrl(deep),
+    buyUrl: liveLinks[0].url,
+    buyVendor: liveLinks[0].vendor,
+    buyLinks: liveLinks,
     aftermarket,
     sourceTask: partKey(partName),
   };
@@ -323,8 +329,8 @@ async function runAndPersist(
   const parts = hit
     ? [{ name: partName, partNumber: hit.partNumber, oemBrand: hit.oemBrand, crossReferences: hit.aftermarket, searchQuery: partName, spec: '', confidence: 'oem-verified' }]
     : [];
-  const verificationLog = hit?.buyUrl
-    ? [{ partNumber: hit.partNumber || '', searchQuery: partName, found: true, retailers: [hit.buyVendor || ''], sourceUrls: [hit.buyUrl], retried: false }]
+  const verificationLog = hit?.buyLinks?.length
+    ? [{ partNumber: hit.partNumber || '', searchQuery: partName, found: true, retailers: hit.buyLinks.map((l) => l.vendor), sourceUrls: hit.buyLinks.map((l) => l.url), retried: false }]
     : [];
   await saveLookup({ year, make, model, trim, task }, {
     parts: parts as unknown as object,
