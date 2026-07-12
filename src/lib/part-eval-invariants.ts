@@ -19,6 +19,7 @@ import { resolveParts } from './resolve-parts';
 import { attachVendorLinks } from './vendor-resolver';
 import { getVehicleSpecs } from './maintenance';
 import { canonicalSlug } from './part-vocabulary';
+import { getCachedVerifiedPart } from './verified-parts';
 
 export interface InvariantResult {
   name: string;
@@ -189,6 +190,29 @@ export async function runPartInvariants(): Promise<InvariantResult[]> {
     out.push({ name: 'INV-5 canonical-key no-collision', ok, detail: ok ? undefined : bad.join(' | ') });
   } catch (e) {
     out.push({ name: 'INV-5 canonical-key no-collision', ok: false, detail: e instanceof Error ? e.message : String(e) });
+  }
+
+  // INV-6 — the air-filter fitment guard. A standard-config SRT 392 must NEVER
+  // surface 68322213AA (the T/A open-element COLD-AIR intake filter). The guard
+  // is prompt-logic, which has regressed twice — so this fixture catches a
+  // re-cache of the wrong-config part. DB-backed but TOLERANT: if the read fails
+  // (no DB / offline eval) it SKIPS rather than failing, so it's safe anywhere;
+  // it only FAILS on a confirmed read that shows the trap PN.
+  try {
+    let detail: string | undefined;
+    let ok = true;
+    try {
+      const h = await getCachedVerifiedPart({ year: 2015, make: 'Dodge', model: 'Challenger', trim: 'SRT 392' }, 'air filter');
+      const pn = (h?.partNumber || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+      if (pn === '68322213AA') { ok = false; detail = 'SRT 392 air filter is 68322213AA — the T/A cold-air filter (standard-config guard regressed)'; }
+      else if (!h?.buyUrl) detail = 'skipped — no cached SRT 392 air filter record to check';
+      else detail = `standard-config OK (${h.partNumber || 'no-PN'})`;
+    } catch {
+      detail = 'skipped — DB unavailable (offline eval)';
+    }
+    out.push({ name: 'INV-6 air-filter standard-config (no T/A trap)', ok, detail });
+  } catch (e) {
+    out.push({ name: 'INV-6 air-filter standard-config (no T/A trap)', ok: false, detail: e instanceof Error ? e.message : String(e) });
   }
 
   return out;
