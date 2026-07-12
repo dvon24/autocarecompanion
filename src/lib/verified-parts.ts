@@ -384,12 +384,13 @@ export async function warmVerifiedPart(
     }).catch(() => null);
     if (existing) {
       const age = Date.now() - existing.updatedAt.getTime();
-      // Verified/partial → don't re-run for 30d. A `pending` row means an inline
-      // verify claimed the slot; only skip it briefly (5m) so a cut-off inline
-      // (function ended mid-pipeline) still gets retried instead of stuck 30d.
+      // Verified → keep 30d. `pending` (in-flight) → skip 5m. But a `failed`/
+      // `partial` record (e.g. the pre-seed dropped it without spec grounding)
+      // is retry-able — the runtime injects the DB spec and may now find the
+      // correct in-stock product, so only cool down 6h before trying again.
       if (existing.webSearchConfirmed) return;
-      if (existing.status !== 'pending' && age < RECENT_MS) return;
       if (existing.status === 'pending' && age < 5 * 60 * 1000) return;
+      if ((existing.status === 'failed' || existing.status === 'partial') && age < 6 * 60 * 60 * 1000) return;
     }
 
     await runAndPersist(year, make, model, trim, partName);
