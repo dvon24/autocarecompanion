@@ -37,7 +37,7 @@ export function KnownIssueAlertSignup({
   showCarousel?: boolean;
 }) {
   const heading = headline ?? `Get ahead of ${vehicleName} problems — free`;
-  const sub = blurb ?? `Create a free account and we'll watch your ${vehicleName} for new recalls & known issues, save your diagnoses, and give you the AI mechanic that knows your exact car.`;
+  const sub = blurb ?? `Leave your email and we'll alert you the moment there's a new recall or known issue for your ${vehicleName}. Free, no account needed.`;
   // Send cold known-issues traffic into a full account (worth far more than an
   // email-only lead) — carry the current page as the post-signup destination.
   const signupHref = (() => {
@@ -161,18 +161,8 @@ export function KnownIssueAlertSignup({
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          {/* PRIMARY: full account (worth far more than an email-only lead). */}
-          <a
-            href={signupHref}
-            onClick={() => { try { trackEvent('signup_cta_click', { context }); } catch { /* */ } }}
-            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '12px 18px', borderRadius: 11, background: '#3B82F6', color: '#fff', fontSize: 14.5, fontWeight: 700, textDecoration: 'none' }}
-          >
-            Create a free account →
-          </a>
-          {/* SECONDARY, lower-friction: just email me (no account). */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 12, color: '#94A3B8' }}>
-            <div style={{ flex: 1, height: 1, background: '#EDE9DE' }} /> or just email me <div style={{ flex: 1, height: 1, background: '#EDE9DE' }} />
-          </div>
+          {/* PRIMARY: low-friction email capture — this is what actually converts
+              (~1-3 leads/day). Account creation is the secondary link below. */}
           <form onSubmit={submit} style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             <input
               type="email"
@@ -182,16 +172,27 @@ export function KnownIssueAlertSignup({
               value={email}
               onChange={(e) => { setEmail(e.target.value); if (state === 'error') setState('idle'); }}
               disabled={state === 'loading'}
-              style={{ flex: '1 1 200px', minWidth: 0, padding: '11px 14px', borderRadius: 11, border: '1px solid #E3DFD4', fontSize: 14, color: '#0B1220', background: '#FBFAF7', outline: 'none' }}
+              style={{ flex: '1 1 200px', minWidth: 0, padding: '12px 14px', borderRadius: 11, border: '1px solid #E3DFD4', fontSize: 14, color: '#0B1220', background: '#FBFAF7', outline: 'none' }}
             />
             <button
               type="submit"
               disabled={state === 'loading'}
-              style={{ flexShrink: 0, padding: '11px 18px', borderRadius: 11, border: '1px solid #E3DFD4', background: '#fff', color: '#0B1220', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}
+              style={{ flexShrink: 0, padding: '12px 20px', borderRadius: 11, border: 'none', background: '#3B82F6', color: '#fff', fontSize: 14.5, fontWeight: 700, cursor: 'pointer' }}
             >
-              {state === 'loading' ? '…' : 'Email me'}
+              {state === 'loading' ? '…' : 'Email me alerts'}
             </button>
           </form>
+          {/* SECONDARY: create a full account (worth more, but higher friction). */}
+          <div style={{ fontSize: 12.5, color: '#94A3B8', textAlign: 'center' }}>
+            or{' '}
+            <a
+              href={signupHref}
+              onClick={() => { try { trackEvent('signup_cta_click', { context }); } catch { /* */ } }}
+              style={{ color: '#3B82F6', fontWeight: 600, textDecoration: 'none' }}
+            >
+              create a free account →
+            </a>
+          </div>
         </div>
       )}
       {state === 'error' && (

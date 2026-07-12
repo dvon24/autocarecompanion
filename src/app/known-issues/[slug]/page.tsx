@@ -674,8 +674,8 @@ export default async function KnownIssuesArticlePage({
             <AlertSignupPopup
               vehicleName={`${make} ${model}`}
               context={`known-issues:${make} ${model}`}
-              headline={`Your whole ${make}, in one chat`}
-              blurb={`You found your issue. Create a free account and Au7o tracks maintenance, recalls, and known issues for your ${make} ${model} — and diagnoses new ones from a photo.`}
+              headline={`Get ahead of ${make} ${model} problems — free`}
+              blurb={`Leave your email and we'll alert you the moment there's a new recall or known issue for your ${make} ${model}. No account needed.`}
             />
 
             {/* Fallthrough CTA — simplified */}
