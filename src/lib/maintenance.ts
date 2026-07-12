@@ -222,6 +222,32 @@ export const MAINTENANCE_SPECS_MAP: Record<string, (specs: VehicleSpecs) => Reco
  * Supports trim-aware matching (e.g., ZL1/LT4 vs SS/LT1).
  * Returns null if no specs found for this vehicle.
  */
+/**
+ * Expand a trim name into the engine/generation tokens that appear in the spec
+ * DB's generation keys, so a performance trim resolves to the RIGHT generation
+ * instead of falling through to the arbitrary first (usually base V6) gen.
+ *
+ * This is the fix for the silent-poisoning bug: gen keys are engine-coded
+ * ("2015+ 6.4 SRT"), but a "Scat Pack" or "392" trim contains none of those
+ * tokens, so it matched nothing and got the V6 block injected as ground truth —
+ * wrong plugs/filter/fluids for the highest-volume 6.4L trim on the road.
+ *
+ * Precedence matters: "R/T Scat Pack" is a 6.4L car, so "scat pack" must win
+ * over the "r/t" (5.7L) token. Mopar-focused because that's where the
+ * cross-engine contamination lives; the tokens don't appear on other makes.
+ */
+function expandTrimForGenMatch(trim: string): string {
+  const t = trim.toLowerCase();
+  // REPLACE (not append) with the engine tokens the gen keys use, so a stray
+  // "r/t" in "R/T Scat Pack" can't cross-match the 5.7L gen before the 6.4L one.
+  // Order = most specific first. Trims that already literal-match a gen key
+  // (R/T, SXT, GT, base V6) fall through unchanged.
+  if (/\b(demon|redeye|hellcat)\b/.test(t)) return 'hellcat redeye';  // 6.2 supercharged
+  if (/scat\s*pack|\b392\b/.test(t)) return '6.4 392 srt';            // Scat Pack / 392 = 6.4L (beats R/T)
+  if (/\bsrt-?8?\b/.test(t)) return '6.4 srt';                        // SRT / SRT8 = 6.4L
+  return t;
+}
+
 export function getVehicleSpecs(vehicle: { year: number; make: string; model: string; trim?: string }): VehicleSpecs | null {
   const allSpecs = vehicleSpecsData as unknown as Record<string, Record<string, Record<string, any>>>;
   const makeData = allSpecs[vehicle.make];
@@ -240,7 +266,7 @@ export function getVehicleSpecs(vehicle: { year: number; make: string; model: st
 
   // Find the right generation/trim variant
   let rawSpecs: any = null;
-  const trim = (vehicle.trim || '').toLowerCase();
+  const trim = expandTrimForGenMatch(vehicle.trim || '');
 
   for (const [genKey, genData] of Object.entries(modelData) as [string, any][]) {
     if (!genData.years || !genData.years.includes(vehicle.year)) continue;

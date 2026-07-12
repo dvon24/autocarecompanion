@@ -264,7 +264,12 @@ Return ONLY JSON, no prose:
   let msg;
   try {
     msg = await client.messages.create({
-      model: 'claude-haiku-4-5',
+      // Sonnet, not Haiku: verification runs in the background/batch where latency
+      // doesn't matter, and Haiku's variance under the web-search bound was
+      // false-dropping legitimate parts (spark plugs + diff both dropped once then
+      // verified on retry). A dropped deep link costs far more in conversions than
+      // the token delta on a few thousand verifications.
+      model: 'claude-sonnet-4-6',
       max_tokens: 1200,
       tools: [{ type: 'web_search_20250305' as unknown as 'web_search_20250305', name: 'web_search', max_uses: 4 } as never],
       messages: [{ role: 'user', content: prompt }],
@@ -345,7 +350,12 @@ async function runAndPersist(
 ): Promise<VerifiedPartHit | null> {
   const task = partKey(partName);
   const specHint = specForPart({ year, make, model, trim }, partName);
-  const hit = await runAStandardVerify(year, make, model, trim, partName, specHint);
+  // Asymmetric verification: verified-once is verified, but dropped-once is NOT
+  // cached as a drop — a single drop is usually search variance, so require a
+  // SECOND confirming run before we persist `failed` (and cool it down 6h). The
+  // failure modes are asymmetric, so the retry policy is too.
+  let hit = await runAStandardVerify(year, make, model, trim, partName, specHint);
+  if (!hit?.buyUrl) hit = await runAStandardVerify(year, make, model, trim, partName, specHint);
   const confirmed = !!hit?.buyUrl;
   // Store in the PipelinePart-shaped format getCachedVerifiedPart reads.
   const parts = hit
