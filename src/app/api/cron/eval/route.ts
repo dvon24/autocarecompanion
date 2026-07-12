@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { runPartInvariants } from '@/lib/part-eval-invariants';
 import { sendEmail } from '@/lib/email';
+import prisma from '@/lib/db';
 
 export const runtime = 'nodejs';
 export const maxDuration = 30;
@@ -25,23 +26,37 @@ export async function GET(request: Request) {
   const results = await runPartInvariants();
   const failures = results.filter((r) => !r.ok);
 
-  if (failures.length) {
-    const to = process.env.FEEDBACK_NOTIFY_EMAIL;
-    if (to) {
-      const lines = failures.map((f) => `• ${f.name}: ${f.detail || 'failed'}`).join('\n');
-      try {
-        await sendEmail({
-          to,
-          subject: `⚠ au7o part-resolution eval FAILED (${failures.length})`,
-          text: `The daily part-resolution invariants failed — a regression may have landed:\n\n${lines}\n\nRun locally: npx tsx scripts/eval-resolve-parts.ts`,
-          html: `<p>The daily part-resolution invariants failed — a regression may have landed:</p><ul>${failures.map((f) => `<li><b>${f.name}</b>: ${f.detail || 'failed'}</li>`).join('')}</ul><p><code>npx tsx scripts/eval-resolve-parts.ts</code></p>`,
-        });
-      } catch { /* best-effort */ }
-    }
-    console.error('[cron/eval] FAIL', failures);
-    return NextResponse.json({ ok: false, failures, results }, { status: 500 });
+  // Zero-capture watchdog: the email-lead regression was caught only because
+  // Devon watches the admin screen — give it the same eval treatment. Count
+  // interest captures in the last 24h; zero is an alert-worthy anomaly.
+  let captures24h = -1;
+  try {
+    captures24h = await prisma.interestEmail.count({ where: { createdAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) } } });
+  } catch { /* best-effort */ }
+
+  // ALWAYS send a one-line daily status so silence is never ambiguous (Fable):
+  // green ✓ when everything's healthy, ✗/⚠ when a check trips.
+  const captureAlarm = captures24h === 0;
+  const ok = failures.length === 0 && !captureAlarm;
+  const to = process.env.FEEDBACK_NOTIFY_EMAIL;
+  if (to) {
+    const capLine = captures24h < 0 ? 'captures: (count unavailable)' : `${captures24h} email capture${captures24h === 1 ? '' : 's'}/24h`;
+    const subject = ok
+      ? `✅ au7o daily: evals pass · ${capLine}`
+      : `⚠ au7o daily: ${failures.length ? `eval FAILED (${failures.length})` : ''}${failures.length && captureAlarm ? ' · ' : ''}${captureAlarm ? 'ZERO email captures/24h' : ''}`;
+    const body = [
+      failures.length ? `Eval FAILURES (a part-resolution regression may have landed):\n${failures.map((f) => `• ${f.name}: ${f.detail || 'failed'}`).join('\n')}` : `Evals: all ${results.length} invariants pass ✓`,
+      captureAlarm ? `\n⚠ ZERO known-issues email captures in the last 24h — the lead form may be broken or buried.` : `\nLeads: ${capLine}.`,
+    ].join('\n');
+    try {
+      await sendEmail({ to, subject, text: body, html: `<pre style="font-family:system-ui">${body}</pre>` });
+    } catch { /* best-effort */ }
   }
 
-  console.log('[cron/eval] PASS', results.length);
-  return NextResponse.json({ ok: true, results });
+  if (!ok) {
+    console.error('[cron/eval]', { failures: failures.length, captures24h });
+    return NextResponse.json({ ok: false, failures, captures24h, results }, { status: failures.length ? 500 : 200 });
+  }
+  console.log('[cron/eval] PASS', results.length, 'captures24h', captures24h);
+  return NextResponse.json({ ok: true, captures24h, results });
 }

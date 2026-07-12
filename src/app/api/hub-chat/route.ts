@@ -341,7 +341,10 @@ async function resolveMarkerToMarkdown(
   const brand = fields[2] || undefined;
   const tier = fields[3] === 'aftermarket' ? 'aftermarket' : fields[3] === 'oem' ? 'oem' : undefined;
   const intent: PartIntent = { partName, category: category as PartCategory | undefined, brand, tier };
-  const label = brand ? `${brand} ${partName}` : partName;
+  // Don't double the brand ("Mopar" + "Mopar OAT coolant" = "Mopar Mopar OAT").
+  const label = brand && !partName.toLowerCase().startsWith(brand.toLowerCase())
+    ? `${brand} ${partName}`
+    : partName;
 
   // Universal supply (gloves, drain pan, brake cleaner, transfer pump…) → clean
   // generic Amazon link, NEVER a per-vehicle verify (that's how "nitrile gloves"
@@ -384,7 +387,15 @@ async function resolveMarkerToMarkdown(
     // Gate 4: primary verified link + up to 2 more stores for price choice.
     const links = (verified.buyLinks?.length ? verified.buyLinks : [{ vendor: verified.buyVendor || 'Buy', url: verified.buyUrl }]).slice(0, 3);
     const row = [`[${links[0].vendor} — verified](${links[0].url})`, ...links.slice(1).map((l) => `[${l.vendor}](${l.url})`)].join(' · ');
-    const caveat = verified.caveat ? ` _(${verified.caveat})_` : '';
+    // Display caveat = ONE short clause, not the verifier's audit note. Take the
+    // first clause and cap length so "Multiple part numbers exist… verify fitment
+    // location (engine inlet, outlet, or radiator end) before ordering quantity"
+    // becomes a single readable aside.
+    const shortCaveat = (c: string): string => {
+      const first = c.split(/[.;]/)[0].trim();
+      return first.length > 80 ? first.slice(0, 77).trimEnd() + '…' : first;
+    };
+    const caveat = verified.caveat ? ` _(${shortCaveat(verified.caveat)})_` : '';
     return `**${label}**${pn} — ${row}${caveat}` + aftNote();
   }
 
