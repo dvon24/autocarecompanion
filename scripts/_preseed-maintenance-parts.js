@@ -15,10 +15,16 @@
  *   node scripts/_preseed-maintenance-parts.js --limit 5       # cap vehicles (test)
  */
 
+// .env.local FIRST — dotenv does not override already-set vars, and .env has a
+// stale DATABASE_URL. .env.local must win.
+try { require('dotenv').config({ path: '.env.local' }); require('dotenv').config(); } catch { /* dotenv optional */ }
 const Anthropic = require('@anthropic-ai/sdk');
 const { PrismaClient } = require('@prisma/client');
+const { PrismaPg } = require('@prisma/adapter-pg');
+const { Pool } = require('pg');
 
-const prisma = new PrismaClient();
+const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 2 });
+const prisma = new PrismaClient({ adapter: new PrismaPg(pool) });
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 // The maintenance vocabulary — the parts a maintenance tap asks for. Universal
@@ -146,11 +152,12 @@ async function main() {
       const confirmed = !!(hit && hit.buyUrl);
       const parts = hit ? [{ name: partName, partNumber: hit.partNumber, oemBrand: hit.oemBrand, crossReferences: hit.aftermarket, searchQuery: partName, confidence: 'oem-verified' }] : [];
       const verificationLog = confirmed ? [{ partNumber: hit.partNumber || '', searchQuery: partName, found: true, retailers: [hit.buyVendor], sourceUrls: [hit.buyUrl], retried: false }] : [];
-      await prisma.vehiclePartLookup.upsert({
-        where: { year_make_model_trim_task: { year: v.year, make: v.make, model: v.model, trim: v.trim, task } },
-        create: { year: v.year, make: v.make, model: v.model, trim: v.trim, task, parts, verificationLog, source: 'pipeline-freetext', status: confirmed ? 'verified' : 'failed', webSearchConfirmed: confirmed, verifiedAt: new Date() },
-        update: { parts, verificationLog, status: confirmed ? 'verified' : 'failed', webSearchConfirmed: confirmed, verifiedAt: new Date() },
-      }).catch((e) => console.warn('persist failed', e.message));
+      // No upsert — PrismaPg adapter doesn't support it. findUnique → update/create.
+      const key = { year: v.year, make: v.make, model: v.model, trim: v.trim, task };
+      const data = { parts, verificationLog, source: 'pipeline-freetext', status: confirmed ? 'verified' : 'failed', webSearchConfirmed: confirmed, verifiedAt: new Date() };
+      const found = await prisma.vehiclePartLookup.findUnique({ where: { year_make_model_trim_task: key } }).catch(() => null);
+      if (found) await prisma.vehiclePartLookup.update({ where: { year_make_model_trim_task: key }, data }).catch((e) => console.warn('update failed', e.message));
+      else await prisma.vehiclePartLookup.create({ data: { ...key, ...data } }).catch((e) => console.warn('create failed', e.message));
 
       done++; confirmed ? verified++ : dropped++;
       console.log(`  ${confirmed ? '✓' : '·'} ${vehicleStr} — ${partName}${hit && hit.partNumber ? ` [${hit.partNumber}]` : ''}`);

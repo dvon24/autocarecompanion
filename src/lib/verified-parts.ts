@@ -263,19 +263,29 @@ Return ONLY JSON, no prose:
   };
 }
 
+/** Create-or-update a VehiclePartLookup row WITHOUT upsert — the PrismaPg driver
+ *  adapter doesn't support upsert/transactions (silent empty error). Sequential
+ *  findUnique → update/create instead. */
+async function saveLookup(
+  key: { year: number; make: string; model: string; trim: string; task: string },
+  data: Record<string, unknown>,
+): Promise<void> {
+  const existing = await prisma.vehiclePartLookup.findUnique({
+    where: { year_make_model_trim_task: key },
+  }).catch(() => null);
+  if (existing) {
+    await prisma.vehiclePartLookup.update({ where: { year_make_model_trim_task: key }, data }).catch(() => {});
+  } else {
+    await prisma.vehiclePartLookup.create({ data: { ...key, ...data } as never }).catch(() => {});
+  }
+}
+
 /** Run the A-standard verify for ONE part and persist under a `part:<name>` key
  *  (record-store format the readers already understand). Returns the hit or null. */
 async function runAndPersist(
   year: number, make: string, model: string, trim: string, partName: string,
 ): Promise<VerifiedPartHit | null> {
   const task = partKey(partName);
-  // Claim the slot so concurrent asks don't double-run the verify.
-  await prisma.vehiclePartLookup.upsert({
-    where: { year_make_model_trim_task: { year, make, model, trim, task } },
-    create: { year, make, model, trim, task, parts: [], source: 'pipeline-freetext', status: 'pending' },
-    update: { updatedAt: new Date() },
-  }).catch(() => {});
-
   const hit = await runAStandardVerify(year, make, model, trim, partName);
   const confirmed = !!hit?.buyUrl;
   // Store in the PipelinePart-shaped format getCachedVerifiedPart reads.
@@ -285,17 +295,14 @@ async function runAndPersist(
   const verificationLog = hit?.buyUrl
     ? [{ partNumber: hit.partNumber || '', searchQuery: partName, found: true, retailers: [hit.buyVendor || ''], sourceUrls: [hit.buyUrl], retried: false }]
     : [];
-  await prisma.vehiclePartLookup.update({
-    where: { year_make_model_trim_task: { year, make, model, trim, task } },
-    data: {
-      parts: parts as unknown as object,
-      verificationLog: verificationLog as unknown as object,
-      source: 'pipeline-freetext',
-      status: confirmed ? 'verified' : 'failed',
-      webSearchConfirmed: confirmed,
-      verifiedAt: new Date(),
-    },
-  }).catch(() => {});
+  await saveLookup({ year, make, model, trim, task }, {
+    parts: parts as unknown as object,
+    verificationLog: verificationLog as unknown as object,
+    source: 'pipeline-freetext',
+    status: confirmed ? 'verified' : 'failed',
+    webSearchConfirmed: confirmed,
+    verifiedAt: new Date(),
+  });
   return hit;
 }
 

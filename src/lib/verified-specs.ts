@@ -111,21 +111,19 @@ Use null for anything you can't confirm. Do NOT guess.`,
     const rows = fmtRows(specs);
     if (!rows.length) return null;
 
-    // Cache it (best-effort).
-    prisma.vehiclePartLookup.upsert({
-      where: { year_make_model_trim_task: { year, make, model, trim, task: SPEC_TASK } },
-      create: {
-        year, make, model, trim, task: SPEC_TASK,
+    // Cache it (best-effort). No upsert — PrismaPg adapter doesn't support it;
+    // sequential findUnique → update/create instead.
+    (async () => {
+      const key = { year, make, model, trim, task: SPEC_TASK };
+      const data = {
         parts: { specs } as unknown as object,
         verificationLog: { sourceUrls } as unknown as object,
         source: 'pipeline-freetext', status: 'verified', webSearchConfirmed: true, verifiedAt: new Date(),
-      },
-      update: {
-        parts: { specs } as unknown as object,
-        verificationLog: { sourceUrls } as unknown as object,
-        status: 'verified', webSearchConfirmed: true, verifiedAt: new Date(),
-      },
-    }).catch(() => {});
+      };
+      const existing = await prisma.vehiclePartLookup.findUnique({ where: { year_make_model_trim_task: key } }).catch(() => null);
+      if (existing) await prisma.vehiclePartLookup.update({ where: { year_make_model_trim_task: key }, data }).catch(() => {});
+      else await prisma.vehiclePartLookup.create({ data: { ...key, ...data } as never }).catch(() => {});
+    })();
 
     return { rows, source: 'web', sourceUrls };
   })().catch(() => null);
