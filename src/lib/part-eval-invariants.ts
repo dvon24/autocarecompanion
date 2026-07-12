@@ -184,8 +184,21 @@ export async function runPartInvariants(): Promise<InvariantResult[]> {
       const sa = canonicalSlug(a), sb = canonicalSlug(b);
       if (sa && sb && sa === sb) bad.push(`"${a}" and "${b}" collide on slug "${sa}"`);
     }
+    // HEAD-NOUN / absorption class: a CONTAINER (or any part whose head noun the
+    // fluid alias doesn't cover) must never collapse into the fluid it holds. The
+    // coolant-reservoir-served-as-coolant bug (2026-07-12). For every such pair,
+    // the container must NOT resolve to the fluid's slug.
+    const noAbsorb: Array<[string, string]> = [
+      ['coolant reservoir', 'coolant'], ['engine coolant reservoir', 'coolant'],
+      ['oil pan', 'engine_oil'], ['washer reservoir', 'engine_oil'],
+      ['engine oil filter', 'engine_oil'], // the classic head-noun case
+    ];
+    for (const [container, fluidSlug] of noAbsorb) {
+      if (canonicalSlug(container) === fluidSlug) bad.push(`"${container}" absorbed into fluid slug "${fluidSlug}" (head-noun rule broke)`);
+    }
     // Free text outside the vocabulary must be null (falls to the fuzzy/supply lane).
     if (canonicalSlug('nitrile gloves') !== null) bad.push('"nitrile gloves" should be null (supply, not a vocab part)');
+    if (canonicalSlug('brake line') !== null) bad.push('"brake line" should be null (head noun "line" — not brake_fluid)');
     const ok = bad.length === 0;
     out.push({ name: 'INV-5 canonical-key no-collision', ok, detail: ok ? undefined : bad.join(' | ') });
   } catch (e) {

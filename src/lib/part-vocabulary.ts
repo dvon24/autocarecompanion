@@ -43,6 +43,7 @@ export const PART_VOCAB: PartDef[] = [
   { slug: 'fuel_filter', display: 'Fuel filter', category: 'filter', aliases: ['fuel filter'] },
   { slug: 'pcv_valve', display: 'PCV valve', category: 'other', aliases: ['pcv valve', 'pcv'] },
   { slug: 'oil_drain_plug', display: 'Oil drain plug', category: 'other', aliases: ['oil drain plug', 'drain plug', 'sump plug'] },
+  { slug: 'oil_pan', display: 'Oil pan', category: 'other', aliases: ['oil pan', 'sump', 'engine oil pan'] },
   // Ignition
   { slug: 'spark_plug', display: 'Spark plugs', category: 'spark_plug', aliases: ['spark plug', 'sparkplug', 'plugs'] },
   { slug: 'ignition_coil', display: 'Ignition coil', category: 'ignition', aliases: ['ignition coil', 'coil pack', 'coil'] },
@@ -57,6 +58,11 @@ export const PART_VOCAB: PartDef[] = [
   { slug: 'brake_fluid', display: 'Brake fluid', category: 'fluid', aliases: ['brake fluid'] },
   // Cooling
   { slug: 'coolant', display: 'Coolant', category: 'fluid', aliases: ['coolant', 'antifreeze', 'engine coolant'] },
+  // The physical tank is a DIFFERENT part from the fluid — distinct slug so
+  // "coolant reservoir" can't collapse to "coolant" (the fluid). The 2-token
+  // aliases outrank the 1-token "coolant" in the subset match.
+  { slug: 'coolant_reservoir', display: 'Coolant reservoir', category: 'other', aliases: ['coolant reservoir', 'engine coolant reservoir', 'engine coolant overflow tank', 'engine coolant tank', 'coolant tank', 'coolant overflow tank', 'overflow tank', 'expansion tank', 'coolant expansion tank', 'coolant bottle', 'surge tank', 'coolant recovery tank'] },
+  { slug: 'washer_fluid_reservoir', display: 'Washer fluid reservoir', category: 'other', aliases: ['washer fluid reservoir', 'washer reservoir', 'washer bottle', 'washer tank'] },
   { slug: 'thermostat', display: 'Thermostat', category: 'other', aliases: ['thermostat'] },
   { slug: 'water_pump', display: 'Water pump', category: 'other', aliases: ['water pump'] },
   { slug: 'radiator', display: 'Radiator', category: 'other', aliases: ['radiator'] },
@@ -114,8 +120,16 @@ export function canonicalizePart(text: string | undefined | null): PartDef | nul
   const asSlug = raw.replace(/[\s-]+/g, '_');
   if (SLUG_SET.has(asSlug)) return PART_VOCAB.find((v) => v.slug === asSlug) || null;
 
-  const inputTokens = new Set(tokens(raw));
-  if (!inputTokens.size) return null;
+  const inputArr = tokens(raw); // ordered, singularized
+  if (!inputArr.length) return null;
+  const inputSet = new Set(inputArr);
+  // The HEAD NOUN (final token) is the part TYPE. An alias that is a token-subset
+  // but omits the head noun is absorbing a BIGGER part into a smaller one
+  // ("coolant reservoir" → "coolant", "oil pan" → "oil", "brake line" → "brake
+  // fluid"). Reject those — the phrase falls to the honest free-text lane instead
+  // of a confident wrong hit. This closes the absorption class the subset match
+  // opened (the oil/air-filter hijack reborn one level up, in the vocab lookup).
+  const head = inputArr[inputArr.length - 1];
 
   let best: PartDef | null = null;
   let bestLen = 0;
@@ -123,8 +137,9 @@ export function canonicalizePart(text: string | undefined | null): PartDef | nul
     for (const a of v.aliases) {
       const at = tokens(a);
       if (!at.length) continue;
-      const subset = at.every((w) => inputTokens.has(w));
-      if (subset && at.length > bestLen) { best = v; bestLen = at.length; }
+      if (!at.every((w) => inputSet.has(w))) continue; // must be a token subset
+      if (!at.includes(head)) continue;                // AND cover the head noun
+      if (at.length > bestLen) { best = v; bestLen = at.length; }
     }
   }
   return best;
