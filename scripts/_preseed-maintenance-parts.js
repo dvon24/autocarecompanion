@@ -82,11 +82,13 @@ async function aStandardVerify(vehicleStr, partName) {
 Vehicle: ${vehicleStr}
 Component: ${partName}
 
-RULES:
+RULES (a wrong-fitment or wrong-spec deep link converts then refunds — correctness is the product):
 - COMPONENT FIDELITY: correct OEM part number for THIS EXACT component. Verify the part TYPE matches. NEVER borrow a sibling part's number.
+- SPEC MATCH: FIRST determine the correct factory specification for this component on THIS exact vehicle (e.g. the exact gear-oil viscosity — 75W-140 vs 75W-85 is NOT interchangeable). The product you link MUST match that spec. A product with a different viscosity/grade/type is WRONG — reject it.
+- AVAILABILITY: the product must be CURRENTLY AVAILABLE for sale. If the listing is DISCONTINUED / superseded / no-longer-available, find the current replacement (superseding PN) or status "drop". Do NOT link a discontinued page.
 - The part number MUST come FROM a real product page you opened via search — NOT memory.
-- DEEP LINK: the DEEPEST url you VERIFIED resolves to the actual PRODUCT page. NEVER a search/category/homepage.
-- If you cannot find this component's own part number AND a real product page, status "drop".
+- DEEP LINK: the DEEPEST url you VERIFIED resolves to the actual, AVAILABLE PRODUCT page. NEVER a search/category/homepage.
+- If you cannot find this component's own part number AND a real, in-stock, correct-spec product page, status "drop".
 - aftermarket: up to 2 equivalents (brand + own part number) by fitment.
 
 Return ONLY JSON: {"status":"verified"|"drop","partNumber":"","oemBrand":"","productUrl":"","aftermarket":[{"brand":"","partNumber":""}],"caveat":""}`;

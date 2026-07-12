@@ -23,6 +23,31 @@ import prisma from './db';
 import type { PipelinePart, WebVerificationLog } from './parts-pipeline';
 import { ebayAffiliate } from './ebay-affiliate';
 import { checkLinkLive } from './vendor-link-validator';
+import { getVehicleSpecs } from './maintenance';
+
+/** The authoritative factory spec string for a part (fluids especially), from
+ *  the spec DB — passed to the verifier so it matches the RIGHT product (e.g.
+ *  75W-140, not a discontinued 75W-85). Null when we have no spec for it. */
+function specForPart(
+  vehicle: { year: number; make: string; model: string; trim: string },
+  partName: string,
+): string | undefined {
+  let specs: Record<string, unknown> | null = null;
+  try { specs = getVehicleSpecs({ year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim }) as unknown as Record<string, unknown>; } catch { return undefined; }
+  if (!specs) return undefined;
+  const n = partName.toLowerCase();
+  const fmt = (v: unknown) => (v && typeof v === 'object' ? JSON.stringify(v) : String(v));
+  let key: string | undefined;
+  if (/differential/.test(n)) key = 'differentials';
+  else if (/brake fluid/.test(n)) key = 'brakeFluid';
+  else if (/coolant/.test(n)) key = 'coolant';
+  else if (/transmission fluid/.test(n)) key = 'transmission';
+  else if (/power steering/.test(n)) key = 'powerSteeringFluid';
+  else if (/engine oil\b|motor oil/.test(n)) key = 'oil';
+  else if (/spark plug/.test(n)) key = 'sparkPlugs';
+  if (!key || !specs[key]) return undefined;
+  return fmt(specs[key]);
+}
 
 export interface VerifiedPartHit {
   name: string;
@@ -186,21 +211,26 @@ const RECENT_MS = 1000 * 60 * 60 * 24 * 30; // don't re-warm the same part withi
  * B's "propose PN from memory then loosely confirm" (the 5013457AA fabrication).
  */
 async function runAStandardVerify(
-  year: number, make: string, model: string, trim: string, partName: string,
+  year: number, make: string, model: string, trim: string, partName: string, specHint?: string,
 ): Promise<VerifiedPartHit | null> {
   if (!process.env.ANTHROPIC_API_KEY) return null;
   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
   const vehicle = `${year} ${make} ${model} ${trim}`.replace(/\s+/g, ' ').trim();
+  const specLine = specHint
+    ? `\nREQUIRED FACTORY SPEC (authoritative — from Au7o's spec DB): ${specHint}\nThe product you link MUST match this exact spec (e.g. the exact viscosity/type). Reject any product with a different spec.`
+    : '';
   const prompt = `You are an OEM parts auditor for au7o. USE WEB SEARCH — never answer from memory. Find the buyable part for ONE component on ONE vehicle, to a strict standard.
 
 Vehicle: ${vehicle}
-Component: ${partName}
+Component: ${partName}${specLine}
 
-RULES (a wrong-fitment deep link converts then refunds — correctness is the product):
+RULES (a wrong-fitment or wrong-spec deep link converts then refunds — correctness is the product):
 - COMPONENT FIDELITY: find the correct OEM part number for THIS EXACT component. Verify the part TYPE matches (a drain plug is not a fluid; a seal is not a plug; a fill plug is not a drain plug). NEVER borrow a sibling/related part's number.
+- SPEC MATCH: FIRST determine the correct factory specification for this component on THIS exact vehicle (e.g. the exact gear-oil viscosity — 75W-140 vs 75W-85 is NOT interchangeable). The product you link MUST match that spec. A product with a different viscosity/grade/type is WRONG — reject it.
+- AVAILABILITY: the product must be CURRENTLY AVAILABLE for sale. If the listing is DISCONTINUED / superseded / no-longer-available, find the current replacement (superseding PN) instead, or status "drop". Do NOT link a discontinued page.
 - The part number MUST come FROM a real product page you actually opened via search — NOT from memory.
-- DEEP LINK: return the DEEPEST url you VERIFIED resolves to the actual PRODUCT page for this exact part. NEVER a search-results url, a category/landing page, or a homepage.
-- If you CANNOT find this component's own part number AND a real product page, return status "drop" with empty fields. Do NOT substitute another part's number or a search link.
+- DEEP LINK: return the DEEPEST url you VERIFIED resolves to the actual, AVAILABLE PRODUCT page for this exact part. NEVER a search-results url, a category/landing page, or a homepage.
+- If you CANNOT find this component's own part number AND a real, in-stock, correct-spec product page, return status "drop" with empty fields. Do NOT substitute a different part's number or a search link.
 - aftermarket: up to 2 equivalents (brand + their OWN part number), found by APPLICATION/fitment — not by converting the OEM number.
 
 Return ONLY JSON, no prose:
@@ -286,7 +316,8 @@ async function runAndPersist(
   year: number, make: string, model: string, trim: string, partName: string,
 ): Promise<VerifiedPartHit | null> {
   const task = partKey(partName);
-  const hit = await runAStandardVerify(year, make, model, trim, partName);
+  const specHint = specForPart({ year, make, model, trim }, partName);
+  const hit = await runAStandardVerify(year, make, model, trim, partName, specHint);
   const confirmed = !!hit?.buyUrl;
   // Store in the PipelinePart-shaped format getCachedVerifiedPart reads.
   const parts = hit
