@@ -27,16 +27,18 @@ export async function GET(request: Request) {
   const failures = results.filter((r) => !r.ok);
 
   // Zero-capture watchdog: the email-lead regression was caught only because
-  // Devon watches the admin screen — give it the same eval treatment. Count
-  // interest captures in the last 24h; zero is an alert-worthy anomaly.
-  let captures24h = -1;
+  // Devon watches the admin screen — give it the same eval treatment. But at a
+  // 1-3/day baseline a single zero-day is statistically routine (a quiet Sunday),
+  // so only ALARM on a 48h drought; a single zero-day is just a ⚠ note in the line.
+  let captures24h = -1, captures48h = -1;
   try {
     captures24h = await prisma.interestEmail.count({ where: { createdAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) } } });
+    captures48h = await prisma.interestEmail.count({ where: { createdAt: { gte: new Date(Date.now() - 48 * 60 * 60 * 1000) } } });
   } catch { /* best-effort */ }
 
   // ALWAYS send a one-line daily status so silence is never ambiguous (Fable):
   // green ✓ when everything's healthy, ✗/⚠ when a check trips.
-  const captureAlarm = captures24h === 0;
+  const captureAlarm = captures48h === 0; // 48h drought = real; single zero-day = routine
   const ok = failures.length === 0 && !captureAlarm;
   const to = process.env.FEEDBACK_NOTIFY_EMAIL;
   if (to) {
@@ -46,7 +48,9 @@ export async function GET(request: Request) {
       : `⚠ au7o daily: ${failures.length ? `eval FAILED (${failures.length})` : ''}${failures.length && captureAlarm ? ' · ' : ''}${captureAlarm ? 'ZERO email captures/24h' : ''}`;
     const body = [
       failures.length ? `Eval FAILURES (a part-resolution regression may have landed):\n${failures.map((f) => `• ${f.name}: ${f.detail || 'failed'}`).join('\n')}` : `Evals: all ${results.length} invariants pass ✓`,
-      captureAlarm ? `\n⚠ ZERO known-issues email captures in the last 24h — the lead form may be broken or buried.` : `\nLeads: ${capLine}.`,
+      captureAlarm
+        ? `\n⚠ ZERO known-issues email captures in the last 48h — the lead form is likely broken or buried.`
+        : `\nLeads: ${capLine}.${captures24h === 0 ? ' ⚠ (0 today — routine on a quiet day, watch tomorrow)' : ''}`,
     ].join('\n');
     try {
       await sendEmail({ to, subject, text: body, html: `<pre style="font-family:system-ui">${body}</pre>` });

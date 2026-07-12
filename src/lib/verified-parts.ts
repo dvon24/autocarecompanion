@@ -238,7 +238,7 @@ async function runAStandardVerify(
   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
   const vehicle = `${year} ${make} ${model} ${trim}`.replace(/\s+/g, ' ').trim();
   const specLine = specHint
-    ? `\nDOCUMENTED FACTORY SPEC (from Au7o's spec DB): ${specHint}\nThe product should match a legitimate factory spec for THIS vehicle. IMPORTANT: some vehicles have a genuinely axle/build-dependent spec where official sources differ (e.g. a rear diff documented as BOTH 75W-85 and 75W-140 depending on axle code). In that case do NOT reject a legitimately-documented alternative — pick a product matching a real factory spec and set "caveat" to flag the ambiguity ("verify by VIN/axle — sources list X and Y"). Only reject a CLEARLY wrong spec (e.g. engine oil for a differential, or a viscosity no source supports).`
+    ? `\nDOCUMENTED FACTORY SPEC (from Au7o's spec DB): ${specHint}\nSPEC ACCEPTANCE (strict — ambiguity must be EVIDENCED in your search, never asserted):\n- Accept the product's spec ONLY if that exact spec is documented for THIS vehicle in a source you actually found during this search.\n- If TWO specs are both documented in your sources for this vehicle (genuine axle/build split, e.g. 75W-85 vs 75W-140), surface a product matching one and set "caveat" to name both.\n- If the product's spec matches NEITHER documented option, REJECT — do not accept a near-miss by claiming ambiguity you didn't find evidence for.`
     : '';
   const prompt = `You are an OEM parts auditor for au7o. USE WEB SEARCH — never answer from memory. Find the buyable part for ONE component on ONE vehicle, to a strict standard.
 
