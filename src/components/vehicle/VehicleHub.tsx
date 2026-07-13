@@ -3268,11 +3268,11 @@ function VehicleSwitcher({
               </div>
             </>
           ) : (
-            <Link href="/garage" className="vs-item vs-item-action" onClick={() => setOpen(false)} role="menuitem">
+            <Link href="/garage?add=1" className="vs-item vs-item-action" onClick={() => setOpen(false)} role="menuitem">
               + Add a vehicle
             </Link>
           )}
-          <Link href="/garage" className="vs-item vs-item-action" onClick={() => setOpen(false)} role="menuitem">
+          <Link href="/garage?manage=1" className="vs-item vs-item-action" onClick={() => setOpen(false)} role="menuitem">
             Manage garage →
           </Link>
         </div>

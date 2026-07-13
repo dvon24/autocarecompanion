@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { PageLayout, ContentCard } from '@/components/ui/PageLayout';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
@@ -28,7 +29,9 @@ interface NewVehiclePrompt {
  */
 export default function GarageClient() {
   const { vehicles, loading, isDemo, deleteVehicle, addVehicle, refreshVehicles, updateVehicle } = useGarage();
-  const [showAddModal, setShowAddModal] = useState(false);
+  // ?add=1 (from the hub's "Add a vehicle") opens the add flow straight away.
+  const searchParams = useSearchParams();
+  const [showAddModal, setShowAddModal] = useState(() => searchParams.get('add') === '1');
   const [newVehiclePrompt, setNewVehiclePrompt] = useState<NewVehiclePrompt | null>(null);
 
   const handleVehicleAdded = async (vehicleData: Omit<Vehicle, 'id' | 'maintenanceRecords' | 'modifications' | 'mileageHistory'>) => {

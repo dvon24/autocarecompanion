@@ -22,14 +22,21 @@ import GarageClient from './GarageClient';
 
 export const dynamic = 'force-dynamic';
 
-export default async function GaragePage() {
+export default async function GaragePage({ searchParams }: { searchParams: Promise<{ add?: string; manage?: string }> }) {
+  const sp = await searchParams;
+  // The bare-/garage → hub redirect is for the "open my car" case. But "Add a
+  // vehicle" and "Manage garage" MUST reach the garage UI even when you already
+  // have a car — otherwise they bounce straight back to the hub (looks like a
+  // refresh). An explicit ?add / ?manage intent skips the redirect.
+  const wantsGarageUI = sp.add === '1' || sp.manage === '1';
+
   const session = await auth();
 
   // Signed-in branch: look up the user's vehicles and redirect to the
   // hub for their primary (or first) one. We do this server-side so
   // the user never sees the empty garage-page shell flash before the
   // redirect fires.
-  if (session?.user?.id) {
+  if (session?.user?.id && !wantsGarageUI) {
     const primary = await prisma.vehicle.findFirst({
       where: { userId: session.user.id },
       orderBy: [
