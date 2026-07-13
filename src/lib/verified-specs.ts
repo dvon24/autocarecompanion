@@ -3,7 +3,7 @@
  *
  * The spec DB (vehicle-specs.json via getVehicleSpecs) is authoritative and
  * fast, but it doesn't cover every vehicle. When a vehicle is MISSING from the
- * DB, the hub chat had nothing to ground on and gpt-5.5 would guess (and vary)
+ * DB, the hub chat had nothing to ground on and gpt-5.6-sol would guess (and vary)
  * the fluid spec. This runs one Anthropic web_search to pull the factory fluid
  * specs from authoritative sources, caches them in VehiclePartLookup under a
  * `spec:fluids` key, and hands the hub chat a grounded block to inject.

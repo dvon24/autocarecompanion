@@ -77,7 +77,7 @@ async function callOpenAI(
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'gpt-5.4',
+        model: 'gpt-5.6-sol',
         messages,
         max_completion_tokens: 500,
         temperature: 0.3,
@@ -174,7 +174,7 @@ export async function POST(request: NextRequest) {
       responseContent = content;
 
       // Story 7.1: Log API cost
-      logApiCost('inline_help', usage.promptTokens, usage.completionTokens, 'gpt-5.4');
+      logApiCost('inline_help', usage.promptTokens, usage.completionTokens, 'gpt-5.6-sol');
     } else {
       console.log('[Guide Help API] No OPENAI_API_KEY configured, using mock response');
       responseContent = generateMockResponse(question, context);

@@ -65,3 +65,27 @@ export async function GET(
 
   return NextResponse.json({ sessionId: row.id, messages });
 }
+
+/**
+ * DELETE /api/hub-chat/session/[id]
+ *
+ * Delete a ChatSession the current user owns (the "delete previous chat"
+ * action in the hub's Recent list). Scoped by userId via deleteMany so a
+ * user can only ever delete their own thread; a non-owned/missing id is a
+ * no-op that still returns 200 (idempotent, doesn't leak existence).
+ */
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
+  }
+  const { id } = await params;
+  if (!id || typeof id !== 'string') {
+    return NextResponse.json({ error: 'bad_id' }, { status: 400 });
+  }
+  const result = await prisma.chatSession.deleteMany({ where: { id, userId: session.user.id } });
+  return NextResponse.json({ ok: true, deleted: result.count });
+}

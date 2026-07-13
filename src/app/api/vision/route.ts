@@ -85,16 +85,16 @@ export const runtime = 'nodejs';
 const OPENAI_KEY = process.env.OPENAI_API_KEY;
 // Switched from /v1/chat/completions to /v1/responses per OpenAI's
 // recommended pattern for vision + structured JSON. Responses API
-// supports `reasoning.effort` (the actual lever for fast gpt-5.5),
+// supports `reasoning.effort` (the actual lever for fast gpt-5.6-sol),
 // `text.format: json_object` (guaranteed JSON output), and a cleaner
 // input_image content shape.
 const OPENAI_URL = 'https://api.openai.com/v1/responses';
-// Back to gpt-5.5 — the prior switch to gpt-5.2 was a defensive
-// fallback because gpt-5.5 at default reasoning was hitting our 55s
+// Back to gpt-5.6-sol — the prior switch to gpt-5.6-sol was a defensive
+// fallback because gpt-5.6-sol at default reasoning was hitting our 55s
 // timeout. With reasoning.effort: 'low' on the Responses API the
 // model returns in ~3-6s while keeping 5.5's superior vision
 // accuracy. Override via OPENAI_VISION_MODEL env var.
-const MODEL = process.env.OPENAI_VISION_MODEL || 'gpt-5.5';
+const MODEL = process.env.OPENAI_VISION_MODEL || 'gpt-5.6-sol';
 const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
 const SUBSCRIBER_MONTHLY_CAP = 10_000; // effective unlimited; throttles only runaway abuse
 
@@ -337,7 +337,7 @@ export async function POST(request: NextRequest) {
   //
   // OpenAI whisper-1 accepts the audio file directly (webm/mp4/m4a/
   // mp3/wav/ogg). Cost is ~$0.006/min — basically free at 30s clips.
-  // Result transcript gets injected into the gpt-5.5 prompt as user
+  // Result transcript gets injected into the gpt-5.6-sol prompt as user
   // context so the model can correlate spoken complaint with visual
   // symptoms ("clicks when I brake" + frame showing rotor groove =
   // higher diagnostic confidence).
@@ -659,7 +659,7 @@ ${respondLang !== 'English' ? `LANGUAGE — IMPORTANT: The user speaks ${respond
   // Responses API request shape. Key differences from Chat Completions:
   //   - `input` instead of `messages`
   //   - content uses `input_text` / `input_image` types
-  //   - `reasoning.effort: 'low'` is what makes gpt-5.5 return fast
+  //   - `reasoning.effort: 'low'` is what makes gpt-5.6-sol return fast
   //     (~3-6s) instead of burning 10-15s on default reasoning
   //   - `text.format.type: 'json_object'` guarantees valid JSON output
   //     so we don't need the extractJson fallback (kept anyway as a

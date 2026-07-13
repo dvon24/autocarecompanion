@@ -6,7 +6,7 @@
  *     few candidates in that slot (Laplacian-variance best-frame selection
  *     drops motion-blurred frames that make the model hallucinate) → input_image
  *   - The audio track extracted and re-encoded → Whisper transcribes
- *     server-side → transcript injected into the gpt-5.5 prompt
+ *     server-side → transcript injected into the gpt-5.6-sol prompt
  *
  * Why client-side: video files from iPhone are routinely 50-200MB.
  * Sending them to the server hits Vercel's 4.5MB body cap before the

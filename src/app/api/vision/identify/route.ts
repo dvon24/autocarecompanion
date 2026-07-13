@@ -29,7 +29,7 @@ export const runtime = 'nodejs';
  *      cached verified parts + specs) — the catalog that grounds the
  *      answer so the model MATCHES a real part instead of inventing a
  *      (wrong-era) part number.
- *   2. Runs one gpt-5.5 vision call on the CROP alone (region-constrained
+ *   2. Runs one gpt-5.6-sol vision call on the CROP alone (region-constrained
  *      = far more accurate + consistent than reasoning over the whole
  *      cluttered frame).
  *   3. Resolves vendor buy-links via the deterministic vendor-resolver.
@@ -55,13 +55,13 @@ export const runtime = 'nodejs';
  */
 
 // Identify model is provider-switchable via IDENTIFY_MODEL:
-//   'gpt-5.5' (default, OpenAI)  |  'claude-fable-5' / any claude-* (Anthropic)
+//   'gpt-5.6-sol' (default, OpenAI)  |  'claude-fable-5' / any claude-* (Anthropic)
 // Flip the Vercel env var to A/B without a code change. A model string
 // containing 'claude' or 'fable' routes to Anthropic; anything else → OpenAI.
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
 const OPENAI_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_URL = 'https://api.openai.com/v1/responses';
-const IDENTIFY_MODEL = process.env.IDENTIFY_MODEL || 'gpt-5.5';
+const IDENTIFY_MODEL = process.env.IDENTIFY_MODEL || 'gpt-5.6-sol';
 const USE_ANTHROPIC = /claude|fable/i.test(IDENTIFY_MODEL);
 // Web-search grounding: Fable 5 may search the web to VERIFY a part / part
 // number when it can't determine it confidently from the image + catalog.
@@ -356,7 +356,7 @@ Return ONLY a JSON object:
       }, { timeout: 40_000 });
       content = msg.content.filter((b): b is Anthropic.TextBlock => b.type === 'text').map((b) => b.text).join('\n');
     } else {
-      // OpenAI Responses API (gpt-5.5). reasoning low + json_object. Web search
+      // OpenAI Responses API (gpt-5.6-sol). reasoning low + json_object. Web search
       // via the Responses `web_search` tool when enabled; if that param is
       // rejected we retry WITHOUT it so identify never hard-fails on a tool
       // mismatch. Google Vision grounding is already folded into the system.

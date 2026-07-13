@@ -315,7 +315,7 @@ async function callOpenAI(
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'gpt-5.4',
+        model: 'gpt-5.6-sol',
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: 'Generate the repair guide now.' },
@@ -659,7 +659,7 @@ export async function POST(request: NextRequest) {
       const { content, usage } = await callOpenAI(systemPrompt, apiKey);
 
       // Story 7.1: Log API cost
-      logApiCost('guide_generation', usage.promptTokens, usage.completionTokens, 'gpt-5.4');
+      logApiCost('guide_generation', usage.promptTokens, usage.completionTokens, 'gpt-5.6-sol');
 
       // Estimate cost for cache stats
       costUsd = ((usage.promptTokens * 10) + (usage.completionTokens * 30)) / 1_000_000;

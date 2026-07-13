@@ -3661,7 +3661,7 @@ function relativeWhen(iso: string): string {
 /**
  * Animated "thinking" indicator shown while the assistant message is
  * still empty (the model is reasoning before the first token streams).
- * gpt-5.5 keeps full reasoning for diagnostic accuracy, so first-token
+ * gpt-5.6-sol keeps full reasoning for diagnostic accuracy, so first-token
  * latency can be 10-40s — without this the bubble was blank and the
  * chat looked frozen / "no response". The copy escalates so a long
  * reason-through reads as "working", not "stuck". Self-contained scoped
