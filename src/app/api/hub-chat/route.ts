@@ -113,7 +113,7 @@ export async function GET() {
 // implicitly — just no longer surfaced in code.
 const OPENAI_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
-const MODEL = 'gpt-5.5';
+const MODEL = 'gpt-5.6-sol';
 const MAX_INPUT_TOKENS = 2000;       // hard cap on user input per turn
 const MAX_HISTORY_MESSAGES = 20;     // last N turns sent to the model
 // 4000, not 1500: on gpt-5.x chat completions, REASONING tokens count

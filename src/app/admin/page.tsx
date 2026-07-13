@@ -1233,20 +1233,65 @@ export default function AdminPage() {
                     <tr>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Time</th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Part</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Brand</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Known issue</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Link</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
                     {affiliateStats.recentClicks.map((click: any, index: number) => (
                       <tr key={index} className="hover:bg-gray-50">
-                        <td className="px-6 py-3 text-sm text-gray-500">
+                        <td className="px-6 py-3 text-sm text-gray-500 whitespace-nowrap">
                           {new Date(click.timestamp).toLocaleString()}
                         </td>
                         <td className="px-6 py-3 text-sm text-gray-900">
                           {click.partName}
+                          {click.partBrand && <span className="text-gray-400"> · {click.partBrand}</span>}
                         </td>
-                        <td className="px-6 py-3 text-sm text-gray-600">
-                          {click.partBrand}
+                        <td className="px-6 py-3 text-sm">
+                          {click.issueId ? (
+                            <a href={`/known-issues/${click.issueId}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline max-w-[220px] inline-block truncate align-bottom">{click.issueId}</a>
+                          ) : <span className="text-gray-400">—</span>}
+                        </td>
+                        <td className="px-6 py-3 text-sm">
+                          {click.deepLinked ? (
+                            <span className="inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">✓ Deep link</span>
+                          ) : (
+                            <span className="inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">Search — fix</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* FIX LIST — known issues whose clicks landed on SEARCH links (not
+                a product page). These are the pages to upgrade to a verified /dp/
+                deep link (and whose clickers could be notified once fixed). */}
+            {affiliateStats?.needsDeepLink?.length > 0 && (
+              <div className="bg-white rounded-xl border border-amber-200 overflow-hidden">
+                <div className="px-6 py-4 border-b border-amber-200 bg-amber-50">
+                  <h2 className="text-lg font-semibold text-amber-900">🔧 Needs deep-link fix ({affiliateStats.searchLinkedClicks} of {affiliateStats.totalClicks} clicks hit search pages)</h2>
+                  <p className="text-sm text-amber-700 mt-1">These issue pages got clicks but sent people to an Amazon search, not the product. Upgrade them to a verified /dp/ link — biggest conversion lever.</p>
+                </div>
+                <table className="w-full">
+                  <thead className="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Known issue</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Last part clicked</th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Search clicks</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {affiliateStats.needsDeepLink.map((n: { issueId: string; searchClicks: number; lastPart: string }, i: number) => (
+                      <tr key={i} className="hover:bg-gray-50">
+                        <td className="px-6 py-3 text-sm">
+                          <a href={`/known-issues/${n.issueId}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{n.issueId}</a>
+                        </td>
+                        <td className="px-6 py-3 text-sm text-gray-700">{n.lastPart || '—'}</td>
+                        <td className="px-6 py-3 text-sm text-right">
+                          <span className="inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">{n.searchClicks}</span>
                         </td>
                       </tr>
                     ))}

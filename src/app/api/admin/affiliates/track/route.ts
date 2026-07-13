@@ -119,18 +119,45 @@ export async function GET() {
     const byBrand = Object.entries(brandCounts).map(([brand, clicks]) => ({ brand, clicks })).sort((a, b) => b.clicks - a.clicks);
     const byVendor = Object.entries(vendorCounts).map(([vendor, clicks]) => ({ vendor, clicks })).sort((a, b) => b.clicks - a.clicks);
 
+    // Did the click land on an actual PRODUCT page (deep link) or a SEARCH page?
+    // This is the conversion signal: search-link clicks are the ones to fix.
+    const isDeepLink = (link: string | null): boolean => {
+      if (!link) return false;
+      if (/[?&](k|_nkw|q|searchTerm|text)=/i.test(link) || /\/s\?|\/sch\/|\/search/i.test(link)) return false;
+      return /\/(dp|gp\/product|itm|ipd|moreinfo|product|products|oem-parts)\//i.test(link) || /partnum=/i.test(link);
+    };
+
+    // FIX LIST: known issues that got clicks on a SEARCH link (not deep) — these
+    // are the pages to upgrade to a verified /dp/ deep link (and whose interested
+    // clickers could be notified once fixed). Grouped by issue, most-clicked first.
+    const needsMap: Record<string, { issueId: string; searchClicks: number; lastPart: string; lastClicked: string }> = {};
+    for (const c of clicks) {
+      if (isDeepLink(c.link)) continue;
+      const id = c.knownIssueId || 'unknown';
+      if (!needsMap[id]) needsMap[id] = { issueId: id, searchClicks: 0, lastPart: c.partName || '', lastClicked: c.clickedAt.toISOString() };
+      needsMap[id].searchClicks++;
+      const ts = c.clickedAt.toISOString();
+      if (ts > needsMap[id].lastClicked) { needsMap[id].lastClicked = ts; needsMap[id].lastPart = c.partName || needsMap[id].lastPart; }
+    }
+    const needsDeepLink = Object.values(needsMap).sort((a, b) => b.searchClicks - a.searchClicks).slice(0, 30);
+    const deepCount = clicks.filter((c) => isDeepLink(c.link)).length;
+
     return NextResponse.json({
       totalClicks: clicks.length,
       uniqueParts: Object.keys(partStats).length,
+      deepLinkedClicks: deepCount,
+      searchLinkedClicks: clicks.length - deepCount,
       topParts,
       byBrand,
       byVendor,
-      recentClicks: clicks.slice(0, 10).map(c => ({
+      needsDeepLink,
+      recentClicks: clicks.slice(0, 25).map(c => ({
         timestamp: c.clickedAt.toISOString(),
         issueId: c.knownIssueId,
         partBrand: c.partBrand,
         partName: c.partName,
         link: c.link,
+        deepLinked: isDeepLink(c.link),
       })),
     });
   } catch (error) {
