@@ -1129,6 +1129,51 @@ export default function AdminPage() {
               </div>
             </div>
 
+            {/* By Brand + By Vendor — partner-reporting numbers ("we sent N clicks
+                to DiabloSport / Mopar", and to which store). */}
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div className="px-6 py-3 border-b border-gray-200">
+                  <h2 className="text-base font-semibold text-gray-900">Clicks by Brand</h2>
+                  <p className="text-xs text-gray-500">What you&apos;re directing people to (show partners)</p>
+                </div>
+                {affiliateStats?.byBrand?.length ? (
+                  <table className="w-full">
+                    <tbody className="divide-y divide-gray-100">
+                      {affiliateStats.byBrand.map((b: { brand: string; clicks: number }, i: number) => (
+                        <tr key={i} className="hover:bg-gray-50">
+                          <td className="px-6 py-2.5 text-sm text-gray-900">{b.brand}</td>
+                          <td className="px-6 py-2.5 text-sm text-right">
+                            <span className="inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-700">{b.clicks}</span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : <div className="p-6 text-center text-gray-400 text-sm">No clicks yet</div>}
+              </div>
+              <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div className="px-6 py-3 border-b border-gray-200">
+                  <h2 className="text-base font-semibold text-gray-900">Clicks by Destination</h2>
+                  <p className="text-xs text-gray-500">Which store the click went to</p>
+                </div>
+                {affiliateStats?.byVendor?.length ? (
+                  <table className="w-full">
+                    <tbody className="divide-y divide-gray-100">
+                      {affiliateStats.byVendor.map((v: { vendor: string; clicks: number }, i: number) => (
+                        <tr key={i} className="hover:bg-gray-50">
+                          <td className="px-6 py-2.5 text-sm text-gray-900">{v.vendor}</td>
+                          <td className="px-6 py-2.5 text-sm text-right">
+                            <span className="inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">{v.clicks}</span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : <div className="p-6 text-center text-gray-400 text-sm">No clicks yet</div>}
+              </div>
+            </div>
+
             {/* Top Parts Table */}
             <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
               <div className="px-6 py-4 border-b border-gray-200">

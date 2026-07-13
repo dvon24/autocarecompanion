@@ -92,10 +92,39 @@ export async function GET() {
       .sort((a, b) => b.clicks - a.clicks)
       .slice(0, 20);
 
+    // By BRAND — "how many clicks did we send toward DiabloSport / Mopar / etc."
+    // (partner-reporting numbers Devon can show brands).
+    const brandCounts: Record<string, number> = {};
+    // By VENDOR/DESTINATION — parsed from the link host (Amazon, eBay, RockAuto…).
+    const vendorCounts: Record<string, number> = {};
+    const vendorOf = (link: string | null): string => {
+      if (!link) return 'unknown';
+      try {
+        const h = new URL(link).hostname.replace(/^www\./, '');
+        const map: Record<string, string> = {
+          'amazon.com': 'Amazon', 'ebay.com': 'eBay', 'rockauto.com': 'RockAuto',
+          'store.mopar.com': 'Mopar eStore', 'moparpartsgiant.com': 'MoparPartsGiant',
+          'summitracing.com': 'Summit Racing', 'americanmuscle.com': 'American Muscle',
+          'autozone.com': 'AutoZone', 'oreillyauto.com': "O'Reilly", 'walmart.com': 'Walmart',
+        };
+        return map[h] || h;
+      } catch { return 'unknown'; }
+    };
+    for (const c of clicks) {
+      const brand = (c.partBrand || '').trim() || 'Unbranded / generic';
+      brandCounts[brand] = (brandCounts[brand] || 0) + 1;
+      const vendor = vendorOf(c.link);
+      vendorCounts[vendor] = (vendorCounts[vendor] || 0) + 1;
+    }
+    const byBrand = Object.entries(brandCounts).map(([brand, clicks]) => ({ brand, clicks })).sort((a, b) => b.clicks - a.clicks);
+    const byVendor = Object.entries(vendorCounts).map(([vendor, clicks]) => ({ vendor, clicks })).sort((a, b) => b.clicks - a.clicks);
+
     return NextResponse.json({
       totalClicks: clicks.length,
       uniqueParts: Object.keys(partStats).length,
       topParts,
+      byBrand,
+      byVendor,
       recentClicks: clicks.slice(0, 10).map(c => ({
         timestamp: c.clickedAt.toISOString(),
         issueId: c.knownIssueId,
