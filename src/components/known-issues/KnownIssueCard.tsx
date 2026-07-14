@@ -30,6 +30,29 @@ function cleanFixNote(note?: string | null): string | null {
   return chosen.length > 240 ? chosen.slice(0, 237) + '…' : chosen;
 }
 
+/** Format a date-only ISO value without allowing the viewer's timezone to
+ * shift it backward a day. Invalid or normalized dates stay private. */
+function formatContentUpdatedOn(value?: string | null): string | null {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || '');
+  if (!match) return null;
+  const [, yearText, monthText, dayText] = match;
+  const year = Number(yearText);
+  const month = Number(monthText);
+  const day = Number(dayText);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  if (
+    date.getUTCFullYear() !== year ||
+    date.getUTCMonth() !== month - 1 ||
+    date.getUTCDate() !== day
+  ) return null;
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(date);
+}
+
 interface RelatedIssueVehicle {
   slug: string;
   make: string;
@@ -136,6 +159,8 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   // Determine if this is a highly community-reported issue (50+ reports)
   const isCommunityReported = issue.reportCount >= 50;
   const hasPartRecommendations = issue.communityRecommendations?.some(rec => rec.type === 'part');
+  const contentUpdateDate = formatContentUpdatedOn(issue.contentUpdatedOn);
+  const contentUpdateSummary = issue.contentUpdateSummary?.trim();
 
   const handleToggle = () => {
     triggerHaptic('light');
@@ -338,6 +363,27 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               </span>
             )}
           </div>
+          {contentUpdateDate && contentUpdateSummary && (
+            <div className="mt-1.5 flex items-start gap-1 text-xs leading-4">
+              <svg
+                aria-hidden="true"
+                className="w-3.5 h-3.5 mt-px flex-shrink-0 text-emerald-700"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <time
+                dateTime={issue.contentUpdatedOn}
+                className="font-semibold text-emerald-700 whitespace-nowrap"
+              >
+                Updated {contentUpdateDate}
+              </time>
+              <span aria-hidden="true" className="text-[#94A3B8]">·</span>
+              <span className="min-w-0 text-[#64748B]">{contentUpdateSummary}</span>
+            </div>
+          )}
         </div>
         <svg
           className={`w-5 h-5 text-[#94A3B8] transition-transform ${expanded ? 'rotate-180' : ''}`}

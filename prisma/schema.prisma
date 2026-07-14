@@ -487,6 +487,11 @@ model KnownIssue {
   status                   String    @default("published")
   lastReportedByOwners     String    @default("")
   reviewedOn               String    @default("")
+  // Public, human-authored notice for meaningful content corrections.
+  // Kept separate from updatedAt/reviewedOn so routine writes never imply
+  // that the published repair guidance changed.
+  contentUpdatedOn         String    @default("")
+  contentUpdateSummary     String    @default("")
 
   // Pre-computed semantic-similarity cross-links (other KnownIssue.id values)
   // populated by scripts/compute-issue-embeddings.js. Embedding lookup is

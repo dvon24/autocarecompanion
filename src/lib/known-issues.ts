@@ -59,6 +59,8 @@ function dbRowToKnownIssue(row: any): KnownIssue {
     humanApproved: row.humanApproved,
     lastReportedByOwners: row.lastReportedByOwners,
     reviewedOn: row.reviewedOn,
+    contentUpdatedOn: row.contentUpdatedOn || '',
+    contentUpdateSummary: row.contentUpdateSummary || '',
     reportCount: row.reportCount,
     source: row.source || 'ai-researched',
     status: row.status,

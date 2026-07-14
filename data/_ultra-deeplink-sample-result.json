@@ -1,0 +1,687 @@
+{
+  "schemaVersion": 1,
+  "batchId": "known-issues-ultra-deeplink-sample-2026-07-14",
+  "status": "applied-and-verified",
+  "completedAt": "2026-07-14T18:13:25.793Z",
+  "counts": {
+    "state": "applied",
+    "issueCount": 8,
+    "notices": 8,
+    "partRecommendationsRemoved": 18,
+    "existingFixPartTransitions": 3,
+    "searchBuyLinksRemoved": 9,
+    "directProductLinksAdded": 4
+  },
+  "timing": {
+    "auditStartedAt": "2026-07-14T15:43:33.6227170Z",
+    "completedAt": "2026-07-14T18:13:25.793Z",
+    "totalWallSeconds": 8992.171,
+    "initialEditWaitSeconds": 132.644,
+    "approvalWaitUpperBoundSeconds": 2878.182,
+    "approvalWaitPrecision": "upper-bound; clock captured after implementation began",
+    "knownToolStallSeconds": 3598.4,
+    "preApprovalActiveEstimateSeconds": 1370.734,
+    "postApprovalClockCaptureWallSeconds": 2450.611,
+    "note": "The exact approval event time was not instrumented. Active time is therefore reported as a pre-approval estimate plus a post-capture wall-time segment, not a false exact total."
+  },
+  "issues": [
+    {
+      "id": "audi-etron-battery-overheat-2019",
+      "decision": "Remove six unrelated consumer products. Preserve the three safety/recall tips; the published repair is dealer software monitoring and free module replacement under recall 93U9.",
+      "evidence": [
+        {
+          "label": "Published Recall 93U9 / NHTSA 23V-867 repair guidance"
+        }
+      ],
+      "before": {
+        "description": "The 2019-2022 Audi e-tron Quattro and e-tron Sportback Quattro are subject to NHTSA Recall 23V-867 (Audi code 93U9) affecting approximately 26,866 vehicles. Battery modules manufactured by LG Energy Solution can develop a self-discharge condition leading to thermal overload, smoke, or fire. Audi estimates a 3% defect rate. Interim remedy requires dealer battery inspections every 4 months and charging limited to 80% maximum until module replacement is completed. Class action lawsuit filed in 2024 alleging Audi knew of the defect.",
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Even after the recall software update, monitor battery health closely. Some owners report the software detects anomalies and limits charging further as a precaution. This is the system working as intended.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Check recall status at recalls.audi.com or call 1-800-253-2834 with your VIN. Some owners waited 6+ months for module replacement parts - schedule early.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Limit DC fast charging frequency even after recall completion. Frequent DCFC stresses battery modules more than Level 2 AC charging. Use 80% charge limit as standard practice.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "clickCount": 1,
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Audi%20e-tron&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Audi%20e-tron&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "clickCount": 1,
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Audi%20e-tron&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Audi%20e-tron&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "clickCount": 2,
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Audi%20e-tron&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+            "partName": "Portable Level 2 EV Charger",
+            "partBrand": "Lectron",
+            "clickCount": 1,
+            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Audi%20e-tron&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "description": "The 2019-2022 Audi e-tron Quattro and e-tron Sportback Quattro are subject to NHTSA Recall 23V-867 (Audi code 93U9) affecting approximately 26,866 vehicles. Battery modules manufactured by LG Energy Solution can develop a self-discharge condition leading to thermal overload, smoke, or fire. Audi estimates a 3% defect rate. Interim remedy requires dealer battery inspections every 4 months and charging limited to 80% maximum until module replacement is completed. Class action lawsuit filed in 2024 alleging Audi knew of the defect.",
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Even after the recall software update, monitor battery health closely. Some owners report the software detects anomalies and limits charging further as a precaution. This is the system working as intended.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Check recall status at recalls.audi.com or call 1-800-253-2834 with your VIN. Some owners waited 6+ months for module replacement parts - schedule early.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Limit DC fast charging frequency even after recall completion. Frequent DCFC stresses battery modules more than Level 2 AC charging. Use 80% charge limit as standard practice.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Removed products; recall 93U9 is the repair path."
+      }
+    },
+    {
+      "id": "audi-q5-timing-chain-2009",
+      "decision": "Remove the chain-only recommendation mislabeled as a complete kit and the tensioner-only fix part. Hold commerce until engine/build scope supports a complete repair kit.",
+      "evidence": [
+        {
+          "label": "Published solution requires chain, tensioner, and guides as a complete kit"
+        }
+      ],
+      "before": {
+        "description": "The Q5 2.0T uses the EA888 engine with the well-documented timing chain tensioner weakness. The 8R Q5 (2009-2017) is particularly affected as the heavier SUV puts more load on the engine. The tensioner loses pressure overnight, allowing chain slack on cold starts that progressively worsens until the chain jumps timing.",
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "FCP Euro complete timing chain kit with lifetime warranty is the best value. Includes latest revision tensioner, chain, all guides, and hardware. About $400-$600 for parts.",
+            "upvotes": 0,
+            "partName": "Complete Timing Chain Kit",
+            "partBrand": "Genuine VW/Audi",
+            "clickCount": 3,
+            "partNumber": "06K109158AD",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Genuine%20VW%2FAudi%2006K109158AD&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "The Q5 timing chain job costs more than A4/A5 due to AWD drivetrain and engine bay access. Budget $2,500-$3,500 at an independent specialist. Dealer quotes $4,000-$6,000.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=06K109467K&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=06K109467K",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=06K109467K",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "timing chain tensioner",
+            "priceHigh": null,
+            "oemPartNumber": "06K109467K",
+            "aftermarketXref": []
+          }
+        ],
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "description": "The Q5 2.0T uses the EA888 engine with the well-documented timing chain tensioner weakness. The 8R Q5 (2009-2017) is particularly affected as the heavier SUV puts more load on the engine. The tensioner loses pressure overnight, allowing chain slack on cold starts that progressively worsens until the chain jumps timing.",
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "The Q5 timing chain job costs more than A4/A5 due to AWD drivetrain and engine bay access. Budget $2,500-$3,500 at an independent specialist. Dealer quotes $4,000-$6,000.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Removed an incomplete timing-chain kit."
+      }
+    },
+    {
+      "id": "audi-s8-turbo-oil-strainer-2013",
+      "decision": "Remove two unrelated products and all three search buy-links. Retain the exact strainer identity only as recall-first, non-commerce metadata.",
+      "evidence": [
+        {
+          "label": "Published Recall 21H7 / NHTSA 22V178 repair guidance"
+        }
+      ],
+      "before": {
+        "description": "The Audi S8 (2013-2017) with the 4.0T twin-turbo V8 shares the same critical turbocharger oil strainer design flaw as the S6, S7, and RS7. The oil strainer in the turbo oil supply line accumulates carbon and sludge deposits, choking oil flow to turbocharger bearings. Bearing failure causes the turbo shaft to break or turbine wheel to contact the housing, resulting in sudden engine stall with no restart capability. NHTSA documented 58 complaints across all 4.0T models and issued Recall 22V178. The S8's higher power output (520-605 HP) generates more heat and oil stress than the S6/S7, potentially accelerating strainer clogging. Audi extended turbocharger warranty to 10 years/120,000 miles. Consumer Reports and Autoblog covered this recall extensively. Vehicles built after March 30, 2017 have the updated strainer.",
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check recall status immediately at NHTSA.gov/recalls. This is a SAFETY recall—the engine can stall at highway speed. The repair is free regardless of mileage or ownership status.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "If you experience sudden power loss or the engine stalls while driving, shift to neutral, turn on hazards, and coast to a safe location. Do NOT attempt to restart repeatedly—this can cause additional turbo damage.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Even after the recall repair, maintain strict 5,000-mile oil change intervals with premium synthetic. The 4.0T's hot-vee design runs very hot and breaks down oil faster than typical engines.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Turbo gasket kit prevents boost leaks and oil seepage at the turbo flanges",
+            "partName": "Turbocharger Gasket Kit",
+            "partBrand": "Dorman",
+            "clickCount": 1,
+            "affiliateUrl": "https://www.amazon.com/s?k=Audi%20S8%20Dorman%20Turbocharger%20Gasket%20Kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Boost gauge helps monitor turbo performance and catch problems early",
+            "partName": "Mechanical Boost Gauge",
+            "partBrand": "AutoMeter",
+            "clickCount": 2,
+            "affiliateUrl": "https://www.amazon.com/s?k=Audi%20S8%20AutoMeter%20Mechanical%20Boost%20Gauge&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=079115175G&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=079115175G",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=079115175G",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "turbocharger oil supply strainer (Revision G)",
+            "priceHigh": null,
+            "oemPartNumber": "079115175G",
+            "aftermarketXref": []
+          }
+        ],
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "description": "The Audi S8 (2013-2017) with the 4.0T twin-turbo V8 shares the same critical turbocharger oil strainer design flaw as the S6, S7, and RS7. The oil strainer in the turbo oil supply line accumulates carbon and sludge deposits, choking oil flow to turbocharger bearings. Bearing failure causes the turbo shaft to break or turbine wheel to contact the housing, resulting in sudden engine stall with no restart capability. NHTSA documented 58 complaints across all 4.0T models and issued Recall 22V178. The S8's higher power output (520-605 HP) generates more heat and oil stress than the S6/S7, potentially accelerating strainer clogging. Audi extended turbocharger warranty to 10 years/120,000 miles. Consumer Reports and Autoblog covered this recall extensively. Vehicles built after March 30, 2017 have the updated strainer.",
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check recall status immediately at NHTSA.gov/recalls. This is a SAFETY recall—the engine can stall at highway speed. The repair is free regardless of mileage or ownership status.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "If you experience sudden power loss or the engine stalls while driving, shift to neutral, turn on hazards, and coast to a safe location. Do NOT attempt to restart repeatedly—this can cause additional turbo damage.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Even after the recall repair, maintain strict 5,000-mile oil change intervals with premium synthetic. The 4.0T's hot-vee design runs very hot and breaks down oil faster than typical engines.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "Recall 21H7 / NHTSA 22V178: an Audi dealer replaces the oil strainer free when the VIN is eligible. Check recall status before purchasing any part.",
+            "buyLinks": [],
+            "priceLow": null,
+            "verified": true,
+            "component": "Turbocharger oil supply strainer (Revision G)",
+            "priceHigh": null,
+            "confidence": 1,
+            "provenance": "ultra-published-fix-audit-2026-07-14",
+            "recallFirst": true,
+            "oemPartNumber": "079115175G",
+            "aftermarketXref": []
+          }
+        ],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Removed retail links; recall 21H7 is the repair path."
+      }
+    },
+    {
+      "id": "audi-tts-magnetic-ride-2009",
+      "decision": "Remove the unverified Bilstein recommendation and one-generation/one-corner fix part. Hold until generation, axle/corner, PR code, and repair path are explicit.",
+      "evidence": [
+        {
+          "label": "Published issue spans 2009-2024, multiple generations, and corner-specific dampers"
+        }
+      ],
+      "before": {
+        "description": "The TTS magnetic ride dampers are calibrated more aggressively than the TT version, increasing wear on shaft seals and magnetorheological fluid. Sport mode usage accelerates degradation.",
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Magnetic Ride Damper Set",
+            "partBrand": "Bilstein",
+            "clickCount": 3,
+            "partNumber": "B4 TTS MagneRide",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bilstein%20magnetic%20ride%20damper%20Audi%20TTS&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=8S0413029F&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=8S0413029F",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=8S0413029F",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "front magnetic ride (MRC) shock absorber/damper",
+            "priceHigh": null,
+            "oemPartNumber": "8S0413029F",
+            "aftermarketXref": []
+          }
+        ],
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "description": "The TTS magnetic ride dampers are calibrated more aggressively than the TT version, increasing wear on shaft seals and magnetorheological fluid. Sport mode usage accelerates degradation.",
+        "communityRecommendations": [],
+        "fixParts": [],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Removed an unverified damper pending fitment."
+      }
+    },
+    {
+      "id": "chevy-trax-turbo-2015",
+      "decision": "Replace incorrect GM 12652328 with two water-outlet records separated by engine and eighth VIN digit. Do not imply these parts resolve the separate turbo-line or PCV branches.",
+      "evidence": [
+        {
+          "label": "GM 25193922 eBay product",
+          "url": "https://www.ebay.com/itm/318200076111"
+        },
+        {
+          "label": "GM 12707589 eBay product",
+          "url": "https://www.ebay.com/itm/286423616243"
+        },
+        {
+          "label": "GM Genuine Parts 12707589",
+          "url": "https://parts.gmparts.com/product/gm-genuine-parts-water-outlet-12707589?evar110=gsa"
+        },
+        {
+          "label": "2021 Chevrolet Trax owner manual",
+          "url": "https://www.chevrolet.com/ownercenter/content/dam/gmownercenter/gmna/dynamic/manuals/2021/chevrolet/trax/2021-chevrolet-trax-owners-manual.pdf"
+        }
+      ],
+      "before": {
+        "description": "The Trax uses the same 1.4T Ecotec engine as the Cruze with similar issues: turbo oil feed line leaks, PCV system failures, and coolant system plastic component cracking. The coolant outlet/thermostat housing is the most common failure point.",
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "GM 12652328 updated water outlet housing - same part as Cruze 1.4T",
+            "upvotes": 0,
+            "partName": "Water Outlet/Thermostat Housing (1.4T)",
+            "partBrand": "GM",
+            "clickCount": 3,
+            "partNumber": "12652328",
+            "affiliateUrl": "https://www.amazon.com/s?k=GM%2012652328&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "description": "The Trax uses the same 1.4T Ecotec engine as the Cruze with similar issues: turbo oil feed line leaks, PCV system failures, and coolant system plastic component cracking. The coolant outlet/thermostat housing is the most common failure point.",
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "For 2015-2020 Trax with LUV/LUJ and 2021 Trax with eighth VIN digit B (LUV). Confirm engine and VIN before ordering.",
+            "buyLinks": [
+              {
+                "url": "https://www.ebay.com/itm/318200076111",
+                "vendor": "eBay",
+                "linkType": "product",
+                "verified": true,
+                "affiliate": true
+              }
+            ],
+            "priceLow": null,
+            "verified": true,
+            "component": "Engine coolant water outlet - LUV/LUJ / VIN B",
+            "priceHigh": null,
+            "confidence": 0.98,
+            "provenance": "ultra-published-fix-audit-2026-07-14",
+            "oemPartNumber": "25193922",
+            "aftermarketXref": []
+          },
+          {
+            "note": "For 2021-2022 Trax with eighth VIN digit M (LE2). Confirm engine and VIN before ordering.",
+            "buyLinks": [
+              {
+                "url": "https://www.ebay.com/itm/286423616243",
+                "vendor": "eBay",
+                "linkType": "product",
+                "verified": true,
+                "affiliate": true
+              }
+            ],
+            "priceLow": null,
+            "verified": true,
+            "component": "Engine coolant water outlet - LE2 / VIN M",
+            "priceHigh": null,
+            "confidence": 0.98,
+            "provenance": "ultra-published-fix-audit-2026-07-14",
+            "oemPartNumber": "12707589",
+            "aftermarketXref": [
+              "12672523",
+              "12638710"
+            ]
+          }
+        ],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Corrected outlet part numbers and engine/VIN fitment."
+      }
+    },
+    {
+      "id": "chrysler-pacifica-uconnect-freeze-2017",
+      "decision": "Remove four unrelated tools/sensors. Preserve the two software/reset tips, correct display sizing, and add no screen link without VIN/radio sales-code scope.",
+      "evidence": [
+        {
+          "label": "Uconnect software update TSB",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10231779-9999.pdf"
+        },
+        {
+          "label": "VIN-specific Chrysler Uconnect support",
+          "url": "https://www.driveuconnect.com/support/chrysler.html/x"
+        }
+      ],
+      "before": {
+        "description": "The UConnect 8.4-inch and 12-inch infotainment systems freeze, go blank, or reboot randomly. Affects radio, touchscreen, GPS, rearview camera, Bluetooth, and rear entertainment. A class-action lawsuit covers 8.4A and 8.4AN systems. Some owners have had screens replaced multiple times without lasting resolution.",
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "pacificaforums.com",
+            "content": "Soft reset: hold volume and tuner knobs for 10-20 seconds. Hard reset on 2018+: pull fuse F76",
+            "upvotes": 65,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "source": "chryslerminivan.net",
+            "content": "Always ask dealer for latest software update before agreeing to screen replacement - often resolves the issue",
+            "upvotes": 48,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Chrysler%20Pacifica&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "clickCount": 2,
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Chrysler%20Pacifica&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Chrysler%20Pacifica&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "clickCount": 3,
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Chrysler%20Pacifica&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "description": "The 8.4-inch UConnect 4 and 10.1-inch UConnect 5 infotainment systems freeze, go blank, or reboot randomly. Affects radio, touchscreen, GPS, rearview camera, Bluetooth, and rear entertainment. A class-action lawsuit covers 8.4A and 8.4AN systems. Some owners have had screens replaced multiple times without lasting resolution.",
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "pacificaforums.com",
+            "content": "Soft reset: hold volume and tuner knobs for 10-20 seconds. Hard reset on 2018+: pull fuse F76",
+            "upvotes": 65,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "source": "chryslerminivan.net",
+            "content": "Always ask dealer for latest software update before agreeing to screen replacement - often resolves the issue",
+            "upvotes": 48,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Removed unrelated parts; clarified software-first repair."
+      }
+    },
+    {
+      "id": "ford-probe-power-window-motor-1993",
+      "decision": "Replace the wrong regulator/motor assembly recommendation with side-specific motor-only parts. Amazon and eBay produced no exact approved product page; use exact direct-retailer fallbacks.",
+      "evidence": [
+        {
+          "label": "Cardone 47-1755",
+          "url": "https://www.cardone.com/product/power-window-motor-47-1755"
+        },
+        {
+          "label": "Cardone 47-1756",
+          "url": "https://www.cardone.com/product/power-window-motor-47-1756"
+        },
+        {
+          "label": "WheelerFleet left",
+          "url": "https://www.wheelerfleet.com/product/motor-p-window/1349803"
+        },
+        {
+          "label": "BuyAutoParts right",
+          "url": "https://www.buyautoparts.com/buynow/17-41893_cpcx"
+        }
+      ],
+      "before": {
+        "description": "The power window motors burn out prematurely, particularly on the driver's side. The Mazda-sourced motors are undersized for the heavy glass. The window may work intermittently before failing completely.",
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Direct-fit window regulator assembly with motor for easy installation",
+            "partName": "Power Window Regulator and Motor Assembly",
+            "partBrand": "Dorman",
+            "clickCount": 4,
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20Power%20Window%20Regulator%20and%20Motor%20Assembly%20Ford%20Probe&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "description": "The power window motors burn out prematurely, particularly on the driver's side. The Mazda-sourced motors are undersized for the heavy glass. The window may work intermittently before failing completely.",
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "Motor only for the front left/driver window on 1993-1997 Ford Probe. Reuse the regulator if serviceable and confirm side before ordering.",
+            "buyLinks": [
+              {
+                "url": "https://www.wheelerfleet.com/product/motor-p-window/1349803",
+                "vendor": "WheelerFleet",
+                "linkType": "product",
+                "verified": true,
+                "affiliate": false
+              }
+            ],
+            "priceLow": null,
+            "verified": true,
+            "component": "Front left power window motor",
+            "priceHigh": null,
+            "confidence": 0.96,
+            "provenance": "ultra-published-fix-audit-2026-07-14",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "Cardone 47-1755"
+            ]
+          },
+          {
+            "note": "Motor only for the front right/passenger window on 1993-1997 Ford Probe. Reuse the regulator if serviceable and confirm side before ordering.",
+            "buyLinks": [
+              {
+                "url": "https://www.buyautoparts.com/buynow/17-41893_cpcx",
+                "vendor": "BuyAutoParts",
+                "linkType": "product",
+                "verified": true,
+                "affiliate": false
+              }
+            ],
+            "priceLow": null,
+            "verified": true,
+            "component": "Front right power window motor",
+            "priceHigh": null,
+            "confidence": 0.96,
+            "provenance": "ultra-published-fix-audit-2026-07-14",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "Cardone 47-1756"
+            ]
+          }
+        ],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Corrected part and left/right fitment."
+      }
+    },
+    {
+      "id": "vw-taos-ac-compressor-noise-2022",
+      "decision": "Remove two unrelated cooling products. Add no compressor because the published TSB repair is conditional: compressor, bracket, or software calibration.",
+      "evidence": [
+        {
+          "label": "Published solution lists conditional compressor, bracket, or software branches"
+        }
+      ],
+      "before": {
+        "description": "The A/C compressor produces an abnormal noise and vibration that transmits through the cabin, especially noticeable at idle with A/C on. Some owners report a grinding or rattling from the compressor area. VW issued a TSB for this issue.",
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Prestone coolant flush kit for complete cooling system service",
+            "partName": "Coolant Flush Kit",
+            "partBrand": "Prestone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Prestone%20coolant%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Stant thermostat — preventive replacement during coolant service",
+            "partName": "Thermostat",
+            "partBrand": "Stant",
+            "clickCount": 2,
+            "affiliateUrl": "https://www.amazon.com/s?k=Stant%20thermostat&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "description": "The A/C compressor produces an abnormal noise and vibration that transmits through the cabin, especially noticeable at idle with A/C on. Some owners report a grinding or rattling from the compressor area. VW issued a TSB for this issue.",
+        "communityRecommendations": [],
+        "fixParts": [],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Removed unrelated parts; repair requires dealer diagnosis."
+      }
+    }
+  ]
+}

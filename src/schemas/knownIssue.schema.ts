@@ -124,6 +124,10 @@ export const knownIssueSchema = z.object({
   humanApproved: z.boolean(),
   lastReportedByOwners: z.string(), // When owners last reported this issue
   reviewedOn: z.string(), // When we verified/reviewed the issue
+  /** Date-only ISO value for the latest meaningful public content correction. */
+  contentUpdatedOn: z.string().optional(),
+  /** Short, human-authored explanation paired with contentUpdatedOn. */
+  contentUpdateSummary: z.string().optional(),
   reportCount: z.number(),
   status: z.enum(['published', 'pending_review', 'archived']),
   dtcCodes: z.array(z.string()).optional(),

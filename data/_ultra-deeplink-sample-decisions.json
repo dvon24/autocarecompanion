@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "batchId": "known-issues-ultra-deeplink-sample-2026-07-14",
+  "auditPolicy": {
+    "sourceOfTruth": "The published description and solution, not clicks or an earlier model answer.",
+    "marketplaceOrder": ["Amazon", "eBay", "manufacturer-or-direct-retailer"],
+    "linkRule": "Only a live product-detail page with repair, part-number, and fitment alignment is eligible.",
+    "priorRun": { "model": "Sol/4.6", "correct": "7/8", "effort": "unknown" }
+  },
+  "baseline": {
+    "issueCount": 8,
+    "partRecommendationsRemoved": 18,
+    "clickedSearchRecommendations": 13,
+    "priorClicks": 28,
+    "priorConversionRate": "<1%",
+    "existingFixPartTransitions": 3,
+    "searchBuyLinksRemoved": 9,
+    "directProductLinksAdded": 4,
+    "nonPartRecommendationsRetained": 9
+  },
+  "timing": {
+    "auditStartedAt": "2026-07-14T15:43:33.6227170Z",
+    "initialCheckpointAt": "2026-07-14T15:59:54.2694397Z",
+    "editResearchResumedAt": "2026-07-14T16:02:06.9138717Z",
+    "revisedCheckpointAt": "2026-07-14T16:44:37Z",
+    "approvalClockCapturedAt": "2026-07-14T17:32:35.1828621Z",
+    "approvalClockNote": "Approval occurred before this timestamp; the exact event time was not instrumented, so approval wait is reported as an upper bound.",
+    "knownToolStalls": [
+      { "label": "marketplace HTML request", "seconds": 2160, "precision": "estimated" },
+      { "label": "implementation subagent file read", "seconds": 391, "precision": "estimated" },
+      { "label": "local timestamp shell command", "seconds": 1047.4, "precision": "tool-reported" }
+    ]
+  },
+  "issues": [
+    {
+      "id": "ford-probe-power-window-motor-1993",
+      "decision": "Replace the wrong regulator/motor assembly recommendation with side-specific motor-only parts. Amazon and eBay produced no exact approved product page; use exact direct-retailer fallbacks.",
+      "before": {
+        "communityHash": "2b108dd7adcaaadac0641592fa9e9666b56628459598fb7b65aa88478d515e3f",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "descriptionHash": "153f29891c32d977226e792c28284f2769035f89bf922e95b9307b064de1453f",
+        "recommendationCount": 1,
+        "partRecommendationCount": 1,
+        "partClicks": 4,
+        "fixPartCount": 0,
+        "buyLinkCount": 0,
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "communityHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "retainedRecommendationCount": 0,
+        "fixParts": [
+          {
+            "component": "Front left power window motor",
+            "oemPartNumber": "",
+            "aftermarketXref": ["Cardone 47-1755"],
+            "priceLow": null,
+            "priceHigh": null,
+            "note": "Motor only for the front left/driver window on 1993-1997 Ford Probe. Reuse the regulator if serviceable and confirm side before ordering.",
+            "buyLinks": [
+              { "vendor": "WheelerFleet", "url": "https://www.wheelerfleet.com/product/motor-p-window/1349803", "linkType": "product", "verified": true, "affiliate": false }
+            ],
+            "verified": true,
+            "provenance": "ultra-published-fix-audit-2026-07-14",
+            "confidence": 0.96
+          },
+          {
+            "component": "Front right power window motor",
+            "oemPartNumber": "",
+            "aftermarketXref": ["Cardone 47-1756"],
+            "priceLow": null,
+            "priceHigh": null,
+            "note": "Motor only for the front right/passenger window on 1993-1997 Ford Probe. Reuse the regulator if serviceable and confirm side before ordering.",
+            "buyLinks": [
+              { "vendor": "BuyAutoParts", "url": "https://www.buyautoparts.com/buynow/17-41893_cpcx", "linkType": "product", "verified": true, "affiliate": false }
+            ],
+            "verified": true,
+            "provenance": "ultra-published-fix-audit-2026-07-14",
+            "confidence": 0.96
+          }
+        ],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Corrected part and left/right fitment."
+      },
+      "evidence": [
+        { "label": "Cardone 47-1755", "url": "https://www.cardone.com/product/power-window-motor-47-1755" },
+        { "label": "Cardone 47-1756", "url": "https://www.cardone.com/product/power-window-motor-47-1756" },
+        { "label": "WheelerFleet left", "url": "https://www.wheelerfleet.com/product/motor-p-window/1349803" },
+        { "label": "BuyAutoParts right", "url": "https://www.buyautoparts.com/buynow/17-41893_cpcx" }
+      ]
+    },
+    {
+      "id": "chevy-trax-turbo-2015",
+      "decision": "Replace incorrect GM 12652328 with two water-outlet records separated by engine and eighth VIN digit. Do not imply these parts resolve the separate turbo-line or PCV branches.",
+      "before": {
+        "communityHash": "9061262afc587fd5014f61eecaa2c3cf8d910f404ddfbf5f8a677e619c7dc18e",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "descriptionHash": "58e4d0bea4d318416202fdccdd37fa04f8cfdb8cb75043d1b60389279f948a0d",
+        "recommendationCount": 1,
+        "partRecommendationCount": 1,
+        "partClicks": 3,
+        "fixPartCount": 0,
+        "buyLinkCount": 0,
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "communityHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "retainedRecommendationCount": 0,
+        "fixParts": [
+          {
+            "component": "Engine coolant water outlet - LUV/LUJ / VIN B",
+            "oemPartNumber": "25193922",
+            "aftermarketXref": [],
+            "priceLow": null,
+            "priceHigh": null,
+            "note": "For 2015-2020 Trax with LUV/LUJ and 2021 Trax with eighth VIN digit B (LUV). Confirm engine and VIN before ordering.",
+            "buyLinks": [
+              { "vendor": "eBay", "url": "https://www.ebay.com/itm/318200076111", "linkType": "product", "verified": true, "affiliate": true }
+            ],
+            "verified": true,
+            "provenance": "ultra-published-fix-audit-2026-07-14",
+            "confidence": 0.98
+          },
+          {
+            "component": "Engine coolant water outlet - LE2 / VIN M",
+            "oemPartNumber": "12707589",
+            "aftermarketXref": ["12672523", "12638710"],
+            "priceLow": null,
+            "priceHigh": null,
+            "note": "For 2021-2022 Trax with eighth VIN digit M (LE2). Confirm engine and VIN before ordering.",
+            "buyLinks": [
+              { "vendor": "eBay", "url": "https://www.ebay.com/itm/286423616243", "linkType": "product", "verified": true, "affiliate": true }
+            ],
+            "verified": true,
+            "provenance": "ultra-published-fix-audit-2026-07-14",
+            "confidence": 0.98
+          }
+        ],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Corrected outlet part numbers and engine/VIN fitment."
+      },
+      "evidence": [
+        { "label": "GM 25193922 eBay product", "url": "https://www.ebay.com/itm/318200076111" },
+        { "label": "GM 12707589 eBay product", "url": "https://www.ebay.com/itm/286423616243" },
+        { "label": "GM Genuine Parts 12707589", "url": "https://parts.gmparts.com/product/gm-genuine-parts-water-outlet-12707589?evar110=gsa" },
+        { "label": "2021 Chevrolet Trax owner manual", "url": "https://www.chevrolet.com/ownercenter/content/dam/gmownercenter/gmna/dynamic/manuals/2021/chevrolet/trax/2021-chevrolet-trax-owners-manual.pdf" }
+      ]
+    },
+    {
+      "id": "chrysler-pacifica-uconnect-freeze-2017",
+      "decision": "Remove four unrelated tools/sensors. Preserve the two software/reset tips, correct display sizing, and add no screen link without VIN/radio sales-code scope.",
+      "before": {
+        "communityHash": "e857b43af25380a99d7053d57002f6f8d1202dfa093326f51561db2545d878ca",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "descriptionHash": "2395cd5826df8cf6f848b10afb041399b308e00dacc1bc1c1a60f64489c42506",
+        "recommendationCount": 6,
+        "partRecommendationCount": 4,
+        "partClicks": 5,
+        "fixPartCount": 0,
+        "buyLinkCount": 0,
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "communityHash": "74f26be97d19ecdc15444b80649cc78c1ffa84bd13d984af2ea0be2cc6592230",
+        "retainedRecommendationCount": 2,
+        "fixParts": [],
+        "description": "The 8.4-inch UConnect 4 and 10.1-inch UConnect 5 infotainment systems freeze, go blank, or reboot randomly. Affects radio, touchscreen, GPS, rearview camera, Bluetooth, and rear entertainment. A class-action lawsuit covers 8.4A and 8.4AN systems. Some owners have had screens replaced multiple times without lasting resolution.",
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Removed unrelated parts; clarified software-first repair."
+      },
+      "evidence": [
+        { "label": "Uconnect software update TSB", "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10231779-9999.pdf" },
+        { "label": "VIN-specific Chrysler Uconnect support", "url": "https://www.driveuconnect.com/support/chrysler.html/x" }
+      ]
+    },
+    {
+      "id": "audi-q5-timing-chain-2009",
+      "decision": "Remove the chain-only recommendation mislabeled as a complete kit and the tensioner-only fix part. Hold commerce until engine/build scope supports a complete repair kit.",
+      "before": {
+        "communityHash": "0c516b15a365d559b7055efa3261ddd87511cf6205970d30d9c410069f8e4d98",
+        "fixPartsHash": "8f9f600589f8e81d7bc25ee972a72f2fea0eab0f507d869457bc0bdcc0583b30",
+        "descriptionHash": "33feaf9926b612c639f48b38b0240313e64e5a8c6b262d0ccdc2af55987f66cd",
+        "recommendationCount": 2,
+        "partRecommendationCount": 1,
+        "partClicks": 3,
+        "fixPartCount": 1,
+        "buyLinkCount": 3,
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "communityHash": "b84efe3c20eb8e7cf4a97fd25ad52ebeda451d9697fe9457d7c975b544f114a9",
+        "retainedRecommendationCount": 1,
+        "fixParts": [],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Removed an incomplete timing-chain kit."
+      },
+      "evidence": [{ "label": "Published solution requires chain, tensioner, and guides as a complete kit" }]
+    },
+    {
+      "id": "audi-tts-magnetic-ride-2009",
+      "decision": "Remove the unverified Bilstein recommendation and one-generation/one-corner fix part. Hold until generation, axle/corner, PR code, and repair path are explicit.",
+      "before": {
+        "communityHash": "53fa504fba2c0cd07fd317b878b36a327cf70ee4c6041fa5d0e2d78fe74ce76a",
+        "fixPartsHash": "6432b684b854208d7aa9fe3fd26c7b67ceee0a3a4e7ca01647516cd8ca9d8eb7",
+        "descriptionHash": "326e9c549de6ecd937541788aba6bcb541047a7b5e05c25478384cb491555c86",
+        "recommendationCount": 1,
+        "partRecommendationCount": 1,
+        "partClicks": 3,
+        "fixPartCount": 1,
+        "buyLinkCount": 3,
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "communityHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "retainedRecommendationCount": 0,
+        "fixParts": [],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Removed an unverified damper pending fitment."
+      },
+      "evidence": [{ "label": "Published issue spans 2009-2024, multiple generations, and corner-specific dampers" }]
+    },
+    {
+      "id": "audi-etron-battery-overheat-2019",
+      "decision": "Remove six unrelated consumer products. Preserve the three safety/recall tips; the published repair is dealer software monitoring and free module replacement under recall 93U9.",
+      "before": {
+        "communityHash": "2ce0b84462e46ee92df2ec6b9a6f640829134d2247dcdb5b003acf325ca8a762",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "descriptionHash": "2b9ad9283d38bb00615d40f743d9247b1eb8efb46fa6d8d6675682d83a17ac12",
+        "recommendationCount": 9,
+        "partRecommendationCount": 6,
+        "partClicks": 5,
+        "fixPartCount": 0,
+        "buyLinkCount": 0,
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "communityHash": "bb5c1c49513a5c135e3c00b202639398d26c0c73ab0c13385a7e6e8221acac93",
+        "retainedRecommendationCount": 3,
+        "fixParts": [],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Removed products; recall 93U9 is the repair path."
+      },
+      "evidence": [{ "label": "Published Recall 93U9 / NHTSA 23V-867 repair guidance" }]
+    },
+    {
+      "id": "audi-s8-turbo-oil-strainer-2013",
+      "decision": "Remove two unrelated products and all three search buy-links. Retain the exact strainer identity only as recall-first, non-commerce metadata.",
+      "before": {
+        "communityHash": "f54db45232db2ae940a4bd9c7bd75ec80c178e843d469aa583ef7ab8e18d8dfa",
+        "fixPartsHash": "bad76f4a24e4677c9993c8f2edeb588bf0e526f454d742a41de469c1217b9dfe",
+        "descriptionHash": "2a8b3c85f2cf4b20ca3ab713d189ca3af15a855fd9b560573f84ab2ae1892d37",
+        "recommendationCount": 5,
+        "partRecommendationCount": 2,
+        "partClicks": 3,
+        "fixPartCount": 1,
+        "buyLinkCount": 3,
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "communityHash": "9dbd517a550b58352dc3012215e9d2a14243754b8f4a715fa34522a2c523c877",
+        "retainedRecommendationCount": 3,
+        "fixParts": [
+          {
+            "component": "Turbocharger oil supply strainer (Revision G)",
+            "oemPartNumber": "079115175G",
+            "aftermarketXref": [],
+            "priceLow": null,
+            "priceHigh": null,
+            "note": "Recall 21H7 / NHTSA 22V178: an Audi dealer replaces the oil strainer free when the VIN is eligible. Check recall status before purchasing any part.",
+            "buyLinks": [],
+            "recallFirst": true,
+            "verified": true,
+            "provenance": "ultra-published-fix-audit-2026-07-14",
+            "confidence": 1
+          }
+        ],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Removed retail links; recall 21H7 is the repair path."
+      },
+      "evidence": [{ "label": "Published Recall 21H7 / NHTSA 22V178 repair guidance" }]
+    },
+    {
+      "id": "vw-taos-ac-compressor-noise-2022",
+      "decision": "Remove two unrelated cooling products. Add no compressor because the published TSB repair is conditional: compressor, bracket, or software calibration.",
+      "before": {
+        "communityHash": "0dee9deb429ee902b142982a95b0d97dc358ae8e166f2e806f9acc27193be7b3",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "descriptionHash": "e467ba18829d670d156f04f43caebe2570fceabcc7d6c14ec53d7e33735b8527",
+        "recommendationCount": 2,
+        "partRecommendationCount": 2,
+        "partClicks": 2,
+        "fixPartCount": 0,
+        "buyLinkCount": 0,
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": ""
+      },
+      "after": {
+        "communityHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "retainedRecommendationCount": 0,
+        "fixParts": [],
+        "contentUpdatedOn": "2026-07-14",
+        "contentUpdateSummary": "Removed unrelated parts; repair requires dealer diagnosis."
+      },
+      "evidence": [{ "label": "Published solution lists conditional compressor, bracket, or software branches" }]
+    }
+  ]
+}

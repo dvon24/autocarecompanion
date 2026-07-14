@@ -1,0 +1,5 @@
+# Deferred Work
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-known-issues-ultra-deeplink-sample.md`
+  summary: Repair the repository-wide ESLint gate independently of this Known Issues change.
+  evidence: `npm run lint` fails on thousands of pre-existing generated and design-file violations beginning in `design/15-FeatureCarousel.jsx`; scoped story lint has no new errors after accounting for legacy `no-explicit-any` findings.

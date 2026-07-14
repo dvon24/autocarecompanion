@@ -32,6 +32,8 @@ function dbRowToKnownIssue(row: any): KnownIssue {
     humanApproved: row.humanApproved,
     lastReportedByOwners: row.lastReportedByOwners,
     reviewedOn: row.reviewedOn,
+    contentUpdatedOn: row.contentUpdatedOn || '',
+    contentUpdateSummary: row.contentUpdateSummary || '',
     reportCount: row.reportCount,
     status: row.status,
     dtcCodes: row.dtcCodes,
