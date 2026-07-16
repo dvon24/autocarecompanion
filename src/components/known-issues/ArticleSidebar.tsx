@@ -46,7 +46,7 @@ export function ArticleSidebar({ grouped, hasRecalls, recallCount, make, model, 
                     <span className="text-[#94A3B8] text-xs ml-auto">{count}</span>
                     {highCount > 0 && (
                       <span
-                        className="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0"
+                        className="w-1.5 h-1.5 rounded-full bg-[#3C313D] flex-shrink-0"
                         title={`${highCount} critical`}
                       />
                     )}

@@ -9,6 +9,13 @@ import { ChatMessage, ChatMessageLoading } from '@/components/chat/ChatMessage';
 import { type ChatMessage as ChatMessageType, createChatMessage } from '@/schemas/chat.schema';
 import { YMMTSelector } from '@/components/discovery/YMMTSelector';
 import { MakeLogo } from '@/components/shared/MakeLogo';
+import type { KnownIssue as CatalogKnownIssue } from '@/schemas/knownIssue.schema';
+import { getKnownIssueCommerce, hasKnownIssueCommerce, knownIssueAffiliateUrl } from '@/lib/known-issue-commerce';
+import { trackAffiliateClick } from '@/lib/analytics';
+
+type IssueRecommendation = NonNullable<CatalogKnownIssue['communityRecommendations']>[number];
+type IssueFixPart = NonNullable<CatalogKnownIssue['fixParts']>[number];
+type IssueCitation = CatalogKnownIssue['citations'][number] | string;
 
 interface VehicleTuple { year: number; make: string; model: string; trim: string; }
 interface KnownIssue {
@@ -18,16 +25,23 @@ interface KnownIssue {
   typicalMileage?: { low: number; high: number };
   vehicleMatch: { years: number[]; trims?: string[]; engines?: string[]; make?: string; model?: string };
   symptoms?: string[]; solution?: string;
-  communityRecommendations?: any[]; citations?: any[];
+  communityRecommendations?: IssueRecommendation[]; fixParts?: IssueFixPart[]; citations?: IssueCitation[];
   dtcCodes?: string[]; source?: string; confidence?: string;
   lastReportedByOwners?: string; reviewedOn?: string;
-  [key: string]: any;
 }
 interface RecallItem {
   campaignNumber: string; component: string; summary: string;
   consequence: string; remedy: string; reportDate: string; parkIt?: boolean;
 }
-interface CachedPart { task: string; parts: any[]; source: string; }
+interface PartRecord {
+  brand?: string;
+  name?: string;
+  partNumber?: string;
+  spec?: string;
+  affiliateUrl?: string;
+  searchQuery?: string;
+}
+interface CachedPart { task: string; parts: PartRecord[]; source: string; }
 
 type SectionId = 'parts' | 'known-issues' | 'guides' | 'chat';
 
@@ -61,7 +75,7 @@ const AFFILIATE_TAG = 'au7o-20';
 const DEEP_SHADOW = 'rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px';
 
 export function VehicleDashboard({
-  vehicle, slug, issues, recalls, cachedParts, specsSummary,
+  vehicle, issues, recalls, cachedParts, specsSummary,
 }: {
   vehicle: VehicleTuple; slug: string;
   issues: KnownIssue[]; recalls: RecallItem[];
@@ -125,8 +139,8 @@ export function VehicleDashboard({
       }
       const data = await res.json();
       setChatMessages(prev => [...prev, data.message]);
-    } catch (err: any) {
-      const errMsg = err?.name === 'TimeoutError'
+    } catch (err: unknown) {
+      const errMsg = err instanceof Error && err.name === 'TimeoutError'
         ? 'The request took too long. Please try again with a simpler question.'
         : 'Sorry, something went wrong. Please try again.';
       setChatMessages(prev => [...prev, createChatMessage('assistant', errMsg)]);
@@ -253,7 +267,7 @@ export function VehicleDashboard({
           <div className="flex-shrink-0 bg-white px-4 py-3 shadow-md z-10">
             <p className="text-xs text-gray-500 font-medium mb-1">{specsSummary.engine}</p>
             <div className="text-xs text-gray-500 space-y-0.5">
-              {criticalCount > 0 && <p className="text-red-600 font-medium">{criticalCount} critical issue{criticalCount > 1 ? 's' : ''}</p>}
+              {criticalCount > 0 && <p className="text-[#3C313D] font-medium">{criticalCount} critical issue{criticalCount > 1 ? 's' : ''}</p>}
               {specsSummary.oil && <p>Oil: <span className="text-gray-800 font-medium">{specsSummary.oil}</span></p>}
               {specsSummary.coolant && <p>Coolant: <span className="text-gray-800 font-medium">{specsSummary.coolant}</span></p>}
               {specsSummary.transmission && <p>Trans: <span className="text-gray-800 font-medium">{specsSummary.transmission}</span></p>}
@@ -261,7 +275,7 @@ export function VehicleDashboard({
             </div>
             <div className="flex gap-2 mt-2">
               {issues.length > 0 && <span className="text-[10px] px-2 py-0.5 bg-gray-100 rounded text-gray-500">{issues.length} issues</span>}
-              {recalls.length > 0 && <span className="text-[10px] px-2 py-0.5 bg-red-50 rounded text-red-500">{recalls.length} recall{recalls.length > 1 ? 's' : ''}</span>}
+              {recalls.length > 0 && <span className="text-[10px] px-2 py-0.5 border border-[#D8D1C3] bg-[#F7F4EC] rounded text-[#3C313D]">{recalls.length} recall{recalls.length > 1 ? 's' : ''}</span>}
             </div>
           </div>
         )}
@@ -416,7 +430,7 @@ export function VehicleDashboard({
             </div>
             {specsExpanded && (
               <div className="mb-4 text-sm text-gray-500 leading-relaxed space-y-0.5 mt-3">
-                {criticalCount > 0 && <p className="text-red-600 font-medium">{criticalCount} critical/high severity issue{criticalCount > 1 ? 's' : ''} documented.</p>}
+                {criticalCount > 0 && <p className="text-[#3C313D] font-medium">{criticalCount} critical/high severity issue{criticalCount > 1 ? 's' : ''} documented.</p>}
                 {specsSummary.oil && <p>Oil: <span className="text-gray-800 font-medium">{specsSummary.oil}</span>{specsSummary.oilFilter ? ' \u00B7 Filter: ' + specsSummary.oilFilter : ''}</p>}
                 {specsSummary.coolant && <p>Coolant: <span className="text-gray-800 font-medium">{specsSummary.coolant}</span></p>}
                 {specsSummary.transmission && <p>Transmission: <span className="text-gray-800 font-medium">{specsSummary.transmission}</span></p>}
@@ -427,7 +441,7 @@ export function VehicleDashboard({
             )}
             <div className="flex gap-2 flex-wrap mt-2">
               {issues.length > 0 && <button onClick={() => sendMessage('What are the most common problems with my ' + vehicleDisplay + '?')} className="text-xs px-2.5 py-1 bg-gray-100 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors cursor-pointer">{issues.length} known issue{issues.length !== 1 ? 's' : ''}</button>}
-              {recalls.length > 0 && <button onClick={() => sendMessage('Tell me about the active recalls for my ' + vehicleDisplay)} className="text-xs px-2.5 py-1 bg-red-50 rounded-lg text-red-600 hover:bg-red-100 transition-colors cursor-pointer">{recalls.length} recall{recalls.length !== 1 ? 's' : ''}</button>}
+              {recalls.length > 0 && <button onClick={() => sendMessage('Tell me about the active recalls for my ' + vehicleDisplay)} className="text-xs px-2.5 py-1 border border-[#D8D1C3] bg-[#F7F4EC] rounded-lg text-[#3C313D] hover:bg-[#EFEDE6] transition-colors cursor-pointer">{recalls.length} recall{recalls.length !== 1 ? 's' : ''}</button>}
               {standardParts.length > 0 && <button onClick={() => handleNav('parts')} className="text-xs px-2.5 py-1 bg-gray-100 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors cursor-pointer">{standardParts.length} parts cached</button>}
             </div>
           </div>
@@ -519,25 +533,25 @@ function EmptyState({ title, description }: { title: string; description: string
 
 function IssueCardExpanded({ issue, styled = true, onAskAI }: { issue: KnownIssue; styled?: boolean; onAskAI: () => void }) {
   const [expanded, setExpanded] = useState(false);
-  const sevColor: Record<string, string> = { critical: 'bg-red-500 text-white', high: 'bg-red-400 text-white', medium: 'bg-amber-400 text-gray-900', low: 'bg-gray-400 text-white' };
-  const recs = (issue.communityRecommendations as any[]) || [];
-  const citations = (issue.citations as any[]) || [];
+  const sevColor = 'border border-[#C9C0B1] bg-[#EFEDE6] text-[#0B1220]';
+  const { fixParts, ownerGuidance } = getKnownIssueCommerce(issue);
+  const citations = issue.citations || [];
   const makeModel = issue.vehicleMatch?.make && issue.vehicleMatch?.model ? issue.vehicleMatch.make + ' ' + issue.vehicleMatch.model : '';
   const searchQuery = encodeURIComponent(makeModel + ' ' + issue.title);
-  const labelStyle = styled ? { backgroundColor: '#3C313D', color: '#EBEAEC' } : { backgroundColor: '#f3f4f6', color: '#374151' };
-  const dividerStyle = styled ? { borderTop: '1px solid #8a858c' } : { borderTop: '1px solid #e5e7eb' };
-  const bodyColor = styled ? '#3C313D' : '#4b5563';
+  const labelStyle = styled ? { backgroundColor: '#EFEDE6', color: '#0B1220', border: '1px solid #D8D1C3' } : { backgroundColor: '#f3f4f6', color: '#374151' };
+  const dividerStyle = styled ? { borderTop: '1px solid #D8D1C3' } : { borderTop: '1px solid #e5e7eb' };
+  const bodyColor = styled ? '#475569' : '#4b5563';
 
   return (
-    <div className={'rounded-xl overflow-hidden ' + (styled ? 'border' : 'bg-gray-50')} style={styled ? { borderColor: '#c4bec4', backgroundColor: '#EBEAEC' } : undefined}>
+    <div className={'rounded-xl overflow-hidden ' + (styled ? 'border' : 'bg-gray-50')} style={styled ? { borderColor: '#D8D1C3', backgroundColor: '#FBFAF6' } : undefined}>
       <button onClick={() => setExpanded(!expanded)} className={'w-full px-4 py-3 text-left ' + (styled ? '' : 'hover:bg-gray-100')} style={styled ? { backgroundColor: '#3C313D' } : undefined}>
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
             <h3 className="text-sm font-semibold" style={{ color: styled ? '#EBEAEC' : '#111' }}>{issue.title}</h3>
-            {issue.estimatedCost && <p className="text-xs mt-0.5" style={{ color: styled ? '#9D9BA2' : '#666' }}>Typical repair cost: {'$' + issue.estimatedCost.low.toLocaleString() + ' - $' + issue.estimatedCost.high.toLocaleString()}</p>}
+            {issue.estimatedCost && <p className="text-xs mt-0.5" style={{ color: styled ? '#D8D1C3' : '#666' }}>Typical repair cost: {'$' + issue.estimatedCost.low.toLocaleString() + ' - $' + issue.estimatedCost.high.toLocaleString()}</p>}
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
-            <span className={'px-2 py-0.5 text-[10px] font-medium rounded-full ' + (sevColor[issue.severity] || sevColor.low)}>{issue.severity}</span>
+            <span className={'px-2 py-0.5 text-[10px] font-medium rounded-full ' + sevColor}>{issue.severity}</span>
             <svg className={'w-4 h-4 transition-transform ' + (expanded ? 'rotate-180' : '')} style={{ color: styled ? '#EBEAEC' : '#999' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
           </div>
         </div>
@@ -545,14 +559,71 @@ function IssueCardExpanded({ issue, styled = true, onAskAI }: { issue: KnownIssu
       {expanded && (
         <div className="px-4 pb-4 space-y-0">
           <div className="py-3"><p className="text-sm leading-relaxed" style={{ color: bodyColor }}>{issue.description}</p></div>
-          {issue.dtcCodes && issue.dtcCodes.length > 0 && (<div className="py-3" style={dividerStyle}><p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>Common error codes that may appear</p><div className="flex gap-1.5 flex-wrap mt-2">{issue.dtcCodes.map(code => (<Link key={code} href={'/known-issues/dtc/' + code.toLowerCase()} className="text-[10px] font-mono px-2.5 py-1 rounded-md hover:opacity-80 transition-opacity" style={{ backgroundColor: '#EBEAEC', color: '#3C313D' }}>{code}</Link>))}</div></div>)}
+          {issue.dtcCodes && issue.dtcCodes.length > 0 && (<div className="py-3" style={dividerStyle}><p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>Common error codes that may appear</p><div className="flex gap-1.5 flex-wrap mt-2">{issue.dtcCodes.map(code => (<Link key={code} href={'/known-issues/dtc/' + code.toLowerCase()} className="text-[10px] font-mono px-2.5 py-1 rounded-md hover:opacity-80 transition-opacity" style={{ backgroundColor: '#EFEDE6', color: '#3C313D' }}>{code}</Link>))}</div></div>)}
           {issue.symptoms && issue.symptoms.length > 0 && (<div className="py-3" style={dividerStyle}><p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>Common Symptoms</p><ul className="space-y-1 mt-2">{issue.symptoms.map((s, i) => (<li key={i} className="text-xs flex gap-2" style={{ color: bodyColor }}><span style={{ color: '#9D9BA2' }}>&bull;</span><span>{s}</span></li>))}</ul></div>)}
           {issue.solution && (<div className="py-3" style={dividerStyle}><p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>How to Fix</p><p className="text-xs leading-relaxed mt-2" style={{ color: bodyColor }}>{issue.solution}</p></div>)}
-          {recs.length > 0 && (<div className="py-3" style={dividerStyle}><p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>What Owners Are Using</p>{issue.reportCount > 0 && <span className="text-[10px] ml-2" style={{ color: '#9D9BA2' }}>from {issue.reportCount}+ owners</span>}<div className="space-y-2 mt-2">{recs.map((r: any, i: number) => { const content = r.content || r.text || r.name || (typeof r === 'string' ? r : ''); if (!content) return null; const isPartRec = r.type === 'part' || r.partNumber; const affiliateUrl = r.affiliateUrl || (r.partNumber ? 'https://www.amazon.com/s?k=' + encodeURIComponent((r.partBrand || '') + ' ' + r.partNumber) + '&tag=' + AFFILIATE_TAG : null); return (<div key={i} className="rounded-lg p-2.5" style={{ backgroundColor: '#EBEAEC', border: '1px solid #3C313D' }}><div className="flex items-start gap-2"><span className="flex-shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded" style={{ backgroundColor: '#3C313D', color: '#EBEAEC' }}>{isPartRec ? 'Upgrade' : 'Tip'}</span><p className="text-xs flex-1" style={{ color: '#3C313D' }}>{content}</p></div>{affiliateUrl && <a href={affiliateUrl} target="_blank" rel="noopener noreferrer" className="inline-block mt-1.5 ml-7 text-[10px] font-medium px-2.5 py-1 rounded transition-colors hover:opacity-80" style={{ backgroundColor: '#EBEAEC', color: '#3C313D' }}>View on Amazon</a>}</div>); })}</div></div>)}
-          {citations.length > 0 && (<div className="py-3" style={dividerStyle}><p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>References</p><ul className="space-y-1 mt-2">{citations.map((c: any, i: number) => (<li key={i} className="text-xs">{c.url ? <a href={c.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-70" style={{ color: '#18141D' }}>{c.title || c.url}</a> : <span style={{ color: bodyColor }}>{c.title || (typeof c === 'string' ? c : '')}</span>}</li>))}</ul></div>)}
+          {fixParts.length > 0 && (
+            <div className="py-3" style={dividerStyle}>
+              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>What you need to fix it</p>
+              <p className="mt-1 text-[10px]" style={{ color: '#6B6570' }}>Only diagnosis- and fitment-reviewed repair parts are linked here.</p>
+              <ul className="mt-2 space-y-2">
+                {fixParts.map((part, index) => (
+                  <li key={`${part.component}-${part.oemPartNumber || ''}-${index}`} className="rounded-lg border border-[#C9C0B1] bg-[#F7F4EC] p-2.5">
+                    <p className="text-xs font-semibold text-[#0B1220]">{part.component}</p>
+                    {part.oemPartNumber && <p className="mt-0.5 font-mono text-[10px] text-[#475569]">OEM {part.oemPartNumber}</p>}
+                    {part.buyLinks && part.buyLinks.length > 0 && (
+                      <div className="mt-2 flex flex-wrap gap-1.5">
+                        {part.buyLinks.map((link, linkIndex) => {
+                          const affiliateUrl = knownIssueAffiliateUrl(link.url, issue.id);
+                          return (
+                            <a
+                              key={`${link.vendor}-${linkIndex}`}
+                              href={affiliateUrl}
+                              target="_blank"
+                              rel="noopener noreferrer sponsored"
+                              onClick={() => trackAffiliateClick({
+                                issueId: issue.id,
+                                partBrand: link.vendor,
+                                partName: part.component,
+                                partNumber: part.oemPartNumber || undefined,
+                                linkUrl: affiliateUrl,
+                                recommendationIndex: index,
+                                vehicleMake: issue.vehicleMatch.make,
+                                vehicleModel: issue.vehicleMatch.model,
+                              })}
+                              className="rounded bg-[#0B1220] px-2.5 py-1 text-[10px] font-medium text-white transition-colors hover:bg-[#1E293B]"
+                            >
+                              {link.vendor}
+                            </a>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+              {hasKnownIssueCommerce(fixParts) && <p className="mt-2 text-[11px] font-medium text-[#475569]">Part links may earn au7o a commission. Confirm fitment by VIN.</p>}
+            </div>
+          )}
+          {ownerGuidance.length > 0 && (
+            <div className="py-3" style={dividerStyle}>
+              <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>Owner tips &amp; cautions</p>
+              <ul className="mt-2 space-y-2">
+                {ownerGuidance.map((guidance, index) => (
+                  <li key={`${guidance.type}-${index}`} className="flex items-start gap-2 rounded-lg border border-[#C9C0B1] bg-[#F7F4EC] p-2.5">
+                    <span className="rounded border border-[#C9C0B1] bg-[#EFEDE6] px-1.5 py-0.5 text-[9px] font-semibold uppercase text-[#3C313D]">
+                      {guidance.type === 'warning' ? 'Warning' : 'Tip'}
+                    </span>
+                    <p className="text-xs text-[#475569]">{guidance.content}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {citations.length > 0 && (<div className="py-3" style={dividerStyle}><p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>References</p><ul className="space-y-1 mt-2">{citations.map((citation, index) => { const title = typeof citation === 'string' ? citation : citation.title || citation.url || 'Reference'; const url = typeof citation === 'string' ? undefined : citation.url; return <li key={index} className="text-xs">{url ? <a href={url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-70" style={{ color: '#18141D' }}>{title}</a> : <span style={{ color: bodyColor }}>{title}</span>}</li>; })}</ul></div>)}
           <div className="py-3" style={dividerStyle}><p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>Research This Issue</p><div className="flex gap-2 flex-wrap mt-2">{[{ label: 'Google', url: 'https://www.google.com/search?q=' + searchQuery },{ label: 'Reddit', url: 'https://www.reddit.com/search/?q=' + searchQuery },{ label: 'YouTube', url: 'https://www.youtube.com/results?search_query=' + searchQuery },{ label: 'NHTSA', url: 'https://www.nhtsa.gov/vehicle-safety/search-results?keyword=' + searchQuery }].map(link => (<a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" className="text-[10px] px-2.5 py-1.5 rounded-md transition-colors hover:opacity-80" style={labelStyle}>{link.label}</a>))}</div></div>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] pt-3" style={{ ...dividerStyle, color: styled ? '#3C313D' : '#6b7280' }}>
-            {issue.source && <span className="px-1.5 py-0.5 rounded" style={{ backgroundColor: styled ? '#3C313D' : '#f3f4f6', color: styled ? '#EBEAEC' : '#374151' }}>{issue.source === 'nhtsa-verified' ? 'NHTSA Verified' : issue.source === 'manual' ? 'Manually Verified' : 'Community Reported'}</span>}
+            {issue.source && <span className="px-1.5 py-0.5 rounded" style={{ backgroundColor: styled ? '#EFEDE6' : '#f3f4f6', color: styled ? '#3C313D' : '#374151', border: styled ? '1px solid #D8D1C3' : undefined }}>{issue.source === 'nhtsa-verified' ? 'NHTSA Verified' : issue.source === 'manual' ? 'Manually Verified' : 'Community Reported'}</span>}
             {issue.confidence && <span>{issue.confidence} confidence</span>}
             {issue.reportCount > 0 && <span>{issue.reportCount} reports</span>}
             {issue.lastReportedByOwners && <span>Last reported {issue.lastReportedByOwners}</span>}
@@ -568,26 +639,26 @@ function IssueCardExpanded({ issue, styled = true, onAskAI }: { issue: KnownIssu
 function RecallCard({ recall, styled = true }: { recall: RecallItem; styled?: boolean }) {
   const [expanded, setExpanded] = useState(false);
   return (
-    <div className={'rounded-xl overflow-hidden ' + (recall.parkIt ? 'ring-2 ring-red-400' : '')} style={styled ? { backgroundColor: '#c4bec4' } : { backgroundColor: '#f9fafb' }}>
+    <div className={'rounded-xl overflow-hidden ' + (recall.parkIt ? 'ring-2 ring-[#3C313D]' : '')} style={styled ? { backgroundColor: '#EFEDE6' } : { backgroundColor: '#f9fafb' }}>
       <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0"><h3 className="text-sm font-medium text-gray-900">{recall.component}</h3><p className="text-xs text-gray-500 mt-0.5">{recall.campaignNumber}</p></div>
-          {recall.parkIt && <span className="flex-shrink-0 px-2 py-0.5 text-[10px] font-medium bg-red-100 text-red-600 rounded-full">PARK IT</span>}
+          {recall.parkIt && <span className="flex-shrink-0 px-2 py-0.5 text-[10px] font-medium bg-[#0B1220] text-white rounded-full">PARK IT</span>}
         </div>
       </button>
       {expanded && (
         <div className="px-4 pb-4 space-y-2">
           <p className="text-sm text-gray-500">{recall.summary}</p>
-          {recall.consequence && <div><p className="text-xs font-medium text-gray-500 uppercase mb-1">Risk</p><p className="text-xs text-red-600">{recall.consequence}</p></div>}
+          {recall.consequence && <div><p className="text-xs font-medium text-gray-500 uppercase mb-1">Risk</p><p className="text-xs text-[#3C313D]">{recall.consequence}</p></div>}
           {recall.remedy && <div><p className="text-xs font-medium text-gray-500 uppercase mb-1">Remedy</p><p className="text-xs text-gray-500">{recall.remedy}</p></div>}
-          <a href={'https://www.nhtsa.gov/recalls?nhtsaId=' + recall.campaignNumber} target="_blank" rel="noopener noreferrer" className="inline-block text-xs font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-lg transition-colors mt-1">View on NHTSA.gov &rarr;</a>
+          <a href={'https://www.nhtsa.gov/recalls?nhtsaId=' + recall.campaignNumber} target="_blank" rel="noopener noreferrer" className="inline-block text-xs font-medium text-[#3C313D] border border-[#D8D1C3] bg-[#F7F4EC] hover:bg-[#EFEDE6] px-3 py-2 rounded-lg transition-colors mt-1">View on NHTSA.gov &rarr;</a>
         </div>
       )}
     </div>
   );
 }
 
-function PartCard({ task, parts, styled = true }: { task: string; parts: any[]; styled?: boolean }) {
+function PartCard({ task, parts, styled = true }: { task: string; parts: PartRecord[]; styled?: boolean }) {
   const [expanded, setExpanded] = useState(false);
   const name = TASK_NAMES[task] || task.replace(/_/g, ' ');
   return (
@@ -598,7 +669,7 @@ function PartCard({ task, parts, styled = true }: { task: string; parts: any[]; 
       </button>
       {expanded && (
         <div className="px-4 pb-4 pt-3 space-y-2">
-          {parts.map((p: any, i: number) => (
+          {parts.map((p, i) => (
             <div key={i} className="rounded-lg p-2.5 flex items-center justify-between gap-2" style={styled ? { backgroundColor: '#EBEAEC', border: '1px solid #c4bec4' } : { backgroundColor: 'white' }}>
               <div className="min-w-0">
                 <p className="text-xs truncate" style={{ color: styled ? '#3C313D' : '#374151' }}>{p.brand || ''} {p.name || p.partNumber || ''}</p>
@@ -625,6 +696,5 @@ function PartCard({ task, parts, styled = true }: { task: string; parts: any[]; 
 function IconIssues() { return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>; }
 function IconHome() { return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>; }
 function IconParts() { return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1-5.1m0 0L3.07 12.32c-.84.84-.84 2.2 0 3.04l5.58 5.58c.84.84 2.2.84 3.04 0l2.24-2.24m-5.58-8.4l7.12-7.12c.84-.84 2.2-.84 3.04 0l1.41 1.41c.84.84.84 2.2 0 3.04L13.36 15.17" /></svg>; }
-function IconRecalls() { return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" /></svg>; }
 function IconGuides() { return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>; }
 function IconChat() { return <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg>; }

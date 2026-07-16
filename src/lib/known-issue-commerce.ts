@@ -1,0 +1,182 @@
+import type { KnownIssue } from '@/schemas/knownIssue.schema';
+import { ebayAffiliate } from '@/lib/ebay-affiliate';
+
+export type KnownIssueFixPart = NonNullable<KnownIssue['fixParts']>[number];
+
+export interface OwnerGuidance {
+  type: 'tip' | 'warning';
+  content: string;
+}
+
+type Marketplace = 'amazon' | 'ebay' | 'direct';
+
+function marketplaceForProductUrl(value: string): Marketplace | null {
+  if (!isKnownIssueProductUrl(value)) return null;
+  const host = new URL(value).hostname.toLowerCase().replace(/^www\./, '');
+  if (host === 'amazon.com' || host.endsWith('.amazon.com')) return 'amazon';
+  if (host === 'ebay.com' || host.endsWith('.ebay.com')) return 'ebay';
+  return 'direct';
+}
+
+function vendorMatchesProductUrl(vendor: string, value: string): boolean {
+  const marketplace = marketplaceForProductUrl(value);
+  if (!marketplace) return false;
+  const normalizedVendor = vendor.trim().toLowerCase();
+  if (marketplace === 'amazon') return normalizedVendor.includes('amazon');
+  if (marketplace === 'ebay') return normalizedVendor.includes('ebay');
+  return !/(amazon|ebay|rockauto)/i.test(normalizedVendor);
+}
+
+/** Add owned affiliate attribution only after the destination passes the guard. */
+export function knownIssueAffiliateUrl(value: string, customId?: string): string {
+  const marketplace = marketplaceForProductUrl(value);
+  if (marketplace === 'ebay') return ebayAffiliate(value, customId);
+  if (marketplace !== 'amazon') return value;
+
+  const url = new URL(value);
+  url.searchParams.set('tag', 'au7o-20');
+  return url.toString();
+}
+
+/**
+ * Structural last-line defense for public Known Issue commerce.
+ *
+ * Research still has to prove repair role and fitment. This guard only stops
+ * known search/category URL shapes from leaking onto the page while that
+ * catalog-wide review is in progress.
+ */
+export function isKnownIssueProductUrl(value: string): boolean {
+  let url: URL;
+  try {
+    url = new URL(value);
+  } catch {
+    return false;
+  }
+
+  if (url.protocol !== 'https:' || url.username || url.password) return false;
+
+  const host = url.hostname.toLowerCase().replace(/^www\./, '');
+  let path = url.pathname;
+  try {
+    for (let pass = 0; pass < 2; pass += 1) {
+      const decoded = decodeURIComponent(path);
+      if (decoded === path) break;
+      path = decoded;
+    }
+  } catch {
+    return false;
+  }
+  path = path.toLowerCase().replace(/\/+$/, '') || '/';
+  if (/[\u0000-\u001f\u007f]/.test(path)) return false;
+  const hostLabels = host.split('.');
+
+  if (
+    hostLabels.length < 2 ||
+    host === 'localhost' ||
+    host.endsWith('.local') ||
+    host.endsWith('.internal') ||
+    /^\d{1,3}(?:\.\d{1,3}){3}$/.test(host) ||
+    host.startsWith('[')
+  ) return false;
+
+  if (host === 'amazon.com' || host.endsWith('.amazon.com')) {
+    return /\/(?:dp|gp\/product)\/[a-z0-9]{10}(?:\/|$)/i.test(path);
+  }
+
+  if (host === 'ebay.com' || host.endsWith('.ebay.com')) {
+    return /\/itm\/(?:[^/]+\/)?\d{9,15}(?:\/|$)/i.test(path);
+  }
+
+  // RockAuto's public partsearch/catalog URLs are search results, not a stable
+  // offer for one exact product. Keep them out of Known Issue repair CTAs.
+  if (host === 'rockauto.com' || host.endsWith('.rockauto.com')) return false;
+
+  // Do not let lookalike marketplace domains fall through to the generic
+  // direct-retailer rule below.
+  if (hostLabels.some((label) => ['amazon', 'ebay', 'rockauto'].includes(label))) return false;
+
+  if (
+    /\/(?:search|search-results|partsearch|parts-search|category|categories|catalog|collections?|sch|s)(?:\/|$)/i.test(path)
+  ) return false;
+
+  const searchKeys = new Set([
+    'q', 'query', 'search', 'keyword', 'keywords', '_nkw', 'k', 's', 'term',
+    'filter', 'filters', 'searchterm', 'search_query',
+  ]);
+  for (const [key] of url.searchParams) {
+    if (searchKeys.has(key.toLowerCase())) return false;
+  }
+
+  const segments = path.split('/').filter(Boolean);
+  if (segments.length === 0) return false;
+
+  const genericRoots = new Set(['part', 'parts', 'product', 'products', 'shop', 'store', 'catalog']);
+  if (segments.length === 1 && genericRoots.has(segments[0])) return false;
+
+  // Direct-retailer URLs need a product-shaped path. This is deliberately
+  // conservative: false negatives hide a CTA; false positives can sell the
+  // wrong thing. Most stable retailer detail pages use a product/part/item
+  // segment followed by a descriptive SKU slug, or end in a SKU-like token.
+  const detailMatch = path.match(/\/(?:product|products|part|parts|item|items|sku|p)\/([^/]+)(?:\/|$)/i);
+  if (detailMatch) {
+    const slug = detailMatch[1];
+    if (/\d{3,}/.test(slug) || (slug.length >= 12 && /[-_.]/.test(slug))) return true;
+  }
+
+  const leaf = segments[segments.length - 1];
+  return /\d{4,}/.test(leaf) && leaf.length >= 6;
+}
+
+/**
+ * Return the one public commerce model for a Known Issue.
+ *
+ * - Shopping links can originate only from fixParts.buyLinks.
+ * - Search/category links are removed before rendering.
+ * - Community `part` records are hidden until the audit either promotes them
+ *   into a verified fixPart or removes them.
+ * - Community tips/warnings survive as plain text with all commerce metadata
+ *   deliberately discarded.
+ */
+export function getKnownIssueCommerce(
+  issue: Pick<KnownIssue, 'fixParts' | 'communityRecommendations'>,
+): {
+  fixParts: KnownIssueFixPart[];
+  ownerGuidance: OwnerGuidance[];
+  suppressedCommunityPartCount: number;
+} {
+  const verifiedParts = (issue.fixParts || []).filter((part) => part.verified === true);
+  const recallFirst = verifiedParts.some((part) => part.recallFirst);
+  const fixParts = verifiedParts
+    .map((part) => {
+      const seen = new Set<string>();
+      const buyLinks = recallFirst
+        ? []
+        : (part.buyLinks || []).filter((link) => {
+            if (link.verified !== true || !vendorMatchesProductUrl(link.vendor, link.url)) return false;
+            const canonicalUrl = new URL(link.url).toString();
+            if (seen.has(canonicalUrl)) return false;
+            seen.add(canonicalUrl);
+            return true;
+          });
+      return { ...part, buyLinks };
+    });
+
+  const recommendations = issue.communityRecommendations || [];
+  const ownerGuidance = recommendations
+    .filter((recommendation) => recommendation.type === 'tip' || recommendation.type === 'warning')
+    .map((recommendation) => ({
+      type: recommendation.type === 'warning' ? 'warning' as const : 'tip' as const,
+      content: recommendation.content.trim(),
+    }))
+    .filter((recommendation) => recommendation.content.length > 0);
+
+  return {
+    fixParts,
+    ownerGuidance,
+    suppressedCommunityPartCount: recommendations.filter((recommendation) => recommendation.type === 'part').length,
+  };
+}
+
+export function hasKnownIssueCommerce(parts: KnownIssueFixPart[]): boolean {
+  return parts.some((part) => (part.buyLinks || []).length > 0);
+}

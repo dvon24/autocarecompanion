@@ -74,7 +74,7 @@ export function CategorySection({ category, issues, defaultExpanded = false, def
         <span className="font-medium text-[#0B1220] flex-1 text-left">{config.label}</span>
         <span className="text-sm text-[#64748B]">{issues.length} issue{issues.length !== 1 ? 's' : ''}</span>
         {highCount > 0 && (
-          <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full">
+          <span className="text-xs border border-[#C9C0B1] bg-[#F7F4EC] text-[#3C313D] px-2 py-0.5 rounded-full">
             {highCount} critical
           </span>
         )}

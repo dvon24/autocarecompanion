@@ -14,20 +14,20 @@ export function SeverityFilter({ selected, onChange }: SeverityFilterProps) {
     {
       value: 'high',
       label: 'Critical',
-      color: 'border-red-200 text-red-600 hover:bg-red-50',
-      activeColor: 'border-red-500 bg-red-100 text-red-800',
+      color: 'border-[#D8D1C3] text-[#64748B] hover:bg-[#F7F4EC]',
+      activeColor: 'border-[#3C313D] bg-[#EFEDE6] text-[#0B1220]',
     },
     {
       value: 'medium',
       label: 'Moderate',
-      color: 'border-yellow-200 text-yellow-700 hover:bg-yellow-50',
-      activeColor: 'border-yellow-500 bg-yellow-100 text-yellow-800',
+      color: 'border-[#D8D1C3] text-[#64748B] hover:bg-[#F7F4EC]',
+      activeColor: 'border-[#3C313D] bg-[#EFEDE6] text-[#0B1220]',
     },
     {
       value: 'low',
       label: 'Minor',
-      color: 'border-gray-200 text-gray-600 hover:bg-gray-50',
-      activeColor: 'border-gray-400 bg-gray-100 text-gray-800',
+      color: 'border-[#D8D1C3] text-[#64748B] hover:bg-[#F7F4EC]',
+      activeColor: 'border-[#3C313D] bg-[#EFEDE6] text-[#0B1220]',
     },
   ];
 

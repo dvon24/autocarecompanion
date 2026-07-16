@@ -26,10 +26,10 @@ const SEV_KEY: Record<string, string> = {
   critical: 'sevCritical', high: 'sevHigh', medium: 'sevMedium', low: 'sevLow',
 };
 const SEV_STYLE: Record<string, { color: string; bg: string; border: string }> = {
-  critical: { color: '#991B1B', bg: '#FEF2F2', border: '#FECACA' },
-  high: { color: '#9A3412', bg: '#FFF7ED', border: '#FED7AA' },
-  medium: { color: '#92400E', bg: '#FFFBEB', border: '#FDE68A' },
-  low: { color: '#166534', bg: '#F0FDF4', border: '#BBF7D0' },
+  critical: { color: '#0B1220', bg: '#E8E2D5', border: '#C9C0B1' },
+  high: { color: '#0B1220', bg: '#E8E2D5', border: '#C9C0B1' },
+  medium: { color: '#0B1220', bg: '#E8E2D5', border: '#C9C0B1' },
+  low: { color: '#0B1220', bg: '#E8E2D5', border: '#C9C0B1' },
 };
 const SEV_ORDER: Record<string, number> = { critical: 0, high: 1, medium: 2, low: 3 };
 
@@ -200,7 +200,7 @@ export default async function LocalizedKnownIssuesPage({
                           <Link
                             key={code}
                             href={`/known-issues/dtc/${code.toLowerCase()}`}
-                            className="font-mono text-xs font-semibold text-blue-700 hover:underline"
+                            className="font-mono text-xs font-semibold text-[#3C313D] hover:underline"
                           >
                             {code}
                           </Link>

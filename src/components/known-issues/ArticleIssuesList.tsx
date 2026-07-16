@@ -39,7 +39,7 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
   const { selectedVehicle } = useVehicleContext();
   const pathname = usePathname();
   const [severityFilter, setSeverityFilter] = useState<('high' | 'medium' | 'low')[]>(['high', 'medium', 'low']);
-  const [yearFilter, setYearFilter] = useState<number | null>(initialYear ?? null);
+  const [yearFilter] = useState<number | null>(initialYear ?? null);
 
   // Get user's selected trim if it matches this article's make/model
   const userTrim = useMemo(() => {
@@ -60,17 +60,6 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
       }
     }
   }, [selectedVehicle, make, model, initialYear, yearFilter]);
-
-  // Get all unique years from issues, sorted descending
-  const availableYears = useMemo(() => {
-    const years = new Set<number>();
-    for (const issue of issues) {
-      for (const y of issue.vehicleMatch.years) {
-        years.add(y);
-      }
-    }
-    return [...years].sort((a, b) => b - a);
-  }, [issues]);
 
   // Get unique trims from issues for the trim filter
   const availableTrims = useMemo(() => {
@@ -215,7 +204,7 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
         if (withMileage.length < 3) return null;
         const maxMileage = Math.max(...withMileage.map(i => i.typicalMileage!.high));
         const scale = Math.ceil(maxMileage / 50000) * 50000; // Round up to nearest 50K
-        const severityColors = { high: 'bg-red-400', medium: 'bg-yellow-400', low: 'bg-gray-300' };
+        const severityColors = { high: 'bg-[#3C313D]', medium: 'bg-[#756A73]', low: 'bg-[#B8AE9B]' };
         return (
           <div className="mt-4 mb-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
             <h3 className="text-sm font-semibold text-gray-700 mb-3">When Issues Typically Appear</h3>
