@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { signupHref } from '@/lib/auth-callback';
 
 /**
  * Floating Sign-in pill — sits in the top-right corner (rounded, blurred
@@ -37,6 +38,11 @@ export function FloatingAuthButton() {
   // Keep the locale list in sync with LOCALES in src/lib/i18n.ts (not
   // imported — that module pulls the translation JSON into the bundle).
   const onHeaderedPage = /^\/(known-issues(\/|$)|(pt-br|es|de|fr|ko)(\/|$))/.test(pathname ?? '');
+  const onVehicleHub = pathname?.startsWith('/vehicle/') ?? false;
+  // The Hub has its own mobile account control in the dedicated phone
+  // header. Keep this global control on desktop, but hide the duplicate at
+  // mobile widths so it cannot cover the vehicle selector or mobile CTA.
+  const hubResponsiveClass = onVehicleHub ? ' hub-global-auth' : '';
 
   // Close dropdown on outside click.
   useEffect(() => {
@@ -56,7 +62,7 @@ export function FloatingAuthButton() {
   if (status === 'loading') {
     return (
       <div
-        className="fixed top-3 right-3 z-[9999] w-[56px] h-[26px] bg-transparent"
+        className={`fixed top-3 right-3 z-[9999] w-[56px] h-[26px] bg-transparent${hubResponsiveClass}`}
         aria-hidden
       />
     );
@@ -66,13 +72,23 @@ export function FloatingAuthButton() {
   // weight of normal nav text. Sits next to (left of) the Translate
   // pill which keeps its own styling.
   if (!session?.user) {
+    const href = onVehicleHub && pathname ? signupHref(pathname) : '/auth/signin';
+    const label = onVehicleHub ? 'Create free account' : 'Sign in';
     return (
       <Link
-        href="/auth/signin"
-        className="fixed top-3 right-3 z-[9999] text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors rounded-full border border-gray-200 bg-white/85 backdrop-blur-sm shadow-sm px-3 py-1.5"
-        aria-label="Sign in"
+        href={href}
+        onClick={(event) => {
+          if (!onVehicleHub || !pathname) return;
+          const callback = `${pathname}${window.location.search}`;
+          const destination = signupHref(callback);
+          if (destination === href) return;
+          event.preventDefault();
+          window.location.assign(destination);
+        }}
+        className={`fixed top-3 right-3 z-[9999] text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors rounded-full border border-gray-200 bg-white/85 backdrop-blur-sm shadow-sm px-3 py-1.5${hubResponsiveClass}`}
+        aria-label={label}
       >
-        Sign in
+        {label}
       </Link>
     );
   }
@@ -84,7 +100,7 @@ export function FloatingAuthButton() {
     : session.user.email?.slice(0, 2).toUpperCase() || 'U';
 
   return (
-    <div ref={menuRef} className="fixed top-3 right-3 z-[9999]">
+    <div ref={menuRef} className={`fixed top-3 right-3 z-[9999]${hubResponsiveClass}`}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}

@@ -14,6 +14,7 @@ import { LAYOUT_LAST_REVISED } from '@/lib/known-issues';
 import { getLinkableDtcCodes } from '@/lib/dtc-codes';
 import { TechnicalArticleJsonLd, BreadcrumbJsonLd, FAQJsonLd } from '@/components/seo/JsonLd';
 import { SiteFooter } from '@/components/shared/SiteFooter';
+import { LocalizedIssueHashExpander } from '@/components/known-issues/LocalizedIssueHashExpander';
 
 export const revalidate = 3600;
 export const dynamicParams = false; // only (locale, slug) pairs that have a translation; else 404
@@ -26,9 +27,9 @@ const SEV_KEY: Record<string, string> = {
   critical: 'sevCritical', high: 'sevHigh', medium: 'sevMedium', low: 'sevLow',
 };
 const SEV_STYLE: Record<string, { color: string; bg: string; border: string }> = {
-  critical: { color: '#0B1220', bg: '#E8E2D5', border: '#C9C0B1' },
-  high: { color: '#0B1220', bg: '#E8E2D5', border: '#C9C0B1' },
-  medium: { color: '#0B1220', bg: '#E8E2D5', border: '#C9C0B1' },
+  critical: { color: '#FFFFFF', bg: '#8B1E1E', border: '#8B1E1E' },
+  high: { color: '#FFFFFF', bg: '#8B1E1E', border: '#8B1E1E' },
+  medium: { color: '#0B1220', bg: '#F4A261', border: '#E58A2B' },
   low: { color: '#0B1220', bg: '#E8E2D5', border: '#C9C0B1' },
 };
 const SEV_ORDER: Record<string, number> = { critical: 0, high: 1, medium: 2, low: 3 };
@@ -124,7 +125,7 @@ export default async function LocalizedKnownIssuesPage({
             <Link href={enUrl} className="px-3 py-2 text-sm font-medium text-[#475569] hover:text-[#0B1220] transition-colors" hrefLang="en">
               English
             </Link>
-            <Link href="/" className="px-4 py-2 text-sm font-semibold bg-[#0B1220] text-white rounded-lg hover:opacity-90 transition-opacity">
+            <Link href="/" className="px-4 py-2 text-sm font-semibold bg-[#3B82F6] text-white rounded-lg hover:bg-blue-600 transition-colors">
               {tr('diagnoseCta', 'Diagnose my car')}
             </Link>
           </div>
@@ -159,61 +160,80 @@ export default async function LocalizedKnownIssuesPage({
 
         {/* Issues */}
         <div className="space-y-4">
+          <LocalizedIssueHashExpander />
           {issues.map((issue: TIssue) => {
             const sev = SEV_STYLE[issue.severity] || SEV_STYLE.medium;
             return (
-              <section key={issue.id} className="bg-white border border-[#E3DFD4] rounded-xl p-5">
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <h2 className="text-lg font-bold text-[#0B1220]">{issue.title}</h2>
-                  <span
-                    className="flex-shrink-0 px-2.5 py-0.5 rounded-full text-xs font-semibold"
-                    style={{ color: sev.color, background: sev.bg, border: `1px solid ${sev.border}` }}
-                  >
-                    {sevLabel(issue.severity)}
+              <details
+                key={issue.id}
+                id={issue.id}
+                className="group scroll-mt-24 overflow-hidden rounded-xl border border-[#E3DFD4] bg-white"
+              >
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-3 p-5 [&::-webkit-details-marker]:hidden">
+                  <span className="flex min-w-0 items-start gap-3">
+                    <svg className="mt-0.5 flex-none text-[#64748B]" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                      <path d="M12 3 2.8 19h18.4L12 3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+                      <path d="M12 9v4.5M12 17h.01" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                    </svg>
+                    <h2 className="text-lg font-bold leading-snug text-[#0B1220]">{issue.title}</h2>
                   </span>
-                </div>
-                <p className="text-[#475569] leading-relaxed mb-3">{issue.description}</p>
+                  <span className="flex flex-none items-center gap-2">
+                    <span
+                      className="rounded-full px-2.5 py-0.5 text-xs font-semibold"
+                      style={{ color: sev.color, background: sev.bg, border: `1px solid ${sev.border}` }}
+                    >
+                      {sevLabel(issue.severity)}
+                    </span>
+                    <svg className="mt-0.5 text-[#64748B] transition-transform group-open:rotate-180" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                      <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                </summary>
 
-                {issue.symptoms.length > 0 && (
-                  <p className="text-sm text-[#475569] mb-2">
-                    <span className="font-semibold text-[#334155]">{tr('symptomsLabel', 'Symptoms')}: </span>
-                    {issue.symptoms.join(' · ')}
-                  </p>
-                )}
-                {issue.solution && (
-                  <p className="text-sm text-[#475569] mb-2">
-                    <span className="font-semibold text-[#334155]">{tr('solutionLabel', 'Fix')}: </span>
-                    {issue.solution}
-                  </p>
-                )}
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-[#64748B] mt-2">
-                  {issue.costLow && issue.costHigh ? (
-                    <span>
-                      <span className="font-semibold text-[#334155]">{tr('repairCost', 'Repair cost')}: </span>
-                      ${issue.costLow.toLocaleString()}–${issue.costHigh.toLocaleString()}
-                    </span>
-                  ) : null}
-                  {issue.dtcCodes.length > 0 && (
-                    <span className="flex flex-wrap gap-1.5">
-                      {issue.dtcCodes.map((code) =>
-                        linkableDtc.has(code.toLowerCase()) ? (
-                          <Link
-                            key={code}
-                            href={`/known-issues/dtc/${code.toLowerCase()}`}
-                            className="font-mono text-xs font-semibold text-[#3C313D] hover:underline"
-                          >
-                            {code}
-                          </Link>
-                        ) : (
-                          <span key={code} className="font-mono text-xs font-semibold text-[#475569]">
-                            {code}
-                          </span>
-                        ),
-                      )}
-                    </span>
+                <div className="border-t border-[#E3DFD4] px-5 pb-5 pt-4">
+                  <p className="mb-3 leading-relaxed text-[#475569]">{issue.description}</p>
+
+                  {issue.symptoms.length > 0 && (
+                    <p className="mb-2 text-sm text-[#475569]">
+                      <span className="font-semibold text-[#334155]">{tr('symptomsLabel', 'Symptoms')}: </span>
+                      {issue.symptoms.join(' · ')}
+                    </p>
                   )}
+                  {issue.solution && (
+                    <p className="mb-2 text-sm text-[#475569]">
+                      <span className="font-semibold text-[#334155]">{tr('solutionLabel', 'Fix')}: </span>
+                      {issue.solution}
+                    </p>
+                  )}
+                  <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-[#64748B]">
+                    {issue.costLow && issue.costHigh ? (
+                      <span>
+                        <span className="font-semibold text-[#334155]">{tr('repairCost', 'Repair cost')}: </span>
+                        ${issue.costLow.toLocaleString()}–${issue.costHigh.toLocaleString()}
+                      </span>
+                    ) : null}
+                    {issue.dtcCodes.length > 0 && (
+                      <span className="flex flex-wrap gap-1.5">
+                        {issue.dtcCodes.map((code) =>
+                          linkableDtc.has(code.toLowerCase()) ? (
+                            <Link
+                              key={code}
+                              href={`/known-issues/dtc/${code.toLowerCase()}`}
+                              className="rounded border border-blue-200 bg-blue-50 px-1.5 py-0.5 font-mono text-xs font-semibold text-[#3B82F6] underline decoration-blue-200 underline-offset-2 hover:bg-blue-100 hover:text-blue-700"
+                            >
+                              {code}
+                            </Link>
+                          ) : (
+                            <span key={code} className="font-mono text-xs font-semibold text-[#475569]">
+                              {code}
+                            </span>
+                          ),
+                        )}
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </section>
+              </details>
             );
           })}
         </div>

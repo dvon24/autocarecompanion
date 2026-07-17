@@ -277,14 +277,11 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
                 <CategorySection
                   category={category}
                   issues={catIssues}
-                  // Default expanded so the SSR HTML contains every issue
-                  // card's content. Googlebot can't see content that's
-                  // conditionally rendered (`{expanded && ...}`) when the
-                  // initial state is collapsed — that's why ~900 of these
-                  // pages were "Discovered, not indexed". Users can still
-                  // collapse manually after page load.
+                  // Categories stay open, while each child card starts
+                  // collapsed. Card bodies remain in the server markup via
+                  // the HTML `hidden` attribute.
                   defaultExpanded={true}
-                  defaultCardExpanded={true}
+                  defaultCardExpanded={false}
                   vehicleInfo={vehicleInfo}
                   relatedByIssueId={relatedByIssueId}
                   linkableDtcCodes={linkableDtcCodes}

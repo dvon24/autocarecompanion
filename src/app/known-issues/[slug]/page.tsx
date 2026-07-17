@@ -17,6 +17,7 @@ import { categoryConfig } from '@/lib/issue-categories';
 import { ArticleIssuesList } from '@/components/known-issues/ArticleIssuesList';
 import { ModelIssueSearch } from '@/components/known-issues/ModelIssueSearch';
 import { ArticleSidebar } from '@/components/known-issues/ArticleSidebar';
+import { FaqIcon, IssueCategoryIcon, RecallIcon } from '@/components/known-issues/IssueCategoryIcon';
 import { MobileBottomBar } from '@/components/known-issues/MobileBottomBar';
 import { VehicleChatLink } from '@/components/known-issues/VehicleChatLink';
 import FutureModelYearNotice from '@/components/known-issues/FutureModelYearNotice';
@@ -409,7 +410,7 @@ export default async function KnownIssuesArticlePage({
                 instead of a stranger base-trim default. See OpenHubLink. */}
             <OpenHubLink
               articleSlug={vehicleSlug(yearRange?.max ?? new Date().getFullYear(), make, model)}
-              className="px-3 sm:px-4 py-2 text-sm font-semibold bg-[#0B1220] text-white rounded-lg transition-opacity hover:opacity-90"
+              className="px-3 sm:px-4 py-2 text-sm font-semibold bg-[#3B82F6] text-white rounded-lg transition-colors hover:bg-[#2563EB]"
             />
           </div>
         </div>
@@ -538,7 +539,9 @@ export default async function KnownIssuesArticlePage({
                         href={`#${category}`}
                         className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] transition-colors py-1"
                       >
-                        <span>{config.icon}</span>
+                        <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-[#D8D1C3] bg-[#FBFAF6] text-[#3C313D]">
+                          <IssueCategoryIcon category={category} className="h-4 w-4" />
+                        </span>
                         <span>{config.label}</span>
                         <span className="text-[#94A3B8] text-xs ml-auto">{catIssues.length}</span>
                         {catHigh > 0 && (
@@ -551,7 +554,9 @@ export default async function KnownIssuesArticlePage({
                 {recalls.length > 0 && (
                   <li>
                     <a href="#recalls" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] transition-colors py-1">
-                      <span>&#9888;&#65039;</span>
+                      <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-[#D8D1C3] bg-[#FBFAF6] text-[#3C313D]">
+                        <RecallIcon className="h-4 w-4" />
+                      </span>
                       <span>Recalls</span>
                       <span className="text-[#94A3B8] text-xs ml-auto">{recalls.length}</span>
                     </a>
@@ -559,7 +564,9 @@ export default async function KnownIssuesArticlePage({
                 )}
                 <li className="pt-1 border-t border-[#E3DFD4] mt-1">
                   <a href="#faq" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] transition-colors py-1">
-                    <span>&#10067;</span>
+                    <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-[#D8D1C3] bg-[#FBFAF6] text-[#3C313D]">
+                      <FaqIcon className="h-4 w-4" />
+                    </span>
                     <span>FAQ</span>
                   </a>
                 </li>

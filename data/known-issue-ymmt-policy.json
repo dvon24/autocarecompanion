@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "minimumSupportedYear": 1990,
+  "verifiedAdditions": [
+    {
+      "make": "Audi",
+      "model": "RS4",
+      "years": [2007, 2008],
+      "trims": ["Base"],
+      "evidence": "ShowMeTheParts catalog exact model-year candidate; bounded to the North American B7 model years. Base avoids inventing body-style fitment."
+    },
+    {
+      "make": "Audi",
+      "model": "RS5",
+      "years": [2013, 2014, 2015],
+      "trims": ["Coupe", "Cabriolet"],
+      "evidence": "ShowMeTheParts catalog exact model-year candidate; North American first-generation body styles."
+    },
+    {
+      "make": "BMW",
+      "model": "i5",
+      "years": [2024],
+      "trims": ["eDrive40", "M60"],
+      "evidence": "ShowMeTheParts catalog candidate cross-checked against BMW USA's 2024 launch lineup; xDrive40 is intentionally excluded because BMW identifies it as model year 2025."
+    },
+    {
+      "make": "BMW",
+      "model": "i7",
+      "years": [2023],
+      "trims": ["xDrive60"],
+      "evidence": "ShowMeTheParts catalog candidate cross-checked against BMW USA's launch lineup."
+    },
+    {
+      "make": "BMW",
+      "model": "i7",
+      "years": [2024],
+      "trims": ["eDrive50", "xDrive60", "M70"],
+      "evidence": "ShowMeTheParts catalog candidate cross-checked against BMW USA's model-year 2024 update."
+    },
+    {
+      "make": "Chevrolet",
+      "model": "Bolt EV",
+      "years": [2017, 2018, 2019, 2020, 2021],
+      "trims": ["LT", "Premier"],
+      "evidence": "ShowMeTheParts catalog exact model-year candidate and Chevrolet model lineup."
+    },
+    {
+      "make": "Chevrolet",
+      "model": "Bolt EV",
+      "years": [2022],
+      "trims": ["1LT", "2LT"],
+      "evidence": "ShowMeTheParts catalog candidate cross-checked against Chevrolet's official 2022 revised lineup."
+    },
+    {
+      "make": "Nissan",
+      "model": "370Z",
+      "years": [2009, 2010, 2011, 2012, 2013],
+      "trims": ["Base", "Touring", "NISMO"],
+      "evidence": "ShowMeTheParts catalog exact model-year candidate and Nissan model archive; bounded to the missing early years."
+    }
+  ],
+  "aliases": [
+    {
+      "knownIssue": { "make": "Ford", "model": "F-250" },
+      "selector": { "make": "Ford", "model": "F-250 Super Duty" },
+      "yearRanges": [[1999, 2025]],
+      "reason": "Published article short name and selector catalog name refer to the same Super Duty model in this bounded range."
+    },
+    {
+      "knownIssue": { "make": "Mazda", "model": "Miata" },
+      "selector": { "make": "Mazda", "model": "MX-5 Miata" },
+      "yearRanges": [[1990, 1997], [1999, 2005]],
+      "reason": "Canonical selector name; 1998 is intentionally excluded because the project gap scrub identifies no US model year."
+    },
+    {
+      "knownIssue": { "make": "Volkswagen", "model": "Beetle" },
+      "selector": { "make": "Volkswagen", "model": "New Beetle" },
+      "yearRanges": [[2006, 2011]],
+      "reason": "Published article short name and selector catalog name refer to the same New Beetle model in this bounded range."
+    }
+  ]
+}

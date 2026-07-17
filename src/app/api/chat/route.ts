@@ -837,6 +837,12 @@ export async function POST(request: NextRequest) {
   // can refund it — a transient OpenAI failure must not eat one of a
   // free user's 5 weekly chats (2026-06-11 review finding).
   let consumedQuotaKey: string | null = null;
+  let refundDayLimit: (() => void) | null = null;
+  const releaseDayLimit = () => {
+    const refund = refundDayLimit;
+    refundDayLimit = null;
+    refund?.();
+  };
   try {
     // GDPR Art. 21 right-to-object check — opted-out users never
     // reach the OpenAI/Anthropic call below.
@@ -844,9 +850,9 @@ export async function POST(request: NextRequest) {
     if (isAiGateBlocked(gate)) return gate;
 
     // ── Auth + login gate ────────────────────────────────────────────
-    // Mirrors /api/hub-chat: anon users get 1 free question per IP/day
-    // (and 1/week per cookie) then are bounced to /auth/signup. Same
-    // DB quota key space as hub-chat so "1 free question" spans both
+    // Mirrors /api/hub-chat: anonymous visitors get a five-message trial
+    // shared across both chat endpoints, then are sent to account creation.
+    // The shared DB quota key prevents the two endpoints from doubling
     // endpoints rather than handing the user 2 free taps.
     const ip = getClientIp(request);
     let chatSession;
@@ -865,22 +871,25 @@ export async function POST(request: NextRequest) {
       if (isAuthed) {
         return NextResponse.json({ error: 'rate_limited', message: 'Daily chat limit reached. It resets in 24 hours.', reset: dayLimit.reset, gated: false }, { status: 429 });
       }
-      // Anon at daily limit — brief copy: emphasizes free signup
-      // value (5 questions/week, no card) over the upgrade pitch.
+      // Anonymous trial is exhausted: signup is the primary next step.
       return NextResponse.json({
         error: 'login_required',
-        message: 'Free preview used. Sign in for 5 questions/week — free, no card required.',
+        message: `You have used your ${DEFAULT_ANON_LIMIT} free messages. Create a free account to keep chatting — free, no card required.`,
+        remaining: 0,
+        limit: DEFAULT_ANON_LIMIT,
         reset: dayLimit.reset,
         gated: true,
         ctaUrl: '/auth/signup',
-        ctaLabel: 'Start free — sign in',
+        ctaLabel: 'Create free account',
         secondaryCtaUrl: '/auth/signin',
         secondaryCtaLabel: 'Sign in',
       }, { status: 429 });
     }
+    refundDayLimit = () => { dayLimiter.refund(ip); };
 
     // Story 7.3: Check budget before making API call
     if (isBudgetExceeded()) {
+      releaseDayLimit();
       return NextResponse.json(
         {
           error: 'Monthly API budget exceeded. Chat is temporarily limited.',
@@ -896,6 +905,7 @@ export async function POST(request: NextRequest) {
     const parseResult = ChatRequestSchema.safeParse(body);
 
     if (!parseResult.success) {
+      releaseDayLimit();
       return NextResponse.json(
         {
           error: 'Invalid request',
@@ -922,6 +932,7 @@ export async function POST(request: NextRequest) {
       const quotaLimit = isAuthed ? getEffectiveFreeAuthedLimit(userCreatedAt) : DEFAULT_ANON_LIMIT;
       const quota = await checkAndConsumeChatQuota({ key: quotaKey, limit: quotaLimit });
       if (!quota.allowed) {
+        releaseDayLimit();
         if (isAuthed) {
           // Authed-free at weekly cap — brief's value-anchor pitch.
           return NextResponse.json({
@@ -941,13 +952,13 @@ export async function POST(request: NextRequest) {
         // daily IP cap fires first). Same signup pitch as daily.
         return NextResponse.json({
           error: 'login_required',
-          message: 'Free preview used. Sign in for 5 questions/week — free, no card required.',
+          message: `You have used your ${DEFAULT_ANON_LIMIT} free messages. Create a free account to keep chatting — free, no card required.`,
           resetAt: quota.resetAt.toISOString(),
           remaining: 0,
           limit: quotaLimit,
           gated: true,
           ctaUrl: '/auth/signup',
-          ctaLabel: 'Start free — sign in',
+          ctaLabel: 'Create free account',
           secondaryCtaUrl: '/auth/signin',
           secondaryCtaLabel: 'Sign in',
         }, { status: 429 });
@@ -1093,6 +1104,7 @@ export async function POST(request: NextRequest) {
 
     // The user got no answer — give the weekly chat credit back.
     if (consumedQuotaKey) await refundChatQuota(consumedQuotaKey);
+    releaseDayLimit();
 
     if (error instanceof Error && error.name === 'AbortError') {
       return NextResponse.json(

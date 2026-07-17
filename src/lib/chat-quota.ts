@@ -14,14 +14,14 @@
 import { prisma } from '@/lib/db';
 import { cookies } from 'next/headers';
 import crypto from 'crypto';
+import { ANONYMOUS_HUB_MESSAGE_LIMIT } from '@/lib/hub-message-limits';
 
 const ANON_COOKIE = 'au7o_anon_id';
 const ANON_COOKIE_MAX_AGE = 60 * 60 * 24 * 365 * 2; // 2 years
 
-// Was 5/week; dropped to 1 to match the login-gate posture — anonymous
-// visitors get a single taste of the AI, then are nudged to sign up
-// (free) for a much larger free-authed weekly allowance.
-export const DEFAULT_ANON_LIMIT = 1;
+// Five useful turns give a visitor enough room to experience the Hub before
+// the signup gate. All enforcement layers share this conversion-trial value.
+export const DEFAULT_ANON_LIMIT = ANONYMOUS_HUB_MESSAGE_LIMIT;
 
 // ── Authed-free weekly chat allowance ────────────────────────────────
 // Pricing brief (wf_70514661-afd) recommended dropping 25 → 5/week to

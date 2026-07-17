@@ -141,22 +141,22 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   const severityConfig = {
     high: {
       label: 'Critical',
-      bgColor: 'bg-[#E8E2D5]',
+      bgColor: 'bg-[#8B1E1E]',
+      badgeTextColor: 'text-white',
       textColor: 'text-[#0B1220]',
-      borderColor: 'border-[#E3DFD4]',
       icon: (
-        <svg className="w-5 h-5 text-[#3C313D]" fill="currentColor" viewBox="0 0 20 20">
+        <svg className="w-5 h-5 text-[#8B1E1E]" fill="currentColor" viewBox="0 0 20 20">
           <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
         </svg>
       ),
     },
     medium: {
       label: 'Moderate',
-      bgColor: 'bg-[#E8E2D5]',
+      bgColor: 'bg-[#F4A261]',
+      badgeTextColor: 'text-[#0B1220]',
       textColor: 'text-[#0B1220]',
-      borderColor: 'border-[#E3DFD4]',
       icon: (
-        <svg className="w-5 h-5 text-[#3C313D]" fill="currentColor" viewBox="0 0 20 20">
+        <svg className="w-5 h-5 text-[#B45309]" fill="currentColor" viewBox="0 0 20 20">
           <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
         </svg>
       ),
@@ -164,8 +164,8 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
     low: {
       label: 'Minor',
       bgColor: 'bg-[#E8E2D5]',
+      badgeTextColor: 'text-[#0B1220]',
       textColor: 'text-[#0B1220]',
-      borderColor: 'border-[#E3DFD4]',
       icon: (
         <svg className="w-5 h-5 text-[#3C313D]" fill="currentColor" viewBox="0 0 20 20">
           <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
@@ -252,13 +252,14 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
         type="button"
         onClick={handleToggle}
         aria-expanded={expanded}
+        aria-controls={`${issue.id}-details`}
         aria-label={`${expanded ? 'Collapse' : 'Expand'} details for ${issue.title}`}
         className="w-full p-4 text-left flex items-start gap-3 bg-[#F7F4EC] hover:bg-[#EFEDE6] transition-colors"
       >
         {config.icon}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1 flex-wrap">
-            <span className={`text-xs font-medium px-2 py-0.5 rounded ${config.bgColor} ${config.textColor}`}>
+            <span className={`text-xs font-semibold px-2 py-0.5 rounded ${config.bgColor} ${config.badgeTextColor}`}>
               {config.label}
             </span>
             {hasPartRecommendations && (
@@ -362,7 +363,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                     <Link
                       key={code}
                       href={`/known-issues/dtc/${code.toLowerCase()}`}
-                      className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-medium bg-[#EFEDE6] text-[#475569] rounded hover:bg-[#E3DFD4] hover:text-[#0B1220] transition-colors"
+                    className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-semibold border border-[#BFDBFE] bg-[#EFF6FF] text-[#3B82F6] rounded hover:bg-[#DBEAFE] hover:text-[#2563EB] transition-colors"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {code}
@@ -413,9 +414,15 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
         </svg>
       </button>
 
-      {/* Expanded content */}
-      {expanded && (
-        <div className="p-4 bg-white space-y-4">
+      {/* The body stays in the server-rendered document for indexing and
+          accessibility, while the UI starts collapsed. Direct hash links
+          still open the matching issue via the effect above. */}
+      <div
+        id={`${issue.id}-details`}
+        hidden={!expanded}
+        aria-hidden={!expanded}
+        className="p-4 bg-white space-y-4"
+      >
           {/* Description with YMMT-prefixed first sentence. The prefix
               ("On the 2008-2014 Dodge Avenger, ...") makes every page's
               first paragraph measurably different from sibling-make pages
@@ -456,7 +463,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                 <span key={rv.issueId}>
                   <Link
                     href={`/known-issues/${rv.slug}#${rv.issueId}`}
-                    className="font-medium text-[#3C313D] hover:underline"
+                    className="font-semibold text-[#3B82F6] underline decoration-[#BFDBFE] underline-offset-2 hover:text-[#2563EB] hover:decoration-[#3B82F6]"
                   >
                     {rv.make} {rv.model}
                   </Link>
@@ -511,14 +518,14 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                   href="https://www.nhtsa.gov/recalls"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mb-3 flex items-start gap-2 rounded-md border border-[#C9C0B1] bg-[#F7F4EC] p-2.5 transition-colors hover:border-[#3C313D]"
+                  className="mb-3 flex items-start gap-2 rounded-md border border-[#BFDBFE] bg-[#EFF6FF] p-2.5 text-[#3B82F6] transition-colors hover:border-[#3B82F6] hover:bg-[#DBEAFE]"
                 >
-                  <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#3C313D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#3B82F6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                   <span className="text-xs text-[#475569]">
-                    <span className="block font-semibold text-[#0B1220]">Check your VIN for an open recall before buying.</span>
-                    <span className="mt-0.5 block">A dealer repairs an open manufacturer recall at no charge. Confirm coverage with NHTSA first.</span>
+                    <span className="block font-semibold text-[#2563EB]">Check your VIN for an open recall before buying.</span>
+                    <span className="mt-0.5 block text-[#475569]">A dealer repairs an open manufacturer recall at no charge. Confirm coverage with NHTSA first.</span>
                   </span>
                 </a>
               )}
@@ -583,7 +590,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                                 vehicleMake: issue.vehicleMatch.make,
                                 vehicleModel: issue.vehicleMatch.model,
                               })}
-                              className="inline-flex items-center gap-1 rounded-md bg-[#0B1220] px-2.5 py-1.5 text-xs font-medium text-white transition-colors hover:bg-[#1E293B]"
+                              className="inline-flex items-center gap-1 rounded-md bg-[#3B82F6] px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#2563EB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B82F6] focus-visible:ring-offset-2"
                             >
                               {link.vendor}
                               <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -788,8 +795,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               )}
             </div>
           )}
-        </div>
-      )}
+      </div>
 
       {/* Report Modal */}
       {showReportModal && vehicleInfo && (

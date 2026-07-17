@@ -1,13 +1,15 @@
 /**
  * Rate limiting utilities for anonymous users
  *
- * Anonymous users get 1 chat per week (the "free taste") then hit the
+ * Anonymous users get 5 chats per week before they hit the
  * login gate. Server-side limit in chat-quota.ts is the authoritative
  * one; this client-side counter just keeps the UI honest about how
  * many chats remain so the signup CTA appears at the right moment.
  */
 
-const ANONYMOUS_LIMIT = 1;
+import { ANONYMOUS_HUB_MESSAGE_LIMIT } from '@/lib/hub-message-limits';
+
+const ANONYMOUS_LIMIT = ANONYMOUS_HUB_MESSAGE_LIMIT;
 const STORAGE_KEY = 'acc_anon_chats';
 
 interface AnonymousChatData {
@@ -128,6 +130,33 @@ export function incrementAnonymousCount(): {
   return { success: true, remaining: ANONYMOUS_LIMIT - newCount };
 }
 
+/** Restore one locally reserved chat after the server delivers no usable
+ * reply. The server quota remains authoritative; this only keeps the Hub UI
+ * from reaching the signup gate before five successful turns. */
+export function refundAnonymousCount(): { remaining: number } {
+  const weekStart = getWeekStart();
+  const stored = getStoredData();
+  if (!stored || isPreviousWeek(stored.weekStart)) {
+    saveData({ count: 0, weekStart: weekStart.toISOString() });
+    return { remaining: ANONYMOUS_LIMIT };
+  }
+
+  const count = Math.max(0, stored.count - 1);
+  saveData({ ...stored, count });
+  return { remaining: ANONYMOUS_LIMIT - count };
+}
+
+/** Persist an authoritative server remainder so later localStorage refreshes
+ * cannot overwrite the reconciled React state with a stale count. */
+export function setAnonymousRemaining(value: number): number {
+  const remaining = Math.max(0, Math.min(ANONYMOUS_LIMIT, Math.floor(value)));
+  saveData({
+    count: ANONYMOUS_LIMIT - remaining,
+    weekStart: getWeekStart().toISOString(),
+  });
+  return remaining;
+}
+
 /**
  * Get anonymous ID for tracking (creates one if doesn't exist)
  */
@@ -158,5 +187,6 @@ export async function checkServerRateLimit(
 
   // This is a placeholder for server-side validation
   // The actual implementation would query a database or cache
-  return { allowed: true, remaining: 5 };
+  void anonymousId;
+  return { allowed: true, remaining: ANONYMOUS_HUB_MESSAGE_LIMIT };
 }

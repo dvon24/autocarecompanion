@@ -423,7 +423,7 @@ export default async function MakeLandingPage({
           </p>
           <Link
             href="/auth/signup"
-            className="inline-flex items-center gap-2 bg-white text-[#0B1220] font-semibold px-6 py-3 rounded-lg hover:bg-[#EFEDE6] transition-colors"
+            className="inline-flex items-center gap-2 bg-[#3B82F6] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#2563EB] transition-colors"
           >
             Get Started Free
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

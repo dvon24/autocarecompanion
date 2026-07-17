@@ -658,3 +658,10 @@ body {
 .vs-item-current { font-weight: 600 !important; }
 .vs-item-action { color: #2563EB !important; font-weight: 500 !important; font-size: 12.5px !important; }
 .vs-divider { height: 1px !important; background: #E3DFD4 !important; margin: 6px 0 !important; flex-shrink: 0; }
+
+/* The vehicle Hub renders a purpose-built mobile account CTA in its own
+   header. Keep the global floating control on desktop only so the two do not
+   overlap the selector at phone widths. */
+@media (max-width: 900px) {
+  .hub-global-auth { display: none !important; }
+}

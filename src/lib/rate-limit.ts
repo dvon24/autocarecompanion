@@ -8,6 +8,8 @@
  * This is acceptable — it provides best-effort protection without external deps.
  */
 
+import { ANONYMOUS_HUB_MESSAGE_LIMIT } from '@/lib/hub-message-limits';
+
 interface RateLimitEntry {
   timestamps: number[];
 }
@@ -76,6 +78,19 @@ export class RateLimiter {
   }
 
   /**
+   * Release the most recently recorded hit for an IP. Chat routes reserve a
+   * daily trial slot before calling the model, then release it when no usable
+   * reply is delivered. Burst-limit hits intentionally are never refunded.
+   */
+  refund(ip: string): boolean {
+    const entry = this.store.get(ip);
+    if (!entry || entry.timestamps.length === 0) return false;
+    entry.timestamps.pop();
+    if (entry.timestamps.length === 0) this.store.delete(ip);
+    return true;
+  }
+
+  /**
    * Check availability WITHOUT recording a hit. Lets a caller verify a credit
    * is available, do expensive work, then consume the credit only on success
    * (so e.g. a failed token-mint doesn't burn a user's one-and-only demo).
@@ -116,13 +131,13 @@ export const affiliateTrackLimiter = new RateLimiter(60_000, 30); // 30 req/min
 export const driveTurnMinuteLimiter = new RateLimiter(60_000, 20);          // 20 req/min
 export const driveTurnDayLimiter = new RateLimiter(24 * 60 * 60_000, 200);  // 200 req/day
 
-// Hub chat — anonymous users get ONE free question per day per IP, then
-// hit the signup gate. Was 5/day; dropped to 1 once the chat product
-// proved popular enough that anon traffic was burning API credit faster
-// than signups were converting. Authed users still get a generous daily
-// cap that's well under what a real human hits organically. Per-minute
-// cap on top to absorb client retry bugs without eating 100 msgs in 10s.
-export const hubChatAnonDayLimiter = new RateLimiter(24 * 60 * 60_000, 1);   // 1 message / day / IP — login gate
+// Hub chat — let an anonymous visitor use the full conversion trial in one
+// sitting. The database-backed weekly identity quota remains authoritative;
+// this per-IP window is an additional best-effort abuse guard.
+export const hubChatAnonDayLimiter = new RateLimiter(
+  24 * 60 * 60_000,
+  ANONYMOUS_HUB_MESSAGE_LIMIT,
+);
 export const hubChatAuthedDayLimiter = new RateLimiter(24 * 60 * 60_000, 200); // 200 / day / IP authed
 export const hubChatMinuteLimiter = new RateLimiter(60_000, 12);             // 12 / min — protects against client-loop bugs
 

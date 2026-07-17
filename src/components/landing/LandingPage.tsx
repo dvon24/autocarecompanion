@@ -95,7 +95,7 @@ export default function LandingPage({ stats }: Props) {
               href="/auth/signup"
               style={{
                 padding: '8px 16px',
-                background: 'var(--ink, #0B1220)',
+                background: 'var(--au7o-blue, #3B82F6)',
                 color: '#fff',
                 borderRadius: 10,
                 fontSize: 13,
