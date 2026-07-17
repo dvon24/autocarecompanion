@@ -3,7 +3,9 @@ import prisma from '@/lib/db';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 import { knownIssuesLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
 
-function dbRowToKnownIssue(row: any): KnownIssue {
+type KnownIssueRow = NonNullable<Awaited<ReturnType<typeof prisma.knownIssue.findFirst>>>;
+
+function dbRowToKnownIssue(row: KnownIssueRow): KnownIssue {
   return {
     id: row.id,
     vehicleMatch: {
@@ -27,8 +29,10 @@ function dbRowToKnownIssue(row: any): KnownIssue {
     typicalMileage: row.typicalMileageLow != null
       ? { low: row.typicalMileageLow, high: row.typicalMileageHigh }
       : undefined,
-    citations: row.citations as any[],
-    communityRecommendations: row.communityRecommendations as any[],
+    citations: row.citations as KnownIssue['citations'],
+    communityRecommendations: row.communityRecommendations as KnownIssue['communityRecommendations'],
+    fixParts: (row.fixParts as KnownIssue['fixParts']) || [],
+    source: row.source || 'ai-researched',
     humanApproved: row.humanApproved,
     lastReportedByOwners: row.lastReportedByOwners,
     reviewedOn: row.reviewedOn,
