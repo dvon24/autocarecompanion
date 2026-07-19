@@ -851,6 +851,7 @@ function BuyLinks({
           trackAffiliateClick({
             issueId: `parts-finder-${vehicle.make}-${vehicle.model}`.toLowerCase(),
             recommendationIndex: index,
+            recommendationSource: 'partsFinder',
             linkUrl: amzUrl,
             partNumber: partNumber || undefined,
             partName,

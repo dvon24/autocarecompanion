@@ -7,6 +7,8 @@ interface AffiliateClickParams {
   partNumber?: string;
   linkUrl: string;
   recommendationIndex: number;
+  /** Identifies which UI collection owns recommendationIndex. */
+  recommendationSource?: 'fixPart' | 'community' | 'contextTool' | 'partsFinder';
   vehicleMake?: string;
   vehicleModel?: string;
 }
@@ -24,6 +26,7 @@ export function trackAffiliateClick(params: AffiliateClickParams): void {
     partNumber,
     linkUrl,
     recommendationIndex,
+    recommendationSource,
     vehicleMake,
     vehicleModel,
   } = params;
@@ -45,6 +48,7 @@ export function trackAffiliateClick(params: AffiliateClickParams): void {
     body: JSON.stringify({
       issueId,
       recommendationIndex,
+      recommendationSource,
       link: linkUrl,
       partBrand: partBrand || null,
       partName: partName || partNumber || null,

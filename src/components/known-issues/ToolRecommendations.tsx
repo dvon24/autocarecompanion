@@ -43,6 +43,7 @@ export function ToolRecommendations({
               partName: t.name,
               linkUrl: t.url,
               recommendationIndex: i,
+              recommendationSource: 'contextTool',
               vehicleMake: make,
               vehicleModel: model,
             })}

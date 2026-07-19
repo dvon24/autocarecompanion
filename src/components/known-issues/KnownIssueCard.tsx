@@ -569,6 +569,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                               partNumber: p.oemPartNumber || undefined,
                               linkUrl: b.url,
                               recommendationIndex: i,
+                              recommendationSource: 'fixPart',
                               vehicleMake: issue.vehicleMatch.make,
                               vehicleModel: issue.vehicleMatch.model,
                             })}
@@ -624,6 +625,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                                 partNumber: rec.partNumber,
                                 linkUrl: rec.affiliateUrl!,
                                 recommendationIndex: index,
+                                recommendationSource: 'community',
                                 vehicleMake: issue.vehicleMatch.make,
                                 vehicleModel: issue.vehicleMatch.model,
                               })}
@@ -653,6 +655,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                             partNumber: rec.partNumber,
                             linkUrl: rec.affiliateUrl!,
                             recommendationIndex: index,
+                            recommendationSource: 'community',
                             vehicleMake: issue.vehicleMatch.make,
                             vehicleModel: issue.vehicleMatch.model,
                           })}

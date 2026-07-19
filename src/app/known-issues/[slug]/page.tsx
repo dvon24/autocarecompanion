@@ -324,6 +324,9 @@ export default async function KnownIssuesArticlePage({
   const yearRange = yearIsValid
     ? { min: initialYear!, max: initialYear! }
     : getYearRange(issues);
+  const hubYear = yearIsValid
+    ? initialYear!
+    : (yearRange?.max ?? new Date().getFullYear());
 
   // Future-model-year detection: user requested a specific year via
   // ?year=YYYY but that year had zero issues, so we fell back to
@@ -410,7 +413,7 @@ export default async function KnownIssuesArticlePage({
                 to "/" so they land on their own primary vehicle's hub
                 instead of a stranger base-trim default. See OpenHubLink. */}
             <OpenHubLink
-              articleSlug={vehicleSlug(yearRange?.max ?? new Date().getFullYear(), make, model)}
+              articleSlug={vehicleSlug(hubYear, make, model)}
               className="px-3 sm:px-4 py-2 text-sm font-semibold bg-[#0B1220] text-white rounded-lg transition-opacity hover:opacity-90"
             />
           </div>
@@ -520,7 +523,7 @@ export default async function KnownIssuesArticlePage({
             recallCount={recalls.length}
             make={make}
             model={model}
-            hubYear={yearIsValid ? initialYear! : (yearRange?.max ?? new Date().getFullYear())}
+            hubYear={hubYear}
           />
 
           {/* Main content */}
@@ -581,6 +584,7 @@ export default async function KnownIssuesArticlePage({
                 issues={issues.map((i) => ({ id: i.id, title: i.title, symptoms: i.symptoms, dtcCodes: (i as { dtcCodes?: string[] }).dtcCodes, severity: i.severity }))}
                 make={make}
                 model={model}
+                hubHref={`/vehicle/${vehicleSlug(hubYear, make, model)}`}
               />
               <ArticleIssuesList
                 issues={issues}
@@ -771,7 +775,7 @@ export default async function KnownIssuesArticlePage({
       <MobileBottomBar
         make={make}
         model={model}
-        hubYear={yearIsValid ? initialYear! : (yearRange?.max ?? new Date().getFullYear())}
+        hubYear={hubYear}
       />
     </div>
   );

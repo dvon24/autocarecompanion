@@ -1248,9 +1248,20 @@ export default function AdminPage() {
                           {click.partBrand && <span className="text-gray-400"> · {click.partBrand}</span>}
                         </td>
                         <td className="px-6 py-3 text-sm">
-                          {click.issueId ? (
-                            <a href={`/known-issues/${click.issueId}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline max-w-[220px] inline-block truncate align-bottom">{click.issueId}</a>
-                          ) : <span className="text-gray-400">—</span>}
+                          {click.issueId ? (() => {
+                            const id: string = click.issueId;
+                            const src = id.startsWith('ki:') ? { label: id.slice(3), tag: '💬 hub chat' }
+                              : id.startsWith('vision:') ? { label: id.slice(7), tag: '📷 vision' }
+                              : id.startsWith('parts-finder-') ? { label: id.slice(13), tag: '🔧 parts finder' }
+                              : null;
+                            return src ? (
+                              <span className="max-w-[220px] inline-block truncate align-bottom text-gray-600" title={`Click came from ${src.tag} — no article page for "${src.label}"`}>
+                                {src.label} <span className="text-gray-400 text-xs">· {src.tag}</span>
+                              </span>
+                            ) : (
+                              <a href={`/known-issues/${id}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline max-w-[220px] inline-block truncate align-bottom">{id}</a>
+                            );
+                          })() : <span className="text-gray-400">—</span>}
                         </td>
                         <td className="px-6 py-3 text-sm">
                           {click.deepLinked ? (
@@ -1287,7 +1298,11 @@ export default function AdminPage() {
                     {affiliateStats.needsDeepLink.map((n: { issueId: string; searchClicks: number; lastPart: string }, i: number) => (
                       <tr key={i} className="hover:bg-gray-50">
                         <td className="px-6 py-3 text-sm">
-                          <a href={`/known-issues/${n.issueId}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{n.issueId}</a>
+                          {/^(ki:|vision:|parts-finder-)/.test(n.issueId) ? (
+                            <span className="text-gray-600" title="Click came from hub chat / vision / parts finder — no article page">{n.issueId}</span>
+                          ) : (
+                            <a href={`/known-issues/${n.issueId}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{n.issueId}</a>
+                          )}
                         </td>
                         <td className="px-6 py-3 text-sm text-gray-700">{n.lastPart || '—'}</td>
                         <td className="px-6 py-3 text-sm text-right">

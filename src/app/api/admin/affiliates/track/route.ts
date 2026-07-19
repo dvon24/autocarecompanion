@@ -12,7 +12,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const { issueId, recommendationIndex, link, partBrand, partName } = await request.json();
+    const { issueId, recommendationIndex, recommendationSource, link, partBrand, partName } = await request.json();
 
     // Record click in AffiliateClick table
     await prisma.affiliateClick.create({
@@ -25,7 +25,16 @@ export async function POST(request: Request) {
       },
     });
 
-    // Update clickCount in the communityRecommendations JSON
+    // recommendationIndex is reused by fixParts, contextual tools, and parts
+    // finder links. Only a community click may mutate the same-index community
+    // entry; the old unconditional write attributed fixPart clicks to unrelated
+    // recommendations. AffiliateClick above remains the source of truth for all
+    // outbound clicks.
+    if (recommendationSource !== 'community') {
+      return NextResponse.json({ success: true });
+    }
+
+    // Update clickCount in the explicitly identified community recommendation.
     const issue = await prisma.knownIssue.findUnique({ where: { id: issueId } });
     if (!issue) {
       return NextResponse.json({ error: 'Issue not found' }, { status: 404 });

@@ -29,6 +29,8 @@ function dbRowToKnownIssue(row: any): KnownIssue {
       : undefined,
     citations: row.citations as any[],
     communityRecommendations: row.communityRecommendations as any[],
+    fixParts: (row.fixParts as KnownIssue['fixParts']) || [],
+    source: row.source || 'ai-researched',
     humanApproved: row.humanApproved,
     lastReportedByOwners: row.lastReportedByOwners,
     reviewedOn: row.reviewedOn,

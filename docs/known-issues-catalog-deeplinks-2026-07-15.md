@@ -1,0 +1,143 @@
+# Known Issues catalog deep-link audit — 2026-07-15
+
+Status: in progress. This is an evidence checkpoint, not a claim that the catalog is complete.
+
+## Production release checkpoint - 2026-07-18
+
+Twenty-five guarded schema-v2 batches were applied and independently verified against production: 34 Jeep Grand Cherokee records and 44 Mazda records across CX-60, CX-70, and Mazda3. Every batch began in its frozen before-state and finished in its exact reviewed after-state; no row or manifest drift was detected.
+
+The 78 released records previously exposed 426 marketplace search/category URLs. The reviewed after-state exposes 25 verified product-detail links and zero Amazon, eBay, or RockAuto search-result links, a net removal of 401 outbound links. Thirteen duplicate or unsupported cards were archived. The remaining records resolve to 27 diagnosis holds, 15 recall/dealer paths, 15 exact-part replacements, eight other no-commerce outcomes, and the 13 removals. Recall, software-only, conflicting-fitment, and insufficient-evidence paths intentionally carry no purchase link.
+
+The catalog safety suite passes 25/25 and the production Next.js build completes with 1,531 generated pages. This release is a checkpoint, not a claim that the Jeep or Mazda make-wide queue is complete; unreviewed records retain their prior state until they receive the same full-record evidence gate.
+
+## Objective and decision rule
+
+Published repair prose is the claim under test. A purchase link survives only when current evidence supports the repair role, exact part identity, application, quantity/completeness, and a live product-detail page. Click volume sets priority but never overrides correctness. Recall/dealer, software-only, diagnosis-dependent, incomplete-kit, or ambiguous-fitment cases may intentionally end with no buy link.
+
+Research uses the subscription workflow and current web evidence; no OpenAI, Anthropic, or other LLM API is used. The user-authorized ShowMeTheParts API is a non-LLM candidate and fitment source. Its catalog output is never treated as proof that a part repairs the Known Issue or as a final marketplace link.
+
+## Frozen baseline
+
+Source snapshot: `data/known-issues-catalog-deeplink-snapshot.json`
+
+| Measure | Baseline |
+| --- | ---: |
+| Generated | 2026-07-15T02:30:33.271Z |
+| Snapshot SHA-256 | `4f5d0f7ca0468dafa175450cdd3f69755eaa6a775a2877aa5e3cf8f44bc42ecc` |
+| Published Known Issues | 7,731 |
+| Commerce-bearing Known Issues | 4,351 |
+| Commerce claims | 10,850 |
+| `fixParts` claims | 4,318 |
+| Community commerce claims | 6,532 |
+| Outbound commerce links | 19,520 |
+| Structurally product-detail links | 1,311 |
+| Search, category, or otherwise non-product links | 18,209 |
+| DTC-linked commerce issues | 1,954 |
+| Clicked commerce issues | 184 |
+| Recorded clicks | 310 |
+| Clicks to structurally deep-linked URLs | 11 |
+| Clicks to non-product URLs | 299 |
+
+Structural product shape is only a first gate. Several high-click exact-looking URLs still pointed to recalled, incomplete, wrong-scope, duplicate, or non-repair products.
+
+## Schema-v2 full-record checkpoint - 2026-07-17
+
+The completion unit is now the entire published Known Issue, not a commerce claim. The schema-v2 gate hashes, applies, and verifies every public field together: vehicle scope, category, title, description, solution, severity, confidence, symptoms, affected systems, DTCs, costs, mileage, citations, owner guidance, parts, approval/reporting/source/status fields, review/update metadata, and related-issue IDs. Legacy link-only manifests remain historical evidence and do not count toward full-record completion.
+
+The immutable v2 snapshot contains 7,731 published records, 10,811 commerce claims, and 19,438 outbound links. It began with 1,320 structurally valid product links and 18,141 search/category/invalid links. Audi A6 was split into 23 record packets. Cohort 1 completed and production-verified eight records:
+
+- gateway liquid-ingress recall;
+- headlight-switch wiring recalls;
+- tie-rod seal recalls;
+- C7 3.0T cold-start timing-chain TSB;
+- 2.0T PCV service action 17F9;
+- 2.7T ignition-coil diagnosis;
+- 48V starter-generator recall; and
+- the unsupported broad supercharger nose-cone claim.
+
+Only three exact retailer links survived or were added: both position-specific C7 3.0T upper tensioners and the APB ignition coil. Recall, software, diagnosis-dependent, and unverified BEL paths intentionally have no retail link. The post-apply snapshot reports 1,323 valid product links and 18,115 invalid/search links. Fifteen Audi A6 records remain open; this checkpoint does not count the model or catalog complete.
+
+The public Audi A6 HTML and vehicle API were checked after deployment. They expose the corrected timing-chain part numbers and exact links, the APB/BEL split, and the correction metadata. Deployment `dpl_5QvajMeLEvVe8rMqePNEe1ZwqRXP` is aliased to `au7o.io`; the CDN and data caches were purged.
+
+## Jeep Grand Cherokee clicked cohort 1 - local review checkpoint, 2026-07-18
+
+The first Jeep Grand Cherokee schema-v2 cohort covers the two records with recorded commerce clicks: the wheel-speed/ABS card and the front-differential/CV card. Together they carried 9 commerce claims, 23 search/category links, and 4 priority clicks. Both finished as diagnosis holds with zero commerce links because the published universal part mappings were not safe.
+
+- The wheel-speed card was narrowed from an unsupported 2011-2021 range to FCA's documented 2019 model-year condition. FCA says connector water intrusion/corrosion can require harness repair rather than a sensor, and tone-wheel rust can require cleaning and retesting. ShowMeTheParts also returned multiple engine/equipment-qualified sensor candidates. The corrected record therefore removes all three universal part groups, generic DTCs, cost claims, and unsupported right-front guidance.
+- The front-driveline card was narrowed from an unsupported 2005-2010 common-failure claim to 2008 4WD 4.7L front-axle diagnostic evidence. ShowMeTheParts returned separate limited-slip and non-limited-slip CV candidates plus multiple differential families; the old axle cross-references conflicted with that catalog evidence. The corrected record separates CV-joint, mount, axle-bearing, differential-bearing, and gear-noise diagnosis and removes four part groups plus two recommendation searches.
+
+Guarded artifacts:
+
+- `data/known-issues-catalog-deeplink-patches/jeep-grand-cherokee-full-record-cohort-1-2026-07-17.json`
+- `data/known-issues-catalog-deeplink-decisions/jeep-grand-cherokee-full-record-cohort-1-2026-07-17.json`
+- four ShowMeTheParts evidence files for 2014/2019 ABS components and 2008 CV/differential candidates.
+
+The manifest validator reports zero errors. The applicator safety suite passes 21/21 and the ShowMeTheParts parser/filter suite passes 3/3. No database dry-run, apply, commit, push, cache purge, or deployment was performed in this overnight checkpoint.
+
+Wall-clock timing runs from the first Jeep API evidence artifact at `2026-07-17T20:33:20.766Z` to the final reviewed guarded manifest at `2026-07-18T11:32:19.343Z`: 14 hours 58 minutes 59 seconds. This interval includes overnight research, evidence retrieval, adversarial review, validation, and tool waits; it is not an active-hours throughput estimate.
+
+## Applied and verified checkpoint
+
+Reconciliation currently covers 26 of 10,850 claims across eight issues in seven guarded batches. All seven result artifacts report a verified after-state. The six earlier issues remain idempotent, and the newly reviewed BMW X5 pair was applied and verified without drift.
+
+| Known Issue | Claims | Recorded clicks | Before links | After links | Disposition | Material correction |
+| --- | ---: | ---: | ---: | ---: | --- | --- |
+| BMW i3 12V battery drain | 3 | 3 | 5 searches | 2 exact products | Replace | Removed incompatible Exide EK151 and made replacement conditional on battery testing versus software/controller diagnosis. |
+| Dodge Challenger stalls while driving | 2 | 6 | 5 exact-looking products | 0 | Recall/dealer | Removed a recalled alternator path and a generic build-specific TIPM; added VIN-first recall and diagnosis guidance. |
+| Dodge Challenger 6.4L valve springs | 2 | 9 | 6 exact products | 6 corrected exact products | Replace | Corrected individual-versus-16-spring quantity, removed false seat contents, and added FCA all-spring guidance for confirmed MY2021–22 failures. |
+| Cadillac Escalade AFM lifter | 3 | 4 | 3 searches | 0 | Diagnosis hold | Corrected active-AFM engine scope, false VLOM PN 12639516, generation-specific repair quantities, and nonexistent fixed-content delete-kit SKU. |
+| Dodge Challenger lifter tick | 5 | 4 | 14 exact-looking products | 4 exact mechanical parts | Replace | Corrected automatic/manual MDS scope and OEM pack quantities; removed oil, duplicate tuner, and electronic MDS-disable paths as mechanical repairs. |
+| Volkswagen Tiguan water-pump/thermostat leak | 6 | 4 | 6 searches | 7 exact products | Replace | Split CCTA Tiguan Limited from redesigned DGUA fitment, distinguished the thermostat housing from the separate pump, updated G12Evo coolant, and removed unrelated EGR DTCs and an unrelated bulletin. |
+| BMW X5 N63/N63TU1 oil consumption | 2 | 1 | 4 searches | 2 exact products | Replace | Corrected program scope and diagnosis order, updated the seal-kit supersession, and fixed the required V8 quantity from one kit to two. |
+| BMW X5 early-N63 timing-chain wear | 3 | 1 | 5 product/search links | 0 | Diagnosis hold | Narrowed the scope to the 2010-2013 E70 xDrive50i, removed a lone tensioner and generic kit, and required BMW's measured chain-wear result before the both-chain repair path. |
+| **Checkpoint total** | **26** | **32** | **48** | **21** |  | **Net 27 fewer outbound links; the nine BMW originals were removed and only two diagnosis-conditional exact products were added.** |
+
+Disposition counts: five `replace`, one `recall-dealer`, and two `diagnosis-hold`. No manifest overlap, unknown claim, duplicate claim, or before-state drift is present. The remaining queue is 10,824 claims and is intentionally reported as incomplete.
+
+## Traffic-ranked make queue
+
+The user supplied a 242-page traffic list and changed the execution order from a clicks-only queue to make-based batches. Each make is ranked by its highest-traffic vehicle page; models within a make are then reviewed in page-traffic order. This reuses OEM catalog, engine-family, supersession, and retailer research while keeping each database mutation bounded and independently verifiable.
+
+The leading sequence is Jeep (Grand Cherokee first), Audi (A6 first), BMW (X5 first), Lincoln (Aviator first), then Toyota (Camry first). Clicked claims within each page are reviewed first. This is an ordering rule only: all 10,850 frozen-baseline claims remain in scope.
+
+## ShowMeTheParts enrichment
+
+A live read-only sample confirmed that the API can return:
+
+- year/make/model, product category, engine, and part candidates;
+- supplier, brand, MPN, part type, part key, AAIA brand ID, GTIN, lifecycle, quantity per application, attributes, images, and buyer-guide applications;
+- VIN product and part lookup endpoints; and
+- full detail by catalog key or part number.
+
+The same 2018 Volkswagen Tiguan water-pump query also returned unrelated timing-belt rows inside the water-pump category. A direct MPN-only detail lookup for Gates `42196` resolved to a Cardone `42-196` window motor, demonstrating that manufacturer identity and the catalog `part_key` must survive the join. Therefore the integration labels every response `candidateOnly`, preserves supplier plus part key, filters obvious part-type mismatches, and still requires published-repair review, application verification, and a fresh exact retailer-page check. The catalog returned no usable buy link in the tested detail response.
+
+## Pipeline and safety evidence
+
+- Immutable snapshot and clicked/remaining work packets.
+- Compact reviewed patches expand into full manifests with guarded before hashes.
+- Search/category URL rejection, vendor/host matching, recall/no-commerce constraints, public correction metadata, duplicate issue ownership checks, and exact after-state validation.
+- Transaction per batch with row locks and rollback on drift or mixed state.
+- Durable result artifacts with manifest and after-state hashes.
+- Reconciliation reports compact counts/samples by default instead of dumping the entire missing ledger.
+- `node --test scripts/apply-known-issue-catalog-deeplinks.test.js`: 16/16 pass at this checkpoint.
+- `npm run build`: production build passed; 1,531 static pages generated, including Known Issue and DTC routes. Only pre-existing warnings were emitted.
+
+## Timing evidence
+
+The baseline snapshot was generated at 02:30:33Z. The first three researched batches were applied, verified, and re-applied idempotently by 03:15:47Z: 45 minutes 14 seconds end to end, including pipeline validation and build work. Later wall-clock timestamps include user/tool pauses and are not a valid measure of active research time.
+
+For the first full-record cohort, the v2 snapshot was generated at 16:28:05Z and the eight-record applied-and-verified result was written at 16:59:32Z: 31 minutes 28 seconds elapsed. That interval includes the v2 packet/build/apply verification work and the bounded record corrections. It is the first measured full-record cohort and should not yet be extrapolated across the catalog; later cohorts will separate catalog lookup, web adjudication, manifest review, and production verification time.
+
+ShowMeTheParts is expected to remove most manual candidate discovery. The working estimate is a 70–90% reduction in candidate-finding time and a 2–4× end-to-end improvement after repair and retailer verification remain in the loop. Once the adapter is stable, the planning range is 7–12 audited issues per active hour, putting the 184 clicked-priority issues at roughly 15–26 active working hours. These are planning estimates, not measured throughput, and will be replaced with comparable API-assisted batch timing.
+
+## Remaining work
+
+1. Finish and time the ShowMeTheParts adapter and its parser/filter tests.
+2. Audit the traffic-ranked make queue, starting with Jeep, Audi, BMW, Lincoln, and Toyota; within each page, handle clicked claims first.
+3. Continue every commerce-bearing issue not reached by the traffic list.
+4. Reconcile to exactly one disposition per claim and zero unclassified claims.
+5. Export a fresh post-apply snapshot, compare before/after link and click exposure, rerun all verification, and complete the BMad review gate.
+
+Bulk Hub seeding is deliberately not part of this corrective database mutation. The adapter is being made reusable for a later canonical part/fitment import, but caching rights and any required Hub schema must be approved first.
+
+The current `VehiclePartLookup` key is year/make/model/trim/task and has no engine or catalog identity column, while a Garage `Vehicle` stores trim and optional VIN but not engine code. It is suitable for bounded verified task results, not a lossless 500k-part catalog. A later Hub import should keep three concerns separate: canonical part identity keyed by supplier/brand plus catalog part key; application rows keyed by YMME, engine code, submodel/trim, and qualifiers; and volatile retailer offers with exact URL and last-verified time. Known Issue repair recommendations can then reference a canonical application conditionally without duplicating the whole catalog or treating every fitment match as the repair.

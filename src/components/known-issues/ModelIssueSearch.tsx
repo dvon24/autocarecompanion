@@ -41,7 +41,17 @@ function fuzzyRank(query: string, issues: LiteIssue[]): Result[] {
   return scored.map((x) => ({ id: x.it.id, title: x.it.title, severity: x.it.severity }));
 }
 
-export function ModelIssueSearch({ issues, make, model }: { issues: LiteIssue[]; make: string; model: string }) {
+export function ModelIssueSearch({
+  issues,
+  make,
+  model,
+  hubHref,
+}: {
+  issues: LiteIssue[];
+  make: string;
+  model: string;
+  hubHref: string;
+}) {
   const { data: session } = useSession();
   const isSubscriber = (session?.user as { subscriptionStatus?: string } | undefined)?.subscriptionStatus === 'active';
 
@@ -161,8 +171,8 @@ export function ModelIssueSearch({ issues, make, model }: { issues: LiteIssue[];
       {gated && (
         <div className="mt-3 rounded-lg border border-indigo-200 bg-indigo-50 p-3">
           <p className="text-sm font-medium text-indigo-900">Describe it in plain English — AI finds the match.</p>
-          <p className="text-xs text-indigo-700 mt-0.5 mb-2">AI natural-language search is a Plus feature. Free keyword search is always on.</p>
-          <Link href="/subscribe" className="inline-flex items-center gap-1 text-xs font-semibold bg-indigo-600 text-white px-3 py-1.5 rounded-md hover:bg-indigo-700">Upgrade to Plus — $14.99/mo</Link>
+          <p className="text-xs text-indigo-700 mt-0.5 mb-2">Continue in your vehicle Hub to try Au7o for free. Keyword search stays available here.</p>
+          <Link href={hubHref} className="inline-flex items-center gap-1 text-xs font-semibold bg-indigo-600 text-white px-3 py-1.5 rounded-md hover:bg-indigo-700">Try it free in your Hub →</Link>
         </div>
       )}
 

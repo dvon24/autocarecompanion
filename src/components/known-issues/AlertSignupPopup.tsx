@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { KnownIssueAlertSignup } from './KnownIssueAlertSignup';
 import { KnownIssuesCaptureSplit } from './KnownIssuesCaptureSplit';
 
 // v2: the popup now carries the live hub-demo "carousel" (not the old email-
@@ -24,18 +25,37 @@ export function AlertSignupPopup(props: {
   headline?: string;
   blurb?: string;
 }) {
-  const [open, setOpen] = useState(false);
+  const [forceOpen] = useState(() => {
+    try {
+      return new URLSearchParams(window.location.search).get('popup') === '1';
+    } catch {
+      return false;
+    }
+  });
+  const [open, setOpen] = useState(forceOpen);
   const [closed, setClosed] = useState(false);
+  const [isPhone, setIsPhone] = useState<boolean | null>(() => {
+    if (typeof window === 'undefined') return null;
+    return window.matchMedia('(max-width: 767px)').matches;
+  });
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 767px)');
+    const update = (event: MediaQueryListEvent) => setIsPhone(event.matches);
+
+    if (typeof media.addEventListener === 'function') {
+      media.addEventListener('change', update);
+      return () => media.removeEventListener('change', update);
+    }
+
+    media.addListener(update);
+    return () => media.removeListener(update);
+  }, []);
 
   useEffect(() => {
     // Force-show override for testing: append ?popup=1 to any known-issues URL
     // and it opens immediately, ignoring the once-per-visitor flag.
-    try {
-      if (new URLSearchParams(window.location.search).get('popup') === '1') {
-        setOpen(true);
-        return;
-      }
-    } catch { /* SSR guard */ }
+    if (forceOpen) return;
 
     let flag: string | null = null;
     try { flag = localStorage.getItem(FLAG_KEY); } catch { /* private mode */ }
@@ -62,9 +82,11 @@ export function AlertSignupPopup(props: {
     timer = window.setTimeout(fire, 5000);
     window.addEventListener('scroll', onScroll, { passive: true });
     return cleanup;
-  }, []);
+  }, [forceOpen]);
 
-  if (!open || closed) return null;
+  // Wait for the breakpoint probe before mounting modal content so phones
+  // never flash the desktop feature carousel for a frame during hydration.
+  if (!open || closed || isPhone === null) return null;
 
   const dismiss = () => {
     try { localStorage.setItem(FLAG_KEY, 'dismissed'); } catch { /* */ }
@@ -76,22 +98,30 @@ export function AlertSignupPopup(props: {
       role="dialog"
       aria-modal="true"
       onClick={dismiss}
-      style={{ position: 'fixed', inset: 0, zIndex: 90, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16, background: 'rgba(11,14,20,0.6)', backdropFilter: 'blur(3px)', overflowY: 'auto' }}
+      style={{ position: 'fixed', inset: 0, zIndex: 90, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: isPhone ? 12 : 16, background: 'rgba(11,14,20,0.6)', backdropFilter: 'blur(3px)', overflowY: 'auto' }}
     >
       <style>{`@keyframes alertPopIn { from { opacity: 0; transform: translateY(12px) scale(0.985) } to { opacity: 1; transform: none } }`}</style>
       <div
         onClick={(e) => e.stopPropagation()}
-        style={{ position: 'relative', width: '100%', maxWidth: 960, maxHeight: '92vh', overflowY: 'auto', animation: 'alertPopIn 0.22s ease-out', margin: 'auto', borderRadius: 24 }}
+        style={{ position: 'relative', width: '100%', maxWidth: isPhone ? 440 : 960, maxHeight: isPhone ? 'calc(100dvh - 24px)' : '92vh', overflowY: 'auto', animation: 'alertPopIn 0.22s ease-out', margin: 'auto', borderRadius: isPhone ? 16 : 24 }}
       >
         <button
           type="button"
           onClick={dismiss}
           aria-label="Close"
-          style={{ position: 'absolute', top: 10, right: 10, zIndex: 2, width: 32, height: 32, borderRadius: 999, border: '1px solid rgba(255,255,255,0.25)', background: 'rgba(11,18,32,0.55)', color: '#fff', fontSize: 15, lineHeight: 1, cursor: 'pointer', backdropFilter: 'blur(6px)' }}
+          style={{ position: 'absolute', top: isPhone ? 8 : 10, right: isPhone ? 8 : 10, zIndex: 2, width: 32, height: 32, borderRadius: 999, border: isPhone ? '1px solid #E3DFD4' : '1px solid rgba(255,255,255,0.25)', background: isPhone ? 'rgba(255,255,255,0.96)' : 'rgba(11,18,32,0.55)', color: isPhone ? '#0B1220' : '#fff', fontSize: 15, lineHeight: 1, cursor: 'pointer', backdropFilter: 'blur(6px)' }}
         >
           ✕
         </button>
-        <KnownIssuesCaptureSplit {...props} />
+        {isPhone ? (
+          <KnownIssueAlertSignup
+            {...props}
+            showCarousel={false}
+            onDone={() => setClosed(true)}
+          />
+        ) : (
+          <KnownIssuesCaptureSplit {...props} />
+        )}
       </div>
     </div>
   );

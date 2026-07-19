@@ -2554,7 +2554,6 @@ function MobileIssuesCard({
               </div>
             </div>
           ))}
-          <a href="https://www.nhtsa.gov/recalls" target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '9px 18px', fontSize: 12, fontWeight: 600, color: '#B91C1C', textDecoration: 'none', borderBottom: issues.length > 0 ? '1px solid var(--paper-line)' : 'none' }}>Check your VIN + book the free repair →</a>
         </div>
       )}
       {issues.length > 0 && (<>
