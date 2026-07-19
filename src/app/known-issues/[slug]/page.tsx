@@ -17,6 +17,7 @@ import { categoryConfig } from '@/lib/issue-categories';
 import { ArticleIssuesList } from '@/components/known-issues/ArticleIssuesList';
 import { ModelIssueSearch } from '@/components/known-issues/ModelIssueSearch';
 import { ArticleSidebar } from '@/components/known-issues/ArticleSidebar';
+import { FaqIcon, IssueCategoryIcon, RecallIcon } from '@/components/known-issues/IssueCategoryIcon';
 import { MobileBottomBar } from '@/components/known-issues/MobileBottomBar';
 import { VehicleChatLink } from '@/components/known-issues/VehicleChatLink';
 import FutureModelYearNotice from '@/components/known-issues/FutureModelYearNotice';
@@ -25,8 +26,6 @@ import { ShareButtons } from '@/components/shared/ShareButtons';
 import { OpenHubLink } from '@/components/known-issues/OpenHubLink';
 import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
 import { AlertSignupPopup } from '@/components/known-issues/AlertSignupPopup';
-import { ToolRecommendations } from '@/components/known-issues/ToolRecommendations';
-import { toolsForIssues } from '@/lib/affiliate-tools';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
@@ -414,7 +413,7 @@ export default async function KnownIssuesArticlePage({
                 instead of a stranger base-trim default. See OpenHubLink. */}
             <OpenHubLink
               articleSlug={vehicleSlug(hubYear, make, model)}
-              className="px-3 sm:px-4 py-2 text-sm font-semibold bg-[#0B1220] text-white rounded-lg transition-opacity hover:opacity-90"
+              className="px-3 sm:px-4 py-2 text-sm font-semibold bg-[#3B82F6] text-white rounded-lg transition-colors hover:bg-[#2563EB]"
             />
           </div>
         </div>
@@ -543,11 +542,13 @@ export default async function KnownIssuesArticlePage({
                         href={`#${category}`}
                         className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] transition-colors py-1"
                       >
-                        <span>{config.icon}</span>
+                        <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-[#D8D1C3] bg-[#FBFAF6] text-[#3C313D]">
+                          <IssueCategoryIcon category={category} className="h-4 w-4" />
+                        </span>
                         <span>{config.label}</span>
                         <span className="text-[#94A3B8] text-xs ml-auto">{catIssues.length}</span>
                         {catHigh > 0 && (
-                          <span className="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#3C313D] flex-shrink-0" />
                         )}
                       </a>
                     </li>
@@ -556,7 +557,9 @@ export default async function KnownIssuesArticlePage({
                 {recalls.length > 0 && (
                   <li>
                     <a href="#recalls" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] transition-colors py-1">
-                      <span>&#9888;&#65039;</span>
+                      <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-[#D8D1C3] bg-[#FBFAF6] text-[#3C313D]">
+                        <RecallIcon className="h-4 w-4" />
+                      </span>
                       <span>Recalls</span>
                       <span className="text-[#94A3B8] text-xs ml-auto">{recalls.length}</span>
                     </a>
@@ -564,7 +567,9 @@ export default async function KnownIssuesArticlePage({
                 )}
                 <li className="pt-1 border-t border-[#E3DFD4] mt-1">
                   <a href="#faq" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] transition-colors py-1">
-                    <span>&#10067;</span>
+                    <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-[#D8D1C3] bg-[#FBFAF6] text-[#3C313D]">
+                      <FaqIcon className="h-4 w-4" />
+                    </span>
                     <span>FAQ</span>
                   </a>
                 </li>
@@ -597,16 +602,6 @@ export default async function KnownIssuesArticlePage({
               />
             </section>
 
-            {/* Context-matched universal tools (affiliate) — highest-convert,
-                no-fitment items keyed to these problems (OBD2 for codes, battery
-                gear for electrical, Level-2 charger for EVs). */}
-            <ToolRecommendations
-              tools={toolsForIssues(issues, make, model)}
-              make={make}
-              model={model}
-              issueId={`ki:${make}-${model}`}
-            />
-
             {/* Single ad slot — after issues, before recalls */}
             <AdSlot slotId="auto" format="horizontal" className="my-10" />
 
@@ -615,7 +610,9 @@ export default async function KnownIssuesArticlePage({
               <div id="recalls" className="scroll-mt-16 border border-[#E3DFD4] rounded-lg overflow-hidden mb-4">
                 <details className="group">
                   <summary className="w-full px-4 py-3 bg-[#EFEDE6] hover:bg-[#E3DFD4] transition-colors flex items-center gap-3 cursor-pointer list-none">
-                    <span className="text-lg">⚠️</span>
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-[#D8D1C3] bg-[#FBFAF6] text-[#3C313D]">
+                      <RecallIcon className="h-[18px] w-[18px]" />
+                    </span>
                     <span className="font-medium text-[#0B1220] flex-1 text-left">NHTSA Recalls</span>
                     <span className="text-sm text-[#64748B]">{recalls.length} recall{recalls.length !== 1 ? 's' : ''}</span>
                     <svg className="w-5 h-5 text-[#94A3B8] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -634,7 +631,7 @@ export default async function KnownIssuesArticlePage({
                       >
                         <div className="flex items-start gap-2">
                           {recall.parkIt && (
-                            <span className="text-xs font-bold bg-red-600 text-white px-2 py-0.5 rounded mt-0.5 flex-shrink-0">PARK IT</span>
+                            <span className="text-xs font-bold bg-[#0B1220] text-white px-2 py-0.5 rounded mt-0.5 flex-shrink-0">PARK IT</span>
                           )}
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-semibold text-[#0B1220]">{recall.component}</p>

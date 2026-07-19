@@ -5,6 +5,7 @@ import { KnownIssueCard } from './KnownIssueCard';
 import { triggerHaptic } from '@/hooks/useHaptic';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 import { categoryConfig } from '@/lib/issue-categories';
+import { IssueCategoryIcon } from './IssueCategoryIcon';
 
 export { categoryConfig };
 
@@ -68,13 +69,17 @@ export function CategorySection({ category, issues, defaultExpanded = false, def
       <button
         type="button"
         onClick={handleToggle}
+        aria-expanded={expanded}
+        aria-controls={`${category}-issues`}
         className="w-full px-4 py-3 bg-[#EFEDE6] hover:bg-[#E3DFD4] transition-colors flex items-center gap-3"
       >
-        <span className="text-lg">{config.icon}</span>
+        <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-[#D8D1C3] bg-[#FBFAF6] text-[#3C313D]">
+          <IssueCategoryIcon category={category} className="h-[18px] w-[18px]" />
+        </span>
         <span className="font-medium text-[#0B1220] flex-1 text-left">{config.label}</span>
         <span className="text-sm text-[#64748B]">{issues.length} issue{issues.length !== 1 ? 's' : ''}</span>
         {highCount > 0 && (
-          <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full">
+          <span className="text-xs border border-[#C9C0B1] bg-[#F7F4EC] text-[#3C313D] px-2 py-0.5 rounded-full">
             {highCount} critical
           </span>
         )}
@@ -88,7 +93,7 @@ export function CategorySection({ category, issues, defaultExpanded = false, def
         </svg>
       </button>
       {expanded && (
-        <div className="p-3 space-y-2 bg-white">
+        <div id={`${category}-issues`} className="p-3 space-y-2 bg-white">
           {issues.map(issue => (
             <KnownIssueCard
               key={issue.id}
