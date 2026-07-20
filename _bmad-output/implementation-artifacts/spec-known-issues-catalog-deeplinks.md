@@ -76,6 +76,7 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-20: Completed all 28 Lincoln Aviator schema-v2 records in six guarded batches: 12 diagnosis holds, 10 recall/dealer paths, five archived records, and one evidence-only no-commerce record. All nine original commerce claims and 27 search-result links are covered and removed; reconciliation is zero-unclassified with no drift. Database and clean tracked-state build gates pass; Git/Vercel release and live surface verification remain for the checkpoint.
 - 2026-07-20: Completed and production-verified all 13 BMW X5 schema-v2 records. The release also hardened all-manifest verification so runtime recommendation click telemetry does not create content drift and fully covered legacy link-only batches are superseded without allowing partial overlap. Lincoln Aviator is the next traffic-ranked model.
 - 2026-07-17: User clarified that passing over an issue means a complete issue audit, not a link audit. Traffic/clicks determine order only. Completion now requires schema-v2 full-record evidence, all public fields guarded/applied/verified together, and a live production after-state check. Existing schema-v1/link-only batches remain historical evidence but do not count toward full-record coverage.
 - 2026-07-15: User authorized ShowMeTheParts as a non-LLM candidate and fitment source. Ultra/web review remains the repair-accuracy and final product-link gate; bulk Hub seeding remains out of this bugfix pending licensing and schema approval.
@@ -125,6 +126,15 @@ The catalog-wide research and correction queue remains in progress; this reviewe
 - Every BMW batch began in its frozen before-state, applied transactionally, and independently verified in exact after-state. Complete historical verification reports 52 manifests, 45 active after-state batches, seven fully superseded legacy batches, and 120 unique guarded issues.
 - Runtime `communityRecommendations.clickCount` is treated as mutable analytics rather than reviewed prose; any recommendation content change still fails closed. Legacy batches are skipped only when every issue is covered by a schema-v2 full-record manifest; partial overlap is rejected.
 - The applicator suite passes 25/25 and both local and Vercel builds generate 1,531/1,531 static pages. Deployment `dpl_32wQKStXEqk6DFVH7Vf6nDEby1ev` is Ready and aliased to `au7o.io`; CDN and data caches were purged. The live API and rendered X5 page expose all 13 audited records and 12 approved links with none of the four removed/replaced item IDs. BMW X5 is production-complete; Lincoln Aviator is next.
+
+**Schema-v2 Lincoln Aviator completion (database and pre-release gates, 2026-07-20):**
+
+- All 28 records were completed as full-record audits in six guarded batches. Reconciliation covers 28/28 records and 9/9 original commerce claims with zero missing, unknown, duplicate, or drifted entries.
+- Dispositions are 12 diagnosis holds, 10 recall/dealer paths, five removals/archives, and one evidence-only no-commerce record. All 27 search-result commerce links were removed; no retail link survived because every former commerce path was recall-, software-, VIN/build-, diagnosis-, duplicate-, or evidence-constrained.
+- Current Ford/Lincoln/NHTSA documents replaced broad secondary claims, including 2026 wiper and IPMA recalls, the 2025 corrective camera campaign, exact PHEV and battery-harness scopes, and multiple SSM/TSB build/symptom/DTC boundaries. Unsafe duplicate recall, air-suspension, roof-leak, battery-cable, and ADAS component-shopping cards were archived.
+- The applicator suite passes 25/25. All-manifest verification reports 58 loaded manifests, 51 active exact-after batches, seven safely superseded legacy batches, and 148 unique guarded issue rows.
+- A clean tracked-state `npm run build` passes TypeScript and generates 1,531/1,531 static pages. An unrelated untracked Mopar scraping script in the main workspace imports missing `puppeteer`; it was preserved, and the release build was verified in an isolated tracked worktree instead.
+- Git/Vercel release, cache purge, and live API/rendered-page verification remain before this checkpoint is labeled production-complete.
 
 **Schema-v2 Jeep Grand Cherokee cohort 1 (historical pre-release review, 2026-07-18):**
 
