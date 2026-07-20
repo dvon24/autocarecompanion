@@ -2,7 +2,7 @@
 
 Status: in progress. This is an evidence checkpoint, not a claim that the catalog is complete.
 
-## Lincoln Aviator database-complete checkpoint - 2026-07-20
+## Lincoln Aviator production-complete checkpoint - 2026-07-20
 
 All 28 Lincoln Aviator records in the frozen schema-v2 snapshot were completed as full-record audits in six guarded batches. Every batch began in its exact frozen before-state, applied transactionally, and independently verified in its complete approved after-state. Reconciliation covers all 28 records and all nine original commerce claims with zero missing, unknown, duplicate, or drifted records or claims.
 
@@ -10,7 +10,11 @@ The final dispositions are 12 diagnosis holds, 10 VIN-first recall/dealer paths,
 
 The review replaced broad third-party and owner-report claims with current Ford, Lincoln, and NHTSA evidence where available. Material corrections include separating three distinct 10R80/park-related recalls; correcting the 3.0-liter-only engine recall; distinguishing the 12-volt B+ harness recall from unrelated PHEV battery campaigns; adding 2026 wiper and IPMA recalls; adding the 2025 corrective camera recall for incomplete 23S23 software remedies; narrowing multiple SSM/TSB records to their exact build, symptom, DTC, and repair criteria; and archiving unsafe duplicate recall, air-suspension, battery-cable, roof-leak, and ADAS-acceleration aggregations.
 
-Complete historical verification now loads 58 manifests, verifies 51 active batches in exact after-state, safely supersedes seven fully covered legacy batches, and guards 148 unique active issue rows. The applicator suite passes 25/25. A clean tracked-state Next.js production build completes TypeScript, all 1,531 static pages, final optimization, and trace collection; the main workspace's first build attempt was blocked only by an unrelated untracked `scripts/scrape-mopar-diagram.ts` import of uninstalled `puppeteer`, so the release gate was rerun in an isolated tracked worktree without modifying that user file. Lincoln is research- and database-complete. Git/Vercel release and live API/rendered-page verification are the remaining gates for this checkpoint.
+Complete historical verification loads 58 manifests, verifies 51 active batches in exact after-state, safely supersedes seven fully covered legacy batches, and guards 148 unique active issue rows. The applicator suite passes 25/25. Clean tracked-state and Vercel production builds both complete TypeScript, all 1,531 static pages, final optimization, and trace collection; the main workspace's first build attempt was blocked only by an unrelated untracked `scripts/scrape-mopar-diagram.ts` import of uninstalled `puppeteer`, so the local release gate was rerun in an isolated tracked worktree without modifying that user file.
+
+The first production render exposed three shared empty-data defects that the record/API gate could not show: a blank `$ to $` cost sentence, `Invalid Date` for empty owner-report dates, and exact-parts/affiliate/fixed-owner boilerplate on no-commerce guidance. Commit `8cbc498` makes those sections conditional and was clean-built before release. Final production deployment `dpl_FT1dUgCh49tFSxYfGPyxcpvaxobp` is Ready and aliased to `au7o.io`; CDN and data caches were purged.
+
+The post-deploy API union for 2020-2026 matches all 23 published after-states, exposes none of the five archived IDs, and has zero commerce, cost, or mileage fields. Hydrated-page verification finds all 23 unique audited permalinks and 23 July 20 update notes, none of the five archived IDs, and none of the 26 unique removed URLs represented by the 27 original search-link occurrences. It also reports zero blank cost ranges, invalid dates, empty exact-parts headings, false `fixed this` claims, or issue-level affiliate disclaimers. Lincoln Aviator is research-, database-, and production-complete; Toyota Camry is next in the traffic-ranked queue.
 
 ## BMW X5 production release checkpoint - 2026-07-20
 
