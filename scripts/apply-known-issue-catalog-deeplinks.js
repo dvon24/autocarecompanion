@@ -57,11 +57,29 @@ function cloneValue(value) {
   return JSON.parse(JSON.stringify(value));
 }
 
+function recommendationsForContentAudit(value) {
+  return asArray(value).map((recommendation) => {
+    if (!recommendation || typeof recommendation !== 'object' || Array.isArray(recommendation)) {
+      return cloneValue(recommendation);
+    }
+    // clickCount is mutable telemetry mirrored from AffiliateClick, not part of
+    // the reviewed repair guidance. A legitimate click must not make an exact
+    // schema-v2 content after-state look drifted.
+    const { clickCount: _clickCount, ...content } = recommendation;
+    return cloneValue(content);
+  });
+}
+
+function recommendationsContentEqual(left, right) {
+  return jsonEqual(recommendationsForContentAudit(left), recommendationsForContentAudit(right));
+}
+
 function fullRecordSnapshot(row) {
   return Object.fromEntries(FULL_RECORD_FIELDS.map((field) => {
     const vehicleValue = row && row.vehicle && ['make', 'model', 'years', 'trims', 'engines'].includes(field)
       ? row.vehicle[field] : undefined;
     const value = row && row[field] !== undefined ? row[field] : vehicleValue;
+    if (field === 'communityRecommendations') return [field, recommendationsForContentAudit(value)];
     if (FULL_ARRAY_FIELDS.has(field)) return [field, cloneValue(asArray(value))];
     if (FULL_NULLABLE_INTEGER_FIELDS.has(field)) return [field, value !== undefined ? value : null];
     if (field === 'humanApproved') return [field, value === true];
@@ -396,7 +414,10 @@ function afterErrors(row, issue) {
   const actual = issueUsesFullRecord(issue) ? fullRecordSnapshot(row) : snapshotFields(row);
   const errors = [];
   for (const key of Object.keys(actual)) {
-    if (!jsonEqual(actual[key], issue.after[key])) errors.push(key);
+    const equal = key === 'communityRecommendations'
+      ? recommendationsContentEqual(actual[key], issue.after[key])
+      : jsonEqual(actual[key], issue.after[key]);
+    if (!equal) errors.push(key);
   }
   if (!issueUsesFullRecord(issue) && Object.prototype.hasOwnProperty.call(issue.after, 'title') && !jsonEqual(row.title, issue.after.title)) errors.push('title');
   return errors;
@@ -463,6 +484,32 @@ function loadManifests(args) {
   });
 }
 
+function filterSupersededLegacyManifests(manifests) {
+  const fullRecordIssueIds = new Set(
+    manifests
+      .filter(({ manifest }) => isFullRecordManifest(manifest))
+      .flatMap(({ manifest }) => manifest.issues.map((issue) => issue.id)),
+  );
+  const active = [];
+  const superseded = [];
+  for (const entry of manifests) {
+    if (isFullRecordManifest(entry.manifest)) {
+      active.push(entry);
+      continue;
+    }
+    const overlapCount = entry.manifest.issues.filter((issue) => fullRecordIssueIds.has(issue.id)).length;
+    if (overlapCount === 0) {
+      active.push(entry);
+      continue;
+    }
+    if (overlapCount !== entry.manifest.issues.length) {
+      throw new Error(`${entry.manifest.batchId}: legacy manifest is only partially superseded by schema-v2 decisions`);
+    }
+    superseded.push(entry.manifest.batchId);
+  }
+  return { active, superseded };
+}
+
 async function selectRows(client, ids, lock = false, fullRecord = false) {
   const columns = fullRecord
     ? ['id', ...FULL_RECORD_FIELDS].map((field) => `"${field}"`).join(', ')
@@ -522,7 +569,18 @@ function validateResult(result, manifest, rows) {
         ...snapshotFields(row),
         ...(Object.prototype.hasOwnProperty.call(issue.after, 'title') ? { title: row.title } : {}),
       }));
-    if (!recorded || !row || !jsonEqual(recorded.afterHashes, actualHashes)) errors.push(`${issue.id}: after hashes`);
+    if (!recorded || !row) {
+      errors.push(`${issue.id}: after hashes`);
+      continue;
+    }
+    const hashMismatches = Object.keys(actualHashes).filter((key) => recorded.afterHashes[key] !== actualHashes[key]);
+    const communityHashKey = isFullRecordManifest(manifest) ? 'communityRecommendationsHash' : 'communityHash';
+    const substantiveMismatches = hashMismatches.filter((key) => key !== communityHashKey);
+    if (substantiveMismatches.length
+      || (hashMismatches.includes(communityHashKey)
+        && !recommendationsContentEqual(row.communityRecommendations, issue.after.communityRecommendations))) {
+      errors.push(`${issue.id}: after hashes`);
+    }
   }
   return errors;
 }
@@ -623,10 +681,21 @@ async function run(mode, args) {
   const { Pool } = require('pg');
   const pool = new Pool({ connectionString, max: 3, idleTimeoutMillis: 30000 });
   try {
-    const manifests = loadManifests(args);
+    const loaded = loadManifests(args);
+    const selection = args.includes('--all')
+      ? filterSupersededLegacyManifests(loaded)
+      : { active: loaded, superseded: [] };
     const results = [];
-    for (const { manifest } of manifests) results.push(await applyBatch(pool, manifest, mode));
-    return { mode, batchCount: results.length, issueCount: results.reduce((sum, item) => sum + item.issueCount, 0), batches: results };
+    for (const { manifest } of selection.active) results.push(await applyBatch(pool, manifest, mode));
+    return {
+      mode,
+      manifestCount: loaded.length,
+      batchCount: results.length,
+      supersededLegacyBatchCount: selection.superseded.length,
+      supersededLegacyBatches: selection.superseded,
+      issueCount: results.reduce((sum, item) => sum + item.issueCount, 0),
+      batches: results,
+    };
   } finally {
     await pool.end();
   }
@@ -656,6 +725,7 @@ module.exports = {
   claimIdsForRow,
   commerceUrls,
   evaluateRows,
+  filterSupersededLegacyManifests,
   fullRecordHashes,
   fullRecordSnapshot,
   fullRecordUpdateStatement,

@@ -3,7 +3,7 @@ title: 'Known Issues catalog-wide repair deep-link correction'
 type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
-baseline_commit: '568f2802cdca94a776cc8a0c40b7e918e92db01e'
+baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
 review_loop_iteration: 0
 context: []
 ---
@@ -76,6 +76,7 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-20: Completed and production-verified all 13 BMW X5 schema-v2 records. The release also hardened all-manifest verification so runtime recommendation click telemetry does not create content drift and fully covered legacy link-only batches are superseded without allowing partial overlap. Lincoln Aviator is the next traffic-ranked model.
 - 2026-07-17: User clarified that passing over an issue means a complete issue audit, not a link audit. Traffic/clicks determine order only. Completion now requires schema-v2 full-record evidence, all public fields guarded/applied/verified together, and a live production after-state check. Existing schema-v1/link-only batches remain historical evidence but do not count toward full-record coverage.
 - 2026-07-15: User authorized ShowMeTheParts as a non-LLM candidate and fitment source. Ultra/web review remains the repair-accuracy and final product-link gate; bulk Hub seeding remains out of this bugfix pending licensing and schema approval.
 - 2026-07-15: User changed execution priority from a clicks-only queue to traffic-ranked make batches. Rank each make by its highest-traffic Known Issues page, then review that make's models in page-traffic order so engine, fitment, supersession, and retailer evidence can be reused. This changes work order only; all 10,850 baseline commerce claims remain in scope.
@@ -117,12 +118,20 @@ The catalog-wide research and correction queue remains in progress; this reviewe
 - Vercel data and CDN caches were purged. The live API matched all 23 approved records field-for-field across representative model years, and the rendered Audi A6 page returned 200 with all 23 issue anchors and all eight product URLs present. Existing production deployment `dpl_5QvajMeLEvVe8rMqePNEe1ZwqRXP` remains Ready and aliased to `au7o.io`; no source-code redeploy was required for this data-only release.
 - Audi A6 is research- and production-complete. Catalog-wide completion remains open for the other makes and models.
 
-**Schema-v2 Jeep Grand Cherokee cohort 1 (local review, 2026-07-18):**
+**Schema-v2 BMW X5 completion (2026-07-20):**
+
+- All 13 BMW X5 records were completed as full-record audits in three guarded batches: eight diagnosis-qualified replacements, four diagnosis holds, and one recall/dealer path.
+- Twelve exact product-detail pages remain. Three dead or mismatched eBay items were removed, and the scarce G05 DTF-1 eBay listing was replaced with a stable exact dealer page. Recall and diagnosis-hold records expose no commerce.
+- Every BMW batch began in its frozen before-state, applied transactionally, and independently verified in exact after-state. Complete historical verification reports 52 manifests, 45 active after-state batches, seven fully superseded legacy batches, and 120 unique guarded issues.
+- Runtime `communityRecommendations.clickCount` is treated as mutable analytics rather than reviewed prose; any recommendation content change still fails closed. Legacy batches are skipped only when every issue is covered by a schema-v2 full-record manifest; partial overlap is rejected.
+- The applicator suite passes 25/25 and the Next.js production build generates 1,531/1,531 static pages. BMW X5 is research- and database-complete; Lincoln Aviator is next.
+
+**Schema-v2 Jeep Grand Cherokee cohort 1 (historical pre-release review, 2026-07-18):**
 
 - The two clicked records were completed as guarded full-record audits: the 2019 wheel-speed/ABS diagnosis and the 2008 4WD 4.7L front-axle diagnosis.
 - All 9 commerce claims and 23 search/category links were removed. Both records are diagnosis holds with zero commerce because ShowMeTheParts exposed engine/equipment, side, limited-slip, and axle-family variants that invalidate the old universal mappings.
 - The generated two-record manifest validates with zero errors. Applicator tests pass 21/21 and ShowMeTheParts tests pass 3/3.
-- This cohort is local only. It has not been applied to the database, pushed, deployed, or production-verified.
+- This was the local state at the time of review. The later 2026-07-18 release applied and verified all 34 Jeep Grand Cherokee records; the local-only note is retained only as historical sequencing evidence.
 
 ## Suggested Review Order
 

@@ -2,6 +2,16 @@
 
 Status: in progress. This is an evidence checkpoint, not a claim that the catalog is complete.
 
+## BMW X5 production release checkpoint - 2026-07-20
+
+All 13 BMW X5 records in the prepared schema-v2 queue were completed as full-record audits, applied transactionally, and verified in their exact production after-state. The set contains eight diagnosis-qualified replacement records, four diagnosis holds with no commerce, and one VIN-first recall/dealer record. Twelve live exact product-detail pages remain across the eight replacement records.
+
+Three stale or mismatched eBay links were removed: the E70 air-supply item now redirected to a non-purchasable catalog page, the E70 transfer-case item used an older part number rather than the published current exchange servomotor, and the N55 electric-pump item no longer resolved. The limited-quantity G05 DTF-1 eBay listing was replaced with a stable exact dealer product page. Unsupported owner-report counts, last-reported dates, fixed costs, fixed mileages, generic trouble codes, and overbroad symptom claims were removed or corrected across the cohort.
+
+Production verification passes for all three BMW batches and for the complete manifest history. The all-manifest verifier sees 52 manifests, verifies 45 active batches in after-state, and safely supersedes seven older partial Audi/BMW batches only where every issue is covered by a schema-v2 full-record manifest. The verified inventory contains 120 unique issues: 114 completed schema-v2 model records across Audi A6, BMW X5, Jeep Grand Cherokee, Mazda CX-60, Mazda CX-70, and Mazda3, plus six earlier guarded link-audit records that remain historical evidence rather than full-record completion.
+
+The applicator safety suite passes 25/25. The production Next.js build completes with all 1,531 static pages generated. BMW X5 is research- and database-complete; catalog-wide completion remains open, with Lincoln Aviator next in the traffic-ranked make queue.
+
 ## Production release checkpoint - 2026-07-18
 
 Twenty-five guarded schema-v2 batches were applied and independently verified against production: 34 Jeep Grand Cherokee records and 44 Mazda records across CX-60, CX-70, and Mazda3. Every batch began in its frozen before-state and finished in its exact reviewed after-state; no row or manifest drift was detected.
@@ -59,7 +69,7 @@ Only three exact retailer links survived or were added: both position-specific C
 
 The public Audi A6 HTML and vehicle API were checked after deployment. They expose the corrected timing-chain part numbers and exact links, the APB/BEL split, and the correction metadata. Deployment `dpl_5QvajMeLEvVe8rMqePNEe1ZwqRXP` is aliased to `au7o.io`; the CDN and data caches were purged.
 
-## Jeep Grand Cherokee clicked cohort 1 - local review checkpoint, 2026-07-18
+## Jeep Grand Cherokee clicked cohort 1 - historical pre-release checkpoint, 2026-07-18
 
 The first Jeep Grand Cherokee schema-v2 cohort covers the two records with recorded commerce clicks: the wheel-speed/ABS card and the front-differential/CV card. Together they carried 9 commerce claims, 23 search/category links, and 4 priority clicks. Both finished as diagnosis holds with zero commerce links because the published universal part mappings were not safe.
 
@@ -72,7 +82,7 @@ Guarded artifacts:
 - `data/known-issues-catalog-deeplink-decisions/jeep-grand-cherokee-full-record-cohort-1-2026-07-17.json`
 - four ShowMeTheParts evidence files for 2014/2019 ABS components and 2008 CV/differential candidates.
 
-The manifest validator reports zero errors. The applicator safety suite passes 21/21 and the ShowMeTheParts parser/filter suite passes 3/3. No database dry-run, apply, commit, push, cache purge, or deployment was performed in this overnight checkpoint.
+The manifest validator reported zero errors. The applicator safety suite passed 21/21 and the ShowMeTheParts parser/filter suite passed 3/3. At the time of this overnight checkpoint no database dry-run, apply, commit, push, cache purge, or deployment had been performed. The later 2026-07-18 production release checkpoint above supersedes that temporary local-only state and records all 34 Jeep Grand Cherokee records as applied and verified.
 
 Wall-clock timing runs from the first Jeep API evidence artifact at `2026-07-17T20:33:20.766Z` to the final reviewed guarded manifest at `2026-07-18T11:32:19.343Z`: 14 hours 58 minutes 59 seconds. This interval includes overnight research, evidence retrieval, adversarial review, validation, and tool waits; it is not an active-hours throughput estimate.
 
@@ -133,7 +143,7 @@ ShowMeTheParts is expected to remove most manual candidate discovery. The workin
 ## Remaining work
 
 1. Finish and time the ShowMeTheParts adapter and its parser/filter tests.
-2. Audit the traffic-ranked make queue, starting with Jeep, Audi, BMW, Lincoln, and Toyota; within each page, handle clicked claims first.
+2. Continue the traffic-ranked make queue with Lincoln Aviator next, followed by Toyota Camry; within each page, handle clicked claims first. Jeep Grand Cherokee, Audi A6, and BMW X5 are complete at the model level.
 3. Continue every commerce-bearing issue not reached by the traffic list.
 4. Reconcile to exactly one disposition per claim and zero unclassified claims.
 5. Export a fresh post-apply snapshot, compare before/after link and click exposure, rerun all verification, and complete the BMad review gate.

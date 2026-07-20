@@ -2,16 +2,20 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 const {
+  afterHashes,
   beforeHashes,
   claimIdsForRow,
   evaluateRows,
+  filterSupersededLegacyManifests,
   fullRecordHashes,
   fullRecordSnapshot,
   fullRecordUpdateStatement,
+  hashValue,
   isIsoDate,
   productUrlError,
   snapshotFields,
   validateManifest,
+  validateResult,
   vendorMatchesUrl,
 } = require('./apply-known-issue-catalog-deeplinks');
 const {
@@ -249,6 +253,76 @@ test('state evaluation recognizes before, after, and drift', () => {
   const after = { id: row.id, ...manifest.issues[0].after };
   assert.equal(evaluateRows([after], manifest).state, 'after');
   assert.equal(evaluateRows([{ ...row, solution: 'Unexpected edit' }], manifest).state, 'drift');
+});
+
+test('schema v2 content verification ignores runtime recommendation click telemetry', () => {
+  const row = baseRow();
+  const manifest = fullRecordManifest(row);
+  manifest.issues[0].after.communityRecommendations = [{
+    type: 'tip',
+    content: 'Swap the suspect component before ordering a replacement.',
+    upvotes: 0,
+  }];
+  const after = {
+    id: row.id,
+    ...manifest.issues[0].after,
+    communityRecommendations: [{
+      ...manifest.issues[0].after.communityRecommendations[0],
+      clickCount: 1,
+    }],
+  };
+  assert.equal(evaluateRows([after], manifest).state, 'after');
+  after.communityRecommendations[0].content = 'Unexpected guidance edit';
+  assert.equal(evaluateRows([after], manifest).state, 'drift');
+});
+
+test('legacy after-state and result verification ignore only recommendation click telemetry', () => {
+  const row = baseRow();
+  const manifest = changedManifest(row);
+  manifest.issues[0].after.communityRecommendations = [{
+    type: 'tip',
+    content: 'Confirm the failed component before ordering.',
+    upvotes: 0,
+  }];
+  const cleanAfter = { id: row.id, ...manifest.issues[0].after };
+  const currentAfter = {
+    ...cleanAfter,
+    communityRecommendations: [{ ...cleanAfter.communityRecommendations[0], clickCount: 4 }],
+  };
+  const result = {
+    schemaVersion: manifest.schemaVersion,
+    batchId: manifest.batchId,
+    manifestHash: hashValue(manifest),
+    status: 'applied-and-verified',
+    issues: [{ id: row.id, afterHashes: afterHashes(cleanAfter) }],
+  };
+  assert.equal(evaluateRows([currentAfter], manifest).state, 'after');
+  assert.deepEqual(validateResult(result, manifest, [currentAfter]), []);
+  currentAfter.communityRecommendations[0].content = 'Unexpected guidance edit';
+  assert.equal(evaluateRows([currentAfter], manifest).state, 'drift');
+  assert.deepEqual(validateResult(result, manifest, [currentAfter]), [`${row.id}: after hashes`]);
+});
+
+test('all-manifest verification skips only fully superseded legacy batches', () => {
+  const row = baseRow();
+  const full = fullRecordManifest(row);
+  const legacy = changedManifest(row, 'legacy-batch');
+  const selection = filterSupersededLegacyManifests([
+    { file: 'legacy.json', manifest: legacy },
+    { file: 'full.json', manifest: full },
+  ]);
+  assert.deepEqual(selection.superseded, ['legacy-batch']);
+  assert.deepEqual(selection.active.map(({ manifest }) => manifest.batchId), [full.batchId]);
+
+  const second = baseRow('issue-2');
+  legacy.issues.push(changedManifest(second, 'second').issues[0]);
+  assert.throws(
+    () => filterSupersededLegacyManifests([
+      { file: 'legacy.json', manifest: legacy },
+      { file: 'full.json', manifest: full },
+    ]),
+    /partially superseded/,
+  );
 });
 
 test('after-state comparison ignores JSON object key order from jsonb', () => {
