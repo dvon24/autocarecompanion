@@ -10,7 +10,7 @@ Three stale or mismatched eBay links were removed: the E70 air-supply item now r
 
 Production verification passes for all three BMW batches and for the complete manifest history. The all-manifest verifier sees 52 manifests, verifies 45 active batches in after-state, and safely supersedes seven older partial Audi/BMW batches only where every issue is covered by a schema-v2 full-record manifest. The verified inventory contains 120 unique issues: 114 completed schema-v2 model records across Audi A6, BMW X5, Jeep Grand Cherokee, Mazda CX-60, Mazda CX-70, and Mazda3, plus six earlier guarded link-audit records that remain historical evidence rather than full-record completion.
 
-The applicator safety suite passes 25/25. The production Next.js build completes with all 1,531 static pages generated. BMW X5 is research- and database-complete; catalog-wide completion remains open, with Lincoln Aviator next in the traffic-ranked make queue.
+The applicator safety suite passes 25/25. The local and Vercel production builds both complete with all 1,531 static pages generated. Production deployment `dpl_32wQKStXEqk6DFVH7Vf6nDEby1ev` is Ready and aliased to `au7o.io`; the CDN and data caches were purged. A six-model-year API union exposes exactly the 13 audited records and 12 unique product links, with zero removed/search links, costs, mileage ranges, missing approvals, or missing correction summaries. The rendered BMW X5 page contains all 13 issue IDs and all 12 approved URLs, and none of the four removed/replaced marketplace item IDs. BMW X5 is research-, database-, and production-complete; catalog-wide completion remains open, with Lincoln Aviator next in the traffic-ranked make queue.
 
 ## Production release checkpoint - 2026-07-18
 

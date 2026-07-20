@@ -124,7 +124,7 @@ The catalog-wide research and correction queue remains in progress; this reviewe
 - Twelve exact product-detail pages remain. Three dead or mismatched eBay items were removed, and the scarce G05 DTF-1 eBay listing was replaced with a stable exact dealer page. Recall and diagnosis-hold records expose no commerce.
 - Every BMW batch began in its frozen before-state, applied transactionally, and independently verified in exact after-state. Complete historical verification reports 52 manifests, 45 active after-state batches, seven fully superseded legacy batches, and 120 unique guarded issues.
 - Runtime `communityRecommendations.clickCount` is treated as mutable analytics rather than reviewed prose; any recommendation content change still fails closed. Legacy batches are skipped only when every issue is covered by a schema-v2 full-record manifest; partial overlap is rejected.
-- The applicator suite passes 25/25 and the Next.js production build generates 1,531/1,531 static pages. BMW X5 is research- and database-complete; Lincoln Aviator is next.
+- The applicator suite passes 25/25 and both local and Vercel builds generate 1,531/1,531 static pages. Deployment `dpl_32wQKStXEqk6DFVH7Vf6nDEby1ev` is Ready and aliased to `au7o.io`; CDN and data caches were purged. The live API and rendered X5 page expose all 13 audited records and 12 approved links with none of the four removed/replaced item IDs. BMW X5 is production-complete; Lincoln Aviator is next.
 
 **Schema-v2 Jeep Grand Cherokee cohort 1 (historical pre-release review, 2026-07-18):**
 
