@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { triggerHaptic } from '@/hooks/useHaptic';
 import { IssueFix } from '@/hooks/useIssueFixes';
 import { trackAffiliateClick } from '@/lib/analytics';
-import { ebayAffiliate } from '@/lib/ebay-affiliate';
+import { getKnownIssueCommerce, hasKnownIssueCommerce, knownIssueAffiliateUrl } from '@/lib/known-issue-commerce';
 
 /**
  * Strip the verification worker's INTERNAL reasoning log out of a fixPart note
@@ -51,6 +51,26 @@ function formatContentUpdatedOn(value?: string | null): string | null {
     year: 'numeric',
     timeZone: 'UTC',
   }).format(date);
+}
+
+/** Recent is communicated with copy, not color. */
+function isRecentContentUpdate(value?: string | null): boolean {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || '');
+  if (!match) return false;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const updatedAt = Date.UTC(year, month - 1, day);
+  const parsed = new Date(updatedAt);
+  if (
+    parsed.getUTCFullYear() !== year ||
+    parsed.getUTCMonth() !== month - 1 ||
+    parsed.getUTCDate() !== day
+  ) return false;
+  const now = new Date();
+  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  const age = today - updatedAt;
+  return age >= 0 && age <= 45 * 24 * 60 * 60 * 1000;
 }
 
 interface RelatedIssueVehicle {
@@ -121,33 +141,33 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   const severityConfig = {
     high: {
       label: 'Critical',
-      bgColor: 'bg-red-100',
-      textColor: 'text-red-800',
-      borderColor: 'border-red-200',
+      bgColor: 'bg-[#8B1E1E]',
+      badgeTextColor: 'text-white',
+      textColor: 'text-[#0B1220]',
       icon: (
-        <svg className="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+        <svg className="w-5 h-5 text-[#8B1E1E]" fill="currentColor" viewBox="0 0 20 20">
           <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
         </svg>
       ),
     },
     medium: {
       label: 'Moderate',
-      bgColor: 'bg-yellow-100',
-      textColor: 'text-yellow-800',
-      borderColor: 'border-yellow-200',
+      bgColor: 'bg-[#F4A261]',
+      badgeTextColor: 'text-[#0B1220]',
+      textColor: 'text-[#0B1220]',
       icon: (
-        <svg className="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+        <svg className="w-5 h-5 text-[#B45309]" fill="currentColor" viewBox="0 0 20 20">
           <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
         </svg>
       ),
     },
     low: {
       label: 'Minor',
-      bgColor: 'bg-gray-100',
-      textColor: 'text-gray-700',
-      borderColor: 'border-gray-200',
+      bgColor: 'bg-[#E8E2D5]',
+      badgeTextColor: 'text-[#0B1220]',
+      textColor: 'text-[#0B1220]',
       icon: (
-        <svg className="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+        <svg className="w-5 h-5 text-[#3C313D]" fill="currentColor" viewBox="0 0 20 20">
           <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
         </svg>
       ),
@@ -158,15 +178,11 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
 
   // Determine if this is a highly community-reported issue (50+ reports)
   const isCommunityReported = issue.reportCount >= 50;
-  const hasPartRecommendations = issue.communityRecommendations?.some(rec => rec.type === 'part');
-  const hasFixParts = Boolean(issue.fixParts?.length);
-  const hasCommunityRecommendations = Boolean(issue.communityRecommendations?.length);
-  const hasAffiliateLinks = Boolean(
-    issue.fixParts?.some((part) => part.buyLinks?.some((link) => link.affiliate)) ||
-    issue.communityRecommendations?.some((rec) => rec.affiliateUrl)
-  );
+  const { fixParts, ownerGuidance } = getKnownIssueCommerce(issue);
+  const hasPartRecommendations = hasKnownIssueCommerce(fixParts);
   const contentUpdateDate = formatContentUpdatedOn(issue.contentUpdatedOn);
   const contentUpdateSummary = issue.contentUpdateSummary?.trim();
+  const recentContentUpdate = isRecentContentUpdate(issue.contentUpdatedOn);
 
   const handleToggle = () => {
     triggerHaptic('light');
@@ -188,16 +204,10 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   };
 
   return (
-    <div id={issue.id} className={`border rounded-lg overflow-hidden transition-all scroll-mt-20 ${config.borderColor}`}>
+    <div id={issue.id} className="border border-[#E3DFD4] rounded-lg overflow-hidden transition-all scroll-mt-20 bg-[#FBFAF6]">
       {/* User Fix Status Banner - shows when user has reported fixing this */}
       {userFix && (
-        <div className={`px-4 py-2 flex items-center justify-between ${
-          userFix.status === 'fixed'
-            ? 'bg-gradient-to-r from-green-600 to-emerald-600'
-            : userFix.status === 'in_progress'
-            ? 'bg-gradient-to-r from-blue-600 to-cyan-600'
-            : 'bg-gradient-to-r from-gray-500 to-gray-600'
-        }`}>
+        <div className="px-4 py-2 flex items-center justify-between bg-[#3C313D] border-b border-[#2A232B]">
           <div className="flex items-center gap-2">
             <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {userFix.status === 'fixed' ? (
@@ -224,14 +234,14 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
 
       {/* Community Reported Banner - shows for highly reported issues */}
       {isCommunityReported && !userFix && (
-        <div className="px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 flex items-center justify-between">
+        <div className="px-4 py-2 bg-[#E8E2D5] border-b border-[#D7D0C2] flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="w-4 h-4 text-[#3C313D]" fill="currentColor" viewBox="0 0 20 20">
               <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
             </svg>
-            <span className="text-white text-xs font-semibold">Community Reported</span>
+            <span className="text-[#0B1220] text-xs font-semibold">Community reported</span>
           </div>
-          <span className="text-white/90 text-xs">
+          <span className="text-[#475569] text-xs">
             {issue.reportCount.toLocaleString()} owners
           </span>
         </div>
@@ -242,18 +252,19 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
         type="button"
         onClick={handleToggle}
         aria-expanded={expanded}
+        aria-controls={`${issue.id}-details`}
         aria-label={`${expanded ? 'Collapse' : 'Expand'} details for ${issue.title}`}
-        className={`w-full p-4 text-left flex items-start gap-3 ${config.bgColor} hover:opacity-90 transition-opacity`}
+        className="w-full p-4 text-left flex items-start gap-3 bg-[#F7F4EC] hover:bg-[#EFEDE6] transition-colors"
       >
         {config.icon}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1 flex-wrap">
-            <span className={`text-xs font-medium px-2 py-0.5 rounded ${config.bgColor} ${config.textColor}`}>
+            <span className={`text-xs font-semibold px-2 py-0.5 rounded ${config.bgColor} ${config.badgeTextColor}`}>
               {config.label}
             </span>
             {hasPartRecommendations && (
-              <span className="text-xs font-medium px-2 py-0.5 rounded bg-purple-100 text-purple-700">
-                Upgrades Available
+              <span className="text-xs font-medium px-2 py-0.5 rounded border border-[#B8AE9B] bg-[#FBFAF6] text-[#3C313D]">
+                Verified parts
               </span>
             )}
             {/* Engine badge — elevates issue.vehicleMatch.engines to a
@@ -318,7 +329,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               // previously-hover-only permalink was invisible to 67% of
               // traffic. Show at low opacity on touch devices; keep the
               // hover-reveal pattern on desktop.
-              className="opacity-40 lg:opacity-0 group-hover/heading:opacity-60 hover:opacity-100 text-sm lg:text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-opacity flex-shrink-0 px-1 py-0.5 min-w-[24px] min-h-[24px] inline-flex items-center justify-center"
+              className="opacity-40 lg:opacity-0 group-hover/heading:opacity-60 hover:opacity-100 text-sm lg:text-xs text-[#94A3B8] hover:text-[#3C313D] transition-opacity flex-shrink-0 px-1 py-0.5 min-w-[24px] min-h-[24px] inline-flex items-center justify-center"
               onClick={(e) => {
                 // Stop the parent button's expand-toggle from firing when
                 // the user just wants to copy the permalink.
@@ -347,12 +358,12 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
             {issue.dtcCodes && issue.dtcCodes.length > 0 && (
               <span className="inline-flex items-center gap-1 flex-wrap">
                 <span className="text-[10px] text-[#64748B] font-medium">Error Codes:</span>
-                {issue.dtcCodes.map((code: string) =>
+                {issue.dtcCodes.map((code) =>
                   !linkableDtcCodes || linkableDtcCodes.includes(code.toLowerCase()) ? (
                     <Link
                       key={code}
                       href={`/known-issues/dtc/${code.toLowerCase()}`}
-                      className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-medium bg-[#EFEDE6] text-[#475569] rounded hover:bg-blue-100 hover:text-blue-700 transition-colors"
+                    className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-semibold border border-[#BFDBFE] bg-[#EFF6FF] text-[#3B82F6] rounded hover:bg-[#DBEAFE] hover:text-[#2563EB] transition-colors"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {code}
@@ -370,24 +381,26 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
             )}
           </div>
           {contentUpdateDate && contentUpdateSummary && (
-            <div className="mt-1.5 flex items-start gap-1 text-xs leading-4">
+            <div className="mt-2 flex items-start gap-2 rounded-md border border-[#B8AE9B] bg-[#FBFAF6] px-2.5 py-2 text-xs leading-4">
               <svg
                 aria-hidden="true"
-                className="w-3.5 h-3.5 mt-px flex-shrink-0 text-emerald-700"
+                className="w-3.5 h-3.5 mt-px flex-shrink-0 text-[#3C313D]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <time
-                dateTime={issue.contentUpdatedOn}
-                className="font-semibold text-emerald-700 whitespace-nowrap"
-              >
-                Updated {contentUpdateDate}
-              </time>
-              <span aria-hidden="true" className="text-[#94A3B8]">·</span>
-              <span className="min-w-0 text-[#64748B]">{contentUpdateSummary}</span>
+              <span className="min-w-0">
+                <span className="font-semibold text-[#0B1220]">
+                  {recentContentUpdate ? 'New update' : 'Updated'}
+                </span>
+                <span aria-hidden="true" className="px-1 text-[#94A3B8]">·</span>
+                <time dateTime={issue.contentUpdatedOn} className="font-medium text-[#475569]">
+                  {contentUpdateDate}
+                </time>
+                <span className="block mt-0.5 text-[#475569]">{contentUpdateSummary}</span>
+              </span>
             </div>
           )}
         </div>
@@ -401,9 +414,15 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
         </svg>
       </button>
 
-      {/* Expanded content */}
-      {expanded && (
-        <div className="p-4 bg-white space-y-4">
+      {/* The body stays in the server-rendered document for indexing and
+          accessibility, while the UI starts collapsed. Direct hash links
+          still open the matching issue via the effect above. */}
+      <div
+        id={`${issue.id}-details`}
+        hidden={!expanded}
+        aria-hidden={!expanded}
+        className="p-4 bg-white space-y-4"
+      >
           {/* Description with YMMT-prefixed first sentence. The prefix
               ("On the 2008-2014 Dodge Avenger, ...") makes every page's
               first paragraph measurably different from sibling-make pages
@@ -438,13 +457,13 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               Tells Google these pages are part of one connected library
               about a shared engineering defect, not 900 isolated pages. */}
           {relatedVehicles && relatedVehicles.length > 0 && (
-            <div className="text-xs text-[#475569] leading-relaxed border-l-2 border-blue-200 pl-3 py-1 bg-blue-50/40">
+            <div className="text-xs text-[#475569] leading-relaxed border-l-2 border-[#B8AE9B] pl-3 py-1 bg-[#F7F4EC]">
               <span className="font-medium text-[#334155]">This issue also affects:</span>{' '}
               {relatedVehicles.map((rv, i) => (
                 <span key={rv.issueId}>
                   <Link
                     href={`/known-issues/${rv.slug}#${rv.issueId}`}
-                    className="text-blue-700 hover:underline"
+                    className="font-semibold text-[#3B82F6] underline decoration-[#BFDBFE] underline-offset-2 hover:text-[#2563EB] hover:decoration-[#3B82F6]"
                   >
                     {rv.make} {rv.model}
                   </Link>
@@ -470,221 +489,142 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
           </div>
 
           {/* Solution/Fix */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-            <h4 className="text-sm font-medium text-green-800 mb-2 flex items-center gap-2">
+          <div className="bg-[#F7F4EC] border border-[#E3DFD4] rounded-lg p-3">
+            <h4 className="text-sm font-medium text-[#0B1220] mb-2 flex items-center gap-2">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
               </svg>
               How to Fix
             </h4>
-            <p className="text-sm text-green-700 leading-relaxed">{issue.solution}</p>
+            <p className="text-sm text-[#475569] leading-relaxed">{issue.solution}</p>
           </div>
 
-          {/* THE BUYABLE FIX — one combined section: the OEM/verified part(s)
-              that resolve this (PN-precise, buy-links from the verified number)
-              PLUS what owners actually use (aftermarket cross-refs + community
-              upgrades/tips/warnings). au7o's differentiator: problem -> proven
-              fix -> the exact part to buy, no internet scavenger hunt. The two
-              part sources are LABELLED (OEM vs Owners use) so nothing reads as
-              redundant. */}
-          {(hasFixParts || hasCommunityRecommendations) && (
-            <div className="rounded-lg p-3 bg-amber-50 border border-amber-200">
-              <h4 className="text-sm font-semibold text-amber-900 mb-1 flex items-center gap-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {/* Public commerce lives in this one canonical section. Search and
+              category links have already been removed by getKnownIssueCommerce. */}
+          {fixParts.length > 0 && (
+            <div className="rounded-lg border border-[#D8D1C3] bg-[#EFEDE6] p-3">
+              <h4 className="mb-1 flex items-center gap-2 text-sm font-semibold text-[#0B1220]">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
                 </svg>
-                {hasFixParts ? 'What you need to fix it' : 'Practical guidance'}
+                What you need to fix it
               </h4>
-              {hasFixParts && (
-                <p className="text-xs text-amber-700 mb-2">The exact parts — OEM, plus what owners actually use. Skip the internet hunt.</p>
-              )}
+              <p className="mb-3 text-xs leading-relaxed text-[#475569]">
+                Only diagnosis- and fitment-reviewed repair parts are linked here.
+              </p>
 
-              {/* Recall-first: when the audit flagged this issue as recall-covered,
-                  the honest first action is a FREE VIN recall check — a dealer
-                  fixes recalled parts at no charge. Trust > a $400 alternator sale. */}
-              {issue.fixParts && issue.fixParts.some((p) => p.recallFirst) && (
+              {fixParts.some((part) => part.recallFirst) && (
                 <a
                   href="https://www.nhtsa.gov/recalls"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-2 mb-3 p-2.5 rounded-md bg-emerald-50 border border-emerald-300 hover:bg-emerald-100 transition-colors"
+                  className="mb-3 flex items-start gap-2 rounded-md border border-[#BFDBFE] bg-[#EFF6FF] p-2.5 text-[#3B82F6] transition-colors hover:border-[#3B82F6] hover:bg-[#DBEAFE]"
                 >
-                  <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#3B82F6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
-                  <span className="text-xs">
-                    <span className="font-semibold text-emerald-900">Check your VIN for open recalls first — it may be free.</span>
-                    <span className="block text-emerald-700 mt-0.5">This is covered by a manufacturer recall on some builds; a dealer fixes recalled parts at no charge. Look up your VIN on NHTSA before buying below.</span>
+                  <span className="text-xs text-[#475569]">
+                    <span className="block font-semibold text-[#2563EB]">Check your VIN for an open recall before buying.</span>
+                    <span className="mt-0.5 block text-[#475569]">A dealer repairs an open manufacturer recall at no charge. Confirm coverage with NHTSA first.</span>
                   </span>
                 </a>
               )}
 
-              {hasFixParts && issue.fixParts && (
               <ul className="space-y-3">
-                {issue.fixParts.map((p, i) => (
-                  <li key={i} className="bg-white border border-amber-200 rounded-md p-2.5">
-                    <div className="text-sm font-medium text-[#0B1220]">{p.component}</div>
+                {fixParts.map((part, index) => (
+                  <li key={`${part.component}-${part.oemPartNumber || ''}-${index}`} className="rounded-md border border-[#D8D1C3] bg-white p-2.5">
+                    <div className="text-sm font-medium text-[#0B1220]">{part.component}</div>
 
-                    {/* Variant rows: when fitment splits by year/engine/package the
-                        part number is different per build (e.g. the TIPM: 2011 vs
-                        2012-13 vs 2014). Show every variant so a reader picks the one
-                        that matches their car — never one PN with a buried caveat. */}
-                    {p.variants && p.variants.length > 1 && (
-                      <div className="mt-1.5 rounded-md bg-amber-100/60 border border-amber-200 p-2 space-y-1">
-                        <div className="text-[10px] font-semibold text-amber-800 uppercase tracking-wide">⚠ Part # varies — match yours by year/engine</div>
-                        {p.variants.map((v, vi) => (
-                          <div key={vi} className="flex items-baseline gap-2 text-xs">
-                            <span className="font-mono font-medium text-[#0B1220] whitespace-nowrap">{v.oemPartNumber}</span>
-                            <span className="text-[#64748B] leading-snug">{v.scope}{v.note ? ` — ${v.note}` : ''}</span>
+                    {part.variants && part.variants.length > 1 && (
+                      <div className="mt-1.5 space-y-1 rounded-md border border-[#D8D1C3] bg-[#F7F4EC] p-2">
+                        <div className="text-[10px] font-semibold uppercase tracking-wide text-[#3C313D]">Fitment varies — match the part number by year and engine</div>
+                        {part.variants.map((variant, variantIndex) => (
+                          <div key={variantIndex} className="flex items-baseline gap-2 text-xs">
+                            <span className="whitespace-nowrap font-mono font-medium text-[#0B1220]">{variant.oemPartNumber}</span>
+                            <span className="leading-snug text-[#64748B]">{variant.scope}{variant.note ? ` — ${variant.note}` : ''}</span>
                           </div>
                         ))}
                       </div>
                     )}
 
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-[#475569]">
-                      {p.oemPartNumber && (!p.variants || p.variants.length <= 1) && (
+                    <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#475569]">
+                      {part.oemPartNumber && (!part.variants || part.variants.length <= 1) && (
                         <span className="inline-flex items-center gap-1">
-                          <span className="px-1.5 py-0.5 text-[10px] font-semibold rounded bg-amber-200 text-amber-900 uppercase tracking-wide">OEM</span>
-                          <span className="font-mono font-medium text-[#0B1220]">{p.oemPartNumber}</span>
+                          <span className="rounded border border-[#C9C0B1] bg-[#F7F4EC] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#3C313D]">OEM</span>
+                          <span className="font-mono font-medium text-[#0B1220]">{part.oemPartNumber}</span>
                         </span>
                       )}
-                      {p.aftermarketXref && p.aftermarketXref.length > 0 && (
+                      {part.aftermarketXref && part.aftermarketXref.length > 0 && (
                         <span className="inline-flex items-baseline gap-1 text-[#475569]">
-                          <span className="px-1.5 py-0.5 text-[10px] font-semibold rounded bg-purple-100 text-purple-700 uppercase tracking-wide">Owners use</span>
-                          {p.aftermarketXref.slice(0, 3).join(', ')}
+                          <span className="rounded border border-[#C9C0B1] bg-[#F7F4EC] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#3C313D]">Cross-ref</span>
+                          {part.aftermarketXref.slice(0, 3).join(', ')}
                         </span>
                       )}
-                      {p.priceLow != null && (
+                      {part.priceLow != null && (
                         <span className="font-medium text-[#0B1220]">
-                          ${p.priceLow}{p.priceHigh != null && p.priceHigh !== p.priceLow ? `–$${p.priceHigh}` : ''}
+                          ${part.priceLow}{part.priceHigh != null && part.priceHigh !== part.priceLow ? `–$${part.priceHigh}` : ''}
                         </span>
                       )}
                     </div>
-                    {(() => { const c = cleanFixNote(p.note); return c ? <p className="text-xs text-[#64748B] mt-1 leading-relaxed">{c}</p> : null; })()}
-                    {p.buyLinks && p.buyLinks.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {p.buyLinks.map((b, j) => (
-                          <a
-                            key={j}
-                            href={b.vendor === 'eBay' ? ebayAffiliate(b.url, issue.id) : b.url}
-                            target="_blank"
-                            rel="noopener noreferrer sponsored"
-                            onClick={() => trackAffiliateClick({
-                              issueId: issue.id,
-                              partBrand: b.vendor,
-                              partName: p.component,
-                              partNumber: p.oemPartNumber || undefined,
-                              linkUrl: b.url,
-                              recommendationIndex: i,
-                              recommendationSource: 'fixPart',
-                              vehicleMake: issue.vehicleMatch.make,
-                              vehicleModel: issue.vehicleMatch.model,
-                            })}
-                            className="inline-flex items-center gap-1 text-xs font-medium bg-[#0B1220] text-white px-2.5 py-1.5 rounded-md hover:bg-[#1e293b] transition-colors"
-                          >
-                            {b.vendor}
-                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ul>
-              )}
-
-              {/* From owners — community upgrades, tips & warnings (the "what
-                  owners are using" half, now inside the same section). */}
-              {hasCommunityRecommendations && issue.communityRecommendations && (
-              <div className={hasFixParts ? 'mt-3 pt-3 border-t border-amber-200' : ''}>
-              <p className="text-xs font-semibold text-amber-900 mb-1.5 flex items-center gap-1.5">
-                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
-                </svg>
-                {issue.reportCount > 0
-                  ? `From owners — upgrades & tips (${issue.reportCount.toLocaleString()}+ reports)`
-                  : 'Tips and cautions'}
-              </p>
-              <ul className="space-y-2">
-                {issue.communityRecommendations.map((rec, index) => (
-                  <li key={index} className="text-sm text-blue-700">
-                    <div className="flex items-start gap-2">
-                      <span className={`flex-shrink-0 px-1.5 py-0.5 text-xs font-medium rounded ${
-                        rec.type === 'part' ? 'bg-purple-100 text-purple-700' :
-                        rec.type === 'warning' ? 'bg-red-100 text-red-700' :
-                        'bg-blue-100 text-blue-700'
-                      }`}>
-                        {rec.type === 'part' ? 'Upgrade' : rec.type === 'warning' ? 'Note' : 'Tip'}
-                      </span>
-                      <span className="flex-1">
-                        {rec.content}
-                        {rec.partBrand && (rec.partNumber || rec.partName) && (
-                          rec.affiliateUrl ? (
+                    {(() => {
+                      const note = cleanFixNote(part.note);
+                      return note ? <p className="mt-1 text-xs leading-relaxed text-[#64748B]">{note}</p> : null;
+                    })()}
+                    {part.buyLinks && part.buyLinks.length > 0 && (
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {part.buyLinks.map((link, linkIndex) => {
+                          const affiliateUrl = knownIssueAffiliateUrl(link.url, issue.id);
+                          return (
                             <a
-                              href={rec.affiliateUrl}
+                              key={`${link.vendor}-${linkIndex}`}
+                              href={affiliateUrl}
                               target="_blank"
                               rel="noopener noreferrer sponsored"
-                              className="font-medium text-purple-700 hover:text-purple-900 underline decoration-purple-300 hover:decoration-purple-500 transition-colors"
                               onClick={() => trackAffiliateClick({
                                 issueId: issue.id,
-                                partBrand: rec.partBrand,
-                                partName: rec.partName,
-                                partNumber: rec.partNumber,
-                                linkUrl: rec.affiliateUrl!,
+                                partBrand: link.vendor,
+                                partName: part.component,
+                                partNumber: part.oemPartNumber || undefined,
+                                linkUrl: affiliateUrl,
                                 recommendationIndex: index,
-                                recommendationSource: 'community',
+                                recommendationSource: 'fixPart',
                                 vehicleMake: issue.vehicleMatch.make,
                                 vehicleModel: issue.vehicleMatch.model,
                               })}
+                              className="inline-flex items-center gap-1 rounded-md bg-[#3B82F6] px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#2563EB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B82F6] focus-visible:ring-offset-2"
                             >
-                              {' '}({rec.partBrand} {rec.partNumber ? `#${rec.partNumber}` : rec.partName})
+                              {link.vendor}
+                              <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                              </svg>
                             </a>
-                          ) : (
-                            <span className="font-medium text-purple-700">
-                              {' '}({rec.partBrand} {rec.partNumber ? `#${rec.partNumber}` : rec.partName})
-                            </span>
-                          )
-                        )}
-                      </span>
-                    </div>
-                    {/* Affiliate links for parts */}
-                    {rec.affiliateUrl && (
-                      <div className="ml-6 mt-1">
-                        <a
-                          href={rec.affiliateUrl}
-                          target="_blank"
-                          rel="noopener noreferrer sponsored"
-                          className="inline-flex items-center gap-1 text-xs bg-purple-600 text-white px-2 py-1 rounded-md hover:bg-purple-700 transition-colors"
-                          onClick={() => trackAffiliateClick({
-                            issueId: issue.id,
-                            partBrand: rec.partBrand,
-                            partName: rec.partName,
-                            partNumber: rec.partNumber,
-                            linkUrl: rec.affiliateUrl!,
-                            recommendationIndex: index,
-                            recommendationSource: 'community',
-                            vehicleMake: issue.vehicleMatch.make,
-                            vehicleModel: issue.vehicleMatch.model,
-                          })}
-                        >
-                          View on Amazon
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </a>
+                          );
+                        })}
                       </div>
                     )}
                   </li>
                 ))}
               </ul>
-              </div>
-              )}
 
-              {hasAffiliateLinks && (
-                <p className="text-[10px] text-[#94A3B8] mt-2">Part links may earn au7o a commission. Confirm fitment by VIN before buying.</p>
+              {hasPartRecommendations && (
+                <p className="mt-2 text-[11px] font-medium text-[#475569]">Part links may earn au7o a commission. Confirm fitment by VIN before buying.</p>
               )}
+            </div>
+          )}
+
+          {ownerGuidance.length > 0 && (
+            <div className="rounded-lg border border-[#E3DFD4] bg-[#F7F4EC] p-3">
+              <h4 className="mb-2 text-sm font-medium text-[#0B1220]">Owner tips &amp; cautions</h4>
+              <ul className="space-y-2">
+                {ownerGuidance.map((guidance, index) => (
+                  <li key={`${guidance.type}-${index}`} className="flex items-start gap-2 text-sm leading-relaxed text-[#475569]">
+                    <span className="mt-0.5 flex-shrink-0 rounded border border-[#C9C0B1] bg-[#EFEDE6] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#3C313D]">
+                      {guidance.type === 'warning' ? 'Warning' : 'Tip'}
+                    </span>
+                    <span>{guidance.content}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
 
@@ -749,29 +689,29 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                 href={`https://www.nhtsa.gov/vehicle/${issue.vehicleMatch.years[0]}/${issue.vehicleMatch.make.toUpperCase()}/${issue.vehicleMatch.model.toUpperCase().replace(/ /g, '%20')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 p-2 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
+                className="flex items-center gap-2 p-2 bg-[#EFEDE6] rounded-lg hover:bg-[#E3DFD4] transition-colors"
               >
-                <svg className="w-4 h-4 flex-shrink-0 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 flex-shrink-0 text-[#3C313D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
-                <span className="text-xs font-medium text-red-700">NHTSA</span>
+                <span className="text-xs font-medium text-[#334155]">NHTSA</span>
               </a>
             </div>
           </div>
 
           {/* User's Fix Details - show if user has submitted a fix */}
           {userFix && (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-              <h4 className="text-sm font-medium text-green-800 mb-2 flex items-center gap-2">
+            <div className="bg-[#F7F4EC] border border-[#D8D1C3] rounded-lg p-3">
+              <h4 className="text-sm font-medium text-[#0B1220] mb-2 flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 Your Fix
               </h4>
               {userFix.solution && (
-                <p className="text-sm text-green-700 leading-relaxed mb-2">{userFix.solution}</p>
+                <p className="text-sm text-[#475569] leading-relaxed mb-2">{userFix.solution}</p>
               )}
-              <div className="flex flex-wrap gap-3 text-xs text-green-600">
+              <div className="flex flex-wrap gap-3 text-xs text-[#475569]">
                 {userFix.cost && (
                   <span className="flex items-center gap-1">
                     <span className="font-medium">Cost:</span> ${userFix.cost.toLocaleString()}
@@ -789,12 +729,12 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                 )}
               </div>
               {userFix.partsUsed && (
-                <p className="text-xs text-green-600 mt-2">
+                <p className="text-xs text-[#475569] mt-2">
                   <span className="font-medium">Parts:</span> {userFix.partsUsed}
                 </p>
               )}
               {userFix.tips && (
-                <p className="text-xs text-green-600 mt-2 italic">
+                <p className="text-xs text-[#475569] mt-2 italic">
                   <span className="font-medium">Tip:</span> {userFix.tips}
                 </p>
               )}
@@ -840,8 +780,8 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                   }}
                   className={`flex-1 py-2.5 px-4 text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-2 ${
                     userFix
-                      ? 'border border-green-300 text-green-700 hover:bg-green-50'
-                      : 'bg-green-600 text-white hover:bg-green-700'
+                      ? 'border border-[#B8AE9B] text-[#3C313D] hover:bg-[#EFEDE6]'
+                      : 'bg-[#0B1220] text-white hover:bg-[#1E293B]'
                   }`}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -856,8 +796,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               )}
             </div>
           )}
-        </div>
-      )}
+      </div>
 
       {/* Report Modal */}
       {showReportModal && vehicleInfo && (

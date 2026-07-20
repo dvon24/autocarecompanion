@@ -34,7 +34,7 @@ export function MobileBottomBar({ make, model, hubYear }: MobileBottomBarProps) 
     >
       <Link
         href={`/vehicle/${hubSlug}`}
-        className="flex-1 flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white bg-blue-600 rounded-lg active:bg-blue-700 transition-colors min-h-[44px]"
+        className="flex-1 flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white bg-[#3B82F6] rounded-lg active:bg-[#2563EB] transition-colors min-h-[44px]"
         aria-label={`Open ${hubYear} ${make} ${model} vehicle hub`}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
