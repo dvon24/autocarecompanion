@@ -159,6 +159,12 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   // Determine if this is a highly community-reported issue (50+ reports)
   const isCommunityReported = issue.reportCount >= 50;
   const hasPartRecommendations = issue.communityRecommendations?.some(rec => rec.type === 'part');
+  const hasFixParts = Boolean(issue.fixParts?.length);
+  const hasCommunityRecommendations = Boolean(issue.communityRecommendations?.length);
+  const hasAffiliateLinks = Boolean(
+    issue.fixParts?.some((part) => part.buyLinks?.some((link) => link.affiliate)) ||
+    issue.communityRecommendations?.some((rec) => rec.affiliateUrl)
+  );
   const contentUpdateDate = formatContentUpdatedOn(issue.contentUpdatedOn);
   const contentUpdateSummary = issue.contentUpdateSummary?.trim();
 
@@ -338,10 +344,10 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               <span className="text-xs text-[#64748B]">All trims</span>
             )}
             {/* DTC codes in header */}
-            {(issue as any).dtcCodes && (issue as any).dtcCodes.length > 0 && (
+            {issue.dtcCodes && issue.dtcCodes.length > 0 && (
               <span className="inline-flex items-center gap-1 flex-wrap">
                 <span className="text-[10px] text-[#64748B] font-medium">Error Codes:</span>
-                {(issue as any).dtcCodes.map((code: string) =>
+                {issue.dtcCodes.map((code: string) =>
                   !linkableDtcCodes || linkableDtcCodes.includes(code.toLowerCase()) ? (
                     <Link
                       key={code}
@@ -481,16 +487,17 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               fix -> the exact part to buy, no internet scavenger hunt. The two
               part sources are LABELLED (OEM vs Owners use) so nothing reads as
               redundant. */}
-          {((issue.fixParts && issue.fixParts.length > 0) ||
-            (issue.communityRecommendations && issue.communityRecommendations.length > 0)) && (
+          {(hasFixParts || hasCommunityRecommendations) && (
             <div className="rounded-lg p-3 bg-amber-50 border border-amber-200">
               <h4 className="text-sm font-semibold text-amber-900 mb-1 flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
                 </svg>
-                What you need to fix it
+                {hasFixParts ? 'What you need to fix it' : 'Practical guidance'}
               </h4>
-              <p className="text-xs text-amber-700 mb-2">The exact parts — OEM, plus what owners actually use. Skip the internet hunt.</p>
+              {hasFixParts && (
+                <p className="text-xs text-amber-700 mb-2">The exact parts — OEM, plus what owners actually use. Skip the internet hunt.</p>
+              )}
 
               {/* Recall-first: when the audit flagged this issue as recall-covered,
                   the honest first action is a FREE VIN recall check — a dealer
@@ -512,7 +519,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                 </a>
               )}
 
-              {issue.fixParts && issue.fixParts.length > 0 && (
+              {hasFixParts && issue.fixParts && (
               <ul className="space-y-3">
                 {issue.fixParts.map((p, i) => (
                   <li key={i} className="bg-white border border-amber-200 rounded-md p-2.5">
@@ -590,13 +597,15 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
 
               {/* From owners — community upgrades, tips & warnings (the "what
                   owners are using" half, now inside the same section). */}
-              {issue.communityRecommendations && issue.communityRecommendations.length > 0 && (
-              <div className={issue.fixParts && issue.fixParts.length > 0 ? 'mt-3 pt-3 border-t border-amber-200' : ''}>
+              {hasCommunityRecommendations && issue.communityRecommendations && (
+              <div className={hasFixParts ? 'mt-3 pt-3 border-t border-amber-200' : ''}>
               <p className="text-xs font-semibold text-amber-900 mb-1.5 flex items-center gap-1.5">
                 <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
                 </svg>
-                From owners — upgrades &amp; tips ({issue.reportCount.toLocaleString()}+ fixed this)
+                {issue.reportCount > 0
+                  ? `From owners — upgrades & tips (${issue.reportCount.toLocaleString()}+ reports)`
+                  : 'Tips and cautions'}
               </p>
               <ul className="space-y-2">
                 {issue.communityRecommendations.map((rec, index) => (
@@ -673,7 +682,9 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               </div>
               )}
 
-              <p className="text-[10px] text-[#94A3B8] mt-2">Part links may earn au7o a commission. Confirm fitment by VIN before buying.</p>
+              {hasAffiliateLinks && (
+                <p className="text-[10px] text-[#94A3B8] mt-2">Part links may earn au7o a commission. Confirm fitment by VIN before buying.</p>
+              )}
             </div>
           )}
 

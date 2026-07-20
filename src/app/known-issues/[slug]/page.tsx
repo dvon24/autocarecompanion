@@ -340,6 +340,8 @@ export default async function KnownIssuesArticlePage({
     initialYear != null && !yearIsValid && allIssues.length > 0 && allYearsRange != null;
   const highCount = issues.filter(i => i.severity === 'high').length;
   const totalReports = issues.reduce((sum, i) => sum + i.reportCount, 0);
+  const articleMinCost = getMinCost(issues);
+  const articleMaxCost = getMaxCost(issues);
   const grouped = groupByCategory(issues);
   const faqs = generateFAQs(make, model, issues, yearRange);
 
@@ -506,7 +508,9 @@ export default async function KnownIssuesArticlePage({
             {topReported && topReported.reportCount > 100 && (
               <>The most commonly reported issue is <strong className="text-[#0B1220]">{topReported.title}</strong> with {topReported.reportCount.toLocaleString()} owner reports. </>
             )}
-            Across all issues, repair costs range from ${getMinCost(issues)} to ${getMaxCost(issues)}.{' '}
+            {articleMinCost && articleMaxCost && (
+              <>Across all issues with published estimates, repair costs range from ${articleMinCost} to ${articleMaxCost}. </>
+            )}
             <Link href="/" className="text-[#3B82F6] hover:text-blue-700 font-medium">
               DIY maintenance guides
             </Link>{' '}

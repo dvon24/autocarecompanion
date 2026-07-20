@@ -51,11 +51,13 @@ export function ConfidenceBadge({
   const config = confidenceConfig[confidence] || confidenceConfig.medium;
 
   // Format dates
-  const ownerReportDate = new Date(lastReportedByOwners);
-  const formattedOwnerDate = ownerReportDate.toLocaleDateString('en-US', {
-    month: 'short',
-    year: 'numeric',
-  });
+  const ownerReportDate = lastReportedByOwners ? new Date(lastReportedByOwners) : null;
+  const formattedOwnerDate = ownerReportDate && !Number.isNaN(ownerReportDate.getTime())
+    ? ownerReportDate.toLocaleDateString('en-US', {
+        month: 'short',
+        year: 'numeric',
+      })
+    : null;
 
   const reviewDate = new Date(reviewedOn);
   const formattedReviewDate = reviewDate.toLocaleDateString('en-US', {
@@ -87,9 +89,11 @@ export function ConfidenceBadge({
       </span>
 
       {/* Last reported by owners */}
-      <span className="text-gray-500">
-        Last reported by owners {formattedOwnerDate}
-      </span>
+      {formattedOwnerDate && (
+        <span className="text-gray-500">
+          Last reported by owners {formattedOwnerDate}
+        </span>
+      )}
 
       {/* Reviewed by us */}
       <span className="text-gray-400">
