@@ -69,6 +69,50 @@ export function SiteFooter() {
             Vehicle data and repair guidance on this site are compiled with AI assistance and may contain errors. Always verify with your service manual or a qualified mechanic.
           </p>
         </div>
+        <section
+          aria-label="UK and EU data protection representation"
+          className="mx-auto"
+          style={{
+            maxWidth: 640,
+            marginTop: 14,
+            padding: '11px 14px 13px',
+            background: 'var(--paper, #F7F6F2)',
+            border: '1px solid var(--paper-line, #E3DFD4)',
+            borderRadius: 10,
+          }}
+        >
+          <p
+            style={{
+              margin: '0 0 9px',
+              textAlign: 'center',
+              color: 'var(--slate-500, #64748B)',
+              fontSize: 10.5,
+              fontWeight: 600,
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Data protection representation
+          </p>
+          <div className="flex items-center justify-center gap-3">
+            <Image
+              src="/legal/datarep-uk.png"
+              alt="DataRep representative in the United Kingdom"
+              width={208}
+              height={208}
+              sizes="104px"
+              style={{ width: 104, height: 104, borderRadius: 12 }}
+            />
+            <Image
+              src="/legal/datarep-eu.png"
+              alt="DataRep representative in the European Union"
+              width={208}
+              height={208}
+              sizes="104px"
+              style={{ width: 104, height: 104, borderRadius: 12 }}
+            />
+          </div>
+        </section>
         <div
           className="flex justify-between items-center"
           style={{

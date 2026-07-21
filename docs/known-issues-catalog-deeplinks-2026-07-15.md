@@ -8,6 +8,14 @@ The first five of 70 Toyota RAV4 records were audited from the frozen schema-v2 
 
 Starting with RAV4, the model-completion gate also checks the rendered SEO title, model-specific meta description, canonical, Open Graph/Twitter labels, and H1 alignment. The supplied July 21 Search Console exports report 2,900 crawled-currently-not-indexed URLs with a 1,000-row export sample and 189 soft 404s. RAV4 has no soft-404 entry; only its valid 2015 and 2019 year variants appear in the 1,000-row not-indexed sample. The RAV4 title is therefore shortened without changing its existing base/year canonical, robots, sitemap, or URL-generation behavior, and the new title path is explicitly allowlisted from RAV4 forward so previously indexed model metadata remains unchanged. The Known Issues header CTA now reads `Get Started` and links to `/get-started`; the separate in-article vehicle-hub link remains available.
 
+## Toyota RAV4 cohort 2 - 2026-07-21
+
+The next five RAV4 records were applied transactionally and verified in exact production after-state. Three generic parts-shopping cards were archived: a twelve-model-year A/C compressor/clutch aggregation with no RAV4-specific evidence, a diagnosis-free alternator replacement card, and a subjective automatic stop/start complaint card that recommended an aftermarket defeat module. Two evidence-backed conditions remain as diagnosis holds with no commerce.
+
+Toyota T-SB-0065-19 Rev2 narrows the retained AWD condition to 2019 Adventure and Limited vehicles equipped with torque-vectoring AWD, the bulletin's exact warm 20-30 mph acceleration / 20-13 mph deceleration buzz or groan, and its electro-magnetic clutch assembly repair path. Toyota T-SB-0095-20 Rev2 and T-TT-0625-20 narrow the retained DCM battery-discharge condition to specified 2020-2021 RAV4 and RAV4 Hybrid vehicles, require battery testing and symptom/DTC gates, and remove the unsupported Prime, 2019, 2022, hybrid-charging, report-count, universal-battery and shopping claims.
+
+The cohort classifies all 13 original commerce claims and 25 outbound link occurrences; none remains after audit. Combined RAV4 progress is now 10 of 70 records in exact verified production after-state. Cohort 2 contains three archived records and two published diagnosis holds; all five have July 21 correction metadata and zero retail commerce.
+
 ## Toyota Camry production-complete checkpoint - 2026-07-20
 
 All 78 Toyota Camry records in the frozen schema-v2 snapshot were completed as full-record audits in 16 guarded batches. Every batch began in its exact frozen before-state, applied transactionally, and independently verified in its complete approved after-state. Reconciliation covers all 78 records and all 235 original commerce claims with zero missing, unknown, duplicate, or drifted records or claims.

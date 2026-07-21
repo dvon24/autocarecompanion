@@ -154,6 +154,13 @@ The catalog-wide research and correction queue remains in progress; this reviewe
 - From RAV4 forward, model completion includes rendered title, description, canonical, Open Graph/Twitter, and H1 verification. The supplied Search Console exports contain no RAV4 soft 404 and list only the valid 2015 and 2019 RAV4 year variants in the 1,000-row crawled-not-indexed sample. The concise-title path is allowlisted for RAV4 without changing canonical, robots, sitemap, URL generation, or prior indexed-model metadata.
 - The Known Issues header CTA changes from `Open Hub` to `Get Started` at `/get-started`; the separate in-article vehicle-hub link remains intact.
 
+**Schema-v2 Toyota RAV4 cohort 2 (2026-07-21):**
+
+- The next five records are applied and verified in exact production after-state: three archived generic/subjective parts-shopping cards and two published diagnosis holds. Combined RAV4 progress is 10/70 records.
+- Toyota T-SB-0065-19 Rev2 narrows the AWD card to its exact 2019 Adventure/Limited torque-vectoring-AWD population, warmed 20-30 mph acceleration / 20-13 mph deceleration buzz or groan, and electro-magnetic clutch assembly repair path.
+- Toyota T-SB-0095-20 Rev2 and T-TT-0625-20 narrow the DCM battery-discharge card to specified 2020-2021 RAV4/RAV4 Hybrid vehicles and require battery, symptom and DTC gates. Prime/2019/2022, unsupported hybrid-charging, report-count and universal-parts claims are removed.
+- All 13 original commerce claims and 25 outbound occurrences are classified and removed. The five after-states contain zero retail commerce.
+
 **Schema-v2 Jeep Grand Cherokee cohort 1 (historical pre-release review, 2026-07-18):**
 
 - The two clicked records were completed as guarded full-record audits: the 2019 wheel-speed/ABS diagnosis and the 2008 4WD 4.7L front-axle diagnosis.
