@@ -2,6 +2,18 @@
 
 Status: in progress. This is an evidence checkpoint, not a claim that the catalog is complete.
 
+## Toyota Camry production-complete checkpoint - 2026-07-20
+
+All 78 Toyota Camry records in the frozen schema-v2 snapshot were completed as full-record audits in 16 guarded batches. Every batch began in its exact frozen before-state, applied transactionally, and independently verified in its complete approved after-state. Reconciliation covers all 78 records and all 235 original commerce claims with zero missing, unknown, duplicate, or drifted records or claims.
+
+The final dispositions are 19 diagnosis holds, eight VIN-first recall/dealer paths, two evidence-only no-commerce records, two diagnosis-qualified replacements, and 47 archived duplicate, generic, inapplicable, complaint-only, or unsupported records. The 78-record source set contained 59 commerce-bearing issues, 235 commerce claims, and 631 outbound link occurrences. The published after-state contains 31 records and just two commerce claims: both are diagnosis-gated mechanical water-pump records linking to exact verified Toyota product pages. All other search, category, marketplace, unsupported-part, recall-part, software-part, and ambiguous-fitment paths were removed.
+
+Primary Toyota/NHTSA evidence materially narrowed the retained records. Examples include exact Camry populations and remedies for recalls 25V595, 25V744, 25V869, 25V059, 21V890, 20V012/25V028, 15V144, and 12V491/15V689; Toyota bulletin gates for the 2AZ oil-consumption, U760E torque-converter, hybrid brake-booster, DCM battery-discharge, A25A cold-misfire, water-pump residue, HVAC odor, and insect-obstructed drain-hose conditions; and expired customer-support or limited-service coverage that is no longer presented as a current free repair. The 47 archived cards include broad complaint aggregations, generic wear/maintenance advice, mixed-engine parts bundles, false or unrelated bulletin citations, duplicate recalls, and diagnosis-free component shopping.
+
+Complete historical verification now loads 74 manifests, verifies 67 active batches in exact after-state, safely supersedes seven fully covered legacy batches, and guards 226 unique issue rows. The Camry-only ledger is zero-unclassified at 78/78 records and 235/235 original claims. A fresh live export contains 31 published Camry records, 31 manual/high-confidence reviews, 31 July 20 correction summaries, two commerce claims, two valid verified product-detail links, and zero invalid/search links.
+
+The first live page request after the database apply still showed the pre-audit 40-card render, proving that the production page/data cache was stale rather than the database. After explicit Vercel CDN and data-cache purges, a fresh production-alias load shows exactly 31 cards, omits representative archived mount, wiper, wind-noise, A/F-sensor, brake-rotor, throttle-body, and TSS titles, and renders the corrected 21V890 and T-SB-0080-19 cards. Expanding the new drain-hose card shows its insect-obstruction evidence and leak/PPE gates with none of the removed pipe-cleaner, foam-cleaner, or search-link content. The approved warm-paper article navigation and card design remain intact on production deployment `dpl_CkY8yRmERMmK6639GAcd664E37zf`, which targets Production and is aliased to `au7o.io` and `www.au7o.io`. Toyota Camry is research-, database-, design-, and production-complete; Toyota RAV4 is next in the make-local traffic queue.
+
 ## Lincoln Aviator production-complete checkpoint - 2026-07-20
 
 All 28 Lincoln Aviator records in the frozen schema-v2 snapshot were completed as full-record audits in six guarded batches. Every batch began in its exact frozen before-state, applied transactionally, and independently verified in its complete approved after-state. Reconciliation covers all 28 records and all nine original commerce claims with zero missing, unknown, duplicate, or drifted records or claims.
@@ -157,7 +169,7 @@ ShowMeTheParts is expected to remove most manual candidate discovery. The workin
 ## Remaining work
 
 1. Finish and time the ShowMeTheParts adapter and its parser/filter tests.
-2. Continue the traffic-ranked make queue with Toyota Camry next; within each page, handle clicked claims first. Jeep Grand Cherokee, Audi A6, BMW X5, and Lincoln Aviator are complete at the model level.
+2. Continue the Toyota make-local traffic queue with Toyota RAV4 next; within each page, handle clicked claims first. Jeep Grand Cherokee, Audi A6, BMW X5, Lincoln Aviator, and Toyota Camry are complete at the model level.
 3. Continue every commerce-bearing issue not reached by the traffic list.
 4. Reconcile to exactly one disposition per claim and zero unclassified claims.
 5. Export a fresh post-apply snapshot, compare before/after link and click exposure, rerun all verification, and complete the BMad review gate.
