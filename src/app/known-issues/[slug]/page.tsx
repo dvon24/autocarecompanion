@@ -536,7 +536,6 @@ export default async function KnownIssuesArticlePage({
             recallCount={recalls.length}
             make={make}
             model={model}
-            hubYear={hubYear}
           />
 
           {/* Main content */}
@@ -780,14 +779,7 @@ export default async function KnownIssuesArticlePage({
           public page. */}
       <SiteFooter />
 
-      {/* Mobile fixed bottom bar — pass the requested year if valid,
-          else the most recent documented year, so the Hub deep-link
-          routes to the right /vehicle/[year-make-model] slug. */}
-      <MobileBottomBar
-        make={make}
-        model={model}
-        hubYear={hubYear}
-      />
+      <MobileBottomBar />
     </div>
   );
 }
