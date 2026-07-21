@@ -152,7 +152,7 @@ The catalog-wide research and correction queue remains in progress; this reviewe
 - Five of 70 RAV4 records are applied and verified in exact after-state: one recall/dealer record, two archived unsupported parts diagnoses, one diagnosis hold, and one evidence-only no-commerce campaign history. All 11 original commerce claims in the cohort were removed.
 - The corrected evidence includes recall 25V595 and its distinct RAV4/PHEV remedies, exact 2006-2008 2AZ oil-consumption inspection/repair/expired-ZE7 gates, and VIN-scoped 2006-2009 LSC 90K history with the actual campaign hose kit and expiration.
 - From RAV4 forward, model completion includes rendered title, description, canonical, Open Graph/Twitter, and H1 verification. The supplied Search Console exports contain no RAV4 soft 404 and list only the valid 2015 and 2019 RAV4 year variants in the 1,000-row crawled-not-indexed sample. The concise-title path is allowlisted for RAV4 without changing canonical, robots, sitemap, URL generation, or prior indexed-model metadata.
-- The Known Issues header CTA changes from `Open Hub` to `Get Started` at `/get-started`; the separate in-article vehicle-hub link remains intact.
+- The Known Issues header, desktop sidebar and mobile sticky CTA change from `Open Hub`/`Open Vehicle Hub` to `Get Started` at `/get-started`; the separate issue-card vehicle-hub deep link remains intact.
 
 **Schema-v2 Toyota RAV4 cohort 2 (2026-07-21):**
 
@@ -160,6 +160,14 @@ The catalog-wide research and correction queue remains in progress; this reviewe
 - Toyota T-SB-0065-19 Rev2 narrows the AWD card to its exact 2019 Adventure/Limited torque-vectoring-AWD population, warmed 20-30 mph acceleration / 20-13 mph deceleration buzz or groan, and electro-magnetic clutch assembly repair path.
 - Toyota T-SB-0095-20 Rev2 and T-TT-0625-20 narrow the DCM battery-discharge card to specified 2020-2021 RAV4/RAV4 Hybrid vehicles and require battery, symptom and DTC gates. Prime/2019/2022, unsupported hybrid-charging, report-count and universal-parts claims are removed.
 - All 13 original commerce claims and 25 outbound occurrences are classified and removed. The five after-states contain zero retail commerce.
+- The CTA follow-up is committed as `71e3489` and verified on Production deployment `dpl_9wifU6DKPHEaCssXJTpoyCu9HnZt`: the live DOM contains three `/get-started` CTAs and no old hub CTA, while the warm-paper Known Issues design, SEO metadata and restrained DataRep badges remain intact.
+
+**Schema-v2 Toyota RAV4 cohort 3 (2026-07-21):**
+
+- The next five records are applied and verified in exact production database after-state: two published diagnosis holds, one published evidence-only no-commerce program, one VIN-first recall/dealer path and one archived generic DTC/parts card. Combined RAV4 progress is 15/70 records.
+- Toyota T-SB-0027-22 narrows the BSM card to the exact 2021-2022 RAV4 Prime stuck-mirror-indicator condition. Toyota CSP ZKG narrows the paint card to qualifying 2008-2017 RAV4s with original Blizzard Pearl 070 or Super White 040 paint, exterior metal-panel adhesion loss, exclusions and time-limited eligibility.
+- Toyota CSP 24TE04 and T-SB-0112-24 Rev1 replace the coolant-valve lawsuit narrative with exact certain 2019-2021 RAV4/RAV4 Hybrid and 2021 RAV4 Prime leak/message/P268111/P268115 gates, coverage limits and updated hose assemblies. Recall 20V682/20TA02 replaces the incorrect initial 20V012 RAV4 attribution and removes unsupported Hybrid, DTC and fixed-cost scope.
+- The generic 2006-2018 P0420 card is archived because the code does not identify a failed part and no RAV4-specific evidence supports the old rear-sensor-first or converter mapping. Across the cohort, all nine original commerce claims and 23 outbound search-link occurrences are classified and removed; the approved after-states contain zero retail commerce.
 
 **Schema-v2 Jeep Grand Cherokee cohort 1 (historical pre-release review, 2026-07-18):**
 
