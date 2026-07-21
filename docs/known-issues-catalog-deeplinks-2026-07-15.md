@@ -2,6 +2,12 @@
 
 Status: in progress. This is an evidence checkpoint, not a claim that the catalog is complete.
 
+## Toyota RAV4 cohort 1 and SEO gate - 2026-07-21
+
+The first five of 70 Toyota RAV4 records were audited from the frozen schema-v2 snapshot, applied transactionally, and independently verified in their exact production after-state. The cohort corrects the instrument-panel campaign from false recall 25V356 to VIN-first recall 25V595, archives unsupported 2AR-FE oil-consumption and 2AZ-FE cold-start parts diagnoses, narrows the real 2AZ oil-consumption program to Toyota's specified 2006-2008 RAV4 population and expired ZE7 coverage, and corrects LSC 90K to VIN-scoped 2006-2009 RAV4s, its actual hose kit, and its 2021 expiration. Eleven original commerce claims and their generic search/category links were removed; the five after-states contain no retail commerce.
+
+Starting with RAV4, the model-completion gate also checks the rendered SEO title, model-specific meta description, canonical, Open Graph/Twitter labels, and H1 alignment. The supplied July 21 Search Console exports report 2,900 crawled-currently-not-indexed URLs with a 1,000-row export sample and 189 soft 404s. RAV4 has no soft-404 entry; only its valid 2015 and 2019 year variants appear in the 1,000-row not-indexed sample. The RAV4 title is therefore shortened without changing its existing base/year canonical, robots, sitemap, or URL-generation behavior, and the new title path is explicitly allowlisted from RAV4 forward so previously indexed model metadata remains unchanged. The Known Issues header CTA now reads `Get Started` and links to `/get-started`; the separate in-article vehicle-hub link remains available.
+
 ## Toyota Camry production-complete checkpoint - 2026-07-20
 
 All 78 Toyota Camry records in the frozen schema-v2 snapshot were completed as full-record audits in 16 guarded batches. Every batch began in its exact frozen before-state, applied transactionally, and independently verified in its complete approved after-state. Reconciliation covers all 78 records and all 235 original commerce claims with zero missing, unknown, duplicate, or drifted records or claims.

@@ -23,7 +23,6 @@ import { VehicleChatLink } from '@/components/known-issues/VehicleChatLink';
 import FutureModelYearNotice from '@/components/known-issues/FutureModelYearNotice';
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
-import { OpenHubLink } from '@/components/known-issues/OpenHubLink';
 import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
 import { AlertSignupPopup } from '@/components/known-issues/AlertSignupPopup';
 import { SiteFooter } from '@/components/shared/SiteFooter';
@@ -37,6 +36,10 @@ import { getLocalesForSlug, hreflangFor } from '@/lib/i18n';
 
 export const revalidate = 3600; // Re-generate cached pages every 1 hour
 export const dynamicParams = true; // Allow on-demand rendering of new slugs
+
+// Add models here as their full-record audit reaches the SEO verification
+// gate. This preserves existing metadata output for previously indexed pages.
+const SEO_AUDITED_MODEL_SLUGS = new Set(['toyota-rav4']);
 
 // --- Static generation ---
 
@@ -80,9 +83,7 @@ export async function generateMetadata({
   const titlePrefix = yearIsValid
     ? `${requestedYear}`
     : (yearRange ? `${yearRange.min}-${yearRange.max}` : '');
-  const title = titlePrefix
-    ? `${titlePrefix} ${vehicleName} Problems: ${issues.length} Issue${issues.length === 1 ? '' : 's'} Every Owner Should Know`
-    : `${vehicleName} Problems: ${issues.length} Issue${issues.length === 1 ? '' : 's'} Every Owner Should Know`;
+  const title = knownIssuesArticleTitle(slug, titlePrefix, vehicleName, issues.length);
 
   const descPrefix = yearIsValid
     ? `${requestedYear} `
@@ -164,6 +165,23 @@ function getMaxCost(issues: KnownIssue[]): string {
     .filter(i => i.estimatedCost && i.estimatedCost.high > 0)
     .map(i => i.estimatedCost!.high);
   return costs.length > 0 ? Math.max(...costs).toLocaleString() : '';
+}
+
+// The root layout appends " | Au7o". Keep this portion at or below 52
+// characters when possible so the complete title remains concise.
+function knownIssuesArticleTitle(slug: string, yearLabel: string, vehicleName: string, issueCount: number): string {
+  const vehicleWithYear = `${yearLabel} ${vehicleName}`.trim();
+  if (!SEO_AUDITED_MODEL_SLUGS.has(slug)) {
+    return `${vehicleWithYear} Problems: ${issueCount} Issue${issueCount === 1 ? '' : 's'} Every Owner Should Know`;
+  }
+  const candidates = [
+    `${vehicleWithYear} Problems: ${issueCount} Known Issues`,
+    `${vehicleWithYear} Problems & Issues`,
+    `${vehicleName} Problems & Known Issues`,
+    `${vehicleName} Problems`,
+  ];
+
+  return candidates.find((candidate) => candidate.length <= 52) ?? candidates[candidates.length - 1];
 }
 
 function groupByCategory(issues: KnownIssue[]) {
@@ -356,14 +374,9 @@ export default async function KnownIssuesArticlePage({
   const articleUrl = yearIsValid
     ? `https://au7o.io/known-issues/${slug}?year=${initialYear}`
     : `https://au7o.io/known-issues/${slug}`;
-  // Title now leads with the year (single year or full range). H1,
-  // <title>, OG, and TechArticle.headline all derive from this string
-  // so they stay in sync. Year prefix is the highest-weight SEO signal
-  // for these queries — owners search "2014 BMW 1 Series problems" 5x
-  // more than the bare model.
-  const title = yearStr
-    ? `${yearStr} ${vehicleName} Problems: ${issues.length} Issue${issues.length === 1 ? '' : 's'} Every Owner Should Know`
-    : `${vehicleName} Problems: ${issues.length} Issue${issues.length === 1 ? '' : 's'} Every Owner Should Know`;
+  // H1, <title>, OG, Twitter, and TechArticle.headline share the same
+  // concise label. The helper preserves the year when it fits safely.
+  const title = knownIssuesArticleTitle(slug, yearStr, vehicleName, issues.length);
 
   // Find most critical issues for the GEO summary
   const criticalIssues = issues.filter(i => i.severity === 'high');
@@ -408,15 +421,12 @@ export default async function KnownIssuesArticlePage({
             >
               Known Issues
             </Link>
-            {/* Open Hub — anonymous visitors land on the hub for THIS
-                page's vehicle (a free preview of what the hub looks like
-                for the model they're researching). Signed-in users route
-                to "/" so they land on their own primary vehicle's hub
-                instead of a stranger base-trim default. See OpenHubLink. */}
-            <OpenHubLink
-              articleSlug={vehicleSlug(hubYear, make, model)}
+            <Link
+              href="/get-started"
               className="px-3 sm:px-4 py-2 text-sm font-semibold bg-[#3B82F6] text-white rounded-lg transition-colors hover:bg-[#2563EB]"
-            />
+            >
+              Get Started
+            </Link>
           </div>
         </div>
       </header>
