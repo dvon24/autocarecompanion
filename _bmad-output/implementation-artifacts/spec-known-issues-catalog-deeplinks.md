@@ -168,6 +168,14 @@ The catalog-wide research and correction queue remains in progress; this reviewe
 - Toyota T-SB-0027-22 narrows the BSM card to the exact 2021-2022 RAV4 Prime stuck-mirror-indicator condition. Toyota CSP ZKG narrows the paint card to qualifying 2008-2017 RAV4s with original Blizzard Pearl 070 or Super White 040 paint, exterior metal-panel adhesion loss, exclusions and time-limited eligibility.
 - Toyota CSP 24TE04 and T-SB-0112-24 Rev1 replace the coolant-valve lawsuit narrative with exact certain 2019-2021 RAV4/RAV4 Hybrid and 2021 RAV4 Prime leak/message/P268111/P268115 gates, coverage limits and updated hose assemblies. Recall 20V682/20TA02 replaces the incorrect initial 20V012 RAV4 attribution and removes unsupported Hybrid, DTC and fixed-cost scope.
 - The generic 2006-2018 P0420 card is archived because the code does not identify a failed part and no RAV4-specific evidence supports the old rear-sensor-first or converter mapping. Across the cohort, all nine original commerce claims and 23 outbound search-link occurrences are classified and removed; the approved after-states contain zero retail commerce.
+- Production deployment `dpl_GphgQ4kKzbNruxVcB4FEndBrgS3s` is Ready with target Production and the production aliases. After CDN/data-cache purges, cache-busted live HTML shows 64 published cards, all four retained cohort corrections, no archived P0420 card, three `/get-started` CTAs, zero old hub CTAs, canonical/robots preservation and both DataRep badges. The title and H1 agree at 64 known issues.
+
+**Schema-v2 Toyota RAV4 cohort 4 (2026-07-21):**
+
+- The next five records are applied and verified in exact production database after-state: four published diagnosis holds and one archived subjective shopping aggregation. Combined RAV4 progress is 20/70 records.
+- Toyota T-SB-0056-09 narrows the belt-drive card to certain pre-production-change 2006-2008 2GR-FE V6 vehicles and a running-engine No. 2 idler-pulley squeak. Toyota T-SB-0156-10 Rev2 narrows the ECM card to 2001-2003 4AT harsh shift/MIL with its five supported DTCs, ECM learning/function test and only then a gated transaxle path.
+- Toyota T-SB-0024-20 narrows the Entune card to listed 2016-2018 RAV4/RAV4 Hybrid Denso-Ten faceplate/software versions and exact freeze/reboot/connectivity symptoms. Toyota T-SB-0046-10 replaces the generic 2001-2012 EVAP wear card with the exact 2006-2010 liquid-fuel-in-EVAP DTC/active-test/physical-inspection gates and conditional tank/canister/filter scope.
+- The subjective 2013-2024 inadequate-insulation card is archived because its owner discussion and sound-deadening vendor source do not establish a Toyota defect or universal remedy. Across the cohort, all nine original commerce claims and 21 outbound search occurrences are classified and removed; the approved after-states contain zero retail commerce.
 
 **Schema-v2 Jeep Grand Cherokee cohort 1 (historical pre-release review, 2026-07-18):**
 

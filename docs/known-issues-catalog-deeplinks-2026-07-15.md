@@ -28,6 +28,18 @@ Customer Support Program 24TE04 and T-SB-0112-24 Rev1 replace the coolant-valve 
 
 All nine original commerce claims and 23 outbound search-link occurrences in this cohort are classified and removed. The five approved after-states contain zero retail commerce, July 21 correction metadata and no unsupported owner-report counts, fixed repair prices or diagnosis-free component recommendations.
 
+Production deployment `dpl_GphgQ4kKzbNruxVcB4FEndBrgS3s` is Ready with target Production and aliases `au7o.io`, `www.au7o.io` and `autocarecompanion.vercel.app`. After explicit CDN and data-cache purges, a cache-busted production-alias response renders 64 published RAV4 cards, all four retained cohort-3 corrections, no archived generic P0420 card, three `/get-started` CTAs, zero old hub CTAs, the exact canonical, no `noindex`, and both restrained DataRep badges. The SEO title and H1 agree at `1997-2025 Toyota RAV4 Problems: 64 Known Issues`.
+
+## Toyota RAV4 cohort 4 - 2026-07-21
+
+The fourth five-record batch was applied transactionally from the frozen RAV4 snapshot and independently verified in its complete production database after-state. Four records remain as diagnosis holds and one subjective shopping aggregation is archived. Combined RAV4 progress is now 20 of 70 records.
+
+Toyota T-SB-0056-09 narrows the belt-drive card to certain pre-production-change 2006-2008 2GR-FE V6 vehicles with a running-engine squeak from the No. 2 idler pulley; the 2AZ-FE, 2009-2010, weak-tensioner, mileage and automatic belt/tensioner bundle claims are removed. Toyota T-SB-0156-10 Rev2 narrows the ECM card to 2001-2003 RAV4 4AT harsh shifting and/or MIL with P0750/P0753/P0755/P0758/P1760, its ECM-first learning/function-test procedure and only then a gated transaxle path. No-start, stall, fixed cost/mileage and unrelated scanner/charger claims are removed; the former warranty and support windows are expired.
+
+Toyota T-SB-0024-20 narrows the Entune card to listed Denso-Ten faceplate/software combinations in 2016-2018 RAV4/RAV4 Hybrid vehicles and the bulletin's exact freeze/reboot/connectivity conditions. The unsupported 2019-2021, 620-report, universal reset, hardware-replacement and OBD-scanner claims are removed. Toyota T-SB-0046-10 replaces the generic 2001-2012 EVAP wear card with its exact 2006-2010 liquid-fuel intrusion condition, supported P043E/P043F/P2401/P2402/P2419 or warm-idle test gates, physical fuel-in-hose checks and conditional tank/canister/filter scope.
+
+The twelve-model-year inadequate-insulation card is archived because an owner discussion and sound-deadening vendor project do not establish a Toyota defect, affected population, measured threshold or universal tire/insulation remedy across two generations. Across cohort 4, all nine original commerce claims and 21 search-link occurrences are classified and removed; the approved after-states contain zero retail commerce.
+
 ## Toyota Camry production-complete checkpoint - 2026-07-20
 
 All 78 Toyota Camry records in the frozen schema-v2 snapshot were completed as full-record audits in 16 guarded batches. Every batch began in its exact frozen before-state, applied transactionally, and independently verified in its complete approved after-state. Reconciliation covers all 78 records and all 235 original commerce claims with zero missing, unknown, duplicate, or drifted records or claims.
