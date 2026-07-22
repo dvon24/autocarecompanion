@@ -4,6 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
+baseline_revision: '674e1eb466b0eb20aedc0731a288cb1a52a443b4'
 review_loop_iteration: 0
 context: []
 ---
@@ -176,6 +177,15 @@ The catalog-wide research and correction queue remains in progress; this reviewe
 - Toyota T-SB-0056-09 narrows the belt-drive card to certain pre-production-change 2006-2008 2GR-FE V6 vehicles and a running-engine No. 2 idler-pulley squeak. Toyota T-SB-0156-10 Rev2 narrows the ECM card to 2001-2003 4AT harsh shift/MIL with its five supported DTCs, ECM learning/function test and only then a gated transaxle path.
 - Toyota T-SB-0024-20 narrows the Entune card to listed 2016-2018 RAV4/RAV4 Hybrid Denso-Ten faceplate/software versions and exact freeze/reboot/connectivity symptoms. Toyota T-SB-0046-10 replaces the generic 2001-2012 EVAP wear card with the exact 2006-2010 liquid-fuel-in-EVAP DTC/active-test/physical-inspection gates and conditional tank/canister/filter scope.
 - The subjective 2013-2024 inadequate-insulation card is archived because its owner discussion and sound-deadening vendor source do not establish a Toyota defect or universal remedy. Across the cohort, all nine original commerce claims and 21 outbound search occurrences are classified and removed; the approved after-states contain zero retail commerce.
+- Production deployment `dpl_6nwugK5W8mXZgaLA8ypG7gqgkxhC` is Ready with target Production and aliases `au7o.io`, `www.au7o.io` and `autocarecompanion.vercel.app`. After CDN/data-cache purges, cache-busted live HTML shows 63 published cards, all four retained cohort corrections, no archived inadequate-insulation card, three `/get-started` CTAs, zero old hub CTAs, the exact canonical, no `noindex`, and both DataRep badges. The title and H1 agree at 63 known issues.
+
+**Schema-v2 Toyota RAV4 cohort 5 (2026-07-21):**
+
+- The next five records are applied and verified in exact production database after-state: two archived unsupported/duplicate records, one published diagnosis hold and two VIN-first recall/dealer Customer Support Program paths. Combined RAV4 progress is 25/70 records.
+- The broad 2013-2020 premature front-brake-wear card is archived because complaint and parts-discussion sources do not establish a cross-generation defect or universal repair. Toyota T-SB-0045-16 is a general long-term-storage surface-rust guideline, not the claimed RAV4 warranty bulletin. Revised Toyota SU009-07 narrows the front-suspension knock card to pre-production-change 2006-2007 2AZ-FE/2GR-FE vehicles and its exact spring, bumper, plastic-sheet and alignment procedure.
+- The second low-pressure fuel-pump row is archived as a duplicate of the cohort-3 Recall 20V682/20TA02 record, removing its unsupported 2021, Hybrid, DTC and 50,000-report claims. Toyota T-SB-0109-20 Rev1 and CSP 20TE04/20TE05/20TE06 narrow the refueling card to VIN-eligible 2019-2021 RAV4 Hybrid vehicles, an eight-year/100,000-mile coverage gate, a full-tank/Techstream diagnosis and production-specific tank/sender scope; Prime is excluded.
+- Toyota CSP 23TE01 retains the HPFP record as dealer-only guidance for 2019-2022 RAV4/RAV4 Hybrid and production/VIN-eligible 2021-2022 RAV4 Prime. Verified pump-origin fuel odor is covered for ten years from date of first use with unlimited mileage. The CSP summary table says 2021 Prime while its referenced T-SB-0008-23 includes 2021-2022 Prime, so the card exposes the VIN/production gate instead of asserting blanket Prime coverage.
+- All 15 original commerce claims and 37 outbound search/category-link occurrences are classified and removed. The five approved after-states contain zero retail commerce, current correction metadata, no fixed repair-price or mileage claims, and no unverified owner-report counts. The applicator safety suite passes 25/25; the guarded batch dry-ran from exact before-state, applied transactionally and independently verified all five rows in exact after-state. Complete verification loads 79 manifests, verifies 72 active batches in after-state, safely supersedes seven fully covered legacy batches and guards 251 unique issue rows without drift.
 
 **Schema-v2 Jeep Grand Cherokee cohort 1 (historical pre-release review, 2026-07-18):**
 
