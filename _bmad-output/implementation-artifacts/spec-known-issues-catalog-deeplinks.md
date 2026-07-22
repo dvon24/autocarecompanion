@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: '674e1eb466b0eb20aedc0731a288cb1a52a443b4'
+baseline_revision: '2ed3271b2380d36ba348b7c9cc59ed404d64c5e8'
 review_loop_iteration: 0
 context: []
 ---
@@ -186,6 +186,15 @@ The catalog-wide research and correction queue remains in progress; this reviewe
 - The second low-pressure fuel-pump row is archived as a duplicate of the cohort-3 Recall 20V682/20TA02 record, removing its unsupported 2021, Hybrid, DTC and 50,000-report claims. Toyota T-SB-0109-20 Rev1 and CSP 20TE04/20TE05/20TE06 narrow the refueling card to VIN-eligible 2019-2021 RAV4 Hybrid vehicles, an eight-year/100,000-mile coverage gate, a full-tank/Techstream diagnosis and production-specific tank/sender scope; Prime is excluded.
 - Toyota CSP 23TE01 retains the HPFP record as dealer-only guidance for 2019-2022 RAV4/RAV4 Hybrid and production/VIN-eligible 2021-2022 RAV4 Prime. Verified pump-origin fuel odor is covered for ten years from date of first use with unlimited mileage. The CSP summary table says 2021 Prime while its referenced T-SB-0008-23 includes 2021-2022 Prime, so the card exposes the VIN/production gate instead of asserting blanket Prime coverage.
 - All 15 original commerce claims and 37 outbound search/category-link occurrences are classified and removed. The five approved after-states contain zero retail commerce, current correction metadata, no fixed repair-price or mileage claims, and no unverified owner-report counts. The applicator safety suite passes 25/25; the guarded batch dry-ran from exact before-state, applied transactionally and independently verified all five rows in exact after-state. Complete verification loads 79 manifests, verifies 72 active batches in after-state, safely supersedes seven fully covered legacy batches and guards 251 unique issue rows without drift.
+- Production deployment `dpl_G3yxdJUE8bhkLwhSewxNoei75GSP` is Ready with target Production and aliases `au7o.io`, `www.au7o.io` and `autocarecompanion.vercel.app`. After CDN/data-cache purges, cache-busted live HTML shows 61 published cards, all three retained cohort corrections, neither archived cohort record, three `/get-started` CTAs, zero old hub CTAs, the exact canonical, no `noindex`, and both DataRep badges. The title and H1 agree at 61 known issues.
+
+**Schema-v2 Toyota RAV4 cohort 6 (2026-07-22):**
+
+- The next five records are applied and verified in exact production database after-state: three unsupported aggregations are archived and two Toyota-bulletin conditions remain as diagnosis holds. Combined RAV4 progress is 30/70 records.
+- The 2019-2022 hood/headlamp-seal card is archived because owner modification threads and other-market headlamp protectors do not establish a North American missing-seal defect or hood-flutter remedy. The 2001-2012 blower-resistor card is archived because its forum home page identifies no RAV4 condition and the superficially similar Toyota bulletin applies to Tacoma. Both cards now direct owners to vehicle-specific diagnosis without guessed parts.
+- Toyota T-SB-0077-19 Rev1 narrows the hybrid-battery card to specified Japan-built, pre-production-change 2019 RAV4 Hybrid vehicles with an active-test-confirmed cooling-fan flutter/rattle and revised intake duct G92D1-42020. It does not support 2020-2023, Prime, traction-battery failure, debris, warning-light or 12-volt battery/charger claims.
+- The 2019-2025 A25A-FXS EGR card is archived because a secondary blog and removal procedure do not establish a common clogging/coolant-leak defect, interval, DTC set or universal six-part repair. Toyota T-SB-0104-21 Rev2 replaces the oil card's owner-UOA gasoline-dilution theory with the exact 2019-2024 RAV4 Hybrid/2021-2024 Prime extreme-cold, short-trip moisture condition, cooling-system pressure-test gate and P05202A/P052477 path; permanent 0W-20 substitution and owner-directed highway treatment are removed.
+- All 15 original commerce claims and 39 outbound search/category-link occurrences are classified and removed. The five approved after-states contain zero retail commerce, current correction metadata, no fixed repair-price/mileage/report-count claims, and no unverified preventive-service promises. The applicator safety suite passes 25/25; the permanent five-row manifest verifies in exact after-state. Complete verification loads 80 manifests, verifies 73 active batches, safely supersedes seven fully covered legacy batches and guards 256 unique issue rows without drift.
 
 **Schema-v2 Jeep Grand Cherokee cohort 1 (historical pre-release review, 2026-07-18):**
 
