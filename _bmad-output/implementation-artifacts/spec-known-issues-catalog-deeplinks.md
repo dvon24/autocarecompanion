@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: '2ed3271b2380d36ba348b7c9cc59ed404d64c5e8'
+baseline_revision: '00d7b106a9620db031e2865b66e5b2bc2481d8eb'
 review_loop_iteration: 0
 context: []
 ---
@@ -195,6 +195,15 @@ The catalog-wide research and correction queue remains in progress; this reviewe
 - Toyota T-SB-0077-19 Rev1 narrows the hybrid-battery card to specified Japan-built, pre-production-change 2019 RAV4 Hybrid vehicles with an active-test-confirmed cooling-fan flutter/rattle and revised intake duct G92D1-42020. It does not support 2020-2023, Prime, traction-battery failure, debris, warning-light or 12-volt battery/charger claims.
 - The 2019-2025 A25A-FXS EGR card is archived because a secondary blog and removal procedure do not establish a common clogging/coolant-leak defect, interval, DTC set or universal six-part repair. Toyota T-SB-0104-21 Rev2 replaces the oil card's owner-UOA gasoline-dilution theory with the exact 2019-2024 RAV4 Hybrid/2021-2024 Prime extreme-cold, short-trip moisture condition, cooling-system pressure-test gate and P05202A/P052477 path; permanent 0W-20 substitution and owner-directed highway treatment are removed.
 - All 15 original commerce claims and 39 outbound search/category-link occurrences are classified and removed. The five approved after-states contain zero retail commerce, current correction metadata, no fixed repair-price/mileage/report-count claims, and no unverified preventive-service promises. The applicator safety suite passes 25/25; the permanent five-row manifest verifies in exact after-state. Complete verification loads 80 manifests, verifies 73 active batches, safely supersedes seven fully covered legacy batches and guards 256 unique issue rows without drift.
+- Commit `00d7b10` is live on Ready Production deployment `dpl_6bGbP5QyceWP9kRZMK9tXMG352Vj`. After CDN and data-cache purges, cache-busted HTML shows 58 published cards, the new fan and oil titles, none of the three archived titles, three `/get-started` CTAs, zero old hub CTAs, the exact canonical, no `noindex`, both DataRep badges, and matching SEO title/H1 at 58 known issues.
+
+**Schema-v2 Toyota RAV4 cohort 7 (2026-07-22):**
+
+- The next five records are applied and verified in exact production database after-state: one Toyota Customer Support Program path remains published and four unsupported aggregations are archived. Combined RAV4 progress is 35/70 records.
+- Toyota CSP 22TE09 narrows the HV-cable record to production/VIN-eligible 2019-2022 RAV4 Hybrid AWD and 2021-2022 RAV4 Prime. The exact condition is excessive corrosion at the floor-under-harness/rear-motor-cable connector with AM-radio static, P0AA649/P1C8049, warning messages or possible non-start. Dealer-only coverage is eight years/100,000 miles; sudden shutdown, generic DTCs, $5,000-$7,000, ten-year/unlimited-mile settlement and 30-day-rental claims are removed.
+- The rough-road regenerative-brake card is archived because a different 2010 Prius/HS 250h action cannot prove an XA50 RAV4 calibration defect or software remedy. The distinct production-limited 2019 RAV4 Hybrid brake-booster-pump recall 19V544 already has its own later record. The common ignition-coil card is archived because Toyota's P0300-P0304 path is multi-cause and 2009 uses the 2AR-FE, not either engine claimed. Its cylinder-4, replace-all-four and universal coil/plug mapping claims are removed.
+- The knock-sensor card is archived because the 2AZ-FE P0325 procedure is a circuit diagnosis while the 2GR-FE uses P0327/P0328/P0332/P0333 and tests the harness, ECM and sensors; its V6 code and cross-engine four-part mappings were wrong. The liftgate card is archived because one owner post cannot establish a five-year defect or 450 reports, and Toyota's manual separates settings, operating conditions, obstruction protection, kick-sensor behavior and post-battery initialization before component diagnosis.
+- All 15 original commerce claims and 39 outbound search/category-link occurrences are classified and removed. The one published after-state has zero retail commerce and exact production, symptom, DTC, inspection and coverage gates; the four archived records retain safety-first diagnostic guidance without diagnosis-free parts. The applicator safety suite passes 25/25; the guarded batch dry-ran from exact before-state, applied transactionally and independently verified all five rows in exact after-state. Complete verification loads 81 manifests, verifies 74 active batches, safely supersedes seven fully covered legacy batches and guards 261 unique issue rows without drift.
 
 **Schema-v2 Jeep Grand Cherokee cohort 1 (historical pre-release review, 2026-07-18):**
 
