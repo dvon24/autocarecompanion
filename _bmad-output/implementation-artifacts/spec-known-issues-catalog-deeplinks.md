@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: 'f91f4acd7d2a512d5240253714894001070dc7a0'
+baseline_revision: '327d7e8936627b4919714c17278afdbddf719293'
 review_loop_iteration: 0
 context: []
 ---
@@ -341,7 +341,7 @@ The catalog-wide research and correction queue remains in progress; this reviewe
 - The windshield stress-crack card is archived because it has no citation for 185 reports, a four-year defect population, manufacturing-stress/body-flex cause, edge-origin pattern, repeated replacement, fixed cost, 12-month goodwill outcome or recurrence claim. Toyota's owner manual says damaged/cracked glass must be replaced and the forward camera recalibrated afterward; it does not diagnose why the glass cracked. The unrelated BlueDriver scanner and Haynes-manual recommendations and both links are removed.
 - Cohort 5 removes all six original commerce claims and all 10 outbound occurrences. Across the completed model, all 30 original commerce claims and all 56 outbound occurrences are classified and removed; the eight published after-states contain zero commerce. The applicator/coverage suite passes 25/25 and the candidate helper passes 3/3 (28/28 total). Exact-before dry-run, one three-row transaction, exact-after verification, after-state no-op dry-run, complete verification and post-receipt re-verification all pass. Complete verification loads 93 manifests, verifies 86 active batches, safely supersedes seven fully covered legacy batches and guards 319 issue rows without drift.
 - Snapshot SHA-256: `d6c29c41ff3837991a7d0694f012ae7314d7a59554a280c113013f1b5f8f48f2`. Manifest file SHA-256: `04217613fcd26e233684dedfacdf7f6bf6962aa4d44fe8705f520de8e614c734`. Canonical parsed-manifest/result hash: `41da9fdf30d524d92ef2bd84aa3bd883ea73c93e8f58ac5051994ee26d4c5385`. Durable result-receipt file SHA-256: `3038a70620dcb9c0b937c3df23c5edde9b3a55831e9738be85585d5564db0ba6`.
-- Corolla Cross is research- and database-complete but cohort 5 has not been committed, pushed or deployed. After a future release and cache purge, the expected live total is eight cards, with all three cohort-5 archived titles absent.
+- Commit `327d7e8936627b4919714c17278afdbddf719293` is live on Ready Production deployment `dpl_5m9A3CQbtg7mAZqRwztYQUqyUFxi` with the production aliases. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly eight Corolla Cross cards and omits all three cohort-5 archived titles. The title and H1 agree at `2022-2025 Toyota Corolla Cross Problems: 8 Issues Every Owner Should Know`; the exact canonical remains indexable with no `noindex`. `/get-started` is present, `Open Hub` is absent, both restrained UK/EU DataRep assets render and the approved warm palette remains intact. Toyota Corolla Cross is research-, database- and production-complete at 23/23.
 
 **Schema-v2 Jeep Grand Cherokee cohort 1 (historical pre-release review, 2026-07-18):**
 
