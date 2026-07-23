@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: 'e416c2c6265888bcad2294258065656ddb0f246f'
+baseline_revision: 'cbef9fee8ce3f0b0feb6f58d51f3dbcd97bdcda1'
 review_loop_iteration: 0
 context: []
 ---
@@ -78,9 +78,11 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-23: Completed the database audit for all seven frozen Audi e-tron records. The initial guarded schema-v2 transaction was followed by one guarded seven-row BMAD review-correction transaction; the amended active schema-v2 manifest then recorded an exact `already-applied` receipt. Five records remain published as four diagnosis holds and one VIN-first recall/dealer path; the generic CCS-port duplicate and generic OTA/infotainment aggregation are archived. All 21 original commerce claims and 29 outbound occurrences are removed. Legacy e-tron and 2024 Q8 e-tron naming boundaries are explicit, reconciliation is exact, and the next production render is expected to contain five cards. Complete verification covers 98 manifests, 91 active batches and 345 guarded issue rows without drift. Audi A6, S8 and e-tron are database-audit complete, leaving 41 of the fresh inventory's 44 Audi model groups; e-tron still requires the production render gate.
+- 2026-07-23: The make-completion invariant is now explicit: finish every frozen Audi model before leaving Audi, then complete Cadillac, then complete BMW, and thereafter continue make-by-make. Never hop to another make after completing only one model. Traffic and clicks determine order only inside the active make and model; they never authorize an early make switch.
 - 2026-07-23: Production-verified the completed Audi S8 audit on exact commit `e416c2c6265888bcad2294258065656ddb0f246f` and Ready Production deployment `dpl_GkZ9BsD3iauxnYyouWQukHEHeWmF`. After explicit CDN and data-cache purges, the cache-busted public route renders exactly 11 approved cards, includes all 11 published titles and none of the eight archived titles, keeps the exact canonical indexable, and retains the approved Get Started CTA, restrained DataRep footer badges and warm-paper design.
 - 2026-07-23: Completed all 19 frozen Audi S8 records across four guarded schema-v2 batches. Eleven records remain published as eight diagnosis holds and three VIN-first recall/dealer paths; eight unsupported, duplicate, maintenance-only or generic aggregations are archived. All 66 original commerce claims and 179 outbound occurrences are removed, reconciliation is exact, and the next production render is expected to contain 11 cards. Newly surfaced recalls remain controlled delta proposals rather than unguarded inserts. Audi A6 and S8 are now model-complete, leaving 42 of the fresh inventory's 44 Audi model groups in the active make queue.
-- 2026-07-23: User replaced the traffic-shortlist sequence with full make completion. Starting with Audi, every model present in the fresh full-catalog inventory must be frozen, audited and production-verified before advancing to the next make; later makes proceed alphabetically. Traffic and clicks may prioritize models and records only within the active make. The 2026-07-22 snapshot contains 7,639 published records across 53 makes; Audi contains 44 model groups and Audi A6 is already model-complete. A make is not complete merely because its shortlist models are complete.
+- 2026-07-23: User replaced the traffic-shortlist sequence with full make completion. Starting with Audi, every model present in the fresh full-catalog inventory must be frozen, audited and production-verified before advancing to the next make. The former general "later makes alphabetically" rule is superseded by the explicit Audi -> Cadillac -> BMW sequence recorded above; after BMW, continue make-by-make. Traffic and clicks may prioritize models and records only within the active make. The 2026-07-22 snapshot contains 7,639 published records across 53 makes; Audi contains 44 model groups and Audi A6 is already database-audit complete. A make is not complete merely because its shortlist models are complete.
 - 2026-07-22: Completed and production-verified the Toyota RAV4 audit at 70/70 unique schema-v2 records across 14 guarded batches: 20 diagnosis holds, five no-commerce records, 18 VIN-first recall/dealer paths and 27 archived records. All 140 original commerce claims and 340 outbound occurrences are classified and removed; 43 records remain published, 27 are archived, zero commerce remains, and complete historical verification is drift-free. The closing production checkpoint is exact HEAD `0efb2a95c01307351565c6ab247f1c44d41a7955` on Ready Production deployment `dpl_77N4FZWG2oaTNz8vRokzeHwmHy4d` with the production aliases; after CDN and data-cache purges, the cache-busted render passed the final content, SEO, CTA, design and footer gate.
 - 2026-07-22: Selected Toyota Corolla Cross as the next model from the latest Search Console coverage workbooks because its base and year Known Issues routes lead measured traffic among the remaining Toyota candidates. The frozen model inventory contains 23 unique records in five packets. Cohorts 1-2 complete 10 records in two guarded schema-v2 batches: five remain published, five are archived, all 11 original commerce claims and 21 outbound occurrences are removed, and progress is 10/23. Cohort 1 is live and production-verified on exact commit `96747735cf78d212016451c1ef1eb2c50442927d`; cohort 2 is database-verified and awaits its live release gate.
 - 2026-07-20: Completed and production-verified all 78 Toyota Camry schema-v2 records in 16 guarded batches: 19 diagnosis holds, eight recall/dealer paths, two evidence-only no-commerce records, two diagnosis-qualified replacements, and 47 archived records. All 235 original commerce claims and 631 outbound occurrences are classified; only two exact verified Toyota water-pump product pages remain. Reconciliation is zero-unclassified with no drift. After CDN/data cache purge, the live page exposes exactly 31 published after-states, omits the archived records, and retains the approved warm-paper design. Toyota RAV4 is next.
@@ -93,6 +95,25 @@ context: []
 - 2026-07-15: User requested a professional sand/ink Known Issue card palette. Remove red, purple, yellow, and green card treatments; make state and recency understandable without color, using explicit copy, icons, borders, and hierarchy.
 
 ## Review Triage Log
+
+### 2026-07-23 — Audi e-tron model-close review pass
+
+- intent_gap: 0
+- bad_spec: 2
+- patch: 12
+- defer: 0
+- reject: 3
+- addressed_findings:
+  - Restored both index-K and index-Q N632 replacement paths from Audi TSB 2067941/3.
+  - Made the TSB 2059363/5 legacy trim/year boundaries explicit and restored J1135 replacement when either specified passive/sporadic fault returns a second time.
+  - Made the recall-notice-qualified interim 80-percent charge limit explicit, separated early range/performance loss from a smoke/heat/fire emergency, and removed the unsupported generic battery-warning symptom.
+  - Added the VIN/connector-diagnosis qualifier to the charge-door title and restored the app-triggered no-preheat symptom/system from TSB 2061788/2.
+  - Corrected database-only completion language and superseded the contradictory alphabetical queue text with Audi -> Cadillac -> BMW.
+  - Hardened the ignored e-tron generator with exact unique-ID/set checks, pinned source-snapshot and packet-file hashes, exact packet-to-snapshot comparison, and explicit review-regeneration overwrite permission.
+  - Corrected snapshot/hash terminology and recorded the source-snapshot file hash, packet-file hash, final active-manifest hashes and review-transition history.
+  - Rejected a separate 93V2-owner-notice requirement because the amended Part 573 evidence covers both 93U9 and 93V2 and the public remedy remains VIN/current-notice qualified.
+  - Rejected expanding the durable-receipt schema inside this cohort; the existing receipt plus direct and complete-history verification remain the established gate.
+  - Rejected treating the two controlled-delta actions as blockers to frozen database-audit completion; neither may be inserted without separate immutable scope and authorization.
 
 ### 2026-07-23 — Audi S8 model-close review pass
 
