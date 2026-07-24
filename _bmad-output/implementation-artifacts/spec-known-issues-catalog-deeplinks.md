@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: 'cf6b73348cca52aee010b18d34aadbec80b498d9'
+baseline_revision: '31b4ebcb860048368cf17a22d73e62046a33246a'
 review_loop_iteration: 0
 context: []
 ---
@@ -78,6 +78,7 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-24: Completed the database audit for all six frozen Audi RS3 records in one guarded schema-v2 transaction after current Audi/NHTSA primary-source research, Blind review, Edge review, three accepted patches and clean final exact-hash re-reviews. Three records remain published as two diagnosis holds and one VIN-first emissions recall/dealer path; three unsupported or duplicate carbon/injector aggregations are archived. All 13 original commerce claims and 21 outbound occurrences are removed, and the packet's three claim clicks, three record clicks and three priority clicks reconcile exactly. Complete verification covers 103 manifests, 96 active batches and 375 guarded issue rows without drift. Audi RS3 is database-audit complete at 6/6 and awaits a three-card Production render gate; 36 of 44 Audi model groups remain.
 - 2026-07-24: Production-verified the completed Audi TTS audit on exact commit `cf6b73348cca52aee010b18d34aadbec80b498d9` and Ready Production deployment `dpl_21JEz82KWVNBCrEFwFi5zoQau839`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly four approved cards and omits all three archived titles. The title and H1 agree at `2012-2023 Audi TTS Problems: 4 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi TTS is production-complete at 7/7, leaving 37 of 44 Audi model groups.
 - 2026-07-24: Completed the database audit for all seven frozen Audi TTS records in one guarded schema-v2 transaction after current Audi primary-source research, Blind review, Edge review, six accepted patches and a clean focused re-review. Four diagnosis-first records remain published and three unsupported, duplicate or wrong-powertrain aggregations are archived. All 10 original commerce claims and 16 outbound occurrences are removed; the packet's three commerce-linked priority clicks and six total record clicks are reconciled, including three historical non-commerce magnetic-ride clicks. Complete verification covers 102 manifests, 95 active batches and 369 guarded issue rows without drift. Audi TTS is database-audit complete at 7/7 and awaits a four-card Production render gate; 37 of 44 Audi model groups remain.
 - 2026-07-24: Production-verified the completed Audi SQ7 audit on exact commit `15d85197b85a437d97c92487f598cf5a92f4ad4e` and Ready Production deployment `dpl_5X5B4UUsAwrNAURVs7NKJ1Jud2vb`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly three approved cards and omits the archived duplicate. The title and H1 agree at `2020-2026 Audi SQ7 Problems: 3 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi SQ7 is production-complete at 4/4, leaving 38 of 44 Audi model groups.
@@ -105,6 +106,20 @@ context: []
 - 2026-07-15: User requested a professional sand/ink Known Issue card palette. Remove red, purple, yellow, and green card treatments; make state and recency understandable without color, using explicit copy, icons, borders, and hierarchy.
 
 ## Review Triage Log
+
+### 2026-07-24 — Audi RS3 pre-apply review pass
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 3: (high 2, medium 1)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[high]` `[patch]` Restored the complete Audi TSB 2059240/1 magnetic-ride scope: all 2015-2018 RS3 vehicles plus 2019 VIN sequence `000001-906967`, with the exact range repeated consistently in decision, evidence and public correction copy.
+  - `[high]` `[patch]` Replaced every abbreviated 2019 magnetic-ride upper-bound reference with the exact `000001-906967` VIN sequence so the public card does not overstate the bulletin boundary.
+  - `[medium]` `[patch]` Removed unrelated drive-system evidence from all three archived carbon/injector rows and replaced it with carefully bounded Audi TSB 2014753/13 diagnostic counter-context that is not represented as proof of the rejected defect claims.
+  - Edge review returned zero additional findings on generator SHA-256 `d7e09ddf015c79d5c1ac604a1b69e15a96340d4615577c9cc701f208efe4bb7e`.
+  - Final Blind and Edge re-reviews of generator SHA-256 `2766060c893ac7f50ccbc3d386a31ea77853a520e8793f9e6feafcb9163c4df5` both returned `no blocker`.
 
 ### 2026-07-24 — Audi TTS pre-apply review pass
 
