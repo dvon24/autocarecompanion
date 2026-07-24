@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: 'a9d84353b861db7fac827802451bc4b01c69a2a2'
+baseline_revision: 'abe35d1a2cf3b2fe5ed775cd3b5900f5ef796db8'
 review_loop_iteration: 0
 context: []
 ---
@@ -78,6 +78,8 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-23: Completed the database audit for all seven frozen Audi S6 records in one guarded schema-v2 transaction after independent primary research, Blind Hunter, Edge Case Hunter and a clean focused follow-up review. Four records remain published as two diagnosis holds and two VIN-first recall/dealer paths; both overlapping carbon-buildup rows and the unsupported C5 transmission aggregation are archived. All nine original commerce claims, 13 outbound occurrences and four priority clicks are classified and removed. Published trim arrays remain empty so API trim filtering cannot suppress the records, while generation, equipment, VIN and production boundaries remain explicit in public prose. Complete verification covers 99 manifests, 92 active batches and 352 guarded issue rows without drift. Audi A6, S8, e-tron and S6 are database-audit complete, leaving 40 of the fresh inventory's 44 Audi model groups; S6 still requires the four-card production render gate.
+
 - 2026-07-23: Production-verified the completed Audi e-tron audit on exact commit `a9d84353b861db7fac827802451bc4b01c69a2a2` and Ready Production deployment `dpl_HUev7WdKs3TccbHHPLwYY82zUrT1`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly five approved cards and none of the two archived titles. The title and H1 now agree at `2019-2023 Audi e-tron Problems: 5 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi e-tron is production-complete at 7/7, leaving 41 of 44 Audi model groups.
 - 2026-07-23: Completed the database audit for all seven frozen Audi e-tron records. The initial guarded schema-v2 transaction was followed by one guarded seven-row BMAD review-correction transaction; the amended active schema-v2 manifest then recorded an exact `already-applied` receipt. Five records remain published as four diagnosis holds and one VIN-first recall/dealer path; the generic CCS-port duplicate and generic OTA/infotainment aggregation are archived. All 21 original commerce claims and 29 outbound occurrences are removed. Legacy e-tron and 2024 Q8 e-tron naming boundaries are explicit, reconciliation is exact, and the next production render is expected to contain five cards. Complete verification covers 98 manifests, 91 active batches and 345 guarded issue rows without drift. At this database checkpoint Audi A6, S8 and e-tron were database-audit complete with 41 groups remaining; the production entry above records the later successful e-tron render gate.
 - 2026-07-23: The make-completion invariant is now explicit: finish every frozen Audi model before leaving Audi, then complete Cadillac, then complete BMW, and thereafter continue make-by-make. Never hop to another make after completing only one model. Traffic and clicks determine order only inside the active make and model; they never authorize an early make switch.
@@ -96,6 +98,26 @@ context: []
 - 2026-07-15: User requested a professional sand/ink Known Issue card palette. Remove red, purple, yellow, and green card treatments; make state and recency understandable without color, using explicit copy, icons, borders, and hierarchy.
 
 ## Review Triage Log
+
+### 2026-07-23 — Audi S6 pre-apply review pass
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 14: (high 2, medium 10, low 2)
+- defer: 3: (medium 3)
+- reject: 0
+- addressed_findings:
+  - `[high]` `[patch]` Cleared prose-valued `trims` from all four published records so trim-filtered API requests cannot suppress either diagnosis record or either safety recall; generation, equipment, VIN and production boundaries remain in public prose.
+  - `[high]` `[patch]` Added an explicit `--approved-after-review` generation gate, recorded review approval in the manifest and completed a focused independent follow-up review with no blocker.
+  - `[medium]` `[patch]` Restored the free 25V900/90TV camera-software remedy, assigned both recall records `nhtsa-verified` provenance and removed non-observable Takata eligibility/no-warning text from symptoms.
+  - `[medium]` `[patch]` Disclosed removal of unsupported owner-report/date, cost and mileage metadata in the affected public correction summaries.
+  - `[medium]` `[patch]` Generalized the archived C5 transmission record so it no longer asserts unproven engine or ZF 5HP24A fitment.
+  - `[medium]` `[patch]` Corrected the official TSB 2075515/1 title and additive-prohibition boundary; reclassified expired Service Action 21F7 as TSB evidence rather than a manual.
+  - `[medium]` `[patch]` Added exact per-record claim-ID, raw-link, claim-click and priority-click reconciliation in addition to the 9-claim/13-link/4-click cohort totals.
+  - `[medium]` `[patch]` Added immutable source-snapshot/packet provenance to the manifest and made an existing result artifact non-overwritable under every generator flag.
+  - `[low]` `[patch]` Added exact packet schema, audit-scope, kind, cohort and packet-ID identity guards.
+- deferred_findings:
+  - Three pre-existing global receipt/applicator hardening ideas—exact result-body validation, post-commit receipt recovery semantics and preservation of an earlier receipt on idempotent apply—are outside this seven-row database slice. They do not block S6 because direct manifest verification, durable receipt validation and complete-history verification remain mandatory after the one guarded transaction.
 
 ### 2026-07-23 — Audi e-tron model-close review pass
 
