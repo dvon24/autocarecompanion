@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: '10bf5d3e0ec06080b2a906f63d01bdef2d8a94bc'
+baseline_revision: '29093cd96e39d8e2c8b6d8dd02fda7d49738f457'
 review_loop_iteration: 0
 context: []
 ---
@@ -78,6 +78,7 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-24: Completed the database audit for all four frozen Audi SQ7 records in one guarded schema-v2 transaction after current Audi/NHTSA primary-source research, Blind review, Edge review, 13 accepted patches and a clean focused Edge re-review. Three records remain published as two diagnosis holds and one VIN-first recall/dealer path; the duplicate unsupported air-suspension aggregation is archived. All seven original commerce claims, 11 outbound occurrences and four priority clicks are classified and removed. Empty published trim arrays preserve runtime visibility, receipt reconciliation is exact, and complete verification covers 101 manifests, 94 active batches and 362 guarded issue rows without drift. Audi SQ7 is database-audit complete at 4/4 and awaits a three-card Production render gate; 38 of 44 Audi model groups remain.
 - 2026-07-24: Production-verified the completed Audi SQ5 audit on exact commit `10bf5d3e0ec06080b2a906f63d01bdef2d8a94bc` and Ready Production deployment `dpl_4bTwAAGmtcWMfDgqi94p2xmDYjHD`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly four approved cards and neither archived title. The title and H1 agree at `2014-2025 Audi SQ5 Problems: 4 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi SQ5 is production-complete at 6/6, leaving 39 of 44 Audi model groups.
 - 2026-07-24: Completed the database audit for all six frozen Audi SQ5 records in one guarded schema-v2 transaction after current primary-source research and a focused Blind/Edge review. Four records remain published as diagnosis holds and two unsupported supercharger aggregations are archived. All 11 original commerce claims, 19 outbound occurrences and four priority clicks are classified and removed. Empty published trim arrays preserve runtime visibility, superseding Audi bulletin revisions control, and unsupported report counts, costs and mileage claims are cleared. Complete verification covers 100 manifests, 93 active batches and 358 guarded issue rows without drift. Audi A6, S8, e-tron, S6 and SQ5 are database-audit complete with 39 of 44 Audi model groups remaining; SQ5 now awaits its Production render gate.
 - 2026-07-24: Production-verified the completed Audi S6 audit on exact commit `dd56639a8c178a5063f3e578e821992c2442ff4e` and Ready Production deployment `dpl_2JsddHhMjgovGnaLh8czKpXQFLDp`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly four approved cards and none of the three archived titles. The title and H1 agree at `2007-2025 Audi S6 Problems: 4 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi S6 is production-complete at 7/7, leaving 40 of 44 Audi model groups.
@@ -101,6 +102,25 @@ context: []
 - 2026-07-15: User requested a professional sand/ink Known Issue card palette. Remove red, purple, yellow, and green card treatments; make state and recency understandable without color, using explicit copy, icons, borders, and hierarchy.
 
 ## Review Triage Log
+
+### 2026-07-24 — Audi SQ7 pre-apply review pass
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 13: (high 6, medium 3, low 4)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[high]` `[patch]` Added explicit three-published/one-archived, zero-commerce and empty-published-trim invariants so the approved SQ7 public split cannot drift or disappear under runtime trim filtering.
+  - `[high]` `[patch]` Added Audi TSB 2059363/6's improved-J1135-software-under-development production boundary without implying an owner-installed update or replacing its wiring, recurrence and module branches.
+  - `[high]` `[patch]` Added TSB 2074640/1 to the oil record's evidence as well as its citations so every ODIS measurement and log-preservation instruction is traceable.
+  - `[high]` `[patch]` Removed manifest regeneration, validated any existing receipt and changed initial manifest creation to atomic exclusive mode, closing the reviewed-manifest overwrite race and requiring a new batch ID for any later revision.
+  - `[medium]` `[patch]` Bound approval to the exact Blind and Edge review labels plus the reviewed generator file hash rather than accepting an unqualified approval flag.
+  - `[medium]` `[patch]` Added existing-receipt schema, scope, batch, canonical manifest-hash, status and issue/disposition validation before refusing regeneration.
+  - `[medium]` `[patch]` Made source-snapshot-to-packet comparison insensitive to JSON object-key order while preserving array order and fail-closed exact content checks.
+  - `[low]` `[patch]` Corrected possessive wording in the amended Part 573 and Audi VIN/engine/power-class guidance.
+  - `[low]` `[patch]` Documented that the immutable packet exposes priority clicks only at record granularity while exact claim IDs, URLs, claim clicks and record priority totals remain guarded.
+  - The focused Edge re-review of generator SHA-256 `f91ac6b43511a3a33aa78c04914d943b2d4556a9eac2d365a71bdb7433628ed8` returned `no blocker`.
 
 ### 2026-07-23 — Audi S6 pre-apply review pass
 
@@ -425,6 +445,15 @@ The catalog-wide research and correction queue remains in progress; this reviewe
 - The applicator/coverage suite passes 25/25 and the candidate helper passes 3/3, for 28/28 total. Complete verification loads 100 manifests, verifies 93 active batches, safely supersedes seven fully covered legacy batches and guards 358 issue rows without drift. Snapshot hash: `3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102`; packet SHA-256: `0d9983108c202c5ba81a59beab8f08632a7ab5bdd05e84188555ed6103fc2fc3`; manifest-file SHA-256: `0b95933667f23e719c4a6ce9bd272f78da5e08fa0631a9a7b5064fcab1ea6614`; canonical result-manifest hash: `b90d9622c6f5f69f73f0eb5482cbed3fee10e6a3ac402b3803a207ccdf1a92ed`; receipt-file SHA-256: `bc16cb9f21148c348bab7dd13c1e0d0dd59a82877c6bef6b0fdb8a4bfb29966d`.
 - Commit `10bf5d3e0ec06080b2a906f63d01bdef2d8a94bc` is live on Ready Production deployment `dpl_4bTwAAGmtcWMfDgqi94p2xmDYjHD` with the `au7o.io` and `www.au7o.io` aliases. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly four SQ5 cards, contains all four approved published titles and neither archived title. The title and H1 agree at `2014-2025 Audi SQ5 Problems: 4 Issues Every Owner Should Know`; the exact canonical `https://au7o.io/known-issues/audi-sq5` remains indexable with no `noindex`. Six source occurrences of `/get-started` are present, `Open Hub` is absent, both restrained UK/EU DataRep assets render and the approved `#F7F4EC`/`#FBFAF6`/`#E3DFD4` warm palette remains intact.
 - Audi A6, S8, e-tron, S6 and SQ5 have passed their full model gates, leaving 39 of 44 Audi model groups. Audi remains active and the queue does not advance to Cadillac until every Audi model is complete.
+
+**Schema-v2 Audi SQ7 cohort 1 database completion (2026-07-24):**
+
+- The frozen SQ7 inventory contains four records in one immutable packet. Current Audi/NHTSA primary-source research and adversarial review approved two diagnosis-first rewrites, one VIN-first recall/dealer rewrite and one duplicate archive before mutation. Blind and Edge review produced 13 accepted patches and a clean focused Edge re-review. The guarded manifest passed exact-before dry-run, one four-row transaction, exact-after verification, after-state no-op dry-run, durable receipt creation and complete historical verification. Reconciliation is exact at 4/4 packet, manifest and receipt rows with zero missing, extra, duplicate or unclassified IDs.
+- Audi TSB 2059363/6 replaces the air-strut/compressor aggregation with the exact 2020-2025 air-suspension-equipped SQ7 C1260F0/U112100 symptom-262400 J775/J1135 communication diagnosis. Wiring and connector checks precede the bulletin's first-sporadic clear/release and active/static-or-repeat-sporadic J1135 replacement branches. The public record states that improved J1135 software is under development without promising an owner-installed update. The overlapping generic air-suspension row is archived as a duplicate unsupported aggregation.
+- The former MMI-freeze row is corrected to amended NHTSA 25V900 / Audi 90TV for certain 2020-2026 SQ7 vehicles, with VIN and installed parts/software controlling eligibility and a free more-robust driver-assistance software remedy. The former valve-cover-leak row is corrected to Audi TSB 2071114/5 and measurement TSB 2074640/1: 2020-2023 SQ7 plus 2024 only through VIN serial 002720, 4.0L, no visible leak, ODIS consumption above the allowed limit and no other technical cause before all eight pistons and rings.
+- All seven original commerce claims and 11 outbound occurrences are removed, including all four priority clicks. The three published records contain zero fix parts or commerce-bearing recommendations; unsupported report telemetry, costs, mileage and unrelated repair claims are cleared. Published trim arrays remain empty so runtime filtering cannot suppress the approved cards.
+- The applicator/coverage suite passes 25/25 and the candidate helper passes 3/3, for 28/28 total. Complete verification loads 101 manifests, verifies 94 active batches, safely supersedes seven fully covered legacy batches and guards 362 issue rows without drift. Snapshot hash: `3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102`; packet SHA-256: `f96a937f0df0546b93eedf67380d5996bcdafe2452c76aef6a58abbd899fb15a`; manifest-file SHA-256: `30cb6a2013326be6c5a502c3c93154989e31cdd05390f724b7b4247f27a5813e`; canonical result-manifest hash: `81a57abb102084d19875492a74b547119de8ab24866d6f2f6182566b1f365659`; receipt-file SHA-256: `e2ab6163235284c2675d90800bb4ab7138bdf06a06ca3f272fdf75d298a8d88`.
+- NHTSA 21V825 / Audi 91CR and 22V742 / Audi 91DZ remain controlled delta proposals; no insert was made. SQ7 is database-audit complete at 4/4 and awaits a production gate expected to render three approved cards and omit the archived duplicate. Audi A6, S8, e-tron, S6 and SQ5 have passed their complete production gates; with SQ7 database-complete, 38 of 44 Audi model groups remain and Audi stays active.
 
 **Schema-v2 Jeep Grand Cherokee cohort 1 (historical pre-release review, 2026-07-18):**
 
