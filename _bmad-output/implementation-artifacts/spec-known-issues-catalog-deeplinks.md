@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: '15d85197b85a437d97c92487f598cf5a92f4ad4e'
+baseline_revision: '520dd40de674b8543c49ecd986e6347713a7220b'
 review_loop_iteration: 0
 context: []
 ---
@@ -78,6 +78,7 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-24: Completed the database audit for all seven frozen Audi TTS records in one guarded schema-v2 transaction after current Audi primary-source research, Blind review, Edge review, six accepted patches and a clean focused re-review. Four diagnosis-first records remain published and three unsupported, duplicate or wrong-powertrain aggregations are archived. All 10 original commerce claims and 16 outbound occurrences are removed; the packet's three commerce-linked priority clicks and six total record clicks are reconciled, including three historical non-commerce magnetic-ride clicks. Complete verification covers 102 manifests, 95 active batches and 369 guarded issue rows without drift. Audi TTS is database-audit complete at 7/7 and awaits a four-card Production render gate; 37 of 44 Audi model groups remain.
 - 2026-07-24: Production-verified the completed Audi SQ7 audit on exact commit `15d85197b85a437d97c92487f598cf5a92f4ad4e` and Ready Production deployment `dpl_5X5B4UUsAwrNAURVs7NKJ1Jud2vb`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly three approved cards and omits the archived duplicate. The title and H1 agree at `2020-2026 Audi SQ7 Problems: 3 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi SQ7 is production-complete at 4/4, leaving 38 of 44 Audi model groups.
 - 2026-07-24: Completed the database audit for all four frozen Audi SQ7 records in one guarded schema-v2 transaction after current Audi/NHTSA primary-source research, Blind review, Edge review, 13 accepted patches and a clean focused Edge re-review. Three records remain published as two diagnosis holds and one VIN-first recall/dealer path; the duplicate unsupported air-suspension aggregation is archived. All seven original commerce claims, 11 outbound occurrences and four priority clicks are classified and removed. Empty published trim arrays preserve runtime visibility, receipt reconciliation is exact, and complete verification covers 101 manifests, 94 active batches and 362 guarded issue rows without drift. Audi SQ7 is database-audit complete at 4/4 and awaits a three-card Production render gate; 38 of 44 Audi model groups remain.
 - 2026-07-24: Production-verified the completed Audi SQ5 audit on exact commit `10bf5d3e0ec06080b2a906f63d01bdef2d8a94bc` and Ready Production deployment `dpl_4bTwAAGmtcWMfDgqi94p2xmDYjHD`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly four approved cards and neither archived title. The title and H1 agree at `2014-2025 Audi SQ5 Problems: 4 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi SQ5 is production-complete at 6/6, leaving 39 of 44 Audi model groups.
@@ -103,6 +104,22 @@ context: []
 - 2026-07-15: User requested a professional sand/ink Known Issue card palette. Remove red, purple, yellow, and green card treatments; make state and recency understandable without color, using explicit copy, icons, borders, and hierarchy.
 
 ## Review Triage Log
+
+### 2026-07-24 — Audi TTS pre-apply review pass
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 6: (high 2, medium 2, low 2)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[high]` `[patch]` Removed the non-canonical `2.0 TFSI (CYFB)` engine filter from the published cold-start card so exact runtime matching cannot hide it; CYFB remains an explicit public diagnostic gate.
+  - `[high]` `[patch]` Replaced direct exclusive manifest writing with a fsynced same-directory temporary file and atomic create-if-absent hard-link publication so interruption cannot leave a truncated reviewed manifest and concurrency cannot overwrite one.
+  - `[medium]` `[patch]` Replaced unrelated maintenance evidence on the Mk2 cam-follower archive with official 2013 TTS CDMA technical data.
+  - `[medium]` `[patch]` Replaced the broad timing-drive inference with the exact Audi 2013 TTS timing-belt schedule, which directly contradicts the archived universal timing-chain premise.
+  - `[low]` `[patch]` Enumerated the five exact cold-start misfire DTCs rather than rendering them as a numeric range.
+  - `[low]` `[patch]` Added the original `8S0 513 353` rear shock-mount gate, replacement `8V0 513 353`, and a defer-to-diagnosis branch for nonmatching magnetic-ride vehicles.
+  - The focused re-review of generator SHA-256 `f664c14cc07315e3dcb7da5f365c764041b0117f69c0c1b3c49f004663c9d140` returned `no blocker`.
 
 ### 2026-07-24 — Audi SQ7 pre-apply review pass
 
@@ -457,6 +474,16 @@ The catalog-wide research and correction queue remains in progress; this reviewe
 - NHTSA 21V825 / Audi 91CR and 22V742 / Audi 91DZ remain controlled delta proposals; no insert was made.
 - Commit `15d85197b85a437d97c92487f598cf5a92f4ad4e` is live on Ready Production deployment `dpl_5X5B4UUsAwrNAURVs7NKJ1Jud2vb` with the `au7o.io` and `www.au7o.io` aliases. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly three SQ7 cards, contains all three approved titles and omits the archived duplicate title. The title and H1 agree at `2020-2026 Audi SQ7 Problems: 3 Issues Every Owner Should Know`; the exact canonical `https://au7o.io/known-issues/audi-sq7` remains indexable with no `noindex`. Six source occurrences of `/get-started` are present, `Open Hub` is absent, both restrained UK/EU DataRep assets render and the approved `#F7F4EC`/`#FBFAF6`/`#E3DFD4` warm palette remains intact.
 - Audi A6, S8, e-tron, S6, SQ5 and SQ7 have passed their full model gates, leaving 38 of 44 Audi model groups. Audi remains active and the queue does not advance to Cadillac until every Audi model is complete.
+
+**Schema-v2 Audi TTS cohort 1 database completion (2026-07-24):**
+
+- The frozen TTS inventory contains seven records in one immutable packet. Current Audi primary-source research approved four diagnosis-first rewrites and three archives before mutation. Blind and Edge review produced six accepted patches and a clean focused re-review. The hardened generator published its reviewed manifest atomically from a fsynced temporary file with create-if-absent semantics. Exact-before dry-run, one seven-row transaction, exact-after verification, after-state no-op dry-run, durable receipt validation and complete historical verification all pass. Reconciliation is exact at 7/7 packet, manifest and receipt rows.
+- Audi TSB 2060560/3 replaces the 2009-2024 DSG-mechatronic aggregation with its exact 2019-2023 clutch-K1 temperature, dark/burnt-fluid and TCM-evidence gates. The coolant card now separates VIN/action-screen-gated 2012 Update 19J2 from Audi TSB 2071515/1's reproduced 2020-2023 2.0L coolant-pump leak path. The duplicate sixteen-year water-pump/thermostat card is archived.
+- Audi TSB 2051384/1 replaces the intake-carbon and preventive-cleaning narrative with the exact 2016-2017 CYFB cold-start software pattern: five enumerated misfire DTCs, simultaneous cylinders within 30 seconds at 2,000-3,000 rpm and no felt misfire. Audi TSB 2042539/4 replaces the magnetic-damper failure narrative with the 2016 rear shock-mount rumble condition; Audi technical training limits the mount path to original `8S0 513 353`, replaces both with `8V0 513 353`, and defers nonmatching vehicles to diagnosis.
+- The Mk2 cam-follower row is archived because official 2013 TTS CDMA technical data does not establish the prior universal EA888, interval, failure-progression or parts premise. The Mk2 timing-chain row is archived because Audi's exact 2013 TTS schedule specifies a timing-belt replacement, contradicting its universal EA888 chain premise. No unguarded inserts were made.
+- All 10 original commerce claims and 16 outbound occurrences are removed. Three claim-linked clicks and three priority clicks are classified; the magnetic-ride record's three additional historical non-priority clicks are preserved as non-commerce telemetry rather than misclassified as product evidence. All four published after-states have empty trim and engine arrays, zero fix parts, zero commerce-bearing recommendations, and no unsupported report-count, cost or mileage fields.
+- The applicator/coverage suite passes 25/25 and the candidate helper passes 3/3, for 28/28 total. Complete verification loads 102 manifests, verifies 95 active batches, safely supersedes seven fully covered legacy batches and guards 369 issue rows without drift. Snapshot hash: `3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102`; packet SHA-256: `99a057c3dfed8fd52269ff8d27f21dde1c71467ba91b847d560071f93286db45`; manifest-file SHA-256: `4a87dd2a39c488a06a43d85d1cb2a3ca86bbf36e10d5a4582e56323cdc8b186d`; canonical result-manifest hash: `153d40c0ab09fe060f9bff8f7bc124dc11e0b9089aa46542211e6c3ec3fced7d`; receipt-file SHA-256: `a5e071319c1f33738e0b22135053df3aea36f7bbbf5d510302f12532b1cdb9d1`.
+- Audi TTS is database-audit complete at 7/7 and awaits a Production gate expected to render four approved cards and omit the three archived titles. Audi A6, S8, e-tron, S6, SQ5 and SQ7 have passed complete Production gates; 37 of 44 Audi model groups remain and Audi stays active.
 
 **Schema-v2 Jeep Grand Cherokee cohort 1 (historical pre-release review, 2026-07-18):**
 
