@@ -402,7 +402,11 @@ The packet contained 10 commerce claims, 16 outbound link occurrences, six total
 
 The canonical snapshot hash is `3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102`. The source snapshot file SHA-256 is `6e4c8d64ced097e83111d27c7f46e1f1c08b79dc40423fee81ebc9d9c54cd455`, and the immutable TTS packet file SHA-256 is `99a057c3dfed8fd52269ff8d27f21dde1c71467ba91b847d560071f93286db45`. The manifest-file SHA-256 is `4a87dd2a39c488a06a43d85d1cb2a3ca86bbf36e10d5a4582e56323cdc8b186d`; its canonical parsed-manifest hash stored in the result receipt is `153d40c0ab09fe060f9bff8f7bc124dc11e0b9089aa46542211e6c3ec3fced7d`; the durable result-receipt file SHA-256 is `a5e071319c1f33738e0b22135053df3aea36f7bbbf5d510302f12532b1cdb9d1`.
 
-No new records were inserted through this corrective transaction. Audi TTS is database-audit complete at 7/7 and awaits a Production gate expected to render four approved cards and omit the three archived titles. Audi A6, S8, e-tron, S6, SQ5 and SQ7 have passed their full Production gates. This leaves 37 of the fresh inventory's 44 Audi model groups; Audi remains the active make.
+No new records were inserted through this corrective transaction.
+
+Commit `cf6b73348cca52aee010b18d34aadbec80b498d9` is live on deployment `dpl_21JEz82KWVNBCrEFwFi5zoQau839`, which is Ready with target Production and the `au7o.io` and `www.au7o.io` aliases. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly four TTS cards, contains all four approved titles and omits all three archived titles. The title and H1 agree at `2012-2023 Audi TTS Problems: 4 Issues Every Owner Should Know`; the exact canonical `https://au7o.io/known-issues/audi-tts` remains indexable with no `noindex`. Six source occurrences of `/get-started` are present, `Open Hub` is absent, both restrained UK/EU DataRep assets render and the approved `#F7F4EC`/`#FBFAF6`/`#E3DFD4` warm palette remains intact. Audi TTS is research-, database- and production-complete at 7/7.
+
+Audi A6, S8, e-tron, S6, SQ5, SQ7 and TTS have passed their full model gates. This leaves 37 of the fresh inventory's 44 Audi model groups; Audi remains the active make.
 
 ## Audi e-tron cohort 1 and production completion - 2026-07-23
 
@@ -591,7 +595,7 @@ ShowMeTheParts is expected to remove most manual candidate discovery. The workin
 ## Remaining work
 
 1. Finish and time the ShowMeTheParts adapter and its parser/filter tests.
-2. Follow the user-directed full-make queue. Starting with Audi, freeze and complete every model represented in the fresh full-catalog inventory, then complete Cadillac, then BMW, and thereafter continue make-by-make. Traffic and clicks choose order only inside the active make. The 2026-07-22 snapshot contains 7,639 published records across 53 makes; Audi contains 44 model groups, A6/S8/e-tron/S6/SQ5/SQ7 have passed their complete production gates, and TTS is database-audit complete pending Production. BMW X5, Jeep Grand Cherokee, Lincoln Aviator, Toyota Camry, Toyota RAV4 and Toyota Corolla Cross have also passed their recorded model gates, but those individual completions do not close their entire makes.
+2. Follow the user-directed full-make queue. Starting with Audi, freeze and complete every model represented in the fresh full-catalog inventory, then complete Cadillac, then BMW, and thereafter continue make-by-make. Traffic and clicks choose order only inside the active make. The 2026-07-22 snapshot contains 7,639 published records across 53 makes; Audi contains 44 model groups and A6/S8/e-tron/S6/SQ5/SQ7/TTS have passed their complete production gates. BMW X5, Jeep Grand Cherokee, Lincoln Aviator, Toyota Camry, Toyota RAV4 and Toyota Corolla Cross have also passed their recorded model gates, but those individual completions do not close their entire makes.
 3. Continue every commerce-bearing issue not reached by the traffic list.
 4. Reconcile to exactly one disposition per claim and zero unclassified claims.
 5. Export a fresh post-apply snapshot, compare before/after link and click exposure, rerun all verification, and complete the BMad review gate.
