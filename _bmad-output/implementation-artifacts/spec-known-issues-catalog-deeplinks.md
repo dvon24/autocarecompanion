@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: '31b4ebcb860048368cf17a22d73e62046a33246a'
+baseline_revision: '65ba9f6723a50eacc350b35b3de9c24c0087d95f'
 review_loop_iteration: 0
 context: []
 ---
@@ -78,6 +78,7 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-24: Production-verified the completed Audi RS3 audit on exact commit `65ba9f6723a50eacc350b35b3de9c24c0087d95f` and Ready Production deployment `dpl_BeVzQeyAKpabLAWsUQZv3qYSFbho`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly three approved cards and omits all three archived titles. The title and H1 agree at `2015-2023 Audi RS3 Problems: 3 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi RS3 is production-complete at 6/6, leaving 36 of 44 Audi model groups.
 - 2026-07-24: Completed the database audit for all six frozen Audi RS3 records in one guarded schema-v2 transaction after current Audi/NHTSA primary-source research, Blind review, Edge review, three accepted patches and clean final exact-hash re-reviews. Three records remain published as two diagnosis holds and one VIN-first emissions recall/dealer path; three unsupported or duplicate carbon/injector aggregations are archived. All 13 original commerce claims and 21 outbound occurrences are removed, and the packet's three claim clicks, three record clicks and three priority clicks reconcile exactly. Complete verification covers 103 manifests, 96 active batches and 375 guarded issue rows without drift. Audi RS3 is database-audit complete at 6/6 and awaits a three-card Production render gate; 36 of 44 Audi model groups remain.
 - 2026-07-24: Production-verified the completed Audi TTS audit on exact commit `cf6b73348cca52aee010b18d34aadbec80b498d9` and Ready Production deployment `dpl_21JEz82KWVNBCrEFwFi5zoQau839`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly four approved cards and omits all three archived titles. The title and H1 agree at `2012-2023 Audi TTS Problems: 4 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi TTS is production-complete at 7/7, leaving 37 of 44 Audi model groups.
 - 2026-07-24: Completed the database audit for all seven frozen Audi TTS records in one guarded schema-v2 transaction after current Audi primary-source research, Blind review, Edge review, six accepted patches and a clean focused re-review. Four diagnosis-first records remain published and three unsupported, duplicate or wrong-powertrain aggregations are archived. All 10 original commerce claims and 16 outbound occurrences are removed; the packet's three commerce-linked priority clicks and six total record clicks are reconciled, including three historical non-commerce magnetic-ride clicks. Complete verification covers 102 manifests, 95 active batches and 369 guarded issue rows without drift. Audi TTS is database-audit complete at 7/7 and awaits a four-card Production render gate; 37 of 44 Audi model groups remain.

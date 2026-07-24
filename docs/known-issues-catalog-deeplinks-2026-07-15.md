@@ -422,13 +422,15 @@ The frozen packet contained 13 commerce claims, 21 outbound URL occurrences, thr
 
 The canonical snapshot hash is `3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102`. The source snapshot file SHA-256 is `6e4c8d64ced097e83111d27c7f46e1f1c08b79dc40423fee81ebc9d9c54cd455`, and the immutable RS3 packet file SHA-256 is `f69d39e5bce049f688e8d96767cc750a32cbf7b4a6dbfb1870f32e27ceeab8d2`. The manifest-file SHA-256 is `1ccc04bc9b86eb4eeb04b4a2d03bc0bb2abd738954991e443684091e8715cc8a`; its canonical parsed-manifest hash stored in the result receipt is `c7742062241b1fc84045a5cc515080ddca431d4a23dae04ff538cdda699484d7`; the durable result-receipt file SHA-256 is `da5b2f06ec30ed4c0b3bf30d131efbe2e9d4bf93693a2db9b9ed8a91f3a4f2cd`.
 
-No new records were inserted through this corrective transaction. At this database-only checkpoint, no Git commit, push, production deployment or cache purge has occurred. The next production render is expected to contain exactly these three approved titles:
+No new records were inserted through this corrective transaction. At this database-only checkpoint, no Git commit, push, production deployment or cache purge had occurred; the production closure follows below. The next production render was expected to contain exactly these three approved titles:
 
 - `2017-2020 / 2022-2023 RS3 Drive-System Warning or No-Start Diagnosis - TSB 2067757/3`
 - `2023 RS3 TCM Software Emissions Recall 37P3 - VIN Check Required`
 - `2015-2018 / Certain 2019 RS3 Magnetic-Ride Rear Shock Noise - TSB 2059240/1`
 
-Audi RS3 is database-audit complete at 6/6 and awaits its three-card Production render gate. Audi A6, S8, e-tron, S6, SQ5, SQ7 and TTS have already passed their full model gates; once RS3 passes Production, 36 of the fresh inventory's 44 Audi model groups will remain. Audi stays the active make.
+Commit `65ba9f6723a50eacc350b35b3de9c24c0087d95f` is live on deployment `dpl_BeVzQeyAKpabLAWsUQZv3qYSFbho`, which Vercel reports as Ready with target Production and the `au7o.io` and `www.au7o.io` aliases. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly three RS3 cards, contains all three approved published titles and omits all three archived titles. The title and H1 agree at `2015-2023 Audi RS3 Problems: 3 Issues Every Owner Should Know`; the exact canonical `https://au7o.io/known-issues/audi-rs3` remains indexable with no `noindex`. Six source occurrences of `/get-started` are present, `Open Hub` is absent, both restrained UK/EU DataRep assets render and the approved `#F7F4EC`/`#FBFAF6`/`#E3DFD4` warm palette remains intact. Audi RS3 is research-, database- and production-complete at 6/6.
+
+Audi A6, S8, e-tron, S6, SQ5, SQ7, TTS and RS3 have passed their full model gates. This leaves 36 of the fresh inventory's 44 Audi model groups; Audi remains the active make.
 
 ## Audi e-tron cohort 1 and production completion - 2026-07-23
 
