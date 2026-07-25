@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: '36a126b3fc379643565c7ca854d19e4a55098ce1'
+baseline_revision: '139ed0ec5f1abfdb6a6bf9d1515358bc71c9be5a'
 review_loop_iteration: 0
 followup_review_recommended: false
 context: []
@@ -79,6 +79,7 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-25: Production-verified the completed Audi Q5 audit on exact commit `139ed0ec5f1abfdb6a6bf9d1515358bc71c9be5a` and Ready Production deployment `dpl_2rXgsWhPZrefdEz8wuYD1LNvDG3M`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly seven approved cards and omits both archived titles. The title and H1 agree at `2009-2025 Audi Q5 Problems: 7 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi Q5 is production-complete at 9/9, leaving 35 of 44 Audi model groups.
 - 2026-07-24: Completed the database audit for all nine frozen Audi Q5 records in one guarded schema-v2 transaction after current Audi/NHTSA-hosted Audi primary-source research, Blind review, Edge review, twelve accepted content and pipeline patches, and clean final exact-hash re-reviews. Seven records remain published as five diagnosis holds and two VIN-first recall/dealer paths; two duplicate or unsupported aggregations are archived. All 22 original commerce claims and 34 outbound occurrences are removed, and the packet's two claim clicks, five record clicks and two priority clicks reconcile exactly. Complete verification covers 104 manifests, 97 active batches and 384 guarded issue rows without drift. Audi Q5 is database-audit complete at 9/9 and awaits a seven-card Production render gate; 35 of 44 Audi model groups remain.
 - 2026-07-24: Production-verified the completed Audi RS3 audit on exact commit `65ba9f6723a50eacc350b35b3de9c24c0087d95f` and Ready Production deployment `dpl_BeVzQeyAKpabLAWsUQZv3qYSFbho`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly three approved cards and omits all three archived titles. The title and H1 agree at `2015-2023 Audi RS3 Problems: 3 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi RS3 is production-complete at 6/6, leaving 36 of 44 Audi model groups.
 - 2026-07-24: Completed the database audit for all six frozen Audi RS3 records in one guarded schema-v2 transaction after current Audi/NHTSA primary-source research, Blind review, Edge review, three accepted patches and clean final exact-hash re-reviews. Three records remain published as two diagnosis holds and one VIN-first emissions recall/dealer path; three unsupported or duplicate carbon/injector aggregations are archived. All 13 original commerce claims and 21 outbound occurrences are removed, and the packet's three claim clicks, three record clicks and three priority clicks reconcile exactly. Complete verification covers 103 manifests, 96 active batches and 375 guarded issue rows without drift. Audi RS3 is database-audit complete at 6/6 and awaits a three-card Production render gate; 36 of 44 Audi model groups remain.
