@@ -4,8 +4,9 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: '65ba9f6723a50eacc350b35b3de9c24c0087d95f'
+baseline_revision: '36a126b3fc379643565c7ca854d19e4a55098ce1'
 review_loop_iteration: 0
+followup_review_recommended: false
 context: []
 ---
 
@@ -78,6 +79,7 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-24: Completed the database audit for all nine frozen Audi Q5 records in one guarded schema-v2 transaction after current Audi/NHTSA-hosted Audi primary-source research, Blind review, Edge review, twelve accepted content and pipeline patches, and clean final exact-hash re-reviews. Seven records remain published as five diagnosis holds and two VIN-first recall/dealer paths; two duplicate or unsupported aggregations are archived. All 22 original commerce claims and 34 outbound occurrences are removed, and the packet's two claim clicks, five record clicks and two priority clicks reconcile exactly. Complete verification covers 104 manifests, 97 active batches and 384 guarded issue rows without drift. Audi Q5 is database-audit complete at 9/9 and awaits a seven-card Production render gate; 35 of 44 Audi model groups remain.
 - 2026-07-24: Production-verified the completed Audi RS3 audit on exact commit `65ba9f6723a50eacc350b35b3de9c24c0087d95f` and Ready Production deployment `dpl_BeVzQeyAKpabLAWsUQZv3qYSFbho`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly three approved cards and omits all three archived titles. The title and H1 agree at `2015-2023 Audi RS3 Problems: 3 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi RS3 is production-complete at 6/6, leaving 36 of 44 Audi model groups.
 - 2026-07-24: Completed the database audit for all six frozen Audi RS3 records in one guarded schema-v2 transaction after current Audi/NHTSA primary-source research, Blind review, Edge review, three accepted patches and clean final exact-hash re-reviews. Three records remain published as two diagnosis holds and one VIN-first emissions recall/dealer path; three unsupported or duplicate carbon/injector aggregations are archived. All 13 original commerce claims and 21 outbound occurrences are removed, and the packet's three claim clicks, three record clicks and three priority clicks reconcile exactly. Complete verification covers 103 manifests, 96 active batches and 375 guarded issue rows without drift. Audi RS3 is database-audit complete at 6/6 and awaits a three-card Production render gate; 36 of 44 Audi model groups remain.
 - 2026-07-24: Production-verified the completed Audi TTS audit on exact commit `cf6b73348cca52aee010b18d34aadbec80b498d9` and Ready Production deployment `dpl_21JEz82KWVNBCrEFwFi5zoQau839`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly four approved cards and omits all three archived titles. The title and H1 agree at `2012-2023 Audi TTS Problems: 4 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi TTS is production-complete at 7/7, leaving 37 of 44 Audi model groups.
@@ -107,6 +109,40 @@ context: []
 - 2026-07-15: User requested a professional sand/ink Known Issue card palette. Remove red, purple, yellow, and green card treatments; make state and recency understandable without color, using explicit copy, icons, borders, and hierarchy.
 
 ## Review Triage Log
+
+### 2026-07-24 — Audi Q5 release review pass
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 2: (high 0, medium 0, low 2)
+- defer: 0
+- reject: 2
+- addressed_findings:
+  - `[low]` `[patch]` Clarified that the Q5 gasoline-quality/deposit diagnosis applies to gasoline-powered vehicles so the database's intentionally empty runtime engine filter cannot be misread as diesel applicability.
+  - `[low]` `[patch]` Renamed the receipt's parsed-manifest digest as order-sensitive rather than canonical, matching the applicator's exact `JSON.stringify` hash semantics.
+  - Blind release review returned no findings. The two rejected Edge scenarios do not expose current after-state drift: the independent applicator validates receipt after-hashes and manifest presence/content during direct and complete-history verification, both of which pass for this batch.
+
+### 2026-07-24 — Audi Q5 pre-apply review pass
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 12: (high 4, medium 4, low 4)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[high]` `[patch]` Replaced superseded transmission TSB 2032812/8 with superseding Audi TSB 2032812/9 and restored its complete conditional repair path: crankcase-pressure valve inspection, exact valve/seal/bolt branches, matching TCM/ECM SVM updates, and distinct 2011/2012 adaptation procedures.
+  - `[high]` `[patch]` Bound approval to the actual fresh Edge reviewer identity as well as the Blind reviewer identity and exact reviewed generator SHA-256, closing a provenance gap that could otherwise approve a different review path.
+  - `[high]` `[patch]` Rejected invalid pre-apply citation/severity enum values before any database mutation, removed the unapplied invalid artifact from the active decision set and advanced to a new fail-closed batch with explicit enum invariants.
+  - `[high]` `[patch]` Preserved the diagnosis-first transmission boundary: the corrected record cannot imply automatic mechatronic, valve-body or transmission replacement and cannot skip the bulletin's installed-part and model-year gates.
+  - `[medium]` `[patch]` Set `nhtsa-verified` provenance only where an actual NHTSA recall filing controls, while representing Audi warranty bulletins and the current 19N8 service action with schema-supported manual provenance rather than mislabeling them as recalls.
+  - `[medium]` `[patch]` Made post-publication temporary-file cleanup warning-only after successful atomic linking so an incidental cleanup failure cannot falsely report that reviewed-manifest publication failed.
+  - `[medium]` `[patch]` Added explicit allowed-value guards for severity, confidence and citation provenance before manifest publication.
+  - `[medium]` `[patch]` Preserved exact historical-versus-current coverage language for Warranty Key U35 and Service Action 19N8, avoiding a promise that expired or VIN-dependent coverage remains open.
+  - `[low]` `[patch]` Removed the coolant workshop finding from owner-facing symptoms and kept pressure-test localization in the diagnostic path.
+  - `[low]` `[patch]` Removed the sunroof workshop cause from owner-facing symptoms and kept blocked/kinked drain-hose diagnosis in the bulletin branch.
+  - `[low]` `[patch]` Removed the after-run-pump internal failure mechanism from owner-facing symptoms while retaining the VIN-first fire-risk campaign guidance.
+  - `[low]` `[patch]` Removed unsupported generic timing-chain symptom placeholders from the U35 diagnosis hold.
+  - Final Blind and Edge re-reviews of generator SHA-256 `eeb3e277ce7f230b2348d396c9646311f5b467729df8365bddad3ff4825fc703` both returned zero findings and `no blocker`.
 
 ### 2026-07-24 — Audi RS3 pre-apply review pass
 
