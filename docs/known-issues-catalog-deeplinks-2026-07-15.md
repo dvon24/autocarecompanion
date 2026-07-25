@@ -462,6 +462,57 @@ Commit `139ed0ec5f1abfdb6a6bf9d1515358bc71c9be5a` is live on deployment `dpl_2rX
 
 Audi A6, S8, e-tron, S6, SQ5, SQ7, TTS, RS3 and Q5 have passed their full model gates. This leaves 35 of the fresh inventory's 44 Audi model groups; Audi remains the active make.
 
+## Audi A4 cohort 1 database completion - 2026-07-25
+
+The canonical snapshot contains 25 published Audi A4 records in one immutable full-model packet. Current Audi and NHTSA-hosted primary-source research reconciled all 25 to one unique schema-v2 after-state with zero missing, extra, duplicate or unclassified rows. The initial Blind/Edge review withheld approval on generator SHA-256 `4e58dfde345fbef03e535b01ebc87acde75a6ffd1f47799952aeff913bb804ea`; accepted patches closed the archived-evidence/schema gap, corrected the reversed 91DZ/91CR populations, prevented semantic repurposing of the control-arm row, removed unsupported oil-warning guidance, strengthened exact claim/URL and frozen-byte guards, and hardened controlled-delta and receipt invariants. Blind review cleared interim SHA-256 `cf6aa9abb37931ef0daf2b211dff1800f778843bd16178babd660111a182cbfe`, but Edge review found that its 69BT correction omitted the original 20V056 branch. The final patch explicitly preserves 20V056's 1999-2000 branch plus 22V471's 1997-1998 branch, with the campaign criteria and an exact invariant. Final pre-apply Blind and Edge re-reviews both inspected generator SHA-256 `a8215a017ca39bf0213fb719b83bc451d4190fc6743416d10a9ac9005140c87f` and returned `no-blocker`.
+
+The guarded manifest found all 25 rows in exact before-state, applied them once in one transaction, verified every public field in exact after-state, produced an after-state no-op dry-run and wrote an integrity-checked receipt. Re-running the exact reviewed generator validated the existing manifest file, parsed-manifest hash, ordered issue IDs/dispositions and all 30 per-record after-state hashes, then refused regeneration. Complete history verification loads 105 manifests, verifies 98 active batches, safely supersedes seven fully covered legacy batches and guards 409 unique issue rows without drift.
+
+The final database after-state contains 13 published records and 12 archived records: nine diagnosis holds, four VIN-first recall/dealer paths and twelve removals. The 13 published titles are:
+
+- `2009-2021 A4 2.0T Gasoline-Quality Deposit Diagnosis - TSB 2014753/13`
+- `2010-2011 A4/A4 Avant CAEB Bosch Ignition-Coil Diagnosis - TSB 2033561/2`
+- `2009-2011 A4 2.0T CAEB Oil-Consumption Procedure - TSB 2027731/7`
+- `2009-2013 A4 Timing Chain/Tensioner Diagnosis - Warranty Key U35`
+- `2007-2013, 2015-2016 A4 2.0T Coolant Leak at Pump or Thermostat - TSB 2061604/5`
+- `1997-2000 A4 Driver-Airbag Inflator Recall 69BT - NHTSA 20V056 / 22V471`
+- `2005-2007 A4 2.0TFSI Cam-Follower / HPFP Diagnosis - TSB 2013147/12`
+- `1997-2001 A4 ABS 5.3 Scan-Communication Fault - TSB 2042048/1`
+- `1996-1997 A4 Ignition-Switch Recall 06V-403 (JS) - VIN Check Required`
+- `2002-2006 A4 Factory-CVT Settlement History - Component-Specific Diagnosis`
+- `2022-2025 A4 Brake Squeal or Pulsation Diagnosis - TSBs 2051095/8 and 2022584/12`
+- `2022 A4 Infotainment Main-Unit Recall 91Ei - VIN Check Required`
+- `2021-2022 A4 Rearview-Camera Software Recalls 91DZ / 91CR - VIN Check Required`
+
+The 12 archived titles are:
+
+- `Archived - Duplicate A4 PCV/Oil-Consumption Aggregation`
+- `Archived - Duplicate A4 Coolant-Flange Leak Aggregation`
+- `Archived - Unsupported Multi-Transmission A4 Mechatronic Aggregation`
+- `Archived - Unsupported 2022-2025 A4 Battery-Drain Aggregation`
+- `Archived - Unsupported B5 1.8T Oil-Sludge / Pickup Aggregation`
+- `Archived - Unsupported B5 Central-Locking Pump Aggregation`
+- `Archived - Unsupported B5 Front-Control-Arm/Bushing Aggregation`
+- `Archived - Unsupported B5 G62 Coolant-Sensor Aggregation`
+- `Archived - Duplicate Unsupported A4 Instrument-Cluster Pixel Row`
+- `Archived - Unsupported B6/B7 Front-Suspension Aggregation`
+- `Archived - Duplicate Unsupported A4 LCD/Pixel Aggregation`
+- `Archived - Unsupported 2022-2025 A4 Sunroof Water-Intrusion Aggregation`
+
+The exact-source corrections preserve each important boundary in public prose while keeping runtime trim and engine filters empty so matching cannot hide a valid card. TSB 2033561/2 retains the 2010-2011 CAEB VIN suffixes and Bosch `06H905115/A/B` inspection gate. TSB 2027731/7 and U24 retain only the complaint-driven 2009-2011 CAEB oil-consumption procedure, without the unsupported low-oil test instruction. The U35 history preserves the 2009-2012 Avant versus 2009-2013 Sedan split. TSB 2061604/5 preserves the noncontiguous 2007-2013 and 2015-2016 pump/thermostat scope and only-the-confirmed-leaking-component repair. TSB 2013147/12 preserves BPG 2005-2006 versus BWT 2007, its supported DTCs and conditional follower/cam/HPFP tree. The CVT history preserves U.S. factory-CVT equipment and the distinct TCM, valve-body and transmission year branches without treating the settlement as a defect finding or current coverage.
+
+The safety records remain VIN-first and zero-commerce. The 69BT card explicitly preserves both official A4 filing branches and the free alternative-inflator remedy. The ignition-switch card preserves 06V403/JS supersession of 00V317. Recall 91Ei is limited to certain 2022 A4 Sedan/allroad infotainment main units. The camera card now correctly assigns 91DZ/22V742 to certain 2021 A4 Sedan/allroad vehicles and 91CR/21V825 to certain 2022 A4 Sedans.
+
+The frozen packet contained 59 commerce claims, 95 commerce-link URL occurrences, two claim clicks, two total record clicks and two priority clicks. All commerce claims and commerce-link URLs are classified and removed; retained primary-source citations are non-commerce evidence. All 25 after-states contain zero fix parts or commerce-bearing recommendations. Unsupported/artificial owner-report counts, last-reported dates, fixed costs and fixed mileage fields are cleared with public correction-summary disclosure. The applicator/coverage and candidate suites pass 28/28.
+
+No records were inserted. Seven separately sourced paths remain controlled proposals with `insert: false`: 1998-1999 tie-rod seal recalls 99V248/00V414; 2000-2002 NADI recall 69CJ/21V470; 2021 seat-belt ALR recall 69CS/21V606; 2021-2022 `P17F900` TSB 2064312/3; 2020 ConBox High water-ingress TSB 2060197/2; 2020-2021 rear-axle alignment recall 42L5/22V034; and the single-VIN 2022 ECU-stall recall 22V368. Each requires its own immutable insert scope, duplicate review and authorization before publication.
+
+The canonical snapshot hash is `3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102`. The source snapshot file SHA-256 is `6e4c8d64ced097e83111d27c7f46e1f1c08b79dc40423fee81ebc9d9c54cd455`, and the immutable A4 packet file SHA-256 is `582fb1a7c83fdf2822ad8a00fec82f56c41e831ef711b60d7b31c7dbc6cf494a`. The reviewed generator SHA-256 is `a8215a017ca39bf0213fb719b83bc451d4190fc6743416d10a9ac9005140c87f`. The manifest-file SHA-256 is `33a95bb6dcd362b89327c288b237c024ebf64ef8470168c7745d1d3949f4dcdc`; its order-sensitive parsed-manifest SHA-256 stored in the result receipt is `b7947fb4a92408c2d376124d631b5dd7d76edc496c6b7d5c8e877e47887f68be`; the integrity-checked result-receipt file SHA-256 is `9d218db21501e82548ee8645d194e82c579f5386ed9b806f29af15360846afba`.
+
+The later release review found one stale sentence in the immutable manifest's non-public `decision` field for `audi-a4-rearview-camera-failure-or-2022`: it transposed the year-to-campaign labels even though the public title, description, solution, correction summary and all four citations already carry the correct populations. An append-only erratum corrects that audit prose to 2021 91DZ/22V742 and 2022 91CR/21V825 without rewriting the immutable manifest or changing the already-correct database after-state. The erratum file SHA-256 is `57e7a998dd6f8077272f1ab96b5a6457b49a3b7d2e93cbf90c0d39f123a5ee01`; no database mutation is required.
+
+At this database-only checkpoint, no Git commit, push, production deployment or cache purge has occurred. Audi A4 is database-audit complete at 25/25 and awaits an exact Production gate: title/H1 `1996-2025 Audi A4 Problems: 13 Issues Every Owner Should Know`, canonical `https://au7o.io/known-issues/audi-a4` with no `noindex`, all 13 published titles present, all 12 archived titles absent, zero commerce, the approved `/get-started` CTA, both DataRep badges and the warm-paper palette. After A4 database completion, 34 Audi database audits remain; until A4 passes the live render, 35 of the 44 Audi full Production gates remain incomplete. Audi is still the active make.
+
 ## Audi e-tron cohort 1 and production completion - 2026-07-23
 
 The fresh canonical snapshot contains seven published Audi e-tron records in one immutable packet. All seven were researched before mutation and reconciled to seven unique schema-v2 manifest rows with zero missing, extra, duplicate or unclassified records. The initial manifest passed exact-before dry-run, applied all seven rows in one guarded transaction and verified exact after-state. BMAD Blind Hunter and Edge Case Hunter review then produced one guarded seven-row correction transaction, including two no-op rows so the entire model remained one full-record scope. The amended active schema-v2 manifest exactly matched that reviewed after-state, recorded an `already-applied` receipt, passed direct verification and after-state no-op dry-run, and passed complete historical verification. The final database after-state contains five published and two archived records: four diagnosis holds, one VIN-first recall/dealer path and two removals. The next production render is expected to contain five cards; no production deploy or cache purge is part of this database-only cohort.
@@ -649,7 +700,7 @@ ShowMeTheParts is expected to remove most manual candidate discovery. The workin
 ## Remaining work
 
 1. Finish and time the ShowMeTheParts adapter and its parser/filter tests.
-2. Follow the user-directed full-make queue. Starting with Audi, freeze and complete every model represented in the fresh full-catalog inventory, then complete Cadillac, then BMW, and thereafter continue make-by-make. Traffic and clicks choose order only inside the active make. The 2026-07-22 snapshot contains 7,639 published records across 53 makes; Audi contains 44 model groups and A6/S8/e-tron/S6/SQ5/SQ7/TTS have passed their complete production gates. BMW X5, Jeep Grand Cherokee, Lincoln Aviator, Toyota Camry, Toyota RAV4 and Toyota Corolla Cross have also passed their recorded model gates, but those individual completions do not close their entire makes.
+2. Follow the user-directed full-make queue. Starting with Audi, freeze and complete every model represented in the fresh full-catalog inventory, then complete Cadillac, then BMW, and thereafter continue make-by-make. Traffic and clicks choose order only inside the active make. The 2026-07-22 snapshot contains 7,639 published records across 53 makes; Audi contains 44 model groups, A6/S8/e-tron/S6/SQ5/SQ7/TTS/RS3/Q5 have passed their complete production gates, and A4 is database-audit complete pending its 13-card Production render gate. Thirty-four Audi database audits and 35 full Production gates remain. BMW X5, Jeep Grand Cherokee, Lincoln Aviator, Toyota Camry, Toyota RAV4 and Toyota Corolla Cross have also passed their recorded model gates, but those individual completions do not close their entire makes.
 3. Continue every commerce-bearing issue not reached by the traffic list.
 4. Reconcile to exactly one disposition per claim and zero unclassified claims.
 5. Export a fresh post-apply snapshot, compare before/after link and click exposure, rerun all verification, and complete the BMad review gate.

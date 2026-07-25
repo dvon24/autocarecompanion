@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: '139ed0ec5f1abfdb6a6bf9d1515358bc71c9be5a'
+baseline_revision: '8d75f780f7753f3cfe8301d1c1c8d1f717249352'
 review_loop_iteration: 0
 followup_review_recommended: false
 context: []
@@ -79,6 +79,7 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-25: Completed the database audit for all 25 frozen Audi A4 records in one guarded schema-v2 transaction after current Audi/NHTSA-hosted primary-source research and exact-hash Blind/Edge review. Thirteen records remain published as nine diagnosis holds and four VIN-first recall/dealer paths; twelve duplicate, unsupported or semantically mismatched aggregations are archived. All 59 original commerce claims and 95 commerce-link URL occurrences are removed, and the packet's two claim clicks, two record clicks and two priority clicks reconcile exactly. Seven distinct newly surfaced recall/TSB paths remain controlled proposals with `insert: false`, including the 99V248/00V414 tie-rod recalls rather than repurposing a control-arm identifier. The applicator/candidate suite passes 28/28; exact-before, one-transaction apply, exact-after, no-op dry-run, integrity-checked receipt refusal and complete historical verification all pass across 105 manifests, 98 active batches and 409 guarded issue rows. Audi A4 is database-audit complete at 25/25 and awaits an exact 13-card Production render gate; 34 Audi database audits and 35 full Production gates remain.
 - 2026-07-25: Production-verified the completed Audi Q5 audit on exact commit `139ed0ec5f1abfdb6a6bf9d1515358bc71c9be5a` and Ready Production deployment `dpl_2rXgsWhPZrefdEz8wuYD1LNvDG3M`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly seven approved cards and omits both archived titles. The title and H1 agree at `2009-2025 Audi Q5 Problems: 7 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi Q5 is production-complete at 9/9, leaving 35 of 44 Audi model groups.
 - 2026-07-24: Completed the database audit for all nine frozen Audi Q5 records in one guarded schema-v2 transaction after current Audi/NHTSA-hosted Audi primary-source research, Blind review, Edge review, twelve accepted content and pipeline patches, and clean final exact-hash re-reviews. Seven records remain published as five diagnosis holds and two VIN-first recall/dealer paths; two duplicate or unsupported aggregations are archived. All 22 original commerce claims and 34 outbound occurrences are removed, and the packet's two claim clicks, five record clicks and two priority clicks reconcile exactly. Complete verification covers 104 manifests, 97 active batches and 384 guarded issue rows without drift. Audi Q5 is database-audit complete at 9/9 and awaits a seven-card Production render gate; 35 of 44 Audi model groups remain.
 - 2026-07-24: Production-verified the completed Audi RS3 audit on exact commit `65ba9f6723a50eacc350b35b3de9c24c0087d95f` and Ready Production deployment `dpl_BeVzQeyAKpabLAWsUQZv3qYSFbho`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly three approved cards and omits all three archived titles. The title and H1 agree at `2015-2023 Audi RS3 Problems: 3 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi RS3 is production-complete at 6/6, leaving 36 of 44 Audi model groups.
@@ -110,6 +111,76 @@ context: []
 - 2026-07-15: User requested a professional sand/ink Known Issue card palette. Remove red, purple, yellow, and green card treatments; make state and recency understandable without color, using explicit copy, icons, borders, and hierarchy.
 
 ## Review Triage Log
+
+### 2026-07-25 — Audi A4 release follow-up review
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1: (high 0, medium 0, low 1)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[low]` `[patch]` Aligned the Remaining Work summary with the exact A4 checkpoint: 34 Audi database audits remain, while 35 full Production gates remain until A4 passes its live render.
+- review_notes:
+  - Follow-up Blind review returned no findings; follow-up Edge review returned only the corrected progress-summary ambiguity.
+
+### 2026-07-25 — Audi A4 release review pass
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 7: (high 0, medium 2, low 5)
+- defer: 0
+- reject: 6
+- addressed_findings:
+  - `[medium]` `[patch]` Preserved the applied manifest's immutability and added an append-only erratum for its stale non-public camera `decision` sentence; every public after-state field and citation already has the correct 2021 91DZ / 2022 91CR population.
+  - `[medium]` `[patch]` Expanded the Production acceptance gate to the exact title/H1, canonical/indexability, all 13 published titles, all 12 archived omissions, zero commerce, Get Started CTA, DataRep badges and warm-paper palette.
+  - `[low]` `[patch]` Corrected receipt reconciliation from 31 to the actual 30 full-record after-state hashes.
+  - `[low]` `[patch]` Qualified the 95 removed URLs as commerce/claim-link occurrences so retained primary-source citation URLs are not described as removed.
+  - `[low]` `[patch]` Replaced unsupported `durable receipt` wording with `integrity-checked receipt`; file-system durability is not inferred from the applicator's atomic rename alone.
+  - `[low]` `[patch]` Distinguished the 34 remaining Audi database audits from the 35 incomplete full Production gates while A4 awaits its live render.
+  - `[low]` `[patch]` Separated the 14 pre-apply patches from review-process notes and enumerated all eight rejected findings so the triage totals are auditable.
+- rejected_findings:
+  - Tracking the ignored packet/manifest/result bundle would violate the established two-ledger commit boundary; hashes plus live database verification remain the current release evidence.
+  - Generic NHTSA vehicle lookup URLs on archived negative-research rows are treated as search-provenance pointers, not as positive proof of a defect; the unsupported rows remain non-public and archived.
+  - `review_loop_iteration: 0` is correct because the counter advances only for `bad_spec` re-derivation loops; all A4 findings were classified as bounded patches or rejects.
+  - Preserving raw `--verify --all` console output is not required for current-state verification because the command is rerunnable and independently passed at the release gate.
+  - Adding database/environment identity to the shared receipt schema is a separate cross-batch contract change and is not necessary to verify this exact Production database state.
+  - Pre-apply reviewer labels are local attestations rather than cryptographic signatures; the exact-hash review outputs and this independent release review supply the bounded human-readable audit trail.
+
+### 2026-07-25 — Audi A4 pre-apply review pass
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 14: (high 6, medium 6, low 2)
+- defer: 0
+- reject: 8
+- addressed_findings:
+  - `[high]` `[patch]` Added nonempty primary-research evidence/citations to every archived row and invoked the applicator's schema-v2 validator inside the generator, closing a manifest-rejection gap that the local citation enum check had missed.
+  - `[high]` `[patch]` Corrected the rear-camera campaign populations: 91DZ/22V742 is the 2021 A4 Sedan/allroad branch, while 91CR/21V825 is the 2022 A4 Sedan branch.
+  - `[high]` `[patch]` Archived the unsupported control-arm/bushing row and moved the distinct 99V248/00V414 tie-rod recalls to an exact controlled-delta proposal with `insert: false`, preventing a semantic insert under a legacy identifier.
+  - `[high]` `[patch]` Removed the unauditable oil-measurement warning symptom and do-not-add-oil instruction, retaining complaint-driven CAEB diagnosis and manual/current-Audi oil-warning guidance.
+  - `[high]` `[patch]` Preserved both official 69BT A4 filing branches—20V056 for 1999-2000 and 22V471 for 1997-1998—plus the campaign criteria, yielding an explicit VIN-first 1997-2000 scope with an exact generation invariant.
+  - `[high]` `[patch]` Required exact per-claim claim-ID-to-URL association, so URLs cannot move between adjacent claims while flattened cohort totals remain unchanged.
+  - `[medium]` `[patch]` Read each frozen source file once, hashed those exact bytes and parsed the same bytes, closing a hash/read time-of-check gap.
+  - `[medium]` `[patch]` Guarded all seven controlled-delta titles, source groupings, unique URLs, HTTPS NHTSA hosts and proposal-only/no-insert dispositions exactly.
+  - `[medium]` `[patch]` Added explicit 13-published/12-archived and nine-diagnosis/four-recall/twelve-remove invariants after moving the semantically distinct tie-rod recall out of the legacy row.
+  - `[medium]` `[patch]` Disclosed intentional removal of unsupported/artificial owner-report counts and last-reported dates in each affected public correction summary.
+  - `[medium]` `[patch]` Bound receipt reconciliation to exact ordered issue IDs, dispositions and all 30 applicator-compatible after-state hashes, with manifest-file presence/content/hash validation before regeneration refusal.
+  - `[medium]` `[patch]` Retained exact CAEB, engine, body, factory-CVT, VIN-suffix and year-branch scopes in public titles/descriptions while preserving intentionally empty runtime trim/engine arrays so filtering cannot hide applicable cards.
+  - `[low]` `[patch]` Added the VIN/engine-specific oil-standard boundary to the archived sludge row's neutral low-pressure guidance.
+  - `[low]` `[patch]` Added best-effort containing-directory fsync after atomic hard-link publication, with an explicit Windows durability warning fallback and no false rollback after publication.
+- review_notes:
+  - Initial review withheld approval on generator SHA-256 `4e58dfde345fbef03e535b01ebc87acde75a6ffd1f47799952aeff913bb804ea`. Blind re-review cleared interim SHA-256 `cf6aa9abb37931ef0daf2b211dff1800f778843bd16178babd660111a182cbfe`, but Edge review found that its 69BT correction had dropped the original 20V056 branch. The final patch restored both filing branches and added the exact invariant.
+  - Final pre-apply Blind and Edge re-reviews both inspected generator SHA-256 `a8215a017ca39bf0213fb719b83bc451d4190fc6743416d10a9ac9005140c87f` and returned `no-blocker`; the later release-ledger review found a stale non-public camera `decision` sentence and triggered the append-only erratum recorded below.
+- rejected_findings:
+  - Intentionally empty runtime trim/engine arrays are retained because incomplete normalized labels can hide applicable cards; exact engine, body, drivetrain, VIN and year gates remain explicit in public titles and prose.
+  - Cryptographic reviewer signatures are outside this local reviewed-generator workflow; exact-hash reviewer outputs and the later independent release review remain the approval evidence.
+  - An authenticated database attestation inside the local receipt is outside the applicator contract; direct and complete-history database verification establish current state.
+  - Continuous post-receipt database monitoring is a separate operational control and is not represented as part of this one-shot corrective transaction.
+  - The hard-coded `2026-07-25` approval/update date matches the actual reviewed execution date; later execution is refused by the validated existing result.
+  - Requiring `completedAt` as generator approval evidence was rejected because content and database state are bound by manifest identity and exact after-state hashes, not wall-clock provenance.
+  - Importing one shared full-record field contract is a future refactor; the generator's 30-field list was checked against the current applicator and receipt.
+  - Requiring a separately signed receipt before refusing regeneration was rejected because refusal is the safe behavior and the applicator independently verifies the database before release.
 
 ### 2026-07-24 — Audi Q5 release review pass
 
