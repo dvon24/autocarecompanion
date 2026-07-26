@@ -116,6 +116,31 @@ context: []
 
 ## Review Triage Log
 
+### 2026-07-26 — Audi e-tron GT exact-model API follow-up review
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+- review_notes:
+  - Fresh Blind and Edge follow-up reviewers returned `no-blocker` after checking exact case-insensitive model equality, preservation of make/year/status/severity/trim behavior, valid Next route exports, the focused regression test and accurate pending-Production ledger wording.
+
+### 2026-07-26 — Audi e-tron GT first live gate
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1: (high 1, medium 0, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[high]` `[patch]` Withheld Production closure when the default 2022 `model=e-tron GT` API response also exposed five `RS e-tron GT` rows through a pre-existing substring predicate. Replaced the model `contains` filter with an exact case-insensitive equality helper and added a regression test that forbids a `contains` key.
+- review_notes:
+  - Ready Production deployment `dpl_DMxGTttFcKq83rUwB2RreWW98vPu` on exact audit commit `01ec1881ec8e13e4ceb0bfac47bf68195ac74a84` passed the five-card HTML, metadata, canonical, archived-record, commerce, CTA, DataRep and palette checks after CDN/data-cache purges, but it is not the closing deployment because the API boundary failed.
+  - The focused regression test passes; scoped lint passes for the new helper/test. Repository-wide TypeScript remains blocked only by the user's unrelated `scripts/scrape-mopar-diagram.ts` Puppeteer dependency.
+
 ### 2026-07-26 — Audi e-tron GT release follow-up review
 
 - intent_gap: 0

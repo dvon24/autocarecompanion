@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
+import { buildKnownIssueVehicleFilter } from '@/lib/known-issue-query';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 import { knownIssuesLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
 
@@ -88,10 +89,7 @@ export async function GET(request: NextRequest) {
     // Query database — data is pre-normalized
     const rows = await prisma.knownIssue.findMany({
       where: {
-        make: { equals: make, mode: 'insensitive' },
-        model: { contains: model, mode: 'insensitive' },
-        years: { has: yearNum },
-        status,
+        ...buildKnownIssueVehicleFilter(yearNum, make, model, status),
         ...(severity ? { severity: { in: severity.split(',') } } : {}),
       },
     });
