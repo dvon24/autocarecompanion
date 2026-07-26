@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: '2e58dbf02719e0f13de89e583d3bb1e07e9d0b62'
+baseline_revision: 'a911eb73c2c510a5c82238d165bf4c1540e41bff'
 review_loop_iteration: 0
 followup_review_recommended: false
 context: []
@@ -79,6 +79,7 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-26: Completed the database audit for the full frozen Audi e-tron GT model cohort: all six records were researched against current Audi/NHTSA-hosted primary sources, reviewed in exact-hash Blind and Edge passes, and applied once through the guarded schema-v2 pipeline. Five records remain published as three VIN-first recall/dealer paths and two diagnosis holds; the unsupported high-voltage coolant-seep aggregation is archived. All 13 commerce claims and 15 commerce-link URL occurrences are removed, including both claim clicks, both record clicks and both priority clicks. Eleven separately sourced recall/TSB paths remain controlled proposals with `insert: false`. The reviewed generator SHA-256 is `5457b72b9170d8886b69b5c502d0ffdb23f5177fc26689cf566d8b03f74ee836`; exact Blind and Edge verdicts are `etron_gt_blind_review:no-blocker` and `etron_gt_edge_review:no-blocker`. The applicator/candidate suite passes 28/28; exact-before, one guarded apply, exact-after, after-state no-op, field-validated local receipt refusal and complete historical verification all pass across 107 manifests, 100 active batches, seven superseded legacy batches and 433 guarded issue rows. Audi e-tron GT is database-audit complete at 6/6 and awaits an exact five-card Production render gate; 32 Audi database audits and 33 full Production gates remain.
 - 2026-07-26: Production-verified the completed Audi A8 audit on exact commit `2e58dbf02719e0f13de89e583d3bb1e07e9d0b62` and Ready Production deployment `dpl_9ohq2QQYLQtcFzY2PvbGCXsjfXf3` with the `au7o.io`, `www.au7o.io` and `autocarecompanion.vercel.app` aliases. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly six approved cards and omits all twelve archived titles and stable IDs. All 45 removed commerce-link occurrences and commerce rails remain absent. The title/H1, standard/OG/Twitter description, exact canonical and indexability pass; 15 boundary-year live API queries match all six manifest after-states field-for-field and expose no archived IDs. Six `/get-started` occurrences, zero `Open Hub`, both restrained DataRep badges and the approved warm-paper palette are intact. Audi A8 is production-complete at 18/18, leaving 33 of 44 Audi model groups.
 - 2026-07-25: Completed the database audit for all 18 frozen Audi A8 records in one guarded schema-v2 transaction after current Audi/NHTSA-hosted primary-source research and two exact-hash Blind/Edge passes. Initial reviews withheld approval on generator SHA-256 `99ce8505edd9888b6159f3c063ee0618e48cef2414a5c0a54fa7f096e9eb342d` for wrong MMI and timing-bulletin labels; both were corrected, and fresh reviews cleared exact SHA-256 `1884d1f47b1ef6302ad0a9d512b9be514ac5b7c8a428405415dcd9904a6b16d5`. Six records remain published as five diagnosis holds and one VIN-first 69BT recall path; twelve unsupported, duplicate, market-mismatched or semantically distinct aggregations are archived. All 29 commerce claims and 45 commerce-link URL occurrences are removed, including both claim clicks, both record clicks and both priority clicks. Ten distinct newly surfaced recall/TSB paths remain controlled proposals with `insert: false`. The applicator/candidate suite passes 28/28; exact-before, one-transaction apply, exact-after, no-op dry-run, exact local receipt refusal, final direct verification and complete historical verification all pass across 106 manifests, 99 active batches and 427 guarded issue rows. Audi A8 is database-audit complete at 18/18 and awaits an exact six-card Production render gate; 33 Audi database audits and 34 full Production gates remain.
 - 2026-07-25: Production-verified the completed Audi A4 audit on exact commit `c2572851d07139ee66a1ad1b01de153ec7920a44` and Ready Production deployment `dpl_7Nz9EubKyRLsTKNf4WWsxPVKn4Zd`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly 13 approved cards and omits all 12 archived titles. The title and H1 agree at `1996-2025 Audi A4 Problems: 13 Issues Every Owner Should Know`; the exact canonical remains indexable, zero commerce markers are present, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi A4 is production-complete at 25/25, leaving 34 of 44 Audi model groups.
@@ -114,6 +115,45 @@ context: []
 - 2026-07-15: User requested a professional sand/ink Known Issue card palette. Remove red, purple, yellow, and green card treatments; make state and recency understandable without color, using explicit copy, icons, borders, and hierarchy.
 
 ## Review Triage Log
+
+### 2026-07-26 — Audi e-tron GT release follow-up review
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+- review_notes:
+  - Fresh Blind and Edge follow-up reviewers returned `no-blocker` after checking the exact SEO/social labels, 2021-2025 API ID sets, card/archive/commerce/CTA/DataRep/palette contract and receipt wording against the final six-row manifest.
+
+### 2026-07-26 — Audi e-tron GT release review
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 4: (high 0, medium 3, low 1)
+- defer: 0
+- reject: 1: (high 0, medium 1, low 0)
+- addressed_findings:
+  - `[medium]` `[patch]` Pinned the exact HTML/H1/Open Graph/Twitter title and exact standard/OG/Twitter e-tron GT description rather than accepting merely aligned metadata.
+  - `[medium]` `[patch]` Pinned the live API boundary-year contract to exact 2021-2025 published-ID sets, including both negative boundary years.
+  - `[medium]` `[patch]` Pinned six `/get-started` occurrences, zero `Open Hub`, exactly two restrained DataRep badges and all three approved warm-paper colors, alongside exact card/anchor/archive/commerce checks.
+  - `[low]` `[patch]` Replaced `integrity-checked generator refusal` with precise `field-validated local receipt refusal` wording.
+- review_notes:
+  - A proposal to let the generator cryptographically attest its own reviewed file hash was rejected as a release blocker: a self-hash cannot be embedded without changing the file, while the external Blind/Edge outputs, immutable generator SHA and manifest approval metadata already bind this exact release candidate. A separately signed approval artifact would be pipeline hardening, not an e-tron GT correctness defect.
+
+### 2026-07-26 — Audi e-tron GT pre-apply review pass 1
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+- review_notes:
+  - Fresh focused Blind and Edge reviews independently inspected exact generator SHA-256 `5457b72b9170d8886b69b5c502d0ffdb23f5177fc26689cf566d8b03f74ee836` and returned `etron_gt_blind_review:no-blocker` and `etron_gt_edge_review:no-blocker`.
 
 ### 2026-07-25 — Audi A8 release follow-up review
 
