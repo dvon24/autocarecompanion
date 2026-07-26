@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: 'c2572851d07139ee66a1ad1b01de153ec7920a44'
+baseline_revision: 'b2de764b19dbe410ce6b386f06862601688c104e'
 review_loop_iteration: 0
 followup_review_recommended: false
 context: []
@@ -79,6 +79,7 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-25: Completed the database audit for all 18 frozen Audi A8 records in one guarded schema-v2 transaction after current Audi/NHTSA-hosted primary-source research and two exact-hash Blind/Edge passes. Initial reviews withheld approval on generator SHA-256 `99ce8505edd9888b6159f3c063ee0618e48cef2414a5c0a54fa7f096e9eb342d` for wrong MMI and timing-bulletin labels; both were corrected, and fresh reviews cleared exact SHA-256 `1884d1f47b1ef6302ad0a9d512b9be514ac5b7c8a428405415dcd9904a6b16d5`. Six records remain published as five diagnosis holds and one VIN-first 69BT recall path; twelve unsupported, duplicate, market-mismatched or semantically distinct aggregations are archived. All 29 commerce claims and 45 commerce-link URL occurrences are removed, including both claim clicks, both record clicks and both priority clicks. Ten distinct newly surfaced recall/TSB paths remain controlled proposals with `insert: false`. The applicator/candidate suite passes 28/28; exact-before, one-transaction apply, exact-after, no-op dry-run, exact local receipt refusal, final direct verification and complete historical verification all pass across 106 manifests, 99 active batches and 427 guarded issue rows. Audi A8 is database-audit complete at 18/18 and awaits an exact six-card Production render gate; 33 Audi database audits and 34 full Production gates remain.
 - 2026-07-25: Production-verified the completed Audi A4 audit on exact commit `c2572851d07139ee66a1ad1b01de153ec7920a44` and Ready Production deployment `dpl_7Nz9EubKyRLsTKNf4WWsxPVKn4Zd`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly 13 approved cards and omits all 12 archived titles. The title and H1 agree at `1996-2025 Audi A4 Problems: 13 Issues Every Owner Should Know`; the exact canonical remains indexable, zero commerce markers are present, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi A4 is production-complete at 25/25, leaving 34 of 44 Audi model groups.
 - 2026-07-25: Completed the database audit for all 25 frozen Audi A4 records in one guarded schema-v2 transaction after current Audi/NHTSA-hosted primary-source research and exact-hash Blind/Edge review. Thirteen records remain published as nine diagnosis holds and four VIN-first recall/dealer paths; twelve duplicate, unsupported or semantically mismatched aggregations are archived. All 59 original commerce claims and 95 commerce-link URL occurrences are removed, and the packet's two claim clicks, two record clicks and two priority clicks reconcile exactly. Seven distinct newly surfaced recall/TSB paths remain controlled proposals with `insert: false`, including the 99V248/00V414 tie-rod recalls rather than repurposing a control-arm identifier. The applicator/candidate suite passes 28/28; exact-before, one-transaction apply, exact-after, no-op dry-run, integrity-checked receipt refusal and complete historical verification all pass across 105 manifests, 98 active batches and 409 guarded issue rows. Audi A4 is database-audit complete at 25/25 and awaits an exact 13-card Production render gate; 34 Audi database audits and 35 full Production gates remain.
 - 2026-07-25: Production-verified the completed Audi Q5 audit on exact commit `139ed0ec5f1abfdb6a6bf9d1515358bc71c9be5a` and Ready Production deployment `dpl_2rXgsWhPZrefdEz8wuYD1LNvDG3M`. After explicit CDN and data-cache purges, cache-busted production HTML renders exactly seven approved cards and omits both archived titles. The title and H1 agree at `2009-2025 Audi Q5 Problems: 7 Issues Every Owner Should Know`; the exact canonical remains indexable, and the approved Get Started CTA, restrained DataRep badges and warm-paper design are intact. Audi Q5 is production-complete at 9/9, leaving 35 of 44 Audi model groups.
@@ -112,6 +113,60 @@ context: []
 - 2026-07-15: User requested a professional sand/ink Known Issue card palette. Remove red, purple, yellow, and green card treatments; make state and recency understandable without color, using explicit copy, icons, borders, and hierarchy.
 
 ## Review Triage Log
+
+### 2026-07-25 — Audi A8 release follow-up review
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+- review_notes:
+  - Fresh Blind and Edge follow-up reviewers returned `no-blocker` after checking the expanded Production contract, exact 6/12 model split, metadata and API expectations, corrected queue counts and receipt wording against the final A8 manifest.
+
+### 2026-07-25 — Audi A8 release review
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 3: (high 0, medium 2, low 1)
+- defer: 0
+- reject: 9
+- addressed_findings:
+  - `[medium]` `[patch]` Corrected the closing queue ledger to distinguish A8's database-complete state from its pending Production gate and to report 33 database audits versus 34 Production gates remaining.
+  - `[medium]` `[patch]` Expanded the pending Production contract to pin the exact title/H1, model-specific standard/OG/Twitter description, canonical, indexability, Ready deployment identity and aliases, cache purges, stable published/archived IDs, all 45 removed commerce-link occurrences, the live API after-state, Get Started CTA, DataRep badges and warm-paper palette.
+  - `[low]` `[patch]` Replaced `integrity-checked result-receipt file SHA-256` with precise wording that distinguishes field validation from the separately recorded receipt-file hash.
+- review_notes:
+  - Archived records remain non-public, and their removal decisions are based on the frozen record's complete source set plus the review matrix rather than the generic NHTSA lookup URL alone; the adversarial request for source-content attestation of an analytical negative-evidence conclusion was rejected as a release blocker.
+  - Caller-supplied approval tokens are bound to the reviewed generator hash and corroborated by the recorded reviewer outputs; cryptographic reviewer attestation is outside this model gate.
+  - Direct database, 28-test and complete-history results are independently rerun command evidence recorded in the audit ledger; they are not required to be embedded inside the immutable manifest or applicator receipt.
+
+### 2026-07-25 — Audi A8 pre-apply review pass 1
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 2: (high 2, medium 0, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[high]` `[patch]` Corrected the MMI primary-source identity from nonexistent/mismatched TSB 2047576/2 to the linked PDF's exact Audi TSB 2030465/12 in the citation, decision, evidence and public description.
+  - `[high]` `[patch]` Corrected the 3.0 TFSI cold-start-rattle source revision from 2039995/1 to the linked PDF's exact Audi TSB 2039995/2 in the citation, decision, evidence and public description.
+- review_notes:
+  - Blind and Edge review both withheld approval on generator SHA-256 `99ce8505edd9888b6159f3c063ee0618e48cef2414a5c0a54fa7f096e9eb342d`; the corrected generator requires fresh exact-hash review before manifest generation.
+
+### 2026-07-25 — Audi A8 pre-apply review pass 2
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 9
+- addressed_findings:
+  - none
+- review_notes:
+  - Fresh Blind and Edge re-reviews both inspected exact generator SHA-256 `1884d1f47b1ef6302ad0a9d512b9be514ac5b7c8a428405415dcd9904a6b16d5` and returned `no-blocker`.
+  - Blind's non-blocking hardening notes concern cross-batch cryptographic provenance, external-document content hashing, schema boundaries or Windows best-effort durability and do not contradict this exact generator's current packet, evidence, applicator validation, no-clobber or direct-database verification gates.
 
 ### 2026-07-25 — Audi A4 release follow-up review
 
