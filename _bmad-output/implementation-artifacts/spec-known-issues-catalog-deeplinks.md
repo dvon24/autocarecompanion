@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: '4c7eaae690b285cf58b65a42873a4b362e6e6833'
+baseline_revision: '156e129f4732e4693ed5390ce15daee111e896bd'
 review_loop_iteration: 0
 followup_review_recommended: false
 context: []
@@ -79,6 +79,7 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-27: Completed the database audit for all four frozen Audi RS7 records in one guarded schema-v2 transaction. Current Audi/NHTSA primary sources narrow the air-suspension row to 2021-2025 TSB 2059363/6 and replace the seeded wastegate/carbon shopping aggregation with VIN-first, no-cost safety recall 21H7/22V178 for 2014-2017 RS7 vehicles. The unsupported carbon and turbo-coolant degradation aggregations are archived; distinct TSB 2060420/2 coolant-pump noise remains an `insert: false` proposal. All eight commerce claims and 14 URL occurrences are removed, including two claim clicks, two record clicks and two priority clicks. Twelve exact recall/TSB paths remain controlled proposals with `insert: false`. The rejected copied RS5 draft SHA-256 `91628ca47db687a060ce37aff821cb1f7a6e368284d36c4e8de047c2a88a0d86` was deleted before review or mutation; exact final generator SHA-256 `4890278f8a1951bda792830099fe4b1a47e6aa32a6b6556f2e734efbdb081333` passed `rs7_blind_review:no-blocker` and `rs7_edge_review:no-blocker`. Six commerce tests, 25 applicator/coverage tests and three candidate tests pass (34/34); exact-before, one guarded apply, exact-after, after-state no-op, receipt refusal and complete history verification pass across 109 manifests, 102 active batches, seven superseded legacy batches and 440 guarded issue rows. Audi RS7 is database-audit complete at 4/4 and awaits an exact two-card Production gate; 30 Audi database audits and 31 full Production gates remain.
 - 2026-07-27: Production-verified the completed Audi RS5 audit and singular Known Issues metadata repair on exact commit `4c7eaae690b285cf58b65a42873a4b362e6e6833` and Ready Production deployment `dpl_6tM1YYhxmT2ujARAtJ4vijn7JDJc` with the exact `au7o.io`, `www.au7o.io` and `autocarecompanion.vercel.app` aliases. The Vercel build passed TypeScript and generated 1,531/1,531 static pages. After explicit CDN and data-cache purges, cache-busted HTML returns 200, renders exactly the approved RS5 card/anchor and omits both archived IDs/titles, all eight removed commerce-link occurrences, commerce rails and `Open Hub`. Exact HTML/H1/Open Graph/Twitter title, standard/Open Graph/Twitter description, TechArticle description, FAQ/visible singular labels, canonical and indexability pass; six `/get-started` occurrences, both exact DataRep assets and all three warm-paper colors remain. Default-published API responses are empty for 2020/2025 and match the one manifest after-state field-for-field for 2021-2024 with no archived or cross-model contamination. Audi RS5 is production-complete at 3/3, leaving 31 of 44 Audi model groups.
 - 2026-07-26: Completed the database audit for all three frozen Audi RS5 records in one guarded schema-v2 transaction after current Audi/NHTSA/manufacturer-hosted primary-source research, a superseding-bulletin correction before generator publication, root release inspection and exact-hash Blind/Edge review. The current after-state publishes one diagnosis hold, `2021-2024 RS5 V6 Coolant-Pump Leak Diagnosis - TSB 2070349/4`, and archives both unsupported 2013-2015 4.2 FSI and B9 2.9 TFSI carbon-buildup aggregations. All six commerce claims and eight commerce-link URL occurrences are removed, including both claim clicks, both record clicks and both priority clicks. Ten distinct recall/TSB paths remain controlled proposals with `insert: false`; superseded PODS campaign 74D9 is deduplicated behind 74E3. The reviewed generator SHA-256 is `4225e012fbe6d9dc184f20c81cb6b43b196e20932c081f2cb0064b58d64f9b16`; exact Blind and Edge verdicts are `rs5_blind_review:no-blocker` and `rs5_edge_review:no-blocker`. The applicator/candidate suite passes 28/28 and the exact-model API regression passes 1/1; exact-before, one guarded apply, exact-after, after-state no-op, field-validated receipt refusal and complete historical verification all pass across 108 manifests, 101 active batches, seven superseded legacy batches and 436 guarded issue rows. Audi RS5 is database-audit complete at 3/3 and awaits an exact one-card Production render gate; 31 Audi database audits and 32 full Production gates remain.
 - 2026-07-26: Production-verified the completed Audi e-tron GT audit and exact-model API boundary repair on exact commit `ba492cc855a5dbfcd6c31df275f49afe320e7a29` and Ready Production deployment `dpl_2k33mxy7Y21y4ySmG9Y7bApu3YJ6` with all production aliases. The Vercel build passed TypeScript and generated 1,531/1,531 static pages. After explicit CDN and data-cache purges, cache-busted HTML renders exactly five approved cards/anchors and omits the archived title/ID, all 15 removed commerce-link occurrences, commerce rails and `Open Hub`. Exact HTML/H1/OG/Twitter title, standard/OG/Twitter description, canonical and indexability pass; six `/get-started` occurrences, two DataRep badges and all three warm-paper colors remain. Default-published API responses now match the exact 2021-2025 manifest ID sets and fields with zero RS e-tron GT contamination. Audi e-tron GT is production-complete at 6/6, leaving 32 of 44 Audi model groups.
@@ -118,6 +119,35 @@ context: []
 - 2026-07-15: User requested a professional sand/ink Known Issue card palette. Remove red, purple, yellow, and green card treatments; make state and recency understandable without color, using explicit copy, icons, borders, and hierarchy.
 
 ## Review Triage Log
+
+### 2026-07-27 — Audi RS7 release review
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1: (high 0, medium 1, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[medium]` `[patch]` Expanded the future Production gate to pin the exact TechArticle headline/description with no false repair-cost claim, FAQ JSON-LD plural wording and one-critical count, the visible GEO summary and the exact `All 2 Known Issues` heading.
+- review_notes:
+  - The initial Blind pass returned `rs7_release_blind:no-blocker`; Edge review found the one gate omission above while confirming that the staged package contains exactly the two ledgers, the 3D/model work is unstaged, and all other commit, Production-target/alias, identity, year-gap API, commerce, canonical/indexability, CTA, DataRep and warm-paper checks are correct.
+  - Fresh focused re-reviews inspected the patched staged ledger and returned `rs7_release_blind_followup:no-blocker` and `rs7_release_edge_followup:no-blocker`.
+
+### 2026-07-27 — Audi RS7 pre-apply review
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 4: (high 2, medium 2, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[high]` `[patch]` Rejected and deleted prepublication generator SHA-256 `91628ca47db687a060ce37aff821cb1f7a6e368284d36c4e8de047c2a88a0d86`, which copied RS5 three-row IDs, 4.2 FSI/2.9 V6 powertrains, RS5 coolant bulletin 2070349/4 and a three-record packet guard into RS7. The immutable four-row packet caught the mismatch before any review token, manifest, database write or ledger mutation.
+  - `[high]` `[patch]` Replaced the seeded wastegate-rattle/carbon and parts-shopping narrative with the semantically related, safety-critical turbo oil-supply path in VIN-first Audi recall 21H7/NHTSA 22V178, including its free dealer remedy and zero commerce.
+  - `[medium]` `[patch]` Bound the air-suspension diagnosis to current superseding TSB 2059363/6, exact RS7 model years 2021-2025, required equipment, C1260F0/U112100 symptom 262400, J775/J1135 wiring checks and first-versus-recurrent fault-state branches.
+  - `[medium]` `[patch]` Replaced a tautological proposal-identity check with twelve hard-coded title/source identities and changed three indirect/API landing links to exact NHTSA-hosted primary PDFs before freezing the review hash.
+- review_notes:
+  - Current TSB 2060420/2 documents a reproducible 2020-2021 RS7 4.0 TFSI mechanical-coolant-pump croak/jar at idle, not the seeded turbo-line degradation/leak aggregation, so the broad row is archived and the exact pump-noise path remains proposal-only.
+  - Independent Blind and Edge reviewers inspected exact generator SHA-256 `4890278f8a1951bda792830099fe4b1a47e6aa32a6b6556f2e734efbdb081333` and returned `rs7_blind_review:no-blocker` and `rs7_edge_review:no-blocker` before manifest publication or database mutation.
 
 ### 2026-07-26 — Audi RS5 release review
 
