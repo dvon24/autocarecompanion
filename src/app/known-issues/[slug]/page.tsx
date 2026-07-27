@@ -94,7 +94,9 @@ export async function generateMetadata({
   const minCost = getMinCost(issues);
   const maxCost = getMaxCost(issues);
   const costSegment = minCost && maxCost ? `, repair costs ($${minCost}-$${maxCost})` : '';
-  const description = `${issues.length} documented problems for the ${descPrefix}${vehicleName}${highCount > 0 ? `, including ${highCount} critical` : ''}. Symptoms${costSegment}, and ${metaSourceTail(totalReports)}.`;
+  const description = issues.length === 1
+    ? `1 documented problem for the ${descPrefix}${vehicleName}${highCount > 0 ? `, including ${highCount} critical` : ''}. ${costSegment ? `Symptoms${costSegment}, and` : 'Symptoms and'} ${metaSourceTail(totalReports)}.`
+    : `${issues.length} documented problems for the ${descPrefix}${vehicleName}${highCount > 0 ? `, including ${highCount} critical` : ''}. Symptoms${costSegment}, and ${metaSourceTail(totalReports)}.`;
 
   // Canonical splits between base and per-year variants. Each is a
   // distinct indexable URL; Google credits content + ranking to the
@@ -204,6 +206,7 @@ function generateFAQs(make: string, model: string, issues: KnownIssue[], yearRan
   const highIssues = issues.filter(i => i.severity === 'high');
   const totalReports = issues.reduce((sum, i) => sum + i.reportCount, 0);
   const costIssues = issues.filter(i => i.estimatedCost);
+  const issueNoun = issues.length === 1 ? 'issue' : 'issues';
 
   const faqs: { question: string; answer: string }[] = [];
 
@@ -214,13 +217,13 @@ function generateFAQs(make: string, model: string, issues: KnownIssue[], yearRan
     : `compiled from NHTSA recalls, manufacturer TSBs, and owner forum reports`;
   faqs.push({
     question: `What are the most common ${vehicleName} problems?`,
-    answer: `According to ${analysisAttribution(totalReports)}, the ${yearStr}${vehicleName} has ${issues.length} documented issues. The most frequently reported are: ${topIssues}. ${highIssues.length > 0 ? `Of these, ${highIssues.length} ${highIssues.length === 1 ? 'is' : 'are'} rated critical and should be addressed promptly.` : 'None are rated critical, but regular maintenance is recommended.'}`,
+    answer: `According to ${analysisAttribution(totalReports)}, the ${yearStr}${vehicleName} has ${issues.length} documented ${issueNoun}. ${issues.length === 1 ? `The documented issue is: ${topIssues}.` : `The most frequently reported are: ${topIssues}.`} ${highIssues.length > 0 ? `Of these, ${highIssues.length} ${highIssues.length === 1 ? 'is' : 'are'} rated critical and should be addressed promptly.` : 'None are rated critical, but regular maintenance is recommended.'}`,
   });
 
   // FAQ 2: Reliability
   faqs.push({
     question: `Is the ${vehicleName} reliable?`,
-    answer: `The ${yearStr}${vehicleName} has ${issues.length} known issues ${reliabilityCorpus}. ${highIssues.length === 0 ? `No issues are rated critical, suggesting generally good reliability.` : `${highIssues.length} issue${highIssues.length > 1 ? 's are' : ' is'} rated critical: ${highIssues.map(i => i.title).join(' and ')}. Prospective buyers should inspect for these issues and factor potential repair costs into their purchase decision.`} Regular maintenance following the manufacturer's schedule helps prevent many common problems.`,
+    answer: `The ${yearStr}${vehicleName} has ${issues.length} known ${issueNoun} ${reliabilityCorpus}. ${highIssues.length === 0 ? `No issues are rated critical, suggesting generally good reliability.` : `${highIssues.length} issue${highIssues.length > 1 ? 's are' : ' is'} rated critical: ${highIssues.map(i => i.title).join(' and ')}. Prospective buyers should inspect for these issues and factor potential repair costs into their purchase decision.`} Regular maintenance following the manufacturer's schedule helps prevent many common problems.`,
   });
 
   // FAQ 3: Maintenance cost
@@ -237,7 +240,7 @@ function generateFAQs(make: string, model: string, issues: KnownIssue[], yearRan
   if (yearRange && yearRange.max - yearRange.min > 2) {
     faqs.push({
       question: `What year ${vehicleName} is the most reliable?`,
-      answer: `Reliability varies across model years of the ${vehicleName}. Based on documented issues, problems are most commonly reported in earlier model years. Au7o recommends checking the specific known issues for your target year before purchasing, and having a pre-purchase inspection performed by a qualified mechanic. Our known issues database covers the ${yearStr}${vehicleName} with ${issues.length} documented issues ${reliabilityCorpus}.`,
+      answer: `Reliability varies across model years of the ${vehicleName}. Based on documented issues, problems are most commonly reported in earlier model years. Au7o recommends checking the specific known issues for your target year before purchasing, and having a pre-purchase inspection performed by a qualified mechanic. Our known issues database covers the ${yearStr}${vehicleName} with ${issues.length} documented ${issueNoun} ${reliabilityCorpus}.`,
     });
   }
 
@@ -377,6 +380,10 @@ export default async function KnownIssuesArticlePage({
   // H1, <title>, OG, Twitter, and TechArticle.headline share the same
   // concise label. The helper preserves the year when it fits safely.
   const title = knownIssuesArticleTitle(slug, yearStr, vehicleName, issues.length);
+  const structuredProblemNoun = issues.length === 1 ? 'problem' : 'problems';
+  const structuredDetailNoun = articleMinCost && articleMaxCost
+    ? 'with symptoms, repair costs, and solutions'
+    : 'with symptoms and solutions';
 
   // Find most critical issues for the GEO summary
   const criticalIssues = issues.filter(i => i.severity === 'high');
@@ -434,7 +441,7 @@ export default async function KnownIssuesArticlePage({
       {/* JSON-LD Structured Data */}
       <TechnicalArticleJsonLd
         title={title}
-        description={`${issues.length} documented problems for the ${yearStr} ${vehicleName} with symptoms, repair costs, and solutions.`}
+        description={`${issues.length} documented ${structuredProblemNoun} for the ${yearStr} ${vehicleName} ${structuredDetailNoun}.`}
         url={articleUrl}
         datePublished={articleDates.published}
         dateModified={articleDates.modified}
@@ -496,7 +503,7 @@ export default async function KnownIssuesArticlePage({
         {/* GEO Summary — blockquote style for AI citation */}
         <blockquote className="border-l-4 border-[#3B82F6] pl-5 mb-10">
           <p className="leading-relaxed" style={{ color: '#475569' }}>
-            According to {analysisAttribution(totalReports)}, the {yearStr} {vehicleName} has {issues.length} documented known issues
+            According to {analysisAttribution(totalReports)}, the {yearStr} {vehicleName} has {issues.length} {issues.length === 1 ? 'documented issue' : 'documented known issues'}
             {highCount > 0 ? (
               <>, with {highCount} rated critical. {criticalIssues.length > 0 && (
                 <>The most serious {criticalIssues.length === 1 ? 'is' : 'are'}{' '}
@@ -592,7 +599,7 @@ export default async function KnownIssuesArticlePage({
             {/* Issues List */}
             <section>
               <h2 className="text-xl font-semibold mb-4" style={{ color: '#0B1220' }}>
-                All {issues.length} Known Issues
+                All {issues.length} Known {issues.length === 1 ? 'Issue' : 'Issues'}
               </h2>
               {/* Unified "find your issue" bar — free fuzzy/keyword search,
                   Plus AI natural-language search, and a camera to snap a
