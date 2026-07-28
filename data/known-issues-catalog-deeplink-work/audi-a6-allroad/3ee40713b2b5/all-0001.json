@@ -1,0 +1,751 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "packetKind": "known-issues-catalog-deeplink-work",
+  "snapshotHash": "3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102",
+  "cohort": "all",
+  "packetId": "all-0001",
+  "records": [
+    {
+      "id": "audi-a6-allroad-48v-mild-hybrid-2020",
+      "make": "Audi",
+      "model": "A6 allroad",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Premium",
+        "Premium Plus",
+        "Prestige"
+      ],
+      "engines": [
+        "3.0T"
+      ],
+      "category": "electrical",
+      "title": "48V Mild Hybrid System Belt-Alternator-Starter (BAS) Failure",
+      "description": "The 48V mild hybrid system uses a belt-driven alternator-starter (BAS) that can fail, disabling the start-stop function, coasting mode, and electric boost assist. The BAS unit is essentially a large motor-generator that replaces the traditional alternator and starter. When it fails, the 48V lithium-ion battery cannot charge, triggering multiple warning messages.",
+      "solution": "Replace the 48V BAS unit. Check the 48V battery state of health — if the BAS failed from an internal short, the battery may also need replacement. The serpentine belt and tensioner should be replaced at the same time. Requires dealer-level diagnostic tool for 48V system calibration after replacement.",
+      "severity": "high",
+      "confidence": "medium",
+      "symptoms": [
+        "Start-stop system inoperative warning",
+        "Multiple electrical warning messages on startup",
+        "Coasting function disabled",
+        "Reduced fuel economy",
+        "Check engine light with electrical system codes"
+      ],
+      "affectedSystems": [
+        "Electrical",
+        "48V Hybrid System"
+      ],
+      "dtcCodes": [
+        "P0A0F",
+        "P0A1A",
+        "P0B2900",
+        "P0CA700",
+        "U046900"
+      ],
+      "estimatedCostLow": 2000,
+      "estimatedCostHigh": 4500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2021/AUDI/A6%20ALLROAD",
+          "type": "tsb",
+          "title": "Audi TSB - 48V MHEV System Service"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "The 48V system is NOT dangerous to work around (unlike 400V+ full EVs), but always disconnect the 12V battery first to deactivate the 48V system before touching the BAS or its wiring.",
+          "upvotes": 0,
+          "needsReview": false
+        },
+        {
+          "type": "warning",
+          "content": "This repair requires ODIS or equivalent dealer-level diagnostic for 48V calibration. Independent shops need a J2534 passthru device with Audi subscription. Generic OBD tools cannot calibrate the 48V system.",
+          "upvotes": 0,
+          "needsReview": false
+        },
+        {
+          "type": "tip",
+          "content": "Check Audi extended warranty coverage — many 48V system components are covered beyond the standard warranty due to early reliability concerns.",
+          "upvotes": 0,
+          "needsReview": false
+        },
+        {
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Audi%20A6%20allroad&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Audi%20A6%20allroad&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Audi%20A6%20allroad&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality remanufactured alternator with high output for reliable charging",
+          "partName": "Remanufactured Alternator",
+          "partBrand": "Denso",
+          "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Remanufactured%20Alternator%20Audi%20A6%20allroad&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Premium rebuilt alternator backed by extensive warranty coverage",
+          "partName": "Premium Remanufactured Alternator",
+          "partBrand": "Remy",
+          "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Premium%20Remanufactured%20Alternator%20Audi%20A6%20allroad&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality starter motor for reliable engine cranking",
+          "partName": "Starter Motor",
+          "partBrand": "Denso",
+          "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Starter%20Motor%20Audi%20A6%20allroad&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Remanufactured starter with gear reduction for improved cranking performance",
+          "partName": "Remanufactured Starter Motor",
+          "partBrand": "Remy",
+          "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Remanufactured%20Starter%20Motor%20Audi%20A6%20allroad&tag=au7o-20"
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=4N0903028R&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=4N0903028R",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=4N0903028R",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "48V belt-alternator-starter (BSG/BAS) unit",
+          "priceHigh": null,
+          "oemPartNumber": "4N0903028R",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 290,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2025-03-05",
+      "reviewedOn": "2026-03-13",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [
+        "audi-a6-48v-mild-hybrid-2019",
+        "audi-q8-48v-system-2019"
+      ],
+      "vehicle": {
+        "make": "Audi",
+        "model": "A6 allroad",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [
+          "Premium",
+          "Premium Plus",
+          "Prestige"
+        ],
+        "engines": [
+          "3.0T"
+        ]
+      },
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "1375ef5ae5897fb3ccc813baf16ba29126f640f626c1cc2225d024d56f0d2aa7",
+        "yearsHash": "edd01884cda29f628657b1d9a2183cacbb75d10ea91951b84128ee86d2fff479",
+        "trimsHash": "0c5407b4314db6036a444ac8e8264192f95a3ed4cb9ad13e464621cd315e3d33",
+        "enginesHash": "05e29544a76d97451ab2cf7d8229ef1fb584dc26e2125db69fbae348fc24539e",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "454054a9f146d5cd298afda6afeea19c1023f49ce5dc01ac3e948d787a78423c",
+        "descriptionHash": "27b4411979066c329845ae4ace900db187d84575b4e33a21ef71ce41ba597e8e",
+        "solutionHash": "ea94ba31e64125264c92045d3f4e5eb6ab06a002651032a025382bc1f50246bc",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "62298b8fdacf63c64d8229812348ab5f8c78f4573b904d3a69a26dfd325bc102",
+        "affectedSystemsHash": "f886d20d23c9bfb21ff98ae0fd72214ea2254e50aee07e1545130c1a7382dc6b",
+        "dtcCodesHash": "4b493e64af8d9a1ac8dd32f460c424a1d25c5d1bf34dd22ea776de9bd8e661f3",
+        "estimatedCostLowHash": "81a83544cf93c245178cbc1620030f1123f435af867c79d87135983c52ab39d9",
+        "estimatedCostHighHash": "c746ee2edf45fa00fca8d08045b2575aac17cf3eeb3f2b0da5e5301fae8d1e47",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "6e2eba879959f5dc49326381f64c1e995136468b54942016d4025855a2626aab",
+        "communityRecommendationsHash": "edb4549615234b414db5e3bc9302ed1311c3f1dc7ab0d795ef36eb4b596dc685",
+        "fixPartsHash": "efddd486cd5afcb864aa55866725990a4d4cd5ae59209734ae40bfc1e84deb9a",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "09895de0407bcb0386733daa14bdb5dfa544505530c634334a05a60f161b71fc",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "0d3524e158e4cad04f9a13a3389b12fdd486fa00f7571cc6d523620aca1bb9d3",
+        "reviewedOnHash": "49a1fe1e78808830b448b76499f057f0ac7825e8cc98d211a432c17770257f65",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "2adc989a7ba4b619eb9b838d256ea811150c564fc82b6237a782d649e6d7494a",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6",
+          "communityRecommendations:7",
+          "communityRecommendations:8",
+          "communityRecommendations:9"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "48V belt-alternator-starter (BSG/BAS) unit",
+          "oemPartNumber": "4N0903028R",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=4N0903028R&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=4N0903028R",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=4N0903028R",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Optima",
+              "url": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Audi%20A6%20allroad&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "ACDelco",
+              "url": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Audi%20A6%20allroad&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:5",
+          "system": "communityRecommendations",
+          "index": 5,
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Battery Tender",
+              "url": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Audi%20A6%20allroad&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:6",
+          "system": "communityRecommendations",
+          "index": 6,
+          "type": "part",
+          "content": "OEM-quality remanufactured alternator with high output for reliable charging",
+          "partName": "Remanufactured Alternator",
+          "partBrand": "Denso",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Denso",
+              "url": "https://www.amazon.com/s?k=Denso%20Remanufactured%20Alternator%20Audi%20A6%20allroad&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:7",
+          "system": "communityRecommendations",
+          "index": 7,
+          "type": "part",
+          "content": "Premium rebuilt alternator backed by extensive warranty coverage",
+          "partName": "Premium Remanufactured Alternator",
+          "partBrand": "Remy",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Remy",
+              "url": "https://www.amazon.com/s?k=Remy%20Premium%20Remanufactured%20Alternator%20Audi%20A6%20allroad&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:8",
+          "system": "communityRecommendations",
+          "index": 8,
+          "type": "part",
+          "content": "OEM-quality starter motor for reliable engine cranking",
+          "partName": "Starter Motor",
+          "partBrand": "Denso",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Denso",
+              "url": "https://www.amazon.com/s?k=Denso%20Starter%20Motor%20Audi%20A6%20allroad&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:9",
+          "system": "communityRecommendations",
+          "index": 9,
+          "type": "part",
+          "content": "Remanufactured starter with gear reduction for improved cranking performance",
+          "partName": "Remanufactured Starter Motor",
+          "partBrand": "Remy",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Remy",
+              "url": "https://www.amazon.com/s?k=Remy%20Remanufactured%20Starter%20Motor%20Audi%20A6%20allroad&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "audi-a6-allroad-mild-hybrid-battery-2020",
+      "make": "Audi",
+      "model": "A6 allroad",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "48V Mild Hybrid System Battery Degradation",
+      "description": "The 48V lithium-ion battery for the mild hybrid (MHEV) system loses capacity, causing start-stop to stop functioning, reduced regenerative braking, and occasional fault messages. Battery is located under the luggage compartment floor.",
+      "solution": "Replace 48V lithium-ion battery. Requires coding/registration with dealer scan tool (ODIS). Battery must be matched to VIN. Do not attempt to replace with incompatible battery. Check 48V wiring for corrosion.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Start-stop no longer functions",
+        "MHEV fault message",
+        "Reduced coasting/sailing capability",
+        "Electrical system warning",
+        "Rougher engine restarts"
+      ],
+      "affectedSystems": [
+        "48V mild hybrid system",
+        "Start-stop system"
+      ],
+      "dtcCodes": [
+        "P0A0F",
+        "P0A1A",
+        "P0B2900",
+        "P0CA700",
+        "U046900"
+      ],
+      "estimatedCostLow": 400,
+      "estimatedCostHigh": 900,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2020/AUDI/A6%20ALLROAD",
+          "type": "nhtsa",
+          "title": "NHTSA Vehicle Page for 2020 Audi A6 allroad - Owner Complaints and Investigations"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=Q9z6qv9g4xE",
+          "type": "video",
+          "title": "Mild Hybrid 48V Battery Replacement on Audi A6 allroad - DIY Repair by BimmerTech"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Audi%20A6%20allroad&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Audi%20A6%20allroad&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Audi%20A6%20allroad&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Premium electrical tape for wiring repairs and harness wrapping",
+          "partName": "Super 33+ Vinyl Electrical Tape",
+          "partBrand": "3M",
+          "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Audi%20A6%20allroad&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+          "partName": "Split Wire Loom Tubing",
+          "partBrand": "DEI",
+          "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Audi%20A6%20allroad&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+          "partName": "Automotive Terminal Connector Kit",
+          "partBrand": "Molex",
+          "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Audi%20A6%20allroad&tag=au7o-20"
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=4N0915105F&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=4N0915105F",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=4N0915105F",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "48V lithium-ion mild-hybrid battery (drive motor battery pack)",
+          "priceHigh": null,
+          "oemPartNumber": "4N0915105F",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Audi",
+        "model": "A6 allroad",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "1375ef5ae5897fb3ccc813baf16ba29126f640f626c1cc2225d024d56f0d2aa7",
+        "yearsHash": "d62004824f6db5895fdb93115d9ab38c7d09a07f3ab2a767994901c0b850c75d",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "d464273f52425e9dd68e4d4cc95297fccd5f355bd310769d102fca6f07db0065",
+        "descriptionHash": "a22cc9b30d89d8f17af43956ff6f32e5d6a6fcd26d6f2d91c3e8d84adb74fbf1",
+        "solutionHash": "e607de8889d22c81188d15012248b93a429e1929883a475d79bd18bd226beefc",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "d81132a426066298c71936b21c190b340bbe1fd01490ef229f443e8c02947d66",
+        "affectedSystemsHash": "a4978771dbf1e555b0e299f315137358f6beff1e4d27de62014cb47a8473cc4c",
+        "dtcCodesHash": "4b493e64af8d9a1ac8dd32f460c424a1d25c5d1bf34dd22ea776de9bd8e661f3",
+        "estimatedCostLowHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "estimatedCostHighHash": "bdc5d8a48c23897906b09a9a3680bd2e9c8b3121edbda36f949800f0959c8d55",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "cf4fd9687c1e76f58c14bfe0d8ada2761297c49f30b4f3886780694786e62bc5",
+        "communityRecommendationsHash": "189720cf6ba3c07c6c5f172c167e4df99bf4bb7fd88ccbc27f28657c16d328e5",
+        "fixPartsHash": "f1e150e62fe5a8e8a261735ac899f0edf2fcf2bcf8d7c1dc7e0eb40e5297ae1c",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0",
+          "communityRecommendations:1",
+          "communityRecommendations:2",
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "48V lithium-ion mild-hybrid battery (drive motor battery pack)",
+          "oemPartNumber": "4N0915105F",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=4N0915105F&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=4N0915105F",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=4N0915105F",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Optima",
+              "url": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Audi%20A6%20allroad&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "ACDelco",
+              "url": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Audi%20A6%20allroad&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Battery Tender",
+              "url": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Audi%20A6%20allroad&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Premium electrical tape for wiring repairs and harness wrapping",
+          "partName": "Super 33+ Vinyl Electrical Tape",
+          "partBrand": "3M",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "3M",
+              "url": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Audi%20A6%20allroad&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+          "partName": "Split Wire Loom Tubing",
+          "partBrand": "DEI",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "DEI",
+              "url": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Audi%20A6%20allroad&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:5",
+          "system": "communityRecommendations",
+          "index": 5,
+          "type": "part",
+          "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+          "partName": "Automotive Terminal Connector Kit",
+          "partBrand": "Molex",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Molex",
+              "url": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Audi%20A6%20allroad&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    }
+  ]
+}
