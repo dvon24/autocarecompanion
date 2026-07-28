@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: 'e450d2e60e901a50a8b25e5628df9a290f23798f'
+baseline_revision: 'c53b4a0216bb7928c512be66b56c62974e47b3dd'
 review_loop_iteration: 0
 followup_review_recommended: false
 context: []
@@ -79,6 +79,7 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-28: Completed the database audit for both frozen Audi A4 allroad records in one guarded schema-v2 transaction. NHTSA recall 18V229 and current Audi Service Action 19N8 replace the generic water-pump shopping card with an exact VIN-first, no-commerce 2013-2016 A4 allroad EA888 Evo2 after-run coolant-pump campaign path; the unsupported 2013-2024 rear-differential-seal aggregation is archived because current exact Audi material supports a distinct 2017-2025 quattro Ultra vibration/binding diagnosis, not the seeded chronic seal, climate, mileage, fluid or repair claims. All three commerce claims and five URL occurrences are removed; no clicked claim, record or priority traffic was displaced. Thirteen separately sourced paths across 14 primary-source URLs remain controlled proposals with `insert: false`; no record was inserted. Exact Blind and Edge verdicts are `a4_allroad_blind_review:no-blocker` and `a4_allroad_edge_review:no-blocker` on combined reviewed generator SHA-256 `a049f01f0bc6340554e6800e7e318afd3584e07f72fea074560ecfeb1a41158c`. Six commerce tests, 25 applicator/coverage tests and three candidate tests pass (34/34); exact-before, one guarded apply, exact-after, after-state no-op, receipt refusal and complete history verification pass across 111 manifests, 104 active batches, seven superseded legacy batches and 448 guarded issue rows. Audi A4 allroad is database-audit complete at 2/2 and awaits its exact one-card Production gate; 28 Audi database audits and 29 full Production gates remain.
 - 2026-07-28: Production-verified the completed Audi S5 audit on exact audit commit `e450d2e60e901a50a8b25e5628df9a290f23798f` and Ready Production deployment `dpl_4t4FQn4J8A9VqoY1gbLKocdorT4k`. Vercel reports target `production` and the exact `au7o.io`, `www.au7o.io` and `autocarecompanion.vercel.app` aliases; both local and cloud builds passed TypeScript and generated 1,531/1,531 static pages. After explicit CDN and data-cache purges, cache-busted HTML returns 200, renders exactly the two approved S5 titles/anchors and omits all four archived IDs/titles, all 21 removed URL occurrences, retail markers, commerce rails and `Open Hub`. Exact H1/HTML/OG/Twitter titles, current plural standard/OG/Twitter description, TechArticle, zero-critical FAQ/visible summary, `All 2 Known Issues`, canonical and indexability pass. Six `/get-started` occurrences, both exact DataRep assets and all three warm-paper colors remain. Every default-published API year from 2008 through 2025 matches the manifest field-for-field: only the P052E00 diagnosis for 2010-2017, only the P000000/33688 diagnosis for 2018, and no rows in 2008-2009 or 2019-2025, with no archived or cross-model contamination. Audi S5 is production-complete at 6/6, making 15 of 44 Audi model groups complete and leaving 29.
 - 2026-07-28: Completed the database audit for all six frozen Audi S5 records in one guarded schema-v2 transaction. Exact Audi/NHTSA primary sources retain two diagnosis-first records: 2018 S5/S5 Cabriolet/S5 Sportback 3.0L EA839 mechanical coolant-pump fault P000000/33688 under TSB 2058890/4, and the body/year-branched 2010-2017 3.0L crankcase-breather P052E00 paths under TSBs 2060033/3 and 2060259/1. Four unsupported cross-generation carbon, crankshaft-pulley, supercharger-intercooler-pump and thermostat/water-pump aggregations are archived. All 11 commerce claims and 21 URL occurrences are removed, including two claim clicks, two record clicks and two priority clicks. Fourteen exact recall/TSB paths remain controlled proposals with `insert: false`; no record was inserted. The reviewed generator SHA-256 `ec96a3c679f0adf329064e05099978c7e61150f36200cf2a36d1cae1d7d3b004` passed `s5_blind_review:no-blocker` and `s5_edge_review:no-blocker`. Six commerce tests, 25 applicator/coverage tests and three candidate tests pass (34/34); exact-before, one guarded apply, exact-after, after-state no-op and complete history verification pass across 110 manifests, 103 active batches, seven superseded legacy batches and 446 guarded issue rows. Audi S5 is database-audit complete at 6/6 and awaits an exact two-card Production gate; 29 Audi database audits and 30 full Production gates remain.
 - 2026-07-27: Production-verified the completed Audi RS7 audit on exact audit commit `cca8b8d006f59dca6a52c59251c0fd50e5eb3bf3` and Ready Production deployment `dpl_3wYkPjdQGBPtXHTxLTRU2wXRN46n`. Vercel reports target `Production` and the exact `au7o.io`, `www.au7o.io` and `autocarecompanion.vercel.app` aliases; its build passed TypeScript and generated 1,531/1,531 static pages. After explicit CDN and data-cache purges, cache-busted HTML returns 200, renders exactly the two approved titles/anchors and omits both archived IDs/titles, all 14 removed URL occurrences, commerce markers/rail and `Open Hub`. Exact H1/HTML/OG/Twitter titles, standard/OG/Twitter descriptions, TechArticle, FAQ, visible GEO summary, `All 2 Known Issues`, canonical and indexability pass. Six `/get-started` occurrences, both exact DataRep assets and all three warm-paper colors remain. Every default-published API year from 2013 through 2026 matches the manifest: only the recall for 2014-2017, only the air-suspension diagnosis for 2021-2025, and no rows in 2013, 2018-2020 or 2026, with no archived or cross-model contamination. Audi RS7 is production-complete at 4/4, making 14 of 44 Audi model groups complete and leaving 30.
@@ -122,6 +123,20 @@ context: []
 - 2026-07-15: User requested a professional sand/ink Known Issue card palette. Remove red, purple, yellow, and green card treatments; make state and recency understandable without color, using explicit copy, icons, borders, and hierarchy.
 
 ## Review Triage Log
+
+### 2026-07-28 — Audi A4 allroad pre-apply review
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1: (high 0, medium 1, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[medium]` `[patch]` Repeated the supersession sweep against current NHTSA-hosted Audi publications and moved proposal evidence from older transmission, quattro Ultra, display and J775 bulletin revisions to current TSBs 2064312/7, 2059057/12, 2063913/6 and 2067531/6 before freezing the final generator.
+- review_notes:
+  - The final two-record manifest contains one published VIN-first recall/service-action path, one archived unsupported aggregation and thirteen `insert: false` proposals across 14 exact primary-source URLs; both after-states contain zero commerce, costs, mileage ranges or seeded owner telemetry.
+  - Independent Blind and Edge reviewers inspected the exact combined core/config generator SHA-256 `a049f01f0bc6340554e6800e7e318afd3584e07f72fea074560ecfeb1a41158c` and returned `a4_allroad_blind_review:no-blocker` and `a4_allroad_edge_review:no-blocker` before manifest publication or database mutation.
+  - The exact-before two-row state, one atomic transaction, receipt-backed exact-after state, no-op dry-run, receipt no-clobber refusal and all-history verification across 448 guarded rows pass without drift.
 
 ### 2026-07-28 — Audi S5 release review
 
