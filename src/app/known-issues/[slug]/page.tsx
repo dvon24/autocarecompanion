@@ -39,7 +39,10 @@ export const dynamicParams = true; // Allow on-demand rendering of new slugs
 
 // Add models here as their full-record audit reaches the SEO verification
 // gate. This preserves existing metadata output for previously indexed pages.
-const SEO_AUDITED_MODEL_SLUGS = new Set(['toyota-rav4']);
+const SEO_AUDITED_MODEL_SLUGS = new Set([
+  'toyota-rav4',
+  'audi-a6-allroad',
+]);
 
 // --- Static generation ---
 
