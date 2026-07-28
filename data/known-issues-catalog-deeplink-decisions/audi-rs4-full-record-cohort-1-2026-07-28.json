@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 2,
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "auditScope": "full-record",
+  "batchId": "audi-rs4-full-record-cohort-1-2026-07-28",
+  "snapshotHash": "3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102",
+  "sourceSnapshotFileHash": "6e4c8d64ced097e83111d27c7f46e1f1c08b79dc40423fee81ebc9d9c54cd455",
+  "packetFileHash": "82afbdde990dad7c5e0e3055d28927226ee377f2e5901aeaa8b52bd79267bbcd",
+  "reviewApproval": {
+    "approvedAfterBlindAndEdgeReview": true,
+    "approvedOn": "2026-07-28",
+    "blindReviewer": "rs4_blind_review:no-blocker",
+    "edgeReviewer": "rs4_edge_review:no-blocker",
+    "reviewedGeneratorFileHash": "abb78d8f139c5ec87b1402f759d5b9415de6dde964e9124f9ceaaba3e458e332"
+  },
+  "researchedWith": "Ultra-effort current Audi/NHTSA-hosted primary-source review; no LLM API and no commerce approval",
+  "controlledDeltaProposals": [
+    {
+      "title": "2007-2008 RS4 Passenger-Frontal-Airbag Inflator Recall / NHTSA 17V032 - Check VIN",
+      "disposition": "proposal-only",
+      "insert": false,
+      "sources": [
+        "https://static.nhtsa.gov/odi/rcl/2017/RCAK-17V032-8559.pdf"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "audi-rs4-b7-carbon-buildup-2007",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the unsupported assertion that every 2007-2008 B7 RS4 develops significant intake-valve carbon and needs a fixed 30,000-60,000-mile, $800-$1,500 service with Audi deposit and cold-start-misfire guidance. Retain a symptom-triggered diagnosis card, distinguish injector deposits from confirmed intake-valve deposits, and remove both unrelated commerce recommendations.",
+      "evidence": [
+        {
+          "label": "Current Audi TSB 2014753/13 covers all 2000-2025 Audi vehicles, lists deposit-related cold-start roughness, misfires and reduced performance, and says gasoline additive removes injector and combustion-chamber deposits but not FSI intake-valve deposits",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11012476-0001.pdf"
+        },
+        {
+          "label": "Audi TSB 2022030/2 is specific to the B7 RS4 4.2L BNS engine and uses P0300/P0301-P0310 cold-start misfire diagnosis to distinguish injector deposits before additional repairs",
+          "url": "https://charm.li/Audi/2008/RS4%20Quattro%20Cabriolet%20%288HE%29%20V8-4.2L%20%28BNS%29/Repair%20and%20Diagnosis/Powertrain%20Management/Technical%20Service%20Bulletins/Customer%20Interest/Fuel%20System%20-%20MIL%20ON%2FDTC%20P0300%2FP0301-P0310%20Stored/"
+        }
+      ],
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "8877896d60a0f59dd366759b0be1c1b9155dcd8335c2264a18cc7420cf619f4b",
+        "yearsHash": "434fb71d493fbf5af00a9ddbd33674074dd04b3d228e6fd58e485ff4406f37b1",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "2334d9aa3f35f7f6318292e3b8ebedd746bd4aaa1ca52cfaf3ffa8d5402cc47b",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "eab9ed3c9c5d4a7aa5a8dbb887405afc11fd6a21e30545da32d9d89a77e633d5",
+        "descriptionHash": "c0d2777ca4bfe74cd2539371c13b8d98bace62dd287937b16073893693b8bc54",
+        "solutionHash": "1507e25ae0a64703f8ea8b0201c1047febbbcdd5803e7eccb8f828daaab64e2f",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "78e7ec7820e1a78de590bd47b6f5ea3114283c26ac3f42e685b7ae20bad7816f",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "023f250f06a9a852d9b047988aa98d05e4c452abb46c117b122f35dc152014b6",
+        "estimatedCostLowHash": "1a1cf797fabe7f95836fabeca626907c77b3e6c9aff7c2290b396a238c69362e",
+        "estimatedCostHighHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "fe0fcc683a918ada37469b583a3c541d058391e587b1f958842f7e970c526027",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "66edc168337c8435b01527585a4a4002c10189e4971a721532a20bee1c7e1614",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "Audi",
+        "model": "RS4",
+        "years": [
+          2007,
+          2008
+        ],
+        "trims": [],
+        "engines": [
+          "4.2L FSI V8"
+        ],
+        "category": "engine",
+        "title": "2007-2008 RS4 Deposit-Related Cold-Start Misfire - Diagnose Before Cleaning",
+        "description": "Audi guidance documents that fuel-related deposits can cause a rough cold start, hesitation, reduced performance and misfire faults. For the B7 RS4 4.2L FSI V8, Audi TSB 2022030/2 treats P0300 and cylinder-misfire faults as a diagnostic starting point and first distinguishes injector deposits from other causes. These symptoms do not by themselves prove intake-valve buildup, and Audi does not specify a recurring 30,000-60,000-mile cleaning interval in the cited guidance.",
+        "solution": "Have the cold-start event and stored faults diagnosed before authorizing intake cleaning. The B7 RS4 bulletin first checks whether its fuel-additive and follow-up procedure resolves injector-deposit misfires. Current TSB 2014753/13 warns that gasoline additive can clean FSI injectors and combustion chambers but not FSI intake valves. If the misfire remains, the shop should continue guided diagnosis and confirm inlet-valve deposits before using the applicable mechanical-cleaning procedure. Do not buy a scanner, oil bundle or cleaning service solely from this card.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Rough running after a cold start",
+          "Cold-start misfire with the malfunction indicator lamp on",
+          "Hesitation or reduced engine performance"
+        ],
+        "affectedSystems": [
+          "fuel injectors",
+          "intake valves",
+          "engine management system"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0305",
+          "P0306",
+          "P0307",
+          "P0308"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Audi TSB 2014753/13 - Gasoline Quality and Deposit-Related Misfire Diagnosis",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11012476-0001.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "Audi TSB 2022030/2 - B7 RS4 Deposit-Related Cold-Start Misfire Diagnosis",
+            "url": "https://charm.li/Audi/2008/RS4%20Quattro%20Cabriolet%20%288HE%29%20V8-4.2L%20%28BNS%29/Repair%20and%20Diagnosis/Powertrain%20Management/Technical%20Service%20Bulletins/Customer%20Interest/Fuel%20System%20-%20MIL%20ON%2FDTC%20P0300%2FP0301-P0310%20Stored/"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-28",
+        "contentUpdatedOn": "2026-07-28",
+        "contentUpdateSummary": "Replaced a universal carbon-buildup, fixed-interval and fixed-cost narrative with Audi symptom-triggered cold-start-misfire diagnosis; distinguished injector deposits from confirmed FSI intake-valve deposits and removed two unrelated commerce claims and URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "audi-rs4-rs5-carbon-buildup-2018",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the unsupported chronic-defect, fixed 60,000-mile, $1,000-$1,800, dual-catch-can, additive, 5,000-mile oil and drive-hard narrative with current Audi TFSI guidance for rough cold idle and sporadic misfire caused by confirmed inlet-port or inlet-valve deposits. Remove the generic forum citation, the commerce claim and all unsupported tips.",
+      "evidence": [
+        {
+          "label": "Current Audi TSB 2075530/1 covers all 2005-2024 Audi TFSI vehicles, identifies inlet-port and inlet-valve deposits when cold-start rough idle and sporadic misfire are confirmed, and specifies walnut blasting without cylinder-head removal",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11009928-0001.pdf"
+        },
+        {
+          "label": "Current Audi TSB 2014753/13 provides the wider gasoline-quality and deposit differential and does not prescribe the seeded catch-can, oil interval, fixed cleaning interval or drive-hard advice",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11012476-0001.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "8877896d60a0f59dd366759b0be1c1b9155dcd8335c2264a18cc7420cf619f4b",
+        "yearsHash": "9f10d37c49c46ad534eaf4a9ac072ee8eb6787a3f8ef2892606069a1102f42b7",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "bc385020fdca62e4c497f110b17c2620251eb89a7780af0cfb3f54d9d98c7018",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "40bf2ad3c3fa36ca048d6fd5a831b95b3f3b91c4104c83c5ead028b79a3289e7",
+        "descriptionHash": "c3ffbac54634b6931ad45ad9719a5fc3924aa62b5faeb610d2a0c705a0192bfb",
+        "solutionHash": "ffb5931f30d0974910b1445291a84904181d39a7f344711ade71b0f8c50073b9",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "3fad8cc7a6b48fbe260d9becca233d417db44555834b2dcd7fc7e771bbb18148",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "f92c67799d6958ed185ea7a533f3fbe12a85b13d944e4e5a092dbd77589215bf",
+        "estimatedCostLowHash": "40510175845988f13f6162ed8526f0b09f73384467fa855e1e79b44a56562a58",
+        "estimatedCostHighHash": "e49ec846db7527df7ff483009fe61700e6435072c8c5b551ab08f0a13fc45a07",
+        "typicalMileageLowHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "typicalMileageHighHash": "ac911e4a8f2b48c071ce0fbb434c039c48e60e8d96dff768f69daa740af0c3bb",
+        "citationsHash": "751158a42b9ae9011a44c1a617171f8e01542046f78ab520ab24704a9075dd26",
+        "communityRecommendationsHash": "2ab321ab1763e07aa661887452791039fe1eb2524fb372881874339307ff51ea",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "bae31190cd3f026a74b1b2f9a10646f01a6ac1e90da2b9da377dfcf9bf6190a4",
+        "claimIds": [
+          "communityRecommendations:0"
+        ]
+      },
+      "after": {
+        "make": "Audi",
+        "model": "RS4",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "2.9T"
+        ],
+        "category": "engine",
+        "title": "2018-2023 RS4 2.9T Cold-Start Misfire from Confirmed Inlet Deposits",
+        "description": "Audi TSB 2075530/1 documents that deposits in TFSI inlet ports and inlet valves can cause rough idling after a cold start and sporadic misfires, especially on vehicles used mainly for short trips. For the 2018-2023 RS4 2.9T record, this supports a symptom-triggered diagnosis and repair path; it does not establish that every vehicle has a chronic defect or needs cleaning at a fixed mileage.",
+        "solution": "Confirm the cold-start complaint, review the engine-control-unit event memory and verify inlet-port or inlet-valve deposits before cleaning. When that condition is confirmed, Audi TSB 2075530/1 directs the shop to remove the intake manifold or compressor and clean the inlet valves and ports by walnut blasting; the cylinder head remains installed. The cited Audi guidance does not support a mandatory 60,000-mile interval, a fixed price, dual catch cans, additive at every oil change, a 5,000-mile oil interval or a drive-hard prescription. Do not buy a catch can or cleaning product solely from this card.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Rough idle after a cold start",
+          "Sporadic engine misfire recorded in event memory"
+        ],
+        "affectedSystems": [
+          "TFSI inlet ports",
+          "TFSI inlet valves",
+          "engine management system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Audi TSB 2075530/1 - TFSI Inlet-Valve and Inlet-Port Walnut-Blasting Procedure",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11009928-0001.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "Audi TSB 2014753/13 - Gasoline Quality and Deposit-Related Misfire Diagnosis",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11012476-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-28",
+        "contentUpdatedOn": "2026-07-28",
+        "contentUpdateSummary": "Replaced a chronic carbon-defect, fixed-interval, fixed-cost and prevention narrative with Audi current symptom-triggered TFSI walnut-blasting guidance; removed one commerce claim and URL, a generic forum citation and three unsupported tips.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}

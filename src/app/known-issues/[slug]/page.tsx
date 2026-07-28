@@ -41,7 +41,10 @@ export const dynamicParams = true; // Allow on-demand rendering of new slugs
 // gate. This preserves existing metadata output for previously indexed pages.
 const SEO_AUDITED_MODEL_SLUGS = new Set([
   'toyota-rav4',
+  'audi-a5-sportback',
   'audi-a6-allroad',
+  'audi-rs4',
+  'audi-rs6',
 ]);
 
 // --- Static generation ---
