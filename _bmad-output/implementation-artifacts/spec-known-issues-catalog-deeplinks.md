@@ -4,7 +4,7 @@ type: 'bugfix'
 created: '2026-07-14'
 status: 'in-progress'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: 'cca8b8d006f59dca6a52c59251c0fd50e5eb3bf3'
+baseline_revision: '09805be7ee8973bed5275839b1d921feef823c7f'
 review_loop_iteration: 0
 followup_review_recommended: false
 context: []
@@ -79,6 +79,7 @@ context: []
 
 ## Spec Change Log
 
+- 2026-07-28: Completed the database audit for all six frozen Audi S5 records in one guarded schema-v2 transaction. Exact Audi/NHTSA primary sources retain two diagnosis-first records: 2018 S5/S5 Cabriolet/S5 Sportback 3.0L EA839 mechanical coolant-pump fault P000000/33688 under TSB 2058890/4, and the body/year-branched 2010-2017 3.0L crankcase-breather P052E00 paths under TSBs 2060033/3 and 2060259/1. Four unsupported cross-generation carbon, crankshaft-pulley, supercharger-intercooler-pump and thermostat/water-pump aggregations are archived. All 11 commerce claims and 21 URL occurrences are removed, including two claim clicks, two record clicks and two priority clicks. Fourteen exact recall/TSB paths remain controlled proposals with `insert: false`; no record was inserted. The reviewed generator SHA-256 `ec96a3c679f0adf329064e05099978c7e61150f36200cf2a36d1cae1d7d3b004` passed `s5_blind_review:no-blocker` and `s5_edge_review:no-blocker`. Six commerce tests, 25 applicator/coverage tests and three candidate tests pass (34/34); exact-before, one guarded apply, exact-after, after-state no-op and complete history verification pass across 110 manifests, 103 active batches, seven superseded legacy batches and 446 guarded issue rows. Audi S5 is database-audit complete at 6/6 and awaits an exact two-card Production gate; 29 Audi database audits and 30 full Production gates remain.
 - 2026-07-27: Production-verified the completed Audi RS7 audit on exact audit commit `cca8b8d006f59dca6a52c59251c0fd50e5eb3bf3` and Ready Production deployment `dpl_3wYkPjdQGBPtXHTxLTRU2wXRN46n`. Vercel reports target `Production` and the exact `au7o.io`, `www.au7o.io` and `autocarecompanion.vercel.app` aliases; its build passed TypeScript and generated 1,531/1,531 static pages. After explicit CDN and data-cache purges, cache-busted HTML returns 200, renders exactly the two approved titles/anchors and omits both archived IDs/titles, all 14 removed URL occurrences, commerce markers/rail and `Open Hub`. Exact H1/HTML/OG/Twitter titles, standard/OG/Twitter descriptions, TechArticle, FAQ, visible GEO summary, `All 2 Known Issues`, canonical and indexability pass. Six `/get-started` occurrences, both exact DataRep assets and all three warm-paper colors remain. Every default-published API year from 2013 through 2026 matches the manifest: only the recall for 2014-2017, only the air-suspension diagnosis for 2021-2025, and no rows in 2013, 2018-2020 or 2026, with no archived or cross-model contamination. Audi RS7 is production-complete at 4/4, making 14 of 44 Audi model groups complete and leaving 30.
 - 2026-07-27: Completed the database audit for all four frozen Audi RS7 records in one guarded schema-v2 transaction. Current Audi/NHTSA primary sources narrow the air-suspension row to 2021-2025 TSB 2059363/6 and replace the seeded wastegate/carbon shopping aggregation with VIN-first, no-cost safety recall 21H7/22V178 for 2014-2017 RS7 vehicles. The unsupported carbon and turbo-coolant degradation aggregations are archived; distinct TSB 2060420/2 coolant-pump noise remains an `insert: false` proposal. All eight commerce claims and 14 URL occurrences are removed, including two claim clicks, two record clicks and two priority clicks. Twelve exact recall/TSB paths remain controlled proposals with `insert: false`. The rejected copied RS5 draft SHA-256 `91628ca47db687a060ce37aff821cb1f7a6e368284d36c4e8de047c2a88a0d86` was deleted before review or mutation; exact final generator SHA-256 `4890278f8a1951bda792830099fe4b1a47e6aa32a6b6556f2e734efbdb081333` passed `rs7_blind_review:no-blocker` and `rs7_edge_review:no-blocker`. Six commerce tests, 25 applicator/coverage tests and three candidate tests pass (34/34); exact-before, one guarded apply, exact-after, after-state no-op, receipt refusal and complete history verification pass across 109 manifests, 102 active batches, seven superseded legacy batches and 440 guarded issue rows. Audi RS7 is database-audit complete at 4/4 and awaits an exact two-card Production gate; 30 Audi database audits and 31 full Production gates remain.
 - 2026-07-27: Production-verified the completed Audi RS5 audit and singular Known Issues metadata repair on exact commit `4c7eaae690b285cf58b65a42873a4b362e6e6833` and Ready Production deployment `dpl_6tM1YYhxmT2ujARAtJ4vijn7JDJc` with the exact `au7o.io`, `www.au7o.io` and `autocarecompanion.vercel.app` aliases. The Vercel build passed TypeScript and generated 1,531/1,531 static pages. After explicit CDN and data-cache purges, cache-busted HTML returns 200, renders exactly the approved RS5 card/anchor and omits both archived IDs/titles, all eight removed commerce-link occurrences, commerce rails and `Open Hub`. Exact HTML/H1/Open Graph/Twitter title, standard/Open Graph/Twitter description, TechArticle description, FAQ/visible singular labels, canonical and indexability pass; six `/get-started` occurrences, both exact DataRep assets and all three warm-paper colors remain. Default-published API responses are empty for 2020/2025 and match the one manifest after-state field-for-field for 2021-2024 with no archived or cross-model contamination. Audi RS5 is production-complete at 3/3, leaving 31 of 44 Audi model groups.
@@ -120,6 +121,22 @@ context: []
 - 2026-07-15: User requested a professional sand/ink Known Issue card palette. Remove red, purple, yellow, and green card treatments; make state and recency understandable without color, using explicit copy, icons, borders, and hierarchy.
 
 ## Review Triage Log
+
+### 2026-07-28 — Audi S5 pre-apply review
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 3: (high 1, medium 2, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[high]` `[patch]` Replaced the unsupported 2018-2024 2.9T water-pump/internal-migration aggregation with exact 2018 3.0L EA839 TSB 2058890/4 scope, P000000 symptom 33688 and its staged coolant, software, N649, vacuum and pump-sleeve diagnosis.
+  - `[medium]` `[patch]` Visually inspected current TSB 2070349/5 and corrected every controlled proposal identity from generic S5 to the bulletin's exact 2018-2024 S5 Cabriolet/S5 Sportback scope.
+  - `[medium]` `[patch]` Corrected proposal body-style boundaries for 22V742 and TSB 2059057/7, then bound all 14 proposal title/source identities to the frozen reviewed generator.
+- review_notes:
+  - The final six-record manifest contains two published diagnosis holds, four archived removals and fourteen `insert: false` proposals; all published after-states contain zero commerce, costs, mileage ranges or seeded owner telemetry.
+  - Independent Blind and Edge reviewers inspected exact generator SHA-256 `ec96a3c679f0adf329064e05099978c7e61150f36200cf2a36d1cae1d7d3b004` and returned `s5_blind_review:no-blocker` and `s5_edge_review:no-blocker` before manifest publication or database mutation.
+  - The exact-before six-row state, one atomic transaction, receipt-backed exact-after state, no-op dry-run and all-history verification across 446 guarded rows pass without drift.
 
 ### 2026-07-27 — Audi RS7 release review
 
