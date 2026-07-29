@@ -1,0 +1,2818 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "packetKind": "known-issues-catalog-deeplink-work",
+  "snapshotHash": "3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102",
+  "cohort": "all",
+  "packetId": "all-0001",
+  "records": [
+    {
+      "id": "audi-tt-absesp-control-module-failure-2000",
+      "make": "Audi",
+      "model": "TT",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "brakes",
+      "title": "ABS/ESP Control Module Failure Causing Warning Lights and Loss of Stability/ABS Function",
+      "description": "Mk1 Audi TT models are known for Bosch ABS module failures that trigger ABS, brake, and ESP warning lights. Internal module solder failures can interrupt wheel-speed processing and communication, disabling anti-lock braking and stability control functions. This issue is widely reported on VW/Audi forums and in owner complaints because it can persist intermittently before becoming permanent.",
+      "solution": "Scan the ABS module for communication and wheel-speed faults, then verify wheel-speed sensor data and power/ground before condemning the controller. If the hydraulic unit is sound, the common repair is ABS module rebuild or replacement followed by coding and fault clearing. Owners often choose module rebuild services because they are cheaper than full dealer replacement.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "ABS light on",
+        "ESP light on",
+        "brake warning light",
+        "loss of traction control",
+        "intermittent speed sensor faults",
+        "no communication with ABS module"
+      ],
+      "affectedSystems": [
+        "ABS",
+        "ESP",
+        "brake electronics",
+        "wheel speed monitoring"
+      ],
+      "dtcCodes": [
+        "01276",
+        "01130",
+        "65535",
+        "01316"
+      ],
+      "estimatedCostLow": 250,
+      "estimatedCostHigh": 1400,
+      "typicalMileageLow": 60000,
+      "typicalMileageHigh": 160000,
+      "citations": [
+        {
+          "url": "https://wiki.ross-tech.com/wiki/index.php/01276",
+          "type": "tsb",
+          "title": "Ross-Tech wiki and forum references for Bosch ABS module faults on Audi/VW platforms"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Check live wheel-speed data with VCDS before replacing sensors; many owners find the module itself is the root cause rather than the sensor.",
+          "upvotes": 0,
+          "affiliateUrl": "https://www.amazon.com/s?k=VCDS%20diagnostic%20cable&tag=au7o-20"
+        },
+        {
+          "content": "Module rebuild services are commonly recommended over used modules because rebuilders typically repair the internal solder faults and may provide a warranty."
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=8N0614517M&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=8N0614517M",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=8N0614517M",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "ABS/ESP control module (hydraulic unit with integrated controller)",
+          "priceHigh": null,
+          "oemPartNumber": "8N0614517M",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [
+        "audi-a4-abs-control-module-failure-2000",
+        "vw-new-beetle-abs-module-2000",
+        "audi-a6-abs-module-electronic-2000"
+      ],
+      "vehicle": {
+        "make": "Audi",
+        "model": "TT",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "1787b7f74daa04e6cfed36700e00f04ec1b39eb87ed30e08ef38ebc87f91e89b",
+        "yearsHash": "e2a089c220bf013912d9a12ae6c7ed2219b76c6b0b6ffe4ccbd5eaca70e3696e",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "e77994b2f27ef539450143d3c02ee44e8f5349012a27750a981659e8032bed1e",
+        "descriptionHash": "dc3f4678e10b3bdf6ca6185763c40f628676dc52f1be9cfb7393d9d0b9752532",
+        "solutionHash": "5eb69b25898d315eaeb8121a8d447180ecb01e3fb0b4e97cd259796398ef31c2",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "83258c6640ae0779cc4e8fc6060a8669858bd9081531eaee3f483185d7bdd514",
+        "affectedSystemsHash": "8c5af79fc12d354b667dedfaf432d9dfa07fef80f129957ba0ecba7fe408ac30",
+        "dtcCodesHash": "8c40900453acde66271ee54cfc4f32b71ac4b2021e3d1b2f432e7801283b8238",
+        "estimatedCostLowHash": "1e472b39b105d349bcd069c4a711b44a2fffb8e274714bb07ecfff69a9a7f67b",
+        "estimatedCostHighHash": "55fdec963805de594b61b2c1692cadc2c1dfb844d6ac10c5bfed33c842087b2e",
+        "typicalMileageLowHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "typicalMileageHighHash": "cb0b20f98ee49533666fadc53dd6702a19d66e14ea2bb2bdc2474e305e40ada3",
+        "citationsHash": "eb6d8f8d31be66ed756f608e6245386670a1c804cb96187196279b5243333de0",
+        "communityRecommendationsHash": "7aa2448dc9d044409f3da723f5506259d005290e56ccd5041ee77497778007fe",
+        "fixPartsHash": "fd2aa0f15147a4df21c39ee63fc1f3b70532d31126b06732ff6f22a01d91b24b",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "768c62a2f95b1c28f97ee19c81941870736a12a6453e9bd400fe7b670efff836",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "ABS/ESP control module (hydraulic unit with integrated controller)",
+          "oemPartNumber": "8N0614517M",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=8N0614517M&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=8N0614517M",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=8N0614517M",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "tip",
+          "content": "Check live wheel-speed data with VCDS before replacing sensors; many owners find the module itself is the root cause rather than the sensor.",
+          "partName": "",
+          "partBrand": "",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "",
+              "url": "https://www.amazon.com/s?k=VCDS%20diagnostic%20cable&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "audi-tt-cam-follower-2008",
+      "make": "Audi",
+      "model": "TT",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "1.8T",
+        "2.0T",
+        "Base",
+        "Coupe",
+        "Roadster"
+      ],
+      "engines": [
+        "2.0 TFSI"
+      ],
+      "category": "other",
+      "title": "Cam Follower Wear (Damages Camshaft and HPFP)",
+      "description": "The 2.0 TFSI engine in the Mk2 TT (2008-2015, particularly 2008-2009 base and 2009-2014 TTS) uses a cam follower (bucket tappet) that rides on the camshaft to drive the high-pressure fuel pump (HPFP). This follower is a wear item that can get completely ground down over time, typically by 60,000-100,000 miles. When the follower wears through, it damages the camshaft lobe and HPFP, causing catastrophic engine damage requiring camshaft replacement ($2,000-$3,000), HPFP replacement ($800-$1,500), and potentially complete cylinder head rebuild ($4,000-$6,000). Symptoms include loss of power, rough running, metallic ticking, and fuel pressure faults. This is a KNOWN DEFECT requiring preventive inspection and replacement.",
+      "solution": "PREVENTIVE INSPECTION: Inspect cam follower every 20,000-30,000 miles ($100-$200). If worn, replace immediately ($150-$300 parts + labor). DO NOT wait for symptoms—by then, camshaft and HPFP are already damaged. If camshaft is scored: Replace camshaft ($2,000-$3,000), HPFP ($800-$1,500), and cylinder head gasket. In severe cases, cylinder head requires rebuild ($4,000-$6,000). TTForum recommends checking follower at every oil change. This is cheap preventive maintenance that prevents $5,000+ repair.",
+      "severity": "high",
+      "confidence": "medium",
+      "symptoms": [
+        "Loss of power, especially under acceleration",
+        "Rough running or misfires",
+        "Loud metallic ticking from engine",
+        "Check engine light with fuel pressure codes (P0087, P0088)",
+        "Hard starting or extended cranking",
+        "Engine stalling at idle",
+        "Catastrophic failure if follower disintegrates"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [
+        "P0087",
+        "P0088",
+        "P0190",
+        "P0191",
+        "P2293"
+      ],
+      "estimatedCostLow": 150,
+      "estimatedCostHigh": 6000,
+      "typicalMileageLow": 60000,
+      "typicalMileageHigh": 100000,
+      "citations": [
+        {
+          "url": "",
+          "type": "tsb",
+          "title": "TSB 2013147/9: 2.0L TFSI Engine Mechanical Noise, Lack of Power, MIL ON, DTCs for Fuel Pressure Regulation Due to Worn Cam Follower/Intake Cam Lobe/HPFP"
+        },
+        {
+          "url": "https://www.ttforum.co.uk/",
+          "type": "forum",
+          "title": "TT Forum - Cam follower replacement / wear inspection threads for Mk2 TT 2.0 TFSI"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "INA cam follower 06H109311B is the OEM part for EA888 Gen2 TT. Inspect every 20,000 miles - if the DLC coating is worn through, replace immediately to prevent camshaft damage.",
+          "upvotes": 0,
+          "partName": "HPFP Cam Follower",
+          "partBrand": "INA",
+          "partNumber": "06H109311B",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=INA%2006H109311B&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Updated roller-style cam follower 06L109311 for Gen3 engines does not need preemptive replacement but should still be inspected during HPFP service.",
+          "upvotes": 0,
+          "partName": "Roller Cam Follower (Gen3)",
+          "partBrand": "Genuine VW/Audi",
+          "partNumber": "06L109311",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=Genuine%20VW%2FAudi%2006L109311&tag=au7o-20"
+        },
+        {
+          "type": "tip",
+          "content": "Cam follower inspection is a 20-minute DIY job. Remove the HPFP (3 bolts) and visually inspect the follower surface. No special tools needed. Check at every oil change.",
+          "upvotes": 0,
+          "needsReview": false
+        },
+        {
+          "type": "warning",
+          "content": "A worn-through cam follower destroys the HPFP cam lobe ($1,500+ camshaft replacement) and can send metal debris into the fuel system. Cheap insurance to inspect regularly.",
+          "upvotes": 0,
+          "needsReview": false
+        },
+        {
+          "type": "part",
+          "content": "Replace fuel pressure sensor 06J906051D (Bosch) during any HPFP or cam follower service for $25-40 from ECS Tuning or FCP Euro.",
+          "upvotes": 0,
+          "partName": "Fuel Pressure Sensor",
+          "partBrand": "Bosch",
+          "partNumber": "06J906051D",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=Bosch%2006J906051D&tag=au7o-20"
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=06D%20109%20309%20C&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=06D%20109%20309%20C",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=06D%20109%20309%20C",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "HPFP cam follower (roller tappet)",
+          "priceHigh": null,
+          "oemPartNumber": "06D 109 309 C",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [
+        "audi-tts-cam-follower-hpfp-2009",
+        "audi-a4-20t-cam-follower-and-2005",
+        "vw-20t-hpfp-2008",
+        "vw-cc-cam-follower-wear-2009",
+        "audi-tts-water-pump-2009"
+      ],
+      "vehicle": {
+        "make": "Audi",
+        "model": "TT",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [
+          "1.8T",
+          "2.0T",
+          "Base",
+          "Coupe",
+          "Roadster"
+        ],
+        "engines": [
+          "2.0 TFSI"
+        ]
+      },
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "1787b7f74daa04e6cfed36700e00f04ec1b39eb87ed30e08ef38ebc87f91e89b",
+        "yearsHash": "6e103e4655d45b66915527d39997048f068e696f110d7f06ba6ceaa610d3cf06",
+        "trimsHash": "f0f3f76a3e40e38b33e54263a30ed16930c566a58cf6faf487a63f2bfc1f9f6d",
+        "enginesHash": "570f72bf13a02fcaea4f3c147067ebde919bfe8c31148c2ec0c2c979345d0933",
+        "categoryHash": "d448c0e0f65da7948e3edb7805b5272b54f75f427c33333157324b626f5ca51f",
+        "titleHash": "15ae02403d7ae9ec3be6d653b183eaa2b1eec8e0d25c5f9a3d389b8c1290bb85",
+        "descriptionHash": "ec00daf132f6e54f6ae7c0dd19fb5ae5af49be5fdc5fa8c1861b3d4d859d6177",
+        "solutionHash": "ef3da642f1d6d709c5d5e1d125ae755783580cc899c50d9171c8adc36a76fe63",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "307c0749910dbd56bac9318d594d9c0731bbad85e29a3c166af9c7936f502671",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "f15afd8ae55623b5c219fa012cca93341120a5a9c512ee70f9a5e78fd3da7d05",
+        "estimatedCostLowHash": "9ae2bdd7beedc2e766c6b76585530e16925115707dc7a06ab5ee4aa2776b2c7b",
+        "estimatedCostHighHash": "8d284220975da66c6cba4a32aaedfa0b897187d86ed9f7a2419c9bd10a103505",
+        "typicalMileageLowHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "typicalMileageHighHash": "3bb78535cc9555ff19fe3556aaa41c78a0a45c64d49ba2bc564507648a8e77a1",
+        "citationsHash": "41c1eef2ef198faa1cc316bde48d61c58da6aada3651f7b3aaebdc33ab70b9aa",
+        "communityRecommendationsHash": "cb1a6bbb6020170b0ca29d4d7ab255e3c4f61a2140d2310e9992b0ce26278a37",
+        "fixPartsHash": "cce87b251d97fbbecb063d3de3b7f7c41f4e55a5528052414b903f1555955779",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "1f617ae29316e3c8ef1dc37cba723febfcd7d892753f03ead649841d556c4701",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0",
+          "communityRecommendations:1",
+          "communityRecommendations:4"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "HPFP cam follower (roller tappet)",
+          "oemPartNumber": "06D 109 309 C",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=06D%20109%20309%20C&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=06D%20109%20309%20C",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=06D%20109%20309%20C",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "part",
+          "content": "INA cam follower 06H109311B is the OEM part for EA888 Gen2 TT. Inspect every 20,000 miles - if the DLC coating is worn through, replace immediately to prevent camshaft damage.",
+          "partName": "HPFP Cam Follower",
+          "partBrand": "INA",
+          "partNumber": "06H109311B",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "INA",
+              "url": "https://www.amazon.com/s?k=INA%2006H109311B&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "Updated roller-style cam follower 06L109311 for Gen3 engines does not need preemptive replacement but should still be inspected during HPFP service.",
+          "partName": "Roller Cam Follower (Gen3)",
+          "partBrand": "Genuine VW/Audi",
+          "partNumber": "06L109311",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Genuine VW/Audi",
+              "url": "https://www.amazon.com/s?k=Genuine%20VW%2FAudi%2006L109311&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "Replace fuel pressure sensor 06J906051D (Bosch) during any HPFP or cam follower service for $25-40 from ECS Tuning or FCP Euro.",
+          "partName": "Fuel Pressure Sensor",
+          "partBrand": "Bosch",
+          "partNumber": "06J906051D",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Bosch",
+              "url": "https://www.amazon.com/s?k=Bosch%2006J906051D&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "audi-tt-coil-pack-failure-and-2000",
+      "make": "Audi",
+      "model": "TT",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [],
+      "engines": [
+        "1.8L turbo I4"
+      ],
+      "category": "engine",
+      "title": "Coil Pack Failure and Ignition Misfires on 1.8T Engines",
+      "description": "The 1.8T-powered Audi TT is well known for ignition coil pack failures that cause sudden misfires, rough running, and flashing MIL events. This problem affected many Volkswagen and Audi models of the era and was serious enough to generate recalls and service campaigns on related applications. Owners often experience abrupt power loss under load or a car that suddenly runs on three cylinders.",
+      "solution": "Scan for cylinder-specific misfire faults, inspect spark plugs, and replace failed coil packs with the latest revision parts. Because multiple coils often age similarly, many owners replace the full set and keep a spare in the trunk. If misfires persist, check plug gap, vacuum leaks, and ignition harness condition.",
+      "severity": "low",
+      "confidence": "high",
+      "symptoms": [
+        "check engine light flashing",
+        "rough idle",
+        "hesitation under acceleration",
+        "loss of power",
+        "engine shaking",
+        "cylinder-specific misfire"
+      ],
+      "affectedSystems": [
+        "ignition system",
+        "engine management",
+        "emissions"
+      ],
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304"
+      ],
+      "estimatedCostLow": 120,
+      "estimatedCostHigh": 450,
+      "typicalMileageLow": 30000,
+      "typicalMileageHigh": 120000,
+      "citations": [
+        {
+          "url": "https://www.nhtsa.gov/recalls",
+          "type": "recall",
+          "title": "NHTSA recall query and owner complaints related to Audi/VW coil pack failures"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Use the latest revision OEM coil packs and verify spark plug type/gap to reduce repeat failures.",
+          "upvotes": 0,
+          "affiliateUrl": "https://www.amazon.com/s?k=Audi%201.8T%20coil%20pack%20set%20OEM&tag=au7o-20"
+        },
+        {
+          "content": "Many long-time owners keep one spare coil pack and the basic tools needed for roadside replacement."
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=06A905115D&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=06A905115D",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=06A905115D",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "ignition coil pack",
+          "priceHigh": null,
+          "oemPartNumber": "06A905115D",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [
+        "volkswagen-new-beetle-coil-pack-failure-1998",
+        "audi-a6-27t-ignition-coil-pack-2000",
+        "volkswagen-beetle-ignition-coil-2006",
+        "audi-20t-ignition-coils-2009",
+        "vw-20t-ignition-coils-2008"
+      ],
+      "vehicle": {
+        "make": "Audi",
+        "model": "TT",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006
+        ],
+        "trims": [],
+        "engines": [
+          "1.8L turbo I4"
+        ]
+      },
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "1787b7f74daa04e6cfed36700e00f04ec1b39eb87ed30e08ef38ebc87f91e89b",
+        "yearsHash": "e2a089c220bf013912d9a12ae6c7ed2219b76c6b0b6ffe4ccbd5eaca70e3696e",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "8ab6a71a2c277672f9d289a137955e0bc32981b2dfc74791ebe3f24d480918f0",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "0b104852fa47dd64f21f085769639792cb49631f0b274ebbb0d1fc45b4d991de",
+        "descriptionHash": "24b158f00b1cf0fa3e202496657112bd002f23f8324c1794cec2abdbf9a7bc17",
+        "solutionHash": "9524a6af8f5903bacd5f851fd0579454818a659381a1c5aa9a6abee0660727d5",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "5f9c6ee75254f7a80c20646067dd2b046f2eb4d73e43398e9bcad1d06a6896ad",
+        "affectedSystemsHash": "678f792b5aa1cce30b2cfa95e773c6d9602338625bdc1668ae397190fad4a0eb",
+        "dtcCodesHash": "cd6b7238d2d3e905b7b963d9bd0baf0d998141046b6d92e235d20d933efc7991",
+        "estimatedCostLowHash": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477",
+        "estimatedCostHighHash": "83151157c10d85af7c84657c71c3e3603d955160f0526fce672481da83a2e090",
+        "typicalMileageLowHash": "891937cb335016e9c7074c3781dcb1364e0c660733a8889bbeae83e6aa759be6",
+        "typicalMileageHighHash": "4f9f73b34c5b89879aad65a48025f3187dd9ce6dc3d4e88eecb2fc79227350f1",
+        "citationsHash": "583c47aef8860f31c6a7c6a0700db14746f925b90ac36408dade4fdf3c1a812c",
+        "communityRecommendationsHash": "099d58952c6e5d0cc0e98ee912111066c868c4a333134a21a93b46b89203af19",
+        "fixPartsHash": "68d3d27e1531a11eb7287edd4dddc658a4a2627a8a0e3bf98846372ca931872e",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "98e5e5b537fb950077adab40d54c901c94f6fd48b472264a187052b2f564d701",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "ignition coil pack",
+          "oemPartNumber": "06A905115D",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=06A905115D&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=06A905115D",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=06A905115D",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "tip",
+          "content": "Use the latest revision OEM coil packs and verify spark plug type/gap to reduce repeat failures.",
+          "partName": "",
+          "partBrand": "",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "",
+              "url": "https://www.amazon.com/s?k=Audi%201.8T%20coil%20pack%20set%20OEM&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "audi-tt-dsg-mechatronic-2008",
+      "make": "Audi",
+      "model": "TT",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "transmission",
+      "title": "DSG Mechatronic Unit and Clutch Pack Failure",
+      "description": "The TT S-tronic/DSG transmission mechatronic unit develops solenoid and valve body issues causing harsh shifts and gear selection faults. The dual clutch pack also wears, especially in stop-and-go traffic.",
+      "solution": "Replace or rebuild mechatronic unit. Service DSG fluid every 40,000 miles. Replace clutch pack if slipping.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Harsh or jerky shifts",
+        "Transmission warning light",
+        "Gear selection errors",
+        "Shuddering at low speed",
+        "Delayed engagement",
+        "Flashing gear indicator"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 1500,
+      "estimatedCostHigh": 4000,
+      "typicalMileageLow": 32000,
+      "typicalMileageHigh": 48000,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "DSG Service Kit",
+          "partBrand": "Genuine Audi",
+          "partNumber": "0BH325031A",
+          "affiliateUrl": "https://www.amazon.com/s?k=Genuine%20Audi%200BH325031A%20DSG%20TT&tag=au7o-20"
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=02E325025&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=02E325025",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=02E325025",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "DSG mechatronic unit (DQ250 / 02E 6-speed S-tronic)",
+          "priceHigh": null,
+          "oemPartNumber": "02E325025",
+          "aftermarketXref": []
+        },
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=02E927770AQ&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=02E927770AQ",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=02E927770AQ",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "DSG (S tronic) mechatronic unit",
+          "priceHigh": null,
+          "oemPartNumber": "02E927770AQ",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 212,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-13",
+      "reviewedOn": "2026-03-13",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Audi",
+        "model": "TT",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "1787b7f74daa04e6cfed36700e00f04ec1b39eb87ed30e08ef38ebc87f91e89b",
+        "yearsHash": "5792a386eb7b8ed7366150594e8f01d81cb941d4b7680d63240997787f96dac1",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "3f0c4bbb0e05078c8309761208bc1f7de9364478ca856b8e1288d9c42f7b15de",
+        "descriptionHash": "ca66fbc1f7dd944f1a51f4207ff28ef5e9b5e4680feb1e065b219ce000721d4f",
+        "solutionHash": "22e905e44d09b199fc2550b74a264978f6d6f06f2a77dc830c97cd5de40d1907",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "c21052fe981b30da32e3827f28424d37f10b9b1cb34f67aa5ff6a3b0d45d71f8",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "estimatedCostHighHash": "b090147020e033534635010c4f7eb6fc270d44e5df67ea9e744a8087df9ca106",
+        "typicalMileageLowHash": "492f431bae35265f2e5f4ed49bd8c58dda912431be561504846988d00d05d117",
+        "typicalMileageHighHash": "5d1dbce82e135ab816d7c6d1f5f9020b94000975fa77f0a349a5b4d226d82332",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "381ea5133774df8cf4d5fe9199e84a4960f9665b0c94efb91111ae1a3106d8c8",
+        "fixPartsHash": "c68775508417b35d23d96fafb0bbe89c8b87add1b103f8bbec8ca66b1c45ba6b",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "fa2b7af0a811b9acde602aacb78e3638e8506dfead5fe6c3425b10b526f94bdd",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "49a1fe1e78808830b448b76499f057f0ac7825e8cc98d211a432c17770257f65",
+        "reviewedOnHash": "49a1fe1e78808830b448b76499f057f0ac7825e8cc98d211a432c17770257f65",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "fixParts:1",
+          "communityRecommendations:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "DSG mechatronic unit (DQ250 / 02E 6-speed S-tronic)",
+          "oemPartNumber": "02E325025",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=02E325025&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=02E325025",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=02E325025",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "fixParts:1",
+          "system": "fixParts",
+          "index": 1,
+          "component": "DSG (S tronic) mechatronic unit",
+          "oemPartNumber": "02E927770AQ",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=02E927770AQ&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=02E927770AQ",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=02E927770AQ",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "part",
+          "content": "DSG Service Kit",
+          "partName": "",
+          "partBrand": "Genuine Audi",
+          "partNumber": "0BH325031A",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Genuine Audi",
+              "url": "https://www.amazon.com/s?k=Genuine%20Audi%200BH325031A%20DSG%20TT&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "audi-tt-dsg-transmission-2008",
+      "make": "Audi",
+      "model": "TT",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "transmission",
+      "title": "S-Tronic DSG Transmission Issues (Mk2)",
+      "description": "Early Mk2 TT models (2008-2009) with the 6-speed or 7-speed S-Tronic dual-clutch transmission (DSG) experience frequent mechatronic unit and clutch pack failures. Symptoms include rough or delayed shifting at low speeds, hesitation when accelerating, jerking when engaging gears, and complete transmission failure requiring tow. The mechatronic unit (valve body) suffers from software glitches and internal failures. Audi marketed DSG as \"sealed for life,\" but fluid and filter changes every 40,000 miles dramatically reduce failure rates. Reports of DSG failures tapered off after 2009 model year with updated parts. Repair costs for mechatronic replacement are $2,000-$4,000. TTForum.co.uk reports many 2008-2009 owners experiencing this issue.",
+      "solution": "For EARLY symptoms: DSG fluid and filter service ($400-$600) + software update from dealer. For MECHATRONIC failure: Replace mechatronic unit ($2,000-$4,000 installed). For CLUTCH failure: Replace clutch pack ($3,000-$5,000). PREVENTION: Service DSG every 40,000 miles despite Audi's \"lifetime\" claim. Use ONLY OEM Audi DSG fluid (G 052 182 A2). Avoid aggressive launches. If buying used, avoid 2008-2009 TT models—opt for 2010+ with updated DSG.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Rough or delayed shifting, especially at low speeds",
+        "Jerking or shuddering when accelerating",
+        "Hesitation when pulling away from stop",
+        "Clunking noise when shifting",
+        "Check engine light with transmission codes (P0730)",
+        "Transmission stuck in gear (won't shift)",
+        "Complete transmission failure (no movement)"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [
+        "P0700",
+        "P0730",
+        "P0741",
+        "P189C"
+      ],
+      "estimatedCostLow": 400,
+      "estimatedCostHigh": 5000,
+      "typicalMileageLow": 32000,
+      "typicalMileageHigh": 48000,
+      "citations": [
+        {
+          "url": "https://www.youtube.com/watch?v=5Xq4XxR9fXo",
+          "type": "video",
+          "title": "Audi TT DSG Transmission Mechatronic Unit Replacement - ChrisFix"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "Use only OEM VW/Audi DSG fluid (G 052 182 A2) or approved Pentosin FFL-2 for S-Tronic service. Non-approved fluids cause clutch shudder and accelerated wear.",
+          "upvotes": 0,
+          "partName": "FFL-2 DSG Transmission Fluid",
+          "partBrand": "Pentosin",
+          "partNumber": "G052182A2",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=Pentosin%20G052182A2&tag=au7o-20"
+        },
+        {
+          "type": "tip",
+          "content": "DSG fluid and filter change every 40,000 miles despite Audi \"lifetime fill\" claim. Audizine and TT Forum consensus is that regular service dramatically extends mechatronic life.",
+          "upvotes": 0,
+          "needsReview": false
+        },
+        {
+          "type": "part",
+          "content": "DSG mechatronic unit replacement is $2,500-$4,000 at dealer. Rebuilt units from BBA-Reman or certified independent shops can save 40-50% vs new OEM.",
+          "upvotes": 0,
+          "partName": "Rebuilt Mechatronic Unit",
+          "partBrand": "BBA-Reman",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=BBA-Reman%20Rebuilt%20Mechatronic%20Unit&tag=au7o-20"
+        },
+        {
+          "type": "warning",
+          "content": "Jerky low-speed shifts and shudder during takeoff are early signs of mechatronic failure. Address with fluid change immediately - continuing to drive accelerates damage exponentially.",
+          "upvotes": 0,
+          "needsReview": false
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=02E325025&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=02E325025",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=02E325025",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "DSG mechatronic unit (DQ250 / 02E 6-speed S-Tronic)",
+          "priceHigh": null,
+          "oemPartNumber": "02E325025",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [
+        "audi-a7-dsg-transmission-2012",
+        "audi-a6-s-tronic-dsg-issues-2012",
+        "vw-gti-dsg-mechatronic-2006",
+        "audi-rs3-dsg-transmission-2015",
+        "audi-s3-dsg-mechatronic-2015"
+      ],
+      "vehicle": {
+        "make": "Audi",
+        "model": "TT",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "1787b7f74daa04e6cfed36700e00f04ec1b39eb87ed30e08ef38ebc87f91e89b",
+        "yearsHash": "36c03b22b2b71838deab0f646b27c47150a4e4814bd5b1ba46654e81be877f49",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "4eb3432556b4bb1dcd0a82354b07d14a8c2c5e1b2ad4a7070ef4da7efbb41a39",
+        "descriptionHash": "c04dc9464dd86437f6744bdc5aea61004e88ce14fd554839dbd49fbb535d6c4b",
+        "solutionHash": "b7d82c41961852d670f79225df8051b3dbaeab78314f0eb2b78167f624810ce4",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "bff0e926cb3d29e32d9efe68156069bf97f7f5372ae3fdb2de05b9c02d418d69",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "2116cdc10ec3d3fb96c74944ca4d996e9c6d52161f034727fa580d405b8acc47",
+        "estimatedCostLowHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "estimatedCostHighHash": "0f8eb4b72b6e0c9e88b388eb967b49e067ef1004bf07bffc22c3acb13b43580a",
+        "typicalMileageLowHash": "492f431bae35265f2e5f4ed49bd8c58dda912431be561504846988d00d05d117",
+        "typicalMileageHighHash": "5d1dbce82e135ab816d7c6d1f5f9020b94000975fa77f0a349a5b4d226d82332",
+        "citationsHash": "679ca15043f8c418707b6d19cb1d671373d045597c8105b07f2054f687bd58f0",
+        "communityRecommendationsHash": "76ae3780ebe430026f42fdf3c1d2670eab591c22673b2d7b13491adcd56a2c85",
+        "fixPartsHash": "672f05eb35c8ed011bb6010249495623a2fafcd7db44e78c5f222f093afd4331",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "c9fee4e5962bd57b6137c35a39597c7451b7fdd2e0d48060a7cdc5ec687041bf",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0",
+          "communityRecommendations:2"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "DSG mechatronic unit (DQ250 / 02E 6-speed S-Tronic)",
+          "oemPartNumber": "02E325025",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=02E325025&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=02E325025",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=02E325025",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "part",
+          "content": "Use only OEM VW/Audi DSG fluid (G 052 182 A2) or approved Pentosin FFL-2 for S-Tronic service. Non-approved fluids cause clutch shudder and accelerated wear.",
+          "partName": "FFL-2 DSG Transmission Fluid",
+          "partBrand": "Pentosin",
+          "partNumber": "G052182A2",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Pentosin",
+              "url": "https://www.amazon.com/s?k=Pentosin%20G052182A2&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "DSG mechatronic unit replacement is $2,500-$4,000 at dealer. Rebuilt units from BBA-Reman or certified independent shops can save 40-50% vs new OEM.",
+          "partName": "Rebuilt Mechatronic Unit",
+          "partBrand": "BBA-Reman",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BBA-Reman",
+              "url": "https://www.amazon.com/s?k=BBA-Reman%20Rebuilt%20Mechatronic%20Unit&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "audi-tt-front-control-arm-bushings-2000",
+      "make": "Audi",
+      "model": "TT",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "suspension",
+      "title": "Front Control Arm Bushings and Ball Joint Wear Causing Clunks and Uneven Tire Wear",
+      "description": "The Mk1 TT commonly develops worn front suspension bushings and ball joints, especially on higher-mileage cars or vehicles driven on rough roads. Owners report clunking over bumps, vague steering feel, and accelerated inner-edge tire wear as the front lower control arm bushings deteriorate. This is a frequent wear item on the PQ34-based platform and is repeatedly documented in TT owner communities and repair guides.",
+      "solution": "Inspect lower control arm rear bushings, front bushings, ball joints, and tie-rod ends for play or torn rubber. Repairs typically involve replacing complete control arms or pressing in upgraded bushings, followed by a four-wheel alignment. Addressing the issue early improves steering precision and prevents abnormal tire wear.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "clunking over bumps",
+        "wandering steering",
+        "uneven front tire wear",
+        "steering vibration",
+        "loose front-end feel"
+      ],
+      "affectedSystems": [
+        "front suspension",
+        "control arms",
+        "ball joints",
+        "steering geometry"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": 400,
+      "estimatedCostHigh": 1200,
+      "typicalMileageLow": 70000,
+      "typicalMileageHigh": 160000,
+      "citations": [
+        {
+          "url": "https://www.ttforum.co.uk/forums/",
+          "type": "forum",
+          "title": "TT Forum Mk1 suspension wear discussions covering control arm bushings and front-end clunks"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Many owners replace complete control arm assemblies to save labor and renew the ball joints at the same time.",
+          "upvotes": 0,
+          "affiliateUrl": "https://www.amazon.com/s?k=Audi%20TT%20Mk1%20control%20arm%20kit&tag=au7o-20"
+        },
+        {
+          "content": "Get an alignment immediately after suspension work; worn bushings often mask toe issues that destroy tires."
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=8N0407165&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=8N0407165",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=8N0407165",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "front lower control arm",
+          "priceHigh": null,
+          "oemPartNumber": "8N0407165",
+          "aftermarketXref": []
+        },
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=8N0407151D&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=8N0407151D",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=8N0407151D",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "front lower control arm (with integrated ball joint and bushings)",
+          "priceHigh": null,
+          "oemPartNumber": "8N0407151D",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [
+        "audi-a4-b6b7-front-suspension-control-2002",
+        "audi-a6-front-suspension-multi-link-control-2000"
+      ],
+      "vehicle": {
+        "make": "Audi",
+        "model": "TT",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "1787b7f74daa04e6cfed36700e00f04ec1b39eb87ed30e08ef38ebc87f91e89b",
+        "yearsHash": "e2a089c220bf013912d9a12ae6c7ed2219b76c6b0b6ffe4ccbd5eaca70e3696e",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "399ac80103576175aeab6ea1d0cee53a2fe4af566233174f5da0c8ecdc0b5213",
+        "descriptionHash": "adb0aa206b18b45f90a28e5801b24c53e5a8212ddf21d9c45ff15214ee1a5134",
+        "solutionHash": "6b61f759f09f4ff82f5b1723020b5ba86ccfaad4745a72c53aa08bd62c9a010f",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "bf09e5dac1d70fe91b87e61ec48126033db27deeec3a14a919b39187c6d4b4c9",
+        "affectedSystemsHash": "20990b44806cd61c2f33e9ea5ef9eedb2a0d1f55a6300b88c72addb95ae81f75",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "estimatedCostHighHash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43",
+        "typicalMileageLowHash": "265f10e1bf87701b7aa597c197b6a25b0984777f3443a289d7a92aedd31fddcf",
+        "typicalMileageHighHash": "cb0b20f98ee49533666fadc53dd6702a19d66e14ea2bb2bdc2474e305e40ada3",
+        "citationsHash": "a5bd36a2a962ecffcf4ceb5e3e85c15d0527e54ebff26f1a271f08e09e6e2a23",
+        "communityRecommendationsHash": "4d8cc103e135e65917b48d12a8d899ef75b4b6242a58b41818feb6619c4535c8",
+        "fixPartsHash": "d6547efe2129d26eca4e6910986e422ff26b660fa1280f2230e0e1970e5e03ec",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "b4fc74a1ae615f4619138c11183cb5e2f5c95d3cb027e7c5b1b8c7aac0cafd5d",
+        "claimIds": [
+          "fixParts:0",
+          "fixParts:1",
+          "communityRecommendations:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "front lower control arm",
+          "oemPartNumber": "8N0407165",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=8N0407165&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=8N0407165",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=8N0407165",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "fixParts:1",
+          "system": "fixParts",
+          "index": 1,
+          "component": "front lower control arm (with integrated ball joint and bushings)",
+          "oemPartNumber": "8N0407151D",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=8N0407151D&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=8N0407151D",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=8N0407151D",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "tip",
+          "content": "Many owners replace complete control arm assemblies to save labor and renew the ball joints at the same time.",
+          "partName": "",
+          "partBrand": "",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "",
+              "url": "https://www.amazon.com/s?k=Audi%20TT%20Mk1%20control%20arm%20kit&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "audi-tt-haldex-awd-coupling-pumpcontroller-2000",
+      "make": "Audi",
+      "model": "TT",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [
+        "quattro"
+      ],
+      "engines": [],
+      "category": "drivetrain",
+      "title": "Haldex AWD Coupling Pump/Controller Failure Leading to Front-Wheel-Drive Only Operation",
+      "description": "Quattro-equipped Audi TT models use a Haldex coupling that can lose rear-drive engagement when the pump, controller, fluid, or filter service is neglected. Owners report the car behaving like front-wheel drive, especially during hard acceleration or slippery conditions, often with stored AWD-related faults. The issue is well documented in TT and VW R32 communities because the same Haldex generation is service-sensitive and prone to pump contamination or controller faults.",
+      "solution": "Diagnosis should include scanning the AWD module, checking pump activation output tests, and inspecting Haldex fluid/filter condition. Repairs range from overdue fluid and filter service to pump replacement, wiring repair, or controller replacement. Catching the issue early can prevent more expensive coupling damage.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "rear wheels not engaging",
+        "front-wheel spin under acceleration",
+        "traction loss in snow or rain",
+        "AWD fault codes",
+        "intermittent quattro operation"
+      ],
+      "affectedSystems": [
+        "Haldex coupling",
+        "rear differential engagement",
+        "AWD controller",
+        "driveline"
+      ],
+      "dtcCodes": [
+        "01155",
+        "00448"
+      ],
+      "estimatedCostLow": 180,
+      "estimatedCostHigh": 1500,
+      "typicalMileageLow": 50000,
+      "typicalMileageHigh": 140000,
+      "citations": [
+        {
+          "url": "https://www.ttforum.co.uk/forums/",
+          "type": "forum",
+          "title": "Audi TT forum discussions on Mk1 Haldex pump and AWD engagement failures"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Owners strongly recommend regular Haldex fluid and filter service rather than treating the unit as sealed for life.",
+          "upvotes": 0,
+          "affiliateUrl": "https://www.amazon.com/s?k=Haldex%20service%20kit%20Audi%20TT%20Mk1&tag=au7o-20"
+        },
+        {
+          "content": "Use output tests in VCDS to verify pump operation before replacing expensive driveline parts."
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=02D525557&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=02D525557",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=02D525557",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "Haldex AWD coupling pre-charge pump (Gen 1)",
+          "priceHigh": null,
+          "oemPartNumber": "02D525557",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [
+        "audi-a3-haldex-awd-pumpfilter-contamination-2016",
+        "audi-a4-cvt-multitronic-transmission-failure-2002"
+      ],
+      "vehicle": {
+        "make": "Audi",
+        "model": "TT",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006
+        ],
+        "trims": [
+          "quattro"
+        ],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "1787b7f74daa04e6cfed36700e00f04ec1b39eb87ed30e08ef38ebc87f91e89b",
+        "yearsHash": "e2a089c220bf013912d9a12ae6c7ed2219b76c6b0b6ffe4ccbd5eaca70e3696e",
+        "trimsHash": "819be275487b16426c2d760bef73b92f0fbdd2728c90d2b7bf388e206ad0eac2",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "3b12d5574a84f04c6978e854a9cac57bf991ee23453471c357b5b903e12b2378",
+        "titleHash": "8cb7d53c400dbc32d6f75a27298010272c5568a9bc725df5253319a63e83fb6c",
+        "descriptionHash": "6ee270a07f984c9f2afc56e67acde9d0ed8ac9b53ca9bfb4e288a7b50771d45d",
+        "solutionHash": "0ba31ccf76c96bdc0d0e7f0336961ec0f95b2d07b2a2d1388d29823febcc379d",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "4d19a76c3d4ed4e20af28242ecab19bff18448bb0548cee1ce678c0bb3d4d1fe",
+        "affectedSystemsHash": "eb110a5df16f50595a4ac95b64dfc8850c4381f5ae3bd9d058bb6de95eb23ce8",
+        "dtcCodesHash": "bb21a6e1b43bd78dce8d9793852be1066da571df30b278ead59377c865a5c2e8",
+        "estimatedCostLowHash": "7b69759630f869f2723875f873935fed29d2d12b10ef763c1c33b8e0004cb405",
+        "estimatedCostHighHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "typicalMileageLowHash": "60734f174b2035e5b2ba85fef8c648cc0cb18c5995b419d3cd1c025c5b09d0c7",
+        "typicalMileageHighHash": "f4dd96228b9a0d6e3b6bb54a223bc69c0ce550eb89d620d418ac87159946f72a",
+        "citationsHash": "c27e8a063c40a47ceb2884179b7feaebb09b81db4ee8b7a9972b8a5736faba29",
+        "communityRecommendationsHash": "07ceef5df3fbf0a0a51253d612b2b1cf942b504f8f4bbc7c09bd12e8166e2f0d",
+        "fixPartsHash": "5e409289f56ce6235ff921c31c4f8d969c7226e78b59fedf6e94b936982deeb6",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "9926674c706802b0376c2a3b0d79d1a8e5a7cc39d98f37dc4f3eb24effbcd49d",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "Haldex AWD coupling pre-charge pump (Gen 1)",
+          "oemPartNumber": "02D525557",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=02D525557&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=02D525557",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=02D525557",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "tip",
+          "content": "Owners strongly recommend regular Haldex fluid and filter service rather than treating the unit as sealed for life.",
+          "partName": "",
+          "partBrand": "",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "",
+              "url": "https://www.amazon.com/s?k=Haldex%20service%20kit%20Audi%20TT%20Mk1&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "audi-tt-high-speed-stability-recall-for-2000",
+      "make": "Audi",
+      "model": "TT",
+      "years": [
+        2000,
+        2001
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "safety",
+      "title": "High-Speed Stability Recall for Rear Suspension/ESP Calibration on Early Mk1 TT",
+      "description": "Early Audi TT coupes and roadsters were subject to a major factory campaign after high-speed instability and crash concerns emerged in Europe and were widely discussed by owners. The remedy package included suspension changes, a rear spoiler addition on some cars, and revised ESP calibration to improve stability during abrupt maneuvers. This is one of the most historically significant issues affecting the first-generation TT.",
+      "solution": "Verify by VIN whether the vehicle received the factory campaign updates, including suspension hardware and software changes. Cars missing the campaign should be inspected by an Audi dealer or marque specialist, because the fix materially affects high-speed handling safety. Buyers of early cars should confirm the rear spoiler and campaign documentation rather than assuming the work was done.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "unstable rear-end behavior at high speed",
+        "nervous handling during abrupt lane changes",
+        "missing rear spoiler on early cars",
+        "uncertain recall completion history"
+      ],
+      "affectedSystems": [
+        "rear suspension",
+        "ESP",
+        "aerodynamics",
+        "vehicle stability"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 1500,
+      "typicalMileageLow": 0,
+      "typicalMileageHigh": 60000,
+      "citations": [
+        {
+          "url": "https://www.ttforum.co.uk/forums/",
+          "type": "forum",
+          "title": "Audi TT historical owner discussions regarding the high-speed stability recall and spoiler retrofit"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "content": "Before buying a 2000-2001 TT, run the VIN through Audi/NHTSA recall lookup and visually confirm the campaign hardware is present."
+        },
+        {
+          "content": "If service history is incomplete, have a specialist inspect suspension part numbers and ESP coding to verify the update."
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Audi",
+        "model": "TT",
+        "years": [
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "1787b7f74daa04e6cfed36700e00f04ec1b39eb87ed30e08ef38ebc87f91e89b",
+        "yearsHash": "2fd4d6cc08d22714506d11b923e29b9ed9439187f89a0bb96fd25bafa08514fe",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "6ad35495f7e0102ccece4d8a88ed3c254b882110341f84dc2c9026be82600e3f",
+        "titleHash": "709ab98a66978c08e4207a41a6a144924a0c386435bac57c4e5c81974ef7bb45",
+        "descriptionHash": "cc208a15c4a0c41dc1f77f7aa5ea94ebb79f5cb4420d3ef9e0cc63f6fd42360d",
+        "solutionHash": "36630542f206fc808e9a7a4199861295374adcaa5786e861cfae591d8c428cf6",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "47ab1de451bc3e686294423221e42777d4a142ffd0ffc0d8973724d0cccf68c2",
+        "affectedSystemsHash": "aa3c43781fc74864996e1250a549c348706c9f723bac628f35ae2989e0d103ef",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "typicalMileageLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageHighHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "citationsHash": "8b6f5929e9998adea1d7311b08b9b36db0b6851905b044bc7643a84ae2cdbee3",
+        "communityRecommendationsHash": "3f3551184b438b801170243bcfe918bcd89008aa6f292307a81405240e02686c",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "audi-tt-instrument-cluster-pixel-failure-2000",
+      "make": "Audi",
+      "model": "TT",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "Instrument Cluster Pixel Failure and Intermittent Gauge/Warning Display Loss",
+      "description": "First-generation Audi TT models commonly develop failures in the instrument cluster LCD/pixel display and, in some cases, intermittent gauge or warning-light operation. Owners report missing center-display information, unreadable driver warnings, and occasional erratic cluster behavior caused by internal solder joint or display ribbon failures. This is well documented across owner forums and complaint databases for Mk1 TT and related Volkswagen/Audi platform cars using similar clusters.",
+      "solution": "Diagnosis starts by confirming power/ground integrity and scanning the cluster module for communication faults. Most repairs involve cluster rebuild/reprogramming by a specialist or replacement with a matched unit that must be coded to the immobilizer. If only the LCD is failing, some rebuilders can replace the display and repair internal connections without replacing the entire cluster.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "faded or missing center LCD pixels",
+        "unreadable warning messages",
+        "intermittent gauge operation",
+        "cluster resets or flickering",
+        "immobilizer or communication warnings"
+      ],
+      "affectedSystems": [
+        "instrument cluster",
+        "driver information display",
+        "immobilizer",
+        "CAN bus communications"
+      ],
+      "dtcCodes": [
+        "01314",
+        "01336"
+      ],
+      "estimatedCostLow": 250,
+      "estimatedCostHigh": 900,
+      "typicalMileageLow": 50000,
+      "typicalMileageHigh": 140000,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Use VCDS or equivalent to scan module 17 before replacing parts; many owners send the cluster to a specialist rebuilder to preserve coding and immobilizer matching.",
+          "upvotes": 0,
+          "affiliateUrl": "https://www.amazon.com/s?k=VCDS%20diagnostic%20cable&tag=au7o-20"
+        },
+        {
+          "content": "If buying a used cluster, verify immobilizer compatibility and plan for coding/adaptation to avoid a no-start condition."
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [
+        "audi-a4-instrument-cluster-lcd-pixel-2000",
+        "audi-a6-instrument-cluster-pixel-loss-2000",
+        "audi-q5-sportback-virtual-cockpit-2021"
+      ],
+      "vehicle": {
+        "make": "Audi",
+        "model": "TT",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "1787b7f74daa04e6cfed36700e00f04ec1b39eb87ed30e08ef38ebc87f91e89b",
+        "yearsHash": "e2a089c220bf013912d9a12ae6c7ed2219b76c6b0b6ffe4ccbd5eaca70e3696e",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "62dcf1829eec6f305af02965aa2b34ef1c94bb9f41738bb46125976ba6dbfec3",
+        "descriptionHash": "f6db7bf45249fa9a931f29355902982f1cf7e1e49633515978535f9eaa814e0e",
+        "solutionHash": "f05cbaf879d46cfdc7edcb5bc1280385ad82687641aabeede40571f1baa3cd35",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "385f3743dd8e347da9d68d16c8ac42c163167dc649ffac1654b112bccd64ff9a",
+        "affectedSystemsHash": "6766318e6b4e9423ff0855914d7242c724e88c38ea4e3166a904f6f1e09955fb",
+        "dtcCodesHash": "0fd34631589d11af1c0db3c64e9bfefc27a790966551f80bdbe9d720879eec9b",
+        "estimatedCostLowHash": "1e472b39b105d349bcd069c4a711b44a2fffb8e274714bb07ecfff69a9a7f67b",
+        "estimatedCostHighHash": "bdc5d8a48c23897906b09a9a3680bd2e9c8b3121edbda36f949800f0959c8d55",
+        "typicalMileageLowHash": "60734f174b2035e5b2ba85fef8c648cc0cb18c5995b419d3cd1c025c5b09d0c7",
+        "typicalMileageHighHash": "f4dd96228b9a0d6e3b6bb54a223bc69c0ce550eb89d620d418ac87159946f72a",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "4059fdcf91ed9a370dbc010d2560913fb740c4df3e85d89f41a9814ccc5ac731",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "2a9e63183482daa229022b58c9bfb83838d091475d3efed5c51b1de12acf8528",
+        "claimIds": [
+          "communityRecommendations:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "tip",
+          "content": "Use VCDS or equivalent to scan module 17 before replacing parts; many owners send the cluster to a specialist rebuilder to preserve coding and immobilizer matching.",
+          "partName": "",
+          "partBrand": "",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "",
+              "url": "https://www.amazon.com/s?k=VCDS%20diagnostic%20cable&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "audi-tt-magnetic-ride-2008",
+      "make": "Audi",
+      "model": "TT",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "suspension",
+      "title": "Magnetic Ride Damper Leaks",
+      "description": "The TT optional magnetic ride dampers develop shaft seal leaks over time, losing magnetorheological fluid. Failed dampers lose adaptive capability and default to a harsh or bouncy ride setting.",
+      "solution": "Replace leaking magnetic ride dampers. Aftermarket conventional dampers or coilovers are popular cost-effective alternatives.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Damper fluid visible on strut body",
+        "Clunking over bumps",
+        "Uneven ride quality",
+        "Suspension warning light",
+        "Excessive body roll",
+        "Harsh ride on one corner"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 700,
+      "estimatedCostHigh": 2500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "Magnetic Ride Damper",
+          "partBrand": "Bilstein",
+          "partNumber": "B4 MagneRide",
+          "affiliateUrl": "https://www.amazon.com/s?k=Bilstein%20magnetic%20ride%20damper%20Audi%20TT&tag=au7o-20"
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=8J0413029D&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=8J0413029D",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=8J0413029D",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "front magnetic ride shock absorber (damper)",
+          "priceHigh": null,
+          "oemPartNumber": "8J0413029D",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 276,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-13",
+      "reviewedOn": "2026-03-13",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Audi",
+        "model": "TT",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "1787b7f74daa04e6cfed36700e00f04ec1b39eb87ed30e08ef38ebc87f91e89b",
+        "yearsHash": "5792a386eb7b8ed7366150594e8f01d81cb941d4b7680d63240997787f96dac1",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "22bad6a4b42e8e81cee3d1fc94889c4de6f44bc026f55a042848a0e88366ad1d",
+        "descriptionHash": "e1ceb3246810b1f622fbe61ee294eac3b5af91978c2b4ba4cff8fb4d08375af3",
+        "solutionHash": "d0f63b4a22edd617178430bae348e281e044700967476ba9a710f173758205af",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "497d1a47824ee9135375de34d4252050cdeefd77cabaf89b2689b2841354a6fe",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "99ee50221221864d50c60baea6f14d8ac2e235cc6e78be6088cd40cc97fca394",
+        "estimatedCostHighHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "41e0f89e9d6ddb8d47fd4bcca613e1f396feba9287812cfaf0e44bd5b64a336b",
+        "fixPartsHash": "537b51d41278be67936e9f92a8305d57c7ea3f0fd13b76ba9be26183a5cdd903",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "c76b405781134be1dab7fe45adfb8c32104805a01de7b863e1004b66d56edf9f",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "49a1fe1e78808830b448b76499f057f0ac7825e8cc98d211a432c17770257f65",
+        "reviewedOnHash": "49a1fe1e78808830b448b76499f057f0ac7825e8cc98d211a432c17770257f65",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "front magnetic ride shock absorber (damper)",
+          "oemPartNumber": "8J0413029D",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=8J0413029D&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=8J0413029D",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=8J0413029D",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "part",
+          "content": "Magnetic Ride Damper",
+          "partName": "",
+          "partBrand": "Bilstein",
+          "partNumber": "B4 MagneRide",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Bilstein",
+              "url": "https://www.amazon.com/s?k=Bilstein%20magnetic%20ride%20damper%20Audi%20TT&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "audi-tt-tail-light-corrosion-2008",
+      "make": "Audi",
+      "model": "TT",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "other",
+      "title": "Tail Light Electrical Connector Corrosion (Mk2)",
+      "description": "All Mk2 Audi TT models (2008-2015) suffer from corrosion of the electrical connectors for the tail lights. Water intrusion into the tail light housings causes the electrical connectors to corrode, leading to flickering tail lights, brake lights not working, turn signals malfunctioning, and bulb-out warning lights on the dashboard even with good bulbs. The corrosion is caused by poor seal design allowing moisture to enter. This affects all Mk2 model years and is one of the most commonly reported electrical issues on TTForum.co.uk. The fix requires cleaning or replacing the connectors and improving the seal. Left unaddressed, corrosion worsens and can cause electrical shorts.",
+      "solution": "Remove tail light assembly, inspect electrical connector for green corrosion. CLEAN connector with electrical contact cleaner and wire brush ($20 DIY). Apply dielectric grease to prevent future corrosion ($10). If connector is severely corroded: Replace pigtail connector ($50-$100 parts). Improve tail light seal with silicone sealant around housing ($15). This is a DIY-friendly repair taking 1-2 hours. If paying shop, costs $150-$300. Address early before corrosion causes shorts.",
+      "severity": "low",
+      "confidence": "medium",
+      "symptoms": [
+        "Tail lights flickering or not working",
+        "Brake lights intermittent or non-functional",
+        "Turn signals not working on one side",
+        "Bulb-out warning on dashboard (with good bulbs)",
+        "Water visible inside tail light housing",
+        "Green corrosion on electrical connector",
+        "Multiple bulb failures"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 20,
+      "estimatedCostHigh": 300,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Clean corroded connector pins with electrical contact cleaner (CRC QD or DeoxIT D5) and fine sandpaper. Apply dielectric grease to prevent re-corrosion.",
+          "upvotes": 0,
+          "needsReview": false
+        },
+        {
+          "type": "part",
+          "content": "CRC QD Electronic Cleaner is the preferred contact cleaner on Audizine and TT Forum. DeoxIT D5 is the premium choice for severe corrosion.",
+          "upvotes": 0,
+          "partName": "QD Electronic Cleaner",
+          "partBrand": "CRC",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=CRC%20QD%20Electronic%20Cleaner&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "If connector is too corroded, OEM replacement pigtails are available from ECS Tuning. Replacement tail light assemblies are $200-$400 each for OEM.",
+          "upvotes": 0,
+          "partName": "Tail Light Assembly (Mk2 TT)",
+          "partBrand": "Genuine VW/Audi",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=Genuine%20VW%2FAudi%20Tail%20Light%20Assembly%20(Mk2%20TT)&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Apply dielectric grease (Permatex 22058) to all tail light connectors as preventive maintenance. Re-apply annually, especially in salt-belt states.",
+          "upvotes": 0,
+          "partBrand": "Permatex",
+          "partNumber": "22058",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=Permatex%2022058&tag=au7o-20"
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=1J0973733&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=1J0973733",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=1J0973733",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "tail light wiring harness connector / pigtail",
+          "priceHigh": null,
+          "oemPartNumber": "1J0973733",
+          "aftermarketXref": []
+        },
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=8J0945257A&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=8J0945257A",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=8J0945257A",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "tail light bulb holder / carrier (connector assembly)",
+          "priceHigh": null,
+          "oemPartNumber": "8J0945257A",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Audi",
+        "model": "TT",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "1787b7f74daa04e6cfed36700e00f04ec1b39eb87ed30e08ef38ebc87f91e89b",
+        "yearsHash": "36c03b22b2b71838deab0f646b27c47150a4e4814bd5b1ba46654e81be877f49",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "d448c0e0f65da7948e3edb7805b5272b54f75f427c33333157324b626f5ca51f",
+        "titleHash": "f86a17913346f2540f411f93dbfa1f101bc1f60bb7efb017712ea61395373696",
+        "descriptionHash": "d709accbcd0ff3ee249587286e9a3c1bb8a38a59d22d8e6535fdb05931f9ee4d",
+        "solutionHash": "51c7a9667905505eeaa7faec91037d1b2d5501d2803ccb26cd5e2fe66bd606e4",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "ae214fbaa8a7bd8d48cebf251f804d1c4881e4880c4bbdaaf9c2ebae774726a7",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b",
+        "estimatedCostHighHash": "983bd614bb5afece5ab3b6023f71147cd7b6bc2314f9d27af7422541c6558389",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "e2920c02887f389760c1294196a40887d75aa3d26e3714a44f9b65aa88808225",
+        "fixPartsHash": "ea841913a024f53256fc32e587e3f6ba5cfa39d60bc9fdec57bf732e2afcf2ff",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "fixParts:1",
+          "communityRecommendations:1",
+          "communityRecommendations:2",
+          "communityRecommendations:3"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "tail light wiring harness connector / pigtail",
+          "oemPartNumber": "1J0973733",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=1J0973733&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=1J0973733",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=1J0973733",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "fixParts:1",
+          "system": "fixParts",
+          "index": 1,
+          "component": "tail light bulb holder / carrier (connector assembly)",
+          "oemPartNumber": "8J0945257A",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=8J0945257A&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=8J0945257A",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=8J0945257A",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "CRC QD Electronic Cleaner is the preferred contact cleaner on Audizine and TT Forum. DeoxIT D5 is the premium choice for severe corrosion.",
+          "partName": "QD Electronic Cleaner",
+          "partBrand": "CRC",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "CRC",
+              "url": "https://www.amazon.com/s?k=CRC%20QD%20Electronic%20Cleaner&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "If connector is too corroded, OEM replacement pigtails are available from ECS Tuning. Replacement tail light assemblies are $200-$400 each for OEM.",
+          "partName": "Tail Light Assembly (Mk2 TT)",
+          "partBrand": "Genuine VW/Audi",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Genuine VW/Audi",
+              "url": "https://www.amazon.com/s?k=Genuine%20VW%2FAudi%20Tail%20Light%20Assembly%20(Mk2%20TT)&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Apply dielectric grease (Permatex 22058) to all tail light connectors as preventive maintenance. Re-apply annually, especially in salt-belt states.",
+          "partName": "",
+          "partBrand": "Permatex",
+          "partNumber": "22058",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Permatex",
+              "url": "https://www.amazon.com/s?k=Permatex%2022058&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "audi-tt-water-pump-2008",
+      "make": "Audi",
+      "model": "TT",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "1.8T",
+        "2.0T",
+        "Base",
+        "Coupe",
+        "Roadster"
+      ],
+      "engines": [],
+      "category": "engine",
+      "title": "Water Pump Failure (60k Mile Lifespan)",
+      "description": "The Audi TT across all generations (Mk2 2008-2015, Mk3 2016-2023) uses a plastic impeller water pump with a notorious 60,000-mile lifespan. The plastic impeller cracks or disintegrates from heat cycling, causing coolant leaks and overheating. Unlike other Audi models, the TT water pump is timing belt-driven (early 2.0 TFSI) or electric (later models), making it critical to replace during timing belt service. Symptoms include coolant puddles, sweet smell, overheating, and temperature gauge fluctuations. Ignoring a failed water pump causes severe overheating, warped cylinder heads, and blown head gaskets. TTForum.co.uk reports water pump as one of the most common TT failures, with many owners replacing preemptively at 60k miles.",
+      "solution": "Replace water pump AND thermostat together ($600-$1,200). If timing belt-driven, replace during timing belt service (every 80k-100k miles) to save labor. Use OEM or high-quality parts (Rein, Hepu)—cheap pumps fail within 20k miles. Flush cooling system and refill with OEM Audi G12++ or G13 coolant. Inspect all coolant hoses. PREVENTIVE REPLACEMENT: Many TT owners replace water pump at 60k miles before failure to avoid being stranded.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Coolant leak under front of car (pink/green puddle)",
+        "Sweet smell under hood (burning coolant)",
+        "Overheating in stop-and-go traffic",
+        "Temperature gauge rising above normal",
+        "Coolant warning light",
+        "Hissing or gurgling from engine bay",
+        "Steam from engine (severe overheating)"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [
+        "P0171",
+        "P0174",
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304",
+        "P0128"
+      ],
+      "estimatedCostLow": 600,
+      "estimatedCostHigh": 1200,
+      "typicalMileageLow": 48000,
+      "typicalMileageHigh": 72000,
+      "citations": [
+        {
+          "url": "",
+          "type": "tsb",
+          "title": "TSB 19-18-17 / 2044640: Coolant Pump Leakage, Thermostat Housing Leaks, MIL On or Coolant Loss on 2.0T EA888 engines"
+        },
+        {
+          "url": "https://www.ttforum.co.uk/",
+          "type": "forum",
+          "title": "TT Forum UK - Water pump failure / coolant loss threads (Mk2 and Mk3 Audi TT owners)"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "Use OEM thermostat housing latest revision 06L121111P for Gen3 TT (2015+), or 06H121026 series for Gen2 (Mk2 TT 2008-2014). Hepu P672 is a quality alternative.",
+          "upvotes": 0,
+          "partName": "Water Pump Assembly",
+          "partBrand": "Genuine VW/Audi",
+          "partNumber": "06L121111P",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=Genuine%20VW%2FAudi%2006L121111P&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "USP Motorsports metal impeller kit prevents the plastic impeller deformation that causes Gen3 failures. Highly recommended upgrade by TT Forum community.",
+          "upvotes": 0,
+          "partName": "Metal Impeller Kit",
+          "partBrand": "USP Motorsports",
+          "partNumber": "06L121111H-KT1",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=USP%20Motorsports%2006L121111H-KT1&tag=au7o-20"
+        },
+        {
+          "type": "tip",
+          "content": "Replace at first sign of coolant weeping, typically around 60,000 miles. Replace water pump, thermostat housing, and union together to avoid repeat labor costs.",
+          "upvotes": 0,
+          "needsReview": false
+        },
+        {
+          "type": "warning",
+          "content": "Avoid Graf water pumps - Audizine and TT Forum report leaking from installation. Stick with OEM, Hepu, or USP metal impeller.",
+          "upvotes": 0,
+          "needsReview": false
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=06L121111H&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=06L121111H",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=06L121111H",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "water pump with integrated thermostat housing assembly",
+          "priceHigh": null,
+          "oemPartNumber": "06L121111H",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [
+        "audi-tts-water-pump-2009",
+        "audi-q3-water-pump-coolant-2015",
+        "audi-a5-water-pump-2008",
+        "audi-20t-water-pump-2009",
+        "audi-q5-water-pump-failure-2009"
+      ],
+      "vehicle": {
+        "make": "Audi",
+        "model": "TT",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "1.8T",
+          "2.0T",
+          "Base",
+          "Coupe",
+          "Roadster"
+        ],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "4bbbae20abf9c6f9c0f71c08a135554524e058a963a5970e496967c7d4cb8222",
+        "modelHash": "1787b7f74daa04e6cfed36700e00f04ec1b39eb87ed30e08ef38ebc87f91e89b",
+        "yearsHash": "de9841b6dd03817c4fd256182d238ca74d6f78724c98205eed0daf45146f9b77",
+        "trimsHash": "f0f3f76a3e40e38b33e54263a30ed16930c566a58cf6faf487a63f2bfc1f9f6d",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "1638ef9d6e403c78abbf8fcd659041eeace75683e0a077227f75e96d1fe16777",
+        "descriptionHash": "373705df82b46000b0d62050b09e3a085754c3147d5d3217348176b550907841",
+        "solutionHash": "356f65fdb42b07f3d0247e205ae0f481ae8d80e1b3a1c954bf4d147939ddef89",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "cf63d6042c94460801cf9b58aebb76c94637f97ea912e10d6f6e68aeb0c43111",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "68da50741fea3e3efa18c0358731f8c7085cd06a383720dafd15866aacf11ca5",
+        "estimatedCostLowHash": "284b7e6d788f363f910f7beb1910473e23ce9d6c871f1ce0f31f22a982d48ad4",
+        "estimatedCostHighHash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43",
+        "typicalMileageLowHash": "5d1dbce82e135ab816d7c6d1f5f9020b94000975fa77f0a349a5b4d226d82332",
+        "typicalMileageHighHash": "03170c93d53fb0647eb0aaf279aab89e58e8b852de3a58eea96e43912cd0372b",
+        "citationsHash": "950d5171a050686eb9056e08387c3757049abd70104fd866a82eda468643e8f5",
+        "communityRecommendationsHash": "6d02e0405575b8a53f37d0f35704ddc5f2097aff3818ef852deb0e4f1c7ad25d",
+        "fixPartsHash": "d8a01f5f24a5a24f8b6e4e94a1a9e66b0791d58659dba97dd8f62c63a6b1364f",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "8c91bcb6a610db99c4d433a0228aaed99ae73fba959a105c7b32bec430daa0de",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "water pump with integrated thermostat housing assembly",
+          "oemPartNumber": "06L121111H",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=06L121111H&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=06L121111H",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=06L121111H",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "part",
+          "content": "Use OEM thermostat housing latest revision 06L121111P for Gen3 TT (2015+), or 06H121026 series for Gen2 (Mk2 TT 2008-2014). Hepu P672 is a quality alternative.",
+          "partName": "Water Pump Assembly",
+          "partBrand": "Genuine VW/Audi",
+          "partNumber": "06L121111P",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Genuine VW/Audi",
+              "url": "https://www.amazon.com/s?k=Genuine%20VW%2FAudi%2006L121111P&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "USP Motorsports metal impeller kit prevents the plastic impeller deformation that causes Gen3 failures. Highly recommended upgrade by TT Forum community.",
+          "partName": "Metal Impeller Kit",
+          "partBrand": "USP Motorsports",
+          "partNumber": "06L121111H-KT1",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "USP Motorsports",
+              "url": "https://www.amazon.com/s?k=USP%20Motorsports%2006L121111H-KT1&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    }
+  ]
+}

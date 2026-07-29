@@ -58,13 +58,17 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'audi-q7',
   'audi-q8',
   'audi-q8-e-tron',
+  'audi-r8',
   'audi-rs-e-tron-gt',
   'audi-rs-q8',
   'audi-rs4',
   'audi-rs6',
   'audi-s3',
+  'audi-s4',
+  'audi-s7',
   'audi-sq2',
   'audi-sq8',
+  'audi-tt',
 ]);
 
 // --- Static generation ---
