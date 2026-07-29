@@ -73,6 +73,10 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'cadillac-ats',
   'cadillac-catera',
   'cadillac-celestiq',
+  'cadillac-ct4',
+  'cadillac-ct5',
+  'cadillac-ct6',
+  'cadillac-cts',
 ]);
 
 // --- Static generation ---

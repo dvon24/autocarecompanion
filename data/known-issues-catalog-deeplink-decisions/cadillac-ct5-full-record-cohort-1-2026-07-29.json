@@ -1,0 +1,2229 @@
+{
+  "schemaVersion": 2,
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "auditScope": "full-record",
+  "batchId": "cadillac-ct5-full-record-cohort-1-2026-07-29",
+  "snapshotHash": "3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102",
+  "sourceSnapshotFileHash": "6e4c8d64ced097e83111d27c7f46e1f1c08b79dc40423fee81ebc9d9c54cd455",
+  "packetFileHash": "a369062276a4ac40076ac884d4d9d435dff80ae57697c31b9efcd85c90904118",
+  "reviewApproval": {
+    "approvedAfterBlindAndEdgeReview": true,
+    "approvedOn": "2026-07-29",
+    "blindReviewer": "ct5_blind_review:no-blocker",
+    "edgeReviewer": "ct5_edge_review:no-blocker",
+    "reviewedGeneratorFileHash": "733e3a0e71db4fdf3074eb7f37c4846213a7d924312985e42e1d1a52d3546038"
+  },
+  "researchedWith": "Ultra-effort current manufacturer/regulator primary-source review; no LLM API and no commerce approval",
+  "controlledDeltaProposals": [],
+  "issues": [
+    {
+      "id": "cadillac-ct5-2-0l-turbo-excessive-oil-consumption-pcv-system-failure",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"2.0L Turbo (LSY) Excessive Oil Consumption and PCV System Failure\" aggregation. Current GM bulletin 21-NA-240 supports a bounded cam-carrier oil-leak diagnosis, not this universal oil-consumption and PCV-failure bundle. Remove all 5 commerce claims and 15 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "GM Bulletin 21-NA-240 - Information on LSY Engine Oil Leaks",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11019543-0001.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "d62004824f6db5895fdb93115d9ab38c7d09a07f3ab2a767994901c0b850c75d",
+        "trimsHash": "41560642bd170723ec889d10f77ab6491f0661092cb49cea829808ba4d8d7d19",
+        "enginesHash": "b45be6c0a38c268eb4f5e70b130e15d65b76400f33062b945cae893cc3539e6d",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "4866e76a9e2c97f19b9b52f98cab6d83389ed3d268cb4306b6dc3a980b30ac20",
+        "descriptionHash": "487d8bdb08a93dd1bff8eed05e475a1f834b78989cf822c531e96c1ff3656dd5",
+        "solutionHash": "8aeb27848d5fbec98cc22490778e1dc696f0a92a22431128fc648cb9fbf79f9f",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "9c66ead26c13d9b89269e2727e5b46f82b8fd08110b799b5608d2b9a5cf7fe65",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "9264c13233d904e7152c552c75344a4fdec2c6e353863bde759fbf5eed637aa4",
+        "estimatedCostLowHash": "9ae2bdd7beedc2e766c6b76585530e16925115707dc7a06ab5ee4aa2776b2c7b",
+        "estimatedCostHighHash": "c746ee2edf45fa00fca8d08045b2575aac17cf3eeb3f2b0da5e5301fae8d1e47",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "df658d4900cc4cb87109935187a3207ecf21052de886b19c8cc38265ec2e58d9",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "21927fee974b4e9f8c08a97e6ccfabba2a11b0fc41833a6799c9f62de0530cd0",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "e91a41dfec148e5d9659e92938943fda8f32c2868f54584c298084c07b6a1a07",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "fixParts:1",
+          "fixParts:2",
+          "fixParts:3",
+          "fixParts:4"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Archived - Unsupported Cadillac CT5 Oil-Consumption and PCV Aggregation",
+        "description": "The former card asserted \"2.0L Turbo (LSY) Excessive Oil Consumption and PCV System Failure\" across a broad Cadillac CT5 population. Current GM bulletin 21-NA-240 supports a bounded cam-carrier oil-leak diagnosis, not this universal oil-consumption and PCV-failure bundle.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "GM Bulletin 21-NA-240 - Information on LSY Engine Oil Leaks",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11019543-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Archived the unsupported Cadillac CT5 \"2.0L Turbo (LSY) Excessive Oil Consumption and PCV System Failure\" aggregation and removed 5 commerce claims with 15 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-10-speed-transmission-control-valve-wear-causing-momentary-w",
+      "disposition": "recall-dealer",
+      "decision": "Replace the frozen \"10-Speed (10L80/10L90) Transmission Control Valve Wear Causing Momentary Wheel Lock-Up (Recall 25V-148)\" aggregation with the bounded primary-source path below. Remove all 3 commerce claims and 9 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Cadillac CT5 Recall 25V148 / GM N242480630",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=25V148000"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "3921faba20498d780b9aeb47257e9106c703fa8871cacbddce1b00446d4df7f9",
+        "trimsHash": "cdbc1ab7b16bf8381a5a74ed4eb40cd078957175488b229bc35ea8d5cf9f6a8f",
+        "enginesHash": "44c55498d471d502cceadd74df29b2703bd4dad2c2b4dfef1203c1a570902437",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "37971b74d7188777425bff68397ff0704b5c9951939ffd16d126853935070c70",
+        "descriptionHash": "807118a52db1fd935e815a6c64da217dfcb2850b4bf9562931a28be5d3acb108",
+        "solutionHash": "4f29218131c085ebbc5f1d03d8b915055221e0c807bf24344905515a94db3727",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "a892d490565ae530ab8d04cea22fb7e83ceee48ac15845ea7733733e1061c7b7",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "889e2fc00981675edd472d82d3a581b0156216501cfcdba3f1dfc87223be85e7",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "9c66e31ec752bdff5fc566ebf9f098116daf6e98d8e8c7621dc670f80b3bb42c",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "106f953d202080a93ce5daecd6ec8383b9598a615bac540a9817f4344ef8393a",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "e91a41dfec148e5d9659e92938943fda8f32c2868f54584c298084c07b6a1a07",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "fixParts:1",
+          "fixParts:2"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "10-Speed Transmission Damage Can Cause Wheel Lock-Up (Recall 25V148)",
+        "description": "Certain 2020-2021 Cadillac CT5 vehicles equipped with a 10-speed transmission can develop internal transmission damage that may cause the wheels to lock while driving.",
+        "solution": "Check the VIN and campaign status. Cadillac dealers install transmission-control-module monitoring software under recall N242480630; follow the campaign instructions if the software detects damage.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Open safety recall",
+          "Unexpected wheel lock-up risk"
+        ],
+        "affectedSystems": [
+          "10-speed automatic transmission",
+          "transmission control module"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Cadillac CT5 Recall 25V148 / GM N242480630",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=25V148000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Replaced the frozen \"10-Speed (10L80/10L90) Transmission Control Valve Wear Causing Momentary Wheel Lock-Up (Recall 25V-148)\" card with the exact Cadillac CT5 Recall 25V148 / GM N242480630 scope and removed 3 commerce claims with 9 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-10l80-10-speed-torque-converter-clutch-shudder-light-throttl",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"10L80 10-Speed Torque Converter Clutch (TCC) Shudder at Light Throttle\" aggregation. The cited current GM bulletin 22-NA-015 lists Cadillac Escalade models and GM trucks/SUVs, not CT5, so its diagnostic and component-replacement path cannot be inherited by model family. Remove all 0 commerce claims and 0 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "GM Bulletin 22-NA-015 - Published Applicability Excludes Cadillac CT5",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10243982-0001.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "a2d97d02b0c908cce10ed6550b9e0168ed178a60ae54b86f01c4fed51c5a49f7",
+        "trimsHash": "d29502623153df1dd308f8fedf1a850e14d39e5bf1b12a3a06aa94c42d01d57d",
+        "enginesHash": "91b476e19a44446f142af688e67e7057c9bf528d46b0da78d96c3802041ded30",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "9968918f8cd5733ed9bf1c074d93d2ab8869172a2c05f3b86f8d1838c3f54c4e",
+        "descriptionHash": "df20d79048771353e4d4d438376e59fbef68714d0bc4b8fe49da5d224ef222b5",
+        "solutionHash": "d9f29f5e631e55c5ab6fc60785928411ee1e1109a55780843f42333b31c91e32",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "symptomsHash": "e1cfc0b71ec4b9a7ba1495693365c662abba279e39bc0353a67828315ff04da2",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "1f9f4dd9545910920d9d7f18c53968d2900066130944cdeaef75d3b572091dbe",
+        "estimatedCostLowHash": "983bd614bb5afece5ab3b6023f71147cd7b6bc2314f9d27af7422541c6558389",
+        "estimatedCostHighHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "9cf8aea4ae8e691e0223a8829e01dc81fc5fbf149dade097e490adc61729a904",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "54367a4479b4fc3ef319fac2b9e62af69dd602addfed7c0e4d446662da98486f",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Archived - Unsupported Cadillac CT5 Torque-Converter Shudder Aggregation",
+        "description": "The former card asserted \"10L80 10-Speed Torque Converter Clutch (TCC) Shudder at Light Throttle\" across a broad Cadillac CT5 population. The cited current GM bulletin 22-NA-015 lists Cadillac Escalade models and GM trucks/SUVs, not CT5, so its diagnostic and component-replacement path cannot be inherited by model family.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "GM Bulletin 22-NA-015 - Published Applicability Excludes Cadillac CT5",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10243982-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Archived the unsupported Cadillac CT5 \"10L80 10-Speed Torque Converter Clutch (TCC) Shudder at Light Throttle\" aggregation and removed 0 commerce claims with 0 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-10l80-harsh-shift-p2812-p2814",
+      "disposition": "replace",
+      "decision": "Replace the frozen \"10L80 Harsh Shifts and Check Engine Light with DTC P2812 or P2814 (Line Pressure Solenoid)\" aggregation with the bounded primary-source path below. Remove all 0 commerce claims and 0 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "GM Preliminary Information PIP5799 - CT5 P2812/P2814 Harsh Shift",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10193429-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "3921faba20498d780b9aeb47257e9106c703fa8871cacbddce1b00446d4df7f9",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4fc537dd147345409cbda3397fc0123292450be31c30b1a6125941cbe5effb76",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "0cbf7ca82b67c51b7c012ca8aadc8653fd35b7143ce8b135120c48baf75c9cfd",
+        "descriptionHash": "c4aa0f77e2aefb2ec4587f3da8b97295d63b783a7f31721b481903904ad28ceb",
+        "solutionHash": "d770f77277eb93756a8280d1eeeaa34956a65bbb8650c6ed1c5ff3528329b469",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "2fafc729f6048ce2c0969009bcf3c10a3fa7a614c5e64a639ef5743832732470",
+        "affectedSystemsHash": "9cd4df11e494093345c883040f167523454459bd37f933af6f9ca4427e7175fe",
+        "dtcCodesHash": "fddf1398dadcd0a9128f41e5fb31eeca2eb3812039d99c768f0cec1492172d67",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "889e2fc00981675edd472d82d3a581b0156216501cfcdba3f1dfc87223be85e7",
+        "typicalMileageLowHash": "0f8eb4b72b6e0c9e88b388eb967b49e067ef1004bf07bffc22c3acb13b43580a",
+        "typicalMileageHighHash": "47b25095a0fe135a688b20614771dbb445ad5e27e9cd4f2c2089c5af216e305b",
+        "citationsHash": "6f8ce0007cab1c97e5e646a5411a1e0f3f17f15f290f2bbebfea1b52ec9ae46d",
+        "communityRecommendationsHash": "c0e0fa0979b1f821fb1fed9aa6c23207768f48f76cd5cd1d42b8dd8f95444af7",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "f084270af68f7d7b022aba97b458aa7305e8b6a58b16483d915aa90af4a326db",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7788c2f116853b8ed74c41817176d911e1992e17e3eb2b39e76216cbdebd0eb0",
+        "reviewedOnHash": "7788c2f116853b8ed74c41817176d911e1992e17e3eb2b39e76216cbdebd0eb0",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Harsh Shift with P2812 or P2814 from Solenoid-7 Electrical Fault (PIP5799)",
+        "description": "GM PIP5799 covers 2020-2021 Cadillac CT5 vehicles with the MHS transmission when the check-engine lamp and harsh shifting occur with TCM DTC P2812 or P2814. The listed cause is an electrical fault in transmission-control solenoid valve 7.",
+        "solution": "Follow GM service-information diagnostics first. If diagnosis does not identify another root cause for P2812 or P2814, PIP5799 directs replacement of the valve body.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Check-engine lamp",
+          "Harsh transmission shifts"
+        ],
+        "affectedSystems": [
+          "MHS 10-speed transmission",
+          "transmission-control solenoid valve 7"
+        ],
+        "dtcCodes": [
+          "P2812",
+          "P2814"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM Preliminary Information PIP5799 - CT5 P2812/P2814 Harsh Shift",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10193429-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Replaced the frozen \"10L80 Harsh Shifts and Check Engine Light with DTC P2812 or P2814 (Line Pressure Solenoid)\" card with the exact GM Preliminary Information PIP5799 - CT5 P2812/P2814 Harsh Shift scope and removed 0 commerce claims with 0 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-20t-oil-consumption-2020",
+      "disposition": "replace",
+      "decision": "Replace the frozen \"2.0T LSY Engine Timing Cover Oil Leak\" aggregation with the bounded primary-source path below. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "GM Bulletin 21-NA-240 - Information on LSY Engine Oil Leaks",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11019543-0001.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "c028584c08fb59fd076ece51bf42d07b009590cf232ed36cf79950fc5467df29",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "fed4b823e46f8656a3ac73a5ea8d9233ae27028b293814f60607065d7be10ca8",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "f6da0c8b738a297833e4eb2d3374c6f505156601dabf4642eac69f9b67400e8e",
+        "descriptionHash": "9647a33600ce58c1f959c2f25fc14adbe505a0538411605ab1eddcba65ea73a0",
+        "solutionHash": "4a65ab8abb5c9b7d05be1e9bc08ae5eb40276344b849a7e0c6402835ec85e258",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "ebcdd3dd1b5447136714260fed172e4dcb98b80c7f64128bddfef0e746206d3b",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "estimatedCostHighHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "01d05b5a3e0b17493482cf2c4c9e62ae316f8884c8261f5f19738996fa198e1f",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "86dd73ca079e6506ea02c3c9d77a4de2f29e8b32cbef10b8e7d528b24f97397d",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Turbo I4 (LSY)"
+        ],
+        "category": "engine",
+        "title": "LSY Cam-Carrier T-Joint Oil Leak Can Mimic Other Front-Engine Leaks (21-NA-240)",
+        "description": "GM bulletin 21-NA-240 covers 2020-2024 Cadillac CT5 models with the 2.0L LSY engine. An improper amount of cam-carrier gasket sealant can leak at the T-joint and appear to come from the front cover, lower oil pan or upper timing-chain cover.",
+        "solution": "Clean residual oil, add oil dye and trace powder, and run the engine until the source is observed. Reseal the cam-carrier assembly only when the leak is isolated to the T-joint; otherwise continue normal oil-leak diagnosis.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Engine oil leak at the front of the engine"
+        ],
+        "affectedSystems": [
+          "cam-carrier T-joint",
+          "cam-carrier gasket sealant"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM Bulletin 21-NA-240 - Information on LSY Engine Oil Leaks",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11019543-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Replaced the frozen \"2.0T LSY Engine Timing Cover Oil Leak\" card with the exact GM Bulletin 21-NA-240 - Information on LSY Engine Oil Leaks scope and removed 2 commerce claims with 2 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-auto-stop-start-rough-restart-brake-stability-warning-lights",
+      "disposition": "recall-dealer",
+      "decision": "Replace the frozen \"Auto Stop/Start Rough Restart with Brake and Stability Warning Lights\" aggregation with the bounded primary-source path below. Remove all 1 commerce claims and 3 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Cadillac CT5 Recall 21V421 / GM N212338110",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=21V421000"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "d62004824f6db5895fdb93115d9ab38c7d09a07f3ab2a767994901c0b850c75d",
+        "trimsHash": "c1a3a642c684bcd84fe59253a58a156dc1c2340b7243abeb34fa3b11b8ee289c",
+        "enginesHash": "c6bbe3acda5a22256dfdab2240407c0d873596433cbc8718039ac2aa65492def",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "f2cc07df8bb250bcfe27334fd5dda7281d9d041eab09e2314262b940e673291f",
+        "descriptionHash": "a1ceb364b908328a474dc873ffed159178808344609a5f27dbcef6496c1ea6f6",
+        "solutionHash": "15ee925abdd27aa86f4cd2c697ffd9e9bf7828700b959e5e5d45b556166ca072",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "395c56a1db40d195eb0833cba99633bcc6b2ea2da652a0c545f989db5b45641d",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "3beea0f1f03c59a1462db4c58384c5098c53fb1909ec18103c24dbc085adaef6",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "65f2f3fc7d20a588be38cbd14ef6697df9d7c54ceb2eb3aaf6b8c22639ac3ded",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "e91a41dfec148e5d9659e92938943fda8f32c2868f54584c298084c07b6a1a07",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Airbag Warning Lamp May Not Illuminate Consistently (Recall 21V421)",
+        "description": "On certain 2021 Cadillac CT5 vehicles, the communications gateway module can process loss of communication with the sensing and diagnostic module incorrectly, causing inconsistent illumination of the airbag malfunction indicator.",
+        "solution": "Check the VIN and recall completion history. Cadillac dealers update the communications gateway module software under recall N212338110.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Open safety recall",
+          "Airbag warning lamp may not warn consistently"
+        ],
+        "affectedSystems": [
+          "communications gateway module",
+          "airbag malfunction indicator"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Cadillac CT5 Recall 21V421 / GM N212338110",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=21V421000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Replaced the frozen \"Auto Stop/Start Rough Restart with Brake and Stability Warning Lights\" card with the exact Cadillac CT5 Recall 21V421 / GM N212338110 scope and removed 1 commerce claims with 3 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-driver-seat-massage-lumbar-bolster-module-failure",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Driver Seat Massage and Lumbar/Bolster Module Failure\" aggregation. The primary-source sweep did not establish this complete model-year, module-failure and universal replacement claim. Remove all 1 commerce claims and 3 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Official NHTSA Cadillac CT5 Campaign Inventory",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "d62004824f6db5895fdb93115d9ab38c7d09a07f3ab2a767994901c0b850c75d",
+        "trimsHash": "fb0398245560afd5bb301be1ca48c988678f887702748c2b43fdca010872d654",
+        "enginesHash": "c97ab9dc13231e0ffeadd87c8b13dc3e6352ff01e048268c0b85bd66856cf962",
+        "categoryHash": "2081fd17e4a66ecba5846219ac6f3ec934aecb3c43b7ccff51afffa2da965d78",
+        "titleHash": "4cd36578398c33ee2ebb29fd0cea6fbc99da1805c15cf2882135f00d79d9f157",
+        "descriptionHash": "c488a2c8bc00ea8ae5995a5a61c0995c09caef86d598213d00f2d4a409e1d3c2",
+        "solutionHash": "8c55955ccf528ebe8fa1d88b4bea886fcd07d052a6acb7ee52ca89e10016fc68",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "e9cbf6f377e18294fd4af3b75cde3b23ddede20121f3e28612ac2aa5593dcc35",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "deeeb5df3f2cee6bf4e597a8a3a878a6ce49b932b9e90b416922d4499f54fae6",
+        "estimatedCostHighHash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "bf3139d479514554ccd043e82b9c5c7ff2c3281334ebc5bce53089726f884be1",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "b61623c15d9601dac9a2d16939a37115c4972ec0815c5a87e12cadfed15dec41",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "e91a41dfec148e5d9659e92938943fda8f32c2868f54584c298084c07b6a1a07",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Archived - Unsupported Cadillac CT5 Seat-Massage Module Aggregation",
+        "description": "The former card asserted \"Driver Seat Massage and Lumbar/Bolster Module Failure\" across a broad Cadillac CT5 population. The primary-source sweep did not establish this complete model-year, module-failure and universal replacement claim.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "Official NHTSA Cadillac CT5 Campaign Inventory",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Archived the unsupported Cadillac CT5 \"Driver Seat Massage and Lumbar/Bolster Module Failure\" aggregation and removed 1 commerce claims with 3 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-drl-wont-deactivate-recall",
+      "disposition": "recall-dealer",
+      "decision": "Replace the frozen \"Daytime Running Lights Won't Turn Off With Headlights (Recall 22V903 / N222386380)\" aggregation with the bounded primary-source path below. Remove all 0 commerce claims and 0 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Cadillac CT5 Recall 22V903 / GM N222386380",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=22V903000"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "f92ae3712235b5e49e477dfb5c6a8029efcec752460032a061dee5e9ab12bb92",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "acc4590b5b10fa7f956a17bc3ae4ed0ab45fe9ccb63fdf9c99a1a912cc3ed6bc",
+        "descriptionHash": "8db599b3d41b14fdeb7d2c3cd42720ef7bf3fa1e8ac9cbd0044606ed043216d5",
+        "solutionHash": "e6aad2c96c892982d2afd1b6dcc9dbf0f80bb11f62299fafd11fc6f7a4166666",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "a9ba9888516b6d9a9d9626520843ab5b20fb0eba83354c400077a18a0094415f",
+        "affectedSystemsHash": "d1614cb2f05110af57cf0d82661fa8957eec00298b07dd4289891086526d4cb4",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "dddc5a1872446047693133051b89bafcd176405fc2231378a8f3f94822173869",
+        "communityRecommendationsHash": "ee01a7e81962c6868a9854c100fccc102694b8b4fa15b158b32f36cc61d4360b",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "f084270af68f7d7b022aba97b458aa7305e8b6a58b16483d915aa90af4a326db",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7788c2f116853b8ed74c41817176d911e1992e17e3eb2b39e76216cbdebd0eb0",
+        "reviewedOnHash": "7788c2f116853b8ed74c41817176d911e1992e17e3eb2b39e76216cbdebd0eb0",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Daytime Running Lights May Stay On with Headlights (Recall 22V903)",
+        "description": "On certain 2020-2023 Cadillac CT5 vehicles, the daytime running lights may not deactivate when the headlights are on, creating excess glare and failing FMVSS 108.",
+        "solution": "Check the VIN and recall status. The body-control-module software is updated by a dealer or over the air under recall N222386380.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Open safety recall",
+          "Daytime running lights remain on with headlights"
+        ],
+        "affectedSystems": [
+          "daytime running lights",
+          "body control module software"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Cadillac CT5 Recall 22V903 / GM N222386380",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=22V903000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Replaced the frozen \"Daytime Running Lights Won't Turn Off With Headlights (Recall 22V903 / N222386380)\" card with the exact Cadillac CT5 Recall 22V903 / GM N222386380 scope and removed 0 commerce claims with 0 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-electric-water-pump-failure",
+      "disposition": "replace",
+      "decision": "Replace the frozen \"Electric Water Pump Circuit Board Failure — Overheat and Limp Mode\" aggregation with the bounded primary-source path below. Remove all 0 commerce claims and 0 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "GM Customer Satisfaction Program N202320510 - Water Pump Failure",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10186046-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "91a2461c25439830d94bf4b3d3a3b020343f75e74561a913b1f972b2ac42e943",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "637c08c4d8c9c6635539e0295a4fed44954d05ff8f40d98c8d2404d378a20a40",
+        "categoryHash": "9fab250e5e42070565c3e1a6449c2fb3a9adf976c5e447ef136c21f089863ee5",
+        "titleHash": "e91cba2d69fa5b3f08cbe34c9d162d2f07937e4dadcb6e55ffc270c74d561290",
+        "descriptionHash": "cd875312642412fe303e52a0e9448fbf5028b4b698b3343bc04f4ff33d4f44a3",
+        "solutionHash": "bee38f8c5f1e9b9062f332878f20ba67e72695791da4ce76d318cba9efd3e583",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "85eb982440b44602273a9b02c935fafd017f828c09a0271ced1766fad4af8f43",
+        "affectedSystemsHash": "bfb77cd35f2544d872d98ddd3f5ab9b64ccd378c4a5bbc3c993b7070f0bea37a",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "55fdec963805de594b61b2c1692cadc2c1dfb844d6ac10c5bfed33c842087b2e",
+        "typicalMileageLowHash": "39e5b4830d4d9c14db7368a95b65d5463ea3d09520373723430c03a5a453b5df",
+        "typicalMileageHighHash": "47b25095a0fe135a688b20614771dbb445ad5e27e9cd4f2c2089c5af216e305b",
+        "citationsHash": "c06b22f608eb9cc417dd7624799e1474ef8a231d1d4d9e87c545f6a9870770b3",
+        "communityRecommendationsHash": "2f381e626572d0dbd5404db14b7522c219e164663823a5b61e059409f4c83bfe",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "f084270af68f7d7b022aba97b458aa7305e8b6a58b16483d915aa90af4a326db",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7788c2f116853b8ed74c41817176d911e1992e17e3eb2b39e76216cbdebd0eb0",
+        "reviewedOnHash": "7788c2f116853b8ed74c41817176d911e1992e17e3eb2b39e76216cbdebd0eb0",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Selected-VIN Electric Water-Pump Circuit Board Failure (N202320510)",
+        "description": "Certain VIN-identified 2020-2021 Cadillac CT5 vehicles with a gasoline engine may have an incorrectly manufactured printed circuit board inside the water pump. Progressive coolant-temperature warnings, DTC P2B85, reduced power and eventual protective engine shutdown can occur.",
+        "solution": "Check GM Investigate Vehicle History for program eligibility before replacing parts. Program N202320510 directs dealers to replace the electric water-pump assembly on involved vehicles.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Over-temperature message",
+          "Reduced engine power",
+          "Protective engine shutdown"
+        ],
+        "affectedSystems": [
+          "electric water-pump assembly",
+          "water-pump printed circuit board"
+        ],
+        "dtcCodes": [
+          "P2B85"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM Customer Satisfaction Program N202320510 - Water Pump Failure",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10186046-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Replaced the frozen \"Electric Water Pump Circuit Board Failure — Overheat and Limp Mode\" card with the exact GM Customer Satisfaction Program N202320510 - Water Pump Failure scope and removed 0 commerce claims with 0 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-electronic-brake-boost-module-failure-loss-brake-assist",
+      "disposition": "recall-dealer",
+      "decision": "Replace the frozen \"Electronic Brake Boost Module Failure — Loss of Brake Assist (2020 Recall)\" aggregation with the bounded primary-source path below. Remove all 3 commerce claims and 9 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Cadillac CT5 Recall 20V588 / GM A202307260",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=20V588000"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "91a2461c25439830d94bf4b3d3a3b020343f75e74561a913b1f972b2ac42e943",
+        "trimsHash": "c1a3a642c684bcd84fe59253a58a156dc1c2340b7243abeb34fa3b11b8ee289c",
+        "enginesHash": "c6bbe3acda5a22256dfdab2240407c0d873596433cbc8718039ac2aa65492def",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "373362d2befea2ecd241ede57ff395962041895d93f4a05ef9db7d0294805efa",
+        "descriptionHash": "4fd8a621907472669329de99a5a681c5845c894560450093c8b8d350b546b5bf",
+        "solutionHash": "0d5bb057793759242e8dec142663b4f81e3bfb68ffe497eb0fd6445c6291fd11",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "85f6bee490507cf9881ac966f8c1da6a26d82a4d110c6ed9d76a809f5a743149",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "e49ec846db7527df7ff483009fe61700e6435072c8c5b551ab08f0a13fc45a07",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "5ad5c3868e36e668917b75c0c03ab48d26eede8d9b6e944a3406716739791aa7",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "b96096b7b71b96dd24e865e215d8e2d6d264eaad96a0014fd374f978ead3a1a2",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "e91a41dfec148e5d9659e92938943fda8f32c2868f54584c298084c07b6a1a07",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "fixParts:1",
+          "fixParts:2"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Electronic Brake-Boost Sensor Contamination Can Remove Assist (Recall 20V588)",
+        "description": "On certain 2020 Cadillac CT5 vehicles, contamination at a sensor connection can interrupt communication with the electronic brake-boost system and remove brake assist, requiring extra pedal force.",
+        "solution": "Check the VIN and recall completion history. Cadillac dealers replace the electronic brake-boost module under recall A202307260.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Open safety recall",
+          "Loss of brake assist"
+        ],
+        "affectedSystems": [
+          "electronic brake-boost module",
+          "brake-boost sensor connection"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Cadillac CT5 Recall 20V588 / GM A202307260",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=20V588000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Replaced the frozen \"Electronic Brake Boost Module Failure — Loss of Brake Assist (2020 Recall)\" card with the exact Cadillac CT5 Recall 20V588 / GM A202307260 scope and removed 3 commerce claims with 9 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-gloss-black-exterior-trim-peeling-delamination",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Gloss Black Exterior Trim (B-Pillar / Window Surround) Peeling and Delamination\" aggregation. The primary-source sweep did not establish the claimed broad defect population, failure mechanism and replacement bundle. Remove all 5 commerce claims and 15 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Official NHTSA Cadillac CT5 Campaign Inventory",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "c028584c08fb59fd076ece51bf42d07b009590cf232ed36cf79950fc5467df29",
+        "trimsHash": "c1a3a642c684bcd84fe59253a58a156dc1c2340b7243abeb34fa3b11b8ee289c",
+        "enginesHash": "c97ab9dc13231e0ffeadd87c8b13dc3e6352ff01e048268c0b85bd66856cf962",
+        "categoryHash": "c438bd14b0dcc837c1488333564b2010e29b27d71a61aaa58ff3619ba03c1ad0",
+        "titleHash": "0c09cbf21c153fafa9367c33f9aaffdc52d5965f92b3e239ed5a7d62022a086a",
+        "descriptionHash": "1d7d2fcc719d7044fac19eb54145c4d9f5ae81c237803b11dd2dbc77161f223e",
+        "solutionHash": "55a857820ef0a8b5638a466bb2af0ad67a6c0f6506b5a3c0d8017dab219f6c20",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "549f6d4aa433d66464e18a19e694f233383a278fa6f83c4efcb4c05a42c75694",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "444e166433445834b1682387202597c6b5efa3a11b19c6c992f3b0cc2226c821",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "a629c007ac1b8b419f964865b239ebf315d2651986e92a359b40d2cc3443553d",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "e91a41dfec148e5d9659e92938943fda8f32c2868f54584c298084c07b6a1a07",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "fixParts:1",
+          "fixParts:2",
+          "fixParts:3",
+          "fixParts:4"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Archived - Unsupported Cadillac CT5 Exterior-Trim Delamination Aggregation",
+        "description": "The former card asserted \"Gloss Black Exterior Trim (B-Pillar / Window Surround) Peeling and Delamination\" across a broad Cadillac CT5 population. The primary-source sweep did not establish the claimed broad defect population, failure mechanism and replacement bundle.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "Official NHTSA Cadillac CT5 Campaign Inventory",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Archived the unsupported Cadillac CT5 \"Gloss Black Exterior Trim (B-Pillar / Window Surround) Peeling and Delamination\" aggregation and removed 5 commerce claims with 15 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-high-speed-wind-noise-whistle-from-windshield-pillar-weather",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"High-Speed Wind Noise / Whistle from Windshield A-Pillar Weatherstrip\" aggregation. The primary-source sweep did not establish this universal A-pillar weatherstrip failure and parts-replacement path. Remove all 5 commerce claims and 15 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Official NHTSA Cadillac CT5 Campaign Inventory",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "c028584c08fb59fd076ece51bf42d07b009590cf232ed36cf79950fc5467df29",
+        "trimsHash": "c1a3a642c684bcd84fe59253a58a156dc1c2340b7243abeb34fa3b11b8ee289c",
+        "enginesHash": "c6bbe3acda5a22256dfdab2240407c0d873596433cbc8718039ac2aa65492def",
+        "categoryHash": "bfd4d039e9f8aca33b52a877ded02f73846f28f9095c2bba178316be62ef7c1f",
+        "titleHash": "cf4bff6f74b50eb76dc0c06554c9ad72094f3b5d13cf6c997d2a712d3e01a01d",
+        "descriptionHash": "c1da1812455bf3d7325b8e6b5415c16d81a1e5b0f29df91ac4140a5525bceae5",
+        "solutionHash": "9e6adf58f52a19319bcd8aad68f8938500b30515e9088d562bb56d0dd5488559",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "0b25b905a1a506c0c8911780226bbe74480ec9b3a0d5f0630b10b125423dec9d",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "ad57366865126e55649ecb23ae1d48887544976efea46a48eb5d85a6eeb4d306",
+        "estimatedCostHighHash": "284b7e6d788f363f910f7beb1910473e23ce9d6c871f1ce0f31f22a982d48ad4",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4c7cf6eaaf65dcd7c6d6b9c00ee66daab0d2bca0e63d5f16759782787308f6ec",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "c82b0313fd8acea03f7e49edf186fbc6eebf330d6064958ddb9e79e64523f502",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "e91a41dfec148e5d9659e92938943fda8f32c2868f54584c298084c07b6a1a07",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "fixParts:1",
+          "fixParts:2",
+          "fixParts:3",
+          "fixParts:4"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Archived - Unsupported Cadillac CT5 A-Pillar Wind-Noise Aggregation",
+        "description": "The former card asserted \"High-Speed Wind Noise / Whistle from Windshield A-Pillar Weatherstrip\" across a broad Cadillac CT5 population. The primary-source sweep did not establish this universal A-pillar weatherstrip failure and parts-replacement path.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "Official NHTSA Cadillac CT5 Campaign Inventory",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Archived the unsupported Cadillac CT5 \"High-Speed Wind Noise / Whistle from Windshield A-Pillar Weatherstrip\" aggregation and removed 5 commerce claims with 15 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-instrument-panel-cluster-intermittent-blank-screen-after-rem",
+      "disposition": "replace",
+      "decision": "Replace the frozen \"Instrument Panel Cluster (IPC / Driver Information Center) Intermittent Blank Screen After Remote Start\" aggregation with the bounded primary-source path below. Remove all 0 commerce claims and 0 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "GM Bulletin 21-NA-269 - CT4/CT5 Intermittent Blank Driver Information Display",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10205588-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "f92ae3712235b5e49e477dfb5c6a8029efcec752460032a061dee5e9ab12bb92",
+        "trimsHash": "d29502623153df1dd308f8fedf1a850e14d39e5bf1b12a3a06aa94c42d01d57d",
+        "enginesHash": "91b476e19a44446f142af688e67e7057c9bf528d46b0da78d96c3802041ded30",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "8408e36a46e004c82e33cbd204080033a934338c5df6becf444172fdbce75511",
+        "descriptionHash": "97c2bfe063a33c6f28b6bfe5760f8023022004c883c4b9e19626b0b390a08e5c",
+        "solutionHash": "6139e53a02836fe9cbfb08c1211da8f92f9cef9c570006e59fd6f9252d0d3bf4",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "89244a83586468ed0acc229d19932fb21b1d167484ea0218f20d772e51932c14",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac",
+        "estimatedCostHighHash": "983bd614bb5afece5ab3b6023f71147cd7b6bc2314f9d27af7422541c6558389",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "2dbc53ec59a895e9ae2c3ea4811380dbd0d8f21f0b321eb7107ebed4ff9a7913",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "54367a4479b4fc3ef319fac2b9e62af69dd602addfed7c0e4d446662da98486f",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Driver Information Display Can Remain Blank After Remote Start (21-NA-269)",
+        "description": "GM bulletin 21-NA-269 covers 2020 Cadillac CT5 vehicles equipped with enhanced driver-information display RPO UDD. During an ignition cycle with remote start, radio-module infotainment content may not initialize fully and the cluster display can remain blank.",
+        "solution": "Confirm the exact vehicle and RPO, maintain stable programming voltage, and reprogram the instrument-panel cluster with the latest GM software following 21-NA-269.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Blank driver information display after remote start"
+        ],
+        "affectedSystems": [
+          "instrument-panel cluster",
+          "radio-module infotainment content"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM Bulletin 21-NA-269 - CT4/CT5 Intermittent Blank Driver Information Display",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10205588-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Replaced the frozen \"Instrument Panel Cluster (IPC / Driver Information Center) Intermittent Blank Screen After Remote Start\" card with the exact GM Bulletin 21-NA-269 - CT4/CT5 Intermittent Blank Driver Information Display scope and removed 0 commerce claims with 0 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-performance-carbon-ceramic-brake-squeal-grinding-noise",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Performance and Carbon-Ceramic Brake Squeal and Grinding Noise\" aggregation. The primary-source sweep did not establish a universal component defect, model-year population or fixed replacement remedy for the broad noise claim. Remove all 3 commerce claims and 9 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Official NHTSA Cadillac CT5 Campaign Inventory",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "d62004824f6db5895fdb93115d9ab38c7d09a07f3ab2a767994901c0b850c75d",
+        "trimsHash": "2a3b98da92dc3eb9cd29b572b5166b4d724c222ca35af9e6bee978067796a162",
+        "enginesHash": "04dd44d1566183f3188362a92867ce81b0ca75c4b237e62fdd0d234109bd020f",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "fcf628298e180b5702798198519e38a3c57c79167aa7295766a666e6c6845152",
+        "descriptionHash": "dab21de45e7e91eb4d973cacbcc0840a170db23390eb811a5451c1fe8252ee24",
+        "solutionHash": "5b23de8969ea01ecf24b8fc8f988ff54c9d6e3bcca5abf2426397eb67ea4061e",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "5ec11144dd48aa78c5173dd52b3434d2dda03117e73587b89bc33bc9c3c1a618",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "1e472b39b105d349bcd069c4a711b44a2fffb8e274714bb07ecfff69a9a7f67b",
+        "estimatedCostHighHash": "a176eeb31e601c3877c87c2843a2f584968975269e369d5c86788b4c2f92d2a2",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "6cafe503c96af51376f4de6cad2221492e486d83d3c332fb4e6bbd06c0878fe6",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "a0112ce5c6ef9febc2c7f2e6c2d656f765eaece35be420d705fae61d0e7a8dd7",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "e91a41dfec148e5d9659e92938943fda8f32c2868f54584c298084c07b6a1a07",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "fixParts:1",
+          "fixParts:2"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Archived - Unsupported Cadillac CT5 Performance-Brake Noise Aggregation",
+        "description": "The former card asserted \"Performance and Carbon-Ceramic Brake Squeal and Grinding Noise\" across a broad Cadillac CT5 population. The primary-source sweep did not establish a universal component defect, model-year population or fixed replacement remedy for the broad noise claim.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "Official NHTSA Cadillac CT5 Campaign Inventory",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Archived the unsupported Cadillac CT5 \"Performance and Carbon-Ceramic Brake Squeal and Grinding Noise\" aggregation and removed 3 commerce claims with 9 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-premature-12v-battery-drain-parasitic-draw",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Premature 12V Battery Drain / Parasitic Draw (Memory Seat Module)\" aggregation. The primary-source sweep did not establish the claimed memory-seat-module cause across the listed CT5 years. Remove all 2 commerce claims and 6 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Official NHTSA Cadillac CT5 Campaign Inventory",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "d62004824f6db5895fdb93115d9ab38c7d09a07f3ab2a767994901c0b850c75d",
+        "trimsHash": "908a8a9deadb3e7ca2d49e9eddd88420a5751fb7ef6360be2ca6c33b6edbfba3",
+        "enginesHash": "c97ab9dc13231e0ffeadd87c8b13dc3e6352ff01e048268c0b85bd66856cf962",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "6012dba279ff5247318aa24ed0aabe139683d2752a7a63fc13a663aff2396fbd",
+        "descriptionHash": "cc0e892f6069ab599d7bfee07ec490910d82f507ef92fcb414d429f3e445e16b",
+        "solutionHash": "dc9da557bf17980c0ae614a4c12ae84fd12e3cdc64f725a08b1404fb184fccb3",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "43b71c2418aff2e2698e045762e1f707ae061d7ac07aee3767b26c0d8f7d21a9",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "1e472b39b105d349bcd069c4a711b44a2fffb8e274714bb07ecfff69a9a7f67b",
+        "estimatedCostHighHash": "bdc5d8a48c23897906b09a9a3680bd2e9c8b3121edbda36f949800f0959c8d55",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "081018be70651a8b04f88b15d4592084d755a109cf9a9596241f5c6ab5f3b89c",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "76f22ac2a5f01369034dd7c1f3a5ae1317f20e1f03d03c5867d9ed5b911e9d1d",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "e91a41dfec148e5d9659e92938943fda8f32c2868f54584c298084c07b6a1a07",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "fixParts:1"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Archived - Unsupported Cadillac CT5 Battery-Drain Aggregation",
+        "description": "The former card asserted \"Premature 12V Battery Drain / Parasitic Draw (Memory Seat Module)\" across a broad Cadillac CT5 population. The primary-source sweep did not establish the claimed memory-seat-module cause across the listed CT5 years.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "Official NHTSA Cadillac CT5 Campaign Inventory",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Archived the unsupported Cadillac CT5 \"Premature 12V Battery Drain / Parasitic Draw (Memory Seat Module)\" aggregation and removed 2 commerce claims with 6 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-steering-shaft-brake-line-chafe",
+      "disposition": "replace",
+      "decision": "Replace the frozen \"Upper Intermediate Steering Shaft Chafes Front Brake Line (Service Update N202296840)\" aggregation with the bounded primary-source path below. Remove all 0 commerce claims and 0 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "GM Service Update N202296840 - Upper Intermediate Steering Shaft",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10187222-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "91a2461c25439830d94bf4b3d3a3b020343f75e74561a913b1f972b2ac42e943",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "81bb6299b0f403781ab7e8ca27298377a96b5e191587dd96d5e7156498310d65",
+        "descriptionHash": "9f119956a45a63e1c6e7120cbf56d5afcc2c9df8d76dbdf5442c03f255fe3f76",
+        "solutionHash": "754186a4dc9276f7d6a6d37d127cb3edd1702dbbd60c4be615cad82df7afde30",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "d640dcfeba16dc128ac546fc4d95a5fd4260e769c42e7bb49edcb6dc0501ed2d",
+        "affectedSystemsHash": "d6bc4cebcdbc51a2b13627d6a55c307dd96b86d6b0a070f200159f413285309a",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageHighHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "citationsHash": "bd2f0d0a8b2b74a8670ea3e3b96404bc4b7b2f4f42be81efd879d46669b04590",
+        "communityRecommendationsHash": "0e0d5c5db542b0b24acbd0efa43251efc5138fcfc7704b84060d55890b1c39f3",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "f084270af68f7d7b022aba97b458aa7305e8b6a58b16483d915aa90af4a326db",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7788c2f116853b8ed74c41817176d911e1992e17e3eb2b39e76216cbdebd0eb0",
+        "reviewedOnHash": "7788c2f116853b8ed74c41817176d911e1992e17e3eb2b39e76216cbdebd0eb0",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Selected-VIN Steering Shaft Can Contact Front Brake Line (N202296840)",
+        "description": "Certain VIN-identified 2020 Cadillac CT5 vehicles may have an upper intermediate steering shaft that contacts the front brake line. GM requires eligibility confirmation in Investigate Vehicle History.",
+        "solution": "Confirm the VIN is open in GM Investigate Vehicle History. Dealers inspect the brake line and replace the specified front brake line or lines only when the inspection requires it.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Open service update for the VIN",
+          "Steering-shaft contact at the front brake line"
+        ],
+        "affectedSystems": [
+          "upper intermediate steering shaft",
+          "front brake line"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM Service Update N202296840 - Upper Intermediate Steering Shaft",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10187222-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Replaced the frozen \"Upper Intermediate Steering Shaft Chafes Front Brake Line (Service Update N202296840)\" card with the exact GM Service Update N202296840 - Upper Intermediate Steering Shaft scope and removed 0 commerce claims with 0 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-sunroof-headliner-rattle-creak",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Sunroof / Headliner Rattle and Creak\" aggregation. The primary-source sweep did not establish this complete CT5 model-year, failure-location and universal repair claim. Remove all 2 commerce claims and 6 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Official NHTSA Cadillac CT5 Campaign Inventory",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "c028584c08fb59fd076ece51bf42d07b009590cf232ed36cf79950fc5467df29",
+        "trimsHash": "cdbc1ab7b16bf8381a5a74ed4eb40cd078957175488b229bc35ea8d5cf9f6a8f",
+        "enginesHash": "c6bbe3acda5a22256dfdab2240407c0d873596433cbc8718039ac2aa65492def",
+        "categoryHash": "bfd4d039e9f8aca33b52a877ded02f73846f28f9095c2bba178316be62ef7c1f",
+        "titleHash": "4cf6f1bdd060ed7072df356db3de96e29daf9a670cce9206e1ddd9268a95f865",
+        "descriptionHash": "0b8881a15b9064483e4509571ca49b247816cb678913b7d02e9d2c7ec65d35ee",
+        "solutionHash": "96594321a1d883f55fae677634828407614abeaaf32fe493b2ffd2228dd41dfb",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "a158175aa1ba134f32cd5466397f00637f070300ad86ba7e1fa82d284dc95503",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "ad57366865126e55649ecb23ae1d48887544976efea46a48eb5d85a6eeb4d306",
+        "estimatedCostHighHash": "284b7e6d788f363f910f7beb1910473e23ce9d6c871f1ce0f31f22a982d48ad4",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "54b7c32e97e69f060c89b0b21cb85c205182fa4321ba66e30ddac5551b006900",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "05c179523990c3cdbcb30328d735517358525bdc9e90417e516d0b9b6b04afec",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "e91a41dfec148e5d9659e92938943fda8f32c2868f54584c298084c07b6a1a07",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "fixParts:1"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Archived - Unsupported Cadillac CT5 Sunroof and Headliner Noise Aggregation",
+        "description": "The former card asserted \"Sunroof / Headliner Rattle and Creak\" across a broad Cadillac CT5 population. The primary-source sweep did not establish this complete CT5 model-year, failure-location and universal repair claim.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "Official NHTSA Cadillac CT5 Campaign Inventory",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Archived the unsupported Cadillac CT5 \"Sunroof / Headliner Rattle and Creak\" aggregation and removed 2 commerce claims with 6 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-super-cruise-unavailable",
+      "disposition": "replace",
+      "decision": "Replace the frozen \"Super Cruise 'Unavailable' Message — System Inoperative from Delivery\" aggregation with the bounded primary-source path below. Remove all 0 commerce claims and 0 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "GM Preliminary Information PIT6356B - Super Cruise Unavailable in Low Illumination",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11018647-0001.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "060c4d723fa31e44c716e9b43839b466a0b830a5b215016e9400f2454b9c79bf",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "15cf21564eccaa6e66f6df87b1c65f33d1c536066644c84f3465c21c4e16f73e",
+        "descriptionHash": "3015c9dec888bdf41152abb643531ee3b2776cd86e583f5e3b92eed63d4c2f19",
+        "solutionHash": "0b7980eba34a3804fa5e176f611d49fef842e459ff14a3ccf6e79396264aee30",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "3d4186345dbbb2998205810b2ed9f2e9f85d8445648cc2ee4b47c94b1113a084",
+        "affectedSystemsHash": "842d75d6469a9b9804efac250c16546a5a1fb99709beb7d8de389316904283ca",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageHighHash": "0f8eb4b72b6e0c9e88b388eb967b49e067ef1004bf07bffc22c3acb13b43580a",
+        "citationsHash": "6d7b12685e0c12f20feba359747e1172db9652438c64800c8ba096ca71c6a6cf",
+        "communityRecommendationsHash": "5a6a0115ffb8651dfe1cf1c1743191d04ed07a446935a5380ed67888949eff7d",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "f084270af68f7d7b022aba97b458aa7305e8b6a58b16483d915aa90af4a326db",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7788c2f116853b8ed74c41817176d911e1992e17e3eb2b39e76216cbdebd0eb0",
+        "reviewedOnHash": "7788c2f116853b8ed74c41817176d911e1992e17e3eb2b39e76216cbdebd0eb0",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Super Cruise Can Become Unavailable When Steering-Wheel Infrared Emitters Fail (PIT6356B)",
+        "description": "GM PIT6356B covers 2025 Cadillac CT5 vehicles with Super Cruise RPO UKL. In low-illumination conditions, failed steering-wheel infrared emitter LEDs can cause Super Cruise or Driver Attention Assist unavailable messages.",
+        "solution": "Confirm the exact model, year and UKL equipment, then follow GM PIT6356B diagnostics for the steering-wheel infrared emitters. Do not infer this cause from every Super Cruise unavailable message.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Super Cruise unavailable in low illumination",
+          "Driver Attention Assist unavailable or cannot see face clearly"
+        ],
+        "affectedSystems": [
+          "steering-wheel infrared emitter LEDs",
+          "driver attention system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM Preliminary Information PIT6356B - Super Cruise Unavailable in Low Illumination",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11018647-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Replaced the frozen \"Super Cruise 'Unavailable' Message — System Inoperative from Delivery\" card with the exact GM Preliminary Information PIT6356B - Super Cruise Unavailable in Low Illumination scope and removed 0 commerce claims with 0 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-transmission-adapt-2020",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"10-Speed Transmission Adaptive Learning and Shift Quality\" aggregation. The primary-source sweep did not establish the seeded DTC bundle or a universal adaptive-learning repair across every listed CT5 configuration. Remove all 1 commerce claims and 1 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Official NHTSA Cadillac CT5 Campaign Inventory",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "d62004824f6db5895fdb93115d9ab38c7d09a07f3ab2a767994901c0b850c75d",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "97fb24ba731f38d11eb0f12b77588902b62214f2c3bd58b29bfebe015ea549b9",
+        "descriptionHash": "805d6df865bf706558f7368c536f8681fe715950cd09eafc743b8e20c99bac1b",
+        "solutionHash": "b1c8d953fedf0db211c329432eeba088ae7bb3dac2f5fb6d23fde39c69fe218a",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "f6071ee4537f112d8472adf13c0a37c51c09886d9e78117b013b752d00dc6d28",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "fe0c44cad08c04a33e701a07be25e63f0f52f05c62bcbb528bcfbbadd8d5c394",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "721dfd2e85fb41c7bb96fae951cccddbec2e54f91c047aaee03c5b807b00fffc",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "c0716002451f0b9f86811243bc9ab0d4703201e669f00a3324228b51446416ef",
+        "claimIds": [
+          "communityRecommendations:2"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Archived - Unsupported Cadillac CT5 Transmission-Adaptive-Learning Aggregation",
+        "description": "The former card asserted \"10-Speed Transmission Adaptive Learning and Shift Quality\" across a broad Cadillac CT5 population. The primary-source sweep did not establish the seeded DTC bundle or a universal adaptive-learning repair across every listed CT5 configuration.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "Official NHTSA Cadillac CT5 Campaign Inventory",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Archived the unsupported Cadillac CT5 \"10-Speed Transmission Adaptive Learning and Shift Quality\" aggregation and removed 1 commerce claims with 1 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5-v2-infotainment-freeze-update-stall",
+      "disposition": "recall-dealer",
+      "decision": "Replace the frozen \"Infotainment / Center Display Freezing, Black Screen and Stalled Software Update (stuck at 99%)\" aggregation with the bounded primary-source path below. Remove all 0 commerce claims and 0 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Cadillac CT5 Recall 26V114 / GM N252540430",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26V114000"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "d62004824f6db5895fdb93115d9ab38c7d09a07f3ab2a767994901c0b850c75d",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "7df69bfddf555719e8d0a4468fd7adf24c07d9f6811e48b1316fed29a858cfd6",
+        "descriptionHash": "4d42cefd57ee0312a3262cf57ac9a8a0bafccb02eee075fbf4d9cc6851b9b997",
+        "solutionHash": "45a41222f0a063c5ea1cb52a62e9f3580ca4339db6b4bc0aca92a5552330424d",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "496d5b384f5a63355656bb4ba73bbb34a7faa99c42b88fafdbe0a304e6e0e5af",
+        "affectedSystemsHash": "f48ac63435e6a82b898e512a2f314dea40827fe69d14fff76a4d31d4506bb8e3",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "typicalMileageLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageHighHash": "47b25095a0fe135a688b20614771dbb445ad5e27e9cd4f2c2089c5af216e305b",
+        "citationsHash": "0afa1dc670f1c9596fb684bc547255e45cf171a792640c63606730f64523e6da",
+        "communityRecommendationsHash": "5906af2e4abb07c3f00c20ad8ca75c2e6cdd62bbe8a66498a21f85dbefa86d0b",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "f084270af68f7d7b022aba97b458aa7305e8b6a58b16483d915aa90af4a326db",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7788c2f116853b8ed74c41817176d911e1992e17e3eb2b39e76216cbdebd0eb0",
+        "reviewedOnHash": "7788c2f116853b8ed74c41817176d911e1992e17e3eb2b39e76216cbdebd0eb0",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Radio May Not Download the Electronic Owner Manual (Recall 26V114)",
+        "description": "On certain 2026 Cadillac CT5 vehicles, the radio may not have been set to the correct production status to download the electronic owner manual, leaving required safety-use information unavailable.",
+        "solution": "Check the VIN and recall status. Cadillac dealers reset the vehicle radio to facilitate automatic download of the electronic owner manual under recall N252540430.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Open safety recall",
+          "Electronic owner manual is unavailable"
+        ],
+        "affectedSystems": [
+          "vehicle radio",
+          "electronic owner manual download"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Cadillac CT5 Recall 26V114 / GM N252540430",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26V114000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Replaced the frozen \"Infotainment / Center Display Freezing, Black Screen and Stalled Software Update (stuck at 99%)\" card with the exact Cadillac CT5 Recall 26V114 / GM N252540430 scope and removed 0 commerce claims with 0 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5v-6-2-recall-engine-2021",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"GM 6.2L V8 Engine Recall for Connecting Rod Bearing Failure\" aggregation. NHTSA 25V274 covers specified GM full-size SUV and truck applications with the L87 6.2L engine; it does not establish Cadillac CT5-V Blackwing LT4 eligibility. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "NHTSA Recall 25V274 - Published Vehicle and Engine Population",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=25V274000"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "5855590e74f7e60c866bcdc3ebcdeac267964dd9c3645c6ec87ab788e6dc1a3f",
+        "trimsHash": "13039f3c09a811b671507c7ec769a45956e0a7613277a98a08fa0967e90f21dc",
+        "enginesHash": "8e15cbcde1deb10d84eb3b73a4965d2681b8db5b2f0fff45083ece5cc40e4361",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "086ba63d37cbb0316cb20e9ec5f0702868677996f299b301da35b3a0d1ab53a2",
+        "descriptionHash": "3d1e0ac779d2018fba80a6f79836ad58716e9dc964418d17a8106d23cd073b97",
+        "solutionHash": "364cc0e53f5618d2546474dbfea3afcb6ba66059fc2b3372f3c4a98b18d2c5a1",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "f51c4d5943ab8ccfaab6c27ee7d1c2a0ef1d24a4ab60fc6a873e52cc243654e2",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "c251c29ce63bd928016cd73883631a2e942205a97f9e69844ec2e9d8c5823520",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "14a4dfe103209361f2359b63bdcc5c2aad199f85f52ce9849c45a113eaf82508",
+        "communityRecommendationsHash": "78d326dd89e1b8d27db0dcadc63b5be76e8e6a0c3bb9e468ca2c322b8eb3a655",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "88820462180e5c893eff2ed73f4ec33e205d1cd5acc4d17fa7b2bca2495d3448",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4e89da05a0a62dda5454f539b18f596a4f025536c2277bbed28b4059ade2d592",
+        "claimIds": [
+          "communityRecommendations:2",
+          "communityRecommendations:3"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Archived - Unsupported Cadillac CT5 6.2L V8 Recall Attribution",
+        "description": "The former card asserted \"GM 6.2L V8 Engine Recall for Connecting Rod Bearing Failure\" across a broad Cadillac CT5 population. NHTSA 25V274 covers specified GM full-size SUV and truck applications with the L87 6.2L engine; it does not establish Cadillac CT5-V Blackwing LT4 eligibility.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Recall 25V274 - Published Vehicle and Engine Population",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=25V274000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Archived the unsupported Cadillac CT5 \"GM 6.2L V8 Engine Recall for Connecting Rod Bearing Failure\" aggregation and removed 2 commerce claims with 2 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5v-airbag-curtain-install-2020",
+      "disposition": "recall-dealer",
+      "decision": "Replace the frozen \"Roof Rail Side-Curtain Airbag Incorrect Installation\" aggregation with the bounded primary-source path below. Remove all 1 commerce claims and 1 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Cadillac CT5 Recall 21V611 / GM N212342780",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=21V611000"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "a2d97d02b0c908cce10ed6550b9e0168ed178a60ae54b86f01c4fed51c5a49f7",
+        "trimsHash": "ca2feb06abc769200a8bd75a3941e2d223abdad25363025fa2a6af82cf9d4421",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "6ad35495f7e0102ccece4d8a88ed3c254b882110341f84dc2c9026be82600e3f",
+        "titleHash": "dcf3f785506b506752ae855f4406d18c9b9a97b62a9b992e31ca10d0063397d4",
+        "descriptionHash": "9fe8d43312dc0cd3e8e297c43027f8d81ff4e19fcbf9c1b32fbe7a2bcb9402db",
+        "solutionHash": "68035955af784825446148decf0a0214b9af25615ad59fb1ece99900432ec951",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "e8952fbadc1df16a4b6827c760b81b5ed36b538dd687b49e3b8c0f095b9fb230",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "ef39b9e701719d43ae477d470add451bd68c2cea1267d30662ee15328ae9b1e2",
+        "communityRecommendationsHash": "13402196c38df649acf91c40105887fd365bf99daa49c358b599793f6b3321d9",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Roof-Rail Side-Curtain Airbags May Be Installed Incorrectly (Recall 21V611)",
+        "description": "On certain 2020-2022 Cadillac CT5 vehicles, the roof-rail side-curtain airbags may not have been installed correctly and may deploy improperly in a crash.",
+        "solution": "Check the VIN and recall status. Cadillac dealers inspect both roof-rail airbags and reinstall them as necessary under recall N212342780.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Open safety recall",
+          "Side-curtain airbag installation concern"
+        ],
+        "affectedSystems": [
+          "roof-rail side-curtain airbags"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Cadillac CT5 Recall 21V611 / GM N212342780",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=21V611000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Replaced the frozen \"Roof Rail Side-Curtain Airbag Incorrect Installation\" card with the exact Cadillac CT5 Recall 21V611 / GM N212342780 scope and removed 1 commerce claims with 1 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5v-manual-2nd-gear-notchy-2022",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Tremec 6-Speed Manual 2nd Gear Notchiness and Difficulty\" aggregation. The primary-source sweep did not establish a broad component defect or universal repair from the owner-forum discussion. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Official NHTSA Cadillac CT5 Campaign Inventory",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "74d282913e456c9022479ef0009fc987bafd768a38811f1e269dc648a06ac0fa",
+        "trimsHash": "701a9b3ad08d253f279ee186e90e72fe19fccac230771511c8fd478da6416259",
+        "enginesHash": "8e15cbcde1deb10d84eb3b73a4965d2681b8db5b2f0fff45083ece5cc40e4361",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "a51282e4a6d34b283a4afcbd02d7e9d64d139591cffcead4973e8264b775772e",
+        "descriptionHash": "cf294835cf47ae577938171c9e8e5eb69ae224dde81ab6bc2cc54df9fcb97e3b",
+        "solutionHash": "53a82a1a2eee427ebb51afab2eb35a2cbf8f7a0cf5ab4a396dd60a8480664e07",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "482a193c4c6f05dc95e1ca577d6910e924cb37a1f056b55512d4f69743e50d97",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "b090147020e033534635010c4f7eb6fc270d44e5df67ea9e744a8087df9ca106",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "60029acdbb7ba11fae299733265cf37ccb87311de14d4a407ed213405dbbfc2f",
+        "communityRecommendationsHash": "c018309d7196563bd34baeb1708e4a4e15be6b3decc4d9a6ae5e9a5fa35c42f3",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:2",
+          "communityRecommendations:3"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Archived - Unsupported Cadillac CT5 Manual-Transmission Notchiness Aggregation",
+        "description": "The former card asserted \"Tremec 6-Speed Manual 2nd Gear Notchiness and Difficulty\" across a broad Cadillac CT5 population. The primary-source sweep did not establish a broad component defect or universal repair from the owner-forum discussion.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "Official NHTSA Cadillac CT5 Campaign Inventory",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Archived the unsupported Cadillac CT5 \"Tremec 6-Speed Manual 2nd Gear Notchiness and Difficulty\" aggregation and removed 2 commerce claims with 2 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-ct5v-supercharged-v8-engine-failure-2020",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"LT4 Supercharged V8 Premature Engine Failure\" aggregation. Individual owner and media reports do not establish the complete broad failure population, DTC bundle or universal engine-replacement remedy. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "label": "Official NHTSA Cadillac CT5 Campaign Inventory",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "97f67d0b4ce735ef1c23c3b5775fd38f94eed569d2d9e759cc64cfdf04baf761",
+        "yearsHash": "c028584c08fb59fd076ece51bf42d07b009590cf232ed36cf79950fc5467df29",
+        "trimsHash": "13039f3c09a811b671507c7ec769a45956e0a7613277a98a08fa0967e90f21dc",
+        "enginesHash": "8e15cbcde1deb10d84eb3b73a4965d2681b8db5b2f0fff45083ece5cc40e4361",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "7d7c77fb449aac8ad5e1c9f5ff6ab969d88ffa9174a88784e68c1e470d78697e",
+        "descriptionHash": "c7bbd5666f4adbe7da3f9c454f0c0f60980f99b907e990bef53b1e6ece7833df",
+        "solutionHash": "53cd3ed11c80d74dfa3ebc8083d715e265aec77841a31af2c1a39fafdbb69cab",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "8d08edbd5cbaf8fafbde044d4f496e1bc5ba645411208c1707053a0f815e263d",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "cd6b7238d2d3e905b7b963d9bd0baf0d998141046b6d92e235d20d933efc7991",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "d4c999ae43633bd2036188d2bca68e1be8202b2cc1f3a1c42a728eaff7d2483d",
+        "typicalMileageLowHash": "0f8eb4b72b6e0c9e88b388eb967b49e067ef1004bf07bffc22c3acb13b43580a",
+        "typicalMileageHighHash": "d4c999ae43633bd2036188d2bca68e1be8202b2cc1f3a1c42a728eaff7d2483d",
+        "citationsHash": "561dc784d7543e9f59c14cb9281e1aec9d36eb744cbdc8b3fabd9934e453eb10",
+        "communityRecommendationsHash": "5120540e638bed4b029d33cb1768a5906eb4d1a7243edc27324fe341df06be03",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "b4944c6ff08dc6f43da2e9c824669b7d927dd1fa976fadc7b456881f51bf5ccc",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:2",
+          "communityRecommendations:3"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "CT5",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Archived - Unsupported Cadillac CT5 LT4 Engine-Failure Aggregation",
+        "description": "The former card asserted \"LT4 Supercharged V8 Premature Engine Failure\" across a broad Cadillac CT5 population. Individual owner and media reports do not establish the complete broad failure population, DTC bundle or universal engine-replacement remedy.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "Official NHTSA Cadillac CT5 Campaign Inventory",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Cadillac&model=CT5&modelYear=2025"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-29",
+        "contentUpdatedOn": "2026-07-29",
+        "contentUpdateSummary": "Archived the unsupported Cadillac CT5 \"LT4 Supercharged V8 Premature Engine Failure\" aggregation and removed 2 commerce claims with 2 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
