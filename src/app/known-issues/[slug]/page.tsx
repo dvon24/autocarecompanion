@@ -43,6 +43,8 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'toyota-rav4',
   'audi-100',
   'audi-90',
+  'audi-a1',
+  'audi-a3',
   'audi-a5-sportback',
   'audi-a6-allroad',
   'audi-cabriolet',
@@ -52,6 +54,7 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'audi-rs-q8',
   'audi-rs4',
   'audi-rs6',
+  'audi-s3',
   'audi-sq8',
 ]);
 

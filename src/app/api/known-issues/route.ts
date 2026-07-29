@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
+import type { KnownIssue as DbKnownIssue } from '@prisma/client';
 import prisma from '@/lib/db';
 import { buildKnownIssueVehicleFilter } from '@/lib/known-issue-query';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 import { knownIssuesLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
 
-function dbRowToKnownIssue(row: any): KnownIssue {
+function dbRowToKnownIssue(row: DbKnownIssue): KnownIssue {
   return {
     id: row.id,
     vehicleMatch: {
@@ -28,8 +29,8 @@ function dbRowToKnownIssue(row: any): KnownIssue {
     typicalMileage: row.typicalMileageLow != null
       ? { low: row.typicalMileageLow, high: row.typicalMileageHigh }
       : undefined,
-    citations: row.citations as any[],
-    communityRecommendations: row.communityRecommendations as any[],
+    citations: row.citations as KnownIssue['citations'],
+    communityRecommendations: row.communityRecommendations as KnownIssue['communityRecommendations'],
     fixParts: (row.fixParts as KnownIssue['fixParts']) || [],
     source: row.source || 'ai-researched',
     humanApproved: row.humanApproved,
