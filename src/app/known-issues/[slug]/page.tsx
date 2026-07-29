@@ -106,7 +106,9 @@ export async function generateMetadata({
 
   const descPrefix = yearIsValid
     ? `${requestedYear} `
-    : (yearRange ? `${yearRange.min}-${yearRange.max} ` : '');
+    : (yearRange
+      ? `${yearRange.min === yearRange.max ? yearRange.min : `${yearRange.min}-${yearRange.max}`} `
+      : '');
   // Only render the cost range when we have real numbers to show.
   // When all issues lack cost data, drop the segment entirely instead
   // of advertising "$0-$0" or "$0-$500" — both signal missing data.
@@ -221,7 +223,9 @@ function groupByCategory(issues: KnownIssue[]) {
 
 function generateFAQs(make: string, model: string, issues: KnownIssue[], yearRange: { min: number; max: number } | null) {
   const vehicleName = `${make} ${model}`;
-  const yearStr = yearRange ? `${yearRange.min}-${yearRange.max} ` : '';
+  const yearStr = yearRange
+    ? `${yearRange.min === yearRange.max ? yearRange.min : `${yearRange.min}-${yearRange.max}`} `
+    : '';
   const highIssues = issues.filter(i => i.severity === 'high');
   const totalReports = issues.reduce((sum, i) => sum + i.reportCount, 0);
   const costIssues = issues.filter(i => i.estimatedCost);
