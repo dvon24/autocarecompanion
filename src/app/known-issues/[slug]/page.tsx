@@ -99,7 +99,9 @@ export async function generateMetadata({
   // than the bare model — explicit year match dominates range match.
   const titlePrefix = yearIsValid
     ? `${requestedYear}`
-    : (yearRange ? `${yearRange.min}-${yearRange.max}` : '');
+    : (yearRange
+      ? (yearRange.min === yearRange.max ? `${yearRange.min}` : `${yearRange.min}-${yearRange.max}`)
+      : '');
   const title = knownIssuesArticleTitle(slug, titlePrefix, vehicleName, issues.length);
 
   const descPrefix = yearIsValid
@@ -194,7 +196,7 @@ function knownIssuesArticleTitle(slug: string, yearLabel: string, vehicleName: s
     return `${vehicleWithYear} Problems: ${issueCount} Issue${issueCount === 1 ? '' : 's'} Every Owner Should Know`;
   }
   const candidates = [
-    `${vehicleWithYear} Problems: ${issueCount} Known Issues`,
+    `${vehicleWithYear} Problems: ${issueCount} Known Issue${issueCount === 1 ? '' : 's'}`,
     `${vehicleWithYear} Problems & Issues`,
     `${vehicleName} Problems & Known Issues`,
     `${vehicleName} Problems`,
