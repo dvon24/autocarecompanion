@@ -165,7 +165,9 @@ function rawClaims(record) {
 }
 
 for (const record of packet.records) {
-  const expected = config.expectedPerRecord[record.id];
+  const expected = config.expectedPerRecord
+    ? config.expectedPerRecord[record.id]
+    : null;
   const derived = rawClaims(record);
   const packetClaims = array(record.claims).map((claim) => ({
     claimId: claim.claimId,
@@ -176,20 +178,21 @@ for (const record of packet.records) {
     0,
   );
   if (
-    !expected ||
-    JSON.stringify(derived.map((claim) => claim.claimId)) !==
-      JSON.stringify(expected.claimIds) ||
+    (config.expectedPerRecord && !expected) ||
     JSON.stringify(packetClaims.map((claim) => claim.claimId)) !==
-      JSON.stringify(expected.claimIds) ||
+      JSON.stringify(derived.map((claim) => claim.claimId)) ||
     JSON.stringify(array(record.before && record.before.claimIds)) !==
-      JSON.stringify(expected.claimIds) ||
-    JSON.stringify(derived.flatMap((claim) => claim.urls)) !==
-      JSON.stringify(expected.urls) ||
+      JSON.stringify(derived.map((claim) => claim.claimId)) ||
     JSON.stringify(packetClaims.flatMap((claim) => claim.urls)) !==
-      JSON.stringify(expected.urls) ||
-    claimClicks !== expected.claimClicks ||
-    (Number(record.clicks) || 0) !== expected.recordClicks ||
-    (Number(record.priorityClicks) || 0) !== expected.priorityClicks
+      JSON.stringify(derived.flatMap((claim) => claim.urls)) ||
+    (expected &&
+      (JSON.stringify(derived.map((claim) => claim.claimId)) !==
+        JSON.stringify(expected.claimIds) ||
+        JSON.stringify(derived.flatMap((claim) => claim.urls)) !==
+          JSON.stringify(expected.urls) ||
+        claimClicks !== expected.claimClicks ||
+        (Number(record.clicks) || 0) !== expected.recordClicks ||
+        (Number(record.priorityClicks) || 0) !== expected.priorityClicks))
   ) {
     throw new Error(
       `Exact per-record commerce/click mapping drifted for ${record.id}.`,

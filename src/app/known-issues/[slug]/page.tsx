@@ -69,6 +69,10 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'audi-sq2',
   'audi-sq8',
   'audi-tt',
+  'cadillac-allante',
+  'cadillac-ats',
+  'cadillac-catera',
+  'cadillac-celestiq',
 ]);
 
 // --- Static generation ---

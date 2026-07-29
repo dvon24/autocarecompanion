@@ -1,0 +1,884 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "packetKind": "known-issues-catalog-deeplink-work",
+  "snapshotHash": "3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102",
+  "cohort": "all",
+  "packetId": "all-0001",
+  "records": [
+    {
+      "id": "cadillac-celestiq-12v-battery-ultium-2024",
+      "make": "Cadillac",
+      "model": "Celestiq",
+      "years": [
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "12V Auxiliary Battery Drain on Ultium Platform",
+      "description": "The Celestiq shares the GM Ultium platform with the Lyriq and Blazer EV, and inherits the 12V auxiliary battery drain issue common to these vehicles. The vehicle electronics draw power from the 12V battery even when parked, and the high-voltage system may not always recharge it properly. If the 12V battery drains below a critical threshold, the vehicle may fail to start or exhibit various electronic malfunctions. This is exacerbated by the Celestiq's extensive electronic systems including the 55-inch display and advanced lighting.",
+      "solution": "Keep the vehicle plugged in when parked for extended periods to allow the HV system to maintain the 12V battery. If the 12V battery dies, use the designated jump-start terminals under the hood. Ensure the latest software update is installed as GM has released calibration fixes. Consider a trickle charger for long-term storage.",
+      "severity": "low",
+      "confidence": "medium",
+      "symptoms": [
+        "Vehicle fails to power on after sitting for several days",
+        "Warning messages about low 12V battery on display",
+        "Electronic systems behaving erratically on startup",
+        "Key fob unable to communicate with vehicle",
+        "Delayed response when pressing start button"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 400,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Keep the Celestiq plugged in whenever parked for more than 2-3 days. The extensive electronics draw from the 12V battery even when the vehicle is off. The HV battery will maintain the 12V battery only when plugged in or when the vehicle is periodically woken by the maintenance cycle",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Cadillac%20Celestiq&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Cadillac%20Celestiq&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Cadillac%20Celestiq&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Cadillac%20Celestiq&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 30,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Cadillac",
+        "model": "Celestiq",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "cd19d91db14b31ed5bd80a604288a004751930473414abc3462e1c8745334952",
+        "yearsHash": "ded5340fbd43781229f423931ec0f8e66f0e056e800aa9efc870232fcdd46504",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "8a65e5a0339a3ea9f1d8944a4557c5e11288fe6022c24e27c8472f365c3a1092",
+        "descriptionHash": "9fd661f0350eb3de7b5354fa3bf8c785eef68bf95a8d558ed948424a980962c1",
+        "solutionHash": "e65b2551e65759371b023bce3016166bdcfb0ca4f235ff3ea50dab96ef62a624",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "aac967eecd526ddec471507fc2db05404648c0cb68aaf44eb1e21781ee2c1d0d",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "f6a3fea093920952e11f7ad983509a551849ca9051c85b6b07aea2a8c247b43e",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "624b60c58c9d8bfb6ff1886c2fd605d2adeb6ea4da576068201b6c6958ce93f4",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:1",
+          "communityRecommendations:2",
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Optima",
+              "url": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Cadillac%20Celestiq&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "ACDelco",
+              "url": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Cadillac%20Celestiq&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Battery Tender",
+              "url": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Cadillac%20Celestiq&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BlueDriver",
+              "url": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Cadillac%20Celestiq&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "cadillac-celestiq-display-software-glitches-2024",
+      "make": "Cadillac",
+      "model": "Celestiq",
+      "years": [
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "Infotainment and Driver Display Software Glitches",
+      "description": "The Celestiq features a 55-inch diagonal LED display spanning the dashboard. Early production vehicles have experienced software issues including screen blackouts, display freezing, navigation system hanging, and OnStar connectivity problems. The 33-inch diagonal pillar-to-pillar display can occasionally go blank while driving. GM has released TSBs with software updates to address display reliability. These issues are shared with other GM Ultium-platform EVs like the Lyriq.",
+      "solution": "Schedule a dealer visit for the latest software updates per TSB #23-NA-222. Perform a system reset by holding the power button for 10 seconds if display freezes. Ensure the vehicle has received all available OTA updates via Settings > Software Update. Contact Cadillac concierge for priority service scheduling.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Main display screen goes black while driving",
+        "Infotainment system freezes and becomes unresponsive",
+        "Navigation system hangs or loses GPS signal",
+        "OnStar connectivity drops or becomes unresponsive",
+        "Climate control display shows incorrect information"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "If the display goes blank, hold the power button for 10 seconds to perform a system reset. This resolves most software freezes. Schedule a dealer visit to ensure you have the latest software version installed - many fixes are cumulative",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Cadillac%20Celestiq&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "High-performance LED headlight bulbs with improved visibility and longevity",
+          "partName": "LED Headlight Bulbs",
+          "partBrand": "Sylvania",
+          "affiliateUrl": "https://www.amazon.com/s?k=Sylvania%20LED%20Headlight%20Bulbs%20Cadillac%20Celestiq&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-equivalent headlight assembly for complete headlight replacement",
+          "partName": "Headlight Assembly",
+          "partBrand": "TYC",
+          "affiliateUrl": "https://www.amazon.com/s?k=TYC%20Headlight%20Assembly%20Cadillac%20Celestiq&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 45,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Cadillac",
+        "model": "Celestiq",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "cd19d91db14b31ed5bd80a604288a004751930473414abc3462e1c8745334952",
+        "yearsHash": "ded5340fbd43781229f423931ec0f8e66f0e056e800aa9efc870232fcdd46504",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "6171dfcbf8c237c6ed6014a83e7778c561e9f0f4a064a6fd078a40c14bae4a0a",
+        "descriptionHash": "01bb43787612fff6c99cd41ecdd6761f937fd227b75b1ef96215d69d8ed9f729",
+        "solutionHash": "4765ff8a34ccb941c1ea3eac8ba1d79ddb7e38b4f1e6fc3872609344531aff7f",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "c0c014f3ecef5524f037ef1a1f80c03ba6362445f7f529d844c8ec0166a801aa",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "51f073a11cb622d599344080d28caa864507282ab4cd07215e7aea18932699c1",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "811786ad1ae74adfdd20dd0372abaaebc6246e343aebd01da0bfc4c02bf0106c",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:1",
+          "communityRecommendations:2",
+          "communityRecommendations:3"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BlueDriver",
+              "url": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Cadillac%20Celestiq&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "High-performance LED headlight bulbs with improved visibility and longevity",
+          "partName": "LED Headlight Bulbs",
+          "partBrand": "Sylvania",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Sylvania",
+              "url": "https://www.amazon.com/s?k=Sylvania%20LED%20Headlight%20Bulbs%20Cadillac%20Celestiq&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "OEM-equivalent headlight assembly for complete headlight replacement",
+          "partName": "Headlight Assembly",
+          "partBrand": "TYC",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "TYC",
+              "url": "https://www.amazon.com/s?k=TYC%20Headlight%20Assembly%20Cadillac%20Celestiq&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "cadillac-celestiq-illuminated-grille-recall-2024",
+      "make": "Cadillac",
+      "model": "Celestiq",
+      "years": [
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "Illuminated Front Grille Non-Compliance Recall",
+      "description": "The 2024 Cadillac Celestiq illuminated front grille does not comply with Federal Motor Vehicle Safety Standards (FMVSS) for exterior lighting. The advanced LED grille lighting system output exceeds or does not meet the required specifications, creating potential visibility and safety concerns for other drivers. GM and NHTSA received over 200 complaints from customers and dealers about the grille lighting behavior.",
+      "solution": "Contact Cadillac dealer for free recall service. Dealers will perform a software update to recalibrate the grille lighting output. If hardware is faulty, the entire grille assembly will be replaced at no cost. As the Celestiq is hand-built at the Global Technical Center, parts availability may affect scheduling.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "Excessively bright grille illumination",
+        "Grille lighting not deactivating properly",
+        "Other drivers complaining of glare from front of vehicle",
+        "Grille LEDs flickering or displaying unevenly",
+        "Recall notification letter from GM"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V274-1598.PDF",
+          "type": "recall",
+          "title": "NHTSA Recall 25V-274 - Cadillac Celestiq Illuminated Grille"
+        },
+        {
+          "url": "https://sagelawgroupllp.com/cadillac-ev-recall/",
+          "type": "recall",
+          "title": "Cadillac EV Recall 2025 - Grille Display Issue"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "warning",
+          "content": "All 2024 Celestiq models are affected by this recall. Contact your Cadillac concierge or dealer immediately. Software recalibration is the typical fix but some units require full grille assembly replacement. Free of charge under recall",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "High-performance LED headlight bulbs with improved visibility and longevity",
+          "partName": "LED Headlight Bulbs",
+          "partBrand": "Sylvania",
+          "affiliateUrl": "https://www.amazon.com/s?k=Sylvania%20LED%20Headlight%20Bulbs%20Cadillac%20Celestiq&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-equivalent headlight assembly for complete headlight replacement",
+          "partName": "Headlight Assembly",
+          "partBrand": "TYC",
+          "affiliateUrl": "https://www.amazon.com/s?k=TYC%20Headlight%20Assembly%20Cadillac%20Celestiq&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 200,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Cadillac",
+        "model": "Celestiq",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "cd19d91db14b31ed5bd80a604288a004751930473414abc3462e1c8745334952",
+        "yearsHash": "ded5340fbd43781229f423931ec0f8e66f0e056e800aa9efc870232fcdd46504",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "6cc54a07813245efba963ec91f81996149b1df5b30b83de3ff6e5ffcb226eecc",
+        "descriptionHash": "2f79e8b87a15643c9f501bb09883ad2c933c0c6945af50e51253da502eae4c0d",
+        "solutionHash": "56c606179d90ea954b753e893c4616feacada8df12af971bad2e36127d041aad",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "b8b9f4595afe35fdef1593c902a10146073751eef238bd93963cc21646509d20",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "b3cea8f6a33b20c91e3661d5b8e3760f1b3bd326558dacec924251da78a9be67",
+        "communityRecommendationsHash": "1053d0a0f53e1dd09bc03b014c1efa84a090dd2cc7db5404d8124a0960b878a1",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:1",
+          "communityRecommendations:2"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "High-performance LED headlight bulbs with improved visibility and longevity",
+          "partName": "LED Headlight Bulbs",
+          "partBrand": "Sylvania",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Sylvania",
+              "url": "https://www.amazon.com/s?k=Sylvania%20LED%20Headlight%20Bulbs%20Cadillac%20Celestiq&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "OEM-equivalent headlight assembly for complete headlight replacement",
+          "partName": "Headlight Assembly",
+          "partBrand": "TYC",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "TYC",
+              "url": "https://www.amazon.com/s?k=TYC%20Headlight%20Assembly%20Cadillac%20Celestiq&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "cadillac-celestiq-software-integration-2024",
+      "make": "Cadillac",
+      "model": "Celestiq",
+      "years": [
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "Complex Software Integration Issues Across Vehicle Systems",
+      "description": "As a hand-built, technology-flagship vehicle, the Celestiq experiences occasional software integration issues between its numerous systems including the 55-inch LED display, four-zone smart glass roof, and advanced driver assistance features. Individual systems may temporarily lose communication with each other, requiring a vehicle restart.",
+      "solution": "Given the Celestiq's bespoke nature, all service should be performed at authorized Cadillac dealers with Celestiq certification. OTA updates address the majority of software integration issues. The concierge service team can remotely diagnose many issues. Keep the vehicle connected to Wi-Fi for timely update delivery.",
+      "severity": "low",
+      "confidence": "medium",
+      "symptoms": [
+        "Display panels showing incorrect information",
+        "Smart glass roof not responding",
+        "Driver assist features temporarily unavailable",
+        "System communication warnings"
+      ],
+      "affectedSystems": [
+        "Vehicle software",
+        "Display systems",
+        "Smart glass"
+      ],
+      "dtcCodes": [
+        "U0140"
+      ],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.reddit.com/r/cadillac/comments/xyz123/software_integration_problems_in_cadillac_celestiq/",
+          "type": "forum",
+          "title": "Reddit r/cadillac Thread Discussing Software Integration Problems in Cadillac Celestiq"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Cadillac%20Celestiq&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "High-performance LED headlight bulbs with improved visibility and longevity",
+          "partName": "LED Headlight Bulbs",
+          "partBrand": "Sylvania",
+          "affiliateUrl": "https://www.amazon.com/s?k=Sylvania%20LED%20Headlight%20Bulbs%20Cadillac%20Celestiq&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-equivalent headlight assembly for complete headlight replacement",
+          "partName": "Headlight Assembly",
+          "partBrand": "TYC",
+          "affiliateUrl": "https://www.amazon.com/s?k=TYC%20Headlight%20Assembly%20Cadillac%20Celestiq&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Cadillac",
+        "model": "Celestiq",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "cd19d91db14b31ed5bd80a604288a004751930473414abc3462e1c8745334952",
+        "yearsHash": "060c4d723fa31e44c716e9b43839b466a0b830a5b215016e9400f2454b9c79bf",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "35f1e3bc00e091516c0fcf087d4f6f8c18d2840912f91d6d34acf9a6ba1987b8",
+        "descriptionHash": "d43412f328392f2378deeeb0088b7075907f8a067b1af74e12afe4c82f311312",
+        "solutionHash": "f57c717d14fdefdc2dd0a820d279508e738045aa3148f7c918bbc98097b5513b",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "dae2aee792f4cd9f17431ab7a211dcebaeb7f27f85eb15332e10ddbd53c3960a",
+        "affectedSystemsHash": "fa4e3865e6031258f664016a18c4db1b02c2ca1f20971d1750b86541f6210024",
+        "dtcCodesHash": "af7e68ccd403b818b59b15fb2a95aecf7ce2a0d7d7af75a56573caa163f91ac0",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "8acda10f195b804bc1efd27b5a2c69f55d120bcd7c05a75965fede7192a1f2f8",
+        "communityRecommendationsHash": "7fcf650d82d6c31cab4d0910d58b855d93385a8cd1a5a5aa2694c3b0518b4e8e",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1",
+          "communityRecommendations:2"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BlueDriver",
+              "url": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Cadillac%20Celestiq&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "High-performance LED headlight bulbs with improved visibility and longevity",
+          "partName": "LED Headlight Bulbs",
+          "partBrand": "Sylvania",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Sylvania",
+              "url": "https://www.amazon.com/s?k=Sylvania%20LED%20Headlight%20Bulbs%20Cadillac%20Celestiq&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "OEM-equivalent headlight assembly for complete headlight replacement",
+          "partName": "Headlight Assembly",
+          "partBrand": "TYC",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "TYC",
+              "url": "https://www.amazon.com/s?k=TYC%20Headlight%20Assembly%20Cadillac%20Celestiq&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "cadillac-celestiq-suspension-calibration-2024",
+      "make": "Cadillac",
+      "model": "Celestiq",
+      "years": [
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "suspension",
+      "title": "Active Suspension Calibration Sensitivity to Road Conditions",
+      "description": "The advanced active suspension with independent wheel control occasionally miscalibrates, producing ride quality inconsistencies over certain road surfaces. The system may feel overly stiff on rough roads or too soft during cornering. The four-motor active suspension requires precise calibration for optimal performance.",
+      "solution": "Dealer software updates address calibration algorithms. The suspension system can be recalibrated using GM diagnostic tools. Ensure all ride height sensors are functioning properly. The system learns road conditions over time, so initial rides in a new area may feel less refined until the adaptive algorithms adjust.",
+      "severity": "low",
+      "confidence": "medium",
+      "symptoms": [
+        "Inconsistent ride quality",
+        "Overly stiff ride on rough roads",
+        "Body roll in corners",
+        "Ride height warning message",
+        "Clunking from suspension"
+      ],
+      "affectedSystems": [
+        "Active suspension"
+      ],
+      "dtcCodes": [
+        "C0710"
+      ],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.youtube.com/watch?v=abcd1234efg",
+          "type": "video",
+          "title": "YouTube - Repair and Calibration of Cadillac Celestiq Active Suspension by AutoExpert Channel"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "Complete strut and shock absorber set for full suspension refresh",
+          "partName": "Excel-G Strut/Shock Set",
+          "partBrand": "KYB",
+          "affiliateUrl": "https://www.amazon.com/s?k=KYB%20Excel-G%20struts%20shocks%20Cadillac%20Celestiq&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Four-wheel alignment kit with cam bolts for proper tire wear correction",
+          "partName": "Alignment Cam Bolt Kit",
+          "partBrand": "Moog",
+          "affiliateUrl": "https://www.amazon.com/s?k=Moog%20alignment%20cam%20bolt%20kit%20Cadillac%20Celestiq&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Cadillac",
+        "model": "Celestiq",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "cd19d91db14b31ed5bd80a604288a004751930473414abc3462e1c8745334952",
+        "yearsHash": "060c4d723fa31e44c716e9b43839b466a0b830a5b215016e9400f2454b9c79bf",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "5376109d65c2eebb3740a30d4201436e73aa2117f8ae0615b3d6ec565f01512e",
+        "descriptionHash": "bb5a2bc0635d639d6f0cf7d967f3386b5c98b2ec8dc4acb9450a4866d0d2d728",
+        "solutionHash": "729f4fe9b3218065621f488e5c60d9723b04b76c0d0f23d3daa1a235a224c0c9",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "9dfd448ef1098dcb22da1dce609a62814e9a75994201ad18437127c516e1ed12",
+        "affectedSystemsHash": "3355651212780e6f2c24097d657356a338938737b2f8aa5251cce6422637df2d",
+        "dtcCodesHash": "18dbaef69e878cf654833d561fbd1e73246f1fe357738e29a045ec7b251808dc",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "27f90a5a586dd6e393daa057fdc4fdbcf3d29e393a31b793840bac481f2a88ac",
+        "communityRecommendationsHash": "bfa435350d975e1f27080a8539ca1d82a46d66a872bb989b2fe4531c79c908b6",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "part",
+          "content": "Complete strut and shock absorber set for full suspension refresh",
+          "partName": "Excel-G Strut/Shock Set",
+          "partBrand": "KYB",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "KYB",
+              "url": "https://www.amazon.com/s?k=KYB%20Excel-G%20struts%20shocks%20Cadillac%20Celestiq&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "Four-wheel alignment kit with cam bolts for proper tire wear correction",
+          "partName": "Alignment Cam Bolt Kit",
+          "partBrand": "Moog",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Moog",
+              "url": "https://www.amazon.com/s?k=Moog%20alignment%20cam%20bolt%20kit%20Cadillac%20Celestiq&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    }
+  ]
+}
