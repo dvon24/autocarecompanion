@@ -77,6 +77,10 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'cadillac-ct5',
   'cadillac-ct6',
   'cadillac-cts',
+  'cadillac-cts-v',
+  'cadillac-deville',
+  'cadillac-dts',
+  'cadillac-eldorado',
 ]);
 
 // --- Static generation ---
@@ -111,6 +115,11 @@ export async function generateMetadata({
     ? allIssues.filter((i) => i.vehicleMatch.years.includes(requestedYear!))
     : allIssues;
   const yearRange = getYearRange(allIssues); // base range stays from full set
+  const baseYearLabel = SEO_AUDITED_MODEL_SLUGS.has(slug)
+    ? getYearCoverageLabel(allIssues)
+    : (yearRange
+      ? (yearRange.min === yearRange.max ? `${yearRange.min}` : `${yearRange.min}-${yearRange.max}`)
+      : '');
   const highCount = issues.filter((i) => i.severity === 'high').length;
   const totalReports = issues.reduce((sum, i) => sum + i.reportCount, 0);
   const vehicleName = `${parsed.make} ${parsed.model}`;
@@ -120,16 +129,12 @@ export async function generateMetadata({
   // than the bare model — explicit year match dominates range match.
   const titlePrefix = yearIsValid
     ? `${requestedYear}`
-    : (yearRange
-      ? (yearRange.min === yearRange.max ? `${yearRange.min}` : `${yearRange.min}-${yearRange.max}`)
-      : '');
+    : baseYearLabel;
   const title = knownIssuesArticleTitle(slug, titlePrefix, vehicleName, issues.length);
 
   const descPrefix = yearIsValid
     ? `${requestedYear} `
-    : (yearRange
-      ? `${yearRange.min === yearRange.max ? yearRange.min : `${yearRange.min}-${yearRange.max}`} `
-      : '');
+    : (baseYearLabel ? `${baseYearLabel} ` : '');
   // Only render the cost range when we have real numbers to show.
   // When all issues lack cost data, drop the segment entirely instead
   // of advertising "$0-$0" or "$0-$500" — both signal missing data.
@@ -211,6 +216,26 @@ function getMaxCost(issues: KnownIssue[]): string {
   return costs.length > 0 ? Math.max(...costs).toLocaleString() : '';
 }
 
+function getYearCoverageLabel(issues: KnownIssue[]): string {
+  const years = [...new Set(issues.flatMap(i => i.vehicleMatch.years))]
+    .sort((a, b) => a - b);
+  if (years.length === 0) return '';
+
+  const ranges: Array<{ start: number; end: number }> = [];
+  for (const year of years) {
+    const current = ranges[ranges.length - 1];
+    if (!current || year > current.end + 1) {
+      ranges.push({ start: year, end: year });
+    } else {
+      current.end = year;
+    }
+  }
+
+  return ranges
+    .map(({ start, end }) => start === end ? `${start}` : `${start}-${end}`)
+    .join(', ');
+}
+
 // The root layout appends " | Au7o". Keep this portion at or below 52
 // characters when possible so the complete title remains concise.
 function knownIssuesArticleTitle(slug: string, yearLabel: string, vehicleName: string, issueCount: number): string {
@@ -242,9 +267,17 @@ function groupByCategory(issues: KnownIssue[]) {
   }) as [IssueCategory, KnownIssue[]][];
 }
 
-function generateFAQs(make: string, model: string, issues: KnownIssue[], yearRange: { min: number; max: number } | null) {
+function generateFAQs(
+  make: string,
+  model: string,
+  issues: KnownIssue[],
+  yearRange: { min: number; max: number } | null,
+  exactYearLabel = '',
+) {
   const vehicleName = `${make} ${model}`;
-  const yearStr = yearRange
+  const yearStr = exactYearLabel
+    ? `${exactYearLabel} `
+    : yearRange
     ? `${yearRange.min === yearRange.max ? yearRange.min : `${yearRange.min}-${yearRange.max}`} `
     : '';
   const highIssues = issues.filter(i => i.severity === 'high');
@@ -407,15 +440,18 @@ export default async function KnownIssuesArticlePage({
   const articleMinCost = getMinCost(issues);
   const articleMaxCost = getMaxCost(issues);
   const grouped = groupByCategory(issues);
-  const faqs = generateFAQs(make, model, issues, yearRange);
-
   const vehicleName = `${make} ${model}`;
   // Year display collapses to a single year when the user is on the
   // ?year=YYYY variant (yearRange.min === yearRange.max). For the all-
   // years base view it stays as a range like "2008-2019".
-  const yearStr = yearRange
-    ? (yearRange.min === yearRange.max ? `${yearRange.min}` : `${yearRange.min}-${yearRange.max}`)
-    : '';
+  const yearStr = yearIsValid
+    ? `${initialYear}`
+    : (SEO_AUDITED_MODEL_SLUGS.has(slug)
+      ? getYearCoverageLabel(issues)
+      : (yearRange
+        ? (yearRange.min === yearRange.max ? `${yearRange.min}` : `${yearRange.min}-${yearRange.max}`)
+        : ''));
+  const faqs = generateFAQs(make, model, issues, yearRange, yearStr);
   // Canonical URL — base for all-years, ?year=YYYY for the year-filtered
   // variant. Must match the canonical we emit in generateMetadata.
   const articleUrl = yearIsValid

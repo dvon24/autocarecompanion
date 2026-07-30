@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
 import test from 'node:test';
 
 import { buildKnownIssueVehicleFilter } from '../src/lib/known-issue-query';
@@ -18,4 +20,14 @@ test('known-issues API uses an exact case-insensitive model boundary', () => {
     status: 'published',
   });
   assert.equal('contains' in filter.model, false);
+});
+
+test('public known-issues API does not accept an archived-status override', () => {
+  const routeSource = fs.readFileSync(
+    path.join(process.cwd(), 'src', 'app', 'api', 'known-issues', 'route.ts'),
+    'utf8',
+  );
+
+  assert.match(routeSource, /const status = 'published';/);
+  assert.doesNotMatch(routeSource, /searchParams\.get\('status'\)/);
 });

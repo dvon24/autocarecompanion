@@ -2,11 +2,11 @@
 title: 'Known Issues catalog-wide repair deep-link correction'
 type: 'bugfix'
 created: '2026-07-14'
-status: 'in-progress'
+status: 'in-review'
 baseline_commit: '2919af88801aa1ad37733350e67d5766c8868d60'
-baseline_revision: 'b5f8604c88392e2c39db200c20ea6f24cd362028'
+baseline_revision: '8a6d3af225b140a57cadbe5959cfa801a5c04903'
 review_loop_iteration: 0
-followup_review_recommended: false
+followup_review_recommended: true
 context: []
 ---
 
@@ -136,6 +136,34 @@ context: []
 - 2026-07-15: User requested a professional sand/ink Known Issue card palette. Remove red, purple, yellow, and green card treatments; make state and recency understandable without color, using explicit copy, icons, borders, and hierarchy.
 
 ## Review Triage Log
+
+### 2026-07-30 — Cadillac CTS-V, DeVille, DTS and Eldorado exact-config follow-up
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+
+### 2026-07-30 — Cadillac CTS-V, DeVille, DTS and Eldorado pre-apply review
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 9: (high 5, medium 4, low 0)
+- defer: 0
+- reject: 1: (high 0, medium 1, low 0)
+- addressed_findings:
+  - `[high]` `[patch]` Removed the DeVille fuel-rail rewrite because it reused a head-gasket identity, could not express the 1995 Concours-only boundary and carried an Aurora-only return-line remedy.
+  - `[high]` `[patch]` Archived both proposed DTS rewrites because the MagneRide path is equipment-gated and semantically different from rear air leveling, while the inlet-hose recall is unrelated to the steering-column record.
+  - `[high]` `[patch]` Restricted the public Known Issues API to published rows even when a caller supplies a status override, with a focused regression test.
+  - `[high]` `[patch]` Removed the prematurely generated manifests; final manifests will be published only after clean follow-up Blind and Edge verdicts bind the corrected configs.
+  - `[high]` `[patch]` Corrected the retained Eldorado recall remedy to Cadillac fuel-rail inspection/replacement and removed the Aurora-only return-line system.
+  - `[medium]` `[patch]` Added discontinuous audited-year formatting so CTS-V metadata, H1 support copy and FAQs do not collapse 2005-2007 and 2009-2014 into a false continuous range.
+  - `[medium]` `[patch]` Replaced single-year recall inventories used as absence evidence with an honest NHTSA manufacturer-communications corpus reference and claim-specific GM/NHTSA documents where they establish a narrower or wrong-model boundary.
+  - `[medium]` `[patch]` Added the exact PE06-016 GM response to the Eldorado crank-sensor archival trail, proving that the tempting source concerns C/K 8.1L trucks rather than Eldorado.
+  - `[medium]` `[patch]` Removed an unsupported CTS-V recall-remedy extension: GM 07204C directs drive-axle differential seal replacement, not the draft's additional differential inspection/repair path.
 
 ### 2026-07-28 — Audi RS4, RS6 and A5 Sportback release review
 

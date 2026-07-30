@@ -53,7 +53,7 @@ function dbRowToKnownIssue(row: DbKnownIssue): KnownIssue {
  * - model: Vehicle model (required)
  * - trim: Vehicle trim (optional)
  * - severity: Filter by severity (optional, comma-separated)
- * - status: Filter by status (default: published)
+ * Public responses always contain published records only.
  */
 export async function GET(request: NextRequest) {
   // Rate limit: 60 requests per minute per IP
@@ -70,7 +70,7 @@ export async function GET(request: NextRequest) {
     const model = searchParams.get('model');
     const trim = searchParams.get('trim') || undefined;
     const severity = searchParams.get('severity');
-    const status = searchParams.get('status') || 'published';
+    const status = 'published';
 
     if (!year || !make || !model) {
       return NextResponse.json(
