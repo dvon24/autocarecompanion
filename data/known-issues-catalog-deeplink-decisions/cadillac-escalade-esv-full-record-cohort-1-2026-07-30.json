@@ -1,0 +1,977 @@
+{
+  "schemaVersion": 2,
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "auditScope": "full-record",
+  "batchId": "cadillac-escalade-esv-full-record-cohort-1-2026-07-30",
+  "snapshotHash": "3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102",
+  "sourceSnapshotFileHash": "6e4c8d64ced097e83111d27c7f46e1f1c08b79dc40423fee81ebc9d9c54cd455",
+  "packetFileHash": "156b65b69470889a2a098f6637fb2182ee138ab3c6de54c5774fb921b57938a2",
+  "reviewApproval": {
+    "approvedAfterBlindAndEdgeReview": true,
+    "approvedOn": "2026-07-30",
+    "blindReviewer": "cadillac4_blind:no-blocker",
+    "edgeReviewer": "cadillac4_edge:no-blocker",
+    "reviewedGeneratorFileHash": "c32d7a4a0f5af79c844a67765e48d510c3bd7c093c463a6b72a4edc5877a410a"
+  },
+  "researchedWith": "Ultra-effort current manufacturer/regulator primary-source review; no LLM API and no commerce approval",
+  "controlledDeltaProposals": [
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "Cadillac Escalade ESV 2015 NQH transfer-case control-module calibration",
+      "sources": [
+        "https://static.nhtsa.gov/odi/tsbs/2014/SB-10067393-9133.pdf"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "Cadillac Escalade ESV 2015 locked power-liftgate actuator service update",
+      "sources": [
+        "https://static.nhtsa.gov/odi/tsbs/2014/MC-10248762-9999.pdf"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "Cadillac Escalade ESV 2021 F47 vehicle-level-module ride-height calibration",
+      "sources": [
+        "https://static.nhtsa.gov/odi/tsbs/2021/MC-10190768-9999.pdf"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "Cadillac Escalade ESV 2025 Service 4WD U3000 diagnostic hold",
+      "sources": [
+        "https://static.nhtsa.gov/odi/tsbs/2025/MC-11019076-0001.pdf"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "cadillac-escalade-esv-air-ride-2007",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"Rear Air Suspension Compressor and Air Spring Failure\" aggregation with the exact primary-source path below. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "GM PIT4954C - Automatic Level Control Diagnosis",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10113019-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "30005b84f6c16030b28aacbd817cea95466c7c5f0cc087ac9571be263889c369",
+        "yearsHash": "43c28e24dbe5fceb09c962a333604e001ea9661fb93deb4ed7254efe08344688",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "5f77e064b8e9f17f2b11ca6c28809f82128bfd75bbb74bf06ed161580a991869",
+        "descriptionHash": "cd2397621f8140d01a968466ee28221658c224618419eb252c2ebee6be59a8c6",
+        "solutionHash": "bcedccf11315a2d4bf5207c274da8431d2f492eb186de9ec3fc35d508ee65060",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "66a118f11d9b655cf29be2014fa06a095b403a5c6ed9002ca03956bf45c7b0a2",
+        "affectedSystemsHash": "a564faba058ffc83d14be0d1899951d63c9a78585af1dc47a8866aaf0671d882",
+        "dtcCodesHash": "ad0cd48e9964e8f0765544f040a3b496d04243f9ecdc59c233784c0f6089240a",
+        "estimatedCostLowHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "estimatedCostHighHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "typicalMileageLowHash": "47b25095a0fe135a688b20614771dbb445ad5e27e9cd4f2c2089c5af216e305b",
+        "typicalMileageHighHash": "4f9f73b34c5b89879aad65a48025f3187dd9ce6dc3d4e88eecb2fc79227350f1",
+        "citationsHash": "f29c821c98fe71ce7bf5b46a76ff038ff8bc385a233127db0d5eca3cb7220140",
+        "communityRecommendationsHash": "2b910cea6af461a30b94a85348679cb2df4cb1164f5089a7c6a43ad815bcd518",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "7bf7948062c704ee18e84c13dbfa4b029be2ab85065bde39e9bdecdaabd2d038",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "Escalade ESV",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Rear Level-Control Message or Low Ride Height Needs Circuit Diagnosis",
+        "description": "GM PIT4954C separates several Escalade ESV level-control paths. On 2007-2009 vehicles, pinched pressure-sensor wiring can contribute to C0696 or C0711. A low rear ride height under heavy payload with C0711 has a moisture-damaged sensor/filter/dryer branch. A visibly loose or damaged left-rear inlet hose has a separate hose-and-filter path. No brief key-up compressor run can be normal because startup operation occurs only below 10 psi. The bulletin does not establish universal compressor or air-spring failure.",
+        "solution": "Confirm RPO Z55 or Z95, model year, DTCs, load condition and visible hose condition, then follow the matching PIT4954C branch. Apply the pressure-sensor wiring check only to 2007-2009 vehicles; use the moisture or inlet-hose path only when its stated condition is present. Do not treat a missing key-up compressor run by itself as a failure: startup operation occurs only below 10 psi, typically after a long park or when a small leak already exists. GM warns against replacing the complete compressor for these conditions.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Service Suspension System message",
+          "Rear ride height is low"
+        ],
+        "affectedSystems": [
+          "rear automatic level control",
+          "compressor pressure sensor and inlet path"
+        ],
+        "dtcCodes": [
+          "C0696",
+          "C0711"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM PIT4954C - Automatic Level Control Diagnosis",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10113019-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-30",
+        "contentUpdatedOn": "2026-07-30",
+        "contentUpdateSummary": "Replaced the frozen \"Rear Air Suspension Compressor and Air Spring Failure\" card with exact GM/NHTSA scope and removed 2 commerce claims with 2 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-escalade-esv-transfer-case-2002",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Transfer Case Encoder Motor and Position Sensor Failure\" aggregation. The current primary-source sweep did not establish the asserted encoder-motor and position-sensor failure across 2002-2020. GM service update 14616 describes a materially different VIN-gated 2015 TCCM software condition and is retained only as a controlled proposal. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "GM Service Update 14616 - 2015 Transfer-Case Control Calibration",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2014/SB-10067393-9133.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "30005b84f6c16030b28aacbd817cea95466c7c5f0cc087ac9571be263889c369",
+        "yearsHash": "fe49f3f496e06e607a26d690d8f21da30760328e7f779e79b58f1c8250191791",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "3b12d5574a84f04c6978e854a9cac57bf991ee23453471c357b5b903e12b2378",
+        "titleHash": "163a7923c128eb73f4e658ee74596020e717953f479315f7725170420fc8632c",
+        "descriptionHash": "5828244b1aafac94f96beee7675fd4deb3095cba84df1eb0171e23833b3c51b8",
+        "solutionHash": "bec895f25b6aadb29b2089b4fc7db47d8d1e3e0d7c48bc6415381eb84aa4435e",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "64025e422432ecc84e93fc1954a7dd1677185cb20974a69a44063d244a0db495",
+        "affectedSystemsHash": "f61f4df4765c0a7cbc02be11639bbe598d97d0ed0ca87c46e55a5d656d64acaf",
+        "dtcCodesHash": "937a45ad775fea48e8a249f30da5c905a843b458ee45c43b99502f8caa9ceaf1",
+        "estimatedCostLowHash": "1e472b39b105d349bcd069c4a711b44a2fffb8e274714bb07ecfff69a9a7f67b",
+        "estimatedCostHighHash": "284b7e6d788f363f910f7beb1910473e23ce9d6c871f1ce0f31f22a982d48ad4",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "240c9b8168eefe139550470cd4c4172c019c657589b28e406245b53f8b23016b",
+        "communityRecommendationsHash": "9fdf1c75b161293d03c414f0d276cabf3def7b7b42c7f3d3601f87cc6c30c393",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "a75b41cc0b80f3c7a5f685ef2d58e03233b760d465288dc6ac12be7f18290c7d",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "Escalade ESV",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Archived - Unsupported Cadillac Escalade ESV Transfer-Case Encoder-and-Position-Sensor Aggregation",
+        "description": "The former card asserted \"Transfer Case Encoder Motor and Position Sensor Failure\" across a broad Cadillac Escalade ESV population. The current primary-source sweep did not establish the asserted encoder-motor and position-sensor failure across 2002-2020. GM service update 14616 describes a materially different VIN-gated 2015 TCCM software condition and is retained only as a controlled proposal.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact year, VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM Service Update 14616 - 2015 Transfer-Case Control Calibration",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2014/SB-10067393-9133.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-30",
+        "contentUpdatedOn": "2026-07-30",
+        "contentUpdateSummary": "Archived the unsupported Cadillac Escalade ESV \"Transfer Case Encoder Motor and Position Sensor Failure\" aggregation and removed 2 commerce claims with 2 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-escalade-esv-liftgate-struts-2007",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Power Liftgate Strut Failure and Liftgate Falling\" aggregation. The current primary-source sweep did not establish the asserted falling-liftgate and generic gas-strut failure across 2007-2014. GM service update 14300 describes a materially different VIN-gated 2015 left power-assist actuator that can lock the gate and is retained only as a controlled proposal. Remove all 1 commerce claims and 1 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "GM Service Update 14300 - Power Liftgate Actuator",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2014/MC-10248762-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "30005b84f6c16030b28aacbd817cea95466c7c5f0cc087ac9571be263889c369",
+        "yearsHash": "492a85b03bf0d5292be86505a647f1ecffdb3daa55acb2a214e97f0b797e4423",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "bfd4d039e9f8aca33b52a877ded02f73846f28f9095c2bba178316be62ef7c1f",
+        "titleHash": "0f2ccdfd093fa76f9e8998c232811e70e6fc7d944e31588338d202131a2ff0fd",
+        "descriptionHash": "6a11537f0c2ae21d08e9ed98d3162f159ef8e688555d6d6d6d0375c48d39b871",
+        "solutionHash": "6e1d1cae8c931c4b016e5d01b1e1d79afc3e5c1cab335143dd910de8503a0058",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "symptomsHash": "8b399e89527db6fea05ded1822fc4fa905c06c197a8c95965c192cb8e6703510",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "624b60c58c9d8bfb6ff1886c2fd605d2adeb6ea4da576068201b6c6958ce93f4",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "a03b0b1a154413bc5cd314833b0246a823162c1de677c1c14dccec2ee4888bf8",
+        "communityRecommendationsHash": "93154ad940b8f96a20838dcef48d136e6182942cc596bfca214f68eb35be5f90",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "dac53c17c250fd4d4d81eaf6d88435676dac1f3f3896441e277af839bf50ed8a",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "49a1fe1e78808830b448b76499f057f0ac7825e8cc98d211a432c17770257f65",
+        "reviewedOnHash": "49a1fe1e78808830b448b76499f057f0ac7825e8cc98d211a432c17770257f65",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:0"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "Escalade ESV",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Archived - Unsupported Cadillac Escalade ESV Power-Liftgate-Strut Aggregation",
+        "description": "The former card asserted \"Power Liftgate Strut Failure and Liftgate Falling\" across a broad Cadillac Escalade ESV population. The current primary-source sweep did not establish the asserted falling-liftgate and generic gas-strut failure across 2007-2014. GM service update 14300 describes a materially different VIN-gated 2015 left power-assist actuator that can lock the gate and is retained only as a controlled proposal.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact year, VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM Service Update 14300 - Power Liftgate Actuator",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2014/MC-10248762-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-30",
+        "contentUpdatedOn": "2026-07-30",
+        "contentUpdateSummary": "Archived the unsupported Cadillac Escalade ESV \"Power Liftgate Strut Failure and Liftgate Falling\" aggregation and removed 1 commerce claims with 1 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-escalade-esv-air-suspension-2002",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"Autoride Air Suspension Compressor and Shock Failure\" aggregation with the exact primary-source path below. Remove all 1 commerce claims and 1 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "GM PIT4954C - Automatic Level Control Diagnosis",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10113019-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "30005b84f6c16030b28aacbd817cea95466c7c5f0cc087ac9571be263889c369",
+        "yearsHash": "ea7883c029d2789452b617c51a2d63a6c851a3c14883bb4acb50edeea9703ea7",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "027abc76fb12bf909d4f07ba1d5eb6b664890f166b352d034d8860710f6a67c1",
+        "descriptionHash": "40943c6224bff2efddc7f0c81941052fdd87672bd05406398dc4d7e1a8053ed8",
+        "solutionHash": "c66ecb2c6825eccc154bdaa061253616e8f8c8e6a8b8c668c0ab4b2eee17429d",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "symptomsHash": "be00e92ff9a381a6d1ae82f9774db824c490c7c8d8bfaa9de9eec0698ce535b1",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "f331ffca3f96294100777e3ef7c239c180be5d25de60c9b4eabb522a6c249827",
+        "estimatedCostLowHash": "284b7e6d788f363f910f7beb1910473e23ce9d6c871f1ce0f31f22a982d48ad4",
+        "estimatedCostHighHash": "a176eeb31e601c3877c87c2843a2f584968975269e369d5c86788b4c2f92d2a2",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "d001304cbeaf6f5ab9d26926646145062aaf16be78852bf28cfa0ba30a375a8e",
+        "communityRecommendationsHash": "6a047d28b9455b43971f1b36835740f8e128b163948a7811240a29486958a1be",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "88820462180e5c893eff2ed73f4ec33e205d1cd5acc4d17fa7b2bca2495d3448",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "49a1fe1e78808830b448b76499f057f0ac7825e8cc98d211a432c17770257f65",
+        "reviewedOnHash": "49a1fe1e78808830b448b76499f057f0ac7825e8cc98d211a432c17770257f65",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:0"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "Escalade ESV",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Early Escalade ESV Level-Control Faults Need Sensor and Inlet Diagnosis",
+        "description": "GM PIT4954C separates several level-control paths for the 2003-2006 Escalade ESV generation with RPO Z55 or Z95. Pinched pressure-sensor wiring can contribute to C0696 or C0711. A low rear ride height under heavy payload with C0711 has a moisture-damaged sensor/filter/dryer branch. A visibly loose or damaged left-rear inlet hose has a separate hose-and-filter path. No brief key-up compressor run can be normal because startup operation occurs only below 10 psi. Escalade ESV did not exist for model year 2002.",
+        "solution": "Confirm the model year, suspension RPO, DTCs, load condition and visible hose condition, then follow only the matching PIT4954C branch. Do not treat a missing key-up compressor run by itself as a failure: startup operation occurs only below 10 psi, typically after a long park or when a small leak already exists. Do not replace the complete compressor or convert the suspension solely from this symptom card.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Service Suspension System message",
+          "Rear ride height is low"
+        ],
+        "affectedSystems": [
+          "rear automatic level control",
+          "compressor pressure sensor and inlet path"
+        ],
+        "dtcCodes": [
+          "C0696",
+          "C0711"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM PIT4954C - Automatic Level Control Diagnosis",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10113019-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-30",
+        "contentUpdatedOn": "2026-07-30",
+        "contentUpdateSummary": "Replaced the frozen \"Autoride Air Suspension Compressor and Shock Failure\" card with exact GM/NHTSA scope and removed 1 commerce claims with 1 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-escaladeesv-10-speed-10l8010l90-harsh-shifting-2021",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"10-Speed 10L80/10L90 Harsh Shifting, Shudder, and Valve Body Control Solenoid Issues\" aggregation with the exact primary-source path below. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "GM 22-NA-182 - 10-Speed Cooler-Line Diagnosis",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11008962-0001.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "30005b84f6c16030b28aacbd817cea95466c7c5f0cc087ac9571be263889c369",
+        "yearsHash": "ba01fdda32a5cc811c436bba8d8de1b7c0c09bc156f6262e1acac29cf11e281c",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "efdb9fa0ab96906bd8f6774317c39f9e119c4d799ff9081be4fc6bb51cc0f899",
+        "descriptionHash": "5befc6a370fcf94ca031ccb3d2af1ccfcb29333b2a2789fda3787c45b581e02f",
+        "solutionHash": "a6c6f1ddc2ad4c1f0ce644c377e85f17996c0bfb1656e64b6a7dd5c94b09c7e7",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "5f228c9da70eaf6acd66a381a89904e3c3f535e214ad3c8e8fba201609ab7eb6",
+        "affectedSystemsHash": "f743b85d36518f534e14ad68a8a3bdb5ca23d3ce4b59ed5e224890076f1498b9",
+        "dtcCodesHash": "d91986243eb2b153ee125f499b902a356f614ec563757b8b6d82db5fb3ffc3e5",
+        "estimatedCostLowHash": "83151157c10d85af7c84657c71c3e3603d955160f0526fce672481da83a2e090",
+        "estimatedCostHighHash": "01375f53651cff383d9aca5da90de6f4d859a2069e920c39f9700fe8a86e463c",
+        "typicalMileageLowHash": "0f8eb4b72b6e0c9e88b388eb967b49e067ef1004bf07bffc22c3acb13b43580a",
+        "typicalMileageHighHash": "265f10e1bf87701b7aa597c197b6a25b0984777f3443a289d7a92aedd31fddcf",
+        "citationsHash": "9823dff9b63de53d097084ca1bc6e992ee296b1d75e08098b0e9cfa7de473f06",
+        "communityRecommendationsHash": "78e3cf0bc90d01b51dbd6c3aeff8f7b1c15aeede10851af742308d60bb9ea093",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "7eb9fd8b6a87bb0bdb72cd27e927893a7ed42476b37c8e5fe4569e4c5ae891cb",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "Escalade ESV",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "6.2L L87 V8",
+          "3.0L LM2 diesel",
+          "6.2L LT4 V8"
+        ],
+        "category": "transmission",
+        "title": "10-Speed Harsh Shift, Shudder or Flare Can Come From a Twisted Cooler Line",
+        "description": "GM 22-NA-182 covers 2021-2025 Escalade ESV vehicles with L87, LM2 or LT4 engines and MHS, MHO or MQC 10-speed transmissions. A twisted cooler line can contribute to harsh shifts, shudder, surge, stall, flare or overheat; P27EC applies to the ETRS MHS/MQC branch. The bulletin does not prove a universal valve-body or solenoid failure.",
+        "solution": "Verify the exact engine/transmission branch and DTCs, inspect the cooler lines for a twist or misshapen section, correct the routing or replace a confirmed damaged line, set fluid level and evaluate the thermal bypass valve as directed. Continue normal diagnosis if the concern remains; do not order transmission parts from this card.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Harsh transmission shift",
+          "Transmission shudder or surge",
+          "Transmission flare or overheat"
+        ],
+        "affectedSystems": [
+          "10-speed automatic transmission",
+          "transmission cooler lines",
+          "thermal bypass valve"
+        ],
+        "dtcCodes": [
+          "P27EC"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM 22-NA-182 - 10-Speed Cooler-Line Diagnosis",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11008962-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-30",
+        "contentUpdatedOn": "2026-07-30",
+        "contentUpdateSummary": "Replaced the frozen \"10-Speed 10L80/10L90 Harsh Shifting, Shudder, and Valve Body Control Solenoid Issues\" card with exact GM/NHTSA scope and removed 2 commerce claims with 2 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-escaladeesv-62l-l87-connecting-rodbearing-2021",
+      "disposition": "recall-dealer",
+      "decision": "Replace the frozen \"6.2L L87 Connecting Rod/Bearing Failure Leading to Engine Seizure\" aggregation with the exact primary-source path below. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "recall",
+          "label": "NHTSA Recall 25V274 - L87 Engine Failure",
+          "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V274-1938.PDF"
+        },
+        {
+          "type": "recall",
+          "label": "GM N252494002 Recall Remedy and FAQ",
+          "url": "https://static.nhtsa.gov/odi/rcl/2025/RMISC-25V274-6877.pdf"
+        },
+        {
+          "type": "recall",
+          "label": "GM N252494002 VIN-Specific Routing Notice",
+          "url": "https://static.nhtsa.gov/odi/rcl/2025/RCMN-25V274-7820.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "30005b84f6c16030b28aacbd817cea95466c7c5f0cc087ac9571be263889c369",
+        "yearsHash": "5855590e74f7e60c866bcdc3ebcdeac267964dd9c3645c6ec87ab788e6dc1a3f",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "0f15db97daf96f4ff40d9e960fa2624b73a8e62464a435a581257bd1ba91d7bc",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "cf754c0c4b930e839a7324dc58dafc994563cc1b78590161b88c56b8be51c48a",
+        "descriptionHash": "2386a4f870aac41e40db15607955474bb8dda94bd782b4c6c97f17cb9d7ec7ac",
+        "solutionHash": "3ef5419c3022bb671d00f9d69cb1518b3467f2d92a445c50c6b397396c33bbaa",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "2577f7cba725cbef0c708ef122f66cffe086325663751c373c0eb9883bee6ff1",
+        "affectedSystemsHash": "f4df015d463dd6eceae3bebbb30c5eecf245c488b480faa33ba86e6f1deba74b",
+        "dtcCodesHash": "4d3f2e5d3529353d658b3c0de14f445152475325d11130ee5c11d20334664f24",
+        "estimatedCostLowHash": "8d284220975da66c6cba4a32aaedfa0b897187d86ed9f7a2419c9bd10a103505",
+        "estimatedCostHighHash": "434a7e656c53f103a7a2ed1ccc8bb6fd53e9c10e4df29edd2a11b9036342a08d",
+        "typicalMileageLowHash": "40510175845988f13f6162ed8526f0b09f73384467fa855e1e79b44a56562a58",
+        "typicalMileageHighHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "citationsHash": "60cf2fa847ef4a453d1edbc0db0475d1ed5bace463deb2d339c47eab3385788c",
+        "communityRecommendationsHash": "2bb702c00703b0b16834f40a5b6979765529d32313d543f20ef9bb9a9051bcd0",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "2e6a8f040660133256b70998a516ca6f22526a87fb14a5aeda5faa01cd27e494",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "Escalade ESV",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "6.2L L87 V8"
+        ],
+        "category": "safety",
+        "title": "L87 Connecting-Rod or Crankshaft Defect Can Cause Engine Failure (Recall 25V274)",
+        "description": "Certain 2021-2024 Escalade ESV vehicles with the 6.2L L87 engine are covered by recall 25V274 / GM N252494002. Manufacturing defects in connecting-rod or crankshaft components can damage or seize the engine and cause loss of propulsion, increasing crash risk.",
+        "solution": "Check the VIN and current recall assignment with Cadillac. GM routes involved vehicles through VIN-specific inspection and remedy instructions and replaces the engine when required at no charge. If abnormal engine noise, warning messages or loss of power occurs, stop safely and arrange dealer service or towing.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Open safety recall",
+          "Abnormal engine noise",
+          "Engine damage or seizure",
+          "Loss of propulsion"
+        ],
+        "affectedSystems": [
+          "L87 engine connecting rods",
+          "crankshaft and bearings"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Recall 25V274 - L87 Engine Failure",
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V274-1938.PDF"
+          },
+          {
+            "type": "recall",
+            "title": "GM N252494002 Recall Remedy and FAQ",
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RMISC-25V274-6877.pdf"
+          },
+          {
+            "type": "recall",
+            "title": "GM N252494002 VIN-Specific Routing Notice",
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCMN-25V274-7820.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-30",
+        "contentUpdatedOn": "2026-07-30",
+        "contentUpdateSummary": "Replaced the frozen \"6.2L L87 Connecting Rod/Bearing Failure Leading to Engine Seizure\" card with exact GM/NHTSA scope and removed 2 commerce claims with 2 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-escaladeesv-intermittent-no-start-battery-drain-2021",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"Intermittent No-Start, Battery Drain, and Control Module Sleep/Wake Electrical Faults\" aggregation with the exact primary-source path below. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "GM PIT5993D - Dead Battery From Glass-Breakage Loop",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11015584-0001.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "30005b84f6c16030b28aacbd817cea95466c7c5f0cc087ac9571be263889c369",
+        "yearsHash": "ba01fdda32a5cc811c436bba8d8de1b7c0c09bc156f6262e1acac29cf11e281c",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "678308b43d519cae99b952a7c0aac26fe9db328afe73328a3efdbe3e4b98edca",
+        "descriptionHash": "efbb7ba1388141e98a8e80e4b9b74167a984e0e9a59cf7b9f4eabc8a45b0dd50",
+        "solutionHash": "97ae7aa0ad67e4a37d19bcb7c99a01354e6795f8d81d3814eb625b90602456f4",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "cae7427c301df9bbc2eae5c344486cf4db84393f205d72351d028743485ff4b2",
+        "affectedSystemsHash": "5978f35b4e94e5ae25cad6655170ad41bc15b345fa1812383b2dcb117f9efccd",
+        "dtcCodesHash": "89387de50fc188d9baacd09de06f3bb94280e1f8ac558d908b882bbb7a67f80d",
+        "estimatedCostLowHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "estimatedCostHighHash": "e49ec846db7527df7ff483009fe61700e6435072c8c5b551ab08f0a13fc45a07",
+        "typicalMileageLowHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageHighHash": "4948963369b682612d22b081bdc92c13d23fb921cdd44e50f45d7e86b4b52022",
+        "citationsHash": "b4ef730e2553734bed44be3232d45d93d6152081e5fa87dbd115e310a5ed3bcb",
+        "communityRecommendationsHash": "b7e40a9277414fda7d3c1c9e9ba282c28beaa4936ed69be03e2ae14f3ca458c3",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "Escalade ESV",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Dead Battery or No-Crank Can Come From the Alarm Glass-Breakage Loop",
+        "description": "GM PIT5993D covers 2021-2025 Escalade ESV vehicles with theft-alarm RPO UTT or UTR. High resistance in the rear-defogger and rear-quarter-glass breakage loop can cause a low or dead battery, no-crank or unwanted alarm. The bulletin does not establish a generic module sleep/wake defect.",
+        "solution": "Have a qualified technician confirm the theft-alarm RPO and reproduce the draw with the vehicle closed and locked when needed. PIT5993D requires de-energizing and isolating the specified battery and BCM connections, checking BCM X7 terminal 27 tension with the specified test probe, and measuring the glass-breakage loop at the prescribed BCM ground terminals; the complete loop should be under 20 ohms. Repair confirmed high resistance, then test the battery. Do not order one from this card.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Low or dead 12-volt battery",
+          "No crank due to a dead battery",
+          "Unwanted theft alarm"
+        ],
+        "affectedSystems": [
+          "theft-deterrent glass-breakage loop",
+          "rear defogger grid",
+          "rear quarter-glass connections"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM PIT5993D - Dead Battery From Glass-Breakage Loop",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11015584-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-30",
+        "contentUpdatedOn": "2026-07-30",
+        "contentUpdateSummary": "Replaced the frozen \"Intermittent No-Start, Battery Drain, and Control Module Sleep/Wake Electrical Faults\" card with exact GM/NHTSA scope and removed 2 commerce claims with 2 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-escaladeesv-oled-curved-display-blackout-2021",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"OLED Curved Display Blackout, Flicker, and Infotainment Module Failures\" aggregation with the exact primary-source path below. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "GM 21-NA-209 - Black Radio Screen and VPM Reprogramming",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10205558-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "30005b84f6c16030b28aacbd817cea95466c7c5f0cc087ac9571be263889c369",
+        "yearsHash": "ba01fdda32a5cc811c436bba8d8de1b7c0c09bc156f6262e1acac29cf11e281c",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "f971a76ff6d520c0364a8cc94b4acf9d3b248782f9aa1d78115c7a60a276fca0",
+        "descriptionHash": "c60c49486fefd8f2da0617a2966cd158a0553d7be8822061547c479b1a4738ca",
+        "solutionHash": "c00276a127f9810e94da4657b5e6b58dc94c52ccc597c3a8633714af84249ceb",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "727ec8d5fe6cb1e761d90fd3a55c2f5c169e96e59ac2b7070da4d011e073f308",
+        "affectedSystemsHash": "e02c806873e15c85d992bbee501aab933b416acfa112004fb17f5d91450b3894",
+        "dtcCodesHash": "9b6f37af43484e40fff8a3c434838582c1852be9d1ff305ae351c62996094006",
+        "estimatedCostLowHash": "9ae2bdd7beedc2e766c6b76585530e16925115707dc7a06ab5ee4aa2776b2c7b",
+        "estimatedCostHighHash": "889e2fc00981675edd472d82d3a581b0156216501cfcdba3f1dfc87223be85e7",
+        "typicalMileageLowHash": "40510175845988f13f6162ed8526f0b09f73384467fa855e1e79b44a56562a58",
+        "typicalMileageHighHash": "60734f174b2035e5b2ba85fef8c648cc0cb18c5995b419d3cd1c025c5b09d0c7",
+        "citationsHash": "f472750578fda04a749f5e025abcace211534c7ee31935153ff25a92be9f0f53",
+        "communityRecommendationsHash": "2c72164ce5442287a3cc9debcad8b976e3838a8513318ce0a28c5ace2b5c0223",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "Escalade ESV",
+        "years": [
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Black Radio Screen With U023C and B1A62-86 Needs VPM Recovery",
+        "description": "GM 21-NA-209 covers a bounded 2021 Escalade ESV condition with RPO UXP: a black radio screen showing a triangle and camera-slash symbol with current or recent U023C and B1A62-86. It does not establish general OLED hardware, flicker or infotainment-module failure.",
+        "solution": "Confirm the exact display pattern, RPO and DTCs. The GM procedure removes VPM fuse F28 for one minute, reinstalls it and has the dealer reprogram the K157 Video Processing Module. Do not replace the OLED display from this card.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Black radio screen",
+          "Triangle and camera-slash symbol on the display"
+        ],
+        "affectedSystems": [
+          "K157 video processing module",
+          "radio display"
+        ],
+        "dtcCodes": [
+          "U023C",
+          "B1A62-86"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM 21-NA-209 - Black Radio Screen and VPM Reprogramming",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10205558-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-30",
+        "contentUpdatedOn": "2026-07-30",
+        "contentUpdateSummary": "Replaced the frozen \"OLED Curved Display Blackout, Flicker, and Infotainment Module Failures\" card with exact GM/NHTSA scope and removed 2 commerce claims with 2 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-escaladeesv-super-cruise-and-driver-2021",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"Super Cruise and Driver Assistance System Faults from Camera/Radar Module Errors\" aggregation with the exact primary-source path below. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "GM PIT6056A - Startup Super Cruise U1624 Reset",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11017780-0001.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "30005b84f6c16030b28aacbd817cea95466c7c5f0cc087ac9571be263889c369",
+        "yearsHash": "ba01fdda32a5cc811c436bba8d8de1b7c0c09bc156f6262e1acac29cf11e281c",
+        "trimsHash": "64831d22633df147c70b0b2fdcae897cdfb7be047cdc66675d0151a139d2ef71",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "6ad35495f7e0102ccece4d8a88ed3c254b882110341f84dc2c9026be82600e3f",
+        "titleHash": "287279ec938389d5f1e2c70b081a1c60f143fb7263ba93c871dbbf92572dec48",
+        "descriptionHash": "b0f044ba032c2b38267dbb6fd24aa4643292197a3f508edfb7c56ba25dcf8b6c",
+        "solutionHash": "b1d4f42b9fecfb3c325c79a7d66c2196052a58976030174a1b8939231087e196",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "8bd518cf14f2309f55655b3abda77bc2437c97e32dd43f7f8a3acd5de50fefd9",
+        "affectedSystemsHash": "f057831fa9b6779ef6b0179bc6c51840914e1144d0227631fcaffeb0ac77be29",
+        "dtcCodesHash": "7782ee71d0a2f2061946b320fb2619b525d8826e3c15a7e1767b174e78320cef",
+        "estimatedCostLowHash": "1e472b39b105d349bcd069c4a711b44a2fffb8e274714bb07ecfff69a9a7f67b",
+        "estimatedCostHighHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "typicalMileageLowHash": "40510175845988f13f6162ed8526f0b09f73384467fa855e1e79b44a56562a58",
+        "typicalMileageHighHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "citationsHash": "9223155fc45f159dd7f889f81cbf249cf7fe6600ff77f8b1c0ee7d2492ad0106",
+        "communityRecommendationsHash": "021f6610c3e5c2d42d9167ef5f7115ba11dd437705f65163974295b57e825f99",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "Escalade ESV",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Startup Super Cruise Unavailable With U1624 Has a Module-Reset Path",
+        "description": "GM PIT6056A covers 2021-2024 Escalade ESV vehicles with Super Cruise RPO UKL when the system is intermittently unavailable at startup and U1624 is stored in K124. The bulletin does not establish broad camera, radar or calibration failure and says not to replace K124 or K73 for this path.",
+        "solution": "Confirm RPO UKL and U1624 in K124. Follow the GM procedure to reset K73 by removing its fuse for at least one minute. If the code does not move to history, continue Service Information diagnosis. Do not replace modules or order driver-assistance parts from this card.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Super Cruise unavailable at startup"
+        ],
+        "affectedSystems": [
+          "Super Cruise",
+          "K124 and K73 driver-assistance modules"
+        ],
+        "dtcCodes": [
+          "U1624"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM PIT6056A - Startup Super Cruise U1624 Reset",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11017780-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-30",
+        "contentUpdatedOn": "2026-07-30",
+        "contentUpdateSummary": "Replaced the frozen \"Super Cruise and Driver Assistance System Faults from Camera/Radar Module Errors\" card with exact GM/NHTSA scope and removed 2 commerce claims with 2 URLs.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
