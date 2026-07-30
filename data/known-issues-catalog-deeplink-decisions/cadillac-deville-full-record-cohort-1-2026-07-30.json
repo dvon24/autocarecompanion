@@ -9,9 +9,9 @@
   "reviewApproval": {
     "approvedAfterBlindAndEdgeReview": true,
     "approvedOn": "2026-07-30",
-    "blindReviewer": "cadillac3_followup_blind:no-blocker",
-    "edgeReviewer": "cadillac3_followup_edge:no-blocker",
-    "reviewedGeneratorFileHash": "4fe715c164c68db646484d1b2afdf4db51db25fcadeded6b7a658311e7de9083"
+    "blindReviewer": "cadillac3_zero_route_blind:no-blocker",
+    "edgeReviewer": "cadillac3_zero_route_edge:no-blocker",
+    "reviewedGeneratorFileHash": "494a948bc483aa680710505070074534aee3c1353071b21beaa112e00275e439"
   },
   "researchedWith": "Ultra-effort current manufacturer/regulator primary-source review; no LLM API and no commerce approval",
   "controlledDeltaProposals": [],
@@ -305,8 +305,8 @@
     },
     {
       "id": "cadillac-northstar-oil-consumption-1994",
-      "disposition": "remove",
-      "decision": "Archive the frozen \"Northstar V8 Excessive Oil Consumption\" aggregation. GM bulletin 01-06-01-011O requires per-vehicle measurement, maintenance and leak checks and does not establish the frozen universal Northstar failure mechanism or one repair. Remove all 1 commerce claims and 1 outbound URL occurrences.",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen universal Northstar failure claim with GM bulletin 01-06-01-011O’s measured oil-consumption diagnostic gate. Remove the 1 commerce claim and 1 outbound URL occurrence.",
       "evidence": [
         {
           "label": "GM Bulletin 01-06-01-011O - Engine Oil Consumption Guidelines",
@@ -366,15 +366,24 @@
           2005
         ],
         "trims": [],
-        "engines": [],
+        "engines": [
+          "4.6L Northstar V8"
+        ],
         "category": "engine",
-        "title": "Archived - Unsupported Cadillac DeVille Excessive Oil-Consumption Aggregation",
-        "description": "The former card asserted \"Northstar V8 Excessive Oil Consumption\" across a broad Cadillac DeVille population. GM bulletin 01-06-01-011O requires per-vehicle measurement, maintenance and leak checks and does not establish the frozen universal Northstar failure mechanism or one repair.",
-        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact year, VIN, engine, symptoms, DTCs and current GM service information before diagnosis or repair.",
-        "severity": "low",
-        "confidence": "low",
-        "symptoms": [],
-        "affectedSystems": [],
+        "title": "High Oil Use Needs a Measured Consumption Test Before Repair (01-06-01-011O)",
+        "description": "GM bulletin 01-06-01-011O covers 2024 and prior GM passenger cars and explains that oil use varies with driving, maintenance, leaks and engine condition. It requires each case to be evaluated and does not establish a universal Northstar defect. Its one-quart-per-2,000-mile guideline applies only under the bulletin’s stated personal-use, under-warranty, maintained and non-aggressive conditions.",
+        "solution": "Measure oil use under consistent conditions before authorizing engine work. Verify the oil level and specification, inspect the oil pan, covers, lines and fittings for external leaks, check the PCV system and document mileage and oil added. Do not begin the normal test before 4,000 miles unless use exceeds one quart per 1,000 miles. If the measured result exceeds the applicable GM guideline, continue with the model-specific Service Information diagnosis; do not order engine parts from this card.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Engine oil level drops between services",
+          "Frequent engine-oil top-offs"
+        ],
+        "affectedSystems": [
+          "engine lubrication system",
+          "positive crankcase ventilation system",
+          "external engine gaskets and oil lines"
+        ],
         "dtcCodes": [],
         "estimatedCostLow": null,
         "estimatedCostHigh": null,
@@ -382,7 +391,7 @@
         "typicalMileageHigh": null,
         "citations": [
           {
-            "type": "nhtsa",
+            "type": "tsb",
             "title": "GM Bulletin 01-06-01-011O - Engine Oil Consumption Guidelines",
             "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10244273-0001.pdf"
           }
@@ -391,12 +400,12 @@
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "manual",
-        "status": "archived",
+        "source": "nhtsa-verified",
+        "status": "published",
         "lastReportedByOwners": "",
         "reviewedOn": "2026-07-30",
         "contentUpdatedOn": "2026-07-30",
-        "contentUpdateSummary": "Archived the unsupported Cadillac DeVille \"Northstar V8 Excessive Oil Consumption\" aggregation and removed 1 commerce claims with 1 URLs.",
+        "contentUpdateSummary": "Replaced the unsupported universal Northstar failure claim with GM’s measured oil-consumption diagnostic gate and removed 1 commerce claim with 1 URL.",
         "relatedIssueIds": []
       }
     }

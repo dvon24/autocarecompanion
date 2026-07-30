@@ -56,8 +56,8 @@ const config = {
   packetRelativePath:
     'data/known-issues-catalog-deeplink-work/cadillac-dts/3ee40713b2b5/all-0001.json',
   reviewTokens: {
-    blind: 'cadillac3_followup_blind:no-blocker',
-    edge: 'cadillac3_followup_edge:no-blocker',
+    blind: 'cadillac3_zero_route_blind:no-blocker',
+    edge: 'cadillac3_zero_route_edge:no-blocker',
   },
   expectedIds: [
     'cadillac-dts-northstar-head-bolt-pull-2000',
@@ -91,20 +91,53 @@ const config = {
       reason:
         'The current primary-source sweep did not establish the six-year universal head-bolt thread-failure mechanism, symptom bundle or one repair.',
     }),
-    'cadillac-dts-northstar-oil-leak-2006': archived({
-      oldTitle: 'Northstar 4.6L Rear Main Seal and Oil Pan Gasket Leak',
-      idSuffix: 'Rear-Main-Seal and Oil-Pan-Leak Aggregation',
-      years: [2006, 2007, 2008, 2009, 2010, 2011],
-      category: 'engine',
-      claims: 1,
-      urls: 1,
-      reason:
-        'The current primary-source sweep did not support treating two potential leak locations as one model-wide diagnosis or repair.',
-      evidenceTitle:
-        'GM Bulletin 01-06-01-011O - Engine Oil Consumption and Leak-Diagnosis Guidelines',
-      evidenceUrl:
-        'https://static.nhtsa.gov/odi/tsbs/2023/MC-10244273-0001.pdf',
-    }),
+    'cadillac-dts-northstar-oil-leak-2006': {
+      disposition: 'diagnosis-hold',
+      decision:
+        'Replace the frozen universal rear-main/oil-pan repair claim with GM bulletin 01-06-01-011O’s source-first external-leak diagnosis. Remove the 1 commerce claim and 1 outbound URL occurrence.',
+      evidence: [
+        {
+          label:
+            'GM Bulletin 01-06-01-011O - Oil Leak and Consumption Diagnosis',
+          url: 'https://static.nhtsa.gov/odi/tsbs/2023/MC-10244273-0001.pdf',
+        },
+      ],
+      after: {
+        years: [2006, 2007, 2008, 2009, 2010, 2011],
+        trims: [],
+        engines: ['4.6L Northstar V8'],
+        category: 'engine',
+        title:
+          'Confirm the Oil Leak Source Before Rear-Seal or Oil-Pan Repair (01-06-01-011O)',
+        description:
+          'GM bulletin 01-06-01-011O covers 2024 and prior GM passenger cars and directs technicians to inspect the oil pan, engine covers, oil lines and fittings for external leakage. It does not establish that every 2006-2011 DTS leak comes from the rear main seal or oil-pan gasket, so the source must be confirmed before parts replacement.',
+        solution:
+          'Have the leak source inspected using current GM Service Information before replacing a rear seal, oil-pan gasket or other engine component. Verify the oil level and specification, inspect the pan, covers, lines and fittings, repair the confirmed source as necessary and monitor the level afterward. Do not order parts from this diagnosis-only card.',
+        severity: 'medium',
+        confidence: 'high',
+        source: 'nhtsa-verified',
+        symptoms: [
+          'Engine oil spots or drips',
+          'Engine oil level drops between checks',
+        ],
+        affectedSystems: [
+          'engine oil pan and covers',
+          'engine oil lines and fittings',
+          'engine lubrication system',
+        ],
+        dtcCodes: [],
+        citations: [
+          {
+            type: 'tsb',
+            title:
+              'GM Bulletin 01-06-01-011O - Oil Leak and Consumption Diagnosis',
+            url: 'https://static.nhtsa.gov/odi/tsbs/2023/MC-10244273-0001.pdf',
+          },
+        ],
+        summary:
+          'Replaced the unsupported universal rear-main/oil-pan repair claim with GM’s source-first external-leak diagnostic gate and removed 1 commerce claim with 1 URL.',
+      },
+    },
     'cadillac-dts-rear-air-suspension-2006': archived({
       oldTitle: 'Rear Air Suspension Compressor and Leveling Failure',
       idSuffix: 'Rear Air-Suspension Aggregation',
@@ -140,16 +173,25 @@ const config = {
     priorityClickCount: 0,
   },
   expectedDispositionCounts: {
-    remove: 5,
+    remove: 4,
+    'diagnosis-hold': 1,
   },
-  expectedPublished: 0,
-  expectedArchived: 5,
+  expectedPublished: 1,
+  expectedArchived: 4,
   controlledDeltaProposals: [],
   expectedProposalIdentities: [],
 };
 
 config.assertReviewedAfterState = function assertReviewedAfterState(issues) {
-  if (issues.some((issue) => issue.after.status !== 'archived')) {
+  if (
+    issues.some((issue) =>
+      issue.id === 'cadillac-dts-northstar-oil-leak-2006'
+        ? issue.after.status !== 'published' ||
+          JSON.stringify(issue.after.years) !==
+            JSON.stringify([2006, 2007, 2008, 2009, 2010, 2011])
+        : issue.after.status !== 'archived',
+    )
+  ) {
     throw new Error('Cadillac DTS reviewed scopes or statuses drifted.');
   }
 };

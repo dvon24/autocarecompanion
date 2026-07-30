@@ -54,8 +54,8 @@ const config = {
   packetRelativePath:
     'data/known-issues-catalog-deeplink-work/cadillac-deville/3ee40713b2b5/all-0001.json',
   reviewTokens: {
-    blind: 'cadillac3_followup_blind:no-blocker',
-    edge: 'cadillac3_followup_edge:no-blocker',
+    blind: 'cadillac3_zero_route_blind:no-blocker',
+    edge: 'cadillac3_zero_route_edge:no-blocker',
   },
   expectedIds: [
     'cadillac-deville-blend-door-2000',
@@ -99,20 +99,53 @@ const config = {
       evidenceUrl:
         'https://static.nhtsa.gov/odi/tsbs/2023/MC-10244273-0001.pdf',
     }),
-    'cadillac-northstar-oil-consumption-1994': archived({
-      oldTitle: 'Northstar V8 Excessive Oil Consumption',
-      idSuffix: 'Excessive Oil-Consumption Aggregation',
-      years: [1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005],
-      category: 'engine',
-      claims: 1,
-      urls: 1,
-      reason:
-        'GM bulletin 01-06-01-011O requires per-vehicle measurement, maintenance and leak checks and does not establish the frozen universal Northstar failure mechanism or one repair.',
-      evidenceTitle:
-        'GM Bulletin 01-06-01-011O - Engine Oil Consumption Guidelines',
-      evidenceUrl:
-        'https://static.nhtsa.gov/odi/tsbs/2023/MC-10244273-0001.pdf',
-    }),
+    'cadillac-northstar-oil-consumption-1994': {
+      disposition: 'diagnosis-hold',
+      decision:
+        'Replace the frozen universal Northstar failure claim with GM bulletin 01-06-01-011O’s measured oil-consumption diagnostic gate. Remove the 1 commerce claim and 1 outbound URL occurrence.',
+      evidence: [
+        {
+          label:
+            'GM Bulletin 01-06-01-011O - Engine Oil Consumption Guidelines',
+          url: 'https://static.nhtsa.gov/odi/tsbs/2023/MC-10244273-0001.pdf',
+        },
+      ],
+      after: {
+        years: [1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005],
+        trims: [],
+        engines: ['4.6L Northstar V8'],
+        category: 'engine',
+        title:
+          'High Oil Use Needs a Measured Consumption Test Before Repair (01-06-01-011O)',
+        description:
+          'GM bulletin 01-06-01-011O covers 2024 and prior GM passenger cars and explains that oil use varies with driving, maintenance, leaks and engine condition. It requires each case to be evaluated and does not establish a universal Northstar defect. Its one-quart-per-2,000-mile guideline applies only under the bulletin’s stated personal-use, under-warranty, maintained and non-aggressive conditions.',
+        solution:
+          'Measure oil use under consistent conditions before authorizing engine work. Verify the oil level and specification, inspect the oil pan, covers, lines and fittings for external leaks, check the PCV system and document mileage and oil added. Do not begin the normal test before 4,000 miles unless use exceeds one quart per 1,000 miles. If the measured result exceeds the applicable GM guideline, continue with the model-specific Service Information diagnosis; do not order engine parts from this card.',
+        severity: 'medium',
+        confidence: 'high',
+        source: 'nhtsa-verified',
+        symptoms: [
+          'Engine oil level drops between services',
+          'Frequent engine-oil top-offs',
+        ],
+        affectedSystems: [
+          'engine lubrication system',
+          'positive crankcase ventilation system',
+          'external engine gaskets and oil lines',
+        ],
+        dtcCodes: [],
+        citations: [
+          {
+            type: 'tsb',
+            title:
+              'GM Bulletin 01-06-01-011O - Engine Oil Consumption Guidelines',
+            url: 'https://static.nhtsa.gov/odi/tsbs/2023/MC-10244273-0001.pdf',
+          },
+        ],
+        summary:
+          'Replaced the unsupported universal Northstar failure claim with GM’s measured oil-consumption diagnostic gate and removed 1 commerce claim with 1 URL.',
+      },
+    },
   },
   expectedTelemetry: {
     claimCount: 8,
@@ -122,16 +155,25 @@ const config = {
     priorityClickCount: 0,
   },
   expectedDispositionCounts: {
-    remove: 4,
+    remove: 3,
+    'diagnosis-hold': 1,
   },
-  expectedPublished: 0,
-  expectedArchived: 4,
+  expectedPublished: 1,
+  expectedArchived: 3,
   controlledDeltaProposals: [],
   expectedProposalIdentities: [],
 };
 
 config.assertReviewedAfterState = function assertReviewedAfterState(issues) {
-  if (issues.some((issue) => issue.after.status !== 'archived')) {
+  if (
+    issues.some((issue) =>
+      issue.id === 'cadillac-northstar-oil-consumption-1994'
+        ? issue.after.status !== 'published' ||
+          JSON.stringify(issue.after.years) !==
+            JSON.stringify([1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005])
+        : issue.after.status !== 'archived',
+    )
+  ) {
     throw new Error('Cadillac DeVille reviewed scopes or statuses drifted.');
   }
 };

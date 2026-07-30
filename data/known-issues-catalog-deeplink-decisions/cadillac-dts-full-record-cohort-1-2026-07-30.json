@@ -9,9 +9,9 @@
   "reviewApproval": {
     "approvedAfterBlindAndEdgeReview": true,
     "approvedOn": "2026-07-30",
-    "blindReviewer": "cadillac3_followup_blind:no-blocker",
-    "edgeReviewer": "cadillac3_followup_edge:no-blocker",
-    "reviewedGeneratorFileHash": "ae6a127c6b3109e75b1b3ba584ee46ee73dfbb93d66d1c087554221814606fd4"
+    "blindReviewer": "cadillac3_zero_route_blind:no-blocker",
+    "edgeReviewer": "cadillac3_zero_route_edge:no-blocker",
+    "reviewedGeneratorFileHash": "4bc57c1ab324cff858beeaf9a3be47eb4a06717518dbb1d7a5ce8467ded3b68e"
   },
   "researchedWith": "Ultra-effort current manufacturer/regulator primary-source review; no LLM API and no commerce approval",
   "controlledDeltaProposals": [],
@@ -202,11 +202,11 @@
     },
     {
       "id": "cadillac-dts-northstar-oil-leak-2006",
-      "disposition": "remove",
-      "decision": "Archive the frozen \"Northstar 4.6L Rear Main Seal and Oil Pan Gasket Leak\" aggregation. The current primary-source sweep did not support treating two potential leak locations as one model-wide diagnosis or repair. Remove all 1 commerce claims and 1 outbound URL occurrences.",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen universal rear-main/oil-pan repair claim with GM bulletin 01-06-01-011O’s source-first external-leak diagnosis. Remove the 1 commerce claim and 1 outbound URL occurrence.",
       "evidence": [
         {
-          "label": "GM Bulletin 01-06-01-011O - Engine Oil Consumption and Leak-Diagnosis Guidelines",
+          "label": "GM Bulletin 01-06-01-011O - Oil Leak and Consumption Diagnosis",
           "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10244273-0001.pdf"
         }
       ],
@@ -257,15 +257,24 @@
           2011
         ],
         "trims": [],
-        "engines": [],
+        "engines": [
+          "4.6L Northstar V8"
+        ],
         "category": "engine",
-        "title": "Archived - Unsupported Cadillac DTS Rear-Main-Seal and Oil-Pan-Leak Aggregation",
-        "description": "The former card asserted \"Northstar 4.6L Rear Main Seal and Oil Pan Gasket Leak\" across a broad Cadillac DTS population. The current primary-source sweep did not support treating two potential leak locations as one model-wide diagnosis or repair.",
-        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact year, VIN, equipment, symptoms, DTCs and current GM service information before diagnosis or repair.",
-        "severity": "low",
-        "confidence": "low",
-        "symptoms": [],
-        "affectedSystems": [],
+        "title": "Confirm the Oil Leak Source Before Rear-Seal or Oil-Pan Repair (01-06-01-011O)",
+        "description": "GM bulletin 01-06-01-011O covers 2024 and prior GM passenger cars and directs technicians to inspect the oil pan, engine covers, oil lines and fittings for external leakage. It does not establish that every 2006-2011 DTS leak comes from the rear main seal or oil-pan gasket, so the source must be confirmed before parts replacement.",
+        "solution": "Have the leak source inspected using current GM Service Information before replacing a rear seal, oil-pan gasket or other engine component. Verify the oil level and specification, inspect the pan, covers, lines and fittings, repair the confirmed source as necessary and monitor the level afterward. Do not order parts from this diagnosis-only card.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Engine oil spots or drips",
+          "Engine oil level drops between checks"
+        ],
+        "affectedSystems": [
+          "engine oil pan and covers",
+          "engine oil lines and fittings",
+          "engine lubrication system"
+        ],
         "dtcCodes": [],
         "estimatedCostLow": null,
         "estimatedCostHigh": null,
@@ -273,8 +282,8 @@
         "typicalMileageHigh": null,
         "citations": [
           {
-            "type": "nhtsa",
-            "title": "GM Bulletin 01-06-01-011O - Engine Oil Consumption and Leak-Diagnosis Guidelines",
+            "type": "tsb",
+            "title": "GM Bulletin 01-06-01-011O - Oil Leak and Consumption Diagnosis",
             "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10244273-0001.pdf"
           }
         ],
@@ -282,12 +291,12 @@
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "manual",
-        "status": "archived",
+        "source": "nhtsa-verified",
+        "status": "published",
         "lastReportedByOwners": "",
         "reviewedOn": "2026-07-30",
         "contentUpdatedOn": "2026-07-30",
-        "contentUpdateSummary": "Archived the unsupported Cadillac DTS \"Northstar 4.6L Rear Main Seal and Oil Pan Gasket Leak\" aggregation and removed 1 commerce claims with 1 URLs.",
+        "contentUpdateSummary": "Replaced the unsupported universal rear-main/oil-pan repair claim with GM’s source-first external-leak diagnostic gate and removed 1 commerce claim with 1 URL.",
         "relatedIssueIds": []
       }
     },
