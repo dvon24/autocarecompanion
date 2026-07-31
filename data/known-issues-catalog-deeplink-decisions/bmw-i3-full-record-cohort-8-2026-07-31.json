@@ -1,0 +1,1075 @@
+{
+  "schemaVersion": 2,
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "auditScope": "full-record",
+  "batchId": "bmw-i3-full-record-cohort-8-2026-07-31",
+  "snapshotHash": "1af2aadfeb6c3a979db85b8ede4aee724b778e5fbfe391e99d8b8642215311dc",
+  "sourceSnapshotFileHash": "de75984db599d70199594ec4200eeb407da0d1444df33d277d3176f8d73dcaff",
+  "packetFileHash": "0375aec6f5136e015e7937d2ee95354530f34dd07fba51c0d55bc07f6925b48e",
+  "reviewApproval": {
+    "approvedAfterBlindAndEdgeReview": true,
+    "approvedOn": "2026-07-31",
+    "blindReviewer": "bmwi3_blind:no-blocker",
+    "edgeReviewer": "bmwi3_edge:no-blocker",
+    "reviewedGeneratorFileHash": "4d0df889e398afa952b41bdf6c2d22fd8a31be0ba8634c129511331a2d1cd346"
+  },
+  "researchedWith": "Ultra-effort current manufacturer/regulator primary-source review; no LLM API and no commerce approval",
+  "controlledDeltaProposals": [
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-i3-passenger-airbag-module-recall-2014-2015",
+      "sources": [
+        "https://static.nhtsa.gov/odi/rcl/2015/RCRIT-15V628-3244.pdf"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-i3-driver-airbag-software-recall-2014-2018",
+      "sources": [
+        "https://static.nhtsa.gov/odi/rcl/2017/RCONL-17V720-3841.pdf"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "bmw-i3-12v-battery-drain-2014",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"12V Auxiliary Battery Drain - All I01 Models\" aggregation with the bounded primary-source path below. Remove all 1 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "BMW SIB 61 39 14 - i3 REx 12V Discharge Message After Charging",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2015/MC-10147620-9999.pdf"
+        },
+        {
+          "type": "tsb",
+          "label": "BMW SIB 61 05 20 - Increased Battery Drain Caused by Controller",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10174019-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "6b35a3fe82432d7405b825e06e6e29c3fdfd50b5c5546001319d3787fbc299d3",
+        "descriptionHash": "3d2db21163d6ed212e0a92beba4ed794acd8bb7ad5927da1c9ac0d37b5017dd0",
+        "solutionHash": "b770a5c6e01d66d622fdc3cef679061c0ae038cce063092034bfcf89831710bb",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "933d667f422e968de03c74221b6a5e83fc8a98712068738be08f49c6f45d7477",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "9ae2bdd7beedc2e766c6b76585530e16925115707dc7a06ab5ee4aa2776b2c7b",
+        "estimatedCostHighHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "c51ea4c0b6ebdf64fd59b69e9ad5278ad7192fb0858e2cbafa974a6bb7ad53c1",
+        "communityRecommendationsHash": "030710f719e2a28a464c12f692cd9ebf40ddc44a5f307600d9605a643fa8798c",
+        "fixPartsHash": "5121c40898d05422f0c202eb7df4a7ac539e16888144f75fef9ec21c1688e711",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "43d138bb0adc5814eb082963da063af78e79ccd7310c3ec17de6d8f75a2fd58d",
+        "contentUpdateSummaryHash": "f2bbc41a291bf6ffcaa296474e81636c010278f6da140ef492bc5cc13ea8f25a",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "i3 12V Discharge Warning: ISTA Software-First Diagnosis",
+        "description": "BMW distinguishes condition-specific software faults from a failed 12V battery. SIB 61 39 14 covers a narrow early i3 REx integration-level error after charging, while SIB 61 05 20 applies to I01 vehicles only when ISTA Energy Diagnosis identifies the Controller sleep delay as the cause of Check Control Message 415. These bulletins do not establish that every i3 warning is a bad auxiliary battery or a universal parasitic drain.",
+        "solution": "Read the Check Control Message and fault memory, run BMW ISTA Energy Diagnosis and test the 12V battery before replacing anything. For the Controller condition, BMW says not to replace the Controller; program the vehicle when the measured I-level and diagnostic result meet SIB 61 05 20. For the early REx condition, follow SIB 61 39 14. Replace and register a 12V battery only if separate testing proves it failed. ShowMeTheParts resolved the exact 2014 i3 model but exposed no battery category or defensible 12V candidate, so no commerce link is approved.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Check Control Message for increased battery discharge",
+          "ISTA Energy Diagnosis identifies the Controller as the cause",
+          "Early i3 REx warning appears after a several-hour charging session"
+        ],
+        "affectedSystems": [
+          "12V energy management",
+          "Controller sleep behavior",
+          "REME software"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "BMW SIB 61 39 14 - i3 REx 12V Discharge Message After Charging",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2015/MC-10147620-9999.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "BMW SIB 61 05 20 - Increased Battery Drain Caused by Controller",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10174019-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen \"12V Auxiliary Battery Drain - All I01 Models\" card with bounded BMW/NHTSA scope and removed 1 commerce claims with 2 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i3-12v-parasitic-drain-2014",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"12V Auxiliary Battery Parasitic Drain\" aggregation. It duplicates the retained fault-guided 12V path, labels the entire model line notorious, assigns several modules without an exact diagnostic result, and prescribes battery replacement, coding and a tender as universal repairs. Remove all 2 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "316734a653ff4bdd2335a935141b2ef566607087c98756e01c8f982a44488d05",
+        "descriptionHash": "e8de28c43df5976bdc0bc55189c1b3af9616758fe6088ea000a3dce45ecb8561",
+        "solutionHash": "f98aa15a14c1612147afc4cb72ae55521646f50d7c33275ee5bf4130a21c5834",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "758be19601c681c78915e82960fb93e706794081b518ccebbd7bb773601551c9",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "41ac5a1aaa7206995d88bb16ec171871b025f33c766527d72412f71a2fdc1d9b",
+        "fixPartsHash": "4a61c64c05fe07da845bc0b0ab2466680c65e9ee66e9fa799524b8a426f78d68",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "2af4dd48399a5cf64c23fc7933e11aaf6171d80001b4b1377498ae6056b1acbf",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Archived - Unsupported BMW i3 Duplicate Parasitic-Drain Aggregation",
+        "description": "The former card asserted \"12V Auxiliary Battery Parasitic Drain\" across a broad BMW i3 population. It duplicates the retained fault-guided 12V path, labels the entire model line notorious, assigns several modules without an exact diagnostic result, and prescribes battery replacement, coding and a tender as universal repairs.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, production date, BEV/REx configuration, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and refrigerant work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW i3 \"12V Auxiliary Battery Parasitic Drain\" aggregation and removed 2 commerce claims with 4 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i3-ac-compressor-black-death-2014",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Electric A/C Compressor Catastrophic Failure (\"Black Death\") - All I01\" aggregation. It asserts an all-I01 compressor defect, six revisions, unflushable battery channels, total-loss repair costs, state-specific warranty coverage and multiple replacement brands without a matching BMW bulletin. Its cited SIB 64 03 18 concerns refrigerant disposition for a delivery stop, not the claimed i3 compressor failure. Remove all 4 commerce claims and 6 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "9fab250e5e42070565c3e1a6449c2fb3a9adf976c5e447ef136c21f089863ee5",
+        "titleHash": "81af651af6704b9c08938cfdd293f4de378c787d55628fd26fff27d4b395421f",
+        "descriptionHash": "1c0b156bb4e53c2ad3a6e70d181d16b5979ee1e17e8546430404ed827835e008",
+        "solutionHash": "ff7bcf36f24a957191e298c4d742113dd42c5de69411dd0f35f8e75d4550e2c3",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "e2f99e73963cf2ed162d18cc930c45ad004e06f15c4307c45c29f52a79413852",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "e81fb78d26ca6d36341b4c27d2cc0951d867269244532e3109cb3a42bc30f047",
+        "estimatedCostLowHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "estimatedCostHighHash": "7d9a4f40e6ed915e889521187c4efd2886135c4334e4db78cc0dd7a9b721c2c7",
+        "typicalMileageLowHash": "4f9f73b34c5b89879aad65a48025f3187dd9ce6dc3d4e88eecb2fc79227350f1",
+        "typicalMileageHighHash": "c3c8204aec16162abf29b505bfdc8fe2b911b95b4a351da1664b0ac8a6771f6b",
+        "citationsHash": "91dbdb03ca38485e6ae463eeff7d99d19657ec2aa304a9422887aa2b1efa37a0",
+        "communityRecommendationsHash": "2fe60d73c175a4d6457f9fcc5294d3f56158a33a3ccbbee7d957460a46ccb4d7",
+        "fixPartsHash": "53182ffd53e2128cf7711db79953266862d98c530065cd43e6e9603944baba42",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0",
+          "communityRecommendations:1",
+          "communityRecommendations:2"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "hvac",
+        "title": "Archived - Unsupported BMW i3 A/C Contamination Aggregation",
+        "description": "The former card asserted \"Electric A/C Compressor Catastrophic Failure (\"Black Death\") - All I01\" across a broad BMW i3 population. It asserts an all-I01 compressor defect, six revisions, unflushable battery channels, total-loss repair costs, state-specific warranty coverage and multiple replacement brands without a matching BMW bulletin. Its cited SIB 64 03 18 concerns refrigerant disposition for a delivery stop, not the claimed i3 compressor failure.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, production date, BEV/REx configuration, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and refrigerant work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW i3 \"Electric A/C Compressor Catastrophic Failure (\"Black Death\") - All I01\" aggregation and removed 4 commerce claims with 6 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i3-ac-compressor-failure-2014",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Electric AC Compressor Failure\" aggregation. It duplicates the unsupported compressor card and assigns high-voltage motor-winding and refrigerant-leak causes, a universal compressor assembly and R-1234yf service to eight model years without an exact BMW diagnostic population. Remove all 4 commerce claims and 6 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "a4b530207181a9f0988d39531dcbd597db2f9043ca17cf4e63e72c5f54dbed9b",
+        "descriptionHash": "67e43e26a7d5982d56148ef2abd0fad2fe42e520cb7d0f07243e798eda671529",
+        "solutionHash": "a5361297e27b0367698cc3c688f43d30618041cb9022ef511e15d05ff22cffe2",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "8af699f9aa47bba3c571526a5510595f5930e6478813486d02a63c4cae8f8e09",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "e81fb78d26ca6d36341b4c27d2cc0951d867269244532e3109cb3a42bc30f047",
+        "estimatedCostLowHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "estimatedCostHighHash": "889e2fc00981675edd472d82d3a581b0156216501cfcdba3f1dfc87223be85e7",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "dd399e3128b537ba120d522a167dcac90f57b35f679ab2e6fe009d8b720b02fc",
+        "fixPartsHash": "6c834c26674dca8d1479b71702cf13b88af168909219d5fb55721c159d69d2ab",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:2",
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "hvac",
+        "title": "Archived - Unsupported BMW i3 Duplicate A/C-Compressor Aggregation",
+        "description": "The former card asserted \"Electric AC Compressor Failure\" across a broad BMW i3 population. It duplicates the unsupported compressor card and assigns high-voltage motor-winding and refrigerant-leak causes, a universal compressor assembly and R-1234yf service to eight model years without an exact BMW diagnostic population.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, production date, BEV/REx configuration, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and refrigerant work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW i3 \"Electric AC Compressor Failure\" aggregation and removed 4 commerce claims with 6 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i3-battery-degradation-2014",
+      "disposition": "recall-dealer",
+      "decision": "Replace the frozen \"High-Voltage Battery Degradation\" aggregation with the bounded primary-source path below. Remove all 4 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "recall",
+          "label": "NHTSA/BMW Safety Recall 22V-683 - High-Voltage Battery Cell",
+          "url": "https://static.nhtsa.gov/odi/rcl/2022/RCRIT-22V683-1876.pdf"
+        },
+        {
+          "type": "recall",
+          "label": "NHTSA Part 573 Report 22V-683",
+          "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V683-3950.PDF"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "a9aef688811660ef5bf6c43d03699f5fd42c8bf89228a06934bdc6eb8c793681",
+        "descriptionHash": "cdcd880ae567e124d873df185a2d889daca23b67dc15e3e7257a53b2f1dc970a",
+        "solutionHash": "05aac59f280a1c399c92d8524f2bbea82a31638bb897d0da5fd0dc9fc10c9248",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "d074bdb80f7667ea2b668505fe2b20c11955e4c8a71ea80425930f559b4b17d2",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "2570901c76653e578fecf066b5fc3fa1619f1a051e928e39797bab1b1342bf40",
+        "typicalMileageLowHash": "5d1dbce82e135ab816d7c6d1f5f9020b94000975fa77f0a349a5b4d226d82332",
+        "typicalMileageHighHash": "03170c93d53fb0647eb0aaf279aab89e58e8b852de3a58eea96e43912cd0372b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "1e9aff153df404159c708b055b96cb5a2f47014fd3473de6c1f24dfc178f2257",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "1e472b39b105d349bcd069c4a711b44a2fffb8e274714bb07ecfff69a9a7f67b",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "2019-2021 i3 High-Voltage Battery Cell Recall 22V-683",
+        "description": "BMW recall 22V-683 covers a small VIN-defined group of 2019-2021 i3 BEV and i3 REx vehicles whose high-voltage battery may contain a cell with a miscut electrode. A short circuit can cause a thermal event. This is not evidence that ordinary range loss or degradation affects every i3, and model year alone does not establish inclusion.",
+        "solution": "Check the VIN for an open 22V-683 campaign with BMW/NHTSA. If included, arrange the free authorized-BMW remedy; BMW instructs replacement of the affected battery cell module. Do not buy a battery module or use capacity estimates as a substitute for the VIN recall check. This high-voltage, recall-only path intentionally carries no commerce.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "VIN shows an open 22V-683 recall",
+          "The affected battery cell may short circuit",
+          "A thermal event can occur without a degradation complaint"
+        ],
+        "affectedSystems": [
+          "high-voltage battery",
+          "battery cell module"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA/BMW Safety Recall 22V-683 - High-Voltage Battery Cell",
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCRIT-22V683-1876.pdf"
+          },
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 22V-683",
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V683-3950.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "recall-related",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen \"High-Voltage Battery Degradation\" card with bounded BMW/NHTSA scope and removed 4 commerce claims with 4 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i3-connectivity-module-2014",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"Telematics/Connectivity Module (TCB) 3G Shutdown & Failure\" aggregation with the bounded primary-source path below. Remove all 2 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "manual",
+          "label": "BMW USA 3G Cellular Technology Discontinuation FAQ",
+          "url": "https://www.bmwusa.com/content/dam/bmw/marketUS/common/connected-drive/pdf/3G_FAQ.pdf"
+        },
+        {
+          "type": "tsb",
+          "label": "BMW SIB 84 01 21 - Telematics Unit Deactivation Due to 3G Discontinuation",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10200487-9999.pdf"
+        },
+        {
+          "type": "tsb",
+          "label": "BMW SIB 84 09 22 - i3 Telematics Programming for 3G Sunset",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10225129-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "9fdffaab8dcdec78ae1f78df6e9469f4994d21c455a93ba314df35ee25effbb0",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "3500672ba835a9564c1d7a39be7a16f798b913f03212ea492568a7b4138763be",
+        "descriptionHash": "0bfebbf25fd41d581a4222b058e119c866295b25b3e80df94cce15de65d745bb",
+        "solutionHash": "0fbb4472e2811588a4f87ea8cfa4298f028d63a7a6ebf4c99be5b987068ee147",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "eeaaeb7c71890226ae1300fc842f8d6198f1b2fd4f0d80ebe780805f321e5987",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "estimatedCostHighHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "b95d5d8873f5f18f603d5cf4af05476b0cd4f2c464050a10e217a37b4dca6370",
+        "fixPartsHash": "0875d80250fca995a09ca6622d58e714f38b6bf3478c9f2822e0a27e2ee2666f",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "i3 ConnectedDrive 3G Sunset: VIN-Specific Eligibility Path",
+        "description": "BMW states that factory 3G telematics lost ConnectedDrive/BMW Assist service after the carrier sunset, and SIB 84 01 21 identifies VIN-specific vehicles that do not meet the requirements for a technology upgrade. A separate campaign, SIB 84 09 22, covers certain later I01 vehicles produced April 27, 2017 through October 29, 2021 whose 4G telematics units lacked IMS configuration for voice services. This replaces the unsupported claims of widespread water ingress and universal hardware failure.",
+        "solution": "Check the VIN in BMW AIR/DCSnet or My Garage before choosing a remedy. An early 3G vehicle marked non-eligible cannot be restored by buying the frozen card’s used TCB part. A later campaign-eligible 4G vehicle should receive the BMW programming action that writes the IMS configuration. Confirm current service availability with BMW ConnectedDrive support; do not order a telematics module from model year alone.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "ConnectedDrive or BMW Assist services are unavailable after the 3G sunset",
+          "BMW VIN record says the vehicle is not eligible for a technology upgrade",
+          "Campaign-eligible 4G vehicle loses Concierge, Assistance or emergency-call voice"
+        ],
+        "affectedSystems": [
+          "telematics control unit",
+          "embedded cellular services"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "manual",
+            "title": "BMW USA 3G Cellular Technology Discontinuation FAQ",
+            "url": "https://www.bmwusa.com/content/dam/bmw/marketUS/common/connected-drive/pdf/3G_FAQ.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "BMW SIB 84 01 21 - Telematics Unit Deactivation Due to 3G Discontinuation",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10200487-9999.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "BMW SIB 84 09 22 - i3 Telematics Programming for 3G Sunset",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10225129-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen \"Telematics/Connectivity Module (TCB) 3G Shutdown & Failure\" card with bounded BMW/NHTSA scope and removed 2 commerce claims with 4 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i3-dc-fast-charge-latch-2014",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"DC Fast Charging (CCS) Latch Pin & Connector Failure\" aggregation with the bounded primary-source path below. Remove all 2 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "BMW SIB 61 31 14 - Replace Convenience Charging Electronics (KLE)",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2014/SB-10058161-5091.pdf"
+        },
+        {
+          "type": "tsb",
+          "label": "BMW SIB 61 01 15 - Discharged 12V Battery and Level 2 Charging Delay",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2015/MC-10147617-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "d448c0e0f65da7948e3edb7805b5272b54f75f427c33333157324b626f5ca51f",
+        "titleHash": "9130e13c55a0fd4f6dbbcd86444d2b25da4f61561a7e567a5c6606bfebbc6657",
+        "descriptionHash": "9f54315987ba66cdb9a30e357e3902191e1b505715ca41044a76390a67046207",
+        "solutionHash": "30893f28bf77d84a22e57b346105c7314a82573c115aa55a3cee9b33aa319b7d",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "6e68f74d7487bac44b640bfe9b94e47a63b8b29a593590b9c9e02c3d3aae6293",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "1a6562590ef19d1045d06c4055742d38288e9e6dcd71ccde5cee80f1d5a774eb",
+        "estimatedCostHighHash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "7f9d776c0543b92f35b03d5961333cb03a820115ba0d82bd8793877ac45905f6",
+        "fixPartsHash": "58db0483ab190d5113d267bbde46c314d6c8adde586ae08a5271cd3566df1dd9",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "2014 i3 Level 2 Charging Delay: KLE Campaign Check",
+        "description": "BMW SIB 61 31 14 describes certain early i3 and i3 REx vehicles whose faulty Convenience Charging Electronics capacitor could increase Level 2 charging time; affected VINs showed the service action open in BMW dealer systems. SIB 61 01 15 separately describes a software-related delay before Level 2 charging begins when the 12V battery is discharged. Neither document supports the frozen claim of an all-year CCS latch-pin design defect.",
+        "solution": "Check the VIN for the KLE service action and read charging and 12V faults with BMW diagnostics. For an open campaign, follow BMW’s KLE replacement and programming procedure. If the 12V battery is discharged, SIB 61 01 15 describes a controlled Level 2 recovery/programming path and says parts replacement does not solve its remaining intermittent delay. Do not drill or lubricate the charge port or buy a latch actuator based on this card.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Level 2 charging time is longer than expected on an affected early VIN",
+          "A discharged 12V battery delays the start of Level 2 charging",
+          "BMW dealer systems show the KLE service action open"
+        ],
+        "affectedSystems": [
+          "Convenience Charging Electronics",
+          "Level 2 charging control",
+          "12V charging enablement"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "BMW SIB 61 31 14 - Replace Convenience Charging Electronics (KLE)",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2014/SB-10058161-5091.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "BMW SIB 61 01 15 - Discharged 12V Battery and Level 2 Charging Delay",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2015/MC-10147617-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen \"DC Fast Charging (CCS) Latch Pin & Connector Failure\" card with bounded BMW/NHTSA scope and removed 2 commerce claims with 4 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i3-hvac-heater-2014",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Electric Heater & HVAC System Failures - Range Impact\" aggregation. It combines normal cold-weather energy use, resistive-heater failure, optional heat-pump failure, compressor replacement, blower faults, module faults, price ranges and aftermarket modifications across every i3 without an exact BMW fault path. Remove all 3 commerce claims and 5 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "9fab250e5e42070565c3e1a6449c2fb3a9adf976c5e447ef136c21f089863ee5",
+        "titleHash": "c32a46b30bc163aea6d07130b546ebaa755db0aa8d4e22a2418b679e1e0c2ad4",
+        "descriptionHash": "674501f59e4177ef76d6912a3e4c6f209da5389998102edb853dbf3bb0766f42",
+        "solutionHash": "e1ac88d7e39ad31d687e511f929c03c426bf28a16d817363f49f3c40402f49ab",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "bf90f831347f6f76aceccab6e2dc65d16e65f7192ab66333c89e78b3491fb9bb",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "e81fb78d26ca6d36341b4c27d2cc0951d867269244532e3109cb3a42bc30f047",
+        "estimatedCostLowHash": "983bd614bb5afece5ab3b6023f71147cd7b6bc2314f9d27af7422541c6558389",
+        "estimatedCostHighHash": "b090147020e033534635010c4f7eb6fc270d44e5df67ea9e744a8087df9ca106",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "1c4eba405107c6029019d39b54ba20d1076d535e8630efb84569e77d0745d5a4",
+        "fixPartsHash": "498699d471842ef6a46b58ae8499f4f0453f8e04e10aaafb3f19f3ee6bd29b06",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "hvac",
+        "title": "Archived - Unsupported BMW i3 HVAC and Winter-Range Aggregation",
+        "description": "The former card asserted \"Electric Heater & HVAC System Failures - Range Impact\" across a broad BMW i3 population. It combines normal cold-weather energy use, resistive-heater failure, optional heat-pump failure, compressor replacement, blower faults, module faults, price ranges and aftermarket modifications across every i3 without an exact BMW fault path.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, production date, BEV/REx configuration, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and refrigerant work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW i3 \"Electric Heater & HVAC System Failures - Range Impact\" aggregation and removed 3 commerce claims with 5 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i3-rex-engine-issues-2014",
+      "disposition": "recall-dealer",
+      "decision": "Replace the frozen \"Range Extender (REx) Engine Reliability Issues\" aggregation with the bounded primary-source path below. Remove all 1 commerce claims and 1 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "recall",
+          "label": "BMW Safety Recall 17V-088 - i3 REx Fuel Tank Vent Line",
+          "url": "https://static.nhtsa.gov/odi/rcl/2017/RCRIT-17V088-6492.pdf"
+        },
+        {
+          "type": "recall",
+          "label": "NHTSA Part 573 Report 17V-088",
+          "url": "https://static.nhtsa.gov/odi/rcl/2017/RCLRPT-17V088-5114.PDF"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "81fd949855f21eab1b16d2d103c3844331e92d75f61c140ca947fab0ad5119d8",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "54cccdec6ced00454e5ea90c33f8f4e53f0abc86527f3122343e7c8fc3430284",
+        "descriptionHash": "6d30e9b3cc1dfce2237b8916b8817c96a707725bc9c6cde3640d98f6b32b8c11",
+        "solutionHash": "ba140e56c00b405174e39b177e20690cd325616671a0721cdae9d816caccc18f",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "38e68fe3df588b5ec66a6ab2b72cbbb6b89726ca4821b0b693d96a12a54d5380",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "983bd614bb5afece5ab3b6023f71147cd7b6bc2314f9d27af7422541c6558389",
+        "estimatedCostHighHash": "a176eeb31e601c3877c87c2843a2f584968975269e369d5c86788b4c2f92d2a2",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "9b3df1d63115560a17ffcd5fe8acf4cd32bbfba1e670cc6cc21b93f1b2076fab",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "88820462180e5c893eff2ed73f4ec33e205d1cd5acc4d17fa7b2bca2495d3448",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:2"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [
+          "W20 647cc"
+        ],
+        "category": "fuel",
+        "title": "2014-2017 i3 REx Fuel-Vent-Line Recall 17V-088",
+        "description": "BMW recall 17V-088 covers approximately 19,130 U.S. i3 REx vehicles produced March 5, 2014 through December 30, 2016. The fuel tank vent line can rub against the B+ cable protective sleeve, chafe through and release fuel vapor into the enclosed engine compartment, increasing fire risk. This bounded recall does not support the frozen all-year list of oil consumption, carbon, starter and cold-weather engine failures.",
+        "solution": "Check the VIN for an open 17V-088 campaign with BMW/NHTSA. If included, arrange the free authorized-BMW remedy: inspect the fuel tank vent line, replace it if necessary and install the separating clip. Do not substitute a fuel-pump relay, injector cleaner or generic engine parts for the recall. ShowMeTheParts lists 2014 i3 fuel-system categories, but recall inclusion and remedy are VIN/dealer controlled, so no commerce link is approved.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "VIN shows an open 17V-088 recall",
+          "Fuel vapor can leak into the enclosed REx engine compartment",
+          "The defect may not provide a driver-detectable warning"
+        ],
+        "affectedSystems": [
+          "fuel tank vent line",
+          "B+ cable protective sleeve"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "BMW Safety Recall 17V-088 - i3 REx Fuel Tank Vent Line",
+            "url": "https://static.nhtsa.gov/odi/rcl/2017/RCRIT-17V088-6492.pdf"
+          },
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 17V-088",
+            "url": "https://static.nhtsa.gov/odi/rcl/2017/RCLRPT-17V088-5114.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "recall-related",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen \"Range Extender (REx) Engine Reliability Issues\" card with bounded BMW/NHTSA scope and removed 1 commerce claims with 1 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i3-rex-stale-fuel-2014",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Range Extender Stale Fuel & Engine Problems - I01 REx Only\" aggregation. It turns a maintenance hypothesis into an all-year defect, prescribes unsupported six-week run intervals, fuel level, premium fuel and stabilizer, and combines relay, injector, coil, sensor, corrosion and performance claims without an exact BMW communication. Its cited SIB 16 02 15 is unrelated to this i3 REx narrative. Remove all 2 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "81fd949855f21eab1b16d2d103c3844331e92d75f61c140ca947fab0ad5119d8",
+        "categoryHash": "c864f62f92859207770d11f0ffbbf2e0e44aad05259e8ed83391cbb3193803f9",
+        "titleHash": "5b73473aa8dbd8f036b430d83bdc21d279a1d8c0e30f29caf7f8bf560550b889",
+        "descriptionHash": "803e5c109cf6e2a5f651c47484ac61ef2eb054f3bc1565af04a75295bd727979",
+        "solutionHash": "42419b3c886b974f07e40eb6bd281195d8bf2ddae1fc65bebdd71fd9e76f334d",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "709066df7f4fd90bff50001170eb3fe96d260ec79090abde316c3554f3e40c56",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "ad57366865126e55649ecb23ae1d48887544976efea46a48eb5d85a6eeb4d306",
+        "estimatedCostHighHash": "81a83544cf93c245178cbc1620030f1123f435af867c79d87135983c52ab39d9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "135a74aae51692f4a6266476550a9978ead243a75e3fb4c843e97d69790be28e",
+        "communityRecommendationsHash": "8d603466c948218d6ad9b32cdd4adf2c1b3596e4bef2f522a107dc4fc76a9225",
+        "fixPartsHash": "d1cafcb4389659c071c84803dfcd4b834ff59a2aed1f4a246391e3f26cea14ee",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:2"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Archived - Unsupported BMW i3 REx Fuel-Maintenance Aggregation",
+        "description": "The former card asserted \"Range Extender Stale Fuel & Engine Problems - I01 REx Only\" across a broad BMW i3 population. It turns a maintenance hypothesis into an all-year defect, prescribes unsupported six-week run intervals, fuel level, premium fuel and stabilizer, and combines relay, injector, coil, sensor, corrosion and performance claims without an exact BMW communication. Its cited SIB 16 02 15 is unrelated to this i3 REx narrative.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, production date, BEV/REx configuration, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and refrigerant work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW i3 \"Range Extender Stale Fuel & Engine Problems - I01 REx Only\" aggregation and removed 2 commerce claims with 4 URLs.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}

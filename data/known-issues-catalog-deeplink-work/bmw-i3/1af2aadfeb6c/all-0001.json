@@ -1,0 +1,2193 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "packetKind": "known-issues-catalog-deeplink-work",
+  "snapshotHash": "1af2aadfeb6c3a979db85b8ede4aee724b778e5fbfe391e99d8b8642215311dc",
+  "cohort": "all",
+  "packetId": "all-0001",
+  "records": [
+    {
+      "id": "bmw-i3-12v-battery-drain-2014",
+      "make": "BMW",
+      "model": "i3",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "12V Auxiliary Battery Drain - All I01 Models",
+      "description": "The BMW i3 uses a small front-mounted 12V AGM auxiliary battery to power computers and vehicle communication modules. An aged or failed battery can trigger cascading ABS, drivetrain, steering, or braking messages and no-start behavior. Similar drain warnings can also be caused by software or a controller that does not enter sleep mode, so not every case is fixed by replacing the battery.",
+      "solution": "Run BMW ISTA Energy Diagnosis and load-test the 12V battery first. If the battery is aged or fails testing, replace it with a correctly sized AGM battery, transfer the BMW terminal adapters as required, verify vent/terminal orientation, and register the replacement with ISTA or a compatible BMW tool. If diagnostics identify a software or controller sleep issue, perform the applicable BMW programming update instead of replacing parts; BMW SIB 61 39 14 and 61 05 20 document software-first cases. Do not use Exide EK151: its 15Ah size and terminal/polarity family do not match the i3 application.",
+      "severity": "high",
+      "confidence": "medium",
+      "symptoms": [
+        "\"Increased battery discharge when stationary\" warning message",
+        "Multiple simultaneous warning lights (ABS, drivetrain, steering, brakes)",
+        "Vehicle won't start or enter \"Ready\" mode",
+        "Infotainment system reboots or goes blank",
+        "Remote functions (app, climate preconditioning) stop working",
+        "Cooling fan runs continuously with ignition off",
+        "Check engine light with no actual engine fault"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 150,
+      "estimatedCostHigh": 400,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "",
+          "type": "tsb",
+          "title": "TSB SI B04 23 10: Battery Maintenance"
+        },
+        {
+          "url": "https://www.mybmwi3.com/forum/viewtopic.php?t=17265",
+          "type": "forum",
+          "title": "MyBMW i3 Forum - 12V battery replacement and registration discussion"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "MUST register battery after replacement using BimmerLink app ($30) or dealer ISTA - failure to register causes charging issues",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "Do NOT use a non-AGM battery - the i3 charging system requires AGM chemistry. Using standard lead-acid will damage the battery and system.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "For 2014-2021 i3/i3s BEV and REx after the battery fails testing. Reuse/transfer compatible BMW terminal adapters, verify vent and polarity, and register the replacement. Software/controller drain faults need programming instead of a battery.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/226884848706",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": true
+            },
+            {
+              "url": "https://www.ebay.co.uk/itm/197173644995",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": true
+            }
+          ],
+          "priceLow": null,
+          "variants": [
+            {
+              "note": "Deka/East Penn 12V 20Ah 300CCA AGM, BCI 404R, right-positive; verify/transfer BMW terminal adapters.",
+              "scope": "US 2014-2021 BMW i3/i3s",
+              "oemPartNumber": "AUX18L"
+            },
+            {
+              "note": "Exide 12V 21Ah AGM, ETN polarity 0, M04 terminal; verify local vehicle fitment.",
+              "scope": "Europe/UK 2014-2021 BMW i3/i3s",
+              "oemPartNumber": "AGM12-23"
+            }
+          ],
+          "verified": true,
+          "component": "12V auxiliary AGM battery (after failed battery test)",
+          "priceHigh": null,
+          "confidence": 0.97,
+          "provenance": "ultra-published-fix-audit-2026-07-15",
+          "recallFirst": false,
+          "oemPartNumber": "61219321815",
+          "aftermarketXref": [
+            "BMW 61217623376 (legacy cross-reference)",
+            "Deka / East Penn AUX18L",
+            "Exide AGM12-23"
+          ]
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "2026-07-15",
+      "contentUpdateSummary": "Corrected the AGM battery, removed EK151, and added diagnosis-first guidance.",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "6b35a3fe82432d7405b825e06e6e29c3fdfd50b5c5546001319d3787fbc299d3",
+        "descriptionHash": "3d2db21163d6ed212e0a92beba4ed794acd8bb7ad5927da1c9ac0d37b5017dd0",
+        "solutionHash": "b770a5c6e01d66d622fdc3cef679061c0ae038cce063092034bfcf89831710bb",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "933d667f422e968de03c74221b6a5e83fc8a98712068738be08f49c6f45d7477",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "9ae2bdd7beedc2e766c6b76585530e16925115707dc7a06ab5ee4aa2776b2c7b",
+        "estimatedCostHighHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "c51ea4c0b6ebdf64fd59b69e9ad5278ad7192fb0858e2cbafa974a6bb7ad53c1",
+        "communityRecommendationsHash": "030710f719e2a28a464c12f692cd9ebf40ddc44a5f307600d9605a643fa8798c",
+        "fixPartsHash": "5121c40898d05422f0c202eb7df4a7ac539e16888144f75fef9ec21c1688e711",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "43d138bb0adc5814eb082963da063af78e79ccd7310c3ec17de6d8f75a2fd58d",
+        "contentUpdateSummaryHash": "f2bbc41a291bf6ffcaa296474e81636c010278f6da140ef492bc5cc13ea8f25a",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "12V auxiliary AGM battery (after failed battery test)",
+          "oemPartNumber": "61219321815",
+          "variants": [
+            {
+              "note": "Deka/East Penn 12V 20Ah 300CCA AGM, BCI 404R, right-positive; verify/transfer BMW terminal adapters.",
+              "scope": "US 2014-2021 BMW i3/i3s",
+              "oemPartNumber": "AUX18L"
+            },
+            {
+              "note": "Exide 12V 21Ah AGM, ETN polarity 0, M04 terminal; verify local vehicle fitment.",
+              "scope": "Europe/UK 2014-2021 BMW i3/i3s",
+              "oemPartNumber": "AGM12-23"
+            }
+          ],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/226884848706",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "eBay",
+              "url": "https://www.ebay.co.uk/itm/197173644995",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 3,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i3-12v-parasitic-drain-2014",
+      "make": "BMW",
+      "model": "i3",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "12V Auxiliary Battery Parasitic Drain",
+      "description": "The BMW i3 is notorious for 12V auxiliary battery drain. Despite having a large high-voltage traction battery, the 12V AGM battery that powers the car's electronics can drain overnight or over a few days of sitting. The issue is caused by various modules failing to enter sleep mode, particularly the telematics and connectivity modules.",
+      "solution": "Replace the 12V AGM battery with a fresh unit (OEM or high-quality AGM). Code the new battery using ISTA or BimmerCode to register it with the IBS (Intelligent Battery Sensor). Check for software updates that address module sleep behavior. Some owners install a battery tender for long-term parking.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "Car won't start after sitting",
+        "Dashboard warning lights on startup",
+        "Reduced range displayed",
+        "12V battery warning in iDrive",
+        "Door locks don't respond to key fob",
+        "Charging interrupted",
+        "Random module resets"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 200,
+      "estimatedCostHigh": 500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "CTEK Battery Tender for maintaining 12V battery during extended parking",
+          "partBrand": "CTEK",
+          "partNumber": "MXS 5.0",
+          "affiliateUrl": "https://www.amazon.com/s?k=CTEK+MXS+5.0+battery+tender&tag=au7o-20"
+        },
+        {
+          "type": "tip",
+          "content": "Always register the new 12V battery with ISTA or BimmerCode — unregistered batteries will be overcharged and fail prematurely."
+        },
+        {
+          "type": "warning",
+          "content": "A dead 12V battery can prevent the car from charging the high-voltage battery, leaving you stranded."
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=61219321815&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=61219321815",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=61219321815",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "12V AGM auxiliary battery (20Ah)",
+          "priceHigh": null,
+          "oemPartNumber": "61219321815",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 380,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-11",
+      "reviewedOn": "2026-03-11",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "316734a653ff4bdd2335a935141b2ef566607087c98756e01c8f982a44488d05",
+        "descriptionHash": "e8de28c43df5976bdc0bc55189c1b3af9616758fe6088ea000a3dce45ecb8561",
+        "solutionHash": "f98aa15a14c1612147afc4cb72ae55521646f50d7c33275ee5bf4130a21c5834",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "758be19601c681c78915e82960fb93e706794081b518ccebbd7bb773601551c9",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "41ac5a1aaa7206995d88bb16ec171871b025f33c766527d72412f71a2fdc1d9b",
+        "fixPartsHash": "4a61c64c05fe07da845bc0b0ab2466680c65e9ee66e9fa799524b8a426f78d68",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "2af4dd48399a5cf64c23fc7933e11aaf6171d80001b4b1377498ae6056b1acbf",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "12V AGM auxiliary battery (20Ah)",
+          "oemPartNumber": "61219321815",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=61219321815&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=61219321815",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=61219321815",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "part",
+          "content": "CTEK Battery Tender for maintaining 12V battery during extended parking",
+          "partName": "",
+          "partBrand": "CTEK",
+          "partNumber": "MXS 5.0",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "CTEK",
+              "url": "https://www.amazon.com/s?k=CTEK+MXS+5.0+battery+tender&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i3-ac-compressor-black-death-2014",
+      "make": "BMW",
+      "model": "i3",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "cooling",
+      "title": "Electric A/C Compressor Catastrophic Failure (\"Black Death\") - All I01",
+      "description": "The BMW i3 uses a unique direct-refrigerant battery cooling system where the A/C compressor circulates refrigerant through microchannel extrusions in the battery pack. When the electric compressor fails internally, metal shavings from bearing spalling contaminate the entire refrigerant circuit including the battery cooling channels. This \"Black Death\" scenario can total the vehicle as the battery cooling system cannot be flushed - requiring full battery pack and cooling system replacement ($10,600-$22,000+). BMW produced 6 different compressor revisions between 2013-2019, indicating ongoing reliability issues. The i3 lacks an industry-standard AC trap/filter in the dryer that would catch debris. Failures most common in hot climates (Arizona, Florida, Texas). CARB-state vehicles have 15-year/150,000-mile compressor warranty coverage; other states get 7-year/70,000-mile coverage as an emission-related component.",
+      "solution": "If caught early (noise but still functioning), replace compressor before catastrophic failure. Latest OEM compressor: BMW 64529496107 (supersedes 64529320855, 64529343806, 64529347662, 64529364868). FCP Euro price ~$1,756. If metal contamination has occurred, entire system including battery cooling channels must be replaced ($10,600+). MUST use POE (Polyolester) anti-electrostatic compressor oil - standard PAG oil will destroy EV compressors. Independent AC shops that understand EV compressors can save 60-80% vs dealer. RYC Automotive offers remanufactured compressor (RYC-i3-01) as budget option. Aftermarket Nissens condenser ($152) available vs OEM ($581 via FCP Euro).",
+      "severity": "high",
+      "confidence": "medium",
+      "symptoms": [
+        "Loud whirring or \"mooing\" (cow-like) sound from compressor area",
+        "Metallic rattling noise preceding failure",
+        "A/C stops blowing cold air",
+        "Battery thermal management warnings",
+        "Reduced charging speed due to overheating battery",
+        "Fault code 801252: \"Electric A/C compressor internal fault detected\"",
+        "Drivetrain power reduction in hot weather"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [
+        "P0530",
+        "P0532",
+        "P0533"
+      ],
+      "estimatedCostLow": 2500,
+      "estimatedCostHigh": 22000,
+      "typicalMileageLow": 120000,
+      "typicalMileageHigh": 180000,
+      "citations": [
+        {
+          "url": "",
+          "type": "tsb",
+          "title": "SI B64 03 18: Air Conditioning Compressor Failure Due to Contamination"
+        },
+        {
+          "url": "https://www.mybmwi3.com/forum/viewtopic.php?t=17535",
+          "type": "forum",
+          "title": "MyBMWi3 Forum - AC compressor failure and battery cooling contamination ('black death') discussion"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "BMW OEM electric AC compressor latest revision (64529496107) - supersedes all prior versions",
+          "partName": "Electric A/C Compressor (Latest Revision)",
+          "partBrand": "BMW",
+          "partNumber": "64529496107",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=BMW%2064529496107&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "RYC Automotive remanufactured AC compressor (RYC-i3-01) - fits 2014-2019 i3/i3s",
+          "partName": "Remanufactured Electric AC Compressor",
+          "partBrand": "RYC Automotive",
+          "partNumber": "RYC-i3-01",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=RYC%20Automotive%20RYC-i3-01&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Nissens condenser - 80% cheaper than BMW OEM condenser when doing full system repair",
+          "partName": "A/C Condenser",
+          "partBrand": "Nissens",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=Nissens%20A%2FC%20Condenser&tag=au7o-20"
+        },
+        {
+          "type": "warning",
+          "content": "If dealer finds metal shavings in system, check CARB-state warranty coverage FIRST - 15yr/150k coverage in CA, CT, DE, ME, MD, MA, NJ, NY, OR, PA, RI, VT, WA",
+          "upvotes": 0
+        },
+        {
+          "type": "tip",
+          "content": "Shop MUST use POE anti-electrostatic compressor oil, NOT standard PAG oil - wrong oil will burn out the new compressor immediately",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=64529496107&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=64529496107",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=64529496107",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "electric A/C compressor",
+          "priceHigh": null,
+          "oemPartNumber": "64529496107",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "9fab250e5e42070565c3e1a6449c2fb3a9adf976c5e447ef136c21f089863ee5",
+        "titleHash": "81af651af6704b9c08938cfdd293f4de378c787d55628fd26fff27d4b395421f",
+        "descriptionHash": "1c0b156bb4e53c2ad3a6e70d181d16b5979ee1e17e8546430404ed827835e008",
+        "solutionHash": "ff7bcf36f24a957191e298c4d742113dd42c5de69411dd0f35f8e75d4550e2c3",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "e2f99e73963cf2ed162d18cc930c45ad004e06f15c4307c45c29f52a79413852",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "e81fb78d26ca6d36341b4c27d2cc0951d867269244532e3109cb3a42bc30f047",
+        "estimatedCostLowHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "estimatedCostHighHash": "7d9a4f40e6ed915e889521187c4efd2886135c4334e4db78cc0dd7a9b721c2c7",
+        "typicalMileageLowHash": "4f9f73b34c5b89879aad65a48025f3187dd9ce6dc3d4e88eecb2fc79227350f1",
+        "typicalMileageHighHash": "c3c8204aec16162abf29b505bfdc8fe2b911b95b4a351da1664b0ac8a6771f6b",
+        "citationsHash": "91dbdb03ca38485e6ae463eeff7d99d19657ec2aa304a9422887aa2b1efa37a0",
+        "communityRecommendationsHash": "2fe60d73c175a4d6457f9fcc5294d3f56158a33a3ccbbee7d957460a46ccb4d7",
+        "fixPartsHash": "53182ffd53e2128cf7711db79953266862d98c530065cd43e6e9603944baba42",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0",
+          "communityRecommendations:1",
+          "communityRecommendations:2"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "electric A/C compressor",
+          "oemPartNumber": "64529496107",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=64529496107&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=64529496107",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=64529496107",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "part",
+          "content": "BMW OEM electric AC compressor latest revision (64529496107) - supersedes all prior versions",
+          "partName": "Electric A/C Compressor (Latest Revision)",
+          "partBrand": "BMW",
+          "partNumber": "64529496107",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BMW",
+              "url": "https://www.amazon.com/s?k=BMW%2064529496107&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "RYC Automotive remanufactured AC compressor (RYC-i3-01) - fits 2014-2019 i3/i3s",
+          "partName": "Remanufactured Electric AC Compressor",
+          "partBrand": "RYC Automotive",
+          "partNumber": "RYC-i3-01",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "RYC Automotive",
+              "url": "https://www.amazon.com/s?k=RYC%20Automotive%20RYC-i3-01&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "Nissens condenser - 80% cheaper than BMW OEM condenser when doing full system repair",
+          "partName": "A/C Condenser",
+          "partBrand": "Nissens",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Nissens",
+              "url": "https://www.amazon.com/s?k=Nissens%20A%2FC%20Condenser&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i3-ac-compressor-failure-2014",
+      "make": "BMW",
+      "model": "i3",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "Electric AC Compressor Failure",
+      "description": "The i3 uses a high-voltage electric AC compressor that can fail prematurely, leaving the car without air conditioning. The compressor operates on the high-voltage system and failures are often related to internal electrical faults or refrigerant leaks that damage the compressor motor windings. Replacement is expensive due to the HV-rated component.",
+      "solution": "Replace the electric AC compressor assembly. This requires a certified HV-trained technician to safely de-energize the high-voltage system before working on the compressor. The system must be evacuated, the compressor replaced, and the system recharged with the correct amount of R-1234yf refrigerant.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "No cold air from AC",
+        "AC compressor not engaging",
+        "Unusual noise from AC system",
+        "AC fault warning in iDrive",
+        "Intermittent cooling",
+        "Reduced range when AC is on (more than normal)"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [
+        "P0530",
+        "P0532",
+        "P0533"
+      ],
+      "estimatedCostLow": 1500,
+      "estimatedCostHigh": 3500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "warning",
+          "content": "Do NOT attempt DIY AC compressor replacement on the i3 — the high-voltage system is lethal without proper training and equipment."
+        },
+        {
+          "type": "tip",
+          "content": "Running the AC regularly (even in winter on defrost) helps keep the compressor seals lubricated and extends life."
+        },
+        {
+          "type": "part",
+          "content": "Professional Bluetooth OBD-II scanner for reading electrical system fault codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20i3&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automotive digital multimeter for diagnosing electrical faults and testing circuits",
+          "partName": "3340 Automotive Digital Multimeter",
+          "partBrand": "Innova",
+          "affiliateUrl": "https://www.amazon.com/s?k=Innova%203340%20Automotive%20Digital%20Multimeter%20BMW%20i3&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Electrical contact cleaner for restoring connections and preventing corrosion",
+          "partName": "QD Electronic Cleaner",
+          "partBrand": "CRC",
+          "affiliateUrl": "https://www.amazon.com/s?k=CRC%20QD%20Electronic%20Cleaner%20BMW%20i3&tag=au7o-20"
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=64529496107&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=64529496107",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=64529496107",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "electric A/C compressor assembly",
+          "priceHigh": null,
+          "oemPartNumber": "64529496107",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 200,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-11",
+      "reviewedOn": "2026-03-11",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "a4b530207181a9f0988d39531dcbd597db2f9043ca17cf4e63e72c5f54dbed9b",
+        "descriptionHash": "67e43e26a7d5982d56148ef2abd0fad2fe42e520cb7d0f07243e798eda671529",
+        "solutionHash": "a5361297e27b0367698cc3c688f43d30618041cb9022ef511e15d05ff22cffe2",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "8af699f9aa47bba3c571526a5510595f5930e6478813486d02a63c4cae8f8e09",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "e81fb78d26ca6d36341b4c27d2cc0951d867269244532e3109cb3a42bc30f047",
+        "estimatedCostLowHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "estimatedCostHighHash": "889e2fc00981675edd472d82d3a581b0156216501cfcdba3f1dfc87223be85e7",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "dd399e3128b537ba120d522a167dcac90f57b35f679ab2e6fe009d8b720b02fc",
+        "fixPartsHash": "6c834c26674dca8d1479b71702cf13b88af168909219d5fb55721c159d69d2ab",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:2",
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "electric A/C compressor assembly",
+          "oemPartNumber": "64529496107",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=64529496107&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=64529496107",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=64529496107",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "Professional Bluetooth OBD-II scanner for reading electrical system fault codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BlueDriver",
+              "url": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20i3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Automotive digital multimeter for diagnosing electrical faults and testing circuits",
+          "partName": "3340 Automotive Digital Multimeter",
+          "partBrand": "Innova",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Innova",
+              "url": "https://www.amazon.com/s?k=Innova%203340%20Automotive%20Digital%20Multimeter%20BMW%20i3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "Electrical contact cleaner for restoring connections and preventing corrosion",
+          "partName": "QD Electronic Cleaner",
+          "partBrand": "CRC",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "CRC",
+              "url": "https://www.amazon.com/s?k=CRC%20QD%20Electronic%20Cleaner%20BMW%20i3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i3-battery-degradation-2014",
+      "make": "BMW",
+      "model": "i3",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "High-Voltage Battery Degradation",
+      "description": "Early i3 models (2014-2016) with the 60Ah battery pack can experience noticeable battery degradation, losing 15-20% of original capacity by 60,000 miles. The Samsung SDI cells are generally durable, but frequent DC fast charging and high-temperature climates accelerate degradation. Later 94Ah and 120Ah packs are more resilient.",
+      "solution": "Monitor battery health using the BMW app or third-party tools like Electrified. Keep the battery between 20-80% state of charge for daily driving. Minimize DC fast charging when possible. BMW covers the battery under an 8-year/100,000-mile warranty for capacity loss below a certain threshold.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "Reduced displayed range",
+        "Range doesn't match original specs",
+        "Battery health percentage declining",
+        "Slower charging speeds",
+        "Range anxiety on familiar routes",
+        "More frequent charging needed"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 16000,
+      "typicalMileageLow": 48000,
+      "typicalMileageHigh": 72000,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "The 2017+ 94Ah and 2019+ 120Ah packs degrade much more slowly. If buying used, prioritize these."
+        },
+        {
+          "type": "warning",
+          "content": "Repeated DC fast charging in hot climates is the #1 accelerator of battery degradation on the i3."
+        },
+        {
+          "type": "tip",
+          "content": "Check your battery warranty — BMW covers degradation below 70% capacity for 8 years/100,000 miles."
+        },
+        {
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20i3&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20i3&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20i3&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+          "partName": "Portable Level 2 EV Charger",
+          "partBrand": "Lectron",
+          "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20BMW%20i3&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 250,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-11",
+      "reviewedOn": "2026-03-11",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "a9aef688811660ef5bf6c43d03699f5fd42c8bf89228a06934bdc6eb8c793681",
+        "descriptionHash": "cdcd880ae567e124d873df185a2d889daca23b67dc15e3e7257a53b2f1dc970a",
+        "solutionHash": "05aac59f280a1c399c92d8524f2bbea82a31638bb897d0da5fd0dc9fc10c9248",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "d074bdb80f7667ea2b668505fe2b20c11955e4c8a71ea80425930f559b4b17d2",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "2570901c76653e578fecf066b5fc3fa1619f1a051e928e39797bab1b1342bf40",
+        "typicalMileageLowHash": "5d1dbce82e135ab816d7c6d1f5f9020b94000975fa77f0a349a5b4d226d82332",
+        "typicalMileageHighHash": "03170c93d53fb0647eb0aaf279aab89e58e8b852de3a58eea96e43912cd0372b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "1e9aff153df404159c708b055b96cb5a2f47014fd3473de6c1f24dfc178f2257",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "1e472b39b105d349bcd069c4a711b44a2fffb8e274714bb07ecfff69a9a7f67b",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Optima",
+              "url": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20i3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "ACDelco",
+              "url": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20i3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:5",
+          "system": "communityRecommendations",
+          "index": 5,
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Battery Tender",
+              "url": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20i3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:6",
+          "system": "communityRecommendations",
+          "index": 6,
+          "type": "part",
+          "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+          "partName": "Portable Level 2 EV Charger",
+          "partBrand": "Lectron",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Lectron",
+              "url": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20BMW%20i3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i3-connectivity-module-2014",
+      "make": "BMW",
+      "model": "i3",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "Telematics/Connectivity Module (TCB) 3G Shutdown & Failure",
+      "description": "BMW i3 models from 2014-2017 shipped with 3G telematics communication boxes (TCB) that became permanently non-functional when AT&T shut down their 3G network in February 2022. Beyond the network shutdown, TCB modules in all years (2014-2021) are a common failure point due to water ingress and internal hardware faults. The TCB is responsible for BMW Connected Drive, remote app functions, real-time traffic, emergency SOS calling, and remote climate preconditioning via the app. Failed TCB also causes 12V battery drain as the module attempts to continuously reconnect. 2018+ models have 4G LTE and are not affected by the network shutdown but can still experience hardware failures. BMW part number 84109843931 for the 4G TCB module. Replacement requires ISTA coding and certificate import.",
+      "solution": "For 2014-2017 models: The 3G module is permanently obsolete. BMW offered a discounted 4G TCB upgrade (84109843931) through dealers for some vehicles, but availability is limited. Replacement requires ISTA coding and security certificate import - not a DIY job. For all years: If TCB has hardware failure, replacement with new unit coded to VIN is required. Some owners choose to leave the TCB disconnected to prevent parasitic drain, accepting loss of connected services.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "BMW Connected Drive services stop working entirely",
+        "Remote app functions (lock, climate, location) non-functional",
+        "Emergency SOS calling not available",
+        "Real-time traffic data unavailable",
+        "Increased 12V battery drain from failed module attempting reconnection",
+        "\"Communication error\" or \"Service unavailable\" messages"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 500,
+      "estimatedCostHigh": 1500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "BMW 4G LTE TCB module (84109843931) - upgrade path for 3G-equipped 2014-2017 models",
+          "partName": "4G LTE Telematics Communication Box",
+          "partBrand": "BMW",
+          "partNumber": "84109843931",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=BMW%2084109843931&tag=au7o-20"
+        },
+        {
+          "type": "tip",
+          "content": "If you don't need Connected Drive, disconnecting the failed TCB eliminates its parasitic 12V battery drain",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "TCB replacement requires ISTA dealer tool for coding and security certificate import - cannot be done with aftermarket tools",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=84106836777&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=84106836777",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=84106836777",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "Telematics Control Unit (TCB US 4G)",
+          "priceHigh": null,
+          "oemPartNumber": "84106836777",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "9fdffaab8dcdec78ae1f78df6e9469f4994d21c455a93ba314df35ee25effbb0",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "3500672ba835a9564c1d7a39be7a16f798b913f03212ea492568a7b4138763be",
+        "descriptionHash": "0bfebbf25fd41d581a4222b058e119c866295b25b3e80df94cce15de65d745bb",
+        "solutionHash": "0fbb4472e2811588a4f87ea8cfa4298f028d63a7a6ebf4c99be5b987068ee147",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "eeaaeb7c71890226ae1300fc842f8d6198f1b2fd4f0d80ebe780805f321e5987",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "estimatedCostHighHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "b95d5d8873f5f18f603d5cf4af05476b0cd4f2c464050a10e217a37b4dca6370",
+        "fixPartsHash": "0875d80250fca995a09ca6622d58e714f38b6bf3478c9f2822e0a27e2ee2666f",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "Telematics Control Unit (TCB US 4G)",
+          "oemPartNumber": "84106836777",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=84106836777&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=84106836777",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=84106836777",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "part",
+          "content": "BMW 4G LTE TCB module (84109843931) - upgrade path for 3G-equipped 2014-2017 models",
+          "partName": "4G LTE Telematics Communication Box",
+          "partBrand": "BMW",
+          "partNumber": "84109843931",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BMW",
+              "url": "https://www.amazon.com/s?k=BMW%2084109843931&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i3-dc-fast-charge-latch-2014",
+      "make": "BMW",
+      "model": "i3",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "other",
+      "title": "DC Fast Charging (CCS) Latch Pin & Connector Failure",
+      "description": "The BMW i3's CCS (Combined Charging System) DC fast charging consistently fails due to a design flaw in the charge port locking mechanism. The CCS plug must be latched/locked before DC charging can initiate - unlike AC Level 2 charging which works without a latch. The locking pin mechanism is weak (especially 2014-2016 models), sticks from corrosion and weather exposure, and the heavy CCS cable/plug assembly distorts the charge port socket, breaking critical pin connections. When the plug sags from cable weight, serial data communication pins (repurposed from AC pins during DC sessions) lose contact, causing session failures. This is a widespread issue reported across virtually all i3 model years on mybmwi3.com and Bimmerpost forums.",
+      "solution": "Simple fix: Apply silicone lubricant or WD-40 to the locking pin at top of charge port every 3-4 months. When connecting CCS plug, lift upward on the handle to ensure full pin engagement. If latch pin is stuck, ream out the hole slightly to reduce friction. For persistent failures: charge port latch actuator replacement (BMW part 61136842870). In severe cases, entire charge port/connector assembly replacement needed. Some owners have had the locking pin hole bored out by a machine shop for permanent fix. Weight support bracket for CCS cable can reduce connector distortion.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "DC fast charge session fails to initiate (AC charging works fine)",
+        "Charge port latch clicks but doesn't engage",
+        "Charging starts then immediately stops",
+        "\"Charging Interrupted\" or \"Connection Failed\" message",
+        "CCS plug won't release after charging",
+        "Intermittent DC charging success (works sometimes, not others)"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 50,
+      "estimatedCostHigh": 1200,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "BMW charge port latch actuator (61136842870) - replacement for failed locking mechanism",
+          "partName": "Charge Port Latch Actuator",
+          "partBrand": "BMW",
+          "partNumber": "61136842870",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=BMW%2061136842870&tag=au7o-20"
+        },
+        {
+          "type": "tip",
+          "content": "Quick fix: Lift UP on CCS plug handle while inserting to ensure latch pin engages - DC won't start unless locked",
+          "upvotes": 0
+        },
+        {
+          "type": "tip",
+          "content": "Apply silicone spray to latch pin every 3-4 months to prevent sticking, especially in humid/cold climates",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "Do NOT force CCS plug if it won't latch - repeated forcing damages the charge port pins and can cause electrical issues",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=61139309015&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=61139309015",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=61139309015",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "charge socket lock actuator (drive charge socket plug lock)",
+          "priceHigh": null,
+          "oemPartNumber": "61139309015",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "d448c0e0f65da7948e3edb7805b5272b54f75f427c33333157324b626f5ca51f",
+        "titleHash": "9130e13c55a0fd4f6dbbcd86444d2b25da4f61561a7e567a5c6606bfebbc6657",
+        "descriptionHash": "9f54315987ba66cdb9a30e357e3902191e1b505715ca41044a76390a67046207",
+        "solutionHash": "30893f28bf77d84a22e57b346105c7314a82573c115aa55a3cee9b33aa319b7d",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "6e68f74d7487bac44b640bfe9b94e47a63b8b29a593590b9c9e02c3d3aae6293",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "1a6562590ef19d1045d06c4055742d38288e9e6dcd71ccde5cee80f1d5a774eb",
+        "estimatedCostHighHash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "7f9d776c0543b92f35b03d5961333cb03a820115ba0d82bd8793877ac45905f6",
+        "fixPartsHash": "58db0483ab190d5113d267bbde46c314d6c8adde586ae08a5271cd3566df1dd9",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "charge socket lock actuator (drive charge socket plug lock)",
+          "oemPartNumber": "61139309015",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=61139309015&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=61139309015",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=61139309015",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "part",
+          "content": "BMW charge port latch actuator (61136842870) - replacement for failed locking mechanism",
+          "partName": "Charge Port Latch Actuator",
+          "partBrand": "BMW",
+          "partNumber": "61136842870",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BMW",
+              "url": "https://www.amazon.com/s?k=BMW%2061136842870&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i3-hvac-heater-2014",
+      "make": "BMW",
+      "model": "i3",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "cooling",
+      "title": "Electric Heater & HVAC System Failures - Range Impact",
+      "description": "The BMW i3's cabin heating relies on a high-voltage electric heater (resistive element) that draws significant power from the HV battery, reducing range by 20-40% in cold weather. The electric heater element can fail, leaving the cabin without heat. Additionally, the heat pump (standard on later models, optional on earlier ones) can fail, reverting to resistive heating only and dramatically increasing energy consumption. The i3 does not have waste heat from an ICE to heat the cabin (BEV models), making the HVAC system critical for cold-climate usability. Blower motor failures and HVAC control module issues are also reported across all years.",
+      "solution": "Electric heater element replacement ($800-1,500). Heat pump compressor replacement uses same compressor as AC system (64529496107) at $1,756-4,000. Blower motor replacement $300-600. HVAC control module reprogramming or replacement $500-1,000. Pre-conditioning the cabin while plugged in (before driving) reduces range impact significantly. Some owners install aftermarket heated seats and steering wheel to reduce HVAC load.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "No cabin heat in cold weather",
+        "Dramatic range reduction in winter (40%+ loss)",
+        "HVAC blower runs but only blows cold air",
+        "Climate system error messages",
+        "Unusual smells or sounds from HVAC vents",
+        "Heat pump compressor not engaging (heat pump-equipped models)"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [
+        "P0530",
+        "P0532",
+        "P0533"
+      ],
+      "estimatedCostLow": 300,
+      "estimatedCostHigh": 4000,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Pre-condition the cabin while plugged in before driving - uses grid power instead of battery, preserving range",
+          "upvotes": 0
+        },
+        {
+          "type": "tip",
+          "content": "Use seat heaters and steering wheel heater instead of cabin heat when possible - uses 10x less energy",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "In cold climates, expect 30-40% range reduction. Plan routes with charging stops accordingly.",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "Prestone coolant flush kit for complete cooling system service",
+          "partName": "Coolant Flush Kit",
+          "partBrand": "Prestone",
+          "affiliateUrl": "https://www.amazon.com/s?k=Prestone%20coolant%20flush%20kit&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Stant thermostat — preventive replacement during coolant service",
+          "partName": "Thermostat",
+          "partBrand": "Stant",
+          "affiliateUrl": "https://www.amazon.com/s?k=Stant%20thermostat&tag=au7o-20"
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=64529496107&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=64529496107",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=64529496107",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "electric A/C (heat pump) compressor",
+          "priceHigh": null,
+          "oemPartNumber": "64529496107",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "9fab250e5e42070565c3e1a6449c2fb3a9adf976c5e447ef136c21f089863ee5",
+        "titleHash": "c32a46b30bc163aea6d07130b546ebaa755db0aa8d4e22a2418b679e1e0c2ad4",
+        "descriptionHash": "674501f59e4177ef76d6912a3e4c6f209da5389998102edb853dbf3bb0766f42",
+        "solutionHash": "e1ac88d7e39ad31d687e511f929c03c426bf28a16d817363f49f3c40402f49ab",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "bf90f831347f6f76aceccab6e2dc65d16e65f7192ab66333c89e78b3491fb9bb",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "e81fb78d26ca6d36341b4c27d2cc0951d867269244532e3109cb3a42bc30f047",
+        "estimatedCostLowHash": "983bd614bb5afece5ab3b6023f71147cd7b6bc2314f9d27af7422541c6558389",
+        "estimatedCostHighHash": "b090147020e033534635010c4f7eb6fc270d44e5df67ea9e744a8087df9ca106",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "1c4eba405107c6029019d39b54ba20d1076d535e8630efb84569e77d0745d5a4",
+        "fixPartsHash": "498699d471842ef6a46b58ae8499f4f0453f8e04e10aaafb3f19f3ee6bd29b06",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "electric A/C (heat pump) compressor",
+          "oemPartNumber": "64529496107",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=64529496107&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=64529496107",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=64529496107",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Prestone coolant flush kit for complete cooling system service",
+          "partName": "Coolant Flush Kit",
+          "partBrand": "Prestone",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Prestone",
+              "url": "https://www.amazon.com/s?k=Prestone%20coolant%20flush%20kit&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "Stant thermostat — preventive replacement during coolant service",
+          "partName": "Thermostat",
+          "partBrand": "Stant",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Stant",
+              "url": "https://www.amazon.com/s?k=Stant%20thermostat&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i3-rex-engine-issues-2014",
+      "make": "BMW",
+      "model": "i3",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [
+        "W20 647cc"
+      ],
+      "category": "engine",
+      "title": "Range Extender (REx) Engine Reliability Issues",
+      "description": "The i3 REx models equipped with the W20 647cc two-cylinder range extender engine suffer from various reliability issues including oil consumption, rough running, and starting failures. The small motorcycle-derived engine runs infrequently, which leads to carbon buildup, stale fuel, and oil degradation. Cold-weather starting is particularly problematic.",
+      "solution": "Run the REx engine monthly even if not needed to keep it lubricated and prevent fuel from going stale. Use fuel stabilizer if the car is driven primarily on electric power. For starting issues, check the fuel pump relay and starter motor. Carbon cleaning may be needed on high-mileage examples.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "REx fails to start",
+        "REx runs rough",
+        "Check engine light with REx active",
+        "Poor fuel economy from REx",
+        "REx oil consumption",
+        "Stale fuel smell",
+        "REx shuts off unexpectedly",
+        "Vibration when REx engages"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 300,
+      "estimatedCostHigh": 3000,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Enable REx Hold State of Charge mode (via BimmerCode) to run the engine more frequently and keep it healthy."
+        },
+        {
+          "type": "warning",
+          "content": "Never let fuel sit for more than 2-3 months in the REx tank — the small tank and infrequent use cause fuel degradation."
+        },
+        {
+          "type": "part",
+          "content": "STA-BIL fuel stabilizer for range extender fuel system",
+          "partBrand": "STA-BIL",
+          "partNumber": "22214",
+          "affiliateUrl": "https://www.amazon.com/s?k=STA-BIL+fuel+stabilizer+22214&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 320,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-11",
+      "reviewedOn": "2026-03-11",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [
+          "W20 647cc"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "81fd949855f21eab1b16d2d103c3844331e92d75f61c140ca947fab0ad5119d8",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "54cccdec6ced00454e5ea90c33f8f4e53f0abc86527f3122343e7c8fc3430284",
+        "descriptionHash": "6d30e9b3cc1dfce2237b8916b8817c96a707725bc9c6cde3640d98f6b32b8c11",
+        "solutionHash": "ba140e56c00b405174e39b177e20690cd325616671a0721cdae9d816caccc18f",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "38e68fe3df588b5ec66a6ab2b72cbbb6b89726ca4821b0b693d96a12a54d5380",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "983bd614bb5afece5ab3b6023f71147cd7b6bc2314f9d27af7422541c6558389",
+        "estimatedCostHighHash": "a176eeb31e601c3877c87c2843a2f584968975269e369d5c86788b4c2f92d2a2",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "9b3df1d63115560a17ffcd5fe8acf4cd32bbfba1e670cc6cc21b93f1b2076fab",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "88820462180e5c893eff2ed73f4ec33e205d1cd5acc4d17fa7b2bca2495d3448",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:2"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "STA-BIL fuel stabilizer for range extender fuel system",
+          "partName": "",
+          "partBrand": "STA-BIL",
+          "partNumber": "22214",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "STA-BIL",
+              "url": "https://www.amazon.com/s?k=STA-BIL+fuel+stabilizer+22214&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i3-rex-stale-fuel-2014",
+      "make": "BMW",
+      "model": "i3",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [
+        "W20 647cc"
+      ],
+      "category": "fuel",
+      "title": "Range Extender Stale Fuel & Engine Problems - I01 REx Only",
+      "description": "The BMW i3 REx (Range Extender) uses a W20 647cc 2-cylinder engine derived from the BMW C650 GT scooter. Because the REx engine runs infrequently (only when battery is depleted), fuel sits stale in the small 2.4-gallon tank for extended periods. Stale fuel creates varnish deposits that clog injectors and damage the fuel pump. BMW pressurizes the fuel tank to slow degradation, but owners who rarely use gasoline still experience fuel system issues. Additionally, the REx must run for minimum 10-13 minutes per session to burn off combustion byproducts (mainly water) - short runs cause internal corrosion. Common failures include fuel pump relay ($20-30), injectors, ignition coils, and crankshaft position sensor. The engine is rated at only 34 HP and cannot maintain highway speeds when battery is depleted.",
+      "solution": "Preventive: Run the REx at least every 6 weeks for a minimum of 10-13 minutes to burn off moisture. Use fuel stabilizer (Sta-Bil) if vehicle sits for extended periods. Keep fuel tank above half to reduce vapor space. For fuel pump relay failure (most common), replace relay ($20-30). For injector issues, professional cleaning or replacement required. For coil failures, replace ignition coils. Maintain regular oil changes with BMW-approved oil despite low mileage. Some owners run premium fuel exclusively to reduce varnish formation.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Range Extender error message / won't start",
+        "Check engine light with misfire codes",
+        "Engine stalling during startup",
+        "Rough running or vibration when REx activates",
+        "Higher than expected fuel consumption",
+        "Fuel odor from varnished fuel",
+        "Error codes: P0128 (coolant temp), crankshaft position sensor faults"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 100,
+      "estimatedCostHigh": 2000,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "",
+          "type": "tsb",
+          "title": "SI B16 02 15: I01 REx Check Control Message \"Drivetrain Malfunction\" Due to Fuel Tank Pressure Sensor / Fuel System Diagnosis"
+        },
+        {
+          "url": "https://www.mybmwi3.com/forum/",
+          "type": "forum",
+          "title": "MyBMWi3 Forum - Range Extender maintenance / stale fuel and REx starting issues discussion"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Run the REx every 6 weeks for at least 13 minutes - prevents stale fuel AND moisture buildup that corrodes internals",
+          "upvotes": 0
+        },
+        {
+          "type": "tip",
+          "content": "Add Sta-Bil fuel stabilizer to the small tank if you rarely use gasoline - prevents varnish in injectors",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "Fuel pump relay - most common REx failure, cheap fix at $20-30 from BMW or aftermarket",
+          "partName": "Fuel Pump Relay",
+          "partBrand": "BMW",
+          "needsReview": false,
+          "affiliateUrl": "https://www.amazon.com/s?k=BMW%20Fuel%20Pump%20Relay&tag=au7o-20"
+        },
+        {
+          "type": "warning",
+          "content": "Never overfill the REx fuel tank - BMW pressurizes the tank to preserve fuel. Overfilling disrupts this system.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=61366915327&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=61366915327",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=61366915327",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "fuel pump relay (electric fuel pump relay, sky-blue)",
+          "priceHigh": null,
+          "oemPartNumber": "61366915327",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i3",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [
+          "W20 647cc"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "8654bec1bb57ecc03bd2ffe5e647a2c130760c2b88704bceeacb7de3a3c949ab",
+        "yearsHash": "939986411a914189a06cd3608050e2c5ca7fb8833eaf81bb35909a39632b7356",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "81fd949855f21eab1b16d2d103c3844331e92d75f61c140ca947fab0ad5119d8",
+        "categoryHash": "c864f62f92859207770d11f0ffbbf2e0e44aad05259e8ed83391cbb3193803f9",
+        "titleHash": "5b73473aa8dbd8f036b430d83bdc21d279a1d8c0e30f29caf7f8bf560550b889",
+        "descriptionHash": "803e5c109cf6e2a5f651c47484ac61ef2eb054f3bc1565af04a75295bd727979",
+        "solutionHash": "42419b3c886b974f07e40eb6bd281195d8bf2ddae1fc65bebdd71fd9e76f334d",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "709066df7f4fd90bff50001170eb3fe96d260ec79090abde316c3554f3e40c56",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "ad57366865126e55649ecb23ae1d48887544976efea46a48eb5d85a6eeb4d306",
+        "estimatedCostHighHash": "81a83544cf93c245178cbc1620030f1123f435af867c79d87135983c52ab39d9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "135a74aae51692f4a6266476550a9978ead243a75e3fb4c843e97d69790be28e",
+        "communityRecommendationsHash": "8d603466c948218d6ad9b32cdd4adf2c1b3596e4bef2f522a107dc4fc76a9225",
+        "fixPartsHash": "d1cafcb4389659c071c84803dfcd4b834ff59a2aed1f4a246391e3f26cea14ee",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:2"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "fuel pump relay (electric fuel pump relay, sky-blue)",
+          "oemPartNumber": "61366915327",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=61366915327&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=61366915327",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=61366915327",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "Fuel pump relay - most common REx failure, cheap fix at $20-30 from BMW or aftermarket",
+          "partName": "Fuel Pump Relay",
+          "partBrand": "BMW",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BMW",
+              "url": "https://www.amazon.com/s?k=BMW%20Fuel%20Pump%20Relay&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    }
+  ]
+}
