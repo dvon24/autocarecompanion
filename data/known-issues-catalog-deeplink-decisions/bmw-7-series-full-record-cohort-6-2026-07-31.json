@@ -1,0 +1,851 @@
+{
+  "schemaVersion": 2,
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "auditScope": "full-record",
+  "batchId": "bmw-7-series-full-record-cohort-6-2026-07-31",
+  "snapshotHash": "af06cc3cecbc762221db5517e16d9d73262efcd8772397e35bba45e456cb3924",
+  "sourceSnapshotFileHash": "24dff8ca0754624acc2b6cef0f59897525ffb4685874271090183636053315ae",
+  "packetFileHash": "18b3afab40fccd99f82a755565abf614a42f232e19a08af13ef13eb2a85cf209",
+  "reviewApproval": {
+    "approvedAfterBlindAndEdgeReview": true,
+    "approvedOn": "2026-07-31",
+    "blindReviewer": "bmw7_blind:no-blocker",
+    "edgeReviewer": "bmw7_edge:no-blocker",
+    "reviewedGeneratorFileHash": "829c0e642d62b0039d18977f771ac4d9800bdb587f687d6fdfcea1665c32eb99"
+  },
+  "researchedWith": "Ultra-effort current manufacturer/regulator primary-source review; no LLM API and no commerce approval",
+  "controlledDeltaProposals": [
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-7-series-early-n63-timing-chain-check-2009",
+      "sources": [
+        "https://static.nhtsa.gov/odi/tsbs/2015/MC-10147127-9999.pdf"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-7-series-n63-customer-care-package-2009",
+      "sources": [
+        "https://static.nhtsa.gov/odi/tsbs/2025/MC-11016414-0001.pdf"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-7-series-g11-g12-passenger-seat-mat-warranty-2016",
+      "sources": [
+        "https://static.nhtsa.gov/odi/tsbs/2025/MC-11018552-0001.pdf"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-7-series-g70-valvetronic-software-delivery-stop-2023",
+      "sources": [
+        "https://static.nhtsa.gov/odi/tsbs/2024/MC-10253342-0002.pdf"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "bmw-7-series-air-suspension-compressor-2009",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"Air Suspension Compressor and Air Spring Failure\" aggregation with the bounded primary-source path below. Remove all 2 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "BMW SIB 01 05 22 - G11/G12 Front and Rear Air-Suspension Strut Limited Warranty Extension",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2026/MC-11030332-0001.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "b1684f64e83325ffbe2a89b5fdcf315d568153a90f60304ec582571fda231533",
+        "yearsHash": "3bf44e488a4e76bd755d17f35c116fef3a1d27d816ee7b7a81e28d7a3d0dd7ac",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "508b3b1246ae97e77dd684e582df8c42077d25f2b2fdb1ce4e131f7b3c07074e",
+        "descriptionHash": "3947a55f064378e1d7ebd83fb38a289effcac2cea6cd761a3cf7f1ce1c0b4d29",
+        "solutionHash": "dd217e48a48617ca15e402540184473e79017c44fa74b665663b8b18edd63eeb",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "706a3384ed5cba73b02a5e957b915a86327b51a894278bf5afefa2cbcbe8f947",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "estimatedCostHighHash": "889e2fc00981675edd472d82d3a581b0156216501cfcdba3f1dfc87223be85e7",
+        "typicalMileageLowHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "typicalMileageHighHash": "3bb78535cc9555ff19fe3556aaa41c78a0a45c64d49ba2bc564507648a8e77a1",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "bbe1d3a42fc35301984d61a4ff1298397b251ec459dfa3aaa13d3b0cecb41d2d",
+        "fixPartsHash": "2fdfdc59d075916d8e358e3bbc4dced762c5e2bd23fc9640e63d74e8fd9e7ea2",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "deeeb5df3f2cee6bf4e597a8a3a878a6ce49b932b9e90b416922d4499f54fae6",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "7 Series",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "G11/G12 Air-Suspension Strut Diagnosis",
+        "description": "BMW SIB 01 05 22 identifies specified U.S.-registered G11/G12 7 Series variants from model years 2016-2022 for a component-specific front and rear air-suspension-strut limited warranty extension. BMW explicitly excludes other air-suspension components and issues; the bulletin does not support an all-generation compressor, relay, dryer or four-strut failure claim.",
+        "solution": "Confirm the exact model, production date, VIN and current WVI vehicle comments, then diagnose the specific sagging corner, ride-height complaint or suspension warning with BMW procedures. Replace only a strut assembly that is confirmed defective and eligible under the current instructions. Do not present the historical eight-year/80,000-mile extension as a universal or current coverage promise. ShowMeTheParts resolved exact 2018 740i and 740i xDrive suspension categories but returned no air-spring candidate, so no commerce link is approved.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "One corner sits low after the vehicle is parked",
+          "Ride-height or chassis warning requires fault-guided diagnosis",
+          "A front or rear air-suspension strut is confirmed defective"
+        ],
+        "affectedSystems": [
+          "front air-suspension struts",
+          "rear air-suspension struts"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "BMW SIB 01 05 22 - G11/G12 Front and Rear Air-Suspension Strut Limited Warranty Extension",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2026/MC-11030332-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen \"Air Suspension Compressor and Air Spring Failure\" card with bounded BMW/NHTSA scope and removed 2 commerce claims with 4 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-7-series-idrive-system-failures-2009",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"iDrive Head Unit and CIC/NBT Module Failures\" aggregation. The frozen card combines CIC and NBT generations, assigns black screens, reboots, navigation and Bluetooth faults to hard-drive or eMMC failure, and promotes SSD, reflow and rebuilt-module repairs without an exact BMW-defined population or fault path. Remove all 3 commerce claims and 3 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "b1684f64e83325ffbe2a89b5fdcf315d568153a90f60304ec582571fda231533",
+        "yearsHash": "73dc022d2dea78a1e2fd76a451c9370c9ea28b07d1bbb18814a184a59c8de325",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "f614685383ed954304d826f41b7dc48f6c033a9c7f86f2971e74f7deebb1ce70",
+        "descriptionHash": "00154b82a88b94081698cfe184f55d214a032c6fb870a1359ef0e206352bc1b7",
+        "solutionHash": "d18f684b440cd0bdf0b7c8bc013490892a02ee35b236f9353513e14035a88687",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "d9d92e5b6ac2b462650c9f8271d576848f4a65a566f8c0a2f404c9d83fea7734",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "estimatedCostHighHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "2a9fb55ddd01fcff2042a84de46931dd2ca7e6fd8663ff8f346781fb432d0038",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:2",
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "7 Series",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Archived - Unsupported BMW 7 Series Cross-Generation iDrive Aggregation",
+        "description": "The former card asserted \"iDrive Head Unit and CIC/NBT Module Failures\" across a broad BMW 7 Series population. The frozen card combines CIC and NBT generations, assigns black screens, reboots, navigation and Bluetooth faults to hard-drive or eMMC failure, and promotes SSD, reflow and rebuilt-module repairs without an exact BMW-defined population or fault path.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact chassis, model year, engine, production date, symptoms, DTCs, open recalls and current BMW service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW 7 Series \"iDrive Head Unit and CIC/NBT Module Failures\" aggregation and removed 3 commerce claims with 3 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-7-series-panoramic-roof-2016",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Panoramic Glass Roof Cracking and Drain Blockage\" aggregation. The frozen card combines alleged spontaneous glass cracking, frame stress, four drain obstructions, electronic damage and annual preventive cleaning across G11 and G70 without an exact 7 Series BMW communication. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "b1684f64e83325ffbe2a89b5fdcf315d568153a90f60304ec582571fda231533",
+        "yearsHash": "81105caff050980978d46a78996b937745d24aca7cefcc1ec5eb1109b942b341",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "d448c0e0f65da7948e3edb7805b5272b54f75f427c33333157324b626f5ca51f",
+        "titleHash": "f6e99666ae6e49e06fc828fdb3efa9bb6910b8294a738df4306eac97f60e83c9",
+        "descriptionHash": "7b3d71fe8595be947e8d010c09a2e5a5c2b25be365d7e24a56bef22445c55411",
+        "solutionHash": "5940cc9f6498b7f5e6b9ca0d7ca3217733bc6b7a11d618390ea1eab13ef9b39c",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "23b31a228e3fd3f35ca42e7c78ae61f7cdf812c5dcbefcbb1a259e80f2e6e85d",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "983bd614bb5afece5ab3b6023f71147cd7b6bc2314f9d27af7422541c6558389",
+        "estimatedCostHighHash": "a176eeb31e601c3877c87c2843a2f584968975269e369d5c86788b4c2f92d2a2",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "3a4c6564df711865487bdeb45d7248651ffe3c6804e8aa7dd453c90b83f28b6f",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:2",
+          "communityRecommendations:3"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "7 Series",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "other",
+        "title": "Archived - Unsupported BMW 7 Series Panoramic-Roof Aggregation",
+        "description": "The former card asserted \"Panoramic Glass Roof Cracking and Drain Blockage\" across a broad BMW 7 Series population. The frozen card combines alleged spontaneous glass cracking, frame stress, four drain obstructions, electronic damage and annual preventive cleaning across G11 and G70 without an exact 7 Series BMW communication.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact chassis, model year, engine, production date, symptoms, DTCs, open recalls and current BMW service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW 7 Series \"Panoramic Glass Roof Cracking and Drain Blockage\" aggregation and removed 2 commerce claims with 2 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-7series-air-suspension-2002",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Air Suspension Compressor & Strut Failure - All Generations\" aggregation. The frozen card duplicates the other suspension aggregation, asserts one compressor and four-strut repair across E65/E66, F01/F02 and G11/G12, cites a fabricated video identifier and recommends a coil-spring conversion without BMW support. Remove all 3 commerce claims and 5 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "b1684f64e83325ffbe2a89b5fdcf315d568153a90f60304ec582571fda231533",
+        "yearsHash": "d7c0383843b755c4f11378aac613b411479a85ed60d707842491a663124dcd39",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "a1885346929964eb1e9f9d950b384e986e13b6c939b703fcfc22be96542ea129",
+        "descriptionHash": "8268a8dda8dfce86ec2d9f21c8f9626e066b452a90376cef2a1437c898b8f496",
+        "solutionHash": "c44d59befe3201a3d2e4b1556917697e191a6b548ca877734b977318989684e1",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "a204bc0d0394b21315f3f729f7b4a2c3b7579f21fa1cb103f81d5a6ffe99fd93",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "estimatedCostHighHash": "8d284220975da66c6cba4a32aaedfa0b897187d86ed9f7a2419c9bd10a103505",
+        "typicalMileageLowHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "typicalMileageHighHash": "4f9f73b34c5b89879aad65a48025f3187dd9ce6dc3d4e88eecb2fc79227350f1",
+        "citationsHash": "7b399668b3ae44f25da5116c43aea45043a183fb1d55fd6c94f67e16d2ffb483",
+        "communityRecommendationsHash": "f8806e03c37b0a85a6b793b30deab6b9c6d8f27d3b48b70279b5aff853045379",
+        "fixPartsHash": "319661d692a6ed638ba031224ca11581579efd0df32aab4a7fb27d9de62abe29",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0",
+          "communityRecommendations:3"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "7 Series",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Archived - Unsupported BMW 7 Series Duplicate All-Generation Air-Suspension Aggregation",
+        "description": "The former card asserted \"Air Suspension Compressor & Strut Failure - All Generations\" across a broad BMW 7 Series population. The frozen card duplicates the other suspension aggregation, asserts one compressor and four-strut repair across E65/E66, F01/F02 and G11/G12, cites a fabricated video identifier and recommends a coil-spring conversion without BMW support.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact chassis, model year, engine, production date, symptoms, DTCs, open recalls and current BMW service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW 7 Series \"Air Suspension Compressor & Strut Failure - All Generations\" aggregation and removed 3 commerce claims with 5 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-7series-electrical-e65-2002",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Widespread Electrical Issues - E65/E66 745i/750i/760i\" aggregation. The frozen card labels an entire generation unreliable, combines iDrive, body modules, warning lamps, windows, seats and parasitic draw, supplies generic prices and ownership advice, and has no exact fault code, component population or BMW diagnostic source. Remove all 7 commerce claims and 7 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "b1684f64e83325ffbe2a89b5fdcf315d568153a90f60304ec582571fda231533",
+        "yearsHash": "a085856fab30bcee334bad0a6cbf38be55f0b3dd7bb61f3a096e864ff76b7ced",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "39f4862104cab9e59088f1a5ea827e7aa3712b9ab5cd82f9aa931edbe6f4dcfe",
+        "descriptionHash": "c95ec82d6d67eb27b3f24f53181167e96df3de0ff1a7d068da4f787a71dcf1ed",
+        "solutionHash": "283b776ead41bf2532b64025d21f029f8006a4cebcaaa510fa49fee8d93ea9d4",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "5dc94747e92f06269c31db7030d5dc76658972a21aa5fc2c9c614937616f7279",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "estimatedCostHighHash": "b090147020e033534635010c4f7eb6fc270d44e5df67ea9e744a8087df9ca106",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "2492f17631fd2456fd75257091ddee939e61912ed7a2b3720e8104b2ea8ef886",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6",
+          "communityRecommendations:7",
+          "communityRecommendations:8",
+          "communityRecommendations:9"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "7 Series",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Archived - Unsupported BMW 7 Series E65/E66 Electrical-Gremlin Aggregation",
+        "description": "The former card asserted \"Widespread Electrical Issues - E65/E66 745i/750i/760i\" across a broad BMW 7 Series population. The frozen card labels an entire generation unreliable, combines iDrive, body modules, warning lamps, windows, seats and parasitic draw, supplies generic prices and ownership advice, and has no exact fault code, component population or BMW diagnostic source.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact chassis, model year, engine, production date, symptoms, DTCs, open recalls and current BMW service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW 7 Series \"Widespread Electrical Issues - E65/E66 745i/750i/760i\" aggregation and removed 7 commerce claims with 7 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-7series-hpfp-2009",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"High-Pressure Fuel Pump Failure - F01/F02 750i/750Li (N63)\" aggregation. The frozen card asserts two-pump paired failure, fixed pressure and mileage, metal contamination, Bosch-only replacement and Customer Care Package coverage, but the official N63 package addresses injectors and other inspected components rather than this universal HPFP remedy. Remove all 2 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "b1684f64e83325ffbe2a89b5fdcf315d568153a90f60304ec582571fda231533",
+        "yearsHash": "1495729412bce38b36215fa37ae76d8e994e4efbb577a1e6aff4088bc1ba0c07",
+        "trimsHash": "dc64e59b4672fcfce43e1863a83a752def0d5a3982381b25b9bfd2b6bec9e6a9",
+        "enginesHash": "01a181e51944f07670da5fef6a2cb86848efa746a076a0163886afedec7f891c",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "589fce75cb30b5dc56e76e054bb89566c2789b4f31cb856952b8ae00e239d0de",
+        "descriptionHash": "b72467e5a56362e42c2afa9ef8ee747b7623d8994bf7e34da4ef2fafa7aaf166",
+        "solutionHash": "7393ca356db916665b784f0f90a22e72ff9facea1ec97b7e328788fb30791ce1",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "415c845dc560434b1e436ad5d92e2df8e308085da909bd466f4ec4103d45dee9",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "estimatedCostHighHash": "a176eeb31e601c3877c87c2843a2f584968975269e369d5c86788b4c2f92d2a2",
+        "typicalMileageLowHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "typicalMileageHighHash": "3bb78535cc9555ff19fe3556aaa41c78a0a45c64d49ba2bc564507648a8e77a1",
+        "citationsHash": "81329722924e7f89aecc10a8a689af441cba71334205f0fc30bf09388bf3245b",
+        "communityRecommendationsHash": "946568b0c5f12ad77c706e190066441e588bf6d9253c8413776784eef64c34cc",
+        "fixPartsHash": "cd070b9be623c074b2049e29403888239e21f0dc30d7cc68554a1ddae583d7b7",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "08820d17d9c3dacf3aec1e0d72e19e6792f3927de98b7e52898ae23923e8e75f",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "7 Series",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Archived - Unsupported BMW 7 Series N63 High-Pressure-Fuel-Pump Aggregation",
+        "description": "The former card asserted \"High-Pressure Fuel Pump Failure - F01/F02 750i/750Li (N63)\" across a broad BMW 7 Series population. The frozen card asserts two-pump paired failure, fixed pressure and mileage, metal contamination, Bosch-only replacement and Customer Care Package coverage, but the official N63 package addresses injectors and other inspected components rather than this universal HPFP remedy.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact chassis, model year, engine, production date, symptoms, DTCs, open recalls and current BMW service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW 7 Series \"High-Pressure Fuel Pump Failure - F01/F02 750i/750Li (N63)\" aggregation and removed 2 commerce claims with 4 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-7series-n63-turbo-2009",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"N63 Turbocharger Failure - F01/F02 750i/750Li\" aggregation with the bounded primary-source path below. Remove all 4 commerce claims and 6 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "BMW SIB 01 01 22 - N63TU1 Oil-Consumption Diagnosis and Related Repair",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10214246-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "b1684f64e83325ffbe2a89b5fdcf315d568153a90f60304ec582571fda231533",
+        "yearsHash": "1495729412bce38b36215fa37ae76d8e994e4efbb577a1e6aff4088bc1ba0c07",
+        "trimsHash": "dc64e59b4672fcfce43e1863a83a752def0d5a3982381b25b9bfd2b6bec9e6a9",
+        "enginesHash": "01a181e51944f07670da5fef6a2cb86848efa746a076a0163886afedec7f891c",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "5315bf6d2fbbcec97f3a757122cb8a302ce186a7482782e6081e5611103f858a",
+        "descriptionHash": "e1a69fb0980de1c8b105ef71186474899a32619981bb8b76f746f0b281c75e0d",
+        "solutionHash": "3042248b76c7b02642174f53b6c3fe090cb1f442a128144057881ade191e1db0",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "bb2139bbb6a0a82514bded99a9c4d729782308b97b971c26fcef8a87bd4cfd72",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "c3cd7cf75e74b58104960f0f46c08cbb63c9a262cf01ca64b88aadbda9eece13",
+        "estimatedCostLowHash": "b698d86c67a2cff80405bd47af322216c552fd3a52f9c58a70f7b3a3313895b1",
+        "estimatedCostHighHash": "c5d1866aabc15dda07995e73b08c4ccb514947dcd3a621cea851af5fe366f11b",
+        "typicalMileageLowHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "typicalMileageHighHash": "3bb78535cc9555ff19fe3556aaa41c78a0a45c64d49ba2bc564507648a8e77a1",
+        "citationsHash": "4f4fb975f19aea98da121f93cddb82d6042e721a981986f5f3b58b72ae197f2c",
+        "communityRecommendationsHash": "57a889b1190cca5e895ca3a22221e6b95be6645892f27c1f626f45dbdfd165c8",
+        "fixPartsHash": "8a26d03437393ce1da63aad48d13c1cc5eba33c58e9daa52522b301f0cc994a3",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "5893146c0c49ea8618f5daf6b896f4bc7fc0fcf9e71e8ff0165da09f98b29e45",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0",
+          "communityRecommendations:4",
+          "communityRecommendations:5"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "7 Series",
+        "years": [
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [
+          "N63TU1"
+        ],
+        "category": "engine",
+        "title": "N63TU1 750i Oil-Consumption and Turbo-Leak Diagnosis",
+        "description": "BMW SIB 01 01 22 identifies specified U.S.-specification F01/F02 750i, 750Li and ALPINA B7 variants from model years 2013-2015 with the N63TU1 engine for an oil-consumption diagnosis and related-repair settlement path. The lawsuit alleged excessive oil use and BMW denied the allegations. BMW permits turbocharger replacement only when the prescribed inspection confirms leakage; the bulletin does not establish age-, heat- or mileage-based turbo failure.",
+        "solution": "Confirm the exact chassis, N63TU1 engine, production date, engine serial number, VIN and current eligibility, then follow BMW electronic oil-level measurement and leak-inspection procedures. Repair only the component supported by the documented test result; replace turbochargers only when leakage is confirmed under the current instructions. Do not promise historical settlement coverage. ShowMeTheParts returned six exact 2014 750i/750i xDrive turbo oil-return-line fitments, but catalog fitment does not prove a leak, oil-consumption cause or repair role, so no commerce link is approved.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Low-oil warning before the scheduled oil service",
+          "Repeated need to add engine oil between services",
+          "BMW inspection confirms a leaking turbocharger or turbo oil-return component"
+        ],
+        "affectedSystems": [
+          "engine lubrication",
+          "turbocharger oil-return system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "BMW SIB 01 01 22 - N63TU1 Oil-Consumption Diagnosis and Related Repair",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10214246-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen \"N63 Turbocharger Failure - F01/F02 750i/750Li\" card with bounded BMW/NHTSA scope and removed 4 commerce claims with 6 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-7series-n63-valvetronic-2009",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"N63 Valvetronic Motor Failure - F01/F02 750i/750Li\" aggregation. The frozen card incorrectly treats original N63 and N63TU1 hardware as one seven-year population, asserts paired servomotor wear and carbon buildup, and recommends preventive replacement without exact engine scope, DTCs or a matching BMW bulletin. Remove all 2 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "b1684f64e83325ffbe2a89b5fdcf315d568153a90f60304ec582571fda231533",
+        "yearsHash": "1495729412bce38b36215fa37ae76d8e994e4efbb577a1e6aff4088bc1ba0c07",
+        "trimsHash": "dc64e59b4672fcfce43e1863a83a752def0d5a3982381b25b9bfd2b6bec9e6a9",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "1f963cc66a2b7ed82c90c238ce2f3bb7cefef474d1283611318b1dba53a6cfec",
+        "descriptionHash": "57fe7e92837b09457d06edf7a7fdbc6ee90d6fa7e6f712b263b50e79d15f0b26",
+        "solutionHash": "f956cfe6c9e400873c62fedf51888eca82ad187cb47ce44b4cebfda45d1f15ba",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "4353984bba00b719303a61f42489c30012bcc6f2055d7ba6d82065da89424e68",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "f7e2932f11f3e5a3598ace9d467332e19d1d600c9aa498f8bef3d061ceba4411",
+        "estimatedCostLowHash": "81a83544cf93c245178cbc1620030f1123f435af867c79d87135983c52ab39d9",
+        "estimatedCostHighHash": "b090147020e033534635010c4f7eb6fc270d44e5df67ea9e744a8087df9ca106",
+        "typicalMileageLowHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "typicalMileageHighHash": "3bb78535cc9555ff19fe3556aaa41c78a0a45c64d49ba2bc564507648a8e77a1",
+        "citationsHash": "8c7c32419c0770b943be41e3359ce30eabdfe32977c214d448cac4e2a95bd2ae",
+        "communityRecommendationsHash": "85a9ab84653922ed1f52379b72b7c9f29a0cc43dd05a86e9dd63539d2e7eabba",
+        "fixPartsHash": "9fb2058729360c17e11c4d354a994ad3f15943462d97811cecf31f4c97ff87bd",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "a9ac3e664caf11d75f74496644401b357bc9541dabe78988d88ae4ed97a0ab29",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "7 Series",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Archived - Unsupported BMW 7 Series N63 Valvetronic-Motor Aggregation",
+        "description": "The former card asserted \"N63 Valvetronic Motor Failure - F01/F02 750i/750Li\" across a broad BMW 7 Series population. The frozen card incorrectly treats original N63 and N63TU1 hardware as one seven-year population, asserts paired servomotor wear and carbon buildup, and recommends preventive replacement without exact engine scope, DTCs or a matching BMW bulletin.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact chassis, model year, engine, production date, symptoms, DTCs, open recalls and current BMW service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW 7 Series \"N63 Valvetronic Motor Failure - F01/F02 750i/750Li\" aggregation and removed 2 commerce claims with 4 URLs.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
