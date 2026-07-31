@@ -88,6 +88,7 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'bmw-m2',
   'bmw-m240i',
   'bmw-m3',
+  'bmw-m3-cs',
   'cadillac-allante',
   'cadillac-ats',
   'cadillac-catera',
