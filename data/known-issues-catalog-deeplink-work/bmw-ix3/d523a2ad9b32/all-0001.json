@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "packetKind": "known-issues-catalog-deeplink-work",
+  "snapshotHash": "d523a2ad9b32687002267b4796440401027f9ccdd3fa60ebbe458445638b6b16",
+  "cohort": "all",
+  "packetId": "all-0001",
+  "records": [
+    {
+      "id": "bmw-ix3-12v-battery-drain-2022",
+      "make": "BMW",
+      "model": "iX3",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "12V Auxiliary Battery Drain and Failure",
+      "description": "The BMW iX3 can experience premature 12V auxiliary battery drain, particularly when the vehicle sits unused for extended periods. The always-on telematics, remote connectivity features, and background software processes draw parasitic current from the 12V battery. When the 12V battery voltage drops too low, the vehicle may fail to power on, refuse to unlock, or display multiple warning messages. This is a common issue across BMW's electric vehicle lineup due to the high parasitic draw of connected services.",
+      "solution": "Replace the 12V AGM battery with an OEM-specification unit. If the vehicle will sit unused for more than 5-7 days, connect a BMW-approved battery tender. Disable unnecessary connected services in the iDrive settings to reduce parasitic drain. Have the dealer check for software updates that optimize sleep mode power management.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "Vehicle fails to unlock or power on after sitting for several days",
+        "Multiple warning lights and error messages on startup",
+        "Remote start or BMW Connected app functions failing",
+        "Clock resetting to incorrect time",
+        "Infotainment system taking excessively long to boot"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 200,
+      "estimatedCostHigh": 450,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://x3.xbimmers.com/forums/showthread.php?t=1927307",
+          "type": "owner_forum",
+          "title": "xBimmers - iX3 Issues Summary: 12V Battery Drain"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Keep a CTEK or Battery Tender Plus connected when the car sits for more than a week. The iX3's connected services drain the 12V battery surprisingly fast.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "A dead 12V battery can prevent the high-voltage system from initializing, making the car completely inoperable. It must be jump-started or the 12V battery replaced before the car will function.",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20iX3&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20iX3&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20iX3&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20iX3&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 145,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX3",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "64ea95626f677f2d0a70497fc401b67b0bb1f2c7fd67628d8a8327b21f0103da",
+        "yearsHash": "74d282913e456c9022479ef0009fc987bafd768a38811f1e269dc648a06ac0fa",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "e6fafe0ae203a7f1cfdfca00d5f57c349f6115af3e24ff7de1dfd36231077410",
+        "descriptionHash": "4518c79015e4fd741d96bafa900b0ab78a4b3ce73bb7257e6153cef235353479",
+        "solutionHash": "e5dc76db456954395d02ef00b669b9a2ae435fec9d89aa85908f8fde98fce2d3",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "1a9b60d8848a9462b8680c32a0affadf194a14163e8a1b422f5124d170793b11",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "estimatedCostHighHash": "83151157c10d85af7c84657c71c3e3603d955160f0526fce672481da83a2e090",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "bdd7fded2aebf6e1040de6712a569d808ecf2a5508bb37b80012684d0be11acf",
+        "communityRecommendationsHash": "d80e1687f68a919be6a10160d83c817ee87f06f78aa87a91ee1f1e10f41fc5f0",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "be47addbcb8f60566a3d7fd5a36f8195798e2848b368195d9a5d20e007c59a0c",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:2",
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Optima",
+              "url": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20iX3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "ACDelco",
+              "url": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20iX3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Battery Tender",
+              "url": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20iX3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:5",
+          "system": "communityRecommendations",
+          "index": 5,
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BlueDriver",
+              "url": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20iX3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix3-charging-socket-lock-fault-cable-will-not-unlock-charging-wo",
+      "make": "BMW",
+      "model": "iX3",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "eDrive40"
+      ],
+      "engines": [
+        "Gen5 eDrive40"
+      ],
+      "category": "electrical",
+      "title": "Charging Socket Lock Fault — Cable Will Not Unlock / Charging Won't Initiate",
+      "description": "The high-voltage charging socket lock actuator can fail or jam, leaving the charging cable physically locked in the port so it cannot be removed, or preventing the car from starting a charge session. BMW documentation ties this to faults stored in the charging interface module (LIM), including '805532 high-voltage charging socket: lock on the charging plug, status implausible' and '805503 high-voltage charging socket: charging plug lock, line disconnection'. Causes include a non-functioning lock actuator drive, a jammed emergency-release strap, or housing tolerance preventing the lock pin from disengaging. Related door-lock/BCM communication faults can also stop a charge from initiating when the car is locked.",
+      "solution": "Try locking then unlocking the car with the key fob to release the cable; if that fails, use the manual emergency-release strap in the boot to free the cable. For a recurring fault, the dealer scans the LIM, applies firmware updates to the charging electronics/BCM, and replaces the charging-socket lock actuator (or the socket assembly) if the actuator drive is defective.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Charging cable stuck / will not unlock from the port",
+        "Car will not begin charging when plugged in",
+        "Charging-fault or charge-socket message in iDrive",
+        "Having to use the manual emergency release to free the cable"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [
+        "805532",
+        "805503"
+      ],
+      "estimatedCostLow": 200,
+      "estimatedCostHigh": 800,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.justanswer.com/bmw/se5q1-bmw-ix3-vin-lbv41du05rsc57747-when.html",
+          "type": "forum",
+          "title": "BMW iX3 Locking Issue: charging cable / socket Q&A (JustAnswer)"
+        },
+        {
+          "url": "https://bmwi.bimmerpost.com/forums/showthread.php?t=2020814",
+          "type": "forum",
+          "title": "Charging flap / lock actuator stuck (BMW i Bimmerpost)"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-06-14",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX3",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [
+          "eDrive40"
+        ],
+        "engines": [
+          "Gen5 eDrive40"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "64ea95626f677f2d0a70497fc401b67b0bb1f2c7fd67628d8a8327b21f0103da",
+        "yearsHash": "5855590e74f7e60c866bcdc3ebcdeac267964dd9c3645c6ec87ab788e6dc1a3f",
+        "trimsHash": "7bca189c32987e3532a454bc9a88f34f04ca21f66b9127c571bb84361955320f",
+        "enginesHash": "dfe5b12bba4ad972bd15910964935bda049bb70e3a25a29fd5f370f61538bc5c",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "caeb84dd488d9a7c517d555f5dc3cef137ea9340ef099372199b4da6b015f046",
+        "descriptionHash": "3b6a507543343f47c94b5c60a9222ef3dad51fb5bb85abea7a548b1500c32309",
+        "solutionHash": "6d5dbd545dd17ddbb042ce598d3695a2c28709f96584acb6f64f0236a65df8f1",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "6b4e039fc932b120a22c95803be913e5884a9b92c35dc876a89d628fe2b9b5ff",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "04ff3d72f77da407a9fcb26d7cb873e31b23b2c5b2994db0bd32ddc0e8b9029d",
+        "estimatedCostLowHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "estimatedCostHighHash": "1a1cf797fabe7f95836fabeca626907c77b3e6c9aff7c2290b396a238c69362e",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "74fde4ff86fb38ec5d317f3633676e20802dc8f4b90ee6235ac5aaf8408e5e51",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "90d72bc8e97aa6d493bd62eb2903e9e82ad8629a99d273ad4bfbb71f209ec3c1",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix3-drivetrain-wire-harness-2022",
+      "make": "BMW",
+      "model": "iX3",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "Drivetrain Warning from Wire Harness Connection Fault",
+      "description": "Some iX3 owners report intermittent 'Drivetrain Malfunction' warnings that appear on the dashboard without any apparent mechanical issue. Dealer diagnosis often traces the problem to a faulty wire harness connection to the power pedal assembly (accelerator pedal position sensor). The connector can develop a poor contact due to vibration or corrosion, sending erratic signals to the drive controller and triggering a drivetrain fault that may put the vehicle into reduced power mode.",
+      "solution": "Have the dealer inspect and reseat the wire harness connection to the accelerator pedal position sensor. If the connector is corroded or damaged, replace the harness section. BMW has released updated connector clips for improved retention. A software update may also recalibrate the pedal sensor tolerance to prevent nuisance warnings from marginal connections.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Intermittent 'Drivetrain Malfunction' warning on dashboard",
+        "Vehicle entering reduced power or limp mode unexpectedly",
+        "Accelerator pedal response feeling inconsistent",
+        "Warning clears after restarting the vehicle",
+        "Multiple drivetrain-related fault codes stored in ECU"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 100,
+      "estimatedCostHigh": 500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://community.cartalk.com/t/bmws-ix3-motor-cause-transmission-issue/191521",
+          "type": "owner_forum",
+          "title": "Car Talk Community - BMW iX3 Motor/Transmission Issue"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "If you get an intermittent drivetrain warning that clears on restart, have the dealer check the accelerator pedal harness connector first before authorizing expensive drivetrain diagnostics.",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "Premium electrical tape for wiring repairs and harness wrapping",
+          "partName": "Super 33+ Vinyl Electrical Tape",
+          "partBrand": "3M",
+          "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20BMW%20iX3&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+          "partName": "Split Wire Loom Tubing",
+          "partBrand": "DEI",
+          "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20BMW%20iX3&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+          "partName": "Automotive Terminal Connector Kit",
+          "partBrand": "Molex",
+          "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20BMW%20iX3&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+          "partName": "Replacement Sensor",
+          "partBrand": "Bosch",
+          "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20BMW%20iX3&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 95,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX3",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "64ea95626f677f2d0a70497fc401b67b0bb1f2c7fd67628d8a8327b21f0103da",
+        "yearsHash": "74d282913e456c9022479ef0009fc987bafd768a38811f1e269dc648a06ac0fa",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "bb093e2272694ee7a5ed4a1facf730c9a02f471419fd3a3bc4a0838fa274b00d",
+        "descriptionHash": "cd42b20997a6b066aa27830be7613571598a286064e295316667e8eb65845c18",
+        "solutionHash": "eb74b50bd59a82f6227ae42446db860e77440bd79b20eaf3ca409d7c93c95abc",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "55dd1615dd4c14fbb310da740a281950a7daa4d10014a2fe38af5e3c615d8568",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "ad57366865126e55649ecb23ae1d48887544976efea46a48eb5d85a6eeb4d306",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "bca8a97d03aef961ea40542f7ac8828b5e83b0a9ae54a63f513670ee4f019d75",
+        "communityRecommendationsHash": "7f1ceb6b3b9f2db0d6493c1bf3b73eb9db5402610212fa31221615c69e9f41e0",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "ad48ff99415b2f007dc35b7eb553fd1eb35ebfa2f2f308acd9488eeb86f71fa8",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:1",
+          "communityRecommendations:2",
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "Premium electrical tape for wiring repairs and harness wrapping",
+          "partName": "Super 33+ Vinyl Electrical Tape",
+          "partBrand": "3M",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "3M",
+              "url": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20BMW%20iX3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+          "partName": "Split Wire Loom Tubing",
+          "partBrand": "DEI",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "DEI",
+              "url": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20BMW%20iX3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+          "partName": "Automotive Terminal Connector Kit",
+          "partBrand": "Molex",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Molex",
+              "url": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20BMW%20iX3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+          "partName": "Replacement Sensor",
+          "partBrand": "Bosch",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Bosch",
+              "url": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20BMW%20iX3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix3-onboard-charger-manufacturing-fault-electric-shock-risk",
+      "make": "BMW",
+      "model": "iX3",
+      "years": [
+        2025,
+        2026
+      ],
+      "trims": [
+        "Neue Klasse NA5",
+        "iX3 50 xDrive"
+      ],
+      "engines": [
+        "Gen6 Neue Klasse eDrive"
+      ],
+      "category": "electrical",
+      "title": "Onboard Charger Manufacturing Fault — Electric Shock Risk (Neue Klasse NA5)",
+      "description": "The new-generation 'Neue Klasse' iX3 (NA5) was recalled in 2026 over a manufacturing defect in the onboard (comfort) charging electronics unit that could allow voltage to be present on the vehicle body during charging, creating a potential electric-shock hazard to anyone touching the car while it is plugged in. The recall covers 145 vehicles built between 25 Nov 2025 and 20 Feb 2026 (28 of them in Germany), referenced by Germany's KBA as 16565R. BMW says the scenario is unlikely and no injuries have been reported, but affected dealer stock was blocked from delivery until repaired.",
+      "solution": "Recall remedy is complete replacement of the onboard charger unit at a BMW dealer; owners are contacted directly and VINs can be checked against the recall. Until repaired, BMW guidance is to avoid using the affected vehicle for charging.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Potential voltage on the vehicle body while charging",
+        "Possible mild shock when touching the car during charging",
+        "Affected vehicles flagged for stop-delivery / recall"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.electrive.com/2026/05/28/bmw-recalls-new-ix3-over-electric-shock-risk/",
+          "type": "article",
+          "title": "Recall: Risk of electric shock in 145 new BMW iX3s (electrive.com)"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-06-14",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX3",
+        "years": [
+          2025,
+          2026
+        ],
+        "trims": [
+          "Neue Klasse NA5",
+          "iX3 50 xDrive"
+        ],
+        "engines": [
+          "Gen6 Neue Klasse eDrive"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "64ea95626f677f2d0a70497fc401b67b0bb1f2c7fd67628d8a8327b21f0103da",
+        "yearsHash": "aa567c9bf7cb828a00b99aa8a4fb0528381ffe78f95878a9914dde2739076ab0",
+        "trimsHash": "cc89de8291386ab736dfd072f7ef89d9cd14c3c9152a9455358acd5301639f61",
+        "enginesHash": "d93b34e2ab9f9b0873c040c6125dbf86b00cb96533c804371a2b975d8b0dd06f",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "d91ce47cc54e4465b59a7d5e1b78bb679c9d0ebecea288aa65206be666ea6c12",
+        "descriptionHash": "e22e3f2eb3eb492156a76e1f13c5de4a0232dcace61dba077a6969f277dbf456",
+        "solutionHash": "4bba8ed2978867faf9bf81e623604cfa085f3c58eedf32d1caa8ceb39da37d13",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "b464f317d969b5ad8978411b0c512128b97049098e3615a23c5711094e33d308",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "7408c5ff490a1f6dcf49d84047fd1ec1b49d42ee728c3dadbbce3c2a8d126a5b",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "90d72bc8e97aa6d493bd62eb2903e9e82ad8629a99d273ad4bfbb71f209ec3c1",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix3-rear-brake-disc-corrosion-caliper-seizure-from-regen-under-u",
+      "make": "BMW",
+      "model": "iX3",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "eDrive40",
+        "M Sport"
+      ],
+      "engines": [
+        "Gen5 eDrive rear motor (RWD)"
+      ],
+      "category": "brakes",
+      "title": "Rear Brake Disc Corrosion and Caliper Seizure from Regen Under-Use",
+      "description": "Because the iX3 does the vast majority of its deceleration with regenerative braking, the rear friction brakes are rarely applied and almost never reach the temperatures needed to burn off moisture and road film. Without regular heat cycles the rear discs develop heavy surface rust, scoring and pitting, and the caliper slide pins and pistons can seize. This is distinct from regen feel/behavior: it is mechanical corrosion of the friction brakes themselves. It is worst in humid climates, on coastal/salted roads, and on cars that sit parked for long periods. Owners often find rear discs need replacement for corrosion long before the friction material is worn out, and a seized rear caliper can drag, overheat and ruin a pad/disc.",
+      "solution": "Periodically perform deliberate hard stops (BMW recommends this) or select a lower/adaptive regen mode so the friction brakes engage and clean themselves; in salty/humid regions service the rear calipers (clean and re-lube slide pins, free the pistons) at least annually. Once discs are pitted/scored or a caliper has seized, replace rear discs and pads per axle and rebuild or replace the affected caliper.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Grinding or scraping from rear brakes",
+        "Visible heavy rust/pitting on rear discs",
+        "Squealing or rumbling on the rare hard stop",
+        "Brake drag, pulling, or a hot rear wheel after driving",
+        "Rear discs condemned for corrosion at low mileage"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 400,
+      "estimatedCostHigh": 900,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.carchecker.pro/reports/bmw_ix3_g08.html",
+          "type": "article",
+          "title": "BMW iX3 G08 Reliability - Problems & Costs (CarChecker)"
+        },
+        {
+          "url": "https://www.import-car.com/how-regenerative-braking-contributes-to-rear-brake-corrosion/",
+          "type": "article",
+          "title": "How Regenerative Braking Contributes to Rear Brake Corrosion (Import Car)"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-06-14",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX3",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [
+          "eDrive40",
+          "M Sport"
+        ],
+        "engines": [
+          "Gen5 eDrive rear motor (RWD)"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "64ea95626f677f2d0a70497fc401b67b0bb1f2c7fd67628d8a8327b21f0103da",
+        "yearsHash": "ba01fdda32a5cc811c436bba8d8de1b7c0c09bc156f6262e1acac29cf11e281c",
+        "trimsHash": "ad88f6ff9fce9b57b53f95b0bb3930b5d63b85123db295a6ddf1f8e474348136",
+        "enginesHash": "90a12201cf4c87e807ed5f3ece9c189b9e71e20204aacc8f4a24047d1d7ba746",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "9c2811f4dd3d91b2fd0b61c357ec0775d133a1a40161de308e116792673fa99a",
+        "descriptionHash": "4af45a8e2fc4b0c8c38afa56c0453d7ff764b4b79166ba7a7468334cde4e2866",
+        "solutionHash": "4e212c6e71f272f3475553641d7a5274f0f78596e6ef359d92ea800f93a70af2",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "76d567a0820aa2f8403c716acf7dc2ae2459b19f58d9c9b1c69cddb35dfb7c23",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "estimatedCostHighHash": "bdc5d8a48c23897906b09a9a3680bd2e9c8b3121edbda36f949800f0959c8d55",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "0a3918869cd382baf470dd5b416f3a7ff58c2716cd2765273446dc5e43b4ddbc",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "90d72bc8e97aa6d493bd62eb2903e9e82ad8629a99d273ad4bfbb71f209ec3c1",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix3-regen-braking-inconsistency-2022",
+      "make": "BMW",
+      "model": "iX3",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "brakes",
+      "title": "Regenerative Braking Lag and Inconsistency",
+      "description": "Some iX3 owners report inconsistent regenerative braking behavior, where lifting off the accelerator results in delayed or unpredictable deceleration. The regenerative braking system can feel inconsistent depending on battery state of charge, temperature, and driving mode. When the battery is near full charge or in very cold weather, regen braking force is significantly reduced, which can catch drivers off guard if they rely on one-pedal driving. This is a characteristic of the regen system design rather than a defect, but the lack of consistent feel is a common complaint.",
+      "solution": "Familiarize yourself with how regen braking changes based on battery state of charge and temperature. Use the paddle shifters to manually adjust regen levels. Check for BMW software updates that improve regen calibration. In cold weather or with a fully charged battery, rely more on the friction brakes and do not assume regen will provide full deceleration.",
+      "severity": "low",
+      "confidence": "medium",
+      "symptoms": [
+        "Delayed deceleration when lifting off accelerator pedal",
+        "Inconsistent regen braking force between drives",
+        "Reduced regen braking in cold weather or with full battery",
+        "Jerky transition between regen and friction braking",
+        "Regen braking icon showing reduced capacity on dashboard"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 150,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.mycarly.com/community/brands/bmw/ix3/",
+          "type": "owner_forum",
+          "title": "MyCarly - BMW iX3 Common Problems: Regenerative Braking"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "In winter, pre-condition the battery before driving to restore full regen capability. The iX3 allows scheduling cabin and battery preheating through the BMW app.",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "Ceramic brake pad and rotor kit for complete brake service",
+          "partName": "Z23 Evolution Sport Brake Kit",
+          "partBrand": "Power Stop",
+          "affiliateUrl": "https://www.amazon.com/s?k=Power%20Stop%20Z23%20brake%20kit%20BMW%20iX3&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 120,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX3",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "64ea95626f677f2d0a70497fc401b67b0bb1f2c7fd67628d8a8327b21f0103da",
+        "yearsHash": "74d282913e456c9022479ef0009fc987bafd768a38811f1e269dc648a06ac0fa",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "deaf33826272767a0bd8b4f4802a6dde0c77c4afff041d679baf9930c2547079",
+        "descriptionHash": "8273b7162e9531093a642b7dc493ac3a3a3b28dae2491140283062a94be3046f",
+        "solutionHash": "ba34b2a9d4ea73a22143926569c2b5a18a99e7306d22f685d85a9a02dd6abef7",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "954f99800a00c5e3abed21d7c7e5c8bdbb5e45455e1156fe0a549c26d48caae7",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "9ae2bdd7beedc2e766c6b76585530e16925115707dc7a06ab5ee4aa2776b2c7b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "42d1be53dc213379b4b30fd3ae2b931dd4e0dd33a17df58f19c6736549641851",
+        "communityRecommendationsHash": "97d9448273a3302bda4529d73b80c67e37a0fd22b65337239c9f7b4154f8daa6",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:1"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "Ceramic brake pad and rotor kit for complete brake service",
+          "partName": "Z23 Evolution Sport Brake Kit",
+          "partBrand": "Power Stop",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Power Stop",
+              "url": "https://www.amazon.com/s?k=Power%20Stop%20Z23%20brake%20kit%20BMW%20iX3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix3-software-infotainment-glitches-2022",
+      "make": "BMW",
+      "model": "iX3",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "iDrive Infotainment Software Freezes and Reboots",
+      "description": "The BMW iX3 suffers from recurring infotainment system software glitches including frozen screens, laggy response times, spontaneous reboots, and unresponsive touchscreen inputs. These issues can interfere with navigation, media playback, smartphone connectivity via Apple CarPlay/Android Auto, and climate control settings that are routed through the iDrive screen. BMW has released multiple OTA software updates to address these issues, but some owners report problems persisting across updates.",
+      "solution": "Perform a soft reset of the iDrive system by holding the volume/power knob for 30 seconds. Check for and install the latest BMW software update via OTA or at a dealer. If issues persist, the dealer may need to reflash the head unit firmware or replace the head unit hardware. Ensure the 12V battery is in good health, as low voltage can cause software instability.",
+      "severity": "low",
+      "confidence": "high",
+      "symptoms": [
+        "iDrive touchscreen freezing or becoming unresponsive",
+        "System spontaneously rebooting while driving",
+        "Apple CarPlay or Android Auto disconnecting repeatedly",
+        "Navigation losing GPS signal or displaying incorrect position",
+        "Climate control settings resetting to defaults",
+        "Backup camera feed delayed or showing black screen"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 300,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://x3.xbimmers.com/forums/showthread.php?t=1927307",
+          "type": "owner_forum",
+          "title": "xBimmers - iX3 Issues Summary"
+        },
+        {
+          "url": "https://www.electrive.com/2021/07/10/software-issues-plague-bmw-ix3/",
+          "type": "nhtsa",
+          "title": "Electrive - Software Issues Plague BMW iX3"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Always keep iDrive software updated. Check for OTA updates regularly in Settings > Software Update. Many glitches are resolved with newer firmware versions.",
+          "upvotes": 0
+        },
+        {
+          "type": "tip",
+          "content": "If the screen freezes, hold the volume knob for 30 seconds to force a reboot. This resolves most transient issues without a dealer visit.",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20iX3&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20iX3&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20iX3&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20iX3&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 180,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX3",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "64ea95626f677f2d0a70497fc401b67b0bb1f2c7fd67628d8a8327b21f0103da",
+        "yearsHash": "74d282913e456c9022479ef0009fc987bafd768a38811f1e269dc648a06ac0fa",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "c34629cfb2bf791c41388ec1bfa220d72103b610817932b3d8e57a562f54f93f",
+        "descriptionHash": "0b3365f7b5a654c0e6f1192d6fc0992bcf9a9fcea3297f41b4cfccadc82709e1",
+        "solutionHash": "4ae9e4580c193a36f45016b01475ac8999bb9b535fbb422f9089e4f79af68fa7",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "0d97b4c2b11434d1e31e7ec5d5a5701b44a23ecde1c39feff70202dddc6f29da",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "983bd614bb5afece5ab3b6023f71147cd7b6bc2314f9d27af7422541c6558389",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "2f5af1b94be4af7d32b9ded3ace43bf7b2dde476ff57b7b84f8192fc520a5c86",
+        "communityRecommendationsHash": "f1fe0f8e0be7408f78d5abcca1a816defe0a7ad4fe712cee153faa5ff75c7f73",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "7b69759630f869f2723875f873935fed29d2d12b10ef763c1c33b8e0004cb405",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:2",
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Optima",
+              "url": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20iX3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "ACDelco",
+              "url": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20iX3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Battery Tender",
+              "url": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20iX3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:5",
+          "system": "communityRecommendations",
+          "index": 5,
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BlueDriver",
+              "url": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20iX3&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    }
+  ]
+}
