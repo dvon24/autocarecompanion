@@ -1,0 +1,905 @@
+{
+  "schemaVersion": 2,
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "auditScope": "full-record",
+  "batchId": "bmw-i4-full-record-cohort-9-2026-07-31",
+  "snapshotHash": "3472dede2a1adda460b6ad8753dcc0dd175a0038a87dfe95fea235e744553137",
+  "sourceSnapshotFileHash": "4fdfeabd9d811bd66a6abbb29cda0a49bc7de2983c2c69b539dec8551c4247cb",
+  "packetFileHash": "6ee5380038a48d6e1496703f16df0435fa73a274c115a1518d2f2f08c6c90bf6",
+  "reviewApproval": {
+    "approvedAfterBlindAndEdgeReview": true,
+    "approvedOn": "2026-07-31",
+    "blindReviewer": "bmwi4_blind:no-blocker",
+    "edgeReviewer": "bmwi4_edge:no-blocker",
+    "reviewedGeneratorFileHash": "16a417a62b38a1c25885787fa00f11a3fc6ff9f2fe37c6530fb6796c66f9af0b"
+  },
+  "researchedWith": "Ultra-effort current manufacturer/regulator primary-source review; no LLM API and no commerce approval",
+  "controlledDeltaProposals": [
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-i4-hv-battery-software-recall-2022-2023",
+      "sources": [
+        "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V944-8744.PDF"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-i4-combined-charging-unit-recall-2022-2023",
+      "sources": [
+        "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V449-1660.PDF"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-i4-ihka-insufficient-cooling-path",
+      "sources": [
+        "https://static.nhtsa.gov/odi/tsbs/2026/MC-11026957-0001.pdf"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "bmw-i4-12v-battery-drain-2022",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"12V Auxiliary Battery Drain\" aggregation. It assigns connectivity, iDrive and over-the-air activity as causes, promises multiple unspecified software fixes, and promotes an ICE-era battery part, tools, a relay and a tender without an exact G26 BMW fault path or battery fitment. Remove all 7 commerce claims and 9 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "a297e08219f52d41a68f684df85a2cf90de8e92ca2d3d60b55ad01c0bdc73b0c",
+        "yearsHash": "8ff0df1b14c97453bf6e6bab762da0beeb5f4e3ae802d5dbcf6dd4eb1a533aac",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "2355d1e606f923bda502cd862b9d1e93d37d64315d34eb45d8212154966c15a8",
+        "descriptionHash": "fbc41daeed681ba0265b4c974d98dc6df72df8a0c48afa5bb89e89344c2e0a24",
+        "solutionHash": "358afd7234e3c6b63aaf4d310893d31a921d73333ff8392a00aaeba281f0ef06",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "23fe0db69a26623b9b41d524ed0f6afdd10e3bb3e4e09b80227b19cee860d09c",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "05bd56fd1214ca7960cd1f5ce891044daeb1de60abed3e740077eecdb9b056d1",
+        "fixPartsHash": "a7de6410bb735530fcaef662223587649d5156a9807e1f09f560878647e449d4",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "39bb88f40d3aa2b2fe9dea67be27c74765db0ebb3ff3cf8fb779af6319fa2045",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6",
+          "communityRecommendations:7",
+          "communityRecommendations:8"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i4",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Archived - Unsupported BMW i4 12V Drain Aggregation",
+        "description": "The former card asserted \"12V Auxiliary Battery Drain\" across a broad BMW i4 population. It assigns connectivity, iDrive and over-the-air activity as causes, promises multiple unspecified software fixes, and promotes an ICE-era battery part, tools, a relay and a tender without an exact G26 BMW fault path or battery fitment.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, variant, production date, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and refrigerant work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW i4 \"12V Auxiliary Battery Drain\" aggregation and removed 7 commerce claims with 9 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i4-12v-battery-sleep-mode-2022",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"12V Battery Drain - Sleep Mode Failure\" aggregation. It duplicates the first 12V card and asserts a 60Ah battery, CCU/DC-DC failure, mandatory third-party registration apps, exterior-light behavior and starter-motor recommendations without a matching BMW communication. Remove all 7 commerce claims and 9 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "a297e08219f52d41a68f684df85a2cf90de8e92ca2d3d60b55ad01c0bdc73b0c",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "1f6707de307dd88705c9509acee7469fed1d53d1a835a400d615c59eabfde52a",
+        "descriptionHash": "95a251431cf9a20426050c0590aa17f747810721676f8ca22c1b2b79ea54f0d7",
+        "solutionHash": "31b0b969161b995256c2cc2d582a0cf94d7ab6511a374fcf124db4ab8961965e",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "a4cdcf929313f62be556e173c92dcdca1ce04d8e718ae80eda78e81f2706bb3e",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "1a1cf797fabe7f95836fabeca626907c77b3e6c9aff7c2290b396a238c69362e",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "cd6cfa8d3b7d4d87bf05da9fee57b1a646e0fe9023ce8072218688310c683e3b",
+        "communityRecommendationsHash": "dc31bf9217fe93db31a00e5948f54a2bae878a76259b0a8c81b354f2b8c1c9b2",
+        "fixPartsHash": "fdb2b1294a03102160f1b3eb03a39e18e760a51313252b9590bb50552874ddea",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6",
+          "communityRecommendations:7",
+          "communityRecommendations:8"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i4",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Archived - Unsupported BMW i4 Duplicate Sleep-Mode Aggregation",
+        "description": "The former card asserted \"12V Battery Drain - Sleep Mode Failure\" across a broad BMW i4 population. It duplicates the first 12V card and asserts a 60Ah battery, CCU/DC-DC failure, mandatory third-party registration apps, exterior-light behavior and starter-motor recommendations without a matching BMW communication.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, variant, production date, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and refrigerant work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW i4 \"12V Battery Drain - Sleep Mode Failure\" aggregation and removed 7 commerce claims with 9 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i4-brake-feel-regen-2022",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Regenerative Braking Pedal Feel Complaints - Grabby/Aggressive\" aggregation. It converts subjective forum impressions and an unverified variant comparison into an all-year defect, then promotes pads and drilled rotors even though those parts do not address the asserted blended-braking calibration. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "a297e08219f52d41a68f684df85a2cf90de8e92ca2d3d60b55ad01c0bdc73b0c",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "64f2df65a39b82663460f09c46083ebf536ff4904596d0a26ae2ba0784e18e5d",
+        "descriptionHash": "5d139c2f6af95084af53ffc1ad993aef4d09244803c5f213da1e1acb9e6a37f1",
+        "solutionHash": "870c0c309d8fd114d9d7a7c9df408ab36f14fbe68b87de5b1b412a4b9f307b60",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "bdf0c075a9c438fcdd7d5b8bc2063612a93b90e531aeda2a2dee58ea98004ca0",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "42293d4eef979b1ecb7df318877756e2df5e6ec7cbd7a4757d303dc9d9eadde4",
+        "communityRecommendationsHash": "bd850c20752da00ddb8be7d374b85276afdb558009541a927d4a489b527af5a4",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i4",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Archived - Unsupported BMW i4 Brake-Feel Aggregation",
+        "description": "The former card asserted \"Regenerative Braking Pedal Feel Complaints - Grabby/Aggressive\" across a broad BMW i4 population. It converts subjective forum impressions and an unverified variant comparison into an all-year defect, then promotes pads and drilled rotors even though those parts do not address the asserted blended-braking calibration.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, variant, production date, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and refrigerant work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW i4 \"Regenerative Braking Pedal Feel Complaints - Grabby/Aggressive\" aggregation and removed 2 commerce claims with 2 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i4-drivetrain-malfunction-2022",
+      "disposition": "recall-dealer",
+      "decision": "Replace the frozen \"Drivetrain Malfunction / High Voltage System Shutdown\" aggregation with the bounded primary-source path below. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "recall",
+          "label": "NHTSA Part 573 Safety Recall 25V-395 - Electric Drive Motor Software",
+          "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V395-7784.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "a297e08219f52d41a68f684df85a2cf90de8e92ca2d3d60b55ad01c0bdc73b0c",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "3b12d5574a84f04c6978e854a9cac57bf991ee23453471c357b5b903e12b2378",
+        "titleHash": "6f7ff19ac01c6e6942da50e3230568ca662c93da7e926b1e177f12340fc1dd17",
+        "descriptionHash": "3ddf14e0f6c339e82de7bca17c616d227949915f0827cea959ff07301b02e7f1",
+        "solutionHash": "7051b971fe2f0252a5b1ddd17b8b5f62b1d1de3471efa9eeb65dcf4956af5d7f",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "d8ced75188e9357352676584f80eedcd93a498903d8c918c4c605e5fba5b97b3",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "81a83544cf93c245178cbc1620030f1123f435af867c79d87135983c52ab39d9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "44954436bb26073a0923ca432fe5c19ca15afd4ae81b11642e3f9f4471d4f217",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i4",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "2022-2025 i4 Propulsion-Loss Recall 25V-395",
+        "description": "BMW recall 25V-395 covers a VIN-defined group of 2022-2025 i4 vehicles produced March 17, 2021 through January 18, 2024. Electric-drive-motor software can mistakenly identify a double-isolation condition and shut down the high-voltage system about 15-20 seconds after a red warning, causing loss of propulsion. Power-assisted steering and braking remain available. This does not prove the frozen card’s separate battery-module, charger-account or DC-fast-charge theories.",
+        "solution": "Check the VIN for an open 25V-395 campaign. If included, install BMW’s free electric-drive-motor software update through the authorized dealer or the approved over-the-air recall process. Do not buy gear oil, gaskets or drivetrain parts as a substitute. Capture any red warning and arrange diagnosis if the VIN is not included or the fault remains after the recall remedy.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "VIN shows an open 25V-395 recall",
+          "Red drivetrain warning and red warning symbol",
+          "High-voltage shutdown and loss of propulsion about 15-20 seconds later"
+        ],
+        "affectedSystems": [
+          "electric drive motor software",
+          "high-voltage shutdown logic"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall 25V-395 - Electric Drive Motor Software",
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V395-7784.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "recall-related",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen \"Drivetrain Malfunction / High Voltage System Shutdown\" card with bounded BMW/NHTSA scope and removed 2 commerce claims with 2 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i4-heat-pump-cold-weather-2022",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"Heat Pump & Cold Weather Range Loss / Coolant Valve Leak\" aggregation with the bounded primary-source path below. Remove all 3 commerce claims and 5 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "BMW SIB 17 01 24 - G26 Coolant Leak at Changeover Valve",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-10253344-0002.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "a297e08219f52d41a68f684df85a2cf90de8e92ca2d3d60b55ad01c0bdc73b0c",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "9fab250e5e42070565c3e1a6449c2fb3a9adf976c5e447ef136c21f089863ee5",
+        "titleHash": "a25f14e81b454453f5735564d6bc0635e20bc574cb5d23cfbb115047fc211903",
+        "descriptionHash": "99295ee520b2c4b7d191bf53ef7ec463711c3d629ffbc9d64152e387b872d7c6",
+        "solutionHash": "1557d5a1f140cd14441a9666cd368b75a0dde139f6ed2e5ff30bd6df0af47828",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "33fecad214fd7632de338f9db9b4eaffc802a9ad0a6c1112b78b46f9677cef6a",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "19e975f12c5ad7fc9bd806a52f3a9177350a5c56d3bd513cee0055c80023a57e",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "typicalMileageLowHash": "4948963369b682612d22b081bdc92c13d23fb921cdd44e50f45d7e86b4b52022",
+        "typicalMileageHighHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "citationsHash": "d0c05e36829b6d1a461e6b52878d9e28fc0b9cdf07b98578fa585c273ce87ff6",
+        "communityRecommendationsHash": "0f79d6b3c5e2c44a004175f7f5e3787943774bf80868a641009d502378704152",
+        "fixPartsHash": "31fd108ab184bf5c06d1d62ae7d19a37f8b4270a4f28a5f81a0064d2cec527db",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "cdd438fdf6da8a787348c5912fcf1cc496b8e026fe8b0a9bce555297c54a11f4",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i4",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "G26 i4 Coolant Changeover-Valve Leak Diagnosis",
+        "description": "BMW SIB 17 01 24 defines a G26 i4 path for coolant leaking under the car, low heater output, Check Control Message ID49 and specified coolant/heater faults. BMW identifies leakage from the coolant changeover valve and distinguishes improved valves produced January 5, 2024 or later. The bulletin does not support a universal below-19°F threshold, normal winter-range percentage, compressor failure or every-variant heat-pump defect.",
+        "solution": "Check coolant level, read the exact BMW fault memory and inspect the G26 changeover valve for active or dried leakage. Follow SIB 17 01 24 and VIN-specific AIR/ETK instructions; replace the applicable older-production valve and bleed/test the cooling system with ISTA when the BMW criteria are met. ShowMeTheParts resolves exact 2022 i4 HVAC and water-pump categories but returned no changeover-valve candidate, so the frozen marketplace searches and generic coolant are removed.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Coolant leaking from under the vehicle",
+          "Low heater output",
+          "Check Control Message ID49 or BMW coolant-loss/heater communication faults"
+        ],
+        "affectedSystems": [
+          "coolant changeover valve",
+          "high-voltage battery and power-electronics cooling",
+          "electric auxiliary heater"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "BMW SIB 17 01 24 - G26 Coolant Leak at Changeover Valve",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-10253344-0002.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen \"Heat Pump & Cold Weather Range Loss / Coolant Valve Leak\" card with bounded BMW/NHTSA scope and removed 3 commerce claims with 5 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i4-heat-pump-malfunction-2022",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Heat Pump Malfunction in Cold Weather\" aggregation. It duplicates the retained valve-leak path but adds an unsupported temperature threshold, mode-switching and refrigerant-pressure theory, resistive-heating fallback, unspecified software fixes and an all-year scope. Remove all 4 commerce claims and 6 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "a297e08219f52d41a68f684df85a2cf90de8e92ca2d3d60b55ad01c0bdc73b0c",
+        "yearsHash": "8ff0df1b14c97453bf6e6bab762da0beeb5f4e3ae802d5dbcf6dd4eb1a533aac",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "f3a7232a3c1a5d59c4e3a23f58d1c3b4b370c0d940d4794004ad3087f668856c",
+        "descriptionHash": "4bbc5b71d432b0ee8ae101109c801550df28e0beb6b0deeafebe9ea33c256ecb",
+        "solutionHash": "da21b2ffaee266f161ca02095e76bd8bc09264af24bb60bd7228f3bc239ff366",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "52dccf5656354d5d55bdb9de3f56973ed477dbf559ee0002efd058899c8aef82",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "81a83544cf93c245178cbc1620030f1123f435af867c79d87135983c52ab39d9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "204d7fca628a14ddc36a0c4cd405a4d51cfa0bb4b574e8ed2e065305e0ea29a6",
+        "fixPartsHash": "252ac9dbea6732d9a1f4cd58cbb28986e52b5b72b8c041822cb190eb56b98c03",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "7b69759630f869f2723875f873935fed29d2d12b10ef763c1c33b8e0004cb405",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i4",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "hvac",
+        "title": "Archived - Unsupported BMW i4 Duplicate Heat-Pump Aggregation",
+        "description": "The former card asserted \"Heat Pump Malfunction in Cold Weather\" across a broad BMW i4 population. It duplicates the retained valve-leak path but adds an unsupported temperature threshold, mode-switching and refrigerant-pressure theory, resistive-heating fallback, unspecified software fixes and an all-year scope.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, variant, production date, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and refrigerant work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW i4 \"Heat Pump Malfunction in Cold Weather\" aggregation and removed 4 commerce claims with 6 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i4-idrive8-software-bugs-2022",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"iDrive 8 Software Bugs - Screen Crashes, Reboots & Freezing\" aggregation. It claims widespread all-year instability, a fabricated polling percentage, specific outage durations and version fixes, and promotes unrelated scan tools/sensors from an invalid forum citation without a bounded BMW bulletin. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "a297e08219f52d41a68f684df85a2cf90de8e92ca2d3d60b55ad01c0bdc73b0c",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "f55cfdfd38ae7212d97daa7a2a8c95111e68cafdba6200a8f22ee045a82415d2",
+        "descriptionHash": "590fa25901973a7c0b134a31faf413f477c456a86f4895ffcacf641e8616db3c",
+        "solutionHash": "200e41da8c3d444be8751677db2fc633faab272ce46c04408de0c98b5c9b0187",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "ee4c6d9506ff077f6250d8b834f93e75ec9ef4d930d0004675af541c6af30144",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "bf6c485a1b1689b1b7b358e1f3b760d6d5ee0cd6d33fda015cdd8c8c008aaa10",
+        "communityRecommendationsHash": "0f10e2613b8665f487fb5c062fe30f9b9c6d90d9d4d69f038014cd6f0870a58f",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "d42fcb40b3a7fb098f631343f5cd28eeaf81ecd1b24e0d6fcfa38bed587c5e76",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i4",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Archived - Unsupported BMW i4 iDrive 8 Aggregation",
+        "description": "The former card asserted \"iDrive 8 Software Bugs - Screen Crashes, Reboots & Freezing\" across a broad BMW i4 population. It claims widespread all-year instability, a fabricated polling percentage, specific outage durations and version fixes, and promotes unrelated scan tools/sensors from an invalid forum citation without a bounded BMW bulletin.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, variant, production date, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and refrigerant work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW i4 \"iDrive 8 Software Bugs - Screen Crashes, Reboots & Freezing\" aggregation and removed 2 commerce claims with 2 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i4-infotainment-glitches-2022",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"iDrive 8 Software and Infotainment Glitches\" aggregation. It duplicates the iDrive card, extends through an unsupported future model year, conflates Bluetooth, navigation, phone integration, camera, climate and head-unit hardware, and supplies generic reset/replacement advice without an exact fault path. Remove all 1 commerce claims and 1 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "a297e08219f52d41a68f684df85a2cf90de8e92ca2d3d60b55ad01c0bdc73b0c",
+        "yearsHash": "8ff0df1b14c97453bf6e6bab762da0beeb5f4e3ae802d5dbcf6dd4eb1a533aac",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "d2550d87e6f022c0622f7088b78c0549c77b82b8a0b287a1bb3934c08a85bba7",
+        "descriptionHash": "c6546ebce92efcefbf652c2ccf0ca14af1e3ae987a8cdd312d820fa8d4275634",
+        "solutionHash": "b23fd17b2612162de8a7fcd5f9f0a04c886decfb8af3a32764fb4cefde96a6a7",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "b15534a2b873993a6238b72391dcf285fbba8c3b0e5d9d2938423caefac9d3ca",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "7539ad2ce7470c275bee1a7b630035761006aaf38eee073ccfdd833c0ed65a40",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "983bd614bb5afece5ab3b6023f71147cd7b6bc2314f9d27af7422541c6558389",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i4",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Archived - Unsupported BMW i4 Duplicate Infotainment Aggregation",
+        "description": "The former card asserted \"iDrive 8 Software and Infotainment Glitches\" across a broad BMW i4 population. It duplicates the iDrive card, extends through an unsupported future model year, conflates Bluetooth, navigation, phone integration, camera, climate and head-unit hardware, and supplies generic reset/replacement advice without an exact fault path.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, variant, production date, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and refrigerant work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW i4 \"iDrive 8 Software and Infotainment Glitches\" aggregation and removed 1 commerce claims with 1 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-i4-pedestrian-sound-2022",
+      "disposition": "recall-dealer",
+      "decision": "Replace the frozen \"Pedestrian Warning Sound System Failure (AVAS)\" aggregation with the bounded primary-source path below. Remove all 0 commerce claims and 0 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "recall",
+          "label": "NHTSA Part 573 Noncompliance Recall 23V-026 - Vehicle Sound Generator",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V026-3963.PDF"
+        },
+        {
+          "type": "recall",
+          "label": "BMW Remedy Instructions 23V-026 - Receiver Audio Module Programming",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V026-0361.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "a297e08219f52d41a68f684df85a2cf90de8e92ca2d3d60b55ad01c0bdc73b0c",
+        "yearsHash": "ed144a9355909ff3ce7b0d43ba642070e641a10ee72eebb28e286a273717f4d0",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "6ad35495f7e0102ccece4d8a88ed3c254b882110341f84dc2c9026be82600e3f",
+        "titleHash": "cf584a115eac4b8b6fffe6d6fd5a49685b3022ff7a7580f92a2e4323ed20c8d2",
+        "descriptionHash": "d72b9791ac8af1b913919e483e452e9f000fee18900cc980987b9a57d3c8812b",
+        "solutionHash": "3ced2faacdcde9417b16577d89f1105344d0060b55645e13c3daf6303284d203",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "be76b040088bc06ae8146885b189dff5dcbcdd24e269e1931bb5669545880739",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "24ef1c9247101c982ac3ff2695cb0bc320d5fef6251aedb219548794b6c63dbd",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "BMW",
+        "model": "i4",
+        "years": [
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "2022-2023 i4 eDrive40 Sound-Generator Recall 23V-026",
+        "description": "BMW recall 23V-026 covers certain 2022-2023 i4 eDrive40 vehicles produced November 11, 2021 through December 22, 2022. Unfavorable external artificial sound-generator software can fail during startup, leaving the vehicle without the low-speed pedestrian warning required by FMVSS 141. Variant, production date and VIN determine inclusion.",
+        "solution": "Check the VIN for an open 23V-026 campaign. If included, arrange the free BMW programming remedy for the Receiver Audio Module/external artificial sound generator. Do not replace a speaker or module based only on a missing sound; if the VIN is outside the campaign, diagnose the exact warning and faults separately.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "VIN shows an open 23V-026 recall",
+          "External artificial warning sound is absent at low speed",
+          "Vehicle sound-generator fault occurs during startup"
+        ],
+        "affectedSystems": [
+          "external artificial sound generator",
+          "Receiver Audio Module software"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Noncompliance Recall 23V-026 - Vehicle Sound Generator",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V026-3963.PDF"
+          },
+          {
+            "type": "recall",
+            "title": "BMW Remedy Instructions 23V-026 - Receiver Audio Module Programming",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V026-0361.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "recall-related",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen \"Pedestrian Warning Sound System Failure (AVAS)\" card with bounded BMW/NHTSA scope and removed 0 commerce claims with 0 URLs.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
