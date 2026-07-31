@@ -85,6 +85,10 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'cadillac-escalade',
   'cadillac-escalade-esv',
   'cadillac-fleetwood',
+  'cadillac-lyriq',
+  'cadillac-seville',
+  'cadillac-srx',
+  'cadillac-sts',
 ]);
 
 // --- Static generation ---

@@ -1,0 +1,323 @@
+{
+  "schemaVersion": 2,
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "auditScope": "full-record",
+  "batchId": "cadillac-seville-full-record-cohort-1-2026-07-30",
+  "snapshotHash": "3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102",
+  "sourceSnapshotFileHash": "6e4c8d64ced097e83111d27c7f46e1f1c08b79dc40423fee81ebc9d9c54cd455",
+  "packetFileHash": "806ca1d4aabafdd7607367c174e3d14c0bcb42f472ae31d6ae35eb1db77e1cb7",
+  "reviewApproval": {
+    "approvedAfterBlindAndEdgeReview": true,
+    "approvedOn": "2026-07-30",
+    "blindReviewer": "cadillac5_blind:no-blocker",
+    "edgeReviewer": "cadillac5_edge:no-blocker",
+    "reviewedGeneratorFileHash": "b2b4c0da86459d3c5f5e85d1a6aabfd465fb05fd982b3f2bf15222bca569ae0e"
+  },
+  "researchedWith": "Ultra-effort current manufacturer/regulator primary-source review; no LLM API and no commerce approval",
+  "controlledDeltaProposals": [],
+  "issues": [
+    {
+      "id": "cadillac-seville-ecs-strut-1998",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"Electronic Continuously Variable Real-Time Damping Strut Failure\" aggregation with the bounded primary-source diagnosis below. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "manual",
+          "label": "2002 Cadillac Seville Owner Manual - STS CVRSS Message",
+          "url": "https://experience.gm.com/ownercenter/content/dam/gmownercenter/gmna/dynamic/manuals/2002/cadillac/seville/2002_cadillac_seville_owners.pdf"
+        },
+        {
+          "type": "manual",
+          "label": "2002 Seville STS OEM Service Manual Mirror - ESC Damper Actuator Test",
+          "url": "https://charm.li/Cadillac/2002/Seville%20STS%20V8-4.6L%20VIN%209/Repair%20and%20Diagnosis/Steering%20and%20Suspension/Suspension/Suspension%20Control%20%28%20Automatic%20-%20Electronic%20%29/Testing%20and%20Inspection/Scan%20Tool%20Testing%20and%20Procedures/Scan%20Tool%20Testing%20-%20Electronic%20Suspension%20Control%20%28ESC%29/Scan%20Tool%20Output%20Controls%20-%20ESC/"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "1b3599ba644d194a8930f065f53661c02aac4673da4f92006b7ec014a8852d9f",
+        "yearsHash": "4d692f2444255748e90ffda412cc6fc6dad1c99e6a981cc15d0767c5a56c778d",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "fbd8d9b8b1cb5ed88459b52d031dbfa02c6e2f34f7c228f924064e6b930e695b",
+        "descriptionHash": "e4c27025dfb4acc3719c91f08301a600cfa19a2302d695ea4e2ab5283d9305b0",
+        "solutionHash": "d4c48232631f70b184843d2427b03fe2fe9dcfa48a7ba18cffd31e32f0c316b0",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "59b0b997bf1fcbfad70962963a8d4b5157a8771c1068d6c8b8c0121a6875003b",
+        "affectedSystemsHash": "70384fe2147438be9ddf7c6ff3f16e89e8915f9c62181583cdad933be1004c4a",
+        "dtcCodesHash": "dc16c38ba8cdba455eb73cfa8c9f44fed0937f758f12c9aaba66eec8fe39af26",
+        "estimatedCostLowHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "estimatedCostHighHash": "e49ec846db7527df7ff483009fe61700e6435072c8c5b551ab08f0a13fc45a07",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "26dbaa61be6cc8dc9b069ad7bd93261618d620d4df0b05a15c34050f6355172e",
+        "communityRecommendationsHash": "4b04633b7e3509c0c0a322a893211e975197c088aa76b19ec829e75c4ad50f96",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "f84a369057875ec99adda742dd516598bed831387598a556b78a32c9edbd6155",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "Seville",
+        "years": [
+          2002
+        ],
+        "trims": [],
+        "engines": [
+          "4.6L V8 (VIN 9)"
+        ],
+        "category": "suspension",
+        "title": "CVRSS Damper-Actuator DTC Requires Diagnosis Before Strut Replacement",
+        "description": "The 2002 Seville owner manual identifies Continuously Variable Road Sensing Suspension as STS-only and says it displays SERVICE SUSPENSION SYS when the controller detects a problem. The matching 2002 Seville STS RPO F45 OEM service procedure uses an Electronic Suspension Control damper-actuator test, including C0577 as an intermittent-circuit example. The message or DTC does not by itself prove that the electronic strut hardware failed.",
+        "solution": "Confirm that the 2002 Seville is an STS equipped with CVRSS RPO F45. Have a qualified technician retrieve the suspension DTCs and run the ESC damper-actuator output test. For an intermittent C0577-type fault, the OEM procedure commands the affected solenoid while the suspected wiring and connector are moved to isolate the circuit or component. Confirm the failed circuit or damper before replacing a strut; do not order a strut, install a passive-conversion kit or defeat the warning from this card.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "SERVICE SUSPENSION SYS message",
+          "Intermittent C0577 damper-actuator circuit DTC"
+        ],
+        "affectedSystems": [
+          "Continuously Variable Road Sensing Suspension (RPO F45)",
+          "Electronic Suspension Control",
+          "strut and shock absorber solenoids",
+          "damper-actuator wiring and connectors"
+        ],
+        "dtcCodes": [
+          "C0577"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "manual",
+            "title": "2002 Cadillac Seville Owner Manual - STS CVRSS Message",
+            "url": "https://experience.gm.com/ownercenter/content/dam/gmownercenter/gmna/dynamic/manuals/2002/cadillac/seville/2002_cadillac_seville_owners.pdf"
+          },
+          {
+            "type": "manual",
+            "title": "2002 Seville STS OEM Service Manual Mirror - ESC Damper Actuator Test",
+            "url": "https://charm.li/Cadillac/2002/Seville%20STS%20V8-4.6L%20VIN%209/Repair%20and%20Diagnosis/Steering%20and%20Suspension/Suspension/Suspension%20Control%20%28%20Automatic%20-%20Electronic%20%29/Testing%20and%20Inspection/Scan%20Tool%20Testing%20and%20Procedures/Scan%20Tool%20Testing%20-%20Electronic%20Suspension%20Control%20%28ESC%29/Scan%20Tool%20Output%20Controls%20-%20ESC/"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-30",
+        "contentUpdatedOn": "2026-07-30",
+        "contentUpdateSummary": "Replaced the frozen \"Electronic Continuously Variable Real-Time Damping Strut Failure\" card with bounded GM service scope and removed 2 commerce claims with 2 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-seville-northstar-hg-1993",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Northstar 4.6L Head Gasket Failure\" aggregation. The frozen card called failure virtually guaranteed, prescribed one thread-insert repair and a price range, but cited only a generic NHTSA vehicle page and a video. The current primary-source sweep did not establish one defect mechanism, affected-year boundary, diagnostic gate or universal repair across every 1993-2004 Seville. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "1b3599ba644d194a8930f065f53661c02aac4673da4f92006b7ec014a8852d9f",
+        "yearsHash": "1826809e3c31d63fae9d512aa8f061f39ffc0c1151ccc4d59fa37ffcfa41260a",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "060656a8e541284c1a1beb2317652dd14d1e192d18818b3468429ecebe97b431",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "dd2d9d9379ae1a33abac3622753e8b3d190a211b5afda9873945c7e0a73ee8ae",
+        "descriptionHash": "dc343908e630d10e757cf49d7ebf52d3249038ff123a85091d0a267db091788f",
+        "solutionHash": "9fed1572923e515b692228156c8885aa76604819b13ec5e7e042800efa061c78",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "29d238f3f642a481947cd123ff3b09232385e8f92a94bd0e64e35837f72a7c09",
+        "affectedSystemsHash": "6fd29ba1c2a58650935fb5ddec4ba455960268f73f1937cdd02c88354e214f2f",
+        "dtcCodesHash": "f9ca3895b7a505db5f9fda5fbd64c26c214a55c0041b103957534c4b6ea555ed",
+        "estimatedCostLowHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "estimatedCostHighHash": "b090147020e033534635010c4f7eb6fc270d44e5df67ea9e744a8087df9ca106",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "320915e8b987d7d3f40a02c37356742ec493bd0118ab706d9c3723ea21faaff1",
+        "communityRecommendationsHash": "07da1146d4f65de5ce4e9bca2d64461eb79a31c09df3d78e0c94bd217506d40c",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "d0431c317b33725d80df3819c38333ef777f43c6bcaf75406a271491029adcd4",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "Seville",
+        "years": [
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999,
+          2000,
+          2001,
+          2002,
+          2003,
+          2004
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Archived - Unsupported Cadillac Seville Northstar Head-Gasket Aggregation",
+        "description": "The former card asserted \"Northstar 4.6L Head Gasket Failure\" across a broad Cadillac Seville population. The frozen card called failure virtually guaranteed, prescribed one thread-insert repair and a price range, but cited only a generic NHTSA vehicle page and a video. The current primary-source sweep did not establish one defect mechanism, affected-year boundary, diagnostic gate or universal repair across every 1993-2004 Seville.",
+        "solution": "Do not order parts, use sealant, convert the suspension or apply a universal repair from this archived card. Verify the exact year, trim, equipment, symptoms, DTCs and current Cadillac service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-30",
+        "contentUpdatedOn": "2026-07-30",
+        "contentUpdateSummary": "Archived the unsupported Cadillac Seville \"Northstar 4.6L Head Gasket Failure\" aggregation and removed 2 commerce claims with 2 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "cadillac-seville-sts-suspension-2000",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Magnetic Ride Control Shock Absorber Failure\" aggregation. The frozen card extended Magnetic Ride Control to years and trims that used different electronic suspension equipment, cited only a forum home page, and supplied no exact DTC, leak criterion or GM replacement procedure. A 2002 exchange-program bulletin establishes parts administration, not a common shock defect, so the claimed universal failure and passive-conversion remedy are not verified. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "d7292749cdf96ed372cc79c8b1a7c4586c0941bf91c43550a6d98c4e0d49e492",
+        "modelHash": "1b3599ba644d194a8930f065f53661c02aac4673da4f92006b7ec014a8852d9f",
+        "yearsHash": "4d692f2444255748e90ffda412cc6fc6dad1c99e6a981cc15d0767c5a56c778d",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "17c68c853ad3e368a994321aba28f9a34e44b6e81a9d568e0fb0ba87bd698458",
+        "descriptionHash": "ba1c8f3dfc8c802ca77a052f3bf8eca0fa864da11f5519a7a68a4f955d46b439",
+        "solutionHash": "5a4b83d099098a1eacdfe59abb5997e94925dd51f45f073796a7a0e3894d046f",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "0fe32d6814c8df5762b4d9dbcf42796ad1e8c560b474727f80de9a677629a339",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "estimatedCostHighHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "338dcf5ae847477ce4ef80556464a6d482c9ef9b1c85c09950426d15d3138683",
+        "communityRecommendationsHash": "1ca1222f29bb04c608c48b5ac08f24c406ac10c7165d195c759fce46ff4567b7",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "734d0759cdb4e0d0a35e4fd73749aee287e4fdcc8648b71a8d6ed591b7d4cb3f",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "49a1fe1e78808830b448b76499f057f0ac7825e8cc98d211a432c17770257f65",
+        "reviewedOnHash": "49a1fe1e78808830b448b76499f057f0ac7825e8cc98d211a432c17770257f65",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:1",
+          "communityRecommendations:2"
+        ]
+      },
+      "after": {
+        "make": "Cadillac",
+        "model": "Seville",
+        "years": [
+          1998,
+          1999,
+          2000,
+          2001,
+          2002,
+          2003,
+          2004
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Archived - Unsupported Cadillac Seville Magnetic-Ride Shock Aggregation",
+        "description": "The former card asserted \"Magnetic Ride Control Shock Absorber Failure\" across a broad Cadillac Seville population. The frozen card extended Magnetic Ride Control to years and trims that used different electronic suspension equipment, cited only a forum home page, and supplied no exact DTC, leak criterion or GM replacement procedure. A 2002 exchange-program bulletin establishes parts administration, not a common shock defect, so the claimed universal failure and passive-conversion remedy are not verified.",
+        "solution": "Do not order parts, use sealant, convert the suspension or apply a universal repair from this archived card. Verify the exact year, trim, equipment, symptoms, DTCs and current Cadillac service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-30",
+        "contentUpdatedOn": "2026-07-30",
+        "contentUpdateSummary": "Archived the unsupported Cadillac Seville \"Magnetic Ride Control Shock Absorber Failure\" aggregation and removed 2 commerce claims with 2 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
