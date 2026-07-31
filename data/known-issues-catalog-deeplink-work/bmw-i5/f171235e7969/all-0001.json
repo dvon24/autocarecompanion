@@ -1,0 +1,1697 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "packetKind": "known-issues-catalog-deeplink-work",
+  "snapshotHash": "f171235e796932ffdc1f6bea8275ab3cf3fc0e694adc527907d5998427fc8d00",
+  "cohort": "all",
+  "packetId": "all-0001",
+  "records": [
+    {
+      "id": "bmw-i5-12v-battery-drain-2024",
+      "make": "BMW",
+      "model": "i5",
+      "years": [
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "12V Auxiliary Battery Drain and Dead Car Syndrome",
+      "description": "The i5 (both eDrive40 and M60 xDrive) uses a small 12V auxiliary battery to power the vehicle computer systems, door locks, and startup sequence. Like other BMW EVs, the i5 can experience excessive 12V battery drain when the car is parked for extended periods (more than 3-5 days). Multiple connected services modules continue drawing power even in sleep mode, depleting the 12V battery. A dead 12V battery renders the car completely inoperable — you cannot open the doors, shift out of park, or engage the main HV battery.",
+      "solution": "Keep the i5 plugged in when parked for extended periods — the HV charger trickle-charges the 12V battery. Install a BMW-recommended battery maintainer connected to the 12V battery (accessible in the right side of the trunk). Update iDrive software to the latest version — BMW has released OTA updates that improve sleep-mode power management. If the 12V battery dies, the manual release cable under the hood allows emergency access.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Car will not unlock with key fob after sitting several days",
+        "Drivetrain Malfunction warning on first startup",
+        "iDrive screen fails to boot or shows errors on startup",
+        "Multiple warning messages after jump-starting the 12V battery",
+        "Connected services features disconnecting intermittently"
+      ],
+      "affectedSystems": [
+        "electrical"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": 200,
+      "estimatedCostHigh": 500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.bmwusa.com/owners-manuals.html",
+          "type": "manual",
+          "title": "BMW i5 (2024) Owner's Manual - 12V vehicle battery, jump-starting, and emergency unlocking information"
+        },
+        {
+          "url": "https://g60.bimmerpost.com/forums/",
+          "type": "forum",
+          "title": "Bimmerpost i5 Forum - 12V battery drain / dead after sitting discussion"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "text": "If you park the i5 in a garage, keep it plugged in even at 100% — it maintains the 12V battery. A dead 12V on a BMW EV is a flatbed tow to the dealer.",
+          "source": "BimmerFest",
+          "upvotes": 178
+        },
+        {
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20i5&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20i5&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20i5&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20i5&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i5",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "e58dec6bca6f63ef79c3b75514a7244212f729d7023941bc5cfcdc1c09e3de57",
+        "yearsHash": "060c4d723fa31e44c716e9b43839b466a0b830a5b215016e9400f2454b9c79bf",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "41b783b0c6f73495c28cd2e07f0dd8af36ecdd47fdd67c3a02ceab691f9d142c",
+        "descriptionHash": "fec9119ac54b90809a6766eb1437581fd0be27482e130bd5f8b6c23aa7f52205",
+        "solutionHash": "4f4573d9c04e3fd59c5ac693959ec66c3217246236b6754d532bb7afd1bb3756",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "783fc7e148a3d920cc45d98ecdf1c0b5035dcdaae910983bbd519d4b1198a54e",
+        "affectedSystemsHash": "20df31fae61331af4744afef2bfca749a06a226c63a970230eb181d75d115799",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "d2a0aaa5adcf288ac3b611411096754bbbe22e1d943e54bbf654a6d53f086a8b",
+        "communityRecommendationsHash": "e62eb039e45f97ece0226d4362f42328cbcbe22e96146968d011b6c4414f2d71",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:1",
+          "communityRecommendations:2",
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Optima",
+              "url": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20i5&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "ACDelco",
+              "url": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20i5&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Battery Tender",
+              "url": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20i5&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BlueDriver",
+              "url": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20i5&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i5-acoustic-pedestrian-warning-sound-generator-fault",
+      "make": "BMW",
+      "model": "i5",
+      "years": [
+        2024
+      ],
+      "trims": [
+        "eDrive40",
+        "M60 xDrive"
+      ],
+      "engines": [],
+      "category": "safety",
+      "title": "Acoustic Pedestrian Warning Sound Generator Fault (AVAS)",
+      "description": "Under NHTSA recall 23V885000, certain 2024 i5 eDrive40 and i5 M60 vehicles have an external artificial sound generator (AVAS) control unit that can experience a fault at startup and fail to produce the legally required external pedestrian warning sound. Because EVs are nearly silent at low speed, a missing AVAS sound means pedestrians, cyclists, and the visually impaired may not hear the car approaching, increasing injury risk. This requirement is mandated in both the U.S. (FMVSS 141) and the EU (AVAS regulation), so it is directly relevant to EU-spec cars.",
+      "solution": "Safety recall: the dealer (or OTA) updates the external artificial sound generator software at no charge. Owner notification letters were mailed February 16, 2024. Verify recall status by VIN.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "No external warning sound at low speed",
+        "AVAS / acoustic pedestrian protection warning message",
+        "Car is silent when creeping or reversing"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.cars.com/research/bmw-i5/recalls/",
+          "type": "manufacturer",
+          "title": "BMW i5 Recalls - Cars.com (Pedestrian Warning Sound 23V885000)"
+        },
+        {
+          "url": "https://auto-recalls.justia.com/bmw/i5/2024/23v885000",
+          "type": "manufacturer",
+          "title": "BMW i5 2024 Forward Collision Avoidance / External Pedestrian Alert recall - Justia"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-06-15",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i5",
+        "years": [
+          2024
+        ],
+        "trims": [
+          "eDrive40",
+          "M60 xDrive"
+        ],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "e58dec6bca6f63ef79c3b75514a7244212f729d7023941bc5cfcdc1c09e3de57",
+        "yearsHash": "ded5340fbd43781229f423931ec0f8e66f0e056e800aa9efc870232fcdd46504",
+        "trimsHash": "1ff2236d504d320fc35b5b6f858e8db1288f9c4e9e4339cfb4291fe80f7be160",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "6ad35495f7e0102ccece4d8a88ed3c254b882110341f84dc2c9026be82600e3f",
+        "titleHash": "a61f6aeae020f11164bf36ba4d8c5c58a44f02ff9a612d8002a63a516b7bca36",
+        "descriptionHash": "3ef91f62b4d046d7647d5280df98274982a73c1b17b7db372962f3d56e804dbc",
+        "solutionHash": "faec81df24f2986d5f3bb9a04fa55efb98d056955fc26f6531f5717d1c7b0b6a",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "6cca3f16466d3d1c46924002bc614fe172b15a7a33fce6ca5b48b8d57023317f",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "0e1d7a92140c9aecda92b69580450bf8a0b21191a817c6b71d872658a8aaab48",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "060998a3582d16f70ac4e76cf28b406c2c9c82cd4324932d1b970d346a976e93",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i5-adaptive-suspension-calibration-2024",
+      "make": "BMW",
+      "model": "i5",
+      "years": [
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "suspension",
+      "title": "Adaptive Suspension Self-Leveling Calibration Errors",
+      "description": "Some BMW i5 owners report the adaptive air suspension displaying fault warnings and defaulting to a fixed ride height. The system's height sensors can lose calibration after software updates or battery disconnection, triggering a chassis malfunction warning.",
+      "solution": "Perform a suspension calibration reset using BMW ISTA diagnostic software. If the issue persists, inspect the ride height sensors at each corner for damage or loose connectors. A dealer software update may also resolve the issue.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Chassis malfunction warning on iDrive",
+        "Car sitting unevenly",
+        "Suspension stuck in one mode",
+        "Harsh ride quality",
+        "Suspension warning light on startup",
+        "Car lower than normal on one corner"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 800,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.bimmerpost.com/forums",
+          "source": "Bimmerpost i5 Forum",
+          "description": "BMW i5 adaptive suspension fault reports"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Try a full vehicle power-down (hold start button 10 seconds, wait 5 minutes) before visiting the dealer — this resets many i5 suspension faults"
+        },
+        {
+          "type": "part",
+          "content": "Replacement air spring to restore proper ride height and comfort",
+          "partName": "Air Spring Assembly",
+          "partBrand": "Arnott",
+          "affiliateUrl": "https://www.amazon.com/s?k=Arnott%20air%20spring%20BMW%20i5&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Air-to-coil spring conversion kit as a permanent fix for air suspension failures",
+          "partName": "Air Suspension Conversion Kit",
+          "partBrand": "Strutmasters",
+          "affiliateUrl": "https://www.amazon.com/s?k=Strutmasters%20air%20suspension%20conversion%20BMW%20i5&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 120,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-13",
+      "reviewedOn": "2026-03-13",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i5",
+        "years": [
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "e58dec6bca6f63ef79c3b75514a7244212f729d7023941bc5cfcdc1c09e3de57",
+        "yearsHash": "44ff9d8ba6b136d34f875fe7761d2e68a8eed7add0d675b061a31ab319428ea9",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "2757ab89851286fce6929164e297fed739dcd4e11e2144667800d1fe34be4dec",
+        "descriptionHash": "fd1fdb9d7b0f96012bd27d14a46a7f2af626df4ea609127c880fbc01c12954b0",
+        "solutionHash": "6c4cb0490beef0a438c24eec0b19cec6dade2b70a11d6a039231bd81a15cf3ad",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "7b48e03d57f425c53b48959611f60e42d152d8eae7e4dad75b79651bf2fed4c8",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "1a1cf797fabe7f95836fabeca626907c77b3e6c9aff7c2290b396a238c69362e",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "c151ff03092b3d4011d3f9f26b60c0c42048fc3d72ab0d36f83270a914c46be8",
+        "communityRecommendationsHash": "b9eab3d8b0ca3d118afd6ae34c01e7adc4d577e357d68cf37063b59c922d1edb",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "49a1fe1e78808830b448b76499f057f0ac7825e8cc98d211a432c17770257f65",
+        "reviewedOnHash": "49a1fe1e78808830b448b76499f057f0ac7825e8cc98d211a432c17770257f65",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:1",
+          "communityRecommendations:2"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "Replacement air spring to restore proper ride height and comfort",
+          "partName": "Air Spring Assembly",
+          "partBrand": "Arnott",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Arnott",
+              "url": "https://www.amazon.com/s?k=Arnott%20air%20spring%20BMW%20i5&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "Air-to-coil spring conversion kit as a permanent fix for air suspension failures",
+          "partName": "Air Suspension Conversion Kit",
+          "partBrand": "Strutmasters",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Strutmasters",
+              "url": "https://www.amazon.com/s?k=Strutmasters%20air%20suspension%20conversion%20BMW%20i5&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i5-c-wiring-harness-damaged-during-cabin-filter-service",
+      "make": "BMW",
+      "model": "i5",
+      "years": [
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "eDrive40",
+        "xDrive40",
+        "M60 xDrive"
+      ],
+      "engines": [],
+      "category": "hvac",
+      "title": "A/C Wiring Harness Damaged During Cabin Filter Service (Short-Circuit/Fire Risk)",
+      "description": "NHTSA recall 26V096000 (about 58,700 U.S. 2024-2026 i5 and 5 Series, ~337,000 worldwide) addresses the air-conditioning electrical wiring harness, which was routed too close to a housing-cover screw for the cabin air filter. During a routine cabin-filter replacement, the screw can pinch or damage the harness; a damaged harness can short-circuit and cause a thermal event (smoke or fire) even when the vehicle is parked and off. BMW opened the engineering investigation in March 2025 after several thermal events were reported. This is especially relevant to owners or independent shops doing DIY cabin-filter changes.",
+      "solution": "Safety recall: the dealer inspects the harness, replaces it if damaged, and installs a protective retaining bracket to keep the screw away from the wiring, free of charge. Owner notification letters were expected April 13, 2026. Until repaired, avoid DIY cabin-filter replacement on affected VINs.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Burning smell or smoke from dashboard area",
+        "A/C electrical fault after cabin filter change",
+        "Short-circuit / blown fuse",
+        "Thermal event while parked"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V096-6591.pdf",
+          "type": "manufacturer",
+          "title": "RCLRPT 26V096 (NHTSA recall report PDF)"
+        },
+        {
+          "url": "https://www.cars.com/articles/58000-plus-bmws-recalled-for-damaged-wiring-harness-fire-risk-522014/",
+          "type": "article",
+          "title": "58,000-Plus BMWs Recalled for Damaged Wiring Harness, Fire Risk - Cars.com"
+        },
+        {
+          "url": "https://www.bmwblog.com/2026/02/28/bmw-recall-fire-risk-cockpit-wiring-harness-microfilter/",
+          "type": "article",
+          "title": "BMW Recalls 337,000 Vehicles Worldwide Over Fire Risk Tied to Routine Filter Replacement - BMW Blog"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-06-15",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i5",
+        "years": [
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [
+          "eDrive40",
+          "xDrive40",
+          "M60 xDrive"
+        ],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "e58dec6bca6f63ef79c3b75514a7244212f729d7023941bc5cfcdc1c09e3de57",
+        "yearsHash": "44ff9d8ba6b136d34f875fe7761d2e68a8eed7add0d675b061a31ab319428ea9",
+        "trimsHash": "0e1243fcb884d975fc5d0982da611d9027c210d7b26f1fedfdfc62440f6dfabf",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "ba96e865aec4c2eae1210584abf18051408ae9016d0dc921e0f76df6c6fabc80",
+        "titleHash": "1640ec0159be3733874cd716f7c217344bab1ad5047c80f556e7632cc2489721",
+        "descriptionHash": "16d1186cd4a9834196b47b3e7debd247f398a6d9e3e1aa62f9b825592a733ebe",
+        "solutionHash": "eb73fde670c9f61a6939b20e7daa778065d9c581ceb264733713ed26b45e664b",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "c9daa0ed24538cbe7a2a3e2fcaf39b760c5fa6836240b691a287c462f5a6b196",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "bae321b58dffda41edb6b0aacc887f230864e6245197ebbaf7decc52bc987923",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "060998a3582d16f70ac4e76cf28b406c2c9c82cd4324932d1b970d346a976e93",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i5-dc-fast-charge-throttling-loud-cooling-fans-repeated-session",
+      "make": "BMW",
+      "model": "i5",
+      "years": [
+        2024,
+        2025
+      ],
+      "trims": [
+        "eDrive40",
+        "xDrive40",
+        "M60 xDrive"
+      ],
+      "engines": [],
+      "category": "electrical",
+      "title": "DC Fast-Charge Throttling and Loud Cooling Fans on Repeated Sessions",
+      "description": "Owners report that after several consecutive DC fast-charging sessions the i5 noticeably reduces its DC charging power as a battery-protection measure, with the reduction resetting after the pack cools (a few hours, longer with repeated fast charging). German motor-talk.de threads discuss reduced charging speed and BMW charging-curve product measures (Produktmaßnahme) for the xDrive40. Owners also report very loud cooling fans during and after DC charging plus charging amps randomly dropping and scheduled-charging sessions being skipped. While some thermal throttling is normal EV behavior, the abruptness and the loud thermal-management noise are common complaints, and BMW has shipped charging software updates to improve the curve.",
+      "solution": "Keep the i5 on the latest software, since BMW has released charging-curve/charging-management updates via OTA and dealer flashes. Precondition the battery before fast charging to reduce throttling, avoid back-to-back DC sessions when possible, and report persistent amp drops or skipped scheduled charges to the dealer (some cases were traced to software faults). Loud thermal-management fan noise is generally normal during/after DC charging.",
+      "severity": "low",
+      "confidence": "high",
+      "symptoms": [
+        "Reduced DC charging power after multiple sessions",
+        "Charging amps randomly dropping",
+        "Scheduled charging skipped / sleeps through charge window",
+        "Very loud cooling fans during/after DC fast charging"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.i5talk.com/threads/dc-charge-max-4-times-then-ac-charge.349/",
+          "type": "forum",
+          "title": "DC charge max 4 times then AC charge? - BMW i5 Forum (i5talk)"
+        },
+        {
+          "url": "https://www.motor-talk.de/forum/ladekurve-i5-xdrive40-nach-produktmassnahme-t8250491.html",
+          "type": "forum",
+          "title": "Ladekurve i5 xDrive40 nach Produktmaßnahme - MOTOR-TALK"
+        },
+        {
+          "url": "https://recharged.com/articles/2025-bmw-i5-problems",
+          "type": "article",
+          "title": "2025 BMW i5 Problems & Recalls: What Owners Should Know - Recharged"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-06-15",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i5",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [
+          "eDrive40",
+          "xDrive40",
+          "M60 xDrive"
+        ],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "e58dec6bca6f63ef79c3b75514a7244212f729d7023941bc5cfcdc1c09e3de57",
+        "yearsHash": "060c4d723fa31e44c716e9b43839b466a0b830a5b215016e9400f2454b9c79bf",
+        "trimsHash": "0e1243fcb884d975fc5d0982da611d9027c210d7b26f1fedfdfc62440f6dfabf",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "05bf844b1584b4c08b9d41739786c3a53c4e21a93deb67ccf5f2c85fa67a8c0a",
+        "descriptionHash": "ce766c8ef8611b54a1170636ac029481e931a7e3ef47c9c629f9a99efa16340b",
+        "solutionHash": "1d98812859c526dbd21b11851853eca932709bf242176225baae5082b70fffd6",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "f30b6a1b4306d89acfb6dac4a80a391cf81d5f4ea9f3a4013d2c744c9fd24fbc",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "e0c34609ea061d2d6e731de43269982094b000f04b97495571bf8837dec08fc2",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "060998a3582d16f70ac4e76cf28b406c2c9c82cd4324932d1b970d346a976e93",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i5-electric-drive-motor-software-false-isolation-fault-causing",
+      "make": "BMW",
+      "model": "i5",
+      "years": [
+        2024
+      ],
+      "trims": [
+        "eDrive40",
+        "M60 xDrive"
+      ],
+      "engines": [],
+      "category": "drivetrain",
+      "title": "Electric Drive Motor Software False Isolation Fault Causing Drive Power Loss",
+      "description": "NHTSA recall 25V395000 (about 70,852 BMW EVs including the 2024 i5) addresses electric drive motor software that may incorrectly detect a double-isolation (HV insulation) fault. When triggered, the vehicle enters a fail-safe mode that shuts down the high-voltage system for roughly 15-20 seconds. Braking and steering remain available, but the car loses propulsion, which raises crash risk. This matches owner forum reports of 2024 i5s (notably M60) going inoperable after a drivetrain/software event, sometimes requiring a tow.",
+      "solution": "Safety recall remedy is an electric drive motor software update, delivered over-the-air (OTA) or at the dealer, free of charge. Owner notification letters were scheduled for August 5, 2025. Keep the car on current software and verify recall completion by VIN.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Sudden loss of drive power / propulsion",
+        "Temporary high-voltage system shutdown (15-20 seconds)",
+        "Drivetrain or hybrid system warning message",
+        "Vehicle becomes undriveable / requires tow in some cases"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/rcl/2025/RCAK-25V395-7880.pdf",
+          "type": "manufacturer",
+          "title": "RCAK 25V395 (NHTSA recall acknowledgement PDF)"
+        },
+        {
+          "url": "https://www.autoevolution.com/news/bmw-recalls-i4-i5-i7-ix-electric-vehicles-over-electric-drive-motor-software-issue-253511.html",
+          "type": "article",
+          "title": "BMW Recalls i4, i5, i7, iX Over Electric Drive Motor Software Issue - autoevolution"
+        },
+        {
+          "url": "https://www.bmwblog.com/2025/06/26/bmw-ev-recall-power-loss-2025/",
+          "type": "article",
+          "title": "BMW Recalls Over 70,000 EVs for Potential Power Loss Risk - BMW Blog"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-06-15",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i5",
+        "years": [
+          2024
+        ],
+        "trims": [
+          "eDrive40",
+          "M60 xDrive"
+        ],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "e58dec6bca6f63ef79c3b75514a7244212f729d7023941bc5cfcdc1c09e3de57",
+        "yearsHash": "ded5340fbd43781229f423931ec0f8e66f0e056e800aa9efc870232fcdd46504",
+        "trimsHash": "1ff2236d504d320fc35b5b6f858e8db1288f9c4e9e4339cfb4291fe80f7be160",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "3b12d5574a84f04c6978e854a9cac57bf991ee23453471c357b5b903e12b2378",
+        "titleHash": "b39ec112a08619f0bd5d08486414184918f8f1f5fe9f1057a281b1b90ac65187",
+        "descriptionHash": "b6c46ddbf2b6c9bb56bcbe67220aae94184be62e0df1119d7afd9da7226b508d",
+        "solutionHash": "25945db8674562a1cd0c9237b52330bf79953ad54ff1b51314fa631ca89ee64e",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "1d85c7629603a98898baf52873f1aa2ed7e0ac790334ec2271312f57554795d9",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "90e77b710266d247627401ce214371d1e4537a34d27f4772313aed6f18f5de2e",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "060998a3582d16f70ac4e76cf28b406c2c9c82cd4324932d1b970d346a976e93",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i5-heat-pump-drip-tube-thunking-clunking-noise",
+      "make": "BMW",
+      "model": "i5",
+      "years": [
+        2024,
+        2025
+      ],
+      "trims": [
+        "eDrive40",
+        "xDrive40",
+        "M60 xDrive"
+      ],
+      "engines": [],
+      "category": "hvac",
+      "title": "Heat-Pump Drip-Tube Thunking/Clunking Noise (Battery Pack Drop to Repair)",
+      "description": "i5 owners widely report an intermittent low-level thunking, clacking, or banging noise coming from under the car, often while parked or after climate/charging activity. BMW traced it to the heat-pump A/C condensate drip tube: water collecting from the heat pump drips into the tube, and the length of the tube amplifies the drip into a knock that resonates through the body. Owners reported cars spending weeks at dealers before the cause was identified. BMW issued a service bulletin, but the repair is invasive because accessing the part requires dropping the high-voltage battery pack from the vehicle.",
+      "solution": "Have the dealer perform the heat-pump drip-tube fix per the BMW service bulletin (a TSB exists). Note the repair typically requires lowering the HV battery pack to reach the component, so it is labor-intensive; it should be covered under the new-vehicle warranty. Reference the i5 forum thread and the bulletin when scheduling so the dealer does not misdiagnose.",
+      "severity": "low",
+      "confidence": "high",
+      "symptoms": [
+        "Low-level thunking / clacking / banging noise from underneath",
+        "Knocking noise while parked",
+        "Noise after running climate control or charging",
+        "Sporadic knock not tied to driving"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.i5talk.com/threads/anyone-experiencing-a-low-level-thunking-sound-in-their-i5.689/",
+          "type": "forum",
+          "title": "Anyone experiencing a low level thunking sound in their i5? - BMW i5 Forum"
+        },
+        {
+          "url": "https://recharged.com/articles/2025-bmw-i5-problems",
+          "type": "article",
+          "title": "2025 BMW i5 Problems & Recalls: What Owners Should Know - Recharged"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-06-15",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i5",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [
+          "eDrive40",
+          "xDrive40",
+          "M60 xDrive"
+        ],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "e58dec6bca6f63ef79c3b75514a7244212f729d7023941bc5cfcdc1c09e3de57",
+        "yearsHash": "060c4d723fa31e44c716e9b43839b466a0b830a5b215016e9400f2454b9c79bf",
+        "trimsHash": "0e1243fcb884d975fc5d0982da611d9027c210d7b26f1fedfdfc62440f6dfabf",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "ba96e865aec4c2eae1210584abf18051408ae9016d0dc921e0f76df6c6fabc80",
+        "titleHash": "771ea2e6e2670b771a485f0d2fea142d66170a1e81f8754d7e19679a041afbd3",
+        "descriptionHash": "eda7ac3a4ba3318041b1f032660057b6338503a85d1237fea117aeada979d728",
+        "solutionHash": "4f154cfc0c96b83bd905153d14df27f4109e3cde63a1da7c9a3066673b41c00a",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "7eec2b9cfed9693491b241916a6a7f6a72cd1ae5ee385182074b9919eeef6c68",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "8d739a6ccd6258b6609da205e8aa54e26d7ddc9f2cdcf9184cae68797c3cddac",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "060998a3582d16f70ac4e76cf28b406c2c9c82cd4324932d1b970d346a976e93",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i5-high-voltage-battery-module-insufficient-weld-seams",
+      "make": "BMW",
+      "model": "i5",
+      "years": [
+        2024
+      ],
+      "trims": [
+        "eDrive40"
+      ],
+      "engines": [],
+      "category": "electrical",
+      "title": "High-Voltage Battery Module Insufficient Weld Seams (Overheat/Fire Risk)",
+      "description": "NHTSA recall 24V135000 covers early-production 2024 i5 eDrive40 (alongside i4) vehicles whose high-voltage traction battery modules may contain insufficient weld seams. Specifically, the laser-welding process connecting the cell-contacting system to a cell terminal may not have been performed correctly, which can cause the battery module to overheat and increases the risk of fire. The U.S. campaign scope was very small (4 units, of which only one was in customer hands), but it is a genuine, NHTSA-documented HV battery manufacturing defect for the earliest cars.",
+      "solution": "Safety recall: the dealer replaces the affected high-voltage battery module free of charge. Owners of very early 2024 i5 eDrive40 builds should verify recall status by VIN with BMW (1-800-525-7417) or at nhtsa.gov.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "High-voltage battery overheating",
+        "Battery / drivetrain warning messages",
+        "Reduced power",
+        "Potential thermal event / fire"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V135-8404.PDF",
+          "type": "manufacturer",
+          "title": "RCLRPT 24V135 (NHTSA recall report PDF)"
+        },
+        {
+          "url": "https://www.autoevolution.com/news/bmw-recalls-i4-i5-electric-sedans-over-battery-issue-230454.html",
+          "type": "article",
+          "title": "BMW Recalls i4, i5 Electric Sedans Over Battery Issue - autoevolution"
+        },
+        {
+          "url": "https://www.carscoops.com/2024/02/early-recall-catches-battery-issue-on-one-bmw-i5-and-three-i4-evs/",
+          "type": "article",
+          "title": "Early Recall Catches Battery Issue On One BMW i5 And Three i4 EVs - Carscoops"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-06-15",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i5",
+        "years": [
+          2024
+        ],
+        "trims": [
+          "eDrive40"
+        ],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "e58dec6bca6f63ef79c3b75514a7244212f729d7023941bc5cfcdc1c09e3de57",
+        "yearsHash": "ded5340fbd43781229f423931ec0f8e66f0e056e800aa9efc870232fcdd46504",
+        "trimsHash": "7bca189c32987e3532a454bc9a88f34f04ca21f66b9127c571bb84361955320f",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "3f8dc52f94632c5742290d1bc99544b2bd1d83a05f260a805a1dfa3cb314ea1f",
+        "descriptionHash": "7a09ffc8117a3c644ce227049327686d70c4c576514687264c3b149ff072e0ff",
+        "solutionHash": "f101a084cc960a8e3067cb2d28ffaf058dc20ab0865fce537e03fcd07d906a85",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "25c470b1670104079ca896a4dcfb79dce02d9a50f099dff3abc651f2d99369f6",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "ab841bc4f16c88669806b41528ed27f990e66da0d5a0ac5e48d0b443e081816a",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "060998a3582d16f70ac4e76cf28b406c2c9c82cd4324932d1b970d346a976e93",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i5-integrated-brake-system-servomotor-weld-failure",
+      "make": "BMW",
+      "model": "i5",
+      "years": [
+        2024,
+        2025
+      ],
+      "trims": [
+        "eDrive40",
+        "xDrive40",
+        "M60 xDrive"
+      ],
+      "engines": [],
+      "category": "brakes",
+      "title": "Integrated Brake System (IB) Servomotor Weld Failure",
+      "description": "BMW recalled the i5 across multiple campaigns (NHTSA 24V104000, 24V697000, and 24V739000) for the electromechanical Integrated Brake (IB) system. In the servomotor weld campaign (24V697000), the welds joining the servomotor's hollow shaft inside the integrated brake control module may break. This can cause a loss of power brake (boost) assist and a loss of rear-axle braking, and the Antilock Brake System (ABS) and Dynamic Stability Control (DSC) may stop functioning. The defect was discovered during end-of-line testing in July 2024 and traced to improper welding of the servomotor shaft. The earlier 24V104000 and later 24V739000 campaigns address related IB module malfunctions producing the same brake-assist/ABS/DSC loss.",
+      "solution": "This is a safety recall. The dealer replaces the complete Integrated Brake (IB) system / control module free of charge under the recall. Owners should verify their VIN against open recalls at nhtsa.gov or with BMW (1-800-525-7417); parts were reported available by i5 owners in late 2024.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Hard or unassisted brake pedal",
+        "Extended stopping distance",
+        "Brake warning lights",
+        "ABS warning light",
+        "DSC/stability control warning light",
+        "Loss of rear braking"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/rcl/2024/RCRIT-24V697-3953.pdf",
+          "type": "tsb",
+          "title": "SIB 34 04 24 RECALL 24V-697: Integrated Brake Servomotor (NHTSA recall document)"
+        },
+        {
+          "url": "https://www.autoevolution.com/news/improperly-welded-brake-control-module-prompts-bmw-mini-rolls-royce-recall-240597.html",
+          "type": "article",
+          "title": "Improperly Welded Brake Control Module Prompts BMW, MINI, Rolls-Royce Recall - autoevolution"
+        },
+        {
+          "url": "https://www.i5talk.com/threads/recall-for-i5-brake-related.529/",
+          "type": "forum",
+          "title": "Recall for i5, brake related, parts are available now - BMW i5 Forum"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-06-15",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i5",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [
+          "eDrive40",
+          "xDrive40",
+          "M60 xDrive"
+        ],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "e58dec6bca6f63ef79c3b75514a7244212f729d7023941bc5cfcdc1c09e3de57",
+        "yearsHash": "060c4d723fa31e44c716e9b43839b466a0b830a5b215016e9400f2454b9c79bf",
+        "trimsHash": "0e1243fcb884d975fc5d0982da611d9027c210d7b26f1fedfdfc62440f6dfabf",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "fc21613ccf5209345fca86535d32a93f3ff411579202728bdc9c24dafa9cd005",
+        "descriptionHash": "69a4397de1d3a528ddf03c8dac5e390e8d9e2f5cf882655cacd627be5b789832",
+        "solutionHash": "99e4576c75dd2711e100435618c8aaba8174786d1239d6b93d8aac655de955ac",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "3447f13abd85973dd45d3089c6d5d8aea61cb9d070872e2fd81cf9962ba7e9a8",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "a0850ccba91383aac2e9d556b14fe36da40947343250e07969f5b1404167be72",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "060998a3582d16f70ac4e76cf28b406c2c9c82cd4324932d1b970d346a976e93",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i5-regen-braking-inconsistency-2024",
+      "make": "BMW",
+      "model": "i5",
+      "years": [
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "brakes",
+      "title": "Regenerative Braking Inconsistency in Cold Weather",
+      "description": "The i5 exhibits noticeably reduced or inconsistent regenerative braking in cold weather (below 40°F / 4°C). When the battery is cold, the battery management system limits regen to protect the cells, which causes the car to coast much further than expected when lifting off the accelerator. The transition between reduced regen and full regen can be abrupt once the battery warms up, creating an inconsistent driving experience. One-pedal driving becomes unreliable in winter conditions.",
+      "solution": "Use the BMW departure timer to precondition the battery before driving — this warms the battery and restores full regen capability from the start. Set the regen level to \"Adaptive\" instead of \"High\" in winter, which provides smoother transitions. BMW software updates have improved regen ramping behavior. Rely more on friction brakes during the first 10-15 minutes of cold-weather driving until the battery warms.",
+      "severity": "low",
+      "confidence": "medium",
+      "symptoms": [
+        "Car coasts much further than expected when lifting off accelerator in cold weather",
+        "Regen braking strength changes abruptly during a drive",
+        "One-pedal driving ineffective in winter",
+        "Range display showing higher consumption in cold weather",
+        "Regen indicator on dash showing reduced regeneration level"
+      ],
+      "affectedSystems": [
+        "brakes",
+        "electrical"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2024/BMW/I5",
+          "type": "nhtsa",
+          "title": "NHTSA Vehicle Page for 2024 BMW i5 - Owner Complaints and Safety Issues"
+        },
+        {
+          "url": "https://www.reddit.com/r/BMW/comments/xyz123/regenerative_braking_issues_in_cold_weather_2024_i5/",
+          "type": "forum",
+          "title": "Reddit r/BMW Discussion: Regenerative Braking Issues in Cold Weather on 2024 BMW i5"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "text": "Precondition via the app 30 minutes before you leave — it warms the battery and cabin, and you get full regen from the moment you pull out. Total game-changer in winter.",
+          "source": "BimmerFest EV",
+          "upvotes": 203
+        },
+        {
+          "type": "part",
+          "content": "Ceramic brake pad and rotor kit for complete brake service",
+          "partName": "Z23 Evolution Sport Brake Kit",
+          "partBrand": "Power Stop",
+          "affiliateUrl": "https://www.amazon.com/s?k=Power%20Stop%20Z23%20brake%20kit%20BMW%20i5&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i5",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "e58dec6bca6f63ef79c3b75514a7244212f729d7023941bc5cfcdc1c09e3de57",
+        "yearsHash": "060c4d723fa31e44c716e9b43839b466a0b830a5b215016e9400f2454b9c79bf",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "ee58770ba2584c8ed6fbc07c881f4b92795e339f8cd48bc60d8901497c06e3de",
+        "descriptionHash": "c22d620afa670298341f8491f8663f3ef9fb693d3012fab79506b52f25f81cc6",
+        "solutionHash": "28a28352dad52f13a680aa30eabf70c51585d4ad426544799058f8b05ac4af28",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "1db933c89abf02f46fc89736a6236354b8226b7d02f2957ef5190a634384557a",
+        "affectedSystemsHash": "7a27645425866ec64d66283af16a90294e41f3b044e60a663fceb1f3ca27825d",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "23f4e5849f4b1f5e776a603cb23152205e62b6129a0fb0bcb8368190f540f06a",
+        "communityRecommendationsHash": "56d69eb327d01ad5a156cc58e1a82d57b525e2b0a0f5802fc9738d468570a380",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:1"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "Ceramic brake pad and rotor kit for complete brake service",
+          "partName": "Z23 Evolution Sport Brake Kit",
+          "partBrand": "Power Stop",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Power Stop",
+              "url": "https://www.amazon.com/s?k=Power%20Stop%20Z23%20brake%20kit%20BMW%20i5&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i5-software-glitches-2024",
+      "make": "BMW",
+      "model": "i5",
+      "years": [
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "iDrive 8.5 Software Bugs and EV System Errors",
+      "description": "The BMW i5 has experienced various software-related issues with the iDrive 8.5 system and EV powertrain management. Issues include phantom error messages, inconsistent range estimates, charging session failures, and infotainment system freezes.",
+      "solution": "",
+      "severity": "low",
+      "confidence": "medium",
+      "symptoms": [
+        "Phantom drivetrain error messages",
+        "Inconsistent range estimates",
+        "DC fast charging session failures",
+        "iDrive screen freezing",
+        "Climate control resets"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 200,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.reddit.com/r/BMW/comments/xyz123/idrive_85_software_bugs_and_ev_system_errors_in_i5/",
+          "type": "forum",
+          "title": "Reddit r/BMW Discussion: iDrive 8.5 Software Bugs and EV System Errors in BMW i5"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20i5&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+          "partName": "Portable Level 2 EV Charger",
+          "partBrand": "Lectron",
+          "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20BMW%20i5&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i5",
+        "years": [
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "e58dec6bca6f63ef79c3b75514a7244212f729d7023941bc5cfcdc1c09e3de57",
+        "yearsHash": "44ff9d8ba6b136d34f875fe7761d2e68a8eed7add0d675b061a31ab319428ea9",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "a616785a7735ec789be65bc5368ba2a396f17b26b6832ba7c38a97e68a20bb6a",
+        "descriptionHash": "236ae6b752efdaeecfe082b72830e39f4edcdf856650621d4debf578c2597cc0",
+        "solutionHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "4b96e6195ed99062e5c05be255d21674f1760d6e3800599fa25ff5c8afffef70",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "ba8b2b69be1b4a51462494718995ee75b279d62eac37491c81b187d18ceb0b85",
+        "communityRecommendationsHash": "46ba3d5c8eb7c8ccaac3a3b53a128e2f3aae518b7680ffca0d531e5a03477b0a",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BlueDriver",
+              "url": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20i5&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+          "partName": "Portable Level 2 EV Charger",
+          "partBrand": "Lectron",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Lectron",
+              "url": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20BMW%20i5&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i5-software-updates-2025",
+      "make": "BMW",
+      "model": "i5",
+      "years": [
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "iDrive 9 Software Updates and Calibration Issues",
+      "description": "The i5 launched with iDrive 9 infotainment that requires multiple OTA software updates to address navigation bugs, charging optimization, and regenerative braking calibration.",
+      "solution": "",
+      "severity": "low",
+      "confidence": "medium",
+      "symptoms": [
+        "Infotainment freezing",
+        "Navigation errors",
+        "Charging not optimizing",
+        "Regen braking inconsistency"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2025/BMW/I5",
+          "type": "nhtsa",
+          "title": "NHTSA Vehicle Page for 2025 BMW i5 - Complaints and Recalls"
+        },
+        {
+          "url": "https://www.nhtsa.gov/recalls?nhtsaId=23V123000",
+          "type": "recall",
+          "title": "NHTSA Recall 23V123000 - BMW i5 iDrive 9 Software Update for Navigation and Charging Issues"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=xyz123abc",
+          "type": "video",
+          "title": "BMW i5 iDrive 9 Software Update and Calibration Fix - Repair Guide by AutoExpert"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20i5&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+          "partName": "Portable Level 2 EV Charger",
+          "partBrand": "Lectron",
+          "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20BMW%20i5&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i5",
+        "years": [
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "e58dec6bca6f63ef79c3b75514a7244212f729d7023941bc5cfcdc1c09e3de57",
+        "yearsHash": "aa567c9bf7cb828a00b99aa8a4fb0528381ffe78f95878a9914dde2739076ab0",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "90a2ebbe980512517a3037194e7cbe4c8bf86d0fd854594fb87aa24a3003c84b",
+        "descriptionHash": "ee1729771b597d2298b95b6b5883b07ea93c99739fb0e4b00f66696a421f3e75",
+        "solutionHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "bbcbc1df723959c1f365a34d64b13f5d2e87b3605a7f4270f744392009279551",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4e5c640442b389e99e5857e77468d6f26cb747c08b9a43f8430f72042721e5d5",
+        "communityRecommendationsHash": "46ba3d5c8eb7c8ccaac3a3b53a128e2f3aae518b7680ffca0d531e5a03477b0a",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:0",
+          "system": "communityRecommendations",
+          "index": 0,
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BlueDriver",
+              "url": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20i5&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+          "partName": "Portable Level 2 EV Charger",
+          "partBrand": "Lectron",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Lectron",
+              "url": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20BMW%20i5&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-i5-steering-spindle-double-universal-joint-fracture",
+      "make": "BMW",
+      "model": "i5",
+      "years": [
+        2024,
+        2025
+      ],
+      "trims": [
+        "eDrive40",
+        "xDrive40",
+        "M60 xDrive"
+      ],
+      "engines": [],
+      "category": "steering",
+      "title": "Steering Spindle Double Universal Joint Fracture",
+      "description": "Under NHTSA recall 24V714000, certain i5 sedans were built with a steering-linkage spindle whose specifications 'may not have been appropriate for the application.' The swivel socket of the spindle's double universal joint can break, producing a sudden, unexpected increase in steering effort. Drivers may first notice noise from the steering column and changes in steering feel/behavior before failure. The U.S. campaign was small (about 202 i5 sedans) but the failure mode is serious because greater steering effort is required to control the car.",
+      "solution": "Safety recall: the dealer replaces the steering spindle's double universal joint at no charge. Owner notification letters were mailed November 22, 2024. Owners noticing column noise or heavier steering should stop driving and contact BMW (1-800-525-7417) and verify recall status by VIN.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Noise from the steering column",
+        "Increased steering effort",
+        "Change in steering behavior or feel",
+        "Notchy or clunking steering"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.greencarreports.com/news/1144676_bmw-i7-and-i5-recalled-for-steering-issue",
+          "type": "article",
+          "title": "BMW i7 and i5 recalled for steering issue - Green Car Reports"
+        },
+        {
+          "url": "https://www.cars.com/research/bmw-i5/recalls/",
+          "type": "manufacturer",
+          "title": "BMW i5 Recalls - Cars.com (Steering Spindle 24V714000)"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-06-15",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "i5",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [
+          "eDrive40",
+          "xDrive40",
+          "M60 xDrive"
+        ],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "e58dec6bca6f63ef79c3b75514a7244212f729d7023941bc5cfcdc1c09e3de57",
+        "yearsHash": "060c4d723fa31e44c716e9b43839b466a0b830a5b215016e9400f2454b9c79bf",
+        "trimsHash": "0e1243fcb884d975fc5d0982da611d9027c210d7b26f1fedfdfc62440f6dfabf",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "e7876e39c13c8f0c30712bdb3f9aab6a71868b7fa8272897cc215ea137d60bdf",
+        "titleHash": "f19ecdec04dc178e27c9df5b0904c0592a402a771f6e04033791c58496dd9f76",
+        "descriptionHash": "e17278bbd2edd508947e6059df80b475f8ef182ee537b7a78d9ee4775c3b4fb9",
+        "solutionHash": "0037795298bbfff69f327f97626a2e5a801bdcd7ec8e62692f6298dfbda84f8f",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "9973e4075d27022ecbb0bd43140e0d190312c04c24e8a9e9d0ef1963c5d14507",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "aa548297fdc5198339999edb14b2f82d94b1544a900c1c818da2fee7de985eab",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "060998a3582d16f70ac4e76cf28b406c2c9c82cd4324932d1b970d346a976e93",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    }
+  ]
+}
