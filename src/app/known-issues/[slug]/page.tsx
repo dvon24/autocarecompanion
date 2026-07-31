@@ -90,6 +90,7 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'bmw-m3',
   'bmw-m3-cs',
   'bmw-m340i',
+  'bmw-m4',
   'cadillac-allante',
   'cadillac-ats',
   'cadillac-catera',
@@ -156,6 +157,33 @@ export async function generateMetadata({
   const highCount = issues.filter((i) => i.severity === 'high').length;
   const totalReports = issues.reduce((sum, i) => sum + i.reportCount, 0);
   const vehicleName = `${parsed.make} ${parsed.model}`;
+
+  if (issues.length === 0 && SEO_AUDITED_MODEL_SLUGS.has(slug)) {
+    const title = `${vehicleName} Problems & Known Issues`;
+    const description = `Evidence-reviewed ${vehicleName} owner reference with VIN-first recall guidance, symptom diagnosis next steps, and audited issue coverage from Au7o.`;
+    const baseUrl = `https://au7o.io/known-issues/${slug}`;
+    const isThinYearVariant = requestedYear != null;
+    return {
+      title,
+      description,
+      robots: isThinYearVariant
+        ? { index: false, follow: true, googleBot: { index: false, follow: true } }
+        : undefined,
+      openGraph: {
+        title,
+        description,
+        type: 'article',
+        url: baseUrl,
+        siteName: 'Au7o',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+      },
+      alternates: { canonical: baseUrl },
+    };
+  }
 
   // Title: when year-specific, lead with that single year. Otherwise the
   // full year range. Owners search "2014 BMW 1 Series problems" 5x more
@@ -412,6 +440,139 @@ export default async function KnownIssuesArticlePage({
     getArticleDates(make, model),
     getRelatedVehicles(make, model),
   ]);
+
+  if (allIssues.length === 0) {
+    if (!SEO_AUDITED_MODEL_SLUGS.has(slug)) notFound();
+    const vehicleName = `${make} ${model}`;
+    const articleUrl = `https://au7o.io/known-issues/${slug}`;
+    const title = `${vehicleName} Problems & Known Issues`;
+    const emptyFaqs = [
+      {
+        question: `Does Au7o currently publish a verified ${vehicleName} issue card?`,
+        answer: `No current ${vehicleName} card passed the full-record evidence threshold. Earlier broad owner or aftermarket claims were removed rather than presented as confirmed defects or universal repairs.`,
+      },
+      {
+        question: `How should I check my ${vehicleName} for safety recalls?`,
+        answer: `Use the 17-character VIN at NHTSA.gov/recalls and BMW's recall lookup. Recall eligibility depends on the exact VIN, production date, installed equipment, and campaign completion history.`,
+      },
+      {
+        question: `What should I do if my ${vehicleName} has a problem not listed here?`,
+        answer: `Record the symptoms, warning messages, DTCs, operating conditions, recent work, and VIN-specific configuration, then use a qualified BMW diagnosis before ordering parts.`,
+      },
+    ];
+    return (
+      <div className="min-h-screen" style={{ background: '#F7F6F2' }}>
+        <header
+          className="sticky top-0 z-30 px-6 py-4"
+          style={{
+            background: 'rgba(247,246,242,0.85)',
+            backdropFilter: 'blur(20px) saturate(140%)',
+            WebkitBackdropFilter: 'blur(20px) saturate(140%)',
+            borderBottom: '1px solid #E3DFD4',
+          }}
+        >
+          <div className="max-w-6xl mx-auto flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-2">
+              <Image src="/og-image.png" alt="Au7o mascot" width={32} height={32} className="rounded-lg" />
+              <span className="text-2xl font-bold tracking-tight" style={{ color: '#0B1220' }}>
+                Au<span style={{ color: '#3B82F6' }}>7</span>o
+              </span>
+            </Link>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Link href="/known-issues" className="hidden sm:inline-block px-3 sm:px-4 py-2 text-sm font-medium text-[#475569] hover:text-[#0B1220] transition-colors">
+                Known Issues
+              </Link>
+              <Link href="/get-started" className="px-3 sm:px-4 py-2 text-sm font-semibold bg-[#3B82F6] text-white rounded-lg transition-colors hover:bg-[#2563EB]">
+                Get Started
+              </Link>
+            </div>
+          </div>
+        </header>
+
+        <FAQJsonLd questions={emptyFaqs} />
+        <BreadcrumbJsonLd items={[
+          { name: 'Au7o', url: 'https://au7o.io' },
+          { name: 'Known Issues', url: 'https://au7o.io/known-issues' },
+          { name: make, url: `/known-issues/make/${make.toLowerCase().replace(/\s+/g, '-')}` },
+          { name: vehicleName, url: articleUrl },
+        ]} />
+
+        <main className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14 pb-24">
+          <nav className="text-sm mb-7 text-[#94A3B8]" aria-label="Breadcrumb">
+            <Link href="/known-issues" className="hover:text-[#475569]">Known Issues</Link>
+            <span className="mx-2">/</span>
+            <Link href={`/known-issues/make/${make.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-[#475569]">{make}</Link>
+            <span className="mx-2">/</span>
+            <span className="text-[#334155]">{model}</span>
+          </nav>
+
+          <div className="text-[11px] font-semibold uppercase mb-3 tracking-[0.08em] text-[#3B82F6]">
+            {make} &middot; Evidence-reviewed owner reference
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-[#0B1220] tracking-[-0.02em]">{title}</h1>
+          <p className="text-base sm:text-lg leading-relaxed text-[#475569] mb-8">
+            No current issue card meets Au7o&apos;s full-record evidence threshold for the {vehicleName}. We kept this established model route useful and indexable while removing broad claims and unverified parts advice.
+          </p>
+
+          <section className="grid gap-4 sm:grid-cols-2 mb-10">
+            <div className="rounded-xl border border-[#E3DFD4] bg-[#FBFAF6] p-5">
+              <h2 className="text-lg font-semibold text-[#0B1220] mb-2">Check VIN-specific recalls</h2>
+              <p className="text-sm leading-relaxed text-[#475569] mb-4">
+                A model-wide list cannot determine campaign eligibility. Use the exact VIN and confirm whether every open remedy is complete.
+              </p>
+              <a href="https://www.nhtsa.gov/recalls" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-[#3B82F6] hover:text-[#2563EB]">
+                Check recalls at NHTSA.gov
+              </a>
+            </div>
+            <div className="rounded-xl border border-[#E3DFD4] bg-[#FBFAF6] p-5">
+              <h2 className="text-lg font-semibold text-[#0B1220] mb-2">Diagnose before buying parts</h2>
+              <p className="text-sm leading-relaxed text-[#475569] mb-4">
+                Preserve warning messages, DTCs, operating conditions and recent repair history. Fitment alone never proves which component failed.
+              </p>
+              <Link href="/get-started" className="text-sm font-semibold text-[#3B82F6] hover:text-[#2563EB]">
+                Get Started with Au7o
+              </Link>
+            </div>
+          </section>
+
+          <KnownIssueAlertSignup vehicleName={vehicleName} context={`known-issues:${vehicleName}`} />
+
+          {related.length > 0 && (
+            <section className="mt-10 mb-10">
+              <h2 className="text-xl font-semibold mb-4 text-[#0B1220]">Other {make} models</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {related.map((vehicle) => (
+                  <Link key={vehicle.slug} href={`/known-issues/${vehicle.slug}`} className="flex items-center justify-between rounded-lg border border-[#E3DFD4] bg-white p-3 hover:border-blue-300 transition-colors">
+                    <span className="text-sm font-medium text-[#475569]">{vehicle.make} {vehicle.model}</span>
+                    <span className="text-xs text-[#94A3B8]">{vehicle.issueCount}</span>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+
+          <section id="faq" className="mt-10">
+            <h2 className="text-xl font-semibold mb-5 text-[#0B1220]">Frequently asked questions</h2>
+            <div className="space-y-5">
+              {emptyFaqs.map((faq) => (
+                <div key={faq.question} className="border-b border-[#E3DFD4] pb-5">
+                  <h3 className="font-semibold text-[#0B1220] mb-2">{faq.question}</h3>
+                  <p className="text-sm leading-relaxed text-[#475569]">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <p className="mt-10 text-xs leading-relaxed text-[#94A3B8]">
+            Audit updated {formatUpdatedLabel(articleDates.modified)}. Absence of a published card does not mean a vehicle cannot develop faults; it means Au7o has not retained a sufficiently bounded defect-and-remedy record for this model.
+          </p>
+        </main>
+
+        <SiteFooter />
+        <MobileBottomBar />
+      </div>
+    );
+  }
 
   // Year-filtered indexable variant. When ?year=YYYY is set AND that year
   // has documented issues, we filter SERVER-SIDE so the SSR HTML
