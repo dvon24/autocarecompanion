@@ -1,0 +1,1016 @@
+{
+  "schemaVersion": 2,
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "auditScope": "full-record",
+  "batchId": "bmw-ix-full-record-cohort-13-2026-07-31",
+  "snapshotHash": "43d81a8eb5278559a8826882bdebb48ceb92623aa935145c945f4e45aaec2649",
+  "sourceSnapshotFileHash": "760742ea7dc69bb53caaaa6ab9136a5c51ea926e16d7b27478276a4d68b558b1",
+  "packetFileHash": "6bfe513f8e85880ac1a12c51d62ce3b3ee8e4c13479ed7b432541bf078b6a094",
+  "reviewApproval": {
+    "approvedAfterBlindAndEdgeReview": true,
+    "approvedOn": "2026-07-31",
+    "blindReviewer": "bmwix_blind:no-blocker",
+    "edgeReviewer": "bmwix_edge:no-blocker",
+    "reviewedGeneratorFileHash": "ac667eec12e447ed16fc6c0fa53d385fe284c419c292c82dfbac3f1d0e1080a4"
+  },
+  "researchedWith": "Ultra-effort current manufacturer/regulator primary-source review; no LLM API and no commerce approval",
+  "controlledDeltaProposals": [
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-ix-high-voltage-battery-cell-recall",
+      "sources": [
+        "https://static.nhtsa.gov/odi/rcl/2022/RCMN-22V541-5322.pdf"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-ix-combined-charging-unit-recall",
+      "sources": [
+        "https://static.nhtsa.gov/odi/rcl/2023/RCONL-23V449-6650.pdf"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-ix-periodic-central-display-flicker",
+      "sources": [
+        "https://static.nhtsa.gov/odi/tsbs/2025/MC-11019580-0001.pdf"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-ix-comfort-access-faults-after-remote-upgrade",
+      "sources": [
+        "https://static.nhtsa.gov/odi/tsbs/2024/MC-10252135-0001.pdf"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "bmw-ix-12v-battery-drain-2022",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"12V Auxiliary Battery Drain - Sleep Mode & Module Wake Issues\" aggregation. It assigns telematics, comfort-access, over-the-air, charging and app behavior as parasitic-draw causes across the model, then promotes generic batteries, maintainers and scan tools without a matching I20 BMW energy-diagnosis bulletin, exact faults or verified battery fitment. Remove all 8 commerce claims and 10 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "06edbb3d2bab24b498b6b7fce1e5ff417780e0033950bcbb8d75167a00d32c74",
+        "descriptionHash": "c20f36c6dfa65796b33edded34b924343088996fdaaa5b4c3f4b2a79d7e41174",
+        "solutionHash": "f5a8bf241e12a542df3bd76c2dbd1f0ee4ca5c8532202df9f23d80eb66c06613",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "0b061e9cbf027d33853f471f836785aa8451f357221808f40c2b51d34a76c116",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "1a1cf797fabe7f95836fabeca626907c77b3e6c9aff7c2290b396a238c69362e",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "347f758e38af47d911817b25cb00be730ae6cad49855231c67fc8014e01977a8",
+        "communityRecommendationsHash": "98810ae648e9d8026f9577128a7219f15f44eb4b28e236fff41807785b0f3e52",
+        "fixPartsHash": "ebbdb6c4ee2addd190d096624b7ade26697602ba9f2c42f8048a064dd95c4932",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6",
+          "communityRecommendations:7",
+          "communityRecommendations:8",
+          "communityRecommendations:9"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Archived - Unsupported BMW iX 12V Sleep and Wake Aggregation",
+        "description": "The former card asserted \"12V Auxiliary Battery Drain - Sleep Mode & Module Wake Issues\" across a broad BMW iX population. It assigns telematics, comfort-access, over-the-air, charging and app behavior as parasitic-draw causes across the model, then promotes generic batteries, maintainers and scan tools without a matching I20 BMW energy-diagnosis bulletin, exact faults or verified battery fitment.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, variant, production date, option codes, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and air-suspension work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW iX \"12V Auxiliary Battery Drain - Sleep Mode & Module Wake Issues\" aggregation and removed 8 commerce claims with 10 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-ix-air-suspension-2022",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Air Suspension Compressor & Air Spring Failures - xDrive50/M60\" aggregation. It turns sag, compressor noise, ride changes and cold-weather behavior into an xDrive50/M60 defect using forum-level evidence, then promotes generic compressors, air springs and a conversion kit without option-code, production-date, leakage-test or BMW bulletin boundaries. Remove all 3 commerce claims and 5 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "72bca3df98c6457fbfee074509e18344b2ceb34aef7c8f3e2d6a2ad7a6215650",
+        "descriptionHash": "649383b4fe87818627dcce97d9856be38f5ca638f009a9640e697496f6093c28",
+        "solutionHash": "88f90de7c7e2bed4fd64286349cd78fb238527619061e908888e4dcdef8ec5e5",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "f98bc9a41b7ee67c005e298ed11a268530b0e97c4cb3fda6c276ab2d774835c8",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "284b7e6d788f363f910f7beb1910473e23ce9d6c871f1ce0f31f22a982d48ad4",
+        "estimatedCostHighHash": "b090147020e033534635010c4f7eb6fc270d44e5df67ea9e744a8087df9ca106",
+        "typicalMileageLowHash": "876c9b16254e157d1eb645390dcfae6f29b9d3cd394e73a91de8ee5d0e67ee43",
+        "typicalMileageHighHash": "891937cb335016e9c7074c3781dcb1364e0c660733a8889bbeae83e6aa759be6",
+        "citationsHash": "bcc06f900cba98dbdfaa63a0e81533ee68ac9f810181f006127d14030a9b2fc0",
+        "communityRecommendationsHash": "49ea712770502fe57db972a23aeb7006b9c5590f1e47e330673f528c6f3fe920",
+        "fixPartsHash": "07d28a567a6a8280ce096623e3c201361b3955669a6904402f68021ea6db4df4",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Archived - Unsupported BMW iX Air-Compressor and Spring Aggregation",
+        "description": "The former card asserted \"Air Suspension Compressor & Air Spring Failures - xDrive50/M60\" across a broad BMW iX population. It turns sag, compressor noise, ride changes and cold-weather behavior into an xDrive50/M60 defect using forum-level evidence, then promotes generic compressors, air springs and a conversion kit without option-code, production-date, leakage-test or BMW bulletin boundaries.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, variant, production date, option codes, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and air-suspension work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW iX \"Air Suspension Compressor & Air Spring Failures - xDrive50/M60\" aggregation and removed 3 commerce claims with 5 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-ix-air-suspension-calibration-2022",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Air Suspension Calibration Errors\" aggregation. It duplicates the air-suspension card and treats ride-height warnings, uneven stance and handling changes as model-wide calibration or sensor failure without a BMW communication, exact faults, option codes or measured ride-height criteria. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "8ff0df1b14c97453bf6e6bab762da0beeb5f4e3ae802d5dbcf6dd4eb1a533aac",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "de92fae6e6296210a80b329f8e9f62e75dd3c30666375e6b3faef0e354f7205b",
+        "descriptionHash": "aefa403d8765ab2e04dca29905df84b87ffaa9d2d4609c8ef199e722687098cd",
+        "solutionHash": "9ee552d728266a49237a8b3687f1a329a5c523d9fc4d9ca7c9a2a17e3df70537",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "6f2a59c2431fbd6d2eedb941b1019ec52471ca34e46d397ca0627048f6a6986d",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "9ae2bdd7beedc2e766c6b76585530e16925115707dc7a06ab5ee4aa2776b2c7b",
+        "estimatedCostHighHash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "43d99b2670d2ad99f3bcfd4b22d84b6af65653e937c5e849ebc6da371bcdb21f",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "a512db2741cd20693e4b16f19891e72b9ff12cead72761fc5e92d2aaf34740c1",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Archived - Unsupported BMW iX Air-Suspension Calibration Aggregation",
+        "description": "The former card asserted \"Air Suspension Calibration Errors\" across a broad BMW iX population. It duplicates the air-suspension card and treats ride-height warnings, uneven stance and handling changes as model-wide calibration or sensor failure without a BMW communication, exact faults, option codes or measured ride-height criteria.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, variant, production date, option codes, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and air-suspension work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW iX \"Air Suspension Calibration Errors\" aggregation and removed 2 commerce claims with 2 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-ix-build-quality-2022",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Panel Gaps & Build Quality Issues\" aggregation. It combines cosmetic alignment, trim, wind noise, seals and interior rattles into a model-wide defect using owner-video and forum evidence, then promotes generic trim tools and weatherstrip without BMW dimensional criteria or a bounded repair procedure. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "bfd4d039e9f8aca33b52a877ded02f73846f28f9095c2bba178316be62ef7c1f",
+        "titleHash": "2983e4fb3d0b6284bb40f4a5371de58b7f6655a59f22a667c9c9d05eefa1ae19",
+        "descriptionHash": "0e1af04f95c93c9c162e5bfad1744b2f1fd0d58ebd4948f980692e5c1086bd60",
+        "solutionHash": "94508801b05b1f7c2ef54ecc94eca06d9f94e2e5256d260848ed6c47126140c7",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "20b85dcae7fb8dec26e0fec6f64d43e3c13fc80f30b43737a7928c0a5d475296",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "4948963369b682612d22b081bdc92c13d23fb921cdd44e50f45d7e86b4b52022",
+        "typicalMileageHighHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "citationsHash": "f3f0bbfa4bad72d24d9cd3549cd1ff622cc733f71b6a20993b732187ba0f26fc",
+        "communityRecommendationsHash": "42def15e02229d26aba8e49b20edd7c63e6abbebd3048476be63c68dc353adbb",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Archived - Unsupported BMW iX Build-Quality Aggregation",
+        "description": "The former card asserted \"Panel Gaps & Build Quality Issues\" across a broad BMW iX population. It combines cosmetic alignment, trim, wind noise, seals and interior rattles into a model-wide defect using owner-video and forum evidence, then promotes generic trim tools and weatherstrip without BMW dimensional criteria or a bounded repair procedure.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, variant, production date, option codes, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and air-suspension work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW iX \"Panel Gaps & Build Quality Issues\" aggregation and removed 2 commerce claims with 2 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-ix-charging-failures-2022",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"DC Fast Charging Failures & Reduced Charging Speed\" aggregation with the bounded primary-source path below. Remove all 4 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "BMW SIB 61 06 24 - BEV/PHEV Charging Complaint Related to Charger or Infrastructure",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-10252029-0001.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "4225dc81cda0cd70150fe5da618c74d225c560215640e130ba047b5f60d688c2",
+        "descriptionHash": "99c6a5b06fdcc434a47e983ff7782ac0fab94ac8ca2149ef8d9a56c35fe8f9d9",
+        "solutionHash": "460fedbcc571443f31acd30b4798e725de917cb5f75fdb37d44f2a9da44f7d5b",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "70c2bef99931c7639de20238a245b094785b5f9e5c1951cff7a95882582320e0",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "ffae318fd280cae6ce2c1e165c98a492331598bb2181ea5524c3d892b3eb8713",
+        "communityRecommendationsHash": "829d3373c565ea262e08786c27a3ebc44251babf2c35dcb5dcbdd72c4e103934",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "iX Charger/Infrastructure-First Charging Diagnosis",
+        "description": "BMW SIB 61 06 24 defines an I20 iX path for charging complaints where the charger, infrastructure, authentication, vehicle settings, connector condition, temperature or the vehicle may be responsible. BMW requires the customer complaint and charging conditions to be documented before assigning a vehicle fault. The bulletin does not support a universal iX DC-fast-charge defect or fixed charging-speed threshold.",
+        "solution": "Document where and how the failure occurred, displayed messages, charger type, authentication method and vehicle charge settings. Test another charger, outlet, adapter or public station, inspect the plug/socket, and run BMW ISTA charging tests before condemning the vehicle. Only after the vehicle works at the dealer and fails at the customer location should infrastructure be treated as likely. Exact 2022 iX ShowMeTheParts data contains no charging category or candidate, so no retail link is approved.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Charging does not start or is interrupted",
+          "Charging power is lower than expected",
+          "Complaint changes with charger, station, authentication or settings"
+        ],
+        "affectedSystems": [
+          "charging infrastructure",
+          "high-voltage charging socket",
+          "vehicle charging settings and electronics"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "BMW SIB 61 06 24 - BEV/PHEV Charging Complaint Related to Charger or Infrastructure",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-10252029-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen \"DC Fast Charging Failures & Reduced Charging Speed\" card with bounded BMW/NHTSA scope and removed 4 commerce claims with 4 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-ix-dc-fast-charging-issues-2022",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"DC Fast Charging Speed Inconsistency\" aggregation. It duplicates the retained infrastructure-first diagnosis but adds asserted charging curves, battery-temperature and session-frequency thresholds across unsupported future years, then promotes chargers and adapters that do not diagnose the cause. Remove all 4 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "8ff0df1b14c97453bf6e6bab762da0beeb5f4e3ae802d5dbcf6dd4eb1a533aac",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "4ab77a49b2d71fe5c75703c4c969d0040c622b5e668beebaa99cbc7cab32efff",
+        "descriptionHash": "8386da8568f09b104690e2bcd424a65cc66be1a3c3d936ff7226b08b1d8067ee",
+        "solutionHash": "56b9eef0229843bcf16eaa4c9f4e072dc6490d349b3773f90cdcfeca9646e39f",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "108a30d710b5c64cb1d57176258a32132b9444a01e47485ac3b321996c358578",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "81a83544cf93c245178cbc1620030f1123f435af867c79d87135983c52ab39d9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "7c09cbb3b954fe01090227ef1305b05c7d6b41498670b26a236c4474679fe250",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "6af1f692e9496c6d0b668316eccb93276ae6b6774fa728aac31ff40a38318760",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Archived - Unsupported BMW iX Duplicate DC-Charging Aggregation",
+        "description": "The former card asserted \"DC Fast Charging Speed Inconsistency\" across a broad BMW iX population. It duplicates the retained infrastructure-first diagnosis but adds asserted charging curves, battery-temperature and session-frequency thresholds across unsupported future years, then promotes chargers and adapters that do not diagnose the cause.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, variant, production date, option codes, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and air-suspension work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW iX \"DC Fast Charging Speed Inconsistency\" aggregation and removed 4 commerce claims with 4 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-ix-hv-battery-ecu-software-2022",
+      "disposition": "recall-dealer",
+      "decision": "Replace the frozen \"High Voltage Battery ECU Software - Loss of Drive Power (Recall)\" aggregation with the bounded primary-source path below. Remove all 5 commerce claims and 5 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "recall",
+          "label": "NHTSA Part 573 Safety Recall 25V-395 - Electric Drive Motor Software",
+          "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V395-0855.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "74d282913e456c9022479ef0009fc987bafd768a38811f1e269dc648a06ac0fa",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "9db1fa0e868b5feb571a3c24fb1d3445fdbf42147ab4f5e96fe114835666019e",
+        "descriptionHash": "3df60009fc887334869c285b16c3d96e11c0cb3fc436dfcaf5a3b420d3189be1",
+        "solutionHash": "d817cbcc434aee6196c80eeed537dff05ef9be40472d12d55f619d9aec19d6fe",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "61b6e04b289c4adf80f0b0bb6205bf4a528ea9eef03f4313af082d3dff977218",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "497c745f4e8b9bbac18fa3db1f8ea2d4acac02e30bec15eaad024882f1dec76f",
+        "communityRecommendationsHash": "4ebb9d6e47246d15ee0555cc8b5a543eb8e1cff6160d00a21f6902efc03fae46",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6",
+          "communityRecommendations:7",
+          "communityRecommendations:8"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "2022-2024 iX Propulsion-Loss Recall 25V-395",
+        "description": "BMW recall 25V-395 covers 25,447 VIN-defined 2022-2024 iX vehicles produced February 4, 2021 through January 16, 2024. Electric-drive-motor software can mistakenly identify a double-isolation condition and shut down the high-voltage system about 15-20 seconds after a red warning, causing loss of propulsion. Power-assisted steering and braking remain available.",
+        "solution": "Check the VIN for an open 25V-395 campaign. If included, install BMW's free electric-drive-motor software update through the authorized dealer or approved recall over-the-air process. Do not order a battery ECU, motor or battery part from this card. Capture any red warning and arrange diagnosis if the VIN is not included or the fault remains after the recall remedy.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "VIN shows an open 25V-395 recall",
+          "Red drivetrain warning and red warning symbol",
+          "High-voltage shutdown and loss of propulsion about 15-20 seconds later"
+        ],
+        "affectedSystems": [
+          "electric drive motor software",
+          "high-voltage shutdown logic"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall 25V-395 - Electric Drive Motor Software",
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V395-0855.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "recall-related",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen \"High Voltage Battery ECU Software - Loss of Drive Power (Recall)\" card with bounded BMW/NHTSA scope and removed 5 commerce claims with 5 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-ix-idrive8-crashes-2022",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"iDrive 8 System Crashes, Reboots & Screen Blank\" aggregation. It combines freezing, rebooting, black screens, audio, navigation, phone integration and climate controls into a single all-year defect using owner anecdotes, then promotes generic scan tools and accessories without exact head-unit version, software level or BMW test path. Remove all 5 commerce claims and 5 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "35011cb13edca15e94246985835eb9d5b381f03f7dcf6ec65a797c0d02d16570",
+        "descriptionHash": "93b878e9a7fe6a10d08158cb9bbb8ee3aef577f254158aca47ca8bf088eabb8b",
+        "solutionHash": "4d1881ce43f626b6d0dea05b94301483c80928bb69e9a342ea3163b205e8c395",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "cf1311d1a945efb41ba3a8b5bdc1904a22117a66ad6c89ae4a2c41fa4bbc828d",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "81a83544cf93c245178cbc1620030f1123f435af867c79d87135983c52ab39d9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "75a19dc17e4265fba8f483763cc40f9f7e3196aae396169a48e8506e5857f4c3",
+        "communityRecommendationsHash": "fc543fd1c779cc041205e4a15e7307c1c4674129a1422b780592dbc8fbaba94b",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "11f2f144c830d91c34f16f7317f5c99ac95482525ad76217d2ae54dc166b20f5",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6",
+          "communityRecommendations:7"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Archived - Unsupported BMW iX iDrive 8 Aggregation",
+        "description": "The former card asserted \"iDrive 8 System Crashes, Reboots & Screen Blank\" across a broad BMW iX population. It combines freezing, rebooting, black screens, audio, navigation, phone integration and climate controls into a single all-year defect using owner anecdotes, then promotes generic scan tools and accessories without exact head-unit version, software level or BMW test path.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the exact model year, variant, production date, option codes, symptoms, DTCs, open recalls and current BMW service information before diagnosis. High-voltage and air-suspension work belongs with properly trained personnel.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW iX \"iDrive 8 System Crashes, Reboots & Screen Blank\" aggregation and removed 5 commerce claims with 5 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-ix-infotainment-screen-blackout-2022",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"Infotainment Screen Blackouts\" aggregation with the bounded primary-source path below. Remove all 4 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "BMW SIB 65 28 25 - Multifunction Display Operation Issues",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2026/MC-11026964-0001.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "8ff0df1b14c97453bf6e6bab762da0beeb5f4e3ae802d5dbcf6dd4eb1a533aac",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "85003945405d52e359f575bbe5eaf64a489bc3b9b898ef60c53fdbc04c6961d8",
+        "descriptionHash": "6c6650f11a9f4ac3f7534be2a3ac113959ffa98be5de588a5ef6396266033bd2",
+        "solutionHash": "8e9bbbe4802b0aef453caaf5614ae91ce1cd2b7b1fa0fd53bcaa276b6a7f4030",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "10c84fad872c86a584234c83c0e6d159eb7c05694a3b32a2c4e65b0dbec3ef48",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "0f5759d9638030fc13fefafe22c5599e16412ca602290f240d51df5de4e16ffb",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "iX HU-H4/H5/H6 Multifunction Black-Screen Path",
+        "description": "BMW SIB 65 28 25 defines an I20 iX path with Head Unit 4, 5 or 6 for an intermittent or permanent Multifunction Display black screen, including a missing navigation display. BMW identifies unfavorable head-unit software. This does not support the frozen card's broad hardware, wiring, battery-voltage or all-screen replacement assumptions.",
+        "solution": "Confirm the installed head-unit generation and current I-level. With the vehicle stationary, follow the bulletin sequence: full sleep cycle, a volume-control head-unit reset longer than 70 seconds, the BMW-directed 12-volt reset when necessary, then ISTA display test plan ABL-DIT-AT6581_CID3. Program the complete vehicle only through the BMW path and do not replace the display before the required tests.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Intermittent Multifunction Display black screen",
+          "Permanent Multifunction Display black screen",
+          "Head-unit function such as navigation is not displayed"
+        ],
+        "affectedSystems": [
+          "Multifunction Display",
+          "Head Unit 4, 5 or 6"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "BMW SIB 65 28 25 - Multifunction Display Operation Issues",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2026/MC-11026964-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen \"Infotainment Screen Blackouts\" card with bounded BMW/NHTSA scope and removed 4 commerce claims with 4 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-ix-phantom-braking-2022",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen \"Phantom Braking & False Forward Collision Warnings\" aggregation with the bounded primary-source path below. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "BMW SIB 66 05 23 - ADCAM Camera-Based Assistance System Limits",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10244242-0001.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "a152b294d155b88b32e41b6614514d40705bee20ec93849c8bf9fc0881e75d0f",
+        "descriptionHash": "556d986a3d278102e958f4e45570a8502bad8f756ac9353e82ff994f4a453e74",
+        "solutionHash": "0a2a941c8ca421b52633d84d523890c151b4451fff0e3797d69a52fdfe0e887e",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "806258c0521a41f49999d196270f3fa42c937775b6656b1b1b04a0bda8baab2e",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "68c8d1a052ea8bc9aefe07a75305ed7653e931f06780ef3fadc0b77901b344a4",
+        "communityRecommendationsHash": "e390ecd298ad52226d6e7a2b68614611d6c26c09984f7e73249bcdce99c827c2",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "iX ADCAM False-Warning and Sensor-Limit Diagnosis",
+        "description": "BMW SIB 66 05 23 defines an I20 iX path for camera-based assistance complaints including deactivation, missed road signs and excessively frequent Check Control messages 930 or 2260. BMW identifies environmental visibility limits, windshield/camera installation, non-approved tires and chassis changes as possible boundaries. The bulletin does not establish model-wide phantom braking or prove a failed radar sensor.",
+        "solution": "Read ADCAM fault memory with ISTA before replacing anything. Inspect and clean the windshield camera area, verify wiper performance and camera-holder installation, and document weather, light, traffic and road conditions. If fault 7E00A0 follows windshield replacement, start the required camera calibration in ISTA. If no fault or installation problem exists, explain the owner-manual operating limits; BMW states parts replacement does not correct environmental system limitations.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "ADCAM assistance deactivates or cannot be activated",
+          "Check Control message 930 or 2260 appears excessively",
+          "Fault 7E0197 for short-term sensor blindness",
+          "Fault 7E00A0 after windshield replacement or incomplete calibration"
+        ],
+        "affectedSystems": [
+          "ADCAM front camera",
+          "camera-based driver assistance",
+          "windshield camera holder and calibration"
+        ],
+        "dtcCodes": [
+          "7E0197",
+          "7E00A0"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "BMW SIB 66 05 23 - ADCAM Camera-Based Assistance System Limits",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10244242-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen \"Phantom Braking & False Forward Collision Warnings\" card with bounded BMW/NHTSA scope and removed 2 commerce claims with 2 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}

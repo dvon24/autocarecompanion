@@ -83,6 +83,7 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'bmw-i5',
   'bmw-i7',
   'bmw-i8',
+  'bmw-ix',
   'cadillac-allante',
   'cadillac-ats',
   'cadillac-catera',

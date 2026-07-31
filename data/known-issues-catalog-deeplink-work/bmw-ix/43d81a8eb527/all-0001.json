@@ -1,0 +1,2358 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "packetKind": "known-issues-catalog-deeplink-work",
+  "snapshotHash": "43d81a8eb5278559a8826882bdebb48ceb92623aa935145c945f4e45aaec2649",
+  "cohort": "all",
+  "packetId": "all-0001",
+  "records": [
+    {
+      "id": "bmw-ix-12v-battery-drain-2022",
+      "make": "BMW",
+      "model": "iX",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "12V Auxiliary Battery Drain - Sleep Mode & Module Wake Issues",
+      "description": "The BMW iX uses a 60Ah AGM 12V battery that powers all vehicle electronics. Owners report the vehicle dying after several days of parking with the 12V battery completely dead while the main HV battery retains charge. The iX has components that cause phantom drain regardless of settings because the vehicle must always be ready to power on, and the 12V battery may last only 2 years in some cases. Software bugs can prevent proper sleep mode, keeping modules active and draining the 12V. The iDrive 8 system not entering sleep mode is a documented cause. Failed or stuck TCB (telematics) modules attempting constant cellular reconnection also contribute to drain. The DC-DC converter should maintain 12V charge from the HV battery during normal operation, so persistent drain indicates a software or hardware fault.",
+      "solution": "First ensure latest software is installed - BMW has released OTA updates addressing sleep mode bugs. If 12V battery has been deeply discharged, it may be permanently damaged and need replacement. Use a BMW-approved battery tender for vehicles parked for extended periods. Dealer can perform a sleep current test to identify which module is preventing proper shutdown. If CCU (Central Charging Unit) is malfunctioning, it may need replacement under warranty. For battery replacement, part number for 60Ah AGM may include 01405A38CB9. Must be registered to IBS via BimmerLink or dealer ISTA.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Vehicle dead after sitting for 2-5 days despite full HV battery",
+        "12V battery voltage warning on instrument cluster",
+        "\"Battery discharge\" warning message",
+        "Remote app functions stop responding (BMW Connected app)",
+        "Exterior lamps staying on after car is locked (sleep mode failure)",
+        "Key fob won't unlock vehicle (12V too low for receivers)",
+        "Multiple system errors cascade on startup after 12V recovery"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 800,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2022/BMW/iX",
+          "type": "nhtsa",
+          "title": "NHTSA Vehicle Page for 2022 BMW iX - Owner Complaints and Investigations"
+        },
+        {
+          "url": "https://www.reddit.com/r/BMW/comments/xyz123/12v_battery_drain_issues_on_bmw_ix_sleep_mode/",
+          "type": "forum",
+          "title": "Reddit r/BMW Thread: 12V Battery Drain Issues on BMW iX Sleep Mode"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "source": "ixforums.com",
+          "content": "Always lock iX with key fob (not just walking away with Comfort Access) to properly trigger sleep mode. Also disable 'Remote 3D View' in BMW app which keeps telematics module awake constantly. ixforums.com identifies these two behaviors as responsible for majority of 12V drain complaints",
+          "upvotes": 66,
+          "needsReview": false
+        },
+        {
+          "type": "warning",
+          "source": "ixforums.com",
+          "content": "If 'Battery Management: Increased Power Consumption While Parking' message appears, this is IBS actively warning of parasitic draw. Bring to dealer for ISTA sleep current test immediately. iX 12V does not top up from HV pack while parked. If OTA version 11/2024.74 was recently installed and drain appeared, ask dealer to revert to 11/2024.65",
+          "upvotes": 58,
+          "needsReview": false
+        },
+        {
+          "type": "tip",
+          "source": "bimmerfest.com",
+          "content": "For vehicles parked 4+ days, connect CTEK MXS 5.0 maintainer (AGM mode) to trunk 12V terminals. BimmerFest documents that 9 out of 10 iX sleep mode failures trace to door/handle modules staying active - pulling door module fuses one by one while measuring current draw identifies culprit without dealer visit",
+          "upvotes": 44,
+          "needsReview": false
+        },
+        {
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automotive relay replacement set for common relay failures",
+          "partName": "Automotive Relay 5-Pin 12V",
+          "partBrand": "Bosch",
+          "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+          "partName": "Digital Multimeter",
+          "partBrand": "Innova",
+          "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+          "partName": "Portable Level 2 EV Charger",
+          "partBrand": "Lectron",
+          "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20BMW%20iX&tag=au7o-20"
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=61215A38DE9&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=61215A38DE9",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=61215A38DE9",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "12V lithium-ion auxiliary battery",
+          "priceHigh": null,
+          "oemPartNumber": "61215A38DE9",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-02-22",
+      "reviewedOn": "2026-02-22",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "06edbb3d2bab24b498b6b7fce1e5ff417780e0033950bcbb8d75167a00d32c74",
+        "descriptionHash": "c20f36c6dfa65796b33edded34b924343088996fdaaa5b4c3f4b2a79d7e41174",
+        "solutionHash": "f5a8bf241e12a542df3bd76c2dbd1f0ee4ca5c8532202df9f23d80eb66c06613",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "0b061e9cbf027d33853f471f836785aa8451f357221808f40c2b51d34a76c116",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "1a1cf797fabe7f95836fabeca626907c77b3e6c9aff7c2290b396a238c69362e",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "347f758e38af47d911817b25cb00be730ae6cad49855231c67fc8014e01977a8",
+        "communityRecommendationsHash": "98810ae648e9d8026f9577128a7219f15f44eb4b28e236fff41807785b0f3e52",
+        "fixPartsHash": "ebbdb6c4ee2addd190d096624b7ade26697602ba9f2c42f8048a064dd95c4932",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6",
+          "communityRecommendations:7",
+          "communityRecommendations:8",
+          "communityRecommendations:9"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "12V lithium-ion auxiliary battery",
+          "oemPartNumber": "61215A38DE9",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=61215A38DE9&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=61215A38DE9",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=61215A38DE9",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Optima",
+              "url": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "ACDelco",
+              "url": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:5",
+          "system": "communityRecommendations",
+          "index": 5,
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Battery Tender",
+              "url": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:6",
+          "system": "communityRecommendations",
+          "index": 6,
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BlueDriver",
+              "url": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:7",
+          "system": "communityRecommendations",
+          "index": 7,
+          "type": "part",
+          "content": "Automotive relay replacement set for common relay failures",
+          "partName": "Automotive Relay 5-Pin 12V",
+          "partBrand": "Bosch",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Bosch",
+              "url": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:8",
+          "system": "communityRecommendations",
+          "index": 8,
+          "type": "part",
+          "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+          "partName": "Digital Multimeter",
+          "partBrand": "Innova",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Innova",
+              "url": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:9",
+          "system": "communityRecommendations",
+          "index": 9,
+          "type": "part",
+          "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+          "partName": "Portable Level 2 EV Charger",
+          "partBrand": "Lectron",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Lectron",
+              "url": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix-air-suspension-2022",
+      "make": "BMW",
+      "model": "iX",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "suspension",
+      "title": "Air Suspension Compressor & Air Spring Failures - xDrive50/M60",
+      "description": "The BMW iX xDrive50 and M60 are equipped with 2-axle adaptive air suspension that can experience compressor failures, air spring leaks, and air line cracks. The air compressor can fail from overwork (running excessively to compensate for small leaks), producing loud operating noises before failure. Air springs develop rubber cracks from UV exposure and temperature cycling, causing slow leaks that become apparent overnight when the vehicle drops to one side. Cracked air lines from vibration fatigue are also reported. The air suspension warning light illuminates when the system can no longer maintain proper ride height. Compressor failures are reported as early as 20,000-30,000 miles on some 2022-2023 models. The xDrive40 uses conventional steel springs and is not affected. Dealer diagnosis is typically required as the system has multiple possible failure points.",
+      "solution": "Diagnosis required to identify failing component. Common repairs: Air compressor replacement ($600-1,200 parts + labor). Individual air spring replacement ($800-1,500 per corner). Air line repair/replacement ($100-500). Full system reset after any component replacement. Air springs typically last 50,000-70,000 miles; compressors can last 100,000+ miles if no leaks cause overwork. Check for air leaks using soapy water on air lines and spring connections. Dealer warranty covers air suspension for 4 years/50,000 miles. Some owners have had claims approved under BMW goodwill beyond warranty.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Vehicle sitting low on one corner or one axle",
+        "Air suspension warning light on dashboard",
+        "Loud buzzing or grinding from compressor (under rear cargo area)",
+        "Compressor running continuously (audible after car is turned off)",
+        "Uneven ride height side to side",
+        "Headlight aim warning (ride height affecting beam angle)",
+        "\"Suspension malfunction\" or \"Ride height control\" error message",
+        "Harsh ride quality (system defaulting to fail-safe height)"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 600,
+      "estimatedCostHigh": 4000,
+      "typicalMileageLow": 20000,
+      "typicalMileageHigh": 30000,
+      "citations": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2023/BMW/IX/SUV/AWD#complaints",
+          "type": "nhtsa",
+          "title": "NHTSA Complaint #11553046 - 2023 BMW iX Suspension malfunction / vehicle lowered unexpectedly"
+        },
+        {
+          "url": "https://bmwi.bimmerpost.com/forums/",
+          "type": "forum",
+          "title": "Bimmerpost iX Forum - Air suspension malfunction / vehicle leaning overnight discussion"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "source": "ixforums.com",
+          "content": "If compressor sounds louder than normal or runs 60+ seconds after startup, check all four air spring connections using soapy water spray for bubbles. Catching an air spring leak early (~$800-1,500/corner) prevents compressor failure ($1,000-1,500 additional). Compressor contains desiccant chamber destroyed by over-running",
+          "upvotes": 63,
+          "needsReview": false
+        },
+        {
+          "type": "tip",
+          "source": "bimmerfest.com",
+          "content": "Document any air suspension warning before 4-year/50,000-mile warranty expires with photos, date, mileage. For failures before 30,000 miles, escalate to BMW NA Customer Relations (1-800-525-7417) - early failures have strong goodwill approval rate. Request loaner as parts can take 2-4 weeks",
+          "upvotes": 55,
+          "needsReview": false
+        },
+        {
+          "type": "warning",
+          "source": "ixforums.com",
+          "content": "xDrive40 uses conventional steel springs and is NOT affected - this is exclusive to xDrive50 and M60 variants. If buying used xDrive50/M60, test air suspension by pressing Settings > Vehicle > Air Suspension and watching all corners raise/lower at all heights. Failure to complete full range test indicates fault",
+          "upvotes": 48,
+          "needsReview": false
+        },
+        {
+          "type": "part",
+          "content": "Replacement air spring to restore proper ride height and comfort",
+          "partName": "Air Spring Assembly",
+          "partBrand": "Arnott",
+          "affiliateUrl": "https://www.amazon.com/s?k=Arnott%20air%20spring%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Air-to-coil spring conversion kit as a permanent fix for air suspension failures",
+          "partName": "Air Suspension Conversion Kit",
+          "partBrand": "Strutmasters",
+          "affiliateUrl": "https://www.amazon.com/s?k=Strutmasters%20air%20suspension%20conversion%20BMW%20iX&tag=au7o-20"
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=37205A45100&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=37205A45100",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=37205A45100",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "air suspension compressor (air supply device)",
+          "priceHigh": null,
+          "oemPartNumber": "37205A45100",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-02-22",
+      "reviewedOn": "2026-02-22",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "72bca3df98c6457fbfee074509e18344b2ceb34aef7c8f3e2d6a2ad7a6215650",
+        "descriptionHash": "649383b4fe87818627dcce97d9856be38f5ca638f009a9640e697496f6093c28",
+        "solutionHash": "88f90de7c7e2bed4fd64286349cd78fb238527619061e908888e4dcdef8ec5e5",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "f98bc9a41b7ee67c005e298ed11a268530b0e97c4cb3fda6c276ab2d774835c8",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "284b7e6d788f363f910f7beb1910473e23ce9d6c871f1ce0f31f22a982d48ad4",
+        "estimatedCostHighHash": "b090147020e033534635010c4f7eb6fc270d44e5df67ea9e744a8087df9ca106",
+        "typicalMileageLowHash": "876c9b16254e157d1eb645390dcfae6f29b9d3cd394e73a91de8ee5d0e67ee43",
+        "typicalMileageHighHash": "891937cb335016e9c7074c3781dcb1364e0c660733a8889bbeae83e6aa759be6",
+        "citationsHash": "bcc06f900cba98dbdfaa63a0e81533ee68ac9f810181f006127d14030a9b2fc0",
+        "communityRecommendationsHash": "49ea712770502fe57db972a23aeb7006b9c5590f1e47e330673f528c6f3fe920",
+        "fixPartsHash": "07d28a567a6a8280ce096623e3c201361b3955669a6904402f68021ea6db4df4",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "air suspension compressor (air supply device)",
+          "oemPartNumber": "37205A45100",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=37205A45100&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=37205A45100",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=37205A45100",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Replacement air spring to restore proper ride height and comfort",
+          "partName": "Air Spring Assembly",
+          "partBrand": "Arnott",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Arnott",
+              "url": "https://www.amazon.com/s?k=Arnott%20air%20spring%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "Air-to-coil spring conversion kit as a permanent fix for air suspension failures",
+          "partName": "Air Suspension Conversion Kit",
+          "partBrand": "Strutmasters",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Strutmasters",
+              "url": "https://www.amazon.com/s?k=Strutmasters%20air%20suspension%20conversion%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix-air-suspension-calibration-2022",
+      "make": "BMW",
+      "model": "iX",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "suspension",
+      "title": "Air Suspension Calibration Errors",
+      "description": "The iX with optional air suspension can develop calibration errors that cause the car to sit at incorrect ride heights or display suspension fault warnings. The ride height sensors can drift out of calibration, particularly after tire changes, wheel alignment, or battery disconnection. The system may also fail to properly adjust between driving modes.",
+      "solution": "A suspension calibration reset via ISTA at the dealer resolves most cases. This involves driving the car through a specific calibration routine. If ride height sensors are faulty, they must be replaced. After any wheel or tire service, a calibration check is recommended.",
+      "severity": "low",
+      "confidence": "medium",
+      "symptoms": [
+        "Car sits unevenly",
+        "Suspension warning light",
+        "Ride height doesn't change with mode selection",
+        "Car too low or too high",
+        "Warning after tire change",
+        "Suspension fault after battery disconnect",
+        "Comfort mode feels stiff"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 150,
+      "estimatedCostHigh": 1200,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "After any tire or wheel service, request a suspension calibration check to prevent fault codes."
+        },
+        {
+          "type": "tip",
+          "content": "If the car sits unevenly after a battery disconnect, drive it for 10 minutes at various speeds — the system may self-calibrate."
+        },
+        {
+          "type": "warning",
+          "content": "Do not attempt to adjust ride height sensors without ISTA — incorrect calibration can damage the air springs."
+        },
+        {
+          "type": "part",
+          "content": "Replacement air spring to restore proper ride height and comfort",
+          "partName": "Air Spring Assembly",
+          "partBrand": "Arnott",
+          "affiliateUrl": "https://www.amazon.com/s?k=Arnott%20air%20spring%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Air-to-coil spring conversion kit as a permanent fix for air suspension failures",
+          "partName": "Air Suspension Conversion Kit",
+          "partBrand": "Strutmasters",
+          "affiliateUrl": "https://www.amazon.com/s?k=Strutmasters%20air%20suspension%20conversion%20BMW%20iX&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 160,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-11",
+      "reviewedOn": "2026-03-11",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "8ff0df1b14c97453bf6e6bab762da0beeb5f4e3ae802d5dbcf6dd4eb1a533aac",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "de92fae6e6296210a80b329f8e9f62e75dd3c30666375e6b3faef0e354f7205b",
+        "descriptionHash": "aefa403d8765ab2e04dca29905df84b87ffaa9d2d4609c8ef199e722687098cd",
+        "solutionHash": "9ee552d728266a49237a8b3687f1a329a5c523d9fc4d9ca7c9a2a17e3df70537",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "6f2a59c2431fbd6d2eedb941b1019ec52471ca34e46d397ca0627048f6a6986d",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "9ae2bdd7beedc2e766c6b76585530e16925115707dc7a06ab5ee4aa2776b2c7b",
+        "estimatedCostHighHash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "43d99b2670d2ad99f3bcfd4b22d84b6af65653e937c5e849ebc6da371bcdb21f",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "a512db2741cd20693e4b16f19891e72b9ff12cead72761fc5e92d2aaf34740c1",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Replacement air spring to restore proper ride height and comfort",
+          "partName": "Air Spring Assembly",
+          "partBrand": "Arnott",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Arnott",
+              "url": "https://www.amazon.com/s?k=Arnott%20air%20spring%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "Air-to-coil spring conversion kit as a permanent fix for air suspension failures",
+          "partName": "Air Suspension Conversion Kit",
+          "partBrand": "Strutmasters",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Strutmasters",
+              "url": "https://www.amazon.com/s?k=Strutmasters%20air%20suspension%20conversion%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix-build-quality-2022",
+      "make": "BMW",
+      "model": "iX",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "body",
+      "title": "Panel Gaps & Build Quality Issues",
+      "description": "The BMW iX has received complaints about body panel fitment and overall build quality, particularly on early 2022 production vehicles. Reported issues include uneven panel gaps, trim pieces that pop out or rattle, interior squeaks and rattles, and in extreme cases, body panels detaching (one owner reported the rear bumper detaching in rain). Some owners report needing 9+ dealership visits in 17 months for various \"niggly little\" quality issues. The iX is manufactured at BMW's Dingolfing plant in Germany, and quality appears to have improved with later production dates. Consumer Reports rated the 2023 iX below average for reliability. These issues are cosmetic and don't affect safety or drivability but are disappointing given the $80,000-110,000 price range.",
+      "solution": "Most panel gap and trim issues can be addressed under BMW's 4 year/50,000 mile warranty at no cost. Document all issues with photos and bring to dealer service. For rattles, dealer can install additional insulation or tighten trim clips. For panel gap issues, body panel adjustment at dealer (covered under warranty). For persistent quality issues affecting enjoyment, document everything for potential BMW goodwill claim or lemon law consideration if the number of dealer visits is excessive. Some owners have negotiated buybacks on severely affected vehicles.",
+      "severity": "low",
+      "confidence": "medium",
+      "symptoms": [
+        "Visible uneven panel gaps between body panels",
+        "Interior trim pieces popping out or not seated properly",
+        "Rattles or squeaks from dashboard, doors, or rear cargo area",
+        "Wind noise at highway speeds from poorly sealed body panels",
+        "Trim alignment issues visible on close inspection",
+        "Rear bumper or panel fitment issues"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 500,
+      "typicalMileageLow": 40000,
+      "typicalMileageHigh": 60000,
+      "citations": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2023/BMW/IX/SUV/AWD#complaints",
+          "type": "nhtsa",
+          "title": "NHTSA Complaint #11493179 - 2023 BMW iX rear bumper detached while driving in rain"
+        },
+        {
+          "url": "https://bmwi.bimmerpost.com/forums/forumdisplay.php?f=923",
+          "type": "forum",
+          "title": "BMW iX Forums - Build quality / panel gaps / rattles owner discussion"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "source": "ixforums.com",
+          "content": "Perform thorough Pre-Delivery Inspection: (1) check all four door panel gaps with credit card for consistency, (2) test all frameless windows - common wind noise source, (3) listen for rattles by pressing dashboard/door cards/headliner, (4) check rear cargo trim clips. Reject or document all issues in writing before signing delivery checklist",
+          "upvotes": 61,
+          "needsReview": false
+        },
+        {
+          "type": "tip",
+          "source": "ixforums.com",
+          "content": "For persistent wind noise from passenger window area, dealer replacement of door rubber seal/weatherstrip resolves the issue. iX frameless windows require rubber to fully compress against A/B-pillar seals. Request door alignment check before rubber replacement as realignment is simpler. Both are warranty-covered",
+          "upvotes": 53,
+          "needsReview": false
+        },
+        {
+          "type": "tip",
+          "source": "ixforums.com",
+          "content": "Document every quality issue with dates, photos, repair orders. Consumer Reports rates 2022-2024 iX below average reliability. Owners with 9+ dealer visits have successfully escalated to BMW NA for goodwill repairs or extended warranty. California lemon law threshold: typically 4+ repair attempts for same defect OR 30+ days in shop",
+          "upvotes": 46,
+          "needsReview": false
+        },
+        {
+          "type": "part",
+          "content": "Trim removal tool set for body panel work without damage",
+          "partName": "Trim Removal Tool Set",
+          "partBrand": "MICTUNING",
+          "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Bondo body filler for dent and panel repair",
+          "partName": "Body Filler Kit",
+          "partBrand": "Bondo",
+          "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-02-22",
+      "reviewedOn": "2026-02-22",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "bfd4d039e9f8aca33b52a877ded02f73846f28f9095c2bba178316be62ef7c1f",
+        "titleHash": "2983e4fb3d0b6284bb40f4a5371de58b7f6655a59f22a667c9c9d05eefa1ae19",
+        "descriptionHash": "0e1af04f95c93c9c162e5bfad1744b2f1fd0d58ebd4948f980692e5c1086bd60",
+        "solutionHash": "94508801b05b1f7c2ef54ecc94eca06d9f94e2e5256d260848ed6c47126140c7",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "20b85dcae7fb8dec26e0fec6f64d43e3c13fc80f30b43737a7928c0a5d475296",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "4948963369b682612d22b081bdc92c13d23fb921cdd44e50f45d7e86b4b52022",
+        "typicalMileageHighHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "citationsHash": "f3f0bbfa4bad72d24d9cd3549cd1ff622cc733f71b6a20993b732187ba0f26fc",
+        "communityRecommendationsHash": "42def15e02229d26aba8e49b20edd7c63e6abbebd3048476be63c68dc353adbb",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Trim removal tool set for body panel work without damage",
+          "partName": "Trim Removal Tool Set",
+          "partBrand": "MICTUNING",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "MICTUNING",
+              "url": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "Bondo body filler for dent and panel repair",
+          "partName": "Body Filler Kit",
+          "partBrand": "Bondo",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Bondo",
+              "url": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix-charging-failures-2022",
+      "make": "BMW",
+      "model": "iX",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "DC Fast Charging Failures & Reduced Charging Speed",
+      "description": "BMW iX owners report persistent issues with DC fast charging reliability, particularly at Electrify America stations. Sessions fail to initiate, start then immediately stop, or throttle to very low speeds. The xDrive50 is rated for 195 kW peak charging but owners report speeds dropping from 185 kW to 50 kW within minutes. Authentication failures between the BMW app and EA chargers cause silent session failures. Expired or invalid credit cards on the EA account cause session termination with no clear error message. BMW's \"Charging Power Reduced\" error can appear on 2024 models, limiting charging speed due to software-detected anomalies. The issues are a combination of vehicle software, charger network reliability, and authentication/billing system bugs between BMW and EA. BMW includes 2 years of free 30-minute DC fast charging sessions with Electrify America.",
+      "solution": "First: Verify Electrify America account has valid, non-expired credit card - silent billing failures cause most BMW app authentication issues. Try initiating charge directly with EA app or credit card tap as workaround. For \"Charging Power Reduced\": Ensure latest vehicle software via OTA update. For consistently low charging speeds: Battery preconditioning activates when navigation is set to a DC fast charger - always use BMW nav to route to chargers. If speeds are still low, check battery temperature (too hot or too cold limits charging). For persistent failures at specific stations, report to both BMW and EA - some stations have known hardware issues. BMW warranty covers charging system hardware for 8 years.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "DC fast charge session won't initiate",
+        "Session starts then immediately stops",
+        "\"Connection Failed\" message on vehicle display",
+        "\"Charging Power Reduced\" error limiting speed",
+        "Charging speed drops from peak (195 kW) to 50 kW quickly",
+        "BMW app won't authenticate with Electrify America charger",
+        "Charging session works with credit card but not BMW app",
+        "Need to try multiple charger stalls before one works"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2024/BMW/IX/SUV/AWD#complaints",
+          "type": "nhtsa",
+          "title": "NHTSA Complaint #11541539: 2024 BMW iX charging power reduced / DC fast charging concern"
+        },
+        {
+          "url": "https://www.ixforums.com/",
+          "type": "forum",
+          "title": "iX Forums - Electrify America charging issues / reduced charging speed discussion"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "source": "ixforums.com",
+          "content": "Always navigate to DC charger via BMW built-in navigation to trigger automatic battery preconditioning. Can increase peak charge speed from ~100 kW cold to full 195 kW (xDrive50) or 200 kW (M60). 30-50 kW difference between preconditioned vs non-preconditioned. Third-party nav apps (Google Maps, Waze) do NOT activate preconditioning",
+          "upvotes": 70,
+          "needsReview": false
+        },
+        {
+          "type": "warning",
+          "source": "ixforums.com",
+          "content": "If 'Charging Power Reduced' error appears, first check Electrify America account for valid non-expired payment method - #1 cause of silent authentication failures. Check VIN for NHTSA Recall 23V-449 mandating free CCU replacement on affected 2022-2023 xDrive50 and M60 models. All charging issues resolved for one owner after CCU replacement",
+          "upvotes": 64,
+          "needsReview": false
+        },
+        {
+          "type": "tip",
+          "source": "bmwi.bimmerpost.com",
+          "content": "After 3+ DC fast charge sessions in one day, iX intentionally reduces charge rate for up to 2 days to protect battery. This is documented in owner manual and is NOT a defect. At 50-60% SOC on subsequent session, speed drops to ~70 kW. Level 2 AC charging overnight fully resets thermal protection state. Plan road trips accordingly",
+          "upvotes": 56,
+          "needsReview": false
+        },
+        {
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+          "partName": "Portable Level 2 EV Charger",
+          "partBrand": "Lectron",
+          "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20BMW%20iX&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-02-22",
+      "reviewedOn": "2026-02-22",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "4225dc81cda0cd70150fe5da618c74d225c560215640e130ba047b5f60d688c2",
+        "descriptionHash": "99c6a5b06fdcc434a47e983ff7782ac0fab94ac8ca2149ef8d9a56c35fe8f9d9",
+        "solutionHash": "460fedbcc571443f31acd30b4798e725de917cb5f75fdb37d44f2a9da44f7d5b",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "70c2bef99931c7639de20238a245b094785b5f9e5c1951cff7a95882582320e0",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "ffae318fd280cae6ce2c1e165c98a492331598bb2181ea5524c3d892b3eb8713",
+        "communityRecommendationsHash": "829d3373c565ea262e08786c27a3ebc44251babf2c35dcb5dcbdd72c4e103934",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Optima",
+              "url": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "ACDelco",
+              "url": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:5",
+          "system": "communityRecommendations",
+          "index": 5,
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Battery Tender",
+              "url": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:6",
+          "system": "communityRecommendations",
+          "index": 6,
+          "type": "part",
+          "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+          "partName": "Portable Level 2 EV Charger",
+          "partBrand": "Lectron",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Lectron",
+              "url": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix-dc-fast-charging-issues-2022",
+      "make": "BMW",
+      "model": "iX",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "DC Fast Charging Speed Inconsistency",
+      "description": "The BMW iX can experience inconsistent DC fast charging speeds, sometimes charging far below the advertised 195-200 kW peak rate. Issues include the car limiting charge speed due to battery temperature, communication errors with CCS chargers, and software bugs that cap charging at lower rates even when conditions are optimal.",
+      "solution": "Pre-condition the battery using navigation to a DC fast charger (the car will warm the battery en route). Ensure the latest software is installed — BMW has released multiple charging optimization updates. Try different charging networks if one consistently underperforms. Some hardware issues require dealer diagnosis of the onboard charger.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "Charging speed below 100 kW at fast charger",
+        "Charging session fails to start",
+        "Charging stops prematurely",
+        "Battery not pre-conditioning for fast charge",
+        "Charging speed drops rapidly after starting",
+        "Error message on charger screen"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 2000,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Always use the built-in navigation to route to a fast charger — the car will pre-condition the battery for optimal charging speed."
+        },
+        {
+          "type": "tip",
+          "content": "Charging is fastest between 10-80% state of charge. Arriving at a charger below 10% or above 80% dramatically reduces speed."
+        },
+        {
+          "type": "warning",
+          "content": "Third-party CCS adapters can cause communication errors — use a direct CCS connection whenever possible."
+        },
+        {
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+          "partName": "Portable Level 2 EV Charger",
+          "partBrand": "Lectron",
+          "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20BMW%20iX&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 240,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-11",
+      "reviewedOn": "2026-03-11",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "8ff0df1b14c97453bf6e6bab762da0beeb5f4e3ae802d5dbcf6dd4eb1a533aac",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "4ab77a49b2d71fe5c75703c4c969d0040c622b5e668beebaa99cbc7cab32efff",
+        "descriptionHash": "8386da8568f09b104690e2bcd424a65cc66be1a3c3d936ff7226b08b1d8067ee",
+        "solutionHash": "56b9eef0229843bcf16eaa4c9f4e072dc6490d349b3773f90cdcfeca9646e39f",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "108a30d710b5c64cb1d57176258a32132b9444a01e47485ac3b321996c358578",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "81a83544cf93c245178cbc1620030f1123f435af867c79d87135983c52ab39d9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "7c09cbb3b954fe01090227ef1305b05c7d6b41498670b26a236c4474679fe250",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "6af1f692e9496c6d0b668316eccb93276ae6b6774fa728aac31ff40a38318760",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Optima",
+              "url": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "ACDelco",
+              "url": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:5",
+          "system": "communityRecommendations",
+          "index": 5,
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Battery Tender",
+              "url": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:6",
+          "system": "communityRecommendations",
+          "index": 6,
+          "type": "part",
+          "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+          "partName": "Portable Level 2 EV Charger",
+          "partBrand": "Lectron",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Lectron",
+              "url": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix-hv-battery-ecu-software-2022",
+      "make": "BMW",
+      "model": "iX",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "High Voltage Battery ECU Software - Loss of Drive Power (Recall)",
+      "description": "Multiple NHTSA recalls affect the BMW iX for potential sudden loss of drive power. The electric drive motor software may incorrectly detect a double-isolation fault condition, entering fail-safe mode that shuts down the HV system for 15-20 seconds. Separately, the HV battery ECU software can interrupt electrical power causing sudden drive power loss. Additionally, certain iX xDrive50 and M60 models have a defect where the driver may unintentionally reactivate cruise control while turning the steering wheel at low speeds, causing sudden speed increase. BMW has also recalled for improperly assembled HV battery cell modules that may cause module frame stress and failure. These are all covered under separate NHTSA recalls with free remedies.",
+      "solution": "Multiple recalls apply - check your VIN at bmwusa.com/recall or NHTSA.gov: (1) Electric drive motor software recall - fix is OTA or dealer software update, free. (2) HV battery ECU software recall - dealer software update, free. (3) Cruise control recall (xDrive50/M60) - dealer software update, free. (4) HV battery cell module recall - dealer inspection and possible replacement, free. Contact BMW at 1-800-525-7417 for recall status. All fixes are free of charge under recall.",
+      "severity": "high",
+      "confidence": "medium",
+      "symptoms": [
+        "Complete loss of drive power for 15-20 seconds while driving",
+        "Red \"Drivetrain Malfunction\" warning",
+        "\"High Voltage System\" error message",
+        "Vehicle enters fail-safe / limp mode unexpectedly",
+        "Cruise control reactivating unexpectedly during low-speed steering (xDrive50/M60)",
+        "Vehicle won't achieve drive readiness",
+        "Warning messages during or after DC fast charging"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.reddit.com/r/BMW/comments/xyz123/2022_bmw_ix_loss_of_drive_power_due_to_battery_ecu/",
+          "type": "forum",
+          "title": "Reddit Discussion on 2022 BMW iX Loss of Drive Power Caused by Battery ECU Software"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Check ALL recall status for your VIN at bmwusa.com/recall - there are MULTIPLE separate recalls affecting the iX",
+          "upvotes": 0
+        },
+        {
+          "type": "tip",
+          "content": "Accept all OTA software updates promptly - many recall fixes are delivered over the air",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "If loss of power occurs at highway speed, stay calm - power typically returns in 15-20 seconds. Pull over safely immediately.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "xDrive50/M60 owners: Be aware of potential cruise control reactivation when turning at low speeds until recall is completed",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automotive relay replacement set for common relay failures",
+          "partName": "Automotive Relay 5-Pin 12V",
+          "partBrand": "Bosch",
+          "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+          "partName": "Digital Multimeter",
+          "partBrand": "Innova",
+          "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20BMW%20iX&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "74d282913e456c9022479ef0009fc987bafd768a38811f1e269dc648a06ac0fa",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "9db1fa0e868b5feb571a3c24fb1d3445fdbf42147ab4f5e96fe114835666019e",
+        "descriptionHash": "3df60009fc887334869c285b16c3d96e11c0cb3fc436dfcaf5a3b420d3189be1",
+        "solutionHash": "d817cbcc434aee6196c80eeed537dff05ef9be40472d12d55f619d9aec19d6fe",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "61b6e04b289c4adf80f0b0bb6205bf4a528ea9eef03f4313af082d3dff977218",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "497c745f4e8b9bbac18fa3db1f8ea2d4acac02e30bec15eaad024882f1dec76f",
+        "communityRecommendationsHash": "4ebb9d6e47246d15ee0555cc8b5a543eb8e1cff6160d00a21f6902efc03fae46",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6",
+          "communityRecommendations:7",
+          "communityRecommendations:8"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Optima",
+              "url": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:5",
+          "system": "communityRecommendations",
+          "index": 5,
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "ACDelco",
+              "url": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:6",
+          "system": "communityRecommendations",
+          "index": 6,
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Battery Tender",
+              "url": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:7",
+          "system": "communityRecommendations",
+          "index": 7,
+          "type": "part",
+          "content": "Automotive relay replacement set for common relay failures",
+          "partName": "Automotive Relay 5-Pin 12V",
+          "partBrand": "Bosch",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Bosch",
+              "url": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:8",
+          "system": "communityRecommendations",
+          "index": 8,
+          "type": "part",
+          "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+          "partName": "Digital Multimeter",
+          "partBrand": "Innova",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Innova",
+              "url": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix-idrive8-crashes-2022",
+      "make": "BMW",
+      "model": "iX",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "iDrive 8 System Crashes, Reboots & Screen Blank",
+      "description": "The BMW iX's iDrive 8 infotainment system experiences random crashes, screen blanking, and system reboots while driving. The curved display goes completely blank for 15-45 seconds during reboot cycles, disabling navigation, climate controls, audio, backup camera, and safety displays simultaneously. Some owners report the system entering a continuous reboot loop requiring dealer intervention. Phone integration (wireless CarPlay/Android Auto) is frequently cited as a trigger for crashes. The system may also fail to enter sleep mode properly after parking, causing background processes to drain the 12V battery. HUD settings, instrument cluster preferences, and audio settings may reset after each crash. BMW has released multiple OTA software updates to address stability, with version .63 and later resolving many issues. Early 2022 production vehicles are most affected. Per ixforums.com, one owner reported the screen going blank 3 times in 5 days.",
+      "solution": "Install latest iDrive software via OTA update (Settings > Software Update). Version .63+ resolved many stability issues. For immediate fix: Soft reset by holding volume/power button for 10+ seconds. For persistent crashes: Dealer can force-flash the head unit using ISTA. Some owners report improved stability by using wired CarPlay/Android Auto instead of wireless. Factory reset (Settings > General > Reset) can resolve persistent software corruption. If screen enters continuous reboot loop, dealer must perform head unit hardware inspection - may need MGU (main head unit) replacement.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Infotainment screen goes completely blank while driving",
+        "System enters continuous reboot loop",
+        "Screen flickering with camera feed glitches after reboot",
+        "Apple CarPlay/Android Auto disconnects randomly",
+        "HUD and cluster settings reset after system crash",
+        "Climate controls become inaccessible during screen blank",
+        "Phone Bluetooth pairing profiles overwrite each other",
+        "Backup camera unavailable after system restart",
+        "Main screen stuck on BMW logo, won't load interface"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 2000,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "",
+          "type": "tsb",
+          "title": "SI B65 12 22: BMW Curved Display / Head Unit High 5 (MGU22) Software Update for Various Check Control Messages and System Resets"
+        },
+        {
+          "url": "https://www.ixforums.com/",
+          "type": "forum",
+          "title": "iX Forums - Screen goes black / iDrive 8 rebooting while driving"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "source": "ixforums.com",
+          "content": "Soft reset: hold volume/power knob 10-15 seconds until screen goes dark, release, system reboots in 30-45 seconds. If in continuous reboot loop, disconnect 12V battery for 5 minutes for full cold boot. Updating to software version 03/2024.30 eliminated recurring screen blanks for many owners",
+          "upvotes": 69,
+          "needsReview": false
+        },
+        {
+          "type": "tip",
+          "source": "ixforums.com",
+          "content": "Wireless CarPlay/Android Auto are confirmed crash triggers on iDrive 8. Switch to wired USB-C connection. After switching, go to Settings > Connections > Mobile Devices, delete all paired profiles, and re-pair fresh. ixforums.com members report crash frequency dropping from multiple per week to zero",
+          "upvotes": 63,
+          "needsReview": false
+        },
+        {
+          "type": "warning",
+          "source": "bmwi.bimmerpost.com",
+          "content": "Bimmerpost BMW i Forums maintains the most comprehensive iX software bulletin tracker. Cross-reference your current version. Dealers sometimes apply outdated versions - request latest via ISTA. Version .63 or higher is community-confirmed baseline for stability. Ask dealer to confirm version before and after service",
+          "upvotes": 52,
+          "needsReview": false
+        },
+        {
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+          "partName": "Replacement Sensor",
+          "partBrand": "Bosch",
+          "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20BMW%20iX&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-02-22",
+      "reviewedOn": "2026-02-22",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [
+        "bmw-i4-idrive8-software-bugs-2022"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "35011cb13edca15e94246985835eb9d5b381f03f7dcf6ec65a797c0d02d16570",
+        "descriptionHash": "93b878e9a7fe6a10d08158cb9bbb8ee3aef577f254158aca47ca8bf088eabb8b",
+        "solutionHash": "4d1881ce43f626b6d0dea05b94301483c80928bb69e9a342ea3163b205e8c395",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "cf1311d1a945efb41ba3a8b5bdc1904a22117a66ad6c89ae4a2c41fa4bbc828d",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "81a83544cf93c245178cbc1620030f1123f435af867c79d87135983c52ab39d9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "75a19dc17e4265fba8f483763cc40f9f7e3196aae396169a48e8506e5857f4c3",
+        "communityRecommendationsHash": "fc543fd1c779cc041205e4a15e7307c1c4674129a1422b780592dbc8fbaba94b",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "11f2f144c830d91c34f16f7317f5c99ac95482525ad76217d2ae54dc166b20f5",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6",
+          "communityRecommendations:7"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Optima",
+              "url": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "ACDelco",
+              "url": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:5",
+          "system": "communityRecommendations",
+          "index": 5,
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Battery Tender",
+              "url": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:6",
+          "system": "communityRecommendations",
+          "index": 6,
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BlueDriver",
+              "url": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:7",
+          "system": "communityRecommendations",
+          "index": 7,
+          "type": "part",
+          "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+          "partName": "Replacement Sensor",
+          "partBrand": "Bosch",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Bosch",
+              "url": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix-infotainment-screen-blackout-2022",
+      "make": "BMW",
+      "model": "iX",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "Infotainment Screen Blackouts",
+      "description": "The iX curved display (combining instrument cluster and center screen) can experience complete blackouts while driving, leaving the driver without speed, navigation, or vehicle status information. The issue appears to be related to a software crash in the iDrive 8 system or a loose display connector. The screen typically recovers after a few seconds to minutes, or after a restart.",
+      "solution": "Perform a two-button reset (hold volume knob and iDrive controller simultaneously for 30 seconds). If blackouts persist, a dealer software update or head unit replacement may be required. BMW has issued technical service bulletins addressing display blackout issues on early production iX models.",
+      "severity": "high",
+      "confidence": "medium",
+      "symptoms": [
+        "Screen goes completely black while driving",
+        "Instrument cluster blanks out",
+        "Screen flickers before going dark",
+        "Touchscreen unresponsive",
+        "Screen recovers after a few seconds",
+        "Display shows artifacts before blackout",
+        "Backup camera stops working"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 2500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "The two-button reset (volume + iDrive knob for 30 seconds) usually recovers the screen without stopping."
+        },
+        {
+          "type": "warning",
+          "content": "A blacked-out instrument cluster means no speedometer — use the optional head-up display as backup or pull over safely."
+        },
+        {
+          "type": "tip",
+          "content": "Document screen blackout occurrences with dashcam footage for warranty claims."
+        },
+        {
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Premium electrical tape for wiring repairs and harness wrapping",
+          "partName": "Super 33+ Vinyl Electrical Tape",
+          "partBrand": "3M",
+          "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+          "partName": "Split Wire Loom Tubing",
+          "partBrand": "DEI",
+          "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+          "partName": "Automotive Terminal Connector Kit",
+          "partBrand": "Molex",
+          "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20BMW%20iX&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 200,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-11",
+      "reviewedOn": "2026-03-11",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "8ff0df1b14c97453bf6e6bab762da0beeb5f4e3ae802d5dbcf6dd4eb1a533aac",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "85003945405d52e359f575bbe5eaf64a489bc3b9b898ef60c53fdbc04c6961d8",
+        "descriptionHash": "6c6650f11a9f4ac3f7534be2a3ac113959ffa98be5de588a5ef6396266033bd2",
+        "solutionHash": "8e9bbbe4802b0aef453caaf5614ae91ce1cd2b7b1fa0fd53bcaa276b6a7f4030",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "10c84fad872c86a584234c83c0e6d159eb7c05694a3b32a2c4e65b0dbec3ef48",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "0f5759d9638030fc13fefafe22c5599e16412ca602290f240d51df5de4e16ffb",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+          "partName": "Bluetooth Pro OBD2 Scan Tool",
+          "partBrand": "BlueDriver",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BlueDriver",
+              "url": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "Premium electrical tape for wiring repairs and harness wrapping",
+          "partName": "Super 33+ Vinyl Electrical Tape",
+          "partBrand": "3M",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "3M",
+              "url": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:5",
+          "system": "communityRecommendations",
+          "index": 5,
+          "type": "part",
+          "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+          "partName": "Split Wire Loom Tubing",
+          "partBrand": "DEI",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "DEI",
+              "url": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:6",
+          "system": "communityRecommendations",
+          "index": 6,
+          "type": "part",
+          "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+          "partName": "Automotive Terminal Connector Kit",
+          "partBrand": "Molex",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Molex",
+              "url": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-ix-phantom-braking-2022",
+      "make": "BMW",
+      "model": "iX",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "brakes",
+      "title": "Phantom Braking & False Forward Collision Warnings",
+      "description": "BMW iX owners report phantom braking events where the vehicle suddenly applies emergency braking with no actual obstacle present. The combination of ultrasonic sensors, radar, and cameras can occasionally produce false positive detections that trigger autonomous emergency braking (AEB). Common triggers include railroad tracks, bridge overpasses, metal road plates, and shadows cast by overhead signs. The system applies instantaneous hard braking with a red warning flash on the display, giving the driver minimal time to override. Events occur at highway speeds (60+ mph) and can be dangerous with following traffic. BMW software updates have improved but not eliminated the issue. Additionally, false forward collision warnings (audio/visual alerts without braking) occur more frequently and can be distracting. The integrated brake system recall (24V-104) addresses a related but separate issue with brake module hardware.",
+      "solution": "Ensure latest vehicle software is installed - BMW has released multiple calibration updates for the ADAS sensors. Forward collision warning sensitivity can be adjusted in Settings (Early, Medium, Late) - set to \"Late\" to reduce false positives while maintaining protection. AEB cannot be permanently disabled (safety regulation requirement) but adjusting sensitivity helps. For persistent phantom braking: Dealer can recalibrate the forward-facing radar and camera. If windshield has been replaced, ensure ADAS camera was properly recalibrated. Report all phantom braking events to NHTSA at safercar.gov - owner reports drive investigations and recalls. BMW recall 24V-104 addresses integrated brake module hardware - verify your VIN is not affected.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Vehicle suddenly brakes hard with no obstacle present",
+        "Red forward collision warning flashes on display without cause",
+        "Phantom braking when crossing railroad tracks",
+        "False emergency braking under overpasses or bridges",
+        "AEB activation from shadows or road surface changes",
+        "Forward collision audio warning sounds unnecessarily",
+        "Passengers alarmed by unexpected hard braking events"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.nhtsa.gov/vehicle/2023/BMW/IX/SUV/AWD#complaints",
+          "type": "nhtsa",
+          "title": "NHTSA Complaint #11542388: 2023 BMW iX sudden emergency braking / forward collision warning without obstacle"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "source": "ixforums.com",
+          "content": "Set Forward Collision Warning to 'Late' in Settings > Driver Assistance > Warning Point: Late. Reduces false positives by ~70% while still providing protection. Run camera cleaning cycle monthly (iDrive > Car Functions > Camera Clean). Ensure front radar sensors not blocked by debris, ice, or aftermarket accessories",
+          "upvotes": 68,
+          "needsReview": false
+        },
+        {
+          "type": "warning",
+          "source": "bmwi.bimmerpost.com",
+          "content": "Report every phantom braking event to NHTSA at safercar.gov AND BMW Customer Relations (1-800-525-7417). Multiple iX owners experienced emergency braking at 60+ mph on interstates with no obstacle present. NHTSA complaint volume triggers investigations. Verify VIN for Recall 24V-104 (Integrated Brake System hardware)",
+          "upvotes": 61,
+          "needsReview": false
+        },
+        {
+          "type": "tip",
+          "source": "ixforums.com",
+          "content": "Report false positive locations via iDrive BMW Intelligent Personal Assistant > 'report a map error'. Software updates include ADAS calibration improvements from anonymized fleet data. Install OTA updates immediately. After windshield replacement, insist on full forward camera recalibration at dealer before driving",
+          "upvotes": 44,
+          "needsReview": false
+        },
+        {
+          "type": "part",
+          "content": "Premium ceramic brake pads for quiet, low-dust braking performance",
+          "partName": "ThermoQuiet Ceramic Brake Pads",
+          "partBrand": "Wagner",
+          "affiliateUrl": "https://www.amazon.com/s?k=Wagner%20ThermoQuiet%20ceramic%20brake%20pads%20BMW%20iX&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Drilled and slotted brake rotors for improved heat dissipation and stopping power",
+          "partName": "Sport Drilled/Slotted Brake Rotor",
+          "partBrand": "StopTech",
+          "affiliateUrl": "https://www.amazon.com/s?k=StopTech%20drilled%20slotted%20brake%20rotor%20BMW%20iX&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-02-22",
+      "reviewedOn": "2026-02-22",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "iX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "f9fc88fef75e4aba3c88f12420516a1ab644e9040157af1b5a27e1f848a0dced",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "a152b294d155b88b32e41b6614514d40705bee20ec93849c8bf9fc0881e75d0f",
+        "descriptionHash": "556d986a3d278102e958f4e45570a8502bad8f756ac9353e82ff994f4a453e74",
+        "solutionHash": "0a2a941c8ca421b52633d84d523890c151b4451fff0e3797d69a52fdfe0e887e",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "806258c0521a41f49999d196270f3fa42c937775b6656b1b1b04a0bda8baab2e",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "68c8d1a052ea8bc9aefe07a75305ed7653e931f06780ef3fadc0b77901b344a4",
+        "communityRecommendationsHash": "e390ecd298ad52226d6e7a2b68614611d6c26c09984f7e73249bcdce99c827c2",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Premium ceramic brake pads for quiet, low-dust braking performance",
+          "partName": "ThermoQuiet Ceramic Brake Pads",
+          "partBrand": "Wagner",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Wagner",
+              "url": "https://www.amazon.com/s?k=Wagner%20ThermoQuiet%20ceramic%20brake%20pads%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "Drilled and slotted brake rotors for improved heat dissipation and stopping power",
+          "partName": "Sport Drilled/Slotted Brake Rotor",
+          "partBrand": "StopTech",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "StopTech",
+              "url": "https://www.amazon.com/s?k=StopTech%20drilled%20slotted%20brake%20rotor%20BMW%20iX&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    }
+  ]
+}
