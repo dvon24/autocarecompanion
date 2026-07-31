@@ -1,0 +1,604 @@
+{
+  "schemaVersion": 2,
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "auditScope": "full-record",
+  "batchId": "bmw-m2-full-record-cohort-15-2026-07-31",
+  "snapshotHash": "82f057c6a449d4fea265a994df55af96ea1d5ecccb2da1bfb0dcfb4ec01b9185",
+  "sourceSnapshotFileHash": "6155efbfcce406dac12a0257fd0b6ef621a1e7f7d57c7105fa47dc03705afc77",
+  "packetFileHash": "f2f78f2893fa80ff6fb5cfc142743c44f9dacba5e6e7d3f312c12e9c9fac6c2c",
+  "reviewApproval": {
+    "approvedAfterBlindAndEdgeReview": true,
+    "approvedOn": "2026-07-31",
+    "blindReviewer": "bmwm2_blind:no-blocker",
+    "edgeReviewer": "bmwm2_edge:no-blocker",
+    "reviewedGeneratorFileHash": "bd3f15b77d644cec957bd3c3625e0c7f0643237faeab81842655231778041a7d"
+  },
+  "researchedWith": "Ultra-effort current manufacturer/regulator primary-source review; no LLM API and no commerce approval",
+  "controlledDeltaProposals": [
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-m2-ac-evaporator-freeze-reduced-airflow",
+      "sources": [
+        "https://static.nhtsa.gov/odi/tsbs/2021/MC-10205068-9999.pdf"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-g87-m2-front-tie-rod-creak",
+      "sources": [
+        "https://static.nhtsa.gov/odi/tsbs/2025/MC-11021817-0001.pdf"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "bmw-m2-charge-pipe-2016",
+      "disposition": "diagnosis-hold",
+      "decision": "Replace the frozen charge-pipe-failure aggregation with BMW's bounded early-F87 boost-control software path. Remove both commerce claims and both outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "BMW SIB 12 17 16 - M2 Drivetrain Malfunction CCM",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10214952-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "6e51c8e9752568e3de5e8268d6009f8549fceab5ca97977db8f7d03c1fbe7215",
+        "yearsHash": "695e9a83fe3e735bd0561fb70723d273f1edbd9e3011834b1049d183181618b8",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "0d5ab82f58e1f8a8c7ee2f1244ce660d3d1903e8de68d10fc80930f4003b2c6f",
+        "descriptionHash": "2a5736e14a293b5bd37ed6362c0ced729c44eeed1998655c7bceac2c8912d975",
+        "solutionHash": "f6bcf08edeb6ebb14ed4b47de007798b0e78207bf13c94e34fed18429c843117",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "7893e03f364d5438b30d74999b27bb99935f54ae13f10ef9c77ee4334ff1f344",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "fbc2adac51991b90fe9ba5c3cd9f94ca567eeb7a01a898b8a34e2ba2b3a228d8",
+        "estimatedCostLowHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "estimatedCostHighHash": "1a1cf797fabe7f95836fabeca626907c77b3e6c9aff7c2290b396a238c69362e",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "e008d0588728b688d153596ee94fe631357c4d1c8f2c2252491559af6f1f09d5",
+        "communityRecommendationsHash": "3f265057269e0c4795b5747cae6f86e6134af3b4ae6a5672dfec41977df33302",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "25453c0658d349f19acc5a91afb6fa9ca4109fddc5d70ba66a33bb62eb6fff9f",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "M2",
+        "years": [
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "N55 3.0L turbo I6"
+        ],
+        "category": "engine",
+        "title": "Early F87 M2 Boost-Control Software Faults",
+        "description": "BMW SIB 12 17 16 defines an F87 M2 path for vehicles produced through August 3, 2016 when a Drivetrain Malfunction message, reduced power and DME faults 120208 and 120408 occur. BMW identifies an overly sensitive DME diagnostic threshold that can switch off turbocharging-pressure control. The bulletin does not establish a cracked plastic charge pipe.",
+        "solution": "Read the DME faults with the current BMW ISTA version and confirm the production date. If the vehicle meets SIB 12 17 16, program the vehicle to integration level F020-16-07-504 or higher. Do not replace a charge pipe from this card. ShowMeTheParts resolves exact 2016 M2 turbocharger and 3.0-liter fitment but returned no charge-pipe candidate; even a catalog match would not prove the BMW software fault or repair role.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Drivetrain Malfunction Check Control message",
+          "Reduced engine power",
+          "DME fault 120208",
+          "DME fault 120408"
+        ],
+        "affectedSystems": [
+          "DME boost-control diagnostics",
+          "turbocharging pressure control"
+        ],
+        "dtcCodes": [
+          "120208",
+          "120408"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "BMW SIB 12 17 16 - M2 Drivetrain Malfunction CCM",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10214952-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Replaced the frozen charge-pipe card with BMW's production- and fault-bounded DME software path and removed 2 commerce claims with 2 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-m2-comp-s55-crank-hub-2019",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"S55 Crank Hub Failure (CATASTROPHIC) - M2 Competition\" aggregation. It presents a heavily amplified tuning-community failure theory as a widespread stock-vehicle defect, assigns timing-slip symptoms without BMW diagnostic boundaries and promotes keyed or pinned crank-hub kits plus a timing tool without a BMW bulletin, recall or verified repair role. Remove all 3 commerce claims and 3 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "6e51c8e9752568e3de5e8268d6009f8549fceab5ca97977db8f7d03c1fbe7215",
+        "yearsHash": "c9b92b75f5c2a3e3f5a86a7fbede7eae57fa291c4f222f14e2e4e3a460a87a23",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "aa5eaef7a447f37c30cff17234aa26619b8d989b21d1afcf4773452402cf9c94",
+        "descriptionHash": "cd1f4ef483c681ceff30815f3e5454f3270f9a8d27b213ae58d09fcbea100c71",
+        "solutionHash": "34d5f3f3c17071d731047e80d7419fc929b704fa7976c47bdde353b59f4159dc",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "283d2c9924fde98cd996d8014e86893c9d6419a9b341c3187c50dea35a012af6",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "a6b7b64bb19b15fad2bb9db921a48271123919cbc31b8e2066cb165863a32d3a",
+        "estimatedCostLowHash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43",
+        "estimatedCostHighHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "typicalMileageLowHash": "891937cb335016e9c7074c3781dcb1364e0c660733a8889bbeae83e6aa759be6",
+        "typicalMileageHighHash": "265f10e1bf87701b7aa597c197b6a25b0984777f3443a289d7a92aedd31fddcf",
+        "citationsHash": "9746387834f89d3d7094abe59ba38b9f6abb4003c8ff5e23d2916435eab2226a",
+        "communityRecommendationsHash": "9cf0d634e0ddb7bcc2fe155bc7d0cfa043f45ebc8f75b196f00daf653a7db259",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1",
+          "communityRecommendations:5"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "M2",
+        "years": [
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Archived - Unsupported BMW M2 S55 Crank-Hub Aggregation",
+        "description": "The former card asserted \"S55 Crank Hub Failure (CATASTROPHIC) - M2 Competition\" across a broad BMW M2 population. It presents a heavily amplified tuning-community failure theory as a widespread stock-vehicle defect, assigns timing-slip symptoms without BMW diagnostic boundaries and promotes keyed or pinned crank-hub kits plus a timing tool without a BMW bulletin, recall or verified repair role.",
+        "solution": "Do not order performance parts or apply a universal repair from this archived card. Verify the exact generation, model year, production date, engine, transmission, symptoms, DTCs, modifications and current BMW service information before diagnosis. Track-use preparation and limits are separate from a street-vehicle defect.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW M2 \"S55 Crank Hub Failure (CATASTROPHIC) - M2 Competition\" aggregation and removed 3 commerce claims with 3 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-m2-cooling-system-2016",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Cooling System Inadequacy Under Track Use - F87 M2/M2C\" aggregation. It treats sustained track-session thermal management, modified power levels and driver technique as a production cooling defect, then promotes radiators, oil coolers, thermostats and coolant without a BMW street-use bulletin, measured threshold or exact configuration. Remove all 5 commerce claims and 5 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "6e51c8e9752568e3de5e8268d6009f8549fceab5ca97977db8f7d03c1fbe7215",
+        "yearsHash": "695e9a83fe3e735bd0561fb70723d273f1edbd9e3011834b1049d183181618b8",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "11f1f39f3000dc262d750f050de3d7c8e9bab58de6b5a5ccdce8dfa8ca33e403",
+        "categoryHash": "9fab250e5e42070565c3e1a6449c2fb3a9adf976c5e447ef136c21f089863ee5",
+        "titleHash": "38a4394d478e1281094971188fc6329b1783f197ce964915822b2ed6c7453ff3",
+        "descriptionHash": "42124d41e92fda02a77597eba887c2470415bc83649d8d8b79f03cca3a320ffd",
+        "solutionHash": "9f1a8275cceac0a56a69a88bd7c9813c8a8915108465008f507d5a6f67a2fb9b",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "8837bc4cebd41d9861f2ae56b0a5d21b23a2fa26a228bc539b3048299d1bd4ce",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "estimatedCostHighHash": "0f8eb4b72b6e0c9e88b388eb967b49e067ef1004bf07bffc22c3acb13b43580a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "7aefd695c5803203c2289294bd467c6973f573beaf1ed743f49ee17e0b7fac30",
+        "communityRecommendationsHash": "7c39362939170a3b89ccfa7b47c546339c9d1c5ba0edbec11ea2929ff6ce919f",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "a98e1c5e8d91742dfa36ceef9a93e11b96533815deddd6c02960aa03e0a7f702",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1",
+          "communityRecommendations:2",
+          "communityRecommendations:6",
+          "communityRecommendations:7"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "M2",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Archived - Unsupported BMW M2 Track-Cooling Aggregation",
+        "description": "The former card asserted \"Cooling System Inadequacy Under Track Use - F87 M2/M2C\" across a broad BMW M2 population. It treats sustained track-session thermal management, modified power levels and driver technique as a production cooling defect, then promotes radiators, oil coolers, thermostats and coolant without a BMW street-use bulletin, measured threshold or exact configuration.",
+        "solution": "Do not order performance parts or apply a universal repair from this archived card. Verify the exact generation, model year, production date, engine, transmission, symptoms, DTCs, modifications and current BMW service information before diagnosis. Track-use preparation and limits are separate from a street-vehicle defect.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW M2 \"Cooling System Inadequacy Under Track Use - F87 M2/M2C\" aggregation and removed 5 commerce claims with 5 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-m2-dct-clutch-2016",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"DCT Dual-Clutch Transmission Shudder & Clutch Wear - F87 M2/M2C\" aggregation. It combines launch behavior, low-speed shift feel, fluid condition, adaptations and clutch wear into a single all-year failure claim, then promotes clutch kits, fluids, filters and scan tools without BMW fault codes, measured clutch limits, a service bulletin or verified fitment. Remove all 5 commerce claims and 7 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "6e51c8e9752568e3de5e8268d6009f8549fceab5ca97977db8f7d03c1fbe7215",
+        "yearsHash": "695e9a83fe3e735bd0561fb70723d273f1edbd9e3011834b1049d183181618b8",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "15635c6bec92c31dce94c9e7f290dd352b66fbbc4571debbd7195e1aaf9136c3",
+        "descriptionHash": "4fb3cdbb0f1d006e52368161e5127bf1a375786fab217580b66f22804385d6f3",
+        "solutionHash": "37c42f29db089f29174be297f0877d4c9102ad58f843e1116ba61712db92b440",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "84ab4d3b1a65bfd93ecbee6d1bd9d396f265b8555501642bd774526c0c45114e",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "768feba19b0085af323951d65028339411b3f3b71387e1ecc259d3516c754156",
+        "estimatedCostLowHash": "0f8eb4b72b6e0c9e88b388eb967b49e067ef1004bf07bffc22c3acb13b43580a",
+        "estimatedCostHighHash": "ad5f9478d603fe97eae2bbff07f76fe7f18610343b5f3bc8e00945ee51b30d2c",
+        "typicalMileageLowHash": "06e01dc1011ecca65c2f9fef9811bbf5eac2f498d3ebaccbcd640ab8ab452301",
+        "typicalMileageHighHash": "55ae5ae5323b351f78b215b8082ab5450d982f174c42b2a2a1f1ee5d89b7736b",
+        "citationsHash": "be8249a37dd41394e74f3b0d9a652d7429db9aaed94a13463fcef4783b8e1804",
+        "communityRecommendationsHash": "0805b38049df5a12a822872c2343ce5109afc83313018d41da8b59b7ec81767c",
+        "fixPartsHash": "ded06674a0af6faa621aa854d7f9f18a6694953f5e3d67d74667e3b7abd05dd9",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "6fd5d1bf0b35702bce14e45a080a795c913a53f0f4d9d5af3f60bfac79e15009",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0",
+          "communityRecommendations:1",
+          "communityRecommendations:5",
+          "communityRecommendations:6"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "M2",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Archived - Unsupported BMW M2 DCT Clutch-Wear Aggregation",
+        "description": "The former card asserted \"DCT Dual-Clutch Transmission Shudder & Clutch Wear - F87 M2/M2C\" across a broad BMW M2 population. It combines launch behavior, low-speed shift feel, fluid condition, adaptations and clutch wear into a single all-year failure claim, then promotes clutch kits, fluids, filters and scan tools without BMW fault codes, measured clutch limits, a service bulletin or verified fitment.",
+        "solution": "Do not order performance parts or apply a universal repair from this archived card. Verify the exact generation, model year, production date, engine, transmission, symptoms, DTCs, modifications and current BMW service information before diagnosis. Track-use preparation and limits are separate from a street-vehicle defect.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW M2 \"DCT Dual-Clutch Transmission Shudder & Clutch Wear - F87 M2/M2C\" aggregation and removed 5 commerce claims with 7 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-m2-dct-mechatronics-2016",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"DCT (M-DCT) Mechatronics Unit Failure\" aggregation. It duplicates the DCT card and infers pump, solenoid, sensor and complete mechatronics failure from broad warning and shift symptoms without BMW DCT faults, hydraulic test results, a bulletin or a production boundary. Remove all 2 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "6e51c8e9752568e3de5e8268d6009f8549fceab5ca97977db8f7d03c1fbe7215",
+        "yearsHash": "3e94450039ed05592f0886e0d60f8b54141dba6d02b0bb811079dcade28e51fb",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "1c051060c609c39e43aa88efb6a6a1a7414e5465e618b3ca39e033e66aaba5ab",
+        "descriptionHash": "48fcc0e3aaa70e1011a09f0ec6cf20b41750ed9c0c68faa156f7b0cd65b95e89",
+        "solutionHash": "9e1b0447224a1688b034cf9be6b5d4a410c21372c884fec54aaf4ca354173dad",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "2c363c2c976d3e9fe6afb63644c32f63cdee6726ed4b548ea64d5214c5a066d4",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "768feba19b0085af323951d65028339411b3f3b71387e1ecc259d3516c754156",
+        "estimatedCostLowHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "estimatedCostHighHash": "8d284220975da66c6cba4a32aaedfa0b897187d86ed9f7a2419c9bd10a103505",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "0ea68e10094697b8574e29fbd17312d10dd7066a652810d2c285bb76579bc96b",
+        "communityRecommendationsHash": "270d069b76bd0e0d331676bedd01b0cbb874a5ff0211160f853d0f55efe715c1",
+        "fixPartsHash": "2ee2b680b29bc5d0542d968b2c0d539b889c6218d32105958f1c3b3ea7930214",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "36790ecd55c2030dc553685bef719df653f413a20cdad1bfd1dc934c76686ddd",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:2"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "M2",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Archived - Unsupported BMW M2 DCT Mechatronics Aggregation",
+        "description": "The former card asserted \"DCT (M-DCT) Mechatronics Unit Failure\" across a broad BMW M2 population. It duplicates the DCT card and infers pump, solenoid, sensor and complete mechatronics failure from broad warning and shift symptoms without BMW DCT faults, hydraulic test results, a bulletin or a production boundary.",
+        "solution": "Do not order performance parts or apply a universal repair from this archived card. Verify the exact generation, model year, production date, engine, transmission, symptoms, DTCs, modifications and current BMW service information before diagnosis. Track-use preparation and limits are separate from a street-vehicle defect.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW M2 \"DCT (M-DCT) Mechatronics Unit Failure\" aggregation and removed 2 commerce claims with 4 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-m2-n55-rod-bearing-2016",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"N55 Rod Bearing Premature Wear - F87 M2\" aggregation. It extrapolates high-load and modified-engine risk into a model-wide premature-bearing defect, prescribes preventive replacement intervals and promotes bearing kits, bolts, oil and analysis without BMW wear limits, an F87 N55 campaign or a fault-led diagnosis. Remove all 5 commerce claims and 7 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "6e51c8e9752568e3de5e8268d6009f8549fceab5ca97977db8f7d03c1fbe7215",
+        "yearsHash": "8d2f11dc52e8df981f0b889de4b596360ca87ba4e1ddbb664b3cb9209e240cc8",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "3d123742dfbf4c59d741b554ec83c39c083b83703f8111ded852ba2e87b241cc",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "6eb29427a0576594e1ce97cf5f892560c1177d0bc3f17214948e8a8faef2d906",
+        "descriptionHash": "ce781d1f1c463c378c143a65260eb15ab16a1efae895aea2fa229cbd0b959a66",
+        "solutionHash": "623eeb1f5afc7e5fce55978688ccd39ca780ef0da3cc187d7f78648f7c96c831",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "e13b902634e41b2033b60bfec1e9d5bdaa17bbc85d062e939acc10f6ab8ef785",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "estimatedCostHighHash": "c746ee2edf45fa00fca8d08045b2575aac17cf3eeb3f2b0da5e5301fae8d1e47",
+        "typicalMileageLowHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "typicalMileageHighHash": "47b25095a0fe135a688b20614771dbb445ad5e27e9cd4f2c2089c5af216e305b",
+        "citationsHash": "56e914c784a83b5fc1ed748b1442e2cc6bab80074d0a33635f79174f4d7546b1",
+        "communityRecommendationsHash": "ec09cfee374acf8ff6773d20172d0058b5a193b9ac7e5ca0b21fb798f2ba7af2",
+        "fixPartsHash": "f2c87fa0b638d9c51b5d613605787d81de7d81dac84ea277a8cf45f22e63bc35",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "d339c7ccd9cd0ebd62aa795229d24c12db93733a1044ffe2fce11027832307a0",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0",
+          "communityRecommendations:1",
+          "communityRecommendations:2",
+          "communityRecommendations:6"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "M2",
+        "years": [
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Archived - Unsupported BMW M2 N55 Rod-Bearing Aggregation",
+        "description": "The former card asserted \"N55 Rod Bearing Premature Wear - F87 M2\" across a broad BMW M2 population. It extrapolates high-load and modified-engine risk into a model-wide premature-bearing defect, prescribes preventive replacement intervals and promotes bearing kits, bolts, oil and analysis without BMW wear limits, an F87 N55 campaign or a fault-led diagnosis.",
+        "solution": "Do not order performance parts or apply a universal repair from this archived card. Verify the exact generation, model year, production date, engine, transmission, symptoms, DTCs, modifications and current BMW service information before diagnosis. Track-use preparation and limits are separate from a street-vehicle defect.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW M2 \"N55 Rod Bearing Premature Wear - F87 M2\" aggregation and removed 5 commerce claims with 7 URLs.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
