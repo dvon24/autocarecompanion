@@ -89,6 +89,10 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'cadillac-seville',
   'cadillac-srx',
   'cadillac-sts',
+  'cadillac-xt4',
+  'cadillac-xt5',
+  'cadillac-xt6',
+  'cadillac-xts',
 ]);
 
 // --- Static generation ---
