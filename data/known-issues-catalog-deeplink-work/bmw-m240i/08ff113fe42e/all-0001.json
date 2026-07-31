@@ -1,0 +1,954 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "packetKind": "known-issues-catalog-deeplink-work",
+  "snapshotHash": "08ff113fe42e4ac17a7396bb308727a7c9fc99c365f215841baba5961e7410cc",
+  "cohort": "all",
+  "packetId": "all-0001",
+  "records": [
+    {
+      "id": "bmw-m240i-b58-charge-pipe-2017",
+      "make": "BMW",
+      "model": "M240i",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [
+        "B58 3.0L Turbo I6"
+      ],
+      "category": "engine",
+      "title": "Plastic Charge Pipe Failure Under Boost",
+      "description": "The B58 engine uses a plastic charge pipe to route compressed air from the turbocharger to the throttle body. Under sustained high boost conditions, the factory plastic charge pipe can crack, split, or blow off, resulting in an immediate and total loss of boost pressure. This failure can occur on completely stock vehicles as the plastic degrades from repeated heat cycling over time, but is accelerated by any ECU tune that increases boost pressure.",
+      "solution": "Replace the factory plastic charge pipe with an upgraded aluminum aftermarket unit from manufacturers like Burger Motorsports, VRSF, or FTP Motorsport. If the failure occurs on a stock car, BMW may cover repair under warranty. After replacement, inspect the intercooler boots and all charge air connections for damage.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "Sudden and complete loss of boost pressure",
+        "Loud pop or hissing sound from engine bay",
+        "Check engine light with boost pressure codes",
+        "Significant power loss, especially above 3,000 RPM",
+        "Turbo whistle or whooshing noise under acceleration"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [
+        "P0234",
+        "P0299",
+        "P0245",
+        "P0243"
+      ],
+      "estimatedCostLow": 200,
+      "estimatedCostHigh": 600,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.babybmw.net/threads/f22-m240i-boost-leak-charge-pipe-leak.156208/",
+          "type": "owner_forum",
+          "title": "BabyBMW Forum - F22 M240i Boost Leak / Charge Pipe Leak"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Upgrade to an aluminum charge pipe proactively - it's a $200-300 part and 1-hour install. Much cheaper than being stranded when the plastic one fails at 40k miles.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "If you have any ECU tune increasing boost, consider the aluminum charge pipe mandatory. The stock plastic pipe is not rated for increased boost pressures.",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "Bluetooth OBD-II scanner for reading engine codes and monitoring live data",
+          "partName": "Bluetooth OBD2 Diagnostic Scan Tool",
+          "partBrand": "BlueDriver",
+          "affiliateUrl": "https://www.amazon.com/s?k=BMW%20M240i%20BlueDriver%20Bluetooth%20OBD2%20Diagnostic%20Scan%20Tool&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Quality synthetic oil and filter combo for engine maintenance",
+          "partName": "Full Synthetic Oil and Filter Bundle",
+          "partBrand": "Mobil 1",
+          "affiliateUrl": "https://www.amazon.com/s?k=BMW%20M240i%20Mobil%201%20Full%20Synthetic%20Oil%20and%20Filter%20Bundle&tag=au7o-20"
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=13718601684&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=13718601684",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=13718601684",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "charge pipe (plastic charged air pipe, turbo-to-intake)",
+          "priceHigh": null,
+          "oemPartNumber": "13718601684",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 340,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [
+        "bmw-m4-charge-pipe-blowoff-2015",
+        "bmw-m3-s55-charge-pipe-failure",
+        "bmw-4-series-b58-charge-pipe-2017",
+        "bmw-m4cs-s58-charge-pipe-crack-2024",
+        "bmw-m3cs-s58-charge-pipe-crack-2024"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "M240i",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "B58 3.0L Turbo I6"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "7888445e3985d7b3383df74e7392ae8abc641f375bcee34e6d60e68cf36298c3",
+        "yearsHash": "029f749a227a9709cc4aca526e19086af415edd81183c6a0e9592ca155761aed",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "30eb63c9f3408bb7a837396a1994a37ad57f358aff8ca0a437a8e833414d5886",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "2f7178a7222cf6a395543285957e6b14fc6927cdaf44243d0e3e6f562f5534d8",
+        "descriptionHash": "2c87c20f2fc98ad3e4ebb52684b8ff944fd8cf06177e6843282224b725222df8",
+        "solutionHash": "d251eedfb13899fb8b5804f4f2d313efa6875cfaf3ee786d60f1fa37cf83cf62",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "51bc7ba3c701f64e53134c4a4a267d1aff3fb357b6cc13f314ed38c3db31631e",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "06821fb00e3e98fef8f91896e38e99de155f673a512fa89cf4a1002422261d22",
+        "estimatedCostLowHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "estimatedCostHighHash": "284b7e6d788f363f910f7beb1910473e23ce9d6c871f1ce0f31f22a982d48ad4",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "d2cf7b47b5ee6658aaffbd8c7b2b5d7bcb9d5cb171fe3174abfac6144e8eba6f",
+        "communityRecommendationsHash": "e5f5707a8ec6d419c3e8129b14ecdba845680266ee25fb3e1f0dbdfff7054cf0",
+        "fixPartsHash": "bc1a56a71722d620c7418263029cc87d2289151d249e08c549855f052b9411fa",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "9644294ac4ffb3091eef01219b3fe4fe467f05890cc56af961dce68fddbb7704",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "cdf65e803849e644ebb505e14ed5feed5a61e66f10143104b7da67d5beaef980",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:2",
+          "communityRecommendations:3"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "charge pipe (plastic charged air pipe, turbo-to-intake)",
+          "oemPartNumber": "13718601684",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=13718601684&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=13718601684",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=13718601684",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "Bluetooth OBD-II scanner for reading engine codes and monitoring live data",
+          "partName": "Bluetooth OBD2 Diagnostic Scan Tool",
+          "partBrand": "BlueDriver",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "BlueDriver",
+              "url": "https://www.amazon.com/s?k=BMW%20M240i%20BlueDriver%20Bluetooth%20OBD2%20Diagnostic%20Scan%20Tool&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Quality synthetic oil and filter combo for engine maintenance",
+          "partName": "Full Synthetic Oil and Filter Bundle",
+          "partBrand": "Mobil 1",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Mobil 1",
+              "url": "https://www.amazon.com/s?k=BMW%20M240i%20Mobil%201%20Full%20Synthetic%20Oil%20and%20Filter%20Bundle&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-m240i-b58-coolant-loss-2017",
+      "make": "BMW",
+      "model": "M240i",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [
+        "B58 3.0L Turbo I6"
+      ],
+      "category": "cooling",
+      "title": "Coolant Loss from Expansion Tank and Water Pump Failure",
+      "description": "The B58 engine in the M240i is prone to coolant loss caused by cracks in the plastic coolant expansion tank and premature electric water pump failure. The thermoplastic expansion tank degrades under repeated heat cycles, and in turbocharged engines where under-hood temperatures run high, this aging process accelerates. The electric water pump can fail internally and leak coolant from the pump housing or seals, sometimes before 50,000 miles. A BMW TSB addresses the coolant vent line on the cylinder head that cannot handle excessive high temperatures over the lifetime of the part.",
+      "solution": "Replace the coolant expansion tank with an updated unit at first sign of cracking or weeping. Proactively replace the electric water pump before 60,000 miles. Replace the coolant vent line on the cylinder head per TSB. Inspect all plastic coolant components during every oil service. Consider upgrading to an aluminum expansion tank from aftermarket suppliers like Mishimoto.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Coolant level dropping without visible external leak",
+        "Low coolant warning light on dashboard",
+        "Sweet smell from engine bay",
+        "Steam or coolant pooling under vehicle after parking",
+        "Engine overheating warning",
+        "Coolant residue on expansion tank or water pump housing"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [
+        "2E81",
+        "2E82",
+        "2E83",
+        "2E84",
+        "2E85",
+        "377A"
+      ],
+      "estimatedCostLow": 400,
+      "estimatedCostHigh": 1200,
+      "typicalMileageLow": 15000,
+      "typicalMileageHigh": 50000,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10212788-9999.pdf",
+          "type": "tsb",
+          "title": "BMW TSB - Replace Coolant Vent Line on Cylinder Head"
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/rcl/2018/RCRIT-18V248-8708.pdf",
+          "type": "nhtsa",
+          "title": "BMW Recall 18V-248: Electronic Auxiliary Water Pump"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "warning",
+          "content": "Do not ignore low coolant warnings - the B58 can overheat and warp the head quickly. Pull over and shut off immediately if temperature spikes.",
+          "upvotes": 0
+        },
+        {
+          "type": "tip",
+          "content": "Keep a gallon of BMW-approved coolant (blue) in the trunk. Check expansion tank level monthly and look for hairline cracks in the plastic during oil changes.",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "FCP Euro stocks OEM Mahle water pumps and expansion tanks with a lifetime replacement guarantee - great for this known failure item.",
+          "upvotes": 0,
+          "affiliateUrl": "https://www.amazon.com/s?k=BMW%20M240i%20FCP%20Euro%20stocks%20OEM%20Mahle%20water%20pumps%20and%20expansion%20tanks%20wi&tag=au7o-20"
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=17138677649&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=17138677649",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=17138677649",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "coolant expansion tank",
+          "priceHigh": null,
+          "oemPartNumber": "17138677649",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 420,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [
+        "bmw-m340i-b58-coolant-loss-2020",
+        "mini-gp-water-pump-failure-2013"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "M240i",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "B58 3.0L Turbo I6"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "7888445e3985d7b3383df74e7392ae8abc641f375bcee34e6d60e68cf36298c3",
+        "yearsHash": "029f749a227a9709cc4aca526e19086af415edd81183c6a0e9592ca155761aed",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "30eb63c9f3408bb7a837396a1994a37ad57f358aff8ca0a437a8e833414d5886",
+        "categoryHash": "9fab250e5e42070565c3e1a6449c2fb3a9adf976c5e447ef136c21f089863ee5",
+        "titleHash": "8ea537bacf32d28620b617cf43857e7dd94e3f75a618b0407df79b9e23a39d31",
+        "descriptionHash": "99557c6039c2fd3aa2a24e6b3c38548a104bcff7666d1b6aa8d899558e2eb371",
+        "solutionHash": "036c84c3f33ee0b1f017dcb24284ea52b9fddbf435213659caa20ba14ace3aa2",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "4fead05c0949b92d14c876afe37788ae7344820bf2757a6eefaed869aeb237fd",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "19e975f12c5ad7fc9bd806a52f3a9177350a5c56d3bd513cee0055c80023a57e",
+        "estimatedCostLowHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "estimatedCostHighHash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43",
+        "typicalMileageLowHash": "d4c999ae43633bd2036188d2bca68e1be8202b2cc1f3a1c42a728eaff7d2483d",
+        "typicalMileageHighHash": "60734f174b2035e5b2ba85fef8c648cc0cb18c5995b419d3cd1c025c5b09d0c7",
+        "citationsHash": "bfe211d45012851768fe677ca7ef8cd5ed3a644dd8ac33d1e85bedc879881211",
+        "communityRecommendationsHash": "f24551e8be14cd0d155d8800b6bf4e71a091cfd18627a754c1ad8723255a6dab",
+        "fixPartsHash": "fd7170f636ab037b8e12c37235390e3839c5db0cdd0ed56cd98f0e4e5ebbe5b7",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "db55da3fc3098e9c42311c6013304ff36b19ef73d12ea932054b5ad51df4f49d",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "c11d1384e956acb5f9644a2b7343bb95e4ef42374962519e58a9880c0842781f",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:2"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "coolant expansion tank",
+          "oemPartNumber": "17138677649",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=17138677649&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=17138677649",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=17138677649",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "FCP Euro stocks OEM Mahle water pumps and expansion tanks with a lifetime replacement guarantee - great for this known failure item.",
+          "partName": "",
+          "partBrand": "",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "",
+              "url": "https://www.amazon.com/s?k=BMW%20M240i%20FCP%20Euro%20stocks%20OEM%20Mahle%20water%20pumps%20and%20expansion%20tanks%20wi&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-m240i-b58-valve-cover-gasket-2017",
+      "make": "BMW",
+      "model": "M240i",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [
+        "B58 3.0L Turbo I6"
+      ],
+      "category": "engine",
+      "title": "Valve Cover Gasket Oil Leak",
+      "description": "The B58 engine's valve cover gasket is prone to degradation and oil leaks, typically developing around 60,000-100,000 miles. The rubber gasket material shrinks and dries out through repeated heat cycles, allowing oil to seep and eventually drip down the sides of the engine. In more severe cases, oil can leak into the spark plug tubes, causing misfires and potential ignition coil damage.",
+      "solution": "Replace the valve cover gasket with an updated BMW part. If oil has entered spark plug tubes, replace spark plugs and inspect ignition coils. Clean all oil residue from the engine block. Some owners replace the entire valve cover assembly as the integrated PCV valve can also fail.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "Burning oil smell from engine bay, especially after highway driving",
+        "Visible oil seepage around valve cover edges",
+        "Oil dripping on exhaust manifold causing smoke",
+        "Oil pooling in spark plug wells causing misfires",
+        "Low oil level between changes"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304",
+        "P0305",
+        "P0306"
+      ],
+      "estimatedCostLow": 500,
+      "estimatedCostHigh": 900,
+      "typicalMileageLow": 60000,
+      "typicalMileageHigh": 100000,
+      "citations": [
+        {
+          "url": "https://f30.bimmerpost.com/forums/showthread.php?t=1915272",
+          "type": "owner_forum",
+          "title": "Bimmerpost - B58 Valve Cover Gasket Leak Discussion"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "When replacing the valve cover gasket, also replace the spark plug tube seals and inspect the PCV valve. It's all accessible at the same time and saves labor.",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "Use the OEM Victor Reinz gasket set - aftermarket gaskets tend to shrink faster on turbocharged engines due to higher heat.",
+          "upvotes": 0,
+          "affiliateUrl": "https://www.amazon.com/s?k=BMW%20M240i%20Use%20the%20OEM%20Victor%20Reinz%20gasket%20set%20-%20aftermarket%20gaskets%20te&tag=au7o-20"
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=11128621951&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=11128621951",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=11128621951",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "valve cover gasket",
+          "priceHigh": null,
+          "oemPartNumber": "11128621951",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 310,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [
+        "bmw-x3-valve-cover-gasket-2004",
+        "bmw-2-series-valve-cover-gasket-2014",
+        "bmw-x3-valve-cover-gasket-2011",
+        "bmw-4-series-valve-cover-gasket-2014"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "M240i",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "B58 3.0L Turbo I6"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "7888445e3985d7b3383df74e7392ae8abc641f375bcee34e6d60e68cf36298c3",
+        "yearsHash": "029f749a227a9709cc4aca526e19086af415edd81183c6a0e9592ca155761aed",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "30eb63c9f3408bb7a837396a1994a37ad57f358aff8ca0a437a8e833414d5886",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "d3ce8a989a44a8009e512d39754df2ff3e8cae39d3112c61098580c948238af9",
+        "descriptionHash": "aeb53bd1bfdad8f03b4e33d2336b0db906d63d9b8ce9fd8a9da7a89a0b5c90da",
+        "solutionHash": "2156dbbbb265ed154c610ec41c88a11bc2db052620af9e553a8ef6f2acec9446",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "dadbe07d26cee44f5bb27ce30175e163c594d8f9fc98427dda536b17886f5c83",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "377100859537cc4b1fc1247711a973e4fe9f4ea3486a370f3bbaa99088972d35",
+        "estimatedCostLowHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "estimatedCostHighHash": "bdc5d8a48c23897906b09a9a3680bd2e9c8b3121edbda36f949800f0959c8d55",
+        "typicalMileageLowHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "typicalMileageHighHash": "3bb78535cc9555ff19fe3556aaa41c78a0a45c64d49ba2bc564507648a8e77a1",
+        "citationsHash": "80c8fb87f16de8772fb547562f64743636373bb94fff2b44b825605c8df4588e",
+        "communityRecommendationsHash": "81986b767405b286e657a5d0cbd5fb261cf0515251b365c5abf1e0649d4c754c",
+        "fixPartsHash": "9a5dcf013f2e412a33be82ac4db3bc7a0856546281bd41d63991b84631960b95",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "226f76b55acb49701e06ded1d95165d179458f6fc37f5c6fc760ae30dec1c378",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "95dfeae46bafaa74bfa9084d505e5b60358aea1f8db30db2c8220a8c71a4a673",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "valve cover gasket",
+          "oemPartNumber": "11128621951",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=11128621951&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=11128621951",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=11128621951",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "Use the OEM Victor Reinz gasket set - aftermarket gaskets tend to shrink faster on turbocharged engines due to higher heat.",
+          "partName": "",
+          "partBrand": "",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "",
+              "url": "https://www.amazon.com/s?k=BMW%20M240i%20Use%20the%20OEM%20Victor%20Reinz%20gasket%20set%20-%20aftermarket%20gaskets%20te&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-m240i-b58-vanos-solenoid-2017",
+      "make": "BMW",
+      "model": "M240i",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [
+        "B58 3.0L Turbo I6"
+      ],
+      "category": "engine",
+      "title": "VANOS Solenoid O-Ring Failure",
+      "description": "The B58 engine's VANOS solenoid o-rings degrade due to wear and high temperatures, causing oil leaks and variable valve timing faults. When the o-rings fail, oil pressure to the VANOS system is compromised, leading to rough idle, reduced power, and check engine lights. This is a continuation of a problem that has affected multiple generations of BMW inline-6 engines.",
+      "solution": "Replace the VANOS solenoid o-rings with updated silicone o-rings. Clean the solenoid screens of any debris. If solenoids are contaminated, replace the entire solenoid unit. Use BMW-approved 0W-30 oil and maintain proper oil change intervals to reduce o-ring degradation.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "Rough idle, especially when cold",
+        "Reduced power and acceleration hesitation",
+        "Check engine light with VANOS codes",
+        "Oil leak around VANOS solenoid area on top of engine",
+        "Engine stalling at low RPM"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [
+        "P1014",
+        "P1017",
+        "P1023",
+        "P1030",
+        "P10DF",
+        "P10E0",
+        "P10E1"
+      ],
+      "estimatedCostLow": 150,
+      "estimatedCostHigh": 500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.bimmerfest.com/threads/new-to-forum-is-a-used-m340i-worth-a-purchase.1441443/",
+          "type": "owner_forum",
+          "title": "BimmerFest - B58 VANOS Solenoid O-Ring Failure"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "O-ring replacement is a DIY-friendly job. Buy a full o-ring kit from FCP Euro or ECS Tuning and replace all VANOS solenoid o-rings at once. Takes about 30 minutes with basic tools.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "Do not ignore VANOS codes - continued driving with failed o-rings can cause oil starvation to the VANOS unit, leading to much more expensive repairs.",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "Piston ring set restores compression and reduces oil consumption",
+          "partName": "Piston Ring Set",
+          "partBrand": "Mahle",
+          "affiliateUrl": "https://www.amazon.com/s?k=BMW%20M240i%20Mahle%20Piston%20Ring%20Set&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Engine assembly lube for proper ring break-in",
+          "partName": "Engine Assembly Lube",
+          "partBrand": "Permatex",
+          "affiliateUrl": "https://www.amazon.com/s?k=BMW%20M240i%20Permatex%20Engine%20Assembly%20Lube&tag=au7o-20"
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "(reconciled from the issue's own fix text)",
+          "source": "reconciliation",
+          "buyLinks": [
+            {
+              "url": "https://www.amazon.com/s?k=11367614288&tag=au7o-20",
+              "vendor": "Amazon"
+            },
+            {
+              "url": "https://www.rockauto.com/en/partsearch/?q=11367614288",
+              "vendor": "RockAuto"
+            },
+            {
+              "url": "https://www.ebay.com/sch/i.html?_nkw=11367614288",
+              "vendor": "eBay"
+            }
+          ],
+          "priceLow": null,
+          "component": "VANOS solenoid (actuator)",
+          "priceHigh": null,
+          "oemPartNumber": "11367614288",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 275,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [
+        "bmw-4series-n55-vanos-solenoid-2014",
+        "bmw-n55-vanos-2012",
+        "bmw-x3-vanos-solenoid-2007",
+        "bmw-m3-s65-vanos-solenoid-failure",
+        "bmw-x5-vanos-solenoid-2000"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "M240i",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "B58 3.0L Turbo I6"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "7888445e3985d7b3383df74e7392ae8abc641f375bcee34e6d60e68cf36298c3",
+        "yearsHash": "029f749a227a9709cc4aca526e19086af415edd81183c6a0e9592ca155761aed",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "30eb63c9f3408bb7a837396a1994a37ad57f358aff8ca0a437a8e833414d5886",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "299bd4b1bf043833a80a32ee21df64026c0466989b6668b9c3ba9719eb01b7a8",
+        "descriptionHash": "e38daf448d223e6bdfcd95178158135f7b34507ac9f02e76eb83de4e19a3830a",
+        "solutionHash": "97fcfd6811a56abeb6efd78c16e162bde6952c784247f01139ebd2fe9fbfa82f",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "58d2f127bf344690dce920cce5771d2ee554000c8d01c1d20209803317ca40e8",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "f7e2932f11f3e5a3598ace9d467332e19d1d600c9aa498f8bef3d061ceba4411",
+        "estimatedCostLowHash": "9ae2bdd7beedc2e766c6b76585530e16925115707dc7a06ab5ee4aa2776b2c7b",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "b77ce5a9600ed378594825e02871115d23553f89bc319d2bf0675d17382db192",
+        "communityRecommendationsHash": "69817fdd859fa1def61cc19b78d03ff938d7793f36728ba35bf933e942242051",
+        "fixPartsHash": "ec3a157e62286610eaff9f8ee8735ff91b54cf7dba5835960233adb4f013e7df",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "3a1dfb05d7257530e6349233688c3e121945c5de50f1273a7620537755d61e45",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "6c167af9b4ed4b611826c642ca35e664fccaae780e53f3872ddfdb9d897e0116",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:2",
+          "communityRecommendations:3"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "VANOS solenoid (actuator)",
+          "oemPartNumber": "11367614288",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/s?k=11367614288&tag=au7o-20",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter k"
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "RockAuto",
+              "url": "https://www.rockauto.com/en/partsearch/?q=11367614288",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter q"
+            },
+            {
+              "field": "buyLinks:2",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/sch/i.html?_nkw=11367614288",
+              "linkType": "",
+              "verified": false,
+              "error": "search query parameter _nkw"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "Piston ring set restores compression and reduces oil consumption",
+          "partName": "Piston Ring Set",
+          "partBrand": "Mahle",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Mahle",
+              "url": "https://www.amazon.com/s?k=BMW%20M240i%20Mahle%20Piston%20Ring%20Set&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Engine assembly lube for proper ring break-in",
+          "partName": "Engine Assembly Lube",
+          "partBrand": "Permatex",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Permatex",
+              "url": "https://www.amazon.com/s?k=BMW%20M240i%20Permatex%20Engine%20Assembly%20Lube&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    }
+  ]
+}
