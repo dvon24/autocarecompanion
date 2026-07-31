@@ -54,3 +54,31 @@ test('a mocked lookup returns sanitized candidate-only fitment without the accou
   assert.equal(JSON.stringify(result).includes('SECRET-ID'), false);
   assert.equal(seen.every((url) => url.searchParams.get('id') === 'SECRET-ID'), true);
 });
+
+test('list-products resolves exact category names without requesting engines or parts', async () => {
+  const responses = [
+    '<root err_num="0"><make><id>0004</id><data>BMW</data></make></root>',
+    '<root err_num="0"><model><id>0042</id><data>335I</data></model></root>',
+    '<root err_num="0"><product><id>0058</id><data>DRIVE SHAFT</data></product><product><id>0020</id><data>ENGINE COMPONENTS</data></product></root>',
+  ];
+  const seen = [];
+  const fetchImpl = async (url) => {
+    seen.push(url);
+    return { ok: true, status: 200, text: async () => responses.shift() };
+  };
+  const result = await findCandidates({
+    year: 2011,
+    make: 'BMW',
+    models: ['335i'],
+    listProducts: true,
+  }, { accountId: 'SECRET-ID', fetchImpl, signal: {} });
+  assert.deepEqual(result.resolved.products.map((product) => product.name), [
+    'DRIVE SHAFT',
+    'ENGINE COMPONENTS',
+  ]);
+  assert.deepEqual(result.resolved.engines, []);
+  assert.deepEqual(result.candidates, []);
+  assert.equal(seen.length, 3);
+  assert.equal(seen.some((url) => url.searchParams.get('lookup') === 'engine'), false);
+  assert.equal(seen.some((url) => url.searchParams.get('lookup') === 'parts'), false);
+});

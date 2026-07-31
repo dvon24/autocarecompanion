@@ -10,6 +10,10 @@
  *     --year 2008 --make Audi --model A6 --model "A6 Quattro" \
  *     --product-match "belts hoses tensioners" \
  *     --engine-match "3.2L" --part-type-match "timing chain"
+ *
+ * List exact catalog product-category names without requesting engines or parts:
+ *   SHOWMETHEPARTS_ID=... node scripts/showmetheparts-known-issue-candidates.js \
+ *     --year 2011 --make BMW --model 335i --list-products
  */
 const fs = require('fs');
 const path = require('path');
@@ -107,6 +111,10 @@ function argValue(args, flag, fallback = '') {
   return argValues(args, flag)[0] || fallback;
 }
 
+function argFlag(args, flag) {
+  return args.includes(flag);
+}
+
 function writeJsonAtomic(file, value) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   const temp = `${file}.tmp-${process.pid}`;
@@ -149,6 +157,7 @@ async function findCandidates(input, options = {}) {
       ? products.filter((product) => matchesAllTokens(product.data, input.productMatch))
       : products;
     productRows.push(...selectedProducts.map((product) => ({ model: model.data, id: product.id, name: product.data })));
+    if (input.listProducts) continue;
 
     for (const product of selectedProducts) {
       const engines = parseItems(await requestXml({ lookup: 'engine', year, make: make.id, model: model.id, product: product.id }, options), 'engine');
@@ -191,6 +200,7 @@ async function findCandidates(input, options = {}) {
       productMatch: input.productMatch || '',
       engineMatch: input.engineMatch || '',
       partTypeMatch: input.partTypeMatch || '',
+      listProducts: Boolean(input.listProducts),
     },
     resolved: {
       make: { id: make.id, name: make.data },
@@ -212,6 +222,7 @@ async function main() {
     productMatch: argValue(args, '--product-match'),
     engineMatch: argValue(args, '--engine-match'),
     partTypeMatch: argValue(args, '--part-type-match'),
+    listProducts: argFlag(args, '--list-products'),
   };
   const result = await findCandidates(input);
   const output = argValue(args, '--output');
