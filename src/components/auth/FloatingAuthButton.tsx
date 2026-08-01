@@ -37,6 +37,11 @@ export function FloatingAuthButton() {
   // Keep the locale list in sync with LOCALES in src/lib/i18n.ts (not
   // imported — that module pulls the translation JSON into the bundle).
   const onHeaderedPage = /^\/(known-issues(\/|$)|(pt-br|es|de|fr|ko)(\/|$))/.test(pathname ?? '');
+  //   - The twin demo surfaces (/demo/*, /dev/hero). These are the beta
+  //     demand test: the only action we want on them is "reserve your spot",
+  //     and a floating Sign in pill both competes with that CTA and overlaps
+  //     the hub's own top-right controls.
+  const onTwinDemo = /^\/(demo(\/|$)|dev\/hero(\/|$))/.test(pathname ?? '');
 
   // Close dropdown on outside click.
   useEffect(() => {
@@ -50,7 +55,7 @@ export function FloatingAuthButton() {
     return () => document.removeEventListener('mousedown', handler);
   }, [open]);
 
-  if (onAuthPage || onHome || onHeaderedPage) return null;
+  if (onAuthPage || onHome || onHeaderedPage || onTwinDemo) return null;
 
   // Skeleton while session resolves so the link doesn't pop in.
   if (status === 'loading') {

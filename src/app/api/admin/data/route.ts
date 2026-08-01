@@ -16,7 +16,7 @@ export async function GET() {
   }
 
   try {
-    const [emailRows, feedbackRows, userRows] = await Promise.all([
+    const [emailRows, feedbackRows, userRows, reservationRows] = await Promise.all([
       prisma.interestEmail.findMany({ orderBy: { createdAt: 'desc' }, take: 1000 }),
       prisma.feedback.findMany({
         where: { kind: { in: ['bug', 'feature', 'general'] } },
@@ -33,6 +33,7 @@ export async function GET() {
           _count: { select: { vehicles: true } },
         },
       }),
+      prisma.reservation.findMany({ orderBy: { createdAt: 'desc' }, take: 1000 }),
     ]);
 
     const emails = emailRows.map((r) => ({
@@ -61,7 +62,21 @@ export async function GET() {
       vehicleCount: u._count.vehicles,
     }));
 
-    return NextResponse.json({ emails, feedback, users });
+    // Twin beta demand test. `source` is the point of the table: hero vs demo
+    // tells us whether the promise converts or only the hands-on drive does.
+    const reservations = reservationRows.map((r) => ({
+      id: r.id,
+      timestamp: r.createdAt.toISOString(),
+      email: r.email,
+      vehicle: r.vehicle ?? null,
+      country: r.country ?? null,
+      source: r.source ?? null,
+      path: r.path ?? null,
+      note: r.note ?? null,
+      invitedAt: r.invitedAt ? r.invitedAt.toISOString() : null,
+    }));
+
+    return NextResponse.json({ emails, feedback, users, reservations });
   } catch (error) {
     console.error('Admin data error:', error);
     return NextResponse.json(
