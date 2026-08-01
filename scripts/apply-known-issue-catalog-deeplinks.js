@@ -675,9 +675,10 @@ async function applyBatch(pool, manifest, mode) {
 }
 
 async function run(mode, args) {
-  require('dotenv').config({ path: path.join(PROJECT_ROOT, '.env.local') });
-  const connectionString = process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL;
-  if (!connectionString) throw new Error('No POSTGRES_PRISMA_URL or DATABASE_URL set.');
+  const envPath = process.env.KNOWN_ISSUE_ENV_FILE || path.join(PROJECT_ROOT, '.env.local');
+  require('dotenv').config({ path: envPath });
+  const connectionString = process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL || process.env.DIRECT_URL;
+  if (!connectionString) throw new Error('No POSTGRES_PRISMA_URL, DATABASE_URL, or DIRECT_URL set.');
   const { Pool } = require('pg');
   const pool = new Pool({ connectionString, max: 3, idleTimeoutMillis: 30000 });
   try {
