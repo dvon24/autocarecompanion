@@ -1,0 +1,782 @@
+{
+  "schemaVersion": 2,
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "auditScope": "full-record",
+  "batchId": "bmw-x2-full-record-cohort-26-2026-07-31",
+  "snapshotHash": "edf76c5f8e7d1401198e2c5a95e094ad74f262c30decaba0741594c42e6a2541",
+  "sourceSnapshotFileHash": "5f6472b0b515773b88fa67f3161f9d8e72cf5e127d7947c6d9207c5d7eb6df21",
+  "packetFileHash": "9bef74508a9ea48b9ba228c4515eb37585ed885852500c01decd9599f7316cc1",
+  "reviewApproval": {
+    "approvedAfterBlindAndEdgeReview": true,
+    "approvedOn": "2026-07-31",
+    "blindReviewer": "bmwx2_blind:self-no-blocker",
+    "edgeReviewer": "bmwx2_edge:self-no-blocker",
+    "reviewedGeneratorFileHash": "e1f48d6a2602ea0f168ea37e231757cf25d9f90cae3d03ecdc6dc93971b7a361"
+  },
+  "researchedWith": "Ultra-effort current manufacturer/regulator primary-source review; no LLM API and no commerce approval",
+  "controlledDeltaProposals": [
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-x2-recall-20v283000",
+      "sources": [
+        "https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "bmw-x2-recall-21v554000",
+      "sources": [
+        "https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "bmw-x2-transmission-jerking-2018",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Aisin 8-Speed Transmission Jerking\" aggregation. The cited BMW bulletin is a general transmission-training document, not an X2 defect bulletin, and does not support the asserted oil-pump failure, prices or universal repair ladder. Its two clicks increase review priority but cannot preserve unsupported claims. Remove all 2 commerce claims and 2 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "fad6f1d8b40deaee61346ecc01e92825120500b2d72752b7cc4ffa9876e25ac4",
+        "yearsHash": "93ec5024d8c6aeb6fb39747311467a4af2d9f1eba0620089f4bf6345f072b7a2",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "188fa63a7b1073538e4b08759973458b112598fe59aa87b150c8c132892ce61b",
+        "descriptionHash": "7812e09908de003d7b5d5b57274385a060573906eb252c7f4f62d4e0492c39da",
+        "solutionHash": "a6a6c9ca08be97a02bf816b8add95e13666efccf81e64d043c8d4e412495ec4f",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "8a5bb65846e0d8d024340ce278b5004962352ef1f4722a04bb9aeaadcf97f062",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "768feba19b0085af323951d65028339411b3f3b71387e1ecc259d3516c754156",
+        "estimatedCostLowHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "estimatedCostHighHash": "b698d86c67a2cff80405bd47af322216c552fd3a52f9c58a70f7b3a3313895b1",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "f3a4504c472e9059be3bd3adb7bfcedd68ff812f1ff8ba5be735e86f39c92c88",
+        "communityRecommendationsHash": "3eb6b8aa680d46328232815fdf3c5bc9246bd36c1e7f46c2dd6a92092b72a05e",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "X2",
+        "years": [
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Archived - Aisin 8-Speed Transmission Jerking",
+        "description": "The former BMW X2 card asserted \"Aisin 8-Speed Transmission Jerking\" across the listed population. The cited BMW bulletin is a general transmission-training document, not an X2 defect bulletin, and does not support the asserted oil-pump failure, prices or universal repair ladder. Its two clicks increase review priority but cannot preserve unsupported claims.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the VIN, model year, production date, engine, drivetrain, equipment, symptoms, DTCs, software level, modifications, open recalls and current BMW service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW X2 \"Aisin 8-Speed Transmission Jerking\" aggregation and removed 2 commerce claims with 2 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-x2-b48-timing-chain-tensioner-2018",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"B48 Timing Chain Tensioner Weakness\" aggregation. No exact BMW communication establishes the asserted X2 B48 tensioner defect, mileage window or updated component. Remove all 2 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "fad6f1d8b40deaee61346ecc01e92825120500b2d72752b7cc4ffa9876e25ac4",
+        "yearsHash": "9f10d37c49c46ad534eaf4a9ac072ee8eb6787a3f8ef2892606069a1102f42b7",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "d9c7f2ce2fcfe37ceb9ef1d4e752b1790ab4e16936882a366901007db3abe4d8",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "25504266f72aaf2bbe79699996de07f474ea52d02f93d134c507a7bf98771eb7",
+        "descriptionHash": "4335069fa96a0c23640c4e3baa7b938002ee1eaf00950e6ad4a6dd6b31cb6837",
+        "solutionHash": "dbd4987812ab8d68035d2789af36a9a574fdbf8844d2f76c8363af01071df099",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "274548daa6dcb4bb1a319736def4799a140ef21488266925ae4daa53b7ea6142",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "a67d9425fe1d1306f50c3a33ae78c77005e38ad0bccad4605a4e9b8daacab1d6",
+        "estimatedCostLowHash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43",
+        "estimatedCostHighHash": "19d62f0f54e0697f2532ba0897789728805b4cb6bafb4e212d268a54058440af",
+        "typicalMileageLowHash": "60734f174b2035e5b2ba85fef8c648cc0cb18c5995b419d3cd1c025c5b09d0c7",
+        "typicalMileageHighHash": "19993dc8f0a4531641fdc7f7cf33785479e3dd3b5384303971e247eb07404b98",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "8b24352b8b00f0c1ba49f6e372a18b02022428088d852e66e11431a88d974bd7",
+        "fixPartsHash": "86ceba82721db61f2dc7d6a715c4c21e4efdb3ea276f8bbde67ec8d6dabcaabc",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "38d66d9692ac590000a91b03a88da1c88d51fab2b78f63171f553ecc551a0c6f",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "40bece5827623f1ae61e1aee63087d58db80baa9cab8c1a4d2cc4b5e6ac832ec",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "X2",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Archived - B48 Timing Chain Tensioner Weakness",
+        "description": "The former BMW X2 card asserted \"B48 Timing Chain Tensioner Weakness\" across the listed population. No exact BMW communication establishes the asserted X2 B48 tensioner defect, mileage window or updated component.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the VIN, model year, production date, engine, drivetrain, equipment, symptoms, DTCs, software level, modifications, open recalls and current BMW service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW X2 \"B48 Timing Chain Tensioner Weakness\" aggregation and removed 2 commerce claims with 4 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-x2-crankshaft-sensor-recall-2018",
+      "disposition": "recall-dealer",
+      "decision": "Correct the campaign number from 18V-565 to 18V-465, narrow the frozen card to the exact 2018 X2 recall population and remove its commerce link.",
+      "evidence": [
+        {
+          "type": "recall",
+          "label": "NHTSA Safety Recall Report 18V-465 - Crankshaft Sensor",
+          "url": "https://static.nhtsa.gov/odi/rcl/2018/RCLRPT-18V465-8379.PDF"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "fad6f1d8b40deaee61346ecc01e92825120500b2d72752b7cc4ffa9876e25ac4",
+        "yearsHash": "df2288a42d506c0adce704549cb51a2d74d9e2bba12d7e86f73e173a3e588da3",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "d5082636ad539fe83b2f777b7f6ff13edd9f9266eed0b3ea3c7fe5bc20e41a31",
+        "descriptionHash": "1c29474fc82e91282a8a0a4836b03e4850664c17d97469df68c38a8233defbc7",
+        "solutionHash": "941186b9b0d9f62a8f2ff2250922d49697b392d9745027eca547b29048699c43",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "56a34ae1662d163c547fe502a3863049cb5392fdc6c7f8a2530eea81f0913d1f",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "49d94bb772a5f4cc675382f43dd3b014fce1f8f8f7b329dc10f3fb05df6529ca",
+        "communityRecommendationsHash": "7563a9ebc4d374519fed8fcbc9a6a9513999e58955d54e9990a9f715e3cc3f99",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "X2",
+        "years": [
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "2018 X2 Crankshaft Sensor Safety Recall 18V-465",
+        "description": "NHTSA campaign 18V-465 covers certain 2018 BMW X2 sDrive28i and xDrive28i vehicles produced from May 16 through June 6, 2018. Incorrect sensor firmware can fail to process crankshaft-reluctor-ring input accurately, causing rough running, reduced power or an engine stall. Applicability is VIN-specific.",
+        "solution": "Check the VIN for an open 18V-465 campaign. If open, an authorized BMW dealer replaces the crankshaft sensor free of charge. A stall or sudden loss of power requires moving to a safe location and arranging BMW assistance; do not order a sensor from this card. ShowMeTheParts resolved exact X2 category fitment only, so no commerce link is approved.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rough-running engine",
+          "Reduced engine power",
+          "Engine stall"
+        ],
+        "affectedSystems": [
+          "crankshaft position sensor",
+          "engine management"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Safety Recall Report 18V-465 - Crankshaft Sensor",
+            "url": "https://static.nhtsa.gov/odi/rcl/2018/RCLRPT-18V465-8379.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Corrected the campaign identity and population for the X2 crankshaft-sensor recall and removed its unsupported commerce claim and URL.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-x2-front-control-arm-bushings-2018",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Front Control Arm Bushing Premature Wear\" aggregation. The citation is only a BMW corporate home page and does not establish an X2 production scope, failure mechanism or repair. Remove all 2 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "fad6f1d8b40deaee61346ecc01e92825120500b2d72752b7cc4ffa9876e25ac4",
+        "yearsHash": "9f10d37c49c46ad534eaf4a9ac072ee8eb6787a3f8ef2892606069a1102f42b7",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "8e1cf3cb51f6551667407dca6609c2fb8768c20c9f6e31d7dc340224a663dde3",
+        "descriptionHash": "ac35e965b43df1166de76af31de54c705162262917da3e745c74e4305ba6ce08",
+        "solutionHash": "47af38f11123380c328e4973c2fed4ec4050fdaf77ae1eb37cc4f643d8ff7158",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "9a64ff9482a3ee7af2d5bafd7bf8ad7a4366fc2ae2742b9b310850cd49006cf1",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "estimatedCostHighHash": "40510175845988f13f6162ed8526f0b09f73384467fa855e1e79b44a56562a58",
+        "typicalMileageLowHash": "891937cb335016e9c7074c3781dcb1364e0c660733a8889bbeae83e6aa759be6",
+        "typicalMileageHighHash": "60734f174b2035e5b2ba85fef8c648cc0cb18c5995b419d3cd1c025c5b09d0c7",
+        "citationsHash": "37f31d16b151ddd170f1fed3b3572d1066f59a5e29d094a9cb911bc618181cb1",
+        "communityRecommendationsHash": "d569c9a613827fb0d3d81f388679cbc053ff76c18f38d8905152e5db54402b52",
+        "fixPartsHash": "75bce1d323b0b1a4ece2123804494615b191721910ed8c6a86eecbe35b9395d2",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "dbae772db29058a88f9bd830e957c695347c41b6162a7eb9a9ea13def34be56b",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "X2",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Archived - Front Control Arm Bushing Premature Wear",
+        "description": "The former BMW X2 card asserted \"Front Control Arm Bushing Premature Wear\" across the listed population. The citation is only a BMW corporate home page and does not establish an X2 production scope, failure mechanism or repair.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the VIN, model year, production date, engine, drivetrain, equipment, symptoms, DTCs, software level, modifications, open recalls and current BMW service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW X2 \"Front Control Arm Bushing Premature Wear\" aggregation and removed 2 commerce claims with 4 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-x2-oil-filter-housing-2018",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"B48 Oil Filter Housing Gasket Leak/Cracking\" aggregation. The card combines gasket leakage, housing cracking and oil-coolant mixing, then prescribes named aftermarket parts without an exact BMW source. Remove all 3 commerce claims and 5 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "fad6f1d8b40deaee61346ecc01e92825120500b2d72752b7cc4ffa9876e25ac4",
+        "yearsHash": "9f10d37c49c46ad534eaf4a9ac072ee8eb6787a3f8ef2892606069a1102f42b7",
+        "trimsHash": "637856c837de338f3e4444d01f9f69656f47d5f8b7385c892e3903c21f50673a",
+        "enginesHash": "d9c7f2ce2fcfe37ceb9ef1d4e752b1790ab4e16936882a366901007db3abe4d8",
+        "categoryHash": "d448c0e0f65da7948e3edb7805b5272b54f75f427c33333157324b626f5ca51f",
+        "titleHash": "2b556931f1ebfd2511e4d4ff1466ade06bf5b4d3da10d8e6d84c9b21cda728ed",
+        "descriptionHash": "0f767c026412397d66c13d52d71569eb22a971b18fa55c1ff163f2934951c285",
+        "solutionHash": "b21bf84d0566cde61bc5ed3524a4842c389f7c95fec9d4d287b62122c172416d",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "db0168d89330cbed6c70fdd7c57ae9ee2e233fe5b8a20919bade42063325c4d3",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "c55537b32ceecd5a584c714fd6e60d7666d7cfa0c0856be9d52c0b7e64a6033d",
+        "estimatedCostLowHash": "1e472b39b105d349bcd069c4a711b44a2fffb8e274714bb07ecfff69a9a7f67b",
+        "estimatedCostHighHash": "a176eeb31e601c3877c87c2843a2f584968975269e369d5c86788b4c2f92d2a2",
+        "typicalMileageLowHash": "4520eeb3ad812cd23d834f7475ada6c20c749523575ee1ebbc79f4b8199e8930",
+        "typicalMileageHighHash": "f73d49677d4176275a83fd8e5f639e47dd15192d0fa0003ccc623157d672e648",
+        "citationsHash": "31713d499236abe1ecf4f64fb500e979dcfe030b8732cb8d5f02bde34a9821e1",
+        "communityRecommendationsHash": "186b05a687be5583a82b80bf9fe1af1a4998d911bd1d6a971a11331fa3fc47de",
+        "fixPartsHash": "ed5871d14273b04c272fcd7f5f329f4cf909c38875f8a98972562172a75a5d2b",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "d735cda12849222f0f8d288c2849c62dfc1374b6c3a07101444d54c94cc44cd3",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "X2",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "other",
+        "title": "Archived - B48 Oil Filter Housing Gasket Leak/Cracking",
+        "description": "The former BMW X2 card asserted \"B48 Oil Filter Housing Gasket Leak/Cracking\" across the listed population. The card combines gasket leakage, housing cracking and oil-coolant mixing, then prescribes named aftermarket parts without an exact BMW source.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the VIN, model year, production date, engine, drivetrain, equipment, symptoms, DTCs, software level, modifications, open recalls and current BMW service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW X2 \"B48 Oil Filter Housing Gasket Leak/Cracking\" aggregation and removed 3 commerce claims with 5 URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-x2-oil-filter-housing-gasket-2018",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Oil Filter Housing Gasket Leak\" aggregation. This duplicates the oil-filter-housing aggregation and has no citation supporting its six-year population or remedy. Remove all 2 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "fad6f1d8b40deaee61346ecc01e92825120500b2d72752b7cc4ffa9876e25ac4",
+        "yearsHash": "9f10d37c49c46ad534eaf4a9ac072ee8eb6787a3f8ef2892606069a1102f42b7",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "d9c7f2ce2fcfe37ceb9ef1d4e752b1790ab4e16936882a366901007db3abe4d8",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "96f978552a0e2a71df9441a00d71fa2841f1e501906ce7e046ab6a6a3ae3e86e",
+        "descriptionHash": "10b65423c46db9c983a8100d9db346e2be59bec7d92b9daf58198560516f0412",
+        "solutionHash": "575c79af6acc9f2cd207f0fa62fffb6ebd4cb602cbeeafeedf3aa5988573bbd3",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "40601f41b3484d6db49a8f01547b803e615b81dbff89ab07f14dae5fee833688",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "1e472b39b105d349bcd069c4a711b44a2fffb8e274714bb07ecfff69a9a7f67b",
+        "estimatedCostHighHash": "99ee50221221864d50c60baea6f14d8ac2e235cc6e78be6088cd40cc97fca394",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "28dd7f9409b950c068a0aed97d2978a277fc4f50a514acc8002fe2f7b67f2665",
+        "fixPartsHash": "0b105220825a79a79d2bfb21665a9b5a3283b7bed9e0ba6d1e4c254b5b75e394",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "a512db2741cd20693e4b16f19891e72b9ff12cead72761fc5e92d2aaf34740c1",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "944eae096bd6cab58b75eb11c220189d60f7ee7e616259ce68d24e601142ed40",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "X2",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Archived - Oil Filter Housing Gasket Leak",
+        "description": "The former BMW X2 card asserted \"Oil Filter Housing Gasket Leak\" across the listed population. This duplicates the oil-filter-housing aggregation and has no citation supporting its six-year population or remedy.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the VIN, model year, production date, engine, drivetrain, equipment, symptoms, DTCs, software level, modifications, open recalls and current BMW service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW X2 \"Oil Filter Housing Gasket Leak\" aggregation and removed 2 commerce claims with 4 URLs. Removed unsupported seeded owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-x2-tie-rod-recall-2019",
+      "disposition": "recall-dealer",
+      "decision": "Replace the uncited broad tie-rod narrative with exact NHTSA campaign 19V-601 scope and remove both commerce claims and URLs.",
+      "evidence": [
+        {
+          "type": "recall",
+          "label": "BMW SIB 32 07 19 / NHTSA Recall 19V-601 - Steering Gear Tie Rod",
+          "url": "https://static.nhtsa.gov/odi/rcl/2019/RCRIT-19V601-0629.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "fad6f1d8b40deaee61346ecc01e92825120500b2d72752b7cc4ffa9876e25ac4",
+        "yearsHash": "a0c542abe28a8078921f224a93fd3ce4fb66854eedcdcc012abf390936acdce0",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "0786870725b500eb56b579a22910890cf60bed19989831e81ee752a8d35e0607",
+        "descriptionHash": "38bbfd013a146b6ef373a92d212474a3c64d4b76035868a3761f7ece265f9e79",
+        "solutionHash": "2c296b0bcf90d27813243928cb7a2268f6d1d43cd34f50e4c37444d79022f08c",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "f0842bc32e0571b63099666f417803c3fdbc6547a87d3809c041eb9d566b16fe",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "14df7a73faa3cf22cd4bc6d49c8949a49b52b9410738a3ec31e38c4725463380",
+        "communityRecommendationsHash": "c36bc1b84e21a52f422ff3b3097cb5e8f0524d04f858e9a72d96648662056257",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:3",
+          "communityRecommendations:4"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "X2",
+        "years": [
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "2019 X2 Steering Tie-Rod Safety Recall 19V-601",
+        "description": "BMW SIB 32 07 19 and NHTSA campaign 19V-601 cover a VIN-specific 2019 X2 xDrive28i population. A cone collar disc may not have been installed on a steering tie rod, allowing excessive tie-rod-end wear and eventual breakage with loss of steering control.",
+        "solution": "Check the VIN in BMW AIR or NHTSA for an open 19V-601 campaign. If open, an authorized BMW dealer checks both tie rods and replaces the tie rods and ball joints as necessary free of charge. Do not infer recall eligibility from model year alone or order steering parts from this card.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Steering looseness",
+          "Abnormal steering noise",
+          "Loss of steering control if a tie rod breaks"
+        ],
+        "affectedSystems": [
+          "steering gear tie rods",
+          "tie-rod-end ball joints"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "BMW SIB 32 07 19 / NHTSA Recall 19V-601 - Steering Gear Tie Rod",
+            "url": "https://static.nhtsa.gov/odi/rcl/2019/RCRIT-19V601-0629.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Bounded the X2 tie-rod card to recall 19V-601 and removed two unsupported commerce claims and two URLs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "bmw-x2-valve-cover-gasket-2018",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Valve Cover Gasket Oil Leak\" aggregation. A generic NHTSA vehicle page and fabricated video URL do not establish the fixed-mileage failure, assembly part number, cost or universal repair claim. Remove all 2 commerce claims and 4 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "fad6f1d8b40deaee61346ecc01e92825120500b2d72752b7cc4ffa9876e25ac4",
+        "yearsHash": "9f10d37c49c46ad534eaf4a9ac072ee8eb6787a3f8ef2892606069a1102f42b7",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "d3ce8a989a44a8009e512d39754df2ff3e8cae39d3112c61098580c948238af9",
+        "descriptionHash": "f6ddb5df18b18fba6b99238dc86383f9e27155205fe5296806bd3d6aef264fb3",
+        "solutionHash": "4fefe8f0c86c720d1cd0f1808408b6fcf3eafb537cf2a0df7ce2af1276327fb0",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "b17f116174c5bdab20e6405e21920ba7390c20cfb4ad9d0c1da2fbe2e53eab72",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "99ee50221221864d50c60baea6f14d8ac2e235cc6e78be6088cd40cc97fca394",
+        "estimatedCostHighHash": "40510175845988f13f6162ed8526f0b09f73384467fa855e1e79b44a56562a58",
+        "typicalMileageLowHash": "265f10e1bf87701b7aa597c197b6a25b0984777f3443a289d7a92aedd31fddcf",
+        "typicalMileageHighHash": "47b25095a0fe135a688b20614771dbb445ad5e27e9cd4f2c2089c5af216e305b",
+        "citationsHash": "2ac5457708b5c3577971f4751773fe526037190278a0fc25fa9c76ac1ceb0af7",
+        "communityRecommendationsHash": "c6ebdec186f29be56053d7c1cafba2ad59750780b1c6fdce58dbd02a525c04f7",
+        "fixPartsHash": "a6f6b909771c2946d153fa230dd8be62b534eb1bddd73e8cc8b2341914c7a169",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0",
+          "communityRecommendations:0"
+        ]
+      },
+      "after": {
+        "make": "BMW",
+        "model": "X2",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Archived - Valve Cover Gasket Oil Leak",
+        "description": "The former BMW X2 card asserted \"Valve Cover Gasket Oil Leak\" across the listed population. A generic NHTSA vehicle page and fabricated video URL do not establish the fixed-mileage failure, assembly part number, cost or universal repair claim.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the VIN, model year, production date, engine, drivetrain, equipment, symptoms, DTCs, software level, modifications, open recalls and current BMW service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-31",
+        "contentUpdatedOn": "2026-07-31",
+        "contentUpdateSummary": "Archived the unsupported BMW X2 \"Valve Cover Gasket Oil Leak\" aggregation and removed 2 commerce claims with 4 URLs.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
