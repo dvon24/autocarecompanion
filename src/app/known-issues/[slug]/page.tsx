@@ -31,6 +31,10 @@ import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 import { sourceLabel, analysisAttribution, sourceFootnote, metaSourceTail, formatUpdatedLabel } from '@/lib/source-attribution';
 import { vehicleSlug } from '@/lib/vehicle-slug';
 import { getLocalesForSlug, hreflangFor } from '@/lib/i18n';
+import {
+  getBMWAuditedEmptyModel,
+  getBMWAuditedEmptyModels,
+} from '@/lib/known-issues-audit-registry';
 
 // --- ISR + dynamic params ---
 
@@ -136,64 +140,26 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'cadillac-xts',
 ]);
 
-// parseSlug() intentionally resolves only make/model pairs that still have a
-// published issue. A full-record audit can archive the final card for a model,
-// but the established model URL must remain a useful, indexable owner reference
-// instead of becoming a 200-response soft 404. Keep an exact identity for every
-// BMW model in this completed cohort so the audited-empty renderer can run.
-const BMW_AUDITED_MODEL_IDENTITIES: Record<string, { make: string; model: string }> = {
-  'bmw-1-series': { make: 'BMW', model: '1 Series' },
-  'bmw-2-series': { make: 'BMW', model: '2 Series' },
-  'bmw-2-series-active-tourer': { make: 'BMW', model: '2 Series Active Tourer' },
-  'bmw-3-series': { make: 'BMW', model: '3 Series' },
-  'bmw-4-series': { make: 'BMW', model: '4 Series' },
-  'bmw-5-series': { make: 'BMW', model: '5 Series' },
-  'bmw-6-series': { make: 'BMW', model: '6 Series' },
-  'bmw-7-series': { make: 'BMW', model: '7 Series' },
-  'bmw-8-series': { make: 'BMW', model: '8 Series' },
-  'bmw-i3': { make: 'BMW', model: 'i3' },
-  'bmw-i4': { make: 'BMW', model: 'i4' },
-  'bmw-i5': { make: 'BMW', model: 'i5' },
-  'bmw-i7': { make: 'BMW', model: 'i7' },
-  'bmw-i8': { make: 'BMW', model: 'i8' },
-  'bmw-ix': { make: 'BMW', model: 'iX' },
-  'bmw-ix3': { make: 'BMW', model: 'iX3' },
-  'bmw-m2': { make: 'BMW', model: 'M2' },
-  'bmw-m240i': { make: 'BMW', model: 'M240i' },
-  'bmw-m3': { make: 'BMW', model: 'M3' },
-  'bmw-m3-cs': { make: 'BMW', model: 'M3 CS' },
-  'bmw-m340i': { make: 'BMW', model: 'M340i' },
-  'bmw-m4': { make: 'BMW', model: 'M4' },
-  'bmw-m4-cs': { make: 'BMW', model: 'M4 CS' },
-  'bmw-m5': { make: 'BMW', model: 'M5' },
-  'bmw-m6': { make: 'BMW', model: 'M6' },
-  'bmw-m8': { make: 'BMW', model: 'M8' },
-  'bmw-x1': { make: 'BMW', model: 'X1' },
-  'bmw-x2': { make: 'BMW', model: 'X2' },
-  'bmw-x3': { make: 'BMW', model: 'X3' },
-  'bmw-x3-m': { make: 'BMW', model: 'X3 M' },
-  'bmw-x4': { make: 'BMW', model: 'X4' },
-  'bmw-x4-m': { make: 'BMW', model: 'X4 M' },
-  'bmw-x5': { make: 'BMW', model: 'X5' },
-  'bmw-x5-m': { make: 'BMW', model: 'X5 M' },
-  'bmw-x6': { make: 'BMW', model: 'X6' },
-  'bmw-x6-m': { make: 'BMW', model: 'X6 M' },
-  'bmw-x7': { make: 'BMW', model: 'X7' },
-  'bmw-xm': { make: 'BMW', model: 'XM' },
-  'bmw-z3': { make: 'BMW', model: 'Z3' },
-  'bmw-z4': { make: 'BMW', model: 'Z4' },
-  'bmw-z8': { make: 'BMW', model: 'Z8' },
-};
-
 async function parseKnownIssueArticleSlug(slug: string): Promise<{ make: string; model: string } | null> {
-  return (await parseSlug(slug)) ?? BMW_AUDITED_MODEL_IDENTITIES[slug] ?? null;
+  const publishedIdentity = await parseSlug(slug);
+  if (publishedIdentity) return publishedIdentity;
+
+  // Only an immutable after-state that explicitly expected zero published
+  // records may use the owner-reference fallback. Expected-positive and
+  // unknown models remain 404s if their database rows disappear.
+  const auditedEmpty = getBMWAuditedEmptyModel(slug);
+  return auditedEmpty ? { make: auditedEmpty.make, model: auditedEmpty.model } : null;
 }
 
 // --- Static generation ---
 
 export async function generateStaticParams() {
   const slugs = await getAllKnownIssueSlugs();
-  return slugs.map(s => ({ slug: s.slug }));
+  const params = new Map(slugs.map((entry) => [entry.slug, { slug: entry.slug }]));
+  for (const entry of getBMWAuditedEmptyModels()) {
+    params.set(entry.slug, { slug: entry.slug });
+  }
+  return [...params.values()];
 }
 
 // --- Dynamic metadata ---
@@ -229,12 +195,16 @@ export async function generateMetadata({
   const highCount = issues.filter((i) => i.severity === 'high').length;
   const totalReports = issues.reduce((sum, i) => sum + i.reportCount, 0);
   const vehicleName = `${parsed.make} ${parsed.model}`;
+  const auditedEmpty = getBMWAuditedEmptyModel(slug);
 
-  if (issues.length === 0 && SEO_AUDITED_MODEL_SLUGS.has(slug)) {
+  if (issues.length === 0 && auditedEmpty) {
     const title = `${vehicleName} Problems & Known Issues`;
     const description = `Evidence-reviewed ${vehicleName} owner reference with VIN-first recall guidance, symptom diagnosis next steps, and audited issue coverage from Au7o.`;
     const baseUrl = `https://au7o.io/known-issues/${slug}`;
     const isThinYearVariant = requestedYear != null;
+    const hreflangLanguages = getLocalesForSlug(slug).length > 0
+      ? hreflangFor(slug, baseUrl)
+      : undefined;
     return {
       title,
       description,
@@ -253,7 +223,10 @@ export async function generateMetadata({
         title,
         description,
       },
-      alternates: { canonical: baseUrl },
+      alternates: {
+        canonical: baseUrl,
+        ...(hreflangLanguages ? { languages: hreflangLanguages } : {}),
+      },
     };
   }
 
@@ -507,6 +480,7 @@ export default async function KnownIssuesArticlePage({
   if (!parsed) notFound();
 
   const { make, model } = parsed;
+  const auditedEmpty = getBMWAuditedEmptyModel(slug);
   const [allIssues, articleDates, related] = await Promise.all([
     getKnownIssuesForArticle(make, model),
     getArticleDates(make, model),
@@ -514,7 +488,7 @@ export default async function KnownIssuesArticlePage({
   ]);
 
   if (allIssues.length === 0) {
-    if (!SEO_AUDITED_MODEL_SLUGS.has(slug)) notFound();
+    if (!auditedEmpty) notFound();
     const vehicleName = `${make} ${model}`;
     const articleUrl = `https://au7o.io/known-issues/${slug}`;
     const title = `${vehicleName} Problems & Known Issues`;
@@ -636,7 +610,7 @@ export default async function KnownIssuesArticlePage({
           </section>
 
           <p className="mt-10 text-xs leading-relaxed text-[#94A3B8]">
-            Audit updated {formatUpdatedLabel(articleDates.modified)}. Absence of a published card does not mean a vehicle cannot develop faults; it means Au7o has not retained a sufficiently bounded defect-and-remedy record for this model.
+            Audit updated {formatUpdatedLabel(auditedEmpty.auditedOn)}. Absence of a published card does not mean a vehicle cannot develop faults; it means Au7o has not retained a sufficiently bounded defect-and-remedy record for this model.
           </p>
         </main>
 

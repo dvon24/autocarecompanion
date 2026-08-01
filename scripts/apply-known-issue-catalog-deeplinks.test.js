@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
 const test = require('node:test');
 const {
   afterHashes,
@@ -13,6 +16,7 @@ const {
   hashValue,
   isIsoDate,
   productUrlError,
+  resolveKnownIssueConnectionString,
   snapshotFields,
   validateManifest,
   validateResult,
@@ -25,6 +29,39 @@ const {
   reconcileSnapshot,
   summarizeReconciliation,
 } = require('./audit-known-issue-catalog-deeplinks');
+
+test('explicit known-issue env file wins over conflicting ambient database variables', () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'known-issue-env-'));
+  const envFile = path.join(directory, 'production.env');
+  try {
+    fs.writeFileSync(envFile, 'DIRECT_URL="postgresql://production.example/audit"\n', 'utf8');
+    const resolved = resolveKnownIssueConnectionString({
+      KNOWN_ISSUE_ENV_FILE: envFile,
+      POSTGRES_PRISMA_URL: 'postgresql://preview.example/audit',
+      DATABASE_URL: 'postgresql://ambient.example/audit',
+    });
+    assert.equal(resolved, 'postgresql://production.example/audit');
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test('explicit known-issue env file fails closed when it has no database URL', () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'known-issue-env-empty-'));
+  const envFile = path.join(directory, 'production.env');
+  try {
+    fs.writeFileSync(envFile, 'UNRELATED=value\n', 'utf8');
+    assert.throws(
+      () => resolveKnownIssueConnectionString({
+        KNOWN_ISSUE_ENV_FILE: envFile,
+        DATABASE_URL: 'postgresql://ambient.example/must-not-be-used',
+      }),
+      /has no POSTGRES_PRISMA_URL, DATABASE_URL, or DIRECT_URL/,
+    );
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
 
 function baseRow(id = 'issue-1') {
   return {

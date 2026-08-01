@@ -10,8 +10,10 @@ import {
   t,
   type TIssue,
 } from '@/lib/i18n';
-import { LAYOUT_LAST_REVISED } from '@/lib/known-issues';
+import { getKnownIssuesForArticle, LAYOUT_LAST_REVISED } from '@/lib/known-issues';
 import { getLinkableDtcCodes } from '@/lib/dtc-codes';
+import { reconcileLocalizedBMWIssues } from '@/lib/localized-known-issues-audit';
+import { getBMWAuditedModel } from '@/lib/known-issues-audit-registry';
 import { TechnicalArticleJsonLd, BreadcrumbJsonLd, FAQJsonLd } from '@/components/seo/JsonLd';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import { LocalizedIssueHashExpander } from '@/components/known-issues/LocalizedIssueHashExpander';
@@ -44,14 +46,29 @@ export async function generateMetadata({
   const model = getTranslatedModel(locale, slug);
   if (!cfg || !model) return { title: 'Not Found' };
 
+  const vehicle = `${model.make} ${model.model}`;
+  const currentPublishedIssues = getBMWAuditedModel(slug)
+    ? await getKnownIssuesForArticle(model.make, model.model)
+    : [];
+  const auditView = reconcileLocalizedBMWIssues(
+    locale,
+    slug,
+    vehicle,
+    model.issues,
+    currentPublishedIssues,
+  );
+  const description = (auditView.intro ?? model.intro).slice(0, 160);
+
   const url = `https://au7o.io/${locale}/known-issues/${slug}`;
   const enUrl = `https://au7o.io/known-issues/${slug}`;
-  const title = `${model.h1} | Au7o`;
+  // The root layout applies the Au7o title template. Supplying the brand here
+  // would produce a duplicate "| Au7o | Au7o" title in rendered HTML.
+  const title = model.h1;
   return {
     title,
-    description: model.intro.slice(0, 160),
-    openGraph: { title: model.h1, description: model.intro.slice(0, 160), type: 'article', url, siteName: 'Au7o', locale: cfg.ogLocale },
-    twitter: { card: 'summary_large_image', title: model.h1, description: model.intro.slice(0, 160) },
+    description,
+    openGraph: { title: model.h1, description, type: 'article', url, siteName: 'Au7o', locale: cfg.ogLocale },
+    twitter: { card: 'summary_large_image', title: model.h1, description },
     alternates: { canonical: url, languages: hreflangFor(slug, enUrl) },
   };
 }
@@ -75,7 +92,18 @@ export default async function LocalizedKnownIssuesPage({
   const vehicle = `${model.make} ${model.model}`;
   const tr = (key: string, fallback: string) => t(locale, key, fallback);
 
-  const issues = [...model.issues].sort(
+  const currentPublishedIssues = getBMWAuditedModel(slug)
+    ? await getKnownIssuesForArticle(model.make, model.model)
+    : [];
+  const auditView = reconcileLocalizedBMWIssues(
+    locale,
+    slug,
+    vehicle,
+    model.issues,
+    currentPublishedIssues,
+  );
+  const intro = auditView.intro ?? model.intro;
+  const issues = [...auditView.issues].sort(
     (a, b) => (SEV_ORDER[a.severity] ?? 4) - (SEV_ORDER[b.severity] ?? 4) || b.reportCount - a.reportCount,
   );
   const sevLabel = (s: string) => tr(SEV_KEY[s] || 'sevMedium', s);
@@ -89,10 +117,10 @@ export default async function LocalizedKnownIssuesPage({
     <div className="min-h-screen" style={{ background: '#F7F6F2' }}>
       <TechnicalArticleJsonLd
         title={model.h1}
-        description={model.intro.slice(0, 200)}
+        description={intro.slice(0, 200)}
         url={url}
-        datePublished={LAYOUT_LAST_REVISED}
-        dateModified={LAYOUT_LAST_REVISED}
+        datePublished={auditView.auditedOn ?? LAYOUT_LAST_REVISED}
+        dateModified={auditView.auditedOn ?? LAYOUT_LAST_REVISED}
       />
       <FAQJsonLd questions={faq} />
       <BreadcrumbJsonLd
@@ -149,13 +177,18 @@ export default async function LocalizedKnownIssuesPage({
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-[#0B1220] mb-3">{model.h1}</h1>
           <p className="text-sm text-[#64748B]">
-            {model.issues.length} {tr('documentedProblems', 'documented problems')}
+            {issues.length} {tr('documentedProblems', 'documented problems')}
           </p>
         </header>
 
         {/* Intro / GEO */}
         <div className="bg-[#EFEDE6] border border-[#E3DFD4] rounded-xl p-5 sm:p-6 mb-8">
-          <p className="text-[#334155] leading-relaxed">{model.intro}</p>
+          <p className="text-[#334155] leading-relaxed">{intro}</p>
+          {auditView.usesCurrentEnglishIssueCopy && (
+            <p className="mt-3 text-xs font-medium text-[#64748B]" lang="en">
+              Current evidence-audited issue details are shown in English while this translation is revalidated.
+            </p>
+          )}
         </div>
 
         {/* Issues */}

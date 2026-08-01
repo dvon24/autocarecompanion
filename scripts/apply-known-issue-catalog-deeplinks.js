@@ -614,6 +614,42 @@ function writeResult(result) {
   fs.renameSync(temp, target);
 }
 
+function firstConnectionString(values) {
+  return values.POSTGRES_PRISMA_URL || values.DATABASE_URL || values.DIRECT_URL || null;
+}
+
+function parseEnvFile(envPath) {
+  let source;
+  try {
+    source = fs.readFileSync(envPath, 'utf8');
+  } catch (error) {
+    throw new Error(`Unable to read known-issue env file ${envPath}: ${error.message}`);
+  }
+  return require('dotenv').parse(source);
+}
+
+function resolveKnownIssueConnectionString(environment = process.env) {
+  const explicitEnvPath = environment.KNOWN_ISSUE_ENV_FILE;
+  if (explicitEnvPath) {
+    const explicitValues = parseEnvFile(path.resolve(explicitEnvPath));
+    const explicitConnectionString = firstConnectionString(explicitValues);
+    if (!explicitConnectionString) {
+      throw new Error(
+        `KNOWN_ISSUE_ENV_FILE ${explicitEnvPath} has no POSTGRES_PRISMA_URL, DATABASE_URL, or DIRECT_URL.`,
+      );
+    }
+    return explicitConnectionString;
+  }
+
+  const defaultEnvPath = path.join(PROJECT_ROOT, '.env.local');
+  const defaultValues = fs.existsSync(defaultEnvPath) ? parseEnvFile(defaultEnvPath) : {};
+  const connectionString = firstConnectionString({ ...defaultValues, ...environment });
+  if (!connectionString) {
+    throw new Error('No POSTGRES_PRISMA_URL, DATABASE_URL, or DIRECT_URL set.');
+  }
+  return connectionString;
+}
+
 async function applyBatch(pool, manifest, mode) {
   const ids = manifest.issues.map((issue) => issue.id);
   const fullRecord = isFullRecordManifest(manifest);
@@ -675,10 +711,7 @@ async function applyBatch(pool, manifest, mode) {
 }
 
 async function run(mode, args) {
-  const envPath = process.env.KNOWN_ISSUE_ENV_FILE || path.join(PROJECT_ROOT, '.env.local');
-  require('dotenv').config({ path: envPath });
-  const connectionString = process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL || process.env.DIRECT_URL;
-  if (!connectionString) throw new Error('No POSTGRES_PRISMA_URL, DATABASE_URL, or DIRECT_URL set.');
+  const connectionString = resolveKnownIssueConnectionString();
   const { Pool } = require('pg');
   const pool = new Pool({ connectionString, max: 3, idleTimeoutMillis: 30000 });
   try {
@@ -736,6 +769,7 @@ module.exports = {
   isIsoDate,
   loadManifests,
   productUrlError,
+  resolveKnownIssueConnectionString,
   recommendationHasCommerce,
   snapshotFields,
   validateManifest,

@@ -95,10 +95,22 @@ function archiveRecord(label, record, reason) {
   };
 }
 
+function assertKnownOverrideIds(expectedIds, overrides, overrideLabel) {
+  const expected = new Set(expectedIds);
+  const unknown = Object.keys(overrides || {}).filter((id) => !expected.has(id));
+  if (unknown.length > 0) {
+    throw new Error(
+      `${overrideLabel} contains unknown packet IDs: ${unknown.sort().join(', ')}`,
+    );
+  }
+}
+
 function buildConfig(options) {
   const packetPath = path.join(projectRoot, options.packetRelativePath);
   const packet = JSON.parse(fs.readFileSync(packetPath, 'utf8'));
   const expectedIds = packet.records.map((record) => record.id);
+  assertKnownOverrideIds(expectedIds, options.published, `${options.label} published overrides`);
+  assertKnownOverrideIds(expectedIds, options.reasons, `${options.label} archive reasons`);
   const records = Object.fromEntries(
     packet.records.map((record) => [
       record.id,
@@ -237,4 +249,4 @@ function buildConfig(options) {
   return config;
 }
 
-module.exports = { buildConfig };
+module.exports = { assertKnownOverrideIds, buildConfig };

@@ -2,10 +2,10 @@
 title: 'Complete BMW known-issues audit and production deployment'
 type: 'bugfix'
 created: '2026-07-30'
-status: 'in-progress'
+status: 'in-review'
 baseline_revision: '3cd970d59354572d6cdcbcfdc4f1e8d03baa489d'
 review_loop_iteration: 0
-followup_review_recommended: false
+followup_review_recommended: true
 context:
   - '{project-root}/_bmad-output/implementation-artifacts/spec-known-issues-catalog-deeplinks.md'
 warnings: []
@@ -53,11 +53,11 @@ warnings: []
 ## Tasks & Acceptance
 
 **Execution:**
-- [ ] `data/known-issues-catalog-deeplink-work/**` -- export and freeze each remaining BMW packet with exact hashes and telemetry.
-- [ ] `data/known-issues-catalog-deeplink-decisions/**` -- research, configure, generate, apply, verify, and commit one full-record cohort per model.
-- [ ] `src/app/known-issues/[slug]/page.tsx` -- register audited SEO slugs and preserve indexable route behavior when a model has zero published issues.
-- [ ] `src/app/page.tsx`, `src/components/home/**`, `src/app/api/reservation/**`, and `prisma/schema.prisma` -- integrate only completed concurrent homepage/reservation work after the BMW audit.
-- [ ] `.vercel/project.json` -- run the make-wide build/reconciliation gate, push the clean branch, and deploy the linked project to production.
+- [x] `data/known-issues-catalog-deeplink-work/**` -- export and freeze each remaining BMW packet with exact hashes and telemetry.
+- [x] `data/known-issues-catalog-deeplink-decisions/**` -- research, configure, generate, apply, verify, and commit one full-record cohort per model.
+- [x] `src/app/known-issues/[slug]/page.tsx` -- register audited SEO slugs and preserve indexable route behavior when a model has zero published issues.
+- [x] Release boundary -- exclude the incomplete concurrent homepage, reservation, session-middleware, `/dev`, and 3D-model work from the BMW production release.
+- [x] `.vercel/project.json` -- run the make-wide build/reconciliation gate, push the clean branch, and deploy the linked project to production.
 
 **Acceptance Criteria:**
 - Given a remaining BMW record, when its cohort completes, then every field and commerce claim has one evidence-backed disposition and the second apply performs zero writes.
@@ -70,6 +70,25 @@ warnings: []
 ## Spec Change Log
 
 ## Review Triage Log
+
+### 2026-08-01 — Review pass
+- intent_gap: 0
+- bad_spec: 0
+- patch: 11: (high 5, medium 6, low 0)
+- defer: 1: (high 0, medium 1, low 0)
+- reject: 3: (high 0, medium 1, low 2)
+- addressed_findings:
+  - `[high]` `[patch]` Reconciled every audited BMW localized route with current published database rows so archived translated claims, including the BMW M4 DCT card, cannot render.
+  - `[high]` `[patch]` Added the exact 11 audited-empty BMW identities to static generation and the sitemap with immutable audit dates.
+  - `[high]` `[patch]` Replaced the broad 41-model empty fallback with manifest-derived expected counts and fail-closed behavior for expected-positive and unknown slugs.
+  - `[medium]` `[patch]` Replaced moving `new Date()` empty-page labels with each model's reviewed manifest audit date.
+  - `[high]` `[patch]` Made `KNOWN_ISSUE_ENV_FILE` authoritative and fail-closed so an ambient preview URL cannot override an explicit production verifier file.
+  - `[high]` `[patch]` Corrected the NHTSA helper to reject either non-2xx responses or malformed `results` payloads.
+  - `[medium]` `[patch]` Added route-registry, localized reconciliation, env precedence, NHTSA error, and factory-override regression tests.
+  - `[medium]` `[patch]` Added an assertion that every published or archive-reason factory override ID exists in the frozen packet.
+  - `[medium]` `[patch]` Corrected the spec task to document that the incomplete homepage/reservation work was intentionally excluded.
+  - `[medium]` `[patch]` Removed duplicate localized `| Au7o | Au7o` titles and aligned BMW localized sitemap dates with the completed audit.
+  - `[medium]` `[patch]` Added production deployment, database, build, rendered-route, and release-boundary evidence to the run record.
 
 ## Verification
 

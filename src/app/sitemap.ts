@@ -4,6 +4,10 @@ import { getAllDTCSlugsWithDates, getAllDTCMakeSlugs } from '@/lib/dtc-codes';
 import { getAllSymptomSlugs } from '@/lib/symptoms';
 import { getAllLocaleSlugParams } from '@/lib/i18n';
 import { getAllSpecSlugsWithDates } from '@/lib/specs';
+import {
+  getBMWAuditedEmptyModels,
+  getBMWAuditedModel,
+} from '@/lib/known-issues-audit-registry';
 import prisma from '@/lib/db';
 
 // Fixed launch date — static pages don't change frequently
@@ -100,12 +104,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Known issues article pages — use actual DB updatedAt dates.
   const knownIssueSlugsWithDates = await getAllKnownIssueSlugsWithDates();
-  const knownIssuesPages: MetadataRoute.Sitemap = knownIssueSlugsWithDates.map(s => ({
+  const knownIssuesPagesBySlug = new Map(knownIssueSlugsWithDates.map(s => [s.slug, {
     url: `${baseUrl}/known-issues/${s.slug}`,
     lastModified: s.lastModified,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
-  }));
+  }]));
+  for (const auditedEmpty of getBMWAuditedEmptyModels()) {
+    knownIssuesPagesBySlug.set(auditedEmpty.slug, {
+      url: `${baseUrl}/known-issues/${auditedEmpty.slug}`,
+      lastModified: new Date(`${auditedEmpty.auditedOn}T00:00:00Z`),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    });
+  }
+  const knownIssuesPages: MetadataRoute.Sitemap = [...knownIssuesPagesBySlug.values()];
 
   // Year-filtered indexable variants of each article. The page renders
   // ?year=YYYY as a separate canonical URL (server-filtered issues,
@@ -199,12 +212,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Localized known-issues pages (pt-BR, es, de, fr, ko) — one entry per
   // (locale, slug), plus each locale's landing page.
   const localeParams = getAllLocaleSlugParams();
-  const localePages: MetadataRoute.Sitemap = localeParams.map(({ locale, slug }) => ({
-    url: `${baseUrl}/${locale}/known-issues/${slug}`,
-    lastModified: new Date('2026-06-12'),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }));
+  const localePages: MetadataRoute.Sitemap = localeParams.map(({ locale, slug }) => {
+    const auditedBMW = getBMWAuditedModel(slug);
+    return {
+      url: `${baseUrl}/${locale}/known-issues/${slug}`,
+      lastModified: auditedBMW
+        ? new Date(`${auditedBMW.auditedOn}T00:00:00Z`)
+        : new Date('2026-06-12'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    };
+  });
   for (const locale of [...new Set(localeParams.map((p) => p.locale))]) {
     localePages.push({
       url: `${baseUrl}/${locale}`,
