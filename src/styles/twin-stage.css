@@ -1,0 +1,205 @@
+/*
+ * Twin stage + tech tree styles.
+ *
+ * Lifted from the `au7o (6)` design bundle's template so the ported stage and
+ * tech tree render exactly as designed. Scoped additively: these are the tokens
+ * and classes the live app didn't already define, nothing here overrides an
+ * existing rule.
+ *
+ * The --ki-* set is the known-issues palette (warm cream) the design shares
+ * with the live known-issues pages.
+ */
+
+:root {
+  --ki-desk: #ECE9DF;
+  --ki-page: #FAF7F0;
+  --ki-line: #E9E2D4;
+  --ki-band: #F7F1E3;
+  --ki-band-ink: #8A6D3B;
+  --ki-crit: #A62B22;
+  --ki-crit-bg: #FBEAE7;
+  --ki-mod: #D9822B;
+  --ki-mod-bg: #FCF1E3;
+  --ki-mod-ink: #92400E;
+  --ki-code: #2563EB;
+  --ki-code-bg: #EFF6FF;
+  --ki-code-line: #BFDBFE;
+  --ki-ok: #0E9F6E;
+  --ki-ok-bg: #DEF7EC;
+  --ki-ok-ink: #046C4E;
+  --ki-card: #fff;
+  --ki-glass: rgba(255, 255, 255, 0.88);
+}
+
+/*
+ * Theme variants. The hub's theme dots set `ki-theme-<id>` on its root; only the
+ * :root defaults above were ever ported, so the dots changed state but nothing
+ * repainted — which is why they looked broken.
+ */
+.ki-theme-slate {
+  --ki-desk: #E4E8EC; --ki-page: #F5F7F9; --ki-line: #E1E7ED;
+  --ki-band: #EDF2F7; --ki-band-ink: #52657D;
+}
+.ki-theme-plum {
+  --ki-desk: #E7E3F0; --ki-page: #F7F5FB; --ki-line: #E5E0F0;
+  --ki-band: #EDE8F8; --ki-band-ink: #5B4A8E;
+  --ki-code: #6D28D9; --ki-code-bg: #F3EFFF; --ki-code-line: #DDD2F5;
+}
+.ki-theme-midnight {
+  --ki-desk: #080D18; --ki-page: #10172A; --ki-card: #1B2334; --ki-line: #2A3450;
+  --ki-band: #222C42; --ki-band-ink: #9FB0CC;
+  --ki-code: #7DA6F8; --ki-code-bg: #1D2A45; --ki-code-line: #314470;
+  --ki-crit: #D9534A; --ki-crit-bg: #3A2023;
+  --ki-mod-bg: #3A2A18; --ki-mod-ink: #F0B269;
+  --ki-ok-bg: #173327; --ki-ok-ink: #5BD6A2;
+  --ki-glass: rgba(16, 23, 42, 0.85);
+  /* Midnight is the one theme that also restyles the base text/surface tokens. */
+  --ink: #E8ECF4; --slate-700: #C3CCDD; --slate-500: #8E9BB3;
+  --slate-400: #6C7A94; --slate-300: #3D4A66;
+  --paper-line: #2A3450; --paper-2: #232D44;
+}
+/* .twin-surface pins --ink as a dark-mode guard; inside midnight the theme's own
+   --ink is the correct one, so let it resolve normally. */
+.ki-theme-midnight .twin-surface { color: var(--ink); }
+
+/*
+ * Hotspot markers: the pulse is what reads as "this is clickable".
+ *
+ * The design animated box-shadow directly on the dot. box-shadow is not a
+ * compositable property, so that repainted all six markers on the main thread
+ * every frame, forever — visible jank on the hero. Same look, moved to a
+ * pseudo-element that animates only opacity and transform, which the compositor
+ * handles on the GPU without repainting anything.
+ */
+.th-dot { position: relative; color: rgba(76, 201, 240, .7); }
+.th-dot::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  box-shadow: 0 0 20px currentColor;
+  animation: thPulse 2.4s ease-in-out infinite;
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+.th-dot-risk { color: rgba(255, 107, 99, .8); }
+.th-dot-risk::after { animation-duration: 1.5s; }
+
+.tt-rise { animation: ttRise .28s cubic-bezier(.2, .7, .3, 1); }
+.hl-bubble { animation: hlBubble .35s ease; }
+
+.dotted-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgba(11, 18, 32, 0.06) 1px, transparent 0);
+  background-size: 18px 18px;
+}
+
+.web-scroll {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--paper-line) transparent;
+}
+.web-scroll::-webkit-scrollbar { width: 6px; }
+.web-scroll::-webkit-scrollbar-thumb { background: var(--paper-line); border-radius: 3px; }
+
+@keyframes thPulse {
+  0%, 100% { opacity: .55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+@keyframes ttRise {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes hlBubble {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ttGlowCrit {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(229, 72, 77, .42), var(--shadow-1); }
+  50% { box-shadow: 0 0 0 6px rgba(229, 72, 77, 0), 0 0 18px rgba(229, 72, 77, .55); }
+}
+
+/*
+ * Site header, mobile.
+ *
+ * LandingPage keeps this rule in a component-scoped <style jsx> block, so it
+ * could not be reused. Same behaviour: below 760px only the primary CTA
+ * survives, otherwise the nav links wrap over the logo.
+ */
+.cta-label-short { display: none; }
+/* Hero stats: cards beside the headline on desktop, one text line under the car
+   on mobile (four cards pushed the reserve form off a phone screen). */
+.hero-stat-inline { display: none; }
+@media (max-width: 760px) {
+  .site-nav-links { gap: 12px; }
+  .site-nav-links a:not(:last-child) { display: none; }
+  .cta-label-full { display: none; }
+  .cta-label-short { display: inline; }
+  .hero-stat-cards { display: none !important; }
+  .hero-stat-inline { display: block; }
+}
+
+/*
+ * Dark-mode guard for fixed-light surfaces.
+ *
+ * body sets `color: var(--foreground)`, which becomes #ededed under
+ * prefers-color-scheme: dark. Anything painted on a hard-coded light background
+ * (#fff cards, the cream header, the --ki-* palette) must pin its own ink or it
+ * renders near-white on near-white for every visitor whose device is in dark
+ * mode — which is most phones.
+ */
+.twin-surface, .twin-surface a:not([style*="color"]) { color: var(--ink, #0B1220); }
+
+/*
+ * Full-screen stage.
+ *
+ * The hotspots are positioned as percentages inside a 16:9 frame, and the car
+ * art is 16:9 — so the frame's aspect ratio must NEVER change or every marker
+ * slides off the car it points at. Instead we scale the 16:9 frame to the
+ * largest size that fits the viewport and centre it. Nothing is cropped and
+ * nothing drifts.
+ *
+ * Native fullscreen is unavailable for arbitrary elements on iOS Safari, so
+ * this class is also the fallback that works everywhere.
+ */
+/*
+ * Both modes size the WHOLE stage by capping its width, rather than resizing
+ * the frame — the frame carries an inline `width: 100%` that a stylesheet rule
+ * would have to fight with !important, and its 16:9 ratio must stay exact.
+ * Capping the container's width caps the frame's derived height for free.
+ */
+.stage-expanded {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  border: none !important;
+  border-radius: 0 !important;
+  background: #0A0D14;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.stage-expanded .th-stage-frame {
+  width: min(100vw, calc(100dvh * 16 / 9)) !important;
+}
+/* The info footer would eat vertical room that belongs to the car. */
+.stage-expanded .th-stage-meta { display: none; }
+
+/*
+ * Desktop hub: the car owns the column. Width is capped so the 16:9 height
+ * lands inside the viewport minus the surrounding chrome (heading + composer
+ * + padding ≈ 260px), so it grows as large as the space genuinely allows.
+ */
+.stage-fill {
+  width: min(100%, calc((100dvh - 260px) * 16 / 9));
+  margin-inline: auto;
+  /* Do NOT let it grow on the main axis: the frame inside is locked to 16:9, so
+     extra height just becomes a black band under the meta row. */
+  flex: 0 0 auto !important;
+  align-self: center;
+}
+
+/* Respect reduced-motion: the pulses are decorative, the layout is not. */
+@media (prefers-reduced-motion: reduce) {
+  .th-dot::after, .tt-rise, .hl-bubble { animation: none; }
+}

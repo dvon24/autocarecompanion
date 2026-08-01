@@ -569,6 +569,12 @@ model VehiclePartLookup {
   webSearchConfirmed Boolean   @default(false)
   humanApproved      Boolean   @default(false)
   retryCount         Int       @default(0)
+  // Re-confirmation metadata written by scripts/_persist-parts-seed.js via raw
+  // SQL (ADD COLUMN IF NOT EXISTS). The app never selects these, but they MUST
+  // be declared here: undeclared columns are drift, and `prisma db push` offers
+  // to drop them — which would destroy thousands of confirmation counts.
+  confirmationCount  Int       @default(1)
+  lastConfirmedAt    DateTime? @db.Timestamptz(6)
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
 
@@ -686,6 +692,40 @@ model InterestEmail {
   lastNotifiedAt   DateTime?
 
   @@index([createdAt])
+}
+
+// Beta reservations for the Vehicle Twin. Distinct from InterestEmail: this is
+// a demand test, not an alert subscription — the row means "I tried the twin and
+// want it", which is a far stronger signal than an address left on an article.
+// `source` records WHERE they reserved (hero vs the demo below it) so we can see
+// whether people commit on the promise or only after actually driving it.
+model Reservation {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  // The car they want it for, free-text as typed/selected ("2019 Chevrolet
+  // Camaro ZL1"). Drives which vehicle we build the twin for first.
+  vehicle   String?
+  // Required by the reserve form. Paid plans are US-only at launch (tax
+  // registration pending), so this tells us where demand actually is before we
+  // open billing in a market — the reason the form asks at all.
+  country   String?
+  // "hero" | "demo" | "<page>:<slot>" — the demand-test dimension.
+  source    String?
+  // Page they reserved from, for attribution back to the traffic that converts.
+  path      String?
+  // Optional free-text ("what would you want it to show you?") — the cheapest
+  // qualitative read on whether the feature is worth building.
+  note      String?
+  createdAt DateTime @default(now())
+  // Same CAN-SPAM plumbing as InterestEmail: we will email these people when the
+  // beta opens, so mint the opt-out token at capture time.
+  unsubscribeToken String?   @unique
+  unsubscribedAt   DateTime?
+  // Set when they've been emailed their beta invite, so a re-run never double-sends.
+  invitedAt        DateTime?
+
+  @@index([createdAt])
+  @@index([source])
 }
 
 model Feedback {

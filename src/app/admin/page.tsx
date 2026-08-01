@@ -31,6 +31,20 @@ function formatLeadContext(ctx?: string | null): string {
   return subject ? `${subject} · ${src}` : src;
 }
 
+// Vehicle Twin beta reservations — the demand test. `source` (hero vs demo) is
+// the number that decides whether the feature is worth building.
+interface ReservationEntry {
+  id: string;
+  timestamp: string;
+  email: string;
+  vehicle: string | null;
+  country: string | null;
+  source: string | null;
+  path: string | null;
+  note: string | null;
+  invitedAt: string | null;
+}
+
 interface FeedbackEntry {
   id: string;
   timestamp: string;
@@ -172,6 +186,7 @@ interface CostData {
 export default function AdminPage() {
   const [emails, setEmails] = useState<EmailEntry[]>([]);
   const [feedback, setFeedback] = useState<FeedbackEntry[]>([]);
+  const [reservations, setReservations] = useState<ReservationEntry[]>([]);
   const [users, setUsers] = useState<UserEntry[]>([]);
   const [vehicleFeedback, setVehicleFeedback] = useState<VehicleFeedback[]>([]);
   const [symptomPatterns, setSymptomPatterns] = useState<SymptomPattern[]>([]);
@@ -196,7 +211,7 @@ export default function AdminPage() {
   const [replyDraft, setReplyDraft] = useState<Record<string, string>>({});
   const [sendingReplyId, setSendingReplyId] = useState<string | null>(null);
   const [sentReplyIds, setSentReplyIds] = useState<Set<string>>(new Set());
-  const [activeTab, setActiveTab] = useState<'emails' | 'users' | 'feedback' | 'vehicle' | 'patterns' | 'reports' | 'costs' | 'review' | 'affiliates' | 'guides'>('emails');
+  const [activeTab, setActiveTab] = useState<'emails' | 'reservations' | 'users' | 'feedback' | 'vehicle' | 'patterns' | 'reports' | 'costs' | 'review' | 'affiliates' | 'guides'>('emails');
 
   // Remove a lead from the active list (suppress = set unsubscribedAt). Used to
   // honor a "take me off" request. Optimistically marks the row unsubscribed.
@@ -268,6 +283,7 @@ export default function AdminPage() {
           setEmails(data.emails || []);
           setFeedback(data.feedback || []);
           setUsers(data.users || []);
+          setReservations(data.reservations || []);
         }
 
         // Fetch vehicle feedback
@@ -363,6 +379,16 @@ export default function AdminPage() {
             }`}
           >
             Interest Emails ({emails.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('reservations')}
+            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              activeTab === 'reservations'
+                ? 'bg-blue-600 text-white'
+                : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+            }`}
+          >
+            Twin Reservations ({reservations.length})
           </button>
           <button
             onClick={() => setActiveTab('users')}
@@ -518,6 +544,76 @@ export default function AdminPage() {
                 </tbody>
               </table>
             )}
+          </div>
+        )}
+
+        {!loading && !error && activeTab === 'reservations' && (
+          <div className="space-y-4">
+            {/* The demand read: which placement earns the commitment. If the hero
+                converts and the demo doesn't, people want the promise; if the demo
+                wins, the twin itself is what sells. */}
+            <div className="flex gap-3 flex-wrap">
+              {(() => {
+                const bySource = reservations.reduce<Record<string, number>>((acc, r) => {
+                  const key = r.source || 'unknown';
+                  acc[key] = (acc[key] || 0) + 1;
+                  return acc;
+                }, {});
+                const entries = Object.entries(bySource).sort((a, b) => b[1] - a[1]);
+                return [['total', reservations.length] as [string, number], ...entries].map(([label, count]) => (
+                  <div key={label} className="bg-white rounded-xl border border-gray-200 px-5 py-3 min-w-[120px]">
+                    <div className="text-xs font-medium text-gray-500 uppercase">{label}</div>
+                    <div className="text-2xl font-semibold text-gray-900">{count}</div>
+                  </div>
+                ));
+              })()}
+            </div>
+
+            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+              {reservations.length === 0 ? (
+                <div className="p-8 text-center text-gray-500">
+                  No twin reservations yet
+                </div>
+              ) : (
+                <table className="w-full">
+                  <thead className="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Vehicle</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Country</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Source</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Note</th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Invited</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {reservations.map((r) => (
+                      <tr key={r.id} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 text-sm text-gray-500">{new Date(r.timestamp).toLocaleString()}</td>
+                        <td className="px-6 py-4 text-sm text-gray-900">{r.email}</td>
+                        <td className="px-6 py-4 text-sm text-gray-700">{r.vehicle || <span className="text-gray-400">—</span>}</td>
+                        <td className="px-6 py-4 text-sm text-gray-700">
+                          {r.country
+                            ? <span className={r.country.toUpperCase() === 'US' || r.country === 'United States' ? '' : 'text-amber-700 font-medium'}>{r.country}</span>
+                            : <span className="text-gray-400">—</span>}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-700">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-700">
+                            {r.source || 'unknown'}
+                          </span>
+                          {r.path && <div className="text-xs text-gray-400 mt-1 truncate max-w-[180px]">{r.path}</div>}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-700">{r.note || <span className="text-gray-400">—</span>}</td>
+                        <td className="px-6 py-4 text-sm text-right text-gray-500">
+                          {r.invitedAt ? new Date(r.invitedAt).toLocaleDateString() : <span className="text-gray-400">Not yet</span>}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
           </div>
         )}
 

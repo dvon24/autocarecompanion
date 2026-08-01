@@ -8,6 +8,9 @@ import "./globals.css";
 // globals.css owns it so existing pages don't repaint.
 import "@/styles/au7o-tokens.css";
 import "@/styles/au7o-utilities.css";
+// Twin stage + tech tree: the --ki-* palette and hotspot/tree animations the
+// ported design needs. Additive only — defines what the app didn't already have.
+import "@/styles/twin-stage.css";
 import { AppProvider } from "@/contexts/AppContext";
 import { OfflineIndicator } from "@/components/offline/OfflineIndicator";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
