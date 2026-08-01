@@ -1,0 +1,953 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "packetKind": "known-issues-catalog-deeplink-work",
+  "snapshotHash": "edfbb3b63928be03e5c19ac99e5245c983279d643facb0d66580be9c1f4b090f",
+  "cohort": "all",
+  "packetId": "all-0001",
+  "records": [
+    {
+      "id": "bmw-x5-n63-oil-consumption-2010",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "xDrive50i"
+      ],
+      "engines": [
+        "N63",
+        "N63TU1"
+      ],
+      "category": "engine",
+      "title": "N63 Twin-Turbo V8 Excessive Oil Consumption",
+      "description": "The 2010-2013 E70 X5 xDrive50i uses the early N63 V8, while the 2014-2018 F15 xDrive50i uses N63TU1. Both have BMW oil-consumption diagnosis and repair guidance, but adding oil alone does not identify the failed component. External leaks, crankcase ventilation or oil-separator faults, turbo oil leakage, valve-stem seals, and internal engine wear can produce overlapping symptoms. Blue exhaust smoke, oil-fouled spark plugs, and measured excessive consumption can support a valve-seal diagnosis only after the other causes are checked.",
+      "solution": "Keep the oil at the correct approved level, inspect for external and turbo/ventilation-system leaks, and have a BMW center or qualified BMW specialist perform the applicable oil-consumption test and diagnostic checks. Ask the dealer to verify VIN-specific eligibility for the early N63 or N63TU1 settlement/service benefits before buying parts. Replace valve-stem seals only when testing and inspection confirm that repair path. The current BMW valve-seal kit is 11-34-0-054-492, which supersedes 11-34-0-039-494; BMW specifies two 16-seal kits for the V8, plus VIN-specific one-time-use gaskets, seals, injector hardware, oil, and filter. Turbo, oil-separator, ventilation-line, or engine replacement is conditional on the corresponding inspection result.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Oil consumption exceeding 1 quart per 1,000 miles",
+        "Blue smoke from exhaust especially on startup",
+        "Low oil level warnings frequently",
+        "Rough idle after sitting overnight",
+        "Catalytic converter codes from oil contamination",
+        "Oil smell from exhaust"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 3000,
+      "estimatedCostHigh": 7000,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10149960-9999.pdf",
+          "source": "tsb",
+          "description": "BMW SIB 11 08 15 N63/S63 valve-seal diagnosis and repair parts"
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11016414-0001.pdf",
+          "source": "tsb",
+          "description": "BMW SIB 11 06 14 N63 Customer Care Package scope"
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10145279-9999.pdf",
+          "source": "tsb",
+          "description": "BMW early-N63 oil-consumption settlement guidance"
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2026/MC-11028000-0001.pdf",
+          "source": "tsb",
+          "description": "BMW SIB 01 01 22 current N63TU1 oil-consumption diagnosis and parts"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Ask a BMW center to check the VIN for the applicable N63 or N63TU1 oil-consumption program before paying for diagnosis or parts; eligibility and repair benefits are VIN- and condition-specific.",
+          "upvotes": 0,
+          "clickCount": 2
+        },
+        {
+          "type": "warning",
+          "content": "Do not order valve seals from oil consumption alone. BMW requires an oil-consumption test and checks for ventilation, turbo, external-leak, and internal-engine causes; a confirmed V8 valve-seal repair uses two 16-seal kits.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "Each kit contains 16 seals; BMW specifies quantity two for the N63/N63TU1 V8. This is not a complete job kit. Confirm the VIN and diagnosis, then obtain all one-time-use gaskets, seals, injector hardware, oil, and filter from the applicable BMW repair instruction/ETK.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/227028512551",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": true
+            },
+            {
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html",
+              "vendor": "BMW Parts Deal",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": false
+            }
+          ],
+          "priceLow": null,
+          "variants": [
+            {
+              "note": "Current supersession for SIB 11 08 15's 11340039494; quantity two after valve-seal leakage is confirmed.",
+              "scope": "2010-2013 E70 X5 xDrive50i, early N63",
+              "oemPartNumber": "11340054492"
+            },
+            {
+              "note": "SIB 01 01 22 specifies quantity two only after the oil-consumption test and four-point inspection select valve-seal/oil-separator repair.",
+              "scope": "2014-2018 F15 X5 xDrive50i, N63TU1",
+              "oemPartNumber": "11340054492"
+            }
+          ],
+          "verified": true,
+          "component": "Valve-stem seal repair kits (two required, only after confirmed valve-seal leakage)",
+          "priceHigh": null,
+          "confidence": 0.99,
+          "provenance": "ultra-published-fix-audit-2026-07-15",
+          "recallFirst": false,
+          "oemPartNumber": "11340054492",
+          "aftermarketXref": [
+            "11340039494 (superseded)",
+            "Elring 199.440 (16-seal kit; order two)"
+          ]
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 620,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-11",
+      "reviewedOn": "2026-03-11",
+      "contentUpdatedOn": "2026-07-15",
+      "contentUpdateSummary": "Corrected N63/N63TU1 diagnosis, program scope, seal supersession, and two-kit quantity.",
+      "relatedIssueIds": [
+        "bmw-5-series-n63-oil-consumption-2011",
+        "bmw-x6-n63-valve-stem-seals-2008",
+        "bmw-7-series-n63-oil-consumption-2009",
+        "bmw-x7-n63-oil-consumption-2019",
+        "bmw-x6-n63-valve-stem-seal-wear-2008"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [
+          "xDrive50i"
+        ],
+        "engines": [
+          "N63",
+          "N63TU1"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "22992baec8662460ba9d92192b7c09e2b41a56c62ee883dd02e510ee0d82a212",
+        "trimsHash": "c987e2070d72c8541b7de0974506e3670fcaf5fe8061f8624c1276944daebbde",
+        "enginesHash": "e598587b562c66dfbaea02780b9df230054a630405f14abb435bf04b61e4f932",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "badb645a4de0eca0b7b5fa05b8d621c206a7582b179a93b79568c70adb670cc6",
+        "descriptionHash": "c54d578cdcbae0f4d67c4e9016f1735be6896b77c61978fdea027767f1862f4b",
+        "solutionHash": "fd832a97370f539744a7f3d9bc271e9d606b665b5186c30e35d2d86316cb3a40",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "58115320a37b6771589529c5a302b4717450cabeb852aaf1e3c565452ef8a25a",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "a176eeb31e601c3877c87c2843a2f584968975269e369d5c86788b4c2f92d2a2",
+        "estimatedCostHighHash": "b698d86c67a2cff80405bd47af322216c552fd3a52f9c58a70f7b3a3313895b1",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "db68f009c82c4ef44843a6cccff7500b4b557c3d52ae9c1150e3fbf9e217487e",
+        "communityRecommendationsHash": "c5fcb9e82381410fc4ed47a19ea9521d0c9087ebc66ffa9deae80f7613624751",
+        "fixPartsHash": "f5dedac889f12b1d540b5d9ddc9d3292876859bed0ed4287ac0fe3f04294e402",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "524148f24802f8c68974c2e1ecc8b8f47d0d60b7a0d1948951c050a25b5a8e59",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "43d138bb0adc5814eb082963da063af78e79ccd7310c3ec17de6d8f75a2fd58d",
+        "contentUpdateSummaryHash": "3782d692764eead0055bd4e9eaf1c55eb953e4fea33def1561a8281ae22f5467",
+        "relatedIssueIdsHash": "d1430c16df215d7868a6710a65cfe01eb1d3bdb7037cf402d8d38eeaa0b4168b",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "Valve-stem seal repair kits (two required, only after confirmed valve-seal leakage)",
+          "oemPartNumber": "11340054492",
+          "variants": [
+            {
+              "note": "Current supersession for SIB 11 08 15's 11340039494; quantity two after valve-seal leakage is confirmed.",
+              "scope": "2010-2013 E70 X5 xDrive50i, early N63",
+              "oemPartNumber": "11340054492"
+            },
+            {
+              "note": "SIB 01 01 22 specifies quantity two only after the oil-consumption test and four-point inspection select valve-seal/oil-separator repair.",
+              "scope": "2014-2018 F15 X5 xDrive50i, N63TU1",
+              "oemPartNumber": "11340054492"
+            }
+          ],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/227028512551",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "BMW Parts Deal",
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 2
+        }
+      ],
+      "clicks": 3,
+      "priorityClicks": 2
+    },
+    {
+      "id": "bmw-x5-valve-stem-seals-2000",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [
+        "4.4i",
+        "4.8is"
+      ],
+      "engines": [
+        "N62"
+      ],
+      "category": "engine",
+      "title": "E53 N62 Blue Smoke: Confirm Valve-Stem Seals Before Repair",
+      "description": "Blue exhaust smoke after an extended idle or deceleration and elevated oil use on a 2004-2006 E53 4.4i/4.8is can be consistent with worn N62 valve-stem seals, but those symptoms are not conclusive by themselves. Crankcase-ventilation faults, external oil leaks, cylinder wear, valve-guide wear, or other oil-entry paths must be ruled out. The previous article incorrectly combined the M62 and N62 and suggested generic oil and filter purchases instead of the actual repair parts.",
+      "solution": "Measure oil consumption under consistent conditions, inspect for external leaks and crankcase-ventilation faults, check intake contamination, evaluate spark plugs and cylinders, and have a BMW-capable shop confirm the valve-stem-seal diagnosis. If the N62 seals are confirmed and BMW ETK/AIR selects 11-34-0-029-751 for the VIN, the 32-valve V8 requires two 16-seal kits, one for each bank. Use the BMW repair procedure and special tools, replace only the additional seals and one-time-use hardware identified by the VIN-specific diagram, then verify compression, oil use, and smoke after repair. Oil or an oil filter does not repair hardened valve-stem seals.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Increased oil consumption (1+ quart per 1,000 miles)",
+        "Blue smoke from exhaust on startup or acceleration",
+        "Fouled spark plugs from oil contamination",
+        "Oil burning smell from exhaust",
+        "Low oil warnings between oil changes",
+        "Rough idle from oil-fouled plugs"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 2000,
+      "estimatedCostHigh": 5000,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340029751.html",
+          "source": "parts-catalog",
+          "description": "BMW 11340029751 valve-seal kit identity and X5 N62 fitment"
+        },
+        {
+          "url": "https://www.ecstuning.com/b-genuine-bmw-parts/valve-seals/11340029751/",
+          "source": "specialist-parts-catalog",
+          "description": "E53 N62 fitment and two-kit quantity for both cylinder banks"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Document oil added and miles driven, and rule out external leaks and crankcase-ventilation faults before approving this labor-intensive seal repair.",
+          "upvotes": 0,
+          "clickCount": 1
+        },
+        {
+          "type": "warning",
+          "content": "One BMW 11340029751 package covers 16 valve seals (one bank); an N62 V8 repair requires quantity two after diagnosis and VIN confirmation.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "The linked genuine BMW item is one 16-seal kit. Buy quantity two only after the N62 diagnosis and VIN fitment are confirmed; additional repair hardware varies by VIN and procedure.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/277072199375",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": true
+            },
+            {
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340029751.html",
+              "vendor": "BMW Parts Deal",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": false
+            }
+          ],
+          "priceLow": null,
+          "variants": [
+            {
+              "note": "Sixteen seals per package; order two packages for both banks of the 32-valve N62.",
+              "scope": "2004-2006 E53 X5 4.4i/4.8is with N62",
+              "oemPartNumber": "11340029751"
+            }
+          ],
+          "verified": true,
+          "component": "N62 valve-stem seal kit, 16 seals per bank (quantity 2 required)",
+          "priceHigh": null,
+          "confidence": 0.98,
+          "provenance": "ultra+showmetheparts-fitment-audit-2026-07-15",
+          "recallFirst": false,
+          "oemPartNumber": "11340029751",
+          "aftermarketXref": [
+            "Victor Reinz 12-37281-01 / 199.440 (16 seals; quantity 2)",
+            "MAHLE SS46055 (ShowMeTheParts part key 006471628; N62/N62B48; 16 seals; quantity 2)"
+          ]
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "2026-07-15",
+      "contentUpdateSummary": "Limited the issue to E53 N62 engines, removed unrelated oil/filter links, and corrected the valve-seal repair to two 16-seal kits.",
+      "relatedIssueIds": [
+        "bmw-6series-n62-valve-stem-seals-2004",
+        "bmw-x6-n63-valve-stem-seals-2008",
+        "bmw-6-series-n63-valve-stem-seals-2012",
+        "bmw-x6-n63-valve-stem-seal-wear-2008",
+        "bmw-m5-valve-stem-seals-2012"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2004,
+          2005,
+          2006
+        ],
+        "trims": [
+          "4.4i",
+          "4.8is"
+        ],
+        "engines": [
+          "N62"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "12861ea615248cd6ca70a277cb8f4c404fb42ba13e70334912cbaa332ca1d1b5",
+        "trimsHash": "b5f426fe961322875dbe8de77ff4dfe44f7bba15ee8fa7c3200228423505bf6b",
+        "enginesHash": "80fa4f35a41ed27d3e91556df5acbd0af9c7677f4592d63962b6ed0b666e09d5",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "e0e0c1148c01abf2c9a10575f6e3b747e70123f8cb4595be483dcc776bd2393a",
+        "descriptionHash": "f7488cd650bd8dbdbbcf626264433aacd71783e98f462d867ccff85567c4dc02",
+        "solutionHash": "a6ee645678cbc9898736a8641c4fc357fb57f5a970fd6d78f97274a1328071a7",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "231183883f4a8fc2286ee450dfb55d6a821c11662bb5f933f81b814574d69ef7",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "81a83544cf93c245178cbc1620030f1123f435af867c79d87135983c52ab39d9",
+        "estimatedCostHighHash": "0f8eb4b72b6e0c9e88b388eb967b49e067ef1004bf07bffc22c3acb13b43580a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "6f6d058afebec2847871181b1512db19f142b39e28d9bcb06213771c3ae141ed",
+        "communityRecommendationsHash": "51840d5323528bded7f52acf4e5407f60ecae167897f3bc45d7ca5b6372d85e9",
+        "fixPartsHash": "f54e9c02e20da65c88133c5854ff5118a719a45760e8c3a57900e77d2b35f766",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "43d138bb0adc5814eb082963da063af78e79ccd7310c3ec17de6d8f75a2fd58d",
+        "contentUpdateSummaryHash": "75ea8539924c7a5846ca7bbc66d50effbc78614c21eeab91a7976d968bac550e",
+        "relatedIssueIdsHash": "048f81fc552d8214b1dfdbc94bb6f9cec68eb2043ff32acf36e2a32c21208236",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "N62 valve-stem seal kit, 16 seals per bank (quantity 2 required)",
+          "oemPartNumber": "11340029751",
+          "variants": [
+            {
+              "note": "Sixteen seals per package; order two packages for both banks of the 32-valve N62.",
+              "scope": "2004-2006 E53 X5 4.4i/4.8is with N62",
+              "oemPartNumber": "11340029751"
+            }
+          ],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/277072199375",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "BMW Parts Deal",
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340029751.html",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 1
+        }
+      ],
+      "clicks": 3,
+      "priorityClicks": 1
+    },
+    {
+      "id": "bmw-x5-air-suspension-2007",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "suspension",
+      "title": "G05 Suspension Warning: Check Faults and Campaigns Before Parts",
+      "description": "A suspension or self-leveling warning on a G05 X5 is not proof that its compressor, air struts, or springs failed. Equipment differs by VIN, and BMW has documented narrowly defined causes including incorrectly secured rear ride-height-sensor control rods on affected vehicles, a software-only 80422D fault on a limited production range without the air-suspension options, and an air-line installation issue on a small set of 2026 vehicles. The earlier article incorrectly combined E70, F15, and G05 systems, presented failures as inevitable at a fixed mileage, and recommended generic compressor and coil-conversion products without identifying the failed component or exact application.",
+      "solution": "Start with the VIN build/options, open-campaign status, exact warning, complete fault memory, and BMW ISTA test plan. If the VIN and production date match a BMW action, follow that bulletin: inspect the specified sensor-link holders, apply the specified software correction, or inspect the affected air line as directed. For other vehicles, test the particular system shown by the VIN and fault path before selecting any component. Do not buy a compressor, strut, spring, or conversion kit until the failed part and its VIN-specific number are established. This article intentionally has no retail link because no single part repairs all of these conditions.",
+      "severity": "high",
+      "confidence": "medium",
+      "symptoms": [
+        "Vehicle sits low (especially rear end sitting on tires)",
+        "\"Chassis Function Restricted\" warning message",
+        "Compressor runs continuously or excessively",
+        "Hissing sound from air springs",
+        "Uneven ride height side-to-side",
+        "Suspension warning lights"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 1200,
+      "estimatedCostHigh": 5000,
+      "typicalMileageLow": 60000,
+      "typicalMileageHigh": 80000,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10224200-9999.pdf",
+          "source": "tsb",
+          "description": "BMW G05 rear ride-height-sensor control-rod service action"
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10203337-9999.pdf",
+          "source": "tsb",
+          "description": "BMW G05 fault 80422D software-only correction and no-parts instruction"
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11019565-0001.pdf",
+          "source": "tsb",
+          "description": "BMW 2026 G05 air-supply-line inspection action for affected VINs"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Save the exact BMW fault codes and check the VIN for open campaigns before approving parts; BMW has published both no-parts and targeted mechanical corrections for similar warnings.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "A generic coil-conversion or compressor listing cannot cover the different E70, F15, and G05 suspension configurations and should not be ordered from the warning message alone.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "2026-07-15",
+      "contentUpdateSummary": "Removed the cross-generation parts claim and changed this page to VIN-, campaign-, and fault-specific G05 diagnosis.",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "711a251c8b96fd0bcb0ecf817b19492d47eab8c953f692b469bd8f7b45180514",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "07fb6bbb7310d1364e5039094d7898d251364341b83521ad3d0479093df110c8",
+        "descriptionHash": "e76f4fb86bdf52bba9df7a823e1ffede370fc818de0590823c74c65bd9d6aefb",
+        "solutionHash": "c7a9472713ba47853fbed3895e86cd5ccd777bd683141cc160ee8dc6d3d4f0da",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "b31484b58561a37db3531ea00e59fe230c5210db385313b578fe744cc809ed5d",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43",
+        "estimatedCostHighHash": "0f8eb4b72b6e0c9e88b388eb967b49e067ef1004bf07bffc22c3acb13b43580a",
+        "typicalMileageLowHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "typicalMileageHighHash": "47b25095a0fe135a688b20614771dbb445ad5e27e9cd4f2c2089c5af216e305b",
+        "citationsHash": "f2bb6f1007a2511c3e7a4cb29c1b60a0a19647663f165bfedfef11257b29b017",
+        "communityRecommendationsHash": "1cb02685bc14220c0c924dc4ef18cfd9bc5b497ab0b8a1bd47b91b43ce43ab01",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "43d138bb0adc5814eb082963da063af78e79ccd7310c3ec17de6d8f75a2fd58d",
+        "contentUpdateSummaryHash": "a51aef9daba0d74478e18c594459483224525aa6eaed45bb2ffbe747b9a05059",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-x5-air-suspension-compressor-2007",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [
+        "3.0si",
+        "4.8i",
+        "xDrive30i",
+        "xDrive35d",
+        "xDrive35i",
+        "xDrive48i",
+        "xDrive50i",
+        "X5 M"
+      ],
+      "engines": [
+        "N52",
+        "N62",
+        "M57",
+        "N55",
+        "N63",
+        "S63"
+      ],
+      "category": "suspension",
+      "title": "E70 Rear Air-Supply Unit: Diagnose the Self-Leveling System First",
+      "description": "An E70 X5 equipped with rear self-leveling suspension can sit low, lean, run the air supply repeatedly, or display a suspension warning when the electronic ride-height system cannot reach its target. The air-supply unit can fail, but the same symptoms can come from a leaking air spring or line, valve block, ride-height sensor or linkage, wiring, fuse/relay, low voltage, or control/calibration fault. BMW part 37-20-6-859-714 is the current complete replacement air-supply system for the E70 application and supersedes the previously published 37-20-6-789-938; it is not a universal F15 or G05 X5 part.",
+      "solution": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Rear of vehicle sitting low or sagging overnight",
+        "Suspension compressor running continuously",
+        "Vehicle leans to one side at the rear",
+        "Harsh ride quality from rear",
+        "Suspension fault warning message",
+        "Audible air leak from rear suspension"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 1000,
+      "estimatedCostHigh": 3000,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://bmwtechinfo.bmwgroup.com/tech_training_manual/ST605%20E70%20Complete%20Vehicle.pdf",
+          "source": "manufacturer-training",
+          "description": "BMW E70 electronic ride-height control system architecture"
+        },
+        {
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html",
+          "source": "parts-catalog",
+          "description": "Current BMW air-supply-system part, supersessions, and E70 fitment"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Ask for the EHC fault report and the failed ISTA test result. Rear sag or a warning message does not identify the compressor by itself.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "Confirm and repair any air leak or electrical cause before installing a new air-supply unit, or the underlying fault can remain and overwork the replacement.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "Current complete BMW air-supply system for the 2007-2013 E70 rear self-leveling application. Confirm option equipment and VIN in ETK/AIR; this is not the F15 or G05 unit.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/353234656745",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": true
+            },
+            {
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html",
+              "vendor": "BMW Parts Deal",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": false
+            }
+          ],
+          "priceLow": null,
+          "variants": [
+            {
+              "note": "Current BMW replacement for the complete rear air-supply assembly; supersedes the four older BMW numbers listed above.",
+              "scope": "2007-2013 E70 X5 equipped with rear self-leveling suspension",
+              "oemPartNumber": "37206859714"
+            }
+          ],
+          "verified": true,
+          "component": "E70 rear self-leveling air-supply system (only after EHC diagnosis and VIN confirmation)",
+          "priceHigh": null,
+          "confidence": 0.98,
+          "provenance": "ultra-published-fix-audit-2026-07-15",
+          "recallFirst": false,
+          "oemPartNumber": "37206859714",
+          "aftermarketXref": [
+            "37206799419 (superseded)",
+            "37206789938 (superseded)",
+            "37226785506 (superseded)",
+            "37226775479 (superseded)"
+          ]
+        }
+      ],
+      "humanApproved": false,
+      "reportCount": 380,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-11",
+      "reviewedOn": "2026-03-11",
+      "contentUpdatedOn": "2026-07-15",
+      "contentUpdateSummary": "Limited the repair to diagnosed E70 self-leveling systems and replaced the old and incorrect generic links with the current BMW air-supply unit.",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [
+          "3.0si",
+          "4.8i",
+          "xDrive30i",
+          "xDrive35d",
+          "xDrive35i",
+          "xDrive48i",
+          "xDrive50i",
+          "X5 M"
+        ],
+        "engines": [
+          "N52",
+          "N62",
+          "M57",
+          "N55",
+          "N63",
+          "S63"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "5e4ba9f5ba9d0fc4a8fc41eab280c416113348d8a15c748aaf85ee87bbe2c681",
+        "trimsHash": "cf9bd3886f551972bc3f2a2e3e0367a84a9a3d575fcbe83c0c15975d14b12090",
+        "enginesHash": "9f70f010f5de9a0851306a2e83f61764eca1564c2a44f5c61b86e01cf76c357c",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "3bd75845f1a97eb0967e05c2602076c9cd54da6bae416425e64151b865a12d89",
+        "descriptionHash": "218e56f7a0723939db69c96a2535c359b6d38230e515ae632231f1f16a80d483",
+        "solutionHash": "cf1760095e2229784fe91d8eebc30e58da64e0edf9e2c90b91041175f7e7b422",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "535c12838e68c9d022e0f432115c293c5c0070f0e8cb33387e50fbe2327bd128",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "40510175845988f13f6162ed8526f0b09f73384467fa855e1e79b44a56562a58",
+        "estimatedCostHighHash": "a176eeb31e601c3877c87c2843a2f584968975269e369d5c86788b4c2f92d2a2",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "222149e919e7714e1ab86cd795565e972a1d29678fd21dfc9b6c547a07ae9e9f",
+        "communityRecommendationsHash": "d1ed19a5c9c20f98e7ed75b4942c69227d5583b5a13e984cfbb4a616d6814e67",
+        "fixPartsHash": "06da103554d3d79e3f3d442dbf9f3bcb40ade6b0ee1195da47f1bf52713990c1",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "2af4dd48399a5cf64c23fc7933e11aaf6171d80001b4b1377498ae6056b1acbf",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "reviewedOnHash": "ad4fd8e3ec8ab4fd517e5b5a54de48896b4f1771469ece025ed91bba0fcdb78c",
+        "contentUpdatedOnHash": "43d138bb0adc5814eb082963da063af78e79ccd7310c3ec17de6d8f75a2fd58d",
+        "contentUpdateSummaryHash": "0a244bb12277c4636b60f44e292ff8c69efaedceb91848922508e33910e48b36",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "E70 rear self-leveling air-supply system (only after EHC diagnosis and VIN confirmation)",
+          "oemPartNumber": "37206859714",
+          "variants": [
+            {
+              "note": "Current BMW replacement for the complete rear air-supply assembly; supersedes the four older BMW numbers listed above.",
+              "scope": "2007-2013 E70 X5 equipped with rear self-leveling suspension",
+              "oemPartNumber": "37206859714"
+            }
+          ],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/353234656745",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "BMW Parts Deal",
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-x5-carbon-buildup-2007",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "xDrive35i",
+        "xDrive50i"
+      ],
+      "engines": [
+        "N55",
+        "N63",
+        "N63TU1"
+      ],
+      "category": "engine",
+      "title": "Possible Intake-Valve Deposits on Direct-Injected Gasoline Engines",
+      "description": "The direct-injected N55, N63, and N63TU1 gasoline engines used in the 2011-2018 X5 can accumulate deposits on the backs of intake valves because fuel is delivered inside the combustion chamber rather than washing over the valve. Research on gasoline direct-injection engines shows that deposit composition and accumulation vary with oil, fuel, exhaust contaminants, engine design, and operating conditions. Rough idle, misfires, or reduced performance can have many other causes, so those symptoms or generic lean/misfire codes do not prove intake-valve deposits, and there is no evidence for one mandatory 60,000-80,000-mile cleaning interval across these engines.",
+      "solution": "Diagnose the actual symptom before authorizing cleaning: read BMW-specific faults and misfire counters, check ignition and fueling, smoke-test the intake where indicated, verify crankcase ventilation operation, and inspect the intake valves with a borescope or by removing the intake manifold when the test plan supports it. If substantial deposits are confirmed and match the complaint, use an engine-specific professional mechanical-cleaning procedure that protects closed valves and removes all blasting media before reassembly. Do not present a universal catch can, chemical spray, fuel brand, short oil interval, or high-RPM driving as a proven repair. Any crankcase-ventilation modification also requires engine-specific fitment and emissions-law review.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Rough idle or engine misfires",
+        "Loss of power and sluggish acceleration",
+        "Poor fuel economy (2-3 MPG drop)",
+        "Engine hesitation",
+        "Check engine light with misfire codes",
+        "Reduced throttle response"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 400,
+      "estimatedCostHigh": 800,
+      "typicalMileageLow": 60000,
+      "typicalMileageHigh": 80000,
+      "citations": [
+        {
+          "url": "https://saemobilus.sae.org/articles/formation-intake-valve-deposits-gasoline-direct-injection-engines-2016-01-2252",
+          "source": "research",
+          "description": "SAE study of gasoline direct-injection intake-valve deposit formation and sources"
+        },
+        {
+          "url": "https://saemobilus.sae.org/papers/direct-injection-spark-ignition-engine-deposit-analysis-combustion-chamber-intake-valve-deposits-2011-01-2110",
+          "source": "research",
+          "description": "SAE analysis of direct-injection intake-valve deposits and performance effects"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Ask for before-and-after borescope evidence when intake-valve cleaning is recommended; rough idle or a misfire code alone does not identify deposits as the cause.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "Do not buy a universal catch can as the repair. Fitment, crankcase-pressure behavior, maintenance, and emissions legality vary, and it does not substitute for diagnosis or cleaning of confirmed deposits.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "",
+      "contentUpdatedOn": "2026-07-15",
+      "contentUpdateSummary": "Removed the universal catch-can fix and fixed cleaning interval; intake deposits now require engine-specific confirmation.",
+      "relatedIssueIds": [
+        "bmw-3-series-carbon-buildup-2006",
+        "bmw-n55-carbon-buildup-2012"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [
+          "xDrive35i",
+          "xDrive50i"
+        ],
+        "engines": [
+          "N55",
+          "N63",
+          "N63TU1"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "f00acf2c78d8c09f0023d427afaab2984c3e365fd67a6ae925325601fb4682fc",
+        "trimsHash": "b22397a31377cf594ad994f76964779e046be4008f3fdd498ce2699b56512a28",
+        "enginesHash": "0ef4538582d4f423d17cb23d97d2000b5db1c8403207936a3fbf28b1815f0867",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "9a3fc7409c8ae1c02e6980b47bcaada9edc693ebc0464809a7132f1fbc19062d",
+        "descriptionHash": "b02ad670107736e66d5fe5816dc26fd3ed8d35df6a3c0abfac7f9a04c2daa2f0",
+        "solutionHash": "e1000a847b87a8668870d95b6d50c40b10fdb5271227e74bc8f1f1f1a6558cfe",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "80c12d5806accb48d7a3585c785f766e081a4547ff2ad6a22f3755b96a8ab3ea",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "estimatedCostHighHash": "1a1cf797fabe7f95836fabeca626907c77b3e6c9aff7c2290b396a238c69362e",
+        "typicalMileageLowHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "typicalMileageHighHash": "47b25095a0fe135a688b20614771dbb445ad5e27e9cd4f2c2089c5af216e305b",
+        "citationsHash": "81518e0ed746e200e643f039935ea5e01bc9b199f9257c5bd7967b65e67b3959",
+        "communityRecommendationsHash": "8313a2802939201dc8038805a02752cdacf8c4053d2b4e8aef52de0be54b645c",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "43d138bb0adc5814eb082963da063af78e79ccd7310c3ec17de6d8f75a2fd58d",
+        "contentUpdateSummaryHash": "bb3ed0c31290294054e053ef99f5717ad3817e2314b815f15c4b5506dac05e06",
+        "relatedIssueIdsHash": "f93335e973f94c79b8929e8534a41f5eb8e308ae2fed0672f2cd84847b847c88",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    }
+  ]
+}

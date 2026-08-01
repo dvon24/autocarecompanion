@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "packetKind": "known-issues-catalog-deeplink-work",
+  "snapshotHash": "5c8ac7c9582066062bc820719fb71a574499f4cbd236b79fcafac4669d6efbb4",
+  "cohort": "all",
+  "packetId": "all-0001",
+  "records": [
+    {
+      "id": "bmw-x5-n63-oil-consumption-2010",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "xDrive50i"
+      ],
+      "engines": [
+        "N63",
+        "N63TU1"
+      ],
+      "category": "engine",
+      "title": "N63 Twin-Turbo V8 Excessive Oil Consumption",
+      "description": "The 2010-2013 E70 X5 xDrive50i uses the early N63 V8, while the 2014-2018 F15 xDrive50i uses N63TU1. Both have BMW oil-consumption diagnosis and repair guidance, but adding oil alone does not identify the failed component. External leaks, crankcase ventilation or oil-separator faults, turbo oil leakage, valve-stem seals, and internal engine wear can produce overlapping symptoms. Blue exhaust smoke, oil-fouled spark plugs, and measured excessive consumption can support a valve-seal diagnosis only after the other causes are checked.",
+      "solution": "Keep the oil at the correct approved level, inspect for external and turbo/ventilation-system leaks, and have a BMW center or qualified BMW specialist perform the applicable oil-consumption test and diagnostic checks. Ask the dealer to verify VIN-specific eligibility for the early N63 or N63TU1 settlement/service benefits before buying parts. Replace valve-stem seals only when testing and inspection confirm that repair path. The current BMW valve-seal kit is 11-34-0-054-492, which supersedes 11-34-0-039-494; BMW specifies two 16-seal kits for the V8, plus VIN-specific one-time-use gaskets, seals, injector hardware, oil, and filter. Turbo, oil-separator, ventilation-line, or engine replacement is conditional on the corresponding inspection result.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Measured oil use exceeds the applicable BMW test threshold",
+        "Blue exhaust smoke after startup, extended idle, or deceleration",
+        "Repeated low-oil-level warnings between services",
+        "Oil-fouled spark plugs after other oil-entry paths are excluded",
+        "Oil odor from the exhaust"
+      ],
+      "affectedSystems": [
+        "engine lubrication",
+        "valve-stem sealing",
+        "crankcase ventilation",
+        "turbocharger oil system"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": null,
+      "estimatedCostHigh": null,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10149960-9999.pdf",
+          "type": "tsb",
+          "title": "BMW SIB 11 08 15: N63 Valve-Seal Diagnosis and Repair"
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11016414-0001.pdf",
+          "type": "tsb",
+          "title": "BMW SIB 11 06 14: N63 Customer Care Package Scope"
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10145279-9999.pdf",
+          "type": "tsb",
+          "title": "BMW Early-N63 Oil-Consumption Settlement Guidance"
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2026/MC-11028000-0001.pdf",
+          "type": "tsb",
+          "title": "BMW SIB 01 01 22: Current N63TU1 Oil-Consumption Diagnosis and Parts"
+        },
+        {
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html",
+          "type": "manual",
+          "title": "BMW Parts Catalog: Valve-Seal Kit 11340054492"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Ask a BMW center to check the VIN for the applicable N63 or N63TU1 oil-consumption program before paying for diagnosis or parts; eligibility and repair benefits are VIN- and condition-specific.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "Do not order valve seals from oil consumption alone. BMW requires an oil-consumption test and checks for ventilation, turbo, external-leak, and internal-engine causes; a confirmed V8 valve-seal repair uses two 16-seal kits.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "Each kit contains 16 seals; BMW specifies quantity two for the N63/N63TU1 V8. This is not a complete job kit. Confirm the VIN and diagnosis, then obtain all one-time-use gaskets, seals, injector hardware, oil, and filter from the applicable BMW repair instruction/ETK.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/227028512551",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": true
+            },
+            {
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html",
+              "vendor": "BMW Parts Deal",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": false
+            }
+          ],
+          "priceLow": null,
+          "variants": [
+            {
+              "note": "Current supersession for SIB 11 08 15's 11340039494; quantity two after valve-seal leakage is confirmed.",
+              "scope": "2010-2013 E70 X5 xDrive50i, early N63",
+              "oemPartNumber": "11340054492"
+            },
+            {
+              "note": "SIB 01 01 22 specifies quantity two only after the oil-consumption test and four-point inspection select valve-seal/oil-separator repair.",
+              "scope": "2014-2018 F15 X5 xDrive50i, N63TU1",
+              "oemPartNumber": "11340054492"
+            }
+          ],
+          "verified": true,
+          "component": "Valve-stem seal repair kits (two required, only after confirmed valve-seal leakage)",
+          "priceHigh": null,
+          "confidence": 0.99,
+          "provenance": "ultra-published-fix-audit-2026-07-15",
+          "recallFirst": false,
+          "oemPartNumber": "11340054492",
+          "aftermarketXref": [
+            "11340039494 (superseded)",
+            "Elring 199.440 (16-seal kit; order two)"
+          ]
+        }
+      ],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "manual",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-20",
+      "contentUpdatedOn": "2026-07-20",
+      "contentUpdateSummary": "Completed full-record audit; retained two exact valve-seal-kit links and removed unsupported owner counts, fixed consumption threshold, costs, and mileage.",
+      "relatedIssueIds": [
+        "bmw-5-series-n63-oil-consumption-2011",
+        "bmw-x6-n63-valve-stem-seals-2008",
+        "bmw-7-series-n63-oil-consumption-2009",
+        "bmw-x7-n63-oil-consumption-2019",
+        "bmw-x6-n63-valve-stem-seal-wear-2008"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [
+          "xDrive50i"
+        ],
+        "engines": [
+          "N63",
+          "N63TU1"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "22992baec8662460ba9d92192b7c09e2b41a56c62ee883dd02e510ee0d82a212",
+        "trimsHash": "c987e2070d72c8541b7de0974506e3670fcaf5fe8061f8624c1276944daebbde",
+        "enginesHash": "e598587b562c66dfbaea02780b9df230054a630405f14abb435bf04b61e4f932",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "badb645a4de0eca0b7b5fa05b8d621c206a7582b179a93b79568c70adb670cc6",
+        "descriptionHash": "c54d578cdcbae0f4d67c4e9016f1735be6896b77c61978fdea027767f1862f4b",
+        "solutionHash": "fd832a97370f539744a7f3d9bc271e9d606b665b5186c30e35d2d86316cb3a40",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "3055f32a8261b89ebe88b8a86a7762379e58d79383c932ad13c196b97326cbd6",
+        "affectedSystemsHash": "162530f0cc40d6e6a547d782efc349d40b61d32c62475d12b0fadc4eab13cc36",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "26bace7b76cbbebcc8475ef96d9954ef4bce03a6e4b14c14b31e8a5827e32b71",
+        "communityRecommendationsHash": "18e0d2ccffcad7d1685fd675637f9100fec45e3abdb451a111560a1697c3d764",
+        "fixPartsHash": "f5dedac889f12b1d540b5d9ddc9d3292876859bed0ed4287ac0fe3f04294e402",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdatedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdateSummaryHash": "6bcab1eb60e3297f3a1bd3de7a887a9b19c4ea310b9145138e989db64036fff4",
+        "relatedIssueIdsHash": "d1430c16df215d7868a6710a65cfe01eb1d3bdb7037cf402d8d38eeaa0b4168b",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "Valve-stem seal repair kits (two required, only after confirmed valve-seal leakage)",
+          "oemPartNumber": "11340054492",
+          "variants": [
+            {
+              "note": "Current supersession for SIB 11 08 15's 11340039494; quantity two after valve-seal leakage is confirmed.",
+              "scope": "2010-2013 E70 X5 xDrive50i, early N63",
+              "oemPartNumber": "11340054492"
+            },
+            {
+              "note": "SIB 01 01 22 specifies quantity two only after the oil-consumption test and four-point inspection select valve-seal/oil-separator repair.",
+              "scope": "2014-2018 F15 X5 xDrive50i, N63TU1",
+              "oemPartNumber": "11340054492"
+            }
+          ],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/227028512551",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "BMW Parts Deal",
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 2
+        }
+      ],
+      "clicks": 3,
+      "priorityClicks": 2
+    },
+    {
+      "id": "bmw-x5-valve-stem-seals-2000",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [
+        "4.4i",
+        "4.8is"
+      ],
+      "engines": [
+        "N62"
+      ],
+      "category": "engine",
+      "title": "E53 N62 Blue Smoke: Confirm Valve-Stem Seals Before Repair",
+      "description": "Blue exhaust smoke after an extended idle or deceleration and elevated oil use on a 2004-2006 E53 4.4i/4.8is can be consistent with worn N62 valve-stem seals, but those symptoms are not conclusive by themselves. Crankcase-ventilation faults, external oil leaks, cylinder wear, valve-guide wear, or other oil-entry paths must be ruled out. The previous article incorrectly combined the M62 and N62 and suggested generic oil and filter purchases instead of the actual repair parts.",
+      "solution": "Measure oil consumption under consistent conditions, inspect for external leaks and crankcase-ventilation faults, check intake contamination, evaluate spark plugs and cylinders, and have a BMW-capable shop confirm the valve-stem-seal diagnosis. If the N62 seals are confirmed and BMW ETK/AIR selects 11-34-0-029-751 for the VIN, the 32-valve V8 requires two 16-seal kits, one for each bank. Use the BMW repair procedure and special tools, replace only the additional seals and one-time-use hardware identified by the VIN-specific diagram, then verify compression, oil use, and smoke after repair. Oil or an oil filter does not repair hardened valve-stem seals.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Blue exhaust smoke after startup, extended idle, or deceleration",
+        "Measured oil consumption after external leaks are excluded",
+        "Repeated low-oil-level warnings between services",
+        "Oil-fouled spark plugs",
+        "Oil odor from the exhaust"
+      ],
+      "affectedSystems": [
+        "engine lubrication",
+        "valve-stem sealing",
+        "crankcase ventilation"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": null,
+      "estimatedCostHigh": null,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340029751.html",
+          "type": "manual",
+          "title": "BMW Parts Catalog: Valve-Seal Kit 11340029751 and X5 Fitment"
+        },
+        {
+          "url": "https://www.ecstuning.com/b-genuine-bmw-parts/valve-seals/11340029751/",
+          "type": "manual",
+          "title": "Genuine BMW Valve-Seal Kit 11340029751: N62 Application and Quantity"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Document oil added and miles driven, and rule out external leaks and crankcase-ventilation faults before approving this labor-intensive seal repair.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "One BMW 11340029751 package covers 16 valve seals (one bank); an N62 V8 repair requires quantity two after diagnosis and VIN confirmation.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "The linked genuine BMW item is one 16-seal kit. Buy quantity two only after the N62 diagnosis and VIN fitment are confirmed; additional repair hardware varies by VIN and procedure.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/277072199375",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": true
+            },
+            {
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340029751.html",
+              "vendor": "BMW Parts Deal",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": false
+            }
+          ],
+          "priceLow": null,
+          "variants": [
+            {
+              "note": "Sixteen seals per package; order two packages for both banks of the 32-valve N62.",
+              "scope": "2004-2006 E53 X5 4.4i/4.8is with N62",
+              "oemPartNumber": "11340029751"
+            }
+          ],
+          "verified": true,
+          "component": "N62 valve-stem seal kit, 16 seals per bank (quantity 2 required)",
+          "priceHigh": null,
+          "confidence": 0.98,
+          "provenance": "ultra+showmetheparts-fitment-audit-2026-07-15",
+          "recallFirst": false,
+          "oemPartNumber": "11340029751",
+          "aftermarketXref": [
+            "Victor Reinz 12-37281-01 / 199.440 (16 seals; quantity 2)",
+            "MAHLE SS46055 (ShowMeTheParts part key 006471628; N62/N62B48; 16 seals; quantity 2)"
+          ]
+        }
+      ],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "manual",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-20",
+      "contentUpdatedOn": "2026-07-20",
+      "contentUpdateSummary": "Completed full-record audit; retained exact N62 valve-seal-kit links and removed unsupported consumption threshold, costs, and mileage.",
+      "relatedIssueIds": [
+        "bmw-6series-n62-valve-stem-seals-2004",
+        "bmw-x6-n63-valve-stem-seals-2008",
+        "bmw-6-series-n63-valve-stem-seals-2012",
+        "bmw-x6-n63-valve-stem-seal-wear-2008",
+        "bmw-m5-valve-stem-seals-2012"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2004,
+          2005,
+          2006
+        ],
+        "trims": [
+          "4.4i",
+          "4.8is"
+        ],
+        "engines": [
+          "N62"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "12861ea615248cd6ca70a277cb8f4c404fb42ba13e70334912cbaa332ca1d1b5",
+        "trimsHash": "b5f426fe961322875dbe8de77ff4dfe44f7bba15ee8fa7c3200228423505bf6b",
+        "enginesHash": "80fa4f35a41ed27d3e91556df5acbd0af9c7677f4592d63962b6ed0b666e09d5",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "e0e0c1148c01abf2c9a10575f6e3b747e70123f8cb4595be483dcc776bd2393a",
+        "descriptionHash": "f7488cd650bd8dbdbbcf626264433aacd71783e98f462d867ccff85567c4dc02",
+        "solutionHash": "a6ee645678cbc9898736a8641c4fc357fb57f5a970fd6d78f97274a1328071a7",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "f6e6d018f7e2fc4cd4cb252900acf6514cb6069b0222b98807e202b308e240bd",
+        "affectedSystemsHash": "58fd0aefa881a110644334b35a75faad53b289576f89c86e5e6ff0331812ef1f",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "ec8bc5baa8cc4723a5bf831f2d1c454805318fb5421f71550b2db1a63b86c999",
+        "communityRecommendationsHash": "898af99e381420dfca79d92207c1b52101cba5ce89aab331bcc5c8d273c42116",
+        "fixPartsHash": "f54e9c02e20da65c88133c5854ff5118a719a45760e8c3a57900e77d2b35f766",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdatedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdateSummaryHash": "4b78f1d25239d8661081e4f3fdc8cf9da14473ec0b6183cbaeacec53197b07ee",
+        "relatedIssueIdsHash": "048f81fc552d8214b1dfdbc94bb6f9cec68eb2043ff32acf36e2a32c21208236",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "N62 valve-stem seal kit, 16 seals per bank (quantity 2 required)",
+          "oemPartNumber": "11340029751",
+          "variants": [
+            {
+              "note": "Sixteen seals per package; order two packages for both banks of the 32-valve N62.",
+              "scope": "2004-2006 E53 X5 4.4i/4.8is with N62",
+              "oemPartNumber": "11340029751"
+            }
+          ],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/277072199375",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "BMW Parts Deal",
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340029751.html",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 1
+        }
+      ],
+      "clicks": 3,
+      "priorityClicks": 1
+    },
+    {
+      "id": "bmw-x5-air-suspension-2007",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "suspension",
+      "title": "G05 Suspension Warning: Check Faults and Campaigns Before Parts",
+      "description": "A suspension or self-leveling warning on a G05 X5 is not proof that its compressor, air struts, or springs failed. Equipment differs by VIN, and BMW has documented narrowly defined causes including incorrectly secured rear ride-height-sensor control rods on affected vehicles, a software-only 80422D fault on a limited production range without the air-suspension options, and an air-line installation issue on a small set of 2026 vehicles. The earlier article incorrectly combined E70, F15, and G05 systems, presented failures as inevitable at a fixed mileage, and recommended generic compressor and coil-conversion products without identifying the failed component or exact application.",
+      "solution": "Start with the VIN build/options, open-campaign status, exact warning, complete fault memory, and BMW ISTA test plan. If the VIN and production date match a BMW action, follow that bulletin: inspect the specified sensor-link holders, apply the specified software correction, or inspect the affected air line as directed. For other vehicles, test the particular system shown by the VIN and fault path before selecting any component. Do not buy a compressor, strut, spring, or conversion kit until the failed part and its VIN-specific number are established. This article intentionally has no retail link because no single part repairs all of these conditions.",
+      "severity": "high",
+      "confidence": "medium",
+      "symptoms": [
+        "Chassis-function or suspension warning message",
+        "Fault 80422D on the limited production range described by BMW",
+        "Incorrect or uneven rear ride height where a sensor control rod is affected",
+        "Air-line inspection required only for campaign-covered 2026 VINs"
+      ],
+      "affectedSystems": [
+        "electronic ride-height control",
+        "rear ride-height sensors",
+        "vehicle software",
+        "air-suspension lines where equipped"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": null,
+      "estimatedCostHigh": null,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10224200-9999.pdf",
+          "type": "tsb",
+          "title": "BMW G05 Rear Ride-Height-Sensor Control-Rod Service Action"
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10203337-9999.pdf",
+          "type": "tsb",
+          "title": "BMW G05 Fault 80422D Software Correction and No-Parts Instruction"
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11019565-0001.pdf",
+          "type": "tsb",
+          "title": "BMW 2026 G05 Air-Supply-Line Inspection Action"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Save the exact BMW fault codes and check the VIN for open campaigns before approving parts; BMW has published both no-parts and targeted mechanical corrections for similar warnings.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "A generic coil-conversion or compressor listing cannot cover the different E70, F15, and G05 suspension configurations and should not be ordered from the warning message alone.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "manual",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-20",
+      "contentUpdatedOn": "2026-07-20",
+      "contentUpdateSummary": "Completed full-record audit; narrowed symptoms to documented BMW conditions and retained the diagnosis hold with no commerce.",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "711a251c8b96fd0bcb0ecf817b19492d47eab8c953f692b469bd8f7b45180514",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "07fb6bbb7310d1364e5039094d7898d251364341b83521ad3d0479093df110c8",
+        "descriptionHash": "e76f4fb86bdf52bba9df7a823e1ffede370fc818de0590823c74c65bd9d6aefb",
+        "solutionHash": "c7a9472713ba47853fbed3895e86cd5ccd777bd683141cc160ee8dc6d3d4f0da",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "bd40e5cd20070bd7ed1019d4e025bb8c99fcd16f7fe9298c3829ade72600d88e",
+        "affectedSystemsHash": "0af0c1ad0dc0469b91a6fd8f93268c1dae48b7d54e3a0fd02d2291230873e756",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "22b2c98865e54c39bb29651ad06702530423b941fbac0f45006ef6b4fea9b709",
+        "communityRecommendationsHash": "1cb02685bc14220c0c924dc4ef18cfd9bc5b497ab0b8a1bd47b91b43ce43ab01",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdatedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdateSummaryHash": "0c2e2b592fa99d8ae223d344034e9d60b527c280f3b1b8358933b8977ed41aa9",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-x5-air-suspension-compressor-2007",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [
+        "3.0si",
+        "4.8i",
+        "xDrive30i",
+        "xDrive35d",
+        "xDrive35i",
+        "xDrive48i",
+        "xDrive50i",
+        "X5 M"
+      ],
+      "engines": [
+        "N52",
+        "N62",
+        "M57",
+        "N55",
+        "N63",
+        "S63"
+      ],
+      "category": "suspension",
+      "title": "E70 Rear Air-Supply Unit: Diagnose the Self-Leveling System First",
+      "description": "An E70 X5 equipped with rear self-leveling suspension can sit low, lean, run the air supply repeatedly, or display a suspension warning when the electronic ride-height system cannot reach its target. The air-supply unit can fail, but the same symptoms can come from a leaking air spring or line, valve block, ride-height sensor or linkage, wiring, fuse/relay, low voltage, or control/calibration fault. BMW part 37-20-6-859-714 is the current complete replacement air-supply system for the E70 application and supersedes the previously published 37-20-6-789-938; it is not a universal F15 or G05 X5 part.",
+      "solution": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Rear of vehicle sitting low or sagging overnight",
+        "Suspension compressor running continuously",
+        "Vehicle leans to one side at the rear",
+        "Harsh ride quality from rear",
+        "Suspension fault warning message",
+        "Audible air leak from rear suspension"
+      ],
+      "affectedSystems": [
+        "electronic ride-height control",
+        "rear self-leveling suspension",
+        "air-supply unit",
+        "air springs and lines"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": null,
+      "estimatedCostHigh": null,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://bmwtechinfo.bmwgroup.com/tech_training_manual/ST605%20E70%20Complete%20Vehicle.pdf",
+          "type": "manual",
+          "title": "BMW E70 Technical Training: Electronic Ride-Height Control"
+        },
+        {
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html",
+          "type": "manual",
+          "title": "BMW Parts Catalog: E70 Air-Supply System 37206859714"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Ask for the EHC fault report and the failed ISTA test result. Rear sag or a warning message does not identify the compressor by itself.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "Confirm and repair any air leak or electrical cause before installing a new air-supply unit, or the underlying fault can remain and overwork the replacement.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "Current complete BMW air-supply system for the 2007-2013 E70 rear self-leveling application. Confirm option equipment and VIN in ETK/AIR; this is not the F15 or G05 unit.",
+          "buyLinks": [
+            {
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html",
+              "vendor": "BMW Parts Deal",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": false
+            }
+          ],
+          "priceLow": null,
+          "variants": [
+            {
+              "note": "Current BMW replacement for the complete rear air-supply assembly; supersedes the four older BMW numbers listed above.",
+              "scope": "2007-2013 E70 X5 equipped with rear self-leveling suspension",
+              "oemPartNumber": "37206859714"
+            }
+          ],
+          "verified": true,
+          "component": "E70 rear self-leveling air-supply system (only after EHC diagnosis and VIN confirmation)",
+          "priceHigh": null,
+          "confidence": 0.98,
+          "provenance": "ultra-full-record-audit-2026-07-20",
+          "recallFirst": false,
+          "oemPartNumber": "37206859714",
+          "aftermarketXref": [
+            "37206799419 (superseded)",
+            "37206789938 (superseded)",
+            "37226785506 (superseded)",
+            "37226775479 (superseded)"
+          ]
+        }
+      ],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "manual",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-20",
+      "contentUpdatedOn": "2026-07-20",
+      "contentUpdateSummary": "Completed full-record audit; removed the dead eBay item, retained one exact live BMW air-supply-system page, and removed unsupported owner counts, costs, and mileage.",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [
+          "3.0si",
+          "4.8i",
+          "xDrive30i",
+          "xDrive35d",
+          "xDrive35i",
+          "xDrive48i",
+          "xDrive50i",
+          "X5 M"
+        ],
+        "engines": [
+          "N52",
+          "N62",
+          "M57",
+          "N55",
+          "N63",
+          "S63"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "5e4ba9f5ba9d0fc4a8fc41eab280c416113348d8a15c748aaf85ee87bbe2c681",
+        "trimsHash": "cf9bd3886f551972bc3f2a2e3e0367a84a9a3d575fcbe83c0c15975d14b12090",
+        "enginesHash": "9f70f010f5de9a0851306a2e83f61764eca1564c2a44f5c61b86e01cf76c357c",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "3bd75845f1a97eb0967e05c2602076c9cd54da6bae416425e64151b865a12d89",
+        "descriptionHash": "218e56f7a0723939db69c96a2535c359b6d38230e515ae632231f1f16a80d483",
+        "solutionHash": "cf1760095e2229784fe91d8eebc30e58da64e0edf9e2c90b91041175f7e7b422",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "535c12838e68c9d022e0f432115c293c5c0070f0e8cb33387e50fbe2327bd128",
+        "affectedSystemsHash": "5fd4e6f11828237cb5598352915e36f350c0664848633031a6905f7dcd3d35d1",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "f1b78f308ca41342b51382d30cb123cc06b46d6d71bc7d0b891e6fba3fd3c2b0",
+        "communityRecommendationsHash": "d1ed19a5c9c20f98e7ed75b4942c69227d5583b5a13e984cfbb4a616d6814e67",
+        "fixPartsHash": "298a2e3a9a1ed4a1d4390a720aceb56046f03403f3a593598c08c7643ac78e05",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdatedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdateSummaryHash": "29d22a9be106ce15261d66b6fbd5612f248ff443d1a82f9122b29f33a00ccc5a",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "E70 rear self-leveling air-supply system (only after EHC diagnosis and VIN confirmation)",
+          "oemPartNumber": "37206859714",
+          "variants": [
+            {
+              "note": "Current BMW replacement for the complete rear air-supply assembly; supersedes the four older BMW numbers listed above.",
+              "scope": "2007-2013 E70 X5 equipped with rear self-leveling suspension",
+              "oemPartNumber": "37206859714"
+            }
+          ],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "BMW Parts Deal",
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-x5-carbon-buildup-2007",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "xDrive35i",
+        "xDrive50i"
+      ],
+      "engines": [
+        "N55",
+        "N63",
+        "N63TU1"
+      ],
+      "category": "engine",
+      "title": "Possible Intake-Valve Deposits on Direct-Injected Gasoline Engines",
+      "description": "The direct-injected N55, N63, and N63TU1 gasoline engines used in the 2011-2018 X5 can accumulate deposits on the backs of intake valves because fuel is delivered inside the combustion chamber rather than washing over the valve. Research on gasoline direct-injection engines shows that deposit composition and accumulation vary with oil, fuel, exhaust contaminants, engine design, and operating conditions. Rough idle, misfires, or reduced performance can have many other causes, so those symptoms or generic lean/misfire codes do not prove intake-valve deposits, and there is no evidence for one mandatory 60,000-80,000-mile cleaning interval across these engines.",
+      "solution": "Diagnose the actual symptom before authorizing cleaning: read BMW-specific faults and misfire counters, check ignition and fueling, smoke-test the intake where indicated, verify crankcase ventilation operation, and inspect the intake valves with a borescope or by removing the intake manifold when the test plan supports it. If substantial deposits are confirmed and match the complaint, use an engine-specific professional mechanical-cleaning procedure that protects closed valves and removes all blasting media before reassembly. Do not present a universal catch can, chemical spray, fuel brand, short oil interval, or high-RPM driving as a proven repair. Any crankcase-ventilation modification also requires engine-specific fitment and emissions-law review.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Rough idle or misfires",
+        "Reduced power or throttle response",
+        "Engine hesitation",
+        "Check-engine warning with misfire faults"
+      ],
+      "affectedSystems": [
+        "intake valves",
+        "gasoline direct-injection system",
+        "crankcase ventilation",
+        "ignition and fueling diagnostics"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": null,
+      "estimatedCostHigh": null,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://saemobilus.sae.org/articles/formation-intake-valve-deposits-gasoline-direct-injection-engines-2016-01-2252",
+          "type": "manual",
+          "title": "SAE 2016-01-2252: Intake-Valve Deposit Formation in Gasoline Direct-Injection Engines"
+        },
+        {
+          "url": "https://saemobilus.sae.org/papers/direct-injection-spark-ignition-engine-deposit-analysis-combustion-chamber-intake-valve-deposits-2011-01-2110",
+          "type": "manual",
+          "title": "SAE 2011-01-2110: Direct-Injection Engine Deposit Analysis"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Ask for before-and-after borescope evidence when intake-valve cleaning is recommended; rough idle or a misfire code alone does not identify deposits as the cause.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "Do not buy a universal catch can as the repair. Fitment, crankcase-pressure behavior, maintenance, and emissions legality vary, and it does not substitute for diagnosis or cleaning of confirmed deposits.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "manual",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-20",
+      "contentUpdatedOn": "2026-07-20",
+      "contentUpdateSummary": "Completed full-record audit; retained evidence-based diagnosis guidance while removing the fixed cleaning interval, numeric fuel-economy claim, costs, mileage, and commerce.",
+      "relatedIssueIds": [
+        "bmw-3-series-carbon-buildup-2006",
+        "bmw-n55-carbon-buildup-2012"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [
+          "xDrive35i",
+          "xDrive50i"
+        ],
+        "engines": [
+          "N55",
+          "N63",
+          "N63TU1"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "f00acf2c78d8c09f0023d427afaab2984c3e365fd67a6ae925325601fb4682fc",
+        "trimsHash": "b22397a31377cf594ad994f76964779e046be4008f3fdd498ce2699b56512a28",
+        "enginesHash": "0ef4538582d4f423d17cb23d97d2000b5db1c8403207936a3fbf28b1815f0867",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "9a3fc7409c8ae1c02e6980b47bcaada9edc693ebc0464809a7132f1fbc19062d",
+        "descriptionHash": "b02ad670107736e66d5fe5816dc26fd3ed8d35df6a3c0abfac7f9a04c2daa2f0",
+        "solutionHash": "e1000a847b87a8668870d95b6d50c40b10fdb5271227e74bc8f1f1f1a6558cfe",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "85ef40c0e6e383e60f881e7a2c9f9bc136f485468de4dd95a8ca5e86b396d3e4",
+        "affectedSystemsHash": "67867181e5de5d4a59c163b8948421fc96cf835bbf1a406113dfe652a23888c9",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4c69ddb3caa299593667be3452e96d8fa6025eaa8048ee02af66419ae7e62249",
+        "communityRecommendationsHash": "8313a2802939201dc8038805a02752cdacf8c4053d2b4e8aef52de0be54b645c",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdatedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdateSummaryHash": "d6989a2d58522d212aec83e572af532a4609b8b7aa3d92c3d3a78539cacde86d",
+        "relatedIssueIdsHash": "f93335e973f94c79b8929e8534a41f5eb8e308ae2fed0672f2cd84847b847c88",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-x5-coolant-pipe-leak-2007",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [
+        "4.8i",
+        "xDrive48i"
+      ],
+      "engines": [
+        "N62",
+        "N62TU"
+      ],
+      "category": "other",
+      "title": "E70 N62 Coolant Transfer Pipe Leak (Pressure-Test First)",
+      "description": "The 4.8-liter N62/N62TU in the early E70 X5 uses coolant transfer pipe 11-14-1-439-975 in the engine block/valley cooling circuit. Coolant loss or residue in the engine V can come from this pipe or its seals, but it can also come from the valley cover, nearby hoses, fittings, water pump, thermostat, or another pressure-side leak. The previously published N63/F15 coverage was incorrect, and 11-53-7-581-900 is not the cataloged X5 transfer-pipe replacement.",
+      "solution": "Pressure-test the cooling system cold and inspect the engine valley and all accessible connections to identify the exact leak before ordering parts. If inspection confirms the N62 transfer pipe and BMW ETK/AIR selects it for the VIN, replace pipe 11-14-1-439-975 with the required seals and one-time-use hardware from the VIN-specific repair diagram. Refill and bleed the cooling system with the specified coolant, repeat the pressure test, and verify stable temperature. Do not automatically replace an N63 pipe, thermostat, or unrelated hoses from this article.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Coolant level drops without an immediately visible external leak",
+        "Sweet coolant odor from the engine bay",
+        "Coolant residue or staining in the engine valley",
+        "Engine-temperature warning or overheating",
+        "Steam from the engine compartment"
+      ],
+      "affectedSystems": [
+        "engine cooling circuit",
+        "N62 engine-valley coolant transfer pipe",
+        "coolant hoses and seals"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": null,
+      "estimatedCostHigh": null,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://bmwtechinfo.bmwgroup.com/tech_training_manual/ST042%20E65%20Complete%20Vehicle_Part%202.pdf",
+          "type": "manual",
+          "title": "BMW N62 Technical Training: Engine Cooling Circuit"
+        },
+        {
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-coolant_pipe_flow-11141439975.html",
+          "type": "manual",
+          "title": "BMW Parts Catalog: Coolant Pipe 11141439975 and X5 Fitment"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Get the pressure-test result and a photo of the leak source before approving the transfer pipe; several N62 cooling connections share the same valley area.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "This part is for the N62/N62TU E70 application, not the N63-powered xDrive50i or an F15 X5.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "Fits the E70 4.8i/xDrive48i N62 application. Use the VIN-specific ETK diagram to order the required seals and hardware; do not use for an N63/F15 vehicle.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/267652027149",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": true
+            },
+            {
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-coolant_pipe_flow-11141439975.html",
+              "vendor": "BMW Parts Deal",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": false
+            }
+          ],
+          "priceLow": null,
+          "variants": [
+            {
+              "note": "Coolant feed/transfer pipe; verify production date and required seals by VIN.",
+              "scope": "2007-2010 E70 X5 4.8i/xDrive48i with N62/N62TU",
+              "oemPartNumber": "11141439975"
+            }
+          ],
+          "verified": true,
+          "component": "N62/N62TU coolant transfer pipe (only after pressure-test confirmation)",
+          "priceHigh": null,
+          "confidence": 0.98,
+          "provenance": "ultra-published-fix-audit-2026-07-15",
+          "recallFirst": false,
+          "oemPartNumber": "11141439975",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "manual",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-20",
+      "contentUpdatedOn": "2026-07-20",
+      "contentUpdateSummary": "Completed full-record audit; retained two exact coolant-pipe links and removed unsupported owner counts, oil-contamination symptom, costs, and mileage.",
+      "relatedIssueIds": [
+        "bmw-6series-n62-coolant-pipe-2004",
+        "bmw-5-series-coolant-pipe-leak-2011"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [
+          "4.8i",
+          "xDrive48i"
+        ],
+        "engines": [
+          "N62",
+          "N62TU"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "91dcec03a6a5c60326eead013c2ba6916ea2a83a002d759bcd83690f0a8c0150",
+        "trimsHash": "6b286966e5fc5817017199c8a86c36eeb5d33a1590ed494ce9812b24e90feb01",
+        "enginesHash": "a50c5d120ee02bec81e8b1d3d2652ffccd29d3076da110a0cea9fe223def1ffb",
+        "categoryHash": "d448c0e0f65da7948e3edb7805b5272b54f75f427c33333157324b626f5ca51f",
+        "titleHash": "7b0502cf1beb6e99346eefdd41c75b22d47a1c9ceb921e57de786517e617d531",
+        "descriptionHash": "fa9c5dc2a82773b2ee2cb3962acfdb07b627f55e3ddb02facb7dd457fc1bb07e",
+        "solutionHash": "b773cb4623c5d31e0091d8b8d3cc743244c2720f65be1e7869108f3cca4525be",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "86ad84c918202846af9b71bc28374b3f892471323b3c63b1823bd9d0bc8f989a",
+        "affectedSystemsHash": "dba163c459788228378f42f27a5ff6621847dad8434006ff18427b987f829438",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "325355cf0a551fc8b39b83e54ad4076073586dd1d2f5f36fb6a427029dbe0b40",
+        "communityRecommendationsHash": "ec2859b38bf84d84eab76752ba4ead51c7fef5dd5e76edfe8c6eeb5e17e8dcf4",
+        "fixPartsHash": "470806fdbabd940d694f9776034c40de4664db7db12c6a7bf64a599f3073dd7a",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdatedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdateSummaryHash": "be69396d19604786f5b8094c68329defb2d551620a1cc83dd159c904e6916cb5",
+        "relatedIssueIdsHash": "45978531f7d0f059dcd63cb7f3e34755d63488976b980f7a183ead60dde753f9",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "N62/N62TU coolant transfer pipe (only after pressure-test confirmation)",
+          "oemPartNumber": "11141439975",
+          "variants": [
+            {
+              "note": "Coolant feed/transfer pipe; verify production date and required seals by VIN.",
+              "scope": "2007-2010 E70 X5 4.8i/xDrive48i with N62/N62TU",
+              "oemPartNumber": "11141439975"
+            }
+          ],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/267652027149",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "BMW Parts Deal",
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-coolant_pipe_flow-11141439975.html",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-x5-n63-timing-chain-2008",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [
+        "xDrive50i"
+      ],
+      "engines": [
+        "N63"
+      ],
+      "category": "engine",
+      "title": "Early N63 Timing-Chain Wear Check: ISTA Test Before Repair",
+      "description": "Certain 2010-2013 E70 X5 xDrive50i vehicles with the early N63 engine were included in BMW's timing-chain wear-check procedure. VANOS or camshaft-position faults can distort the timing-chain test, so they must be diagnosed first. BMW then measures chain elongation with the applicable ISTA test plan; only a 'Timing chain is not OK' result establishes the chain-replacement path. Chain wear can affect valve timing and can lead to serious engine damage if an out-of-spec condition is ignored, but a rattle or generic timing code alone does not prove the chains or a single tensioner are the cause.",
+      "solution": "Check the VIN and service history with a BMW center, diagnose stored VANOS/camshaft faults first, and run BMW's ISTA timing-chain elongation test. If the result is 'Timing chain is OK,' do not replace parts on this claim. If it is 'not OK,' BMW SIB 11 16 14 directs replacement of both timing chains under the VIN-specific repair instruction, followed by the required oil/filter service, priming steps, programming, and shorter oil-service interval. A single tensioner 11-31-7-557-741 or a generic Cloyes kit is not the complete repair and must not be presented as what the owner needs. Tow the vehicle rather than driving it when severe mechanical noise, oil-pressure warnings, or loss of timing is present.",
+      "severity": "high",
+      "confidence": "medium",
+      "symptoms": [
+        "VANOS or camshaft-position faults that must be diagnosed before the chain test",
+        "Abnormal mechanical noise requiring prompt diagnosis",
+        "Reduced power or rough operation with timing-related faults",
+        "No-start or severe running problem if valve timing is out of specification"
+      ],
+      "affectedSystems": [
+        "engine timing drive",
+        "VANOS adjustment",
+        "camshaft-position monitoring",
+        "engine lubrication"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": null,
+      "estimatedCostHigh": null,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2015/MC-10147127-9999.pdf",
+          "type": "tsb",
+          "title": "BMW SIB 11 16 14: N63 Timing-Chain Measurement and Repair"
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10167977-9999.pdf",
+          "type": "tsb",
+          "title": "BMW N63 Settlement Repair Guidance and Timing-Chain Pre-Inspection"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "For a 2010-2013 E70 X5 xDrive50i, ask BMW to check the VIN and whether the N63 Customer Care Package/timing-chain check was previously completed; these were service actions, not recalls.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "Do not buy a tensioner or timing kit from a rattle or code alone. BMW first diagnoses VANOS/cam faults and measures chain elongation; a not-OK result calls for both chain systems and VIN-specific associated parts.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "Informational diagnosis hold: no universal single-part or complete retail kit is safe to publish. BMW requires both chains and VIN-specific related components under Repair Instruction 11 31 052 after the ISTA result is not OK.",
+          "buyLinks": [],
+          "priceLow": null,
+          "variants": [],
+          "verified": true,
+          "component": "Both N63 timing-chain systems (only after failed BMW ISTA elongation test)",
+          "priceHigh": null,
+          "confidence": 0.99,
+          "provenance": "ultra-published-fix-audit-2026-07-15",
+          "recallFirst": false,
+          "oemPartNumber": "",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "manual",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-20",
+      "contentUpdatedOn": "2026-07-20",
+      "contentUpdateSummary": "Completed full-record audit; retained BMW's test-first both-chain repair path and removed generic codes, catastrophic certainty, retail parts, costs, and mileage.",
+      "relatedIssueIds": [
+        "bmw-x6-n63-timing-chain-2008",
+        "bmw-5-series-n63-timing-chain-2006",
+        "bmw-6series-n63-timing-chain-2012",
+        "bmw-x3-n20-timing-chain-2012",
+        "bmw-5-series-n20-timing-chain-2012"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [
+          "xDrive50i"
+        ],
+        "engines": [
+          "N63"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "f8b270cabdbd4340c6dc1316364c4c16cf7dafb3c5743f78e9e0500161ba0aee",
+        "trimsHash": "c987e2070d72c8541b7de0974506e3670fcaf5fe8061f8624c1276944daebbde",
+        "enginesHash": "01a181e51944f07670da5fef6a2cb86848efa746a076a0163886afedec7f891c",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "71f6dd46b8e215aff46ad235d29e9bc2b2c30b700d7b56eee8c02fb063b23b83",
+        "descriptionHash": "e51922648fc3fb1c9ea07ab2a4cf5c44fdb7e6101832b317bba4dc0537d5b451",
+        "solutionHash": "0074aad0146d16cce75996b0c7eab0cd4b3ba16a758d77630e537abe158d79bb",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "61da717a4d73e5603718c4d31ad93626e05324ab81c5ca11decbaccf1854b5c0",
+        "affectedSystemsHash": "0c43dc60cbedce622f50c84deb558ab21dbebe725710fc352224fd516319fdeb",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "f0e7c0f7ea87390cf100e4d65ed2369ee6d7f8d86355f0c77b1d52a2970ca00b",
+        "communityRecommendationsHash": "57eb48219765c64ef53b424f5d9860572d4221c102308687c50a21c0519b0e29",
+        "fixPartsHash": "02db0a04245f7b0b83abe87bc4efb799af78b2d7a1d47fee4e086ed779a93705",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdatedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdateSummaryHash": "663fdd13dd2e2f58ffc4c8d965b6853c4f0e6fa5a4b2a854248a19a843b50b94",
+        "relatedIssueIdsHash": "1649429bca2de4acdf1362cfc2624749a80c8e62d277a9001979d55d54777b87",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "Both N63 timing-chain systems (only after failed BMW ISTA elongation test)",
+          "oemPartNumber": "",
+          "variants": [],
+          "recallFirst": false,
+          "links": [],
+          "clicks": 0
+        }
+      ],
+      "clicks": 1,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-x5-n63-wastegate-2008",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "xDrive50i"
+      ],
+      "engines": [
+        "N63",
+        "N63TU"
+      ],
+      "category": "engine",
+      "title": "N63/N63TU Low Boost or Turbo Rattle: Diagnose Vacuum Control First",
+      "description": "The E70 and F15 xDrive50i use generation-specific N63 boost-control hardware. BMW's N63 training shows that the wastegate valves are moved by vacuum units through electropneumatic pressure converters; hoses, reservoir, vacuum pump, converters, actuator linkage, charge-air leaks, and the turbocharger/wastegate hardware can therefore create overlapping rattle or low-boost complaints. Rattle alone does not prove both turbochargers failed, and the previously listed P0011/P0012/P0014/P0016/P0017 are cam-timing faults rather than wastegate identifiers. The N63 Customer Care Package is not a Central Cooling Pump campaign and does not promise generic wastegate or turbo coverage.",
+      "solution": "Read all DME faults and compare requested versus actual boost under the BMW test plan. Pressure- or smoke-test the intake and charge-air path, verify vacuum supply from the pump and reservoir, inspect both banks' hoses and pressure converters, and test actuator movement before condemning a turbocharger. Identify the engine generation, failed bank, and exact hardware in BMW ETK/AIR. Check a 2010-2013 E70 VIN for the N63 Customer Care Package only as applicable; its published six-point scope includes air-mass sensors, injectors, vacuum pump, low-pressure fuel sensor/feed line, fresh-air turbo seals, and crankcase-ventilation lines, not an automatic wastegate replacement. No retail link is published until diagnosis selects a VIN-specific component.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Rattle from the turbocharger or wastegate area",
+        "Low boost or reduced engine power",
+        "Turbo lag or inconsistent boost response",
+        "Reduced-power mode with boost-control faults"
+      ],
+      "affectedSystems": [
+        "turbocharger boost control",
+        "vacuum pump and reservoir",
+        "pressure converters",
+        "wastegate actuators",
+        "charge-air system"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": null,
+      "estimatedCostHigh": null,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://bmwtechinfo.bmwgroup.com/tech_training_manual/ST1116%20N63%20Engine.pdf",
+          "type": "manual",
+          "title": "BMW N63 Technical Training: Vacuum-Operated Wastegate Control"
+        },
+        {
+          "url": "https://bmwtechinfo.bmwgroup.com/tech_training_manual/ST1209%20N63TU%20Engine.pdf",
+          "type": "manual",
+          "title": "BMW N63TU Technical Training: Generation-Specific Boost Control"
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11016414-0001.pdf",
+          "type": "tsb",
+          "title": "BMW N63 Customer Care Package Eligibility and Component Scope"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Ask the shop to identify the failed bank and show vacuum, pressure-converter, actuator-travel, and requested-versus-actual boost results before authorizing turbo parts.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "Do not order a universal Garrett actuator from a rattle or low-boost message; E70 and F15 N63 systems use generation- and VIN-specific hardware.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "manual",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-20",
+      "contentUpdatedOn": "2026-07-20",
+      "contentUpdateSummary": "Completed full-record audit; retained generation-specific vacuum diagnosis and removed unverified codes, turbo-seal claims, universal commerce, costs, and mileage.",
+      "relatedIssueIds": [
+        "bmw-x6-n63-wastegate-2008",
+        "bmw-x6-n63-timing-chain-2008",
+        "bmw-7series-n63-turbo-2009",
+        "bmw-5-series-n63-timing-chain-2006",
+        "bmw-6series-n63-timing-chain-2012"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [
+          "xDrive50i"
+        ],
+        "engines": [
+          "N63",
+          "N63TU"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "22992baec8662460ba9d92192b7c09e2b41a56c62ee883dd02e510ee0d82a212",
+        "trimsHash": "c987e2070d72c8541b7de0974506e3670fcaf5fe8061f8624c1276944daebbde",
+        "enginesHash": "c554c9f2e0f12901fe7736698723d75b361171be18f563da389f71587cfb530a",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "0fcab8774b95c69f82dd8cf11f351e6259c7e216850ab1234aca6efcbd1f9017",
+        "descriptionHash": "afd041e3e24c834a4cb153320839b71fc5d9ef782e68370b06dff1d1580c7afe",
+        "solutionHash": "9ce0c524ccad51ee206e2ec235d4b9df43a289d51d9e8a0afc8c5fdbbd26fe1c",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "deb8a4d8b8ba90ce30773366ac097006b6a2855fac22e899c6aef0d4e68a3f4b",
+        "affectedSystemsHash": "2335a812aa18ea3e1cb3fb502350689a00338dcb50778f0b72513f3a578b77b6",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "fd6e00406ed8f15bf84cc310ed3f996ef788c387532db2deea74b002eac60ad9",
+        "communityRecommendationsHash": "4c695a5c44aac2ca21f8840f1d43ec5aecc2bfa20328af2c64a6ca5f1fa01587",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdatedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdateSummaryHash": "cd42823f8f6dcacd53374fb9c2ba27dcbf2b8e3bf4ff4852865227e638f4747a",
+        "relatedIssueIdsHash": "be5de1777af861b435f09bc340c9bd5a0d5dc8031f9afb56b5c5d40a4cbf5d57",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 1,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-x5-oil-leaks-2000",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [
+        "3.0i"
+      ],
+      "engines": [
+        "M54"
+      ],
+      "category": "engine",
+      "title": "E53 3.0i M54 Valve-Cover Gasket Leak (Confirm the Source)",
+      "description": "Oil on the exhaust side of a 2003-2006 E53 X5 3.0i can come from the M54 valve-cover gasket, but it can also track from the oil-filter housing, VANOS oil line, crankcase-ventilation connections, oil-pan area, or spilled service oil. BMW gasket set 11-12-0-030-496 is cataloged for the M54 E53 application from the applicable production date; it is not a universal gasket for every X5 engine or generation and it does not repair an oil-pan leak.",
+      "solution": "Clean the engine and trace the highest fresh-oil source before ordering a gasket. If the leak is at the M54 cylinder-head-cover perimeter or spark-plug-well seals, inspect the plastic cover for cracks, warpage, damaged fastener grommets, and crankcase-ventilation faults. Reuse the cover only if it passes inspection, then install VIN/production-confirmed gasket set 11-12-0-030-496 with the BMW-specified grommets and sealant locations and torque sequence. If the cover or another oil circuit is the source, select that separate repair instead.",
+      "severity": "low",
+      "confidence": "medium",
+      "symptoms": [
+        "Oil visible on valve cover edges or engine sides",
+        "Burning oil smell from engine bay",
+        "Oil dripping onto exhaust manifold (smoke)",
+        "Oil spots under vehicle after parking",
+        "Low oil warnings",
+        "Oil residue on engine components"
+      ],
+      "affectedSystems": [
+        "M54 cylinder-head cover",
+        "valve-cover perimeter and spark-plug-well seals",
+        "crankcase ventilation",
+        "engine lubrication"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": null,
+      "estimatedCostHigh": null,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://shop.bmw.co.uk/product/genuine-cylinder-head-cover-valve-cover-profile-gasket-set",
+          "type": "manual",
+          "title": "BMW Genuine Parts: Cylinder-Head-Cover Profile-Gasket Set"
+        },
+        {
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-set_of_profile_gaskets-11120030496.html",
+          "type": "manual",
+          "title": "BMW Parts Catalog: Profile-Gasket Set 11120030496 and X5 Fitment"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Clean the engine first and locate the highest fresh-oil point; oil from another M54 seal can run onto the valve-cover area and mimic this gasket.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "Inspect the plastic cover and crankcase-ventilation system before installing only a gasket, because a cracked or warped cover will not be corrected by new rubber seals.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "For the E53 X5 3.0i M54 from the applicable production date. Confirm VIN/production date and required fastener grommets; this does not fit later X5 engines.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/232691656138",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": true
+            },
+            {
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-set_of_profile_gaskets-11120030496.html",
+              "vendor": "BMW Parts Deal",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": false
+            }
+          ],
+          "priceLow": null,
+          "variants": [
+            {
+              "note": "Outer and spark-plug-well profile-gasket set; inspect the reusable cover and order grommets separately as required.",
+              "scope": "2003-2006 E53 X5 3.0i with M54, production-date confirmed",
+              "oemPartNumber": "11120030496"
+            }
+          ],
+          "verified": true,
+          "component": "M54 valve-cover profile-gasket set (only after leak-source and cover inspection)",
+          "priceHigh": null,
+          "confidence": 0.98,
+          "provenance": "ultra+showmetheparts-fitment-audit-2026-07-15",
+          "recallFirst": false,
+          "oemPartNumber": "11120030496",
+          "aftermarketXref": [
+            "11129070990 (earlier production; verify by VIN)",
+            "Beck Arnley 036-1771 (ShowMeTheParts part key 000642270)",
+            "MAHLE VS50448 (ShowMeTheParts part key 006469076; M54)"
+          ]
+        }
+      ],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "manual",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-20",
+      "contentUpdatedOn": "2026-07-20",
+      "contentUpdateSummary": "Completed full-record audit; retained two exact M54 gasket links and removed unsupported costs and mileage.",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006
+        ],
+        "trims": [
+          "3.0i"
+        ],
+        "engines": [
+          "M54"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "5a469490b0dd2e80cae00d1caf394be5e5b740a7de6e14783319a540ecc7b096",
+        "trimsHash": "b56fbd8407c00964ba2173789f032c8b6d50bca0ae42d0c2a1af2f9a645a8265",
+        "enginesHash": "ba7395a3fb0e71ca75011cbe0eaa35b846d9066ab053553ff82272bf2a34a530",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "9672da0e05b640a4c19da8d4d395e9f753782efdcf2db42f4db63b300ec58ce4",
+        "descriptionHash": "77de308eb52e4e0e051082ea21a3b0a58d0a175a69c1e954ee16cb074dc6f8a4",
+        "solutionHash": "6a10e67c43152ab921672d86cac2313e032f15f1e86e7ae3878bf0769e3a82dd",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "87ed17c49d9600506a0e5a9ffc18d17c720a3b30850641e38047deea681f205c",
+        "affectedSystemsHash": "acc911467894235dbd609065048f4d73717f728dafec0fae63468fce92bfe611",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "1dfe64cfa6826436e149d21b6c838d1743925002546448954bbd4e723cb049c1",
+        "communityRecommendationsHash": "4d5ba4d1b9b10967e83e02fa1bbc5d62fc9d6b6a62bac38dc97087eb073913c6",
+        "fixPartsHash": "3fd0eb5ac91f9dda1f1802abc8059e3af93388c74e13db7c19971bbb32bbe180",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdatedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdateSummaryHash": "bf61ff5aa427c21dc6bba42ea0c1d982971c63c1faf0e0e8a1508ebfee727c5b",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "M54 valve-cover profile-gasket set (only after leak-source and cover inspection)",
+          "oemPartNumber": "11120030496",
+          "variants": [
+            {
+              "note": "Outer and spark-plug-well profile-gasket set; inspect the reusable cover and order grommets separately as required.",
+              "scope": "2003-2006 E53 X5 3.0i with M54, production-date confirmed",
+              "oemPartNumber": "11120030496"
+            }
+          ],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/232691656138",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "BMW Parts Deal",
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-set_of_profile_gaskets-11120030496.html",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-x5-transfer-case-actuator-2000",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [
+        "3.0si",
+        "4.8i",
+        "xDrive30i",
+        "xDrive35d",
+        "xDrive48i",
+        "X5 M"
+      ],
+      "engines": [
+        "N52",
+        "N62",
+        "M57",
+        "S63"
+      ],
+      "category": "drivetrain",
+      "title": "E70 ATC700 Transfer-Case Positioning Motor (Diagnosis Required)",
+      "description": "Some E70 X5 configurations use an ATC700 transfer case with a separate electric positioning motor. A failed motor can contribute to xDrive/DSC warnings or loss of commanded clutch operation, but those symptoms are not proof of a stripped plastic gear and failure is not inevitable at a fixed mileage. Wheel-speed or steering-angle faults, tire circumference mismatch, low voltage, wiring, transfer-case fluid or clutch wear, an incorrect differential ratio after prior drivetrain work, and internal transfer-case damage can produce overlapping symptoms. The published part does not cover every E53, E70, F15, or G05 X5.",
+      "solution": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor. Confirm tire sizes and wear, battery voltage, wiring, transfer-case type, fluid condition, calibration, and—especially after differential or transfer-case replacement—the VIN-correct front and rear gear ratios. If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267. Install the correct classification resistor/hardware supplied or specified for the VIN and perform the required VTG initialization/calibration. A generic gear-only kit is not a universal BMW repair and should not be ordered without opening and confirming the exact motor failure.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "xDrive, DSC, or transfer-case warning with VTG faults",
+        "Loss of commanded all-wheel-drive clutch operation",
+        "Shudder after drivetrain work where tire or final-drive ratio must be checked",
+        "Transfer-case calibration or positioning faults"
+      ],
+      "affectedSystems": [
+        "ATC700 transfer case",
+        "VTG positioning motor",
+        "xDrive and DSC control",
+        "tire circumference and final-drive ratio"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": null,
+      "estimatedCostHigh": null,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2015/MC-10151404-9999.pdf",
+          "type": "tsb",
+          "title": "BMW SIB 27 03 15: VTG Warning and Shudder from Drivetrain-Ratio Mismatch"
+        },
+        {
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html",
+          "type": "manual",
+          "title": "BMW Parts Catalog: Exchange Servomotor 27102449709 and E70 Fitment"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Ask for the BMW VTG fault report, transfer-case type, and failed test result before approving an actuator; warning lights alone do not identify the motor.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "Do not order a gear-only rebuild kit from mileage or shutdown clicking alone. Confirm the exact motor and inspect the rest of the xDrive system first.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "Conditional E70 ATC700 application. BMW catalog fitment excludes some turbo E70 variants from the listed supersession, so confirm the VIN and transfer-case code in ETK/AIR before ordering.",
+          "buyLinks": [
+            {
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html",
+              "vendor": "BMW Parts Deal",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": false
+            }
+          ],
+          "priceLow": null,
+          "variants": [
+            {
+              "note": "Current BMW exchange servomotor; supersedes 27107568267. Confirm ETK/AIR because transfer-case application varies by drivetrain.",
+              "scope": "2007-2013 E70 with ATC700 and VIN-confirmed actuator application",
+              "oemPartNumber": "27102449709"
+            }
+          ],
+          "verified": true,
+          "component": "ATC700 transfer-case exchange servomotor (only after VTG diagnosis and VIN confirmation)",
+          "priceHigh": null,
+          "confidence": 0.96,
+          "provenance": "ultra-full-record-audit-2026-07-20",
+          "recallFirst": false,
+          "oemPartNumber": "27102449709",
+          "aftermarketXref": [
+            "27107568267 (superseded)",
+            "S-TEC SP00228"
+          ]
+        }
+      ],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "manual",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-20",
+      "contentUpdatedOn": "2026-07-20",
+      "contentUpdateSummary": "Completed full-record audit; removed the older-part-number eBay listing, retained one exact current servomotor page, and narrowed symptoms while removing costs and mileage.",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [
+          "3.0si",
+          "4.8i",
+          "xDrive30i",
+          "xDrive35d",
+          "xDrive48i",
+          "X5 M"
+        ],
+        "engines": [
+          "N52",
+          "N62",
+          "M57",
+          "S63"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "5e4ba9f5ba9d0fc4a8fc41eab280c416113348d8a15c748aaf85ee87bbe2c681",
+        "trimsHash": "22ebfe1b4eb6cf374f54f4ccf02aa1ab56ffb0fbfbc50bceabb0c8173bc6ba26",
+        "enginesHash": "439fa533cfcc04c3c4c24e914688e6ebf13326bd06e02882bc3bad72783ae8f5",
+        "categoryHash": "3b12d5574a84f04c6978e854a9cac57bf991ee23453471c357b5b903e12b2378",
+        "titleHash": "244f0bf582c90a99d4bcb890c030668f84e441a69d3a9c507364b0f051d851b2",
+        "descriptionHash": "e7ccc65a76cc415e4db54721d6b3f331973cc80025cb509e06b27522176704d7",
+        "solutionHash": "2390570736f5b48c5780e68eba6ebf795566405576ebea533bb85d615e343037",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "4890fef094b25406f017ba7cdf6271df8d93c79e0e8e786203b19207db535efe",
+        "affectedSystemsHash": "ced4ce22646ac5536527509cde15cf16a5b03bd62df203e7d81ca75f4c985b0a",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "9a0173cd3efb3be2730d78477ec400ac2a13286aa1dbe2ad27c7688ccf951eec",
+        "communityRecommendationsHash": "dac5097a68dbb9a306a9e1cdd5dc900aadf433d9e2bffc5511edb078614812d8",
+        "fixPartsHash": "dcd80adb209e20bd638d34145c6f77dca891f5ac19384b39c7748bee21a1de91",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdatedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdateSummaryHash": "a1b311e166cad43854908703e2246f9560422acb82b4eb1424343ea2254a3ed1",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "ATC700 transfer-case exchange servomotor (only after VTG diagnosis and VIN confirmation)",
+          "oemPartNumber": "27102449709",
+          "variants": [
+            {
+              "note": "Current BMW exchange servomotor; supersedes 27107568267. Confirm ETK/AIR because transfer-case application varies by drivetrain.",
+              "scope": "2007-2013 E70 with ATC700 and VIN-confirmed actuator application",
+              "oemPartNumber": "27102449709"
+            }
+          ],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "BMW Parts Deal",
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-x5-transfer-case-actuator-2007",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "drivetrain",
+      "title": "G05/F95 Transfer-Case Shudder: Tires and Fluid Diagnosis First",
+      "description": "On G05 X5 and F95 X5 M vehicles with the ATX13-X transfer case, a low-speed shudder or jerking while cornering or accelerating can be caused by mismatched, incorrectly fitted, or unevenly worn tires, or by transfer-case oil that does not meet BMW specifications. BMW's bulletin describes this complaint without warning lights or Check Control messages. That symptom is not evidence that a universal actuator motor failed, and part 27-10-7-643-751 is a complete older E70 xDrive35i transfer box—not an actuator for these vehicles.",
+      "solution": "Follow BMW SIB 27 02 20 in order: verify all four tires for VIN-correct size, brand/application, axle placement, and wear; diagnose any powertrain faults; then use ISTA to temporarily deactivate the transfer-case clutch and road-test the complaint. Only if the shudder disappears with the VTG deactivated does BMW direct an ATX13-X oil change with DTF-1, followed by VTG calibration. The clutch plates can require up to 125 miles after the service to become fully saturated and smooth out. If the symptom remains, continue diagnosis rather than buying an actuator or transfer case. Part numbers for any further repair must be selected by VIN in ETK/AIR.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "Low-speed shudder or jerking while cornering",
+        "Shudder while accelerating from low speed",
+        "Complaint changes when the transfer-case clutch is deactivated through ISTA",
+        "No warning light or Check Control message for the bulletin-defined condition"
+      ],
+      "affectedSystems": [
+        "ATX13-X transfer case",
+        "xDrive clutch control",
+        "tires and rolling circumference",
+        "transfer-case fluid and calibration"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": null,
+      "estimatedCostHigh": null,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11002858-0001.pdf",
+          "type": "tsb",
+          "title": "BMW SIB 27 02 20: ATX13-X Shudder Diagnosis and DTF-1 Service"
+        },
+        {
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-dtf_1-83222409710.html",
+          "type": "manual",
+          "title": "BMW Parts Catalog: DTF-1 83222409710"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Before servicing the transfer case, compare all four tires for correct size, approved application, axle placement, and similar wear; tire mismatch can keep xDrive engaged and create the shudder.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "Do not buy an actuator from the shudder alone. BMW first isolates the transfer case with ISTA, then changes and calibrates the fluid only if that test removes the complaint.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "BMW's ATX13-X procedure uses approximately 0.7 liter from a 1-liter container, then requires VTG calibration and up to 125 miles of run-in. Confirm the current fluid number by VIN/ETK before ordering.",
+          "buyLinks": [
+            {
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-dtf_1-83222409710.html",
+              "vendor": "BMW Parts Deal",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": false
+            }
+          ],
+          "priceLow": null,
+          "variants": [
+            {
+              "note": "DTF-1 service material specified by BMW SIB 27 02 20; not an automatic repair for warning lights or other driveline faults.",
+              "scope": "G05 X5 / F95 X5 M with ATX13-X after tire and ISTA isolation checks",
+              "oemPartNumber": "83222409710"
+            }
+          ],
+          "verified": true,
+          "component": "BMW DTF-1 transfer-case oil, 1 liter (only after SIB 27 02 20 diagnosis selects oil service)",
+          "priceHigh": null,
+          "confidence": 0.99,
+          "provenance": "ultra-full-record-audit-2026-07-20",
+          "recallFirst": false,
+          "oemPartNumber": "83222409710",
+          "aftermarketXref": [
+            "83225A4F016 (current catalog supersession where applicable)"
+          ]
+        }
+      ],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "manual",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-20",
+      "contentUpdatedOn": "2026-07-20",
+      "contentUpdateSummary": "Completed full-record audit; corrected the symptom set to BMW's no-warning shudder condition, replaced the scarce eBay listing with one exact DTF-1 page, and removed unsupported owner counts, costs, and mileage.",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "711a251c8b96fd0bcb0ecf817b19492d47eab8c953f692b469bd8f7b45180514",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "3b12d5574a84f04c6978e854a9cac57bf991ee23453471c357b5b903e12b2378",
+        "titleHash": "9d6bb875d83942bc0ac40bcb7edfdb5edf404d7a5882699e2741214444e57e7d",
+        "descriptionHash": "4887431ea76c69cec1681c2276c42c89762d2f0ef96308d991364ee44c36242b",
+        "solutionHash": "42ebf26635a272806ce4754779491b6e4a1e5e2fb11a0e3232b2f1337c61e45b",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "c5c695aad827b824075eaaa4ce0833a13327eafa99e7ce0f1278f3496711994f",
+        "affectedSystemsHash": "c259c2177483bc5dc0ff6126714e9ea416f4bd88b90378f1eb969d51f761beb8",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "c15e27ac89b9e431686778329cc3e941d228cd2cfb5a49262d8466627c747c96",
+        "communityRecommendationsHash": "088e28af129a636cbc91b29254ccbfe961884e7b29909f2c9f0e3267d20c7a7c",
+        "fixPartsHash": "d6acc06f0e83e9dc640bab762a7495fdab4276282021d089402ab7f3821eaba7",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdatedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdateSummaryHash": "cbca0cfa88fbe57bcded820d7859cd467ae459c5b503aa108663d4a4f00adf47",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "BMW DTF-1 transfer-case oil, 1 liter (only after SIB 27 02 20 diagnosis selects oil service)",
+          "oemPartNumber": "83222409710",
+          "variants": [
+            {
+              "note": "DTF-1 service material specified by BMW SIB 27 02 20; not an automatic repair for warning lights or other driveline faults.",
+              "scope": "G05 X5 / F95 X5 M with ATX13-X after tire and ISTA isolation checks",
+              "oemPartNumber": "83222409710"
+            }
+          ],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "BMW Parts Deal",
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-dtf_1-83222409710.html",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-x5-vanos-solenoid-2000",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [
+        "xDrive30i",
+        "xDrive35i"
+      ],
+      "engines": [
+        "N51",
+        "N52K",
+        "N52T",
+        "N55"
+      ],
+      "category": "engine",
+      "title": "VANOS Adjustment-Unit Bolt Recall 23V-707 (E70 Inline-Six)",
+      "description": "Certain model-year 2010-2013 E70 X5 vehicles with an N52-family or N55 inline-six engine are included in BMW/NHTSA safety recall 23V-707. Aluminum fasteners in the intake and exhaust VANOS adjustment units can loosen or break, causing incorrect camshaft adjustment, unusual engine noise, rough running, a check-engine warning, reduced-power mode, a no-start condition, or, rarely, an engine stall. These symptoms and VANOS/camshaft faults do not by themselves prove that replaceable control solenoid 11-36-7-585-425 has failed, and the recall does not apply to every X5 engine or model year.",
+      "solution": "Enter the VIN in BMW's official recall lookup and have an authorized BMW center complete recall 23V-707 if it is open. BMW's procedure is inspection-dependent: intact affected bolts are replaced; if bolts are loose or broken, the affected VANOS adjustment unit is replaced, and missing fragments must be recovered. The recall repair is free, so do not buy a solenoid or VANOS part first. If the VIN is outside the recall or a fault remains after the remedy, use BMW-capable diagnostics to test oil supply and pressure, wiring, sensors, control solenoids, adjustment units, and mechanical timing before selecting a part. If the engine runs roughly, makes unusual mechanical noise, loses power, or stalls, move out of traffic safely, stop driving, and contact BMW for transport guidance.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Check-engine or reduced-power warning",
+        "Rough engine operation",
+        "Unusual mechanical noise from the engine",
+        "No-start condition",
+        "Engine stall in the recall-defined failure case"
+      ],
+      "affectedSystems": [
+        "intake and exhaust VANOS adjustment units",
+        "camshaft timing",
+        "engine management"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": null,
+      "estimatedCostHigh": null,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V707-9850.pdf",
+          "type": "recall",
+          "title": "BMW Recall 23V-707 Repair Instructions and Affected-Vehicle Scope"
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCONL-23V707-3111.pdf",
+          "type": "recall",
+          "title": "NHTSA Recall 23V-707 Owner Notice"
+        },
+        {
+          "url": "https://my.bmwusa.com/safety-and-emission-recalls",
+          "type": "manual",
+          "title": "BMW USA VIN-Specific Safety Recall Lookup"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Check the VIN for recall 23V-707 before paying for VANOS diagnosis or parts; BMW performs an open recall remedy free of charge.",
+          "upvotes": 0
+        },
+        {
+          "type": "warning",
+          "content": "A VANOS or camshaft fault is not proof of a failed solenoid. The recall remedy depends on the bolt inspection, and non-recall faults require BMW-capable diagnosis before any part is ordered.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "Recall-first information only. Do not buy a retail solenoid or bolt kit; an authorized BMW center checks the VIN and performs the inspection-dependent 23V-707 remedy free of charge.",
+          "buyLinks": [],
+          "priceLow": null,
+          "variants": [],
+          "verified": true,
+          "component": "VANOS adjustment-unit recall remedy (dealer inspection determines bolts versus adjustment unit)",
+          "priceHigh": null,
+          "confidence": 0.99,
+          "provenance": "ultra-published-fix-audit-2026-07-15",
+          "recallFirst": true,
+          "oemPartNumber": "",
+          "aftermarketXref": []
+        }
+      ],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "manual",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-20",
+      "contentUpdatedOn": "2026-07-20",
+      "contentUpdateSummary": "Completed full-record audit; made recall 23V-707 VIN-first, corrected engine scope and symptoms, and removed generic solenoid codes, retail commerce, costs, and mileage.",
+      "relatedIssueIds": [
+        "bmw-x3-vanos-solenoid-2007",
+        "bmw-x5m-s63-vanos-solenoid-2010",
+        "bmw-z4-vanos-solenoid-2003",
+        "bmw-4series-n55-vanos-solenoid-2014",
+        "bmw-n55-vanos-2012"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [
+          "xDrive30i",
+          "xDrive35i"
+        ],
+        "engines": [
+          "N51",
+          "N52K",
+          "N52T",
+          "N55"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "f8b270cabdbd4340c6dc1316364c4c16cf7dafb3c5743f78e9e0500161ba0aee",
+        "trimsHash": "0489e33e304a747d038bab92ce2392c0fb5396aadcd96cc7f362cf2e80272352",
+        "enginesHash": "ec69b504b01706e9485cf8733ab0884441840821a038e2b8db441c60d164ea69",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "d1e931340c1ba56bd5c6531942f4ce60be5f099ae78d0fd70d893fdb0e8900bd",
+        "descriptionHash": "082d3024daa056c5ef79102e3e6c138b8b137c3ee8556eeed07486ae34672fc2",
+        "solutionHash": "69b9223ff6b1b5ae5de13c4b03d0a93730caf7577cd5bdd8ac01bf3cdb708764",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "2814bed38f24ca87986e1df8bc77abd444ef9e2204233505483bd72fc21c98b6",
+        "affectedSystemsHash": "f35368d1c1eb26662f166cab1b2ef8d9623a5b8e6d9387a8fefdc4d4a019ad97",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "cd0fc27c50097185a94ccfb0dc5173e8a16e154cbc92c81545f321a91157842e",
+        "communityRecommendationsHash": "550a2c56e5b274de8fe69798d9d532d2b85ef54f3d2686e4939729ad7e35dae3",
+        "fixPartsHash": "31aa9d525a1ffe07a31a31c67dfa9f75e9d041c0881368a4185608f7c7b1f25f",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdatedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdateSummaryHash": "7a3c0495aa1d4281193781b52b893166fa51ce0d18a55ca73be7d5d8c5df41e4",
+        "relatedIssueIdsHash": "efc72a6cf70300a3cd375292b5d1ea751ce2b31d8fa420767276321ddbf7ee93",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "VANOS adjustment-unit recall remedy (dealer inspection determines bolts versus adjustment unit)",
+          "oemPartNumber": "",
+          "variants": [],
+          "recallFirst": true,
+          "links": [],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "bmw-x5-water-pump-2007",
+      "make": "BMW",
+      "model": "X5",
+      "years": [
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [
+        "xDrive35i"
+      ],
+      "engines": [
+        "N55"
+      ],
+      "category": "engine",
+      "title": "E70 xDrive35i N55 Electric Coolant Pump (Fault-Confirmed)",
+      "description": "The 2011-2013 E70 X5 xDrive35i uses an electronically controlled N55 engine-coolant pump. A temperature warning, reduced-power message, fan running at high speed, or cooling-system fault can involve the pump, but low coolant, a leak, wiring or ground, power supply, thermostat, temperature sensing, trapped air, or another cooling fault can produce overlapping symptoms. Current BMW pump 11-51-5-A05-704 is cataloged for the N55 E70 application; it is not the common pump for the N52 xDrive30i, N63 xDrive50i, or every F15 X5, and the thermostat is a separate VIN-selected component.",
+      "solution": "If the engine-temperature warning appears, stop safely, shut the engine off, and tow the vehicle if normal temperature cannot be confirmed. When cool, check coolant level and leaks, read BMW-specific faults, verify pump power/ground and communication, and run the ISTA coolant-pump activation/test plan. If those tests confirm the pump and BMW ETK/AIR selects 11-51-5-A05-704 for the VIN, replace it using the BMW procedure, select the thermostat separately only if testing or preventive planning justifies it, vacuum-fill or bleed the system as specified, and verify commanded pump operation and stable temperature. Do not use a fixed-mileage rule or this part number for an N52, N63, or F15 without VIN confirmation.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Engine-temperature or overheating warning",
+        "Cooling fan runs at high speed",
+        "Reduced-power message associated with a cooling fault",
+        "BMW-specific electric-pump faults",
+        "Pump fails the ISTA activation or function test"
+      ],
+      "affectedSystems": [
+        "N55 engine cooling circuit",
+        "electric coolant pump",
+        "pump power and communication",
+        "thermostat and coolant bleeding"
+      ],
+      "dtcCodes": [],
+      "estimatedCostLow": null,
+      "estimatedCostHigh": null,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://shop.bmw.co.uk/product/genuine-coolant-water-pump-electrical-11-51-5-a05-704",
+          "type": "manual",
+          "title": "BMW Genuine Parts: Electric Coolant Pump 11515A05704"
+        },
+        {
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-coolant_pump_electric-11515a05704.html",
+          "type": "manual",
+          "title": "BMW Parts Catalog: Electric Coolant Pump 11515A05704 and X5 Fitment"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "warning",
+          "content": "If an overheat warning appears, stop safely and shut the engine off; continued operation can cause major engine damage. Tow it if normal temperature cannot be verified.",
+          "upvotes": 0
+        },
+        {
+          "type": "tip",
+          "content": "Ask for the BMW pump activation result plus power, ground, leak, and thermostat checks before approving the pump.",
+          "upvotes": 0
+        }
+      ],
+      "fixParts": [
+        {
+          "note": "Current N54/N55 electric pump for the cataloged 2011-2013 E70 xDrive35i application. The thermostat is separate; confirm both components by VIN before ordering.",
+          "buyLinks": [
+            {
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-coolant_pump_electric-11515a05704.html",
+              "vendor": "BMW Parts Deal",
+              "linkType": "product",
+              "verified": true,
+              "affiliate": false
+            }
+          ],
+          "priceLow": null,
+          "variants": [
+            {
+              "note": "Current electric coolant pump; use ETK/AIR to confirm production-date supersession and the separate thermostat.",
+              "scope": "2011-2013 E70 X5 xDrive35i with N55",
+              "oemPartNumber": "11515A05704"
+            }
+          ],
+          "verified": true,
+          "component": "N55 electric engine-coolant pump (only after ISTA diagnosis and VIN confirmation)",
+          "priceHigh": null,
+          "confidence": 0.98,
+          "provenance": "ultra-full-record-audit-2026-07-20",
+          "recallFirst": false,
+          "oemPartNumber": "11515A05704",
+          "aftermarketXref": [
+            "11517632426 (superseded)",
+            "11517586925 (superseded where cataloged)",
+            "Pierburg 7.07223.10.0",
+            "Beck Arnley 131-2529 (ShowMeTheParts part key 008063502; xDrive35i)",
+            "Gates 41504E (ShowMeTheParts part key 005252528)"
+          ]
+        }
+      ],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "manual",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-20",
+      "contentUpdatedOn": "2026-07-20",
+      "contentUpdateSummary": "Completed full-record audit; removed the dead eBay item, retained one exact current pump page, corrected symptoms, and removed unsupported costs and mileage.",
+      "relatedIssueIds": [
+        "bmw-x3-water-pump-2007",
+        "bmw-5-series-water-pump-2004",
+        "bmw-3-series-water-pump-2006",
+        "bmw-1series-water-pump-2008",
+        "bmw-n55-water-pump-2012"
+      ],
+      "vehicle": {
+        "make": "BMW",
+        "model": "X5",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [
+          "xDrive35i"
+        ],
+        "engines": [
+          "N55"
+        ]
+      },
+      "before": {
+        "makeHash": "e37694b162853fc3df81974204304fe837b1ad13a8bb199bbc941c301a52cd73",
+        "modelHash": "3745283bb7d97d8550b4294e73b9d2f3dd09d3a1e6bbe1b61e74b75aca80d062",
+        "yearsHash": "c131bd15303cf1b760af0815b36a9446fd7c07d8cd1aeca1b6d35343e09ae39f",
+        "trimsHash": "f93d61a9b5150f111b7c3f3db0760e842624d724050ba7ed9d0d18db9123cc6a",
+        "enginesHash": "3d123742dfbf4c59d741b554ec83c39c083b83703f8111ded852ba2e87b241cc",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "593be5e3244fb43fbc34b99a0405d3b27c03b08c37b9416fa0a5614f2d5d188a",
+        "descriptionHash": "4509d2593859e183e9148e768160f8fa4f7cc9d38ef50017baa7e49b12a870d0",
+        "solutionHash": "29a39cc8e594bb263812cf8c4911ac1ba9f6770c7175dc8967ecec8127c4e3f0",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "2a7f36c7d9eace51ee0a86d1d6c485fde8eb95f889dd763f30e69ee37a4f40d5",
+        "affectedSystemsHash": "c930ad8eb3f5da3b6557929fed3fc6e27987f6fb0494df1ce56fc895c39464d1",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "1c0d4b6388efa29ab6115005e2e4cf393692cdcc36656602c5bec885ac44d3bd",
+        "communityRecommendationsHash": "e4888b3f93acbc11c74b4a42cba303908ed5211fccc42c5bfdf84e34b04b283e",
+        "fixPartsHash": "7728f0e2991714a1ac852479ad14e398a437c63cf6bc00535f7f12b72db98621",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdatedOnHash": "229d6e2fc93f12288a5ca057b6a58408e06ade6bdd2f0da7b4884060a46440ac",
+        "contentUpdateSummaryHash": "66ef6ee734ed216ea6ed336d2e1495e6d83aa9d07ba1e708de435389a57b1c17",
+        "relatedIssueIdsHash": "04c494018e16d7af7cbb89b35e5aa04d422ee4bac47caaee7857ab0be80fbc5f",
+        "claimIds": [
+          "fixParts:0"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "N55 electric engine-coolant pump (only after ISTA diagnosis and VIN confirmation)",
+          "oemPartNumber": "11515A05704",
+          "variants": [
+            {
+              "note": "Current electric coolant pump; use ETK/AIR to confirm production-date supersession and the separate thermostat.",
+              "scope": "2011-2013 E70 X5 xDrive35i with N55",
+              "oemPartNumber": "11515A05704"
+            }
+          ],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "BMW Parts Deal",
+              "url": "https://www.bmwpartsdeal.com/parts/bmw-coolant_pump_electric-11515a05704.html",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    }
+  ]
+}

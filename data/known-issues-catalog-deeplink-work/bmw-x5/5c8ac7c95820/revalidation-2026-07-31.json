@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "kind": "existing-full-record-audit-revalidation",
+  "make": "BMW",
+  "model": "X5",
+  "auditDate": "2026-07-31",
+  "freshPacket": {
+    "path": "data/known-issues-catalog-deeplink-work/bmw-x5/5c8ac7c95820/all-0001.json",
+    "snapshotHash": "5c8ac7c9582066062bc820719fb71a574499f4cbd236b79fcafac4669d6efbb4",
+    "fileHash": "432da80874e8c53774cc80164beddfd1c3d35c9815e8498a8353e4fc7231f2cd",
+    "recordCount": 13,
+    "claimClicks": 3,
+    "recordClicks": 8,
+    "priorityClicks": 3
+  },
+  "reviewedManifests": [
+    {
+      "batchId": "bmw-x5-full-record-cohort-1-2026-07-20",
+      "fileHash": "35f7d0e3b4d256c382f54e290bf7e169858c7803899b1cb40e0603d15a0fbd62"
+    },
+    {
+      "batchId": "bmw-x5-full-record-cohort-2-2026-07-20",
+      "fileHash": "9ba4472503fbf11e064fbd264c5ef203537d0151c14be3876786b89f7cf0a452"
+    },
+    {
+      "batchId": "bmw-x5-full-record-cohort-3-2026-07-20",
+      "fileHash": "f20b603486d8f14d73be1b4fd9b4689411a12079af8c73694daac981fb769d99"
+    }
+  ],
+  "outcome": {
+    "published": 13,
+    "archived": 0,
+    "dispositions": {
+      "replace": 8,
+      "diagnosis-hold": 4,
+      "recall-dealer": 1
+    },
+    "exactCurrentAfterMatches": 13,
+    "drift": 0,
+    "commerceClaims": 8,
+    "productUrls": 12
+  },
+  "linkValidation": {
+    "exactProductPages": 12,
+    "invalidOrSearchPages": 0,
+    "details": [
+      { "url": "https://www.ebay.com/itm/227028512551", "result": "live-exact-product-page" },
+      { "url": "https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html", "result": "http-200-exact-mpn" },
+      { "url": "https://www.ebay.com/itm/277072199375", "result": "live-exact-product-page" },
+      { "url": "https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340029751.html", "result": "http-200-exact-mpn" },
+      { "url": "https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html", "result": "http-200-exact-mpn" },
+      { "url": "https://www.ebay.com/itm/267652027149", "result": "live-exact-product-page" },
+      { "url": "https://www.bmwpartsdeal.com/parts/bmw-coolant_pipe_flow-11141439975.html", "result": "http-200-exact-mpn" },
+      { "url": "https://www.ebay.com/itm/232691656138", "result": "live-exact-product-page" },
+      { "url": "https://www.bmwpartsdeal.com/parts/bmw-set_of_profile_gaskets-11120030496.html", "result": "http-200-exact-mpn" },
+      { "url": "https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html", "result": "http-200-exact-mpn" },
+      { "url": "https://www.bmwpartsdeal.com/parts/bmw-dtf_1-83222409710.html", "result": "http-200-exact-mpn" },
+      { "url": "https://www.bmwpartsdeal.com/parts/bmw-coolant_pump_electric-11515a05704.html", "result": "http-200-exact-mpn" }
+    ]
+  },
+  "recallSweep": {
+    "exactCampaignCount": 90,
+    "matchedPublishedCampaign": "23V707000",
+    "unmatchedCampaignsRemainInsertFalse": true,
+    "databaseInserts": 0
+  },
+  "verification": {
+    "cohort1": "after",
+    "cohort2": "after",
+    "cohort3": "after",
+    "databaseWrites": 0
+  }
+}
