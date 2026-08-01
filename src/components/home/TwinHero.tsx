@@ -21,8 +21,11 @@ import { HeroReserveForm, HeroReserveMeta } from './HeroReserveForm';
 
 // "Photo-first / no part names needed" removed at Devon's call — it described a
 // different product surface (vision) than the one this page is selling.
-const STATS = [
-  { v: '6,268+', l: 'known issues documented' },
+//
+// The issue count is passed in from the live DB total where available rather
+// than baked in, so it can't drift from reality as the catalogue grows.
+const statsFor = (issueCount?: number) => [
+  { v: issueCount ? `${issueCount.toLocaleString()}+` : '6,268+', l: 'known issues documented' },
   { v: '7 days', l: 'free when it opens' },
   { v: '$14.99', l: 'per month after' },
 ];
@@ -65,10 +68,10 @@ function Headline({ size = 52 }: { size?: number }) {
 }
 
 /** Desktop: cards beside the headline. Hidden on mobile — see StatsInline. */
-function Stats() {
+function Stats({ stats }: { stats: ReturnType<typeof statsFor> }) {
   return (
     <div className="hero-stat-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(136px,1fr))', gap: 10, flexWrap: 'wrap' }}>
-      {STATS.map((s) => (
+      {stats.map((s) => (
         <div key={s.l} style={{ padding: '13px 15px', borderRadius: 16, background: '#fff', border: '1px solid var(--paper-line)', boxShadow: 'var(--shadow-1)' }}>
           <div className="mono" style={{ fontSize: s.v.length > 8 ? 13.5 : 17, fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--ink)' }}>{s.v}</div>
           <div style={{ fontSize: 10.5, color: 'var(--slate-500)', marginTop: 3, lineHeight: 1.35 }}>{s.l}</div>
@@ -83,13 +86,13 @@ function Stats() {
  * the reserve form. Cards cost four boxes of vertical space on a phone and push
  * the reservation — the thing this page exists to collect — below the fold.
  */
-function StatsInline() {
+function StatsInline({ stats }: { stats: ReturnType<typeof statsFor> }) {
   return (
     <div
       className="hero-stat-inline"
       style={{ fontSize: 12.5, lineHeight: 1.6, color: 'var(--slate-700)', textAlign: 'center', textWrap: 'pretty' }}
     >
-      {STATS.map((s, i) => (
+      {stats.map((s, i) => (
         <span key={s.l}>
           {i > 0 && <span style={{ color: 'var(--slate-400)', margin: '0 7px' }}>·</span>}
           <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>{s.v}</strong> {s.l}
@@ -150,7 +153,8 @@ function Reserve() {
   );
 }
 
-export function TwinHero({ stage }: { stage?: React.ReactNode }) {
+export function TwinHero({ stage, issueCount }: { stage?: React.ReactNode; issueCount?: number }) {
+  const stats = statsFor(issueCount);
   return (
     <div className="twin-surface" style={{ background: 'var(--paper)', color: 'var(--ink)' }}>
       <main style={{ maxWidth: 1240, margin: '0 auto', padding: '24px clamp(20px,5vw,56px) 60px', display: 'flex', flexDirection: 'column', gap: 26 }}>
@@ -162,13 +166,13 @@ export function TwinHero({ stage }: { stage?: React.ReactNode }) {
               {COPY.subcopy}
             </p>
           </div>
-          <div style={{ flex: '0 1 300px' }}><Stats /></div>
+          <div style={{ flex: '0 1 300px' }}><Stats stats={stats} /></div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           {stage}
           {/* Mobile only: stats as text, between the car and the reserve form. */}
-          <StatsInline />
+          <StatsInline stats={stats} />
           <Reserve />
         </div>
       </main>
