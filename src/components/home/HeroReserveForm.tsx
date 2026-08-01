@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { trackEvent } from '@/components/analytics/GoogleAnalytics';
+import { RESERVATION_COUNTRIES } from '@/lib/reservation';
 
 /**
  * The hero's reservation form — the demand test for the Vehicle Twin.
@@ -13,8 +15,6 @@ import { trackEvent } from '@/components/analytics/GoogleAnalytics';
  * launch while tax registration is pending, and people deserve to know that
  * BEFORE they commit rather than after.
  */
-
-const COUNTRIES = ['United States','Canada','United Kingdom','Australia','New Zealand','Ireland','Germany','France','Netherlands','Belgium','Spain','Portugal','Italy','Switzerland','Austria','Sweden','Norway','Denmark','Finland','Poland','Czechia','Romania','Greece','Turkey','Mexico','Brazil','Argentina','Chile','Colombia','Peru','Puerto Rico','South Africa','Nigeria','Kenya','Egypt','United Arab Emirates','Saudi Arabia','Israel','India','Pakistan','Philippines','Indonesia','Malaysia','Singapore','Thailand','Vietnam','Japan','South Korea','China','Hong Kong','Taiwan','Other'];
 
 export function HeroReserveForm({
   source,
@@ -51,7 +51,7 @@ export function HeroReserveForm({
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.includes('@') || email.length > 320 || !country) {
+    if (!email.includes('@') || email.length > 254 || !vehicle.trim() || !country) {
       setState('error');
       return;
     }
@@ -79,6 +79,8 @@ export function HeroReserveForm({
   if (state === 'done') {
     return (
       <div
+        role="status"
+        aria-live="polite"
         style={{
           display: 'flex', alignItems: 'flex-start', gap: 8, padding: '12px 14px', borderRadius: 12,
           background: onGlass ? 'rgba(255,255,255,.09)' : '#ECFDF5',
@@ -106,12 +108,14 @@ export function HeroReserveForm({
         <input
           type="text" required placeholder="2015 Dodge Challenger SRT 392" aria-label="Year, make, model and trim"
           value={vehicle} onChange={(e) => setVehicle(e.target.value)} disabled={state === 'loading'}
+          maxLength={120}
           style={{ ...field, flex: wide ? '1 1 100%' : '1 1 190px' }}
         />
         <input
           type="email" required placeholder="you@email.com" aria-label="Email" inputMode="email" autoComplete="email"
           value={email} onChange={(e) => { setEmail(e.target.value); if (state === 'error') setState('idle'); }}
           disabled={state === 'loading'}
+          maxLength={254}
           style={{ ...field, flex: wide ? '1 1 200px' : '1 1 190px' }}
         />
         <select
@@ -126,7 +130,7 @@ export function HeroReserveForm({
           }}
         >
           <option value="" disabled>Country</option>
-          {COUNTRIES.map((c) => <option key={c} value={c} style={{ color: 'var(--ink)' }}>{c}</option>)}
+          {RESERVATION_COUNTRIES.map((c) => <option key={c} value={c} style={{ color: 'var(--ink)' }}>{c}</option>)}
         </select>
         <button
           type="submit" disabled={state === 'loading'}
@@ -143,9 +147,14 @@ export function HeroReserveForm({
         </div>
       )}
 
+      <div style={{ fontSize: 10.5, lineHeight: 1.45, color: onGlass ? 'rgba(255,255,255,.65)' : 'var(--slate-500)' }}>
+        By reserving, you agree to receive Vehicle Twin beta updates. Unsubscribe anytime.{' '}
+        <Link href="/privacy" style={{ color: 'inherit', textDecoration: 'underline' }}>Privacy</Link>
+      </div>
+
       {state === 'error' && (
-        <div style={{ fontSize: 11.5, color: onGlass ? '#FCA5A5' : '#B91C1C' }}>
-          Enter a valid email and pick your country, then try again.
+        <div role="alert" style={{ fontSize: 11.5, color: onGlass ? '#FCA5A5' : '#B91C1C' }}>
+          Enter your vehicle, a valid email, and your country, then try again.
         </div>
       )}
     </form>

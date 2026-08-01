@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { hasAuthSessionCookie, SESSION_MARKER } from '@/lib/session-marker';
 
 /**
  * Redirects for stale/mangled known-issues URLs that Google already indexed.
@@ -51,17 +52,8 @@ export function middleware(req: NextRequest): NextResponse {
  *
  * Deliberately carries no identity: it is exactly "1" or absent.
  */
-const SESSION_COOKIES = [
-  'authjs.session-token',
-  '__Secure-authjs.session-token',
-  // next-auth v4 names, in case a stale cookie is still riding along.
-  'next-auth.session-token',
-  '__Secure-next-auth.session-token',
-];
-export const SESSION_MARKER = 'au7o.sess';
-
 function sessionMarker(req: NextRequest, res: NextResponse): NextResponse {
-  const signedIn = SESSION_COOKIES.some((c) => req.cookies.has(c));
+  const signedIn = hasAuthSessionCookie(req.cookies.getAll().map((cookie) => cookie.name));
   const marked = req.cookies.get(SESSION_MARKER)?.value === '1';
 
   if (signedIn && !marked) {

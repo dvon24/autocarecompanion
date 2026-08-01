@@ -108,6 +108,7 @@ export class RateLimiter {
 export const knownIssuesLimiter = new RateLimiter(60_000, 60);   // 60 req/min
 export const guideLimiter = new RateLimiter(60_000, 10);          // 10 req/min
 export const affiliateTrackLimiter = new RateLimiter(60_000, 30); // 30 req/min
+export const reservationLimiter = new RateLimiter(60_000, 10);    // 10 reservations/min/IP
 
 // /drive voice turns are expensive: each one fans out to Claude + Mapbox
 // geocoding + Mapbox directions + (sometimes) a gas-station lookup.
@@ -140,7 +141,7 @@ export const voiceDemoFreeLimiter = new RateLimiter(THIRTY_DAYS, 2);  // 2 demos
  * Falls back to 'unknown' if no IP can be determined.
  */
 export function getClientIp(request: Request): string {
-  const forwarded = (request.headers as any).get?.('x-forwarded-for');
+  const forwarded = request.headers.get('x-forwarded-for');
   if (forwarded) {
     // x-forwarded-for can be comma-separated; take the first (client) IP
     return forwarded.split(',')[0].trim();

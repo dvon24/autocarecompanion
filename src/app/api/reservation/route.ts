@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { randomBytes } from 'crypto';
 import { prisma } from '@/lib/db';
+import { getClientIp, rateLimitResponse, reservationLimiter } from '@/lib/rate-limit';
+import { parseReservationInput } from '@/lib/reservation';
 
 // Vehicle Twin beta reservation. Mirrors /api/interest (the lead-capture path
 // that's proven in production) but writes a Reservation row — a demand signal,
@@ -11,35 +13,35 @@ import { prisma } from '@/lib/db';
 // place that actually earned the commitment) while letting later submissions
 // fill in blanks they skipped the first time.
 export async function POST(request: NextRequest) {
-  try {
-    const { email, vehicle, country, source, path, note } = await request.json();
+  const limit = reservationLimiter.check(getClientIp(request));
+  if (!limit.success) return rateLimitResponse(limit.reset);
 
-    if (!email || typeof email !== 'string' || !email.includes('@') || email.length > 320) {
-      return NextResponse.json({ error: 'Invalid email address' }, { status: 400 });
+  try {
+    const input = parseReservationInput(await request.json());
+    if (!input) {
+      return NextResponse.json({ error: 'Invalid reservation details' }, { status: 400 });
     }
 
-    const str = (v: unknown, max: number) =>
-      typeof v === 'string' && v.trim() ? v.trim().slice(0, max) : null;
-
-    const normalized = email.trim().toLowerCase();
     const unsubscribeToken = randomBytes(24).toString('base64url');
+    const existing = await prisma.reservation.findUnique({
+      where: { email: input.email },
+      select: { vehicle: true, country: true, note: true, unsubscribedAt: true },
+    });
 
     await prisma.reservation.upsert({
-      where: { email: normalized },
+      where: { email: input.email },
       create: {
-        email: normalized,
-        vehicle: str(vehicle, 120),
-        country: str(country, 60),
-        source: str(source, 60),
-        path: str(path, 200),
-        note: str(note, 1000),
+        ...input,
         unsubscribeToken,
       },
       // Only fill gaps — never overwrite the original attribution.
       update: {
-        vehicle: str(vehicle, 120) ?? undefined,
-        country: str(country, 60) ?? undefined,
-        note: str(note, 1000) ?? undefined,
+        vehicle: existing?.vehicle ? undefined : input.vehicle,
+        country: existing?.country ? undefined : input.country,
+        note: existing?.note ? undefined : (input.note ?? undefined),
+        // A fresh form submission is an explicit re-opt-in.
+        unsubscribedAt: existing?.unsubscribedAt ? null : undefined,
+        unsubscribeToken: existing?.unsubscribedAt ? unsubscribeToken : undefined,
       },
     });
 

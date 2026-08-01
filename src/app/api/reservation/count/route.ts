@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 
-export const dynamic = 'force-dynamic';
-
 // Public count behind the hero's "N reserved" line.
 //
 // The design ships a hard-coded 1,204. Printing that number while the table
@@ -15,10 +13,16 @@ const MIN_SHOW = 25;
 export async function GET() {
   try {
     const count = await prisma.reservation.count({ where: { unsubscribedAt: null } });
-    return NextResponse.json({ count, show: count >= MIN_SHOW });
+    return NextResponse.json(
+      { count, show: count >= MIN_SHOW },
+      { headers: { 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=3600' } },
+    );
   } catch (error) {
     console.error('Reservation count error:', error);
     // Fail closed: no number is better than a wrong one.
-    return NextResponse.json({ count: 0, show: false });
+    return NextResponse.json(
+      { count: 0, show: false },
+      { headers: { 'Cache-Control': 'no-store' } },
+    );
   }
 }

@@ -2,6 +2,7 @@
 
 import { SessionProvider as NextAuthSessionProvider } from 'next-auth/react';
 import { useState, useEffect, type ReactNode } from 'react';
+import { SESSION_MARKER } from '@/lib/session-marker';
 
 /**
  * SessionProvider wrapper for client components
@@ -32,8 +33,6 @@ import { useState, useEffect, type ReactNode } from 'react';
  * unauthenticated. Guarded below by re-checking after mount.
  */
 
-const SESSION_MARKER = 'au7o.sess';
-
 function hasSessionMarker(): boolean {
   if (typeof document === 'undefined') return false;
   return document.cookie.split('; ').some((c) => c === `${SESSION_MARKER}=1`);
@@ -55,7 +54,11 @@ export function SessionProvider({ children }: SessionProviderProps) {
   // leaving a signed-in user looking logged out.
   const [recheck, setRecheck] = useState(0);
   useEffect(() => {
-    if (!signedIn && hasSessionMarker()) setRecheck((n) => n + 1);
+    if (signedIn) return;
+    const timer = window.setTimeout(() => {
+      if (hasSessionMarker()) setRecheck((n) => n + 1);
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [signedIn]);
 
   const known = signedIn || recheck > 0;

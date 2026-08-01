@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'Try the Au7o tech tree — 2015 Challenger demo',
   description:
     'Click any part of the car to open its tech tree: every component underneath it, what it costs, and which one is documented to fail at your mileage. No account needed.',
+  robots: { index: false, follow: true },
 };
 
 /**
