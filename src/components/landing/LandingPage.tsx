@@ -3,9 +3,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { HeroVehicleSearch } from '@/components/discovery/HeroVehicleSearch';
-import { Icon } from '@/components/ui/Icon';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import { LiveHubDemo } from '@/components/marketing/LiveHubDemo';
+import { TwinHero } from '@/components/home/TwinHero';
+import { TwinPlayground } from '@/components/twin/stage/TwinPlayground';
 
 /**
  * Landing page — Phase 4 redesign aligned with BMAD au7o(3)/10-
@@ -109,116 +110,14 @@ export default function LandingPage({ stats }: Props) {
         </div>
       </header>
 
-      {/* ─── Hero ───────────────────────────────────────────────── */}
-      <section
-        className="lp-hero"
-        style={{ padding: '60px 22px 64px', maxWidth: 1200, margin: '0 auto', width: '100%' }}
-      >
-        <div className="lp-hero-grid">
-          {/* LEFT — value prop */}
-          <div>
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                padding: '5px 12px',
-                background: 'var(--au7o-blue-50, #EFF6FF)',
-                borderRadius: 999,
-                marginBottom: 20,
-              }}
-            >
-              <Icon name="camera" size={13} style={{ color: 'var(--au7o-blue, #3B82F6)' }} />
-              <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--au7o-blue-700, #1D4ED8)' }}>
-                New · Photo &amp; video diagnosis
-              </span>
-            </div>
-            <h1
-              style={{
-                fontSize: 'clamp(36px, 7vw, 52px)',
-                fontWeight: 700,
-                letterSpacing: '-0.03em',
-                lineHeight: 1.04,
-                margin: 0,
-              }}
-            >
-              Know your car&apos;s<br />weak spots.
-            </h1>
-            <p
-              style={{
-                fontSize: 17.5,
-                color: 'var(--slate-700, #334155)',
-                lineHeight: 1.5,
-                margin: '18px 0 0',
-                maxWidth: 470,
-              }}
-            >
-              Show Au7o a photo or video of the problem — it matches what it sees to{' '}
-              <strong style={{ color: 'var(--ink, #0B1220)' }}>
-                {totalIssues.toLocaleString()}+ known issues
-              </strong>{' '}
-              and the exact part. Or browse documented problems for your exact car, free.
-            </p>
-            <div style={{ display: 'flex', gap: 12, marginTop: 28, alignItems: 'center', flexWrap: 'wrap' }}>
-              {/* Phase 4.5 try-it-free entry point. Anonymous visitors
-                  get 1 free diagnosis per IP per month (server-side
-                  enforced in /api/vision via the photo-quota anon
-                  bucket); after that, the gate surfaces a signup CTA. */}
-              <Link
-                href="/diagnose"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  padding: '14px 24px',
-                  background: 'var(--au7o-blue, #3B82F6)',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: 12,
-                  fontSize: 14.5,
-                  fontWeight: 600,
-                  textDecoration: 'none',
-                  boxShadow: '0 8px 22px rgba(59,130,246,0.32)',
-                }}
-              >
-                <Icon name="camera" size={15} /> Upload a photo to diagnose
-              </Link>
-              <span style={{ fontSize: 13, color: 'var(--slate-500, #64748B)' }}>Free · no card needed</span>
-            </div>
-          </div>
-
-          {/* RIGHT — the free vehicle picker tool */}
-          <div
-            id="vehicle-picker"
-            style={{
-              background: '#fff',
-              border: '1px solid var(--paper-line, #E3DFD4)',
-              borderRadius: 18,
-              padding: 24,
-              boxShadow: '0 16px 36px rgba(11,18,32,0.08), 0 2px 8px rgba(11,18,32,0.04)',
-              scrollMarginTop: 80, // sticky nav clearance for anchor jump
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'baseline',
-                justifyContent: 'space-between',
-                marginBottom: 14,
-                gap: 8,
-                flexWrap: 'wrap',
-              }}
-            >
-              <span style={{ fontSize: 14.5, fontWeight: 600, letterSpacing: '-0.01em' }}>
-                Find issues for your car
-              </span>
-              <div style={{ display: 'flex', gap: 12 }}>
-                <Stat n={`${totalIssues.toLocaleString()}+`} l="issues" />
-                <Stat n={`${totalModels}+`} l="models" />
-              </div>
-            </div>
-            <HeroVehicleSearch />
-          </div>
+      {/* ─── Hero — Vehicle Twin demand test ─────────────────────── */}
+      {/* Replaces the previous value-prop hero. The vehicle picker below it is
+          deliberately kept: it was inside the old hero and is a live path into
+          the known-issues catalogue, which is where our traffic actually goes. */}
+      <TwinHero stage={<TwinPlayground />} issueCount={totalIssues} />
+      <section style={{ padding: '0 22px 56px', maxWidth: 1200, margin: '0 auto', width: '100%' }}>
+        <div style={{ maxWidth: 560 }} id="vehicle-picker">
+          <HeroVehicleSearch />
         </div>
       </section>
 
@@ -436,20 +335,4 @@ const navLink: React.CSSProperties = {
   textDecoration: 'none',
 };
 
-function Stat({ n, l }: { n: string; l: string }) {
-  return (
-    <span style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
-      <span
-        style={{
-          fontSize: 12,
-          fontWeight: 700,
-          color: 'var(--au7o-blue, #3B82F6)',
-          fontFamily: 'var(--font-geist-mono, ui-monospace, monospace)',
-        }}
-      >
-        {n}
-      </span>
-      <span style={{ fontSize: 11, color: 'var(--slate-500, #64748B)' }}>{l}</span>
-    </span>
-  );
-}
+/* Stat lived only in the old value-prop hero, which the twin hero replaced. */
