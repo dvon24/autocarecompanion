@@ -2,8 +2,9 @@
 title: 'Complete BMW known-issues audit and production deployment'
 type: 'bugfix'
 created: '2026-07-30'
-status: 'in-review'
+status: 'done'
 baseline_revision: '3cd970d59354572d6cdcbcfdc4f1e8d03baa489d'
+final_revision: 'd527a5cd570f752bed8731cdb86e017d6ef857ca'
 review_loop_iteration: 0
 followup_review_recommended: true
 context:
@@ -101,3 +102,41 @@ warnings: []
 - `git diff --check` -- no whitespace errors.
 - `npm run build` -- combined production build succeeds.
 - `vercel --prod` and `vercel inspect` -- deployment target is production and status is Ready.
+
+## Auto Run Result
+
+### Summary
+
+Completed the full BMW Known Issues audit across 41 models and hardened the release after adversarial review. The final release reconciles localized BMW pages with current published records, preserves exact audited-empty routes without masking expected-positive failures, advertises those routes in the sitemap, fixes deterministic audit dates and localized metadata, and makes the production verifier and NHTSA research helper fail closed.
+
+### Files changed
+
+- `data/known-issues-catalog-deeplink-work/**` and `data/known-issues-catalog-deeplink-decisions/**` -- frozen BMW packets, reviewed model configurations, and immutable schema-v2 manifests for the completed make.
+- `src/lib/known-issues-audit-registry.ts` -- manifest-derived BMW identities, expected published counts, and audit dates.
+- `src/app/known-issues/[slug]/page.tsx` and `src/app/sitemap.ts` -- exact audited-empty routing, metadata, static parameters, sitemap coverage, and fixed dates.
+- `src/app/[locale]/known-issues/[slug]/page.tsx` and `src/lib/localized-known-issues-audit.ts` -- suppress archived translated claims and render current evidence-audited BMW issue copy.
+- `scripts/apply-known-issue-catalog-deeplinks.js` -- authoritative explicit env-file resolution for production verification.
+- `scripts/_nhtsa-recall-campaigns.cjs` and `_config-bmw-remaining-factory.cjs` -- fail-closed API handling and packet-override validation.
+- Focused tests under `scripts/**.test.*` and `src/lib/**.test.ts` -- regression coverage for every review-driven safety fix.
+
+### Review findings
+
+- Patches applied: 11 (5 high, 6 medium), detailed in the Review Triage Log.
+- Deferred: 1 medium future generator-hardening item in `deferred-work.md`.
+- Rejected: 3 process-only or non-defect findings that did not affect committed manifests or public behavior.
+- Follow-up review recommendation: `true`; the pass changed routing, localized content, sitemap behavior, and production verifier safety.
+
+### Verification performed
+
+- Production database: `95/95` manifests and `795/795` rows verified at exact schema-v2 after-state using an explicit Vercel production env file; the temporary env file was then deleted.
+- Tests: applicator `27/27`, ShowMeTheParts `4/4`, commerce `6/6`, NHTSA/factory `5/5`, and registry/localized behavior `6/6` passed.
+- Static analysis: focused ESLint, TypeScript `--noEmit --incremental false`, JavaScript syntax checks, and `git diff --check` passed.
+- Production build: Next.js generated all `1,531` static pages successfully.
+- Deployment: `dpl_9ZvhTksWaMhrEqZ9ybgr7HW2Pohu`, target `production`, state `Ready`, promoted to `au7o.io` and `www.au7o.io` on 2026-08-01. The clean deployed source revision was `d527a5cd570f752bed8731cdb86e017d6ef857ca`.
+- Live routes: BMW M4, Z8, X7, and Z4 returned `200` with correct titles and expected audited content; English routes contained Get Started and DataRep and did not contain Open Hub; localized Portuguese M4 contained no archived DCT issue; the sitemap contained M4 and Z8 with `2026-07-31` last-modified dates.
+- Release boundary: no homepage, reservation, middleware, `/dev`, twin, or 3D-model files were included in the BMW release commit.
+
+### Residual risks
+
+- Future factory-backed cohorts should bind transitive generator dependencies into the reviewed hash, as recorded in deferred work.
+- The separately prepared homepage design is not part of this BMW release and must be rebased or cherry-picked onto the audited release chain before its own production deployment.
