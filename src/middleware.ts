@@ -32,10 +32,58 @@ export function middleware(req: NextRequest): NextResponse {
     return NextResponse.redirect(url, 308);
   }
 
-  return NextResponse.next();
+  return sessionMarker(req, NextResponse.next());
+}
+
+/**
+ * Session marker cookie.
+ *
+ * next-auth's SessionProvider fires GET /api/auth/session on mount whenever it
+ * isn't handed an initial session — so EVERY page view, including the anonymous
+ * known-issues traffic that will never log in, was costing a serverless
+ * invocation to be told "no session". At ~117K page views/month that is pure
+ * waste, and it is the burst visible in the Vercel request logs.
+ *
+ * The real session token is httpOnly, so the client cannot check it directly.
+ * This mirrors its EXISTENCE (never its value) into a readable marker so the
+ * provider can skip the round-trip for anonymous visitors. See
+ * components/auth/SessionProvider.tsx for the other half.
+ *
+ * Deliberately carries no identity: it is exactly "1" or absent.
+ */
+const SESSION_COOKIES = [
+  'authjs.session-token',
+  '__Secure-authjs.session-token',
+  // next-auth v4 names, in case a stale cookie is still riding along.
+  'next-auth.session-token',
+  '__Secure-next-auth.session-token',
+];
+export const SESSION_MARKER = 'au7o.sess';
+
+function sessionMarker(req: NextRequest, res: NextResponse): NextResponse {
+  const signedIn = SESSION_COOKIES.some((c) => req.cookies.has(c));
+  const marked = req.cookies.get(SESSION_MARKER)?.value === '1';
+
+  if (signedIn && !marked) {
+    res.cookies.set(SESSION_MARKER, '1', {
+      httpOnly: false, // the client must be able to read it — that is the point
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+      maxAge: 60 * 60 * 24 * 30,
+    });
+  } else if (!signedIn && marked) {
+    // Signed out (or the session expired) — clear it so we stop fetching.
+    res.cookies.set(SESSION_MARKER, '', { path: '/', maxAge: 0 });
+  }
+  return res;
 }
 
 export const config = {
-  // Only run on known-issues URLs — everything else skips the middleware.
-  matcher: ['/known-issues/:path*'],
+  // Runs on page routes so the session marker stays in sync everywhere.
+  // Excludes API routes, Next internals and any path with a file extension, so
+  // static assets are untouched. Edge middleware is far cheaper than the
+  // serverless /api/auth/session invocation it saves, and it still runs on
+  // ISR-cached responses — so cached pages keep their cache and get the cookie.
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|.*\\.[\\w]+$).*)'],
 };
