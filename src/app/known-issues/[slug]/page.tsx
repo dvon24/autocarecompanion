@@ -136,6 +136,59 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'cadillac-xts',
 ]);
 
+// parseSlug() intentionally resolves only make/model pairs that still have a
+// published issue. A full-record audit can archive the final card for a model,
+// but the established model URL must remain a useful, indexable owner reference
+// instead of becoming a 200-response soft 404. Keep an exact identity for every
+// BMW model in this completed cohort so the audited-empty renderer can run.
+const BMW_AUDITED_MODEL_IDENTITIES: Record<string, { make: string; model: string }> = {
+  'bmw-1-series': { make: 'BMW', model: '1 Series' },
+  'bmw-2-series': { make: 'BMW', model: '2 Series' },
+  'bmw-2-series-active-tourer': { make: 'BMW', model: '2 Series Active Tourer' },
+  'bmw-3-series': { make: 'BMW', model: '3 Series' },
+  'bmw-4-series': { make: 'BMW', model: '4 Series' },
+  'bmw-5-series': { make: 'BMW', model: '5 Series' },
+  'bmw-6-series': { make: 'BMW', model: '6 Series' },
+  'bmw-7-series': { make: 'BMW', model: '7 Series' },
+  'bmw-8-series': { make: 'BMW', model: '8 Series' },
+  'bmw-i3': { make: 'BMW', model: 'i3' },
+  'bmw-i4': { make: 'BMW', model: 'i4' },
+  'bmw-i5': { make: 'BMW', model: 'i5' },
+  'bmw-i7': { make: 'BMW', model: 'i7' },
+  'bmw-i8': { make: 'BMW', model: 'i8' },
+  'bmw-ix': { make: 'BMW', model: 'iX' },
+  'bmw-ix3': { make: 'BMW', model: 'iX3' },
+  'bmw-m2': { make: 'BMW', model: 'M2' },
+  'bmw-m240i': { make: 'BMW', model: 'M240i' },
+  'bmw-m3': { make: 'BMW', model: 'M3' },
+  'bmw-m3-cs': { make: 'BMW', model: 'M3 CS' },
+  'bmw-m340i': { make: 'BMW', model: 'M340i' },
+  'bmw-m4': { make: 'BMW', model: 'M4' },
+  'bmw-m4-cs': { make: 'BMW', model: 'M4 CS' },
+  'bmw-m5': { make: 'BMW', model: 'M5' },
+  'bmw-m6': { make: 'BMW', model: 'M6' },
+  'bmw-m8': { make: 'BMW', model: 'M8' },
+  'bmw-x1': { make: 'BMW', model: 'X1' },
+  'bmw-x2': { make: 'BMW', model: 'X2' },
+  'bmw-x3': { make: 'BMW', model: 'X3' },
+  'bmw-x3-m': { make: 'BMW', model: 'X3 M' },
+  'bmw-x4': { make: 'BMW', model: 'X4' },
+  'bmw-x4-m': { make: 'BMW', model: 'X4 M' },
+  'bmw-x5': { make: 'BMW', model: 'X5' },
+  'bmw-x5-m': { make: 'BMW', model: 'X5 M' },
+  'bmw-x6': { make: 'BMW', model: 'X6' },
+  'bmw-x6-m': { make: 'BMW', model: 'X6 M' },
+  'bmw-x7': { make: 'BMW', model: 'X7' },
+  'bmw-xm': { make: 'BMW', model: 'XM' },
+  'bmw-z3': { make: 'BMW', model: 'Z3' },
+  'bmw-z4': { make: 'BMW', model: 'Z4' },
+  'bmw-z8': { make: 'BMW', model: 'Z8' },
+};
+
+async function parseKnownIssueArticleSlug(slug: string): Promise<{ make: string; model: string } | null> {
+  return (await parseSlug(slug)) ?? BMW_AUDITED_MODEL_IDENTITIES[slug] ?? null;
+}
+
 // --- Static generation ---
 
 export async function generateStaticParams() {
@@ -155,7 +208,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const { year: yearParam } = await searchParams;
   const requestedYear = yearParam ? parseInt(yearParam, 10) : null;
-  const parsed = await parseSlug(slug);
+  const parsed = await parseKnownIssueArticleSlug(slug);
   if (!parsed) return { title: 'Not Found' };
 
   const allIssues = await getKnownIssuesForArticle(parsed.make, parsed.model);
@@ -450,7 +503,7 @@ export default async function KnownIssuesArticlePage({
   const { slug } = await params;
   const { year: yearParam } = await searchParams;
   const initialYear = yearParam ? parseInt(yearParam, 10) : undefined;
-  const parsed = await parseSlug(slug);
+  const parsed = await parseKnownIssueArticleSlug(slug);
   if (!parsed) notFound();
 
   const { make, model } = parsed;
