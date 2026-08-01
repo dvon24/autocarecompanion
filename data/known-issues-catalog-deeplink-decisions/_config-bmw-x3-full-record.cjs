@@ -1,0 +1,132 @@
+const { buildConfig } = require('./_config-bmw-remaining-factory.cjs');
+
+module.exports = buildConfig({
+  label: "BMW X3",
+  model: "X3",
+  slug: "bmw-x3",
+  batchId: "bmw-x3-full-record-cohort-27-2026-07-31",
+  auditDate: "2026-07-31",
+  snapshotHash: "8970e0c0617aa35ed5cf6a104d72a2ef1dd28484ec755fca0ce02cb8fbe926b9",
+  sourceSnapshotFileHash: "37709d38d2c1dc2af91cce84158cf02b1ed2e708079b4d049dd14e9437dc22b4",
+  packetFileHash: "1f0be8bb4ef4ce1feca2cb2249f774aad9a7f48abf781085b3784972abb9cc4f",
+  packetRelativePath: "data/known-issues-catalog-deeplink-work/bmw-x3/8970e0c0617a/all-0001.json",
+  reviewTokens: { blind: "bmwx3_blind:self-no-blocker", edge: "bmwx3_edge:self-no-blocker" },
+  reasons: {
+    "bmw-x3-electric-water-pump-2011":
+      "The clicked card spans three X3 generations through a future model year without an engine, failure-mode or primary-source boundary. Its click raises priority but cannot validate the universal pump replacement claim.",
+    "bmw-x3-n20-timing-chain-2011":
+      "This is the less specific duplicate N20 timing-chain identity, includes unsupported 2011-2012 and 2016-2017 scope and asserts fixed-mileage failure without BMW support.",
+    "bmw-x3-transfer-case-actuator-2011":
+      "This duplicates the older transfer-case aggregation and extends through 2026 without a BMW-defined mechanism, population or remedy.",
+    "bmw-x3-water-pump-2007":
+      "The card combines N52 and N20 pump failures across eleven years and cites unrelated campaign 17V-138; recall 24V-608 is a distinct N20 connector-sealing/fire-risk population and is preserved proposal-only.",
+  },
+  published: {
+    "bmw-x3-n20-timing-chain-2012": {
+      disposition: "diagnosis-hold",
+      decision:
+        "Replace the catastrophic broad card with BMW SIB 11 03 17's production-bounded N20 diagnostic path and remove both commerce claims and all four URLs.",
+      evidence: [
+        {
+          type: "tsb",
+          label:
+            "BMW SIB 11 03 17 - N20/N26 Timing-Chain and Oil-Pump Drive-Chain Limited Warranty Extension",
+          url: "https://static.nhtsa.gov/odi/tsbs/2020/MC-10186213-9999.pdf",
+        },
+      ],
+      after: {
+        years: [2013, 2014, 2015],
+        trims: [],
+        engines: ["N20"],
+        category: "engine",
+        title: "Lower-Engine Whine Requires X3 N20 Timing-Chain Diagnosis",
+        description:
+          "BMW SIB 11 03 17 identifies F25 X3 xDrive28i N20 vehicles produced from March 2012 through February 2015 and sDrive28i N20 vehicles produced from March 2014 through February 2015. A lower-engine whine that increases with engine speed can be associated with timing-chain or oil-pump-drive-chain wear; the bulletin does not declare every X3 defective.",
+        solution:
+          "Confirm the exact X3 variant, N20 engine, production date and VIN eligibility, then have a BMW-qualified technician reproduce the noise and follow current BMW diagnosis before replacing anything. The historical seven-year/70,000-mile coverage was a limited warranty extension, not a recall, and is not a current coverage promise. ShowMeTheParts established category-level fitment only, so no commerce link is approved.",
+        severity: "high",
+        confidence: "high",
+        source: "nhtsa-verified",
+        symptoms: [
+          "Whining from the lower engine area",
+          "Noise frequency increases with engine speed",
+        ],
+        affectedSystems: ["timing-chain drive", "oil-pump drive chain"],
+        dtcCodes: [],
+        citations: [
+          {
+            type: "tsb",
+            title:
+              "BMW SIB 11 03 17 - N20/N26 Timing-Chain and Oil-Pump Drive-Chain Limited Warranty Extension",
+            url: "https://static.nhtsa.gov/odi/tsbs/2020/MC-10186213-9999.pdf",
+          },
+        ],
+        summary:
+          "Replaced the broad X3 N20 timing-chain card with exact SIB 11 03 17 diagnostic scope and removed two commerce claims with four URLs.",
+      },
+    },
+  },
+  proposalCampaigns: [
+  "08V384000",
+  "07E069000",
+  "17V605000",
+  "20V017000",
+  "17V683000",
+  "23V707000",
+  "16V333000",
+  "11V341000",
+  "17V495000",
+  "14V627000",
+  "13V454000",
+  "13V570000",
+  "24V527000",
+  "24V608000",
+  "23V797000",
+  "18V755000",
+  "21V907000",
+  "21V586000",
+  "16V683000",
+  "14V648000",
+  "16V704000",
+  "18V374000",
+  "18V453000",
+  "20V152000",
+  "19V563000",
+  "18V431000",
+  "19V684000",
+  "21V521000",
+  "17V719000",
+  "18V154000",
+  "24V534000",
+  "24V764000",
+  "21V096000",
+  "19V291000",
+  "20V598000",
+  "20V164000",
+  "19V678000",
+  "20V601000",
+  "19V738000",
+  "20V355000",
+  "21V598000",
+  "20V490000",
+  "20V443000",
+  "23V211000",
+  "25V636000",
+  "21V199000",
+  "26V056000",
+  "26V438000",
+  "22V070000",
+  "22V513000",
+  "25V106000",
+  "23V821000",
+  "23V770000",
+  "24V772000",
+  "24V856000",
+  "24V909000",
+  "25V109000",
+  "25V154000",
+  "25V202000",
+  "25V247000",
+  "25V857000"
+],
+});
