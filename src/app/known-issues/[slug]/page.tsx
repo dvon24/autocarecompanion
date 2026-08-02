@@ -118,6 +118,7 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'buick-enclave',
   'buick-encore',
   'buick-encore-gx',
+  'buick-envision',
   'cadillac-allante',
   'cadillac-ats',
   'cadillac-catera',
