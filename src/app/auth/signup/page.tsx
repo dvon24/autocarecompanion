@@ -1,12 +1,13 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, type ReactNode } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton';
 import { AuthValueColumn } from '@/components/auth/AuthValueColumn';
+import { safeInternalCallback, signinHref } from '@/lib/auth-callback';
 
 /**
  * Banner rendered above the signup form when the user came from the
@@ -65,7 +66,7 @@ function DiagnoseClaimBanner() {
 function SignUpForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/';
+  const callbackUrl = safeInternalCallback(searchParams.get('callbackUrl'));
 
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -90,6 +91,7 @@ function SignUpForm() {
     }
     setLoading(true);
     setError(null);
+    let accountCreated = false;
 
     try {
       // Create the account.
@@ -110,6 +112,7 @@ function SignUpForm() {
         setError(data.error || 'Couldn\'t create your account. Try again.');
         return;
       }
+      accountCreated = true;
 
       // Auto sign-in so the user lands logged in.
       const signInResult = await signIn('credentials', {
@@ -124,7 +127,7 @@ function SignUpForm() {
         // forward (e.g. /diagnose/claim) once they sign in manually.
         // Dropping callbackUrl here was a documented gap during the
         // diagnose-to-chat handoff design.
-        router.push('/auth/signin?callbackUrl=' + encodeURIComponent(callbackUrl));
+        router.push(signinHref(callbackUrl));
         return;
       }
 
@@ -137,6 +140,13 @@ function SignUpForm() {
       const target = goingDeep ? callbackUrl : '/onboarding';
       window.location.href = target;
     } catch {
+      if (accountCreated) {
+        // The account exists even if NextAuth/network auto-signin failed.
+        // Continue through manual sign-in without ever dropping the original
+        // vehicle/diagnosis callback.
+        router.push(signinHref(callbackUrl));
+        return;
+      }
       setError('Network error. Try again.');
     } finally {
       setLoading(false);
@@ -255,6 +265,22 @@ function SignUpForm() {
   );
 }
 
+function CallbackAwareSignInLink({
+  className,
+  children,
+}: {
+  className: string;
+  children: ReactNode;
+}) {
+  const searchParams = useSearchParams();
+  const callbackUrl = safeInternalCallback(searchParams.get('callbackUrl'));
+  return (
+    <Link href={signinHref(callbackUrl)} className={className}>
+      {children}
+    </Link>
+  );
+}
+
 export default function SignUpPage() {
   return (
     <div className="min-h-screen bg-white font-[system-ui,sans-serif]">
@@ -278,9 +304,11 @@ export default function SignUpPage() {
                 Au<span className="text-blue-600">7</span>o
               </span>
             </Link>
-            <Link href="/auth/signin" className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
-              Sign in
-            </Link>
+            <Suspense fallback={<span className="text-sm font-medium text-gray-500">Sign in</span>}>
+              <CallbackAwareSignInLink className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
+                Sign in
+              </CallbackAwareSignInLink>
+            </Suspense>
           </header>
 
           <div className="flex-1 flex flex-col items-center justify-center py-8">
@@ -307,9 +335,11 @@ export default function SignUpPage() {
 
               <div className="text-center mt-6">
                 <span className="text-gray-500 text-sm">Already have an account? </span>
-                <Link href="/auth/signin" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  Sign in
-                </Link>
+                <Suspense fallback={<span className="text-blue-600 font-medium text-sm">Sign in</span>}>
+                  <CallbackAwareSignInLink className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+                    Sign in
+                  </CallbackAwareSignInLink>
+                </Suspense>
               </div>
             </div>
           </div>

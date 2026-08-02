@@ -12,6 +12,11 @@
  */
 
 import ymmtData from '../../public/data/ymmt.json';
+import {
+  getSelectorVehicleForKnownIssue,
+  KNOWN_ISSUE_VEHICLE_ALIASES,
+  aliasAppliesToYear,
+} from './known-issue-vehicle-aliases';
 
 type Ymmt = Record<string, Record<string, Record<string, string[]>>>;
 const YMMT = ymmtData as Ymmt;
@@ -47,7 +52,12 @@ export function slugNorm(s: string): string {
 }
 
 export function vehicleSlug(year: number, make: string, model: string, trim?: string | null): string {
-  const parts = [String(year), slugNorm(make), slugNorm(model)];
+  const selectorVehicle = getSelectorVehicleForKnownIssue({ year, make, model });
+  const parts = [
+    String(year),
+    slugNorm(selectorVehicle.make),
+    slugNorm(selectorVehicle.model),
+  ];
   if (trim) parts.push(slugNorm(trim));
   return parts.join('-');
 }
@@ -102,6 +112,19 @@ export function parseVehicleSlug(slug: string): VehicleSlugParts | null {
 
       return { year, make: matchedMake, model: matchedModel, trim: matchedTrim };
     }
+  }
+
+  // Backward compatibility for article-generated Hub URLs that used the
+  // KnownIssue row name before selector aliases were canonicalized.
+  const vehiclePath = m[2];
+  for (const alias of KNOWN_ISSUE_VEHICLE_ALIASES) {
+    if (!aliasAppliesToYear(alias, year)) continue;
+    const oldPrefix = `${slugNorm(alias.knownIssue.make)}-${slugNorm(alias.knownIssue.model)}`;
+    if (vehiclePath !== oldPrefix && !vehiclePath.startsWith(`${oldPrefix}-`)) continue;
+
+    const trimSuffix = vehiclePath.slice(oldPrefix.length);
+    const canonicalSlug = `${year}-${slugNorm(alias.selector.make)}-${slugNorm(alias.selector.model)}${trimSuffix}`;
+    return parseVehicleSlug(canonicalSlug);
   }
 
   return null;

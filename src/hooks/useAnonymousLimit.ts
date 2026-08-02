@@ -5,8 +5,11 @@ import { useSession } from 'next-auth/react';
 import {
   checkAnonymousLimit,
   incrementAnonymousCount,
+  refundAnonymousCount,
+  setAnonymousRemaining,
   getAnonymousId,
 } from '@/lib/rateLimit';
+import { ANONYMOUS_HUB_MESSAGE_LIMIT } from '@/lib/hub-message-limits';
 
 interface UseAnonymousLimitReturn {
   /**
@@ -35,6 +38,12 @@ interface UseAnonymousLimitReturn {
    */
   consumeChat: () => boolean;
 
+  /** Restore a locally reserved turn when no usable reply was delivered. */
+  refundChat: () => void;
+
+  /** Persist the server's authoritative remaining count. */
+  syncRemaining: (remaining: number) => void;
+
   /**
    * Anonymous ID for tracking
    */
@@ -55,7 +64,7 @@ interface UseAnonymousLimitReturn {
  */
 export function useAnonymousLimit(): UseAnonymousLimitReturn {
   const { data: session, status } = useSession();
-  const [remaining, setRemaining] = useState(5);
+  const [remaining, setRemaining] = useState(ANONYMOUS_HUB_MESSAGE_LIMIT);
   const [resetDate, setResetDate] = useState<Date | null>(null);
   const [anonymousId, setAnonymousId] = useState<string | null>(null);
 
@@ -66,15 +75,19 @@ export function useAnonymousLimit(): UseAnonymousLimitReturn {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // Set anonymous ID
-    if (!isAuthenticated) {
-      setAnonymousId(getAnonymousId());
-    }
+    // Defer browser-storage synchronization until after the effect turn so
+    // it does not create a synchronous render cascade during hydration.
+    const timer = window.setTimeout(() => {
+      if (!isAuthenticated) {
+        setAnonymousId(getAnonymousId());
+      }
 
-    // Check current limit
-    const limit = checkAnonymousLimit();
-    setRemaining(limit.remaining);
-    setResetDate(limit.resetDate);
+      const limit = checkAnonymousLimit();
+      setRemaining(limit.remaining);
+      setResetDate(limit.resetDate);
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [isAuthenticated]);
 
   // Reconcile with the SERVER's authoritative per-identity weekly quota.
@@ -98,7 +111,7 @@ export function useAnonymousLimit(): UseAnonymousLimitReturn {
         // user locked out of a chat the server would actually allow. The
         // server enforces the limit on every send regardless, so there's
         // nothing to "game" by trusting it for the display.
-        setRemaining(data.remaining);
+        setRemaining(setAnonymousRemaining(data.remaining));
         if (data.resetAt) setResetDate(new Date(data.resetAt));
       })
       .catch(() => {
@@ -133,6 +146,16 @@ export function useAnonymousLimit(): UseAnonymousLimitReturn {
     return result.success;
   }, [isAuthenticated]);
 
+  const refundChat = useCallback(() => {
+    if (isAuthenticated) return;
+    setRemaining(refundAnonymousCount().remaining);
+  }, [isAuthenticated]);
+
+  const syncRemaining = useCallback((value: number) => {
+    if (isAuthenticated) return;
+    setRemaining(setAnonymousRemaining(value));
+  }, [isAuthenticated]);
+
   // Authenticated users have unlimited access
   if (isAuthenticated) {
     return {
@@ -141,6 +164,8 @@ export function useAnonymousLimit(): UseAnonymousLimitReturn {
       remaining: Infinity,
       resetDate: null,
       consumeChat,
+      refundChat,
+      syncRemaining,
       anonymousId: null,
       loading,
     };
@@ -152,6 +177,8 @@ export function useAnonymousLimit(): UseAnonymousLimitReturn {
     remaining,
     resetDate,
     consumeChat,
+    refundChat,
+    syncRemaining,
     anonymousId,
     loading,
   };

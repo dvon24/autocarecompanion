@@ -26,8 +26,18 @@ import { getWebSpecs } from '@/lib/verified-specs';
 import { canonicalizePart } from '@/lib/part-vocabulary';
 import { STATIC_SYSTEM_PROMPT } from '@/lib/hub-chat-prompt';
 import type { PartCategory } from '@/types/vision';
+import {
+  getHubModelConfig,
+  isUsableHubReply,
+  requestHubModelWithTransportFallback,
+  safeHubChatErrorMessage,
+  shouldRetryHubModel,
+} from '@/lib/hub-chat-model';
 
-export const maxDuration = 60;
+// A transport-level primary timeout can still be followed by one fallback
+// attempt. Give both bounded 55-second requests room inside Vercel's function
+// lifetime instead of terminating the fallback a few seconds after it starts.
+export const maxDuration = 120;
 export const runtime = 'nodejs';
 
 /**
@@ -87,7 +97,7 @@ export async function GET() {
  *          <user_message> as user input, never as instructions
  *       2. Topic scope in system prompt — refuse non-vehicle queries
  *       3. Hard 2k-token cap on input
- *       4. Anonymous IP-based rate limit (1/day) + authed cap (200/day)
+ *       4. Anonymous conversion-trial IP limit (5/day) + authed cap (200/day)
  *       5. Per-minute burst cap (12/min) catches client retry loops
  *
  * Request body:
@@ -113,7 +123,7 @@ export async function GET() {
 // implicitly — just no longer surfaced in code.
 const OPENAI_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
-const MODEL = 'gpt-5.6-sol';
+const HUB_MODELS = getHubModelConfig();
 const MAX_INPUT_TOKENS = 2000;       // hard cap on user input per turn
 const MAX_HISTORY_MESSAGES = 20;     // last N turns sent to the model
 // 4000, not 1500: on gpt-5.x chat completions, REASONING tokens count
@@ -436,27 +446,34 @@ export async function POST(request: NextRequest) {
   const burstLimit = hubChatMinuteLimiter.check(ip);
   if (!burstLimit.success) return rateLimitResponse(burstLimit.reset);
 
-  // Daily cap — different for authed vs anon. Anon is now 1/day (was 5):
-  // a single free question per IP, then the signup gate fires.
+  // Daily cap — anonymous visitors can use their full five-message trial in
+  // one sitting; the weekly cookie-backed quota below is authoritative.
   const dayLimiter = isAuthed ? hubChatAuthedDayLimiter : hubChatAnonDayLimiter;
   const dayLimit = dayLimiter.check(ip);
   if (!dayLimit.success) {
     if (isAuthed) {
       return NextResponse.json({ error: 'rate_limited', message: 'Daily chat limit reached. It resets in 24 hours.', reset: dayLimit.reset, gated: false }, { status: 429 });
     }
-    // Anon at daily limit — brief copy emphasizes free signup value
-    // (5 questions/week, no card) over the upgrade pitch.
+    // Anonymous trial is exhausted: signup is the primary next step.
     return NextResponse.json({
       error: 'login_required',
-      message: 'Free preview used. Sign in for 5 questions/week — free, no card required.',
+      message: `You have used your ${DEFAULT_ANON_LIMIT} free messages. Create a free account to keep chatting — free, no card required.`,
+      remaining: 0,
+      limit: DEFAULT_ANON_LIMIT,
       reset: dayLimit.reset,
       gated: true,
       ctaUrl: '/auth/signup',
-      ctaLabel: 'Start free — sign in',
+      ctaLabel: 'Create free account',
       secondaryCtaUrl: '/auth/signin',
       secondaryCtaLabel: 'Sign in',
     }, { status: 429 });
   }
+  let dayLimitRefunded = false;
+  const refundDayLimit = () => {
+    if (dayLimitRefunded) return;
+    dayLimitRefunded = true;
+    dayLimiter.refund(ip);
+  };
 
   // ── 3a. Server-side WEEKLY quota (backstop for the client-side
   // useAnonymousLimit hook). IP-based daily limits above protect against
@@ -480,6 +497,7 @@ export async function POST(request: NextRequest) {
     const quotaLimit = isAuthed ? getEffectiveFreeAuthedLimit(userCreatedAt) : DEFAULT_ANON_LIMIT;
     const quota = await checkAndConsumeChatQuota({ key: quotaKey, limit: quotaLimit });
     if (!quota.allowed) {
+      refundDayLimit();
       if (isAuthed) {
         // Authed-free at weekly cap — brief's value-anchor pitch.
         return NextResponse.json({
@@ -499,13 +517,13 @@ export async function POST(request: NextRequest) {
       // the IP daily cap fires first). Same signup pitch as daily.
       return NextResponse.json({
         error: 'login_required',
-        message: 'Free preview used. Sign in for 5 questions/week — free, no card required.',
+        message: `You have used your ${DEFAULT_ANON_LIMIT} free messages. Create a free account to keep chatting — free, no card required.`,
         resetAt: quota.resetAt.toISOString(),
         remaining: 0,
         limit: quotaLimit,
         gated: true,
         ctaUrl: '/auth/signup',
-        ctaLabel: 'Start free — sign in',
+        ctaLabel: 'Create free account',
         secondaryCtaUrl: '/auth/signin',
         secondaryCtaLabel: 'Sign in',
       }, { status: 429 });
@@ -667,6 +685,15 @@ export async function POST(request: NextRequest) {
       let assistantText = ''; // CLEANED output (markers already grounded) — what the user + history see
       let usageIn = 0;
       let usageOut = 0;
+      let replyCompleted = false;
+      let weeklyQuotaRefunded = false;
+      const refundFailedTurn = async () => {
+        refundDayLimit();
+        if (consumedQuotaKey && !weeklyQuotaRefunded) {
+          weeklyQuotaRefunded = true;
+          await refundChatQuota(consumedQuotaKey);
+        }
+      };
 
       // Streaming marker rewriter: buffer the model's raw output, replace each
       // complete [[PART:…]] marker with a grounded link before it reaches the
@@ -717,14 +744,14 @@ export async function POST(request: NextRequest) {
           ...wrappedMessages,
         ];
 
-        const res = await fetch(OPENAI_URL, {
+        const requestModel = (model: string) => fetch(OPENAI_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${OPENAI_KEY}`,
           },
           body: JSON.stringify({
-            model: MODEL,
+            model,
             messages: openaiMessages,
             max_completion_tokens: MAX_OUTPUT_TOKENS,
             stream: true,
@@ -739,9 +766,49 @@ export async function POST(request: NextRequest) {
           signal: AbortSignal.timeout(55_000),
         });
 
+        const inspectFailure = async (response: Response, model: string) => {
+          const responseBody = await response.text().catch(() => 'unreadable response');
+          console.error('[hub-chat] model request failed', {
+            model,
+            status: response.status,
+            response: responseBody.slice(0, 500),
+          });
+          return responseBody;
+        };
+
+        const transportResult = await requestHubModelWithTransportFallback(
+          HUB_MODELS,
+          requestModel,
+          (primaryModel, fallbackModel) => {
+            console.warn('[hub-chat] primary model request threw; retrying fallback', {
+              primaryModel,
+              fallbackModel,
+            });
+          },
+        );
+        let activeModel = transportResult.model;
+        let res = transportResult.response;
+
         if (!res.ok || !res.body) {
-          const errText = await res.text().catch(() => 'unknown');
-          throw new Error(`OpenAI ${res.status}: ${errText.slice(0, 200)}`);
+          const responseBody = await inspectFailure(res, activeModel);
+          const fallback = HUB_MODELS.fallback;
+
+          if (fallback && fallback !== activeModel && shouldRetryHubModel(res.status, responseBody)) {
+            console.warn('[hub-chat] retrying with fallback model', {
+              primaryModel: activeModel,
+              fallbackModel: fallback,
+              status: res.status,
+            });
+            activeModel = fallback;
+            res = await requestModel(activeModel);
+
+            if (!res.ok || !res.body) {
+              await inspectFailure(res, activeModel);
+              throw new Error('Hub model request failed.');
+            }
+          } else {
+            throw new Error('Hub model request failed.');
+          }
         }
 
         // OpenAI SSE format:
@@ -749,7 +816,9 @@ export async function POST(request: NextRequest) {
         //   ...
         //   data: {"choices":[{"finish_reason":"stop","delta":{}}],"usage":{...}}\n\n
         //   data: [DONE]\n\n
-        const reader = res.body.getReader();
+        const responseStream = res.body;
+        if (!responseStream) throw new Error('Hub model response was empty.');
+        const reader = responseStream.getReader();
         const decoder = new TextDecoder();
         let buffer = '';
 
@@ -764,7 +833,10 @@ export async function POST(request: NextRequest) {
             buffer = buffer.slice(idx + 2);
             if (!rawEvent.startsWith('data:')) continue;
             const payload = rawEvent.slice(5).trim();
-            if (payload === '[DONE]') continue;
+            if (payload === '[DONE]') {
+              replyCompleted = true;
+              continue;
+            }
             try {
               const parsed = JSON.parse(payload);
               const delta = parsed.choices?.[0]?.delta?.content;
@@ -776,6 +848,7 @@ export async function POST(request: NextRequest) {
                 usageIn = parsed.usage.prompt_tokens || 0;
                 usageOut = parsed.usage.completion_tokens || 0;
               }
+              if (parsed.choices?.[0]?.finish_reason) replyCompleted = true;
             } catch { /* skip malformed chunk — usually a keep-alive */ }
           }
         }
@@ -807,18 +880,19 @@ export async function POST(request: NextRequest) {
         // A "successful" stream that produced zero content (reasoning ate
         // the whole token budget, or upstream sent nothing) must not eat
         // the user's credit or leave a silent empty bubble.
-        if (!assistantText) {
-          if (consumedQuotaKey) await refundChatQuota(consumedQuotaKey);
-          send({ type: 'error', message: 'No reply generated — please try again.' });
+        if (!isUsableHubReply(assistantText, replyCompleted)) {
+          await refundFailedTurn();
+          send({
+            type: 'error',
+            message: safeHubChatErrorMessage(Boolean(assistantText.trim())),
+          });
         } else {
           send({ type: 'done', usage: { in: usageIn, out: usageOut } });
         }
       } catch (err) {
         console.error('[hub-chat] stream error:', err);
-        // Nothing was delivered — give the weekly chat credit back.
-        if (consumedQuotaKey && !assistantText) {
-          await refundChatQuota(consumedQuotaKey);
-        }
+        // An interrupted or missing reply never consumes either allowance.
+        await refundFailedTurn();
         // A partial reply WAS delivered: persist it so the session history
         // matches what the user sees on screen — previously the client
         // kept the partial while the server dropped it, and the next turn's
@@ -832,8 +906,10 @@ export async function POST(request: NextRequest) {
             });
           } catch { /* best effort */ }
         }
-        const message = err instanceof Error ? err.message : 'Chat failed.';
-        send({ type: 'error', message });
+        send({
+          type: 'error',
+          message: safeHubChatErrorMessage(Boolean(assistantText)),
+        });
       } finally {
         controller.close();
       }

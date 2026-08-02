@@ -1,7 +1,7 @@
 import prisma from '@/lib/db';
 import { mileageBucket } from '@/lib/vehicle-slug';
 import { getVehicleSpecs } from '@/lib/maintenance';
-import type { KnownIssue } from '@/schemas/knownIssue.schema';
+import { getKnownIssueVehicleCandidates } from '@/lib/known-issue-vehicle-aliases';
 
 /**
  * Server-side data loaders for the conversation-first /vehicle/[slug]
@@ -124,20 +124,27 @@ export async function getAttachableIssues(args: {
 }): Promise<AttachableIssue[]> {
   const limit = args.limit ?? 12;
   try {
+    const lookupVehicles = getKnownIssueVehicleCandidates({
+      year: args.year,
+      make: args.make,
+      model: args.model,
+    });
     // Over-fetch, then filter to the user's exact trim/engine below — a
     // Hellcat-only issue must NOT show on an NA SRT 392 (Devon). Mirrors the
     // article page's filter so the hub cards match the user's actual car.
     const rows = await prisma.knownIssue.findMany({
       where: {
-        make: { equals: args.make, mode: 'insensitive' },
-        model: { equals: args.model, mode: 'insensitive' },
+        OR: lookupVehicles.map((vehicle) => ({
+          make: { equals: vehicle.make, mode: 'insensitive' as const },
+          model: { equals: vehicle.model, mode: 'insensitive' as const },
+        })),
         years: { has: args.year },
         status: 'published',
       },
       orderBy: [{ severity: 'asc' }, { reportCount: 'desc' }],
       take: Math.max(limit * 4, 48),
       select: {
-        id: true, title: true, category: true, severity: true,
+        id: true, make: true, model: true, title: true, category: true, severity: true,
         description: true, estimatedCostLow: true, estimatedCostHigh: true,
         years: true, engines: true, trims: true,
       },
@@ -161,7 +168,6 @@ export async function getAttachableIssues(args: {
       }
       return true; // untagged → applies model-wide
     };
-    const slug = `${args.make.toLowerCase().replace(/\s+/g, '-')}-${args.model.toLowerCase().replace(/\s+/g, '-')}`;
     return rows.filter(matches).slice(0, limit).map((r) => ({
       id: r.id,
       title: r.title,
@@ -172,7 +178,7 @@ export async function getAttachableIssues(args: {
         ? { low: r.estimatedCostLow, high: r.estimatedCostHigh }
         : null,
       affectedYears: r.years,
-      knownIssuesUrl: `/known-issues/${slug}#${r.id}`,
+      knownIssuesUrl: `/known-issues/${r.make.toLowerCase().replace(/\s+/g, '-')}-${r.model.toLowerCase().replace(/\s+/g, '-')}#${r.id}`,
     }));
   } catch {
     return [];

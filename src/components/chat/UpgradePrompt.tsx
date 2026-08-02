@@ -2,11 +2,13 @@
 
 import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
+import { signinHref, signupHref } from '@/lib/auth-callback';
 
 interface UpgradePromptProps {
   resetDate?: Date | null;
   variant?: 'full' | 'compact' | 'inline';
   className?: string;
+  callbackUrl?: string;
 }
 
 /**
@@ -18,6 +20,7 @@ export function UpgradePrompt({
   resetDate,
   variant = 'full',
   className = '',
+  callbackUrl = '/',
 }: UpgradePromptProps) {
   const resetText = resetDate
     ? formatDistanceToNow(resetDate, { addSuffix: true })
@@ -27,9 +30,9 @@ export function UpgradePrompt({
     return (
       <div className={`text-center py-4 ${className}`}>
         <p className="text-gray-600 text-sm mb-2">
-          Free limit reached.{' '}
-          <Link href="/subscribe" className="text-blue-600 hover:text-blue-700 font-medium">
-            Go unlimited — $14.99/mo →
+          Free preview complete.{' '}
+          <Link href={signupHref(callbackUrl)} className="text-blue-600 hover:text-blue-700 font-medium">
+            Create a free account →
           </Link>
         </p>
         <p className="text-xs text-gray-400">
@@ -47,17 +50,17 @@ export function UpgradePrompt({
         <div className="flex items-center justify-between gap-4">
           <div>
             <p className="font-medium text-gray-900 text-sm">
-              Free limit reached
+              Free preview complete
             </p>
             <p className="text-xs text-gray-500 mt-0.5">
-              Resets {resetText} · or unlimited $14.99/mo
+              Create an account to save this vehicle and keep chatting
             </p>
           </div>
           <Link
-            href="/subscribe"
+            href={signupHref(callbackUrl)}
             className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"
           >
-            Go Pro
+            Create account
           </Link>
         </div>
       </div>
@@ -86,39 +89,39 @@ export function UpgradePrompt({
       </div>
 
       <h3 className="text-xl font-bold text-gray-900 mb-2">
-        You&apos;re getting real value from Au7o.
+        Keep your Au7o conversation going.
       </h3>
 
       <p className="text-gray-600 mb-6 max-w-md mx-auto">
-        Unlimited symptom chat, photo-to-part, and video diagnosis — <strong>$14.99/mo</strong>.
-        One avoided wrong part pays for 8 months.
+        Create a free account to keep chatting, save this vehicle, and return
+        to your conversation without entering it again.
       </p>
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
         <Link
-          href="/subscribe"
+          href={signupHref(callbackUrl)}
           className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg shadow-blue-500/25"
         >
-          Go unlimited — $14.99/mo
+          Create free account
         </Link>
-        <p className="text-sm text-gray-500">
-          or wait until {resetText}
-        </p>
+        <Link href={signinHref(callbackUrl)} className="text-sm font-medium text-blue-700 hover:text-blue-800">
+          Already have an account? Sign in
+        </Link>
       </div>
 
       {/* Features preview — matches the pricing brief's Au7o Pro tier */}
       <div className="mt-8 pt-6 border-t border-blue-200/50">
         <p className="text-xs text-gray-500 uppercase tracking-wide mb-4">
-          Au7o Pro benefits
+          Your free account includes
         </p>
         <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto text-left">
           {[
-            'Unlimited AI chat',
-            'Photo-to-part',
-            'Video diagnosis',
-            'Complete repair kits',
-            'Multi-source pricing',
-            'Unlimited vehicles',
+            'Saved conversations',
+            'Your vehicle context',
+            'Known Issues in the Hub',
+            'Maintenance tracking',
+            'Recall context',
+            'No credit card',
           ].map((feature) => (
             <div key={feature} className="flex items-center gap-2 text-sm">
               <svg

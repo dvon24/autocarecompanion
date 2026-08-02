@@ -8,7 +8,6 @@ import type { MaintenanceSuggestion, ScheduleData, ScheduleService, ScheduleServ
 import type { RecentThread, TrendingChip, AttachableIssue } from '@/lib/hub-data';
 import { Icon, type IconName } from '@/components/ui/Icon';
 import { vehicleSlug } from '@/lib/vehicle-slug';
-import { isNativeApp } from '@/lib/native-app';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
 import { LiveCameraShutter } from '@/components/diagnose/LiveCameraShutter';
@@ -31,6 +30,7 @@ import { useAnonymousLimit } from '@/hooks/useAnonymousLimit';
 import { UpgradePrompt, RemainingChatsIndicator } from '@/components/chat/UpgradePrompt';
 import { MileageEditor } from '@/components/vehicle/MileageEditor';
 import { VehicleHero } from '@/components/vehicle/VehicleHero';
+import { signinHref, signupHref } from '@/lib/auth-callback';
 
 /**
  * Serialize a photo/video diagnosis into text the chat model can use as
@@ -248,6 +248,14 @@ export function VehicleHub({
   showMaintenanceUpgradeTile,
 }: VehicleHubProps) {
   const router = useRouter();
+  const baseHubCallback = `/vehicle/${slug}`;
+  const [authCallbackUrl, setAuthCallbackUrl] = useState(baseHubCallback);
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setAuthCallbackUrl(`${baseHubCallback}${window.location.search}`);
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [baseHubCallback]);
   // After a successful log POST, soft-refresh so the SSR schedule reflects
   // the new MaintenanceRecord (next-due resets, the row moves into "Recently
   // completed") WITHOUT a full-page reload — window.location.reload() caused
@@ -259,9 +267,9 @@ export function VehicleHub({
   // Seed the conversation with the pre-rendered opener so the page feels
   // alive on first paint. Subsequent turns get appended here and (in v2)
   // sent to /api/chat for the real reply.
-  // Same slice rule as the mobile shell: 4 issues for signed-in users
-  // (more vertical room + we know it's their car), 2 for anonymous.
-  const openerIssues = attachableIssues.slice(0, isAuthed ? 4 : 2);
+  // Known Issues are core vehicle context, not a paid feature. Show the
+  // same four real, trim-filtered records to anonymous and signed-in users.
+  const openerIssues = attachableIssues.slice(0, 4);
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: opener.text, timestamp: Date.now(),
       schedule: schedule ?? undefined,
@@ -274,7 +282,15 @@ export function VehicleHub({
   // localStorage); authed users are treated as unlimited by the hook.
   // When the limit is exhausted, send() short-circuits and shows the
   // upgrade prompt inline above the composer.
-  const { canChat, consumeChat, remaining, resetDate, isAuthenticated } = useAnonymousLimit();
+  const {
+    canChat,
+    consumeChat,
+    refundChat,
+    syncRemaining,
+    remaining,
+    resetDate,
+    isAuthenticated,
+  } = useAnonymousLimit();
   const [showUpgrade, setShowUpgrade] = useState(false);
   // Mobile-only drawer with the recent-threads list. The desktop rail
   // shows it inline; under 900px the rail is hidden, so a hamburger in
@@ -778,6 +794,17 @@ export function VehicleHub({
       setShowUpgrade(true);
       return;
     }
+    let allowanceSettled = isAuthenticated;
+    const refundLocalAllowance = () => {
+      if (allowanceSettled) return;
+      allowanceSettled = true;
+      refundChat();
+    };
+    const syncLocalAllowance = (value: number) => {
+      if (allowanceSettled) return;
+      allowanceSettled = true;
+      syncRemaining(value);
+    };
 
     setPending(true);
     setInput('');
@@ -882,7 +909,7 @@ export function VehicleHub({
       });
 
       if (!res.ok || !res.body) {
-        const errBody = await res.json().catch(() => ({} as { message?: string; gated?: boolean; error?: string; ctaUrl?: string; ctaLabel?: string; secondaryCtaUrl?: string; secondaryCtaLabel?: string; resetAt?: string }));
+        const errBody = await res.json().catch(() => ({} as { message?: string; gated?: boolean; error?: string; ctaUrl?: string; ctaLabel?: string; secondaryCtaUrl?: string; secondaryCtaLabel?: string; resetAt?: string; remaining?: number }));
 
         // Server gated the request — render an inline gate card in the
         // assistant placeholder slot. Same code path covers both:
@@ -891,6 +918,7 @@ export function VehicleHub({
         // The InlineGateCard reads ctaUrl/ctaLabel/secondaryCta directly
         // from the response so all copy lives server-side.
         if (res.status === 429 && errBody.gated && errBody.ctaUrl && errBody.ctaLabel) {
+          syncLocalAllowance(errBody.remaining ?? 0);
           const gate: GateInfo = {
             message: errBody.message || 'Sign up free to keep chatting.',
             ctaUrl: errBody.ctaUrl,
@@ -916,6 +944,7 @@ export function VehicleHub({
         // payload (kept so older deploys / external callers don't
         // regress). Opens the existing UpgradePrompt modal.
         if (res.status === 429 && errBody.error === 'quota_exceeded') {
+          syncLocalAllowance(0);
           setShowUpgrade(true);
           setMessages((prev) => {
             const idx = streamingIdxRef.current;
@@ -930,6 +959,8 @@ export function VehicleHub({
         const fallbackMessage = res.status === 429
           ? (errBody.message || 'Daily limit reached.')
           : (errBody.message || `Chat failed (HTTP ${res.status}).`);
+        if (res.status === 429) syncLocalAllowance(errBody.remaining ?? 0);
+        else refundLocalAllowance();
         setMessages((prev) => {
           const idx = streamingIdxRef.current;
           if (idx == null) return prev;
@@ -977,13 +1008,18 @@ export function VehicleHub({
               copy[idx] = { ...copy[idx], content: copy[idx].content || event.message! };
               return copy;
             });
+          } else if (event.type === 'done') {
+            allowanceSettled = true;
           }
           // 'done' has token-usage info we could surface later.
         }
       }
 
+      if (!allowanceSettled) refundLocalAllowance();
+
       // (route fetch fires in parallel with the stream — see below)
     } catch (err) {
+      refundLocalAllowance();
       const errMsg = err instanceof Error ? err.message : 'Network error.';
       setMessages((prev) => {
         const idx = streamingIdxRef.current;
@@ -1112,7 +1148,11 @@ export function VehicleHub({
                 boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
               }}
             >×</button>
-            <UpgradePrompt variant="full" resetDate={resetDate} />
+            <UpgradePrompt
+              variant="full"
+              resetDate={resetDate}
+              callbackUrl={authCallbackUrl}
+            />
           </div>
         </div>
       )}
@@ -1124,7 +1164,7 @@ export function VehicleHub({
           recentThreads={recentThreads}
           maintenanceSuggestions={maintenanceSuggestions}
           user={user}
-          slug={slug}
+          authCallbackUrl={authCallbackUrl}
           onSelectThread={loadSession}
         />
 
@@ -1135,14 +1175,14 @@ export function VehicleHub({
           currentMileage={currentMileage}
           recentThreads={recentThreads}
           user={user}
-          slug={slug}
+          authCallbackUrl={authCallbackUrl}
           onSelectThread={loadSession}
         />
 
         <section className="hub-col">
           <TopBar vehicle={vehicle} user={user} userVehicles={userVehicles} currentSlug={slug} isAuthed={isAuthed} onOpenThreads={() => setThreadsOpen(true)} />
 
-          {!isAuthed && <AnonymousGate />}
+          {!isAuthed && <AnonymousGate callbackUrl={authCallbackUrl} />}
 
           <div ref={scrollRef} className="hub-conv">
             <div className="hub-ambient">
@@ -1229,6 +1269,7 @@ export function VehicleHub({
       <MobileHub
         vehicle={vehicle}
         slug={slug}
+        authCallbackUrl={authCallbackUrl}
         userVehicles={userVehicles}
         isAuthed={isAuthed}
         currentMileage={currentMileage}
@@ -1401,7 +1442,7 @@ function MobileVehicleSwitcher({
 }
 
 function MobileHub({
-  vehicle, slug, userVehicles = [], isAuthed, currentMileage, opener, schedule, attachableIssues, recalls = [], partsByTask = {},
+  vehicle, slug, authCallbackUrl, userVehicles = [], isAuthed, currentMileage, opener, schedule, attachableIssues, recalls = [], partsByTask = {},
   maintenanceSuggestions, recentThreads, user,
   messages, input, pending, threadsOpen,
   onChangeInput, onSend, onOpenThreads, onCloseThreads, onSelectThread, onPhotoUpload, onVideoUpload,
@@ -1409,6 +1450,7 @@ function MobileHub({
 }: {
   vehicle: VehicleHubProps['vehicle'];
   slug: string;
+  authCallbackUrl: string;
   userVehicles?: NonNullable<VehicleHubProps['userVehicles']>;
   isAuthed: boolean;
   currentMileage: number | null;
@@ -1493,9 +1535,8 @@ function MobileHub({
     ? `WELCOME BACK · ${user.name.toUpperCase().split(' ')[0]}`
     : `AU7O · YOUR ${(vehicle.model || vehicle.make).toUpperCase()}`;
 
-  // Top issues for the inline ranked card. Anon variant shows 2 (matches
-  // 04-MobileHubAnonymous.jsx); signed-in shows 4 (matches 05).
-  const topIssues = attachableIssues.slice(0, isAuthed ? 4 : 2);
+  // The free Hub gets the same four real issue rows as signed-in users.
+  const topIssues = attachableIssues.slice(0, 4);
 
   // Suggestion chip set — the design has two flavors:
   //   • A3 (signed-in): maintenance-leaning (calendar/dollar/book/map)
@@ -1559,13 +1600,14 @@ function MobileHub({
         currentMileage={currentMileage}
         recentThreads={recentThreads}
         user={user}
-        slug={slug}
+        authCallbackUrl={authCallbackUrl}
         onSelectThread={onSelectThread}
       />
 
-      {/* App header — menu icon on the left (was right; the right side
-          was being eclipsed by the Google Translate widget), vehicle pill
-          next to it, account/user pill on the far right. */}
+      {/* App header — menu + persistent mobile brand on the left, vehicle
+          pill in the flexible center, and account/user pill on the right.
+          The desktop shell owns its separate rail brand, so this never
+          creates the duplicate mark that used to sit by its selector. */}
       <header className="m-head">
         <button
           type="button"
@@ -1576,6 +1618,9 @@ function MobileHub({
         >
           <Icon name="list" size={16} />
         </button>
+        <Link href="/" className="m-brand-mark" aria-label="Au7o home">
+          <Image src="/og-image.png" alt="" width={24} height={24} />
+        </Link>
         <div className="m-veh-pill" aria-label={`Vehicle: ${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ' ' + vehicle.trim : ''}`}>
           <div className="m-veh-meta">
             <MobileVehicleSwitcher vehicle={vehicle} userVehicles={userVehicles} currentSlug={slug} />
@@ -1597,8 +1642,9 @@ function MobileHub({
               {userInitialsTxt}
             </Link>
           ) : (
-            <Link href={`/api/auth/signin?callbackUrl=${encodeURIComponent(`/vehicle/${slug}`)}`} className="m-avatar m-avatar-anon" aria-label="Sign in">
-              <Icon name="user" size={14} />
+            <Link href={signupHref(authCallbackUrl)} className="m-signup-cta" aria-label="Create free account">
+              <span className="m-signup-full">Create free account</span>
+              <span className="m-signup-short">Join free</span>
             </Link>
           )}
         </div>
@@ -1877,7 +1923,7 @@ function MobileHub({
           <textarea
             ref={taRef}
             className="m-composer-input"
-            placeholder={remaining === 0 ? (isNativeApp() ? 'Free limit reached — resets weekly' : 'Subscribe to keep chatting…') : 'Ask Au7o anything…'}
+            placeholder={remaining === 0 ? 'Create a free account to keep chatting…' : 'Ask Au7o anything…'}
             value={input}
             onChange={(e) => onChangeInput(e.target.value)}
             onKeyDown={onKey}
@@ -1956,18 +2002,24 @@ function MobileHub({
         /* ─── Header ─── */
         .m-head {
           display: flex; align-items: center; justify-content: space-between;
-          gap: 10px; padding: 6px 16px 10px;
+          gap: 8px; padding: 6px 16px 10px;
           background: var(--paper); flex: 0 0 auto;
         }
+        :global(.m-brand-mark) {
+          width: 24px; height: 24px; flex: 0 0 24px;
+          display: inline-flex; align-items: center; justify-content: center;
+          text-decoration: none;
+        }
+        :global(.m-brand-mark img) { display: block; }
         .m-veh-pill {
           display: inline-flex; align-items: center; gap: 8px;
           /* Wider horizontal padding now that the disc avatar is gone —
              gives the year/make/model text room to breathe inside the
              rounded pill. */
-          padding: 8px 16px;
+          padding: 8px 12px;
           background: #fff; border: 1px solid var(--paper-line); border-radius: var(--r-pill);
           color: var(--ink); text-decoration: none;
-          min-width: 0; max-width: 70vw;
+          min-width: 0; max-width: none; flex: 1 1 auto;
           /* Stop the meta column from squeezing to wrap — iOS Safari was
              stacking model/year vertically when the row got cramped. */
           flex-wrap: nowrap;
@@ -1990,14 +2042,23 @@ function MobileHub({
           color: var(--slate-500); cursor: pointer; padding: 0;
         }
         .m-icon-btn:hover { background: var(--paper); }
-        .m-avatar {
+        :global(.m-avatar) {
           width: 32px; height: 32px; border-radius: 50%;
           background: linear-gradient(135deg, var(--au7o-blue), #1e3a8a);
           color: #fff; display: inline-flex; align-items: center; justify-content: center;
           font-size: 11px; font-weight: 700; text-decoration: none;
         }
-        .m-avatar-anon {
-          background: #fff; color: var(--slate-500); border: 1px solid var(--paper-line);
+        :global(.m-signup-cta) {
+          min-height: 32px; padding: 0 10px; border-radius: var(--r-pill);
+          background: var(--au7o-blue); color: #fff;
+          display: inline-flex; align-items: center; justify-content: center;
+          white-space: nowrap; font-size: 10.5px; font-weight: 700;
+          text-decoration: none;
+        }
+        :global(.m-signup-short) { display: none; }
+        @media (max-width: 430px) {
+          :global(.m-signup-full) { display: none; }
+          :global(.m-signup-short) { display: inline; }
         }
 
         /* ─── Body / conversation surface ─── */
@@ -2711,7 +2772,7 @@ function MobileIssuesCard({
 
 /* ─── Vehicle rail ─── */
 function VehicleRail({
-  vehicle, currentMileage, counts, recentThreads, maintenanceSuggestions, user, slug, onSelectThread,
+  vehicle, currentMileage, counts, recentThreads, maintenanceSuggestions, user, authCallbackUrl, onSelectThread,
 }: {
   vehicle: VehicleHubProps['vehicle'];
   currentMileage: number | null;
@@ -2719,7 +2780,7 @@ function VehicleRail({
   recentThreads: RecentThread[];
   maintenanceSuggestions: MaintenanceSuggestion[];
   user: VehicleHubProps['user'];
-  slug: string;
+  authCallbackUrl: string;
   onSelectThread?: (threadId: string) => void;
 }) {
   const v = vehicle;
@@ -2827,13 +2888,13 @@ function VehicleRail({
         </Link>
         {!user && (
           <Link
-            href={`/api/auth/signin?callbackUrl=${encodeURIComponent(`/vehicle/${slug}`)}`}
+            href={signupHref(authCallbackUrl)}
             className="rail-action rail-action-ghost"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
               <path d="M15 3h6v18h-6M10 17l5-5-5-5M15 12H3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            <span>Sign in</span>
+            <span>Create free account</span>
           </Link>
         )}
       </div>
@@ -3068,10 +3129,6 @@ function TopBar({
             <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         </button>
-        {/* Mobile-only brand chip — the desktop brand lives in the (hidden) rail. */}
-        <Link href="/" className="tb-brand-mobile" aria-label="Au7o home">
-          <Image src="/og-image.png" alt="" width={22} height={22} />
-        </Link>
         <VehicleSwitcher
           vehicle={vehicle}
           userVehicles={userVehicles}
@@ -3134,13 +3191,6 @@ function TopBar({
           max-width: 110px; overflow: hidden;
           white-space: nowrap; text-overflow: ellipsis;
         }
-        .tb-brand-mobile {
-          display: none;
-          align-items: center;
-          padding: 4px 6px; border-radius: 8px;
-          text-decoration: none;
-        }
-        .tb-brand-mobile :global(img) { display: block; }
         .tb-burger {
           display: none;
           align-items: center; justify-content: center;
@@ -3153,7 +3203,6 @@ function TopBar({
         .tb-burger:hover { background: #FAF8F2; }
         .tb-translate-spacer { width: 110px; display: inline-block; }
         @media (max-width: 900px) {
-          .tb-brand-mobile { display: inline-flex; }
           .tb-burger { display: inline-flex; }
           .tb-translate-spacer { display: none; }
         }
@@ -3288,7 +3337,7 @@ function VehicleSwitcher({
    panel is rendered at all viewport sizes but the wrapper is display:none
    above 900px, so it costs nothing on desktop. */
 function MobileThreadsDrawer({
-  open, onClose, vehicle, currentMileage, recentThreads, user, slug, onSelectThread,
+  open, onClose, vehicle, currentMileage, recentThreads, user, authCallbackUrl, onSelectThread,
 }: {
   open: boolean;
   onClose: () => void;
@@ -3296,7 +3345,7 @@ function MobileThreadsDrawer({
   currentMileage: number | null;
   recentThreads: RecentThread[];
   user: VehicleHubProps['user'];
-  slug: string;
+  authCallbackUrl: string;
   onSelectThread?: (threadId: string) => void;
 }) {
   // Lock body scroll while the drawer is open and close on Escape.
@@ -3408,11 +3457,11 @@ function MobileThreadsDrawer({
             </Link>
           ) : (
             <Link
-              href={`/api/auth/signin?callbackUrl=${encodeURIComponent(`/vehicle/${slug}`)}`}
+              href={signupHref(authCallbackUrl)}
               className="md-link md-link-primary"
               onClick={onClose}
             >
-              Sign in
+              Create free account
             </Link>
           )}
         </div>
@@ -3530,13 +3579,16 @@ function userInitials(name: string): string {
 }
 
 /* ─── Anonymous gate ─── */
-function AnonymousGate() {
+function AnonymousGate({ callbackUrl }: { callbackUrl: string }) {
   return (
     <div className="gate">
       <span>
-        <strong>Sign in to save</strong> your conversations, log maintenance, and unlock pre-trip safety checks.
+        <strong>Create a free account to save</strong> your conversations, log maintenance, and keep this vehicle.
       </span>
-      <Link href="/auth/signin" className="gate-cta">Sign in</Link>
+      <div className="gate-actions">
+        <Link href={signupHref(callbackUrl)} className="gate-cta">Create free account</Link>
+        <Link href={signinHref(callbackUrl)} className="gate-signin">Sign in</Link>
+      </div>
       <style jsx>{`
         .gate {
           margin: 14px 56px 0; padding: 12px 14px;
@@ -3545,9 +3597,17 @@ function AnonymousGate() {
           display: flex; align-items: center; gap: 10px;
         }
         .gate-cta {
-          margin-left: auto; padding: 6px 12px; border-radius: 8px;
+          padding: 6px 12px; border-radius: 8px;
           background: #0B1220; color: #fff; font-size: 12px; font-weight: 600;
           text-decoration: none;
+        }
+        .gate-actions {
+          margin-left: auto; display: flex; align-items: center; gap: 10px;
+          flex: 0 0 auto;
+        }
+        .gate-signin {
+          color: #92400E; font-size: 12px; font-weight: 600;
+          text-decoration: underline; text-underline-offset: 2px;
         }
       `}</style>
     </div>
@@ -3570,7 +3630,7 @@ function Greeting({
       </span>
       <h1>
         {greetingFor()}.
-        <span className="muted"> What's on your mind today?</span>
+        <span className="muted"> What&apos;s on your mind today?</span>
       </h1>
 
       {/* Suggested prompts derived from the maintenance opener — these are
@@ -4026,7 +4086,11 @@ const Composer = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const videoInputRef = useRef<HTMLInputElement>(null);
   const [camOpen, setCamOpen] = useState(false);
-  useEffect(() => { if (openSignal && openSignal > 0) setCamOpen(true); }, [openSignal]);
+  useEffect(() => {
+    if (!openSignal || openSignal <= 0) return;
+    const timer = window.setTimeout(() => setCamOpen(true), 0);
+    return () => window.clearTimeout(timer);
+  }, [openSignal]);
   return (
     <div className="composer-wrap">
       {camOpen && (
@@ -4108,7 +4172,7 @@ const Composer = ({
         </div>
       </div>
       <div className="composer-meta">
-        <span>{isAuthed ? "Au7o knows your vehicle context" : "Sign in to save context across sessions"} · responses may need verifying with a mechanic</span>
+        <span>{isAuthed ? "Au7o knows your vehicle context" : "Create a free account to save context across sessions"} · responses may need verifying with a mechanic</span>
         <span className="keys"><span>↵ to send · ⇧↵ for new line</span></span>
       </div>
 

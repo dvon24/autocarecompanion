@@ -10,64 +10,83 @@ import { getMaintenanceSuggestions, getMaintenanceSchedule, renderOpener, type M
 import { getRecentThreads, getTrendingForVehicle, getAttachableIssues } from '@/lib/hub-data';
 import { getOwnersManualSchedule } from '@/lib/owners-manual-schedule';
 import { isFounderEmail } from '@/lib/founder';
+import { parseVehicleSlug as parseCatalogVehicleSlug } from '@/lib/vehicle-slug';
+import { getKnownIssueVehicleCandidates } from '@/lib/known-issue-vehicle-aliases';
 
 export const revalidate = 3600;
 export const dynamicParams = true;
 
-// Parse slug like "2019-chevrolet-camaro-zl1" into vehicle tuple
-function parseVehicleSlug(slug: string): { year: number; make: string; model: string; trim: string } | null {
-  const decoded = decodeURIComponent(slug);
-  const parts = decoded.split('-');
+// Ground make/model/trim resolution against the same YMMT catalog that built
+// the selector. This handles multi-word models such as Grand Cherokee and
+// MX-5 Miata instead of guessing token boundaries.
+function parseHubVehicleSlug(slug: string): {
+  year: number;
+  make: string;
+  model: string;
+  trim: string;
+} | null {
+  let decoded: string;
+  try { decoded = decodeURIComponent(slug); } catch { return null; }
+  const parsed = parseCatalogVehicleSlug(decoded) || parseLegacyVehicleSlug(decoded);
+  if (!parsed) return null;
+  if (parsed.year < 1990 || parsed.year > new Date().getFullYear() + 1) {
+    return null;
+  }
+  return { ...parsed, trim: parsed.trim || 'Base' };
+}
+
+/** Preserve saved and legacy Hub URLs whose vehicle is not present in the
+ * current selector snapshot. Catalog parsing remains first so supported
+ * multi-word models use exact YMMT boundaries; this is compatibility only. */
+function parseLegacyVehicleSlug(slug: string): {
+  year: number;
+  make: string;
+  model: string;
+  trim: string;
+} | null {
+  const parts = slug.split('-');
   if (parts.length < 3) return null;
-
-  const year = parseInt(parts[0], 10);
-  if (isNaN(year) || year < 1990 || year > new Date().getFullYear() + 1) return null;
-
-  // Try to match make (could be multi-word like "land-rover")
-  // Strategy: the make is 1-2 words, model is 1-2 words, rest is trim
+  const year = Number.parseInt(parts[0], 10);
+  if (!Number.isInteger(year)) return null;
   const rest = parts.slice(1);
-
-  // Known multi-word makes
   const multiWordMakes: Record<string, string> = {
     'land-rover': 'Land Rover',
     'alfa-romeo': 'Alfa Romeo',
     'mercedes-benz': 'Mercedes-Benz',
   };
 
-  for (const [key, displayName] of Object.entries(multiWordMakes)) {
-    const keyParts = key.split('-');
-    const prefix = rest.slice(0, keyParts.length).join('-');
-    if (prefix === key) {
-      const afterMake = rest.slice(keyParts.length);
-      if (afterMake.length < 1) return null;
-      // Model is next word(s), trim is rest
-      const model = capitalize(afterMake[0]);
-      const trim = afterMake.slice(1).map(capitalize).join(' ') || 'Base';
-      return { year, make: displayName, model, trim };
-    }
+  for (const [key, make] of Object.entries(multiWordMakes)) {
+    const makeParts = key.split('-');
+    if (rest.slice(0, makeParts.length).join('-') !== key) continue;
+    const vehicleParts = rest.slice(makeParts.length);
+    if (vehicleParts.length === 0) return null;
+    return {
+      year,
+      make,
+      model: legacySlugPart(vehicleParts[0]),
+      trim: vehicleParts.slice(1).map(legacySlugPart).join(' ') || 'Base',
+    };
   }
 
-  // Single-word make
-  const make = capitalize(rest[0]);
   if (rest.length < 2) return null;
-  const model = capitalize(rest[1]);
-  const trim = rest.slice(2).map(capitalize).join(' ') || 'Base';
-
-  return { year, make, model, trim };
+  return {
+    year,
+    make: legacySlugPart(rest[0]),
+    model: legacySlugPart(rest[1]),
+    trim: rest.slice(2).map(legacySlugPart).join(' ') || 'Base',
+  };
 }
 
-function capitalize(s: string): string {
-  if (!s) return s;
-  // Handle special cases
-  const specials: Record<string, string> = {
-    'bmw': 'BMW', 'gmc': 'GMC', 'ram': 'RAM', 'mini': 'MINI',
-    'crv': 'CR-V', 'rav4': 'RAV4', 'cr-v': 'CR-V',
-    'zl1': 'ZL1', 'srt': 'SRT', 'gt': 'GT', 'ss': 'SS', 'rs': 'RS',
-    'sel': 'SEL', 'se': 'SE', 'xle': 'XLE', 'lx': 'LX', 'ex': 'EX',
-    'lt': 'LT', 'ls': 'LS', 'le': 'LE', 'dx': 'DX',
+function legacySlugPart(value: string): string {
+  const special: Record<string, string> = {
+    bmw: 'BMW', gmc: 'GMC', ram: 'RAM', mini: 'MINI',
+    crv: 'CR-V', 'cr-v': 'CR-V', rav4: 'RAV4',
+    zl1: 'ZL1', srt: 'SRT', gt: 'GT', ss: 'SS', rs: 'RS',
+    sel: 'SEL', se: 'SE', xle: 'XLE', lx: 'LX', ex: 'EX',
+    lt: 'LT', ls: 'LS', le: 'LE', dx: 'DX',
   };
-  if (specials[s.toLowerCase()]) return specials[s.toLowerCase()];
-  return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+  return special[value.toLowerCase()]
+    || `${value.charAt(0).toUpperCase()}${value.slice(1).toLowerCase()}`;
 }
 
 export async function generateMetadata({
@@ -76,7 +95,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const vehicle = parseVehicleSlug(slug);
+  const vehicle = parseHubVehicleSlug(slug);
   if (!vehicle) return { title: 'Vehicle Not Found' };
 
   const title = `${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim} — Au7o`;
@@ -98,14 +117,28 @@ export default async function VehicleProfilePage({
 }) {
   const { slug } = await params;
   const { session: sessionIdParam } = await searchParams;
-  const vehicle = parseVehicleSlug(slug);
+  const vehicle = parseHubVehicleSlug(slug);
   if (!vehicle) notFound();
 
   const { year, make, model, trim } = vehicle;
 
+  const knownIssueVehicles = getKnownIssueVehicleCandidates({ year, make, model });
+  const knownIssuesPromise = Promise.all(
+    knownIssueVehicles.map((candidate) =>
+      getKnownIssuesForArticle(candidate.make, candidate.model).catch(() => []),
+    ),
+  ).then((groups) => {
+    const seen = new Set<string>();
+    return groups.flat().filter((issue) => {
+      if (seen.has(issue.id)) return false;
+      seen.add(issue.id);
+      return true;
+    });
+  });
+
   // Load all data in parallel
   const [issues, recalls, cachedParts, specs] = await Promise.all([
-    getKnownIssuesForArticle(make, model).catch(() => []),
+    knownIssuesPromise,
     getRecallsForArticle(make, model, [year]).catch(() => []),
     prisma.vehiclePartLookup.findMany({
       where: {
