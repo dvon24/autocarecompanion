@@ -14,6 +14,7 @@ import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
 import { prisma } from '@/lib/db';
+import { signupLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
 
 // GDPR Art. 6(1)(a) + Art. 7 require explicit, demonstrable consent
 // before processing personal data on a lawful basis of consent. Art. 8
@@ -36,6 +37,14 @@ const Body = z.object({
 });
 
 export async function POST(request: Request) {
+  // Nothing stopped a script creating accounts in a loop — each one costs a
+  // bcrypt hash and a row. Five an hour per IP is far above any real person.
+  const ip = getClientIp(request);
+  if (ip !== 'unknown') {
+    const gate = signupLimiter.check(ip);
+    if (!gate.success) return rateLimitResponse(gate.reset);
+  }
+
   let parsed;
   try {
     parsed = Body.parse(await request.json());

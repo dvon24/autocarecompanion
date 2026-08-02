@@ -119,6 +119,21 @@ export class RateLimiter {
   }
 }
 
+// ── Authentication ────────────────────────────────────────────────────────
+// July 2026: /auth/signin was the single most-requested page on the whole site
+// (3.3K views vs 617 for the homepage), driven by automated traffic out of the
+// APAC datacenter belt. The credentials path had no brake at all, so every
+// attempt cost a database lookup and, for a real address, a bcrypt compare.
+//
+// Two axes, because they stop different attacks:
+//   • per IP    — one source working through a credential dump
+//   • per email — a distributed attack converging on one account
+// A legitimate person mistyping their password a few times clears both.
+export const loginIpLimiter = new RateLimiter(15 * 60_000, 10);     // 10 attempts / 15 min / IP
+export const loginEmailLimiter = new RateLimiter(15 * 60_000, 5);   // 5 attempts / 15 min / account
+export const signupLimiter = new RateLimiter(60 * 60_000, 5);       // 5 accounts / hour / IP
+export const passwordResetLimiter = new RateLimiter(15 * 60_000, 8); // 8 reset submissions / 15 min / IP
+
 // Pre-configured limiters for each route tier
 export const knownIssuesLimiter = new RateLimiter(60_000, 60);   // 60 req/min
 export const guideLimiter = new RateLimiter(60_000, 10);          // 10 req/min

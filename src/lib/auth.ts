@@ -5,6 +5,7 @@ import { PrismaAdapter } from '@auth/prisma-adapter';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import { prisma } from './db';
+import { loginIpLimiter, loginEmailLimiter, getClientIp } from './rate-limit';
 
 /**
  * Auth Configuration
@@ -45,7 +46,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials) {
+      async authorize(credentials, request) {
         const parsed = LoginSchema.safeParse(credentials);
 
         if (!parsed.success) {
@@ -53,6 +54,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }
 
         const { email, password } = parsed.data;
+
+        // Abuse brake. This endpoint had none, and it is the one automated
+        // traffic actually targets — every attempt costs a DB lookup, and a
+        // real address costs a bcrypt compare on top.
+        //
+        // Rate-limited attempts return null, i.e. the same "invalid
+        // credentials" a wrong password gives. That is deliberate: telling an
+        // attacker they hit a limit tells them the address was worth guessing.
+        //
+        // Best-effort by design — in-memory, so it resets on a cold start.
+        // Same tolerance as every other limiter here; it blunts sustained
+        // hammering from one source without an external dependency.
+        const ip = request instanceof Request ? getClientIp(request) : 'unknown';
+        const emailKey = email.toLowerCase();
+        if (ip !== 'unknown' && !loginIpLimiter.check(ip).success) return null;
+        if (!loginEmailLimiter.check(emailKey).success) return null;
 
         // Find user by email
         const user = await prisma.user.findUnique({
