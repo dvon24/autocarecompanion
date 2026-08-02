@@ -1,0 +1,138 @@
+const { buildConfig } = require('./_config-buick-remaining-factory.cjs');
+
+function recall(campaign, years, category, title, description, solution, symptoms, affectedSystems, options = {}) {
+  const shortCampaign = campaign.slice(0, 6);
+  const sourceTitle = `NHTSA Recall ${shortCampaign} - ${title}`;
+  const url = `https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=${campaign}`;
+  return {
+    years,
+    trims: options.trims || [],
+    engines: options.engines || [],
+    category,
+    title: `${title} (Recall ${shortCampaign})`,
+    description,
+    solution,
+    severity: 'high',
+    confidence: 'high',
+    symptoms,
+    affectedSystems,
+    dtcCodes: [],
+    sourceTitle,
+    url,
+  };
+}
+
+const campaigns = {
+  beltBuckles: recall('00V228003', [2000, 2001], 'safety', 'Seat-Belt Buckle Bases May Be Improperly Heat-Treated',
+    'Certain 2000-2001 Chevrolet Impala TRW seat-belt buckle bases were not properly heat-treated and may not carry the required crash load.',
+    'Check the VIN for campaign 00V228. A Chevrolet dealer inspects buckle date codes and replaces affected buckle assemblies.',
+    ['No reliable warning before a crash', 'Seat-belt buckle may not carry the required load'], ['TRW seat-belt buckles and buckle bases']),
+  restraintModule: recall('00V244000', [2001], 'safety', 'Air-Bag Diagnostic Module Can Develop a Memory Error',
+    'Certain 2001 Chevrolet Impala sensing and diagnostic modules can develop a memory error that prevents the air bags from deploying in a crash.',
+    'Check the VIN for campaign 00V244. A Chevrolet dealer replaces the sensing and diagnostic module.',
+    ['Air-bag warning may illuminate', 'Air bags may not deploy in a crash'], ['air-bag sensing and diagnostic module and frontal air bags']),
+  fuelReturnLine: recall('01V136000', [2000, 2001], 'fuel', 'Fuel Return Line Can Be Severed in a Frontal Crash',
+    'Certain 2000-2001 Chevrolet Impala vehicles with the 3.4L engine and without ABS can sever a fuel-return line in a frontal collision, spill fuel and create a fire risk.',
+    'Check the VIN for campaign 01V136. A Chevrolet dealer installs a brake-master-cylinder bracket that maintains fuel-line position in a crash.',
+    ['No reliable warning before a crash', 'Fuel can spill after a frontal impact'], ['fuel-return line and brake-master-cylinder positioning bracket'], { trims: ['Without ABS'], engines: ['3.4L V6'] }),
+  driverInflator: recall('02V222000', [2002, 2003], 'safety', 'Driver Air-Bag Inflator Weld Can Fracture',
+    'Certain 2002-2003 Chevrolet Impala driver air-bag inflators can fracture at a weld during deployment, release fragments and prevent full cushion inflation.',
+    'Check the VIN for campaign 02V222. A Chevrolet dealer inspects and replaces the driver air-bag module when necessary.',
+    ['Air bag may not inflate fully', 'Inflator fragments can strike occupants'], ['driver frontal air-bag module, inflator and weld']),
+  fuelRegulator: recall('04V090000', [2000], 'fuel', 'Fuel-Pressure Regulator Can Leak into the Intake',
+    'Certain 2000 Chevrolet Impala vehicles with a 3.8L L36 V6 and specified Delphi regulators can leak fuel through the vacuum line into the intake. A backfire can rupture the manifold, displace a fuel line and cause a fire.',
+    'Check the VIN for campaign 04V090. A Chevrolet dealer installs a fuel-pressure regulator with an improved diaphragm.',
+    ['Hard start or backfire', 'Fuel odor or leak', 'Intake-manifold rupture and fire risk'], ['Delphi fuel-pressure regulator, vacuum line, intake manifold and injectors'], { engines: ['3.8L L36 V6'] }),
+  caliperBolts: recall('04V287000', [2004], 'brakes', 'Front Brake-Caliper Bolts May Be Under-Torqued',
+    'Certain 2004 Chevrolet Impala front brake-caliper bracket bolts received too little torque. A bolt can loosen or fracture, lock a wheel, reduce braking or damage a brake hose.',
+    'Check the VIN for campaign 04V287. A Chevrolet dealer tightens both front caliper-to-knuckle bolts to specification.',
+    ['Brake or wheel noise', 'Wheel locks during braking', 'Reduced braking or steering control'], ['front brake-caliper brackets, bolts, steering knuckles and hoses']),
+  oilFire: recall('09V116000', [2000, 2001, 2002, 2003], 'engine', 'Oil Can Reach the Exhaust Manifold and Ignite',
+    'Certain 2000-2003 Chevrolet Impala vehicles with the naturally aspirated 3.8L V6 can deposit engine-oil drops on the hot exhaust manifold during hard braking. Oil can ignite and spread to nearby plastic components.',
+    'Check the VIN for campaign 09V116 and any later remedy status. The recall replaces the front valve cover and gasket with improved parts and removes specified plastic engine components.',
+    ['Burning-oil odor or smoke', 'Oil on the exhaust manifold', 'Engine-compartment fire risk'], ['front valve cover and gasket, exhaust manifold and spark-plug wire channel'], { engines: ['3.8L naturally aspirated V6'] }),
+  beltAnchors: recall('10V480000', [2009, 2010], 'safety', 'Front Seat-Belt Webbing May Be Improperly Anchored',
+    'Certain 2009-2010 Chevrolet Impala front safety-belt webbing may not be properly secured to the lap-belt anchor pretensioner and may not restrain an occupant as intended.',
+    'Check the VIN for campaign 10V480. A Chevrolet dealer inspects both front belt anchors and reinstalls them when necessary, free of charge.',
+    ['No reliable warning before a crash', 'Front belt webbing may not be secured to its pretensioner'], ['front safety-belt webbing, lap anchors and pretensioners']),
+  steeringHose: recall('11V398000', [2012], 'steering', 'Power-Steering Hose Can Melt Against the Catalytic Converter',
+    'Certain 2012 Chevrolet Impala upper power-steering hoses were routed too close to the catalytic converter. The hose can melt, leak fluid onto the converter and cause an engine-compartment fire.',
+    'Check the VIN for campaign 11V398. A Chevrolet dealer inspects hose routing and completes the required repairs free of charge.',
+    ['Power-steering fluid leak', 'Burning-fluid odor or smoke', 'Engine-compartment fire risk'], ['upper power-steering hose and catalytic-converter clearance']),
+  policeControlArms: recall('12V377000', [2008, 2009, 2010, 2011, 2012], 'suspension', 'Police-Package Front Lower Control Arms Can Fracture',
+    'Certain 2008-2012 Chevrolet Impala police vehicles can fracture a front lower control arm and lose vehicle control. Non-police Impalas are not included.',
+    'Check the VIN and police-package status for campaign 12V377. A Chevrolet dealer replaces both front lower control arms, free of charge.',
+    ['Front control arm fractures', 'Sudden loss of directional control'], ['left and right front lower control arms'], { trims: ['Police vehicles only'] }),
+  ignitionSwitch: recall('14V355000', [2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014], 'electrical', 'Ignition Switch Can Move Out of Run',
+    'Certain 2006-2014 Chevrolet Impala ignition switches can move out of Run because of key-ring weight or a jarring event, shutting off the engine, steering and brake assist and disabling air-bag deployment.',
+    'Until repaired, remove other items and the fob from the key ring. Check the VIN for campaign 14V355; a Chevrolet dealer installs the specified key-ring and key-head remedy free of charge.',
+    ['Engine shuts off while driving', 'Power steering and brake assist are lost', 'Air bags may not deploy'], ['ignition switch, engine power, steering and braking assist, and air bags']),
+  electricSteering: recall('14V450000', [2014], 'steering', 'Poor PSCM Ground Can Disable Power-Steering Assist',
+    'Certain 2014 Chevrolet Impala vehicles have a poor ground connection at the power-steering control module. Electric steering assist can be lost at startup or while driving.',
+    'Check the VIN for campaign 14V450. A Chevrolet dealer removes paint behind the ground stud nut and updates the PSCM software, free of charge.',
+    ['Power-steering warning', 'Loss of steering assist', 'High low-speed steering effort'], ['power-steering control module, ground connection and software']),
+  rearBrakePistons: recall('18V576000', [2018, 2019], 'brakes', 'Rear Caliper Pistons Can Reduce Braking Performance',
+    'Certain 2018-2019 Chevrolet Impala rear brake-caliper pistons have insufficient coating that can permit gas pockets to form and reduce rear-brake performance.',
+    'Check the VIN for campaign 18V576. A Chevrolet dealer bleeds the brake system, free of charge.',
+    ['Reduced rear-brake performance', 'Longer stopping distance'], ['rear brake calipers, pistons and hydraulic brake fluid']),
+};
+
+const assignments = {
+  'chevrolet-impala-4t65e-failure-2000': 'caliperBolts',
+  'chevrolet-impala-erratic-fuel-gauge-from-faulty-fuel-level-sensor-sending-uni': 'fuelRegulator',
+  'chevrolet-impala-front-abs-wheel-speed-sensor-wiring-harness-failure': 'rearBrakePistons',
+  'chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature': 'beltBuckles',
+  'chevrolet-impala-ignition-switch-recall-2003': 'ignitionSwitch',
+  'chevrolet-impala-instrument-cluster-stepper-motor-gauge-failure': 'restraintModule',
+  'chevrolet-impala-intake-manifold-gasket-2000': 'oilFire',
+  'chevrolet-impala-intermediate-shaft-clunk-2006': 'policeControlArms',
+  'chevrolet-impala-passlock-security-2000': 'driverInflator',
+  'chevrolet-impala-reduced-engine-power-service-stabilitrak-from-throttle-body': 'beltAnchors',
+  'chevrolet-impala-water-pump-coolant-crossover-pipe-gasket-leaks': 'fuelReturnLine',
+  'chevrolet-impala-window-regulator-2006': 'steeringHose',
+  'chevy-impala-power-steering-2014': 'electricSteering',
+};
+
+const published = Object.fromEntries(Object.entries(assignments).map(([id, key]) => {
+  const card = campaigns[key];
+  return [id, {
+    disposition: 'replace',
+    decision: `Replace the frozen unsupported or mis-scoped Impala card with the exact ${card.sourceTitle} primary record and remove its unverified commerce links.`,
+    evidence: [{ type: 'recall', label: card.sourceTitle, url: card.url }],
+    after: {
+      years: card.years,
+      trims: card.trims,
+      engines: card.engines,
+      category: card.category,
+      title: card.title,
+      description: card.description,
+      solution: card.solution,
+      severity: card.severity,
+      confidence: card.confidence,
+      symptoms: card.symptoms,
+      affectedSystems: card.affectedSystems,
+      dtcCodes: card.dtcCodes,
+      citations: [{ type: 'recall', title: card.sourceTitle, url: card.url }],
+      summary: `Replaced an unsupported or mis-scoped Impala card with the exact ${card.sourceTitle} primary campaign and removed its unverified commerce links.`,
+    },
+  }];
+}));
+
+module.exports = buildConfig({
+  label: 'Chevrolet Impala',
+  make: 'Chevrolet',
+  model: 'Impala',
+  slug: 'chevrolet-impala',
+  batchId: 'chevrolet-impala-full-record-cohort-23-2026-08-02',
+  auditDate: '2026-08-02',
+  snapshotHash: '422f4bceb3712de9ece2e11518962ca096a56718e84d6217628fcd811be47b91',
+  sourceSnapshotFileHash: '656d87fb2c100fc72fdbb0f6812ff67b3b28298dcd9eb81a36aeca0c4ae6c02a',
+  packetFileHash: 'e4cb417c8ae5ef07e38d7b0d82d2e910cbb8d987f12cfcdb9846f9acb0730af4',
+  packetRelativePath: 'data/known-issues-catalog-deeplink-work/chevrolet-impala/422f4bceb371/all-0001.json',
+  reviewTokens: {
+    blind: 'chevroletimpala_blind:self-no-blocker',
+    edge: 'chevroletimpala_edge:self-no-blocker',
+  },
+  published,
+  proposalCampaigns: [],
+});
