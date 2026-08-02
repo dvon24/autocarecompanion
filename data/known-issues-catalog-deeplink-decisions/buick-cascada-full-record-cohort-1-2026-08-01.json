@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 2,
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "auditScope": "full-record",
+  "batchId": "buick-cascada-full-record-cohort-1-2026-08-01",
+  "snapshotHash": "991abdae63b3e8a088f1390aa51f6a18f19aa81a2914b3540a1e26f6d3fef77d",
+  "sourceSnapshotFileHash": "d82c00ca22d379625ecb893217f7ca25f57d910813f46c091cea5d2977bef833",
+  "packetFileHash": "5cd4d477fd074704c9bf02ea7d75a692652da6c6a7b1a0fbf80f8fa0e4824dfe",
+  "reviewApproval": {
+    "approvedAfterBlindAndEdgeReview": true,
+    "approvedOn": "2026-08-01",
+    "blindReviewer": "buickcascada_blind:self-no-blocker",
+    "edgeReviewer": "buickcascada_edge:self-no-blocker",
+    "reviewedGeneratorFileHash": "8437352968919e18607cf207d15c044fb1d5c962969ae638dbe9544a813a14da"
+  },
+  "researchedWith": "Ultra-effort current manufacturer/regulator primary-source review; no LLM API and no commerce approval",
+  "controlledDeltaProposals": [
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "buick-cascada-recall-16v844000",
+      "sources": [
+        "https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "buick-cascada-1.6t-timing-chain",
+      "disposition": "replace",
+      "decision": "Replace the unsupported timing-chain and intake-carbon aggregation with the exact, VIN-bounded GM camshaft-cover special coverage for selected 2016 Cascada 1.6L vehicles. The source does not support the former 2016-2019 timing-chain, carbon-cleaning, mileage, DTC or cost claims.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "GM Special Coverage N192291620 - Camshaft Cover Replacement",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10181649-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "3134ede4f18e2dfac734af450058ebe6d67d9e94afdc6be2c4db032577a2183c",
+        "modelHash": "c815f469d6f76ab82fe7b6151a26a9f5ed021dfea9d6cf57b2d7b82bd5518d6b",
+        "yearsHash": "1ad0dbb50e3d62832a63713da421ebf60c38338a5b89a1fb8fec8a71c46297df",
+        "trimsHash": "974cb93dfd8e8286de02adc0071714652ba864b33c9fc0917b1624a17d95477c",
+        "enginesHash": "4be898a29a67667c530450424edb0175689808d5ad5236b9ed02d8087f4ea4fa",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "73448abec3d5f8a7425e3f3b1bfbda873db85cb98fde0d8767fedef801125eb2",
+        "descriptionHash": "73e47550be5d2e0f3781548b78ff10ac0a76558dc9a727ef25e5af43c90099b6",
+        "solutionHash": "5a36655d99efcf4865ed97c92e262f2df5344f0c1abf1c95097d1db20a63b4f1",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "d4480987fb5343aaf37181bd399d0e15ac7f1c4f0d962077f8a05b9eab92c16d",
+        "affectedSystemsHash": "64ba674797e1c425b39679a9842091477af0f62c570b8acc8c49fcd741e62700",
+        "dtcCodesHash": "9f01a0d50c7c0b962f8a92f5327f80aa007b975be54c6dd76d03f91e0cb9d76e",
+        "estimatedCostLowHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "estimatedCostHighHash": "889e2fc00981675edd472d82d3a581b0156216501cfcdba3f1dfc87223be85e7",
+        "typicalMileageLowHash": "265f10e1bf87701b7aa597c197b6a25b0984777f3443a289d7a92aedd31fddcf",
+        "typicalMileageHighHash": "a0337a650ec85c558f728d843cef13f65a2b105e03af0bba4fd40a76628f2f76",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Buick",
+        "model": "Cascada",
+        "years": [
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "1.6L Turbocharged"
+        ],
+        "category": "engine",
+        "title": "PCV Pressure-Regulator Diaphragm Can Crack (Special Coverage N192291620)",
+        "description": "GM Special Coverage N192291620 identifies selected 2016 Buick Cascada vehicles with the 1.6L engine in which the PCV pressure-regulator diaphragm, built into the engine camshaft cover, may crack. Excess intake air can then cause rough running, especially at idle, illuminate the check-engine light and set P0171 or another airflow-related DTC.",
+        "solution": "Have a Buick dealer check the VIN in GM Investigate Vehicle History before assuming the coverage applies. If the documented condition is confirmed and the vehicle is eligible under the original 10-year/120,000-mile terms, the GM procedure calls for replacing the engine camshaft cover as necessary; current eligibility depends on the vehicle's in-service date, mileage and campaign history.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Rough engine operation, especially at idle",
+          "Check-engine light",
+          "Lean-fuel or airflow-related diagnostic code"
+        ],
+        "affectedSystems": [
+          "PCV pressure-regulator valve diaphragm",
+          "engine camshaft cover",
+          "engine air intake"
+        ],
+        "dtcCodes": [
+          "P0171"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "GM Special Coverage N192291620 - Camshaft Cover Replacement",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10181649-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-01",
+        "contentUpdatedOn": "2026-08-01",
+        "contentUpdateSummary": "Replaced the unsupported 2016-2019 timing-chain/carbon aggregation with exact GM Special Coverage N192291620 scope for selected 2016 1.6L Cascada vehicles; removed unsupported cost, mileage and owner-report telemetry.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
