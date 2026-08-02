@@ -208,7 +208,7 @@ function buildConfig(options) {
   }));
   const config = {
     label: options.label,
-    make: 'Buick',
+    make: options.make || 'Buick',
     model: options.model,
     batchId: options.batchId,
     auditDate: options.auditDate,
