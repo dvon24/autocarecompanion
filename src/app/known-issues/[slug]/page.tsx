@@ -154,6 +154,7 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'chevrolet-beretta',
   'chevrolet-blazer',
   'chevrolet-blazer-ev',
+  'chevrolet-blazer-s-10',
 ]);
 
 async function parseKnownIssueArticleSlug(slug: string): Promise<{ make: string; model: string } | null> {
