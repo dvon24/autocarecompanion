@@ -38,13 +38,6 @@ export function KnownIssueAlertSignup({
 }) {
   const heading = headline ?? `Get ahead of ${vehicleName} problems — free`;
   const sub = blurb ?? `Leave your email and we'll alert you the moment there's a new recall or known issue for your ${vehicleName}. Free, no account needed.`;
-  // Send cold known-issues traffic into a full account (worth far more than an
-  // email-only lead) — carry the current page as the post-signup destination.
-  const signupHref = (() => {
-    let path = '/';
-    try { path = window.location.pathname + window.location.search; } catch { /* SSR */ }
-    return `/auth/signup?callbackUrl=${encodeURIComponent(path)}`;
-  })();
   const [email, setEmail] = useState('');
   const [state, setState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
   // Post-signup feedback box (shown on the confirmation): "help us make the site better".
@@ -182,17 +175,9 @@ export function KnownIssueAlertSignup({
               {state === 'loading' ? '…' : 'Email me alerts'}
             </button>
           </form>
-          {/* SECONDARY: create a full account (worth more, but higher friction). */}
-          <div style={{ fontSize: 12.5, color: '#94A3B8', textAlign: 'center' }}>
-            or{' '}
-            <a
-              href={signupHref}
-              onClick={() => { try { trackEvent('signup_cta_click', { context }); } catch { /* */ } }}
-              style={{ color: '#3B82F6', fontWeight: 600, textDecoration: 'none' }}
-            >
-              create a free account →
-            </a>
-          </div>
+          {/* The secondary "create a free account" link was removed: this block
+              has seconds of attention, and a second ask splits it. The email
+              capture is the one thing we want here. */}
         </div>
       )}
       {state === 'error' && (

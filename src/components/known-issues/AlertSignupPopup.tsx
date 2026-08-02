@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { KnownIssueAlertSignup } from './KnownIssueAlertSignup';
 import { KnownIssuesCaptureSplit } from './KnownIssuesCaptureSplit';
+import { LiveHubDemo } from '@/components/marketing/LiveHubDemo';
 
 // v2: the popup now carries the live hub-demo "carousel" (not the old email-
 // only card). Bumping the key re-shows it once to everyone who dismissed the
@@ -114,11 +115,21 @@ export function AlertSignupPopup(props: {
           ✕
         </button>
         {isPhone ? (
-          <KnownIssueAlertSignup
-            {...props}
-            showCarousel={false}
-            onDone={() => setClosed(true)}
-          />
+          /* Phones used to get the email form ALONE — the split was skipped
+             because the demo was a 600px auto-rotating browser window that made
+             no sense on a phone. It is now a single compact card, and two
+             thirds of our readers are on phones, so they get the car too: it
+             leads, the ask follows. */
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: 12, background: '#FBFAF7', borderRadius: 16 }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <LiveHubDemo vehicleName={props.vehicleName} />
+            </div>
+            <KnownIssueAlertSignup
+              {...props}
+              showCarousel={false}
+              onDone={() => setClosed(true)}
+            />
+          </div>
         ) : (
           <KnownIssuesCaptureSplit {...props} />
         )}

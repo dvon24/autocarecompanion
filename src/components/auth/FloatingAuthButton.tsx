@@ -43,6 +43,10 @@ export function FloatingAuthButton() {
   //     and a floating Sign in pill both competes with that CTA and overlaps
   //     the hub's own top-right controls.
   const onTwinDemo = /^\/(demo(\/|$)|dev\/hero(\/|$))/.test(pathname ?? '');
+  //   - Pricing (/subscribe). The page's job is to get someone onto a plan;
+  //     a floating "Sign in" in the corner is a competing exit for the small
+  //     minority who already have an account.
+  const onPricing = /^\/(subscribe|pricing)(\/|$)/.test(pathname ?? '');
   const onVehicleHub = pathname?.startsWith('/vehicle/') ?? false;
   // The Hub has its own mobile account control in the dedicated phone
   // header. Keep this global control on desktop, but hide the duplicate at
@@ -61,7 +65,7 @@ export function FloatingAuthButton() {
     return () => document.removeEventListener('mousedown', handler);
   }, [open]);
 
-  if (onAuthPage || onHome || onHeaderedPage || onTwinDemo) return null;
+  if (onAuthPage || onHome || onHeaderedPage || onTwinDemo || onPricing) return null;
 
   // Skeleton while session resolves so the link doesn't pop in.
   if (status === 'loading') {

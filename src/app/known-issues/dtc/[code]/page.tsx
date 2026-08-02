@@ -1,4 +1,3 @@
-import { ConfirmWithPhotoCTA } from '@/components/diagnose/ConfirmWithPhotoCTA';
 import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
 import { AlertSignupPopup } from '@/components/known-issues/AlertSignupPopup';
 import { Metadata } from 'next';
@@ -313,7 +312,6 @@ export default async function DTCCodePage({
             Someone reading a code page is mid-diagnosis; the photo flow is
             the fastest path to "is this MY problem". */}
         <div className="mb-6">
-          <ConfirmWithPhotoCTA />
         </div>
 
         {/* Most-reported-on rail — top 5 vehicles by reportCount, each as

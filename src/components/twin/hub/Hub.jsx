@@ -18,6 +18,20 @@ import { TechTree, TT_TREES, ttRisk, ttHasUpgrade, ttFinish, useEquipped, TT_BRA
 import { Au7oMark, KICard, useTheme, useNarrow, useBubble, ThemeDots, SevBadge, VoiceButton, HPComposer, KI } from "./hub-shared";
 import { useHubView } from "./hub-view";
 
+/* /demo/hub?open=<hotspot> — the marketing card on known-issues articles links
+   straight to the part someone clicked, so they land in that tech tree instead
+   of a generic demo. Client-only (the hub is ssr:false), fails soft. */
+function initialFromQuery() {
+  try {
+    const hot = new URLSearchParams(window.location.search).get("open");
+    if (!hot) return { branch: null, node: null };
+    if (hot === "car") return { branch: "car", node: null };
+    const branch = TT_BRANCH_FOR_HOTSPOT[hot];
+    if (!branch) return { branch: null, node: null };
+    return { branch, node: TT_NODE_FOR_HOTSPOT[hot] || null };
+  } catch (e) { return { branch: null, node: null }; }
+}
+
 /* Risk/label helpers the sidebar shares with the stage. */
 const thCount = (branch, kind) => {
   const t = TT_TREES[branch];
@@ -233,8 +247,8 @@ function THTreeOverlay({ branch, setBranch, onClose, say, mobile, startNode }) {
 function THDesktop({ tc }) {
   const { enterMinimal } = useHubView();
   const [mode, setMode] = React.useState("hotspots");
-  const [branch, setBranch] = React.useState(null);
-  const [startNode, setStartNode] = React.useState(null);
+  const [branch, setBranch] = React.useState(() => initialFromQuery().branch);
+  const [startNode, setStartNode] = React.useState(() => initialFromQuery().node);
   const [fb, setFb] = React.useState(false);
   const { bubble, say, clear } = useBubble("Evening. This is your Challenger — click any part of it and I'll open the tech tree for that system. Everything glowing red is at or past its life at 65,000 miles.");
   const open = hot => { const b = hot === "car" ? "car" : TT_BRANCH_FOR_HOTSPOT[hot]; setStartNode(TT_NODE_FOR_HOTSPOT[hot] || null); setBranch(b); say(b === "car" ? "Here's the whole car — every system Au7o tracks. Click one to drill in." : `Opening the ${TT_TREES[b].label.toLowerCase()} tree. Back out to the car any time from the breadcrumb.`); };
@@ -273,10 +287,10 @@ function THDesktop({ tc }) {
 function THMobile({ tc }) {
   const { enterMinimal } = useHubView();
   const [mode, setMode] = React.useState("hotspots");
-  const [branch, setBranch] = React.useState(null);
+  const [branch, setBranch] = React.useState(() => initialFromQuery().branch);
   const [nav, setNav] = React.useState(false);
   const [fb, setFb] = React.useState(false);
-  const [startNode, setStartNode] = React.useState(null);
+  const [startNode, setStartNode] = React.useState(() => initialFromQuery().node);
   const { bubble, say, clear } = useBubble("Evening. Tap any part of your Challenger and I'll open its tech tree.");
   const open = hot => { setNav(false); setStartNode(TT_NODE_FOR_HOTSPOT[hot] || null); setBranch(hot === "car" ? "car" : TT_BRANCH_FOR_HOTSPOT[hot]); };
   return (

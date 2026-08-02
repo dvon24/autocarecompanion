@@ -4,8 +4,6 @@ import Image from 'next/image';
 import { makeSlug } from '@/lib/known-issues';
 import { categoryConfig } from '@/lib/issue-categories';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
-import { IssueSearch } from '@/components/known-issues/IssueSearch';
-import { DiagnoseBanner } from '@/components/diagnose/DiagnoseBanner';
 import { BreadcrumbJsonLd, CollectionPageJsonLd } from '@/components/seo/JsonLd';
 import { MakeLogo } from '@/components/shared/MakeLogo';
 import { SiteFooter } from '@/components/shared/SiteFooter';
@@ -107,10 +105,8 @@ export default async function KnownIssuesIndexPage() {
     dtcInfoMap[code.toLowerCase()] = name ? { name } : null;
   }
 
-  const searchVehicles = directory.flatMap(({ vehicles }) =>
-    vehicles.map(v => ({ slug: v.slug, make: v.make, model: v.model, issueCount: v.issueCount }))
-  );
-  const searchDtcCodes = allDtcRows.map(r => ({ code: r.code.toLowerCase(), name: r.name }));
+  // searchVehicles / searchDtcCodes removed with IssueSearch — they existed
+  // only to feed it, and building them walked every vehicle and DTC row.
 
   // Split directory into popular and rest
   const popularMakes = directory.filter(d => POPULAR_MAKES.includes(d.make));
@@ -191,16 +187,6 @@ export default async function KnownIssuesIndexPage() {
           <p className="max-w-xl" style={{ color: '#475569' }}>
             {totalIssues.toLocaleString()}+ documented problems across {directory.length} makes and {totalVehicles} models. Symptoms, costs, and solutions compiled from NHTSA recalls, manufacturer TSBs, and owner forums.
           </p>
-        </div>
-
-        {/* Diagnose-by-photo banner — additive entry point to the
-            anonymous /diagnose flow for landers who can't find their
-            exact symptom. Purely additive (no SEO content displaced). */}
-        <DiagnoseBanner className="mb-8" />
-
-        {/* Search */}
-        <div className="mb-10">
-          <IssueSearch vehicles={searchVehicles} dtcCodes={searchDtcCodes} />
         </div>
 
         {/* Popular Makes — featured cards */}

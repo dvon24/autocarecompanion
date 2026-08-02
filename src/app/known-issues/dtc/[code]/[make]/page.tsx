@@ -1,4 +1,3 @@
-import { ConfirmWithPhotoCTA } from '@/components/diagnose/ConfirmWithPhotoCTA';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -195,7 +194,6 @@ export default async function PerMakeDTCPage({
 
         {/* Photo/video diagnose CTA — same banner as the article pages. */}
         <div className="mb-6">
-          <ConfirmWithPhotoCTA />
         </div>
 
         {/* GEO summary — the lead paragraph AI models cite when answering

@@ -58,32 +58,10 @@ export function KnownIssuesCaptureSplit({
             showCarousel={false}
           />
 
-          {/* Subscription teaser — the account is free; Plus adds more.
-              US-only for now (subscriptions are region-gated). */}
-          <Link
-            href="/subscribe"
-            style={{
-              marginTop: 12,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 10,
-              padding: '11px 14px',
-              borderRadius: 12,
-              border: '1px solid #DBE7FF',
-              background: 'linear-gradient(180deg,#F5F9FF,#EEF4FF)',
-              textDecoration: 'none',
-            }}
-          >
-            <span aria-hidden style={{ fontSize: 16, flex: '0 0 auto' }}>⚡</span>
-            <span style={{ minWidth: 0, flex: 1 }}>
-              <span style={{ display: 'block', fontSize: 13, fontWeight: 700, color: '#0B1220' }}>
-                Try Au7o Plus for added features →
-              </span>
-              <span style={{ display: 'block', fontSize: 11.5, color: '#64748B', marginTop: 1 }}>
-                Unlimited diagnoses, reminders &amp; your full garage · US only for now
-              </span>
-            </span>
-          </Link>
+          {/* The Au7o Plus teaser was removed. This window had three asks in it
+              — leave an email, create an account, buy a subscription — competing
+              for a few seconds of a reader's attention. One ask converts; three
+              split. The email capture is the one that stays. */}
         </div>
       </div>
 

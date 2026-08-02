@@ -1,4 +1,3 @@
-import { ConfirmWithPhotoCTA } from '@/components/diagnose/ConfirmWithPhotoCTA';
 import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
 import { AlertSignupPopup } from '@/components/known-issues/AlertSignupPopup';
 import { Metadata } from 'next';
@@ -310,7 +309,6 @@ export default async function MakeLandingPage({
 
         {/* Photo/video diagnose CTA — same banner as the article pages. */}
         <div className="mb-6">
-          <ConfirmWithPhotoCTA />
         </div>
 
         {/* Stats row */}
