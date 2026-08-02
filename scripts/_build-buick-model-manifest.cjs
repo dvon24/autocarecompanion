@@ -50,7 +50,7 @@ function reviewedAfter(config, reviewed) {
     citations: after.citations || [],
     communityRecommendations: [],
     fixParts: [],
-    humanApproved: reviewed.disposition !== 'remove',
+    humanApproved: true,
     reportCount: 0,
     source: after.source || 'manual',
     status: reviewed.disposition === 'remove' ? 'archived' : 'published',
