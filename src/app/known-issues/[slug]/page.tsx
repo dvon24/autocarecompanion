@@ -164,6 +164,7 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'chevrolet-chevelle',
   'chevrolet-cobalt',
   'chevrolet-colorado',
+  'chevrolet-corsica',
 ]);
 
 async function parseKnownIssueArticleSlug(slug: string): Promise<{ make: string; model: string } | null> {
