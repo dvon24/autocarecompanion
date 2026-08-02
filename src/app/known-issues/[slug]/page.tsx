@@ -122,6 +122,7 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'buick-lacrosse',
   'buick-lesabre',
   'buick-lucerne',
+  'buick-park-avenue',
   'cadillac-allante',
   'cadillac-ats',
   'cadillac-catera',
