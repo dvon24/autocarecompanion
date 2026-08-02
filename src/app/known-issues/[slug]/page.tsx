@@ -116,6 +116,7 @@ const SEO_AUDITED_MODEL_SLUGS = new Set([
   'bmw-z8',
   'buick-cascada',
   'buick-enclave',
+  'buick-encore',
   'cadillac-allante',
   'cadillac-ats',
   'cadillac-catera',
