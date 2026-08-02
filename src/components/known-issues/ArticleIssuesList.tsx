@@ -148,7 +148,7 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
             <select
               value={trimFilter ?? ''}
               onChange={e => setTrimFilter(e.target.value || null)}
-              className="px-3 py-1.5 text-sm border border-[#E3DFD4] rounded-lg bg-white text-[#475569] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full min-w-0 max-w-full px-3 py-1.5 text-sm border border-[#E3DFD4] rounded-lg bg-white text-[#475569] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:w-auto"
             >
               <option value="">All Trims</option>
               {availableTrims.map(t => (
