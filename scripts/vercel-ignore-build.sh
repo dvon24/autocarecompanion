@@ -34,9 +34,11 @@ case "${VERCEL_ENV:-}" in
     ;;
 esac
 
-# Opt-in preview: any commit whose message contains [preview].
-if ! MSG="$(git log -1 --pretty=%B 2>/dev/null)"; then
-  echo "unable to read the HEAD commit message -> building"
+# Opt-in preview: Vercel exposes the triggering commit message at build time.
+# Git metadata is not guaranteed to remain available after .vercelignore runs.
+MSG="${VERCEL_GIT_COMMIT_MESSAGE:-}"
+if [ -z "$MSG" ]; then
+  echo "VERCEL_GIT_COMMIT_MESSAGE is unavailable -> building"
   exit 1
 fi
 
