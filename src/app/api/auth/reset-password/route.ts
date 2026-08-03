@@ -11,6 +11,7 @@ import crypto from 'crypto';
 import bcrypt from 'bcryptjs';
 import { prisma } from '@/lib/db';
 import { z } from 'zod';
+import { passwordResetLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
 
 const Body = z.object({
   token: z.string().min(20).max(256),
@@ -18,6 +19,14 @@ const Body = z.object({
 });
 
 export async function POST(request: Request) {
+  // Reset tokens are guessable in principle; without a brake this endpoint
+  // accepts unlimited token submissions.
+  const ip = getClientIp(request);
+  if (ip !== 'unknown') {
+    const gate = passwordResetLimiter.check(ip);
+    if (!gate.success) return rateLimitResponse(gate.reset);
+  }
+
   let parsed;
   try {
     parsed = Body.parse(await request.json());

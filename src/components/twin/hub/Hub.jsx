@@ -122,11 +122,21 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
         </div>
       </div>
       <div style={{ borderTop:"1px solid var(--ki-line)", padding:"10px 8px", display:"flex", flexDirection:"column" }}>
-        {[["map","Open Drive"],["book","Known Issues"],["chat","Send feedback"],["plus","Add vehicle"]].map(([ic,label],i)=>(
-          <button key={i} onClick={label === "Send feedback" ? onFeedback : undefined} style={{ display:"flex", alignItems:"center", gap:10, background:"transparent", border:"none", padding:"9px 12px", borderRadius:10, cursor:"pointer", fontSize:12.5, fontWeight:500, color:"var(--ink)", fontFamily:"var(--font-sans)" }}>
-            <Icon name={ic} size={14} style={{ color:"var(--slate-400)" }}/>{label}
-          </button>
-        ))}
+        {/* "Open Drive" and "Add vehicle" removed — the latter was a <button>
+            with no handler, and there is no vehicle to add in a no-account
+            demo. Known Issues is a real link now; it had the same dead-button
+            problem. Same component serves the desktop sidebar and the mobile
+            drawer, so both are fixed here. */}
+        {[
+          { ic: "book", label: "Known Issues", href: "/known-issues" },
+          { ic: "chat", label: "Send feedback", onClick: onFeedback },
+        ].map((item) => {
+          const style = { display:"flex", alignItems:"center", gap:10, background:"transparent", border:"none", padding:"9px 12px", borderRadius:10, cursor:"pointer", fontSize:12.5, fontWeight:500, color:"var(--ink)", fontFamily:"var(--font-sans)", textDecoration:"none" };
+          const body = <><Icon name={item.ic} size={14} style={{ color:"var(--slate-400)" }}/>{item.label}</>;
+          return item.href
+            ? <a key={item.label} href={item.href} style={style}>{body}</a>
+            : <button key={item.label} onClick={item.onClick} style={style}>{body}</button>;
+        })}
       </div>
     </aside>
   );
