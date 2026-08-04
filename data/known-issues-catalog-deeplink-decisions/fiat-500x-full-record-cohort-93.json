@@ -1,0 +1,447 @@
+{
+  "schemaVersion": 2,
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "auditScope": "full-record",
+  "batchId": "fiat-500x-full-record-cohort-93-2026-08-04",
+  "snapshotHash": "422f4bceb3712de9ece2e11518962ca096a56718e84d6217628fcd811be47b91",
+  "researchedWith": "Ultra-effort current manufacturer/regulator primary-source review; no LLM API and no commerce approval",
+  "issues": [
+    {
+      "id": "fiat-500x-infotainment-freeze",
+      "disposition": "replace",
+      "decision": "Keep only the Apple CarPlay and pairing condition directly documented by FCA STAR case S2008000010; remove unsupported backup-camera, generic reboot, head-unit, and firmware claims.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "FCA STAR Case S2008000010 - Apple CarPlay Inoperative, Pairing, Lockup, Freeze, or Audio Concerns",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10229285-9999.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "22c7b804e615ce26658c66f2834f207ccf1ba4a0691be3d27ce49d5ea7b1f711",
+        "modelHash": "20cf9463a1c3920fdcc2a1dd126b990460a56a3130feca0c7e1908f7e3e6212e",
+        "yearsHash": "ef39c936119257b46b58dfeb1aafb83e0d463835ddbf7d47d4b5c38f579fe10a",
+        "trimsHash": "f443b62d439cf72bf30bba913bb85ba4971bd2ba48c2879cea8b8953097c3597",
+        "enginesHash": "e0a0b2952bfb5c0e6b996d013f3969b9931fc58d8f4b21cfffafff6452fac218",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "e634a585b8e4488e336fc162f515cb046919d84a51c58d9f0f16228974517f5c",
+        "descriptionHash": "75769a2406be41d59bd58b822787243e993bcecf768e2077ccfa34865e072aeb",
+        "solutionHash": "deb6e05f856abb0da66d67ea8c398b41153283ed147b84ee3798f57d5d4fc2bc",
+        "severityHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "8d6471640ce70f73836968ab88a147a63199e7134951336c7f536312d05042d9",
+        "affectedSystemsHash": "1dac7433e2fecf14f5e64dab3ba73d54e208afd080c85bb5e2fec09d070a95b9",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "1a1cf797fabe7f95836fabeca626907c77b3e6c9aff7c2290b396a238c69362e",
+        "typicalMileageLowHash": "39e5b4830d4d9c14db7368a95b65d5463ea3d09520373723430c03a5a453b5df",
+        "typicalMileageHighHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "ad48ff99415b2f007dc35b7eb553fd1eb35ebfa2f2f308acd9488eeb86f71fa8",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "42c1c3137fe1ef8fdee2351d30973b3bd726f22f21f511e1db44bde4ed281c01",
+        "reviewedOnHash": "42c1c3137fe1ef8fdee2351d30973b3bd726f22f21f511e1db44bde4ed281c01",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "1faf584f29e6b01d5e693aa6655ed47ff56a203d2983f17d50aadc90c061a759",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Fiat",
+        "model": "500X",
+        "years": [
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Apple CarPlay May Lock Up, Freeze, or Fail to Pair (STAR Case S2008000010)",
+        "description": "FCA STAR case S2008000010, submitted for 2018-2020 Fiat 500X vehicles, covers Apple CarPlay being inoperative, an iPhone failing to pair, CarPlay locking up or freezing, and audio concerns. The guidance identifies the phone, cable, or debris in the phone or vehicle USB connections as possible causes.",
+        "solution": "Follow the STAR-case checks before replacing the radio: forget the vehicle in iPhone CarPlay settings, delete and re-pair the phone in the radio and Bluetooth settings, restart the phone, inspect and clean the phone and vehicle USB ports, inspect the cable connections, and test with an official Apple MFi-certified Lightning cable.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Apple CarPlay is inoperative",
+          "Phone will not pair",
+          "CarPlay locks up or freezes",
+          "Audio pops, distorts, rattles, buzzes, or has static"
+        ],
+        "affectedSystems": [
+          "Apple CarPlay",
+          "Bluetooth phone pairing",
+          "USB and Lightning connections"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "FCA STAR Case S2008000010 - Apple CarPlay Inoperative, Pairing, Lockup, Freeze, or Audio Concerns",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10229285-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-04",
+        "contentUpdatedOn": "2026-08-04",
+        "contentUpdateSummary": "Replaced the unsupported eight-year Uconnect/head-unit narrative with FCA STAR case S2008000010's exact 2018-2020 CarPlay, pairing, cable, port, and phone-diagnostic guidance.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "fiat-500x-oil-consumption-24",
+      "disposition": "replace",
+      "decision": "Use current Stellantis TSB 09-010-25 for the exact vehicle, engine, build-date, diagnostic-test, remedy, and market-specific warranty scope instead of the secondary-source piston-ring narrative.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "Stellantis TSB 09-010-25 - 2.4L Excessive Oil Consumption XS1 Warranty Extension",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11017977-0001.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "22c7b804e615ce26658c66f2834f207ccf1ba4a0691be3d27ce49d5ea7b1f711",
+        "modelHash": "20cf9463a1c3920fdcc2a1dd126b990460a56a3130feca0c7e1908f7e3e6212e",
+        "yearsHash": "695e9a83fe3e735bd0561fb70723d273f1edbd9e3011834b1049d183181618b8",
+        "trimsHash": "45565cf46f1b44b5d02814bdec209c01a26e3fd83c7b82a36e07fe38950d146f",
+        "enginesHash": "8f48537d625e28fb322a247bfc55e05af7a2ee4716dc9abe0a1810d139d7fe88",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "f319c3212cd82dae1e856245103e840d4f15658ae7c3abcc7c62ffccfe410d17",
+        "descriptionHash": "28c1ecaeb04e64b2e935a36a9ca0505f73d39a9442d66750a6547296629c2861",
+        "solutionHash": "0aee96a59b4c1c19f870bc0deab109a314ee289f3597b6fbbd1027ea9eda5875",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "a0835b3cbd84be9ed99adbeb2eb3390188d3051f7cee6ae1ad1f285e2827ecfc",
+        "affectedSystemsHash": "8475d36d26220884ebe6ffc7d1cf347ed7cf5964470b0efbdac2394b395ad0a4",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "ad57366865126e55649ecb23ae1d48887544976efea46a48eb5d85a6eeb4d306",
+        "estimatedCostHighHash": "81a83544cf93c245178cbc1620030f1123f435af867c79d87135983c52ab39d9",
+        "typicalMileageLowHash": "891937cb335016e9c7074c3781dcb1364e0c660733a8889bbeae83e6aa759be6",
+        "typicalMileageHighHash": "47b25095a0fe135a688b20614771dbb445ad5e27e9cd4f2c2089c5af216e305b",
+        "citationsHash": "93064035c6daf9e78df8869bbabf9c6f9f30d76cf0082d57957763f8b9314583",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "38d66d9692ac590000a91b03a88da1c88d51fab2b78f63171f553ecc551a0c6f",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "42c1c3137fe1ef8fdee2351d30973b3bd726f22f21f511e1db44bde4ed281c01",
+        "reviewedOnHash": "42c1c3137fe1ef8fdee2351d30973b3bd726f22f21f511e1db44bde4ed281c01",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "062377a1210f906b52ffe44314b7d3c68ea29d4f1a84d02f1d931e571720b17a",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Fiat",
+        "model": "500X",
+        "years": [
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [
+          "2.4L I4 MultiAir (sales code ED6 or ED8)"
+        ],
+        "category": "engine",
+        "title": "2.4L Excessive Oil Consumption Test and XS1 Warranty Extension (TSB 09-010-25)",
+        "description": "Stellantis TSB 09-010-25 covers 2016-2018 Fiat 500X vehicles with a 2.4L ED6 or ED8 engine built from January 15, 2015 through July 27, 2018. It documents low-oil-pressure warnings between oil changes or excessive oil consumption and identifies interactive deceleration fuel-shutoff calibration as the cause for this bulletin.",
+        "solution": "For vehicles in the bulletin scope, first eliminate external oil leaks, then have a dealer perform the specified 1,500-1,700 mile oil-consumption test. If the level is below ADD at the end of a valid test, TSB 09-010-25 directs long-block replacement. The published XS1 warranty extension is specifically described for Canada and Mexico, so eligibility must be confirmed by VIN and market.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Oil-pressure-low warning between oil changes",
+          "Engine oil level drops without visible external leakage",
+          "Excessive oil consumption"
+        ],
+        "affectedSystems": [
+          "2.4L MultiAir engine",
+          "engine lubrication",
+          "long block"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Stellantis TSB 09-010-25 - 2.4L Excessive Oil Consumption XS1 Warranty Extension",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11017977-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-04",
+        "contentUpdatedOn": "2026-08-04",
+        "contentUpdateSummary": "Narrowed the five-year piston-ring and consumption-rate narrative to TSB 09-010-25's exact 2016-2018 2.4L/build-date population, verified test, long-block remedy, and market-limited warranty terms.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "fiat-500x-transmission-shifting",
+      "disposition": "replace",
+      "decision": "Keep only FCA TSB 21-047-15's early-build 2016 1.4L/948TE harsh-shift condition; remove the unsupported 2016-2023 scope, cold-weather claim, DTCs, fluid flush, and valve-body advice.",
+      "evidence": [
+        {
+          "type": "tsb",
+          "label": "FCA TSB 21-047-15 - Transmission Shift and Drivability Enhancements",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2015/SB-10058729-4664.pdf"
+        }
+      ],
+      "before": {
+        "makeHash": "22c7b804e615ce26658c66f2834f207ccf1ba4a0691be3d27ce49d5ea7b1f711",
+        "modelHash": "20cf9463a1c3920fdcc2a1dd126b990460a56a3130feca0c7e1908f7e3e6212e",
+        "yearsHash": "ef39c936119257b46b58dfeb1aafb83e0d463835ddbf7d47d4b5c38f579fe10a",
+        "trimsHash": "f443b62d439cf72bf30bba913bb85ba4971bd2ba48c2879cea8b8953097c3597",
+        "enginesHash": "e0a0b2952bfb5c0e6b996d013f3969b9931fc58d8f4b21cfffafff6452fac218",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "4778271d8022d5d7c54e7d3c1692dcd9b7889a02dd5e31c7bef13b8dbc976985",
+        "descriptionHash": "b614d2fb2de646ec8e8b0459df01873fbdca27688d6c9d3e880e0f0d42185159",
+        "solutionHash": "e773558a3eb2b68aaf70ab5020c0629a4bb9e256220bac2359b987fae1d8c421",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "534b3f608d42b8ff28f4cac1a189da1e975f9f4343fef3ba5de2d105f02d71df",
+        "affectedSystemsHash": "bfba0fb821eeefb7191804d7035bd2240cee5bb81047774e835e71c365d5dc07",
+        "dtcCodesHash": "69b3aa2bdb4ec3f1a4b06f45a9669d838f5ff2ba2057e40f7a894c85ba231f4c",
+        "estimatedCostLowHash": "9ae2bdd7beedc2e766c6b76585530e16925115707dc7a06ab5ee4aa2776b2c7b",
+        "estimatedCostHighHash": "e49ec846db7527df7ff483009fe61700e6435072c8c5b551ab08f0a13fc45a07",
+        "typicalMileageLowHash": "d4c999ae43633bd2036188d2bca68e1be8202b2cc1f3a1c42a728eaff7d2483d",
+        "typicalMileageHighHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "bc52dd634277c4a34a2d6210994a9a5e2ab6d33bb4a3a8963410e00ca6c15a02",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "42c1c3137fe1ef8fdee2351d30973b3bd726f22f21f511e1db44bde4ed281c01",
+        "reviewedOnHash": "42c1c3137fe1ef8fdee2351d30973b3bd726f22f21f511e1db44bde4ed281c01",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "295486f82a469fc495f8cbe2d32579f6e5d97bc408dd9468899b188b4911be0c",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Fiat",
+        "model": "500X",
+        "years": [
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "1.4L MultiAir Turbo (sales code EAM)"
+        ],
+        "category": "transmission",
+        "title": "Harsh 1-2 or Garage Shifts on Early 2016 500X (TSB 21-047-15)",
+        "description": "FCA TSB 21-047-15 covers 2016 Fiat 500X vehicles built on or before July 17, 2015 with the 1.4L EAM engine and 9-speed 948TE automatic transmission. Customers may report a harsh 1-2 upshift or a harsh Park/Neutral-to-Reverse/Drive garage shift.",
+        "solution": "After verifying that no other DTC or symptom requires separate diagnosis, an equipped dealer should reprogram the transmission control module with the latest software and clear any DTCs set during the flash, following TSB 21-047-15.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Harsh 1-2 upshift",
+          "Harsh shift from Park or Neutral into Reverse or Drive"
+        ],
+        "affectedSystems": [
+          "948TE nine-speed automatic transmission",
+          "transmission control module"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "FCA TSB 21-047-15 - Transmission Shift and Drivability Enhancements",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2015/SB-10058729-4664.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-04",
+        "contentUpdatedOn": "2026-08-04",
+        "contentUpdateSummary": "Narrowed the eight-year, two-engine transmission narrative to TSB 21-047-15's exact early-build 2016 1.4L/948TE population, symptoms, diagnostic boundary, and TCM flash.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "fiat-500x-water-pump",
+      "disposition": "remove",
+      "decision": "Archive the frozen \"Water Pump Failure\" aggregation. The frozen card combines two engines and eight model years with weep-hole leakage, plastic-impeller fracture, P0217, metal-impeller replacement, thermostat replacement, and pressure testing without any citation or matching Fiat service bulletin. Remove all 0 commerce claims and 0 outbound URL occurrences.",
+      "evidence": [
+        {
+          "type": "nhtsa",
+          "label": "NHTSA Manufacturer Communications Data Corpus",
+          "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+        }
+      ],
+      "before": {
+        "makeHash": "22c7b804e615ce26658c66f2834f207ccf1ba4a0691be3d27ce49d5ea7b1f711",
+        "modelHash": "20cf9463a1c3920fdcc2a1dd126b990460a56a3130feca0c7e1908f7e3e6212e",
+        "yearsHash": "ef39c936119257b46b58dfeb1aafb83e0d463835ddbf7d47d4b5c38f579fe10a",
+        "trimsHash": "f443b62d439cf72bf30bba913bb85ba4971bd2ba48c2879cea8b8953097c3597",
+        "enginesHash": "e0a0b2952bfb5c0e6b996d013f3969b9931fc58d8f4b21cfffafff6452fac218",
+        "categoryHash": "9fab250e5e42070565c3e1a6449c2fb3a9adf976c5e447ef136c21f089863ee5",
+        "titleHash": "a14f2d8438983f95c2eb96063dcbbd4fadad339bd30299d8f0874b4e6c424e59",
+        "descriptionHash": "22342bde0d8fbba7eba638bbae4aea913f29e9d1c11ef3929f3fb48667472211",
+        "solutionHash": "59b7d23e873af5f2ede652ebefb6373cfec4ac7c152b125be6ad0153a1b271b0",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "959d3d734d2108c46b1d3bd1d14cee3b863958ab6b0ff7c877c525e2386c2ba4",
+        "affectedSystemsHash": "fddb293518f466c610257698c5198c5ab654a0ac64c2d1991b9a5758a104e775",
+        "dtcCodesHash": "ab7627336d9c7232c39bbb905e021871271c96e26beaeb52927ec6f1c7ea92a8",
+        "estimatedCostLowHash": "26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94",
+        "estimatedCostHighHash": "bdc5d8a48c23897906b09a9a3680bd2e9c8b3121edbda36f949800f0959c8d55",
+        "typicalMileageLowHash": "60734f174b2035e5b2ba85fef8c648cc0cb18c5995b419d3cd1c025c5b09d0c7",
+        "typicalMileageHighHash": "3bb78535cc9555ff19fe3556aaa41c78a0a45c64d49ba2bc564507648a8e77a1",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "42c1c3137fe1ef8fdee2351d30973b3bd726f22f21f511e1db44bde4ed281c01",
+        "reviewedOnHash": "42c1c3137fe1ef8fdee2351d30973b3bd726f22f21f511e1db44bde4ed281c01",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "b4ebbe3ab0a695736cede142391038a4322f80e401c0db5fd7fc78b0b6f1a8af",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Fiat",
+        "model": "500X",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Archived - Water Pump Failure",
+        "description": "The former Fiat 500X card asserted \"Water Pump Failure\" across the listed population. The frozen card combines two engines and eight model years with weep-hole leakage, plastic-impeller fracture, P0217, metal-impeller replacement, thermostat replacement, and pressure testing without any citation or matching Fiat service bulletin.",
+        "solution": "Do not order parts or apply a universal repair from this archived card. Verify the VIN, model year, production date, engine, drivetrain, equipment, symptoms, DTCs, software level, modifications, open recalls and current manufacturer service information before diagnosis.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "archived",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-04",
+        "contentUpdatedOn": "2026-08-04",
+        "contentUpdateSummary": "Archived the unsupported Fiat 500X \"Water Pump Failure\" aggregation and removed 0 commerce claims with 0 URLs.",
+        "relatedIssueIds": []
+      }
+    }
+  ],
+  "sourceSnapshotFileHash": "656d87fb2c100fc72fdbb0f6812ff67b3b28298dcd9eb81a36aeca0c4ae6c02a",
+  "packetFileHash": "fc9b461f1786c345c3593c4cf94f21a99dd5291ea2cbc814a9f9b6cc79da7fe9",
+  "reviewApproval": {
+    "approvedAfterBlindAndEdgeReview": true,
+    "approvedOn": "2026-08-04",
+    "blindReviewer": "fiat500x_blind:manual-primary-source-gate",
+    "edgeReviewer": "fiat500x_edge:manual-primary-source-gate",
+    "reviewedGeneratorFileHash": "db7a9d164a9bcff383e39d960e8e613ee4e62aaf0234c8269221de89e176cddc"
+  },
+  "controlledDeltaProposals": [
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "fiat-500x-recall-16v529000",
+      "sources": [
+        "https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "fiat-500x-recall-17v146000",
+      "sources": [
+        "https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "fiat-500x-recall-18v524000",
+      "sources": [
+        "https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "fiat-500x-recall-19v287000",
+      "sources": [
+        "https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "fiat-500x-recall-19v909000",
+      "sources": [
+        "https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip"
+      ]
+    },
+    {
+      "disposition": "proposal-only",
+      "insert": false,
+      "title": "fiat-500x-recall-24v510000",
+      "sources": [
+        "https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip"
+      ]
+    }
+  ]
+}
