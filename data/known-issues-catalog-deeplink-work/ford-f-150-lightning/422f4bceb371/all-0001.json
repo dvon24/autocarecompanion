@@ -1,0 +1,1671 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "packetKind": "known-issues-catalog-deeplink-work",
+  "snapshotHash": "422f4bceb3712de9ece2e11518962ca096a56718e84d6217628fcd811be47b91",
+  "cohort": "all",
+  "packetId": "all-0001",
+  "records": [
+    {
+      "id": "ford-f-150-lightning-12v-battery-undercharge-parasitic-drain-plug-to-maintain-12v",
+      "make": "Ford",
+      "model": "F-150 Lightning",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Pro",
+        "XLT",
+        "Lariat",
+        "Platinum",
+        "Flash"
+      ],
+      "engines": [
+        "Dual-motor electric (Standard Range)",
+        "Dual-motor electric (Extended Range)"
+      ],
+      "category": "electrical",
+      "title": "12V Battery Undercharge and Parasitic Drain — \"Plug In to Maintain 12V Battery\" Warnings",
+      "description": "The Lightning's 12V battery is only recharged by the DC-to-DC converter while the high-voltage battery is charging or the truck is on, so parked trucks can experience 12V undercharge and parasitic (vampire) drain despite a full traction battery. Owners widely report \"Plug in to maintain 12V battery\" and \"electrical system power reduced\"/\"electric system drain\" messages, low 12V state-of-charge, and no-start conditions after sitting. A depleted 12V battery is also a leading cause of failed OTA updates.",
+      "solution": "Keep the truck plugged in / on a maintainer so it tops up the 12V battery, ensure the truck fully sleeps, and update software. Persistently weak batteries are replaced under warranty; many owners add a battery tender. Some cases resolved by a BCM/12V-management software update at the dealer.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "\"Plug in to maintain 12V battery\" message",
+        "\"Electrical system power reduced\" warning",
+        "Low 12V state-of-charge despite good voltage",
+        "No-start / dead 12V battery after sitting",
+        "Failed or stuck OTA software updates"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 350,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/plug-in-to-maintain-12v-battery.15967/",
+          "type": "forum",
+          "title": "Plug in to maintain 12v battery — F150 Lightning Forum"
+        },
+        {
+          "url": "https://www.lightningowners.com/threads/plug-in-to-maintain-12v-battery-message.3938/",
+          "type": "forum",
+          "title": "\"Plug in to Maintain 12V Battery\" Message — Lightning Owners"
+        },
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/electric-system-drain-service-required-error.12269/",
+          "type": "forum",
+          "title": "\"Electric System Drain Service Required\" error"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-08",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Ford",
+        "model": "F-150 Lightning",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [
+          "Pro",
+          "XLT",
+          "Lariat",
+          "Platinum",
+          "Flash"
+        ],
+        "engines": [
+          "Dual-motor electric (Standard Range)",
+          "Dual-motor electric (Extended Range)"
+        ]
+      },
+      "before": {
+        "makeHash": "2d0a81a168ebcf7903241ac19f8583b2876c3aec7e2707482457531bf9d2dedd",
+        "modelHash": "de20948497b4f298d0a51160980daed58d0f16ddd3e2da6a787d22a082135720",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "77866a37a3f2f98242a26ddc2eb7d302a377eaf2f16c30b2fec174638a58114c",
+        "enginesHash": "b835a6ee059f36b378487c204cd6df150994dfbcd374b534af0f32cda5ef9c47",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "3faabc174b23fcfb4301506f616eb753f457fb1a92906d87edd53a062a3f8834",
+        "descriptionHash": "d8a29eaf29708867c8f479daf550cb72024053082984edd2e0248ac1f6061815",
+        "solutionHash": "67e2ed4c04d276dc5bd84d0abe6efcfc84265cb0ce19b1627312cf578e8f4176",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "e72c84dd6469395c8f58e23739244ee7b20f8befdc81593a6246b2eb414b34e7",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "deeeb5df3f2cee6bf4e597a8a3a878a6ce49b932b9e90b416922d4499f54fae6",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "9716973fe33affb698c3e6a4cebda4f6cc27cda8943cbb7a7206ae2fc3376a35",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "54367a4479b4fc3ef319fac2b9e62af69dd602addfed7c0e4d446662da98486f",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "ford-f-150-lightning-charge-port-door-latch-sticking-freezing-failing-to-open-clo",
+      "make": "Ford",
+      "model": "F-150 Lightning",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Pro",
+        "XLT",
+        "Lariat",
+        "Platinum",
+        "Flash"
+      ],
+      "engines": [
+        "Dual-motor electric (Standard Range)",
+        "Dual-motor electric (Extended Range)"
+      ],
+      "category": "exterior",
+      "title": "Charge Port Door Latch Sticking, Freezing and Failing to Open/Close",
+      "description": "The charge port door uses a push-push electric latch that owners widely report as flimsy and unreliable. It frequently requires several pushes to open or close, and in cold weather the tight-tolerance latch mechanism freezes shut, preventing charging. Failure modes include the pin/plunger not releasing and water intrusion corroding the switch. This is one of the most common owner complaints on the Lightning forums, especially in winter climates.",
+      "solution": "Short-term fixes include lock deicer/silicone spray, pressing on the aft end of the black plastic strip over the plunger, and thawing a frozen latch with a heat gun/hair dryer. Ford also sells a winter charge-port cover accessory (PL3Z10D802A). For failed latches, dealers replace the charge port door/assembly under warranty.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "Charge port door won't open or requires multiple pushes",
+        "Latch frozen shut in cold weather",
+        "Door won't stay latched closed",
+        "\"Charge door ajar\" warning",
+        "Unable to charge because port is inaccessible"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 450,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/we-need-a-recall-on-charge-port-door-latch-freezing-issues.14185/",
+          "type": "forum",
+          "title": "We need a recall on Charge Port Door latch freezing issues"
+        },
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/charge-port-door-frozen.13738/",
+          "type": "forum",
+          "title": "Charge Port Door Frozen"
+        },
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/charge-port-door-latch-broke.18517/",
+          "type": "forum",
+          "title": "Charge port door latch broke"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-08",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Ford",
+        "model": "F-150 Lightning",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [
+          "Pro",
+          "XLT",
+          "Lariat",
+          "Platinum",
+          "Flash"
+        ],
+        "engines": [
+          "Dual-motor electric (Standard Range)",
+          "Dual-motor electric (Extended Range)"
+        ]
+      },
+      "before": {
+        "makeHash": "2d0a81a168ebcf7903241ac19f8583b2876c3aec7e2707482457531bf9d2dedd",
+        "modelHash": "de20948497b4f298d0a51160980daed58d0f16ddd3e2da6a787d22a082135720",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "77866a37a3f2f98242a26ddc2eb7d302a377eaf2f16c30b2fec174638a58114c",
+        "enginesHash": "b835a6ee059f36b378487c204cd6df150994dfbcd374b534af0f32cda5ef9c47",
+        "categoryHash": "c438bd14b0dcc837c1488333564b2010e29b27d71a61aaa58ff3619ba03c1ad0",
+        "titleHash": "0328f8b0e9e7759f266c554bfd3517b7fc98af7479742402241d2ffea91b2551",
+        "descriptionHash": "d80c6e26093fa40abec4d136cb721aeb23c4faf75eb90c87e031c0f3aff850fb",
+        "solutionHash": "fd02e514f83ab0518adbdac4fa52dc4811855df5c0805f0d7d30e5f4033006c2",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "1107404bba9fe9d29cdeebe1498de16b2d6463d7bff47b331a0232cf6d168059",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "83151157c10d85af7c84657c71c3e3603d955160f0526fce672481da83a2e090",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "b8bf9a6c3b139daa229af1eb293389dc4d96e98662e3bc487f3e3c2eda0c31fd",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "54367a4479b4fc3ef319fac2b9e62af69dd602addfed7c0e4d446662da98486f",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "ford-f-150-lightning-failed-over-air-software-update-bricks-truck",
+      "make": "Ford",
+      "model": "F-150 Lightning",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Pro",
+        "XLT",
+        "Lariat",
+        "Platinum",
+        "Flash"
+      ],
+      "engines": [
+        "Dual-motor electric (Standard Range)",
+        "Dual-motor electric (Extended Range)"
+      ],
+      "category": "electrical",
+      "title": "Failed Over-the-Air (OTA) Software Update Bricks the Truck",
+      "description": "The Lightning relies heavily on OTA updates, and a failed or interrupted update can leave the truck inoperable (\"bricked\") — it may not start, showing \"Full Accessory Power Active\" but no drive. The most common root cause is a weak 12V battery that drains mid-update, because the truck disconnects the 12V from the high-voltage battery during the install. Recovery generally requires towing to a dealer for a firmware reflash because module reprogramming needs Ford's FDRS tooling.",
+      "solution": "Ensure the 12V battery is healthy (a 30+ min drive helps) and the truck is ready before allowing updates. A bricked truck must be towed to a dealer for an FDRS reflash of the affected modules, usually completed same day under warranty.",
+      "severity": "medium",
+      "confidence": "high",
+      "symptoms": [
+        "Truck will not start after a software update",
+        "\"Full Accessory Power Active\" but no start",
+        "OTA update stuck on \"downloading\" or \"not completed\"",
+        "Doors/windows or other modules unresponsive after update",
+        "Vehicle must be towed to dealer"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 300,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/my-lightning-got-bricked-with-the-software-update-will-not-start.21105/",
+          "type": "forum",
+          "title": "My Lightning got BRICKED with the software update. WILL NOT START."
+        },
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/failed-ota-update-bricked-my-2023-f150l.18635/page-2",
+          "type": "forum",
+          "title": "Failed (OTA) Update bricked my 2023 F150L"
+        },
+        {
+          "url": "https://www.lightningowners.com/threads/how-to-get-failed-otas-to-install.4372/",
+          "type": "forum",
+          "title": "How To Get Failed OTAs To Install — Lightning Owners"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-08",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Ford",
+        "model": "F-150 Lightning",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [
+          "Pro",
+          "XLT",
+          "Lariat",
+          "Platinum",
+          "Flash"
+        ],
+        "engines": [
+          "Dual-motor electric (Standard Range)",
+          "Dual-motor electric (Extended Range)"
+        ]
+      },
+      "before": {
+        "makeHash": "2d0a81a168ebcf7903241ac19f8583b2876c3aec7e2707482457531bf9d2dedd",
+        "modelHash": "de20948497b4f298d0a51160980daed58d0f16ddd3e2da6a787d22a082135720",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "77866a37a3f2f98242a26ddc2eb7d302a377eaf2f16c30b2fec174638a58114c",
+        "enginesHash": "b835a6ee059f36b378487c204cd6df150994dfbcd374b534af0f32cda5ef9c47",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "4a9dd32b2d0623413971aac78ad07a36ab385a1cc198ed71b6d91f9aa356c8aa",
+        "descriptionHash": "f7e16b581e2be09edbc92fc40331ce4796844053411895b8db797e2788c6ca30",
+        "solutionHash": "472c19c91e675e95ca39658bcc87b6f1bc5e6206b6491785e99d540a2522ea72",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "355cb42e86cd579b0767fead228364a2baa225c67550f7925747bdba25d2793d",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "983bd614bb5afece5ab3b6023f71147cd7b6bc2314f9d27af7422541c6558389",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "68ad1cf50995c8bd77a25f98955482a0bf9e5cf81f2331051ff175c1cdeb0536",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "54367a4479b4fc3ef319fac2b9e62af69dd602addfed7c0e4d446662da98486f",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "ford-f-150-lightning-high-voltage-battery-junction-box-bus-bar-loose-fasteners-ar",
+      "make": "Ford",
+      "model": "F-150 Lightning",
+      "years": [
+        2023
+      ],
+      "trims": [
+        "Pro",
+        "XLT",
+        "Lariat",
+        "Platinum"
+      ],
+      "engines": [
+        "Dual-motor electric (Extended Range)",
+        "Dual-motor electric (Standard Range)"
+      ],
+      "category": "electrical",
+      "title": "High-Voltage Battery Junction Box Bus Bar Loose Fasteners — Arcing, Fire Risk and Power Loss (Recall 24S11)",
+      "description": "The retention nuts securing the high-voltage junction box bus bars inside the traction battery pack may be loose or missing due to an assembly/torque error, which can cause electrical arcing at the busbars, increase fire risk, and trigger a sudden loss of drive power (often preceded by a \"Stop Safely Now\" message). This is distinct from any battery-cell defect — it is a workmanship problem on 2023 Lightnings built at the Rouge EV Center from Oct 31, 2022 through Aug 2, 2023. Ford recalled the affected trucks (24S11 / NHTSA 24V144000, later expanded as 25V272000).",
+      "solution": "Under recall, dealers inspect and repair the bus bar fasteners inside the high-voltage battery and replace any damaged components free of charge. Owners should check VIN against recall 24S11 / NHTSA 24V144000 / 25V272000.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "\"Stop Safely Now\" warning in instrument cluster",
+        "Sudden loss of drive/motive power",
+        "Burning smell or evidence of electrical arcing",
+        "Reduced power while driving"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://static.nhtsa.gov/odi/rcl/2024/RMISC-24V144-0704.pdf",
+          "type": "nhtsa",
+          "title": "Ford Recall No. 24S11 Chronology (NHTSA 24V144) — HVJB bus bar retention nuts"
+        },
+        {
+          "url": "https://www.cars.com/research/ford-f_150_lightning/recalls/",
+          "type": "nhtsa",
+          "title": "Ford F-150 Lightning Recalls (NHTSA 24V144000 / 25V272000) — Cars.com"
+        },
+        {
+          "url": "https://www.autoevolution.com/news/ford-recalls-f-150-lightning-over-improperly-secured-high-voltage-battery-230166.html",
+          "type": "article",
+          "title": "Ford Recalls F-150 Lightning Over Improperly Secured High-Voltage Battery — autoevolution"
+        },
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/safety-recall-24s11-certain-23-my-lightnings-hvjb-bus-bar-retention-nuts.18512/",
+          "type": "forum",
+          "title": "Safety Recall 24S11, Certain '23 MY Lightnings, HVJB Bus Bar Retention Nuts"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-08",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Ford",
+        "model": "F-150 Lightning",
+        "years": [
+          2023
+        ],
+        "trims": [
+          "Pro",
+          "XLT",
+          "Lariat",
+          "Platinum"
+        ],
+        "engines": [
+          "Dual-motor electric (Extended Range)",
+          "Dual-motor electric (Standard Range)"
+        ]
+      },
+      "before": {
+        "makeHash": "2d0a81a168ebcf7903241ac19f8583b2876c3aec7e2707482457531bf9d2dedd",
+        "modelHash": "de20948497b4f298d0a51160980daed58d0f16ddd3e2da6a787d22a082135720",
+        "yearsHash": "08a12468c78c86634ed12957477419c60b7c19ccc1741eeaf7b5815b6374c6d3",
+        "trimsHash": "d47a6fba08d0a33e8e19697a8dde59b2a41027b34475733a9427cddd0de7cb84",
+        "enginesHash": "208bd408984712c2b196d525a638f940c18678ee032e06f6eb3a06d6bd199c16",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "74e1870b3565d6af571deabdf052372bee5acd27d9d48e983f3cfca3ce1b4e13",
+        "descriptionHash": "1a556a798d46ff0e189a1336d774190819527d0d3a687c039acfda5ab1470c3d",
+        "solutionHash": "9ea16c2ff82a15de75d069a1efbf2d63f0c9a2a8aa51997609542fdf78f6156b",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "43a411ddad7838e1effd515c0858b418e31a6d7ca193188b0c461aa15ee76e0d",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "a09117b3cafe396593bfa4a354b517d2f574d34ba2b06c71e7069f5a4d08850d",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "54367a4479b4fc3ef319fac2b9e62af69dd602addfed7c0e4d446662da98486f",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "ford-f-150-lightning-sync-4-apim-infotainment-screen-blackout-backup-camera-failu",
+      "make": "Ford",
+      "model": "F-150 Lightning",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Pro",
+        "XLT",
+        "Lariat",
+        "Platinum",
+        "Flash"
+      ],
+      "engines": [
+        "Dual-motor electric (Standard Range)",
+        "Dual-motor electric (Extended Range)"
+      ],
+      "category": "electrical",
+      "title": "SYNC 4 / APIM Infotainment Screen Blackout and Backup Camera Failure",
+      "description": "Owners report the large SYNC 4 touchscreen going black or freezing, and the rearview/backup camera failing (black or frozen image) when shifting into reverse. Ford has acknowledged a SYNC 4 freeze-in-reverse defect (software versions ~1.7-1.9) affecting many 2021-2024 vehicles including F-150. Many cases clear with a soft reset or software update; recurring failures are traced to a failing APIM module (or, for camera-only faults, the IPMA coax line per TSB 23-2146) requiring replacement/repair.",
+      "solution": "First try a soft reset (hold steering-wheel Volume-Down + Seek-Forward for 10-15 seconds) or a software update. For persistent blackouts, dealers replace the APIM; camera-only faults may need coax/IPMA repair. Typically covered under warranty.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Center touchscreen goes black or stays dark after startup",
+        "Screen freezes or reboots randomly",
+        "Backup camera shows black or frozen image in reverse",
+        "Loss of climate/audio/drive-mode controls"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [
+        "C1001:31",
+        "U3000:89"
+      ],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 1200,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/sync-4-error-today-black-screen.11108/",
+          "type": "forum",
+          "title": "Sync 4 error today (black screen)"
+        },
+        {
+          "url": "https://www.lightningowners.com/threads/failed-backup-camera-system-and-intermittent-infotainment-screen-black-out.4733/",
+          "type": "forum",
+          "title": "Failed Backup Camera System and intermittent Infotainment screen black-out"
+        },
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/backup-camera-fail.22051/",
+          "type": "forum",
+          "title": "Backup Camera Fail — F150 Lightning Forum"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-08",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Ford",
+        "model": "F-150 Lightning",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [
+          "Pro",
+          "XLT",
+          "Lariat",
+          "Platinum",
+          "Flash"
+        ],
+        "engines": [
+          "Dual-motor electric (Standard Range)",
+          "Dual-motor electric (Extended Range)"
+        ]
+      },
+      "before": {
+        "makeHash": "2d0a81a168ebcf7903241ac19f8583b2876c3aec7e2707482457531bf9d2dedd",
+        "modelHash": "de20948497b4f298d0a51160980daed58d0f16ddd3e2da6a787d22a082135720",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "77866a37a3f2f98242a26ddc2eb7d302a377eaf2f16c30b2fec174638a58114c",
+        "enginesHash": "b835a6ee059f36b378487c204cd6df150994dfbcd374b534af0f32cda5ef9c47",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "48e8ac9d3d640267ddbb912116714e82502fbc19318aed169fc52e3ce5198fb5",
+        "descriptionHash": "452b1d621f71342884d8dd5a8b1fdd467a566efbda03ae8786eba060959a2d26",
+        "solutionHash": "eae0cebc899bbd0263ce6de620347e47dd1bf86a2744833ca917b717c2dfb756",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "bd02e57bf1c542ca1a67e467cbaef281c33e4114c9da587af966725e6b34fe14",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "9edfbff2e7eb3475735cfb357faa6d096dfef90125da4ccd83b94656bb2558ac",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "3c9663fbd7315f66b38794367f680992a84749c8ce888a6e85685f074c4fb77e",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "54367a4479b4fc3ef319fac2b9e62af69dd602addfed7c0e4d446662da98486f",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "ford-f-150-lightning-water-intrusion-frunk-firewall-seam-pillar-sunroof-drain-lea",
+      "make": "Ford",
+      "model": "F-150 Lightning",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Pro",
+        "XLT",
+        "Lariat",
+        "Platinum",
+        "Flash"
+      ],
+      "engines": [
+        "Dual-motor electric (Standard Range)",
+        "Dual-motor electric (Extended Range)"
+      ],
+      "category": "body",
+      "title": "Water Intrusion — Frunk, Firewall Seam and A-Pillar/Sunroof Drain Leaks",
+      "description": "Owners report water leaking into the cab and frunk, commonly from open body seams at the firewall/front bulkhead between the cab and frunk (often the passenger side), clogged or pinched sunroof/A-pillar drain tubes, and windshield/rear-window seams. A separate gripe is the Mega Power Frunk lacking a drain plug, so water pools inside. Symptoms include water-sloshing sounds behind the dash and wet carpets; some fixes required pulling the dash to reseal the bulkhead seam.",
+      "solution": "Dealers reseal the firewall/bulkhead seam, clear or reposition pinched sunroof/A-pillar drain tubes, and replace leaking seals under warranty. Owners also manually clear frunk/roof drainage and reseal seams as a workaround.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Water sloshing sound behind dash/passenger side",
+        "Wet or flooded cabin carpets",
+        "Water pooling in the frunk",
+        "Damp headliner near A-pillars after rain",
+        "Sunroof/moonroof drip into cabin"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 600,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/water-sloshing-passenger-side.14566/",
+          "type": "forum",
+          "title": "Water sloshing, passenger side?"
+        },
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/water-in-cabin.17794/",
+          "type": "forum",
+          "title": "Water in Cabin — F150 Lightning Forum"
+        },
+        {
+          "url": "https://www.lightningowners.com/threads/water-intrusion-issue.5364/",
+          "type": "forum",
+          "title": "Water Intrusion Issue — Lightning Owners"
+        },
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/sunroof-leak.28145/",
+          "type": "forum",
+          "title": "Sunroof leak — F150 Lightning Forum"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-08",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Ford",
+        "model": "F-150 Lightning",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [
+          "Pro",
+          "XLT",
+          "Lariat",
+          "Platinum",
+          "Flash"
+        ],
+        "engines": [
+          "Dual-motor electric (Standard Range)",
+          "Dual-motor electric (Extended Range)"
+        ]
+      },
+      "before": {
+        "makeHash": "2d0a81a168ebcf7903241ac19f8583b2876c3aec7e2707482457531bf9d2dedd",
+        "modelHash": "de20948497b4f298d0a51160980daed58d0f16ddd3e2da6a787d22a082135720",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "77866a37a3f2f98242a26ddc2eb7d302a377eaf2f16c30b2fec174638a58114c",
+        "enginesHash": "b835a6ee059f36b378487c204cd6df150994dfbcd374b534af0f32cda5ef9c47",
+        "categoryHash": "bfd4d039e9f8aca33b52a877ded02f73846f28f9095c2bba178316be62ef7c1f",
+        "titleHash": "8febcaa6368de0b80c04eb6e192de89a4563a4d4c2eb0f2d2188d5558fa3791a",
+        "descriptionHash": "0f9a19b42f9c1a88d4269da578dde1ad57941e18905824f2d7754801f811e584",
+        "solutionHash": "811b0f1b7982759486c09ce5c99920e5fe999cf55da88b77937172b8c0ee8b28",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "4dc732b7e22e8652452b937f99e02d522ba7cdfd3dc58241eeaedf2e37634dce",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "284b7e6d788f363f910f7beb1910473e23ce9d6c871f1ce0f31f22a982d48ad4",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "b59802a9682cb1aa260c3335b13b3d31eb70e476376de2fc6a564e9f9a94ab42",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "54367a4479b4fc3ef319fac2b9e62af69dd602addfed7c0e4d446662da98486f",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "ford-f-150-lightning-windshield-wiper-motor-circuit-board-failure",
+      "make": "Ford",
+      "model": "F-150 Lightning",
+      "years": [
+        2022
+      ],
+      "trims": [
+        "Pro",
+        "XLT",
+        "Lariat",
+        "Platinum"
+      ],
+      "engines": [
+        "Dual-motor electric (Standard Range)",
+        "Dual-motor electric (Extended Range)"
+      ],
+      "category": "electrical",
+      "title": "Windshield Wiper Motor Circuit Board Failure (Recall 22S71 / NHTSA 22V842)",
+      "description": "Voltage spikes can damage the wiper motor's circuit board, causing the front wipers to operate erratically or stop entirely. On the Lightning this is a safety concern because loss of wiper function reduces or eliminates forward visibility in rain and snow. Ford issued a safety recall (its number 22S71, NHTSA 22V842) covering 2021-2022 F-150 including the electric Lightning; the campaign covers roughly 453,650 trucks and dealers replace the front wiper motor free of charge.",
+      "solution": "Under recall, dealers replace the front windshield wiper motor free of charge (parts and labor). Out of warranty, the wiper motor assembly is replaced. Owners should verify their VIN against recall 22S71/22V842.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Wipers stop working",
+        "Wipers operate erratically or at wrong speed",
+        "Wipers park in the wrong position",
+        "Reduced forward visibility in rain/snow"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 600,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.carcomplaints.com/Ford/F-150_Lightning/2022/recalls/22v842000.shtml",
+          "type": "recall",
+          "title": "Ford Recall 22S71 / NHTSA 22V842000 — 2022 F-150 Lightning"
+        },
+        {
+          "url": "https://www.ford.com/support/how-tos/recall/recalls-and-faqs/22s71-f-150-2021-2022-wiper-motor-recall/",
+          "type": "manufacturer",
+          "title": "22S71: F-150 (2021-2022) Wiper Motor Recall — Ford Support"
+        },
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/recall-22s71-windshield-wiper-motor-inspect-replace.13991/",
+          "type": "forum",
+          "title": "Recall 22S71 - Windshield Wiper Motor inspect/replace"
+        },
+        {
+          "url": "https://www.consumerreports.org/cars/car-recalls-defects/ford-recalls-f-150-pickup-trucks-windshield-wiper-failure-a3831420790/",
+          "type": "article",
+          "title": "Ford Recalls More Than 450,000 F-150 Pickup Trucks for Windshield Wiper Failure — Consumer Reports"
+        }
+      ],
+      "communityRecommendations": [],
+      "fixParts": [],
+      "humanApproved": true,
+      "reportCount": 0,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "",
+      "reviewedOn": "2026-07-08",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Ford",
+        "model": "F-150 Lightning",
+        "years": [
+          2022
+        ],
+        "trims": [
+          "Pro",
+          "XLT",
+          "Lariat",
+          "Platinum"
+        ],
+        "engines": [
+          "Dual-motor electric (Standard Range)",
+          "Dual-motor electric (Extended Range)"
+        ]
+      },
+      "before": {
+        "makeHash": "2d0a81a168ebcf7903241ac19f8583b2876c3aec7e2707482457531bf9d2dedd",
+        "modelHash": "de20948497b4f298d0a51160980daed58d0f16ddd3e2da6a787d22a082135720",
+        "yearsHash": "45664e664faebad5fc02a3efd2b1f19fd49747c5c99501ead3ea70961e5fd569",
+        "trimsHash": "d47a6fba08d0a33e8e19697a8dde59b2a41027b34475733a9427cddd0de7cb84",
+        "enginesHash": "b835a6ee059f36b378487c204cd6df150994dfbcd374b534af0f32cda5ef9c47",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "d355983d822987eb7077c7fc6abd6159dd3edea022da974099bbf1472797b49c",
+        "descriptionHash": "b1d030131a7daa71c7e381d6a195196c9422cb825b7daa801c9e337b05c61c68",
+        "solutionHash": "36c61445643c39a84e7254025ecc5ff32e09343c480e9779aa3e44e13b93e138",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "42ea806640799fb3540e8fe5f28bd935aa4ed1ed557dd333800edcea8e0c3552",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "284b7e6d788f363f910f7beb1910473e23ce9d6c871f1ce0f31f22a982d48ad4",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "26560650b976aeea3b43e88f94034a6176c8cfa0aebda7eb8a830bdd3008cab8",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "54367a4479b4fc3ef319fac2b9e62af69dd602addfed7c0e4d446662da98486f",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "claims": [],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "ford-lightning-dc-fast-charge-fault-2022",
+      "make": "Ford",
+      "model": "F-150 Lightning",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "DC Fast Charging Faults and Reduced Charging Speed",
+      "description": "Many Ford F-150 Lightning owners report persistent issues with DC fast charging, including charge fault errors, unexpectedly slow charging speeds, and sessions that terminate prematurely. Some vehicles charge at only 40-70kW at stations rated for 150-350kW. The charging speed often drops dramatically after 2-5 minutes at a fast charger, settling well below the advertised 150kW peak rate. The battery charging control module (BCCM) can develop faults that prevent DC fast charging entirely, displaying an orange charge ring and \"Vehicle Charging Fault\" errors. Ford has released software updates to improve charging performance, but many owners continue to experience issues.",
+      "solution": "Visit the Ford dealer for the latest BCCM and powertrain software updates — Ford has released multiple OTA and dealer-applied updates that improve charging behavior. If charging fault errors persist after software updates, the BCCM may need replacement ($500-$1,500). Try different DC fast charging networks as compatibility varies. Pre-condition the battery by driving for at least 15-20 minutes before DC fast charging in cold weather to improve charging speed. Use the FordPass app to schedule departure time, which pre-conditions the battery.",
+      "severity": "medium",
+      "confidence": "medium",
+      "symptoms": [
+        "Orange charge indicator ring and \"Vehicle Charging Fault\" message",
+        "DC fast charging speed significantly below advertised peak rate",
+        "Charging speed drops dramatically after 2-5 minutes on fast charger",
+        "Charge session terminates prematurely before reaching target SOC",
+        "Level 2 AC charging works normally but DC fast charging fails",
+        "Error messages in FordPass app during charging sessions"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [
+        "P0AA2",
+        "P0AFA"
+      ],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 1500,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.lightningowners.com/threads/charge-fault-error-at-dc-fast-chargers.2215/",
+          "type": "owner-report",
+          "title": "Charge FAULT Error at DC Fast Chargers — Lightning Owners Forum"
+        },
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/slow-charge-at-fast-charger.20150/",
+          "type": "owner-report",
+          "title": "Slow Charge at Fast Charger — F-150 Lightning Forum"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Always make sure your Lightning has the latest software update before a road trip. Ford has released multiple updates that improve DC fast charging performance. If your truck is on older software, the charging speed will be significantly slower. The dealer can check and update for free under warranty.",
+          "upvotes": 0
+        },
+        {
+          "type": "tip",
+          "content": "In cold weather, drive for at least 20 minutes before stopping at a DC fast charger. The battery needs to be warm to accept high charging rates. Use the FordPass app departure scheduling to pre-condition the battery if starting from cold. Cold battery = slow charging on all EVs, but the Lightning is particularly sensitive.",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Ford%20F-150%20Lightning&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Ford%20F-150%20Lightning&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Ford%20F-150%20Lightning&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automotive relay replacement set for common relay failures",
+          "partName": "Automotive Relay 5-Pin 12V",
+          "partBrand": "Bosch",
+          "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Ford%20F-150%20Lightning&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+          "partName": "Digital Multimeter",
+          "partBrand": "Innova",
+          "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Ford%20F-150%20Lightning&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+          "partName": "Portable Level 2 EV Charger",
+          "partBrand": "Lectron",
+          "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Ford%20F-150%20Lightning&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 340,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Ford",
+        "model": "F-150 Lightning",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "2d0a81a168ebcf7903241ac19f8583b2876c3aec7e2707482457531bf9d2dedd",
+        "modelHash": "de20948497b4f298d0a51160980daed58d0f16ddd3e2da6a787d22a082135720",
+        "yearsHash": "74d282913e456c9022479ef0009fc987bafd768a38811f1e269dc648a06ac0fa",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "6000c95a65e2052c665b35d8cf9365690582c346d29a4019eca38d3cbafcdf69",
+        "descriptionHash": "03e1984a1537a895e7d447310629da1262b84ce5c8e8d55a5c03328fd7facdad",
+        "solutionHash": "255bae29cb5194ab420f9c363b5e49f742cb49406c463c4b938b138dd7cf3373",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "95ce1db13ee224bbe7f93a6db3006554e3e1c66c822c62e8789dcfb4d443ea6b",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "57ad5bd9bc7c80ff29f53e7b66eff7f38f273f2ab95fd7c81c854f19b5f8bbcd",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "65b76771d3b0e60507ae4742c336caa6c2ad9c7246d01e503989347f43d0c562",
+        "communityRecommendationsHash": "b3a83c039b705d411f2f144366d7ed6575230bfe502816c302a55675aa3516b2",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "9644294ac4ffb3091eef01219b3fe4fe467f05890cc56af961dce68fddbb7704",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:2",
+          "communityRecommendations:3",
+          "communityRecommendations:4",
+          "communityRecommendations:5",
+          "communityRecommendations:6",
+          "communityRecommendations:7"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Optima",
+              "url": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Ford%20F-150%20Lightning&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "ACDelco",
+              "url": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Ford%20F-150%20Lightning&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:4",
+          "system": "communityRecommendations",
+          "index": 4,
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Battery Tender",
+              "url": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Ford%20F-150%20Lightning&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:5",
+          "system": "communityRecommendations",
+          "index": 5,
+          "type": "part",
+          "content": "Automotive relay replacement set for common relay failures",
+          "partName": "Automotive Relay 5-Pin 12V",
+          "partBrand": "Bosch",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Bosch",
+              "url": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Ford%20F-150%20Lightning&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:6",
+          "system": "communityRecommendations",
+          "index": 6,
+          "type": "part",
+          "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+          "partName": "Digital Multimeter",
+          "partBrand": "Innova",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Innova",
+              "url": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Ford%20F-150%20Lightning&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:7",
+          "system": "communityRecommendations",
+          "index": 7,
+          "type": "part",
+          "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+          "partName": "Portable Level 2 EV Charger",
+          "partBrand": "Lectron",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Lectron",
+              "url": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Ford%20F-150%20Lightning&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "ford-lightning-front-control-arm-2023",
+      "make": "Ford",
+      "model": "F-150 Lightning",
+      "years": [
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "suspension",
+      "title": "Front Upper Control Arm Ball Joint Separation — Loss of Steering",
+      "description": "Certain 2023-2024 Ford F-150 Lightning trucks were recalled because the front upper control arm ball joint nut may not have been properly tightened during assembly. If the nut loosens, the control arm can separate from the steering knuckle, causing a sudden and complete loss of steering control. This is a manufacturing assembly defect rather than a design flaw, but the consequences are severe — the affected wheel can tuck under the vehicle causing the driver to lose all directional control.",
+      "solution": "Contact your Ford dealer to verify if your vehicle is affected by this recall. The dealer will inspect the front upper control arm ball joint torque specification and re-torque or replace the hardware as needed, free of charge. If you hear clunking from the front end or experience wandering steering, have the vehicle towed to a dealer rather than driving it. Do not drive if you suspect a loose ball joint.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Clunking or knocking from the front suspension over bumps",
+        "Steering feels loose or wanders at highway speed",
+        "Uneven front tire wear",
+        "Visible play in the front wheel when lifted off the ground",
+        "Sudden loss of steering control (catastrophic failure mode)"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/nhtsa-recall-loss-of-steering-from-front-control-arm-separation-impacting-certain-2023-to-2024-builds.23506/",
+          "type": "recall",
+          "title": "NHTSA Recall — F-150 Lightning Front Control Arm Separation"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "If you hear any new clunking from the front end of your Lightning, get it inspected immediately. A ball joint separation at highway speed is one of the most dangerous suspension failures possible. Have the dealer check the torque on the ball joint nut even if you are not part of the recall — it only takes a few minutes to verify.",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "Premium ball joint with grease fitting for extended service life",
+          "partName": "Ball Joint",
+          "partBrand": "Moog",
+          "affiliateUrl": "https://www.amazon.com/s?k=Moog%20ball%20joint%20Ford%20F-150%20Lightning&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Complete control arm assembly with ball joint and bushings pre-installed",
+          "partName": "Control Arm Assembly",
+          "partBrand": "Mevotech",
+          "affiliateUrl": "https://www.amazon.com/s?k=Mevotech%20control%20arm%20Ford%20F-150%20Lightning&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 180,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Ford",
+        "model": "F-150 Lightning",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "2d0a81a168ebcf7903241ac19f8583b2876c3aec7e2707482457531bf9d2dedd",
+        "modelHash": "de20948497b4f298d0a51160980daed58d0f16ddd3e2da6a787d22a082135720",
+        "yearsHash": "8396e5b53797e39c4be2a63d684c88930f6462aad46b1eb2e163aea02cc6265a",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "56b4998398651b6c33db8194ed5886d721ed782aad7ee17a29763b1519ef25dd",
+        "descriptionHash": "20f8f3563676d100fdac4d783d7b0673b2c39a0bb1f225e20834113b41e11abd",
+        "solutionHash": "94869717813e2c27352c026f069f3f3eb31e28dc553226f3b6950d0ddc650766",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "75bc2e042b681303cad8217b8682a2962fe37fc2f0b8132d017be3647326e4b0",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "2daae52897e2f8f63c67d38e12d6c4e674098387df230e1797086f5bedc6b7af",
+        "communityRecommendationsHash": "881f7c5d66a623324bb70524f364357475a54c06d8d923e7686f51156c12d73d",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "7b69759630f869f2723875f873935fed29d2d12b10ef763c1c33b8e0004cb405",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:1",
+          "communityRecommendations:2"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "Premium ball joint with grease fitting for extended service life",
+          "partName": "Ball Joint",
+          "partBrand": "Moog",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Moog",
+              "url": "https://www.amazon.com/s?k=Moog%20ball%20joint%20Ford%20F-150%20Lightning&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "Complete control arm assembly with ball joint and bushings pre-installed",
+          "partName": "Control Arm Assembly",
+          "partBrand": "Mevotech",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Mevotech",
+              "url": "https://www.amazon.com/s?k=Mevotech%20control%20arm%20Ford%20F-150%20Lightning&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "ford-lightning-hv-battery-short-2022",
+      "make": "Ford",
+      "model": "F-150 Lightning",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "electrical",
+      "title": "High-Voltage Battery Cell Manufacturing Defect — Internal Short Circuit and Fire Risk",
+      "description": "The Ford F-150 Lightning is under recall (NHTSA 25V131000, Ford 25S18) for a supplier manufacturing defect in the high-voltage battery cells that can cause an internal short circuit. Production process deviations at the battery cell supplier caused misaligned electrodes in some cells. An internal short circuit in the battery pack increases the risk of thermal runaway and fire. Ford is aware of five vehicle fires and one injury claim that may be related. Affected vehicles were built between March 16, 2022 and August 14, 2024. Until the recall is completed, Ford advises owners to charge only to 80% maximum.",
+      "solution": "Contact your Ford dealer immediately to check if your Lightning is affected by recall 25S18 (NHTSA 25V131000). Until the recall is performed, charge the vehicle to a maximum of 80% state of charge. The dealer will inspect the high-voltage battery array and replace it if necessary, free of charge. Park the vehicle outdoors (not in a garage) as a precaution until the inspection is complete. Monitor for any unusual smells, smoke, or heat from the battery area.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "No symptoms may be present before failure",
+        "Unusual heat or warmth from floor/battery area",
+        "Burning or chemical smell from under the vehicle",
+        "Battery warning messages on the instrument cluster",
+        "Reduced range or unexpected battery behavior",
+        "Charging faults or errors during charging sessions"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.f150lightningforum.com/2025/03/06/safety-program-25s18-certain-2022-2024-f-150-lightning-supplier-manufacturing-defect-in-high-voltage-battery-cells/",
+          "type": "recall",
+          "title": "Ford Safety Program 25S18 — Lightning Battery Cell Discussion"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Until the recall is completed, set your charge limit to 80% in the vehicle settings or FordPass app. Park outdoors, not in a garage. This is a precautionary measure — the actual incidence rate is very low (5 fires out of ~100,000+ vehicles), but battery fires are serious when they occur.",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Ford%20F-150%20Lightning&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Ford%20F-150%20Lightning&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Ford%20F-150%20Lightning&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 420,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Ford",
+        "model": "F-150 Lightning",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "2d0a81a168ebcf7903241ac19f8583b2876c3aec7e2707482457531bf9d2dedd",
+        "modelHash": "de20948497b4f298d0a51160980daed58d0f16ddd3e2da6a787d22a082135720",
+        "yearsHash": "74d282913e456c9022479ef0009fc987bafd768a38811f1e269dc648a06ac0fa",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "8ecaf36f33c062189b75e945cc0bd7bc414f807ab199eb01c053ef79a966b9ee",
+        "descriptionHash": "287a118d19fcbedeb7bf1ad31657eb4321b351f7abdbc253e34b82ff6c93f1ba",
+        "solutionHash": "46fde3506a0fbe67d395b63a129997cb87742c2988fdcebfe3b5c54dc80d5e4d",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "b10de092030ac80f1d58237d3401cf427486e75dab71950c3efcbb8104e1ff04",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "de187fd82d229b0e5dd460f92f2e5f6ba0395f04d0de1f8522ddca6d6973ef12",
+        "communityRecommendationsHash": "553f13083cf5aa73238d515abe29cb67e566e847058968ef849d95598127db14",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "db55da3fc3098e9c42311c6013304ff36b19ef73d12ea932054b5ad51df4f49d",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:1",
+          "communityRecommendations:2",
+          "communityRecommendations:3"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+          "partName": "RedTop AGM Battery",
+          "partBrand": "Optima",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Optima",
+              "url": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Ford%20F-150%20Lightning&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "OEM-quality replacement battery with reliable performance",
+          "partName": "Professional AGM Battery",
+          "partBrand": "ACDelco",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "ACDelco",
+              "url": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Ford%20F-150%20Lightning&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:3",
+          "system": "communityRecommendations",
+          "index": 3,
+          "type": "part",
+          "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+          "partName": "Junior 12V Battery Charger Maintainer",
+          "partBrand": "Battery Tender",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Battery Tender",
+              "url": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Ford%20F-150%20Lightning&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    },
+    {
+      "id": "ford-lightning-park-module-rollaway-2022",
+      "make": "Ford",
+      "model": "F-150 Lightning",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "category": "drivetrain",
+      "title": "Integrated Park Module Failure — Vehicle May Roll Away When Parked",
+      "description": "The Ford F-150 Lightning has a recall for the integrated park module (IPM) which may fail to lock into the park position when the driver shifts into Park. Unlike conventional vehicles with a mechanical parking pawl connected to the transmission, the Lightning uses an electronic park module. If the module software fails to properly engage the park lock, the vehicle can roll away when the driver exits, increasing the risk of a crash or injury. Ford issued recall 25C69 covering 2022-2025 model year Lightning trucks.",
+      "solution": "Contact your Ford dealer to have the integrated park module software updated under recall 25C69, free of charge. Until the recall is performed, always engage the parking brake manually after shifting to Park as a redundant safety measure. Avoid parking on steep inclines without the parking brake engaged. If the vehicle displays a park system warning or does not show a green \"P\" indicator when shifted to Park, do not leave the vehicle unattended.",
+      "severity": "high",
+      "confidence": "high",
+      "symptoms": [
+        "Vehicle rolls or creeps after being shifted to Park",
+        "Park system warning message on instrument cluster",
+        "Green \"P\" indicator does not display after shifting to Park",
+        "Unusual delay when shifting from Drive to Park",
+        "Parking brake required to hold vehicle on flat surfaces"
+      ],
+      "affectedSystems": [],
+      "dtcCodes": [],
+      "estimatedCostLow": 0,
+      "estimatedCostHigh": 0,
+      "typicalMileageLow": null,
+      "typicalMileageHigh": null,
+      "citations": [
+        {
+          "url": "https://www.f150lightningforum.com/forum/threads/25c69-recall-ford-recalls-2022-2026-f-150-lightning-over-rollaway-risk.33546/",
+          "type": "recall",
+          "title": "Recall 25C69 — F-150 Lightning Rollaway Risk"
+        }
+      ],
+      "communityRecommendations": [
+        {
+          "type": "tip",
+          "content": "Always engage the parking brake on the Lightning, even on flat ground. This is good practice for any electric vehicle since the park mechanism is electronic rather than mechanical. Make it a habit: shift to Park, then pull the parking brake, every time.",
+          "upvotes": 0
+        },
+        {
+          "type": "part",
+          "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
+          "partName": "Synthetic Gear Oil 75W-90",
+          "partBrand": "Mobil 1",
+          "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20"
+        },
+        {
+          "type": "part",
+          "content": "Fel-Pro gasket kit for drivetrain service",
+          "partName": "Gasket Kit",
+          "partBrand": "Fel-Pro",
+          "affiliateUrl": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20"
+        }
+      ],
+      "fixParts": [],
+      "humanApproved": false,
+      "reportCount": 270,
+      "source": "ai-researched",
+      "status": "published",
+      "lastReportedByOwners": "2026-03-06",
+      "reviewedOn": "2026-03-06",
+      "contentUpdatedOn": "",
+      "contentUpdateSummary": "",
+      "relatedIssueIds": [],
+      "vehicle": {
+        "make": "Ford",
+        "model": "F-150 Lightning",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": []
+      },
+      "before": {
+        "makeHash": "2d0a81a168ebcf7903241ac19f8583b2876c3aec7e2707482457531bf9d2dedd",
+        "modelHash": "de20948497b4f298d0a51160980daed58d0f16ddd3e2da6a787d22a082135720",
+        "yearsHash": "74d282913e456c9022479ef0009fc987bafd768a38811f1e269dc648a06ac0fa",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "3b12d5574a84f04c6978e854a9cac57bf991ee23453471c357b5b903e12b2378",
+        "titleHash": "342789b3952ef4f248ccb72ee027f659662dacabb810951f6234511ca060b5ff",
+        "descriptionHash": "f680c6a6725dd9178c81b7ba6bb57112531ac04daec22c97add60bdc879a7645",
+        "solutionHash": "7bb70c8bdc39b76bd1b6b567d6c56172786a23f8074afbbafcb6a3dd1a76bebf",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "d034d3514f883593317f9536b118690b22b86c23d3b084cacd3b4e848b01e312",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "68a01516f38d83e13b41cdf539627628e5b9d0a3b09a400f07fa99d9ade03dc0",
+        "communityRecommendationsHash": "d6763868d39ff47ecfed396f371d78437439b5cd5b6c1780032a505b0ec4078f",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "d8d1790737d57ac4fe91a2c0a28087c0a97c81f5dc6b19d5e4aec20c08bb95ae",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": [
+          "communityRecommendations:1",
+          "communityRecommendations:2"
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "communityRecommendations:1",
+          "system": "communityRecommendations",
+          "index": 1,
+          "type": "part",
+          "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
+          "partName": "Synthetic Gear Oil 75W-90",
+          "partBrand": "Mobil 1",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Mobil 1",
+              "url": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        },
+        {
+          "claimId": "communityRecommendations:2",
+          "system": "communityRecommendations",
+          "index": 2,
+          "type": "part",
+          "content": "Fel-Pro gasket kit for drivetrain service",
+          "partName": "Gasket Kit",
+          "partBrand": "Fel-Pro",
+          "partNumber": "",
+          "links": [
+            {
+              "field": "affiliateUrl",
+              "vendor": "Fel-Pro",
+              "url": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20",
+              "error": "search query parameter k"
+            }
+          ],
+          "clicks": 0
+        }
+      ],
+      "clicks": 0,
+      "priorityClicks": 0
+    }
+  ]
+}
