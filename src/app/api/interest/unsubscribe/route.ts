@@ -21,9 +21,22 @@ export async function GET(request: NextRequest) {
   const token = request.nextUrl.searchParams.get('token');
   if (!token) return page("That link looks incomplete.");
   try {
-    const row = await prisma.interestEmail.findUnique({ where: { unsubscribeToken: token }, select: { id: true, unsubscribedAt: true } });
-    if (row && !row.unsubscribedAt) {
-      await prisma.interestEmail.update({ where: { id: row.id }, data: { unsubscribedAt: new Date() } });
+    const row = await prisma.interestEmail.findUnique({
+      where: { unsubscribeToken: token },
+      select: { email: true, context: true },
+    });
+    if (row) {
+      // Legacy form submissions could create duplicate rows. One click must opt
+      // the address out of this vehicle alert completely, not merely suppress
+      // the particular row whose token happened to be in the email.
+      await prisma.interestEmail.updateMany({
+        where: {
+          email: row.email,
+          context: row.context,
+          unsubscribedAt: null,
+        },
+        data: { unsubscribedAt: new Date() },
+      });
     }
   } catch (e) {
     console.error('[interest/unsubscribe]', e instanceof Error ? e.message : e);

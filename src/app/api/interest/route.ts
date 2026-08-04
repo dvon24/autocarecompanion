@@ -16,11 +16,26 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const ctx = typeof context === 'string' ? context.slice(0, 120) : null;
+    const normalizedEmail = email.trim().toLowerCase();
+    const ctx = typeof context === 'string' ? context.trim().slice(0, 120) : null;
+    // Repeated taps/submissions are one alert subscription, not multiple email
+    // deliveries. A previously unsubscribed row is intentionally not reused so
+    // submitting the form again can act as an explicit re-subscription.
+    const existing = await prisma.interestEmail.findFirst({
+      where: {
+        email: normalizedEmail,
+        context: ctx,
+        unsubscribedAt: null,
+      },
+      select: { id: true },
+    });
+    if (existing) return NextResponse.json({ success: true });
     // Mint an unsubscribe token up front so the weekly digest can always include
     // a one-click opt-out link (CAN-SPAM) without a follow-up write.
     const unsubscribeToken = randomBytes(24).toString('base64url');
-    await prisma.interestEmail.create({ data: { email: email.trim().toLowerCase(), context: ctx, unsubscribeToken } });
+    await prisma.interestEmail.create({
+      data: { email: normalizedEmail, context: ctx, unsubscribeToken },
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {
