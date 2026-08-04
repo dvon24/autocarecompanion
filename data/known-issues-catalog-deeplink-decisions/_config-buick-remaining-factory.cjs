@@ -57,7 +57,7 @@ function archiveRecord(label, record, reason) {
   );
   const auditReason =
     reason ||
-    'Current GM/NHTSA primary-source research does not establish the frozen card\'s complete year population, single failure mechanism, diagnosis and remedy. The prior citations and owner/aftermarket material cannot support a universal parts recommendation.';
+    'Current manufacturer/NHTSA primary-source research does not establish the frozen card\'s complete year population, single failure mechanism, diagnosis and remedy. The prior citations and owner/aftermarket material cannot support a universal parts recommendation.';
   return {
     disposition: 'remove',
     decision: `Archive the frozen "${record.title}" aggregation. ${auditReason} Remove all ${claimCount} commerce claims and ${urlCount} outbound URL occurrences.`,
@@ -76,7 +76,7 @@ function archiveRecord(label, record, reason) {
       title: `Archived - ${record.title}`,
       description: `The former ${label} card asserted "${record.title}" across the listed population. ${auditReason}`,
       solution:
-        'Do not order parts or apply a universal repair from this archived card. Verify the VIN, model year, production date, engine, drivetrain, equipment, symptoms, DTCs, software level, modifications, open recalls and current GM service information before diagnosis.',
+        'Do not order parts or apply a universal repair from this archived card. Verify the VIN, model year, production date, engine, drivetrain, equipment, symptoms, DTCs, software level, modifications, open recalls and current manufacturer service information before diagnosis.',
       severity: 'low',
       confidence: 'low',
       source: 'manual',
