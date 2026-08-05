@@ -21,7 +21,7 @@ test('expects archive signatures only for held rows archived in the baseline', (
 });
 
 test('accepts normal trim names', () => {
-  for (const trim of ['SXT', 'R/T', 'Citadel', 'SRT Hellcat Redeye Widebody', 'SE/SXT']) {
+  for (const trim of ['SXT', 'R/T', 'Citadel', 'SRT Hellcat Redeye Widebody', 'SE/SXT', 'All Terrain']) {
     assert.equal(looksLikeApplicabilityProse(trim), false, trim);
   }
 });
@@ -32,6 +32,9 @@ test('rejects audit applicability prose stored as trims', () => {
     'Vehicles with 6.4L SRT HEMI engine sales code ESG or ESH',
     'North American vehicles equipped with an 8.4-inch radio',
     'Recall campaign eligibility must be verified by VIN',
+    'All trims (early build)',
+    'All (multiple infotainment generations)',
+    'Certain vehicles included by VIN',
   ]) {
     assert.equal(looksLikeApplicabilityProse(trim), true, trim);
   }

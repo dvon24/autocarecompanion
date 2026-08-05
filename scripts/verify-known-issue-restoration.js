@@ -49,6 +49,8 @@ function requireDependency(name) {
 function looksLikeApplicabilityProse(trim) {
   const value = String(trim || '').trim();
   return /^(?:only\s+)?vehicles?\b/i.test(value) ||
+    /^(?:certain|applicable|affected)\s+(?:vehicles?|models?)\b/i.test(value) ||
+    /^all(?:\s+trims?\b|\s*\()/i.test(value) ||
     /\b(?:verify (?:eligibility )?(?:by|with) vin|verify the vin|equipped with|sales code|built (?:from|between|before|after|on)|production dates?|campaign (?:eligibility|population)|(?:north american|u\.s\.|canadian|mexican|european|uk|eu) market)\b/i.test(value);
 }
 
