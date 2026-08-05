@@ -5,6 +5,7 @@
  * transaction and writes only trims plus updatedAt.
  */
 const path = require('node:path');
+const fs = require('node:fs');
 const { resolveKnownIssueConnectionString } = require('./apply-known-issue-catalog-deeplinks');
 
 const REPAIRS = require('../data/known-issue-trim-metadata-repairs-2026-08-05.json').repairs;
@@ -76,13 +77,13 @@ function classifyRows(rows, repairs = REPAIRS) {
   return { pending, alreadyApplied, failures };
 }
 
-async function run({ apply = false } = {}) {
-  const validationErrors = validateRepairs();
+async function run({ apply = false, repairs = REPAIRS } = {}) {
+  const validationErrors = validateRepairs(repairs);
   if (validationErrors.length) throw new Error(validationErrors.join('; '));
   const { Pool } = requireDependency('pg');
   const pool = new Pool({ connectionString: resolveKnownIssueConnectionString(), max: 1 });
   const client = await pool.connect();
-  const ids = REPAIRS.map((row) => row.id);
+  const ids = repairs.map((row) => row.id);
   try {
     if (apply) await client.query('BEGIN');
     const before = (await client.query(`
@@ -91,7 +92,7 @@ async function run({ apply = false } = {}) {
       WHERE id = ANY($1)
       ${apply ? 'FOR UPDATE' : ''}
     `, [ids])).rows;
-    const classification = classifyRows(before);
+    const classification = classifyRows(before, repairs);
     if (classification.failures.length) throw new Error(`pre-state verification failed: ${JSON.stringify(classification.failures)}`);
 
     if (!apply) {
@@ -100,7 +101,7 @@ async function run({ apply = false } = {}) {
         verifiedRows: before.length,
         pendingRows: classification.pending.length,
         alreadyAppliedRows: classification.alreadyApplied.length,
-        repairs: REPAIRS,
+        repairs,
       };
     }
 
@@ -122,7 +123,7 @@ async function run({ apply = false } = {}) {
       FROM "KnownIssue"
       WHERE id = ANY($1)
     `, [ids])).rows;
-    const postStateFailures = verifyRows(after, REPAIRS, 'afterTrims');
+    const postStateFailures = verifyRows(after, repairs, 'afterTrims');
     if (postStateFailures.length) throw new Error(`post-state verification failed: ${JSON.stringify(postStateFailures)}`);
     await client.query('COMMIT');
     return {
@@ -141,7 +142,15 @@ async function run({ apply = false } = {}) {
 }
 
 if (require.main === module) {
-  run({ apply: process.argv.includes('--apply') })
+  const args = process.argv.slice(2);
+  const repairFileIndex = args.indexOf('--repairs');
+  const repairFile = repairFileIndex >= 0 && args[repairFileIndex + 1]
+    ? path.resolve(args[repairFileIndex + 1])
+    : null;
+  const repairs = repairFile
+    ? JSON.parse(fs.readFileSync(repairFile, 'utf8')).repairs
+    : REPAIRS;
+  run({ apply: args.includes('--apply'), repairs })
     .then((result) => console.log(JSON.stringify(result, null, 2)))
     .catch((error) => {
       console.error(error instanceof Error ? error.message : error);
@@ -149,4 +158,4 @@ if (require.main === module) {
     });
 }
 
-module.exports = { REPAIRS, classifyRows, sameArray, validateRepairs, verifyRows };
+module.exports = { REPAIRS, classifyRows, run, sameArray, validateRepairs, verifyRows };
