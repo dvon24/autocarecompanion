@@ -5,6 +5,7 @@ const {
   expectedArchivedHoldIds,
   looksLikeApplicabilityProse,
   projectedStatusCounts,
+  restoreTarget,
   validateBaseline,
   validateManifest,
   valuesEqual,
@@ -57,6 +58,18 @@ test('manifest validation rejects overlap and unsupported patch fields', () => {
     'restore/hold overlap: a',
     'a: unsupported patch fields: nope',
   ]);
+});
+
+test('accepts the frozen restore target shape and rejects conflicting aliases', () => {
+  assert.deepEqual(validateManifest({
+    restore: [{ id: 'a', target: { title: 'Original title', status: 'published' } }],
+    hold: [],
+  }), []);
+  assert.deepEqual(restoreTarget({ target: { title: 'Original title' } }), { title: 'Original title' });
+  assert.deepEqual(validateManifest({
+    restore: [{ id: 'a', patch: { title: 'One' }, target: { title: 'Two' } }],
+    hold: [],
+  }), ['a: patch and target conflict']);
 });
 
 test('projects exact status transitions from the captured baseline', () => {

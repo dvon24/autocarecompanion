@@ -91,14 +91,23 @@ function validateManifest(manifest) {
   const overlap = restoreIds.filter((id) => new Set(holdIds).has(id));
   if (overlap.length > 0) errors.push(`restore/hold overlap: ${overlap.join(', ')}`);
   for (const row of manifest.restore || []) {
-    if (!row.patch || typeof row.patch !== 'object' || Array.isArray(row.patch) || Object.keys(row.patch).length === 0) {
-      errors.push(`${row.id || '<missing id>'}: patch must be a non-empty object`);
+    const target = restoreTarget(row);
+    if (!target || typeof target !== 'object' || Array.isArray(target) || Object.keys(target).length === 0) {
+      errors.push(`${row.id || '<missing id>'}: patch or target must be a non-empty object`);
       continue;
     }
-    const unsupported = Object.keys(row.patch).filter((field) => !FULL_RECORD_FIELDS.includes(field));
+    if (row.patch && row.target && !valuesEqual(row.patch, row.target)) {
+      errors.push(`${row.id}: patch and target conflict`);
+      continue;
+    }
+    const unsupported = Object.keys(target).filter((field) => !FULL_RECORD_FIELDS.includes(field));
     if (unsupported.length > 0) errors.push(`${row.id}: unsupported patch fields: ${unsupported.join(', ')}`);
   }
   return errors;
+}
+
+function restoreTarget(row) {
+  return row && (row.patch || row.target);
 }
 
 function stableValue(value) {
@@ -139,7 +148,7 @@ async function verify(pool, baseline, manifest, allowedDeadModels = new Set()) {
   const archivedRestoreIds = archivedIds.filter((id) => !holdIds.has(id));
   const restoreIds = manifest.restore.map((row) => row.id);
   const projected = projectedStatusCounts(baseline, manifest);
-  const patchFields = [...new Set(manifest.restore.flatMap((row) => Object.keys(row.patch)))];
+  const patchFields = [...new Set(manifest.restore.flatMap((row) => Object.keys(restoreTarget(row))))];
 
   const [statusResult, signatureResult, restoredArchivedResult, proseResult, restoredRowsResult] = await Promise.all([
     pool.query(`SELECT status, count(*)::int AS count FROM "KnownIssue" GROUP BY status ORDER BY status`),
@@ -180,7 +189,7 @@ async function verify(pool, baseline, manifest, allowedDeadModels = new Set()) {
       patchMismatches.push({ id: expected.id, fields: ['<missing row>'] });
       continue;
     }
-    const fields = Object.entries(expected.patch)
+    const fields = Object.entries(restoreTarget(expected))
       .filter(([field, value]) => !valuesEqual(actual[field], value))
       .map(([field]) => field);
     if (fields.length > 0) patchMismatches.push({ id: expected.id, fields });
@@ -300,6 +309,7 @@ module.exports = {
   expectedArchivedHoldIds,
   looksLikeApplicabilityProse,
   projectedStatusCounts,
+  restoreTarget,
   validateBaseline,
   validateManifest,
   valuesEqual,
