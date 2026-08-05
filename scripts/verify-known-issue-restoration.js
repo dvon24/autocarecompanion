@@ -32,9 +32,12 @@ function argValue(args, flag) {
   return path.resolve(PROJECT_ROOT, args[index + 1]);
 }
 
-function optionalArgValue(args, flag) {
-  const index = args.indexOf(flag);
-  return index >= 0 && args[index + 1] ? path.resolve(PROJECT_ROOT, args[index + 1]) : null;
+function argValues(args, flag) {
+  const values = [];
+  for (let index = 0; index < args.length; index += 1) {
+    if (args[index] === flag && args[index + 1]) values.push(path.resolve(PROJECT_ROOT, args[index + 1]));
+  }
+  return values;
 }
 
 function sha256(file) {
@@ -300,16 +303,15 @@ async function main() {
   const args = process.argv.slice(2);
   const baselineFile = argValue(args, '--baseline');
   const manifestFile = argValue(args, '--manifest');
-  const overlayFile = optionalArgValue(args, '--overlay');
+  const overlayFiles = argValues(args, '--overlay');
   const baseline = JSON.parse(fs.readFileSync(baselineFile, 'utf8'));
   const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
   const baselineErrors = validateBaseline(baseline);
   if (baselineErrors.length > 0) throw new Error(`Invalid baseline: ${baselineErrors.join('; ')}`);
   const manifestErrors = validateManifest(manifest);
   if (manifestErrors.length > 0) throw new Error(`Invalid manifest: ${manifestErrors.join('; ')}`);
-  const overlays = overlayFile
-    ? trimRepairsToOverlays(JSON.parse(fs.readFileSync(overlayFile, 'utf8')))
-    : [];
+  const overlays = overlayFiles.flatMap((overlayFile) =>
+    trimRepairsToOverlays(JSON.parse(fs.readFileSync(overlayFile, 'utf8'))));
   const overlayErrors = validateOverlays(overlays);
   if (overlayErrors.length > 0) throw new Error(`Invalid overlay: ${overlayErrors.join('; ')}`);
   const allowedDeadModels = new Set();
@@ -332,9 +334,11 @@ async function main() {
     result.baselineSha256 = sha256(baselineFile);
     result.manifestFile = path.relative(PROJECT_ROOT, manifestFile);
     result.manifestSha256 = sha256(manifestFile);
-    if (overlayFile) {
-      result.overlayFile = path.relative(PROJECT_ROOT, overlayFile);
-      result.overlaySha256 = sha256(overlayFile);
+    if (overlayFiles.length) {
+      result.overlays = overlayFiles.map((overlayFile) => ({
+        file: path.relative(PROJECT_ROOT, overlayFile),
+        sha256: sha256(overlayFile),
+      }));
     }
     console.log(JSON.stringify(result, null, 2));
     if (!result.passed) process.exitCode = 1;
