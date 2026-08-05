@@ -2,16 +2,27 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 const { looksLikeApplicabilityProse } = require('./verify-known-issue-restoration');
-const { REPAIRS, validateRepairs, verifyRows } = require('./repair-known-issue-trim-metadata');
+const { REPAIRS, classifyRows, validateRepairs, verifyRows } = require('./repair-known-issue-trim-metadata');
 
-test('freezes the 16 adjudicated non-Toyota trim repairs', () => {
-  assert.equal(REPAIRS.length, 16);
+test('freezes the 17 adjudicated non-Toyota trim repairs', () => {
+  assert.equal(REPAIRS.length, 17);
   assert.deepEqual(validateRepairs(), []);
   assert.equal(REPAIRS.some((row) => row.make === 'Toyota' || row.make === 'GMC'), false);
   for (const row of REPAIRS) {
     assert.equal(row.beforeTrims.some(looksLikeApplicabilityProse), true, row.id);
     assert.equal(row.afterTrims.some(looksLikeApplicabilityProse), false, row.id);
   }
+});
+
+test('classifies already-applied rows separately from pending rows', () => {
+  const [first, second] = REPAIRS;
+  const result = classifyRows([
+    { id: first.id, make: first.make, model: first.model, status: 'published', trims: first.afterTrims },
+    { id: second.id, make: second.make, model: second.model, status: 'published', trims: second.beforeTrims },
+  ], [first, second]);
+  assert.deepEqual(result.failures, []);
+  assert.deepEqual(result.alreadyApplied.map((row) => row.id), [first.id]);
+  assert.deepEqual(result.pending.map((row) => row.id), [second.id]);
 });
 
 test('preserves real Mazda Protege trims while removing the synthetic entry', () => {

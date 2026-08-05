@@ -32,6 +32,11 @@ function argValue(args, flag) {
   return path.resolve(PROJECT_ROOT, args[index + 1]);
 }
 
+function optionalArgValue(args, flag) {
+  const index = args.indexOf(flag);
+  return index >= 0 && args[index + 1] ? path.resolve(PROJECT_ROOT, args[index + 1]) : null;
+}
+
 function sha256(file) {
   return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 }
@@ -49,9 +54,9 @@ function requireDependency(name) {
 function looksLikeApplicabilityProse(trim) {
   const value = String(trim || '').trim();
   return /^(?:only\s+)?vehicles?\b/i.test(value) ||
-    /^(?:certain|applicable|affected)\s+(?:vehicles?|models?)\b/i.test(value) ||
+    /^(?:certain|applicable|affected)\b/i.test(value) ||
     /^all(?:\s+trims?\b|\s*\()/i.test(value) ||
-    /\b(?:verify (?:eligibility )?(?:by|with) vin|verify the vin|equipped with|sales code|built (?:from|between|before|after|on)|production dates?|campaign (?:eligibility|population)|(?:north american|u\.s\.|canadian|mexican|european|uk|eu) market)\b/i.test(value);
+    /\b(?:verify (?:eligibility )?(?:by|with) vin|verify the vin|vin eligibility|included by vin|production eligibility|equipped with|sales code|built (?:from|between|before|after|on)|production dates?|campaign (?:eligibility|population)|(?:north american|u\.s\.|canadian|mexican|european|uk|eu) market)\b/i.test(value);
 }
 
 function validateBaseline(baseline) {
@@ -112,6 +117,30 @@ function restoreTarget(row) {
   return row && (row.patch || row.target);
 }
 
+function trimRepairsToOverlays(document) {
+  if (!document || !Array.isArray(document.repairs)) throw new Error('trim repair overlay must contain repairs[]');
+  return document.repairs.map((row) => ({
+    id: row.id,
+    patch: { make: row.make, model: row.model, status: 'published', trims: row.afterTrims },
+  }));
+}
+
+function validateOverlays(overlays) {
+  const errors = [];
+  const ids = overlays.map((row) => row && row.id).filter(Boolean);
+  if (ids.length !== overlays.length) errors.push('overlay contains a row without an id');
+  if (new Set(ids).size !== ids.length) errors.push('overlay contains duplicate ids');
+  for (const row of overlays) {
+    if (!row.patch || typeof row.patch !== 'object' || Array.isArray(row.patch) || Object.keys(row.patch).length === 0) {
+      errors.push(`${row.id || '<missing id>'}: overlay patch must be a non-empty object`);
+      continue;
+    }
+    const unsupported = Object.keys(row.patch).filter((field) => !FULL_RECORD_FIELDS.includes(field));
+    if (unsupported.length) errors.push(`${row.id}: unsupported overlay fields: ${unsupported.join(', ')}`);
+  }
+  return errors;
+}
+
 function stableValue(value) {
   if (Array.isArray(value)) return value.map(stableValue);
   if (value && typeof value === 'object') {
@@ -143,14 +172,18 @@ function expectedArchivedHoldIds(baseline, manifest) {
   return new Set(manifest.hold.map((row) => row.id).filter((id) => baselineArchivedIds.has(id)));
 }
 
-async function verify(pool, baseline, manifest, allowedDeadModels = new Set()) {
+async function verify(pool, baseline, manifest, allowedDeadModels = new Set(), overlays = []) {
   const archivedIds = baseline.auditArchivedIds.map((row) => row.id);
   const holdIds = new Set(manifest.hold.map((row) => row.id));
   const archivedHoldIds = expectedArchivedHoldIds(baseline, manifest);
   const archivedRestoreIds = archivedIds.filter((id) => !holdIds.has(id));
-  const restoreIds = manifest.restore.map((row) => row.id);
   const projected = projectedStatusCounts(baseline, manifest);
-  const patchFields = [...new Set(manifest.restore.flatMap((row) => Object.keys(restoreTarget(row))))];
+  const expectedById = new Map(manifest.restore.map((row) => [row.id, { ...restoreTarget(row) }]));
+  for (const overlay of overlays) {
+    expectedById.set(overlay.id, { ...(expectedById.get(overlay.id) || {}), ...overlay.patch });
+  }
+  const expectedIds = [...expectedById.keys()];
+  const patchFields = [...new Set([...expectedById.values()].flatMap((patch) => Object.keys(patch)))];
 
   const [statusResult, signatureResult, restoredArchivedResult, proseResult, restoredRowsResult] = await Promise.all([
     pool.query(`SELECT status, count(*)::int AS count FROM "KnownIssue" GROUP BY status ORDER BY status`),
@@ -175,9 +208,9 @@ async function verify(pool, baseline, manifest, allowedDeadModels = new Set()) {
     pool.query(`
       SELECT id, ${patchFields.map((field) => `"${field}"`).join(', ')}
       FROM "KnownIssue"
-      WHERE id IN (${placeholders(restoreIds)})
+      WHERE id IN (${placeholders(expectedIds)})
       ORDER BY id
-    `, restoreIds),
+    `, expectedIds),
   ]);
 
   const remainingProseRows = proseResult.rows
@@ -185,16 +218,16 @@ async function verify(pool, baseline, manifest, allowedDeadModels = new Set()) {
     .filter((row) => row.trims.some(looksLikeApplicabilityProse));
   const restoredById = new Map(restoredRowsResult.rows.map((row) => [row.id, row]));
   const patchMismatches = [];
-  for (const expected of manifest.restore) {
-    const actual = restoredById.get(expected.id);
+  for (const [id, expected] of expectedById) {
+    const actual = restoredById.get(id);
     if (!actual) {
-      patchMismatches.push({ id: expected.id, fields: ['<missing row>'] });
+      patchMismatches.push({ id, fields: ['<missing row>'] });
       continue;
     }
-    const fields = Object.entries(restoreTarget(expected))
+    const fields = Object.entries(expected)
       .filter(([field, value]) => !valuesEqual(actual[field], value))
       .map(([field]) => field);
-    if (fields.length > 0) patchMismatches.push({ id: expected.id, fields });
+    if (fields.length > 0) patchMismatches.push({ id, fields });
   }
   const signatureIds = new Set(signatureResult.rows.map((row) => row.id));
   const signatureSetMismatches = [
@@ -267,12 +300,18 @@ async function main() {
   const args = process.argv.slice(2);
   const baselineFile = argValue(args, '--baseline');
   const manifestFile = argValue(args, '--manifest');
+  const overlayFile = optionalArgValue(args, '--overlay');
   const baseline = JSON.parse(fs.readFileSync(baselineFile, 'utf8'));
   const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
   const baselineErrors = validateBaseline(baseline);
   if (baselineErrors.length > 0) throw new Error(`Invalid baseline: ${baselineErrors.join('; ')}`);
   const manifestErrors = validateManifest(manifest);
   if (manifestErrors.length > 0) throw new Error(`Invalid manifest: ${manifestErrors.join('; ')}`);
+  const overlays = overlayFile
+    ? trimRepairsToOverlays(JSON.parse(fs.readFileSync(overlayFile, 'utf8')))
+    : [];
+  const overlayErrors = validateOverlays(overlays);
+  if (overlayErrors.length > 0) throw new Error(`Invalid overlay: ${overlayErrors.join('; ')}`);
   const allowedDeadModels = new Set();
   for (let index = 0; index < args.length; index += 1) {
     if (args[index] === '--allow-dead-model' && args[index + 1]) {
@@ -288,11 +327,15 @@ async function main() {
     idleTimeoutMillis: 30000,
   });
   try {
-    const result = await verify(pool, baseline, manifest, allowedDeadModels);
+    const result = await verify(pool, baseline, manifest, allowedDeadModels, overlays);
     result.baselineFile = path.relative(PROJECT_ROOT, baselineFile);
     result.baselineSha256 = sha256(baselineFile);
     result.manifestFile = path.relative(PROJECT_ROOT, manifestFile);
     result.manifestSha256 = sha256(manifestFile);
+    if (overlayFile) {
+      result.overlayFile = path.relative(PROJECT_ROOT, overlayFile);
+      result.overlaySha256 = sha256(overlayFile);
+    }
     console.log(JSON.stringify(result, null, 2));
     if (!result.passed) process.exitCode = 1;
   } finally {
@@ -312,8 +355,10 @@ module.exports = {
   looksLikeApplicabilityProse,
   projectedStatusCounts,
   restoreTarget,
+  trimRepairsToOverlays,
   validateBaseline,
   validateManifest,
+  validateOverlays,
   valuesEqual,
   verify,
 };

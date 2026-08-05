@@ -7,24 +7,7 @@
 const path = require('node:path');
 const { resolveKnownIssueConnectionString } = require('./apply-known-issue-catalog-deeplinks');
 
-const REPAIRS = [
-  ['mercedes-benz-b-class-panoramic-sunroof-drain-clog-water-leak', 'Mercedes-Benz', 'B-Class', ['Models equipped with Panoramic Sunroof'], []],
-  ['volvo-v70-sunroof-drain-blockage-and-2008', 'Volvo', 'V70', ['models equipped with sunroof'], []],
-  ['audi-a8-door-handle-comfort-access-2004', 'Audi', 'A8', ['Models equipped with Advanced Key/Comfort Access'], []],
-  ['volvo-v70-power-tailgate-module-and-2008', 'Volvo', 'V70', ['models equipped with power tailgate'], []],
-  ['audi-s8-air-suspension-failure-2013', 'Audi', 'S8', ['Vehicles with adaptive air suspension; confirm DTC and symptom code before parts'], []],
-  ['seat-arona-rear-left-seatbelt-buckle-can-release-involuntarily', 'SEAT', 'Arona', ['All trims (early build)'], []],
-  ['seat-arona-rear-brake-discs-corrode-seize-very-low-mileage', 'SEAT', 'Arona', ['All trims'], []],
-  ['seat-arona-infotainment-system-goes-black-continuously-reboots', 'SEAT', 'Arona', ['All (multiple infotainment generations)'], []],
-  ['mercedes-benz-gla-mbux-comand-infotainment-black-screen-reboot', 'Mercedes-Benz', 'GLA', ['All trims (MBUX on H247, COMAND/Audio 20 on X156)'], []],
-  ['mercedes-benz-gla-12v-battery-parasitic-drain-no-start-after-sitting', 'Mercedes-Benz', 'GLA', ['All trims (incl. GLA 250e hybrid)'], []],
-  ['opel-grandland-front-lower-suspension-arm-ball-joint-bolt-failure', 'Opel', 'Grandland', ['All (built 24 Jul 2023 - 28 Feb 2025)'], []],
-  ['audi-a6-air-suspension-compressor-2012', 'Audi', 'A6', ['Vehicles equipped with adaptive suspension'], []],
-  ['audi-a6-instrument-cluster-pixel-loss-2000', 'Audi', 'A6', ['Vehicles equipped with Audi virtual cockpit Gen2+'], []],
-  ['jeep-grand-cherokee-air-suspension-2011', 'Jeep', 'Grand Cherokee', ['Vehicles equipped with Quadra-Lift air suspension (sales code SER)'], []],
-  ['mazda-cx-60-wireless-qi-charger-overheating-won-t-fast-charge-phone', 'Mazda', 'CX-60', ['Vehicles equipped with the Qi wireless charger'], []],
-  ['mazda-protege-ignition-switch-may-overheat-catch-fire', 'Mazda', 'Protege', ['DX', 'LX', 'ES', 'SE', 'all trims'], ['DX', 'LX', 'ES', 'SE']],
-].map(([id, make, model, beforeTrims, afterTrims]) => ({ id, make, model, beforeTrims, afterTrims }));
+const REPAIRS = require('../data/known-issue-trim-metadata-repairs-2026-08-05.json').repairs;
 
 function requireDependency(name) {
   try {
@@ -71,6 +54,28 @@ function verifyRows(rows, repairs = REPAIRS, state = 'beforeTrims') {
   return failures;
 }
 
+function classifyRows(rows, repairs = REPAIRS) {
+  const byId = new Map(rows.map((row) => [row.id, row]));
+  const pending = [];
+  const alreadyApplied = [];
+  const failures = [];
+  for (const repair of repairs) {
+    const row = byId.get(repair.id);
+    if (!row) {
+      failures.push({ id: repair.id, reason: 'missing row' });
+      continue;
+    }
+    if (row.make !== repair.make || row.model !== repair.model || row.status !== 'published') {
+      failures.push({ id: repair.id, reason: 'identity/status drift', actual: { make: row.make, model: row.model, status: row.status } });
+      continue;
+    }
+    if (sameArray(row.trims, repair.beforeTrims)) pending.push(repair);
+    else if (sameArray(row.trims, repair.afterTrims)) alreadyApplied.push(repair);
+    else failures.push({ id: repair.id, reason: 'unexpected trim state', actual: row.trims });
+  }
+  return { pending, alreadyApplied, failures };
+}
+
 async function run({ apply = false } = {}) {
   const validationErrors = validateRepairs();
   if (validationErrors.length) throw new Error(validationErrors.join('; '));
@@ -86,21 +91,31 @@ async function run({ apply = false } = {}) {
       WHERE id = ANY($1)
       ${apply ? 'FOR UPDATE' : ''}
     `, [ids])).rows;
-    const preStateFailures = verifyRows(before);
-    if (preStateFailures.length) throw new Error(`pre-state verification failed: ${JSON.stringify(preStateFailures)}`);
+    const classification = classifyRows(before);
+    if (classification.failures.length) throw new Error(`pre-state verification failed: ${JSON.stringify(classification.failures)}`);
 
     if (!apply) {
-      return { applied: false, verifiedRows: before.length, repairs: REPAIRS };
+      return {
+        applied: false,
+        verifiedRows: before.length,
+        pendingRows: classification.pending.length,
+        alreadyAppliedRows: classification.alreadyApplied.length,
+        repairs: REPAIRS,
+      };
     }
 
-    const payload = REPAIRS.map((row) => ({ id: row.id, trims: row.afterTrims }));
-    const update = await client.query(`
-      UPDATE "KnownIssue" AS issue
-      SET trims = patch.trims, "updatedAt" = now()
-      FROM jsonb_to_recordset($1::jsonb) AS patch(id text, trims text[])
-      WHERE issue.id = patch.id
-    `, [JSON.stringify(payload)]);
-    if (update.rowCount !== REPAIRS.length) throw new Error(`updated ${update.rowCount} of ${REPAIRS.length} rows`);
+    const payload = classification.pending.map((row) => ({ id: row.id, trims: row.afterTrims }));
+    let updatedRows = 0;
+    if (payload.length) {
+      const update = await client.query(`
+        UPDATE "KnownIssue" AS issue
+        SET trims = patch.trims, "updatedAt" = now()
+        FROM jsonb_to_recordset($1::jsonb) AS patch(id text, trims text[])
+        WHERE issue.id = patch.id
+      `, [JSON.stringify(payload)]);
+      updatedRows = update.rowCount;
+      if (updatedRows !== payload.length) throw new Error(`updated ${updatedRows} of ${payload.length} pending rows`);
+    }
 
     const after = (await client.query(`
       SELECT id, make, model, trims, status
@@ -110,7 +125,12 @@ async function run({ apply = false } = {}) {
     const postStateFailures = verifyRows(after, REPAIRS, 'afterTrims');
     if (postStateFailures.length) throw new Error(`post-state verification failed: ${JSON.stringify(postStateFailures)}`);
     await client.query('COMMIT');
-    return { applied: true, verifiedRows: after.length, updatedRows: update.rowCount };
+    return {
+      applied: true,
+      verifiedRows: after.length,
+      updatedRows,
+      alreadyAppliedRows: classification.alreadyApplied.length,
+    };
   } catch (error) {
     if (apply) await client.query('ROLLBACK');
     throw error;
@@ -129,4 +149,4 @@ if (require.main === module) {
     });
 }
 
-module.exports = { REPAIRS, sameArray, validateRepairs, verifyRows };
+module.exports = { REPAIRS, classifyRows, sameArray, validateRepairs, verifyRows };

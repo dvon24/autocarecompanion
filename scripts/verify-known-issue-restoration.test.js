@@ -6,8 +6,10 @@ const {
   looksLikeApplicabilityProse,
   projectedStatusCounts,
   restoreTarget,
+  trimRepairsToOverlays,
   validateBaseline,
   validateManifest,
+  validateOverlays,
   valuesEqual,
 } = require('./verify-known-issue-restoration');
 
@@ -35,6 +37,8 @@ test('rejects audit applicability prose stored as trims', () => {
     'All trims (early build)',
     'All (multiple infotainment generations)',
     'Certain vehicles included by VIN',
+    'Certain RAV4 vehicles included by VIN',
+    'RAV4 and RAV4 Hybrid vehicles included by VIN',
   ]) {
     assert.equal(looksLikeApplicabilityProse(trim), true, trim);
   }
@@ -73,6 +77,17 @@ test('accepts the frozen restore target shape and rejects conflicting aliases', 
     restore: [{ id: 'a', patch: { title: 'One' }, target: { title: 'Two' } }],
     hold: [],
   }), ['a: patch and target conflict']);
+});
+
+test('converts and validates trim-repair overlays', () => {
+  const overlays = trimRepairsToOverlays({ repairs: [{
+    id: 'issue-a', make: 'Audi', model: 'A8', afterTrims: [],
+  }] });
+  assert.deepEqual(overlays, [{
+    id: 'issue-a',
+    patch: { make: 'Audi', model: 'A8', status: 'published', trims: [] },
+  }]);
+  assert.deepEqual(validateOverlays(overlays), []);
 });
 
 test('projects exact status transitions from the captured baseline', () => {
