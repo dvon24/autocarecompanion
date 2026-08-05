@@ -19,6 +19,7 @@ const {
   loadManifests,
   productUrlError,
   recommendationHasCommerce,
+  resolveKnownIssueConnectionString,
   validateManifest,
 } = require('./apply-known-issue-catalog-deeplinks');
 
@@ -250,23 +251,42 @@ function summarizeReconciliation(reconciliation, sampleSize = 10) {
   return summary;
 }
 
-async function readLiveRows(connectionString) {
+function liveScope(filters = {}, tableAlias = '') {
+  const prefix = tableAlias ? `${tableAlias}.` : '';
+  const clauses = [`${prefix}status = 'published'`];
+  const values = [];
+  for (const [field, value] of [['make', filters.make], ['model', filters.model]]) {
+    if (!String(value || '').trim()) continue;
+    values.push(String(value).trim());
+    clauses.push(`lower(${prefix}"${field}") = lower($${values.length})`);
+  }
+  return { sql: clauses.join(' AND '), values };
+}
+
+async function readLiveRows(connectionString, filters = {}) {
   const { Pool } = require('pg');
   const pool = new Pool({ connectionString, max: 2, idleTimeoutMillis: 30000 });
   const client = await pool.connect();
   try {
     await client.query('BEGIN ISOLATION LEVEL REPEATABLE READ READ ONLY');
+    const issueScope = liveScope(filters);
     const rows = await client.query(
       `SELECT id, make, model, years, trims, engines, category, title, description, solution, severity,
               confidence, symptoms, "affectedSystems", "dtcCodes", "estimatedCostLow", "estimatedCostHigh",
               "typicalMileageLow", "typicalMileageHigh", citations, "communityRecommendations", "fixParts",
               "humanApproved", "reportCount", source, status, "lastReportedByOwners", "reviewedOn",
               "contentUpdatedOn", "contentUpdateSummary", "relatedIssueIds"
-         FROM "KnownIssue" WHERE status='published' ORDER BY id`,
+         FROM "KnownIssue" WHERE ${issueScope.sql} ORDER BY id`,
+      issueScope.values,
     );
+    const clickScope = liveScope(filters, 'k');
     const clicks = await client.query(
-      `SELECT "knownIssueId", "partBrand", "partName", link, "recommendationIdx", "clickedAt"
-         FROM "AffiliateClick" ORDER BY "clickedAt" DESC`,
+      `SELECT a."knownIssueId", a."partBrand", a."partName", a.link, a."recommendationIdx", a."clickedAt"
+         FROM "AffiliateClick" a
+         JOIN "KnownIssue" k ON k.id = a."knownIssueId"
+        WHERE ${clickScope.sql}
+        ORDER BY a."clickedAt" DESC`,
+      clickScope.values,
     );
     await client.query('COMMIT');
     return { rows: rows.rows, clicks: clicks.rows };
@@ -343,11 +363,10 @@ async function main() {
   let snapshot;
   let snapshotFile;
   if (args.includes('--export')) {
-    require('dotenv').config({ path: path.join(PROJECT_ROOT, '.env.local') });
-    const connectionString = process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL;
-    if (!connectionString) throw new Error('No POSTGRES_PRISMA_URL or DATABASE_URL set.');
+    const filters = { make: argValue(args, '--make', ''), model: argValue(args, '--model', '') };
+    const connectionString = resolveKnownIssueConnectionString();
     snapshotFile = path.resolve(PROJECT_ROOT, argValue(args, '--output', path.relative(PROJECT_ROOT, DEFAULT_SNAPSHOT)));
-    const live = await readLiveRows(connectionString);
+    const live = await readLiveRows(connectionString, filters);
     snapshot = buildSnapshot(live.rows, live.clicks);
     writeJsonAtomic(snapshotFile, snapshot);
   } else {
@@ -394,6 +413,7 @@ module.exports = {
   claimsForRow,
   filterSnapshotRecords,
   inventoryForRecords,
+  liveScope,
   reconcileSnapshot,
   summarizeReconciliation,
 };

@@ -33,7 +33,7 @@ test('a mocked lookup returns sanitized candidate-only fitment without the accou
     '<root err_num="0"><model><id>0042</id><data>A6</data></model></root>',
     '<root err_num="0"><product><id>0008</id><data>BELTS, HOSES, TENSIONERS</data></product></root>',
     '<root err_num="0"><engine><id>V6~3.2L~~3123</id><data>V6 3.2L 3123cc</data></engine></root>',
-    '<root err_num="0"><partsdata><supplier>Example</supplier><part_no>T123</part_no><part_key>0001</part_key><part_type>Engine Timing Chain Tensioner</part_type><qty>1</qty></partsdata><partsdata><supplier>Wrong</supplier><part_no>A1</part_no><part_key>0002</part_key><part_type>Accessory Drive Belt Tensioner</part_type></partsdata></root>',
+    '<root err_num="0"><partsdata><supplier>Example</supplier><part_no>T123</part_no><part_key>0001</part_key><part_type>Engine Timing Chain Tensioner</part_type><position>Front</position><qty>1</qty></partsdata><partsdata><supplier>Wrong</supplier><part_no>A1</part_no><part_key>0002</part_key><part_type>Accessory Drive Belt Tensioner</part_type></partsdata></root>',
   ];
   const seen = [];
   const fetchImpl = async (url) => {
@@ -51,6 +51,7 @@ test('a mocked lookup returns sanitized candidate-only fitment without the accou
   assert.equal(result.candidateOnly, true);
   assert.equal(result.candidates.length, 1);
   assert.equal(result.candidates[0].partNumber, 'T123');
+  assert.equal(result.candidates[0].catalogAttributes.position, 'Front');
   assert.equal(JSON.stringify(result).includes('SECRET-ID'), false);
   assert.equal(seen.every((url) => url.searchParams.get('id') === 'SECRET-ID'), true);
 });

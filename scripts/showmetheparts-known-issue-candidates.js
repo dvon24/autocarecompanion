@@ -94,6 +94,7 @@ function candidateFromPart(part, context) {
     quantityPerApplication: part.qty || '',
     aaiaBrandId: part.aaiabrandid || '',
     image: part.image || '',
+    catalogAttributes: { ...part },
     fitment: context,
     candidateOnly: true,
   };
@@ -213,7 +214,10 @@ async function findCandidates(input, options = {}) {
 }
 
 async function main() {
-  require('dotenv').config({ path: path.join(PROJECT_ROOT, '.env.local') });
+  const envFile = process.env.SHOWMETHEPARTS_ENV_FILE
+    ? path.resolve(process.env.SHOWMETHEPARTS_ENV_FILE)
+    : path.join(PROJECT_ROOT, '.env.local');
+  require('dotenv').config({ path: envFile });
   const args = process.argv.slice(2);
   const input = {
     year: argValue(args, '--year'),
