@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "generatedOn": "2026-08-05",
+  "requiresIndependentApproval": true,
+  "sourceAdjudication": "data/known-issue-toyota-rav4-adjudication-2026-08-05.json",
+  "rows": [
+    {
+      "id": "toyota-rav4-2ar-fe-2-5l-excessive-oil-consumption-from-low-tension-pisto",
+      "expectedAuditAfterSha256": "ef13fd6d3058e2debac5f1bb3784bad703ef6f56ca4e948c71401e90ed6364b0",
+      "identityReview": "Restores the same 2AR-FE oil-consumption topic without borrowing the 2AZ-FE warranty program or asserting a ring-design defect.",
+      "patch": {
+        "years": [2013, 2014, 2015, 2016, 2017], "trims": [], "engines": ["2AR-FE 2.5L I4"],
+        "title": "2AR-FE Engine Oil Level Drops Between Services — Owner Reports",
+        "description": "Owner discussions document oil consumption on individual RAV4 vehicles with the 2AR-FE engine. They do not establish a low-tension piston-ring design defect, one-quart-per-1,000-mile prevalence, mileage band, updated piston design, or mandatory internal repair. Toyota T-SB-0158-14 Rev2 covers specified 2AZ-FE vehicles and must not be transferred to this different engine.",
+        "solution": "Check the oil on level ground using the owner's-manual procedure, correct external leaks, document miles and measured oil added, and have Toyota perform a controlled consumption test if loss persists. Inspect PCV operation and engine condition using 2AR-FE service information before internal repair. Stop driving if the oil-pressure warning appears or the level cannot be kept safe.",
+        "severity": "high", "confidence": "low",
+        "symptoms": ["Oil level falls between services", "Repeated need to add engine oil", "Oil-pressure warning or engine noise if the level becomes dangerously low"],
+        "affectedSystems": ["2AR-FE lubrication system", "external and internal oil-loss diagnosis"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [
+          {"type": "forum", "title": "ToyotaNation: 2AR-FE Oil-Consumption Owner Discussion", "url": "https://www.toyotanation.com/threads/2ar-fe-excessive-oil-consumption.1746728/"},
+          {"type": "forum", "title": "RAV4World: Oil-Consumption Owner Discussion", "url": "https://www.rav4world.com/threads/oil-consumption-issue.341681/"},
+          {"type": "tsb", "title": "Toyota T-SB-0158-14 Rev2: 2AZ Engine Oil-Consumption Inspection Procedure — Nonapplicability Boundary", "url": "https://static.nhtsa.gov/odi/tsbs/2015/MC-10111394-9999.pdf"}
+        ],
+        "communityRecommendations": [{"type": "warning", "content": "Stop driving if the oil-pressure warning appears or the engine oil cannot be maintained at a safe level.", "upvotes": 0}],
+        "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Restored traceable 2AR-FE owner reports and removed the borrowed 2AZ program, ring-cause, prevalence, mileage, DTC, cost, parts, and commerce claims.", "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "toyota-rav4-2az-fe-cold-start-vvt-i-camshaft-gear-timing-rattle",
+      "expectedAuditAfterSha256": "fb2d2e4a70cf577391b91c4d6df4766df7160ece005d835ec71e6503984295be",
+      "identityReview": "Restores the same 2AZ-FE cold-start-rattle topic without transferring a 2AR-FE Camry bulletin or diagnosing the VVT gear.",
+      "patch": {
+        "years": [2004, 2005, 2006, 2007, 2008], "trims": [], "engines": ["2AZ-FE 2.4L I4"],
+        "title": "2AZ-FE Brief Rattle During Cold Start — Owner Reports",
+        "description": "RAV4 owner discussions document a brief rattle during cold startup on individual 2AZ-FE vehicles. A sound alone does not prove VVT-i camshaft-gear, chain, tensioner, oil-pressure, accessory or valvetrain failure, and the reports do not establish a mileage band or damage progression. Toyota T-SB-0041-13 Rev1 is a VIN-gated 2AR-FE Camry bulletin, not evidence for this 2AZ-FE RAV4 topic.",
+        "solution": "Record the first start after an overnight soak and note duration, oil level, oil grade, warning lights and any persistent noise. Check oil pressure and condition, stored codes, accessory drive and valve-timing data using the exact 2AZ-FE procedure before disassembly. Persistent or worsening rattle, an oil-pressure warning or abnormal running needs prompt diagnosis.",
+        "severity": "medium", "confidence": "low",
+        "symptoms": ["Brief rattle immediately after a cold start", "Noise duration or intensity changes over time", "Persistent rattle or warning light requiring prompt diagnosis"],
+        "affectedSystems": ["2AZ-FE lubrication and valve timing", "accessory and valvetrain noise paths"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [
+          {"type": "forum", "title": "ToyotaNation: RAV4 Cold-Start Rattle Discussion", "url": "https://www.toyotanation.com/threads/rav-4-cold-start-timing-chain-rattle.1698573/"},
+          {"type": "forum", "title": "RAV4World: VVT-i Cold-Startup Rattle Discussion", "url": "https://www.rav4world.com/threads/vvti-cam-gear-cold-startup-rattle-harmful.299844/"},
+          {"type": "tsb", "title": "Toyota T-SB-0041-13 Rev1: 2AR-FE Camry Brief Cold-Start Rattle — Nonapplicability Boundary", "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10132100-9999.pdf"}
+        ],
+        "communityRecommendations": [], "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Restored 2AZ-FE owner reports, corrected the 2009-2010 engine scope, and removed the transferred Camry bulletin, assumed gear cause, mileage, damage, parts, and commerce claims.", "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "toyota-rav4-pre-collision-system-toyota-safety-sense-phantom-braking",
+      "expectedAuditAfterSha256": "8b5b84783a39f7e081ffbd6b5fd9062fde10edb1ef1e7ec717cc9992564b005c",
+      "identityReview": "Restores the same unexpected-PCS-braking topic as owner complaints and manual-defined limitations, not an adjudicated software defect.",
+      "patch": {
+        "years": [2019], "trims": [], "engines": [],
+        "title": "2019 RAV4 Unexpected Pre-Collision-System Braking — Owner Complaints",
+        "description": "Owner complaint listings include individual 2019 RAV4 braking events attributed by drivers to the Pre-Collision System. Complaints do not establish a common calibration defect, affected population, trigger pattern or software remedy. Toyota's manual states that PCS can apply substantial automatic braking and describes operating limitations and driver settings.",
+        "solution": "Preserve time, speed, road, weather, nearby objects, warning sequence, dash-camera evidence and PCS settings. Maintain control and arrange Toyota diagnosis of stored PCS, brake and chassis data. Inspect sensor visibility and alignment after windshield, grille, collision or suspension work. Report a safety event to NHTSA. Do not promise an update or disable a safety system as a permanent repair from this page.",
+        "severity": "high", "confidence": "low",
+        "symptoms": ["Unexpected automatic braking or deceleration", "PCS warning associated with an event", "Driver reports no apparent obstacle for the intervention"],
+        "affectedSystems": ["pre-collision system", "forward sensors and calibration", "brake and chassis controls"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [
+          {"type": "forum", "title": "CarComplaints: 2019 RAV4 Service-Brake Owner Complaints", "url": "https://www.carcomplaints.com/Toyota/RAV4/2019/brakes/service_brakes.shtml"},
+          {"type": "manual", "title": "Toyota 2019 RAV4 Owner's Manual: Pre-Collision System", "url": "https://www.toyota.com/owners/warranty-owners-manuals/digital/article/rav4/2019/om0r009u/ch04se050402/"}
+        ],
+        "communityRecommendations": [{"type": "warning", "content": "Driver-assistance systems do not replace attentive control. Preserve evidence and report an unexpected safety event to Toyota and NHTSA.", "upvotes": 0}],
+        "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Narrowed a four-year software-defect claim to 2019 owner complaints, manual limitations, evidence preservation, sensor/calibration checks, and NHTSA reporting.", "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "toyota-rav4-uncomfortable-front-seats-causing-lower-back-hip-leg-pain-lo",
+      "expectedAuditAfterSha256": "e1530aea9a770dd6ed2bce149fd73ad805c9e4401952b16541e5d51d7c0b3b51",
+      "identityReview": "Restores the same seat-comfort topic as subjective owner experience with equipment-specific adjustment guidance.",
+      "patch": {
+        "years": [2019], "trims": [], "engines": [],
+        "title": "2019 RAV4 Front-Seat Discomfort on Longer Drives — Owner Reports",
+        "description": "RAV4 owner discussions document lower-back, hip or leg discomfort on longer drives. Comfort is subjective and varies with body dimensions, seating posture, trip duration, trim, manual versus power seat, cushion-angle and lumbar equipment. The reports do not establish a model-wide seat defect, onset time, height-defined population or trade-in frequency.",
+        "solution": "Use the exact owner's-guide adjustments for seat distance, back angle, driver height, cushion-front angle and lumbar support where equipped, while preserving safe pedal reach and airbag posture. Take breaks on long trips and seek medical guidance for persistent pain. Do not install seat-jacker hardware, cushions or wiring-affecting modifications from this page; changes can affect restraint geometry and occupancy sensors.",
+        "severity": "low", "confidence": "low",
+        "symptoms": ["Lower-back, hip or leg discomfort during longer drives", "Pressure or posture concern that changes with seat adjustment"],
+        "affectedSystems": ["front seat adjustment and ergonomics", "seat-mounted restraint and occupancy systems"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [
+          {"type": "forum", "title": "RAV4World: Uncomfortable Seats Owner Discussion", "url": "https://www.rav4world.com/threads/uncomfortable-seats.303677/"},
+          {"type": "forum", "title": "RAV4World: Driver-Seat Back-Pain Discussion", "url": "https://www.rav4world.com/threads/remedy-for-drivers-seat-back-pain.317261/"},
+          {"type": "manual", "title": "Toyota 2019 RAV4 Quick Reference Guide: Front-Seat Adjustments", "url": "https://assets.sia.toyota.com/publications/en/om-s/OM19V1QRG/pdf/OM19V1QRG.pdf"}
+        ],
+        "communityRecommendations": [], "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Narrowed a six-year defect and aftermarket-modification claim to subjective 2019 owner reports and equipment-specific safe adjustment guidance.", "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "toyota-rav4-windshield-cracking-easily-spontaneously-from-normal-use",
+      "expectedAuditAfterSha256": "6be0cf2bc94974c9625b93e392b0d91b246a500eeee398f34797572802efc183",
+      "identityReview": "Restores the same windshield-cracking topic as allegations and owner reports, with no defect determination or no-impact assumption.",
+      "patch": {
+        "years": [2019, 2020, 2021], "trims": [], "engines": [],
+        "title": "2019-2021 RAV4 Windshield-Cracking Allegations and Owner Reports",
+        "description": "A law-firm investigation page and owner discussion document allegations of RAV4 windshield cracking. They are not a court finding, Toyota campaign, NHTSA investigation or defect determination and do not prove no-impact causation, thin glass, frequency or blanket warranty treatment. The crack origin, edge, glass, aperture, molding, prior work and external damage require inspection.",
+        "solution": "Avoid driving when a crack obstructs vision or compromises safe operation. Photograph the crack before repair and have the origin and surrounding glass inspected for impact and edge evidence. Replace glass by exact VIN and equipment. Toyota states that the forward camera must be recalibrated after windshield replacement; confirm driver-assistance operation before returning the vehicle to service.",
+        "severity": "medium", "confidence": "low",
+        "symptoms": ["Windshield crack noticed during normal use", "Crack spreading from an edge or an uncertain origin", "Crack enters the driver's field of view"],
+        "affectedSystems": ["windshield glass and aperture", "forward-camera mounting and calibration", "driver visibility"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [
+          {"type": "forum", "title": "Sauder Schelkopf: Toyota Windshield-Cracking Investigation Page", "url": "https://sauderschelkopf.com/investigations/toyota-windshield-cracking-venza-camry-rav4-class-action-investigation/"},
+          {"type": "forum", "title": "RAV4World: Windshield-Crack Owner Discussion", "url": "https://www.rav4world.com/threads/windshield-cracks.312607/"},
+          {"type": "manual", "title": "Toyota 2022 RAV4 Guidance: Windshield Replacement and Front-Camera Recalibration", "url": "https://www.toyota.com/content/dam/toyotaowners/dom/add-driver-pdfs/2022/rav4/MY22_RAV4_OM_Excerpt_for_Driving_Support_Systems_D2_ML_0208.pdf"}
+        ],
+        "communityRecommendations": [{"type": "warning", "content": "Do not drive when windshield damage obstructs vision or compromises safe operation; camera-equipped vehicles require the specified calibration after glass replacement.", "upvotes": 0}],
+        "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Restored clearly labeled allegations and owner reports, removed defect/frequency/warranty/cost claims, and preserved inspection plus forward-camera recalibration guidance.", "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "toyota-rav4-excessive-road-tire-noise-from-inadequate-cabin-insulation",
+      "expectedAuditAfterSha256": "b06cea535bc692edba95edacca914a5ef651f7f91a3c574c920d0e5dce1bf4fc",
+      "identityReview": "Restores the same road-noise topic as subjective owner experience, not an inadequate-insulation defect.",
+      "patch": {
+        "years": [2019], "trims": [], "engines": [],
+        "title": "2019 RAV4 Road or Tire Noise — Owner Report",
+        "description": "An owner discussion documents wind and tire or road noise in an individual RAV4. It does not establish a twelve-year cabin-insulation defect, measured threshold, common cause or affected population. Tire model, size, pressure and wear, alignment, wheel bearings, road surface, body seals, roof equipment and loose trim can materially change cabin noise.",
+        "solution": "Reproduce the noise on a consistent road and speed, verify tire size and cold pressure, inspect wear, balance, alignment and wheel bearings, and check body seals, roof accessories, underbody panels and loose cargo. Compare with a like-configured vehicle when possible. Do not buy tires or install sound-deadening until the source is isolated and fitment is confirmed.",
+        "severity": "low", "confidence": "low",
+        "symptoms": ["Road or tire noise that changes with pavement or speed", "Wind-like noise that changes with direction or crosswind"],
+        "affectedSystems": ["tires, wheels and bearings", "body seals and aero paths", "cabin trim and cargo noise paths"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [{"type": "forum", "title": "RAV4World: Excessive Wind and Tire or Road Noise", "url": "https://www.rav4world.com/threads/excessive-wind-and-tire-road-noise.298189/"}],
+        "communityRecommendations": [], "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Narrowed a twelve-year inadequate-insulation claim to one 2019 owner report with source localization and no tire or sound-deadening commerce.", "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "toyota-rav4-front-brake-rotor-warping-premature-pad-rotor-wear-causing-p",
+      "expectedAuditAfterSha256": "41c44520b9fe8fb0adab99daec3f63e6cbe4c9192432e9d04d5902d007c3929b",
+      "identityReview": "Restores the same braking-pulsation topic while removing the unmeasured warped-rotor and premature-wear diagnosis.",
+      "patch": {
+        "years": [2017], "trims": [], "engines": [],
+        "title": "2017 RAV4 Brake Pulsation, Noise, or Wear — Owner Complaints",
+        "description": "Owner complaint listings document brake concerns on some 2017 RAV4s. They do not establish a rotor or pad defect, premature-wear rate, cause or universal repair. Pulsation and vibration can result from rotor thickness variation, lateral or hub runout, corrosion or material transfer, caliper and pad condition, wheel or tire variation, or suspension looseness.",
+        "solution": "Confirm the exact symptom and whether it occurs during braking. Inspect pad thickness, caliper movement, hardware, tires, wheels, suspension and hubs, then measure rotor thickness variation and lateral runout using Toyota specifications. Correct the measured cause and verify wheel-fastener torque. Do not select pads or rotors from this page without exact fitment and measurements.",
+        "severity": "medium", "confidence": "low",
+        "symptoms": ["Brake-pedal pulsation", "Steering-wheel or body vibration while braking", "Brake noise or wear concern requiring measurement"],
+        "affectedSystems": ["brake friction surfaces and calipers", "wheel hubs and fasteners", "wheels, tires and suspension"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [{"type": "forum", "title": "CarComplaints: 2017 RAV4 Service-Brake Owner Complaints", "url": "https://www.carcomplaints.com/Toyota/RAV4/2017/brakes/service_brakes.shtml"}],
+        "communityRecommendations": [{"type": "warning", "content": "If stopping performance changes, grinding occurs, or a warning light appears, stop driving and arrange prompt brake inspection.", "upvotes": 0}],
+        "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Narrowed an eight-year parts and storage-bulletin misuse to 2017 owner complaints and measurement-led brake, hub, wheel, tire and suspension diagnosis.", "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "toyota-rav4-liftgate-2019",
+      "expectedAuditAfterSha256": "7a264037bc718c35c36f2d45377d14fb1597b64346073ed136955606cec65614",
+      "identityReview": "Restores the same 2019 liftgate-malfunction topic as one owner report plus manual-defined configuration and setting checks.",
+      "patch": {
+        "years": [2019], "trims": [], "engines": [],
+        "title": "2019 RAV4 Power Liftgate Stops or Does Not Respond — Owner Report",
+        "description": "An owner report documents a 2019 RAV4 power-liftgate malfunction. One report does not establish a five-year defect, relay, sensor, module or strut cause, software remedy or report count. Toyota's guidance distinguishes system enablement, opening-height selection, obstruction and jam protection, kick-sensor conditions and environmental limits.",
+        "solution": "Confirm the vehicle is equipped with the power back door, verify the feature and opening-height settings, remove ice or external load, and note which switch input fails and whether warnings or unusual sounds occur. Do not force the door or replace parts by symptom. Have Toyota test 12-volt voltage, switches, sensors, spindles, wiring and stored body data using the exact VIN configuration.",
+        "severity": "low", "confidence": "low",
+        "symptoms": ["Power liftgate stops during travel", "Liftgate does not respond to one or more inputs", "Liftgate behavior changes with settings or environmental conditions"],
+        "affectedSystems": ["power back door controls", "liftgate spindles and sensors", "12-volt body electrical system"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [
+          {"type": "forum", "title": "Reddit: 2019 RAV4 Power-Liftgate Malfunction Owner Report", "url": "https://www.reddit.com/r/MechanicAdvice/comments/mv9r8r/2019_toyota_rav4_power_liftgate_malfunction/"},
+          {"type": "manual", "title": "Toyota 2019 RAV4 Quick Reference Guide", "url": "https://assets.sia.toyota.com/publications/en/om-s/OM19V1QRG/pdf/OM19V1QRG.pdf"}
+        ],
+        "communityRecommendations": [], "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Narrowed a five-year cause, count and parts claim to one 2019 owner report with equipment, setting, environmental and diagnostic gates.", "relatedIssueIds": []
+      }
+    }
+  ]
+}

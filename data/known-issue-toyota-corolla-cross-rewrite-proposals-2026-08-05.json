@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "generatedOn": "2026-08-05",
+  "requiresIndependentApproval": true,
+  "sourceAdjudication": "data/known-issue-toyota-corolla-cross-adjudication-2026-08-05.json",
+  "rows": [
+    {
+      "id": "toyota-corolla-cross-excessive-cabin-road-noise-booming-rough-pavement",
+      "expectedAuditAfterSha256": "7f21bca2e22055c8ee7b4aa6ed7ad53070bbfe5005399779e8859e3d191a7f92",
+      "identityReview": "Restores the same cabin-noise topic as subjective, owner-reported NVH rather than a factory-insulation defect.",
+      "patch": {
+        "years": [2022, 2023, 2024, 2025], "trims": [], "engines": [],
+        "title": "Cabin Road Noise or Booming on Rough Pavement — Owner Reports",
+        "description": "Corolla Cross owner discussions document cabin road noise or booming that some drivers find objectionable on rough pavement. Noise perception varies with road surface, tire model, size, pressure and wear, wheel bearings, cargo and trim, and vehicle configuration. These reports do not establish a factory sound-insulation defect, gas-versus-hybrid ranking, measured threshold, or affected population.",
+        "solution": "Reproduce the noise on the same road and speed, verify tire size and cold pressure, inspect tire wear, balance, alignment and wheel bearings, and remove loose cargo before comparing with a like-configured vehicle. Do not add invasive sound-deadening or select replacement tires from this page without isolating the source and confirming exact fitment.",
+        "severity": "low", "confidence": "low",
+        "symptoms": ["Road or tire noise on coarse pavement", "Low-frequency booming that changes with speed or road surface"],
+        "affectedSystems": ["tires, wheels, and bearings", "cabin trim and body sound paths"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [
+          {"type": "forum", "title": "Corolla Cross Forum: Excessive Road Noise Discussion", "url": "https://www.corollacrossforum.com/threads/excessive-road-noise-do-you-have-this.541/"},
+          {"type": "forum", "title": "Corolla Cross Forum: Road-Noise Reduction Discussion", "url": "https://www.corollacrossforum.com/threads/elimination-of-road-noise.1567/"}
+        ],
+        "communityRecommendations": [], "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Restored subjective owner reports with measurement and tire-condition context; removed prevalence, configuration ranking, cause, cost, modification, and commerce claims.", "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "toyota-corolla-cross-front-brake-squeal-squeak-low-speed",
+      "expectedAuditAfterSha256": "c579e08ab4a083886fa0eddbfb6c91e24b6920b3fe0653862dc2237549008d07",
+      "identityReview": "Restores the same low-speed brake-noise topic limited to traceable owner reports and no assumed cause.",
+      "patch": {
+        "years": [2024], "trims": [], "engines": [],
+        "title": "2024 Corolla Cross Low-Speed Brake Squeal or Squeak — Owner Reports",
+        "description": "Owner discussions document low-speed brake squeal on individual Corolla Cross vehicles, including a 2024 example. A sound alone does not establish glazed pads, corrosion, shield contact, inadequate break-in, a hybrid-regeneration cause, or a model-wide defect. Moisture, temperature, surface condition, debris, wear indicators and hardware all require inspection.",
+        "solution": "Record whether the sound occurs cold, wet, after storage, forward or reverse, and with light or firm braking. Inspect pad thickness, rotor condition and measurements, hardware, caliper movement, shields and debris using the exact configuration. If stopping performance changes or grinding occurs, stop driving and arrange prompt inspection. Do not apply lubricant to friction surfaces or order pads from this report.",
+        "severity": "low", "confidence": "low",
+        "symptoms": ["Squeal or squeak during low-speed braking", "Noise that changes with moisture, temperature, direction, or pedal force"],
+        "affectedSystems": ["front brake friction surfaces", "caliper hardware and shields"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [
+          {"type": "forum", "title": "Corolla Cross Forum: 2024 Squealing Brakes", "url": "https://www.corollacrossforum.com/threads/squealing-brakes-2024-corolla-cross.1111/"},
+          {"type": "forum", "title": "Toyota Owners Club: Corolla and Corolla Cross Brake-Noise Discussion", "url": "https://www.toyotaownersclub.com/forums/topic/212540-noisy-brakes/"}
+        ],
+        "communityRecommendations": [{"type": "warning", "content": "If braking performance changes or grinding occurs, stop driving and arrange prompt brake inspection.", "upvotes": 0}],
+        "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Narrowed a four-year parts card to traceable 2024 owner reports and measurement-first brake inspection; removed transferred TSB, cost, warranty, and commerce claims.", "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "toyota-corolla-cross-fuel-gauge-fuel-level-sender-reads-inaccurately",
+      "expectedAuditAfterSha256": "3e0bb6855fa7cc93191512a475ccfd66ff5a943a510d071c96e9d145d4da7c68",
+      "identityReview": "Restores the same fuel-level concern without diagnosing the sender or combining gas and hybrid causes.",
+      "patch": {
+        "years": [2022, 2023, 2024], "trims": [], "engines": [],
+        "title": "Fuel-Gauge Reading or Fill-Amount Concern — Owner Reports",
+        "description": "Multiple Corolla Cross owner discussions describe gauge readings or fill amounts that did not match expectations. The amount accepted during one fill is not total tank capacity because usable fuel remains. These reports do not prove a failed sender, common gas-and-hybrid mechanism, combination-meter defect, or integrated pump replacement.",
+        "solution": "Record odometer, indicated level, distance since fill, pump shutoff and actual gallons over several normal fill cycles. Compare the observation with the exact owner's-manual capacity and reserve behavior, check for leaks or fuel odor, scan for related faults, and have Toyota diagnose the sender circuit, tank, meter and configuration if the reading remains inconsistent. Confirm VIN before any part selection.",
+        "severity": "low", "confidence": "low",
+        "symptoms": ["Gauge does not reach or remain at the expected indication", "Indicated range or level changes unexpectedly", "Fill amount seems inconsistent with the displayed level"],
+        "affectedSystems": ["fuel-level indication", "fuel tank and sender circuit", "combination meter"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [
+          {"type": "forum", "title": "Corolla Cross Forum: Fuel-Tank or Sender Concern", "url": "https://www.corollacrossforum.com/threads/fuel-tank-sender-issue-maybe-like-the-rav4-issue.112/"},
+          {"type": "forum", "title": "Corolla Cross Forum: Fuel-Gauge Reading Concern", "url": "https://www.corollacrossforum.com/threads/fuel-gauge-reading-issue.466/"},
+          {"type": "forum", "title": "Corolla Cross Forum: Fuel-Gauge Problem Discussion", "url": "https://www.corollacrossforum.com/threads/fuel-gauge-problem.912/"}
+        ],
+        "communityRecommendations": [], "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Restored multiple owner observations while removing sender diagnosis, gas/hybrid common cause, capacity inference, warranty, cost, parts, and commerce claims.", "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "toyota-corolla-cross-hybrid-12v-battery-parasitic-drain-no-start-after-sitting",
+      "expectedAuditAfterSha256": "53e32519b76284533191e783772c4fcf01ca4b2b0b48b5b4d7bc514af055fcc8",
+      "identityReview": "Restores the same no-READY/12-volt topic while removing an unproven parasitic-drain cause and unsupported 2026 scope.",
+      "patch": {
+        "years": [2023, 2024, 2025], "trims": [], "engines": ["M20A-FXS 2.0L Hybrid"],
+        "title": "Corolla Cross Hybrid 12-Volt No-READY Events After Sitting — Owner Reports",
+        "description": "Corolla Cross Hybrid owner discussions document individual 12-volt battery or no-READY events after the vehicle sat. Storage duration, temperature, battery state of charge and health, vehicle use, accessories, doors or keys, and measured parasitic load can contribute. The reports do not establish a model-wide EVAP, DCM, or smart-key drain or a normal failure-after-days interval.",
+        "solution": "Preserve warning messages and test the 12-volt battery state of charge, capacity, terminals and charging voltage in READY mode before replacement. If the battery discharges repeatedly, measure key-off current after all modules time out and isolate the circuit using Toyota procedures. Ask Toyota to check applicable software and campaign information by VIN; do not assume a battery size, DCM update, or replacement from this page.",
+        "severity": "medium", "confidence": "low",
+        "symptoms": ["Vehicle will not enter READY after sitting", "Weak or discharged 12-volt battery", "Multiple low-voltage warnings during startup"],
+        "affectedSystems": ["12-volt auxiliary battery", "low-voltage charging and key-off loads", "hybrid startup controls"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [
+          {"type": "forum", "title": "Corolla Cross Forum: 12-Volt Battery Issues", "url": "https://www.corollacrossforum.com/threads/12v-battery-issues.1256/"},
+          {"type": "forum", "title": "Corolla Cross Forum: Rear 12-Volt Battery Failure Discussion", "url": "https://www.corollacrossforum.com/threads/12v-battery-in-hatch-area-failure.1538/"}
+        ],
+        "communityRecommendations": [], "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Restored hybrid no-READY owner reports, removed 2026 and parasitic-source claims, and required battery testing and measured key-off diagnosis before parts or software conclusions.", "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "toyota-corolla-cross-loose-exhaust-heat-shield-rattle-speed",
+      "expectedAuditAfterSha256": "a058038efe90f144be450b56b4ee0c760db20ac99d3f83bc7e1f0daf7d89dc41",
+      "identityReview": "Restores the same rattle topic under a symptom-led title without assuming a loose exhaust shield.",
+      "patch": {
+        "years": [2022, 2023, 2024, 2025], "trims": [], "engines": [],
+        "title": "Rattle at Speed or While Climbing — Owner Reports",
+        "description": "Corolla Cross owner discussions document rattling at speed or under hill load. One cited case involved trapped debris, showing why a sound does not prove a loose exhaust heat shield. Gas, hybrid, FWD and AWD layouts use different shielding and components, and the reports do not establish a common location, fastener, speed threshold or model defect.",
+        "solution": "Reproduce the sound while noting speed, engine load, road surface and temperature. With the vehicle safely supported and cool, inspect underbody and exhaust shields, fasteners, trapped debris, exhaust clearance, splash panels, driveline clearance and loose cargo. Correct only the localized cause using VIN-specific service information; do not add washers or order a shield by symptom alone.",
+        "severity": "low", "confidence": "low",
+        "symptoms": ["Metallic or plastic rattle at speed", "Rattle that changes with engine load or road surface", "Noise while climbing a grade"],
+        "affectedSystems": ["underbody and exhaust shielding", "splash panels and fasteners", "exhaust and driveline clearance"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [
+          {"type": "forum", "title": "Corolla Cross Forum: Rattle-Noise Discussion", "url": "https://www.corollacrossforum.com/threads/rattle-noise.1091/"},
+          {"type": "forum", "title": "Corolla Cross Forum: Rattle While Climbing", "url": "https://www.corollacrossforum.com/threads/rattling-noise-while-climbing-uphill.394/"}
+        ],
+        "communityRecommendations": [], "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Converted a heat-shield diagnosis and parts bundle into traceable, configuration-aware owner-reported rattle localization.", "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "toyota-corolla-cross-power-liftgate-unlatches-but-fails-to-raise",
+      "expectedAuditAfterSha256": "dbfed6a053d66c051e4601f655338f38359bdc96c1cce5b6d44bd2aaedcdd892",
+      "identityReview": "Restores the same liftgate symptom topic limited to the cited 2022 owner report and manual checks.",
+      "patch": {
+        "years": [2022], "trims": [], "engines": [],
+        "title": "2022 Corolla Cross Power Liftgate Unlatches but Does Not Raise — Owner Report",
+        "description": "A 2022 Corolla Cross owner discussion documents a power liftgate that unlatches but does not raise. The symptom does not identify a spindle, motor, strut, control module, software or 12-volt battery cause. Toyota's manual also documents system enablement, selected opening height and operating limits for ice, load, edge sensors and spindle contact.",
+        "solution": "Confirm the vehicle is equipped with the power back door, verify the feature is enabled and the opening-height setting, remove ice or external load, and preserve any warning or unusual sound. Do not force the door or disconnect the battery as a generic reset. Have Toyota test 12-volt voltage, switches and sensors, spindle operation, wiring and stored body data before selecting a repair.",
+        "severity": "low", "confidence": "low",
+        "symptoms": ["Liftgate unlatches but does not rise", "Power back door stops immediately", "Liftgate operation differs between switch inputs"],
+        "affectedSystems": ["power back door controls", "liftgate spindles and edge sensors", "12-volt body electrical system"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [{"type": "forum", "title": "Corolla Cross Forum: Liftgate Not Going Up", "url": "https://www.corollacrossforum.com/threads/liftgate-not-going-up.1035/"}],
+        "communityRecommendations": [], "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Narrowed a three-year cause and warranty bundle to one 2022 owner report with equipment, setting, environmental and diagnostic checks.", "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "toyota-corolla-cross-rear-suspension-clunk-harsh-bang-over-bumps",
+      "expectedAuditAfterSha256": "2c5e839b91f792f7d20eea11698c3eadce1e13e8dfee6e93e6c9503f466c3a38",
+      "identityReview": "Restores the same rear-impact-noise topic without merging three materially different rear suspension layouts.",
+      "patch": {
+        "years": [2022], "trims": [], "engines": [],
+        "title": "2022 Corolla Cross Rear Clunk or Harsh Bang Over Bumps — Owner Report",
+        "description": "An owner discussion documents rear suspension noise on an individual Corolla Cross. FWD gasoline, AWD gasoline and hybrid vehicles use materially different rear layouts, so one sound cannot establish a shared failed shock, link, bushing or beam. Cargo, spare-tire hardware, exhaust contact, brakes, hubs, springs, fasteners and suspension components can overlap.",
+        "solution": "Record the exact drivetrain and reproduce the sound. Remove or secure cargo, then inspect fastener torque, witness marks, exhaust clearance, brakes, hubs, springs and seats, dampers, mounts, links and bushings using the correct loaded-suspension procedure for that layout. Replace only a measured loose, torn, leaking or damaged component and align when geometry is disturbed.",
+        "severity": "medium", "confidence": "low",
+        "symptoms": ["Rear clunk or harsh impact sound over bumps", "Noise that changes with vehicle load or turning"],
+        "affectedSystems": ["configuration-specific rear suspension", "rear brakes, hubs and exhaust clearance", "cargo and spare-tire hardware"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [{"type": "forum", "title": "Corolla Cross Forum: Rear Suspension Noise", "url": "https://www.corollacrossforum.com/threads/rear-suspension-noise.413/"}],
+        "communityRecommendations": [], "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Narrowed a four-year three-layout parts bundle to a 2022 owner-reported noise and drivetrain-specific inspection.", "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "toyota-corolla-cross-roof-rail-gasket-whistle-highway-speed",
+      "expectedAuditAfterSha256": "81dbd670bcace63e7cc0a97dad3c0f0aa222ee30281b6702aaee97c3019c5b47",
+      "identityReview": "Restores the same whistle topic limited to the explicitly cited 2023 Hybrid XSE report and no gasket diagnosis.",
+      "patch": {
+        "years": [2023], "trims": ["Hybrid XSE"], "engines": ["M20A-FXS 2.0L Hybrid"],
+        "title": "2023 Corolla Cross Hybrid XSE Whistling Noise — Owner Report",
+        "description": "A 2023 Corolla Cross Hybrid XSE owner discussion documents a temperature-dependent whistle. A second discussion illustrates that similar sounds may be perceived near the dash. These reports do not prove a roof-rail gasket, left-front molding, fixed speed range, crosswind mechanism or model-wide defect.",
+        "solution": "Remove accessory crossbars or deflectors when safe, then reproduce the whistle while recording speed, wind direction and temperature. Localize it among roof rails and crossbars, drip molding, windshield and header seal, mirror, door and dash air paths before changing parts. Do not add adhesive seals or order a molding until equipment and VIN fitment are confirmed.",
+        "severity": "low", "confidence": "low",
+        "symptoms": ["Whistle that changes with speed, temperature or wind direction", "Noise perceived near a roof rail, windshield, mirror, door or dash"],
+        "affectedSystems": ["roof rail and accessory aero paths", "windshield, mirror and door sealing", "dash air paths"], "dtcCodes": [],
+        "estimatedCostLow": null, "estimatedCostHigh": null, "typicalMileageLow": null, "typicalMileageHigh": null,
+        "citations": [
+          {"type": "forum", "title": "Corolla Cross Forum: 2023 Hybrid XSE Temperature-Dependent Whistle", "url": "https://www.corollacrossforum.com/threads/whistling-noise-in-2023-corolla-cross-hybrid-xse-temperature-dependent-and-annoying.1122/"},
+          {"type": "forum", "title": "Corolla Cross Forum: Whistling Sound Near Dash", "url": "https://www.corollacrossforum.com/threads/whistling-sound-in-dash.318/"}
+        ],
+        "communityRecommendations": [], "fixParts": [], "status": "published", "source": "manual", "humanApproved": true, "reportCount": 0, "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05", "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Narrowed a four-year roof-gasket diagnosis to a 2023 Hybrid XSE owner report with aero-source localization and no parts or modification claim.", "relatedIssueIds": []
+      }
+    }
+  ]
+}
