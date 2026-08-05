@@ -1,0 +1,840 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Honda",
+  "model": "City",
+  "completionStatement": "This packet reconciles all six frozen Honda City rows. One same-identity recall correction is proposed; five rows remain byte-for-byte unchanged pending exact primary sources.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All six rows remain published. Five are byte-for-byte unchanged.",
+    "An unrelated campaign or generic data page may never replace the component, symptom or remedy named by an existing issue.",
+    "The single rewrite contains zero commerce and keeps trim and engine arrays empty.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_honda-deeplink-snapshot-2026-08-05.json",
+    "snapshotSha256": "671de2660f31c07e01610e26c13382b6d59b293fb74ecc3e3abc02d248d6dd5e",
+    "snapshotGeneratedAt": "2026-08-05T21:54:08.563Z",
+    "snapshotHash": "fcd155f1e269b1d8c691655699cc2e18f6029c3ee54c650b88df00004025729a",
+    "cityRecordCount": 6
+  },
+  "observations": [
+    {
+      "code": "fuel-pump-primary-source-gap",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-city-high-pressure-fuel-pump-failure-sudden-power-loss-p0087"
+      ],
+      "detail": "The high-pressure fuel-pump card currently cites a fuel-level-sensor recall and a generic lookup. Secondary reports name Honda tips 010/22 and 004/23, but neither primary document was located; the row stays byte-equivalent."
+    },
+    {
+      "code": "starter-citation-identity-mismatch",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-city-starter-motor-brush-holder-failure"
+      ],
+      "detail": "The starter card currently cites an airbag campaign and a generic lookup. No same-identity Honda starter document was located; the row stays byte-equivalent."
+    },
+    {
+      "code": "four-unverified-aggregations",
+      "severity": "follow-up-source-research",
+      "recordIds": [
+        "honda-city-cvt-judder-premature-transmission-failure",
+        "honda-city-premature-hood-rust-paint-blistering",
+        "honda-city-starter-motor-brush-holder-failure",
+        "honda-city-steering-rack-noise-play"
+      ],
+      "detail": "These cards lack a matching primary source in the frozen state. They are not rewritten, archived or removed in this proposal."
+    }
+  ],
+  "summary": {
+    "rewrite_same_identity": 1,
+    "keep_published_pending_source": 5,
+    "total": 6
+  },
+  "rows": [
+    {
+      "id": "honda-city-cvt-judder-premature-transmission-failure",
+      "model": "City",
+      "action": "keep_published_pending_source",
+      "reason": "No exact same-identity manufacturer or government source was completed in this pass. The existing published row remains byte-for-byte unchanged; missing evidence is not authorization to rewrite, archive or remove it.",
+      "identityRule": "No content or publication-state changes; an unrelated official source cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "8e25817f114281a0f19d1d07954a4077650ddbde81faaaec43dcb381282494bc",
+      "proposalSha256": "8e25817f114281a0f19d1d07954a4077650ddbde81faaaec43dcb381282494bc",
+      "before": {
+        "make": "Honda",
+        "model": "City",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "CVT Judder and Premature Transmission Failure",
+        "description": "The CVT fitted to the sixth-generation City (Brazil, 2015+) and the India-market fourth-generation City (2014+) is a chronic complaint source. Owners report judder/shudder when pulling away from a stop, slipping and RPM flare under acceleration, whining noises, and in the worst cases complete loss of drive. Brazilian owners on Reclame Aqui and the automotive press (Vrum, Mobiauto) document failures from roughly 30,000 km onward, with an internal dealer bulletin reportedly acknowledging chronic CVT bearing problems on 2015 units; one 2019 City EXL suffered catastrophic failure just past 100,000 km. On Team-BHP, a 2016 City 1.5 CVT lost drive entirely at 56,500 km and the service center quoted approximately Rs 4 lakh (~USD 4,800) for a replacement gearbox. Brazilian dealer repair quotes above R$ 10,000-20,000 are common. The judder itself is widely attributed to starter-clutch contamination and degraded CVT fluid; Honda has historically extended CVT warranties in other markets for the same judder phenomenon.",
+        "solution": "If judder appears early, a full CVT fluid exchange (Honda HCF-2/CVT-F, including filter where fitted) following Honda's flush protocol often resolves or delays the symptom — a simple drain-and-fill frequently does not. Persistent judder requires starter-clutch replacement; confirmed internal failures (belt/pulley/bearing damage) require a rebuilt or new CVT. Owners should change CVT fluid every 40,000 km or less (more often than the official schedule), avoid prolonged stop-and-go abuse while juddering, and press Honda for goodwill participation on low-mileage failures, which has been granted in documented cases.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Shudder or judder when accelerating from a stop",
+          "RPM flare or slipping feel under acceleration",
+          "Whining or grinding noise from the transmission",
+          "Harsh engagement or jerking at low speed",
+          "Sudden loss of drive while the car is moving"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 600,
+        "estimatedCostHigh": 4800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "City",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "CVT Judder and Premature Transmission Failure",
+        "description": "The CVT fitted to the sixth-generation City (Brazil, 2015+) and the India-market fourth-generation City (2014+) is a chronic complaint source. Owners report judder/shudder when pulling away from a stop, slipping and RPM flare under acceleration, whining noises, and in the worst cases complete loss of drive. Brazilian owners on Reclame Aqui and the automotive press (Vrum, Mobiauto) document failures from roughly 30,000 km onward, with an internal dealer bulletin reportedly acknowledging chronic CVT bearing problems on 2015 units; one 2019 City EXL suffered catastrophic failure just past 100,000 km. On Team-BHP, a 2016 City 1.5 CVT lost drive entirely at 56,500 km and the service center quoted approximately Rs 4 lakh (~USD 4,800) for a replacement gearbox. Brazilian dealer repair quotes above R$ 10,000-20,000 are common. The judder itself is widely attributed to starter-clutch contamination and degraded CVT fluid; Honda has historically extended CVT warranties in other markets for the same judder phenomenon.",
+        "solution": "If judder appears early, a full CVT fluid exchange (Honda HCF-2/CVT-F, including filter where fitted) following Honda's flush protocol often resolves or delays the symptom — a simple drain-and-fill frequently does not. Persistent judder requires starter-clutch replacement; confirmed internal failures (belt/pulley/bearing damage) require a rebuilt or new CVT. Owners should change CVT fluid every 40,000 km or less (more often than the official schedule), avoid prolonged stop-and-go abuse while juddering, and press Honda for goodwill participation on low-mileage failures, which has been granted in documented cases.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Shudder or judder when accelerating from a stop",
+          "RPM flare or slipping feel under acceleration",
+          "Whining or grinding noise from the transmission",
+          "Harsh engagement or jerking at low speed",
+          "Sudden loss of drive while the car is moving"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 600,
+        "estimatedCostHigh": 4800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-city-high-pressure-fuel-pump-failure-sudden-power-loss-p0087",
+      "model": "City",
+      "action": "keep_published_pending_source",
+      "reason": "The current PROCON-SP citation is a fuel-level-sensor recall and the generic Honda recall lookup does not substantiate the high-pressure-pump diagnosis. Secondary reporting refers to Honda technical tips 010/22 and 004/23, but the primary documents were not found. Keep byte-for-byte pending primary-source review.",
+      "identityRule": "No content or publication-state changes; an unrelated official source cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "9a02a04817cfd067befc91a387d6e08c7a18f09f25a64ef4e39a0b9f6ac11184",
+      "proposalSha256": "9a02a04817cfd067befc91a387d6e08c7a18f09f25a64ef4e39a0b9f6ac11184",
+      "before": {
+        "make": "Honda",
+        "model": "City",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "High-Pressure Fuel Pump Failure — Sudden Power Loss with P0087 (1.5 DI)",
+        "description": "The seventh-generation City (GN, Brazil 2022+) with the direct-injection 1.5 i-VTEC suffers a documented high-pressure fuel pump defect. Owners report sudden loss of power during acceleration, hesitation when overtaking, an 'emission system problem' warning on the dash, and even the engine stalling at highway speed. Honda Brazil acknowledged the fault in technical tips 010/22 (issued 18 July 2022, referencing DTC P0087 — fuel rail pressure too low) and 004/23, attributing it to the high-pressure pump feeding the direct-injection system. The issue was covered by Quatro Rodas' consumer-defense column (Autodefesa), AUTOO and Auto+TV, with multiple owners reporting repeat failures after dealer visits; out-of-warranty quotes approaching R$ 9,000-10,000 (including spark plugs, injectors, and in some cases catalytic converter) have been documented. Complaints concentrate in 2022-2023 builds and reportedly decreased after the 2024 refresh.",
+        "solution": "Have the dealer diagnose per Honda technical tips 010/22 / 004/23: read fault codes (P0087 and associated misfire codes), test fuel rail pressure, and replace the high-pressure fuel pump under warranty. If misfires occurred, spark plugs and injectors may also need inspection or replacement, and a software update may accompany the repair. In-warranty repairs are free; owners with repeat failures should escalate to Honda Brazil customer care citing the technical bulletins. Out-of-warranty owners should request goodwill given the documented factory bulletins.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden loss of power during acceleration",
+          "'Emission system problem' warning on the instrument cluster",
+          "Engine hesitation or failed overtaking attempts",
+          "Engine stalling, including at highway speed",
+          "Check engine light with misfire-like running"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0087"
+        ],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.procon.sp.gov.br/wp-content/uploads/files/Recall%20Honda%2015.05.pdf",
+            "type": "recall",
+            "title": "PROCON-SP Honda Fuel-Level Sensor Recall Notice"
+          },
+          {
+            "url": "https://www.honda.com.br/automoveis/recall",
+            "type": "recall",
+            "title": "Honda Brazil Recall Lookup"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "City",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "High-Pressure Fuel Pump Failure — Sudden Power Loss with P0087 (1.5 DI)",
+        "description": "The seventh-generation City (GN, Brazil 2022+) with the direct-injection 1.5 i-VTEC suffers a documented high-pressure fuel pump defect. Owners report sudden loss of power during acceleration, hesitation when overtaking, an 'emission system problem' warning on the dash, and even the engine stalling at highway speed. Honda Brazil acknowledged the fault in technical tips 010/22 (issued 18 July 2022, referencing DTC P0087 — fuel rail pressure too low) and 004/23, attributing it to the high-pressure pump feeding the direct-injection system. The issue was covered by Quatro Rodas' consumer-defense column (Autodefesa), AUTOO and Auto+TV, with multiple owners reporting repeat failures after dealer visits; out-of-warranty quotes approaching R$ 9,000-10,000 (including spark plugs, injectors, and in some cases catalytic converter) have been documented. Complaints concentrate in 2022-2023 builds and reportedly decreased after the 2024 refresh.",
+        "solution": "Have the dealer diagnose per Honda technical tips 010/22 / 004/23: read fault codes (P0087 and associated misfire codes), test fuel rail pressure, and replace the high-pressure fuel pump under warranty. If misfires occurred, spark plugs and injectors may also need inspection or replacement, and a software update may accompany the repair. In-warranty repairs are free; owners with repeat failures should escalate to Honda Brazil customer care citing the technical bulletins. Out-of-warranty owners should request goodwill given the documented factory bulletins.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden loss of power during acceleration",
+          "'Emission system problem' warning on the instrument cluster",
+          "Engine hesitation or failed overtaking attempts",
+          "Engine stalling, including at highway speed",
+          "Check engine light with misfire-like running"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0087"
+        ],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.procon.sp.gov.br/wp-content/uploads/files/Recall%20Honda%2015.05.pdf",
+            "type": "recall",
+            "title": "PROCON-SP Honda Fuel-Level Sensor Recall Notice"
+          },
+          {
+            "url": "https://www.honda.com.br/automoveis/recall",
+            "type": "recall",
+            "title": "Honda Brazil Recall Lookup"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-city-premature-hood-rust-paint-blistering",
+      "model": "City",
+      "action": "keep_published_pending_source",
+      "reason": "No exact same-identity manufacturer or government source was completed in this pass. The existing published row remains byte-for-byte unchanged; missing evidence is not authorization to rewrite, archive or remove it.",
+      "identityRule": "No content or publication-state changes; an unrelated official source cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "b0c770807092e8fd094acb321172bfa7282ae978f116bd2fffe79b4d5c2e0a72",
+      "proposalSha256": "b0c770807092e8fd094acb321172bfa7282ae978f116bd2fffe79b4d5c2e0a72",
+      "before": {
+        "make": "Honda",
+        "model": "City",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Premature Hood Rust and Paint Blistering",
+        "description": "City (and Fit) units built from around 2015 onward in Brazil show premature rust spots and paint blistering, most characteristically on the hood's leading edge, often while the car is still nearly new. Vrum and Mobiauto both list hood rust among the model's chronic complaints, noting it frequently surfaces right after the corrosion warranty discussion begins, and dedicated owner-complaint blogs document City units with rust not only on the hood but also on door hinges and the metal panel behind the rear-seat backrest — areas dealers admitted receive no anti-rust treatment. In Brazil's hot, humid coastal climate the blistering progresses quickly. In many documented Fit/City cases, Honda analyzed the vehicle and authorized full hood replacement; other owners were denied once the warranty had lapsed.",
+        "solution": "Inspect the hood leading edge, door hinges, and rear-seat support panel regularly, and photograph any bubbling immediately. Within the corrosion warranty period, file a claim with a Honda dealer — documented precedent exists for free hood replacement after factory analysis. Out of warranty, repair requires sanding to bare metal, rust treatment, and repainting (or a replacement hood), roughly R$ 1,500-3,500. Applying cavity wax/anti-corrosion treatment to untreated internal panels is a worthwhile preventive measure in coastal regions.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Rust spots on the hood's leading edge",
+          "Paint bubbling or blistering on the hood while the car is still new",
+          "Rust on door hinges",
+          "Corrosion on the panel behind the rear seat backrest"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "City",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Premature Hood Rust and Paint Blistering",
+        "description": "City (and Fit) units built from around 2015 onward in Brazil show premature rust spots and paint blistering, most characteristically on the hood's leading edge, often while the car is still nearly new. Vrum and Mobiauto both list hood rust among the model's chronic complaints, noting it frequently surfaces right after the corrosion warranty discussion begins, and dedicated owner-complaint blogs document City units with rust not only on the hood but also on door hinges and the metal panel behind the rear-seat backrest — areas dealers admitted receive no anti-rust treatment. In Brazil's hot, humid coastal climate the blistering progresses quickly. In many documented Fit/City cases, Honda analyzed the vehicle and authorized full hood replacement; other owners were denied once the warranty had lapsed.",
+        "solution": "Inspect the hood leading edge, door hinges, and rear-seat support panel regularly, and photograph any bubbling immediately. Within the corrosion warranty period, file a claim with a Honda dealer — documented precedent exists for free hood replacement after factory analysis. Out of warranty, repair requires sanding to bare metal, rust treatment, and repainting (or a replacement hood), roughly R$ 1,500-3,500. Applying cavity wax/anti-corrosion treatment to untreated internal panels is a worthwhile preventive measure in coastal regions.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Rust spots on the hood's leading edge",
+          "Paint bubbling or blistering on the hood while the car is still new",
+          "Rust on door hinges",
+          "Corrosion on the panel behind the rear seat backrest"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-city-starter-motor-brush-holder-failure",
+      "model": "City",
+      "action": "keep_published_pending_source",
+      "reason": "The current SENACON and Honda recall citations concern airbags, not the starter brush holder. No same-identity primary document was found. Keep byte-for-byte pending primary-source review.",
+      "identityRule": "No content or publication-state changes; an unrelated official source cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "7eb7f477bfce83cc6a1f5b89266db75463b195211e0e9a441068db23975f8cb5",
+      "proposalSha256": "7eb7f477bfce83cc6a1f5b89266db75463b195211e0e9a441068db23975f8cb5",
+      "before": {
+        "make": "Honda",
+        "model": "City",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Starter Motor Brush Holder Failure (Intermittent No-Start)",
+        "description": "Honda City (and sister-model Fit) units from roughly 2015-2018 have a chronic failure of the starter motor brush holder (porta-escova). The brush holder wears prematurely, causing intermittent no-starts: the key is turned and nothing happens, or the engine only cranks after several attempts, typically appearing around 50,000 km — often just after the factory warranty expires. The problem is so widespread in Brazil that aftermarket suppliers sell dedicated brush-holder repair kits specifically for the 2015+ City/Fit/Civic/CR-V starter, and Brazilian outlets Vrum and Mobiauto both list it among the model's defining chronic defects, with recurring Reclame Aqui complaints and City Club forum threads describing the identical intermittent-crank pattern.",
+        "solution": "Replace the starter motor brush holder — repair kits cost roughly R$ 120-450 (USD 25-90) plus modest auto-electrician labor, far cheaper than the complete starter motor dealers quote at around R$ 1,400 (~USD 270). Because the failure is intermittent at first, owners should address it at the first sign of delayed cranking rather than waiting for a full no-start. Some owners have obtained goodwill assistance from Honda Brazil on low-mileage cases.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Turn the key and nothing happens — engine does not crank",
+          "Car starts only after several attempts",
+          "Intermittent slow or delayed cranking that worsens over time",
+          "Problem appears around 50,000 km, often just out of warranty"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-alerta-para-recall-de-veiculos-honda-e-chevrolet",
+            "type": "recall",
+            "title": "Brazilian SENACON Honda City Driver-Airbag Recall"
+          },
+          {
+            "url": "https://www.honda.com.br/automoveis/recall",
+            "type": "recall",
+            "title": "Honda Brazil Recall Lookup"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "City",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Starter Motor Brush Holder Failure (Intermittent No-Start)",
+        "description": "Honda City (and sister-model Fit) units from roughly 2015-2018 have a chronic failure of the starter motor brush holder (porta-escova). The brush holder wears prematurely, causing intermittent no-starts: the key is turned and nothing happens, or the engine only cranks after several attempts, typically appearing around 50,000 km — often just after the factory warranty expires. The problem is so widespread in Brazil that aftermarket suppliers sell dedicated brush-holder repair kits specifically for the 2015+ City/Fit/Civic/CR-V starter, and Brazilian outlets Vrum and Mobiauto both list it among the model's defining chronic defects, with recurring Reclame Aqui complaints and City Club forum threads describing the identical intermittent-crank pattern.",
+        "solution": "Replace the starter motor brush holder — repair kits cost roughly R$ 120-450 (USD 25-90) plus modest auto-electrician labor, far cheaper than the complete starter motor dealers quote at around R$ 1,400 (~USD 270). Because the failure is intermittent at first, owners should address it at the first sign of delayed cranking rather than waiting for a full no-start. Some owners have obtained goodwill assistance from Honda Brazil on low-mileage cases.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Turn the key and nothing happens — engine does not crank",
+          "Car starts only after several attempts",
+          "Intermittent slow or delayed cranking that worsens over time",
+          "Problem appears around 50,000 km, often just out of warranty"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-alerta-para-recall-de-veiculos-honda-e-chevrolet",
+            "type": "recall",
+            "title": "Brazilian SENACON Honda City Driver-Airbag Recall"
+          },
+          {
+            "url": "https://www.honda.com.br/automoveis/recall",
+            "type": "recall",
+            "title": "Honda Brazil Recall Lookup"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-city-steering-rack-noise-play",
+      "model": "City",
+      "action": "keep_published_pending_source",
+      "reason": "No exact same-identity manufacturer or government source was completed in this pass. The existing published row remains byte-for-byte unchanged; missing evidence is not authorization to rewrite, archive or remove it.",
+      "identityRule": "No content or publication-state changes; an unrelated official source cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "e19a43c6665c453f717d8e87d39155ead9d4a8c7cf20f65c5346149fdda28bac",
+      "proposalSha256": "e19a43c6665c453f717d8e87d39155ead9d4a8c7cf20f65c5346149fdda28bac",
+      "before": {
+        "make": "Honda",
+        "model": "City",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Steering Rack Noise and Play (Clicking/Knocking When Turning)",
+        "description": "Owners of the GM-generation City (2009-2014) extensively document wear in the electric power steering rack: play develops at the rack bushing/base, producing clicking when turning the wheel, dry knocks from the front end on uneven pavement, and a loose feel in the steering. Honda City Club forum threads describe the steering-box bushing wear as a known weak point, with owners resorting to custom-machined bushings because of the cost of a complete rack. The complaint resurfaced on the GN generation (2022-2023): Reclame Aqui carries multiple 'barulho na caixa de direção' complaints for the 2022 City, Auto+TV lists steering-box noise among the new model's recurring problems (often at low mileage, ~25,000 km), and one owner group reportedly gathered over 40 participants with the same steering noise complaint.",
+        "solution": "Have the front end inspected to rule out cheap causes first — stabilizer links (~R$ 57 each), tie-rod ends, and control-arm bushings are frequent contributors. If the noise/play is traced to the steering rack itself, options are replacing the rack bushing (inexpensive; machined aftermarket bushings are a proven City fix on the forums) or, in severe wear cases, replacing the complete rack. On GN models still under warranty, insist the dealer document the noise and repair under warranty rather than accepting repeated 'tightening' visits.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clicking or knocking when turning the steering wheel",
+          "Dry knocks from the front end on rough or uneven pavement",
+          "Noticeable play or looseness in the steering wheel",
+          "Metallic rattle at low speeds over bumps",
+          "Noise appears at relatively low mileage"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 60,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "City",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Steering Rack Noise and Play (Clicking/Knocking When Turning)",
+        "description": "Owners of the GM-generation City (2009-2014) extensively document wear in the electric power steering rack: play develops at the rack bushing/base, producing clicking when turning the wheel, dry knocks from the front end on uneven pavement, and a loose feel in the steering. Honda City Club forum threads describe the steering-box bushing wear as a known weak point, with owners resorting to custom-machined bushings because of the cost of a complete rack. The complaint resurfaced on the GN generation (2022-2023): Reclame Aqui carries multiple 'barulho na caixa de direção' complaints for the 2022 City, Auto+TV lists steering-box noise among the new model's recurring problems (often at low mileage, ~25,000 km), and one owner group reportedly gathered over 40 participants with the same steering noise complaint.",
+        "solution": "Have the front end inspected to rule out cheap causes first — stabilizer links (~R$ 57 each), tie-rod ends, and control-arm bushings are frequent contributors. If the noise/play is traced to the steering rack itself, options are replacing the rack bushing (inexpensive; machined aftermarket bushings are a proven City fix on the forums) or, in severe wear cases, replacing the complete rack. On GN models still under warranty, insist the dealer document the noise and repair under warranty rather than accepting repeated 'tightening' visits.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clicking or knocking when turning the steering wheel",
+          "Dry knocks from the front end on rough or uneven pavement",
+          "Noticeable play or looseness in the steering wheel",
+          "Metallic rattle at low speeds over bumps",
+          "Noise appears at relatively low mileage"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 60,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications Data Corpus"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-city-takata-airbag-inflator-recall-metal-fragment-risk",
+      "model": "City",
+      "action": "rewrite_same_identity",
+      "reason": "The existing card has the correct airbag-inflator identity, but it merges campaign scope, cites an unrelated fuel-level-sensor recall, and includes unsupported global statistics. The proposal keeps the 2010-2014 page scope while separating the exact VIN- and position-dependent recall evidence.",
+      "identityRule": "The same Honda City airbag-inflator hazard remains on the same slug; only evidence-backed campaign scope and guidance change.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "government-recall-notice",
+          "url": "https://www.mpmg.mp.br/data/files/34/90/F7/5C/0A44A7109CEB34A7760849A8/20.06.2016%20-%20Ve_culos%20Honda%20Fit_%20City_%20Civic_%20CR-V%20e%20Accord.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Senacon identifies Honda City passenger-airbag inflators, 2010-2011 model years, chassis AZ100032 through BZ213443, rupture and metal-fragment risk, and a free remedy."
+        },
+        {
+          "kind": "government-technical-note",
+          "url": "https://central3.to.gov.br/arquivo/280299/",
+          "verifiedOn": "2026-08-06",
+          "observation": "Senacon technical note 8/2016 identifies 2012-2014 City driver-airbag inflators, chassis C*209151 through E*307830, and replacement of the inflator."
+        },
+        {
+          "kind": "manufacturer-government-campaign-report",
+          "url": "https://mpce.mp.br/wp-content/uploads/2018/01/Dados-Campanhas_HAB_2019_02_PROCON.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda campaign reporting published by MPCE identifies protocol 08012.000409/2016-74 as the Fit and City driver-airbag inflator campaign, factory codes 6ZV/6ZZ."
+        },
+        {
+          "kind": "manufacturer-technical-report",
+          "url": "https://goias.gov.br/procon/wp-content/uploads/sites/19/2017/01/relatorio-tecnico-honda-automoveis.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Brazil technical-report pages 1, 3, 5-8, 12 and 15-17 identify certain 2012 City passenger inflators, chassis CZ200001 through CZ214820, rupture/fragment risk and free replacement."
+        },
+        {
+          "kind": "manufacturer-recall-lookup",
+          "url": "https://www.honda.com.br/automoveis/recall",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Brazil directs City owners to check the chassis, schedule the free repair and replace the applicable airbag activation device."
+        },
+        {
+          "kind": "citation-mismatch-removal",
+          "url": "https://goias.gov.br/procon/recall-no-08012-0018042015-93-2/",
+          "verifiedOn": "2026-08-06",
+          "observation": "The existing campaign 08012.001804/2015-93 record is a fuel-level-sensor recall, not an airbag campaign. It is excluded from the Takata proposal."
+        }
+      ],
+      "beforeSha256": "66188a1cde2bc8d07eaebbdbc2f9788a0c4ceeb5c7eb3fdb2f379211ac65026b",
+      "proposalSha256": "e345cf22894d8c67132dff2e49af9220886dac39bb28fa29c9121a5d425625dd",
+      "before": {
+        "make": "Honda",
+        "model": "City",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Takata Airbag Inflator Recall — Metal Fragment Risk",
+        "description": "Brazilian-market Honda City sedans built from 2010 through 2014 were swept into the global Takata airbag recall — the largest recall in automotive history. The ammonium-nitrate inflators degrade in hot, humid climates (exactly Brazil's conditions); in a crash that triggers the airbag, the inflator housing can rupture and fire metal fragments at occupants, a defect linked to at least 21 deaths worldwide at the time of the Brazilian campaigns. Recall waves included City units with chassis in the AZ100032-BZ213443 range (2010-2011) and a January 2018 campaign covering 86,516 Fit/City units (City production 12 April 2012 to 1 July 2013). Honda Brazil's overall Takata campaign covered roughly 943,000 vehicles requiring 1.6 million inflators, and as of January 2026 was still at about 94% completion — meaning unrepaired City units remain on Brazilian roads.",
+        "solution": "Check the vehicle's plate or chassis number at Honda Brazil's recall portal (honda.com.br/recall) or by phone (0800 701 3432) and have the airbag inflator(s) replaced free of charge at any Honda dealership. The repair is permanent and takes a few hours. Used-car buyers should verify recall completion before purchase; do not delay this repair, as inflater rupture risk increases with the vehicle's age and humidity exposure.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No warning signs — the defect only manifests when the airbag deploys",
+          "Inflator can rupture in a frontal collision, expelling metal fragments",
+          "Vehicle appears in Honda Brazil's recall lookup by plate or chassis",
+          "Recall notification letter from Honda"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.gov.br/mj/pt-br/assuntos/noticias/senacon-alerta-para-recall-de-mais-de-300-mil-veiculos",
+            "type": "recall",
+            "title": "Brazilian SENACON 2010-2011 Honda City Passenger-Airbag Recall"
+          },
+          {
+            "url": "https://goias.gov.br/procon/recall-honda-civic-2001-a-2002-fit-2012-city-2012-accord-2012-falha-no-insuflador-do-airbag-lado-do-passageiro/",
+            "type": "recall",
+            "title": "PROCON Goiás 2012 Honda City Passenger-Airbag Recall"
+          },
+          {
+            "url": "https://goias.gov.br/procon/recall-no-08012-0018042015-93-2/",
+            "type": "recall",
+            "title": "PROCON Goiás 2011-2014 Honda City Recall Record"
+          },
+          {
+            "url": "https://www.honda.com.br/automoveis/recall",
+            "type": "recall",
+            "title": "Honda Brazil Recall Lookup"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "City",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Driver and Passenger Airbag Inflator Recalls - Metal Fragment Risk",
+        "description": "Brazilian recall records cover VIN-specific Honda City populations across model years 2010-2014. Senacon identifies a passenger-airbag inflator campaign for 2010-2011 City vehicles; a Honda technical report covers the passenger inflator on certain 2012 City vehicles; and Senacon technical note 8/2016 covers the driver inflator on certain 2012-2014 City vehicles. An affected inflator can rupture during airbag deployment and project metal fragments, creating a risk of serious or fatal injury. Eligibility depends on the VIN and inflator position.",
+        "solution": "Check the plate or VIN in Honda Brazil's recall lookup and ask a Honda dealer to check every open airbag campaign. Honda replaces the inflator for each applicable campaign free of charge. Do not assume that completion of a driver-side repair also closes a passenger-side campaign, or vice versa.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No warning symptoms before an affected airbag deploys",
+          "An affected inflator can rupture during deployment",
+          "Metal fragments may enter the passenger compartment",
+          "The VIN or plate returns an open Honda airbag campaign"
+        ],
+        "affectedSystems": [
+          "driver airbag inflator",
+          "passenger airbag inflator",
+          "supplemental restraint system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Brazilian Senacon/MPMG - 2010-2011 Honda City Passenger-Airbag Inflator Campaign",
+            "url": "https://www.mpmg.mp.br/data/files/34/90/F7/5C/0A44A7109CEB34A7760849A8/20.06.2016%20-%20Ve_culos%20Honda%20Fit_%20City_%20Civic_%20CR-V%20e%20Accord.pdf"
+          },
+          {
+            "type": "recall",
+            "title": "Brazilian Senacon Technical Note 8/2016 - 2012-2014 Honda City Driver-Airbag Inflator Campaign",
+            "url": "https://central3.to.gov.br/arquivo/280299/"
+          },
+          {
+            "type": "recall",
+            "title": "Honda/MPCE Campaign Report - City Driver-Airbag Inflator Campaign 6ZV/6ZZ",
+            "url": "https://mpce.mp.br/wp-content/uploads/2018/01/Dados-Campanhas_HAB_2019_02_PROCON.pdf"
+          },
+          {
+            "type": "recall",
+            "title": "Honda Brazil Technical Report - 2012 Honda City Passenger-Airbag Inflator Campaign",
+            "url": "https://goias.gov.br/procon/wp-content/uploads/sites/19/2017/01/relatorio-tecnico-honda-automoveis.pdf"
+          },
+          {
+            "type": "manufacturer",
+            "title": "Honda Brazil Recall Lookup",
+            "url": "https://www.honda.com.br/automoveis/recall"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Separated the VIN-specific driver- and passenger-inflator campaigns, removed an unrelated fuel-level-sensor recall citation, and removed unsupported global fatality and completion statistics.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
