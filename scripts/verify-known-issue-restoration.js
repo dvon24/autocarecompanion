@@ -127,9 +127,15 @@ function placeholders(values, offset = 1) {
   return values.map((_, index) => `$${index + offset}`).join(', ');
 }
 
+function expectedArchivedHoldIds(baseline, manifest) {
+  const baselineArchivedIds = new Set(baseline.auditArchivedIds.map((row) => row.id));
+  return new Set(manifest.hold.map((row) => row.id).filter((id) => baselineArchivedIds.has(id)));
+}
+
 async function verify(pool, baseline, manifest, allowedDeadModels = new Set()) {
   const archivedIds = baseline.auditArchivedIds.map((row) => row.id);
   const holdIds = new Set(manifest.hold.map((row) => row.id));
+  const archivedHoldIds = expectedArchivedHoldIds(baseline, manifest);
   const archivedRestoreIds = archivedIds.filter((id) => !holdIds.has(id));
   const restoreIds = manifest.restore.map((row) => row.id);
   const projected = projectedStatusCounts(baseline, manifest);
@@ -182,9 +188,9 @@ async function verify(pool, baseline, manifest, allowedDeadModels = new Set()) {
   const signatureIds = new Set(signatureResult.rows.map((row) => row.id));
   const signatureSetMismatches = [
     ...[...signatureIds]
-      .filter((id) => !holdIds.has(id))
+      .filter((id) => !archivedHoldIds.has(id))
       .map((id) => ({ id, reason: 'unexpected audit archive remains' })),
-    ...[...holdIds]
+    ...[...archivedHoldIds]
       .filter((id) => !signatureIds.has(id))
       .map((id) => ({ id, reason: 'held archive signature is missing' })),
   ];
@@ -291,6 +297,7 @@ if (require.main === module) {
 }
 
 module.exports = {
+  expectedArchivedHoldIds,
   looksLikeApplicabilityProse,
   projectedStatusCounts,
   validateBaseline,

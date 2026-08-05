@@ -2,12 +2,22 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 const {
+  expectedArchivedHoldIds,
   looksLikeApplicabilityProse,
   projectedStatusCounts,
   validateBaseline,
   validateManifest,
   valuesEqual,
 } = require('./verify-known-issue-restoration');
+
+test('expects archive signatures only for held rows archived in the baseline', () => {
+  const expected = expectedArchivedHoldIds({
+    auditArchivedIds: [{ id: 'archived-hold' }, { id: 'restored-row' }],
+  }, {
+    hold: [{ id: 'archived-hold' }, { id: 'published-replacement-hold' }],
+  });
+  assert.deepEqual([...expected], ['archived-hold']);
+});
 
 test('accepts normal trim names', () => {
   for (const trim of ['SXT', 'R/T', 'Citadel', 'SRT Hellcat Redeye Widebody', 'SE/SXT']) {
