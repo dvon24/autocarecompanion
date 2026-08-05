@@ -48,6 +48,22 @@ function hashValue(value) {
   return crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
 }
 
+function applicabilityProseTrimError(value) {
+  const trim = String(value || '').trim();
+  if (!trim) return 'must not be blank';
+  if (/^(?:only\s+)?vehicles?\b/i.test(trim)
+    || /\b(?:vin(?:-specific)?|verify|confirm|applicability|campaign|recall|included in|production date|built (?:from|between|before|after|on)|sales code|equipped with|open action|software level)\b/i.test(trim)) {
+    return 'contains applicability prose; trims[] may contain literal trim names only';
+  }
+  return null;
+}
+
+function identityContinuityError(issue) {
+  if (!issue || !issue.before || !issue.after) return null;
+  if (issue.before.titleHash === hashValue(issue.after.title)) return null;
+  return 'cannot rename or substitute an existing issue in the catalog audit; create a new issue ID and reviewed redirect instead';
+}
+
 function asArray(value) {
   return Array.isArray(value) ? value : [];
 }
@@ -278,10 +294,9 @@ function validateFullRecordIssue(issue, prefix, errors) {
   if (!LEVEL_VALUES.has(after.severity)) errors.push(`${prefix}: invalid after.severity`);
   if (!LEVEL_VALUES.has(after.confidence)) errors.push(`${prefix}: invalid after.confidence`);
   if (!SOURCE_VALUES.has(after.source)) errors.push(`${prefix}: invalid after.source`);
-  const validStatus = after.status === 'published'
-    || (issue.disposition === 'remove' && after.status === 'archived');
+  const validStatus = after.status === 'published';
   if (!validStatus) {
-    errors.push(`${prefix}: after.status must be published, or archived for remove disposition`);
+    errors.push(`${prefix}: after.status must remain published; use a separately reviewed archival workflow for removals`);
   }
   if (after.humanApproved !== true) errors.push(`${prefix}: after.humanApproved must be true`);
   if (!Number.isInteger(after.reportCount) || after.reportCount < 0) errors.push(`${prefix}: after.reportCount must be a non-negative integer`);
@@ -305,6 +320,16 @@ function validateFullRecordIssue(issue, prefix, errors) {
       errors.push(`${prefix}: after.${field} must be a string array`);
     }
   }
+  for (const [index, trim] of asArray(after.trims).entries()) {
+    const trimError = applicabilityProseTrimError(trim);
+    if (trimError) errors.push(`${prefix}: after.trims[${index}] ${trimError}`);
+  }
+  if (hashValue(after.make) !== issue.before.makeHash || hashValue(after.model) !== issue.before.modelHash
+    || hashValue(after.category) !== issue.before.categoryHash) {
+    errors.push(`${prefix}: full-record audits cannot move an existing issue to a different make/model/category`);
+  }
+  const continuityError = identityContinuityError(issue);
+  if (continuityError) errors.push(`${prefix}: ${continuityError}`);
   if (!Array.isArray(after.citations) || after.citations.length === 0) errors.push(`${prefix}: after.citations must be non-empty`);
   else after.citations.forEach((citation, index) => validateCitation(citation, `${prefix}: after.citations[${index}]`, errors));
   if (!Array.isArray(after.communityRecommendations)) errors.push(`${prefix}: after.communityRecommendations must be an array`);
@@ -751,6 +776,7 @@ if (require.main === module) {
 
 module.exports = {
   FULL_RECORD_FIELDS,
+  applicabilityProseTrimError,
   afterErrors,
   afterHashes,
   beforeErrors,
@@ -764,6 +790,7 @@ module.exports = {
   fullRecordSnapshot,
   fullRecordUpdateStatement,
   hashValue,
+  identityContinuityError,
   isFullRecordManifest,
   issueUsesFullRecord,
   isIsoDate,

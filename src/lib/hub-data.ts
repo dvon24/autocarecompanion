@@ -2,6 +2,7 @@ import prisma from '@/lib/db';
 import { mileageBucket } from '@/lib/vehicle-slug';
 import { getVehicleSpecs } from '@/lib/maintenance';
 import { getKnownIssueVehicleCandidates } from '@/lib/known-issue-vehicle-aliases';
+import { filterableKnownIssueTrims, knownIssueMatchesTrim } from '@/lib/known-issue-trim-filter';
 
 /**
  * Server-side data loaders for the conversation-first /vehicle/[slug]
@@ -159,8 +160,12 @@ export async function getAttachableIssues(args: {
       // it drops off the 392; engine-string substring matching is too brittle
       // to gate on). Fall back to engine match only when no trims are tagged.
       const trims = r.trims || [];
-      if (trims.length > 0 && trimLower) {
-        return trims.some((t) => { const tl = t.toLowerCase(); return trimLower.includes(tl) || tl.includes(trimLower); });
+      const filterableTrims = filterableKnownIssueTrims(trims);
+      if (trims.length > 0 && filterableTrims.length === 0) {
+        return true;
+      }
+      if (filterableTrims.length > 0 && trimLower) {
+        return knownIssueMatchesTrim(filterableTrims, args.trim);
       }
       const eng = r.engines || [];
       if (eng.length > 0) {

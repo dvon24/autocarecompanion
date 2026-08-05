@@ -3,6 +3,7 @@ import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 import { makeSlug, LAYOUT_LAST_REVISED } from './known-issues';
+import { filterableKnownIssueTrims } from './known-issue-trim-filter';
 
 export interface DTCCodeInfo {
   code: string;
@@ -20,13 +21,14 @@ export interface DTCWithIssues extends DTCCodeInfo {
 }
 
 function dbRowToKnownIssue(row: any): KnownIssue {
+  const trims = filterableKnownIssueTrims(row.trims);
   return {
     id: row.id,
     vehicleMatch: {
       years: row.years,
       make: row.make,
       model: row.model,
-      ...(row.trims.length > 0 ? { trims: row.trims } : {}),
+      ...(trims.length > 0 ? { trims } : {}),
       ...(row.engines.length > 0 ? { engines: row.engines } : {}),
     },
     category: row.category,

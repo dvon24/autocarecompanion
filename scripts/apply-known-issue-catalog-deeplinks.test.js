@@ -5,6 +5,7 @@ const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
 const {
+  applicabilityProseTrimError,
   afterHashes,
   beforeHashes,
   claimIdsForRow,
@@ -14,6 +15,7 @@ const {
   fullRecordSnapshot,
   fullRecordUpdateStatement,
   hashValue,
+  identityContinuityError,
   isIsoDate,
   productUrlError,
   resolveKnownIssueConnectionString,
@@ -240,18 +242,45 @@ test('schema v2 requires every public field plus published human approval', () =
 
   const notPublished = fullRecordManifest();
   notPublished.issues[0].after.status = 'pending_review';
-  assert.ok(validateManifest(notPublished).some((error) => /status must be published/.test(error)));
+  assert.ok(validateManifest(notPublished).some((error) => /status must remain published/.test(error)));
 });
 
-test('schema v2 permits archived status only for an explicit remove disposition', () => {
+test('schema v2 never archives a published issue through the catalog audit', () => {
   const archivedRemoval = fullRecordManifest(baseRow(), 'archive-duplicate', 'remove');
   archivedRemoval.issues[0].after.status = 'archived';
   archivedRemoval.issues[0].after.fixParts = [];
-  assert.deepEqual(validateManifest(archivedRemoval), []);
+  assert.ok(validateManifest(archivedRemoval).some((error) => /must remain published/.test(error)));
 
   const archivedReplacement = fullRecordManifest();
   archivedReplacement.issues[0].after.status = 'archived';
-  assert.ok(validateManifest(archivedReplacement).some((error) => /archived for remove disposition/.test(error)));
+  assert.ok(validateManifest(archivedReplacement).some((error) => /must remain published/.test(error)));
+});
+
+test('schema v2 rejects applicability prose in trims', () => {
+  const manifest = fullRecordManifest();
+  manifest.issues[0].after.trims = ['Vehicles built February 8-9, 2023; verify by VIN'];
+  const errors = validateManifest(manifest);
+  assert.ok(errors.some((error) => /literal trim names only/.test(error)));
+  assert.match(applicabilityProseTrimError('VIN-specific campaign population'), /applicability prose/);
+  assert.equal(applicabilityProseTrimError('SRT Hellcat Redeye Widebody'), null);
+});
+
+test('schema v2 rejects title substitution under an existing issue id', () => {
+  const row = baseRow('dodge-challenger-clear-coat-peeling');
+  row.make = 'Dodge';
+  row.model = 'Challenger';
+  row.title = 'Clear Coat Peeling';
+  const manifest = fullRecordManifest(row);
+  manifest.issues[0].after.title = 'Demon Hood Bezel Attachment Recall';
+  const errors = validateManifest(manifest);
+  assert.ok(errors.some((error) => /cannot rename or substitute/.test(error)));
+  assert.match(identityContinuityError(manifest.issues[0]), /create a new issue ID/);
+});
+
+test('schema v2 preserves make, model, and category routing identity', () => {
+  const manifest = fullRecordManifest();
+  manifest.issues[0].after.category = 'transmission';
+  assert.ok(validateManifest(manifest).some((error) => /make\/model\/category/.test(error)));
 });
 
 test('schema v2 permits commerce only in verified fixPart product links', () => {
