@@ -3,6 +3,7 @@ import prisma from '@/lib/db';
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 import { categoryConfig } from '@/lib/issue-categories';
+import { filterableKnownIssueTrims } from '@/lib/known-issue-trim-filter';
 
 // --- DB row to KnownIssue shape ---
 
@@ -27,14 +28,16 @@ function toUiCategory(cat: string | null | undefined): string {
 }
 
 function dbRowToKnownIssue(row: any): KnownIssue {
+  const trims = filterableKnownIssueTrims(row.trims);
+  const unsafeTrimScope = row.trims.length > 0 && trims.length === 0;
   return {
     id: row.id,
     vehicleMatch: {
       years: row.years,
       make: row.make,
       model: row.model,
-      ...(row.trims.length > 0 ? { trims: row.trims } : {}),
-      ...(row.engines.length > 0 ? { engines: row.engines } : {}),
+      ...(trims.length > 0 ? { trims } : {}),
+      ...(!unsafeTrimScope && row.engines.length > 0 ? { engines: row.engines } : {}),
     },
     category: toUiCategory(row.category),
     title: row.title,
