@@ -8,6 +8,7 @@ import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 import { CategorySection } from './CategorySection';
 import { SeverityFilter } from './SeverityFilter';
 import { AdSlot } from '@/components/ads/AdSlot';
+import { filterableKnownIssueTrims, knownIssueMatchesTrim } from '@/lib/known-issue-trim-filter';
 
 export interface RelatedIssueVehicle {
   slug: string;
@@ -68,10 +69,8 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
   const availableTrims = useMemo(() => {
     const trims = new Set<string>();
     for (const issue of issues) {
-      if (issue.vehicleMatch.trims) {
-        for (const t of issue.vehicleMatch.trims) {
-          trims.add(t);
-        }
+      for (const trim of filterableKnownIssueTrims(issue.vehicleMatch.trims)) {
+        trims.add(trim);
       }
     }
     return [...trims].sort();
@@ -94,15 +93,7 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
     issues.filter(i => {
       if (severityFilter.includes(i.severity) === false) return false;
       if (yearFilter !== null && i.vehicleMatch.years.includes(yearFilter) === false) return false;
-      // Trim filter: show issue if it has no trims (applies to all) OR if it includes the selected trim
-      if (trimFilter !== null && i.vehicleMatch.trims && i.vehicleMatch.trims.length > 0) {
-        // Issue is trim-specific — check if user's trim matches
-        const matchesTrim = i.vehicleMatch.trims.some(t =>
-          t.toLowerCase().includes(trimFilter.toLowerCase()) ||
-          trimFilter.toLowerCase().includes(t.toLowerCase())
-        );
-        if (!matchesTrim) return false;
-      }
+      if (!knownIssueMatchesTrim(i.vehicleMatch.trims, trimFilter)) return false;
       return true;
     }),
     [issues, severityFilter, yearFilter, trimFilter]

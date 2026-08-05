@@ -2,17 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import type { KnownIssue as DbKnownIssue } from '@prisma/client';
 import prisma from '@/lib/db';
 import { buildKnownIssueVehicleFilter } from '@/lib/known-issue-query';
+import { filterableKnownIssueTrims, knownIssueMatchesTrim } from '@/lib/known-issue-trim-filter';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 import { knownIssuesLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
 
 function dbRowToKnownIssue(row: DbKnownIssue): KnownIssue {
+  const trims = filterableKnownIssueTrims(row.trims);
   return {
     id: row.id,
     vehicleMatch: {
       years: row.years,
       make: row.make,
       model: row.model,
-      ...(row.trims.length > 0 ? { trims: row.trims } : {}),
+      ...(trims.length > 0 ? { trims } : {}),
       ...(row.engines.length > 0 ? { engines: row.engines } : {}),
     },
     category: row.category,
@@ -95,16 +97,11 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    // Post-filter for trim matching (same logic as before)
+    // Invalid applicability prose in trims[] must never hide an issue. Treat
+    // those legacy rows as unrestricted until their metadata is repaired.
     let filtered = rows;
     if (trim) {
-      filtered = rows.filter(row => {
-        if (row.trims.length === 0) return true; // no trim restriction
-        const trimLower = trim.toLowerCase();
-        return row.trims.some(t =>
-          trimLower.includes(t.toLowerCase()) || t.toLowerCase().includes(trimLower)
-        );
-      });
+      filtered = rows.filter((row) => knownIssueMatchesTrim(row.trims, trim));
     }
 
     // Sort by severity then report count
