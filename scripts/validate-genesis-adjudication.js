@@ -17,7 +17,7 @@ const ACTIONS = ['rewrite_then_publish', 'archive_as_duplicate', 'archive_unsupp
 const APPLICABILITY_PROSE = /\b(?:20\d{2}|vehicle|covered|equipped|applicable|production|campaign|bulletin|vin)\b/i;
 
 function sha256File(file) {
-  return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+  return crypto.createHash('sha256').update(fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n')).digest('hex');
 }
 
 function expectedAction(id) {

@@ -12,7 +12,7 @@ const packetFile = path.resolve(__dirname, '..', 'data', 'known-issue-gmc-adjudi
 const snapshotFile = path.resolve(__dirname, '..', 'data', '_gmc-deeplink-snapshot-2026-08-05.json');
 
 function sha256File(file) {
-  return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+  return crypto.createHash('sha256').update(fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n')).digest('hex');
 }
 
 test('applicability arrays retain names and reject scope prose', () => {

@@ -99,7 +99,7 @@ function hashValue(value) {
 }
 
 function sha256File(file) {
-  return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+  return crypto.createHash('sha256').update(fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n')).digest('hex');
 }
 
 function cleanText(value) {
