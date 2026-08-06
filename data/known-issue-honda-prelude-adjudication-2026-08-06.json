@@ -1,0 +1,2362 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Honda",
+  "model": "Prelude",
+  "completionStatement": "This packet reconciles all 14 frozen Honda Prelude rows. Four same-identity Honda/NHTSA corrections are proposed; ten rows remain byte-for-byte unchanged pending exact evidence or independent disposition.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All 14 rows remain published. Ten are byte-for-byte unchanged.",
+    "An unrelated campaign, bulletin, component, generation or model may never replace the issue named by an existing indexed page.",
+    "Each rewrite contains zero commerce, zero cost or mileage claims, and empty trim and engine arrays.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_honda-deeplink-snapshot-2026-08-05.json",
+    "snapshotSha256": "671de2660f31c07e01610e26c13382b6d59b293fb74ecc3e3abc02d248d6dd5e",
+    "snapshotGeneratedAt": "2026-08-05T21:54:08.563Z",
+    "snapshotHash": "fcd155f1e269b1d8c691655699cc2e18f6029c3ee54c650b88df00004025729a",
+    "preludeRecordCount": 14
+  },
+  "observations": [
+    {
+      "code": "duplicate-transmission-pages-preserved",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-prelude-5th-gen-automatic-transmission-premature-failure",
+        "honda-prelude-auto-transmission-failure-1997"
+      ],
+      "detail": "Two indexed pages describe the same automatic-transmission identity. Both receive the same exact Honda correction; neither is removed, redirected or silently consolidated."
+    },
+    {
+      "code": "historical-warranty-not-presented-as-current",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-prelude-5th-gen-automatic-transmission-premature-failure",
+        "honda-prelude-auto-transmission-failure-1997"
+      ],
+      "detail": "Honda announced seven-year/100,000-mile coverage in 2002. The proposals explicitly state that the historical coverage has expired."
+    },
+    {
+      "code": "three-recall-identities-kept-distinct",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-prelude-front-lower-ball-joint-premature-wear-plus-ignition-switch-r",
+        "honda-prelude-ignition-switch-1997"
+      ],
+      "detail": "Campaign 99V069 is a 1996-1998 lower-ball-joint defect, 02V120 is a 1997-1999 ignition-contact stall defect, and 05V025 is a 1997-2001 shift-interlock rollaway defect. Their scopes and remedies are not merged."
+    },
+    {
+      "code": "unsupported-prelude-narratives-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-prelude-4th-gen-electronic-4-wheel-steering-faults-default-to-2ws",
+        "honda-prelude-ac-compressor-clutch-1997",
+        "honda-prelude-atts-failure-1997",
+        "honda-prelude-distributor-failure-1992",
+        "honda-prelude-h22-h23-distributor-failure",
+        "honda-prelude-h22-oil-consumption-via-worn-valve-stem-seals-rings",
+        "honda-prelude-pgm-fi-main-relay-hot-weather-no-start",
+        "honda-prelude-power-steering-rack-leak-1992",
+        "honda-prelude-rear-main-seal-1997",
+        "honda-prelude-vtec-solenoid-leak-1993"
+      ],
+      "detail": "Ten rows supported only by forums, generic complaint pages, videos, retailers or no citations remain byte-for-byte unchanged rather than being archived or replaced."
+    }
+  ],
+  "summary": {
+    "rewrite_same_identity": 4,
+    "keep_published_pending_source": 10,
+    "total": 14
+  },
+  "rows": [
+    {
+      "id": "honda-prelude-4th-gen-electronic-4-wheel-steering-faults-default-to-2ws",
+      "model": "Prelude",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen row relies on owner forums for a broad 1992-1996 electronic-4WS defect and solder/sensor remedies. No exact Honda primary source was found that establishes that population and repair, so it remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "cffe0e03fe460584ad41968b08c1dd66cae5e6025e16fd32e63cd352a109bdbd",
+      "proposalSha256": "cffe0e03fe460584ad41968b08c1dd66cae5e6025e16fd32e63cd352a109bdbd",
+      "before": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1992,
+          1993,
+          1994,
+          1995,
+          1996
+        ],
+        "trims": [
+          "Si",
+          "Si 4WS",
+          "VTEC",
+          "Si VTEC"
+        ],
+        "engines": [
+          "H22A1",
+          "H23A1",
+          "F22A1"
+        ],
+        "category": "steering",
+        "title": "4th-gen electronic 4-Wheel Steering (4WS) faults and default-to-2WS",
+        "description": "The 1992-1996 (4th gen) Prelude replaced the 3rd gen's mechanical 4WS with an electronic system managed by its own control unit. It is a well-known trouble spot: the rear-steer control unit and the steering angle/position sensors are easily upset by potholes and normal wear. When the system detects a fault at the self-check (often at startup) it logs an error, illuminates the 4WS warning light and safely defaults to conventional front-only steering for that trip. Many cars throw the fault intermittently. A genuine replacement control unit is expensive, but the common failures are repairable sensor/solder-joint issues.",
+        "solution": "Read the 4WS fault, then inspect sensors and the steering angle sensor for damage and check the 4WS control unit. Economical fixes include re-soldering cracked relay/board joints on the control unit and replacing a failed sensor rather than buying a new unit. A quick reset (pull the relevant fuse ~10 seconds) clears a one-trip fault. After any repair the system needs a neutral/reset and a 4WS-specific alignment (front and rear toe), which not every shop can perform.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "4WS warning light on the dash",
+          "System reverts to front-wheel-only steering",
+          "Intermittent fault, often at cold startup or after hitting a pothole",
+          "Fault triggered by quick key-off/key-on restart or spirited driving",
+          "Uneven rear tire wear / alignment difficulty"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.preludeonline.com/threads/4ws-has-failed.64227/",
+            "type": "forum",
+            "title": "4WS has failed - Honda Prelude Online"
+          },
+          {
+            "url": "https://honda-tech.com/forums/honda-prelude-4/4-wheel-steering-issue-2995437/",
+            "type": "forum",
+            "title": "4 wheel steering issue - Honda-Tech"
+          },
+          {
+            "url": "http://www.ozhonda.com/forum/archive/index.php/t-3091.html",
+            "type": "forum",
+            "title": "1995/1996 Si Model Prelude 4WS problem - Ozhonda Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1992,
+          1993,
+          1994,
+          1995,
+          1996
+        ],
+        "trims": [
+          "Si",
+          "Si 4WS",
+          "VTEC",
+          "Si VTEC"
+        ],
+        "engines": [
+          "H22A1",
+          "H23A1",
+          "F22A1"
+        ],
+        "category": "steering",
+        "title": "4th-gen electronic 4-Wheel Steering (4WS) faults and default-to-2WS",
+        "description": "The 1992-1996 (4th gen) Prelude replaced the 3rd gen's mechanical 4WS with an electronic system managed by its own control unit. It is a well-known trouble spot: the rear-steer control unit and the steering angle/position sensors are easily upset by potholes and normal wear. When the system detects a fault at the self-check (often at startup) it logs an error, illuminates the 4WS warning light and safely defaults to conventional front-only steering for that trip. Many cars throw the fault intermittently. A genuine replacement control unit is expensive, but the common failures are repairable sensor/solder-joint issues.",
+        "solution": "Read the 4WS fault, then inspect sensors and the steering angle sensor for damage and check the 4WS control unit. Economical fixes include re-soldering cracked relay/board joints on the control unit and replacing a failed sensor rather than buying a new unit. A quick reset (pull the relevant fuse ~10 seconds) clears a one-trip fault. After any repair the system needs a neutral/reset and a 4WS-specific alignment (front and rear toe), which not every shop can perform.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "4WS warning light on the dash",
+          "System reverts to front-wheel-only steering",
+          "Intermittent fault, often at cold startup or after hitting a pothole",
+          "Fault triggered by quick key-off/key-on restart or spirited driving",
+          "Uneven rear tire wear / alignment difficulty"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.preludeonline.com/threads/4ws-has-failed.64227/",
+            "type": "forum",
+            "title": "4WS has failed - Honda Prelude Online"
+          },
+          {
+            "url": "https://honda-tech.com/forums/honda-prelude-4/4-wheel-steering-issue-2995437/",
+            "type": "forum",
+            "title": "4 wheel steering issue - Honda-Tech"
+          },
+          {
+            "url": "http://www.ozhonda.com/forum/archive/index.php/t-3091.html",
+            "type": "forum",
+            "title": "1995/1996 Si Model Prelude 4WS problem - Ozhonda Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prelude-5th-gen-automatic-transmission-premature-failure",
+      "model": "Prelude",
+      "action": "rewrite_same_identity",
+      "reason": "Corrected the unsupported 1997-2001 failure narrative to Honda's exact 2000-2001 Prelude automatic-transmission warranty population, warning symptoms and historical coverage; removed speculative mechanisms, DTCs, costs, swaps and commerce.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "trims",
+        "engines",
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://global.honda/en/newsroom/worldnews/2002/4020920.html?from=rich_r",
+          "verifiedOn": "2026-08-06",
+          "observation": "American Honda Extends Warranties on Select Automatic Transmissions (September 20, 2002) supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "053cfdeb66f92d6d0afdea09d9c8ad78e12c0a5efa94d1827e1396f55a0ce653",
+      "proposalSha256": "ee50af6902aba613a17e97be96b9d3922e021cd059dd70b3211462adf9aa946d",
+      "before": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [
+          "Base",
+          "Type SH",
+          "SH"
+        ],
+        "engines": [
+          "H22A4"
+        ],
+        "category": "transmission",
+        "title": "5th-gen (SS/BAYA) automatic transmission premature failure",
+        "description": "The 1997-2001 (5th gen) Prelude automatic is notorious for a high premature-failure rate, well above typical Honda reliability. Failures cluster into an early death (often under ~30,000 miles) or a later slip/harsh-shift failure. Honda quietly extended the automatic-transmission warranty on 2000-2001 cars to 100,000 miles, attributing the problem to a manufacturing deviation (raw materials/workmanship) rather than design, but left 1997-1999 owners to pay for rebuilds themselves. Manual-transmission Preludes are not affected.",
+        "solution": "Confirm with a road test and fluid check (burnt fluid, metal). Servicing with genuine Honda ATF and regular drain-and-fills can extend life but does not cure a failing unit. The accepted fix is a rebuild with updated internals or replacement with a known-good remanufactured or JDM unit; many enthusiasts convert to the 5-speed manual as a permanent cure. Check for the extended-warranty coverage on 2000-2001 cars before paying out of pocket.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Slipping / revving in neutral then jerking into gear",
+          "High revs and hard jerk into gear before warm-up",
+          "Hard shifts and jolts through all gears",
+          "Delayed engagement",
+          "Complete loss of drive"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0730",
+          "P0740",
+          "P0780"
+        ],
+        "estimatedCostLow": 1800,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://honda-tech.com/forums/honda-prelude-4/do-you-have-1997-2001-prelude-bad-transmission-read-very-important-1327089/",
+            "type": "forum",
+            "title": "Do you have a 1997-2001 Prelude with a BAD TRANSMISSION? - Honda-Tech"
+          },
+          {
+            "url": "https://www.preludeonline.com/threads/hondas-reasoning-for-the-transmission-warranty-extension-being-only-for-00-01-ludes.91174/",
+            "type": "forum",
+            "title": "Honda's reasoning for the transmission warranty extension being ONLY for 00-01 ludes - Honda Prelude Online"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Honda/Prelude/1997/transmission/power_train-automatic_transmission.shtml",
+            "type": "forum",
+            "title": "1997 Honda Prelude Automatic Transmission Problems - CarComplaints"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Automatic Transmission Premature Wear or Failure - 2002 Warranty Extension",
+        "description": "In September 2002, American Honda announced an extended warranty for automatic transmissions in 2000-2001 Honda Prelude vehicles because problems could result in premature wear or failure. Honda said slow or erratic shifting could warn that the transmission was not operating properly and reported that about two percent of the covered vehicles had experienced the problem at that time.",
+        "solution": "Have slow or erratic shifting diagnosed by a Honda dealer and confirm the vehicle's service and campaign history. Honda's historical extension covered the affected automatic transmission for seven years or 100,000 miles; that period has expired and this page does not promise current warranty coverage.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Slow shifting",
+          "Erratic shifting"
+        ],
+        "affectedSystems": [
+          "Automatic transmission"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "manufacturer",
+            "title": "American Honda Extends Warranties on Select Automatic Transmissions (September 20, 2002)",
+            "url": "https://global.honda/en/newsroom/worldnews/2002/4020920.html?from=rich_r"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Corrected the unsupported 1997-2001 failure narrative to Honda's exact 2000-2001 Prelude automatic-transmission warranty population, warning symptoms and historical coverage; removed speculative mechanisms, DTCs, costs, swaps and commerce.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prelude-ac-compressor-clutch-1997",
+      "model": "Prelude",
+      "action": "keep_published_pending_source",
+      "reason": "A generic NHTSA complaint landing page does not establish one 1997-2001 Prelude compressor-clutch, relay and seized-compressor defect or the claimed diagnostic values and repair. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "4535ae67c440b1911262ae2cadfde4417c4c9fcf4a36e90db30cd2c16e06b546",
+      "proposalSha256": "4535ae67c440b1911262ae2cadfde4417c4c9fcf4a36e90db30cd2c16e06b546",
+      "before": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "A/C Compressor Clutch and Relay Failure",
+        "description": "The A/C compressor clutch on 5th-generation Preludes is prone to failure, often due to the clutch relay overheating and failing, or the clutch coil itself burning out. When the relay fails intermittently, the A/C may work sometimes but not others. A seized compressor can also snap the serpentine belt, disabling the alternator and power steering simultaneously.",
+        "solution": "Start by replacing the A/C relay (inexpensive and easy to test). If the relay is good, test the compressor clutch coil resistance (should be 3-5 ohms). Replace the clutch assembly or full compressor as needed. If the compressor has seized, replace the serpentine belt and inspect the tensioner. Evacuate and recharge the system with R-134a after compressor replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "A/C blows warm intermittently",
+          "Clicking noise when A/C engages",
+          "A/C works sometimes but not others",
+          "Squealing belt (if compressor seized)",
+          "All accessories lost (if belt breaks)"
+        ],
+        "affectedSystems": [
+          "A/C compressor",
+          "Compressor clutch",
+          "A/C relay",
+          "Serpentine belt"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1998/HONDA/PRELUDE/2%252520DR/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10162602 - 1998 Honda Prelude A/C compressor seized causing belt failure/loss of power steering"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Prestone coolant flush kit for complete cooling system service",
+            "partName": "Coolant Flush Kit",
+            "partBrand": "Prestone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Prestone%20coolant%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Stant thermostat — preventive replacement during coolant service",
+            "partName": "Thermostat",
+            "partBrand": "Stant",
+            "affiliateUrl": "https://www.amazon.com/s?k=Stant%20thermostat&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-crv-ac-compressor-clutch-2007"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "A/C Compressor Clutch and Relay Failure",
+        "description": "The A/C compressor clutch on 5th-generation Preludes is prone to failure, often due to the clutch relay overheating and failing, or the clutch coil itself burning out. When the relay fails intermittently, the A/C may work sometimes but not others. A seized compressor can also snap the serpentine belt, disabling the alternator and power steering simultaneously.",
+        "solution": "Start by replacing the A/C relay (inexpensive and easy to test). If the relay is good, test the compressor clutch coil resistance (should be 3-5 ohms). Replace the clutch assembly or full compressor as needed. If the compressor has seized, replace the serpentine belt and inspect the tensioner. Evacuate and recharge the system with R-134a after compressor replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "A/C blows warm intermittently",
+          "Clicking noise when A/C engages",
+          "A/C works sometimes but not others",
+          "Squealing belt (if compressor seized)",
+          "All accessories lost (if belt breaks)"
+        ],
+        "affectedSystems": [
+          "A/C compressor",
+          "Compressor clutch",
+          "A/C relay",
+          "Serpentine belt"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1998/HONDA/PRELUDE/2%252520DR/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10162602 - 1998 Honda Prelude A/C compressor seized causing belt failure/loss of power steering"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Prestone coolant flush kit for complete cooling system service",
+            "partName": "Coolant Flush Kit",
+            "partBrand": "Prestone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Prestone%20coolant%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Stant thermostat — preventive replacement during coolant service",
+            "partName": "Thermostat",
+            "partBrand": "Stant",
+            "affiliateUrl": "https://www.amazon.com/s?k=Stant%20thermostat&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-crv-ac-compressor-clutch-2007"
+        ]
+      }
+    },
+    {
+      "id": "honda-prelude-atts-failure-1997",
+      "model": "Prelude",
+      "action": "keep_published_pending_source",
+      "reason": "A generic NHTSA complaint landing page does not establish the claimed ATTS clutch-pack, pump and fluid-degradation defect, costs or repair. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "4bb0bb1e249f47ac5b166be523fcf7a8b3b6a007c56a11d8e574d7cf65aacfb5",
+      "proposalSha256": "4bb0bb1e249f47ac5b166be523fcf7a8b3b6a007c56a11d8e574d7cf65aacfb5",
+      "before": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "ATTS (Active Torque Transfer System) Failure (SH Models)",
+        "description": "The 5th generation Prelude SH (1997-2001) features the ATTS (Active Torque Transfer System), a mechanical torque-vectoring system that transfers power between the front wheels for improved cornering. The ATTS unit is complex, uses dedicated fluid separate from the transmission, and is prone to failure due to internal clutch pack wear, pump failure, or fluid degradation. A failed ATTS system causes grinding noises, vibration, and an ATTS warning light. Replacement units are increasingly scarce and expensive.",
+        "solution": "Confirm the fault by scanning the ATTS control unit for stored codes, then inspect ATTS fluid condition/level and check for metal debris, pump noise, and excessive play or binding in the differential during turns. If the fluid is contaminated but the unit is still mechanically quiet, perform the correct Honda ATTS fluid service and re-test; if codes return or there is grinding/vibration, the usual repair is replacement of the ATTS assembly or a professional rebuild of the internal clutch pack/pump, along with axle seal and fluid replacement. Also verify wheel speed inputs and related wiring before condemning the unit, since sensor faults can trigger the warning light without internal damage. Expect roughly $150-$300 for diagnosis/fluid service, while used or rebuilt ATTS unit replacement commonly runs about $1,500-$3,500+ depending on parts availability and labor.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "ATTS warning light on dashboard",
+          "Grinding or whining noise from front differential area",
+          "Vibration during cornering",
+          "Reduced cornering performance",
+          "Clicking or clunking during turns"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1998/HONDA/PRELUDE/2%252520DR/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints - 1998 Honda Prelude drivetrain / power train reports"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
+            "partName": "Synthetic Gear Oil 75W-90",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Fel-Pro gasket kit for drivetrain service",
+            "partName": "Gasket Kit",
+            "partBrand": "Fel-Pro",
+            "affiliateUrl": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "ATTS (Active Torque Transfer System) Failure (SH Models)",
+        "description": "The 5th generation Prelude SH (1997-2001) features the ATTS (Active Torque Transfer System), a mechanical torque-vectoring system that transfers power between the front wheels for improved cornering. The ATTS unit is complex, uses dedicated fluid separate from the transmission, and is prone to failure due to internal clutch pack wear, pump failure, or fluid degradation. A failed ATTS system causes grinding noises, vibration, and an ATTS warning light. Replacement units are increasingly scarce and expensive.",
+        "solution": "Confirm the fault by scanning the ATTS control unit for stored codes, then inspect ATTS fluid condition/level and check for metal debris, pump noise, and excessive play or binding in the differential during turns. If the fluid is contaminated but the unit is still mechanically quiet, perform the correct Honda ATTS fluid service and re-test; if codes return or there is grinding/vibration, the usual repair is replacement of the ATTS assembly or a professional rebuild of the internal clutch pack/pump, along with axle seal and fluid replacement. Also verify wheel speed inputs and related wiring before condemning the unit, since sensor faults can trigger the warning light without internal damage. Expect roughly $150-$300 for diagnosis/fluid service, while used or rebuilt ATTS unit replacement commonly runs about $1,500-$3,500+ depending on parts availability and labor.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "ATTS warning light on dashboard",
+          "Grinding or whining noise from front differential area",
+          "Vibration during cornering",
+          "Reduced cornering performance",
+          "Clicking or clunking during turns"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1998/HONDA/PRELUDE/2%252520DR/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints - 1998 Honda Prelude drivetrain / power train reports"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
+            "partName": "Synthetic Gear Oil 75W-90",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Fel-Pro gasket kit for drivetrain service",
+            "partName": "Gasket Kit",
+            "partBrand": "Fel-Pro",
+            "affiliateUrl": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prelude-auto-transmission-failure-1997",
+      "model": "Prelude",
+      "action": "rewrite_same_identity",
+      "reason": "Corrected the unsupported 1997-2001 failure narrative to Honda's exact 2000-2001 Prelude automatic-transmission warranty population, warning symptoms and historical coverage; removed speculative mechanisms, DTCs, costs, swaps and commerce.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://global.honda/en/newsroom/worldnews/2002/4020920.html?from=rich_r",
+          "verifiedOn": "2026-08-06",
+          "observation": "American Honda Extends Warranties on Select Automatic Transmissions (September 20, 2002) supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "2ba591389bbac10df0dd6d2a613bf7c8c1afd8bd976d56fef7a91d0a728645ff",
+      "proposalSha256": "ee50af6902aba613a17e97be96b9d3922e021cd059dd70b3211462adf9aa946d",
+      "before": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "5th Generation Automatic Transmission Failure",
+        "description": "The 4-speed automatic transmission (MAXA/M6HA) in the 1997-2001 Prelude is prone to premature failure, a problem shared with many late-1990s Honda automatic transmissions. The 3rd and 4th gear clutch packs wear prematurely, and the torque converter can develop shudder. High-mileage automatics often slip, flare between shifts, or fail to engage gears. Honda automatics of this era were undersized for the power output of the H22A engine.",
+        "solution": "",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Transmission slipping between gears",
+          "Harsh or delayed shifts",
+          "Flare (RPM surge) between 2nd and 3rd gear",
+          "Check engine light with transmission codes",
+          "Complete loss of gear engagement"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0741",
+          "P0751"
+        ],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1997/HONDA/PRELUDE",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 1997 Honda Prelude - Complaints and Investigations"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=3xjXQJ1JXxw",
+            "type": "video",
+            "title": "EricTheCarGuy - Honda Prelude Transmission Repair and Diagnosis"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Prelude%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-odyssey-transmission-failure-1999",
+          "acura-tl-auto-trans-3rd-gear-2004"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Automatic Transmission Premature Wear or Failure - 2002 Warranty Extension",
+        "description": "In September 2002, American Honda announced an extended warranty for automatic transmissions in 2000-2001 Honda Prelude vehicles because problems could result in premature wear or failure. Honda said slow or erratic shifting could warn that the transmission was not operating properly and reported that about two percent of the covered vehicles had experienced the problem at that time.",
+        "solution": "Have slow or erratic shifting diagnosed by a Honda dealer and confirm the vehicle's service and campaign history. Honda's historical extension covered the affected automatic transmission for seven years or 100,000 miles; that period has expired and this page does not promise current warranty coverage.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Slow shifting",
+          "Erratic shifting"
+        ],
+        "affectedSystems": [
+          "Automatic transmission"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "manufacturer",
+            "title": "American Honda Extends Warranties on Select Automatic Transmissions (September 20, 2002)",
+            "url": "https://global.honda/en/newsroom/worldnews/2002/4020920.html?from=rich_r"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Corrected the unsupported 1997-2001 failure narrative to Honda's exact 2000-2001 Prelude automatic-transmission warranty population, warning symptoms and historical coverage; removed speculative mechanisms, DTCs, costs, swaps and commerce.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prelude-distributor-failure-1992",
+      "model": "Prelude",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint landing page and video do not establish the claimed fourth-generation distributor failure population, mileage threshold or replacement procedure. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "3d82a0d9d4cf33e45a65216e4a6225dabef1241d3b1a17898031d013064168ae",
+      "proposalSha256": "3d82a0d9d4cf33e45a65216e4a6225dabef1241d3b1a17898031d013064168ae",
+      "before": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1992,
+          1993,
+          1994,
+          1995,
+          1996
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Distributor Internal Coil and Igniter Failure (4th Gen)",
+        "description": "Fourth-generation Preludes (BA8/BB1/BB4) use an internal-coil distributor that combines the ignition coil, igniter module, and pickup coils in one unit. These components fail with age and heat, causing misfires, no-start conditions, or intermittent stalling. The distributor cap and rotor are also enclosed, making inspection less obvious. Failure typically occurs after 150,000+ miles but can happen earlier.",
+        "solution": "Replace the complete distributor assembly. OEM Honda units are expensive ($400+), but quality aftermarket distributors are available for $100-$200. When replacing, also install a new cap, rotor, spark plugs, and spark plug wires for a complete ignition refresh. Set the ignition timing to specification (15-18 degrees BTDC depending on model) after installation.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine misfires or runs rough",
+          "No-start condition (cranks but won't fire)",
+          "Engine stalls when hot and restarts when cooled",
+          "Check engine light for misfire codes",
+          "Backfiring through intake"
+        ],
+        "affectedSystems": [
+          "Distributor",
+          "Ignition coil",
+          "Igniter module",
+          "Ignition system"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1992/HONDA/PRELUDE",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 1992 Honda Prelude"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=6vZ9z1b0X5Q",
+            "type": "video",
+            "title": "Honda Prelude 4th Gen Distributor Replacement - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Iridium spark plugs offer long life and consistent performance",
+            "partName": "Iridium IX Spark Plugs",
+            "partBrand": "NGK",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Prelude%20NGK%20Iridium%20IX%20Spark%20Plugs&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Anti-seize compound prevents spark plugs from seizing in aluminum heads",
+            "partName": "Anti-Seize Lubricant",
+            "partBrand": "Permatex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Prelude%20Permatex%20Anti-Seize%20Lubricant&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1992,
+          1993,
+          1994,
+          1995,
+          1996
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Distributor Internal Coil and Igniter Failure (4th Gen)",
+        "description": "Fourth-generation Preludes (BA8/BB1/BB4) use an internal-coil distributor that combines the ignition coil, igniter module, and pickup coils in one unit. These components fail with age and heat, causing misfires, no-start conditions, or intermittent stalling. The distributor cap and rotor are also enclosed, making inspection less obvious. Failure typically occurs after 150,000+ miles but can happen earlier.",
+        "solution": "Replace the complete distributor assembly. OEM Honda units are expensive ($400+), but quality aftermarket distributors are available for $100-$200. When replacing, also install a new cap, rotor, spark plugs, and spark plug wires for a complete ignition refresh. Set the ignition timing to specification (15-18 degrees BTDC depending on model) after installation.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine misfires or runs rough",
+          "No-start condition (cranks but won't fire)",
+          "Engine stalls when hot and restarts when cooled",
+          "Check engine light for misfire codes",
+          "Backfiring through intake"
+        ],
+        "affectedSystems": [
+          "Distributor",
+          "Ignition coil",
+          "Igniter module",
+          "Ignition system"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1992/HONDA/PRELUDE",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 1992 Honda Prelude"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=6vZ9z1b0X5Q",
+            "type": "video",
+            "title": "Honda Prelude 4th Gen Distributor Replacement - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Iridium spark plugs offer long life and consistent performance",
+            "partName": "Iridium IX Spark Plugs",
+            "partBrand": "NGK",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Prelude%20NGK%20Iridium%20IX%20Spark%20Plugs&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Anti-seize compound prevents spark plugs from seizing in aluminum heads",
+            "partName": "Anti-Seize Lubricant",
+            "partBrand": "Permatex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Prelude%20Permatex%20Anti-Seize%20Lubricant&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prelude-front-lower-ball-joint-premature-wear-plus-ignition-switch-r",
+      "model": "Prelude",
+      "action": "rewrite_same_identity",
+      "reason": "Preserved the indexed combined-recall identity while replacing secondary sources with exact NHTSA campaigns, correcting the ball-joint scope to 1996-1998 and separating the two different ignition-switch defects and remedies.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "trims",
+        "engines",
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "government-recall-record",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=99V069000",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Recall 99V069 - 1996-1998 Prelude Front Lower Ball Joints supports the proposed same-identity scope, mechanism and remedy."
+        },
+        {
+          "kind": "government-recall-record",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=02V120000",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Recall 02V120 - 1997-1999 Prelude Ignition-Switch Contacts supports the proposed same-identity scope, mechanism and remedy."
+        },
+        {
+          "kind": "government-recall-record",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=05V025000",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Recall 05V025 - 1997-2001 Prelude Ignition Interlock supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "ab98c146eb79312c805f434bf87b67656f04331def539a509327d9324c0765ea",
+      "proposalSha256": "073120efac6dd03361c028679f72c9b5c1fb2641f1a063ef8a9bedb95b77e955",
+      "before": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1996,
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [
+          "Base",
+          "Si",
+          "Type SH",
+          "SH"
+        ],
+        "engines": [
+          "H22A4",
+          "H22A1",
+          "F22A1"
+        ],
+        "category": "safety",
+        "title": "Front lower ball joint premature wear (NHTSA recall 99V069000) plus ignition-switch recalls",
+        "description": "The Prelude carries genuine NHTSA safety recalls. Recall 99V069000 covers certain 1997-1998 cars whose front lower suspension ball joints can wear out prematurely and, in the worst case, separate - collapsing the front suspension and causing loss of control. Separately, ignition-switch recalls affect the 5th gen: 02V120000 (1997-1999/2000) for electrical contacts that degrade from high starting current and can stall the engine, and 05V025000 (1997-2001) for a shift-interlock defect that lets the key be removed without the transmission in Park. Even where the recall repair window has closed, worn ball joints remain a common age-related safety item to inspect on all 1990s Preludes.",
+        "solution": "Check the VIN against NHTSA for any open recall (free repair if still open). For the ball joint, inspect for play/clunks and replace worn front lower ball joints (or the lower control arm assembly) in pairs and align. For the ignition-switch recalls, have the switch/contacts replaced per the Honda recall remedy. General maintenance: replace tired ball joints and suspension bushings as part of routine age-related refresh.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Clunking or knocking from the front suspension over bumps",
+          "Excessive front wheel play",
+          "In severe cases front suspension separation/collapse",
+          "Engine stall from degraded ignition-switch contacts (switch recall)",
+          "Key can be removed without transmission in Park (interlock recall)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://recallexplained.com/honda/prelude/",
+            "type": "recall",
+            "title": "Honda Prelude recall history and common issues (NHTSA data) - RecallExplained"
+          },
+          {
+            "url": "https://repairpal.com/recall/99V069000",
+            "type": "recall",
+            "title": "Isuzu Acura Honda Recall: Premature Ball Joint Wear (99V069000) - RepairPal"
+          },
+          {
+            "url": "https://auto-recalls.justia.com/honda/prelude/1997/02v120000/index.html",
+            "type": "recall",
+            "title": "Honda Prelude 1997 Ignition Switch Recall 02V120000 - Justia"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1996,
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Front Lower Ball Joint and Ignition-Switch Safety Recalls 99V069, 02V120, and 05V025",
+        "description": "Three NHTSA campaigns cover distinct Prelude safety defects. Recall 99V069 covers certain 1996-1998 vehicles whose front lower ball joints can wear prematurely and separate, collapsing the front suspension and reducing steering control. Recall 02V120 covers certain 1997-1999 vehicles whose ignition-switch electrical contacts can degrade and stall the engine without warning. Recall 05V025 covers certain 1997-2001 vehicles whose ignition interlock can permit key removal without the transmission in Park, creating rollaway risk.",
+        "solution": "Have a Honda dealer check the VIN for all three campaigns. Recall 99V069 replaces the front suspension lower ball joints. Recall 02V120 replaces the ignition switch. Recall 05V025 inspects interlock operation and installs a redesigned interlock lever when required.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [
+          "Open recall 99V069, 02V120, or 05V025 for the VIN",
+          "Potential front suspension collapse if a lower ball joint separates",
+          "Potential engine stall without warning",
+          "Potential key removal when the transmission is not in Park"
+        ],
+        "affectedSystems": [
+          "Front suspension lower ball joints",
+          "Ignition-switch electrical contacts",
+          "Ignition shift interlock"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Recall 99V069 - 1996-1998 Prelude Front Lower Ball Joints",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=99V069000"
+          },
+          {
+            "type": "recall",
+            "title": "NHTSA Recall 02V120 - 1997-1999 Prelude Ignition-Switch Contacts",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=02V120000"
+          },
+          {
+            "type": "recall",
+            "title": "NHTSA Recall 05V025 - 1997-2001 Prelude Ignition Interlock",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=05V025000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Preserved the indexed combined-recall identity while replacing secondary sources with exact NHTSA campaigns, correcting the ball-joint scope to 1996-1998 and separating the two different ignition-switch defects and remedies.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prelude-h22-h23-distributor-failure",
+      "model": "Prelude",
+      "action": "keep_published_pending_source",
+      "reason": "Owner-forum anecdotes do not establish one H22/H23 distributor sensor-and-bearing defect with the claimed mechanism and remedy. This overlapping distributor page remains byte-for-byte unchanged for independent disposition.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "594c53cdcff12c46e8e5e57ebdc6b6984e7cf00ca11344c63262614bd87211cc",
+      "proposalSha256": "594c53cdcff12c46e8e5e57ebdc6b6984e7cf00ca11344c63262614bd87211cc",
+      "before": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [
+          "Si",
+          "Si VTEC",
+          "SH",
+          "Type SH",
+          "Base"
+        ],
+        "engines": [
+          "H22A",
+          "H22A1",
+          "H22A4",
+          "H23A1"
+        ],
+        "category": "electrical",
+        "title": "H22/H23 distributor failure (TDC/cylinder-position sensor and internal bearing)",
+        "description": "The single most common driveability failure on the VTEC Prelude is the internal distributor. Two failure modes dominate: the internal sensors (TDC / cylinder position, or CYP) degrade, and the distributor shaft bearing wears out and 'spins,' contaminating the housing (owners describe a tell-tale reddish powder inside). The ignition/rotor also burns the cap center lead over time. As the bearing fails, shaft play produces bad CYP readings and oil can enter the cap, causing misfires and no-starts. On OBD-II 5th-gen cars this throws a cylinder-position-sensor code (historically 'code 9' on OBD-I). Because Honda integrated the sensors, coil, cap, rotor and ignitor into one distributor unit, a single worn part causes wide-ranging symptoms and is frequently misdiagnosed as fuel, plugs, or wires.",
+        "solution": "Diagnose by inspecting the cap/rotor for burnt center contacts and checking for a red powder residue / shaft play (spin the shaft by hand and feel for roughness). The accepted fix is a complete distributor replacement (OEM or a quality reman unit) rather than piecemeal cap-and-rotor, since the sensors and bearing are the root cause. Set base ignition timing after install. Cheap aftermarket units are known to fail again within 1-2 years, so enthusiasts favor OEM Honda or known-good rebuilds.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Severe misfire/stumble under load",
+          "Bouncing tachometer and fluctuating idle (surging 900-2000 rpm)",
+          "Feels like it hits a rev limiter around 3500 rpm, clears briefly after a restart",
+          "Jerking during acceleration",
+          "Reddish powder residue inside the distributor",
+          "Cylinder position sensor / ignition trouble code"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P1381",
+          "P1382",
+          "P0341"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.3geez.com/forum/archive/index.php/t-7820.html",
+            "type": "forum",
+            "title": "what are symptoms of a bad distributor - 3geez Classic Honda"
+          },
+          {
+            "url": "https://www.preludeonline.com/threads/how-to-tell-if-distributor-is-bad.137492/",
+            "type": "forum",
+            "title": "How to tell if distributor is bad - Honda Prelude Online"
+          },
+          {
+            "url": "https://honda-tech.com/forums/honda-prelude-4/symptoms-bad-distributor-647792/",
+            "type": "forum",
+            "title": "Symptoms of a bad distributor - Honda-Tech"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [
+          "Si",
+          "Si VTEC",
+          "SH",
+          "Type SH",
+          "Base"
+        ],
+        "engines": [
+          "H22A",
+          "H22A1",
+          "H22A4",
+          "H23A1"
+        ],
+        "category": "electrical",
+        "title": "H22/H23 distributor failure (TDC/cylinder-position sensor and internal bearing)",
+        "description": "The single most common driveability failure on the VTEC Prelude is the internal distributor. Two failure modes dominate: the internal sensors (TDC / cylinder position, or CYP) degrade, and the distributor shaft bearing wears out and 'spins,' contaminating the housing (owners describe a tell-tale reddish powder inside). The ignition/rotor also burns the cap center lead over time. As the bearing fails, shaft play produces bad CYP readings and oil can enter the cap, causing misfires and no-starts. On OBD-II 5th-gen cars this throws a cylinder-position-sensor code (historically 'code 9' on OBD-I). Because Honda integrated the sensors, coil, cap, rotor and ignitor into one distributor unit, a single worn part causes wide-ranging symptoms and is frequently misdiagnosed as fuel, plugs, or wires.",
+        "solution": "Diagnose by inspecting the cap/rotor for burnt center contacts and checking for a red powder residue / shaft play (spin the shaft by hand and feel for roughness). The accepted fix is a complete distributor replacement (OEM or a quality reman unit) rather than piecemeal cap-and-rotor, since the sensors and bearing are the root cause. Set base ignition timing after install. Cheap aftermarket units are known to fail again within 1-2 years, so enthusiasts favor OEM Honda or known-good rebuilds.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Severe misfire/stumble under load",
+          "Bouncing tachometer and fluctuating idle (surging 900-2000 rpm)",
+          "Feels like it hits a rev limiter around 3500 rpm, clears briefly after a restart",
+          "Jerking during acceleration",
+          "Reddish powder residue inside the distributor",
+          "Cylinder position sensor / ignition trouble code"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P1381",
+          "P1382",
+          "P0341"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.3geez.com/forum/archive/index.php/t-7820.html",
+            "type": "forum",
+            "title": "what are symptoms of a bad distributor - 3geez Classic Honda"
+          },
+          {
+            "url": "https://www.preludeonline.com/threads/how-to-tell-if-distributor-is-bad.137492/",
+            "type": "forum",
+            "title": "How to tell if distributor is bad - Honda Prelude Online"
+          },
+          {
+            "url": "https://honda-tech.com/forums/honda-prelude-4/symptoms-bad-distributor-647792/",
+            "type": "forum",
+            "title": "Symptoms of a bad distributor - Honda-Tech"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prelude-h22-oil-consumption-via-worn-valve-stem-seals-rings",
+      "model": "Prelude",
+      "action": "keep_published_pending_source",
+      "reason": "Forum reports and a parts retailer do not establish one Honda-recognized H22 valve-seal-and-ring defect, consumption rate or rebuild remedy. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "1f2de62b130d0e22cfcefc93c4b28b38f5dd52bbe2ea11aef9b49c65872d7065",
+      "proposalSha256": "1f2de62b130d0e22cfcefc93c4b28b38f5dd52bbe2ea11aef9b49c65872d7065",
+      "before": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [
+          "Si VTEC",
+          "Type SH",
+          "SH",
+          "Si"
+        ],
+        "engines": [
+          "H22A",
+          "H22A1",
+          "H22A4"
+        ],
+        "category": "engine",
+        "title": "H22 oil consumption via worn valve stem seals and rings",
+        "description": "The H22 VTEC burns oil, and as these engines age the consumption grows. Owners commonly see roughly 1 quart per ~3,000 miles even on healthy engines; worse cases are traced to hardened valve stem seals (blue smoke on startup/deceleration) or worn piston rings (smoke under load, oily plugs). It is age/wear related rather than a design recall, but it is one of the most universally reported H22 ownership issues and a frequent reason for failed emissions and fouled plugs on these cars.",
+        "solution": "Diagnose the source: a leak-down/compression test and a smoke pattern (startup vs. under-load) separates valve seals from rings. Replacing valve stem seals (feasible with the head on using compressed air, or during a timing-belt/head service) is the common fix; enthusiasts recommend OEM Honda or quality Viton seals - some report cheap seals actually smoke worse. If rings are the cause, a full engine rebuild or replacement (popular JDM H22A swap) is required. Doing the timing belt, water pump and cam/crank seals at the same time is standard practice.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Blue smoke on cold start or when lifting off throttle (valve seals)",
+          "Blue smoke under acceleration/load (rings)",
+          "High oil consumption ~1 qt per 3,000 miles or worse",
+          "Oil-fouled spark plugs",
+          "Low oil level between changes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.preludeonline.com/threads/the-reason-your-5th-gen-burns-oil-between-changes.252060/",
+            "type": "forum",
+            "title": "The reason your 5th Gen burns oil between changes - Honda Prelude Online"
+          },
+          {
+            "url": "https://www.preludepower.com/threads/burning-oil.354980/",
+            "type": "forum",
+            "title": "Burning oil - Honda Prelude Forum (PreludePower)"
+          },
+          {
+            "url": "https://ipg-supertech.com/products/intake-and-exhaust-valve-stem-seals-for-honda-prelude-h22-h22a-vtec-engines",
+            "type": "manufacturer",
+            "title": "Supertech Intake/Exhaust Valve Stem Seals for Honda Prelude H22"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [
+          "Si VTEC",
+          "Type SH",
+          "SH",
+          "Si"
+        ],
+        "engines": [
+          "H22A",
+          "H22A1",
+          "H22A4"
+        ],
+        "category": "engine",
+        "title": "H22 oil consumption via worn valve stem seals and rings",
+        "description": "The H22 VTEC burns oil, and as these engines age the consumption grows. Owners commonly see roughly 1 quart per ~3,000 miles even on healthy engines; worse cases are traced to hardened valve stem seals (blue smoke on startup/deceleration) or worn piston rings (smoke under load, oily plugs). It is age/wear related rather than a design recall, but it is one of the most universally reported H22 ownership issues and a frequent reason for failed emissions and fouled plugs on these cars.",
+        "solution": "Diagnose the source: a leak-down/compression test and a smoke pattern (startup vs. under-load) separates valve seals from rings. Replacing valve stem seals (feasible with the head on using compressed air, or during a timing-belt/head service) is the common fix; enthusiasts recommend OEM Honda or quality Viton seals - some report cheap seals actually smoke worse. If rings are the cause, a full engine rebuild or replacement (popular JDM H22A swap) is required. Doing the timing belt, water pump and cam/crank seals at the same time is standard practice.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Blue smoke on cold start or when lifting off throttle (valve seals)",
+          "Blue smoke under acceleration/load (rings)",
+          "High oil consumption ~1 qt per 3,000 miles or worse",
+          "Oil-fouled spark plugs",
+          "Low oil level between changes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.preludeonline.com/threads/the-reason-your-5th-gen-burns-oil-between-changes.252060/",
+            "type": "forum",
+            "title": "The reason your 5th Gen burns oil between changes - Honda Prelude Online"
+          },
+          {
+            "url": "https://www.preludepower.com/threads/burning-oil.354980/",
+            "type": "forum",
+            "title": "Burning oil - Honda Prelude Forum (PreludePower)"
+          },
+          {
+            "url": "https://ipg-supertech.com/products/intake-and-exhaust-valve-stem-seals-for-honda-prelude-h22-h22a-vtec-engines",
+            "type": "manufacturer",
+            "title": "Supertech Intake/Exhaust Valve Stem Seals for Honda Prelude H22"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prelude-ignition-switch-1997",
+      "model": "Prelude",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced generic vehicle and video links with exact recall 02V120, corrected the scope to 1997-1999, removed the wrong 03V474 reference and unsupported part, labor and accessory claims, and retained the indexed stall identity.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "government-recall-record",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=02V120000",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Recall 02V120 - 1997-1999 Prelude Ignition-Switch Contacts supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "bfbf20d06bc632f138fdc7d6ed9b9a4de94eb2e545a378c7b35e681e4f96a33a",
+      "proposalSha256": "a3ad0b2dbfc798996e03c4a809e34412bf0c9ca446aa9214899e033b1e0aa68b",
+      "before": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Ignition Switch Electrical Failure",
+        "description": "The 5th-generation Prelude shares the same faulty ignition switch design that affected many late-1990s Hondas. The electrical portion of the ignition switch (separate from the lock cylinder) develops melted or burned contacts due to high current draw, causing intermittent starting failures, engine stalling, and loss of electrical accessories. Honda issued a recall for some models, but many Preludes were not covered.",
+        "solution": "Replace the electrical portion of the ignition switch (Honda part 35130-S84-A01 or equivalent). The lock cylinder does not need to be replaced. The switch is located on the steering column behind the lower dashboard panel and takes about 1 hour to replace. Check NHTSA recall 03V-474 for your VIN. This is a critical safety repair as a failed switch can cause the engine to stall while driving.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Car intermittently fails to start",
+          "Engine stalls while driving",
+          "Dashboard lights flicker or go dark",
+          "Electrical accessories cut out randomly",
+          "Key turns but nothing happens"
+        ],
+        "affectedSystems": [
+          "Ignition switch",
+          "Electrical system",
+          "Steering column",
+          "Starting system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1997/HONDA/PRELUDE",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 1997 Honda Prelude - Complaints and Investigations"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=8QXJ7yqZVxM",
+            "type": "video",
+            "title": "EricTheCarGuy - How to Diagnose and Repair Ignition Switch Problems on Honda Prelude"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Professional Bluetooth OBD-II scanner for reading electrical system fault codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Honda%20Prelude&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive digital multimeter for diagnosing electrical faults and testing circuits",
+            "partName": "3340 Automotive Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%203340%20Automotive%20Digital%20Multimeter%20Honda%20Prelude&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Electrical contact cleaner for restoring connections and preventing corrosion",
+            "partName": "QD Electronic Cleaner",
+            "partBrand": "CRC",
+            "affiliateUrl": "https://www.amazon.com/s?k=CRC%20QD%20Electronic%20Cleaner%20Honda%20Prelude&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-pilot-ignition-switch-internal-wear-2003",
+          "honda-passport-ignition-switch-failure-causing-2000",
+          "honda-civic-ignition-switch-failure-causing-stalling-or-no-start"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1997,
+          1998,
+          1999
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Ignition-Switch Electrical Contacts Can Degrade and Stall Engine - Recall 02V120",
+        "description": "NHTSA recall 02V120 covers certain 1997-1999 Honda Prelude vehicles. High electrical current during starting can degrade the ignition-switch electrical contacts. Worn contacts can cause the engine to stall without warning and increase crash risk.",
+        "solution": "Have a Honda dealer check the VIN for recall 02V120 and verify completion. The recall remedy replaces the ignition switch.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [
+          "Open recall 02V120 for the VIN",
+          "Engine may stall without warning"
+        ],
+        "affectedSystems": [
+          "Ignition-switch electrical contacts"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Recall 02V120 - 1997-1999 Prelude Ignition-Switch Contacts",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=02V120000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced generic vehicle and video links with exact recall 02V120, corrected the scope to 1997-1999, removed the wrong 03V474 reference and unsupported part, labor and accessory claims, and retained the indexed stall identity.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prelude-pgm-fi-main-relay-hot-weather-no-start",
+      "model": "Prelude",
+      "action": "keep_published_pending_source",
+      "reason": "Forum and retailer material does not establish one Prelude-wide cracked-solder PGM-FI main-relay defect or prove the claimed likelihood relative to the fuel pump. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "bd6316229415c7771043b27ddbd61cda619236e6e9bbd8dd12c420bd36139495",
+      "proposalSha256": "bd6316229415c7771043b27ddbd61cda619236e6e9bbd8dd12c420bd36139495",
+      "before": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [
+          "Base",
+          "Si",
+          "Type SH",
+          "SH",
+          "VTEC"
+        ],
+        "engines": [
+          "H22A1",
+          "H23A1",
+          "F22A1",
+          "H22A4"
+        ],
+        "category": "electrical",
+        "title": "PGM-FI main relay hot-weather no-start (cracked solder joints)",
+        "description": "A classic Honda-era failure that hits 1990s Preludes hard: the PGM-FI main relay, mounted where it gets heat-soaked, has solder joints on its small circuit board that crack from years of thermal cycling. When hot, the cracks open and the relay fails to power the fuel pump and ECU, producing an intermittent no-start or stall that mysteriously clears once the car cools in the evening or overnight. It is often misdiagnosed as a fuel pump or ignition switch. If a Prelude won't start when it's hot, the main relay is a more likely culprit than the fuel pump.",
+        "solution": "Confirm the pattern (fails hot, starts when cool) and listen for the fuel pump priming with key on; wiggling the relay/connector may temporarily restore it. The two accepted fixes are (1) re-flow/re-solder the cracked joints on the relay's circuit board - a cheap DIY - or (2) simply replace the main relay with a new OEM or quality aftermarket unit given how inexpensive it is. Replacement is the reliable long-term answer.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Intermittent crank-no-start, especially in hot weather or after heat soak",
+          "Random stalling that clears after the car sits and cools",
+          "No fuel-pump prime (no buzz) with key on",
+          "Starts fine in the cool morning/evening",
+          "Multiple clicks from the relay before starting"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 30,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.preludepower.com/threads/pgm-fi-main-relay-season-is-near.183607/",
+            "type": "forum",
+            "title": "PGM Fi Main Relay Season is Near - Honda Prelude Forum"
+          },
+          {
+            "url": "https://www.3geez.com/forum/showthread.php/75242-PGM-FI-Main-Relay-repair",
+            "type": "forum",
+            "title": "PGM-FI Main Relay repair - 3geez Classic Honda"
+          },
+          {
+            "url": "https://www.go-parts.com/garage/fuel-pump-honda-prelude-1999-2001",
+            "type": "article",
+            "title": "1999-2001 Honda Prelude Fuel Pump: Diagnosing Stalling and No-Start Issues - Go-Parts"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [
+          "Base",
+          "Si",
+          "Type SH",
+          "SH",
+          "VTEC"
+        ],
+        "engines": [
+          "H22A1",
+          "H23A1",
+          "F22A1",
+          "H22A4"
+        ],
+        "category": "electrical",
+        "title": "PGM-FI main relay hot-weather no-start (cracked solder joints)",
+        "description": "A classic Honda-era failure that hits 1990s Preludes hard: the PGM-FI main relay, mounted where it gets heat-soaked, has solder joints on its small circuit board that crack from years of thermal cycling. When hot, the cracks open and the relay fails to power the fuel pump and ECU, producing an intermittent no-start or stall that mysteriously clears once the car cools in the evening or overnight. It is often misdiagnosed as a fuel pump or ignition switch. If a Prelude won't start when it's hot, the main relay is a more likely culprit than the fuel pump.",
+        "solution": "Confirm the pattern (fails hot, starts when cool) and listen for the fuel pump priming with key on; wiggling the relay/connector may temporarily restore it. The two accepted fixes are (1) re-flow/re-solder the cracked joints on the relay's circuit board - a cheap DIY - or (2) simply replace the main relay with a new OEM or quality aftermarket unit given how inexpensive it is. Replacement is the reliable long-term answer.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Intermittent crank-no-start, especially in hot weather or after heat soak",
+          "Random stalling that clears after the car sits and cools",
+          "No fuel-pump prime (no buzz) with key on",
+          "Starts fine in the cool morning/evening",
+          "Multiple clicks from the relay before starting"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 30,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.preludepower.com/threads/pgm-fi-main-relay-season-is-near.183607/",
+            "type": "forum",
+            "title": "PGM Fi Main Relay Season is Near - Honda Prelude Forum"
+          },
+          {
+            "url": "https://www.3geez.com/forum/showthread.php/75242-PGM-FI-Main-Relay-repair",
+            "type": "forum",
+            "title": "PGM-FI Main Relay repair - 3geez Classic Honda"
+          },
+          {
+            "url": "https://www.go-parts.com/garage/fuel-pump-honda-prelude-1999-2001",
+            "type": "article",
+            "title": "1999-2001 Honda Prelude Fuel Pump: Diagnosing Stalling and No-Start Issues - Go-Parts"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prelude-power-steering-rack-leak-1992",
+      "model": "Prelude",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint landing page and repair video do not establish a 1992-2001 Prelude steering-rack seal defect, 4WS extension, costs or complete replacement remedy. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "e6ffe0af89f9688e55d952130901a1d90a34181a6eff3c98904e5d7bfb9eb633",
+      "proposalSha256": "e6ffe0af89f9688e55d952130901a1d90a34181a6eff3c98904e5d7bfb9eb633",
+      "before": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Power Steering Rack Seal Leak and Whine",
+        "description": "Preludes across both 4th and 5th generations develop power steering rack seal leaks, causing fluid to drip from the rack boots and a whining noise from the power steering pump due to low fluid. The rack end seals deteriorate with age, and continued driving with low fluid damages the pump. The Prelude's 4-wheel steering system (4WS models) adds complexity with additional seals that can leak.",
+        "solution": "Replace or rebuild the power steering rack. Rebuilt racks are available for $200-$400. Flush the power steering system completely and refill with Honda-spec PS fluid (do not use generic ATF). Replace the rack boots and tie rod ends during the service. For 4WS models, inspect the rear steering rack seals as well. A front-end alignment is required after rack replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Power steering fluid dripping from rack boots",
+          "Whining noise from PS pump",
+          "Heavy steering at low speed",
+          "Power steering fluid level drops",
+          "Fluid spray on undercarriage near rack"
+        ],
+        "affectedSystems": [
+          "Power steering rack",
+          "Rack seals",
+          "Power steering pump",
+          "PS fluid system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1997/HONDA/PRELUDE",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 1997 Honda Prelude"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=3X8bQ1YqO7k",
+            "type": "video",
+            "title": "ChrisFix - How to Fix Power Steering Leak and Whine (Honda Prelude)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Cardone remanufactured power steering pump — OE-spec",
+            "partName": "Power Steering Pump",
+            "partBrand": "Cardone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Cardone%20power%20steering%20pump&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Prestone power steering fluid — compatible with most systems",
+            "partName": "Power Steering Fluid",
+            "partBrand": "Prestone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Prestone%20power%20steering%20fluid&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Cardone remanufactured steering rack — tested and ready to install",
+            "partName": "Steering Rack",
+            "partBrand": "Cardone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Cardone%20steering%20rack&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Moog tie rod ends — premium chassis parts for steering precision",
+            "partName": "Tie Rod Ends",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20tie%20rod%20ends&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Power Steering Rack Seal Leak and Whine",
+        "description": "Preludes across both 4th and 5th generations develop power steering rack seal leaks, causing fluid to drip from the rack boots and a whining noise from the power steering pump due to low fluid. The rack end seals deteriorate with age, and continued driving with low fluid damages the pump. The Prelude's 4-wheel steering system (4WS models) adds complexity with additional seals that can leak.",
+        "solution": "Replace or rebuild the power steering rack. Rebuilt racks are available for $200-$400. Flush the power steering system completely and refill with Honda-spec PS fluid (do not use generic ATF). Replace the rack boots and tie rod ends during the service. For 4WS models, inspect the rear steering rack seals as well. A front-end alignment is required after rack replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Power steering fluid dripping from rack boots",
+          "Whining noise from PS pump",
+          "Heavy steering at low speed",
+          "Power steering fluid level drops",
+          "Fluid spray on undercarriage near rack"
+        ],
+        "affectedSystems": [
+          "Power steering rack",
+          "Rack seals",
+          "Power steering pump",
+          "PS fluid system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1997/HONDA/PRELUDE",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 1997 Honda Prelude"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=3X8bQ1YqO7k",
+            "type": "video",
+            "title": "ChrisFix - How to Fix Power Steering Leak and Whine (Honda Prelude)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Cardone remanufactured power steering pump — OE-spec",
+            "partName": "Power Steering Pump",
+            "partBrand": "Cardone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Cardone%20power%20steering%20pump&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Prestone power steering fluid — compatible with most systems",
+            "partName": "Power Steering Fluid",
+            "partBrand": "Prestone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Prestone%20power%20steering%20fluid&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Cardone remanufactured steering rack — tested and ready to install",
+            "partName": "Steering Rack",
+            "partBrand": "Cardone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Cardone%20steering%20rack&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Moog tie rod ends — premium chassis parts for steering precision",
+            "partName": "Tie Rod Ends",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20tie%20rod%20ends&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prelude-rear-main-seal-1997",
+      "model": "Prelude",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint landing page and video do not establish a Prelude H22/H23 rear-main-seal defect, fire-risk claim or five-to-eight-hour repair. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "1290d430ed3f4eb2d288183c983633381458778a856bc949ef12060c1f6b01c3",
+      "proposalSha256": "1290d430ed3f4eb2d288183c983633381458778a856bc949ef12060c1f6b01c3",
+      "before": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Rear Main Seal Oil Leak (H22/H23)",
+        "description": "The H22A and H23A engines in 5th-generation Preludes are known to develop rear main seal leaks, causing oil to drip from the bell housing area between the engine and transmission. The leak worsens over time and can contaminate the clutch disc on manual transmission cars, causing clutch slippage. Oil can also drip onto the exhaust, creating a burning oil smell and potential fire hazard.",
+        "solution": "Replace the rear main seal. This requires removing the transmission (and clutch assembly on manuals) to access the seal. If the clutch is contaminated with oil, replace the clutch disc, pressure plate, and throw-out bearing at the same time to avoid doing the job twice. Use a genuine Honda seal for best results. Budget 5-8 hours of labor.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil drip from bell housing area",
+          "Oil on clutch housing",
+          "Burning oil smell from under car",
+          "Clutch slipping (manual trans)",
+          "Oil spots on driveway at rear of engine"
+        ],
+        "affectedSystems": [
+          "Rear main seal",
+          "Crankshaft seal",
+          "Clutch assembly",
+          "Bell housing"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1997/HONDA/PRELUDE",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 1997 Honda Prelude"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=JwZ8Q2Q6v6Q",
+            "type": "video",
+            "title": "Honda Prelude H22 Rear Main Seal Replacement - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
+            "partName": "Extended Performance Full Synthetic Motor Oil",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Prelude%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium oil filter ensures proper filtration with high-mileage engines",
+            "partName": "Oil Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Prelude%20Wix%20Oil%20Filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Rear Main Seal Oil Leak (H22/H23)",
+        "description": "The H22A and H23A engines in 5th-generation Preludes are known to develop rear main seal leaks, causing oil to drip from the bell housing area between the engine and transmission. The leak worsens over time and can contaminate the clutch disc on manual transmission cars, causing clutch slippage. Oil can also drip onto the exhaust, creating a burning oil smell and potential fire hazard.",
+        "solution": "Replace the rear main seal. This requires removing the transmission (and clutch assembly on manuals) to access the seal. If the clutch is contaminated with oil, replace the clutch disc, pressure plate, and throw-out bearing at the same time to avoid doing the job twice. Use a genuine Honda seal for best results. Budget 5-8 hours of labor.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil drip from bell housing area",
+          "Oil on clutch housing",
+          "Burning oil smell from under car",
+          "Clutch slipping (manual trans)",
+          "Oil spots on driveway at rear of engine"
+        ],
+        "affectedSystems": [
+          "Rear main seal",
+          "Crankshaft seal",
+          "Clutch assembly",
+          "Bell housing"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1997/HONDA/PRELUDE",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 1997 Honda Prelude"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=JwZ8Q2Q6v6Q",
+            "type": "video",
+            "title": "Honda Prelude H22 Rear Main Seal Replacement - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
+            "partName": "Extended Performance Full Synthetic Motor Oil",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Prelude%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium oil filter ensures proper filtration with high-mileage engines",
+            "partName": "Oil Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Prelude%20Wix%20Oil%20Filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prelude-vtec-solenoid-leak-1993",
+      "model": "Prelude",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen VTEC-solenoid-leak row has no citations. No exact Honda source was found for its 1993-2001 population, failure mechanism, costs or complete repair, so it remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "140a736b7f448fa5554d02a05896d86f6c45ddf9fc219db7195b7d5958276976",
+      "proposalSha256": "140a736b7f448fa5554d02a05896d86f6c45ddf9fc219db7195b7d5958276976",
+      "before": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "VTEC Solenoid Gasket Oil Leak",
+        "description": "The VTEC solenoid on H22A and H23A engines in 1993-2001 Preludes develops oil leaks from the solenoid gasket and filter screen. Oil weeps from the solenoid housing onto the back of the engine, creating a mess and potentially dripping onto the exhaust manifold (fire risk in extreme cases). The solenoid gasket hardens with heat cycling and age. The VTEC solenoid screen filter can also clog, preventing proper VTEC engagement. This is a simple and inexpensive repair when caught early.",
+        "solution": "Confirm the leak by cleaning the rear of the cylinder head and inspecting the VTEC solenoid assembly while the engine is running; also check for stored VTEC-related codes and verify oil level/condition. Remove the VTEC solenoid from the back of the head, replace the solenoid gasket/spool valve seal and the attached screen filter gasket (OEM Honda parts are preferred), clean any sludge from the screen, and torque the mounting bolts evenly to spec before rechecking for leaks. If the screen is heavily clogged or the solenoid is electrically faulty, replace the complete solenoid/spool valve assembly. Typical cost is about $15-$40 in gaskets for DIY, or roughly $150-$350 at a shop depending on labor and whether the full assembly is needed.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil leak from back of engine near valve cover",
+          "Burning oil smell from engine bay",
+          "VTEC not engaging properly (loss of high-RPM power)",
+          "Check engine light with VTEC system code",
+          "Oil dripping on exhaust manifold"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P1259"
+        ],
+        "estimatedCostLow": 30,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
+            "partName": "Extended Performance Full Synthetic Motor Oil",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Prelude%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium oil filter ensures proper filtration with high-mileage engines",
+            "partName": "Oil Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Prelude%20Wix%20Oil%20Filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prelude",
+        "years": [
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "VTEC Solenoid Gasket Oil Leak",
+        "description": "The VTEC solenoid on H22A and H23A engines in 1993-2001 Preludes develops oil leaks from the solenoid gasket and filter screen. Oil weeps from the solenoid housing onto the back of the engine, creating a mess and potentially dripping onto the exhaust manifold (fire risk in extreme cases). The solenoid gasket hardens with heat cycling and age. The VTEC solenoid screen filter can also clog, preventing proper VTEC engagement. This is a simple and inexpensive repair when caught early.",
+        "solution": "Confirm the leak by cleaning the rear of the cylinder head and inspecting the VTEC solenoid assembly while the engine is running; also check for stored VTEC-related codes and verify oil level/condition. Remove the VTEC solenoid from the back of the head, replace the solenoid gasket/spool valve seal and the attached screen filter gasket (OEM Honda parts are preferred), clean any sludge from the screen, and torque the mounting bolts evenly to spec before rechecking for leaks. If the screen is heavily clogged or the solenoid is electrically faulty, replace the complete solenoid/spool valve assembly. Typical cost is about $15-$40 in gaskets for DIY, or roughly $150-$350 at a shop depending on labor and whether the full assembly is needed.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil leak from back of engine near valve cover",
+          "Burning oil smell from engine bay",
+          "VTEC not engaging properly (loss of high-RPM power)",
+          "Check engine light with VTEC system code",
+          "Oil dripping on exhaust manifold"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P1259"
+        ],
+        "estimatedCostLow": 30,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
+            "partName": "Extended Performance Full Synthetic Motor Oil",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Prelude%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium oil filter ensures proper filtration with high-mileage engines",
+            "partName": "Oil Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Prelude%20Wix%20Oil%20Filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
