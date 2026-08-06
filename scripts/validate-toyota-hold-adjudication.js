@@ -6,6 +6,7 @@ const path = require('node:path');
 const {
   ACTION_BY_ID,
   CANONICAL_TARGETS,
+  EXECUTION_ORDER,
   EXCLUDED_CITATION_URLS_BY_ID,
   FULL_RECORD_FIELDS,
   PREFERRED_COMPLAINT_ODIS,
@@ -67,6 +68,15 @@ function validatePacket(packet, review, complaints, inputHashes = {}) {
   if (inputHashes.complaints && packet.source?.complaintCandidatesSha256 !== inputHashes.complaints) errors.push('complaint evidence SHA-256 mismatch');
   if (packet.source?.preAuditSnapshotSha256 !== review.source.preAuditSnapshotSha256) errors.push('pre-audit snapshot hash mismatch');
   if (packet.source?.restoreManifestSha256 !== review.source.holdManifestSha256) errors.push('restore-manifest hash mismatch');
+  if (!equalValue(packet.executionOrder, EXECUTION_ORDER)) errors.push('redirect execution order mismatch');
+  if (!equalValue(packet.executionOrder?.requiredSequence, [
+    'republish_and_verify_canonical_targets',
+    'create_and_verify_permanent_redirects',
+    'retire_duplicate_sources',
+  ])) errors.push('redirect execution sequence is unsafe');
+  for (const targetId of packet.executionOrder?.republishBeforeRedirectTargetIds || []) {
+    if (ACTION_BY_ID.get(targetId) !== 'rewrite_and_republish') errors.push(`${targetId}: target is not scheduled for republish before redirect`);
+  }
   if (!Array.isArray(packet.rows)) return [...errors, 'packet rows[] missing'];
 
   const ids = packet.rows.map((row) => row.id);

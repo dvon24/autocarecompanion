@@ -8,7 +8,7 @@ Status: proposal only. Independent review is required before any database write,
 |---|---:|---|
 | Keep audited correction | 2 | Leave the two corrected Camry water-pump records published |
 | Rewrite and republish | 68 | Restore the existing URL with evidence-limited copy and no commerce |
-| Redirect duplicate | 6 | Add the permanent canonical redirect first, then retain the duplicate as archived |
+| Redirect duplicate | 6 | Publish the target first, verify the redirect second, then retain the duplicate as archived |
 | Uphold evidence hold | 15 | Keep archived pending an issue-specific source or a better canonical destination |
 | **Total** | **91** | No action is authorized by this packet |
 
@@ -16,7 +16,7 @@ The original rule-only review proposed 52 republications and 37 archives. This p
 
 Packet: `data/known-issue-toyota-hold-adjudication-2026-08-05.json`
 
-- Packet SHA-256 (LF-normalized): `a520715dde4e7f734845092a7b49f9a7574415fff393dea847c4d65fe8918ddf`
+- Packet SHA-256 (LF-normalized): `51f13d6ae3303a28b0a875b5c38151c774d2a9667e384960d5c850771f90a072`
 - Frozen 91-row review SHA-256: `3e5cde0a2d1b30abb7cde144e4427afbf33187553b8bfaf3804085d987c1d956`
 - NHTSA complaint-candidate evidence SHA-256: `3a58cde95de628877bf53d5f82213e2c030f2042a20439550c5f38e8f2cdc443`
 - Preliminary-disposition SHA-256: `29b408ccf360eab8aaddb783327aa3b9764c111bec114cdb6757958e3076c18e`
@@ -38,7 +38,13 @@ The NHTSA research queried 58 exact Toyota model-year complaint datasets for the
 
 ## Canonical redirects
 
-These duplicate URLs should not be allowed to become dead pages. The redirect must exist before the duplicate is retired.
+These duplicate URLs should not be allowed to become dead pages. The execution order is mandatory:
+
+1. Republish and verify every canonical target that is currently archived.
+2. Create the permanent redirect and verify that it resolves to the published target.
+3. Only after both checks pass, retire the duplicate source record.
+
+Two targets specifically require step 1 in this packet: `toyota-camry-power-window-regulator-motor-failure` and `toyota-corolla-cross-cvt-hesitation-2022`. Applying the redirect rows before those target proposals would create redirects to archived pages and must fail the gate.
 
 - `toyota-camry-power-window-regulator-window-glass-failure` → `toyota-camry-power-window-regulator-motor-failure`
 - `toyota-camry-engine-sludge-oiling-failure-and-engine-seizure-fire` → `toyota-camry-1mz-fe-3-0l-v6-oil-sludge-oil-gelling-engine-failure`

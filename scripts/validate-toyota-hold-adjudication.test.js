@@ -6,6 +6,7 @@ const test = require('node:test');
 
 const {
   ACTION_BY_ID,
+  EXECUTION_ORDER,
   EXCLUDED_CITATION_URLS_BY_ID,
   PREFERRED_COMPLAINT_ODIS,
   REDIRECTS,
@@ -78,6 +79,25 @@ test('six retired duplicates have explicit canonical redirect targets', () => {
   for (const row of redirects) {
     assert.notEqual(row.id, row.redirectTargetId, row.id);
     assert.equal(row.proposal.status, 'archived', row.id);
+  }
+});
+
+test('archived canonical targets are republished before redirects and duplicate retirement', () => {
+  const packet = JSON.parse(fs.readFileSync(packetFile, 'utf8'));
+  assert.deepEqual(packet.executionOrder, EXECUTION_ORDER);
+  assert.deepEqual(packet.executionOrder.requiredSequence, [
+    'republish_and_verify_canonical_targets',
+    'create_and_verify_permanent_redirects',
+    'retire_duplicate_sources',
+  ]);
+  assert.deepEqual(packet.executionOrder.republishBeforeRedirectTargetIds, [
+    'toyota-camry-power-window-regulator-motor-failure',
+    'toyota-corolla-cross-cvt-hesitation-2022',
+  ]);
+  for (const targetId of packet.executionOrder.republishBeforeRedirectTargetIds) {
+    const target = packet.rows.find((row) => row.id === targetId);
+    assert.equal(target.action, 'rewrite_and_republish', targetId);
+    assert.equal(target.proposal.status, 'published', targetId);
   }
 });
 

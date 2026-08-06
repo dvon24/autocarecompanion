@@ -292,7 +292,7 @@ function republishProposal(id, auditAfter, selectedComplaints) {
 
 function rationaleFor(id, action, preliminaryRationale, selectedComplaints) {
   if (action === 'redirect_duplicate') {
-    return `The issue identity duplicates ${REDIRECTS[id]}. Preserve the source URL with a permanent canonical redirect before retiring the duplicate record.`;
+    return `The issue identity duplicates ${REDIRECTS[id]}. If the canonical target is archived, republish and verify that target first; then create and verify the permanent redirect; only then retire the duplicate record.`;
   }
   if (SOURCELESS_HOLDS.has(id)) {
     return 'The preliminary republish recommendation relied on a forum homepage rather than an issue-specific deep link. After generic-link removal, no specific evidence remains, so this row stays held pending a usable source.';
@@ -322,6 +322,18 @@ const ACTION_BY_ID = new Map(review.rows.map((row) => {
   else action = 'uphold_archive_evidence_defect';
   return [row.id, action];
 }));
+
+const EXECUTION_ORDER = {
+  requiredSequence: [
+    'republish_and_verify_canonical_targets',
+    'create_and_verify_permanent_redirects',
+    'retire_duplicate_sources',
+  ],
+  republishBeforeRedirectTargetIds: [...new Set(Object.values(REDIRECTS))]
+    .filter((id) => ACTION_BY_ID.get(id) === 'rewrite_and_republish')
+    .sort(),
+  invariant: 'Every canonical target must return its published page before its redirect is created, and every redirect must resolve to that published target before the duplicate source is retired.',
+};
 
 function main() {
   if (ACTION_BY_ID.size !== 91) throw new Error(`expected 91 action rows, found ${ACTION_BY_ID.size}`);
@@ -396,9 +408,10 @@ function main() {
       'No archive recommendation is based only on the absence of an OEM bulletin.',
       'Owner reports are labeled as allegations and never converted into prevalence or causation claims.',
       'All republish proposals remove commerce, costs, mileage claims and applicability labels.',
-      'Every duplicate has an explicit canonical redirect target; a redirect must exist before its source URL is retired.',
+      'Every duplicate has an explicit canonical redirect target. Republish and verify an archived target first, then create and verify its permanent redirect, then retire the duplicate source.',
       'Thirteen evidence-defect archives remain recommendations for independent review, not authorized writes.',
     ],
+    executionOrder: EXECUTION_ORDER,
     summary,
     rows,
   };
@@ -412,6 +425,7 @@ module.exports = {
   ACTION_BY_ID,
   CANONICAL_TARGETS,
   EXCLUDED_CITATION_URLS_BY_ID,
+  EXECUTION_ORDER,
   FULL_RECORD_FIELDS,
   HIGH_RISK_REPUBLISH,
   PREFERRED_COMPLAINT_ODIS,

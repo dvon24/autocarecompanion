@@ -20,9 +20,21 @@
     "No archive recommendation is based only on the absence of an OEM bulletin.",
     "Owner reports are labeled as allegations and never converted into prevalence or causation claims.",
     "All republish proposals remove commerce, costs, mileage claims and applicability labels.",
-    "Every duplicate has an explicit canonical redirect target; a redirect must exist before its source URL is retired.",
+    "Every duplicate has an explicit canonical redirect target. Republish and verify an archived target first, then create and verify its permanent redirect, then retire the duplicate source.",
     "Thirteen evidence-defect archives remain recommendations for independent review, not authorized writes."
   ],
+  "executionOrder": {
+    "requiredSequence": [
+      "republish_and_verify_canonical_targets",
+      "create_and_verify_permanent_redirects",
+      "retire_duplicate_sources"
+    ],
+    "republishBeforeRedirectTargetIds": [
+      "toyota-camry-power-window-regulator-motor-failure",
+      "toyota-corolla-cross-cvt-hesitation-2022"
+    ],
+    "invariant": "Every canonical target must return its published page before its redirect is created, and every redirect must resolve to that published target before the duplicate source is retired."
+  },
   "summary": {
     "keep_audited_correction": 2,
     "rewrite_and_republish": 68,
@@ -2358,7 +2370,7 @@
       "make": "Toyota",
       "model": "Camry",
       "action": "redirect_duplicate",
-      "rationale": "The issue identity duplicates toyota-camry-power-window-regulator-motor-failure. Preserve the source URL with a permanent canonical redirect before retiring the duplicate record.",
+      "rationale": "The issue identity duplicates toyota-camry-power-window-regulator-motor-failure. If the canonical target is archived, republish and verify that target first; then create and verify the permanent redirect; only then retire the duplicate record.",
       "redirectTargetId": "toyota-camry-power-window-regulator-motor-failure",
       "redirectTarget": {
         "model": "Camry",
@@ -10116,7 +10128,7 @@
       "make": "Toyota",
       "model": "Camry",
       "action": "redirect_duplicate",
-      "rationale": "The issue identity duplicates toyota-camry-1mz-fe-3-0l-v6-oil-sludge-oil-gelling-engine-failure. Preserve the source URL with a permanent canonical redirect before retiring the duplicate record.",
+      "rationale": "The issue identity duplicates toyota-camry-1mz-fe-3-0l-v6-oil-sludge-oil-gelling-engine-failure. If the canonical target is archived, republish and verify that target first; then create and verify the permanent redirect; only then retire the duplicate record.",
       "redirectTargetId": "toyota-camry-1mz-fe-3-0l-v6-oil-sludge-oil-gelling-engine-failure",
       "redirectTarget": {
         "model": "Camry",
@@ -12133,7 +12145,7 @@
       "make": "Toyota",
       "model": "Camry",
       "action": "redirect_duplicate",
-      "rationale": "The issue identity duplicates toyota-camry-brake-actuator-abs-2007. Preserve the source URL with a permanent canonical redirect before retiring the duplicate record.",
+      "rationale": "The issue identity duplicates toyota-camry-brake-actuator-abs-2007. If the canonical target is archived, republish and verify that target first; then create and verify the permanent redirect; only then retire the duplicate record.",
       "redirectTargetId": "toyota-camry-brake-actuator-abs-2007",
       "redirectTarget": {
         "model": "Camry",
@@ -15267,7 +15279,7 @@
       "make": "Toyota",
       "model": "Corolla Cross",
       "action": "redirect_duplicate",
-      "rationale": "The issue identity duplicates toyota-corolla-cross-cvt-hesitation-2022. Preserve the source URL with a permanent canonical redirect before retiring the duplicate record.",
+      "rationale": "The issue identity duplicates toyota-corolla-cross-cvt-hesitation-2022. If the canonical target is archived, republish and verify that target first; then create and verify the permanent redirect; only then retire the duplicate record.",
       "redirectTargetId": "toyota-corolla-cross-cvt-hesitation-2022",
       "redirectTarget": {
         "model": "Corolla Cross",
@@ -16729,7 +16741,7 @@
       "make": "Toyota",
       "model": "Corolla Cross",
       "action": "redirect_duplicate",
-      "rationale": "The issue identity duplicates toyota-corolla-cross-infotainment-lag-2022. Preserve the source URL with a permanent canonical redirect before retiring the duplicate record.",
+      "rationale": "The issue identity duplicates toyota-corolla-cross-infotainment-lag-2022. If the canonical target is archived, republish and verify that target first; then create and verify the permanent redirect; only then retire the duplicate record.",
       "redirectTargetId": "toyota-corolla-cross-infotainment-lag-2022",
       "redirectTarget": {
         "model": "Corolla Cross",
@@ -22540,7 +22552,7 @@
       "make": "Toyota",
       "model": "RAV4",
       "action": "redirect_duplicate",
-      "rationale": "The issue identity duplicates toyota-rav4-denso-low-pressure-fuel-pump-impeller-failure-causing-engine. Preserve the source URL with a permanent canonical redirect before retiring the duplicate record.",
+      "rationale": "The issue identity duplicates toyota-rav4-denso-low-pressure-fuel-pump-impeller-failure-causing-engine. If the canonical target is archived, republish and verify that target first; then create and verify the permanent redirect; only then retire the duplicate record.",
       "redirectTargetId": "toyota-rav4-denso-low-pressure-fuel-pump-impeller-failure-causing-engine",
       "redirectTarget": {
         "model": "RAV4",
