@@ -1,0 +1,1444 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Santa Cruz",
+  "completionStatement": "This packet reconciles all ten frozen Hyundai Santa Cruz rows. Four same-identity recall rewrites are proposed; six rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All ten rows remain published. Six are byte-for-byte unchanged.",
+    "Each rewrite preserves the indexed ID, title and category and uses one exact NHTSA Part 573 report.",
+    "Rewrites contain zero commerce, zero cost or mileage claims, empty trim and engine arrays, and no diagnostic codes.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "santaCruzRecordCount": 10
+  },
+  "observations": [
+    {
+      "code": "four-exact-recall-rewrites",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-santa-cruz-forward-collision-avoidance-phantom-unexpected-braking",
+        "hyundai-santa-cruz-roof-side-molding-detachment-while-driving",
+        "hyundai-santa-cruz-tow-hitch-harness-water-intrusion-causing-fire-risk",
+        "hyundai-santa-cruz-transmission-electric-oil-pump-fault-causing-loss-drive-powe"
+      ],
+      "detail": "Exact Part 573 reports support the FCA, roof-molding, tow-harness and transmission-oil-pump identities without changing titles or categories."
+    },
+    {
+      "code": "oil-pump-cause-corrected",
+      "severity": "high",
+      "recordIds": [
+        "hyundai-santa-cruz-transmission-electric-oil-pump-fault-causing-loss-drive-powe"
+      ],
+      "detail": "The frozen row attributed the event to insufficient circuit-board soldering, while recall 22V-746 identifies improper fail-safe software logic when certain electric-oil-pump faults are detected.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V746-8939.PDF"
+      ]
+    },
+    {
+      "code": "six-secondary-or-unsupported-rows-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-santacruz-dct-overheat",
+        "hyundai-santa-cruz-12v-battery-parasitic-drain-premature-failure",
+        "hyundai-santa-cruz-sunroof-drain-clogging-causing-interior-water-leaks",
+        "hyundai-santacruz-bed-liner-peeling",
+        "hyundai-santacruz-infotainment-freeze",
+        "hyundai-santacruz-rear-window-rattle"
+      ],
+      "detail": "DCT overheating, battery drain, sunroof leakage, bed-liner, infotainment and rear-window narratives remain byte-for-byte unchanged without exact same-identity Hyundai evidence."
+    }
+  ],
+  "publicSources": {
+    "fca": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V316-9486.pdf",
+    "roofMolding": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V038-5662.PDF",
+    "towHarness": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V181-1849.PDF",
+    "oilPump": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V746-8939.PDF"
+  },
+  "summary": {
+    "rewrite_same_identity": 4,
+    "keep_published_pending_source": 6,
+    "total": 10
+  },
+  "rows": [
+    {
+      "id": "hyundai-santacruz-dct-overheat",
+      "model": "Santa Cruz",
+      "action": "keep_published_pending_source",
+      "reason": "The citation points only to Hyundai's homepage, and the claimed 22-AT-008 thermal-management bulletin could not be located as an exact Santa Cruz record. Recall 22V-746 concerns fail-safe software after a high-pressure electric-oil-pump fault, not towing-related clutch overheating, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "1e4003bde3a7045f40299fd2c18face47024397a6a3a56b4590b3a7e5b833d3b",
+      "proposalSha256": "1e4003bde3a7045f40299fd2c18face47024397a6a3a56b4590b3a7e5b833d3b",
+      "before": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "2.5L Turbo"
+        ],
+        "category": "transmission",
+        "title": "8-Speed DCT Overheating Under Load / Towing",
+        "description": "The 8-speed wet dual-clutch transmission (DCT) on the 2.5L turbo Santa Cruz can overheat when towing near its 5,000 lb capacity or during spirited driving in warm weather. The transmission overheating warning forces the vehicle into limp mode. The DCT cooling system is undersized for heavy-duty use.",
+        "solution": "Avoid towing above 4,000 lbs in hot weather. Use tow/haul mode which adjusts shift patterns to reduce heat. An aftermarket transmission cooler ($200-400 installed) significantly helps. If overheating occurs, pull over and let the transmission cool for 15-20 minutes. Hyundai software update improves thermal management.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Transmission overheating warning on dash",
+          "Vehicle enters limp mode while towing",
+          "Harsh shifts when transmission is hot",
+          "Reduced power output warning",
+          "Burning smell from under vehicle"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0920"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundaiusa.com",
+            "type": "tsb",
+            "title": "Hyundai TSB 22-AT-008 - DCT Thermal Management Update"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Mishimoto universal transmission cooler provides excellent additional cooling capacity",
+            "upvotes": 0,
+            "partName": "Universal Transmission Cooler",
+            "partBrand": "Mishimoto",
+            "partNumber": "MMTC-U",
+            "affiliateUrl": "https://www.amazon.com/s?k=Mishimoto%20MMTC-U&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Always use Tow/Haul mode when towing - it prevents the transmission from hunting gears and reduces heat buildup",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Do not ignore the transmission overheat warning - continued driving can cause permanent clutch damage costing $3,000+",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 310,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "2.5L Turbo"
+        ],
+        "category": "transmission",
+        "title": "8-Speed DCT Overheating Under Load / Towing",
+        "description": "The 8-speed wet dual-clutch transmission (DCT) on the 2.5L turbo Santa Cruz can overheat when towing near its 5,000 lb capacity or during spirited driving in warm weather. The transmission overheating warning forces the vehicle into limp mode. The DCT cooling system is undersized for heavy-duty use.",
+        "solution": "Avoid towing above 4,000 lbs in hot weather. Use tow/haul mode which adjusts shift patterns to reduce heat. An aftermarket transmission cooler ($200-400 installed) significantly helps. If overheating occurs, pull over and let the transmission cool for 15-20 minutes. Hyundai software update improves thermal management.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Transmission overheating warning on dash",
+          "Vehicle enters limp mode while towing",
+          "Harsh shifts when transmission is hot",
+          "Reduced power output warning",
+          "Burning smell from under vehicle"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0920"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundaiusa.com",
+            "type": "tsb",
+            "title": "Hyundai TSB 22-AT-008 - DCT Thermal Management Update"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Mishimoto universal transmission cooler provides excellent additional cooling capacity",
+            "upvotes": 0,
+            "partName": "Universal Transmission Cooler",
+            "partBrand": "Mishimoto",
+            "partNumber": "MMTC-U",
+            "affiliateUrl": "https://www.amazon.com/s?k=Mishimoto%20MMTC-U&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Always use Tow/Haul mode when towing - it prevents the transmission from hunting gears and reduces heat buildup",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Do not ignore the transmission overheat warning - continued driving can cause permanent clutch damage costing $3,000+",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 310,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-santa-cruz-12v-battery-parasitic-drain-premature-failure",
+      "model": "Santa Cruz",
+      "action": "keep_published_pending_source",
+      "reason": "Two owner-forum threads do not establish one Hyundai-defined Bluelink or key-fob parasitic-draw defect, server-transaction limit, locking workaround or premature battery-failure pattern across 2022-2025 Santa Cruz vehicles. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "fd6eb4938bbc5b6f42929ccb926f47176ca70033d5c58d7e9d62c0a9783048b7",
+      "proposalSha256": "fd6eb4938bbc5b6f42929ccb926f47176ca70033d5c58d7e9d62c0a9783048b7",
+      "before": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Battery Parasitic Drain and Premature Failure",
+        "description": "Santa Cruz owners report the 12V battery going dead after the vehicle sits only a few days, attributed to parasitic draw from the Bluelink telematics modem and constant key-fob pinging. Owners receive Bluelink low-battery alerts on nearly-new trucks, and some have had batteries discharge and require replacement under warranty at low mileage. This overlaps a broader Hyundai Bluelink standby-draw issue.",
+        "solution": "Have the dealer perform a parasitic-draw test and replace a weak battery under warranty. Mitigate by using a battery maintainer when parked, avoiding the accessory/power-on setting, locking the vehicle to stop fob pinging, and changing the Bluelink password; Hyundai limited Bluelink server traffic (about 20 transactions/day) to reduce standby draw.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Dead or weak 12V battery after sitting a few days",
+          "Bluelink low-battery email/app notifications",
+          "Slow crank or no-start",
+          "Battery replacement at low mileage"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.santacruzforums.com/threads/battery-issue-anyone-else.13956/",
+            "type": "forum",
+            "title": "Battery issue - anyone else? (Hyundai Santa Cruz Forum)"
+          },
+          {
+            "url": "https://www.santacruzforums.com/threads/battery-state-of-charge-notification.10634/",
+            "type": "forum",
+            "title": "Battery State of Charge Notification (Hyundai Santa Cruz Forum)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Battery Parasitic Drain and Premature Failure",
+        "description": "Santa Cruz owners report the 12V battery going dead after the vehicle sits only a few days, attributed to parasitic draw from the Bluelink telematics modem and constant key-fob pinging. Owners receive Bluelink low-battery alerts on nearly-new trucks, and some have had batteries discharge and require replacement under warranty at low mileage. This overlaps a broader Hyundai Bluelink standby-draw issue.",
+        "solution": "Have the dealer perform a parasitic-draw test and replace a weak battery under warranty. Mitigate by using a battery maintainer when parked, avoiding the accessory/power-on setting, locking the vehicle to stop fob pinging, and changing the Bluelink password; Hyundai limited Bluelink server traffic (about 20 transactions/day) to reduce standby draw.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Dead or weak 12V battery after sitting a few days",
+          "Bluelink low-battery email/app notifications",
+          "Slow crank or no-start",
+          "Battery replacement at low mileage"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.santacruzforums.com/threads/battery-issue-anyone-else.13956/",
+            "type": "forum",
+            "title": "Battery issue - anyone else? (Hyundai Santa Cruz Forum)"
+          },
+          {
+            "url": "https://www.santacruzforums.com/threads/battery-state-of-charge-notification.10634/",
+            "type": "forum",
+            "title": "Battery State of Charge Notification (Hyundai Santa Cruz Forum)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-santa-cruz-forward-collision-avoidance-phantom-unexpected-braking",
+      "model": "Santa Cruz",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed FCA/unexpected-braking/26V-316 identity, replaced the secondary citation with the exact Part 573 report, and retained only the documented Santa Cruz scope, software cause, risk and remedy.",
+      "identityRule": "The same indexed component, failure outcome and recall identity stay on the existing ID, title and category; only facts from the exact Part 573 report remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V316-9486.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 26V-316 - Santa Cruz Forward Collision Avoidance supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "cbf7749e156ab7e33b8954d2512cfa8dead1f97dadd6058bf5be603af487bcda",
+      "proposalSha256": "e0d523750dd8037864afb7717be5ead1510af57db469f1ac3ed535dd389c734f",
+      "before": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Forward Collision Avoidance Phantom / Unexpected Braking (Recall 26V316)",
+        "description": "On 2025-2026 Santa Cruz (and Tucson) models, front-camera software makes the Forward Collision Avoidance system overly sensitive to forward object proximity, causing it to apply automatic braking earlier than the driver expects. This phantom braking can trigger sudden hard stops with no real hazard present, raising the risk of being rear-ended. Hyundai received 376 front-camera reports including four crashes and four injuries.",
+        "solution": "Recall 26V316 (Hyundai campaign 302) remedy: dealers update the front-camera software free of charge to reduce FCA sensitivity. Owner notifications mailed beginning mid-July 2026. Verify by VIN at nhtsa.gov.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden automatic emergency braking with no obstacle present",
+          "Hard, unexpected stops at speed",
+          "Forward collision warning alerts without cause",
+          "Increased risk of being rear-ended"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V316-9486.pdf",
+            "type": "nhtsa",
+            "title": "NHTSA Part 573 Safety Recall Report 26V316"
+          },
+          {
+            "url": "https://www.consumerreports.org/cars/car-recalls-defects/hyundai-recalls-the-santa-cruz-and-tucson-due-to-brake-conce-a1969698769/",
+            "type": "article",
+            "title": "Hyundai Recalls the Santa Cruz and Tucson Due to Brake Concerns (Consumer Reports)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Forward Collision Avoidance Phantom / Unexpected Braking (Recall 26V316)",
+        "description": "NHTSA recall 26V-316 (Hyundai recall 302) covers certain model-year 2025-2026 Santa Cruz vehicles. Front-camera software can cause the Forward Collision Avoidance system to exhibit increased sensitivity to forward-object proximity in certain driving scenarios. The system may engage earlier than the driver expects and cause sudden braking, increasing the risk of a rear-end crash from a closely following vehicle.",
+        "solution": "Check the VIN for NHTSA recall 26V-316. Hyundai dealers update the front-camera software free of charge. The remedy software is tuned to better align activation timing and distance to the leading vehicle with operator expectations.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Unexpected early Forward Collision Avoidance engagement",
+          "Sudden braking"
+        ],
+        "affectedSystems": [
+          "Forward Collision Avoidance system",
+          "Multifunction front camera software"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 26V-316 - Santa Cruz Forward Collision Avoidance",
+            "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V316-9486.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed FCA/unexpected-braking/26V-316 identity, replaced the secondary citation with the exact Part 573 report, and retained only the documented Santa Cruz scope, software cause, risk and remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-santa-cruz-roof-side-molding-detachment-while-driving",
+      "model": "Santa Cruz",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed roof-molding/23V-038 identity, replaced secondary citations with the exact Part 573 report, and removed the unsupported paint-sealer cause and combined-population implication.",
+      "identityRule": "The same indexed component, failure outcome and recall identity stay on the existing ID, title and category; only facts from the exact Part 573 report remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V038-5662.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 23V-038 - Santa Cruz Roof Moldings supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "af8bce33e048060169c56329b82550565b7c38abfab46119d4190638a91a2c78",
+      "proposalSha256": "8a8dda5bc2fe5f82b09074d841683e19aa59485e0de18b58cc593cccf9570397",
+      "before": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Roof Side Molding Detachment While Driving (Recall 23V-038)",
+        "description": "Certain 2022-2023 Santa Cruz vehicles have roof side moldings with insufficient retention between the roof flange and mounting clips (caused by inconsistent paint-sealer application). The molding can loosen and detach during operation, becoming a road hazard for following vehicles and increasing crash risk. Roughly 16,104 Santa Cruz and Tucson units were affected.",
+        "solution": "Recall 23V-038 remedy: dealers inspect and either re-secure or replace the roof moldings free of charge. Owner notification letters were mailed March 30, 2023; verify by VIN at nhtsa.gov.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Lifting or flapping roof trim at highway speed",
+          "Wind noise from roof edge",
+          "Visible gap between roof molding and body",
+          "Molding partially or fully detached"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://auto-recalls.justia.com/hyundai/santa-cruz/2022/23v038000/index.html",
+            "type": "nhtsa",
+            "title": "Hyundai Santa Cruz 2022 Roof and Pillars Recall 23V038000 (NHTSA)"
+          },
+          {
+            "url": "https://repairpal.com/recall/23V038000",
+            "type": "recall",
+            "title": "Hyundai Santa Cruz / Tucson Roof Moldings Detach Recall (RepairPal)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Roof Side Molding Detachment While Driving (Recall 23V-038)",
+        "description": "NHTSA recall 23V-038 (Hyundai recall 241) covers certain model-year 2022-2023 Santa Cruz vehicles. Insufficient retention between the roof flange and mounting clips can allow a roof molding to detach while the vehicle is moving. A detached molding can become a road hazard and increase crash risk for other vehicles.",
+        "solution": "Check the VIN for NHTSA recall 23V-038. Hyundai dealers inspect and secure or replace the roof moldings as necessary, free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Visible lifting or misalignment of a roof molding",
+          "Wind noise or other noise from the roof area"
+        ],
+        "affectedSystems": [
+          "Roof moldings",
+          "Roof flange",
+          "Roof-molding mounting clips"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 23V-038 - Santa Cruz Roof Moldings",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V038-5662.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed roof-molding/23V-038 identity, replaced secondary citations with the exact Part 573 report, and removed the unsupported paint-sealer cause and combined-population implication.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-santa-cruz-sunroof-drain-clogging-causing-interior-water-leaks",
+      "model": "Santa Cruz",
+      "action": "keep_published_pending_source",
+      "reason": "Two owner-forum threads do not establish one Hyundai-defined clogged, crimped, disconnected or incompletely punched sunroof-drain defect or validate compressed-air and water-test procedures across 2022-2025 Santa Cruz vehicles. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "25508690c6a4563434d91bb94fe3b41413abcec7f37323719a0aea0187aa6229",
+      "proposalSha256": "25508690c6a4563434d91bb94fe3b41413abcec7f37323719a0aea0187aa6229",
+      "before": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Sunroof Drain Clogging Causing Interior Water Leaks",
+        "description": "Santa Cruz owners report water leaking into the cabin, frequently onto the front passenger floorboard, traced to clogged, crimped, or disconnected sunroof drain hoses. In several documented cases dealers found multiple drain slots blocked or a factory drain hole that was never fully punched, so water backs up out of the sunroof pan and into the interior.",
+        "solution": "Clear and re-route the sunroof drain hoses; verify all drain slots are open and the factory drain holes are fully formed. Owners report success vacuuming debris and blowing compressed air through the drains; dealers should inspect for crimped or disconnected hoses and confirm proper drainage during a water test.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Water pooling on front passenger floorboard",
+          "Damp carpet or headliner after rain or car wash",
+          "Dripping or trickling sounds inside the cabin",
+          "Interior condensation / musty smell"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.santacruzforums.com/threads/sunroof-leaking.8427/",
+            "type": "forum",
+            "title": "Sunroof Leaking (Hyundai Santa Cruz Forum)"
+          },
+          {
+            "url": "https://www.santacruzforums.com/threads/2024-sc-limited-water-is-passenger-floorboard-with-solution.13631/",
+            "type": "forum",
+            "title": "2024 SC Limited - Water in Passenger Floorboard, With Solution"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Sunroof Drain Clogging Causing Interior Water Leaks",
+        "description": "Santa Cruz owners report water leaking into the cabin, frequently onto the front passenger floorboard, traced to clogged, crimped, or disconnected sunroof drain hoses. In several documented cases dealers found multiple drain slots blocked or a factory drain hole that was never fully punched, so water backs up out of the sunroof pan and into the interior.",
+        "solution": "Clear and re-route the sunroof drain hoses; verify all drain slots are open and the factory drain holes are fully formed. Owners report success vacuuming debris and blowing compressed air through the drains; dealers should inspect for crimped or disconnected hoses and confirm proper drainage during a water test.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Water pooling on front passenger floorboard",
+          "Damp carpet or headliner after rain or car wash",
+          "Dripping or trickling sounds inside the cabin",
+          "Interior condensation / musty smell"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.santacruzforums.com/threads/sunroof-leaking.8427/",
+            "type": "forum",
+            "title": "Sunroof Leaking (Hyundai Santa Cruz Forum)"
+          },
+          {
+            "url": "https://www.santacruzforums.com/threads/2024-sc-limited-water-is-passenger-floorboard-with-solution.13631/",
+            "type": "forum",
+            "title": "2024 SC Limited - Water in Passenger Floorboard, With Solution"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-santa-cruz-tow-hitch-harness-water-intrusion-causing-fire-risk",
+      "model": "Santa Cruz",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed tow-hitch-harness/water-ingress/fire/23V-181 identity, replaced the forum citation with the exact Part 573 report, and retained only the documented accessory scope, no-warning condition and remedy sequence.",
+      "identityRule": "The same indexed component, failure outcome and recall identity stay on the existing ID, title and category; only facts from the exact Part 573 report remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V181-1849.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 23V-181 - Santa Cruz Tow-Hitch Harness supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "1b6efc04d28621e38c01020bdf086deaa2d6eadbcb68af993dcf4a4596a34d34",
+      "proposalSha256": "a77ca900720169f44f0babfb2eda5a45a3265bdb20a76ee3dc8a807d19efadfd",
+      "before": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Tow Hitch Harness Water Intrusion Causing Fire Risk (Recall 23V-181)",
+        "description": "On 2022-2023 Santa Cruz vehicles equipped with a factory or dealer-accessory tow hitch harness, water can enter the harness module and collect on the printed circuit board, causing an electrical short. The short can cause the module to overheat or ignite, posing a fire risk while the vehicle is parked (even off) or being driven.",
+        "solution": "Recall 23V-181 remedy: as an interim step dealers remove the tow-hitch fuse; the final repair installs a new fuse and a wire-extension kit free of charge. Owners were advised to park outside and away from structures until repaired. Confirm completion by VIN at nhtsa.gov.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Burning smell from rear of vehicle",
+          "Smoke or thermal damage near trailer wiring module",
+          "Trailer lighting / connector electrical faults",
+          "Fire risk even when parked and off"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V181-1849.PDF",
+            "type": "nhtsa",
+            "title": "NHTSA Part 573 Safety Recall Report 23V-181"
+          },
+          {
+            "url": "https://www.santacruzforums.com/threads/recall-23v-181-tow-hitch-harness-fire-while-parked-or-driving.11327/",
+            "type": "forum",
+            "title": "Recall 23V-181: Tow Hitch Harness Fire While Parked or Driving (Owner Forum)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Tow Hitch Harness Water Intrusion Causing Fire Risk (Recall 23V-181)",
+        "description": "NHTSA recall 23V-181 (Hyundai recall 244) covers model-year 2022-2023 Santa Cruz vehicles that may have a Hyundai accessory tow-hitch harness. The harness module printed circuit board can be susceptible to water entering through the 4-pin tow-hitch harness connector. An electrical short can cause a trailer-harness-module fire while driving or while parked with the ignition off.",
+        "solution": "Check the VIN for NHTSA recall 23V-181 and park the vehicle outside and away from structures until the remedy is complete. Hyundai dealers verify whether the accessory tow hitch is installed and fit a 15-ampere fuse and new wire-extension kit as necessary, free of charge. The filing also describes fuse removal as interim protection until the final remedy is completed.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No advance warning identified in the Part 573 report"
+        ],
+        "affectedSystems": [
+          "Accessory tow-hitch harness",
+          "Tow-hitch harness module",
+          "4-pin harness connector"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 23V-181 - Santa Cruz Tow-Hitch Harness",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V181-1849.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed tow-hitch-harness/water-ingress/fire/23V-181 identity, replaced the forum citation with the exact Part 573 report, and retained only the documented accessory scope, no-warning condition and remedy sequence.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-santa-cruz-transmission-electric-oil-pump-fault-causing-loss-drive-powe",
+      "model": "Santa Cruz",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed oil-pump/loss-of-power/22V-746 identity, replaced secondary and TSB citations with the exact Part 573 report, corrected the cause from unsupported soldering to fail-safe software logic, and removed the unsupported P0868 code.",
+      "identityRule": "The same indexed component, failure outcome and recall identity stay on the existing ID, title and category; only facts from the exact Part 573 report remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V746-8939.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 22V-746 - Santa Cruz Transmission Oil Pump Fail-Safe supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "fe1eb9e4062c6193fbd95640cb9b8cde4aaa8591569395c51169f4787043adec",
+      "proposalSha256": "1fec6d8c4007331b9d3ed32d7c517616803955c9b44261951432b48e70348d76",
+      "before": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Transmission Electric Oil Pump Fault Causing Loss of Drive Power (Recall 22V-746)",
+        "description": "On 2022 Santa Cruz models with the 8-speed wet dual-clutch transmission, an internal fault in the electric oil pump (from insufficient soldering on its circuit board) can impair the transmission's fail-safe limited-mobility mode. Owners report a warning for 20-30 seconds followed by a complete loss of motive power and inability to accelerate. Loss of drive power is among the most-complained-about defects on the early Santa Cruz.",
+        "solution": "Recall 22V-746 remedy: dealers inspect and replace the transmission as necessary and update the transmission control unit (TCU) software free of charge. Verify recall completion by VIN at nhtsa.gov.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden loss of motive power / inability to accelerate",
+          "Vehicle drops into limited-mobility or fail-safe mode",
+          "Warning lights for transmission / check engine",
+          "20-30 seconds of normal power then loss of drive"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0868"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.cars.com/research/hyundai-santa_cruz-2022/recalls/",
+            "type": "nhtsa",
+            "title": "2022 Hyundai Santa Cruz Recalls (Cars.com / NHTSA)"
+          },
+          {
+            "url": "https://lemberglaw.com/2022-hyundai-santa-cruz-problems-complaints-lemon/",
+            "type": "article",
+            "title": "2022 Hyundai Santa Cruz Problems & Complaints Guide"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10217250-0001.pdf",
+            "type": "tsb",
+            "title": "Hyundai TSB: 8-speed Wet DCT Electric Oil Pump (EOP) DTC"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Transmission Electric Oil Pump Fault Causing Loss of Drive Power (Recall 22V-746)",
+        "description": "NHTSA recall 22V-746 (Hyundai recall 236) covers certain model-year 2022 Santa Cruz vehicles. An internal fault in the transmission high-pressure electric oil pump can trigger diagnostic codes and warning lamps. Improper software logic for the fail-safe condition can allow about 20-30 seconds of motive power before the transmission clutches and drive gears disengage, causing a complete loss of motive power and increasing crash risk.",
+        "solution": "Check the VIN for NHTSA recall 22V-746. Hyundai dealers inspect the transmission and replace it if necessary, then reprogram the transmission control unit with software that provides proper fail-safe driving capability, free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Malfunction Indicator Lamp illumination",
+          "Instrument-cluster warning message",
+          "Audio-video-navigation display warning message",
+          "Complete loss of motive power after a brief limited-mobility period"
+        ],
+        "affectedSystems": [
+          "Transmission high-pressure electric oil pump",
+          "Transmission control unit fail-safe logic"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 22V-746 - Santa Cruz Transmission Oil Pump Fail-Safe",
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V746-8939.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed oil-pump/loss-of-power/22V-746 identity, replaced secondary and TSB citations with the exact Part 573 report, corrected the cause from unsupported soldering to fail-safe software logic, and removed the unsupported P0868 code.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-santacruz-bed-liner-peeling",
+      "model": "Santa Cruz",
+      "action": "keep_published_pending_source",
+      "reason": "One broad community landing page does not establish one Hyundai-defined composite bed-liner adhesion defect, UV or temperature mechanism, warranty outcome, recurrence rate or aftermarket replacement cost across 2022-2025 vehicles. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "dfc07593aa05b519f2435abc50a644029fb43e044ae10eff718aab9c3e434d93",
+      "proposalSha256": "dfc07593aa05b519f2435abc50a644029fb43e044ae10eff718aab9c3e434d93",
+      "before": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Factory Bed Liner Peeling / Delaminating",
+        "description": "The factory-applied composite bed liner on the Santa Cruz peels, chips, and delaminates prematurely, often within the first year. The issue begins at the edges and tailgate area. UV exposure and temperature cycling cause the liner adhesion to fail. This is a widespread cosmetic issue that affects bed usability.",
+        "solution": "File a warranty claim for bed liner delamination - Hyundai has been replacing liners under warranty. For a permanent fix, owners recommend having the factory liner removed and replaced with a LINE-X or Rhino Liner spray-in bed liner ($450-650). The factory liner replacement is free under warranty but the issue may recur.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Bed liner peeling at edges",
+          "Bubbling under bed liner surface",
+          "Chips appearing with light use",
+          "Liner separating from tailgate",
+          "White spots showing through liner"
+        ],
+        "affectedSystems": [
+          "Exterior",
+          "Body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 650,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Hyundai",
+            "type": "forum",
+            "title": "Reddit r/HyundaiSantaCruz - Bed liner peeling already"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "LINE-X spray-in bed liner is the most popular upgrade replacing the factory liner",
+            "upvotes": 0,
+            "partName": "Premium Spray-In Bed Liner",
+            "partBrand": "LINE-X",
+            "affiliateUrl": "https://www.amazon.com/s?k=LINE-X%20Premium%20Spray-In%20Bed%20Liner&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Remove the factory liner completely before applying aftermarket liner - applying over the factory liner causes adhesion issues",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 280,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-01",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Factory Bed Liner Peeling / Delaminating",
+        "description": "The factory-applied composite bed liner on the Santa Cruz peels, chips, and delaminates prematurely, often within the first year. The issue begins at the edges and tailgate area. UV exposure and temperature cycling cause the liner adhesion to fail. This is a widespread cosmetic issue that affects bed usability.",
+        "solution": "File a warranty claim for bed liner delamination - Hyundai has been replacing liners under warranty. For a permanent fix, owners recommend having the factory liner removed and replaced with a LINE-X or Rhino Liner spray-in bed liner ($450-650). The factory liner replacement is free under warranty but the issue may recur.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Bed liner peeling at edges",
+          "Bubbling under bed liner surface",
+          "Chips appearing with light use",
+          "Liner separating from tailgate",
+          "White spots showing through liner"
+        ],
+        "affectedSystems": [
+          "Exterior",
+          "Body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 650,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Hyundai",
+            "type": "forum",
+            "title": "Reddit r/HyundaiSantaCruz - Bed liner peeling already"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "LINE-X spray-in bed liner is the most popular upgrade replacing the factory liner",
+            "upvotes": 0,
+            "partName": "Premium Spray-In Bed Liner",
+            "partBrand": "LINE-X",
+            "affiliateUrl": "https://www.amazon.com/s?k=LINE-X%20Premium%20Spray-In%20Bed%20Liner&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Remove the factory liner completely before applying aftermarket liner - applying over the factory liner causes adhesion issues",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 280,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-01",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-santacruz-infotainment-freeze",
+      "model": "Santa Cruz",
+      "action": "keep_published_pending_source",
+      "reason": "A generic NHTSA vehicle page does not establish one Santa Cruz head-unit freeze, blackout, wireless projection and backup-camera defect or validate multiple software updates, reset behavior, wired workaround, replacement outcome or costs. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "c4f1f945f4d933fe26a2e3bc80c086ee3c305dcd964fab49151cf50b084f4df7",
+      "proposalSha256": "c4f1f945f4d933fe26a2e3bc80c086ee3c305dcd964fab49151cf50b084f4df7",
+      "before": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment Screen Freezing / Black Screen",
+        "description": "The 10.25-inch infotainment system in the Santa Cruz is prone to freezing, going black, or rebooting randomly. Wireless Android Auto and Apple CarPlay connections can trigger the freezes. The backup camera feed may also be lost during a freeze. Hyundai has released multiple software updates to improve stability.",
+        "solution": "Request the latest navigation/infotainment software update from the dealer (free). A hard reset can be performed by pressing and holding the power/volume knob for 10+ seconds. If issues persist, the head unit may need replacement ($1,000-2,000 at dealer). Switching from wireless to wired CarPlay/Android Auto reduces freezes.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Screen goes black while driving",
+          "Touchscreen unresponsive",
+          "System reboots randomly",
+          "Backup camera shows black screen",
+          "CarPlay/Android Auto disconnects frequently"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Infotainment"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/SANTA%20CRUZ",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints - Santa Cruz Display"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Use a wired connection for CarPlay/Android Auto instead of wireless - wireless triggers most of the freezing issues",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Hard reset by holding the power knob for 10 seconds fixes most temporary freezes without needing a dealer visit",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Hyundai%20Santa%20Cruz&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Hyundai%20Santa%20Cruz&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 420,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-k5-infotainment-blackout-2021",
+          "hyundai-ioniq5-infotainment-crash"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment Screen Freezing / Black Screen",
+        "description": "The 10.25-inch infotainment system in the Santa Cruz is prone to freezing, going black, or rebooting randomly. Wireless Android Auto and Apple CarPlay connections can trigger the freezes. The backup camera feed may also be lost during a freeze. Hyundai has released multiple software updates to improve stability.",
+        "solution": "Request the latest navigation/infotainment software update from the dealer (free). A hard reset can be performed by pressing and holding the power/volume knob for 10+ seconds. If issues persist, the head unit may need replacement ($1,000-2,000 at dealer). Switching from wireless to wired CarPlay/Android Auto reduces freezes.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Screen goes black while driving",
+          "Touchscreen unresponsive",
+          "System reboots randomly",
+          "Backup camera shows black screen",
+          "CarPlay/Android Auto disconnects frequently"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Infotainment"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/SANTA%20CRUZ",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints - Santa Cruz Display"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Use a wired connection for CarPlay/Android Auto instead of wireless - wireless triggers most of the freezing issues",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Hard reset by holding the power knob for 10 seconds fixes most temporary freezes without needing a dealer visit",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Hyundai%20Santa%20Cruz&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Hyundai%20Santa%20Cruz&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 420,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-k5-infotainment-blackout-2021",
+          "hyundai-ioniq5-infotainment-crash"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-santacruz-rear-window-rattle",
+      "model": "Santa Cruz",
+      "action": "keep_published_pending_source",
+      "reason": "This row has no citations, and no exact Hyundai Santa Cruz record was found establishing a combined rear-window and tailgate rattle, wind-noise and water-leak defect, revised seal part, foam-tape repair or the stated costs. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "e2a17304a79e1b9260ce8c9e86d990c32d18d0e91524962a84716f90b3d517de",
+      "proposalSha256": "e2a17304a79e1b9260ce8c9e86d990c32d18d0e91524962a84716f90b3d517de",
+      "before": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Rear Window and Tailgate Rattle / Wind Noise",
+        "description": "The rear sliding window and tailgate area of the Santa Cruz develops rattles and wind noise, particularly at highway speeds. The rear window weatherstripping and tailgate seal are inadequate, allowing air intrusion and vibration. Some owners also report water leaks around the rear window seal.",
+        "solution": "Apply adhesive-backed foam weatherstripping tape to the rear window frame to reduce rattling. The dealer can adjust tailgate alignment and replace weatherstripping under warranty. Hyundai updated the rear window seal in later production (part 87160-K4000). DIY foam tape fix costs $10-20; dealer seal replacement is $100-300.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Rattle from rear of cabin at highway speed",
+          "Wind noise from tailgate area",
+          "Water drips near rear window",
+          "Buzz/vibration on rough roads",
+          "Noise worsens with temperature changes"
+        ],
+        "affectedSystems": [
+          "Body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 10,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "3M adhesive-backed foam weatherstrip tape applied to the rear window frame eliminates the rattle for $10",
+            "upvotes": 0,
+            "partName": "Foam Weatherstrip Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Foam%20Weatherstrip%20Tape&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check if the rear window is fully closed by running your finger along the seal - a gap as small as 1mm causes significant rattle",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 260,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-05",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Santa Cruz",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Rear Window and Tailgate Rattle / Wind Noise",
+        "description": "The rear sliding window and tailgate area of the Santa Cruz develops rattles and wind noise, particularly at highway speeds. The rear window weatherstripping and tailgate seal are inadequate, allowing air intrusion and vibration. Some owners also report water leaks around the rear window seal.",
+        "solution": "Apply adhesive-backed foam weatherstripping tape to the rear window frame to reduce rattling. The dealer can adjust tailgate alignment and replace weatherstripping under warranty. Hyundai updated the rear window seal in later production (part 87160-K4000). DIY foam tape fix costs $10-20; dealer seal replacement is $100-300.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Rattle from rear of cabin at highway speed",
+          "Wind noise from tailgate area",
+          "Water drips near rear window",
+          "Buzz/vibration on rough roads",
+          "Noise worsens with temperature changes"
+        ],
+        "affectedSystems": [
+          "Body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 10,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "3M adhesive-backed foam weatherstrip tape applied to the rear window frame eliminates the rattle for $10",
+            "upvotes": 0,
+            "partName": "Foam Weatherstrip Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Foam%20Weatherstrip%20Tape&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check if the rear window is fully closed by running your finger along the seal - a gap as small as 1mm causes significant rattle",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 260,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-05",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
