@@ -1,0 +1,835 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Honda",
+  "model": "Clarity",
+  "completionStatement": "This packet reconciles all four frozen Honda Clarity rows. Two same-identity primary-source corrections are proposed; two rows remain byte-for-byte unchanged pending exact primary sources.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All four rows remain published. Two are byte-for-byte unchanged.",
+    "An unrelated campaign, bulletin or generic data page may never replace the component, symptom or remedy named by an existing issue.",
+    "Both rewrites contain zero commerce, zero cost claims, and empty trim and engine arrays.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_honda-deeplink-snapshot-2026-08-05.json",
+    "snapshotSha256": "671de2660f31c07e01610e26c13382b6d59b293fb74ecc3e3abc02d248d6dd5e",
+    "snapshotGeneratedAt": "2026-08-05T21:54:08.563Z",
+    "snapshotHash": "fcd155f1e269b1d8c691655699cc2e18f6029c3ee54c650b88df00004025729a",
+    "clarityRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "battery-drain-primary-source-gap",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-clarity-12v-battery-drain-2017"
+      ],
+      "detail": "The 12V-drain aggregation and its extensive commerce remain byte-equivalent because no same-identity Honda defect record was verified."
+    },
+    {
+      "code": "power-loss-source-identity-mismatch",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-clarity-power-loss-highway-2017"
+      ],
+      "detail": "Honda bulletins for DTC P1D8D and P0010 do not substantiate the frozen high-speed power-loss/over-rev narrative or its named 19-056/20-008 software remedy. No substitution is proposed."
+    }
+  ],
+  "summary": {
+    "rewrite_same_identity": 2,
+    "keep_published_pending_source": 2,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "honda-clarity-12v-battery-drain-2017",
+      "model": "Clarity",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen 12V-drain card cites only a secondary article and an owner forum. No same-identity Honda defect bulletin or campaign was verified, so the row stays byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; an unrelated official source cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "bce79dee695630ecb80579977dcfbd75f9d772db9b5934e934c1fed5d1b245cf",
+      "proposalSha256": "bce79dee695630ecb80579977dcfbd75f9d772db9b5934e934c1fed5d1b245cf",
+      "before": {
+        "make": "Honda",
+        "model": "Clarity",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Auxiliary Battery Drain When Vehicle Sits Idle",
+        "description": "The Honda Clarity PHEV and EV models experience 12V auxiliary battery drain when the vehicle is not driven for extended periods (7-14 days). Unlike conventional vehicles, the Clarity's 12V battery is relatively small and powers multiple always-on systems including the telematics module, keyless entry receiver, and battery management system monitoring. The 12V battery does not charge from the high-voltage battery when the vehicle is off, leading to a dead 12V battery that prevents the vehicle from powering on even if the main traction battery is fully charged.",
+        "solution": "If the vehicle will sit unused for more than a week, connect a 12V battery tender or maintainer ($25-$40). The 12V battery is located in the trunk area. If the 12V battery dies, use a jump starter or jumper cables on the 12V battery terminals under the hood to boot the vehicle, then let it run for 30 minutes to recharge. Replace the 12V battery with a high-quality AGM battery every 3-4 years proactively ($150-$250). Consider unplugging the OBD-II port if you have an aftermarket dongle connected, as these draw parasitic current.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle will not power on after sitting for a week or more",
+          "Dashboard completely dark when pressing the start button",
+          "Key fob does not unlock doors remotely",
+          "Clock and radio presets reset after jump-starting",
+          "Charging will not initiate even when plugged in"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 25,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://enginepatrol.com/honda-clarity-common-problems/",
+            "type": "owner-report",
+            "title": "Honda Clarity 12V Battery Issues — Engine Patrol"
+          },
+          {
+            "url": "https://www.clarityforum.com/threads/2018-honda-clarity-reliability-is-very-poor.2293/",
+            "type": "owner-report",
+            "title": "2018 Honda Clarity Reliability Discussion — ClarityForum.com"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "A NOCO Genius1 or Battery Tender Junior ($25-$35) connected to the 12V battery when the car sits for extended periods completely eliminates this issue. Run the cable through the trunk seal — it compresses enough to close without damage.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality starter motor for reliable engine cranking",
+            "partName": "Starter Motor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Starter%20Motor%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured starter with gear reduction for improved cranking performance",
+            "partName": "Remanufactured Starter Motor",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Remanufactured%20Starter%20Motor%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Honda%20Clarity&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 210,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Clarity",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Auxiliary Battery Drain When Vehicle Sits Idle",
+        "description": "The Honda Clarity PHEV and EV models experience 12V auxiliary battery drain when the vehicle is not driven for extended periods (7-14 days). Unlike conventional vehicles, the Clarity's 12V battery is relatively small and powers multiple always-on systems including the telematics module, keyless entry receiver, and battery management system monitoring. The 12V battery does not charge from the high-voltage battery when the vehicle is off, leading to a dead 12V battery that prevents the vehicle from powering on even if the main traction battery is fully charged.",
+        "solution": "If the vehicle will sit unused for more than a week, connect a 12V battery tender or maintainer ($25-$40). The 12V battery is located in the trunk area. If the 12V battery dies, use a jump starter or jumper cables on the 12V battery terminals under the hood to boot the vehicle, then let it run for 30 minutes to recharge. Replace the 12V battery with a high-quality AGM battery every 3-4 years proactively ($150-$250). Consider unplugging the OBD-II port if you have an aftermarket dongle connected, as these draw parasitic current.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle will not power on after sitting for a week or more",
+          "Dashboard completely dark when pressing the start button",
+          "Key fob does not unlock doors remotely",
+          "Clock and radio presets reset after jump-starting",
+          "Charging will not initiate even when plugged in"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 25,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://enginepatrol.com/honda-clarity-common-problems/",
+            "type": "owner-report",
+            "title": "Honda Clarity 12V Battery Issues — Engine Patrol"
+          },
+          {
+            "url": "https://www.clarityforum.com/threads/2018-honda-clarity-reliability-is-very-poor.2293/",
+            "type": "owner-report",
+            "title": "2018 Honda Clarity Reliability Discussion — ClarityForum.com"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "A NOCO Genius1 or Battery Tender Junior ($25-$35) connected to the 12V battery when the car sits for extended periods completely eliminates this issue. Run the cable through the trunk seal — it compresses enough to close without damage.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality starter motor for reliable engine cranking",
+            "partName": "Starter Motor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Starter%20Motor%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured starter with gear reduction for improved cranking performance",
+            "partName": "Remanufactured Starter Motor",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Remanufactured%20Starter%20Motor%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Honda%20Clarity&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 210,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-clarity-ac-condenser-leak-2018",
+      "model": "Clarity",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced secondary owner/complaint pages with exact Honda warranty-extension records and removed unsupported heating, battery-thermal-management, road-guard, cost and commerce claims.",
+      "identityRule": "The existing component and failure-mode identity remains on the same ID; only primary-source-backed scope and guidance change.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "category",
+        "title",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-service-bulletin",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10194957-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 21-017 - Clarity Plug-In Hybrid A/C Condenser supports the proposed same-identity scope, mechanism and remedy."
+        },
+        {
+          "kind": "manufacturer-service-bulletin",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10199344-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Owner Notice - Clarity Plug-In Hybrid A/C Condenser Warranty Extension supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "8aa3c2625a47cda0de4c28cf80ec18619c9994e2f002a840d4502cb473006f9c",
+      "proposalSha256": "d033c55a8bc6fe95e443920dee973f5ab44d95d3a6706e1be13ec7cf2914ec7b",
+      "before": {
+        "make": "Honda",
+        "model": "Clarity",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "AC Condenser Refrigerant Leak and Cooling System Failure",
+        "description": "The Honda Clarity PHEV is prone to AC condenser failures caused by refrigerant leaks. The condenser, located in front of the radiator, develops leaks from road debris impact or internal corrosion, gradually releasing all refrigerant from the system. Because the Clarity uses an electric compressor that also provides heating via a heat pump in some modes, the failure affects both cooling and heating performance. The issue is more common on 2018-2019 models and is exacerbated by the electric vehicle's reliance on the HVAC system for battery thermal management.",
+        "solution": "Have the AC system pressure-tested at a Honda dealer or qualified AC shop. If the condenser is leaking, it must be replaced ($600-$1,200 including labor and refrigerant recharge). Aftermarket condensers are available for $150-$250 for the part alone. Consider adding a condenser stone guard ($30-$50) to prevent future road debris damage. The entire HVAC system should be evacuated and recharged with the correct amount of R-1234yf refrigerant after condenser replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "AC blows warm air instead of cold",
+          "Heating performance reduced in winter",
+          "Visible refrigerant dye stains on the condenser",
+          "Climate system warning light on dashboard",
+          "Unusual hissing noise from the front of the vehicle"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 600,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://enginepatrol.com/honda-clarity-common-problems/",
+            "type": "owner-report",
+            "title": "Honda Clarity Common Problems — Engine Patrol"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Honda/Clarity_Plug-In_Hybrid/2018/",
+            "type": "nhtsa",
+            "title": "2018 Honda Clarity PHEV Complaints — CarComplaints.com"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If your AC gradually loses cooling over weeks, it is almost certainly a slow condenser leak rather than a low-charge situation. Adding refrigerant without fixing the leak is wasting money. Get a UV dye test to pinpoint the leak location before authorizing any repairs.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Denso OE-quality radiator — direct fit replacement",
+            "partName": "Radiator",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20radiator&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Mishimoto performance aluminum radiator for improved cooling",
+            "partName": "Aluminum Radiator",
+            "partBrand": "Mishimoto",
+            "affiliateUrl": "https://www.amazon.com/s?k=Mishimoto%20aluminum%20radiator&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 95,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Clarity",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "hvac",
+        "title": "A/C Condenser Refrigerant Leak - Warranty Extension 21-017",
+        "description": "On eligible 2018-2021 Clarity Plug-In Hybrid vehicles, an A/C condenser manufactured out of specification may develop corrosion in the form of tiny holes in the condenser tube walls. Refrigerant can then leak and the air conditioning may stop cooling. The warranty extension does not cover leaks caused by foreign-object damage.",
+        "solution": "Ask a Honda dealer to check VIN eligibility under Service Bulletin 21-017 and diagnose the leak. If the condenser leak is caused by corrosion or another manufacturing condition covered by the bulletin, Honda replaces it under a 10-year, unlimited-mile warranty extension.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "A/C does not blow cold air",
+          "Refrigerant leak from the A/C condenser"
+        ],
+        "affectedSystems": [
+          "A/C condenser",
+          "refrigerant system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 21-017 - Clarity Plug-In Hybrid A/C Condenser",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10194957-0001.pdf"
+          },
+          {
+            "type": "manufacturer",
+            "title": "Honda Owner Notice - Clarity Plug-In Hybrid A/C Condenser Warranty Extension",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10199344-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced secondary owner/complaint pages with exact Honda warranty-extension records and removed unsupported heating, battery-thermal-management, road-guard, cost and commerce claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-clarity-charging-failure-2017",
+      "model": "Clarity",
+      "action": "rewrite_same_identity",
+      "reason": "Corrected applicability to 2018, bound the card to Honda Service Bulletin 18-097, and removed unsupported range-degradation, battery-warranty, reset, EVSE-brand, cost and commerce claims.",
+      "identityRule": "The existing component and failure-mode identity remains on the same ID; only primary-source-backed scope and guidance change.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-service-bulletin",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10147178-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 18-097 - Clarity Fails to Charge or Finish Charging supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "16fbcdd0235be24dc9365c4d752660acd7ac78ee0de8a01cd5645d51568bae62",
+      "proposalSha256": "b761613b667ac0f133fa9d15e039098cb8205b2b2a96f759bce48c17caa8b01c",
+      "before": {
+        "make": "Honda",
+        "model": "Clarity",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Intermittent Charging Failure and Battery Not Fully Charging",
+        "description": "The Honda Clarity PHEV may fail to start charging when plugged in, or may stop charging before the high-voltage lithium-ion battery reaches full capacity. The onboard charger or charging control software may not properly communicate with the EVSE (charging station), resulting in no charging activity despite the plug being connected and the charge indicator light not illuminating. Some owners also report the battery only charging to partial capacity (6-36 miles range instead of the expected 47 miles), which may indicate battery degradation or a software calibration error in the battery management system.",
+        "solution": "Try unplugging and re-plugging the charge connector firmly — a loose connection is the most common cause. If charging still fails, reset the vehicle by turning off, locking with the key fob, waiting 5 minutes, then plugging in again. Visit a Honda dealer for the charging system software update (TSB addresses EVSE communication). For range degradation, the dealer can run a battery health check — if capacity is below 66%, the battery may be eligible for warranty replacement under the 10-year/150,000-mile hybrid battery warranty.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Charge indicator light does not illuminate after plugging in",
+          "Charging starts but stops after a few minutes",
+          "EV range significantly lower than expected after full charge",
+          "Ready to Charge notification never appears on the dash",
+          "Charging timer shows unreasonably long charge times"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": 120000,
+        "typicalMileageHigh": 180000,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Honda/Clarity_Plug-In_Hybrid/2018/tsbs/",
+            "type": "tsb",
+            "title": "Honda TSB — Clarity PHEV Charging Issues"
+          },
+          {
+            "url": "https://www.clarityforum.com/threads/ev-battery-completely-depleted.2258/",
+            "type": "owner-report",
+            "title": "EV Battery Completely Depleted — ClarityForum.com"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Before assuming the charger is broken, test with a different Level 2 EVSE if possible. The Clarity can be picky about some aftermarket chargers. The OEM Honda charge cord and ChargePoint stations have the highest compatibility.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Honda%20Clarity&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+            "partName": "Portable Level 2 EV Charger",
+            "partBrand": "Lectron",
+            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Honda%20Clarity&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 145,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Clarity",
+        "years": [
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Fails to Start or Finish Charging - Service Bulletin 18-097",
+        "description": "Honda Service Bulletin 18-097 applies to 2018 Clarity Plug-In Hybrid and Clarity Electric vehicles. The vehicle may fail to start charging when plugged in or may stop before the high-voltage battery is full because battery-charger software can react incorrectly to poor or fluctuating power quality.",
+        "solution": "Have a Honda dealer diagnose the charging concern and apply the battery-charger software update in Service Bulletin 18-097. After the update, charging can take up to one and a half times longer depending on local power quality.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Charging does not start when the vehicle is plugged in",
+          "Charging stops before the high-voltage battery is full"
+        ],
+        "affectedSystems": [
+          "battery charger software",
+          "high-voltage battery charging system"
+        ],
+        "dtcCodes": [
+          "P0D28",
+          "P0D2A",
+          "P0D3D",
+          "P1D23",
+          "P1D22"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 18-097 - Clarity Fails to Charge or Finish Charging",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10147178-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Corrected applicability to 2018, bound the card to Honda Service Bulletin 18-097, and removed unsupported range-degradation, battery-warranty, reset, EVSE-brand, cost and commerce claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-clarity-power-loss-highway-2017",
+      "model": "Clarity",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen highway-power-loss card cites a generic NHTSA vehicle page and an owner forum. Honda records found for P1D8D and P0010 concern a PCU internal failure and PCM emissions DTCs, not the claimed highway transition behavior or the named 19-056/20-008 updates. The row stays byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; an unrelated official source cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "3112454925cd9352bd1933b4bf3b5c4d7adbbf399eb7b819e7f1112c822c522d",
+      "proposalSha256": "3112454925cd9352bd1933b4bf3b5c4d7adbbf399eb7b819e7f1112c822c522d",
+      "before": {
+        "make": "Honda",
+        "model": "Clarity",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [
+          "1.5L Atkinson"
+        ],
+        "category": "engine",
+        "title": "Sudden Power Loss and Engine Over-Rev on Highway",
+        "description": "The Honda Clarity PHEV can experience a dangerous loss of power when transitioning from electric to gasoline engine operation, particularly under high-load conditions such as highway hills, cold weather, or when the battery is nearly depleted. The vehicle may drop from highway speed (60+ mph) to as low as 20 mph while the engine revs loudly but fails to deliver power, behaving as if the transmission is in neutral. The 1.5L Atkinson-cycle engine struggles to maintain speed when the electric motor assistance diminishes, and the power management software does not always transition smoothly between operating modes.",
+        "solution": "Visit a Honda dealer for the latest PCM software update, which improves the hybrid-to-gas transition logic. Keep the battery charged above 2 bars when highway driving in cold weather. In HV mode on long highway grades, manually press the HV Charge button to maintain battery reserve for power blending. If power loss occurs, safely pull over, turn off the vehicle for 60 seconds, then restart — this resets the power management system. The issue is less severe after the 2019 software updates.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle drops from highway speed to 20-30 mph unexpectedly",
+          "Engine revs loudly but vehicle does not accelerate",
+          "Power System Problem warning on dashboard",
+          "Gear icon with exclamation mark appears",
+          "Issue worsens in cold weather or on steep grades"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P1D8D",
+          "P0010"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 150,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HONDA/CLARITY%20PLUG-IN%20HYBRID",
+            "type": "nhtsa",
+            "title": "2018 Honda Clarity PHEV Complaints — NHTSA"
+          },
+          {
+            "url": "https://www.clarityforum.com/threads/loss-of-power-and-engine-over-rev-help-with-tools.1325/",
+            "type": "owner-report",
+            "title": "Loss of Power and Engine Over-Rev — ClarityForum.com"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "On highway trips longer than your EV range, use HV mode from the start rather than draining the battery completely. Keeping 20-30% battery charge allows the electric motor to supplement the gas engine on hills, preventing the power loss scenario entirely.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If you experience frequent power loss on your commute, ask the dealer specifically for TSB 19-056 and TSB 20-008 software updates. Not all dealers proactively apply these unless you request them.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Bluetooth OBD-II scanner for reading engine codes and monitoring live data",
+            "partName": "Bluetooth OBD2 Diagnostic Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Clarity%20BlueDriver%20Bluetooth%20OBD2%20Diagnostic%20Scan%20Tool&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Quality synthetic oil and filter combo for engine maintenance",
+            "partName": "Full Synthetic Oil and Filter Bundle",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Clarity%20Mobil%201%20Full%20Synthetic%20Oil%20and%20Filter%20Bundle&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 180,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Clarity",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [
+          "1.5L Atkinson"
+        ],
+        "category": "engine",
+        "title": "Sudden Power Loss and Engine Over-Rev on Highway",
+        "description": "The Honda Clarity PHEV can experience a dangerous loss of power when transitioning from electric to gasoline engine operation, particularly under high-load conditions such as highway hills, cold weather, or when the battery is nearly depleted. The vehicle may drop from highway speed (60+ mph) to as low as 20 mph while the engine revs loudly but fails to deliver power, behaving as if the transmission is in neutral. The 1.5L Atkinson-cycle engine struggles to maintain speed when the electric motor assistance diminishes, and the power management software does not always transition smoothly between operating modes.",
+        "solution": "Visit a Honda dealer for the latest PCM software update, which improves the hybrid-to-gas transition logic. Keep the battery charged above 2 bars when highway driving in cold weather. In HV mode on long highway grades, manually press the HV Charge button to maintain battery reserve for power blending. If power loss occurs, safely pull over, turn off the vehicle for 60 seconds, then restart — this resets the power management system. The issue is less severe after the 2019 software updates.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle drops from highway speed to 20-30 mph unexpectedly",
+          "Engine revs loudly but vehicle does not accelerate",
+          "Power System Problem warning on dashboard",
+          "Gear icon with exclamation mark appears",
+          "Issue worsens in cold weather or on steep grades"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P1D8D",
+          "P0010"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 150,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HONDA/CLARITY%20PLUG-IN%20HYBRID",
+            "type": "nhtsa",
+            "title": "2018 Honda Clarity PHEV Complaints — NHTSA"
+          },
+          {
+            "url": "https://www.clarityforum.com/threads/loss-of-power-and-engine-over-rev-help-with-tools.1325/",
+            "type": "owner-report",
+            "title": "Loss of Power and Engine Over-Rev — ClarityForum.com"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "On highway trips longer than your EV range, use HV mode from the start rather than draining the battery completely. Keeping 20-30% battery charge allows the electric motor to supplement the gas engine on hills, preventing the power loss scenario entirely.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If you experience frequent power loss on your commute, ask the dealer specifically for TSB 19-056 and TSB 20-008 software updates. Not all dealers proactively apply these unless you request them.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Bluetooth OBD-II scanner for reading engine codes and monitoring live data",
+            "partName": "Bluetooth OBD2 Diagnostic Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Clarity%20BlueDriver%20Bluetooth%20OBD2%20Diagnostic%20Scan%20Tool&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Quality synthetic oil and filter combo for engine maintenance",
+            "partName": "Full Synthetic Oil and Filter Bundle",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Clarity%20Mobil%201%20Full%20Synthetic%20Oil%20and%20Filter%20Bundle&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 180,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
