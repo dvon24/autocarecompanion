@@ -1,0 +1,2358 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Tucson",
+  "completionStatement": "This packet reconciles all thirteen frozen Hyundai Tucson rows. Four same-identity official-source rewrites are proposed; nine rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All thirteen rows remain published. Nine are byte-for-byte unchanged.",
+    "Each rewrite preserves the indexed ID, title and category and uses one exact Hyundai or NHTSA primary record.",
+    "Rewrites contain zero commerce, zero cost or mileage claims, empty trim and engine arrays, and no diagnostic codes.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "tucsonRecordCount": 13
+  },
+  "observations": [
+    {
+      "code": "four-exact-official-rewrites",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-tucson-forward-collision-avoidance-phantom-braking",
+        "hyundai-tucson-interior-door-pull-handle-trim-paint-peeling",
+        "hyundai-tucson-isg-electric-oil-pump-controller-overheat-fire-risk",
+        "hyundai-tucson-tow-hitch-wiring-harness-water-intrusion-fire-risk"
+      ],
+      "detail": "Exact Hyundai or NHTSA records support the FCA camera-software, door-pull-handle paint, electric-oil-pump and optional OEM tow-harness identities without changing indexed titles or categories.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V316-9486.pdf",
+        "https://static.nhtsa.gov/odi/tsbs/2023/MC-10237180-0001.pdf",
+        "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V526-9703.PDF",
+        "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V893-5513.pdf"
+      ]
+    },
+    {
+      "code": "partial-dct-record-held",
+      "severity": "high",
+      "recordIds": [
+        "hyundai-tucson-dct-transmission-shudder"
+      ],
+      "detail": "Recall 16V-628 supports a narrower 2016 delayed-engagement software condition, not the full indexed shudder and premature-wear identity. The row remains unchanged.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/rcl/2016/RCLRPT-16V628-8794.pdf"
+      ]
+    },
+    {
+      "code": "different-engine-cause-held",
+      "severity": "high",
+      "recordIds": [
+        "hyundai-tucson-theta2-engine-seizure"
+      ],
+      "detail": "Recall 19V-063 establishes an oil-pan sealant leak rather than connecting-rod-bearing failure. A different cause cannot replace the indexed engine identity.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/rcl/2019/RCLRPT-19V063-1419.PDF"
+      ]
+    },
+    {
+      "code": "nine-partial-or-unsupported-rows-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-tucson-2-5l-smartstream-gdi-oil-dilution-excessive-oil-consumption",
+        "hyundai-tucson-ac-compressor-failure-2010",
+        "hyundai-tucson-dct-transmission-shudder",
+        "hyundai-tucson-high-pressure-fuel-pump",
+        "hyundai-tucson-hybrid-phev-12v-battery-repeated-drain-no-start",
+        "hyundai-tucson-rear-brake-caliper-seize",
+        "hyundai-tucson-rear-diff-coupler-failure",
+        "hyundai-tucson-sunroof-cracking-2016",
+        "hyundai-tucson-theta2-engine-seizure"
+      ],
+      "detail": "All partial, generic, secondary, mismatched or insufficiently sourced narratives remain byte-for-byte unchanged."
+    }
+  ],
+  "publicSources": {
+    "fca": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V316-9486.pdf",
+    "door": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10237180-0001.pdf",
+    "oilPump": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V526-9703.PDF",
+    "towHarness": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V893-5513.pdf"
+  },
+  "reviewSources": {
+    "dctPartial": "https://static.nhtsa.gov/odi/rcl/2016/RCLRPT-16V628-8794.pdf",
+    "engineMismatch": "https://static.nhtsa.gov/odi/rcl/2019/RCLRPT-19V063-1419.PDF"
+  },
+  "summary": {
+    "rewrite_same_identity": 4,
+    "keep_published_pending_source": 9,
+    "total": 13
+  },
+  "rows": [
+    {
+      "id": "hyundai-tucson-2-5l-smartstream-gdi-oil-dilution-excessive-oil-consumption",
+      "model": "Tucson",
+      "action": "keep_published_pending_source",
+      "reason": "Owner discussions and a secondary article do not establish one Hyundai-defined 2022-2024 Tucson fuel-dilution and oil-consumption defect, ring-sticking cause, service interval or remedy. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "5ae491f224980f61fcb2407560182b90deec2d2667f7c24bd4933c417dc4d224",
+      "proposalSha256": "5ae491f224980f61fcb2407560182b90deec2d2667f7c24bd4933c417dc4d224",
+      "before": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [
+          "SE",
+          "SEL",
+          "XRT",
+          "Limited",
+          "N Line"
+        ],
+        "engines": [
+          "2.5L Smartstream G2.5 GDI"
+        ],
+        "category": "engine",
+        "title": "2.5L Smartstream GDI Oil Dilution and Excessive Oil Consumption",
+        "description": "The naturally-aspirated 2.5L Smartstream G2.5 GDI engine (distinct from the older Theta II 2.0/2.4) suffers from fuel dilution of the engine oil and, in some units, sticking oil-control rings that drive excessive oil consumption. Raw injected fuel washes past the rings into the crankcase, thinning the oil and, where rings stick, owners report burning roughly a quart per ~1,000 miles. Hyundai responded by increasing the factory oil fill capacity, lengthening the oil-level sensor range, and shortening the recommended oil-change interval.",
+        "solution": "Perform a documented dealer oil-consumption test if usage exceeds about a quart per 1,000-1,200 miles to qualify for warranty repair (often updated piston/oil-control rings or a short block). Shorten oil changes to roughly 6,000 miles (some markets dropped from 15K to 7.5K), use the correct 0W-20/0W-30 full synthetic per the latest spec, and check for an oily fuel smell at the dipstick indicating dilution. Avoid extended idling and very short trips that worsen dilution; install any applicable engine/ECM updates.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil level dropping between changes (low-oil light)",
+          "Fuel/gasoline smell on the dipstick",
+          "Oil level reading above full (dilution)",
+          "Rising oil level with thin/diluted oil",
+          "Tapping or knock if oil starves under consumption"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P2181"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 6000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com/threads/2-5l-smartstream-engine-oil-problems-and-defects-possibly-discovered.673141/",
+            "type": "forum",
+            "title": "2.5L Smartstream Engine Oil problems and defects possibly discovered - Hyundai Forums"
+          },
+          {
+            "url": "https://www.santacruzforums.com/threads/2-5l-known-failure-oil-dilution.13654/",
+            "type": "forum",
+            "title": "2.5L Known Failure - Oil Dilution - Hyundai Santa Cruz Forum"
+          },
+          {
+            "url": "https://www.cherishyourcar.com/hyundai-2-5-engine-problems/",
+            "type": "article",
+            "title": "Hyundai 2.5 Engine Problems: Oil Consumption, ITM Cooling Failures - Cherish Your Car"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-18",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [
+          "SE",
+          "SEL",
+          "XRT",
+          "Limited",
+          "N Line"
+        ],
+        "engines": [
+          "2.5L Smartstream G2.5 GDI"
+        ],
+        "category": "engine",
+        "title": "2.5L Smartstream GDI Oil Dilution and Excessive Oil Consumption",
+        "description": "The naturally-aspirated 2.5L Smartstream G2.5 GDI engine (distinct from the older Theta II 2.0/2.4) suffers from fuel dilution of the engine oil and, in some units, sticking oil-control rings that drive excessive oil consumption. Raw injected fuel washes past the rings into the crankcase, thinning the oil and, where rings stick, owners report burning roughly a quart per ~1,000 miles. Hyundai responded by increasing the factory oil fill capacity, lengthening the oil-level sensor range, and shortening the recommended oil-change interval.",
+        "solution": "Perform a documented dealer oil-consumption test if usage exceeds about a quart per 1,000-1,200 miles to qualify for warranty repair (often updated piston/oil-control rings or a short block). Shorten oil changes to roughly 6,000 miles (some markets dropped from 15K to 7.5K), use the correct 0W-20/0W-30 full synthetic per the latest spec, and check for an oily fuel smell at the dipstick indicating dilution. Avoid extended idling and very short trips that worsen dilution; install any applicable engine/ECM updates.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil level dropping between changes (low-oil light)",
+          "Fuel/gasoline smell on the dipstick",
+          "Oil level reading above full (dilution)",
+          "Rising oil level with thin/diluted oil",
+          "Tapping or knock if oil starves under consumption"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P2181"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 6000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com/threads/2-5l-smartstream-engine-oil-problems-and-defects-possibly-discovered.673141/",
+            "type": "forum",
+            "title": "2.5L Smartstream Engine Oil problems and defects possibly discovered - Hyundai Forums"
+          },
+          {
+            "url": "https://www.santacruzforums.com/threads/2-5l-known-failure-oil-dilution.13654/",
+            "type": "forum",
+            "title": "2.5L Known Failure - Oil Dilution - Hyundai Santa Cruz Forum"
+          },
+          {
+            "url": "https://www.cherishyourcar.com/hyundai-2-5-engine-problems/",
+            "type": "article",
+            "title": "Hyundai 2.5 Engine Problems: Oil Consumption, ITM Cooling Failures - Cherish Your Car"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-18",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-tucson-ac-compressor-failure-2010",
+      "model": "Tucson",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint page and one owner discussion do not establish one 2010-2021 Tucson compressor-clutch, seizure and debris-contamination defect or the asserted replacement path. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "844312acdf3070104ca9eb8d5b2e250c61194e4597f5a64d0a0a3e3973d93694",
+      "proposalSha256": "844312acdf3070104ca9eb8d5b2e250c61194e4597f5a64d0a0a3e3973d93694",
+      "before": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "A/C Compressor Failure",
+        "description": "The A/C compressor on the Tucson has a higher-than-average failure rate. The compressor clutch can fail first, making a screeching or grinding noise, followed by complete compressor seizure. When the compressor fails internally, metal debris contaminates the entire A/C system, requiring a full system flush. The condenser is also prone to developing leaks from road debris impact.",
+        "solution": "Replace the A/C compressor and receiver/drier. If metal debris is found, the entire system must be flushed including the condenser and evaporator, and the expansion valve replaced. Use only the correct PAG oil weight specified for the Tucson. Have the system evacuated and recharged with the exact R-134a or R-1234yf amount (depending on model year) specified on the underhood label.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "No cold air from A/C",
+          "Screeching noise when A/C is on",
+          "A/C clutch cycling rapidly",
+          "Warm air only from vents",
+          "A/C works intermittently"
+        ],
+        "affectedSystems": [
+          "A/C compressor",
+          "Air conditioning",
+          "HVAC"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 600,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2010/HYUNDAI/TUCSON#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2010 Hyundai Tucson - Includes A/C Compressor Issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/j9v0x8/2012_hyundai_tucson_ac_compressor_failure/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice Thread Discussing 2012 Hyundai Tucson A/C Compressor Failure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "TYC blower motor — direct replacement for HVAC fan",
+            "partName": "Blower Motor",
+            "partBrand": "TYC",
+            "affiliateUrl": "https://www.amazon.com/s?k=TYC%20blower%20motor&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Wix cabin air filter — filters dust, pollen, and odors",
+            "partName": "Cabin Air Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Wix%20cabin%20air%20filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-rio-ac-compressor-failure",
+          "hyundai-kona-ac-compressor-noise-2018"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "A/C Compressor Failure",
+        "description": "The A/C compressor on the Tucson has a higher-than-average failure rate. The compressor clutch can fail first, making a screeching or grinding noise, followed by complete compressor seizure. When the compressor fails internally, metal debris contaminates the entire A/C system, requiring a full system flush. The condenser is also prone to developing leaks from road debris impact.",
+        "solution": "Replace the A/C compressor and receiver/drier. If metal debris is found, the entire system must be flushed including the condenser and evaporator, and the expansion valve replaced. Use only the correct PAG oil weight specified for the Tucson. Have the system evacuated and recharged with the exact R-134a or R-1234yf amount (depending on model year) specified on the underhood label.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "No cold air from A/C",
+          "Screeching noise when A/C is on",
+          "A/C clutch cycling rapidly",
+          "Warm air only from vents",
+          "A/C works intermittently"
+        ],
+        "affectedSystems": [
+          "A/C compressor",
+          "Air conditioning",
+          "HVAC"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 600,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2010/HYUNDAI/TUCSON#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2010 Hyundai Tucson - Includes A/C Compressor Issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/j9v0x8/2012_hyundai_tucson_ac_compressor_failure/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice Thread Discussing 2012 Hyundai Tucson A/C Compressor Failure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "TYC blower motor — direct replacement for HVAC fan",
+            "partName": "Blower Motor",
+            "partBrand": "TYC",
+            "affiliateUrl": "https://www.amazon.com/s?k=TYC%20blower%20motor&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Wix cabin air filter — filters dust, pollen, and odors",
+            "partName": "Cabin Air Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Wix%20cabin%20air%20filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-rio-ac-compressor-failure",
+          "hyundai-kona-ac-compressor-noise-2018"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-tucson-dct-transmission-shudder",
+      "model": "Tucson",
+      "action": "keep_published_pending_source",
+      "reason": "Recall 16V-628 supports only a 2016 delayed-engagement/nonacceleration software condition. It does not establish the indexed shudder identity, premature clutch wear, alleged warranty extension or 2017-2021 scope, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-partial-identity",
+          "url": "https://static.nhtsa.gov/odi/rcl/2016/RCLRPT-16V628-8794.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Recall 16V-628 covers delayed engagement and nonacceleration caused by clutch-application software logic only in certain 2016 Tucson 7-speed DCT vehicles; it does not establish the title's shudder identity, premature clutch-wear claims, warranty extension or 2017-2021 scope."
+        }
+      ],
+      "beforeSha256": "7af64948b73d427e48d07061b9c011674d6f38eb983cb977d3f6a60e3e8ffb6e",
+      "proposalSha256": "7af64948b73d427e48d07061b9c011674d6f38eb983cb977d3f6a60e3e8ffb6e",
+      "before": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "Limited",
+          "N Line",
+          "Sport",
+          "Ultimate"
+        ],
+        "engines": [
+          "1.6L Turbo"
+        ],
+        "category": "transmission",
+        "title": "7-Speed DCT Transmission Shudder and Hesitation",
+        "description": "The 7-speed dual-clutch transmission (DCT) paired with the 1.6L turbo engine in Tucson models suffers from shuddering during low-speed maneuvers, hesitation from a stop, and jerky shifts. The dry clutch design is prone to premature wear. Hyundai extended the DCT warranty to 10 years/100,000 miles under a settlement.",
+        "solution": "Check if vehicle is covered under Hyundai DCT warranty extension (10yr/100k miles). A TCM software update can improve shift quality. If clutch is worn, the dual-clutch assembly replacement is needed (Hyundai part 41200-2D100). Dealer replacement costs $1,800-3,000. Some owners have had success with the software update alone.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Shuddering at low speed (1st-2nd gear)",
+          "Hesitation when accelerating from stop",
+          "Jerky gear changes",
+          "Transmission warning light",
+          "RPM flaring between shifts"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0920"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiusa.com",
+            "type": "recall",
+            "title": "Hyundai DCT Warranty Extension - Customer Satisfaction Campaign"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai",
+            "type": "forum",
+            "title": "Reddit r/Hyundai - DCT Shudder Complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Request the latest TCM software calibration from the dealer - newer versions significantly improve shift quality",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Let the DCT warm up for 2-3 minutes before driving aggressively - cold clutch engagement causes most shuddering",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "If the transmission warning light comes on, get it inspected immediately - continued driving can damage the clutch beyond software repair",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Tucson%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 1850,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-30",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-kona-dct-shudder",
+          "hyundai-kona-dct-clutch-judder-2018",
+          "kia-optima-dct-clutch-judder",
+          "hyundai-elantra-dct-transmission-failure",
+          "hyundai-ioniq-dct-harsh-shifting-2017"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "Limited",
+          "N Line",
+          "Sport",
+          "Ultimate"
+        ],
+        "engines": [
+          "1.6L Turbo"
+        ],
+        "category": "transmission",
+        "title": "7-Speed DCT Transmission Shudder and Hesitation",
+        "description": "The 7-speed dual-clutch transmission (DCT) paired with the 1.6L turbo engine in Tucson models suffers from shuddering during low-speed maneuvers, hesitation from a stop, and jerky shifts. The dry clutch design is prone to premature wear. Hyundai extended the DCT warranty to 10 years/100,000 miles under a settlement.",
+        "solution": "Check if vehicle is covered under Hyundai DCT warranty extension (10yr/100k miles). A TCM software update can improve shift quality. If clutch is worn, the dual-clutch assembly replacement is needed (Hyundai part 41200-2D100). Dealer replacement costs $1,800-3,000. Some owners have had success with the software update alone.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Shuddering at low speed (1st-2nd gear)",
+          "Hesitation when accelerating from stop",
+          "Jerky gear changes",
+          "Transmission warning light",
+          "RPM flaring between shifts"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0920"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiusa.com",
+            "type": "recall",
+            "title": "Hyundai DCT Warranty Extension - Customer Satisfaction Campaign"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai",
+            "type": "forum",
+            "title": "Reddit r/Hyundai - DCT Shudder Complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Request the latest TCM software calibration from the dealer - newer versions significantly improve shift quality",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Let the DCT warm up for 2-3 minutes before driving aggressively - cold clutch engagement causes most shuddering",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "If the transmission warning light comes on, get it inspected immediately - continued driving can damage the clutch beyond software repair",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Tucson%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 1850,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-30",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-kona-dct-shudder",
+          "hyundai-kona-dct-clutch-judder-2018",
+          "kia-optima-dct-clutch-judder",
+          "hyundai-elantra-dct-transmission-failure",
+          "hyundai-ioniq-dct-harsh-shifting-2017"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-tucson-forward-collision-avoidance-phantom-braking",
+      "model": "Tucson",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed unintended-braking identity, replaced articles and owner reports with recall 26V-316, narrowed the scope to model years 2025-2026, and removed unsupported trigger, lawsuit and disable-system claims.",
+      "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "trims",
+        "engines",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V316-9486.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Safety Recall Report 26V-316 - FCA Camera Software supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "706f0bafdc800cdb86dae8fc8171be9506c72009f9a3a78ff2fe5ec16b32aa02",
+      "proposalSha256": "4fd55bc505ccb46f2bce719a0b2186d9b06e5048e662e720af13d0c4ce4ff933",
+      "before": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [
+          "SEL",
+          "XRT",
+          "Limited",
+          "N Line"
+        ],
+        "engines": [
+          "2.5L Smartstream G2.5 GDI",
+          "1.6L Smartstream Turbo Hybrid",
+          "1.6L Smartstream Turbo PHEV"
+        ],
+        "category": "safety",
+        "title": "Forward Collision Avoidance Phantom Braking (Unintended AEB)",
+        "description": "The Forward Collision-Avoidance Assist (FCA) system can apply the brakes harder and earlier than the driver expects, or trigger full-pressure emergency braking when no real obstacle is present. Owners report the front-camera-based system misreading shadows, overpasses, road signs, oncoming traffic, or pavement changes as imminent collisions. This 'phantom braking' creates a rear-end crash risk and prompted both a class-action lawsuit and a large NHTSA recall once camera-software sensitivity was confirmed as the root cause.",
+        "solution": "Check your VIN against NHTSA recall 26V316 (Hyundai Recall 302), which covers MY2025-2026 Tucson/Tucson Hybrid/PHEV and Santa Cruz with a free front-camera software update to reduce oversensitivity. For earlier 2022-2024 vehicles not yet under recall, request the latest FCA/camera software calibration at the dealer, file an NHTSA complaint to strengthen the case for an extension, and as a last resort the FCA sensitivity can be lowered or the system temporarily disabled via the driver-assist menu while documenting events.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden hard braking with no obstacle present",
+          "Audible collision-warning alarm without a threat",
+          "Brakes grabbing under overpasses or near road signs",
+          "Lurching/deceleration at highway speed",
+          "Near rear-end incidents from traffic behind"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V316-9486.pdf",
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall Report 26V316 (Forward Collision Avoidance)"
+          },
+          {
+            "url": "https://topclassactions.com/lawsuit-settlements/lawsuit-news/hyundai-class-action-alleges-tucson-suvs-have-defective-braking-systems/",
+            "type": "article",
+            "title": "Hyundai class action alleges Tucson SUVs have defective braking systems - Top Class Actions"
+          },
+          {
+            "url": "https://www.tucson-forum.com/threads/2022-tucson-hybrid-automatic-braking-engaged.1975/",
+            "type": "forum",
+            "title": "2022 Tucson Hybrid Automatic Braking Engaged - Hyundai Tucson Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-18",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Forward Collision Avoidance Phantom Braking (Unintended AEB)",
+        "description": "NHTSA recall 26V-316 covers certain model-year 2025-2026 Hyundai Tucson, Tucson Hybrid and Tucson Plug-in Hybrid vehicles. The front camera software can be overly sensitive to forward-object proximity in certain driving scenarios, causing the Forward Collision-Avoidance Assist system to engage earlier than expected and potentially produce sudden braking. Sudden braking can increase the risk of a rear-end crash from a closely following vehicle.",
+        "solution": "Check the VIN for NHTSA recall 26V-316. A Hyundai dealer will update the front camera software at no charge. The revised software is tuned to better align activation timing and distance with driver expectations.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Forward Collision-Avoidance Assist engages earlier than expected",
+          "Unexpected sudden braking"
+        ],
+        "affectedSystems": [
+          "Front multifunction camera software",
+          "Forward Collision-Avoidance Assist"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall Report 26V-316 - FCA Camera Software",
+            "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V316-9486.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed unintended-braking identity, replaced articles and owner reports with recall 26V-316, narrowed the scope to model years 2025-2026, and removed unsupported trigger, lawsuit and disable-system claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-tucson-high-pressure-fuel-pump",
+      "model": "Tucson",
+      "action": "keep_published_pending_source",
+      "reason": "A forum homepage and generic complaint page do not establish one 2011-2018 Tucson high-pressure-fuel-pump follower defect, pressure specification, part number or cost. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "351ec9bc1c146ea78a1196ed08346030fc1d78b7f7d81ab43d377258fd5597c3",
+      "proposalSha256": "351ec9bc1c146ea78a1196ed08346030fc1d78b7f7d81ab43d377258fd5597c3",
+      "before": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [
+          "GLS",
+          "Limited",
+          "SEL",
+          "Sport",
+          "Ultimate",
+          "Value"
+        ],
+        "engines": [
+          "2.4L GDI"
+        ],
+        "category": "fuel",
+        "title": "High Pressure Fuel Pump Failure (GDI)",
+        "description": "The GDI high-pressure fuel pump on 2.4L Tucson models can fail, causing extended crank times, rough idle, and stalling. The pump cam follower wears prematurely, reducing fuel rail pressure below specification. This is especially common above 80,000 miles.",
+        "solution": "Diagnose by checking fuel rail pressure with a scan tool (should be 500-2,000 PSI depending on load). Replace the high-pressure fuel pump (Hyundai part 35320-2G740). Also inspect and replace the cam follower/roller. Parts cost $250-400, labor $200-400. Total $450-800.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Long crank before starting",
+          "Rough idle especially when cold",
+          "Engine stalling at stops",
+          "P0087 low fuel rail pressure code",
+          "Hesitation under acceleration"
+        ],
+        "affectedSystems": [
+          "Fuel System"
+        ],
+        "dtcCodes": [
+          "P0087",
+          "P0088",
+          "P0190",
+          "P0191",
+          "P2293"
+        ],
+        "estimatedCostLow": 450,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": 64000,
+        "typicalMileageHigh": 96000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - GDI Fuel Pump Failure Thread"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2016/HYUNDAI/TUCSON",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints - 2016 Tucson Fuel Pump"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Hyundai OEM pump 35320-2G740 is recommended - aftermarket GDI pumps have high failure rates",
+            "upvotes": 0,
+            "partBrand": "Hyundai OEM",
+            "partNumber": "35320-2G740",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2035320-2G740&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Use Top Tier gasoline to reduce carbon buildup on the fuel pump cam follower",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 410,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-11-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [
+          "GLS",
+          "Limited",
+          "SEL",
+          "Sport",
+          "Ultimate",
+          "Value"
+        ],
+        "engines": [
+          "2.4L GDI"
+        ],
+        "category": "fuel",
+        "title": "High Pressure Fuel Pump Failure (GDI)",
+        "description": "The GDI high-pressure fuel pump on 2.4L Tucson models can fail, causing extended crank times, rough idle, and stalling. The pump cam follower wears prematurely, reducing fuel rail pressure below specification. This is especially common above 80,000 miles.",
+        "solution": "Diagnose by checking fuel rail pressure with a scan tool (should be 500-2,000 PSI depending on load). Replace the high-pressure fuel pump (Hyundai part 35320-2G740). Also inspect and replace the cam follower/roller. Parts cost $250-400, labor $200-400. Total $450-800.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Long crank before starting",
+          "Rough idle especially when cold",
+          "Engine stalling at stops",
+          "P0087 low fuel rail pressure code",
+          "Hesitation under acceleration"
+        ],
+        "affectedSystems": [
+          "Fuel System"
+        ],
+        "dtcCodes": [
+          "P0087",
+          "P0088",
+          "P0190",
+          "P0191",
+          "P2293"
+        ],
+        "estimatedCostLow": 450,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": 64000,
+        "typicalMileageHigh": 96000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - GDI Fuel Pump Failure Thread"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2016/HYUNDAI/TUCSON",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints - 2016 Tucson Fuel Pump"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Hyundai OEM pump 35320-2G740 is recommended - aftermarket GDI pumps have high failure rates",
+            "upvotes": 0,
+            "partBrand": "Hyundai OEM",
+            "partNumber": "35320-2G740",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2035320-2G740&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Use Top Tier gasoline to reduce carbon buildup on the fuel pump cam follower",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 410,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-11-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-tucson-hybrid-phev-12v-battery-repeated-drain-no-start",
+      "model": "Tucson",
+      "action": "keep_published_pending_source",
+      "reason": "Owner discussions do not establish one 2022-2024 Hybrid/PHEV 12-volt drain defect or cause. Campaign 9B4 concerns a different over-voltage condition and cannot support this no-start identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "3a671874eda0d30854c2848ecf421378d6ccfb9b93ba580e76e15768b8653226",
+      "proposalSha256": "3a671874eda0d30854c2848ecf421378d6ccfb9b93ba580e76e15768b8653226",
+      "before": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [
+          "Blue",
+          "SEL",
+          "XRT",
+          "Limited",
+          "N Line"
+        ],
+        "engines": [
+          "1.6L Smartstream Turbo Hybrid",
+          "1.6L Smartstream Turbo PHEV"
+        ],
+        "category": "electrical",
+        "title": "Hybrid / PHEV 12V Battery Repeated Drain and No-Start",
+        "description": "Tucson Hybrid and Plug-In Hybrid models repeatedly drain their small 12V lithium starter battery, leaving the vehicle unable to power up. The 12V battery is far smaller (around 19 Ah) than the lead-acid AGM used on the gas model, and persistent standby loads (Bluelink cellular connection, module wake cycles) plus a DC-DC converter that will not top off the 12V when the high-voltage pack is low can flatten it in as little as a day or two of sitting. Owners report using the dash-mounted 12V reset button repeatedly. A related BMS software service campaign addresses a 12V over-voltage warning.",
+        "solution": "Use the interior 12V reset button to recover a temporary start; if it will not hold, jump from the underhood positive terminal and a chassis ground, then drive 30+ minutes to recharge. Apply the Battery Management System update under Hyundai Service Campaign 9B4 (DTC P1BB20 12V battery over-voltage). For vehicles parked for extended periods, drive at least 10 miles / 1 hour a few times a month or use a 12V maintainer; persistent drain after the update warrants a parasitic-draw test and 12V battery replacement under warranty.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Dead 12V battery / vehicle will not power on",
+          "Repeated need to press the 12V reset button",
+          "Battery drains after the car sits 1-2 days",
+          "Bluelink / remote features unresponsive",
+          "12V battery over-voltage warning message"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P1BB20"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.tucson-forum.com/threads/2022-phev-starting-battery-issues.2128/",
+            "type": "forum",
+            "title": "PHEV Starting Battery Issues - Hyundai Tucson Forum"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/dead-battery-22tucson-hybrid.720022/",
+            "type": "forum",
+            "title": "Dead battery 22 Tucson hybrid - Hyundai Forums"
+          },
+          {
+            "url": "https://www.tucson-forum.com/threads/hybrid-battery-reset-issue.2676/",
+            "type": "forum",
+            "title": "Hybrid Battery Reset Issue - Hyundai Tucson Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-18",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [
+          "Blue",
+          "SEL",
+          "XRT",
+          "Limited",
+          "N Line"
+        ],
+        "engines": [
+          "1.6L Smartstream Turbo Hybrid",
+          "1.6L Smartstream Turbo PHEV"
+        ],
+        "category": "electrical",
+        "title": "Hybrid / PHEV 12V Battery Repeated Drain and No-Start",
+        "description": "Tucson Hybrid and Plug-In Hybrid models repeatedly drain their small 12V lithium starter battery, leaving the vehicle unable to power up. The 12V battery is far smaller (around 19 Ah) than the lead-acid AGM used on the gas model, and persistent standby loads (Bluelink cellular connection, module wake cycles) plus a DC-DC converter that will not top off the 12V when the high-voltage pack is low can flatten it in as little as a day or two of sitting. Owners report using the dash-mounted 12V reset button repeatedly. A related BMS software service campaign addresses a 12V over-voltage warning.",
+        "solution": "Use the interior 12V reset button to recover a temporary start; if it will not hold, jump from the underhood positive terminal and a chassis ground, then drive 30+ minutes to recharge. Apply the Battery Management System update under Hyundai Service Campaign 9B4 (DTC P1BB20 12V battery over-voltage). For vehicles parked for extended periods, drive at least 10 miles / 1 hour a few times a month or use a 12V maintainer; persistent drain after the update warrants a parasitic-draw test and 12V battery replacement under warranty.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Dead 12V battery / vehicle will not power on",
+          "Repeated need to press the 12V reset button",
+          "Battery drains after the car sits 1-2 days",
+          "Bluelink / remote features unresponsive",
+          "12V battery over-voltage warning message"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P1BB20"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.tucson-forum.com/threads/2022-phev-starting-battery-issues.2128/",
+            "type": "forum",
+            "title": "PHEV Starting Battery Issues - Hyundai Tucson Forum"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/dead-battery-22tucson-hybrid.720022/",
+            "type": "forum",
+            "title": "Dead battery 22 Tucson hybrid - Hyundai Forums"
+          },
+          {
+            "url": "https://www.tucson-forum.com/threads/hybrid-battery-reset-issue.2676/",
+            "type": "forum",
+            "title": "Hybrid Battery Reset Issue - Hyundai Tucson Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-18",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-tucson-interior-door-pull-handle-trim-paint-peeling",
+      "model": "Tucson",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed door-pull-handle paint identity, replaced secondary TSB listings with Hyundai TSB 23-BD-009H, and removed unsupported universal warranty and recurrence-prevention claims.",
+      "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "trims",
+        "engines",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-tsb",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10237180-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai TSB 23-BD-009H - Front Door Pull Handle Paint Peeling supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "a88e23290ceaaf725a1c4aa05b1efb4b772d70fa0fdda12fdcfb0af8308ae791",
+      "proposalSha256": "193e4cd318265f57c10cb0436e5801a62b2a0369ceb4072ed48daa29cbb8e614",
+      "before": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2022,
+          2023
+        ],
+        "trims": [
+          "SEL",
+          "XRT",
+          "Limited",
+          "N Line"
+        ],
+        "engines": [
+          "2.5L Smartstream G2.5 GDI",
+          "1.6L Smartstream Turbo Hybrid",
+          "1.6L Smartstream Turbo PHEV"
+        ],
+        "category": "interior",
+        "title": "Interior Door Pull-Handle / Trim Paint Peeling",
+        "description": "The non-glossy painted finish on the front interior door pull handles / door trim panels flakes and peels with normal hand contact, leaving rough patches and exposed substrate. Hyundai acknowledged the condition in a Technical Service Bulletin covering 2022-2023 Tucson and the related Santa Cruz, attributing it to the soft-touch paint coating on the door trim assembly wearing through.",
+        "solution": "Reference Hyundai TSB 23-BD-009H. The approved repair is replacement of the affected front door trim panel assembly (handles are integrated into the panel) rather than spot repainting. If within the bumper-to-bumper warranty (5yr/60k), this is covered; out of warranty, budget roughly the cost of the trim panels plus install. Applying clear protective film after replacement can slow recurrence.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Paint flaking off the door pull handle",
+          "Rough or sticky patches on door trim",
+          "Visible bare plastic under worn coating",
+          "Peeling spreading with regular use"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Hyundai/Tucson/2022/tsbs/tsb-23-bd-009h.shtml",
+            "type": "tsb",
+            "title": "Hyundai TSB 23-BD-009H (door pull handle paint peeling) - CarComplaints.com"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Hyundai/Tucson/2022/tsbs/",
+            "type": "tsb",
+            "title": "2022 Hyundai Tucson TSBs - CarComplaints.com"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-18",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Interior Door Pull-Handle / Trim Paint Peeling",
+        "description": "Hyundai TSB 23-BD-009H covers certain model-year 2022-2023 Tucson vehicles equipped with non-glossy front door pull handles. The bulletin provides repair information when the front door pull-handle paint is peeling.",
+        "solution": "Confirm that the vehicle and handle finish fall within TSB 23-BD-009H. For a covered vehicle exhibiting the condition, Hyundai directs technicians to replace the front door trim panel assembly using the bulletin's repair procedure.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Paint peeling from a non-glossy front door pull handle"
+        ],
+        "affectedSystems": [
+          "Front door pull handle finish",
+          "Front door trim panel assembly"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Hyundai TSB 23-BD-009H - Front Door Pull Handle Paint Peeling",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10237180-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed door-pull-handle paint identity, replaced secondary TSB listings with Hyundai TSB 23-BD-009H, and removed unsupported universal warranty and recurrence-prevention claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-tucson-isg-electric-oil-pump-controller-overheat-fire-risk",
+      "model": "Tucson",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed ISG electric-oil-pump fire-risk identity, updated the citation to the amended Part 573 report, and corrected the Tucson scope from 2023-2024 to model year 2023 only.",
+      "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "trims",
+        "engines",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V526-9703.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Safety Recall Report 23V-526 - Electric Oil Pump supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "7e17cfb25930ca876f41ec32a4ecaca57882f5dc54177e630d1f19fd4a001f90",
+      "proposalSha256": "b414f3a662c91f25612da9a7a22adb365e006845caf480e21a12841d04918487",
+      "before": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [
+          "SE",
+          "SEL",
+          "XRT",
+          "Limited"
+        ],
+        "engines": [
+          "2.5L Smartstream G2.5 GDI"
+        ],
+        "category": "electrical",
+        "title": "ISG Electric Oil Pump Controller Overheat Fire Risk (NX4)",
+        "description": "The transmission electric oil pump for the Idle Stop & Go (ISG) auto start-stop system can be assembled with a printed circuit board damaged during manufacturing. A damaged capacitor on the pump controller PCB can cause the controller to overheat, leading to heat damage of the oil pump circuit board, connector, and wiring harness, and an increased risk of an underhood fire. Hyundai confirmed multiple unique thermal incidents before filing the recall.",
+        "solution": "Check your VIN at NHTSA.gov against recall campaign 23V-526 (Hyundai Recall 246). Dealers inspect and, if necessary, replace the ISG electric oil pump controller free of charge. Until the remedy is performed, Hyundai advises parking outside and away from structures. The repair is covered regardless of mileage; the recall covered roughly 52,000 Tucson units across 2023-2024.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Burning or melting plastic smell from engine bay",
+          "ISG auto start-stop stops functioning",
+          "Warning lights / electrical faults",
+          "Visible smoke from under the hood",
+          "Vehicle fire (in worst cases)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V526-1132.PDF",
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall Report 23V-526 (ISG Electric Oil Pump)"
+          },
+          {
+            "url": "https://auto-recalls.justia.com/hyundai/tucson/2023/23v526000",
+            "type": "recall",
+            "title": "Justia Auto Recalls - 2023 Hyundai Tucson 23V526000 (ISG oil pump)"
+          },
+          {
+            "url": "https://www.autoblog.com/2023/08/03/hyundai-kia-recall-oil-pump-fire/",
+            "type": "article",
+            "title": "Hyundai and Kia recall 92,000 cars over oil pump fire risk - Autoblog"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-18",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "ISG Electric Oil Pump Controller Overheat Fire Risk (NX4)",
+        "description": "NHTSA recall 23V-526 covers certain model-year 2023 Hyundai Tucson vehicles. The Idle Stop & Go transmission electric oil-pump controller may contain a printed circuit board damaged during manufacturing. A damaged capacitor can affect operation and cause heat damage to the pump circuit board, connector and wiring harness, increasing the risk of a vehicle fire and potentially disrupting controller-area-network communication. Warning signs can include underbody smoke, a burning or melting odor, or warning-lamp illumination.",
+        "solution": "Check the VIN for NHTSA recall 23V-526. Until the remedy is completed, Hyundai recommends parking outside and away from structures. A Hyundai dealer will inspect and replace the electric oil pump and front wiring harness if necessary, at no charge.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [
+          "Smoke from the vehicle underbody",
+          "Burning or melting odor",
+          "Malfunction Indicator Lamp or other warning lamps illuminate"
+        ],
+        "affectedSystems": [
+          "Idle Stop & Go transmission electric oil pump",
+          "Oil-pump controller printed circuit board",
+          "Front wiring harness"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall Report 23V-526 - Electric Oil Pump",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V526-9703.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed ISG electric-oil-pump fire-risk identity, updated the citation to the amended Part 573 report, and corrected the Tucson scope from 2023-2024 to model year 2023 only.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-tucson-rear-brake-caliper-seize",
+      "model": "Tucson",
+      "action": "keep_published_pending_source",
+      "reason": "A forum homepage and generic complaint page do not establish one 2016-2023 Tucson rear-caliper seizure defect, corrosion mechanism, mileage range or repair cost. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "e7723305c8c58e7209bc25c5ba811472383dd6b44a7526f7d2a1993d453416fc",
+      "proposalSha256": "e7723305c8c58e7209bc25c5ba811472383dd6b44a7526f7d2a1993d453416fc",
+      "before": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Rear Brake Caliper Seizing / Premature Wear",
+        "description": "Rear brake calipers on Tucson models are prone to seizing due to corroded slide pins, causing uneven pad wear, pulling to one side, and premature rotor warping. The issue is worse in northern climates with road salt exposure. Some owners report rear brakes needing replacement at only 20,000-30,000 miles.",
+        "solution": "Inspect and clean brake caliper slide pins, applying silicone-based caliper grease. If caliper piston is seized, replace the caliper ($100-200 per side). Replace pads and rotors as needed. Preventative maintenance: clean and re-grease slide pins at every brake service. Budget $300-700 per axle for pads, rotors, and caliper if needed.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle pulls to one side when braking",
+          "Uneven brake pad wear",
+          "Grinding noise from rear brakes",
+          "Hot smell from rear wheels",
+          "Premature rear brake wear under 30k miles"
+        ],
+        "affectedSystems": [
+          "Brakes"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": 20000,
+        "typicalMileageHigh": 30000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Premature Rear Brake Wear"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HYUNDAI/TUCSON",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints - Tucson Brake Issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Permatex Ultra Disc Brake Caliper Lube on slide pins prevents seizing",
+            "upvotes": 0,
+            "partName": "Ultra Disc Brake Caliper Lube",
+            "partBrand": "Permatex",
+            "partNumber": "85188",
+            "affiliateUrl": "https://www.amazon.com/s?k=Permatex%2085188&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "PowerStop Z23 Evolution Sport pads and rotors as a quality aftermarket upgrade",
+            "upvotes": 0,
+            "partName": "Z23 Evolution Sport Brake Kit",
+            "partBrand": "PowerStop",
+            "affiliateUrl": "https://www.amazon.com/s?k=PowerStop%20Z23%20Evolution%20Sport%20Brake%20Kit&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Clean and re-grease caliper slide pins at every oil change in salt-belt states to prevent seizing",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 680,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Rear Brake Caliper Seizing / Premature Wear",
+        "description": "Rear brake calipers on Tucson models are prone to seizing due to corroded slide pins, causing uneven pad wear, pulling to one side, and premature rotor warping. The issue is worse in northern climates with road salt exposure. Some owners report rear brakes needing replacement at only 20,000-30,000 miles.",
+        "solution": "Inspect and clean brake caliper slide pins, applying silicone-based caliper grease. If caliper piston is seized, replace the caliper ($100-200 per side). Replace pads and rotors as needed. Preventative maintenance: clean and re-grease slide pins at every brake service. Budget $300-700 per axle for pads, rotors, and caliper if needed.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle pulls to one side when braking",
+          "Uneven brake pad wear",
+          "Grinding noise from rear brakes",
+          "Hot smell from rear wheels",
+          "Premature rear brake wear under 30k miles"
+        ],
+        "affectedSystems": [
+          "Brakes"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": 20000,
+        "typicalMileageHigh": 30000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Premature Rear Brake Wear"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HYUNDAI/TUCSON",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints - Tucson Brake Issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Permatex Ultra Disc Brake Caliper Lube on slide pins prevents seizing",
+            "upvotes": 0,
+            "partName": "Ultra Disc Brake Caliper Lube",
+            "partBrand": "Permatex",
+            "partNumber": "85188",
+            "affiliateUrl": "https://www.amazon.com/s?k=Permatex%2085188&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "PowerStop Z23 Evolution Sport pads and rotors as a quality aftermarket upgrade",
+            "upvotes": 0,
+            "partName": "Z23 Evolution Sport Brake Kit",
+            "partBrand": "PowerStop",
+            "affiliateUrl": "https://www.amazon.com/s?k=PowerStop%20Z23%20Evolution%20Sport%20Brake%20Kit&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Clean and re-grease caliper slide pins at every oil change in salt-belt states to prevent seizing",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 680,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-tucson-rear-diff-coupler-failure",
+      "model": "Tucson",
+      "action": "keep_published_pending_source",
+      "reason": "Forum homepages do not establish one 2010-2021 AWD coupler defect, exact part numbers, fluid interval or replacement cost. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "3ac42a9a6e8b55c2950b109951b2ff5e4b5d5ade4598f8715270d192e34b0434",
+      "proposalSha256": "3ac42a9a6e8b55c2950b109951b2ff5e4b5d5ade4598f8715270d192e34b0434",
+      "before": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "AWD"
+        ],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "AWD Rear Differential Coupler Failure",
+        "description": "The electromagnetic coupling unit for the AWD system in Tucson models can fail, causing loss of rear-wheel drive engagement. Symptoms include grinding noise from the rear, AWD warning light, and reduced traction in slippery conditions. The coupler motor or the coupling assembly itself wears out prematurely.",
+        "solution": "Diagnose with scan tool checking AWD coupling engagement. Replace the rear differential coupling assembly (Hyundai part 47800-2S500 for 2010-2015, 47800-D3500 for 2016-2021). Fluid should be changed every 30,000 miles using Hyundai genuine coupling fluid. Complete assembly replacement runs $800-1,500 at dealer, $500-900 at independent shops.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "AWD warning light on dashboard",
+          "Grinding noise from rear",
+          "Loss of traction in snow/rain",
+          "Vibration at highway speed",
+          "Burning smell from rear"
+        ],
+        "affectedSystems": [
+          "Drivetrain",
+          "Differential"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": 24000,
+        "typicalMileageHigh": 36000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Tucson AWD Coupler Issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/HyundaiTucson",
+            "type": "forum",
+            "title": "Reddit r/HyundaiTucson - AWD coupling failure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "OEM coupling assembly 47800-2S500 (2010-2015) is recommended over aftermarket",
+            "upvotes": 0,
+            "partBrand": "Hyundai OEM",
+            "partNumber": "47800-2S500",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2047800-2S500&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Change coupling fluid every 30,000 miles - many failures are from neglected fluid changes",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Driving with a failed coupler in AWD mode can damage the transfer case",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 520,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-01",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-sorento-awd-coupling-failure-2011",
+          "dodge-stealth-transfer-case-1991"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "AWD"
+        ],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "AWD Rear Differential Coupler Failure",
+        "description": "The electromagnetic coupling unit for the AWD system in Tucson models can fail, causing loss of rear-wheel drive engagement. Symptoms include grinding noise from the rear, AWD warning light, and reduced traction in slippery conditions. The coupler motor or the coupling assembly itself wears out prematurely.",
+        "solution": "Diagnose with scan tool checking AWD coupling engagement. Replace the rear differential coupling assembly (Hyundai part 47800-2S500 for 2010-2015, 47800-D3500 for 2016-2021). Fluid should be changed every 30,000 miles using Hyundai genuine coupling fluid. Complete assembly replacement runs $800-1,500 at dealer, $500-900 at independent shops.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "AWD warning light on dashboard",
+          "Grinding noise from rear",
+          "Loss of traction in snow/rain",
+          "Vibration at highway speed",
+          "Burning smell from rear"
+        ],
+        "affectedSystems": [
+          "Drivetrain",
+          "Differential"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": 24000,
+        "typicalMileageHigh": 36000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Tucson AWD Coupler Issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/HyundaiTucson",
+            "type": "forum",
+            "title": "Reddit r/HyundaiTucson - AWD coupling failure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "OEM coupling assembly 47800-2S500 (2010-2015) is recommended over aftermarket",
+            "upvotes": 0,
+            "partBrand": "Hyundai OEM",
+            "partNumber": "47800-2S500",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2047800-2S500&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Change coupling fluid every 30,000 miles - many failures are from neglected fluid changes",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Driving with a failed coupler in AWD mode can damage the transfer case",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 520,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-01",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-sorento-awd-coupling-failure-2011",
+          "dodge-stealth-transfer-case-1991"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-tucson-sunroof-cracking-2016",
+      "model": "Tucson",
+      "action": "keep_published_pending_source",
+      "reason": "One complaint reference and a generic aggregation page do not establish one 2016-2025 spontaneous-cracking defect, thermal-stress or body-flex cause, or goodwill-replacement policy. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "c80370a999da03e159746aac1ff6627a23d78d2aeb7d96ccce997be51bd35bb7",
+      "proposalSha256": "c80370a999da03e159746aac1ff6627a23d78d2aeb7d96ccce997be51bd35bb7",
+      "before": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Panoramic Sunroof Spontaneous Cracking",
+        "description": "The panoramic sunroof glass on the Tucson can crack or shatter spontaneously without impact. The issue has been reported across multiple model years and has generated significant NHTSA complaints. Thermal stress from temperature differentials and body flex during driving are suspected contributing factors. The large glass panel size makes it more susceptible to stress fractures originating from the bonded edges.",
+        "solution": "Replace the panoramic sunroof glass at the dealer. Hyundai has covered some replacements under goodwill warranty due to the volume of complaints. Document the damage with photos immediately and file an NHTSA complaint to support any warranty claim. Some owners opt to have a protective film applied after replacement, though this does not guarantee prevention.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Loud pop or cracking sound from roof",
+          "Spider-web cracks in sunroof glass",
+          "Glass shattered while parked",
+          "Water leak from cracked sunroof",
+          "Glass fragments falling into cabin"
+        ],
+        "affectedSystems": [
+          "Panoramic sunroof",
+          "Glass",
+          "Body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/TUCSON/SUV/AWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11481809 - 2022 Hyundai Tucson panoramic sunroof exploded/shattered"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Hyundai/Tucson/",
+            "type": "forum",
+            "title": "CarComplaints - Hyundai Tucson Sunroof Exploded / Cracked Problems"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-sportage-sunroof-crack-2017",
+          "hyundai-veloster-sunroof-shatter"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Panoramic Sunroof Spontaneous Cracking",
+        "description": "The panoramic sunroof glass on the Tucson can crack or shatter spontaneously without impact. The issue has been reported across multiple model years and has generated significant NHTSA complaints. Thermal stress from temperature differentials and body flex during driving are suspected contributing factors. The large glass panel size makes it more susceptible to stress fractures originating from the bonded edges.",
+        "solution": "Replace the panoramic sunroof glass at the dealer. Hyundai has covered some replacements under goodwill warranty due to the volume of complaints. Document the damage with photos immediately and file an NHTSA complaint to support any warranty claim. Some owners opt to have a protective film applied after replacement, though this does not guarantee prevention.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Loud pop or cracking sound from roof",
+          "Spider-web cracks in sunroof glass",
+          "Glass shattered while parked",
+          "Water leak from cracked sunroof",
+          "Glass fragments falling into cabin"
+        ],
+        "affectedSystems": [
+          "Panoramic sunroof",
+          "Glass",
+          "Body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/TUCSON/SUV/AWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11481809 - 2022 Hyundai Tucson panoramic sunroof exploded/shattered"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Hyundai/Tucson/",
+            "type": "forum",
+            "title": "CarComplaints - Hyundai Tucson Sunroof Exploded / Cracked Problems"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-sportage-sunroof-crack-2017",
+          "hyundai-veloster-sunroof-shatter"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-tucson-theta2-engine-seizure",
+      "model": "Tucson",
+      "action": "keep_published_pending_source",
+      "reason": "The exact Tucson recall 19V-063 concerns an oil-pan sealant leak, not connecting-rod-bearing failure. The row's cited recall labels do not establish its indexed identity or broad 2011-2019 population, so it remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-different-identity",
+          "url": "https://static.nhtsa.gov/odi/rcl/2019/RCLRPT-19V063-1419.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "Recall 19V-063 covers an oil-pan sealant leak in certain 2011-2013 Tucson 2.4-liter vehicles, not the indexed connecting-rod-bearing manufacturing-failure identity. The existing citation labels also name unrelated recalls, so the row cannot be safely rewritten."
+        }
+      ],
+      "beforeSha256": "62802d078df3884919cd93131f86669fcec82139b92dbddbf60fbd467af75510",
+      "proposalSha256": "62802d078df3884919cd93131f86669fcec82139b92dbddbf60fbd467af75510",
+      "before": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "GLS",
+          "Limited",
+          "SEL",
+          "Sport",
+          "Ultimate",
+          "Value"
+        ],
+        "engines": [
+          "2.0L Theta II",
+          "2.4L Theta II"
+        ],
+        "category": "engine",
+        "title": "Theta II Engine Seizure Due to Connecting Rod Bearing Failure",
+        "description": "The Theta II GDI engine in 2011-2019 Tucson models is susceptible to connecting rod bearing failure caused by manufacturing debris restricting oil flow. This can lead to catastrophic engine seizure, often without warning. Hyundai issued multiple recalls (19V-601, 20V-150) and extended the engine warranty to 15 years/unlimited miles for original owners.",
+        "solution": "Check VIN for active recalls at NHTSA.gov. Ensure the Knock Sensor Detection System (KSDS) software update has been installed - this monitors for early signs of bearing failure and can put the engine in limp mode. If engine has seized, Hyundai will replace it under recall. Out-of-warranty replacement runs $4,500-7,500. Use full synthetic 0W-20 oil and change every 5,000 miles.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Metallic knocking from engine",
+          "Engine stalling without warning",
+          "Check engine light with P1326 code",
+          "Loss of power while driving",
+          "Excessive oil consumption"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0305",
+          "P0306"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 7500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA Recall 19V-601 - Engine Bearing Failure"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA Recall 20V-150 - Engine May Stall"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use Mobil 1 Extended Performance 0W-20 for better bearing protection",
+            "upvotes": 0,
+            "partName": "Extended Performance 0W-20",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%20Extended%20Performance%200W-20&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Get the KSDS software update immediately if not already done - it can detect bearing failure early and prevent catastrophic seizure",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "If you hear any knocking noise, stop driving immediately. Continued driving can destroy the engine beyond repair",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 3200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-theta2-engine",
+          "hyundai-santafe-theta2-engine-failure",
+          "hyundai-sonata-engine-bearing-2011",
+          "hyundai-santa-fe-theta-ii-seizure-2010",
+          "kia-optima-theta-ii-engine-failure"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "GLS",
+          "Limited",
+          "SEL",
+          "Sport",
+          "Ultimate",
+          "Value"
+        ],
+        "engines": [
+          "2.0L Theta II",
+          "2.4L Theta II"
+        ],
+        "category": "engine",
+        "title": "Theta II Engine Seizure Due to Connecting Rod Bearing Failure",
+        "description": "The Theta II GDI engine in 2011-2019 Tucson models is susceptible to connecting rod bearing failure caused by manufacturing debris restricting oil flow. This can lead to catastrophic engine seizure, often without warning. Hyundai issued multiple recalls (19V-601, 20V-150) and extended the engine warranty to 15 years/unlimited miles for original owners.",
+        "solution": "Check VIN for active recalls at NHTSA.gov. Ensure the Knock Sensor Detection System (KSDS) software update has been installed - this monitors for early signs of bearing failure and can put the engine in limp mode. If engine has seized, Hyundai will replace it under recall. Out-of-warranty replacement runs $4,500-7,500. Use full synthetic 0W-20 oil and change every 5,000 miles.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Metallic knocking from engine",
+          "Engine stalling without warning",
+          "Check engine light with P1326 code",
+          "Loss of power while driving",
+          "Excessive oil consumption"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0305",
+          "P0306"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 7500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA Recall 19V-601 - Engine Bearing Failure"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA Recall 20V-150 - Engine May Stall"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use Mobil 1 Extended Performance 0W-20 for better bearing protection",
+            "upvotes": 0,
+            "partName": "Extended Performance 0W-20",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%20Extended%20Performance%200W-20&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Get the KSDS software update immediately if not already done - it can detect bearing failure early and prevent catastrophic seizure",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "If you hear any knocking noise, stop driving immediately. Continued driving can destroy the engine beyond repair",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 3200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-theta2-engine",
+          "hyundai-santafe-theta2-engine-failure",
+          "hyundai-sonata-engine-bearing-2011",
+          "hyundai-santa-fe-theta-ii-seizure-2010",
+          "kia-optima-theta-ii-engine-failure"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-tucson-tow-hitch-wiring-harness-water-intrusion-fire-risk",
+      "model": "Tucson",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed tow-harness water-intrusion/fire identity, limited the population to the optional OEM accessory in recall 25V-893, and removed secondary reporting and unrelated equipment-recall details.",
+      "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "trims",
+        "engines",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V893-5513.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Safety Recall Report 25V-893 - Trailer Wiring Harness supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "415620bd385d874c474da467bf026233bb3be4ae79c554b4bd9d7f334fc30ef2",
+      "proposalSha256": "b530c05ab6a1de2678e3daeff8c19b76a9702d365fd7434cc9c4e730d085737d",
+      "before": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [
+          "SEL",
+          "XRT",
+          "Limited",
+          "N Line"
+        ],
+        "engines": [
+          "2.5L Smartstream G2.5 GDI",
+          "1.6L Smartstream Turbo Hybrid",
+          "1.6L Smartstream Turbo PHEV"
+        ],
+        "category": "electrical",
+        "title": "Tow Hitch Wiring Harness Water Intrusion and Fire Risk",
+        "description": "On Tucsons fitted with the optional Mobis tow hitch wiring harness, the trailer wiring harness control module was insufficiently sealed and may have been installed incorrectly, allowing water to enter the module. Moisture accumulation can cause trailer lighting to fail or create an electrical short circuit, which raises the risk of a fire. Hyundai documented multiple fires tied to this defect.",
+        "solution": "Verify your VIN against NHTSA campaign 25V893 (aftermarket hitch component campaign 25E091; Hyundai recalls 290 and 291). Dealers replace the tow hitch wiring harness at no cost. Until repaired, Hyundai recommends parking outdoors and away from structures. The recall covered roughly 51,587 Tucson SUVs equipped with the accessory hitch harness.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Trailer/tow lights inoperative or flickering",
+          "Blown fuses related to trailer circuit",
+          "Burning smell near rear of vehicle",
+          "Corrosion or water in the rear control module connector",
+          "Electrical short circuit"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V893-5513.pdf",
+            "type": "recall",
+            "title": "NHTSA Recall Report 25V893 - Tow Hitch Wiring Harness (Hyundai Motor America)"
+          },
+          {
+            "url": "https://www.consumerreports.org/cars/car-recalls-defects/hyundai-tucson-recalled-for-tow-hitch-fire-risk-a4572780327/",
+            "type": "article",
+            "title": "Hyundai Tucson Recalled for Tow Hitch Fire Risk - Consumer Reports"
+          },
+          {
+            "url": "https://www.autoevolution.com/news/hyundai-recalls-51587-tucson-vehicles-over-tow-hitch-wiring-harnesses-that-may-catch-fire-263143.html",
+            "type": "article",
+            "title": "Hyundai Recalls 51,587 Tucson Vehicles Over Tow Hitch Wiring Harnesses - autoevolution"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-18",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Tucson",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Tow Hitch Wiring Harness Water Intrusion and Fire Risk",
+        "description": "NHTSA recall 25V-893 covers certain model-year 2022-2024 Hyundai Tucson vehicles equipped with an optional OEM trailer wiring harness installed as a port-installed or dealer-installed option. The harness control module was installed in a location susceptible to water ingress and has insufficient sealing. Water inside the module can make trailer or vehicle stop lamps inoperative or, in rare cases, cause a short that can overheat, melt or ignite, increasing crash and fire risk. Intermittent or inoperative parking, turn-signal, or stop lamps on the vehicle or trailer may provide warning.",
+        "solution": "Check the VIN for NHTSA recall 25V-893. Until the remedy is completed, Hyundai recommends parking outside and away from structures. When parts are available, a Hyundai dealer will replace the trailer wiring harness at no charge; the replacement control module has improved sealing to prevent water intrusion.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [
+          "Intermittent or inoperative vehicle or trailer parking lamps",
+          "Intermittent or inoperative vehicle or trailer turn-signal lamps",
+          "Intermittent or inoperative vehicle or trailer stop lamps"
+        ],
+        "affectedSystems": [
+          "Optional OEM trailer wiring harness",
+          "Trailer wiring harness control module"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall Report 25V-893 - Trailer Wiring Harness",
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V893-5513.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed tow-harness water-intrusion/fire identity, limited the population to the optional OEM accessory in recall 25V-893, and removed secondary reporting and unrelated equipment-recall details.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
