@@ -1,0 +1,2128 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Ioniq 5",
+  "completionStatement": "This packet reconciles all fourteen frozen Hyundai Ioniq 5 rows. Four same-identity recall/TSB rewrites are proposed; ten rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All fourteen rows remain published. Ten are byte-for-byte unchanged.",
+    "All four rewrites preserve the indexed title and category and use exact Hyundai/NHTSA record-specific deep links.",
+    "Every rewrite contains zero commerce, zero cost or mileage claims, empty trim and engine arrays, and no unsupported diagnostic codes.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "ioniq5RecordCount": 14
+  },
+  "observations": [
+    {
+      "code": "four-exact-identities-rewritten",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-ioniq-5-loose-rear-suspension-fasteners",
+        "hyundai-ioniq-5-parking-pawl-disengagement-vehicle-rollaway",
+        "hyundai-ioniq-5-rear-tailgate-rattle-friction-noise-while-driving",
+        "hyundai-ioniq-5-reduced-braking-performance-left-foot-braking-n-e-shift"
+      ],
+      "detail": "Only four rows have exact official sources that support the frozen title/component/failure-mode identity."
+    },
+    {
+      "code": "iccu-title-outcome-unverified",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-ioniq-5-iccu-failure-causing-loss-drive-power-turtle-mode-no-dc-fast"
+      ],
+      "detail": "Recall 24V-868 supports ICCU damage and loss of drive power but not the title's no-DC-fast-charge outcome; the row is unchanged."
+    },
+    {
+      "code": "two-fastener-recalls-separated",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-ioniq-5-loose-rear-suspension-fasteners"
+      ],
+      "detail": "Recall 25V-605 and recall 26V-314 cover different fasteners, populations and causes and are presented separately."
+    },
+    {
+      "code": "ten-broad-or-secondary-rows-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-ioniq-5-hda2-lane-centering-2022",
+        "hyundai-ioniq-5-iccu-failure-causing-loss-drive-power-turtle-mode-no-dc-fast",
+        "hyundai-ioniq-5-motor-bearing-noise-2022",
+        "hyundai-ioniq-5-taillight-condensation-2022",
+        "hyundai-ioniq-5-water-intrusion-damaging-under-floor-under-seat-wiring-harne",
+        "hyundai-ioniq5-12v-battery-drain",
+        "hyundai-ioniq5-charge-port-door",
+        "hyundai-ioniq5-hvac-compressor-noise",
+        "hyundai-ioniq5-infotainment-crash",
+        "hyundai-ioniq5-suspension-clunk"
+      ],
+      "detail": "Rows backed only by search pages, forums, articles or different-identity campaigns remain byte-for-byte unchanged."
+    }
+  ],
+  "publicSources": {
+    "iccu": "https://static.nhtsa.gov/odi/rcl/2024/RCAK-24V868-3172.pdf",
+    "fasteners2025": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V605-2818.pdf",
+    "fasteners2026": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V314-6650.pdf",
+    "parkingPawl": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V324-8424.PDF",
+    "tailgate": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11008918-0001.pdf",
+    "braking": "https://static.nhtsa.gov/odi/rcl/2025/RCAK-25V235-5140.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 4,
+    "keep_published_pending_source": 10,
+    "total": 14
+  },
+  "rows": [
+    {
+      "id": "hyundai-ioniq-5-hda2-lane-centering-2022",
+      "model": "Ioniq 5",
+      "action": "keep_published_pending_source",
+      "reason": "A NHTSA vehicle search page, forum thread and video do not establish one Hyundai-defined 2022-2025 HDA 2 lane-centering defect, software remedy or continuing OTA history. No exact Hyundai campaign or bulletin was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a related or secondary source cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "711609e04bdd6ce0796ee3369df9aec226320d85b6878338f1f561bb32578be7",
+      "proposalSha256": "711609e04bdd6ce0796ee3369df9aec226320d85b6878338f1f561bb32578be7",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "HDA 2 Lane Centering Jerking/Ping-Ponging",
+        "description": "The Highway Driving Assist 2 (HDA 2) lane centering system exhibits jerky corrections and ping-ponging between lane markings on certain road types. The system struggles with faded lane markings, construction zones, and roads with multiple overlapping lane lines. The steering corrections can be abrupt enough to startle passengers and create an uncomfortable driving experience, undermining confidence in the ADAS system.",
+        "solution": "Apply the latest Hyundai ADAS software update — multiple over-the-air and dealer updates have improved lane centering behavior. Calibrate the front camera after any windshield replacement. Clean the forward camera lens area on the windshield regularly. On problematic roads, reduce to HDA 1 (lane following with less aggressive centering) or disable lane centering entirely. Hyundai continues to refine the algorithm with OTA updates.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Steering jerks left or right suddenly",
+          "Vehicle ping-pongs between lane lines",
+          "HDA disengages frequently",
+          "Steering feels fight-y on curves",
+          "System struggles with worn lane markings"
+        ],
+        "affectedSystems": [
+          "HDA 2",
+          "Lane centering",
+          "ADAS"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/IONIQ%205",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2022 Hyundai Ioniq 5 - Includes complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai/comments/pxxw1v/hda2_lane_centering_issues_on_ioniq_5/",
+            "type": "forum",
+            "title": "Reddit r/Hyundai thread discussing HDA 2 lane centering issues on Ioniq 5"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=3XjX6lqQ2dI",
+            "type": "video",
+            "title": "YouTube - Explanation and demonstration of Hyundai Ioniq 5 HDA 2 lane centering jerking by a known automotive tech channel"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "BlueDriver OBD-II scanner — reads ABS, SRS, and engine codes",
+            "partName": "Bluetooth OBD-II Scanner",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20OBD2%20scanner&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "HDA 2 Lane Centering Jerking/Ping-Ponging",
+        "description": "The Highway Driving Assist 2 (HDA 2) lane centering system exhibits jerky corrections and ping-ponging between lane markings on certain road types. The system struggles with faded lane markings, construction zones, and roads with multiple overlapping lane lines. The steering corrections can be abrupt enough to startle passengers and create an uncomfortable driving experience, undermining confidence in the ADAS system.",
+        "solution": "Apply the latest Hyundai ADAS software update — multiple over-the-air and dealer updates have improved lane centering behavior. Calibrate the front camera after any windshield replacement. Clean the forward camera lens area on the windshield regularly. On problematic roads, reduce to HDA 1 (lane following with less aggressive centering) or disable lane centering entirely. Hyundai continues to refine the algorithm with OTA updates.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Steering jerks left or right suddenly",
+          "Vehicle ping-pongs between lane lines",
+          "HDA disengages frequently",
+          "Steering feels fight-y on curves",
+          "System struggles with worn lane markings"
+        ],
+        "affectedSystems": [
+          "HDA 2",
+          "Lane centering",
+          "ADAS"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/IONIQ%205",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2022 Hyundai Ioniq 5 - Includes complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai/comments/pxxw1v/hda2_lane_centering_issues_on_ioniq_5/",
+            "type": "forum",
+            "title": "Reddit r/Hyundai thread discussing HDA 2 lane centering issues on Ioniq 5"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=3XjX6lqQ2dI",
+            "type": "video",
+            "title": "YouTube - Explanation and demonstration of Hyundai Ioniq 5 HDA 2 lane centering jerking by a known automotive tech channel"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "BlueDriver OBD-II scanner — reads ABS, SRS, and engine codes",
+            "partName": "Bluetooth OBD-II Scanner",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20OBD2%20scanner&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-5-iccu-failure-causing-loss-drive-power-turtle-mode-no-dc-fast",
+      "model": "Ioniq 5",
+      "action": "keep_published_pending_source",
+      "reason": "Recall 24V-868 establishes ICCU damage, loss of 12-volt charging and possible loss of drive power, but it does not establish the frozen title's no-DC-fast-charge outcome or several secondary symptoms and mechanisms. Because the title cannot change, the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a related or secondary source cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-related-but-not-identity-complete",
+          "url": "https://static.nhtsa.gov/odi/rcl/2024/RCAK-24V868-3172.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Recall 24V-868 supports ICCU damage, inability to charge the 12-volt battery and possible loss of drive power, but not the title's no-DC-fast-charge outcome."
+        }
+      ],
+      "beforeSha256": "c43754b387200053128dbe441b9c4a640e2eb8cd8a7a4b0101dbe0dfec5af3a3",
+      "proposalSha256": "c43754b387200053128dbe441b9c4a640e2eb8cd8a7a4b0101dbe0dfec5af3a3",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "ICCU Failure Causing Loss of Drive Power / 'Turtle Mode' / No DC Fast Charge",
+        "description": "The Integrated Charging Control Unit (ICCU), which houses the DC-to-DC converter that keeps the 12V battery charged from the high-voltage pack, can suffer overvoltage and thermal overload that blows its internal 12V-feed fuse. When it fails the car may refuse to DC fast charge, charge slowly, drop into reduced-power 'turtle mode' on the highway, or lose all motive power and need a tow. NHTSA recall 24V-204 (March 2024, ~99K vehicles) was followed by a January 2025 expansion covering ~145K vehicles after failures recurred on remedied cars.",
+        "solution": "Covered by NHTSA recall: dealers check for DTC P1A9096 — if absent they apply an ICCU software update to reduce overvoltage stress; if present they replace the ICCU and its fuse, flush/refill coolant, and install updated software, free of charge. Owners reporting recurrence after the software-only fix have driven ongoing litigation and the January 2025 follow-up campaign.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden loss of drive power / 'turtle mode' warning while driving",
+          "Repeated dead 12V battery / car won't power on or boot",
+          "Vehicle won't DC fast charge or charges far slower than rated",
+          "Loud popping/bang from front during charging followed by warning lights",
+          "Car stranded and requires a tow out of limp-home mode"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P1A9096"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.wardsauto.com/news/archive-auto-hyundai-recalls-ioniq5-genesis-models-145k-iccu-intergrated-charging-control-unit-nhtsa/733963/",
+            "type": "recall",
+            "title": "Hyundai recalls 145K vehicles over loss of power"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V204-1453.PDF",
+            "type": "nhtsa",
+            "title": "NHTSA Part 573 Safety Recall Report 24V-204 (ICCU)"
+          },
+          {
+            "url": "https://hyundai.oemdtc.com/1025/dtc-p1a9096-check-for-iccu-fuse-replacement-iccu-software-update-recall-021g/",
+            "type": "tsb",
+            "title": "DTC P1A9096 Check For ICCU & Fuse Replacement & ICCU Software Update"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "ICCU Failure Causing Loss of Drive Power / 'Turtle Mode' / No DC Fast Charge",
+        "description": "The Integrated Charging Control Unit (ICCU), which houses the DC-to-DC converter that keeps the 12V battery charged from the high-voltage pack, can suffer overvoltage and thermal overload that blows its internal 12V-feed fuse. When it fails the car may refuse to DC fast charge, charge slowly, drop into reduced-power 'turtle mode' on the highway, or lose all motive power and need a tow. NHTSA recall 24V-204 (March 2024, ~99K vehicles) was followed by a January 2025 expansion covering ~145K vehicles after failures recurred on remedied cars.",
+        "solution": "Covered by NHTSA recall: dealers check for DTC P1A9096 — if absent they apply an ICCU software update to reduce overvoltage stress; if present they replace the ICCU and its fuse, flush/refill coolant, and install updated software, free of charge. Owners reporting recurrence after the software-only fix have driven ongoing litigation and the January 2025 follow-up campaign.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden loss of drive power / 'turtle mode' warning while driving",
+          "Repeated dead 12V battery / car won't power on or boot",
+          "Vehicle won't DC fast charge or charges far slower than rated",
+          "Loud popping/bang from front during charging followed by warning lights",
+          "Car stranded and requires a tow out of limp-home mode"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P1A9096"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.wardsauto.com/news/archive-auto-hyundai-recalls-ioniq5-genesis-models-145k-iccu-intergrated-charging-control-unit-nhtsa/733963/",
+            "type": "recall",
+            "title": "Hyundai recalls 145K vehicles over loss of power"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V204-1453.PDF",
+            "type": "nhtsa",
+            "title": "NHTSA Part 573 Safety Recall Report 24V-204 (ICCU)"
+          },
+          {
+            "url": "https://hyundai.oemdtc.com/1025/dtc-p1a9096-check-for-iccu-fuse-replacement-iccu-software-update-recall-021g/",
+            "type": "tsb",
+            "title": "DTC P1A9096 Check For ICCU & Fuse Replacement & ICCU Software Update"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-5-loose-rear-suspension-fasteners",
+      "model": "Ioniq 5",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed loose-rear-fastener identity, replaced news citations with the two exact NHTSA recall reports, separated their populations, causes and remedies, and removed unsupported handling, tire-wear and visual-inspection symptoms.",
+      "identityRule": "The same indexed component and failure mode stay on the existing ID, title and category; only facts from exact official sources remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-source",
+          "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V605-2818.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 25V-605 - Ioniq 5 Rear Toe and Camber Bolts supports the proposed identity, scope or remedy."
+        },
+        {
+          "kind": "official-record-specific-source",
+          "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V314-6650.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 26V-314 - Ioniq 5 Rear Suspension Fasteners supports the proposed identity, scope or remedy."
+        }
+      ],
+      "beforeSha256": "be2f13ec1b7d91b438f8e0412bdbfe6696ae00d508d2fd9a3f5e1e04596e24b7",
+      "proposalSha256": "09ad55d7164cb468a8f8cf7a214a6c85c1984601b9a0b8dd5de665d6f972beea",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Loose Rear Suspension Fasteners (Rear Toe/Camber Bolts Can Detach)",
+        "description": "Rear suspension fasteners, including the rear toe and camber adjustment bolts, were assembled with insufficient torque on certain units built at Hyundai Metaplant America (Savannah, GA), traced to a system error during the factory alignment stage. The bolts can loosen over time, producing noise or vibration, and if left unaddressed may detach, reducing vehicle stability and control. An initial 8-vehicle 2025 recall was followed by a broader Ioniq 5/Ioniq 9 recall for units built Dec 2024-Jul 2025.",
+        "solution": "Covered by NHTSA recall: dealers inspect and replace the affected rear suspension bolts, perform a rear alignment, and replace any tires showing abnormal wear from the condition, free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Noise or vibration from the rear of the vehicle",
+          "Abnormal/uneven rear tire wear",
+          "Vague rear-end handling or reduced stability at speed",
+          "Visibly loose or backing-out rear suspension bolts"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.autoevolution.com/news/hyundai-recalls-certain-ioniq-5-and-ioniq-9-evs-for-loose-suspension-fasteners-270589.html",
+            "type": "recall",
+            "title": "Hyundai Recalls Certain Ioniq 5 and Ioniq 9 EVs for Loose Suspension Fasteners"
+          },
+          {
+            "url": "https://www.autoblog.com/news/small-recall-serious-issue-hyundai-flags-2025-ioniq-5-bolt-defect",
+            "type": "recall",
+            "title": "2025 Hyundai Ioniq 5 recall affects just eight vehicles (rear toe/camber bolt defect)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Loose Rear Suspension Fasteners (Rear Toe/Camber Bolts Can Detach)",
+        "description": "Two separate U.S. recalls cover loose rear suspension fasteners on certain 2025 Ioniq 5 vehicles. Recall 25V-605 covers eight vehicles whose rear toe and camber adjustment bolts may have been installed with insufficient torque because of an alignment-stage system error. Recall 26V-314 covers 138 Ioniq 5 vehicles whose specified rear suspension fasteners may have been under-torqued during supplier assembly. The fasteners can loosen, cause rear noise or vibration and potentially detach, reducing vehicle stability or control.",
+        "solution": "Check the VIN for both NHTSA recalls 25V-605 (Hyundai 284) and 26V-314 (Hyundai 303). For 25V-605, dealers replace the rear toe and camber bolts and nuts, perform a wheel alignment and replace tires if necessary. For 26V-314, dealers inspect the rear suspension fasteners, replace loose nuts or bolts and perform a rear alignment if necessary. Both remedies are free.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rattling or vibration from the rear suspension"
+        ],
+        "affectedSystems": [
+          "Rear suspension fasteners",
+          "Rear toe and camber adjustment bolts"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 25V-605 - Ioniq 5 Rear Toe and Camber Bolts",
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V605-2818.pdf"
+          },
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 26V-314 - Ioniq 5 Rear Suspension Fasteners",
+            "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V314-6650.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed loose-rear-fastener identity, replaced news citations with the two exact NHTSA recall reports, separated their populations, causes and remedies, and removed unsupported handling, tire-wear and visual-inspection symptoms.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-5-motor-bearing-noise-2022",
+      "model": "Ioniq 5",
+      "action": "keep_published_pending_source",
+      "reason": "A NHTSA vehicle search page and a non-resolving forum citation do not establish one Hyundai-defined motor-bearing defect, affected motor positions, progression or replacement policy. No exact Hyundai campaign or bulletin was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a related or secondary source cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "abc23f48138f724a497f2e0f4db5d57350e4a2d6f31c52540f2e7c92bfa4699c",
+      "proposalSha256": "abc23f48138f724a497f2e0f4db5d57350e4a2d6f31c52540f2e7c92bfa4699c",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Electric Motor Bearing Noise at Low Speed",
+        "description": "Some Ioniq 5 owners report a whining, humming, or grinding noise from the electric drive motor at low speeds (under 20 mph). The noise is most noticeable when the cabin is quiet and the vehicle is creeping in parking lots or through neighborhoods. The bearing noise can come from either the front or rear motor (on AWD models) and may worsen over time as bearing wear progresses.",
+        "solution": "Have the motor bearing noise diagnosed at a Hyundai EV-certified dealer. If the bearing is confirmed worn, the motor assembly or bearing is replaced under the drivetrain warranty (typically 10 years/100,000 miles). Do not ignore progressive bearing noise as continued operation can damage the motor. Some early production units had a bearing specification that was later revised.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Whining noise at low speed",
+          "Humming from drive motor",
+          "Grinding noise during parking maneuvers",
+          "Noise changes with vehicle speed",
+          "Noise present in gear but not in neutral"
+        ],
+        "affectedSystems": [
+          "Electric drive motor",
+          "Motor bearing",
+          "Drivetrain"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/IONIQ%205",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2022 Hyundai Ioniq 5 - Owner complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai/comments/xyz123/ioniq_5_electric_motor_bearing_noise_low_speed/",
+            "type": "forum",
+            "title": "Reddit r/Hyundai Thread: Ioniq 5 Electric Motor Bearing Noise at Low Speed"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
+            "partName": "Synthetic Gear Oil 75W-90",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Fel-Pro gasket kit for drivetrain service",
+            "partName": "Gasket Kit",
+            "partBrand": "Fel-Pro",
+            "affiliateUrl": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-soul-electric-motor-bearing-ev",
+          "kia-ev6-rear-motor-bearing-noise",
+          "renault-twizy-drive-motor-bearing-and-gear-reduction-noise"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Electric Motor Bearing Noise at Low Speed",
+        "description": "Some Ioniq 5 owners report a whining, humming, or grinding noise from the electric drive motor at low speeds (under 20 mph). The noise is most noticeable when the cabin is quiet and the vehicle is creeping in parking lots or through neighborhoods. The bearing noise can come from either the front or rear motor (on AWD models) and may worsen over time as bearing wear progresses.",
+        "solution": "Have the motor bearing noise diagnosed at a Hyundai EV-certified dealer. If the bearing is confirmed worn, the motor assembly or bearing is replaced under the drivetrain warranty (typically 10 years/100,000 miles). Do not ignore progressive bearing noise as continued operation can damage the motor. Some early production units had a bearing specification that was later revised.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Whining noise at low speed",
+          "Humming from drive motor",
+          "Grinding noise during parking maneuvers",
+          "Noise changes with vehicle speed",
+          "Noise present in gear but not in neutral"
+        ],
+        "affectedSystems": [
+          "Electric drive motor",
+          "Motor bearing",
+          "Drivetrain"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/IONIQ%205",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2022 Hyundai Ioniq 5 - Owner complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai/comments/xyz123/ioniq_5_electric_motor_bearing_noise_low_speed/",
+            "type": "forum",
+            "title": "Reddit r/Hyundai Thread: Ioniq 5 Electric Motor Bearing Noise at Low Speed"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
+            "partName": "Synthetic Gear Oil 75W-90",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Fel-Pro gasket kit for drivetrain service",
+            "partName": "Gasket Kit",
+            "partBrand": "Fel-Pro",
+            "affiliateUrl": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-soul-electric-motor-bearing-ev",
+          "kia-ev6-rear-motor-bearing-noise",
+          "renault-twizy-drive-motor-bearing-and-gear-reduction-noise"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-ioniq-5-parking-pawl-disengagement-vehicle-rollaway",
+      "model": "Ioniq 5",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed parking-pawl/rollaway identity, replaced secondary material with the exact Part 573 report, and retained only the documented voltage-fluctuation mechanism, 2022 scope, EPB advisory and free SCU-software remedy.",
+      "identityRule": "The same indexed component and failure mode stay on the existing ID, title and category; only facts from exact official sources remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-source",
+          "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V324-8424.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 22V-324 - Ioniq 5 Parking-Pawl Rollaway supports the proposed identity, scope or remedy."
+        }
+      ],
+      "beforeSha256": "666108685b160cb87ecb9061a694fefcdaac3617a5b9572cec3bfa94a14d250a",
+      "proposalSha256": "3fbec4848468e7eda00c52c7d306cbcf6121477b4b6bc691afb8185c093b5127",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Parking Pawl Disengagement / Vehicle Rollaway (Shifter Control Unit Software)",
+        "description": "With the vehicle off and in Park, a voltage fluctuation can corrupt the command signal from the Shifter Control Unit (SCU) to the parking-pawl actuator, momentarily disengaging the parking pawl and allowing the car to roll away. NHTSA recall 22V-324 covers 10,729 model-year 2022 Ioniq 5 units (plus the related Kia EV6, ~20K total); four rollaway incidents without injury were reported in South Korea, with none confirmed in the U.S.",
+        "solution": "Covered by NHTSA recall 22V-324: dealers update the Shifter Control Unit software so it cannot let the parking pawl leave Park inadvertently while the vehicle is off, free of charge. Owners are advised to set the Electronic Parking Brake when parking until the remedy is performed.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle rolls away after being shifted to Park on an incline",
+          "Parking pawl momentarily disengages with vehicle off",
+          "Car not held by transmission Park without parking brake set"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V324-8424.PDF",
+            "type": "nhtsa",
+            "title": "NHTSA Part 573 Safety Recall Report 22V-324 (Rollaway)"
+          },
+          {
+            "url": "https://repairpal.com/recall/22V324000",
+            "type": "recall",
+            "title": "Hyundai Ioniq Recall 22V324000: Parking Mechanism Risk of Rollaway"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Parking Pawl Disengagement / Vehicle Rollaway (Shifter Control Unit Software)",
+        "description": "NHTSA recall 22V-324 covers certain 2022 Ioniq 5 vehicles. A voltage fluctuation while the vehicle is off and in Park can affect the command signal from the Shifter Control Unit to the electronic parking-pawl actuator. The parking pawl can momentarily disengage, allowing the vehicle to roll away and increasing crash or injury risk.",
+        "solution": "Check the VIN for NHTSA recall 22V-324 (Hyundai 228). Hyundai dealers update the Shifter Control Unit software free of charge so the parking pawl cannot inadvertently move out of Park while the vehicle is off. Hyundai advised affected owners to use the Electronic Parking Brake when parking until the remedy is completed.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle may roll away after being placed in Park with the vehicle off"
+        ],
+        "affectedSystems": [
+          "Shifter Control Unit",
+          "Electronic parking-pawl actuator"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 22V-324 - Ioniq 5 Parking-Pawl Rollaway",
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V324-8424.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed parking-pawl/rollaway identity, replaced secondary material with the exact Part 573 report, and retained only the documented voltage-fluctuation mechanism, 2022 scope, EPB advisory and free SCU-software remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-5-rear-tailgate-rattle-friction-noise-while-driving",
+      "model": "Ioniq 5",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed tailgate-rattle identity, replaced the forum with the exact Hyundai TSB, expanded the model-year array to the bulletin's 2022-2025 scope, and removed unsupported cold-weather and owner-applied tape/Velcro claims.",
+      "identityRule": "The same indexed component and failure mode stay on the existing ID, title and category; only facts from exact official sources remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-source",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11008918-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai TSB 24-BD-012H - Tailgate Rattle and Friction Noise Rework supports the proposed identity, scope or remedy."
+        }
+      ],
+      "beforeSha256": "cc4c243d4b9adef409b65a791e0a8afc67ef84779c8032c7d122fd72467cc921",
+      "proposalSha256": "e3bc7af033f7e82aa7813d0edb9c6e65364366f65e2ab35fdb87a74b50279dee",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Rear Tailgate Rattle and Friction Noise While Driving",
+        "description": "Many owners report a persistent rattle and friction noise from the rear tailgate/hatch while driving, often worse in cold weather, caused by excessive gap and movement between the tailgate and the body. Hyundai addressed it with Technical Service Bulletin 24-BD-012H (supersedes 23-BD-006H-1), which adjusts the tailgate-to-body gap and updates the bumper stops.",
+        "solution": "Per TSB 24-BD-012H, dealers adjust the tailgate-to-body gap and install updated side-edge tailgate bumpers to eliminate the noise. Because results vary, some owners add velcro/loop material to the body-side bumper stops or tape to the latch strike as a supplemental fix.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Rattle or knocking from the rear hatch over bumps and rough roads",
+          "Friction/creaking noise from the tailgate, worse in cold weather",
+          "Noise temporarily reduced by pressing on or adjusting the hatch"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11011839-0001.pdf",
+            "type": "tsb",
+            "title": "Hyundai TSB: Tailgate Rattle & Friction Noise Rework (24-BD-012H)"
+          },
+          {
+            "url": "https://www.ioniqforum.com/threads/one-shot-fix-for-ioniq-5-rear-rattle-its-the-hatch.50913/",
+            "type": "forum",
+            "title": "Hyundai IONIQ Forum: One shot fix for Ioniq 5 rear rattle (It's the HATCH!)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Rear Tailgate Rattle and Friction Noise While Driving",
+        "description": "Hyundai TSB 24-BD-012H says certain 2022-2025 Ioniq 5 vehicles produced from October 4, 2021 through May 10, 2024 may exhibit rattle and friction noises from the tailgate while driving. The bulletin addresses the gap between the tailgate and vehicle body.",
+        "solution": "Ask an Ioniq-certified Hyundai dealer to follow TSB 24-BD-012H. The procedure installs the specified guide-bumper kit and washers, then adjusts the tailgate striker and overslam bumpers as needed so the tailgate-to-body gap no longer produces the noise.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Rattle from the tailgate while driving",
+          "Friction noise from the tailgate while driving"
+        ],
+        "affectedSystems": [
+          "Tailgate guide bumpers",
+          "Tailgate striker and overslam bumpers"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Hyundai TSB 24-BD-012H - Tailgate Rattle and Friction Noise Rework",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11008918-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed tailgate-rattle identity, replaced the forum with the exact Hyundai TSB, expanded the model-year array to the bulletin's 2022-2025 scope, and removed unsupported cold-weather and owner-applied tape/Velcro claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-5-reduced-braking-performance-left-foot-braking-n-e-shift",
+      "model": "Ioniq 5",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed Ioniq 5 N LFB/N e-Shift identity, replaced secondary citations with the exact replacement recall, separated the braking and continued-acceleration conditions, and removed unsupported ABS-warning, pedal-feel and speed-calculation claims.",
+      "identityRule": "The same indexed component and failure mode stay on the existing ID, title and category; only facts from exact official sources remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-source",
+          "url": "https://static.nhtsa.gov/odi/rcl/2025/RCAK-25V235-5140.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Recall Acknowledgment 25V-235 - Ioniq 5 N Braking and N e-Shift Software supports the proposed identity, scope or remedy."
+        }
+      ],
+      "beforeSha256": "16f8593317d00f11db3b009f88e7b79fbc272c0bdf570bc6a21b3d2e27dccc66",
+      "proposalSha256": "426680543f0d8558b4d944324a2c93881040525e3885f44d328c89b996740130",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Reduced Braking Performance with Left-Foot Braking / N e-Shift (Ioniq 5 N)",
+        "description": "On the 2025 Ioniq 5 N equipped with the Left-Foot Braking (LFB) feature, faulty Integrated Electronic Brake (IEB) and Vehicle Control Unit (VCU) software logic can miscalculate estimated vehicle speed on acceleration input and trigger ABS depressurization, reducing braking performance and lengthening stopping distance. NHTSA recall 25V-065 covers roughly 1,500 units and was superseded by 25V-235 with an expanded remedy.",
+        "solution": "Covered by NHTSA recall 25V-065 (superseded by 25V-235): dealers, or an over-the-air update under the expanded campaign, install revised IEB and VCU software, free of charge. Until repaired, owners are advised not to use the Left-Foot Braking feature.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Reduced braking / longer stopping distance when using Left-Foot Braking",
+          "ABS warning or unexpected ABS depressurization during braking",
+          "Brake pedal feel changes when LFB or N e-shift is engaged"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://auto-recalls.justia.com/hyundai/ioniq-5/2025/25v065000",
+            "type": "recall",
+            "title": "Hyundai Ioniq 5 2025 Recall 25V065: Service Brakes, Electric Control Module Software"
+          },
+          {
+            "url": "https://thebrakereport.com/hyundai-ioniq-5-n-recall-due-to-software-related-braking-issue/",
+            "type": "article",
+            "title": "Hyundai IONIQ 5 N Recall Due to Software-Related Braking Issue"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Reduced Braking Performance with Left-Foot Braking / N e-Shift (Ioniq 5 N)",
+        "description": "NHTSA recall 25V-235 covers certain 2025 Ioniq 5 N vehicles equipped with Left-Foot Braking and N e-Shift. Integrated Electronic Brake and Vehicle Control Unit software may reduce braking performance when Left-Foot Braking is activated. Separately, the vehicle may continue to accelerate momentarily after the accelerator pedal is released while N e-Shift is engaged. Either condition increases crash risk.",
+        "solution": "Check the VIN for NHTSA recall 25V-235 (Hyundai 277), which replaces recall 25V-065. Owners are advised not to use Left-Foot Braking or N e-Shift until the remedy is completed. Hyundai updates the IEB and VCU software over the air or at a dealer free of charge; vehicles repaired under 25V-065 still need the replacement remedy.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Reduced braking performance when Left-Foot Braking is activated",
+          "Momentary continued acceleration after accelerator-pedal release with N e-Shift engaged"
+        ],
+        "affectedSystems": [
+          "Integrated Electronic Brake software",
+          "Vehicle Control Unit software"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Recall Acknowledgment 25V-235 - Ioniq 5 N Braking and N e-Shift Software",
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCAK-25V235-5140.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed Ioniq 5 N LFB/N e-Shift identity, replaced secondary citations with the exact replacement recall, separated the braking and continued-acceleration conditions, and removed unsupported ABS-warning, pedal-feel and speed-calculation claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-5-taillight-condensation-2022",
+      "model": "Ioniq 5",
+      "action": "keep_published_pending_source",
+      "reason": "Hyundai's general lighting-condensation guidance distinguishes normal condensation from water intrusion but does not establish an Ioniq 5-specific taillight defect or replacement campaign. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a related or secondary source cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "84b5d329c4b0d73eddee7a4ce4b2f3fca18fb11342d56a17bcd79d89fa74dc21",
+      "proposalSha256": "84b5d329c4b0d73eddee7a4ce4b2f3fca18fb11342d56a17bcd79d89fa74dc21",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Rear Taillight Condensation",
+        "description": "The parametric pixel rear taillights on the Ioniq 5 develop internal condensation and moisture buildup. Water droplets form inside the light housing, particularly after rain or car washes. While Hyundai considers some condensation normal, excessive moisture can obscure the light output and lead to premature LED failure or electrical corrosion inside the housing.",
+        "solution": "Hyundai has issued a TSB for severe cases and will replace the taillight assembly under warranty. Mild condensation that clears on its own within a few hours is considered within spec. For out-of-warranty vehicles, check that the taillight vent ports are clear and unobstructed. Aftermarket sealant application is not recommended as it can trap moisture rather than allowing it to vent properly.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Visible water droplets inside taillight",
+          "Foggy taillight lens",
+          "Condensation after rain or car wash",
+          "Taillight output appears dim or diffused",
+          "Water pooling at bottom of light housing"
+        ],
+        "affectedSystems": [
+          "Rear taillights",
+          "Lighting",
+          "Exterior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/IONIQ%205",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2022 Hyundai Ioniq 5 - Owner Complaints and Investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/HyundaiIoniq/comments/xyz123/taillight_condensation_on_ioniq_5/",
+            "type": "forum",
+            "title": "Reddit r/HyundaiIoniq Thread on Taillight Condensation on Ioniq 5"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "POR-15 rust preventive coating stops rust permanently",
+            "partName": "Rust Preventive Coating",
+            "partBrand": "POR-15",
+            "affiliateUrl": "https://www.amazon.com/s?k=POR-15%20rust%20preventive%20coating&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Rust-Oleum rust converter spray for treating corroded panels",
+            "partName": "Rust Converter Spray",
+            "partBrand": "Rust-Oleum",
+            "affiliateUrl": "https://www.amazon.com/s?k=Rust-Oleum%20rust%20converter%20spray&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-forte-headlight-condensation",
+          "alfa-romeo-4c-headlight-condensation"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Rear Taillight Condensation",
+        "description": "The parametric pixel rear taillights on the Ioniq 5 develop internal condensation and moisture buildup. Water droplets form inside the light housing, particularly after rain or car washes. While Hyundai considers some condensation normal, excessive moisture can obscure the light output and lead to premature LED failure or electrical corrosion inside the housing.",
+        "solution": "Hyundai has issued a TSB for severe cases and will replace the taillight assembly under warranty. Mild condensation that clears on its own within a few hours is considered within spec. For out-of-warranty vehicles, check that the taillight vent ports are clear and unobstructed. Aftermarket sealant application is not recommended as it can trap moisture rather than allowing it to vent properly.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Visible water droplets inside taillight",
+          "Foggy taillight lens",
+          "Condensation after rain or car wash",
+          "Taillight output appears dim or diffused",
+          "Water pooling at bottom of light housing"
+        ],
+        "affectedSystems": [
+          "Rear taillights",
+          "Lighting",
+          "Exterior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/IONIQ%205",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2022 Hyundai Ioniq 5 - Owner Complaints and Investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/HyundaiIoniq/comments/xyz123/taillight_condensation_on_ioniq_5/",
+            "type": "forum",
+            "title": "Reddit r/HyundaiIoniq Thread on Taillight Condensation on Ioniq 5"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "POR-15 rust preventive coating stops rust permanently",
+            "partName": "Rust Preventive Coating",
+            "partBrand": "POR-15",
+            "affiliateUrl": "https://www.amazon.com/s?k=POR-15%20rust%20preventive%20coating&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Rust-Oleum rust converter spray for treating corroded panels",
+            "partName": "Rust Converter Spray",
+            "partBrand": "Rust-Oleum",
+            "affiliateUrl": "https://www.amazon.com/s?k=Rust-Oleum%20rust%20converter%20spray&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-forte-headlight-condensation",
+          "alfa-romeo-4c-headlight-condensation"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-ioniq-5-water-intrusion-damaging-under-floor-under-seat-wiring-harne",
+      "model": "Ioniq 5",
+      "action": "keep_published_pending_source",
+      "reason": "Two articles about a reported water-damage case do not establish an Ioniq 5 platform defect, harness-clearance design, incidence or five-figure standard remedy. No exact Hyundai primary document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a related or secondary source cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "1a293ce6c501c6966ae0553ac945a9bc0e234b0a56734a94c2bbfc2fef081d19",
+      "proposalSha256": "1a293ce6c501c6966ae0553ac945a9bc0e234b0a56734a94c2bbfc2fef081d19",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Water Intrusion Damaging Under-Floor / Under-Seat Wiring Harnesses",
+        "description": "The Ioniq 5's wiring harnesses run with little clearance beneath the floor and driver's seat, leaving them vulnerable to moisture. Owners have reported that even a small interior water spill soaked the floor and seat harnesses and knocked out major systems. One widely reported Florida case ran to an ~$11,882 repair to replace both harnesses, which Hyundai and the owner's insurer both declined to cover. This is an owner-reported pattern, not a recall.",
+        "solution": "No recall; repair requires replacing the affected floor and/or driver-seat wiring harnesses (often a five-figure job). Owners are advised to avoid liquid spills near the seat base, address door/liftgate seal leaks promptly, and check the floor under the front seats for water/condensation pooling.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Multiple electronic systems fail simultaneously after an interior spill or leak",
+          "Warning lights, dead accessories, or car won't power up after water exposure",
+          "Damp carpet/floor or water pooling under the front seats",
+          "Corrosion found on under-floor or under-seat wiring connectors"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.autoblog.com/news/florida-man-says-small-water-spill-caused-12000-in-damage-to-his-hyundai-ioniq-5",
+            "type": "article",
+            "title": "Florida Man Says Small Water Spill Caused $12,000 in Damage to His Hyundai Ioniq 5"
+          },
+          {
+            "url": "https://www.autoevolution.com/news/hyundai-ioniq-5-owners-better-check-the-wiring-harness-under-the-driver-s-seat-263017.html",
+            "type": "article",
+            "title": "Hyundai Ioniq 5 Owners Better Check the Wiring Harness Under the Driver's Seat"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Water Intrusion Damaging Under-Floor / Under-Seat Wiring Harnesses",
+        "description": "The Ioniq 5's wiring harnesses run with little clearance beneath the floor and driver's seat, leaving them vulnerable to moisture. Owners have reported that even a small interior water spill soaked the floor and seat harnesses and knocked out major systems. One widely reported Florida case ran to an ~$11,882 repair to replace both harnesses, which Hyundai and the owner's insurer both declined to cover. This is an owner-reported pattern, not a recall.",
+        "solution": "No recall; repair requires replacing the affected floor and/or driver-seat wiring harnesses (often a five-figure job). Owners are advised to avoid liquid spills near the seat base, address door/liftgate seal leaks promptly, and check the floor under the front seats for water/condensation pooling.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Multiple electronic systems fail simultaneously after an interior spill or leak",
+          "Warning lights, dead accessories, or car won't power up after water exposure",
+          "Damp carpet/floor or water pooling under the front seats",
+          "Corrosion found on under-floor or under-seat wiring connectors"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.autoblog.com/news/florida-man-says-small-water-spill-caused-12000-in-damage-to-his-hyundai-ioniq-5",
+            "type": "article",
+            "title": "Florida Man Says Small Water Spill Caused $12,000 in Damage to His Hyundai Ioniq 5"
+          },
+          {
+            "url": "https://www.autoevolution.com/news/hyundai-ioniq-5-owners-better-check-the-wiring-harness-under-the-driver-s-seat-263017.html",
+            "type": "article",
+            "title": "Hyundai Ioniq 5 Owners Better Check the Wiring Harness Under the Driver's Seat"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq5-12v-battery-drain",
+      "model": "Ioniq 5",
+      "action": "keep_published_pending_source",
+      "reason": "A community landing page does not establish the frozen parasitic-draw, Bluelink, battery-sizing or AGM-causation narrative. The ICCU recall is a narrower and different identity and cannot replace this indexed page, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a related or secondary source cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "af1d9d4319db3365a206d6bf3972b60a1424d2f5e01174a34346105cc1e5dcc0",
+      "proposalSha256": "af1d9d4319db3365a206d6bf3972b60a1424d2f5e01174a34346105cc1e5dcc0",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Auxiliary Battery Drain / Dead Battery",
+        "description": "The Ioniq 5 suffers from 12V auxiliary battery drain, often leaving the vehicle unable to start. The issue is caused by excessive parasitic draw from always-on systems (telematics, Bluelink) and the 12V battery being undersized for the electrical load. The AGM battery used is more sensitive to deep discharge cycles than conventional batteries.",
+        "solution": "Hyundai released a software update (OTA or dealer-installed) to improve 12V battery charging management. If the battery has been deeply discharged multiple times, it may need replacement (AGM Group 47, $200-300). Keep the vehicle plugged in when parked for extended periods, as the main battery charges the 12V battery. Disable Bluelink remote features if not needed.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle won't start (12V dead)",
+          "Dashboard warning about 12V battery",
+          "Bluelink/remote features stop working",
+          "Clock resets after parking overnight",
+          "Have to jump-start the vehicle"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Battery"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq5",
+            "type": "forum",
+            "title": "Reddit r/Ioniq5 - Dead 12V battery compilation"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Optima YellowTop Group 47 AGM battery is more resistant to deep discharge cycles than the OEM battery",
+            "upvotes": 0,
+            "partName": "YellowTop AGM Group 47",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20YellowTop%20AGM%20Group%2047&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Keep the vehicle plugged in when parked for more than 2 days - the main battery will maintain the 12V battery charge",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Disable Bluelink remote access and scheduled charging in the app if you park the vehicle for extended periods",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 1200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-ioniq6-12v-battery-drain",
+          "acura-nsx-12v-battery-drain-2017"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Auxiliary Battery Drain / Dead Battery",
+        "description": "The Ioniq 5 suffers from 12V auxiliary battery drain, often leaving the vehicle unable to start. The issue is caused by excessive parasitic draw from always-on systems (telematics, Bluelink) and the 12V battery being undersized for the electrical load. The AGM battery used is more sensitive to deep discharge cycles than conventional batteries.",
+        "solution": "Hyundai released a software update (OTA or dealer-installed) to improve 12V battery charging management. If the battery has been deeply discharged multiple times, it may need replacement (AGM Group 47, $200-300). Keep the vehicle plugged in when parked for extended periods, as the main battery charges the 12V battery. Disable Bluelink remote features if not needed.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle won't start (12V dead)",
+          "Dashboard warning about 12V battery",
+          "Bluelink/remote features stop working",
+          "Clock resets after parking overnight",
+          "Have to jump-start the vehicle"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Battery"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq5",
+            "type": "forum",
+            "title": "Reddit r/Ioniq5 - Dead 12V battery compilation"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Optima YellowTop Group 47 AGM battery is more resistant to deep discharge cycles than the OEM battery",
+            "upvotes": 0,
+            "partName": "YellowTop AGM Group 47",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20YellowTop%20AGM%20Group%2047&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Keep the vehicle plugged in when parked for more than 2 days - the main battery will maintain the 12V battery charge",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Disable Bluelink remote access and scheduled charging in the app if you park the vehicle for extended periods",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 1200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-ioniq6-12v-battery-drain",
+          "acura-nsx-12v-battery-drain-2017"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-ioniq5-charge-port-door",
+      "model": "Ioniq 5",
+      "action": "keep_published_pending_source",
+      "reason": "A community landing page does not establish one Hyundai-defined charge-port-door actuator or wiring defect, cold-weather scope, manual-release location, costs or warranty policy. No exact Hyundai primary document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a related or secondary source cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "22f529e5bf73c6fed9fe96c8f81e91f20c4727151332df51d660dc9c447d1e35",
+      "proposalSha256": "22f529e5bf73c6fed9fe96c8f81e91f20c4727151332df51d660dc9c447d1e35",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Charge Port Door Failure / Motor Malfunction",
+        "description": "The motorized charge port door on the Ioniq 5 can fail to open or close, preventing charging. The electric motor actuator or its wiring fails, especially in cold weather. Some owners report the door freezing shut in winter. The door can sometimes be manually released with a pull-tab inside the cargo area.",
+        "solution": "In an emergency, use the manual release pull-tab located inside the rear cargo area (driver side). The charge port door motor assembly replacement costs $200-400 at the dealer. Apply silicone spray to the door seal to prevent freezing in winter. Hyundai has replaced charge port assemblies under warranty for early failures.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Charge port door won't open via button",
+          "Door opens but won't close",
+          "Error message when trying to charge",
+          "Door stuck in cold weather",
+          "Clicking noise from charge port area"
+        ],
+        "affectedSystems": [
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq5",
+            "type": "forum",
+            "title": "Reddit r/Ioniq5 - Charge port door fix in winter"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "3M Silicone Spray Lubricant on the charge port door seal prevents freezing in winter",
+            "upvotes": 0,
+            "partName": "Silicone Spray Lubricant",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Silicone%20Spray%20Lubricant&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Know where the manual release tab is BEFORE you need it - it is inside the rear cargo area on the driver side behind a small cover",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 290,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-ev6-charge-port-door-stuck"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Charge Port Door Failure / Motor Malfunction",
+        "description": "The motorized charge port door on the Ioniq 5 can fail to open or close, preventing charging. The electric motor actuator or its wiring fails, especially in cold weather. Some owners report the door freezing shut in winter. The door can sometimes be manually released with a pull-tab inside the cargo area.",
+        "solution": "In an emergency, use the manual release pull-tab located inside the rear cargo area (driver side). The charge port door motor assembly replacement costs $200-400 at the dealer. Apply silicone spray to the door seal to prevent freezing in winter. Hyundai has replaced charge port assemblies under warranty for early failures.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Charge port door won't open via button",
+          "Door opens but won't close",
+          "Error message when trying to charge",
+          "Door stuck in cold weather",
+          "Clicking noise from charge port area"
+        ],
+        "affectedSystems": [
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq5",
+            "type": "forum",
+            "title": "Reddit r/Ioniq5 - Charge port door fix in winter"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "3M Silicone Spray Lubricant on the charge port door seal prevents freezing in winter",
+            "upvotes": 0,
+            "partName": "Silicone Spray Lubricant",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Silicone%20Spray%20Lubricant&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Know where the manual release tab is BEFORE you need it - it is inside the rear cargo area on the driver side behind a small cover",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 290,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-ev6-charge-port-door-stuck"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-ioniq5-hvac-compressor-noise",
+      "model": "Ioniq 5",
+      "action": "keep_published_pending_source",
+      "reason": "A community landing page does not establish one Hyundai-defined heat-pump compressor bearing or scroll defect, range-loss percentage, software remedy, costs or warranty policy. No exact Hyundai primary document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a related or secondary source cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "6f673283e8267c65cc90cfd2289a1fc2b210660c3bfb33df21af5d972298abfa",
+      "proposalSha256": "6f673283e8267c65cc90cfd2289a1fc2b210660c3bfb33df21af5d972298abfa",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Heat Pump / HVAC Compressor Grinding Noise",
+        "description": "The electric HVAC heat pump compressor in early Ioniq 5 models develops a grinding or buzzing noise, especially during cold weather operation. The compressor bearing or internal scroll mechanism wears prematurely. In some cases, the heat pump fails entirely, leaving only resistive heating which significantly reduces range in winter.",
+        "solution": "Have the dealer inspect the heat pump compressor under warranty. Hyundai has replaced compressors under warranty in affected vehicles. The compressor assembly replacement is $1,500-2,500 out of warranty. A software update for the thermal management system may reduce compressor stress. If heat pump fails, the car still heats via resistive heater but range drops 30-40% in cold weather.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Grinding noise from front of vehicle",
+          "Buzzing when heater is on",
+          "Heat pump warning on dash",
+          "Reduced range in cold weather",
+          "Cabin heater less effective"
+        ],
+        "affectedSystems": [
+          "HVAC",
+          "Cooling"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq5",
+            "type": "forum",
+            "title": "Reddit r/Ioniq5 - Compressor grinding sound"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Pre-condition the cabin while plugged in before driving in cold weather - this reduces heat pump load and extends range",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the heat pump fails in winter, use seat heaters and steering wheel heater instead of cabin heat to preserve range",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Prestone coolant flush kit for complete cooling system service",
+            "partName": "Coolant Flush Kit",
+            "partBrand": "Prestone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Prestone%20coolant%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Stant thermostat — preventive replacement during coolant service",
+            "partName": "Thermostat",
+            "partBrand": "Stant",
+            "affiliateUrl": "https://www.amazon.com/s?k=Stant%20thermostat&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 350,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-25",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Heat Pump / HVAC Compressor Grinding Noise",
+        "description": "The electric HVAC heat pump compressor in early Ioniq 5 models develops a grinding or buzzing noise, especially during cold weather operation. The compressor bearing or internal scroll mechanism wears prematurely. In some cases, the heat pump fails entirely, leaving only resistive heating which significantly reduces range in winter.",
+        "solution": "Have the dealer inspect the heat pump compressor under warranty. Hyundai has replaced compressors under warranty in affected vehicles. The compressor assembly replacement is $1,500-2,500 out of warranty. A software update for the thermal management system may reduce compressor stress. If heat pump fails, the car still heats via resistive heater but range drops 30-40% in cold weather.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Grinding noise from front of vehicle",
+          "Buzzing when heater is on",
+          "Heat pump warning on dash",
+          "Reduced range in cold weather",
+          "Cabin heater less effective"
+        ],
+        "affectedSystems": [
+          "HVAC",
+          "Cooling"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq5",
+            "type": "forum",
+            "title": "Reddit r/Ioniq5 - Compressor grinding sound"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Pre-condition the cabin while plugged in before driving in cold weather - this reduces heat pump load and extends range",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the heat pump fails in winter, use seat heaters and steering wheel heater instead of cabin heat to preserve range",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Prestone coolant flush kit for complete cooling system service",
+            "partName": "Coolant Flush Kit",
+            "partBrand": "Prestone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Prestone%20coolant%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Stant thermostat — preventive replacement during coolant service",
+            "partName": "Thermostat",
+            "partBrand": "Stant",
+            "affiliateUrl": "https://www.amazon.com/s?k=Stant%20thermostat&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 350,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-25",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq5-infotainment-crash",
+      "model": "Ioniq 5",
+      "action": "keep_published_pending_source",
+      "reason": "A NHTSA vehicle search page does not establish the frozen dual-screen blackout identity, affected controls, OTA history or hardware-replacement remedy. A BlueLink activation campaign is a different issue, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a related or secondary source cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "9c463354de3ac3d71623cc82bc3c0e334c637e94b08569c243ec19f42e9c8d6a",
+      "proposalSha256": "9c463354de3ac3d71623cc82bc3c0e334c637e94b08569c243ec19f42e9c8d6a",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment System Crashes / Dual Screen Black Out",
+        "description": "The dual 12.3-inch screen infotainment system in the Ioniq 5 is prone to freezing, going black, and rebooting while driving. The issue affects navigation, climate controls (which are screen-only), and the digital instrument cluster. Loss of the driver display while driving is a safety concern. Multiple OTA updates have been released to address stability.",
+        "solution": "Ensure the latest OTA software update is installed (check in Settings > General > Software Update). A manual reset can be performed by pressing and holding the power button on the center display for 10 seconds. If issues persist after the latest update, the head unit or display may need hardware replacement ($1,500-3,000 at dealer). Most cases are resolved by software.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Both screens go black simultaneously",
+          "Infotainment reboots while driving",
+          "Climate controls unresponsive (touchscreen only)",
+          "Navigation crashes mid-route",
+          "Instrument cluster flickers"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Infotainment"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/IONIQ%205",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints - Ioniq 5 Display Failures"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Always accept OTA updates promptly - Hyundai has been actively fixing infotainment bugs with each release",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the display goes black while driving, press and hold the power button for 10 seconds - the system will restart in about 30 seconds",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "File a NHTSA complaint if the instrument cluster goes blank while driving - this is a safety issue that Hyundai needs to track",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Hyundai%20Ioniq%205&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 680,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-k5-infotainment-blackout-2021",
+          "gmc-hummer-ev-suv-software-glitch-2024",
+          "hyundai-santacruz-infotainment-freeze"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment System Crashes / Dual Screen Black Out",
+        "description": "The dual 12.3-inch screen infotainment system in the Ioniq 5 is prone to freezing, going black, and rebooting while driving. The issue affects navigation, climate controls (which are screen-only), and the digital instrument cluster. Loss of the driver display while driving is a safety concern. Multiple OTA updates have been released to address stability.",
+        "solution": "Ensure the latest OTA software update is installed (check in Settings > General > Software Update). A manual reset can be performed by pressing and holding the power button on the center display for 10 seconds. If issues persist after the latest update, the head unit or display may need hardware replacement ($1,500-3,000 at dealer). Most cases are resolved by software.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Both screens go black simultaneously",
+          "Infotainment reboots while driving",
+          "Climate controls unresponsive (touchscreen only)",
+          "Navigation crashes mid-route",
+          "Instrument cluster flickers"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Infotainment"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/IONIQ%205",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints - Ioniq 5 Display Failures"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Always accept OTA updates promptly - Hyundai has been actively fixing infotainment bugs with each release",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the display goes black while driving, press and hold the power button for 10 seconds - the system will restart in about 30 seconds",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "File a NHTSA complaint if the instrument cluster goes blank while driving - this is a safety issue that Hyundai needs to track",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Hyundai%20Ioniq%205&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 680,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-k5-infotainment-blackout-2021",
+          "gmc-hummer-ev-suv-software-glitch-2024",
+          "hyundai-santacruz-infotainment-freeze"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-ioniq5-suspension-clunk",
+      "model": "Ioniq 5",
+      "action": "keep_published_pending_source",
+      "reason": "A community landing page does not establish one Hyundai-defined front strut-mount/end-link defect, battery-weight cause, part numbers, torque remedy, costs or warranty policy. No exact Hyundai primary document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a related or secondary source cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "67d6e101a728b5fc41e9f059a6c02a38722d7b1e01f5a5fa7d026c880d90c1fc",
+      "proposalSha256": "67d6e101a728b5fc41e9f059a6c02a38722d7b1e01f5a5fa7d026c880d90c1fc",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Suspension Clunk Over Bumps",
+        "description": "The Ioniq 5 develops a clunking noise from the front suspension over bumps, traced to the front strut top mount bearing and stabilizer bar end links. The heavy battery pack puts extra stress on the front suspension components. The clunk is especially noticeable on rough roads and speed bumps.",
+        "solution": "Inspect and replace front strut top mount bearings (Hyundai part 54612-GI000, $50-80 each) and stabilizer bar end links (54830-GI000, $30-50 each). Labor for both is $200-400. Some owners have had the clunk resolved by simply torquing the strut top mount nut to spec. Dealer warranty claims have been approved for early failures.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Clunk over speed bumps",
+          "Knocking from front on rough roads",
+          "Rattle at low speeds over uneven surfaces",
+          "Noise from front when turning into driveway",
+          "Creaking from front suspension"
+        ],
+        "affectedSystems": [
+          "Suspension"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq5",
+            "type": "forum",
+            "title": "Reddit r/Ioniq5 - Clunking noise solved"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "OEM strut mount bearing 54612-GI000 is inexpensive and resolves most clunking",
+            "upvotes": 0,
+            "partBrand": "Hyundai OEM",
+            "partNumber": "54612-GI000",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2054612-GI000&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have the dealer re-torque the strut top mount nut first - sometimes it is just loose from the factory",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 480,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-08",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "alfa-romeo-tonale-suspension-noise",
+          "mercedes-eqe-suspension-noise-bumps-2023"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Suspension Clunk Over Bumps",
+        "description": "The Ioniq 5 develops a clunking noise from the front suspension over bumps, traced to the front strut top mount bearing and stabilizer bar end links. The heavy battery pack puts extra stress on the front suspension components. The clunk is especially noticeable on rough roads and speed bumps.",
+        "solution": "Inspect and replace front strut top mount bearings (Hyundai part 54612-GI000, $50-80 each) and stabilizer bar end links (54830-GI000, $30-50 each). Labor for both is $200-400. Some owners have had the clunk resolved by simply torquing the strut top mount nut to spec. Dealer warranty claims have been approved for early failures.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Clunk over speed bumps",
+          "Knocking from front on rough roads",
+          "Rattle at low speeds over uneven surfaces",
+          "Noise from front when turning into driveway",
+          "Creaking from front suspension"
+        ],
+        "affectedSystems": [
+          "Suspension"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq5",
+            "type": "forum",
+            "title": "Reddit r/Ioniq5 - Clunking noise solved"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "OEM strut mount bearing 54612-GI000 is inexpensive and resolves most clunking",
+            "upvotes": 0,
+            "partBrand": "Hyundai OEM",
+            "partNumber": "54612-GI000",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2054612-GI000&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have the dealer re-torque the strut top mount nut first - sometimes it is just loose from the factory",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 480,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-08",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "alfa-romeo-tonale-suspension-noise",
+          "mercedes-eqe-suspension-noise-bumps-2023"
+        ]
+      }
+    }
+  ]
+}
