@@ -1,0 +1,1316 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Ioniq 6",
+  "completionStatement": "This packet reconciles all nine frozen Hyundai Ioniq 6 rows. Three same-identity recall rewrites are proposed; six rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All nine rows remain published. Six are byte-for-byte unchanged.",
+    "All three rewrites preserve the indexed title and category and use exact NHTSA Part 573 deep links.",
+    "Every rewrite contains zero commerce, zero cost or mileage claims, empty trim and engine arrays, and no unsupported diagnostic codes.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "ioniq6RecordCount": 9
+  },
+  "observations": [
+    {
+      "code": "three-exact-recalls-rewritten",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-ioniq-6-charging-port-door-outer-panel-detachment-recall",
+        "hyundai-ioniq-6-front-seat-belt-anchor-separation-recall",
+        "hyundai-ioniq-6-iccu-failure-causing-12v-drain-loss-drive-power"
+      ],
+      "detail": "Only three rows have exact Part 573 reports that preserve the frozen component and failure-mode identity."
+    },
+    {
+      "code": "seatbelt-campaign-corrected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-ioniq-6-front-seat-belt-anchor-separation-recall"
+      ],
+      "detail": "The frozen row incorrectly named campaign 25V-797; the exact Ioniq 6 anchor recall is 26V-218."
+    },
+    {
+      "code": "six-secondary-rows-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-ioniq-6-infotainment-cluster-screen-blackout-rearview-camera-loss",
+        "hyundai-ioniq-6-windshield-stress-cracking-without-impact",
+        "hyundai-ioniq6-12v-battery-drain",
+        "hyundai-ioniq6-rear-visibility-camera",
+        "hyundai-ioniq6-road-noise",
+        "hyundai-ioniq6-wind-noise"
+      ],
+      "detail": "The infotainment, windshield, separate 12-volt, camera-obstruction, road-noise and wind-noise narratives remain byte-for-byte unchanged without exact Hyundai evidence."
+    }
+  ],
+  "publicSources": {
+    "chargeDoor": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V606-6672.pdf",
+    "seatbelt": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V218-6077.pdf",
+    "iccu": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V868-6505.PDF"
+  },
+  "summary": {
+    "rewrite_same_identity": 3,
+    "keep_published_pending_source": 6,
+    "total": 9
+  },
+  "rows": [
+    {
+      "id": "hyundai-ioniq-6-charging-port-door-outer-panel-detachment-recall",
+      "model": "Ioniq 6",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed charge-door outer-panel identity, retained the exact 2023-2025 and 31,042-vehicle scope, replaced article/forum citations with the Part 573 report, and removed unsupported assembly-adhesion, highway-air-pressure and normal-use claims.",
+      "identityRule": "The same indexed component and failure mode stay on the existing ID, title and category; only facts from the exact Part 573 report remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V606-6672.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 25V-606 - Ioniq 6 Charging-Port-Door Outer Panel supports the proposed identity, scope and remedy."
+        }
+      ],
+      "beforeSha256": "b27fba192702752a4db45be6ed6407510a43dd1a06b3b872349e4dccb073630e",
+      "proposalSha256": "8926f64004beac8cf10b1b58bcf6d74c71024607ac8d1fe043509917d7b09a8d",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Charging port door / outer panel detachment recall",
+        "description": "The charging port door and outer panel retaining hooks may not be sufficiently engaged, and improper adhesion during assembly can let the panel separate from the vehicle under highway air pressure. A detached panel becomes a road hazard for following traffic, and owners also report the flap loosening during normal charging use. Roughly 31,000 Ioniq 6 units are affected.",
+        "solution": "Covered under NHTSA recall 25V606 (31,042 model-year 2023-2025 Ioniq 6). Dealers apply adhesive to the charge port door assembly to secure it, free of charge. Owners can verify their VIN on NHTSA.gov and contact Hyundai customer service for the remedy.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Charge port door/flap loose or rattling",
+          "Outer panel detaching from charge port area",
+          "Charge door won't stay seated/closed",
+          "Missing charge port cover after highway driving"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCAK-25V606-1477.pdf",
+            "type": "recall",
+            "title": "NHTSA Recall 25V606 Acknowledgement (Ioniq 6 Charge Port Door)"
+          },
+          {
+            "url": "https://www.cars.com/articles/hyundai-recalls-31000-plus-ioniq-6-evs-for-charging-port-door-515962/",
+            "type": "article",
+            "title": "Hyundai Recalls 31,000-Plus Ioniq 6 EVs for Charging Port Door (Cars.com)"
+          },
+          {
+            "url": "https://www.ioniqforum.com/threads/recall-282-2023-25-ioniq-6-charging-port-door.54183/",
+            "type": "forum",
+            "title": "Recall 282 - 2023-25 Ioniq 6 Charging Port Door (Hyundai IONIQ Forum)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Charging port door / outer panel detachment recall",
+        "description": "NHTSA recall 25V-606 covers 31,042 model-year 2023-2025 Ioniq 6 vehicles. The charging-port-door outer panel may not be sufficiently engaged with its retaining hooks and can detach during vehicle operation. A detached panel can become a road hazard and increase crash risk.",
+        "solution": "Check the VIN for NHTSA recall 25V-606 (Hyundai 282). Hyundai dealers repair the charging-port-door assembly by applying adhesive to improve outer-panel retention, free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Charging-port-door outer cover may appear loose during charge-door operation",
+          "Charging-port-door outer panel may detach while driving"
+        ],
+        "affectedSystems": [
+          "Charging-port-door outer panel",
+          "Outer-panel retaining hooks"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 25V-606 - Ioniq 6 Charging-Port-Door Outer Panel",
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V606-6672.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed charge-door outer-panel identity, retained the exact 2023-2025 and 31,042-vehicle scope, replaced article/forum citations with the Part 573 report, and removed unsupported assembly-adhesion, highway-air-pressure and normal-use claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-6-front-seat-belt-anchor-separation-recall",
+      "model": "Ioniq 6",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed front-seat-belt-anchor identity, corrected the unsupported 25V-797 reference to recall 26V-218, used the exact Ioniq 6 population and remedy, and removed unsupported owner-detectable warning symptoms.",
+      "identityRule": "The same indexed component and failure mode stay on the existing ID, title and category; only facts from the exact Part 573 report remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V218-6077.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 26V-218 - Ioniq 6 Front Seat-Belt Anchors supports the proposed identity, scope and remedy."
+        }
+      ],
+      "beforeSha256": "fedcf2a8c8cab8abf0ebae7bad5664428a60ca8506a53ca739956d7e6438f6b7",
+      "proposalSha256": "a57d36b7a0645cdc26f8a2bd06816758b217b45a01976c31373ee53325f1496c",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Front seat belt anchor separation recall",
+        "description": "The front seat belt anchors may not be securely attached to the seat frame because of a snap-on component that can be damaged if improperly removed or reinstalled during servicing or assembly. If an anchor detaches in a collision, the belt may not properly restrain the occupant. The Ioniq 6 (roughly 36,000 units) is part of a ~294,000-vehicle campaign spanning Hyundai Santa Fe and Genesis G90.",
+        "solution": "Covered under the April 2026 NHTSA recall (campaign 25V797) for 2023-2025 Ioniq 6. Dealers inspect and reinforce or replace the front seat belt anchors as necessary, free of charge. Owners should check their VIN on NHTSA.gov and schedule the free inspection.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Seat belt anchor feels loose at the seat frame",
+          "Belt anchor moves or rattles",
+          "Anchor not securely fastened after prior seat service"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://driveteslacanada.ca/news/hyundai-recalls-nearly-36000-ioniq-6-over-seat-belt-anchor-concern/",
+            "type": "article",
+            "title": "Hyundai Recalls Nearly 36,000 IONIQ 6 Over Seat Belt Anchor Concern (Drive Tesla)"
+          },
+          {
+            "url": "https://www.autoblog.com/news/recall-hyundai-ioniq-6-santa-fe-genesis-g90-seatbelt-anchors",
+            "type": "article",
+            "title": "Hyundai and Genesis Recall Nearly 300,000 Cars with a Dangerous Seat Belt Fault (Autoblog)"
+          },
+          {
+            "url": "https://carbuzz.com/hyundai-sanfa-fe-ioniq-6-seatbelt-recall/",
+            "type": "article",
+            "title": "Hyundai Recalls Over Quarter-Million Santa Fe, Ioniq 6 Models For Seatbelt Problems (CarBuzz)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Front seat belt anchor separation recall",
+        "description": "NHTSA recall 26V-218 covers 35,149 model-year 2023-2025 Ioniq 6 vehicles. A front seat-belt snap-on lower anchor can be damaged if removed or installed improperly during maintenance or repair, leaving the belt insufficiently attached to the seat frame. An insufficiently attached anchor can increase occupant-injury risk in a crash.",
+        "solution": "Check the VIN for NHTSA recall 26V-218 (Hyundai 298). Hyundai dealers inspect the front seat-belt anchors, install a reinforcement insert on the snap-on lower anchor or replace the seat-belt assembly if necessary, free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [
+          "Front seat-belt snap-on lower anchors",
+          "Front seat-belt assemblies"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 26V-218 - Ioniq 6 Front Seat-Belt Anchors",
+            "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V218-6077.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed front-seat-belt-anchor identity, corrected the unsupported 25V-797 reference to recall 26V-218, used the exact Ioniq 6 population and remedy, and removed unsupported owner-detectable warning symptoms.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-6-iccu-failure-causing-12v-drain-loss-drive-power",
+      "model": "Ioniq 6",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed ICCU/12-volt/loss-of-power identity, replaced secondary articles with the exact Part 573 report, retained the exact Ioniq 6 population and remedy, and removed unsupported named warnings, turtle-mode, tow and repeat-failure claims.",
+      "identityRule": "The same indexed component and failure mode stay on the existing ID, title and category; only facts from the exact Part 573 report remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V868-6505.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 24V-868 - Ioniq 6 ICCU supports the proposed identity, scope and remedy."
+        }
+      ],
+      "beforeSha256": "8fbb44d4d3a18677eae6b2ebadf291559769713c6b24297ee8bbc6eda82730be",
+      "proposalSha256": "c9bfacbcba96ef5018528f1f9282e18763d73180ab6a2fbb033c43f9e51f3992",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "ICCU failure causing 12V drain / loss of drive power (no-start / power loss while driving)",
+        "description": "The Integrated Charging Control Unit (ICCU) on the E-GMP platform can suffer internal damage (overvoltage at the start/end of the 12V charging cycle plus thermal loading), blowing the ICCU fuse so it can no longer charge the 12V battery from the high-voltage pack. As the 12V drains, the Ioniq 6 throws 'Check Electric Vehicle System' / reduced-power warnings and can lose drive power while in motion, requiring a tow. An initial software-only remedy did not fully resolve it, so a second recall added ICCU hardware replacement.",
+        "solution": "Covered under NHTSA recall 24V-868 (28,932 model-year 2023-2025 Ioniq 6, expanding the earlier 24V-204 software remedy). Dealers inspect and replace the ICCU and its fuse as necessary and apply updated ICCU software, free of charge. Owners with repeated 12V dead-battery or power-loss events should have the ICCU diagnosed even if a prior software update was applied.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "'Check Electric Vehicle System' warning",
+          "Reduced power / turtle mode",
+          "Loss of drive power while driving",
+          "Repeated dead 12V battery requiring a tow",
+          "Inability to charge the 12V battery",
+          "Blown ICCU fuse"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V868-6505.PDF",
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall Report 24V-868 (ICCU)"
+          },
+          {
+            "url": "https://insideevs.com/features/752768/hyundai-kia-genesis-iccu-failure/",
+            "type": "article",
+            "title": "Hyundai's ICCU Problem: Here's What We Know (InsideEVs)"
+          },
+          {
+            "url": "https://www.wardsauto.com/news/archive-auto-hyundai-recalls-ioniq5-genesis-models-145k-iccu-intergrated-charging-control-unit-nhtsa/733963/",
+            "type": "article",
+            "title": "Hyundai recalls 145K vehicles over loss of power (WardsAuto)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "ICCU failure causing 12V drain / loss of drive power (no-start / power loss while driving)",
+        "description": "NHTSA recall 24V-868 covers 28,932 model-year 2023-2025 Ioniq 6 vehicles. Electrical load conditions can cause a MOSFET inside the Integrated Charging Control Unit (ICCU) to fail and open the ICCU fuse, preventing the ICCU from charging the 12-volt battery. The vehicle then enters a fail-safe mode that gradually reduces motive power; if the 12-volt battery is fully depleted, all motive power can be lost.",
+        "solution": "Check the VIN for NHTSA recall 24V-868 (Hyundai 272), which expands and replaces the earlier recall. Hyundai dealers update ICCU software and replace the ICCU assembly and associated fuse if necessary, free of charge. Vehicles repaired under the earlier campaign still need the updated remedy.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Dashboard warning lights or warning messages",
+          "Audible warning chime",
+          "Gradual reduction in motive power or speed",
+          "Loss of motive power after full 12-volt battery depletion"
+        ],
+        "affectedSystems": [
+          "Integrated Charging Control Unit",
+          "ICCU fuse",
+          "12-volt battery charging"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 24V-868 - Ioniq 6 ICCU",
+            "url": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V868-6505.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed ICCU/12-volt/loss-of-power identity, replaced secondary articles with the exact Part 573 report, retained the exact Ioniq 6 population and remedy, and removed unsupported named warnings, turtle-mode, tow and repeat-failure claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-6-infotainment-cluster-screen-blackout-rearview-camera-loss",
+      "model": "Ioniq 6",
+      "action": "keep_published_pending_source",
+      "reason": "Three owner-forum threads do not establish one Hyundai-defined 2023-2025 infotainment, cluster and rear-camera blackout defect, update trigger, forced-reset procedure or head-unit replacement policy. No exact Hyundai campaign or bulletin was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "662de159dc464eaef1bda48ea3a5db73062e857f5a0f86aa0b9e81e81fa82762",
+      "proposalSha256": "662de159dc464eaef1bda48ea3a5db73062e857f5a0f86aa0b9e81e81fa82762",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment / cluster screen blackout and rearview camera loss",
+        "description": "Ioniq 6 owners report the central infotainment screen going completely black (sometimes while audio keeps playing), and the reverse camera failing to display when shifted into reverse. The fault frequently appears after over-the-air navigation/software updates, in some cases leaving the head unit unresponsive until a forced reset. Losing the backup camera view is a safety concern when reversing.",
+        "solution": "Common remedies are a forced reset (hold the power/volume knob ~10 seconds, or press the reset pinhole beneath the P button for ~10 seconds) and, in persistent cases, a dealer software reflash or head-unit replacement under warranty. Owners should report recurring blackouts to the dealer so the failure is documented and any applicable infotainment software remedy is applied.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Infotainment screen goes black while radio still plays",
+          "Touchscreen unresponsive or blank after an update",
+          "Reverse/backup camera shows black screen in reverse",
+          "Head unit fails to boot until reset",
+          "Loss of camera and alert functions after navigation update"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.ioniqforum.com/threads/ioniq6-black-screen-infotainment-after-update.47014/",
+            "type": "forum",
+            "title": "Ioniq6 black screen (infotainment) after update (Hyundai IONIQ Forum)"
+          },
+          {
+            "url": "https://www.ioniqforum.com/threads/reverse-camera-black-screen.46309/",
+            "type": "forum",
+            "title": "Reverse camera black screen (Hyundai IONIQ Forum)"
+          },
+          {
+            "url": "https://www.ioniqforum.com/threads/navigation-update-and-subsequent-loss-of-camera-and-alert-functions.41175/",
+            "type": "forum",
+            "title": "Navigation Update and subsequent loss of camera and alert functions (Hyundai IONIQ Forum)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment / cluster screen blackout and rearview camera loss",
+        "description": "Ioniq 6 owners report the central infotainment screen going completely black (sometimes while audio keeps playing), and the reverse camera failing to display when shifted into reverse. The fault frequently appears after over-the-air navigation/software updates, in some cases leaving the head unit unresponsive until a forced reset. Losing the backup camera view is a safety concern when reversing.",
+        "solution": "Common remedies are a forced reset (hold the power/volume knob ~10 seconds, or press the reset pinhole beneath the P button for ~10 seconds) and, in persistent cases, a dealer software reflash or head-unit replacement under warranty. Owners should report recurring blackouts to the dealer so the failure is documented and any applicable infotainment software remedy is applied.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Infotainment screen goes black while radio still plays",
+          "Touchscreen unresponsive or blank after an update",
+          "Reverse/backup camera shows black screen in reverse",
+          "Head unit fails to boot until reset",
+          "Loss of camera and alert functions after navigation update"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.ioniqforum.com/threads/ioniq6-black-screen-infotainment-after-update.47014/",
+            "type": "forum",
+            "title": "Ioniq6 black screen (infotainment) after update (Hyundai IONIQ Forum)"
+          },
+          {
+            "url": "https://www.ioniqforum.com/threads/reverse-camera-black-screen.46309/",
+            "type": "forum",
+            "title": "Reverse camera black screen (Hyundai IONIQ Forum)"
+          },
+          {
+            "url": "https://www.ioniqforum.com/threads/navigation-update-and-subsequent-loss-of-camera-and-alert-functions.41175/",
+            "type": "forum",
+            "title": "Navigation Update and subsequent loss of camera and alert functions (Hyundai IONIQ Forum)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-6-windshield-stress-cracking-without-impact",
+      "model": "Ioniq 6",
+      "action": "keep_published_pending_source",
+      "reason": "Forum discussions and a glass-replacement vendor page do not establish an Ioniq 6 windshield stress-crack defect, thermal mechanism, warranty position or cross-E-GMP incidence. No exact Hyundai primary document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "f911ae4d041d16c73afc932ba6072145a4c784b216835a021347e18a63e85578",
+      "proposalSha256": "f911ae4d041d16c73afc932ba6072145a4c784b216835a021347e18a63e85578",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Windshield stress cracking without impact",
+        "description": "Owners report hairline windshield cracks that originate near the bottom edge by the wipers and travel upward with no rock chip or impact, often in cold weather when cabin/defroster heat is used on a parked car. Replacement is expensive because the laminated glass requires forward-camera/ADAS recalibration, and the glass is not covered by the factory warranty. Note: similar reports are common across the shared E-GMP platform (Ioniq 5/6), so attribution is partly cross-model.",
+        "solution": "There is no factory recall; affected owners typically claim windshield replacement through comprehensive auto insurance (often zero-deductible glass coverage depending on state). Use OEM or OEM-equivalent glass and have the forward camera/ADAS recalibrated after replacement. Warm the cabin gradually in extreme cold to reduce thermal stress on the glass.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Crack starting at the bottom of the windshield near the wipers",
+          "Crack spreading upward with no visible impact point",
+          "Crack appearing in cold weather / after using the defroster",
+          "High replacement cost due to ADAS recalibration"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.ioniqforum.com/threads/cracked-windshield.41479/",
+            "type": "forum",
+            "title": "Cracked Windshield? (Hyundai IONIQ Forum)"
+          },
+          {
+            "url": "https://www.ioniqforum.com/threads/adas-recalibration-after-windshield-replacement.55123/",
+            "type": "forum",
+            "title": "ADAS recalibration after windshield replacement (Hyundai IONIQ Forum)"
+          },
+          {
+            "url": "https://www.safelite.com/vehicle-glass-repair/hyundai-ioniq-6-windshield-replacement",
+            "type": "article",
+            "title": "Hyundai IONIQ 6 Windshield Repair & Replacement (Safelite)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Windshield stress cracking without impact",
+        "description": "Owners report hairline windshield cracks that originate near the bottom edge by the wipers and travel upward with no rock chip or impact, often in cold weather when cabin/defroster heat is used on a parked car. Replacement is expensive because the laminated glass requires forward-camera/ADAS recalibration, and the glass is not covered by the factory warranty. Note: similar reports are common across the shared E-GMP platform (Ioniq 5/6), so attribution is partly cross-model.",
+        "solution": "There is no factory recall; affected owners typically claim windshield replacement through comprehensive auto insurance (often zero-deductible glass coverage depending on state). Use OEM or OEM-equivalent glass and have the forward camera/ADAS recalibrated after replacement. Warm the cabin gradually in extreme cold to reduce thermal stress on the glass.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Crack starting at the bottom of the windshield near the wipers",
+          "Crack spreading upward with no visible impact point",
+          "Crack appearing in cold weather / after using the defroster",
+          "High replacement cost due to ADAS recalibration"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.ioniqforum.com/threads/cracked-windshield.41479/",
+            "type": "forum",
+            "title": "Cracked Windshield? (Hyundai IONIQ Forum)"
+          },
+          {
+            "url": "https://www.ioniqforum.com/threads/adas-recalibration-after-windshield-replacement.55123/",
+            "type": "forum",
+            "title": "ADAS recalibration after windshield replacement (Hyundai IONIQ Forum)"
+          },
+          {
+            "url": "https://www.safelite.com/vehicle-glass-repair/hyundai-ioniq-6-windshield-replacement",
+            "type": "article",
+            "title": "Hyundai IONIQ 6 Windshield Repair & Replacement (Safelite)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq6-12v-battery-drain",
+      "model": "Ioniq 6",
+      "action": "keep_published_pending_source",
+      "reason": "A community landing page does not establish the frozen Bluelink/parasitic-draw, cold-weather, AGM-sizing or software-remedy narrative. Recall 24V-868 is the narrower ICCU identity and cannot replace this separate indexed page, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "742d8b71cb00b30b8331a461be79da794de9e53a68ebec0859f7e47f36b9121e",
+      "proposalSha256": "742d8b71cb00b30b8331a461be79da794de9e53a68ebec0859f7e47f36b9121e",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Auxiliary Battery Drain (Same as Ioniq 5 Platform)",
+        "description": "Like the Ioniq 5, the Ioniq 6 shares the E-GMP platform's 12V auxiliary battery drain issue. Always-on telematics, Bluelink, and various modules draw down the 12V battery when the vehicle sits for extended periods. The issue is worse in cold weather when battery capacity is reduced.",
+        "solution": "Install the latest software update (OTA or dealer). Keep the vehicle plugged in during extended parking. If the 12V battery has been deeply discharged, replace it with a quality AGM Group 47 battery ($200-300). Disable unnecessary Bluelink features. Hyundai's software update improves the DC-DC converter's 12V charging algorithm.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Car won't power on after sitting 3+ days",
+          "12V battery warning on display",
+          "Remote start fails via app",
+          "Clock and settings reset",
+          "Need to jump-start"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Battery"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq6",
+            "type": "forum",
+            "title": "Reddit r/Ioniq6 - Dead 12V after 4 days parked"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Optima YellowTop D47 AGM handles deep discharge cycles better than the OEM battery",
+            "upvotes": 0,
+            "partName": "YellowTop D47 AGM",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20YellowTop%20D47%20AGM&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Set the vehicle to charge at 80% and keep it plugged in - the DC-DC converter maintains the 12V battery while connected",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 180,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-05",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-ioniq5-12v-battery-drain"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Auxiliary Battery Drain (Same as Ioniq 5 Platform)",
+        "description": "Like the Ioniq 5, the Ioniq 6 shares the E-GMP platform's 12V auxiliary battery drain issue. Always-on telematics, Bluelink, and various modules draw down the 12V battery when the vehicle sits for extended periods. The issue is worse in cold weather when battery capacity is reduced.",
+        "solution": "Install the latest software update (OTA or dealer). Keep the vehicle plugged in during extended parking. If the 12V battery has been deeply discharged, replace it with a quality AGM Group 47 battery ($200-300). Disable unnecessary Bluelink features. Hyundai's software update improves the DC-DC converter's 12V charging algorithm.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Car won't power on after sitting 3+ days",
+          "12V battery warning on display",
+          "Remote start fails via app",
+          "Clock and settings reset",
+          "Need to jump-start"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Battery"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq6",
+            "type": "forum",
+            "title": "Reddit r/Ioniq6 - Dead 12V after 4 days parked"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Optima YellowTop D47 AGM handles deep discharge cycles better than the OEM battery",
+            "upvotes": 0,
+            "partName": "YellowTop D47 AGM",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20YellowTop%20D47%20AGM&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Set the vehicle to charge at 80% and keep it plugged in - the DC-DC converter maintains the 12V battery while connected",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 180,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-05",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-ioniq5-12v-battery-drain"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-ioniq6-rear-visibility-camera",
+      "model": "Ioniq 6",
+      "action": "keep_published_pending_source",
+      "reason": "A community landing page does not establish an Ioniq 6 design defect affecting the rear camera, parking sensors and cross-traffic alert or validate hydrophobic coatings and aftermarket shields as remedies. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "cb47b6be2ed70eed6b25840d531630106405eb6c2383c7f9ca021eebca77d911",
+      "proposalSha256": "cb47b6be2ed70eed6b25840d531630106405eb6c2383c7f9ca021eebca77d911",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Rear Camera and Sensor Obstruction from Aero Design",
+        "description": "The Ioniq 6's sloped rear design causes the rearview camera and parking sensors to be easily obstructed by water, snow, mud, and road spray. The camera sits in a recessed area that collects debris, and the aerodynamic shape channels road spray directly onto the sensors. This reduces safety system reliability in adverse weather.",
+        "solution": "Apply a hydrophobic coating (Rain-X or similar) to the rear camera lens to shed water. Clean the camera and sensors regularly in bad weather. Some owners have installed a small camera shield/visor to deflect spray. Hyundai has not issued a formal fix. Camera cleaning costs nothing; aftermarket camera shields are $20-40.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Backup camera blurry or obscured",
+          "Parking sensors give false warnings",
+          "Rear cross-traffic alert unreliable in rain",
+          "Camera covered in road spray",
+          "Sensor warnings in clean conditions"
+        ],
+        "affectedSystems": [
+          "Safety"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 10,
+        "estimatedCostHigh": 50,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq6",
+            "type": "forum",
+            "title": "Reddit r/Ioniq6 - Camera always dirty fix"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Rain-X Glass Water Repellent applied to the camera lens keeps it clear much longer",
+            "upvotes": 0,
+            "partName": "Glass Water Repellent",
+            "partBrand": "Rain-X",
+            "affiliateUrl": "https://www.amazon.com/s?k=Rain-X%20Glass%20Water%20Repellent&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Wipe the rear camera lens every time you stop for charging - takes 5 seconds and dramatically improves safety",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 160,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-30",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Rear Camera and Sensor Obstruction from Aero Design",
+        "description": "The Ioniq 6's sloped rear design causes the rearview camera and parking sensors to be easily obstructed by water, snow, mud, and road spray. The camera sits in a recessed area that collects debris, and the aerodynamic shape channels road spray directly onto the sensors. This reduces safety system reliability in adverse weather.",
+        "solution": "Apply a hydrophobic coating (Rain-X or similar) to the rear camera lens to shed water. Clean the camera and sensors regularly in bad weather. Some owners have installed a small camera shield/visor to deflect spray. Hyundai has not issued a formal fix. Camera cleaning costs nothing; aftermarket camera shields are $20-40.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Backup camera blurry or obscured",
+          "Parking sensors give false warnings",
+          "Rear cross-traffic alert unreliable in rain",
+          "Camera covered in road spray",
+          "Sensor warnings in clean conditions"
+        ],
+        "affectedSystems": [
+          "Safety"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 10,
+        "estimatedCostHigh": 50,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq6",
+            "type": "forum",
+            "title": "Reddit r/Ioniq6 - Camera always dirty fix"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Rain-X Glass Water Repellent applied to the camera lens keeps it clear much longer",
+            "upvotes": 0,
+            "partName": "Glass Water Repellent",
+            "partBrand": "Rain-X",
+            "affiliateUrl": "https://www.amazon.com/s?k=Rain-X%20Glass%20Water%20Repellent&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Wipe the rear camera lens every time you stop for charging - takes 5 seconds and dramatically improves safety",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 160,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-30",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq6-road-noise",
+      "model": "Ioniq 6",
+      "action": "keep_published_pending_source",
+      "reason": "A community landing page does not establish an Ioniq 6 insulation defect, battery-pack vibration cause, tire noise reductions or sound-deadening costs. No exact Hyundai primary document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "f77e05d9a877383838b6a72d40cf95f229fd0351af7e9d5a6e88cbe380cff1b3",
+      "proposalSha256": "f77e05d9a877383838b6a72d40cf95f229fd0351af7e9d5a6e88cbe380cff1b3",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Excessive Road/Tire Noise on Rough Pavement",
+        "description": "Despite the Ioniq 6's aerodynamic design for low wind noise, many owners report excessive road and tire noise, especially on rough or coarse pavement. The heavy battery pack transmits road vibrations through the floor, and the wheel well insulation is insufficient. The EV's silent drivetrain makes road noise the dominant cabin sound.",
+        "solution": "Switching to a quieter tire such as the Michelin e.Primacy or Continental EcoContact 6 can reduce noise by 3-5 dB. Adding sound-deadening material (Dynamat or equivalent) to the wheel wells and floor costs $200-500 DIY. Factory floor mats with additional insulation help slightly. There is no factory fix from Hyundai.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Loud road noise on highways",
+          "Tire roar on coarse pavement",
+          "Vibration through floor",
+          "Need to raise voice to talk at 70 mph",
+          "Noise significantly louder than test drive"
+        ],
+        "affectedSystems": [
+          "Interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq6",
+            "type": "forum",
+            "title": "Reddit r/Ioniq6 - Road noise comparison with other EVs"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Michelin e.Primacy tires are significantly quieter than the OEM Michelin Pilot Sport EV tires",
+            "upvotes": 0,
+            "partName": "e.Primacy",
+            "partBrand": "Michelin",
+            "affiliateUrl": "https://www.amazon.com/s?k=Michelin%20e.Primacy&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dynamat Xtreme sound deadener applied to wheel wells reduces road noise noticeably",
+            "upvotes": 0,
+            "partName": "Xtreme Sound Deadener",
+            "partBrand": "Dynamat",
+            "partNumber": "10455",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dynamat%2010455&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Add sound deadening to the wheel wells first - this gives the most noise reduction per dollar spent",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 240,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-12",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Excessive Road/Tire Noise on Rough Pavement",
+        "description": "Despite the Ioniq 6's aerodynamic design for low wind noise, many owners report excessive road and tire noise, especially on rough or coarse pavement. The heavy battery pack transmits road vibrations through the floor, and the wheel well insulation is insufficient. The EV's silent drivetrain makes road noise the dominant cabin sound.",
+        "solution": "Switching to a quieter tire such as the Michelin e.Primacy or Continental EcoContact 6 can reduce noise by 3-5 dB. Adding sound-deadening material (Dynamat or equivalent) to the wheel wells and floor costs $200-500 DIY. Factory floor mats with additional insulation help slightly. There is no factory fix from Hyundai.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Loud road noise on highways",
+          "Tire roar on coarse pavement",
+          "Vibration through floor",
+          "Need to raise voice to talk at 70 mph",
+          "Noise significantly louder than test drive"
+        ],
+        "affectedSystems": [
+          "Interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq6",
+            "type": "forum",
+            "title": "Reddit r/Ioniq6 - Road noise comparison with other EVs"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Michelin e.Primacy tires are significantly quieter than the OEM Michelin Pilot Sport EV tires",
+            "upvotes": 0,
+            "partName": "e.Primacy",
+            "partBrand": "Michelin",
+            "affiliateUrl": "https://www.amazon.com/s?k=Michelin%20e.Primacy&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dynamat Xtreme sound deadener applied to wheel wells reduces road noise noticeably",
+            "upvotes": 0,
+            "partName": "Xtreme Sound Deadener",
+            "partBrand": "Dynamat",
+            "partNumber": "10455",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dynamat%2010455&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Add sound deadening to the wheel wells first - this gives the most noise reduction per dollar spent",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 240,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-12",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq6-wind-noise",
+      "model": "Ioniq 6",
+      "action": "keep_published_pending_source",
+      "reason": "A community landing page does not establish an Ioniq 6 door-seal or mirror defect, A-pillar turbulence cause, striker adjustment, aftermarket weatherstrip remedy or warranty policy. No exact Hyundai primary document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "f3f07be730f9205ba85a679679f309ee941614d039c1da17cac6152cfafab3a7",
+      "proposalSha256": "f3f07be730f9205ba85a679679f309ee941614d039c1da17cac6152cfafab3a7",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Excessive Wind Noise from Door Seals and Mirrors",
+        "description": "The Ioniq 6's streamlined design creates noticeable wind noise intrusion, particularly around the frameless door windows and side mirrors at highway speeds. The door seal design does not fully prevent wind noise, and the low-drag side mirrors create turbulence at the A-pillar. The EV's silent drivetrain makes wind noise more noticeable.",
+        "solution": "Apply adhesive weatherstripping to the door frame to improve seal (3M Automotive Weatherstrip, $15-25). Adjusting door striker alignment can improve seal at the top of the window. Wind deflector strips on the side mirror base reduce turbulence ($30-50). Dealer door adjustment is typically covered under warranty.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Whistling at highway speed",
+          "Wind noise from door area",
+          "Noise increases above 60 mph",
+          "Rushing air sound from mirrors",
+          "Noise worse on windy days"
+        ],
+        "affectedSystems": [
+          "Body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 15,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq6",
+            "type": "forum",
+            "title": "Reddit r/Ioniq6 - Anyone else have wind noise?"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "3M 08578 Automotive Weatherstrip adhesive tape applied to door frame reduces wind noise significantly",
+            "upvotes": 0,
+            "partName": "Automotive Weatherstrip Tape",
+            "partBrand": "3M",
+            "partNumber": "08578",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%2008578&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have the dealer check door alignment and striker position first - a small adjustment can make a big difference at no cost",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 220,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-01",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 6",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Excessive Wind Noise from Door Seals and Mirrors",
+        "description": "The Ioniq 6's streamlined design creates noticeable wind noise intrusion, particularly around the frameless door windows and side mirrors at highway speeds. The door seal design does not fully prevent wind noise, and the low-drag side mirrors create turbulence at the A-pillar. The EV's silent drivetrain makes wind noise more noticeable.",
+        "solution": "Apply adhesive weatherstripping to the door frame to improve seal (3M Automotive Weatherstrip, $15-25). Adjusting door striker alignment can improve seal at the top of the window. Wind deflector strips on the side mirror base reduce turbulence ($30-50). Dealer door adjustment is typically covered under warranty.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Whistling at highway speed",
+          "Wind noise from door area",
+          "Noise increases above 60 mph",
+          "Rushing air sound from mirrors",
+          "Noise worse on windy days"
+        ],
+        "affectedSystems": [
+          "Body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 15,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Ioniq6",
+            "type": "forum",
+            "title": "Reddit r/Ioniq6 - Anyone else have wind noise?"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "3M 08578 Automotive Weatherstrip adhesive tape applied to door frame reduces wind noise significantly",
+            "upvotes": 0,
+            "partName": "Automotive Weatherstrip Tape",
+            "partBrand": "3M",
+            "partNumber": "08578",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%2008578&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have the dealer check door alignment and striker position first - a small adjustment can make a big difference at no cost",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 220,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-01",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
