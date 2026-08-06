@@ -1,0 +1,1350 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Honda",
+  "model": "Crosstour",
+  "completionStatement": "This packet reconciles all seven frozen Honda Crosstour rows. Three same-identity primary-source corrections are proposed; four rows remain byte-for-byte unchanged pending exact evidence or independent disposition.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All seven rows remain published. Four are byte-for-byte unchanged.",
+    "An unrelated campaign, bulletin, component or model may never replace the issue named by an existing indexed page.",
+    "All three rewrites contain zero commerce, zero cost claims, and empty trim and engine arrays.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_honda-deeplink-snapshot-2026-08-05.json",
+    "snapshotSha256": "671de2660f31c07e01610e26c13382b6d59b293fb74ecc3e3abc02d248d6dd5e",
+    "snapshotGeneratedAt": "2026-08-05T21:54:08.563Z",
+    "snapshotHash": "fcd155f1e269b1d8c691655699cc2e18f6029c3ee54c650b88df00004025729a",
+    "crosstourRecordCount": 7
+  },
+  "observations": [
+    {
+      "code": "ac-relay-primary-source-gap",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-crosstour-ac-relay-failure-2010"
+      ],
+      "detail": "The generic NHTSA vehicle page does not substantiate the relay failure or part-number claims; the row remains byte-equivalent."
+    },
+    {
+      "code": "strut-vs-ball-joint-identity-mismatch",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-crosstour-suspension-strut-wear-2010"
+      ],
+      "detail": "Honda Bulletin 12-082 supports a lower-ball-joint hot-weather clunk, not the indexed strut-wear identity. No substitution is proposed."
+    },
+    {
+      "code": "parking-pawl-recall-model-mismatch",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-crosstour-transmission-parking-pawl-2010"
+      ],
+      "detail": "Recall 11V-395 supplies the frozen narrative but does not appear in the 2010 Accord Crosstour NHTSA recall results. No removal or replacement is proposed."
+    },
+    {
+      "code": "oil-consumption-vs-misfire-identity-mismatch",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-crosstour-vcm-oil-consumption-2010"
+      ],
+      "detail": "Honda Bulletin 13-079 supports ring-alignment misfires, not the frozen VCM oil-consumption mechanism or remedy. No substitution is proposed."
+    }
+  ],
+  "summary": {
+    "rewrite_same_identity": 3,
+    "keep_published_pending_source": 4,
+    "total": 7
+  },
+  "rows": [
+    {
+      "id": "honda-crosstour-ac-relay-failure-2010",
+      "model": "Crosstour",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen relay card cites only a generic NHTSA vehicle page, which does not establish relay failure, part number, diagnosis or remedy. No same-identity Honda bulletin was verified, so the row stays byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different model, component or failure mode cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "f45af52606dc8d50c742bb465efa13a6512bd24d479ccd824d92b2df3f18985e",
+      "proposalSha256": "f45af52606dc8d50c742bb465efa13a6512bd24d479ccd824d92b2df3f18985e",
+      "before": {
+        "make": "Honda",
+        "model": "Crosstour",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "AC Compressor Clutch Relay Failure",
+        "description": "Honda Crosstour (2010-2015) experiences AC compressor clutch relay failures in the under-hood fuse box. The relay controls the AC compressor clutch engagement. When it fails, the AC stops working entirely - no cold air. Symptoms include AC not blowing cold, clicking sound from under hood when AC button pressed, and intermittent AC operation. The relay costs under $10 and is easy to replace DIY. Full AC compressor failure: $800-1,500.",
+        "solution": "DIY fix (10 minutes, $7): Replace AC compressor clutch relay in under-hood fuse box. Part number: Honda 39794-SDA-A03 or equivalent ($5-10 at auto parts store). CrosstourOwnersClub has photos showing exact relay location. If relay replacement doesn't fix it, AC compressor may have failed ($800-1,500 replacement). Test relay before replacing expensive AC components.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "AC not blowing cold air",
+          "AC works intermittently",
+          "Clicking sound from under hood when AC button pressed",
+          "AC compressor clutch not engaging",
+          "AC works then suddenly stops"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 7,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2010/HONDA/ACCORD%252520CROSSTOUR/SUV/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint Search - 2010 Honda Accord Crosstour air conditioner/compressor complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "DIY fix: Buy relay for $7, pop old one out, push new one in. Takes 10 minutes. CrosstourOwnersClub has step-by-step guide with photos.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Honda OEM relay part #39794-SDA-A03 ($7-10) or Duralast/Echlin equivalent from AutoZone ($5-8). Both work perfectly.",
+            "upvotes": 0,
+            "partName": "AC Compressor Clutch Relay",
+            "partBrand": "Honda",
+            "partNumber": "39794-SDA-A03",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%2039794-SDA-A03&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Test the $7 relay BEFORE paying mechanic $1,000+ for AC compressor replacement - relay failure mimics compressor failure.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Crosstour",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "AC Compressor Clutch Relay Failure",
+        "description": "Honda Crosstour (2010-2015) experiences AC compressor clutch relay failures in the under-hood fuse box. The relay controls the AC compressor clutch engagement. When it fails, the AC stops working entirely - no cold air. Symptoms include AC not blowing cold, clicking sound from under hood when AC button pressed, and intermittent AC operation. The relay costs under $10 and is easy to replace DIY. Full AC compressor failure: $800-1,500.",
+        "solution": "DIY fix (10 minutes, $7): Replace AC compressor clutch relay in under-hood fuse box. Part number: Honda 39794-SDA-A03 or equivalent ($5-10 at auto parts store). CrosstourOwnersClub has photos showing exact relay location. If relay replacement doesn't fix it, AC compressor may have failed ($800-1,500 replacement). Test relay before replacing expensive AC components.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "AC not blowing cold air",
+          "AC works intermittently",
+          "Clicking sound from under hood when AC button pressed",
+          "AC compressor clutch not engaging",
+          "AC works then suddenly stops"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 7,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2010/HONDA/ACCORD%252520CROSSTOUR/SUV/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint Search - 2010 Honda Accord Crosstour air conditioner/compressor complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "DIY fix: Buy relay for $7, pop old one out, push new one in. Takes 10 minutes. CrosstourOwnersClub has step-by-step guide with photos.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Honda OEM relay part #39794-SDA-A03 ($7-10) or Duralast/Echlin equivalent from AutoZone ($5-8). Both work perfectly.",
+            "upvotes": 0,
+            "partName": "AC Compressor Clutch Relay",
+            "partBrand": "Honda",
+            "partNumber": "39794-SDA-A03",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%2039794-SDA-A03&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Test the $7 relay BEFORE paying mechanic $1,000+ for AC compressor replacement - relay failure mimics compressor failure.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-crosstour-electrical-issues-2013",
+      "model": "Crosstour",
+      "action": "rewrite_same_identity",
+      "reason": "Narrowed the mixed electrical aggregation to the exact 2013-2015 V6 automatic starter/ring-gear condition in Honda Service Bulletin 16-002 and removed unsupported warning-light, VCM/GDI, cost and commerce claims.",
+      "identityRule": "The existing symptom/component identity remains on the same ID; only exact Honda-source-backed scope, mechanism and guidance change.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10115802-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 16-002 - Starter Grinds or Spins at Startup supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "156aaaef407e86a5acf2e23e6152aa4bdb07316414a1c39c35e03e4f6e3ef22c",
+      "proposalSha256": "897c8bc6c236fd32ea51c8f40777d10b1cd1be8d97cbbdcc68769d8428cbb2d2",
+      "before": {
+        "make": "Honda",
+        "model": "Crosstour",
+        "years": [
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Electrical System Issues and Starter Failures",
+        "description": "The 2013-2015 Honda Crosstour experiences electrical system issues including starter failures, erratic dashboard warnings, and electrical gremlins. The starter motor fails prematurely (often before 100k miles), causing clicking noise when trying to start or complete no-start condition. Dashboard warnings appear randomly (VSA, ABS, check engine). Integration issues between VCM and GDI systems cause engine roughness. Starter replacement: $250-500.",
+        "solution": "Starter failure: Replace starter motor ($250-500 parts+labor). Electrical gremlins: Check battery terminals for corrosion, test battery (load test), inspect ground cables. Random warnings: Often caused by weak battery or bad alternator - test charging system first before replacing expensive modules. If issues started after VCM disable, check for software conflicts.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Clicking noise when trying to start",
+          "No start condition (engine won't crank)",
+          "Intermittent starting issues",
+          "Random dashboard warning lights (VSA, ABS)",
+          "Electrical accessories malfunctioning",
+          "Battery draining overnight"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0401",
+          "P0402",
+          "P0403",
+          "P0404"
+        ],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2013/HONDA/CROSSTOUR",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2013 Honda Crosstour - Complaints and Investigations"
+          },
+          {
+            "url": "https://www.automd.com/tsb/honda/2013/crosstour/13-045/13-045.pdf",
+            "type": "tsb",
+            "title": "Honda TSB 13-045: Starter Motor Premature Failure and Electrical Issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/4j7k6h/2013_honda_crosstour_starter_failure_and_electrical/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice Thread Discussing 2013 Honda Crosstour Starter Failures and Electrical Issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Clicking when starting is usually bad starter motor - test it before replacing battery or alternator (saves $200 in wrong parts).",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "OEM Denso starter or remanufactured from AutoZone ($150-250) work equally well. Avoid ultra-cheap Chinese starters - fail within months.",
+            "upvotes": 0,
+            "partBrand": "Denso",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Crosstour%20OEM%20Denso%20starter%20or%20remanufactured%20from%20AutoZone%20(%24150-250)&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Random electrical issues often indicate weak battery or bad alternator - test these FIRST before chasing expensive gremlins.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Crosstour",
+        "years": [
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Starter Grinds or Spins at Startup - Service Bulletin 16-002",
+        "description": "Honda Service Bulletin 16-002 applies to 2013-2015 Crosstour V6 models with an automatic transmission. The starter may grind or spin at startup because clearance between the starter motor gear and the torque-converter ring gear is not optimal.",
+        "solution": "Have a Honda dealer confirm that Service Bulletin 16-002 applies. The bulletin directs the technician to replace the starter and rotate the torque converter clockwise by one bolt hole.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Starter grinds at startup",
+          "Starter spins at startup without cranking the engine normally"
+        ],
+        "affectedSystems": [
+          "starter motor gear",
+          "torque-converter ring gear"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 16-002 - Starter Grinds or Spins at Startup",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10115802-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Narrowed the mixed electrical aggregation to the exact 2013-2015 V6 automatic starter/ring-gear condition in Honda Service Bulletin 16-002 and removed unsupported warning-light, VCM/GDI, cost and commerce claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-crosstour-paint-clearcoat-issues-2010",
+      "model": "Crosstour",
+      "action": "rewrite_same_identity",
+      "reason": "Corrected the broad 2010-2015 paint card to Honda's documented 2014-2015 NH-603P White Diamond Pearl investigation and removed the unsupported 13-086 warranty-extension, color, cost, rust and commerce claims.",
+      "identityRule": "The existing symptom/component identity remains on the same ID; only exact Honda-source-backed scope, mechanism and guidance change.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10160916-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Engineering Request AER19050A - 2014-2015 Crosstour White Diamond Pearl Paint Peel supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "9661e5ee1caa8690e0de6e75024688ad7514cae92c7bf8016152dd54bee7f73c",
+      "proposalSha256": "1e5e9a1bdc6335bf77383d90907bda9148e0c7366d45957e2851ad77e5266bdc",
+      "before": {
+        "make": "Honda",
+        "model": "Crosstour",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Paint and Clearcoat Issues",
+        "description": "Some Honda Crosstour owners report paint peeling, bubbling, or clearcoat failures, especially on the hood and roof. While not as widespread as some other Honda models, it still affects a notable number of Crosstours. Most common on white and silver colors. Honda has not issued a warranty extension for Crosstours. Full panel repaint: $1,500-3,000.",
+        "solution": "If under warranty, document and take to dealer immediately. If out of warranty: (1) Document with photos, (2) Contact Honda Customer Service (1-888-234-2138) for goodwill assistance - some owners got partial coverage. (3) Full panel repaint: $1,500-3,000. Use premium paint systems (PPG, Axalta). Catch early before rust forms.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Paint peeling or bubbling (especially hood/roof)",
+          "Clearcoat flaking off",
+          "Rust forming where paint is gone",
+          "Paint fading prematurely"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "Honda Service Bulletin 13-086: Warranty Extension: Paint Chalking, Cracking, or Peeling on Hood, Roof, and Deck Lid"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Honda/Crosstour/",
+            "type": "forum",
+            "title": "CarComplaints - Honda Crosstour Paint Problems"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Contact Honda Customer Service and escalate - some CrosstourOwnersClub members got goodwill coverage by being persistent.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't delay - once paint peels to bare metal, rust forms quickly and Honda won't cover it.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Dupli-Color touch-up paint kit for scratch and chip repair",
+            "partName": "Touch-Up Paint Kit",
+            "partBrand": "Dupli-Color",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dupli-Color%20touch%20up%20paint%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dupli-Color clear coat finish for paint protection",
+            "partName": "Clear Coat Spray",
+            "partBrand": "Dupli-Color",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dupli-Color%20clear%20coat%20spray&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Crosstour",
+        "years": [
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "White Diamond Pearl Paint Peeling - Honda Investigation",
+        "description": "American Honda investigated paint-peeling complaints on certain 2014-2015 Crosstours finished in NH-603P White Diamond Pearl. Honda requested inspection of vehicles that had not been in a collision and had not already been repaired. The engineering request did not identify a cause or announce a warranty extension.",
+        "solution": "Document the paint color, affected panels and peeling before repair, then ask a Honda dealer whether any current VIN-specific assistance applies. The cited engineering request asked dealers to contact Honda before attempting a repair; it did not promise coverage or specify a repair procedure.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Paint peeling on a 2014-2015 Crosstour finished in NH-603P White Diamond Pearl"
+        ],
+        "affectedSystems": [
+          "exterior paint",
+          "body finish"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "manufacturer",
+            "title": "Honda Engineering Request AER19050A - 2014-2015 Crosstour White Diamond Pearl Paint Peel",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10160916-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Corrected the broad 2010-2015 paint card to Honda's documented 2014-2015 NH-603P White Diamond Pearl investigation and removed the unsupported 13-086 warranty-extension, color, cost, rust and commerce claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-crosstour-suspension-strut-wear-2010",
+      "model": "Crosstour",
+      "action": "keep_published_pending_source",
+      "reason": "Honda Bulletin 12-082 documents a hot-weather front clunk caused by lower ball-joint grease redistribution, not the frozen page's strut-wear identity. Substituting that different component would repeat the prior audit failure, so the row stays byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different model, component or failure mode cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "citation-identity-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2013/SB-10086863-2280.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Bulletin 12-082 covers a 2010-2013 Crosstour front clunk caused by lower ball joints, not premature front-strut wear."
+        }
+      ],
+      "beforeSha256": "0a5f927e16236fc1b49103461859050885c05b342a5af88bc42ed4779de550f7",
+      "proposalSha256": "0a5f927e16236fc1b49103461859050885c05b342a5af88bc42ed4779de550f7",
+      "before": {
+        "make": "Honda",
+        "model": "Crosstour",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Struts and Suspension Component Wear",
+        "description": "About 10% of Honda Crosstour owners report premature suspension wear, particularly front struts and shocks. Symptoms include clunking noise over bumps, bouncy or loose handling, uneven tire wear, and nose-dive when braking. Worn struts decrease handling performance and safety. The Crosstour's weight (3,800-4,000 lbs) accelerates suspension wear. Replacement: $400-800 for front struts (pair).",
+        "solution": "Replace worn front struts with OEM Honda or quality aftermarket (KYB, Monroe, Gabriel) struts ($400-800 for pair + alignment). Always replace in pairs (both fronts). Get 4-wheel alignment after strut replacement ($100-150). DIY possible but requires spring compressor tool (dangerous - recommend professional install). CrosstourOwnersClub recommends KYB struts for better ride quality than OEM.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Clunking or knocking noise over bumps",
+          "Bouncy or loose ride quality",
+          "Nose-dive when braking",
+          "Uneven tire wear",
+          "Vehicle wanders or drifts on highway",
+          "Poor handling in turns"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Honda/Crosstour/",
+            "type": "forum",
+            "title": "CarComplaints - Honda Crosstour Suspension Problems"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "CrosstourOwnersClub top pick: KYB Excel-G struts - better ride quality than OEM, last 80k+ miles, cost 30% less.",
+            "upvotes": 0,
+            "partName": "Excel-G Struts",
+            "partBrand": "KYB",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=KYB%20Excel-G%20Struts&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Worn struts are a SAFETY issue - they increase stopping distance, reduce handling, and can cause accidents. Don't ignore clunking/bouncing.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get 4-wheel alignment AFTER strut replacement - new struts will change suspension geometry. Skipping alignment causes premature tire wear.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Crosstour",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Struts and Suspension Component Wear",
+        "description": "About 10% of Honda Crosstour owners report premature suspension wear, particularly front struts and shocks. Symptoms include clunking noise over bumps, bouncy or loose handling, uneven tire wear, and nose-dive when braking. Worn struts decrease handling performance and safety. The Crosstour's weight (3,800-4,000 lbs) accelerates suspension wear. Replacement: $400-800 for front struts (pair).",
+        "solution": "Replace worn front struts with OEM Honda or quality aftermarket (KYB, Monroe, Gabriel) struts ($400-800 for pair + alignment). Always replace in pairs (both fronts). Get 4-wheel alignment after strut replacement ($100-150). DIY possible but requires spring compressor tool (dangerous - recommend professional install). CrosstourOwnersClub recommends KYB struts for better ride quality than OEM.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Clunking or knocking noise over bumps",
+          "Bouncy or loose ride quality",
+          "Nose-dive when braking",
+          "Uneven tire wear",
+          "Vehicle wanders or drifts on highway",
+          "Poor handling in turns"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Honda/Crosstour/",
+            "type": "forum",
+            "title": "CarComplaints - Honda Crosstour Suspension Problems"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "CrosstourOwnersClub top pick: KYB Excel-G struts - better ride quality than OEM, last 80k+ miles, cost 30% less.",
+            "upvotes": 0,
+            "partName": "Excel-G Struts",
+            "partBrand": "KYB",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=KYB%20Excel-G%20Struts&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Worn struts are a SAFETY issue - they increase stopping distance, reduce handling, and can cause accidents. Don't ignore clunking/bouncing.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get 4-wheel alignment AFTER strut replacement - new struts will change suspension geometry. Skipping alignment causes premature tire wear.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-crosstour-transmission-parking-pawl-2010",
+      "model": "Crosstour",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen narrative matches recall 11V-395, but that official record lists Accord, CR-V and Element and the NHTSA 2010 Accord Crosstour recall lookup does not return 11V-395. No Crosstour-specific parking-pawl campaign was verified, so the row stays byte-for-byte unchanged for independent disposition.",
+      "identityRule": "No content or publication-state changes; a different model, component or failure mode cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "recall-scope-mismatch",
+          "url": "https://static.nhtsa.gov/odi/rcl/2011/RCAK-11V395-5977.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA recall 11V-395 names 2005-2010 Accord, 2007-2010 CR-V and 2005-2008 Element; it does not name Accord Crosstour."
+        },
+        {
+          "kind": "government-recall-api",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Honda&model=Accord%20Crosstour&modelYear=2010",
+          "verifiedOn": "2026-08-06",
+          "observation": "The NHTSA 2010 Honda Accord Crosstour recall results do not include campaign 11V-395."
+        }
+      ],
+      "beforeSha256": "9eef02cdf7ca57872c4ae207ef8f9ae73c92d821d12bee05a4fa7e1803be86dc",
+      "proposalSha256": "9eef02cdf7ca57872c4ae207ef8f9ae73c92d821d12bee05a4fa7e1803be86dc",
+      "before": {
+        "make": "Honda",
+        "model": "Crosstour",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Transmission Parking Pawl Failure (Vehicle Rolls Away)",
+        "description": "The Honda Crosstour (2010-2015) has a serious transmission defect where pieces of the ball bearing from the secondary shaft can become lodged in the parking pawl, causing the transmission to slip when put into Park. This results in the vehicle rolling away unexpectedly, creating a serious safety hazard. Honda issued a recall for the transmission control module software to prevent engine stall, but the parking pawl issue persists. Symptoms include transmission slipping in Park, vehicle rolling on incline when in Park, and grinding noise when shifting.",
+        "solution": "This is a SAFETY ISSUE - use parking brake ALWAYS when parking, especially on inclines. If vehicle rolls in Park, have transmission inspected immediately. Repair may require internal transmission rebuild ($2,000-4,000) to replace parking pawl and damaged components. Check for Honda recalls/TSBs affecting your VIN. Always use parking brake as backup - don't rely on Park alone.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Vehicle rolls when in Park (especially on incline)",
+          "Grinding noise when shifting to Park",
+          "Transmission slips out of Park",
+          "Difficulty shifting into Park",
+          "Metallic grinding noise from transmission",
+          "Transmission warning lights"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0741",
+          "P0742"
+        ],
+        "estimatedCostLow": 2000,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2010/HONDA/CROSSTOUR",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2010 Honda Crosstour - Includes complaints and investigations"
+          },
+          {
+            "url": "https://www.hondatown.com/threads/2010-crosstour-transmission-issue.123456/",
+            "type": "forum",
+            "title": "HondaTown Forum Thread Discussing 2010 Crosstour Transmission Parking Pawl Failure"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube Repair Video on Honda Crosstour Transmission Parking Pawl Replacement by EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "CRITICAL SAFETY ISSUE: ALWAYS use parking brake when parking - do NOT rely on Park alone. Vehicle can roll away and cause injury/death.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Set parking brake BEFORE shifting to Park - reduces stress on parking pawl and prevents failure.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "If you notice ANY grinding when shifting to Park or vehicle rolls even slightly, get transmission inspected IMMEDIATELY before it fails completely.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Replacement shift solenoid to restore proper gear engagement",
+            "partName": "Transmission Shift Solenoid",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20shift%20solenoid%20Honda%20Crosstour&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Transmission filter kit with gasket for fluid service after solenoid replacement",
+            "partName": "Transmission Filter Kit",
+            "partBrand": "ATP",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Crosstour%20transmission%20filter%20kit%20with%20gasket&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Crosstour",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Transmission Parking Pawl Failure (Vehicle Rolls Away)",
+        "description": "The Honda Crosstour (2010-2015) has a serious transmission defect where pieces of the ball bearing from the secondary shaft can become lodged in the parking pawl, causing the transmission to slip when put into Park. This results in the vehicle rolling away unexpectedly, creating a serious safety hazard. Honda issued a recall for the transmission control module software to prevent engine stall, but the parking pawl issue persists. Symptoms include transmission slipping in Park, vehicle rolling on incline when in Park, and grinding noise when shifting.",
+        "solution": "This is a SAFETY ISSUE - use parking brake ALWAYS when parking, especially on inclines. If vehicle rolls in Park, have transmission inspected immediately. Repair may require internal transmission rebuild ($2,000-4,000) to replace parking pawl and damaged components. Check for Honda recalls/TSBs affecting your VIN. Always use parking brake as backup - don't rely on Park alone.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Vehicle rolls when in Park (especially on incline)",
+          "Grinding noise when shifting to Park",
+          "Transmission slips out of Park",
+          "Difficulty shifting into Park",
+          "Metallic grinding noise from transmission",
+          "Transmission warning lights"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0741",
+          "P0742"
+        ],
+        "estimatedCostLow": 2000,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2010/HONDA/CROSSTOUR",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2010 Honda Crosstour - Includes complaints and investigations"
+          },
+          {
+            "url": "https://www.hondatown.com/threads/2010-crosstour-transmission-issue.123456/",
+            "type": "forum",
+            "title": "HondaTown Forum Thread Discussing 2010 Crosstour Transmission Parking Pawl Failure"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube Repair Video on Honda Crosstour Transmission Parking Pawl Replacement by EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "CRITICAL SAFETY ISSUE: ALWAYS use parking brake when parking - do NOT rely on Park alone. Vehicle can roll away and cause injury/death.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Set parking brake BEFORE shifting to Park - reduces stress on parking pawl and prevents failure.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "If you notice ANY grinding when shifting to Park or vehicle rolls even slightly, get transmission inspected IMMEDIATELY before it fails completely.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Replacement shift solenoid to restore proper gear engagement",
+            "partName": "Transmission Shift Solenoid",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20shift%20solenoid%20Honda%20Crosstour&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Transmission filter kit with gasket for fluid service after solenoid replacement",
+            "partName": "Transmission Filter Kit",
+            "partBrand": "ATP",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Crosstour%20transmission%20filter%20kit%20with%20gasket&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-crosstour-transmission-shudder-2010",
+      "model": "Crosstour",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced the empty and generic citations with the exact Honda procedures, corrected the affected years to 2010 and 2013-2015, and removed unsupported hard-shift, slipping, damage, cost and shopping claims.",
+      "identityRule": "The existing symptom/component identity remains on the same ID; only exact Honda-source-backed scope, mechanism and guidance change.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2017/SB-10108047-9340.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 16-066 - 2010 Accord Crosstour Lock-Up Clutch Software Update supports the proposed same-identity scope, mechanism and remedy."
+        },
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2016/SB-10086084-2280.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 16-067 - 2010 Accord Crosstour Torque Converter Warranty Extension supports the proposed same-identity scope, mechanism and remedy."
+        },
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10139550-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 17-041 - 2013-2015 Crosstour V6 Lock-Up Clutch Judder supports the proposed same-identity scope, mechanism and remedy."
+        },
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10139551-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 17-042 - Crosstour Judder After Software Update supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "f660ee96fd88a835cd72fa7b0cb78015aa65ebabd880016c5af57a74434b8f3a",
+      "proposalSha256": "80836dc9523dc9af685ea75ea1a70fcc2fc7955a91bb19fcf9aeb360df64ff50",
+      "before": {
+        "make": "Honda",
+        "model": "Crosstour",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Transmission Shudder and Hard Shifting",
+        "description": "Honda Crosstour (2010-2015) owners report transmission shuddering, hard shifting, slipping gears, and hesitation during acceleration. The 5-speed automatic transmission experiences torque converter shudder at low speeds (15-35 mph) and harsh shifting between gears. Honda issued software updates for torque converter control, but many owners report issues persist. Transmission fluid flush may help temporarily.",
+        "solution": "Early stage: Transmission fluid flush with genuine Honda ATF DW-1 ($150-250). Check for Honda software updates/TSBs for torque converter. Severe cases: Torque converter replacement ($1,500-2,500) or transmission rebuild ($2,500-4,000). CrosstourOwnersClub reports some dealers performed torque converter software updates that improved shudder. Use only Honda ATF DW-1 - aftermarket fluids make shudder worse.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Transmission shuddering at low speeds (15-35 mph)",
+          "Hard or harsh shifting between gears",
+          "Slipping gears during acceleration",
+          "Hesitation when accelerating from stop",
+          "Grinding or whining noise from transmission",
+          "Rough downshifts when slowing"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0740",
+          "P0741",
+          "P0742"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 17-014: Judder from the Torque Converter Lock-Up Clutch After Software Update"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2010/HONDA/ACCORD%252520CROSSTOUR/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10629870"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use ONLY genuine Honda ATF DW-1 fluid - CrosstourOwnersClub members who used aftermarket fluids report shudder got WORSE.",
+            "upvotes": 0,
+            "partName": "ATF DW-1 Automatic Transmission Fluid",
+            "partBrand": "Honda",
+            "partNumber": "08200-9008",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%2008200-9008&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Ask dealer for torque converter software update (TSB may exist) - some CrosstourOwnersClub members report this fixed shudder.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't ignore shudder - it indicates torque converter wear. Continued driving can lead to complete transmission failure requiring $3k+ rebuild.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-crv-cvt-shudder-2015",
+          "honda-odyssey-torque-converter-shudder-2011",
+          "honda-accord-9speed-zf-transmission-2018",
+          "honda-civic-automatic-transmission-failure-and-harsh-shifting",
+          "honda-hrv-cvt-transmission-shudder-2016"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Crosstour",
+        "years": [
+          2010,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Torque Converter Lock-Up Clutch Judder - Honda Bulletins 16-066 and 17-041",
+        "description": "Honda documented torque-converter lock-up clutch judder on eligible 2010 Accord Crosstours at 20-45 mph and on 2013-2015 Crosstour V6 automatic models at 20-60 mph. For the 2013-2015 vehicles, Honda attributed the judder to transmission fluid deteriorating under intermittent high heat and stated that this judder did not mean the torque converter or transmission was damaged.",
+        "solution": "Ask a Honda dealer to confirm the model-year procedure and VIN eligibility. For an eligible 2010 vehicle, Bulletin 16-066 calls for a software update and ATF replacement; if the verified judder returns, Bulletin 16-067 provides a torque-converter inspection and possible replacement path. For 2013-2015 V6 automatic vehicles, Bulletin 17-041 calls for a transmission snapshot, software update and ATF flush when confirmed; Bulletin 17-042 covers confirmed judder after the update.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Judder from the torque-converter lock-up clutch between 20 and 45 mph on an eligible 2010 vehicle",
+          "Judder between 20 and 60 mph on a 2013-2015 Crosstour V6 automatic"
+        ],
+        "affectedSystems": [
+          "torque-converter lock-up clutch",
+          "automatic transmission fluid",
+          "PGM-FI software"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 16-066 - 2010 Accord Crosstour Lock-Up Clutch Software Update",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2017/SB-10108047-9340.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 16-067 - 2010 Accord Crosstour Torque Converter Warranty Extension",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2016/SB-10086084-2280.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 17-041 - 2013-2015 Crosstour V6 Lock-Up Clutch Judder",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10139550-9999.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 17-042 - Crosstour Judder After Software Update",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10139551-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced the empty and generic citations with the exact Honda procedures, corrected the affected years to 2010 and 2013-2015, and removed unsupported hard-shift, slipping, damage, cost and shopping claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-crosstour-vcm-oil-consumption-2010",
+      "model": "Crosstour",
+      "action": "keep_published_pending_source",
+      "reason": "Honda Bulletin 13-079 covers rotating/aligned piston rings, fouled spark plugs and misfire DTCs P0301-P0304. It does not establish the frozen page's severe oil-consumption rate, VCM causation, engine-damage estimate or VCM-disabler remedy. The row stays byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different model, component or failure mode cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "citation-identity-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10152431-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Bulletin 13-079 supports piston-ring alignment, spark-plug fouling and misfire DTCs P0301-P0304, not the frozen VCM oil-consumption narrative."
+        }
+      ],
+      "beforeSha256": "50fd8e5712af64ebcac00d039ae02b614b4c3b308a93abdee6334673eca2a597",
+      "proposalSha256": "50fd8e5712af64ebcac00d039ae02b614b4c3b308a93abdee6334673eca2a597",
+      "before": {
+        "make": "Honda",
+        "model": "Crosstour",
+        "years": [
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [
+          "J35Z2"
+        ],
+        "category": "engine",
+        "title": "VCM System Oil Consumption and Engine Damage",
+        "description": "The 2010-2012 Honda Crosstour with J35Z2 V6 engine and VCM (Variable Cylinder Management) experiences severe oil consumption, often consuming 1 quart every 1,000-1,500 miles. The VCM system deactivates cylinders for fuel economy, but this causes improper ring oiling, damaging piston rings and cylinder walls. Symptoms include excessive oil consumption, misfires, fouled spark plugs, and engine damage. The 2013+ Crosstour uses the J35Y1 engine which fixed VCM issues. Solutions: VCM Muzzler ($170) to disable VCM, or frequent oil top-offs. Engine rebuild/replacement: $4,000-8,000.",
+        "solution": "Prevention (before damage): Install VCM Muzzler II ($170-200) to disable VCM system - CrosstourOwnersClub.com members report oil consumption drops to normal levels. Monitor oil level weekly and top off as needed. Severe damage: Engine rebuild ($4,000-6,000) or replacement ($6,000-8,000). Honda may cover under goodwill if under 100k miles - document all oil consumption and dealer visits. Switch to 0W-20 or 5W-30 synthetic oil - some owners report reduced consumption.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Excessive oil consumption (1qt per 1,000-1,500 miles)",
+          "Low oil warning light",
+          "Engine misfires (especially cylinders 1, 4, 6)",
+          "Fouled spark plugs",
+          "Rough idle when VCM active",
+          "Check engine light with misfire codes",
+          "Blue smoke from exhaust (burning oil)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0420",
+          "P0171",
+          "P0174",
+          "P0300",
+          "P0301"
+        ],
+        "estimatedCostLow": 170,
+        "estimatedCostHigh": 8000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "CrosstourOwnersClub.com #1 fix: VCM Muzzler II ($170) - disables VCM, oil consumption drops to normal, better throttle response. 500+ owners use it.",
+            "upvotes": 0,
+            "partName": "VCM Muzzler II",
+            "partBrand": "VCM Tuner",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=VCM%20Tuner%20VCM%20Muzzler%20II&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "CRITICAL: Check oil level EVERY WEEK - running low on oil will destroy engine ($6k+ replacement). Low oil light means you're already dangerously low.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Document EVERYTHING - every quart of oil added, dealer visits, complaints. Honda may offer goodwill engine replacement if you have documentation.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "2013+ Crosstour has J35Y1 engine without VCM oil consumption issues - if buying used, get 2013 or newer to avoid this problem.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-odyssey-vcm-oil-consumption-2005",
+          "honda-ridgeline-vcm-oil-consumption-2006",
+          "honda-pilot-vcm-oil-consumption-2016",
+          "honda-accord-v6-vcm-oil-consumption-2008",
+          "honda-s2000-vtec-oil-consumption-2000"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Crosstour",
+        "years": [
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [
+          "J35Z2"
+        ],
+        "category": "engine",
+        "title": "VCM System Oil Consumption and Engine Damage",
+        "description": "The 2010-2012 Honda Crosstour with J35Z2 V6 engine and VCM (Variable Cylinder Management) experiences severe oil consumption, often consuming 1 quart every 1,000-1,500 miles. The VCM system deactivates cylinders for fuel economy, but this causes improper ring oiling, damaging piston rings and cylinder walls. Symptoms include excessive oil consumption, misfires, fouled spark plugs, and engine damage. The 2013+ Crosstour uses the J35Y1 engine which fixed VCM issues. Solutions: VCM Muzzler ($170) to disable VCM, or frequent oil top-offs. Engine rebuild/replacement: $4,000-8,000.",
+        "solution": "Prevention (before damage): Install VCM Muzzler II ($170-200) to disable VCM system - CrosstourOwnersClub.com members report oil consumption drops to normal levels. Monitor oil level weekly and top off as needed. Severe damage: Engine rebuild ($4,000-6,000) or replacement ($6,000-8,000). Honda may cover under goodwill if under 100k miles - document all oil consumption and dealer visits. Switch to 0W-20 or 5W-30 synthetic oil - some owners report reduced consumption.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Excessive oil consumption (1qt per 1,000-1,500 miles)",
+          "Low oil warning light",
+          "Engine misfires (especially cylinders 1, 4, 6)",
+          "Fouled spark plugs",
+          "Rough idle when VCM active",
+          "Check engine light with misfire codes",
+          "Blue smoke from exhaust (burning oil)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0420",
+          "P0171",
+          "P0174",
+          "P0300",
+          "P0301"
+        ],
+        "estimatedCostLow": 170,
+        "estimatedCostHigh": 8000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "CrosstourOwnersClub.com #1 fix: VCM Muzzler II ($170) - disables VCM, oil consumption drops to normal, better throttle response. 500+ owners use it.",
+            "upvotes": 0,
+            "partName": "VCM Muzzler II",
+            "partBrand": "VCM Tuner",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=VCM%20Tuner%20VCM%20Muzzler%20II&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "CRITICAL: Check oil level EVERY WEEK - running low on oil will destroy engine ($6k+ replacement). Low oil light means you're already dangerously low.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Document EVERYTHING - every quart of oil added, dealer visits, complaints. Honda may offer goodwill engine replacement if you have documentation.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "2013+ Crosstour has J35Y1 engine without VCM oil consumption issues - if buying used, get 2013 or newer to avoid this problem.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-odyssey-vcm-oil-consumption-2005",
+          "honda-ridgeline-vcm-oil-consumption-2006",
+          "honda-pilot-vcm-oil-consumption-2016",
+          "honda-accord-v6-vcm-oil-consumption-2008",
+          "honda-s2000-vtec-oil-consumption-2000"
+        ]
+      }
+    }
+  ]
+}
