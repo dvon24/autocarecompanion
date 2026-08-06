@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Infiniti",
+  "model": "EX35",
+  "completionStatement": "This packet reconciles the one frozen Infiniti EX35 row. No exact primary-source rewrite cleared the gate, so the indexed page remains byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "The EX35 row remains published and byte-for-byte unchanged.",
+    "An unrelated recall set or forum homepage may never replace an indexed issue.",
+    "Existing citations and commerce remain frozen rather than being silently rewritten without exact identity and fitment evidence.",
+    "Independent row-by-row approval is required before any separate correction path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_infiniti-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "d39bdd77a0557365946b551a26b951cb1a5ba81773b7b66497201347b5034f64",
+    "snapshotGeneratedAt": "2026-08-06T23:15:05.490Z",
+    "snapshotHash": "45dde736354a9dcd17a72399b0101f30373ca9c267e6cd49a2528a63a023eebd",
+    "ex35RecordCount": 1
+  },
+  "observations": [
+    {
+      "code": "official-recall-set-unrelated",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "infiniti-ex35-oil-consumption"
+      ],
+      "detail": "The 2008-2012 NHTSA recall results cover steering, air-bag and aftermarket-hitch defects, not the indexed oil-consumption identity."
+    },
+    {
+      "code": "unsupported-mechanism-and-threshold-frozen",
+      "severity": "high",
+      "recordIds": [
+        "infiniti-ex35-oil-consumption"
+      ],
+      "detail": "No exact primary source was found for the claimed consumption rate, valve-seal and ring mechanism, dealer threshold or repair bundle."
+    },
+    {
+      "code": "one-ex35-page-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "infiniti-ex35-oil-consumption"
+      ],
+      "detail": "The indexed EX35 record remains published with identical identity, content, citations and commerce."
+    }
+  ],
+  "mismatchSources": {
+    "recallQueries": {
+      "2008": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=EX35&modelYear=2008",
+      "2009": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=EX35&modelYear=2009",
+      "2010": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=EX35&modelYear=2010",
+      "2011": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=EX35&modelYear=2011",
+      "2012": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=EX35&modelYear=2012"
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 1,
+    "total": 1
+  },
+  "rows": [
+    {
+      "id": "infiniti-ex35-oil-consumption",
+      "model": "EX35",
+      "action": "keep_published_pending_source",
+      "reason": "The existing forum-homepage citation does not establish one 2008-2012 EX35 VQ35HR oil-consumption defect, the asserted one-quart rate, valve-stem-seal and piston-ring mechanism, dealer threshold or repair scope. The official model-year recall set covers steering-column, air-bag and aftermarket-hitch defects only, so this indexed row remains published and byte-for-byte unchanged pending an exact primary source.",
+      "identityRule": "No content or publication-state changes; an unrelated recall set and a forum homepage cannot substantiate or replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=EX35&modelYear=2008",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA results for the 2008-2012 EX35 cover steering-column, passenger-air-bag, occupant-classification and aftermarket-hitch defects; none establishes engine-oil consumption, valve-stem-seal wear or piston-ring coking.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=EX35&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=EX35&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=EX35&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=EX35&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=EX35&modelYear=2012"
+          ],
+          "observedCampaignNumbers": [
+            "08V066000",
+            "08V521000",
+            "09E050000",
+            "15V054000"
+          ]
+        }
+      ],
+      "beforeSha256": "2c3c8fcddd0039f51a941bb6199c995fe10f7ead4198e2c844407e84f55e29ab",
+      "proposalSha256": "2c3c8fcddd0039f51a941bb6199c995fe10f7ead4198e2c844407e84f55e29ab",
+      "before": {
+        "make": "Infiniti",
+        "model": "EX35",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [
+          "3.5L VQ35HR V6",
+          "VQ35HR"
+        ],
+        "category": "engine",
+        "title": "VQ35HR Oil Consumption",
+        "description": "The VQ35HR engine in the EX35 exhibits higher-than-normal oil consumption, typically burning 1 quart every 2,000-3,000 miles. Worn valve stem seals and piston ring coking contribute to the problem, especially in vehicles with infrequent oil changes.",
+        "solution": "Perform an oil consumption test at the dealer to establish baseline usage. Replace valve stem seals if consumption exceeds 1 quart per 1,500 miles. Use quality 5W-30 synthetic oil and change every 5,000 miles.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil level dropping between changes",
+          "Light blue exhaust smoke on startup",
+          "Fouled spark plugs"
+        ],
+        "affectedSystems": [
+          "engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.infinitiscene.com",
+            "title": "EX35 Oil Consumption Thread",
+            "source": "Infiniti Scene Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-g35-oil-consumption-vq35de",
+          "nissan-350z-oil-consumption-2003",
+          "infiniti-g37-galley-gasket-oil-leak",
+          "infiniti-qx55-vc-turbo-oil-consumption"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "EX35",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [
+          "3.5L VQ35HR V6",
+          "VQ35HR"
+        ],
+        "category": "engine",
+        "title": "VQ35HR Oil Consumption",
+        "description": "The VQ35HR engine in the EX35 exhibits higher-than-normal oil consumption, typically burning 1 quart every 2,000-3,000 miles. Worn valve stem seals and piston ring coking contribute to the problem, especially in vehicles with infrequent oil changes.",
+        "solution": "Perform an oil consumption test at the dealer to establish baseline usage. Replace valve stem seals if consumption exceeds 1 quart per 1,500 miles. Use quality 5W-30 synthetic oil and change every 5,000 miles.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil level dropping between changes",
+          "Light blue exhaust smoke on startup",
+          "Fouled spark plugs"
+        ],
+        "affectedSystems": [
+          "engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.infinitiscene.com",
+            "title": "EX35 Oil Consumption Thread",
+            "source": "Infiniti Scene Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-g35-oil-consumption-vq35de",
+          "nissan-350z-oil-consumption-2003",
+          "infiniti-g37-galley-gasket-oil-leak",
+          "infiniti-qx55-vc-turbo-oil-consumption"
+        ]
+      }
+    }
+  ]
+}
