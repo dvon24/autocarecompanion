@@ -1,0 +1,857 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "XG350",
+  "completionStatement": "This packet reconciles all four frozen Hyundai XG350 rows. No same-identity primary-source rewrite cleared the gate; all four remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All four rows remain published and byte-for-byte unchanged.",
+    "An unrelated recall, generic vehicle page or placeholder-style secondary URL may never replace an indexed issue.",
+    "Existing commerce remains frozen rather than being silently rewritten without exact identity and fitment evidence.",
+    "Independent row-by-row approval is required before any separate correction path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "xg350RecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "official-recall-set-unrelated",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-xg350-intake-manifold-gasket-2002",
+        "hyundai-xg350-power-steering-2002",
+        "hyundai-xg350-timing-belt-tensioner-2001",
+        "hyundai-xg350-window-regulator-2002"
+      ],
+      "detail": "NHTSA API results for 2001-2005 contain only front-subframe corrosion and fuel-tank-valve campaigns, plus no 2005 campaign; none supports these four indexed identities."
+    },
+    {
+      "code": "steering-pull-not-hydraulic-steering-defect",
+      "severity": "high",
+      "recordIds": [
+        "hyundai-xg350-power-steering-2002"
+      ],
+      "detail": "The sub-frame recall may mention steering pull from control-arm mounting damage, but it cannot establish pump wear or pressure-line leakage."
+    },
+    {
+      "code": "generic-and-placeholder-sources-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-xg350-intake-manifold-gasket-2002",
+        "hyundai-xg350-power-steering-2002",
+        "hyundai-xg350-timing-belt-tensioner-2001",
+        "hyundai-xg350-window-regulator-2002"
+      ],
+      "detail": "Generic vehicle pages, a forum homepage and placeholder-style forum or video URLs do not establish model-wide failure, diagnostic, repair or commerce claims."
+    },
+    {
+      "code": "four-xg350-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "hyundai-xg350-intake-manifold-gasket-2002",
+        "hyundai-xg350-power-steering-2002",
+        "hyundai-xg350-timing-belt-tensioner-2001",
+        "hyundai-xg350-window-regulator-2002"
+      ],
+      "detail": "All four indexed XG350 records remain published with identical titles, categories, content, citations and commerce."
+    }
+  ],
+  "mismatchSources": {
+    "recallQueries": {
+      "2001": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2001",
+      "2002": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2002",
+      "2003": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2003",
+      "2004": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2004",
+      "2005": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2005"
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 4,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "hyundai-xg350-intake-manifold-gasket-2002",
+      "model": "XG350",
+      "action": "keep_published_pending_source",
+      "reason": "A generic NHTSA vehicle page and unverified video do not establish one 2002-2005 XG350 intake-manifold-gasket defect, upper-plenum failure pattern, DTC set, repair scope or commerce fitment. The official recall set contains only unrelated sub-frame and fuel-tank-valve campaigns, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic page, placeholder-style URL or unrelated recall cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2001",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official XG350 recall set covers salt-belt front-subframe corrosion and fuel-tank valves; none concerns the indexed intake-gasket, timing-tensioner or window-regulator identity.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2001",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2002",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2005"
+          ],
+          "observedCampaignNumbers": [
+            "04V178000",
+            "04V369000",
+            "09V124000"
+          ]
+        }
+      ],
+      "beforeSha256": "b204b3127765755cae4250956771df484a06ccc6262fef78c16309802e1d1fd8",
+      "proposalSha256": "b204b3127765755cae4250956771df484a06ccc6262fef78c16309802e1d1fd8",
+      "before": {
+        "make": "Hyundai",
+        "model": "XG350",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [
+          "3.5L V6"
+        ],
+        "category": "engine",
+        "title": "Intake Manifold Gasket Leak",
+        "description": "The 3.5L V6 intake manifold gaskets deteriorate causing vacuum leaks, rough idle, and lean running conditions. Upper plenum gasket is most common failure point. Can trigger multiple misfire codes.",
+        "solution": "Replace upper and lower intake manifold gaskets. Clean manifold mating surfaces. Inspect PCV system and vacuum hoses while manifold is removed. Use OEM gaskets for best seal.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Rough idle",
+          "Lean misfire",
+          "Hissing noise from engine",
+          "Check engine light",
+          "Poor acceleration"
+        ],
+        "affectedSystems": [
+          "Intake manifold",
+          "Engine management"
+        ],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0300"
+        ],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2002/HYUNDAI/XG350",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2002 Hyundai XG350 - includes complaints related to intake manifold gasket leaks"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=7kG6QY6Yx9s",
+            "type": "video",
+            "title": "EricTheCarGuy - Hyundai XG350 Intake Manifold Gasket Replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Valve cover gasket set stops oil leaks at the top of the engine",
+            "partName": "Valve Cover Gasket Set",
+            "partBrand": "Fel-Pro",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20XG350%20Fel-Pro%20Valve%20Cover%20Gasket%20Set&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Replacement PCV valve restores proper crankcase ventilation",
+            "partName": "PCV Valve",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20XG350%20Dorman%20PCV%20Valve&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "dodge-dakota-intake-gasket-1997",
+          "chevy-venture-intake-gasket-1997"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "XG350",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [
+          "3.5L V6"
+        ],
+        "category": "engine",
+        "title": "Intake Manifold Gasket Leak",
+        "description": "The 3.5L V6 intake manifold gaskets deteriorate causing vacuum leaks, rough idle, and lean running conditions. Upper plenum gasket is most common failure point. Can trigger multiple misfire codes.",
+        "solution": "Replace upper and lower intake manifold gaskets. Clean manifold mating surfaces. Inspect PCV system and vacuum hoses while manifold is removed. Use OEM gaskets for best seal.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Rough idle",
+          "Lean misfire",
+          "Hissing noise from engine",
+          "Check engine light",
+          "Poor acceleration"
+        ],
+        "affectedSystems": [
+          "Intake manifold",
+          "Engine management"
+        ],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0300"
+        ],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2002/HYUNDAI/XG350",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2002 Hyundai XG350 - includes complaints related to intake manifold gasket leaks"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=7kG6QY6Yx9s",
+            "type": "video",
+            "title": "EricTheCarGuy - Hyundai XG350 Intake Manifold Gasket Replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Valve cover gasket set stops oil leaks at the top of the engine",
+            "partName": "Valve Cover Gasket Set",
+            "partBrand": "Fel-Pro",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20XG350%20Fel-Pro%20Valve%20Cover%20Gasket%20Set&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Replacement PCV valve restores proper crankcase ventilation",
+            "partName": "PCV Valve",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20XG350%20Dorman%20PCV%20Valve&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "dodge-dakota-intake-gasket-1997",
+          "chevy-venture-intake-gasket-1997"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-xg350-power-steering-2002",
+      "model": "XG350",
+      "action": "keep_published_pending_source",
+      "reason": "A forum homepage does not establish one XG350 power-steering pump and pressure-line defect, hot-weather mechanism, failure pattern or repair cost. The official sub-frame recall may mention steering pull but concerns lower-control-arm attachment and cannot support a pump or line-leak identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic page, placeholder-style URL or unrelated recall cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2001",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official XG350 recall set covers salt-belt front-subframe corrosion and fuel-tank valves. The sub-frame campaign may mention steering pull from control-arm mounting damage, but none concerns a power-steering pump or hydraulic line leak.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2001",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2002",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2005"
+          ],
+          "observedCampaignNumbers": [
+            "04V178000",
+            "04V369000",
+            "09V124000"
+          ]
+        }
+      ],
+      "beforeSha256": "d4266961657bc4b1837805b9ca5e011062c92488b45fafee5d3aa4856aa32e78",
+      "proposalSha256": "d4266961657bc4b1837805b9ca5e011062c92488b45fafee5d3aa4856aa32e78",
+      "before": {
+        "make": "Hyundai",
+        "model": "XG350",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Power Steering Pump Failure and Line Leaks",
+        "description": "The XG350's power steering pump develops internal wear causing whining noise and eventual loss of assist. The high-pressure lines also develop leaks at the crimp fittings. Hot weather and full-lock steering accelerate pump wear.",
+        "solution": "Replace the power steering pump and inspect all lines. Replace any lines with wet fittings or visible corrosion. Flush the system with fresh power steering fluid and bleed all air from the system.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Whining when turning",
+          "Heavy steering",
+          "Power steering fluid leaking",
+          "Fluid spraying on engine",
+          "Groaning at full lock",
+          "Steering assist intermittent"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com",
+            "source": "Hyundai Forums",
+            "description": "XG350 power steering pump and line failure reports"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Avoid holding the steering at full lock for more than a few seconds — this overloads the pump and causes premature failure"
+          },
+          {
+            "type": "part",
+            "content": "Complete strut and shock absorber set for full suspension refresh",
+            "partName": "Excel-G Strut/Shock Set",
+            "partBrand": "KYB",
+            "affiliateUrl": "https://www.amazon.com/s?k=KYB%20Excel-G%20struts%20shocks%20Hyundai%20XG350&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Four-wheel alignment kit with cam bolts for proper tire wear correction",
+            "partName": "Alignment Cam Bolt Kit",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20alignment%20cam%20bolt%20kit%20Hyundai%20XG350&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 150,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "XG350",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Power Steering Pump Failure and Line Leaks",
+        "description": "The XG350's power steering pump develops internal wear causing whining noise and eventual loss of assist. The high-pressure lines also develop leaks at the crimp fittings. Hot weather and full-lock steering accelerate pump wear.",
+        "solution": "Replace the power steering pump and inspect all lines. Replace any lines with wet fittings or visible corrosion. Flush the system with fresh power steering fluid and bleed all air from the system.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Whining when turning",
+          "Heavy steering",
+          "Power steering fluid leaking",
+          "Fluid spraying on engine",
+          "Groaning at full lock",
+          "Steering assist intermittent"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com",
+            "source": "Hyundai Forums",
+            "description": "XG350 power steering pump and line failure reports"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Avoid holding the steering at full lock for more than a few seconds — this overloads the pump and causes premature failure"
+          },
+          {
+            "type": "part",
+            "content": "Complete strut and shock absorber set for full suspension refresh",
+            "partName": "Excel-G Strut/Shock Set",
+            "partBrand": "KYB",
+            "affiliateUrl": "https://www.amazon.com/s?k=KYB%20Excel-G%20struts%20shocks%20Hyundai%20XG350&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Four-wheel alignment kit with cam bolts for proper tire wear correction",
+            "partName": "Alignment Cam Bolt Kit",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20alignment%20cam%20bolt%20kit%20Hyundai%20XG350&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 150,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-xg350-timing-belt-tensioner-2001",
+      "model": "XG350",
+      "action": "keep_published_pending_source",
+      "reason": "A generic vehicle page and placeholder-style forum and video URLs do not establish one XG350 hydraulic timing-belt-tensioner defect, interference-engine outcome, 60,000-mile interval, DTC set or repair cost. No official XG350 recall matches the identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic page, placeholder-style URL or unrelated recall cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2001",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official XG350 recall set covers salt-belt front-subframe corrosion and fuel-tank valves; none concerns the indexed intake-gasket, timing-tensioner or window-regulator identity.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2001",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2002",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2005"
+          ],
+          "observedCampaignNumbers": [
+            "04V178000",
+            "04V369000",
+            "09V124000"
+          ]
+        }
+      ],
+      "beforeSha256": "8928535c39bb6445438492c5556416a7f54514bc2ecbf62dca29cc807cbb8331",
+      "proposalSha256": "8928535c39bb6445438492c5556416a7f54514bc2ecbf62dca29cc807cbb8331",
+      "before": {
+        "make": "Hyundai",
+        "model": "XG350",
+        "years": [
+          2001,
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [
+          "3.5L Sigma V6"
+        ],
+        "category": "engine",
+        "title": "Timing Belt Tensioner Failure (3.5L Sigma V6)",
+        "description": "The 3.5L Sigma V6 engine in the XG350 uses a timing belt with a hydraulic tensioner that can fail, allowing the belt to lose tension. The tensioner bearing can seize or the hydraulic damper can leak, both leading to belt slack and potential timing jump. The Sigma V6 is an interference engine, so a timing belt failure or jump causes catastrophic engine damage. Hyundai recommends timing belt replacement at 60,000-mile intervals, but many XG350 owners defer this service due to cost.",
+        "solution": "",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Squealing or chirping from timing cover area",
+          "Engine vibration and rough idle",
+          "Check engine light with timing codes",
+          "Ticking noise from front of engine",
+          "Sudden engine failure if belt jumps or breaks"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0016",
+          "P0017"
+        ],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 48000,
+        "typicalMileageHigh": 72000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2001/HYUNDAI/XG350",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2001 Hyundai XG350 - Complaints and Investigations"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/timing-belt-tensioner-failure-on-xg350.12345/",
+            "type": "forum",
+            "title": "Hyundai Forums - Timing Belt Tensioner Failure on XG350 Discussion Thread"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=7kQ2jY3Qw2k",
+            "type": "video",
+            "title": "EricTheCarGuy - Hyundai XG350 Timing Belt and Tensioner Replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Complete timing belt kit with water pump for a comprehensive replacement",
+            "partName": "Timing Belt Kit with Water Pump",
+            "partBrand": "Gates",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20XG350%20Gates%20Timing%20Belt%20Kit%20with%20Water%20Pump&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "High-quality engine oil is critical after timing service",
+            "partName": "Edge Full Synthetic Motor Oil",
+            "partBrand": "Castrol",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20XG350%20Castrol%20Edge%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-tiburon-timing-belt-tensioner-1997",
+          "hyundai-azera-timing-chain-tensioner-2006"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "XG350",
+        "years": [
+          2001,
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [
+          "3.5L Sigma V6"
+        ],
+        "category": "engine",
+        "title": "Timing Belt Tensioner Failure (3.5L Sigma V6)",
+        "description": "The 3.5L Sigma V6 engine in the XG350 uses a timing belt with a hydraulic tensioner that can fail, allowing the belt to lose tension. The tensioner bearing can seize or the hydraulic damper can leak, both leading to belt slack and potential timing jump. The Sigma V6 is an interference engine, so a timing belt failure or jump causes catastrophic engine damage. Hyundai recommends timing belt replacement at 60,000-mile intervals, but many XG350 owners defer this service due to cost.",
+        "solution": "",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Squealing or chirping from timing cover area",
+          "Engine vibration and rough idle",
+          "Check engine light with timing codes",
+          "Ticking noise from front of engine",
+          "Sudden engine failure if belt jumps or breaks"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0016",
+          "P0017"
+        ],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 48000,
+        "typicalMileageHigh": 72000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2001/HYUNDAI/XG350",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2001 Hyundai XG350 - Complaints and Investigations"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/timing-belt-tensioner-failure-on-xg350.12345/",
+            "type": "forum",
+            "title": "Hyundai Forums - Timing Belt Tensioner Failure on XG350 Discussion Thread"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=7kQ2jY3Qw2k",
+            "type": "video",
+            "title": "EricTheCarGuy - Hyundai XG350 Timing Belt and Tensioner Replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Complete timing belt kit with water pump for a comprehensive replacement",
+            "partName": "Timing Belt Kit with Water Pump",
+            "partBrand": "Gates",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20XG350%20Gates%20Timing%20Belt%20Kit%20with%20Water%20Pump&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "High-quality engine oil is critical after timing service",
+            "partName": "Edge Full Synthetic Motor Oil",
+            "partBrand": "Castrol",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20XG350%20Castrol%20Edge%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-tiburon-timing-belt-tensioner-1997",
+          "hyundai-azera-timing-chain-tensioner-2006"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-xg350-window-regulator-2002",
+      "model": "XG350",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint page and placeholder-style forum and video URLs do not establish one 2002-2005 XG350 regulator-cable defect, front-window frequency or the asserted motor, lubrication and wiring repair bundle. No official XG350 recall matches the identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic page, placeholder-style URL or unrelated recall cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2001",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official XG350 recall set covers salt-belt front-subframe corrosion and fuel-tank valves; none concerns the indexed intake-gasket, timing-tensioner or window-regulator identity.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2001",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2002",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=XG350&modelYear=2005"
+          ],
+          "observedCampaignNumbers": [
+            "04V178000",
+            "04V369000",
+            "09V124000"
+          ]
+        }
+      ],
+      "beforeSha256": "b23d6a641d455dcfdc52edf6b8b48fe37d39ce68d2b58328bea27175805c2c79",
+      "proposalSha256": "b23d6a641d455dcfdc52edf6b8b48fe37d39ce68d2b58328bea27175805c2c79",
+      "before": {
+        "make": "Hyundai",
+        "model": "XG350",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Window Regulator Cable Snap",
+        "description": "Power window regulators use a cable-driven design that is prone to cable breakage, causing the window to drop into the door or jam in a partially open position. Front windows fail most frequently.",
+        "solution": "Replace window regulator assembly (motor and regulator sold as unit). Lubricate window channel guides with silicone spray. Check door wiring harness for chafing.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Window drops into door",
+          "Window moves slowly",
+          "Clicking sound from door",
+          "Window stuck open or closed"
+        ],
+        "affectedSystems": [
+          "Power windows",
+          "Door electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2002/HYUNDAI/XG350#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2002 Hyundai XG350 - Power Window Issues"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/power-window-regulator-cable-break.12345/",
+            "type": "forum",
+            "title": "Hyundai Forums - Power Window Regulator Cable Break on XG350"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=Q5Fv0xwPq5U",
+            "type": "video",
+            "title": "YouTube - How to Replace Power Window Regulator Cable on Hyundai XG350"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Direct-fit window regulator assembly with motor for easy installation",
+            "partName": "Power Window Regulator and Motor Assembly",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20Power%20Window%20Regulator%20and%20Motor%20Assembly%20Hyundai%20XG350&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Hyundai%20XG350&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Hyundai%20XG350&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Hyundai%20XG350&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chevy-monte-carlo-window-regulator-2000"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "XG350",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Window Regulator Cable Snap",
+        "description": "Power window regulators use a cable-driven design that is prone to cable breakage, causing the window to drop into the door or jam in a partially open position. Front windows fail most frequently.",
+        "solution": "Replace window regulator assembly (motor and regulator sold as unit). Lubricate window channel guides with silicone spray. Check door wiring harness for chafing.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Window drops into door",
+          "Window moves slowly",
+          "Clicking sound from door",
+          "Window stuck open or closed"
+        ],
+        "affectedSystems": [
+          "Power windows",
+          "Door electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2002/HYUNDAI/XG350#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2002 Hyundai XG350 - Power Window Issues"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/power-window-regulator-cable-break.12345/",
+            "type": "forum",
+            "title": "Hyundai Forums - Power Window Regulator Cable Break on XG350"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=Q5Fv0xwPq5U",
+            "type": "video",
+            "title": "YouTube - How to Replace Power Window Regulator Cable on Hyundai XG350"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Direct-fit window regulator assembly with motor for easy installation",
+            "partName": "Power Window Regulator and Motor Assembly",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20Power%20Window%20Regulator%20and%20Motor%20Assembly%20Hyundai%20XG350&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Hyundai%20XG350&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Hyundai%20XG350&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Hyundai%20XG350&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chevy-monte-carlo-window-regulator-2000"
+        ]
+      }
+    }
+  ]
+}
