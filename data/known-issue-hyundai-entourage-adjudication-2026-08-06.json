@@ -1,0 +1,839 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Entourage",
+  "completionStatement": "This packet reconciles all four frozen Hyundai Entourage rows. No same-identity primary-source rewrite cleared the gate; all four remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All four rows remain published and byte-for-byte unchanged.",
+    "An unrelated recall, diagnostic guide, component, warranty program or shared symptom may never replace the issue named by an existing indexed page.",
+    "Existing commerce remains frozen rather than being silently rewritten without exact repair-role evidence.",
+    "Independent row-by-row approval is required before any separate correction path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "entourageRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "diagnostic-guides-not-defect-proof",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-entourage-alternator-2007",
+        "hyundai-entourage-crankshaft-sensor-2007",
+        "hyundai-entourage-sliding-door-2007"
+      ],
+      "detail": "Hyundai diagnostic resources do not establish the frozen defect populations, mechanisms or remedies."
+    },
+    {
+      "code": "wiring-stall-not-crank-sensor",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-entourage-crankshaft-sensor-2007"
+      ],
+      "detail": "Recall 06V356 can cause stalling or no-start through chafed stop-lamp wiring, but it is not the crankshaft-sensor identity."
+    },
+    {
+      "code": "entourage-excluded-from-engine-extension",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-entourage-engine-knock-2007"
+      ],
+      "detail": "The located Hyundai engine warranty extension does not include Entourage or its 3.8L Lambda engine."
+    },
+    {
+      "code": "unsupported-commerce-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-entourage-alternator-2007",
+        "hyundai-entourage-sliding-door-2007"
+      ],
+      "detail": "Replacement-part and service advice remain frozen because no exact primary repair document supports them."
+    }
+  ],
+  "mismatchSources": {
+    "hyundaiServicePortal": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10061024-2273.pdf",
+    "txxmEngineWarranty": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10227316-0001.pdf",
+    "nhtsaRecalls2007": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Entourage&modelYear=2007"
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 4,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "hyundai-entourage-alternator-2007",
+      "model": "Entourage",
+      "action": "keep_published_pending_source",
+      "reason": "Forum and generic complaint references do not establish one 2007-2009 Entourage defect combining alternator failure, 60,000-80,000-mile incidence, sliding-door-module sleep behavior and a Hyundai BCM update. Hyundai's service-information index offers generic parasitic-draw diagnostics but no exact campaign for this identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a diagnostic guide, different component, warranty program or symptom overlap cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "diagnostic-index-not-defect-source",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10061024-2273.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai's service-information index provides diagnostic resources but does not establish the frozen defect, population or remedy."
+        }
+      ],
+      "beforeSha256": "d72e3e3c471e775ba90f9d51f0a4e8282b65f943d66b2e5638231f38076fe1cc",
+      "proposalSha256": "d72e3e3c471e775ba90f9d51f0a4e8282b65f943d66b2e5638231f38076fe1cc",
+      "before": {
+        "make": "Hyundai",
+        "model": "Entourage",
+        "years": [
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L Lambda V6"
+        ],
+        "category": "electrical",
+        "title": "3.8L V6 Alternator and Battery Drain Issues",
+        "description": "The Entourage 3.8L V6 shares the same high alternator failure rate as other Lambda V6 Hyundai vehicles. The alternator fails prematurely between 60,000-80,000 miles. Additionally, the Entourage suffers from parasitic battery drain caused by the power sliding door modules not fully entering sleep mode. This drains the battery overnight if the vehicle sits for more than 2-3 days. The combination of alternator weakness and parasitic drain frequently results in dead batteries and stranded owners.",
+        "solution": "Replace the alternator with a quality remanufactured unit. For parasitic drain, have a mechanic perform a current draw test with a multimeter to identify the offending circuit. The sliding door control module is the most common culprit — unplugging it overnight as a test confirms this. Hyundai released a software update for the body control module that addresses the sleep mode issue. Disconnect the battery negative terminal if the vehicle will sit for more than 3 days.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Dead battery after sitting 2-3 days",
+          "Battery light on dashboard while driving",
+          "Slow engine cranking",
+          "Multiple jump starts needed per month",
+          "Electrical accessories (radio, lights) dimming"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0562",
+          "U1101"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Entourage parasitic battery drain fix"
+          },
+          {
+            "source": "NHTSA complaints",
+            "description": "Hyundai Entourage electrical system complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Ask the dealer about a body control module software update — Hyundai released a reflash that fixes the parasitic drain from the sliding door modules",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If the van sits for more than 3 days, disconnect the negative battery terminal or install a battery disconnect switch ($15 from Amazon)",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Optima 35 RedTop battery — higher reserve capacity handles the Entourage parasitic drain better than standard batteries",
+            "upvotes": 0,
+            "partName": "RedTop Starting Battery",
+            "partBrand": "Optima",
+            "partNumber": "35",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima+35+RedTop+battery&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 110,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-veracruz-alternator-2007"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Entourage",
+        "years": [
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L Lambda V6"
+        ],
+        "category": "electrical",
+        "title": "3.8L V6 Alternator and Battery Drain Issues",
+        "description": "The Entourage 3.8L V6 shares the same high alternator failure rate as other Lambda V6 Hyundai vehicles. The alternator fails prematurely between 60,000-80,000 miles. Additionally, the Entourage suffers from parasitic battery drain caused by the power sliding door modules not fully entering sleep mode. This drains the battery overnight if the vehicle sits for more than 2-3 days. The combination of alternator weakness and parasitic drain frequently results in dead batteries and stranded owners.",
+        "solution": "Replace the alternator with a quality remanufactured unit. For parasitic drain, have a mechanic perform a current draw test with a multimeter to identify the offending circuit. The sliding door control module is the most common culprit — unplugging it overnight as a test confirms this. Hyundai released a software update for the body control module that addresses the sleep mode issue. Disconnect the battery negative terminal if the vehicle will sit for more than 3 days.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Dead battery after sitting 2-3 days",
+          "Battery light on dashboard while driving",
+          "Slow engine cranking",
+          "Multiple jump starts needed per month",
+          "Electrical accessories (radio, lights) dimming"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0562",
+          "U1101"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Entourage parasitic battery drain fix"
+          },
+          {
+            "source": "NHTSA complaints",
+            "description": "Hyundai Entourage electrical system complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Ask the dealer about a body control module software update — Hyundai released a reflash that fixes the parasitic drain from the sliding door modules",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If the van sits for more than 3 days, disconnect the negative battery terminal or install a battery disconnect switch ($15 from Amazon)",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Optima 35 RedTop battery — higher reserve capacity handles the Entourage parasitic drain better than standard batteries",
+            "upvotes": 0,
+            "partName": "RedTop Starting Battery",
+            "partBrand": "Optima",
+            "partNumber": "35",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima+35+RedTop+battery&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 110,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-veracruz-alternator-2007"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-entourage-crankshaft-sensor-2007",
+      "model": "Entourage",
+      "action": "keep_published_pending_source",
+      "reason": "The cited TSB has no URL and its title describes crankshaft-position-sensor diagnostics, not one Entourage sensor defect, heat-soak failure population or replacement remedy. NHTSA's 2007 Entourage recall set includes a wiring-harness recall that can cause stalling or no-start, but it is not a crankshaft sensor and cannot replace this indexed identity.",
+      "identityRule": "No content or publication-state changes; a diagnostic guide, different component, warranty program or symptom overlap cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "diagnostic-index-not-defect-source",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10061024-2273.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai's service-information index provides diagnostic resources but does not establish the frozen defect, population or remedy."
+        },
+        {
+          "kind": "component-mismatch",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Entourage&modelYear=2007",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA's 2007 recall list contains a stop-lamp wiring-harness chafe condition that may stall or prevent starting, not a crankshaft-position-sensor defect."
+        }
+      ],
+      "beforeSha256": "152dcc4e9188ac2e984bbfd01e8c29477a637298233772bfb6c4736985ad3b44",
+      "proposalSha256": "152dcc4e9188ac2e984bbfd01e8c29477a637298233772bfb6c4736985ad3b44",
+      "before": {
+        "make": "Hyundai",
+        "model": "Entourage",
+        "years": [
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L V6"
+        ],
+        "category": "engine",
+        "title": "Crankshaft Position Sensor Failure Causing Stalling",
+        "description": "The 3.8L V6 crankshaft position sensor fails intermittently, causing random stalling, no-start conditions, and rough running. Heat soak worsens the problem — engine stalls after reaching operating temperature then restarts after cooling.",
+        "solution": "Replace crankshaft position sensor. Use OEM or quality aftermarket sensor. Check wiring connector for corrosion or loose pins. Clear stored DTCs after replacement.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Random stalling while driving",
+          "No-start when hot",
+          "Engine restarts after cooling down",
+          "Check engine light",
+          "Rough idle"
+        ],
+        "affectedSystems": [
+          "Engine management",
+          "Ignition system"
+        ],
+        "dtcCodes": [
+          "P0335",
+          "P0336"
+        ],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 09-FL-010: MIL ON With DTC P0335/P0336/P0337/P0338/P0339 (Crankshaft Position Sensor Diagnostics)"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HYUNDAI/ENTOURAGE",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10306088"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Bluetooth OBD-II scanner for reading engine codes and monitoring live data",
+            "partName": "Bluetooth OBD2 Diagnostic Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Entourage%20BlueDriver%20Bluetooth%20OBD2%20Diagnostic%20Scan%20Tool&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Quality synthetic oil and filter combo for engine maintenance",
+            "partName": "Full Synthetic Oil and Filter Bundle",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Entourage%20Mobil%201%20Full%20Synthetic%20Oil%20and%20Filter%20Bundle&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-elantra-crankshaft-position-sensor",
+          "kia-optima-crankshaft-position-sensor-failure-causing-stall-or-no-start"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Entourage",
+        "years": [
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L V6"
+        ],
+        "category": "engine",
+        "title": "Crankshaft Position Sensor Failure Causing Stalling",
+        "description": "The 3.8L V6 crankshaft position sensor fails intermittently, causing random stalling, no-start conditions, and rough running. Heat soak worsens the problem — engine stalls after reaching operating temperature then restarts after cooling.",
+        "solution": "Replace crankshaft position sensor. Use OEM or quality aftermarket sensor. Check wiring connector for corrosion or loose pins. Clear stored DTCs after replacement.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Random stalling while driving",
+          "No-start when hot",
+          "Engine restarts after cooling down",
+          "Check engine light",
+          "Rough idle"
+        ],
+        "affectedSystems": [
+          "Engine management",
+          "Ignition system"
+        ],
+        "dtcCodes": [
+          "P0335",
+          "P0336"
+        ],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 09-FL-010: MIL ON With DTC P0335/P0336/P0337/P0338/P0339 (Crankshaft Position Sensor Diagnostics)"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HYUNDAI/ENTOURAGE",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10306088"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Bluetooth OBD-II scanner for reading engine codes and monitoring live data",
+            "partName": "Bluetooth OBD2 Diagnostic Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Entourage%20BlueDriver%20Bluetooth%20OBD2%20Diagnostic%20Scan%20Tool&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Quality synthetic oil and filter combo for engine maintenance",
+            "partName": "Full Synthetic Oil and Filter Bundle",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Entourage%20Mobil%201%20Full%20Synthetic%20Oil%20and%20Filter%20Bundle&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-elantra-crankshaft-position-sensor",
+          "kia-optima-crankshaft-position-sensor-failure-causing-stall-or-no-start"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-entourage-engine-knock-2007",
+      "model": "Entourage",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen row claims a Lambda 3.8L connecting-rod-bearing defect and a 15-year/200,000-mile settlement without a primary citation. Hyundai warranty extension TXXM lists other Hyundai engines and models but not Entourage, so it cannot support this page and the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a diagnostic guide, different component, warranty program or symptom overlap cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "model-scope-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10227316-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai TXXM engine-warranty coverage does not list Entourage or its 3.8L Lambda engine."
+        }
+      ],
+      "beforeSha256": "aab93162f590cbc0d29fb286ea494ec60afc8cc96f17787c4cedc34ddd448e84",
+      "proposalSha256": "aab93162f590cbc0d29fb286ea494ec60afc8cc96f17787c4cedc34ddd448e84",
+      "before": {
+        "make": "Hyundai",
+        "model": "Entourage",
+        "years": [
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L Lambda V6"
+        ],
+        "category": "engine",
+        "title": "3.8L Lambda V6 Engine Knock and Connecting Rod Bearing Failure",
+        "description": "The 3.8L Lambda V6 in the Entourage is affected by the same connecting rod bearing failure issue that plagued early Lambda engines across the Hyundai/Kia lineup. Manufacturing debris left in the oil passages can restrict oil flow to the connecting rod bearings, causing premature bearing wear and eventual rod knock. Hyundai extended the engine warranty to 15 years/200,000 miles under a settlement. The issue typically manifests between 80,000-150,000 miles with a knocking noise from the lower engine.",
+        "solution": "If the engine is knocking, it requires a replacement engine. Check with a Hyundai dealer for coverage under the extended engine warranty (15 years/200,000 miles). Hyundai will perform an oil consumption test and bearing inspection. Keep all oil change records — they are required for warranty claims. If covered, Hyundai replaces the engine with a remanufactured unit at no cost.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [
+          "Knocking or tapping noise from lower engine",
+          "Noise worsens with engine speed",
+          "Oil pressure warning light illuminated",
+          "Metal shavings in oil during oil change",
+          "Engine seizure (advanced failure)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0524",
+          "P0520"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 6000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 150000,
+        "citations": [
+          {
+            "url": "https://www.motorreviewer.com/engine.php?engine_id=157",
+            "type": "media",
+            "title": "Hyundai KIA 3.8L Engine Lambda Specs Problems - MotorReviewer"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Hyundai_Lambda_engine",
+            "type": "media",
+            "title": "Hyundai Lambda engine - Wikipedia"
+          },
+          {
+            "url": "https://rxmechanic.com/hyundai-engine-problems/",
+            "type": "media",
+            "title": "Hyundai Engine Problems Everything You Need To Know - Rx Mechanic"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Contact your Hyundai dealer about the extended engine warranty (15 years/200,000 miles) — engine replacement is covered at no cost for affected vehicles",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Keep ALL oil change receipts — Hyundai requires proof of regular maintenance for warranty engine replacement",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Stop driving immediately if you hear engine knocking — continued driving with bearing failure causes catastrophic rod through the block, voiding the warranty",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
+            "partName": "Extended Performance Full Synthetic Motor Oil",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Entourage%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium oil filter ensures proper filtration with high-mileage engines",
+            "partName": "Oil Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Entourage%20Wix%20Oil%20Filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 90,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-cadenza-gdi-engine-knock-2014"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Entourage",
+        "years": [
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L Lambda V6"
+        ],
+        "category": "engine",
+        "title": "3.8L Lambda V6 Engine Knock and Connecting Rod Bearing Failure",
+        "description": "The 3.8L Lambda V6 in the Entourage is affected by the same connecting rod bearing failure issue that plagued early Lambda engines across the Hyundai/Kia lineup. Manufacturing debris left in the oil passages can restrict oil flow to the connecting rod bearings, causing premature bearing wear and eventual rod knock. Hyundai extended the engine warranty to 15 years/200,000 miles under a settlement. The issue typically manifests between 80,000-150,000 miles with a knocking noise from the lower engine.",
+        "solution": "If the engine is knocking, it requires a replacement engine. Check with a Hyundai dealer for coverage under the extended engine warranty (15 years/200,000 miles). Hyundai will perform an oil consumption test and bearing inspection. Keep all oil change records — they are required for warranty claims. If covered, Hyundai replaces the engine with a remanufactured unit at no cost.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [
+          "Knocking or tapping noise from lower engine",
+          "Noise worsens with engine speed",
+          "Oil pressure warning light illuminated",
+          "Metal shavings in oil during oil change",
+          "Engine seizure (advanced failure)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0524",
+          "P0520"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 6000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 150000,
+        "citations": [
+          {
+            "url": "https://www.motorreviewer.com/engine.php?engine_id=157",
+            "type": "media",
+            "title": "Hyundai KIA 3.8L Engine Lambda Specs Problems - MotorReviewer"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Hyundai_Lambda_engine",
+            "type": "media",
+            "title": "Hyundai Lambda engine - Wikipedia"
+          },
+          {
+            "url": "https://rxmechanic.com/hyundai-engine-problems/",
+            "type": "media",
+            "title": "Hyundai Engine Problems Everything You Need To Know - Rx Mechanic"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Contact your Hyundai dealer about the extended engine warranty (15 years/200,000 miles) — engine replacement is covered at no cost for affected vehicles",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Keep ALL oil change receipts — Hyundai requires proof of regular maintenance for warranty engine replacement",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Stop driving immediately if you hear engine knocking — continued driving with bearing failure causes catastrophic rod through the block, voiding the warranty",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
+            "partName": "Extended Performance Full Synthetic Motor Oil",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Entourage%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium oil filter ensures proper filtration with high-mileage engines",
+            "partName": "Oil Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Entourage%20Wix%20Oil%20Filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 90,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-cadenza-gdi-engine-knock-2014"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-entourage-sliding-door-2007",
+      "model": "Entourage",
+      "action": "keep_published_pending_source",
+      "reason": "Forum and complaint references do not establish one 2007-2009 cable/motor defect, named part numbers, reversal mechanism or maintenance remedy. Hyundai's service-information index provides an Entourage sliding-door troubleshooting diagram but does not establish the frozen failure narrative or a campaign, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a diagnostic guide, different component, warranty program or symptom overlap cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "diagnostic-index-not-defect-source",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10061024-2273.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai's service-information index provides diagnostic resources but does not establish the frozen defect, population or remedy."
+        }
+      ],
+      "beforeSha256": "740efe97675e43d62798d54059fe6f29d786649c7cb986aa5fdfb5e787a84166",
+      "proposalSha256": "740efe97675e43d62798d54059fe6f29d786649c7cb986aa5fdfb5e787a84166",
+      "before": {
+        "make": "Hyundai",
+        "model": "Entourage",
+        "years": [
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Power Sliding Door Cable Failure and Motor Burnout",
+        "description": "The Entourage (a rebadged Kia Sedona) experiences frequent power sliding door failures. The steel cable that operates the door frays and snaps, or the electric motor that drives the cable burns out. When the cable breaks, the door may not open or close properly and can get stuck partially open. The door can also reverse direction mid-cycle due to the pinch sensor being overly sensitive or misaligned. This is a known issue affecting the Entourage from the first model year.",
+        "solution": "Replace the power sliding door cable assembly (Hyundai 81481-4D001 for left, 81471-4D001 for right). If the motor has burned out, the entire actuator assembly must be replaced. Lubricate the door track and rollers with silicone spray every 6 months to reduce cable strain. If repairs become too frequent, the power function can be disabled and the door operated manually by disconnecting the actuator.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Sliding door stops mid-travel or reverses direction",
+          "Grinding or scraping noise during door operation",
+          "Door won't open or close with power switch",
+          "Door gets stuck partially open",
+          "Power sliding door warning chime with no apparent obstruction"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Entourage sliding door cable replacement guide"
+          },
+          {
+            "source": "NHTSA complaints",
+            "description": "Hyundai Entourage sliding door complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Lubricate the sliding door track rollers and cable pulleys with silicone spray every 6 months — this dramatically extends cable life by reducing friction",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If the power function fails frequently, disconnect the actuator and use the door manually — it operates smoothly as a manual sliding door",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Keep children's hands away from the sliding door track — a failing cable can cause the door to move unexpectedly",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 135,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Entourage",
+        "years": [
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Power Sliding Door Cable Failure and Motor Burnout",
+        "description": "The Entourage (a rebadged Kia Sedona) experiences frequent power sliding door failures. The steel cable that operates the door frays and snaps, or the electric motor that drives the cable burns out. When the cable breaks, the door may not open or close properly and can get stuck partially open. The door can also reverse direction mid-cycle due to the pinch sensor being overly sensitive or misaligned. This is a known issue affecting the Entourage from the first model year.",
+        "solution": "Replace the power sliding door cable assembly (Hyundai 81481-4D001 for left, 81471-4D001 for right). If the motor has burned out, the entire actuator assembly must be replaced. Lubricate the door track and rollers with silicone spray every 6 months to reduce cable strain. If repairs become too frequent, the power function can be disabled and the door operated manually by disconnecting the actuator.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Sliding door stops mid-travel or reverses direction",
+          "Grinding or scraping noise during door operation",
+          "Door won't open or close with power switch",
+          "Door gets stuck partially open",
+          "Power sliding door warning chime with no apparent obstruction"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Entourage sliding door cable replacement guide"
+          },
+          {
+            "source": "NHTSA complaints",
+            "description": "Hyundai Entourage sliding door complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Lubricate the sliding door track rollers and cable pulleys with silicone spray every 6 months — this dramatically extends cable life by reducing friction",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If the power function fails frequently, disconnect the actuator and use the door manually — it operates smoothly as a manual sliding door",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Keep children's hands away from the sliding door track — a failing cable can cause the door to move unexpectedly",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 135,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
