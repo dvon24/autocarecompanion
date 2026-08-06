@@ -1,0 +1,2303 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Honda",
+  "model": "Fit",
+  "completionStatement": "This packet reconciles all 11 frozen Honda Fit rows. Three same-identity Honda corrections are proposed; eight rows remain byte-for-byte unchanged pending exact evidence or independent disposition.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All 11 rows remain published. Eight are byte-for-byte unchanged.",
+    "An unrelated campaign, bulletin, component or model may never replace the issue named by an existing indexed page.",
+    "Each rewrite contains zero commerce, zero cost or mileage claims, and empty trim and engine arrays.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_honda-deeplink-snapshot-2026-08-05.json",
+    "snapshotSha256": "671de2660f31c07e01610e26c13382b6d59b293fb74ecc3e3abc02d248d6dd5e",
+    "snapshotGeneratedAt": "2026-08-05T21:54:08.563Z",
+    "snapshotHash": "fcd155f1e269b1d8c691655699cc2e18f6029c3ee54c650b88df00004025729a",
+    "fitRecordCount": 11
+  },
+  "observations": [
+    {
+      "code": "cvt-recall-scope-narrowed",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-fit-cvt-transmission-problems-2015"
+      ],
+      "detail": "Honda Bulletin 15-065 supports VIN-eligible 2015 Fit CVTs and an input-shaft-pulley recall; it does not support the original 2015-2020 shudder, cooler, maintenance and extended-warranty aggregation."
+    },
+    {
+      "code": "eps-citation-and-scope-corrected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-fit-eps-power-steering-2009"
+      ],
+      "detail": "The frozen row cites nonexistent Fit Bulletin 13-043 and 2012-2013 scope. Honda Bulletin 14-058 covers VIN-eligible 2007-2008 Fit vehicles with heavy steering and DTC 32-09 or 61-04."
+    },
+    {
+      "code": "fuel-pump-recall-scope-narrowed",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-fit-fuel-pump-failure-2007"
+      ],
+      "detail": "Honda Bulletin 24-023 supports VIN-eligible 2018-2019 Fit vehicles, not the original 2007-2020 generic fuel-pump narrative."
+    },
+    {
+      "code": "uncited-claim-cluster",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-fit-infotainment-failure-2015",
+        "honda-fit-oil-consumption-2007"
+      ],
+      "detail": "These frozen cards contain broad defect, warranty and remedy claims without citations; both remain byte-equivalent pending exact evidence."
+    },
+    {
+      "code": "generic-source-cluster",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-fit-ac-compressor-failure-2007",
+        "honda-fit-door-latch-issues-2015",
+        "honda-fit-idle-stalling-problems-2009",
+        "honda-fit-ignition-coil-failure-2007",
+        "honda-fit-spark-plug-failure-2007",
+        "honda-fit-starter-motor-failure-2007"
+      ],
+      "detail": "Generic NHTSA model pages, single complaints and videos do not establish the exact model-wide defect, mechanism, scope and remedy claims."
+    }
+  ],
+  "summary": {
+    "rewrite_same_identity": 3,
+    "keep_published_pending_source": 8,
+    "total": 11
+  },
+  "rows": [
+    {
+      "id": "honda-fit-ac-compressor-failure-2007",
+      "model": "Fit",
+      "action": "keep_published_pending_source",
+      "reason": "A generic NHTSA model page and repair video do not establish a 2007-2020 Fit compressor defect, near-universal failure rate, mechanism or Honda remedy. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, generic page, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "c7d6bb927872eac6ef536f860240e9dc42c51be459e99cecac37e0255202f187",
+      "proposalSha256": "c7d6bb927872eac6ef536f860240e9dc42c51be459e99cecac37e0255202f187",
+      "before": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "AC Compressor Failure",
+        "description": "AC compressor can fail prematurely across all Honda Fit generations, a common issue on budget Hondas. Compressor clutch may not engage, or internal compressor failure causes warm air. Almost every Fit over 80,000 miles experiences this issue. Early detection and proper refrigerant levels can extend compressor life. Budget-conscious owners prefer Sanden or Denso aftermarket compressors ($200-280) over OEM dealer parts ($400+).",
+        "solution": "Have refrigerant level checked first ($0-50 diagnostic). If low, check for leaks before recharging. Replace compressor if internal failure (likely if metallic debris found in system). Include receiver drier replacement and flush lines to prevent debris circulation. Independent shops offer $500-800 complete replacement vs dealer $1,000+.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "AC blows warm air instead of cold",
+          "AC suddenly stops working",
+          "Compressor clutch not engaging",
+          "Loud grinding or squealing noise from compressor",
+          "AC works intermittently"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HONDA/FIT#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2007 Honda Fit - AC Compressor Issues Reported"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=5XxZx6Yq3gE",
+            "type": "video",
+            "title": "YouTube - AC Compressor Replacement on Honda Fit (Known Channel: EricTheCarGuy)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Sanden AC compressors ($180-220) have excellent reputation on FitFreak forums - OEM-quality at lower price",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Sanden%20AC%20compressors%20(%24180-220)%20have%20excellent%20reputation%20o&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Denso AC compressors ($200-250) are highly regarded quality alternative to expensive Honda OEM parts",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Denso%20AC%20compressors%20(%24200-250)%20are%20highly%20regarded%20quality&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Avoid cheap eBay/Amazon compressors - they fail quickly and waste money on labor to re-install",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple shop quotes - prices vary wildly, independent shops often $300-500 cheaper than dealer",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Budget $600-1,200 for AC compressor replacement by 80k-100k miles - almost every Fit needs this",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 220,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "AC Compressor Failure",
+        "description": "AC compressor can fail prematurely across all Honda Fit generations, a common issue on budget Hondas. Compressor clutch may not engage, or internal compressor failure causes warm air. Almost every Fit over 80,000 miles experiences this issue. Early detection and proper refrigerant levels can extend compressor life. Budget-conscious owners prefer Sanden or Denso aftermarket compressors ($200-280) over OEM dealer parts ($400+).",
+        "solution": "Have refrigerant level checked first ($0-50 diagnostic). If low, check for leaks before recharging. Replace compressor if internal failure (likely if metallic debris found in system). Include receiver drier replacement and flush lines to prevent debris circulation. Independent shops offer $500-800 complete replacement vs dealer $1,000+.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "AC blows warm air instead of cold",
+          "AC suddenly stops working",
+          "Compressor clutch not engaging",
+          "Loud grinding or squealing noise from compressor",
+          "AC works intermittently"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HONDA/FIT#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2007 Honda Fit - AC Compressor Issues Reported"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=5XxZx6Yq3gE",
+            "type": "video",
+            "title": "YouTube - AC Compressor Replacement on Honda Fit (Known Channel: EricTheCarGuy)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Sanden AC compressors ($180-220) have excellent reputation on FitFreak forums - OEM-quality at lower price",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Sanden%20AC%20compressors%20(%24180-220)%20have%20excellent%20reputation%20o&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Denso AC compressors ($200-250) are highly regarded quality alternative to expensive Honda OEM parts",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Denso%20AC%20compressors%20(%24200-250)%20are%20highly%20regarded%20quality&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Avoid cheap eBay/Amazon compressors - they fail quickly and waste money on labor to re-install",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple shop quotes - prices vary wildly, independent shops often $300-500 cheaper than dealer",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Budget $600-1,200 for AC compressor replacement by 80k-100k miles - almost every Fit needs this",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 220,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-fit-cvt-transmission-problems-2015",
+      "model": "Fit",
+      "action": "rewrite_same_identity",
+      "reason": "Narrowed the broad 2015-2020 CVT aggregation to Honda recall 15V574/Bulletin 15-065 for VIN-eligible 2015 Fit CVTs, and removed unsupported shudder, maintenance, cooler, pricing and warranty claims.",
+      "identityRule": "The indexed component identity remains on the same ID; official Honda scope, mechanism and remedy replace unsupported generalizations.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "category",
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2015/RCRIT-15V574-5647.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 15-065 - CVT Input Shaft Pulley Recall supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "5cf88602f03029e786b9dbdea8d258d9995655c2a78a048693eccfd255d790c9",
+      "proposalSha256": "481dd1962254ebc21f12f55f68c51e0d56564a81a7734133787294c186771d81",
+      "before": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "CVT Transmission Problems (3rd Gen)",
+        "description": "New CVT in 3rd gen Fit (2015-2020) had significant issues, particularly 2015-2016. Hesitation, shuddering during acceleration, whining/howling noise from transmission. Honda addressed some issues with software updates. Transmission cooler addition ($80-150) reportedly prevents issues according to some owners. CRITICAL: Use ONLY Honda HF-F CVT fluid ($35-50/quart) - other fluids void warranty and cause damage. Change CVT fluid every 30,000 miles religiously.",
+        "solution": "Perform Honda CVT software update immediately at dealer (often free or low cost). Change CVT fluid every 30,000 miles religiously with Honda HF-F fluid only. Avoid aggressive acceleration and towing. Transmission cooler addition ($80-150) may help. If internal failure: Replacement $2,500-4,500, rebuild $1,500-2,500. Multiple Honda TSBs issued - check VIN for specific recalls.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Hesitation or shuddering during acceleration",
+          "Whining or howling noise from transmission",
+          "Sudden loss of power",
+          "Jerky acceleration",
+          "Check engine light with transmission codes",
+          "Transmission slipping"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0740",
+          "P0868",
+          "P17F0",
+          "P17F1"
+        ],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 4500,
+        "typicalMileageLow": 24000,
+        "typicalMileageHigh": 36000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2015/HONDA/FIT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2015 Honda Fit - Includes complaints related to CVT transmission issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/Honda/comments/7f3k0g/2015_honda_fit_cvt_transmission_shuddering_issue/",
+            "type": "forum",
+            "title": "Reddit r/Honda thread discussing 2015 Honda Fit CVT transmission shuddering and whining noise"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=6Jz1z7qQy9I",
+            "type": "video",
+            "title": "EricTheCarGuy - Honda Fit CVT Transmission Shuddering and Repair Discussion"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Use ONLY Honda HF-F CVT fluid ($35-50/quart) - other fluids void warranty and cause catastrophic damage",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Software updates from dealer ASAP - Honda issued multiple TSBs to address CVT issues, get them applied",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Transmission cooler ($80-150) - some FitFreak owners claim it prevents CVT issues in hot climates",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Transmission%20cooler%20(%2480-150)%20-%20some%20FitFreak%20owners%20claim%20i&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Change CVT fluid every 30,000 miles religiously - $150 service prevents $2,500+ transmission replacement",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Avoid aggressive acceleration and towing - CVT is not designed for performance driving or heavy loads",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Check VIN for Honda extended warranty coverage on CVT - many 2015-2016 models have extended coverage",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 175,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-hrv-cvt-transmission-shudder-2016",
+          "honda-insight-cvt-transmission-judder-2010",
+          "honda-crv-cvt-shudder-2015",
+          "honda-crosstour-transmission-shudder-2010"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "CVT Input Shaft Pulley Recall - Bulletin 15-065",
+        "description": "Honda Service Bulletin 15-065 applies to VIN-eligible 2015 Fit vehicles equipped with a CVT. Certain driving conditions can create higher-than-normal stress on the input shaft pulley; repeated stress can cause the pulley to break, leaving the vehicle unable to move while in gear or allowing the wheels to lock.",
+        "solution": "Have a Honda dealer check the VIN for recall eligibility. Bulletin 15-065 directs the dealer to collect an automatic-transmission snapshot and update the transmission software; affected vehicles must receive the recall remedy before sale.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle may be unable to move while in gear if the pulley breaks",
+          "Front wheels may lock if the pulley breaks"
+        ],
+        "affectedSystems": [
+          "Continuously variable transmission input shaft pulley",
+          "CVT control software"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Honda Service Bulletin 15-065 - CVT Input Shaft Pulley Recall",
+            "url": "https://static.nhtsa.gov/odi/rcl/2015/RCRIT-15V574-5647.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Narrowed the broad 2015-2020 CVT aggregation to Honda recall 15V574/Bulletin 15-065 for VIN-eligible 2015 Fit CVTs, and removed unsupported shudder, maintenance, cooler, pricing and warranty claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-fit-door-latch-issues-2015",
+      "model": "Fit",
+      "action": "keep_published_pending_source",
+      "reason": "One complaint does not establish a 2015-2020 Fit latch and lock-actuator defect, scope, mechanism or remedy. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, generic page, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "d87c02bc4785d52e1aaed8346b264dc85d3474a632cdd4c25bdd0aacd91c418b",
+      "proposalSha256": "d87c02bc4785d52e1aaed8346b264dc85d3474a632cdd4c25bdd0aacd91c418b",
+      "before": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Door Latch Issues (3rd Gen)",
+        "description": "Door latch mechanism can become sticky or fail on 3rd gen Fits, particularly driver's side door. Door won't open, door rattles when locked/unlocked, or opens unexpectedly. Lock actuator failure also common. Silicone spray ($5-10) for preventive lubrication extends latch life. Used door latch assemblies from salvage ($50-100) are budget alternative to new OEM ($150-300). DIY replacement requires door panel removal (moderate difficulty).",
+        "solution": "Lubricate with silicone spray or WD-40 for preventive maintenance. If latch broken: Replace door latch assembly ($150-300). Check lock actuator if electronic lock failing. Used door latch assemblies from salvage ($50-100) budget alternative. DIY replacement requires door panel removal (moderate difficulty with trim tools).",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Door won't open from inside or outside",
+          "Door rattles when locked or unlocked",
+          "Door opens unexpectedly while driving",
+          "Door lock actuator not working",
+          "Clicking sound from door latch"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HONDA/FIT/5%252520HB/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11335878 - 2018 Honda Fit door latch/door will not open"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Silicone spray ($5-10) for preventive lubrication - extends door latch life significantly, apply quarterly",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Used door latch assemblies from salvage yards ($50-100) - budget-friendly alternative to new OEM parts",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Used%20door%20latch%20assemblies%20from%20salvage%20yards%20(%2450-100)%20-%20bu&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY replacement requires door panel removal - moderate difficulty, many FitFreak guides with photos available",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Driver's side door most commonly affected - inspect regularly for early signs of failure",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Door opening unexpectedly while driving is serious safety issue - replace latch immediately if occurring",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 75,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Door Latch Issues (3rd Gen)",
+        "description": "Door latch mechanism can become sticky or fail on 3rd gen Fits, particularly driver's side door. Door won't open, door rattles when locked/unlocked, or opens unexpectedly. Lock actuator failure also common. Silicone spray ($5-10) for preventive lubrication extends latch life. Used door latch assemblies from salvage ($50-100) are budget alternative to new OEM ($150-300). DIY replacement requires door panel removal (moderate difficulty).",
+        "solution": "Lubricate with silicone spray or WD-40 for preventive maintenance. If latch broken: Replace door latch assembly ($150-300). Check lock actuator if electronic lock failing. Used door latch assemblies from salvage ($50-100) budget alternative. DIY replacement requires door panel removal (moderate difficulty with trim tools).",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Door won't open from inside or outside",
+          "Door rattles when locked or unlocked",
+          "Door opens unexpectedly while driving",
+          "Door lock actuator not working",
+          "Clicking sound from door latch"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HONDA/FIT/5%252520HB/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11335878 - 2018 Honda Fit door latch/door will not open"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Silicone spray ($5-10) for preventive lubrication - extends door latch life significantly, apply quarterly",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Used door latch assemblies from salvage yards ($50-100) - budget-friendly alternative to new OEM parts",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Used%20door%20latch%20assemblies%20from%20salvage%20yards%20(%2450-100)%20-%20bu&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY replacement requires door panel removal - moderate difficulty, many FitFreak guides with photos available",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Driver's side door most commonly affected - inspect regularly for early signs of failure",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Door opening unexpectedly while driving is serious safety issue - replace latch immediately if occurring",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 75,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-fit-eps-power-steering-2009",
+      "model": "Fit",
+      "action": "rewrite_same_identity",
+      "reason": "Corrected the nonexistent 2012-2013 Bulletin 13-043 citation and broad 2009-2020 failure narrative to Honda Bulletin 14-058 for VIN-eligible 2007-2008 Fit vehicles with heavy steering and DTC 32-09 or 61-04.",
+      "identityRule": "The indexed component identity remains on the same ID; official Honda scope, mechanism and remedy replace unsupported generalizations.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "category",
+        "title",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2014/MC-10124264-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 14-058 - Electric Power Steering Warranty Extension supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "2a8d7c283af02c6294bc028375f88a738bbd902d69219117039d575ea25bcadb",
+      "proposalSha256": "70ae4bd7a217b532c9e264cb69b3530f8e93f7367eb83f6e01c7bea19e170919",
+      "before": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Electric Power Steering (EPS) Failure",
+        "description": "Electric power steering system can fail on 2nd and 3rd gen Fits, particularly higher mileage vehicles. Power steering intermittently fails or becomes very stiff. Whining noise from steering column indicates EPS motor issues. EPS motor assembly ($400-700) or control module ($300-600) replacement typically required. Used OEM EPS motors from salvage yards ($150-300) are budget alternative. Have independent mechanic diagnose before replacing - many shops want to replace whole assembly unnecessarily.",
+        "solution": "Have steering system scanned for codes to diagnose motor vs module issue. If motor issue: Replace EPS motor assembly ($400-700). If control module: Replace module ($300-600). Used OEM EPS motor from salvage yards ($150-300) budget alternative. Remanufactured EPS units ($250-400) available - check warranty. Independent mechanic diagnosis recommended before replacement.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Power steering intermittently fails or becomes very stiff",
+          "Whining noise from steering column",
+          "Power steering warning light on dashboard",
+          "EPS light illuminated",
+          "Steering requires excessive force"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 13-043: 2012-13 Fit EPS Indicator Comes On With DTC 32-09, 32-08, 61-04, 61-05, 61-06, 61-07, or 61-08"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2015/HONDA/FIT/5%252520HB/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11433810 - 2015 Honda Fit Electric Power Steering Failure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Used OEM EPS motor from salvage yards ($150-300) - budget-friendly alternative to new OEM parts",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Used%20OEM%20EPS%20motor%20from%20salvage%20yards%20(%24150-300)%20-%20budget-fr&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured EPS units ($250-400) available with warranty - middle ground between used and new",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Remanufactured%20EPS%20units%20(%24250-400)%20available%20with%20warranty&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have independent mechanic diagnose before replacing - many shops want to replace whole assembly when only module needed",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Scan for codes to determine if motor or control module is failing - saves diagnostic costs at dealer",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Loss of power steering is serious safety issue - have diagnosed and repaired immediately",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 135,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2007,
+          2008
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Heavy Steering With EPS DTC 32-09 or 61-04 - Bulletin 14-058",
+        "description": "Honda Service Bulletin 14-058 covers VIN-eligible 2007-2008 Fit vehicles whose steering feels heavier than normal or is hard to turn, especially while stopped, with the EPS indicator on and DTC 32-09 or 61-04 stored. Honda identifies a malfunctioning EPS control unit.",
+        "solution": "Have a Honda dealer diagnose the stored EPS code and check VIN eligibility. Bulletin 14-058 directs replacement of the EPS control unit when DTC 32-09 and/or 61-04 is stored under the covered condition.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Steering feels heavier than normal",
+          "Steering is hard to turn, especially while stopped",
+          "EPS indicator illuminates"
+        ],
+        "affectedSystems": [
+          "Electric power steering control unit"
+        ],
+        "dtcCodes": [
+          "32-09",
+          "61-04"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 14-058 - Electric Power Steering Warranty Extension",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2014/MC-10124264-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Corrected the nonexistent 2012-2013 Bulletin 13-043 citation and broad 2009-2020 failure narrative to Honda Bulletin 14-058 for VIN-eligible 2007-2008 Fit vehicles with heavy steering and DTC 32-09 or 61-04.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-fit-fuel-pump-failure-2007",
+      "model": "Fit",
+      "action": "rewrite_same_identity",
+      "reason": "Narrowed the unsupported 2007-2020 generic fuel-pump card to Honda recall 23V858/Bulletin 24-023 for VIN-eligible 2018-2019 Fit vehicles and removed unsupported climate, contamination, maintenance, vendor and pricing claims.",
+      "identityRule": "The indexed component identity remains on the same ID; official Honda scope, mechanism and remedy replace unsupported generalizations.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "category",
+        "title",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V858-4774.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 24-023 - 2018-2019 Fit Fuel Pump Motor Recall supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "5c5d4fc7222df6a22501a6f2b93d60ff65224f17b12ad7e0aafb9b465eb66754",
+      "proposalSha256": "23337c33a4012ab8979480eaec51ae6e565fa8bd361258426be967edcf6a50c2",
+      "before": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Pump Failure",
+        "description": "Fuel pump can fail prematurely across all generations, particularly in colder climates or with contaminated fuel. Difficulty starting, engine hesitation, loss of power, or no-start condition. Carter fuel pumps ($80-140) are consistently praised on FitFreak as best value - well-regarded aftermarket option. Airtex ($90-150) and Walbro ($120-160) are good quality alternatives. Replace fuel filter and use fuel system cleaner regularly for preventive maintenance.",
+        "solution": "Replace fuel pump assembly. Carter fuel pumps ($80-140) well-regarded on FitFreak. Airtex ($90-150) or Walbro ($120-160 premium) good alternatives. Use fuel system cleaner regularly. Ensure fuel cap seals properly to prevent contamination.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Difficulty starting or no-start condition",
+          "Engine hesitation during acceleration",
+          "Sudden loss of power while driving",
+          "Whining noise from fuel tank",
+          "Engine sputtering at high speeds"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0087",
+          "P0230",
+          "P0231",
+          "P0232"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls?nhtsaId=21V215000",
+            "type": "nhtsa",
+            "title": "NHTSA Campaign Number 21V215000: Fuel Pump May Fail"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Carter fuel pumps ($80-140) consistently praised on FitFreak as best value aftermarket option",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Carter%20fuel%20pumps%20(%2480-140)%20consistently%20praised%20on%20FitFreak&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Airtex fuel pumps ($90-150) good quality/price ratio for budget builds",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Airtex%20fuel%20pumps%20(%2490-150)%20good%20quality%2Fprice%20ratio%20for%20bud&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Walbro fuel pumps ($120-160) premium option with highest reliability ratings",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Walbro%20fuel%20pumps%20(%24120-160)%20premium%20option%20with%20highest%20rel&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Use fuel system cleaner like Chevron Techron ($8-12) quarterly for preventive maintenance",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Common failure after 100k+ miles - budget for replacement at high mileage",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 105,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel-system",
+        "title": "In-Tank Fuel Pump Motor Recall - Bulletin 24-023",
+        "description": "Honda Service Bulletin 24-023 applies to VIN-eligible 2018-2019 Fit vehicles. A low-density fuel-pump impeller can absorb fuel and deform, interfere with the pump body and make the pump inoperative. The engine may not start or may stall while driving, increasing crash risk.",
+        "solution": "Check the VIN at a Honda dealer for recall eligibility. Bulletin 24-023 directs replacement of the in-tank fuel pump motor at no charge under safety recall 23V858.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Difficulty starting",
+          "Engine hesitation while driving",
+          "Malfunction indicator lamp may illuminate",
+          "Engine may stall while driving",
+          "DTC P0087 may be stored"
+        ],
+        "affectedSystems": [
+          "In-tank fuel pump motor",
+          "Fuel pump impeller"
+        ],
+        "dtcCodes": [
+          "P0087"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Honda Service Bulletin 24-023 - 2018-2019 Fit Fuel Pump Motor Recall",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V858-4774.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Narrowed the unsupported 2007-2020 generic fuel-pump card to Honda recall 23V858/Bulletin 24-023 for VIN-eligible 2018-2019 Fit vehicles and removed unsupported climate, contamination, maintenance, vendor and pricing claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-fit-idle-stalling-problems-2009",
+      "model": "Fit",
+      "action": "keep_published_pending_source",
+      "reason": "A generic NHTSA model page and generic throttle-body video do not establish a Fit-wide carbon, PCV or stalling defect or the claimed success rate. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, generic page, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "eba6a3611902cbfb46e80fa368ffbc2dc65f343b83ea36d063a38b597e3c4816",
+      "proposalSha256": "eba6a3611902cbfb46e80fa368ffbc2dc65f343b83ea36d063a38b597e3c4816",
+      "before": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Idle and Stalling Problems",
+        "description": "Rough or fluctuating idle, stalling at traffic lights, low idle RPM (below 500 RPM). Often related to carbon buildup in throttle body or PCV system problems. DIY throttle body cleaning resolves 80% of idle issues according to FitFreak forums. Seafoam fuel system cleaner ($12-15) poured into fuel tank is popular preventive maintenance. Gumout carburetor cleaner ($10-15) works well for intake valve cleaning.",
+        "solution": "Clean throttle body and intake valve carbon ($100-200 DIY with cleaner, $200-400 shop). Check and clean PCV system. Replace air filter if clogged. Fuel injector cleaning. Seafoam fuel system cleaner ($12-15) or Chevron Techron ($8-12) in fuel tank. Gumout carburetor cleaner ($10-15) for intake valves.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Rough or fluctuating idle",
+          "Stalling at traffic lights or stop signs",
+          "Low idle RPM (below 500)",
+          "Multiple stalls in one drive cycle",
+          "Engine shakes at idle"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304"
+        ],
+        "estimatedCostLow": 20,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2009/HONDA/FIT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 2009 Honda Fit - Includes Idle and Stalling Issues"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=3FJX3Z9fX2g",
+            "type": "video",
+            "title": "ChrisFix - How to Clean a Throttle Body to Fix Rough Idle and Stalling"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "DIY throttle body cleaning resolves 80% of idle issues according to FitFreak - simple $15-50 fix in supplies",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Seafoam fuel system cleaner ($12-15) poured into fuel tank - popular preventive maintenance on forums",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Seafoam%20fuel%20system%20cleaner%20(%2412-15)%20poured%20into%20fuel%20tank%20-&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Chevron Techron fuel injector cleaner ($8-12) - effective for carbon buildup prevention",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Chevron%20Techron%20fuel%20injector%20cleaner%20(%248-12)%20-%20effective%20fo&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Gumout carburetor cleaner ($10-15) works well for intake valve cleaning - many DIY guides on FitFreak",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Gumout%20carburetor%20cleaner%20(%2410-15)%20works%20well%20for%20intake%20val&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check and clean PCV system - helps with oil consumption AND idle issues for $10-20 in supplies",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 95,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Idle and Stalling Problems",
+        "description": "Rough or fluctuating idle, stalling at traffic lights, low idle RPM (below 500 RPM). Often related to carbon buildup in throttle body or PCV system problems. DIY throttle body cleaning resolves 80% of idle issues according to FitFreak forums. Seafoam fuel system cleaner ($12-15) poured into fuel tank is popular preventive maintenance. Gumout carburetor cleaner ($10-15) works well for intake valve cleaning.",
+        "solution": "Clean throttle body and intake valve carbon ($100-200 DIY with cleaner, $200-400 shop). Check and clean PCV system. Replace air filter if clogged. Fuel injector cleaning. Seafoam fuel system cleaner ($12-15) or Chevron Techron ($8-12) in fuel tank. Gumout carburetor cleaner ($10-15) for intake valves.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Rough or fluctuating idle",
+          "Stalling at traffic lights or stop signs",
+          "Low idle RPM (below 500)",
+          "Multiple stalls in one drive cycle",
+          "Engine shakes at idle"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304"
+        ],
+        "estimatedCostLow": 20,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2009/HONDA/FIT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 2009 Honda Fit - Includes Idle and Stalling Issues"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=3FJX3Z9fX2g",
+            "type": "video",
+            "title": "ChrisFix - How to Clean a Throttle Body to Fix Rough Idle and Stalling"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "DIY throttle body cleaning resolves 80% of idle issues according to FitFreak - simple $15-50 fix in supplies",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Seafoam fuel system cleaner ($12-15) poured into fuel tank - popular preventive maintenance on forums",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Seafoam%20fuel%20system%20cleaner%20(%2412-15)%20poured%20into%20fuel%20tank%20-&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Chevron Techron fuel injector cleaner ($8-12) - effective for carbon buildup prevention",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Chevron%20Techron%20fuel%20injector%20cleaner%20(%248-12)%20-%20effective%20fo&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Gumout carburetor cleaner ($10-15) works well for intake valve cleaning - many DIY guides on FitFreak",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Gumout%20carburetor%20cleaner%20(%2410-15)%20works%20well%20for%20intake%20val&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check and clean PCV system - helps with oil consumption AND idle issues for $10-20 in supplies",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 95,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-fit-ignition-coil-failure-2007",
+      "model": "Fit",
+      "action": "keep_published_pending_source",
+      "reason": "A generic model page and repair video do not establish a 2007-2020 Fit ignition-coil defect, replacement interval or Honda remedy. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, generic page, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "adf46e1362398802f45061fc8e99575536f3b5241f58f29d01ceb62007d9277d",
+      "proposalSha256": "adf46e1362398802f45061fc8e99575536f3b5241f58f29d01ceb62007d9277d",
+      "before": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Ignition Coil Failure",
+        "description": "Ignition coil packs can fail causing engine misfires. Usually one coil fails at a time. Engine misfire, rough idle, check engine light with misfire codes. Bosch ($50-80 each) or Denso ($60-90 each) replacement coils recommended on FitFreak. Replace all four at once ($200-300) to prevent future failures and repeated labor costs. DIY installation very easy (bolt on, connector plug) - saves $100-200 in shop labor.",
+        "solution": "Test coil pack resistance with multimeter before replacing to confirm failure. Replace failed ignition coil pack. Consider replacing all four if one fails (preventive measure, $200-300 for all four). Bosch ($50-80 each) or Denso ($60-90 each) recommended. DIY installation very easy.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Engine misfire",
+          "Rough idle",
+          "Check engine light with misfire codes P0300-P0308",
+          "Reduced fuel economy",
+          "Hesitation during acceleration"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0351",
+          "P0352",
+          "P0353",
+          "P0354"
+        ],
+        "estimatedCostLow": 80,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HONDA/FIT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2007 Honda Fit - includes complaints related to ignition coil and misfire issues"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=G8eF6q1b1x8",
+            "type": "video",
+            "title": "YouTube - Replacing Ignition Coils on a Honda Fit (2007-2014) by ChrisFix"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Bosch ignition coils ($50-80 each) or Denso coils ($60-90 each) recommended on FitFreak forums",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Bosch%20ignition%20coils%20(%2450-80%20each)%20or%20Denso%20coils%20(%2460-90%20ea&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace all four at once ($200-300) to prevent future failures and repeated labor costs",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "DIY installation is very easy - bolt on, connector plug - saves $100-200 in shop labor",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "AutoZone Duralast coils ($45-65 each) budget alternative with good warranty coverage",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20AutoZone%20Duralast%20coils%20(%2445-65%20each)%20budget%20alternative%20wit&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Avoid knockoff coils on eBay/Amazon - they fail quickly and waste money",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 115,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Ignition Coil Failure",
+        "description": "Ignition coil packs can fail causing engine misfires. Usually one coil fails at a time. Engine misfire, rough idle, check engine light with misfire codes. Bosch ($50-80 each) or Denso ($60-90 each) replacement coils recommended on FitFreak. Replace all four at once ($200-300) to prevent future failures and repeated labor costs. DIY installation very easy (bolt on, connector plug) - saves $100-200 in shop labor.",
+        "solution": "Test coil pack resistance with multimeter before replacing to confirm failure. Replace failed ignition coil pack. Consider replacing all four if one fails (preventive measure, $200-300 for all four). Bosch ($50-80 each) or Denso ($60-90 each) recommended. DIY installation very easy.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Engine misfire",
+          "Rough idle",
+          "Check engine light with misfire codes P0300-P0308",
+          "Reduced fuel economy",
+          "Hesitation during acceleration"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0351",
+          "P0352",
+          "P0353",
+          "P0354"
+        ],
+        "estimatedCostLow": 80,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HONDA/FIT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2007 Honda Fit - includes complaints related to ignition coil and misfire issues"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=G8eF6q1b1x8",
+            "type": "video",
+            "title": "YouTube - Replacing Ignition Coils on a Honda Fit (2007-2014) by ChrisFix"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Bosch ignition coils ($50-80 each) or Denso coils ($60-90 each) recommended on FitFreak forums",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Bosch%20ignition%20coils%20(%2450-80%20each)%20or%20Denso%20coils%20(%2460-90%20ea&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace all four at once ($200-300) to prevent future failures and repeated labor costs",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "DIY installation is very easy - bolt on, connector plug - saves $100-200 in shop labor",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "AutoZone Duralast coils ($45-65 each) budget alternative with good warranty coverage",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20AutoZone%20Duralast%20coils%20(%2445-65%20each)%20budget%20alternative%20wit&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Avoid knockoff coils on eBay/Amazon - they fail quickly and waste money",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 115,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-fit-infotainment-failure-2015",
+      "model": "Fit",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no citations, and no exact Honda record was verified for its combined touchscreen, radio, Bluetooth and smartphone-integration narrative. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, generic page, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "5dae1b1edfd46768697a3000e3952b0a9451c32b6a061f92f1f8894220ffc101",
+      "proposalSha256": "5dae1b1edfd46768697a3000e3952b0a9451c32b6a061f92f1f8894220ffc101",
+      "before": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment System Problems (3rd Gen)",
+        "description": "7-inch touchscreen infotainment system has known software bugs and hardware issues, particularly 2015-2016 models. Touchscreen not responding, radio cuts out or restarts, Bluetooth connectivity issues, Apple CarPlay/Android Auto compatibility issues. Hard reset: Hold power button for 10 seconds. Disconnect battery for 15 minutes for full system reset. Aftermarket head units (Alpine, Sony, Kenwood) $300-600 with CarPlay have better reliability than OEM according to FitFreak forums.",
+        "solution": "Update system software at Honda dealer (often free). Hard reset: Hold power button for 10 seconds. Disconnect battery for 15 minutes for full system reset. If touchscreen unresponsive: Recalibration software update. If hardware failure: Replace unit at dealer ($800-1,200) or aftermarket head unit ($300-600 with CarPlay). Many FitFreak owners prefer aftermarket units for better reliability.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Touchscreen not responding to touch",
+          "Radio cuts out or randomly restarts",
+          "Bluetooth connectivity issues",
+          "Apple CarPlay/Android Auto not working",
+          "Screen freezes or glitches",
+          "Software crashes requiring reset"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Hard reset (hold power button 10 seconds) or disconnect battery 15 minutes - fixes 50% of infotainment glitches",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Software updates from dealer often free - fixes many Bluetooth and CarPlay connectivity issues",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Aftermarket head units (Alpine, Sony, Kenwood) $300-600 with CarPlay - better reliability than OEM according to FitFreak",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Aftermarket%20head%20units%20(Alpine%2C%20Sony%2C%20Kenwood)%20%24300-600%20with&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY aftermarket head unit installation possible but complex on 3rd gen Fit - consider professional install",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Dealer replacement ($800-1,200) may not solve underlying software issues - consider aftermarket instead",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 125,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment System Problems (3rd Gen)",
+        "description": "7-inch touchscreen infotainment system has known software bugs and hardware issues, particularly 2015-2016 models. Touchscreen not responding, radio cuts out or restarts, Bluetooth connectivity issues, Apple CarPlay/Android Auto compatibility issues. Hard reset: Hold power button for 10 seconds. Disconnect battery for 15 minutes for full system reset. Aftermarket head units (Alpine, Sony, Kenwood) $300-600 with CarPlay have better reliability than OEM according to FitFreak forums.",
+        "solution": "Update system software at Honda dealer (often free). Hard reset: Hold power button for 10 seconds. Disconnect battery for 15 minutes for full system reset. If touchscreen unresponsive: Recalibration software update. If hardware failure: Replace unit at dealer ($800-1,200) or aftermarket head unit ($300-600 with CarPlay). Many FitFreak owners prefer aftermarket units for better reliability.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Touchscreen not responding to touch",
+          "Radio cuts out or randomly restarts",
+          "Bluetooth connectivity issues",
+          "Apple CarPlay/Android Auto not working",
+          "Screen freezes or glitches",
+          "Software crashes requiring reset"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Hard reset (hold power button 10 seconds) or disconnect battery 15 minutes - fixes 50% of infotainment glitches",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Software updates from dealer often free - fixes many Bluetooth and CarPlay connectivity issues",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Aftermarket head units (Alpine, Sony, Kenwood) $300-600 with CarPlay - better reliability than OEM according to FitFreak",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Aftermarket%20head%20units%20(Alpine%2C%20Sony%2C%20Kenwood)%20%24300-600%20with&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY aftermarket head unit installation possible but complex on 3rd gen Fit - consider professional install",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Dealer replacement ($800-1,200) may not solve underlying software issues - consider aftermarket instead",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 125,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-fit-oil-consumption-2007",
+      "model": "Fit",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no citations and makes an unsupported two-engine, fourteen-year defect and warranty-extension claim. No exact Honda record was verified, so it remains unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, generic page, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "80f047dddb5ea4464de3bc3fcd198e5c56f3a11fc45bda38fe5c4b386d452ad0",
+      "proposalSha256": "80f047dddb5ea4464de3bc3fcd198e5c56f3a11fc45bda38fe5c4b386d452ad0",
+      "before": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [
+          "L15A",
+          "L15B"
+        ],
+        "category": "engine",
+        "title": "Engine Excessive Oil Consumption",
+        "description": "L15A (2007-2014) and L15B (2015-2020) engines prone to excessive oil consumption. Normal consumption approximately 1 quart per 1,000 miles, but some units burn significantly more. Honda acknowledged issue and extended warranty coverage for affected vehicles. PCV valve clogging and worn valve guide seals are common causes. Oil monitoring is MANDATORY - check every 500-1,000 miles. Some owners report consumption stabilizes after 50,000 miles.",
+        "solution": "Check oil level every 500-1,000 miles religiously. Use Honda recommended 0W-20 synthetic oil exclusively (Mobil 1 0W-20 widely recommended on FitFreak, $35-45/quart). PCV system cleaning with Seafoam ($10-15) can help reduce consumption. Honda extended warranty coverage for vehicles consuming more than 1 quart per 1,000 miles - check VIN. If out of warranty and severe: engine rebuild ($2,000-3,000).",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Oil level dropping between oil changes",
+          "Burning oil smell from engine bay",
+          "Blue smoke from exhaust (may be slight)",
+          "Oil level warning light illuminated",
+          "Low oil pressure at idle"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P052E"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": 50000,
+        "typicalMileageHigh": 75000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Oil monitoring is MANDATORY - check dipstick every 500-1,000 miles, never let oil drop more than 1 quart low",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Mobil 1 0W-20 synthetic ($35-45/quart) most recommended on FitFreak forums as OEM-approved alternative",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Mobil%201%200W-20%20synthetic%20(%2435-45%2Fquart)%20most%20recommended%20on%20F&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Valvoline Synpower 0W-20 ($30-40/quart) or Castrol Edge 0W-20 ($30-40/quart) good budget alternatives",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Valvoline%20Synpower%200W-20%20(%2430-40%2Fquart)%20or%20Castrol%20Edge%200W-2&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Perform regular PCV cleaning with Seafoam ($10-15) to prevent sludge buildup that worsens oil consumption",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Honda extended warranty may cover excessive consumption - check VIN at dealer if burning over 1qt/1000mi",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Some owners report oil consumption stabilizes after 50,000 miles - monitor closely during break-in period",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 195,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-s2000-vtec-oil-consumption-2000",
+          "honda-odyssey-vcm-oil-consumption-2005",
+          "honda-element-oil-consumption-k24-2003",
+          "honda-civic-11th-gen-oil-consumption-2022"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [
+          "L15A",
+          "L15B"
+        ],
+        "category": "engine",
+        "title": "Engine Excessive Oil Consumption",
+        "description": "L15A (2007-2014) and L15B (2015-2020) engines prone to excessive oil consumption. Normal consumption approximately 1 quart per 1,000 miles, but some units burn significantly more. Honda acknowledged issue and extended warranty coverage for affected vehicles. PCV valve clogging and worn valve guide seals are common causes. Oil monitoring is MANDATORY - check every 500-1,000 miles. Some owners report consumption stabilizes after 50,000 miles.",
+        "solution": "Check oil level every 500-1,000 miles religiously. Use Honda recommended 0W-20 synthetic oil exclusively (Mobil 1 0W-20 widely recommended on FitFreak, $35-45/quart). PCV system cleaning with Seafoam ($10-15) can help reduce consumption. Honda extended warranty coverage for vehicles consuming more than 1 quart per 1,000 miles - check VIN. If out of warranty and severe: engine rebuild ($2,000-3,000).",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Oil level dropping between oil changes",
+          "Burning oil smell from engine bay",
+          "Blue smoke from exhaust (may be slight)",
+          "Oil level warning light illuminated",
+          "Low oil pressure at idle"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P052E"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": 50000,
+        "typicalMileageHigh": 75000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Oil monitoring is MANDATORY - check dipstick every 500-1,000 miles, never let oil drop more than 1 quart low",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Mobil 1 0W-20 synthetic ($35-45/quart) most recommended on FitFreak forums as OEM-approved alternative",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Mobil%201%200W-20%20synthetic%20(%2435-45%2Fquart)%20most%20recommended%20on%20F&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Valvoline Synpower 0W-20 ($30-40/quart) or Castrol Edge 0W-20 ($30-40/quart) good budget alternatives",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Valvoline%20Synpower%200W-20%20(%2430-40%2Fquart)%20or%20Castrol%20Edge%200W-2&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Perform regular PCV cleaning with Seafoam ($10-15) to prevent sludge buildup that worsens oil consumption",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Honda extended warranty may cover excessive consumption - check VIN at dealer if burning over 1qt/1000mi",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Some owners report oil consumption stabilizes after 50,000 miles - monitor closely during break-in period",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 195,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-s2000-vtec-oil-consumption-2000",
+          "honda-odyssey-vcm-oil-consumption-2005",
+          "honda-element-oil-consumption-k24-2003",
+          "honda-civic-11th-gen-oil-consumption-2022"
+        ]
+      }
+    },
+    {
+      "id": "honda-fit-spark-plug-failure-2007",
+      "model": "Fit",
+      "action": "keep_published_pending_source",
+      "reason": "A generic model page and repair video do not establish premature original-equipment spark-plug failure across every Fit generation or the claimed replacement interval. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, generic page, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "e8a2ce96584cf808583c0e7abd0f1d6bf070c7132f805cd8f1b6631cbaae105a",
+      "proposalSha256": "e8a2ce96584cf808583c0e7abd0f1d6bf070c7132f805cd8f1b6631cbaae105a",
+      "before": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [
+          "L15A",
+          "L15B"
+        ],
+        "category": "engine",
+        "title": "Spark Plug Premature Failure",
+        "description": "Original equipment spark plugs fail prematurely across all Honda Fit generations, sometimes before 30,000 miles. Original iridium plugs don't hold up well in the L15A/L15B engines. FitFreak forum consensus: replace every 20,000-25,000 miles instead of Honda's recommended 30,000 miles. NGK Laser Platinum plugs are the consensus #1 choice among Fit owners. Improper spark plug gap or torque causes premature failure.",
+        "solution": "Replace spark plugs every 20,000-25,000 miles instead of 30,000. Use NGK Laser Platinum ($22-30 per plug) or Denso Iridium Long Life ($24-32 per plug). Ensure proper gap (0.043 inches) and torque specification. DIY replacement very accessible on Fit (engine bay open). Torque wrench CRITICAL - improper torque causes premature failure.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Rough idle",
+          "Hesitation during acceleration",
+          "Engine misfire codes P0300-P0308",
+          "Check engine light illuminated",
+          "Reduced fuel economy",
+          "Hard starting when cold"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": 20000,
+        "typicalMileageHigh": 25000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HONDA/FIT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 2007 Honda Fit"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=3kX3eYQb0sA",
+            "type": "video",
+            "title": "Spark Plug Replacement on a Honda Fit L15 Engine - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "NGK Laser Platinum ($22-30 per plug) is consensus #1 choice on FitFreak forums for reliability and value",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20NGK%20Laser%20Platinum%20(%2422-30%20per%20plug)%20is%20consensus%20%231%20choice&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Denso Iridium Long Life ($24-32 per plug) excellent alternative with slightly longer service life",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Denso%20Iridium%20Long%20Life%20(%2424-32%20per%20plug)%20excellent%20alternat&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Use torque wrench for installation - improper torque is #1 cause of premature spark plug failure in Fits",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Replace every 20k-25k miles instead of Honda's 30k recommendation - prevents misfires and saves money",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "DIY replacement is very easy on Fits - engine bay accessible, saves $150-250 in shop labor",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Bosch Platinum Plus ($20-25 per plug) or Denso Iridium Power ($15-20 per plug) are budget alternatives with mixed reviews",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Bosch%20Platinum%20Plus%20(%2420-25%20per%20plug)%20or%20Denso%20Iridium%20Power&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 185,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [
+          "L15A",
+          "L15B"
+        ],
+        "category": "engine",
+        "title": "Spark Plug Premature Failure",
+        "description": "Original equipment spark plugs fail prematurely across all Honda Fit generations, sometimes before 30,000 miles. Original iridium plugs don't hold up well in the L15A/L15B engines. FitFreak forum consensus: replace every 20,000-25,000 miles instead of Honda's recommended 30,000 miles. NGK Laser Platinum plugs are the consensus #1 choice among Fit owners. Improper spark plug gap or torque causes premature failure.",
+        "solution": "Replace spark plugs every 20,000-25,000 miles instead of 30,000. Use NGK Laser Platinum ($22-30 per plug) or Denso Iridium Long Life ($24-32 per plug). Ensure proper gap (0.043 inches) and torque specification. DIY replacement very accessible on Fit (engine bay open). Torque wrench CRITICAL - improper torque causes premature failure.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Rough idle",
+          "Hesitation during acceleration",
+          "Engine misfire codes P0300-P0308",
+          "Check engine light illuminated",
+          "Reduced fuel economy",
+          "Hard starting when cold"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": 20000,
+        "typicalMileageHigh": 25000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HONDA/FIT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 2007 Honda Fit"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=3kX3eYQb0sA",
+            "type": "video",
+            "title": "Spark Plug Replacement on a Honda Fit L15 Engine - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "NGK Laser Platinum ($22-30 per plug) is consensus #1 choice on FitFreak forums for reliability and value",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20NGK%20Laser%20Platinum%20(%2422-30%20per%20plug)%20is%20consensus%20%231%20choice&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Denso Iridium Long Life ($24-32 per plug) excellent alternative with slightly longer service life",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Denso%20Iridium%20Long%20Life%20(%2424-32%20per%20plug)%20excellent%20alternat&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Use torque wrench for installation - improper torque is #1 cause of premature spark plug failure in Fits",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Replace every 20k-25k miles instead of Honda's 30k recommendation - prevents misfires and saves money",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "DIY replacement is very easy on Fits - engine bay accessible, saves $150-250 in shop labor",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Bosch Platinum Plus ($20-25 per plug) or Denso Iridium Power ($15-20 per plug) are budget alternatives with mixed reviews",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Bosch%20Platinum%20Plus%20(%2420-25%20per%20plug)%20or%20Denso%20Iridium%20Power&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 185,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-fit-starter-motor-failure-2007",
+      "model": "Fit",
+      "action": "keep_published_pending_source",
+      "reason": "A generic model page and repair video do not establish premature starter failure across every Fit generation, climate dependence or a Honda remedy. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, generic page, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "74566fb80a96c945acc3718ed1c9dbecf5b9377681c15aa56f2d587d5e9c2624",
+      "proposalSha256": "74566fb80a96c945acc3718ed1c9dbecf5b9377681c15aa56f2d587d5e9c2624",
+      "before": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Starter Motor Failure",
+        "description": "Starter motor can fail prematurely across all generations, particularly in colder climates. Solenoid issues are also common. No cranking sound or single click when turning key indicates starter failure. Denso remanufactured starters ($90-140) are most recommended on FitFreak forums as best value - significantly cheaper than OEM ($300+) with good reliability. Have battery tested first ($0 at auto parts store) to rule out battery problem.",
+        "solution": "Have battery tested first ($0 at auto parts store) to rule out battery problem. Replace with remanufactured Denso starter ($90-140) or OEM Honda starter ($300-400). AutoZone/O'Reilly Duralast remanufactured starters ($80-100) have good warranty coverage. DIY installation is moderate difficulty (engine bay tight on Fits).",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No cranking sound when turning key",
+          "Single click when turning key (solenoid failure)",
+          "Grinding noise when attempting to start",
+          "Intermittent no-start condition",
+          "Starter engages but engine won't turn over"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HONDA/FIT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 2007 Honda Fit"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=7ZqQx0Y7Q6Y",
+            "type": "video",
+            "title": "How to Replace Starter Motor on Honda Fit (2007-2013) - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso remanufactured starters ($90-140) most recommended on FitFreak - significantly cheaper than OEM with good reliability",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Denso%20remanufactured%20starters%20(%2490-140)%20most%20recommended%20on&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "AutoZone/O'Reilly Duralast remanufactured starters ($80-100) have excellent warranty coverage for budget builds",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20AutoZone%2FO'Reilly%20Duralast%20remanufactured%20starters%20(%2480-100)&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have battery tested FREE at auto parts store before replacing starter - weak battery causes identical symptoms",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "DIY installation is moderate difficulty - engine bay is tight on Fits but accessible with basic tools",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "More common in cold climates - budget for starter replacement if living in freezing temperatures",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 145,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Fit",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Starter Motor Failure",
+        "description": "Starter motor can fail prematurely across all generations, particularly in colder climates. Solenoid issues are also common. No cranking sound or single click when turning key indicates starter failure. Denso remanufactured starters ($90-140) are most recommended on FitFreak forums as best value - significantly cheaper than OEM ($300+) with good reliability. Have battery tested first ($0 at auto parts store) to rule out battery problem.",
+        "solution": "Have battery tested first ($0 at auto parts store) to rule out battery problem. Replace with remanufactured Denso starter ($90-140) or OEM Honda starter ($300-400). AutoZone/O'Reilly Duralast remanufactured starters ($80-100) have good warranty coverage. DIY installation is moderate difficulty (engine bay tight on Fits).",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No cranking sound when turning key",
+          "Single click when turning key (solenoid failure)",
+          "Grinding noise when attempting to start",
+          "Intermittent no-start condition",
+          "Starter engages but engine won't turn over"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HONDA/FIT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 2007 Honda Fit"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=7ZqQx0Y7Q6Y",
+            "type": "video",
+            "title": "How to Replace Starter Motor on Honda Fit (2007-2013) - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso remanufactured starters ($90-140) most recommended on FitFreak - significantly cheaper than OEM with good reliability",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20Denso%20remanufactured%20starters%20(%2490-140)%20most%20recommended%20on&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "AutoZone/O'Reilly Duralast remanufactured starters ($80-100) have excellent warranty coverage for budget builds",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Fit%20AutoZone%2FO'Reilly%20Duralast%20remanufactured%20starters%20(%2480-100)&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have battery tested FREE at auto parts store before replacing starter - weak battery causes identical symptoms",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "DIY installation is moderate difficulty - engine bay is tight on Fits but accessible with basic tools",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "More common in cold climates - budget for starter replacement if living in freezing temperatures",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 145,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
