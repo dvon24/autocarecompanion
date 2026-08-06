@@ -1,0 +1,2177 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Kona",
+  "completionStatement": "This packet reconciles all thirteen frozen Hyundai Kona rows. Four same-identity recall rewrites are proposed; nine rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All thirteen rows remain published. Nine are byte-for-byte unchanged.",
+    "All four rewrites preserve the indexed title and category and use exact official record-specific deep links.",
+    "Every rewrite contains zero commerce, zero cost or mileage claims, empty trim and engine arrays, and no unsupported diagnostic codes.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "konaRecordCount": 13
+  },
+  "observations": [
+    {
+      "code": "four-exact-recalls-rewritten",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-kona-12v-battery-cable-chafing-against-ecm-bracket-short-circuit",
+        "hyundai-kona-2-0l-nu-mpi-piston-ring-defect-causing-knocking-engine-seizu",
+        "hyundai-kona-electric-battery-recall",
+        "hyundai-kona-epcu-coolant-leak-causing-loss-drive-power"
+      ],
+      "detail": "Only four rows have exact official records supporting the frozen component, failure mode and title outcome."
+    },
+    {
+      "code": "false-21v193-corrected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-kona-electric-battery-recall"
+      ],
+      "detail": "The frozen battery-fire narrative named 21V-193, which is not a Hyundai campaign. The exact U.S. Kona Electric battery-cell campaign is 21V-127."
+    },
+    {
+      "code": "transmission-rows-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-kona-cvt-judder",
+        "hyundai-kona-dct-shudder"
+      ],
+      "detail": "Official Hyundai bulletins expose year and outcome mismatches in both transmission rows, so neither receives a partial rewrite.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/tsbs/2022/MC-10213721-0001.pdf",
+        "https://static.nhtsa.gov/odi/tsbs/2021/MC-10196546-0001.pdf",
+        "https://static.nhtsa.gov/odi/tsbs/2023/MC-10241878-0001.pdf"
+      ]
+    },
+    {
+      "code": "nine-secondary-rows-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-kona-12v-auxiliary-battery-repeated-drain-dead-car-no-start",
+        "hyundai-kona-ac-compressor-noise-2018",
+        "hyundai-kona-cvt-judder",
+        "hyundai-kona-dct-shudder",
+        "hyundai-kona-infotainment-black-frozen-screen-apple-carplay-bluetooth-dis",
+        "hyundai-kona-oil-dilution-2018",
+        "hyundai-kona-paint-peeling-2018",
+        "hyundai-kona-panoramic-sunroof-leak",
+        "hyundai-kona-reduced-dc-fast-charging-speed-bms-check-ev-system-charging"
+      ],
+      "detail": "Nine broad, secondary-only or partial-identity narratives remain byte-for-byte unchanged pending exact same-identity Hyundai evidence."
+    }
+  ],
+  "publicSources": {
+    "cable": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V901-8581.PDF",
+    "piston": "https://static.nhtsa.gov/odi/rcl/2021/RCLRPT-21V301-4965.PDF",
+    "batteryFire": "https://static.nhtsa.gov/odi/rcl/2021/RCLRPT-21V127-1095.PDF",
+    "epcu": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V941-1708.PDF",
+    "dctNearMatch": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10213721-0001.pdf",
+    "transmissionTypes": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10196546-0001.pdf",
+    "ivtScope": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10241878-0001.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 4,
+    "keep_published_pending_source": 9,
+    "total": 13
+  },
+  "rows": [
+    {
+      "id": "hyundai-kona-12v-auxiliary-battery-repeated-drain-dead-car-no-start",
+      "model": "Kona",
+      "action": "keep_published_pending_source",
+      "reason": "Three owner-forum threads do not establish one Hyundai-defined 2019-2023 repeated 12-volt drain defect, software cause or battery-saver remedy. The EPCU and high-voltage battery campaigns are different identities, so this row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "a980b04c3cfd5cc3b119f81a3ce9fdb3a470b66d26b6d55f6db8ba1ba903fef9",
+      "proposalSha256": "a980b04c3cfd5cc3b119f81a3ce9fdb3a470b66d26b6d55f6db8ba1ba903fef9",
+      "before": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Auxiliary Battery Repeated Drain and Dead-Car No-Start (Kona Electric)",
+        "description": "Kona Electric owners across model years report the small 12V auxiliary battery repeatedly draining, sometimes within weeks, leaving the car completely dead and unable to wake the high-voltage system. Because the 12V system must energize before the main pack activates, a flat 12V battery disables door locks, the dash, and the ability to start or charge. Deep discharges (often after dealer software reflashes done without a charger attached) can permanently damage the battery.",
+        "solution": "Replace a degraded 12V battery and have the dealer confirm the latest BMS/charging software is installed. Some owners use a battery maintainer or enable available battery-saver functions; persistent unexplained drain should be diagnosed for a parasitic draw at the dealer.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Car completely dead / no response",
+          "12V battery warning message",
+          "Won't start or wake after sitting",
+          "Repeated dead 12V battery within weeks",
+          "Doors won't unlock electronically"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.insideevsforum.com/community/threads/kona-electric-12v-auxillary-battery-issues.10018/",
+            "type": "forum",
+            "title": "Kona Electric 12V Auxiliary Battery Issues - InsideEVs Forum"
+          },
+          {
+            "url": "https://www.hyundaikonaforum.com/threads/help-my-car-is-completely-dead.5506/",
+            "type": "forum",
+            "title": "Help - My car is completely dead - Hyundai Kona Forum"
+          },
+          {
+            "url": "https://www.speakev.com/threads/kona-ev-dead-12v-battery.176177/",
+            "type": "forum",
+            "title": "Kona EV - Dead 12v Battery - Speak EV Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Auxiliary Battery Repeated Drain and Dead-Car No-Start (Kona Electric)",
+        "description": "Kona Electric owners across model years report the small 12V auxiliary battery repeatedly draining, sometimes within weeks, leaving the car completely dead and unable to wake the high-voltage system. Because the 12V system must energize before the main pack activates, a flat 12V battery disables door locks, the dash, and the ability to start or charge. Deep discharges (often after dealer software reflashes done without a charger attached) can permanently damage the battery.",
+        "solution": "Replace a degraded 12V battery and have the dealer confirm the latest BMS/charging software is installed. Some owners use a battery maintainer or enable available battery-saver functions; persistent unexplained drain should be diagnosed for a parasitic draw at the dealer.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Car completely dead / no response",
+          "12V battery warning message",
+          "Won't start or wake after sitting",
+          "Repeated dead 12V battery within weeks",
+          "Doors won't unlock electronically"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.insideevsforum.com/community/threads/kona-electric-12v-auxillary-battery-issues.10018/",
+            "type": "forum",
+            "title": "Kona Electric 12V Auxiliary Battery Issues - InsideEVs Forum"
+          },
+          {
+            "url": "https://www.hyundaikonaforum.com/threads/help-my-car-is-completely-dead.5506/",
+            "type": "forum",
+            "title": "Help - My car is completely dead - Hyundai Kona Forum"
+          },
+          {
+            "url": "https://www.speakev.com/threads/kona-ev-dead-12v-battery.176177/",
+            "type": "forum",
+            "title": "Kona EV - Dead 12v Battery - Speak EV Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-kona-12v-battery-cable-chafing-against-ecm-bracket-short-circuit",
+      "model": "Kona",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed 12-volt-cable/ECM-bracket/fire identity, replaced secondary citations with the exact Part 573 report, and limited the defect to the documented frontal-crash condition and remedy.",
+      "identityRule": "The same indexed component, failure mechanism and outcome stay on the existing ID, title and category; only facts from the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-primary",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V901-8581.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 23V-901 - 2024 Kona 12-Volt Positive Wiring supports the proposed identity, scope and remedy."
+        }
+      ],
+      "beforeSha256": "55aac2d3e3530e7940cb3751caf0c7271ba13d925fe6ddaa1bdb4e34e243455e",
+      "proposalSha256": "46be3fa10f4a4d69449eb913873ea4e0b231e15488b36e088e350aa7e0635d22",
+      "before": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Battery Cable Chafing Against ECM Bracket Short Circuit and Fire (2024 Kona, Recall 23V901)",
+        "description": "On certain 2024 Konas with the 1.6L turbo engine, the 12-volt positive battery cable can chafe against the engine/electronic control module bracket. During a crash the abraded cable may short circuit, which can cause an engine-compartment fire. The defect was discovered after an IIHS frontal-overlap crash test produced a fire on a 2024 Kona 1.6T.",
+        "solution": "NHTSA Recall 23V901000 (Hyundai Recall 252). Dealers install protective sheathing/conduit over the affected wiring, free of charge. Owners of 2024 Konas should check their VIN against the recall and schedule the free remedy.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Chafed or damaged 12V positive battery cable",
+          "Risk of electrical short during a crash",
+          "Engine-compartment fire after a collision",
+          "Burning smell or electrical fault (in severe cases)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://auto-recalls.justia.com/hyundai/kona/2024/23v901000",
+            "type": "recall",
+            "title": "NHTSA Recall 23V901000 - 2024 Hyundai Kona 12V Battery Cables"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V901-8581.PDF",
+            "type": "nhtsa",
+            "title": "NHTSA Part 573 Safety Recall Report 23V-901"
+          },
+          {
+            "url": "https://www.autoevolution.com/news/your-2024-hyundai-kona-may-catch-fire-south-korean-automaker-recalls-10984-vehicles-226891.html",
+            "type": "article",
+            "title": "Your 2024 Hyundai Kona May Catch Fire - autoevolution"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Battery Cable Chafing Against ECM Bracket Short Circuit and Fire (2024 Kona, Recall 23V901)",
+        "description": "NHTSA recall 23V-901 covers 10,984 model-year 2024 Kona vehicles equipped with 1.6T-GDI engines. During a frontal crash, the engine control module bracket can contact and damage the 12-volt positive battery wiring, causing an electrical short. A short can increase the risk of a post-crash engine-compartment fire.",
+        "solution": "Check the VIN for NHTSA recall 23V-901 (Hyundai 252). Hyundai dealers install protective sheathing over the 12-volt positive and alternator wiring connected to the engine-compartment junction block, free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Smoke from the engine compartment after a crash",
+          "Burning or melting odor"
+        ],
+        "affectedSystems": [
+          "12-volt positive battery wiring",
+          "Alternator wiring",
+          "Engine control module bracket"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 23V-901 - 2024 Kona 12-Volt Positive Wiring",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V901-8581.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed 12-volt-cable/ECM-bracket/fire identity, replaced secondary citations with the exact Part 573 report, and limited the defect to the documented frontal-crash condition and remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-kona-2-0l-nu-mpi-piston-ring-defect-causing-knocking-engine-seizu",
+      "model": "Kona",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed piston-ring/knock/seizure identity, retained the exact 2019-2021 Kona 2.0L scope, replaced secondary sources with the Part 573 report, and removed the unsupported P1326 and generic no-start claims.",
+      "identityRule": "The same indexed component, failure mechanism and outcome stay on the existing ID, title and category; only facts from the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-primary",
+          "url": "https://static.nhtsa.gov/odi/rcl/2021/RCLRPT-21V301-4965.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 21V-301 - Kona 2.0L Nu MPI Piston Oil Rings supports the proposed identity, scope and remedy."
+        }
+      ],
+      "beforeSha256": "fb4c2474f7acac5d33624d6627d14f40d8ccc96a291d15cb6c388121679e9a7c",
+      "proposalSha256": "002a033ac9fcceb4dde3c66ef0b674402770e530f19096a5408070744e62f869",
+      "before": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "2.0L Nu MPI Piston Ring Defect Causing Knocking and Engine Seizure (Recall 21V301)",
+        "description": "On 2019-2021 Konas with the 2.0L Nu MPI engine, piston oil rings that were not consistently heat-treated can scuff the cylinder bores. This causes rising oil consumption, a progressively louder engine knock, and ultimately engine seizure or stall; a seized engine can throw a connecting rod and leak oil onto hot exhaust components, creating a fire risk.",
+        "solution": "NHTSA Recall 21V301 (Hyundai Recall 203). Dealers inspect and replace the engine free of charge if damage is found, and install Piston Ring Noise Sensing System (PNSS) software that monitors engine vibration to detect abnormal conditions. Owners with knocking, excessive oil use, or stalling should have the engine inspected.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Engine knocking or ticking noise",
+          "Excessive oil consumption / low oil between changes",
+          "Engine stalling or loss of power",
+          "Illuminated check engine / oil pressure light",
+          "Engine seizure or no-start"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P1326"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://auto-recalls.justia.com/hyundai/kona/2021/21v301000",
+            "type": "recall",
+            "title": "NHTSA Recall 21V301000 - 2021 Hyundai Kona Engine (piston ring)"
+          },
+          {
+            "url": "https://repairpal.com/recall/21V301000",
+            "type": "recall",
+            "title": "Hyundai Recall: Engine Stalls Due To Piston Ring Failure (21V301000)"
+          },
+          {
+            "url": "https://www.consumerreports.org/cars/car-recalls-defects/hyundai-elantra-kona-veloster-recalled-due-to-engine-problems-a1121205321/",
+            "type": "article",
+            "title": "Hyundai Elantra, Kona, and Veloster Recalled Due to Engine Problems - Consumer Reports"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "2.0L Nu MPI Piston Ring Defect Causing Knocking and Engine Seizure (Recall 21V301)",
+        "description": "NHTSA recall 21V-301 covers 95,223 model-year 2019-2021 Kona vehicles equipped with 2.0-liter Nu MPI engines. Inconsistent nitride heat treatment can make a piston oil ring excessively hard, allowing its outer edge to chip and scuff the cylinder bore. Resulting oil consumption and engine damage can cause knocking, reduced power or hesitation, warning lights and, with continued operation, a seized connecting-rod bearing, engine stall or an oil-fed fire.",
+        "solution": "Check the VIN for NHTSA recall 21V-301 (Hyundai 203). Hyundai dealers inspect the engine for cylinder-bore and piston-skirt damage, replace the engine if qualifying damage is found, and install enhanced Piston Noise Sensing System software, free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Abnormal engine knocking noise",
+          "Reduced motive power or hesitation",
+          "Check Engine warning lamp",
+          "Engine oil-pressure warning lamp",
+          "Burning smell, oil leakage or smoke"
+        ],
+        "affectedSystems": [
+          "2.0-liter Nu MPI engine",
+          "Piston oil rings",
+          "Cylinder bores"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 21V-301 - Kona 2.0L Nu MPI Piston Oil Rings",
+            "url": "https://static.nhtsa.gov/odi/rcl/2021/RCLRPT-21V301-4965.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed piston-ring/knock/seizure identity, retained the exact 2019-2021 Kona 2.0L scope, replaced secondary sources with the Part 573 report, and removed the unsupported P1326 and generic no-start claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-kona-ac-compressor-noise-2018",
+      "model": "Kona",
+      "action": "keep_published_pending_source",
+      "reason": "Two NHTSA complaint landing links do not establish one Kona compressor, clutch-bearing and system-contamination defect across both gasoline engines or validate the multi-component repair and cost narrative. No exact Hyundai bulletin was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "86519ad223c2ce2bc85f0c534314b20b8e2bf057f3b965798d3b9d38a49ef160",
+      "proposalSha256": "86519ad223c2ce2bc85f0c534314b20b8e2bf057f3b965798d3b9d38a49ef160",
+      "before": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "1.6T",
+          "2.0L"
+        ],
+        "category": "interior",
+        "title": "A/C Compressor Noise and Failure",
+        "description": "The A/C compressor on the Kona 1.6T and 2.0L can develop a rattling or clicking noise, followed by reduced cooling performance and eventual failure. The compressor clutch bearing is often the first component to fail, producing a squealing noise when the A/C is engaged. Complete compressor failure results in no cooling and can send metal debris through the A/C system, contaminating the condenser and expansion valve.",
+        "solution": "If only the clutch bearing has failed, the compressor clutch assembly can sometimes be replaced separately (cheaper than full compressor replacement). If the compressor has failed internally, replace the compressor, receiver/drier, and expansion valve. Flush the condenser and evaporator if metal debris is found. Use the correct PAG oil type and charge amount for the Kona's specific R-1234yf system.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Rattling noise when A/C is on",
+          "Squealing from compressor area",
+          "Reduced cooling performance",
+          "A/C blows warm intermittently",
+          "Complete loss of cold air"
+        ],
+        "affectedSystems": [
+          "A/C compressor",
+          "Compressor clutch",
+          "Air conditioning"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/KONA/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11497872 - 2022 Hyundai Kona Air Conditioner Compressor Failed"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/KONA/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11577357 - 2022 Hyundai Kona A/C Stopped Blowing Cold Air"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "TYC blower motor — direct replacement for HVAC fan",
+            "partName": "Blower Motor",
+            "partBrand": "TYC",
+            "affiliateUrl": "https://www.amazon.com/s?k=TYC%20blower%20motor&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Wix cabin air filter — filters dust, pollen, and odors",
+            "partName": "Cabin Air Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Wix%20cabin%20air%20filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-tucson-ac-compressor-failure-2010",
+          "nissan-rogue-sport-ac-compressor-failure-2017"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "1.6T",
+          "2.0L"
+        ],
+        "category": "interior",
+        "title": "A/C Compressor Noise and Failure",
+        "description": "The A/C compressor on the Kona 1.6T and 2.0L can develop a rattling or clicking noise, followed by reduced cooling performance and eventual failure. The compressor clutch bearing is often the first component to fail, producing a squealing noise when the A/C is engaged. Complete compressor failure results in no cooling and can send metal debris through the A/C system, contaminating the condenser and expansion valve.",
+        "solution": "If only the clutch bearing has failed, the compressor clutch assembly can sometimes be replaced separately (cheaper than full compressor replacement). If the compressor has failed internally, replace the compressor, receiver/drier, and expansion valve. Flush the condenser and evaporator if metal debris is found. Use the correct PAG oil type and charge amount for the Kona's specific R-1234yf system.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Rattling noise when A/C is on",
+          "Squealing from compressor area",
+          "Reduced cooling performance",
+          "A/C blows warm intermittently",
+          "Complete loss of cold air"
+        ],
+        "affectedSystems": [
+          "A/C compressor",
+          "Compressor clutch",
+          "Air conditioning"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/KONA/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11497872 - 2022 Hyundai Kona Air Conditioner Compressor Failed"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/KONA/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11577357 - 2022 Hyundai Kona A/C Stopped Blowing Cold Air"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "TYC blower motor — direct replacement for HVAC fan",
+            "partName": "Blower Motor",
+            "partBrand": "TYC",
+            "affiliateUrl": "https://www.amazon.com/s?k=TYC%20blower%20motor&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Wix cabin air filter — filters dust, pollen, and odors",
+            "partName": "Cabin Air Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Wix%20cabin%20air%20filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-tucson-ac-compressor-failure-2010",
+          "nissan-rogue-sport-ac-compressor-failure-2017"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-kona-cvt-judder",
+      "model": "Kona",
+      "action": "keep_published_pending_source",
+      "reason": "The cited 21-AT-005 record was not found as an exact Kona IVT judder bulletin. Hyundai bulletin 21-AT-006H lists the 2018-onward Kona 2.0L under six-speed ATF, while 23-AT-010H first lists 2022-onward Kona IVT applications and addresses oil-pressure-sensor DTCs rather than the indexed judder-and-droning identity. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "c68486d3ed183e0488d743c8b2c02f2a4adc014064686aceef051d707b402628",
+      "proposalSha256": "c68486d3ed183e0488d743c8b2c02f2a4adc014064686aceef051d707b402628",
+      "before": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L"
+        ],
+        "category": "transmission",
+        "title": "IVT/CVT Judder and Droning Noise",
+        "description": "The Kona with the 2.0L engine uses Hyundai's IVT (Intelligent Variable Transmission, a chain-driven CVT) that can develop juddering at low speeds and a droning noise at highway speeds. The transmission fluid degrades faster than expected, and the chain and pulleys wear. TSB 21-AT-005 addresses judder concerns.",
+        "solution": "IVT fluid change with Hyundai SP-CVT1 fluid can resolve mild judder. For persistent judder, the valve body may need replacement or software recalibration. Fluid change costs $150-250. Valve body replacement costs $800-1,400. Full transmission replacement is $3,000-4,500 if wear is severe.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Juddering at 15-30 mph",
+          "Droning noise at highway speed",
+          "Hesitation when accelerating",
+          "Transmission slip feeling",
+          "Vibration during light acceleration"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0401",
+          "P0402",
+          "P0403",
+          "P0404"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundaiusa.com",
+            "type": "tsb",
+            "title": "Hyundai TSB 21-AT-005 - IVT Judder Concern"
+          },
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Kona CVT Judder Thread"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use only Hyundai SP-CVT1 fluid - generic CVT fluid will damage the IVT chain",
+            "upvotes": 0,
+            "partName": "SP-CVT1 Transmission Fluid",
+            "partBrand": "Hyundai",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20SP-CVT1%20Transmission%20Fluid&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Change IVT fluid every 30,000 miles instead of the 60,000 mile interval to extend transmission life",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 380,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-q50-cvt-judder",
+          "kia-forte-cvt-judder",
+          "honda-crv-cvt-shudder-2015"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L"
+        ],
+        "category": "transmission",
+        "title": "IVT/CVT Judder and Droning Noise",
+        "description": "The Kona with the 2.0L engine uses Hyundai's IVT (Intelligent Variable Transmission, a chain-driven CVT) that can develop juddering at low speeds and a droning noise at highway speeds. The transmission fluid degrades faster than expected, and the chain and pulleys wear. TSB 21-AT-005 addresses judder concerns.",
+        "solution": "IVT fluid change with Hyundai SP-CVT1 fluid can resolve mild judder. For persistent judder, the valve body may need replacement or software recalibration. Fluid change costs $150-250. Valve body replacement costs $800-1,400. Full transmission replacement is $3,000-4,500 if wear is severe.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Juddering at 15-30 mph",
+          "Droning noise at highway speed",
+          "Hesitation when accelerating",
+          "Transmission slip feeling",
+          "Vibration during light acceleration"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0401",
+          "P0402",
+          "P0403",
+          "P0404"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundaiusa.com",
+            "type": "tsb",
+            "title": "Hyundai TSB 21-AT-005 - IVT Judder Concern"
+          },
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Kona CVT Judder Thread"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use only Hyundai SP-CVT1 fluid - generic CVT fluid will damage the IVT chain",
+            "upvotes": 0,
+            "partName": "SP-CVT1 Transmission Fluid",
+            "partBrand": "Hyundai",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20SP-CVT1%20Transmission%20Fluid&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Change IVT fluid every 30,000 miles instead of the 60,000 mile interval to extend transmission life",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 380,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-q50-cvt-judder",
+          "kia-forte-cvt-judder",
+          "honda-crv-cvt-shudder-2015"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-kona-dct-shudder",
+      "model": "Kona",
+      "action": "keep_published_pending_source",
+      "reason": "Hyundai bulletin 22-AT-007H supports low-speed judder on 2018-2021 Kona 1.6T 7DCT vehicles, but it does not establish the indexed delayed-engagement outcome or the frozen 2022-2023 scope. A partial identity match cannot replace the page, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "e8620b38c514c795388a03639b73ede59cb01e1873aacd9189fc1466c74c90f8",
+      "proposalSha256": "e8620b38c514c795388a03639b73ede59cb01e1873aacd9189fc1466c74c90f8",
+      "before": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "1.6L Turbo"
+        ],
+        "category": "transmission",
+        "title": "7-Speed DCT Shudder and Delayed Engagement",
+        "description": "Kona models with the 1.6L turbo and 7-speed DCT experience shuddering during low-speed driving, delayed engagement from a stop, and lurching during parking maneuvers. The dry dual-clutch design struggles with heat and wear. Hyundai extended DCT warranty to 10 years/100,000 miles after class-action pressure.",
+        "solution": "Request the latest TCM software calibration from the dealer. If clutch is worn, the entire dual-clutch assembly needs replacement (covered under extended warranty if applicable). TCM update is free; clutch replacement is $1,500-2,800 out of warranty. Avoid riding the clutch in stop-and-go traffic.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Shuddering in 1st-2nd gear",
+          "Delayed response when pressing gas from stop",
+          "Lurching in parking lots",
+          "Transmission overheat warning",
+          "Harsh shift from 2nd to 3rd"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0920"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2800,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiusa.com",
+            "type": "recall",
+            "title": "Hyundai DCT Warranty Extension to 10yr/100k"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai",
+            "type": "forum",
+            "title": "Reddit r/KonaCommunity - DCT issues compilation"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "In heavy stop-and-go traffic, shift to manual/sport mode to reduce DCT hunting between gears",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Let the car warm up for 1-2 minutes before driving - cold clutch engagement causes most of the shudder",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Do not ignore the transmission overheat warning - pull over and let it cool for 15 minutes to prevent clutch damage",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Kona%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 1100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-12",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-tucson-dct-transmission-shudder",
+          "hyundai-tucson-dct-shudder-2019",
+          "kia-optima-dct-clutch-judder",
+          "hyundai-elantra-dct-transmission-failure",
+          "hyundai-ioniq-dct-harsh-shifting-2017"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "1.6L Turbo"
+        ],
+        "category": "transmission",
+        "title": "7-Speed DCT Shudder and Delayed Engagement",
+        "description": "Kona models with the 1.6L turbo and 7-speed DCT experience shuddering during low-speed driving, delayed engagement from a stop, and lurching during parking maneuvers. The dry dual-clutch design struggles with heat and wear. Hyundai extended DCT warranty to 10 years/100,000 miles after class-action pressure.",
+        "solution": "Request the latest TCM software calibration from the dealer. If clutch is worn, the entire dual-clutch assembly needs replacement (covered under extended warranty if applicable). TCM update is free; clutch replacement is $1,500-2,800 out of warranty. Avoid riding the clutch in stop-and-go traffic.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Shuddering in 1st-2nd gear",
+          "Delayed response when pressing gas from stop",
+          "Lurching in parking lots",
+          "Transmission overheat warning",
+          "Harsh shift from 2nd to 3rd"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0920"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2800,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiusa.com",
+            "type": "recall",
+            "title": "Hyundai DCT Warranty Extension to 10yr/100k"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai",
+            "type": "forum",
+            "title": "Reddit r/KonaCommunity - DCT issues compilation"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "In heavy stop-and-go traffic, shift to manual/sport mode to reduce DCT hunting between gears",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Let the car warm up for 1-2 minutes before driving - cold clutch engagement causes most of the shudder",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Do not ignore the transmission overheat warning - pull over and let it cool for 15 minutes to prevent clutch damage",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Kona%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 1100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-12",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-tucson-dct-transmission-shudder",
+          "hyundai-tucson-dct-shudder-2019",
+          "kia-optima-dct-clutch-judder",
+          "hyundai-elantra-dct-transmission-failure",
+          "hyundai-ioniq-dct-harsh-shifting-2017"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-kona-electric-battery-recall",
+      "model": "Kona",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed high-voltage-battery/fire identity, corrected the unrelated 21V-193 campaign to 21V-127, narrowed scope to the documented 2019-2020 U.S. population, and removed unsupported global-count, repair-time and charging claims.",
+      "identityRule": "The same indexed component, failure mechanism and outcome stay on the existing ID, title and category; only facts from the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "engines",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-primary",
+          "url": "https://static.nhtsa.gov/odi/rcl/2021/RCLRPT-21V127-1095.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 21V-127 - Kona Electric Battery Cell Short Circuit supports the proposed identity, scope and remedy."
+        }
+      ],
+      "beforeSha256": "968a26f84db72cddb483a17b71ec0276f39165c4edfc864e23a7140b979b7da2",
+      "proposalSha256": "553b7c0f8c1f617667eebfc8a5fa7faafabeacfd1d1ae88b1e9417c90941602b",
+      "before": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [
+          "Electric"
+        ],
+        "category": "electrical",
+        "title": "High-Voltage Battery Fire Risk (Kona Electric)",
+        "description": "Kona Electric models from 2019-2022 were subject to a major recall (21V-193) for fire risk in the high-voltage battery pack. Defective cells from LG Energy Solution can short-circuit internally, leading to thermal runaway and fire, even while parked. Hyundai recalled approximately 82,000 vehicles globally for battery replacement.",
+        "solution": "Check VIN for recall status immediately. Hyundai will replace the entire battery pack free of charge under the recall. Until the battery is replaced, limit charging to 90% SOC and avoid parking in enclosed garages. The battery replacement takes 4-8 hours at the dealer. New battery pack comes with an updated BMS.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Battery management system warning light",
+          "Reduced range suddenly",
+          "Burning smell while charging",
+          "Vehicle will not charge past certain percentage",
+          "Check EV system warning"
+        ],
+        "affectedSystems": [
+          "Battery",
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA Recall 21V-193 - Kona EV Battery Fire Risk"
+          },
+          {
+            "url": "https://insideevs.com",
+            "type": "forum",
+            "title": "InsideEVs - Hyundai Kona EV Battery Recall Updates"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Do not park in enclosed garage until recall is completed. Multiple fires have occurred while vehicles were parked and not charging",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Set charge limit to 80-90% and avoid fast charging until recall battery is installed - this reduces thermal stress on affected cells",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Call Hyundai at 855-371-9460 to schedule battery replacement and request a loaner vehicle",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Hyundai%20Kona&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Hyundai%20Kona&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Hyundai%20Kona&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+            "partName": "Portable Level 2 EV Charger",
+            "partBrand": "Lectron",
+            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Hyundai%20Kona&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 1500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-09-30",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "High-Voltage Battery Fire Risk (Kona Electric)",
+        "description": "NHTSA recall 21V-127 covers 4,694 model-year 2019-2020 Kona Electric vehicles that did not receive a battery replacement under Hyundai recall 196. A folded anode tab in an LG Energy Solutions battery cell can allow lithium plating to contact the cathode, causing an internal electrical short. The short can increase fire risk while the vehicle is parked, charging or being driven.",
+        "solution": "Check the VIN for NHTSA recall 21V-127 (Hyundai 200). Hyundai dealers replace the Battery System Assembly free of charge. The recall also specified an interim state-of-charge reduction; affected owners should follow Hyundai's current VIN-specific instructions and avoid indoor parking if they cannot complete the interim step before dealer service.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Smoke",
+          "Burning or melting odor",
+          "Malfunction Indicator Lamp or battery light"
+        ],
+        "affectedSystems": [
+          "High-voltage Battery System Assembly",
+          "Lithium-ion battery cells"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 21V-127 - Kona Electric Battery Cell Short Circuit",
+            "url": "https://static.nhtsa.gov/odi/rcl/2021/RCLRPT-21V127-1095.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed high-voltage-battery/fire identity, corrected the unrelated 21V-193 campaign to 21V-127, narrowed scope to the documented 2019-2020 U.S. population, and removed unsupported global-count, repair-time and charging claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-kona-epcu-coolant-leak-causing-loss-drive-power",
+      "model": "Kona",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed EPCU/coolant-leak/loss-of-power identity, replaced secondary sources with the exact Part 573 report, and retained only the documented population, warnings and dealer remedy.",
+      "identityRule": "The same indexed component, failure mechanism and outcome stay on the existing ID, title and category; only facts from the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-primary",
+          "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V941-1708.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 22V-941 - Kona EV EPCU Coolant Leak supports the proposed identity, scope and remedy."
+        }
+      ],
+      "beforeSha256": "f57f1a85900e2246a41cc04598520412c205f3245648dd7d63859b5d4b344d3d",
+      "proposalSha256": "3baadf776a5bdfca75dd62fc7d9217853100f85e51443b3041a27fc3c603d01c",
+      "before": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "EPCU Coolant Leak Causing Loss of Drive Power (Kona Electric, Recall 22V941)",
+        "description": "On 2021 Kona Electric units, the Electric Power Control Unit (EPCU) was inadequately sealed at the DC-DC converter housing due to insufficient steam cleaning during production. Coolant can leak internally onto the EPCU circuit board and short it, causing a sudden loss of drive power that could strand the driver or cause a crash.",
+        "solution": "NHTSA Recall 22V941 (Hyundai Recall 239). Dealers inspect the EPCU and replace it as necessary, free of charge, regardless of warranty status. Owners experiencing power-loss warnings or reduced drive power should have the EPCU inspected under the recall.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden loss of drive power / vehicle limp mode",
+          "'Check electric vehicle system' warning",
+          "Reduced power or vehicle won't move",
+          "Coolant loss without external leak"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://repairpal.com/recall/22V941000",
+            "type": "recall",
+            "title": "Hyundai Recall: EPCU Leaks Coolant Internally Causing Short Circuit (22V941000)"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCRIT-22V941-3474.pdf",
+            "type": "nhtsa",
+            "title": "NHTSA Recall 22V941 - Electric Power Control Unit (EPCU) Leak Inspection"
+          },
+          {
+            "url": "https://www.carscoops.com/2022/12/hyundai-recalls-kona-evs-over-electric-coolant-leak-that-could-leave-drivers-stranded/",
+            "type": "article",
+            "title": "Coolant Leak Could Leave Hyundai Kona EV Drivers Stranded - Carscoops"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "EPCU Coolant Leak Causing Loss of Drive Power (Kona Electric, Recall 22V941)",
+        "description": "NHTSA recall 22V-941 covers 853 model-year 2021 Kona EV vehicles. Insufficient sealing of the Electric Power Control Unit (EPCU) DC-DC converter housing can allow an internal coolant leak and contaminate the EPCU main controller. The contamination can trigger limited-mobility fail-safe mode or, in limited instances, cause sudden loss of motive power or a vehicle stall.",
+        "solution": "Check the VIN for NHTSA recall 22V-941 (Hyundai 239). Hyundai dealers inspect the EPCU and replace it if necessary, free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Malfunction Indicator Lamp illumination",
+          "Check Electric Vehicle System warning message",
+          "Limited-mobility fail-safe mode",
+          "Sudden loss of motive power or vehicle stall"
+        ],
+        "affectedSystems": [
+          "Electric Power Control Unit",
+          "EPCU DC-DC converter housing"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 22V-941 - Kona EV EPCU Coolant Leak",
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V941-1708.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed EPCU/coolant-leak/loss-of-power identity, replaced secondary sources with the exact Part 573 report, and retained only the documented population, warnings and dealer remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-kona-infotainment-black-frozen-screen-apple-carplay-bluetooth-dis",
+      "model": "Kona",
+      "action": "keep_published_pending_source",
+      "reason": "Forum and vendor pages do not establish one Hyundai-defined black-screen, frozen-screen, CarPlay and Bluetooth defect across 2018-2025 Kona, Kona N and Kona Electric variants or validate the stated bulletin and reset procedure. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "d53b8279db9bca6f751d17d8596712204e043b6ecbf9ad5f72ab66860a0f33d1",
+      "proposalSha256": "d53b8279db9bca6f751d17d8596712204e043b6ecbf9ad5f72ab66860a0f33d1",
+      "before": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment Black/Frozen Screen and Apple CarPlay/Bluetooth Disconnects",
+        "description": "Kona and Kona N/Electric owners report the touchscreen going black or frozen, and Apple CarPlay/Android Auto disconnecting at random with a 'phone not responding, reconnect on the road' prompt. The faults trace to infotainment firmware/connectivity bugs rather than a single hardware part.",
+        "solution": "Force-reboot the head unit by holding the power/volume knob ~10-15 seconds; delete and re-pair the phone (forget the device on both car and phone, reconnect via USB first). The durable fix is the latest infotainment software update from Hyundai; TSB 20-BE-014H addresses intermittent wireless Apple CarPlay disconnects on affected model years.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Completely black or frozen infotainment screen",
+          "CarPlay/Android Auto randomly disconnecting",
+          "Bluetooth audio/call dropouts",
+          "System reboots on its own",
+          "'Phone not responding, reconnect' message"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com/threads/apple-carplay-kona-2022-phone-not-responding-please-reconnect-it-and-try-again-on-the-road-danger.700754/",
+            "type": "forum",
+            "title": "Apple CarPlay Kona 2022 - phone not responding, please reconnect - Hyundai Forums"
+          },
+          {
+            "url": "https://www.go-parts.com/garage/audio-system-hyundai-kona-hyundai-kona-electric-hyundai-kona-n-2018-2025",
+            "type": "article",
+            "title": "2018-2025 Hyundai Kona & Kona N Audio System Issues: Black Screens & Glitches"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment Black/Frozen Screen and Apple CarPlay/Bluetooth Disconnects",
+        "description": "Kona and Kona N/Electric owners report the touchscreen going black or frozen, and Apple CarPlay/Android Auto disconnecting at random with a 'phone not responding, reconnect on the road' prompt. The faults trace to infotainment firmware/connectivity bugs rather than a single hardware part.",
+        "solution": "Force-reboot the head unit by holding the power/volume knob ~10-15 seconds; delete and re-pair the phone (forget the device on both car and phone, reconnect via USB first). The durable fix is the latest infotainment software update from Hyundai; TSB 20-BE-014H addresses intermittent wireless Apple CarPlay disconnects on affected model years.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Completely black or frozen infotainment screen",
+          "CarPlay/Android Auto randomly disconnecting",
+          "Bluetooth audio/call dropouts",
+          "System reboots on its own",
+          "'Phone not responding, reconnect' message"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com/threads/apple-carplay-kona-2022-phone-not-responding-please-reconnect-it-and-try-again-on-the-road-danger.700754/",
+            "type": "forum",
+            "title": "Apple CarPlay Kona 2022 - phone not responding, please reconnect - Hyundai Forums"
+          },
+          {
+            "url": "https://www.go-parts.com/garage/audio-system-hyundai-kona-hyundai-kona-electric-hyundai-kona-n-2018-2025",
+            "type": "article",
+            "title": "2018-2025 Hyundai Kona & Kona N Audio System Issues: Black Screens & Glitches"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-kona-oil-dilution-2018",
+      "model": "Kona",
+      "action": "keep_published_pending_source",
+      "reason": "A generic NHTSA vehicle page and an unverifiable community URL do not establish the frozen cold-weather short-trip fuel-dilution mechanism, maintenance interval, oil specification or repair guidance for 2018-2023 Kona 1.6T vehicles. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "d01fe1d4ccc9bde1f3e3d35d37c62e4f50ea44dd28dbc5e41ee9577896609d80",
+      "proposalSha256": "d01fe1d4ccc9bde1f3e3d35d37c62e4f50ea44dd28dbc5e41ee9577896609d80",
+      "before": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "1.6T GDI"
+        ],
+        "category": "engine",
+        "title": "Oil Dilution from Short Trips (1.6T)",
+        "description": "The 1.6T GDI engine in the Kona can experience fuel dilution of the engine oil, particularly in vehicles used primarily for short trips in cold weather. Unburned fuel washes past the piston rings and mixes with the engine oil, raising the oil level above the full mark and thinning the oil's viscosity. This reduces lubrication effectiveness and can accelerate engine wear. The issue is more prevalent in cold climates where the engine rarely reaches full operating temperature.",
+        "solution": "Check the oil level and condition regularly — oil that smells like gasoline or is above the full mark indicates fuel dilution. Change the oil more frequently (every 3,000-4,000 miles) if the vehicle is used primarily for short trips. Take the vehicle on a 20+ minute highway drive at least once a week to allow the engine to reach and maintain full operating temperature, which helps evaporate fuel from the oil. Use the manufacturer-recommended 0W-20 full synthetic oil.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil level rising above full mark",
+          "Gasoline smell from dipstick",
+          "Oil appears thin or watery",
+          "Increased engine noise",
+          "Poor fuel economy"
+        ],
+        "affectedSystems": [
+          "Engine oil",
+          "Lubrication system",
+          "Engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HYUNDAI/KONA",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2018 Hyundai Kona - Owner complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/xyz123/hyundai_kona_16t_oil_dilution_issue_short_trips/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice thread discussing Hyundai Kona 1.6T oil dilution from short trips"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
+            "partName": "Extended Performance Full Synthetic Motor Oil",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Kona%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium oil filter ensures proper filtration with high-mileage engines",
+            "partName": "Oil Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Kona%20Wix%20Oil%20Filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-telluride-oil-dilution-2020",
+          "honda-crv-oil-dilution-2017"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "1.6T GDI"
+        ],
+        "category": "engine",
+        "title": "Oil Dilution from Short Trips (1.6T)",
+        "description": "The 1.6T GDI engine in the Kona can experience fuel dilution of the engine oil, particularly in vehicles used primarily for short trips in cold weather. Unburned fuel washes past the piston rings and mixes with the engine oil, raising the oil level above the full mark and thinning the oil's viscosity. This reduces lubrication effectiveness and can accelerate engine wear. The issue is more prevalent in cold climates where the engine rarely reaches full operating temperature.",
+        "solution": "Check the oil level and condition regularly — oil that smells like gasoline or is above the full mark indicates fuel dilution. Change the oil more frequently (every 3,000-4,000 miles) if the vehicle is used primarily for short trips. Take the vehicle on a 20+ minute highway drive at least once a week to allow the engine to reach and maintain full operating temperature, which helps evaporate fuel from the oil. Use the manufacturer-recommended 0W-20 full synthetic oil.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil level rising above full mark",
+          "Gasoline smell from dipstick",
+          "Oil appears thin or watery",
+          "Increased engine noise",
+          "Poor fuel economy"
+        ],
+        "affectedSystems": [
+          "Engine oil",
+          "Lubrication system",
+          "Engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HYUNDAI/KONA",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2018 Hyundai Kona - Owner complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/xyz123/hyundai_kona_16t_oil_dilution_issue_short_trips/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice thread discussing Hyundai Kona 1.6T oil dilution from short trips"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
+            "partName": "Extended Performance Full Synthetic Motor Oil",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Kona%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium oil filter ensures proper filtration with high-mileage engines",
+            "partName": "Oil Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Kona%20Wix%20Oil%20Filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-telluride-oil-dilution-2020",
+          "honda-crv-oil-dilution-2017"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-kona-paint-peeling-2018",
+      "model": "Kona",
+      "action": "keep_published_pending_source",
+      "reason": "A generic NHTSA vehicle page, community post and video do not establish one factory paint or clear-coat defect, color pattern, early-life rate or warranty remedy for 2018-2023 Kona vehicles. No exact Hyundai Kona paint bulletin was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "848a456da0ec18d887cc2908b5546a34669e837617b357c998dbae5fe7bc5425",
+      "proposalSha256": "848a456da0ec18d887cc2908b5546a34669e837617b357c998dbae5fe7bc5425",
+      "before": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Paint Peeling / Clear Coat Failure",
+        "description": "Multiple Kona owners report premature paint peeling and clear coat failure, particularly on horizontal panels (hood, roof) and in lighter colors. The clear coat delaminates from the base coat, creating an unsightly appearance that worsens quickly once started. The issue appears to be related to paint application thickness and cure quality at the factory. Affected vehicles may show peeling as early as 2-3 years after purchase.",
+        "solution": "Document the paint failure with dated photos and have it inspected at a Hyundai dealer. Paint defects may be covered under the 3-year/36,000-mile basic warranty or under goodwill repair. File a complaint with Hyundai corporate and NHTSA. If warranty coverage is denied, a professional respray of affected panels is necessary. Ask about using a higher-quality clear coat during the respray to prevent recurrence.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Clear coat peeling in sheets",
+          "Paint bubbling on hood or roof",
+          "White haze on painted surfaces",
+          "Rough texture on paint surface",
+          "Paint chipping more easily than expected"
+        ],
+        "affectedSystems": [
+          "Paint",
+          "Clear coat",
+          "Body exterior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": 28800,
+        "typicalMileageHigh": 43200,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HYUNDAI/KONA",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2018 Hyundai Kona - Owner Complaints and Investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai/comments/ix6k0o/paint_peeling_on_2018_hyundai_kona_anyone_else/",
+            "type": "forum",
+            "title": "Reddit r/Hyundai Thread Discussing Paint Peeling on 2018 Hyundai Kona"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=5Qd3v7v6Y2k",
+            "type": "video",
+            "title": "YouTube Video: Hyundai Kona Paint Peeling and Clear Coat Failure Repair Guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Dupli-Color touch-up paint kit for scratch and chip repair",
+            "partName": "Touch-Up Paint Kit",
+            "partBrand": "Dupli-Color",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dupli-Color%20touch%20up%20paint%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dupli-Color clear coat finish for paint protection",
+            "partName": "Clear Coat Spray",
+            "partBrand": "Dupli-Color",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dupli-Color%20clear%20coat%20spray&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Paint Peeling / Clear Coat Failure",
+        "description": "Multiple Kona owners report premature paint peeling and clear coat failure, particularly on horizontal panels (hood, roof) and in lighter colors. The clear coat delaminates from the base coat, creating an unsightly appearance that worsens quickly once started. The issue appears to be related to paint application thickness and cure quality at the factory. Affected vehicles may show peeling as early as 2-3 years after purchase.",
+        "solution": "Document the paint failure with dated photos and have it inspected at a Hyundai dealer. Paint defects may be covered under the 3-year/36,000-mile basic warranty or under goodwill repair. File a complaint with Hyundai corporate and NHTSA. If warranty coverage is denied, a professional respray of affected panels is necessary. Ask about using a higher-quality clear coat during the respray to prevent recurrence.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Clear coat peeling in sheets",
+          "Paint bubbling on hood or roof",
+          "White haze on painted surfaces",
+          "Rough texture on paint surface",
+          "Paint chipping more easily than expected"
+        ],
+        "affectedSystems": [
+          "Paint",
+          "Clear coat",
+          "Body exterior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": 28800,
+        "typicalMileageHigh": 43200,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HYUNDAI/KONA",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2018 Hyundai Kona - Owner Complaints and Investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai/comments/ix6k0o/paint_peeling_on_2018_hyundai_kona_anyone_else/",
+            "type": "forum",
+            "title": "Reddit r/Hyundai Thread Discussing Paint Peeling on 2018 Hyundai Kona"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=5Qd3v7v6Y2k",
+            "type": "video",
+            "title": "YouTube Video: Hyundai Kona Paint Peeling and Clear Coat Failure Repair Guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Dupli-Color touch-up paint kit for scratch and chip repair",
+            "partName": "Touch-Up Paint Kit",
+            "partBrand": "Dupli-Color",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dupli-Color%20touch%20up%20paint%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dupli-Color clear coat finish for paint protection",
+            "partName": "Clear Coat Spray",
+            "partBrand": "Dupli-Color",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dupli-Color%20clear%20coat%20spray&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-kona-panoramic-sunroof-leak",
+      "model": "Kona",
+      "action": "keep_published_pending_source",
+      "reason": "Generic forum landing pages do not establish one panoramic-sunroof drain-tube or gasket defect, incidence timeline, electrical consequence or repair procedure for 2018-2023 Kona vehicles. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "ec9ec7ef88fdba6e765007b7b2039945a3ee7f7ed5b3f44fca3b03ab7528b7b6",
+      "proposalSha256": "ec9ec7ef88fdba6e765007b7b2039945a3ee7f7ed5b3f44fca3b03ab7528b7b6",
+      "before": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Panoramic Sunroof Water Leak",
+        "description": "Kona models equipped with the panoramic sunroof experience water leaks, typically at the front corners. The drain tubes become clogged or disconnected, allowing water to pool in the headliner, drip onto occupants, and potentially damage electrical components. This is especially common after 2-3 years of ownership.",
+        "solution": "Clear sunroof drain tubes using compressed air or a flexible wire. Check that drain hoses are properly connected at the A-pillar. Apply silicone sealant to the sunroof gasket edges if gasket is degraded. Drain tube clearing costs $50-150 at a shop. If headliner is water-damaged, replacement is $500-1,000.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Water dripping from headliner",
+          "Wet carpet on driver or passenger side",
+          "Musty smell inside vehicle",
+          "Water spots on interior trim",
+          "Foggy windows that won't clear"
+        ],
+        "affectedSystems": [
+          "Body",
+          "Interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Kona Sunroof Leak Fix"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai",
+            "type": "forum",
+            "title": "Reddit r/Hyundai - Panoramic sunroof leaking"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Clean sunroof drain tubes every spring with compressed air - takes 5 minutes and prevents expensive water damage",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Pour a small cup of water into the sunroof channel to test drain flow - water should exit under the vehicle within seconds",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 340,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-25",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-k5-panoramic-sunroof-rattle-2021"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Panoramic Sunroof Water Leak",
+        "description": "Kona models equipped with the panoramic sunroof experience water leaks, typically at the front corners. The drain tubes become clogged or disconnected, allowing water to pool in the headliner, drip onto occupants, and potentially damage electrical components. This is especially common after 2-3 years of ownership.",
+        "solution": "Clear sunroof drain tubes using compressed air or a flexible wire. Check that drain hoses are properly connected at the A-pillar. Apply silicone sealant to the sunroof gasket edges if gasket is degraded. Drain tube clearing costs $50-150 at a shop. If headliner is water-damaged, replacement is $500-1,000.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Water dripping from headliner",
+          "Wet carpet on driver or passenger side",
+          "Musty smell inside vehicle",
+          "Water spots on interior trim",
+          "Foggy windows that won't clear"
+        ],
+        "affectedSystems": [
+          "Body",
+          "Interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Kona Sunroof Leak Fix"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai",
+            "type": "forum",
+            "title": "Reddit r/Hyundai - Panoramic sunroof leaking"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Clean sunroof drain tubes every spring with compressed air - takes 5 minutes and prevents expensive water damage",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Pour a small cup of water into the sunroof channel to test drain flow - water should exit under the vehicle within seconds",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 340,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-25",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-k5-panoramic-sunroof-rattle-2021"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-kona-reduced-dc-fast-charging-speed-bms-check-ev-system-charging",
+      "model": "Kona",
+      "action": "keep_published_pending_source",
+      "reason": "Forum and vendor evidence does not establish one combined DC-fast-charge-speed and BMS warning defect across 2019-2023 Kona Electric vehicles. Hyundai battery-diagnostic campaigns are different identities and do not validate the frozen thermal-throttling and charge-control-module narrative, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "0882d1433e5a07849313ae90fd1b0acb2e7b9e9696d2eb936ffea9810b3e8564",
+      "proposalSha256": "0882d1433e5a07849313ae90fd1b0acb2e7b9e9696d2eb936ffea9810b3e8564",
+      "before": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Reduced DC Fast-Charging Speed and BMS 'Check EV System' Charging Faults (Kona Electric)",
+        "description": "Kona Electric owners report DC fast charging underperforming its rating and 'Check Electric Vehicle System' / BMS faults that cut charge limits or stop a session. The battery's thermal management throttles or halts charging during repeated or hot-weather fast-charge sessions, and some faults trace to the charge control module (e.g. 'Quick Charging Fault by CCM') or software.",
+        "solution": "Avoid back-to-back DC fast charges in hot weather to limit thermal throttling. Ensure the latest BMS/charging software revisions are installed, as Hyundai has issued multiple updates improving charging behavior and fault handling. Persistent BMS faults or 'Check EV System' messages should be diagnosed at a dealer, as some cases require charge-control-module replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "DC fast charging far below rated kW",
+          "'Check Electric Vehicle System' warning",
+          "Charging session stops early or won't start",
+          "Reduced charge limit / slow charging",
+          "Faults more common in hot weather or repeated fast charges"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.insideevsforum.com/community/threads/loss-of-fast-charging-level-3.20321/",
+            "type": "forum",
+            "title": "Loss of fast charging (level-3) - InsideEVs Forum"
+          },
+          {
+            "url": "https://www.hyundaikonaforum.com/threads/kona-fast-charging-issues.9381/",
+            "type": "forum",
+            "title": "Kona Fast Charging Issues - Hyundai Kona Forum"
+          },
+          {
+            "url": "https://recharged.com/articles/2023-hyundai-kona-electric-problems-and-fixes",
+            "type": "article",
+            "title": "2023 Hyundai Kona Electric Problems and Fixes Guide - Recharged"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Kona",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Reduced DC Fast-Charging Speed and BMS 'Check EV System' Charging Faults (Kona Electric)",
+        "description": "Kona Electric owners report DC fast charging underperforming its rating and 'Check Electric Vehicle System' / BMS faults that cut charge limits or stop a session. The battery's thermal management throttles or halts charging during repeated or hot-weather fast-charge sessions, and some faults trace to the charge control module (e.g. 'Quick Charging Fault by CCM') or software.",
+        "solution": "Avoid back-to-back DC fast charges in hot weather to limit thermal throttling. Ensure the latest BMS/charging software revisions are installed, as Hyundai has issued multiple updates improving charging behavior and fault handling. Persistent BMS faults or 'Check EV System' messages should be diagnosed at a dealer, as some cases require charge-control-module replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "DC fast charging far below rated kW",
+          "'Check Electric Vehicle System' warning",
+          "Charging session stops early or won't start",
+          "Reduced charge limit / slow charging",
+          "Faults more common in hot weather or repeated fast charges"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.insideevsforum.com/community/threads/loss-of-fast-charging-level-3.20321/",
+            "type": "forum",
+            "title": "Loss of fast charging (level-3) - InsideEVs Forum"
+          },
+          {
+            "url": "https://www.hyundaikonaforum.com/threads/kona-fast-charging-issues.9381/",
+            "type": "forum",
+            "title": "Kona Fast Charging Issues - Hyundai Kona Forum"
+          },
+          {
+            "url": "https://recharged.com/articles/2023-hyundai-kona-electric-problems-and-fixes",
+            "type": "article",
+            "title": "2023 Hyundai Kona Electric Problems and Fixes Guide - Recharged"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
