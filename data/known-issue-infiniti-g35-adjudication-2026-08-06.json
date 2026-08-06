@@ -1,0 +1,449 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Infiniti",
+  "model": "G35",
+  "completionStatement": "This packet reconciles all three frozen Infiniti G35 rows. No exact primary-source rewrite cleared the gate; all three remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All three G35 rows remain published and byte-for-byte unchanged.",
+    "An unrelated sensor recall cannot be substituted into an oil-consumption, steering-lock or window-regulator page.",
+    "The separately discovered 2003 sensor campaign is deferred until the post-audit new-known-issues phase.",
+    "Independent row-by-row approval is required before any separate correction or addition path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_infiniti-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "d39bdd77a0557365946b551a26b951cb1a5ba81773b7b66497201347b5034f64",
+    "snapshotGeneratedAt": "2026-08-06T23:15:05.490Z",
+    "snapshotHash": "45dde736354a9dcd17a72399b0101f30373ca9c267e6cd49a2528a63a023eebd",
+    "g35RecordCount": 3
+  },
+  "observations": [
+    {
+      "code": "three-g35-identities-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "infiniti-g35-oil-consumption-vq35de",
+        "infiniti-g35-steering-wheel-lock",
+        "infiniti-g35-window-regulator-failure"
+      ],
+      "detail": "None of the three existing indexed identities has an exact primary source; all remain byte-for-byte unchanged."
+    },
+    {
+      "code": "deferred-new-sensor-issue-candidate",
+      "severity": "post-audit-proposal-only",
+      "recordIds": [],
+      "detail": "NHTSA recall 03V-455 covers certain 2003 G35 camshaft/crankshaft sensor circuit-board solder-joint failures. It is a distinct missing issue candidate and is not added, substituted or applied during the remaining-make audit.",
+      "sourceUrl": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2003",
+      "campaignNumber": "03V455000"
+    },
+    {
+      "code": "three-g35-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "infiniti-g35-oil-consumption-vq35de",
+        "infiniti-g35-steering-wheel-lock",
+        "infiniti-g35-window-regulator-failure"
+      ],
+      "detail": "All three indexed G35 records remain published with identical IDs, titles, categories, content, citations and commerce."
+    }
+  ],
+  "mismatchSources": {
+    "recallQueries": {
+      "2003": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2003",
+      "2004": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2004",
+      "2005": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2005",
+      "2006": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2006",
+      "2007": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2007"
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 3,
+    "deferred_new_issue_candidates": 1,
+    "total": 3
+  },
+  "rows": [
+    {
+      "id": "infiniti-g35-oil-consumption-vq35de",
+      "model": "G35",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no citation, and no exact Infiniti/NHTSA bulletin or campaign was found for one 2003-2007 G35 VQ35DE oil-consumption defect, the asserted one-quart rate, valve-seal/ring mechanism or short-block repair. Recall 03V-455 concerns camshaft/crankshaft sensor solder joints, not oil consumption, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; an absent citation or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2003",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official G35 recall inventory includes 03V-455 for sensor solder-joint failure, but no oil-consumption, valve-stem-seal, piston-ring or short-block campaign.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2005",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2007"
+          ]
+        }
+      ],
+      "beforeSha256": "08d8abd6e2012b5407a4ea626f85aeb69fa0cc4994486c46492c117de9afcf86",
+      "proposalSha256": "08d8abd6e2012b5407a4ea626f85aeb69fa0cc4994486c46492c117de9afcf86",
+      "before": {
+        "make": "Infiniti",
+        "model": "G35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "trims": [],
+        "engines": [
+          "3.5L VQ35DE V6",
+          "VQ35DE"
+        ],
+        "category": "engine",
+        "title": "VQ35DE Oil Consumption",
+        "description": "The VQ35DE engine in the G35 is known to consume excessive oil, sometimes burning 1 quart every 1,000-2,000 miles. This is typically caused by worn valve stem seals and piston rings that allow oil to enter the combustion chamber.",
+        "solution": "Replace valve stem seals and inspect piston rings. In severe cases, a short block replacement may be necessary. Use manufacturer-recommended 5W-30 oil and monitor consumption between changes.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Blue/white smoke from exhaust on startup",
+          "Low oil level warnings between changes",
+          "Fouled spark plugs"
+        ],
+        "affectedSystems": [
+          "engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-ex35-oil-consumption",
+          "nissan-350z-oil-consumption-2003",
+          "nissan-maxima-oil-consumption-2016",
+          "nissan-murano-oil-consumption-2009",
+          "nissan-sentra-oil-consumption-2007"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "G35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "trims": [],
+        "engines": [
+          "3.5L VQ35DE V6",
+          "VQ35DE"
+        ],
+        "category": "engine",
+        "title": "VQ35DE Oil Consumption",
+        "description": "The VQ35DE engine in the G35 is known to consume excessive oil, sometimes burning 1 quart every 1,000-2,000 miles. This is typically caused by worn valve stem seals and piston rings that allow oil to enter the combustion chamber.",
+        "solution": "Replace valve stem seals and inspect piston rings. In severe cases, a short block replacement may be necessary. Use manufacturer-recommended 5W-30 oil and monitor consumption between changes.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Blue/white smoke from exhaust on startup",
+          "Low oil level warnings between changes",
+          "Fouled spark plugs"
+        ],
+        "affectedSystems": [
+          "engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-ex35-oil-consumption",
+          "nissan-350z-oil-consumption-2003",
+          "nissan-maxima-oil-consumption-2016",
+          "nissan-murano-oil-consumption-2009",
+          "nissan-sentra-oil-consumption-2007"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-g35-steering-wheel-lock",
+      "model": "G35",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no citation, and no exact 2003-2007 G35 bulletin or campaign was found for the indexed electronic steering-lock-actuator no-start identity, BCM reprogramming or bypass remedy. No later-model steering-lock program may be transferred to this page, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; an absent citation or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2003",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official 2003-2007 G35 recall inventory contains no electronic steering-lock-actuator or BCM no-start campaign.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2005",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2007"
+          ]
+        }
+      ],
+      "beforeSha256": "24eba9f0bbf9721e0d95778e16b3c57e792e13107132f1c21f97d33145d626f0",
+      "proposalSha256": "24eba9f0bbf9721e0d95778e16b3c57e792e13107132f1c21f97d33145d626f0",
+      "before": {
+        "make": "Infiniti",
+        "model": "G35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Steering Wheel Lock Malfunction",
+        "description": "The electronic steering wheel lock mechanism can malfunction, preventing the car from starting or causing intermittent no-start conditions. The steering lock actuator motor fails internally, triggering a security fault.",
+        "solution": "Replace the steering lock actuator or have the dealer reprogram the BCM. Some owners bypass the lock mechanism entirely, though this may affect resale value. A TSB was issued for certain model years.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Car will not start with key in ignition",
+          "Steering wheel will not unlock",
+          "Security light flashing on dashboard"
+        ],
+        "affectedSystems": [
+          "steering",
+          "electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "nissan-370z-steering-lock-2009",
+          "nissan-altima-steering-2013",
+          "infiniti-g37-steering-lock-malfunction"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "G35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Steering Wheel Lock Malfunction",
+        "description": "The electronic steering wheel lock mechanism can malfunction, preventing the car from starting or causing intermittent no-start conditions. The steering lock actuator motor fails internally, triggering a security fault.",
+        "solution": "Replace the steering lock actuator or have the dealer reprogram the BCM. Some owners bypass the lock mechanism entirely, though this may affect resale value. A TSB was issued for certain model years.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Car will not start with key in ignition",
+          "Steering wheel will not unlock",
+          "Security light flashing on dashboard"
+        ],
+        "affectedSystems": [
+          "steering",
+          "electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "nissan-370z-steering-lock-2009",
+          "nissan-altima-steering-2013",
+          "infiniti-g37-steering-lock-malfunction"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-g35-window-regulator-failure",
+      "model": "G35",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no citation, and no exact Infiniti/NHTSA bulletin or campaign was found for one 2003-2007 G35 regulator cable/clip defect, hot-climate mechanism or aftermarket replacement pathway. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; an absent citation or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2003",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official 2003-2007 G35 recall inventory contains no power-window-regulator, cable or guide-clip campaign.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2005",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G35&modelYear=2007"
+          ]
+        }
+      ],
+      "beforeSha256": "b7ca42ba5e8623e2448b3c258c45174e6e0dc00bc47cc2c7471e5d9c38e3b267",
+      "proposalSha256": "b7ca42ba5e8623e2448b3c258c45174e6e0dc00bc47cc2c7471e5d9c38e3b267",
+      "before": {
+        "make": "Infiniti",
+        "model": "G35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Window Regulator Failure",
+        "description": "The power window regulators in the G35 are prone to failure, causing windows to fall into the door or operate slowly. The plastic guide clips and cable mechanism wear out, especially in hot climates.",
+        "solution": "Replace the window regulator assembly. Aftermarket regulators are available at lower cost than OEM. The repair involves removing the door panel and disconnecting the window motor.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Window drops into door panel",
+          "Grinding noise when operating window",
+          "Window moves slowly or unevenly"
+        ],
+        "affectedSystems": [
+          "electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "nissan-350z-window-regulator-2003",
+          "nissan-370z-window-regulator-2009",
+          "alfa-romeo-giulia-window-regulator"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "G35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Window Regulator Failure",
+        "description": "The power window regulators in the G35 are prone to failure, causing windows to fall into the door or operate slowly. The plastic guide clips and cable mechanism wear out, especially in hot climates.",
+        "solution": "Replace the window regulator assembly. Aftermarket regulators are available at lower cost than OEM. The repair involves removing the door panel and disconnecting the window motor.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Window drops into door panel",
+          "Grinding noise when operating window",
+          "Window moves slowly or unevenly"
+        ],
+        "affectedSystems": [
+          "electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "nissan-350z-window-regulator-2003",
+          "nissan-370z-window-regulator-2009",
+          "alfa-romeo-giulia-window-regulator"
+        ]
+      }
+    }
+  ]
+}
