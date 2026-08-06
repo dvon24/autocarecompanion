@@ -1,0 +1,959 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Creta",
+  "completionStatement": "This packet reconciles all six frozen Hyundai Creta rows. Two exact same-identity recall rewrites are proposed from Hyundai Brazil and the SIAM/Hyundai India recall records; four rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All six rows remain published. Four are byte-for-byte unchanged.",
+    "An unrelated campaign, component, symptom group, generation or model may never replace the issue named by an existing indexed page.",
+    "Each rewrite contains zero commerce, zero cost or mileage claims, and empty trim and engine arrays.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "cretaRecordCount": 6
+  },
+  "observations": [
+    {
+      "code": "brazil-brake-booster-scope-narrowed",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-creta-brake-booster-diaphragm-defect-official-brazil-recall"
+      ],
+      "detail": "The proposal uses Hyundai Motor Brasil's direct recall PDF and retains only its exact vehicle, production, diaphragm/vacuum, risk and remedy statements."
+    },
+    {
+      "code": "india-oil-pump-unsupported-effects-removed",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-creta-ivt-electronic-oil-pump-controller-defect-official-india-rec"
+      ],
+      "detail": "The SIAM entry confirms G 1.5 IVT, the combined 7,698 population, build dates and potential oil-pump performance effect; it does not claim warning lights, hesitation, harsh engagement or a replacement remedy."
+    },
+    {
+      "code": "multi-failure-narratives-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-creta-7-speed-dry-dct-failures-1-4-t-gdi",
+        "hyundai-creta-diesel-particulate-filter-clogging-city-only-driving",
+        "hyundai-creta-intermittent-ac-cooling-loss-premature-compressor-failure",
+        "hyundai-creta-premature-clutch-wear-heavy-clutch-diesel-manuals"
+      ],
+      "detail": "Four owner/secondary-source narratives remain unchanged rather than being consolidated, archived or rewritten without an exact OEM source."
+    }
+  ],
+  "summary": {
+    "rewrite_same_identity": 2,
+    "keep_published_pending_source": 4,
+    "total": 6
+  },
+  "rows": [
+    {
+      "id": "hyundai-creta-7-speed-dry-dct-failures-1-4-t-gdi",
+      "model": "Creta",
+      "action": "keep_published_pending_source",
+      "reason": "Owner threads and secondary summaries do not establish one 2020-2023 Creta 1.4 T-GDI dry-DCT defect spanning actuator failure, even-gear loss, overheating, judder, DTC P060194, repeat repairs and the frozen replacement-cost range. No exact Hyundai campaign or service document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; owner reports and overlapping symptoms cannot establish or replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "b190310b9f7bdbadf99641484b68cca01de473c4048a7ccde903dc4fc1ddc41e",
+      "proposalSha256": "b190310b9f7bdbadf99641484b68cca01de473c4048a7ccde903dc4fc1ddc41e",
+      "before": {
+        "make": "Hyundai",
+        "model": "Creta",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "7-Speed Dry DCT Failures on 1.4 T-GDI (Clutch Actuator, Overheating, Loss of Drive)",
+        "description": "The 1.4L turbo-petrol SU2 Creta's 7-speed dry dual-clutch transmission has multiple well-documented failures in Indian stop-and-go traffic: clutch actuator failure (logged as DTC P060194), the gearbox refusing to engage even-numbered gears until restart, transmission-overheat warnings in crawling traffic, and judder or delayed engagement from standstill. Team-BHP ownership threads document cars failing within months of delivery and failing again a year after dealer repairs, with Hyundai handling cases reactively rather than via recall. Out-of-warranty repairs are expensive — a full gearbox replacement runs roughly INR 80,000 to over 1.2 lakh.",
+        "solution": "Dealers replace the failed clutch actuator or clutch pack (free under warranty); a destroyed transmission requires complete DCT replacement. Owners mitigate risk by avoiding prolonged clutch-slip situations (crawling in traffic or holding the car on inclines with throttle) and extending the powertrain warranty.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Transmission hot / overheating warning in slow traffic",
+          "Judder or hesitation when accelerating from a stop",
+          "Even-numbered gears not engaging until engine restart",
+          "Check engine light with powertrain error message on the cluster",
+          "Sudden loss of drive / limp mode"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P060194"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.team-bhp.com/forum/technical-stuff/237754-hyundai-creta-1-4-dct-develops-powertrain-failure-edit-problems-continue-even-after-2-years.html",
+            "type": "forum",
+            "title": "6-month old Hyundai Creta 1.4 DCT develops powertrain failure (EDIT: Problems continue even after 2 years) — Team-BHP thread #237754"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/dct-failure-my-2020-hyundai-creta-suv",
+            "type": "forum",
+            "title": "DCT failure on my 2020 Hyundai Creta SUV — Team-BHP"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/dct-my-creta-fails-yet-again-just-year-after-hyundai-repaired-it",
+            "type": "forum",
+            "title": "DCT on my Creta fails yet again, just a year after Hyundai repaired it — Team-BHP"
+          },
+          {
+            "url": "https://www.cars24.com/article/used-hyundai-creta-top-hidden-costs/",
+            "type": "article",
+            "title": "Used Hyundai Creta: Top Hidden Costs (DCT replacement ₹80k–1.2L, overheat warnings in traffic) — Cars24"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/dct-issues-bramd-new-2021-hyundai-creta-14l",
+            "type": "forum",
+            "title": "DCT issues in a brand new 2021 Hyundai Creta 1.4L — Team-BHP"
+          },
+          {
+            "url": "https://automotobuzz.com/news-features/6-month-old-hyundai-creta-1-4-dct-develops-powertrain-failure/",
+            "type": "article",
+            "title": "6-month old Hyundai Creta 1.4 DCT develops powertrain failure — AutoMotoBuzz"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Creta",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "7-Speed Dry DCT Failures on 1.4 T-GDI (Clutch Actuator, Overheating, Loss of Drive)",
+        "description": "The 1.4L turbo-petrol SU2 Creta's 7-speed dry dual-clutch transmission has multiple well-documented failures in Indian stop-and-go traffic: clutch actuator failure (logged as DTC P060194), the gearbox refusing to engage even-numbered gears until restart, transmission-overheat warnings in crawling traffic, and judder or delayed engagement from standstill. Team-BHP ownership threads document cars failing within months of delivery and failing again a year after dealer repairs, with Hyundai handling cases reactively rather than via recall. Out-of-warranty repairs are expensive — a full gearbox replacement runs roughly INR 80,000 to over 1.2 lakh.",
+        "solution": "Dealers replace the failed clutch actuator or clutch pack (free under warranty); a destroyed transmission requires complete DCT replacement. Owners mitigate risk by avoiding prolonged clutch-slip situations (crawling in traffic or holding the car on inclines with throttle) and extending the powertrain warranty.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Transmission hot / overheating warning in slow traffic",
+          "Judder or hesitation when accelerating from a stop",
+          "Even-numbered gears not engaging until engine restart",
+          "Check engine light with powertrain error message on the cluster",
+          "Sudden loss of drive / limp mode"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P060194"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.team-bhp.com/forum/technical-stuff/237754-hyundai-creta-1-4-dct-develops-powertrain-failure-edit-problems-continue-even-after-2-years.html",
+            "type": "forum",
+            "title": "6-month old Hyundai Creta 1.4 DCT develops powertrain failure (EDIT: Problems continue even after 2 years) — Team-BHP thread #237754"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/dct-failure-my-2020-hyundai-creta-suv",
+            "type": "forum",
+            "title": "DCT failure on my 2020 Hyundai Creta SUV — Team-BHP"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/dct-my-creta-fails-yet-again-just-year-after-hyundai-repaired-it",
+            "type": "forum",
+            "title": "DCT on my Creta fails yet again, just a year after Hyundai repaired it — Team-BHP"
+          },
+          {
+            "url": "https://www.cars24.com/article/used-hyundai-creta-top-hidden-costs/",
+            "type": "article",
+            "title": "Used Hyundai Creta: Top Hidden Costs (DCT replacement ₹80k–1.2L, overheat warnings in traffic) — Cars24"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/dct-issues-bramd-new-2021-hyundai-creta-14l",
+            "type": "forum",
+            "title": "DCT issues in a brand new 2021 Hyundai Creta 1.4L — Team-BHP"
+          },
+          {
+            "url": "https://automotobuzz.com/news-features/6-month-old-hyundai-creta-1-4-dct-develops-powertrain-failure/",
+            "type": "article",
+            "title": "6-month old Hyundai Creta 1.4 DCT develops powertrain failure — AutoMotoBuzz"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-creta-brake-booster-diaphragm-defect-official-brazil-recall",
+      "model": "Creta",
+      "action": "rewrite_same_identity",
+      "reason": "Narrowed the existing Brazil brake-booster page to Hyundai Motor Brasil's exact model-year, production-period, diaphragm/vacuum mechanism, braking consequence and free booster-replacement remedy.",
+      "identityRule": "The existing indexed issue stays on the same ID; only the official same-identity scope, mechanism, consequence and campaign guidance replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-recall-record",
+          "url": "https://hyundai.com.br/content/dam/hmb/servicos/recall/pdf/DPDC-DOC4-Aviso%20de%20Risco.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai Motor Brasil - Creta Brake-Booster Recall Notice supports the proposed same-identity scope or owner lookup path."
+        }
+      ],
+      "beforeSha256": "e56e3ccecd50012b1ebd00d31b020d78df22fb16d06872cb115d528587171cde",
+      "proposalSha256": "fd74d21f1f2abcd230e520972d954122888da6c15f9c97e8d42e2e5581c37d18",
+      "before": {
+        "make": "Hyundai",
+        "model": "Creta",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Booster Diaphragm Defect — Official Brazil Recall (Hard Pedal, Longer Stopping Distance)",
+        "description": "Hyundai do Brasil recalled Creta 1.0 turbo automatic units (model years 2024-2025, manufactured March 12 to July 16, 2024) for a defect in the brake booster (servofreio): displacement of the internal diaphragm reduces vacuum in the brake-assist system. This makes the brake pedal harden, increasing the force needed to brake and lengthening braking time and distance — a direct crash risk. The campaign began September 3, 2024 with free brake booster replacement at Hyundai dealerships.",
+        "solution": "Check the chassis/VIN against Hyundai Brazil's recall list (or call 0800-770-3355) and have the brake booster replaced free of charge at a Hyundai dealership; the service takes about two hours.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Brake pedal feels unusually hard / heavy",
+          "More pedal force needed to slow the car",
+          "Longer stopping distances",
+          "Reduced vacuum assist noticeable on repeated braking"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://hyundai.com.br/content/dam/hmb/servicos/recall/pdf/DPDC-DOC4-Aviso%20de%20Risco.pdf",
+            "type": "recall",
+            "title": "Comunicado de Recall — Hyundai Motor Brasil: Creta 1.0 AT Turbo 2024/2025 servofreio (official recall notice PDF)"
+          },
+          {
+            "url": "https://mundodoautomovelparapcd.com.br/hyundai-convoca-recall-do-creta-por-falha-nos-freios-veja-chassis-envolvidos/",
+            "type": "article",
+            "title": "Hyundai convoca recall do Creta por falha nos freios; veja chassis envolvidos — Mundo do Automóvel para PCD"
+          },
+          {
+            "url": "https://dana.com.br/canaldana/2024/09/13/hyundai-convoca-recall-do-creta-por-falha-que-pode-ser-fatal-veja-o-motivo/",
+            "type": "article",
+            "title": "Hyundai convoca recall do Creta por falha que pode ser fatal — Canal Dana"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Creta",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake-Booster Diaphragm Can Shift and Reduce Brake Assist - Brazil Recall",
+        "description": "Hyundai Motor Brasil recalled Creta 1.0 AT Turbo vehicles from model years 2024/2024 and 2024/2025 that were manufactured from March 12 through July 16, 2024. The brake-booster diaphragm can shift, reducing vacuum in the brake-assist system. The brake pedal can become harder to press, requiring more driver effort and increasing braking time and distance.",
+        "solution": "Check the chassis range in Hyundai Motor Brasil's recall notice. If the brake pedal becomes hard, Hyundai advises stopping use of the vehicle and contacting an HMB dealer immediately. Dealers replace the brake booster free of charge; the notice estimates about two hours for the service.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Brake pedal becomes harder to press",
+          "More driver force is required to brake",
+          "Braking time and distance can increase"
+        ],
+        "affectedSystems": [
+          "Brake booster",
+          "Brake-assist vacuum system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Hyundai Motor Brasil - Creta Brake-Booster Recall Notice",
+            "url": "https://hyundai.com.br/content/dam/hmb/servicos/recall/pdf/DPDC-DOC4-Aviso%20de%20Risco.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Narrowed the existing Brazil brake-booster page to Hyundai Motor Brasil's exact model-year, production-period, diaphragm/vacuum mechanism, braking consequence and free booster-replacement remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-creta-diesel-particulate-filter-clogging-city-only-driving",
+      "model": "Creta",
+      "action": "keep_published_pending_source",
+      "reason": "Owner reports do not establish the frozen claim that the Creta DPF lacks an active heater, one 2020-2024 failure population, a universal speed/time regeneration procedure, limp-mode progression or the stated replacement cost. No exact Hyundai primary document was found for the complete identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; owner reports and overlapping symptoms cannot establish or replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "6293e3a14e0abdb9a26cc951da0a5fdc2063a0d2c6673048a3012606f5732b60",
+      "proposalSha256": "6293e3a14e0abdb9a26cc951da0a5fdc2063a0d2c6673048a3012606f5732b60",
+      "before": {
+        "make": "Hyundai",
+        "model": "Creta",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "emissions",
+        "title": "Diesel Particulate Filter (DPF) Clogging in City-Only Driving (1.5 CRDi BS6)",
+        "description": "BS6-compliant 1.5L CRDi diesel Cretas (2020 onward) use a DPF without an active heater element, so the filter relies on sustained highway-speed driving to regenerate. Owners whose use is dominated by short, low-speed city trips report soot accumulation that triggers DPF and check-engine warnings, reduced power, and in severe cases a fully clogged filter — one documented case needed a DPF replacement at just 3,500 km. If ignored, the engine enters limp mode and the filter may require replacement costing roughly INR 70,000-80,000 outside warranty.",
+        "solution": "Drive at sustained speeds above ~60 km/h for 20-30 minutes regularly so passive/active regeneration can complete; if the warning appears, a dealer can perform a forced regeneration. A fully clogged filter must be professionally cleaned or replaced (covered under warranty in documented cases).",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "DPF warning light on the instrument cluster",
+          "Check engine light after repeated short city trips",
+          "Noticeable loss of power / limp mode",
+          "Increased fuel consumption during regeneration attempts",
+          "Slight diesel smell or elevated idle during active regeneration"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 950,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.team-bhp.com/forum/technical-stuff/267290-hyundai-creta-1-5l-diesel-bs6-4-encounters-issues-dpf.html",
+            "type": "forum",
+            "title": "Hyundai Creta 1.5L Diesel BS6 | 4 encounters & issues with the DPF - Team-BHP"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/clogged-dpf-my-3500-km-run-creta-diesel-replaced-warranty",
+            "type": "article",
+            "title": "Clogged DPF on my 3500 km run Creta diesel: Replaced in warranty | Team-BHP"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/my-hyundai-creta-diesel-4-encounters-dpf-issues-my-learnings",
+            "type": "article",
+            "title": "My Hyundai Creta diesel: 4 encounters with DPF issues & my learnings | Team-BHP"
+          },
+          {
+            "url": "https://www.cars24.com/article/used-hyundai-creta-top-hidden-costs/",
+            "type": "article",
+            "title": "Used Hyundai Creta: Top Hidden Costs | Cars24"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Creta",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "emissions",
+        "title": "Diesel Particulate Filter (DPF) Clogging in City-Only Driving (1.5 CRDi BS6)",
+        "description": "BS6-compliant 1.5L CRDi diesel Cretas (2020 onward) use a DPF without an active heater element, so the filter relies on sustained highway-speed driving to regenerate. Owners whose use is dominated by short, low-speed city trips report soot accumulation that triggers DPF and check-engine warnings, reduced power, and in severe cases a fully clogged filter — one documented case needed a DPF replacement at just 3,500 km. If ignored, the engine enters limp mode and the filter may require replacement costing roughly INR 70,000-80,000 outside warranty.",
+        "solution": "Drive at sustained speeds above ~60 km/h for 20-30 minutes regularly so passive/active regeneration can complete; if the warning appears, a dealer can perform a forced regeneration. A fully clogged filter must be professionally cleaned or replaced (covered under warranty in documented cases).",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "DPF warning light on the instrument cluster",
+          "Check engine light after repeated short city trips",
+          "Noticeable loss of power / limp mode",
+          "Increased fuel consumption during regeneration attempts",
+          "Slight diesel smell or elevated idle during active regeneration"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 950,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.team-bhp.com/forum/technical-stuff/267290-hyundai-creta-1-5l-diesel-bs6-4-encounters-issues-dpf.html",
+            "type": "forum",
+            "title": "Hyundai Creta 1.5L Diesel BS6 | 4 encounters & issues with the DPF - Team-BHP"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/clogged-dpf-my-3500-km-run-creta-diesel-replaced-warranty",
+            "type": "article",
+            "title": "Clogged DPF on my 3500 km run Creta diesel: Replaced in warranty | Team-BHP"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/my-hyundai-creta-diesel-4-encounters-dpf-issues-my-learnings",
+            "type": "article",
+            "title": "My Hyundai Creta diesel: 4 encounters with DPF issues & my learnings | Team-BHP"
+          },
+          {
+            "url": "https://www.cars24.com/article/used-hyundai-creta-top-hidden-costs/",
+            "type": "article",
+            "title": "Used Hyundai Creta: Top Hidden Costs | Cars24"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-creta-intermittent-ac-cooling-loss-premature-compressor-failure",
+      "model": "Creta",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen row combines evaporator icing, thermistor/expansion-valve control and unrelated compressor wear across multiple markets and model years using owner reports. No exact Hyundai primary document establishes one same-identity defect, mileage threshold or remedy, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; owner reports and overlapping symptoms cannot establish or replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "b9713396568d79c91bc9eab57ede8bc10819a2e480a05c0179235680c197fa9d",
+      "proposalSha256": "b9713396568d79c91bc9eab57ede8bc10819a2e480a05c0179235680c197fa9d",
+      "before": {
+        "make": "Hyundai",
+        "model": "Creta",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "hvac",
+        "title": "Intermittent AC Cooling Loss (Evaporator Icing) and Premature Compressor Failure",
+        "description": "First-generation (GS) Creta owners in hot climates report the AC intermittently blowing barely-cool air on long drives: ice builds up around the evaporator/thermistor area and on the AC discharge hose, and cooling only returns after the system is switched off for 15-30 minutes so the ice melts — a recurring fault tied to a faulty thermistor/expansion-valve control rather than simple low refrigerant. Separately, AC compressor failures around the 80,000-90,000 km mark are documented, with service advisors acknowledging compressor failure after about four years is not uncommon. The result is weak or absent cooling, a serious problem in the Indian, Middle Eastern, and Latin American markets where the car is sold.",
+        "solution": "Have a technician check the evaporator temperature sensor (thermistor) and expansion valve and replace if faulty, rather than just topping up refrigerant; leak-test the system. A failed compressor requires replacement, so clean the cabin filter and service the AC regularly to extend its life.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "AC blows warm or barely-cool air intermittently on long drives",
+          "Cooling returns after switching the AC off for 15-30 minutes",
+          "Ice visible on AC lines / discharge hose under the hood",
+          "Windshield fogging near the sensor area",
+          "Loud or rattling compressor before total failure"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 60,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.team-bhp.com/news/2017-hyundai-creta-how-recurring-ac-issue-has-annoyed-me-months",
+            "type": "forum",
+            "title": "2017 Hyundai Creta: How a recurring AC issue has annoyed me for months | Team-BHP"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/advice-needed-intermittent-ac-cooling-issue-my-hyundai-creta",
+            "type": "forum",
+            "title": "Advice needed: Intermittent AC cooling issue on my Hyundai Creta | Team-BHP"
+          },
+          {
+            "url": "https://www.theautomotiveindia.com/forums/threads/hyundai-creta-1-4-crdi-a-c-compressor-failure-at-91k-kms.37964/",
+            "type": "forum",
+            "title": "Hyundai Creta 1.4 CRDi A/C Compressor Failure at 91K Kms | The Automotive India"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/unique-ac-issue-my-creta-finding-solution-it",
+            "type": "forum",
+            "title": "A unique AC issue in my Creta & finding a solution to it | Team-BHP"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/faced-ac-issues-my-hyundai-creta-diesel-heres-how-i-got-them-fixed",
+            "type": "forum",
+            "title": "Faced AC issues on my Hyundai Creta diesel: Here's how I got them fixed | Team-BHP"
+          },
+          {
+            "url": "https://www.cars24.com/article/common-issues-with-hyundai-creta/",
+            "type": "article",
+            "title": "Common Issues with Hyundai Creta | Cars24"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Creta",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "hvac",
+        "title": "Intermittent AC Cooling Loss (Evaporator Icing) and Premature Compressor Failure",
+        "description": "First-generation (GS) Creta owners in hot climates report the AC intermittently blowing barely-cool air on long drives: ice builds up around the evaporator/thermistor area and on the AC discharge hose, and cooling only returns after the system is switched off for 15-30 minutes so the ice melts — a recurring fault tied to a faulty thermistor/expansion-valve control rather than simple low refrigerant. Separately, AC compressor failures around the 80,000-90,000 km mark are documented, with service advisors acknowledging compressor failure after about four years is not uncommon. The result is weak or absent cooling, a serious problem in the Indian, Middle Eastern, and Latin American markets where the car is sold.",
+        "solution": "Have a technician check the evaporator temperature sensor (thermistor) and expansion valve and replace if faulty, rather than just topping up refrigerant; leak-test the system. A failed compressor requires replacement, so clean the cabin filter and service the AC regularly to extend its life.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "AC blows warm or barely-cool air intermittently on long drives",
+          "Cooling returns after switching the AC off for 15-30 minutes",
+          "Ice visible on AC lines / discharge hose under the hood",
+          "Windshield fogging near the sensor area",
+          "Loud or rattling compressor before total failure"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 60,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.team-bhp.com/news/2017-hyundai-creta-how-recurring-ac-issue-has-annoyed-me-months",
+            "type": "forum",
+            "title": "2017 Hyundai Creta: How a recurring AC issue has annoyed me for months | Team-BHP"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/advice-needed-intermittent-ac-cooling-issue-my-hyundai-creta",
+            "type": "forum",
+            "title": "Advice needed: Intermittent AC cooling issue on my Hyundai Creta | Team-BHP"
+          },
+          {
+            "url": "https://www.theautomotiveindia.com/forums/threads/hyundai-creta-1-4-crdi-a-c-compressor-failure-at-91k-kms.37964/",
+            "type": "forum",
+            "title": "Hyundai Creta 1.4 CRDi A/C Compressor Failure at 91K Kms | The Automotive India"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/unique-ac-issue-my-creta-finding-solution-it",
+            "type": "forum",
+            "title": "A unique AC issue in my Creta & finding a solution to it | Team-BHP"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/faced-ac-issues-my-hyundai-creta-diesel-heres-how-i-got-them-fixed",
+            "type": "forum",
+            "title": "Faced AC issues on my Hyundai Creta diesel: Here's how I got them fixed | Team-BHP"
+          },
+          {
+            "url": "https://www.cars24.com/article/common-issues-with-hyundai-creta/",
+            "type": "article",
+            "title": "Common Issues with Hyundai Creta | Cars24"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-creta-ivt-electronic-oil-pump-controller-defect-official-india-rec",
+      "model": "Creta",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced secondary recall reporting and unsupported warning, hesitation, hydraulic-pressure and replacement claims with the SIAM registry's exact combined population, build window, variant and controller-performance statement plus Hyundai India's VIN lookup.",
+      "identityRule": "The existing indexed issue stays on the same ID; only the official same-identity scope, mechanism, consequence and campaign guidance replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-recall-record",
+          "url": "https://www.siam.in/siam-voluntary-recall.aspx",
+          "verifiedOn": "2026-08-06",
+          "observation": "SIAM Voluntary Recall Registry - Hyundai Creta and Verna G 1.5 IVT supports the proposed same-identity scope or owner lookup path."
+        },
+        {
+          "kind": "manufacturer-recall-lookup",
+          "url": "https://www.hyundai.com/in/en/connect-to-service/important-customer-notification",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai Motor India - Recall Campaign VIN Lookup supports the proposed same-identity scope or owner lookup path."
+        }
+      ],
+      "beforeSha256": "59c72bdb6e5474f5ecd9eb79a41b70d0c26cfdebbbde3c074fef9b07390dd4d7",
+      "proposalSha256": "65b1bb468c3827efe3b85c6f78d7e449d3a89f4c49027614af2ed0748bd64fca",
+      "before": {
+        "make": "Hyundai",
+        "model": "Creta",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "IVT (CVT) Electronic Oil Pump Controller Defect — Official India Recall",
+        "description": "In March 2024 Hyundai India voluntarily recalled 7,698 Creta and Verna cars with the 1.5L naturally-aspirated petrol engine and IVT (CVT) automatic, manufactured between February 13 and June 6, 2023. The electronic oil pump controller can fail, affecting the performance of the transmission's electric oil pump — the component that maintains hydraulic pressure (including during idle stop/start) — risking abnormal IVT operation. Affected pre-facelift Creta IVT owners are contacted by Hyundai and the controller is replaced free of charge.",
+        "solution": "Check the VIN on Hyundai India's official website or call Hyundai customer care (1800-114-645); affected vehicles get the electronic oil pump controller inspected and replaced at no cost under the recall campaign.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle VIN listed in Hyundai India's recall lookup",
+          "Transmission warning light or check engine light",
+          "Abnormal IVT behavior such as hesitation or harsh engagement",
+          "Built between February and June 2023 with 1.5 petrol IVT"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.cardekho.com/india-car-news/hyundai-creta-and-verna-petrolcvt-units-recall-issued-32233.htm",
+            "type": "recall",
+            "title": "Hyundai Creta And Hyundai Verna Recalled In India Due To Oil Pump Controller Issue (CarDekho)"
+          },
+          {
+            "url": "https://www.zigwheels.com/news-features/general-news/hyundai-verna-and-creta-pre-facelift-petrol-cvt-units-recalled/52535/",
+            "type": "recall",
+            "title": "Hyundai Verna And Creta Petrol-CVT Units Recalled To Rectify The Electronic Oil Pump (EOP) Controller (ZigWheels)"
+          },
+          {
+            "url": "https://www.91wheels.com/news/hyundai-creta-ivt-variants-voluntarily-recalled-is-your-model-on-the-list",
+            "type": "article",
+            "title": "Hyundai Creta iVT Variants Voluntarily Recalled: Is Your Model On The List? (91wheels)"
+          },
+          {
+            "url": "https://www.thedailyjagran.com/auto/hyundai-recalls-select-prefacelift-creta-ivt-models-over-oil-pump-issue-what-is-it-10151299",
+            "type": "article",
+            "title": "Hyundai Recalls Select Pre-Facelift Creta iVT Models Over Oil Pump Issue (Daily Jagran)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Creta",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "G 1.5 IVT Electronic Oil-Pump Controller Recall - India",
+        "description": "The Society of Indian Automobile Manufacturers voluntary-recall registry lists a Hyundai Motor India campaign dated February 21, 2024 for Creta and Verna G 1.5 IVT vehicles produced from February 13 through June 6, 2023. The combined campaign covers 7,698 vehicles for a potential electronic oil-pump controller issue that may affect electronic oil-pump performance.",
+        "solution": "Enter the vehicle's VIN on Hyundai Motor India's official recall-campaign page. Hyundai states that affected customers are notified by the company or an authorized dealer and should follow the dealer's campaign instructions.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "VIN is included in Hyundai Motor India's Creta and Verna G 1.5 IVT recall campaign"
+        ],
+        "affectedSystems": [
+          "Electronic oil-pump controller",
+          "Electronic oil pump"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "SIAM Voluntary Recall Registry - Hyundai Creta and Verna G 1.5 IVT",
+            "url": "https://www.siam.in/siam-voluntary-recall.aspx"
+          },
+          {
+            "type": "manufacturer",
+            "title": "Hyundai Motor India - Recall Campaign VIN Lookup",
+            "url": "https://www.hyundai.com/in/en/connect-to-service/important-customer-notification"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced secondary recall reporting and unsupported warning, hesitation, hydraulic-pressure and replacement claims with the SIAM registry's exact combined population, build window, variant and controller-performance statement plus Hyundai India's VIN lookup.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-creta-premature-clutch-wear-heavy-clutch-diesel-manuals",
+      "model": "Creta",
+      "action": "keep_published_pending_source",
+      "reason": "Owner reviews and a used-car cost article do not establish one 2015-2024 Creta diesel-manual clutch defect, frequency, mileage band, driving-stress mechanism, repair scope or cost. No exact Hyundai primary document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; owner reports and overlapping symptoms cannot establish or replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "fabbc40f4ec032713baafd61ccae7b9d83c6be225b0669187c5ee76dc291766a",
+      "proposalSha256": "fabbc40f4ec032713baafd61ccae7b9d83c6be225b0669187c5ee76dc291766a",
+      "before": {
+        "make": "Hyundai",
+        "model": "Creta",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Premature Clutch Wear and Heavy Clutch on Diesel Manuals",
+        "description": "The diesel Creta's high torque combined with dense stop-and-go traffic puts heavy stress on the clutch in manual variants, and premature wear is one of the most frequently reported ownership costs — issues can appear as early as 20,000-30,000 km, and one CarWale owner documented the clutch assembly being replaced three times within 30,000 km while Hyundai blamed driving style. Owners describe a progressively heavier pedal, judder at the bite point (worse in higher gears), and difficulty engaging gears smoothly. A full clutch replacement (plate, pressure plate, release bearing) typically costs INR 15,000-25,000, more if the flywheel is damaged.",
+        "solution": "Replace the clutch kit (plate, pressure plate, release bearing) and inspect or resurface the flywheel; persistent judder may also need the hydraulics bled or the slave/master cylinder replaced. Minimizing clutch-riding in traffic extends clutch life.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Clutch pedal feels unusually heavy or hard in traffic",
+          "Judder/shudder when releasing the clutch at the bite point",
+          "Difficulty engaging gears smoothly",
+          "Burning smell after stop-and-go driving",
+          "Clutch slip under hard acceleration"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 180,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://carwale.com/hyundai-cars/creta-2017-2018/user-reviews/99333",
+            "type": "forum",
+            "title": "CarWale user review — Creta 1.4 CRDI E Plus, clutch plate replaced thrice in 30,000 km"
+          },
+          {
+            "url": "https://www.startmycar.com/hyundai/creta/problems/clutch",
+            "type": "forum",
+            "title": "StartMyCar — Hyundai Creta clutch problems and issues (hard clutch, 2017 and 2023 models)"
+          },
+          {
+            "url": "https://www.cars24.com/article/used-hyundai-creta-top-hidden-costs/",
+            "type": "article",
+            "title": "Cars24 — Top hidden costs of buying a used Hyundai Creta (premature diesel-manual clutch wear)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Creta",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Premature Clutch Wear and Heavy Clutch on Diesel Manuals",
+        "description": "The diesel Creta's high torque combined with dense stop-and-go traffic puts heavy stress on the clutch in manual variants, and premature wear is one of the most frequently reported ownership costs — issues can appear as early as 20,000-30,000 km, and one CarWale owner documented the clutch assembly being replaced three times within 30,000 km while Hyundai blamed driving style. Owners describe a progressively heavier pedal, judder at the bite point (worse in higher gears), and difficulty engaging gears smoothly. A full clutch replacement (plate, pressure plate, release bearing) typically costs INR 15,000-25,000, more if the flywheel is damaged.",
+        "solution": "Replace the clutch kit (plate, pressure plate, release bearing) and inspect or resurface the flywheel; persistent judder may also need the hydraulics bled or the slave/master cylinder replaced. Minimizing clutch-riding in traffic extends clutch life.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Clutch pedal feels unusually heavy or hard in traffic",
+          "Judder/shudder when releasing the clutch at the bite point",
+          "Difficulty engaging gears smoothly",
+          "Burning smell after stop-and-go driving",
+          "Clutch slip under hard acceleration"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 180,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://carwale.com/hyundai-cars/creta-2017-2018/user-reviews/99333",
+            "type": "forum",
+            "title": "CarWale user review — Creta 1.4 CRDI E Plus, clutch plate replaced thrice in 30,000 km"
+          },
+          {
+            "url": "https://www.startmycar.com/hyundai/creta/problems/clutch",
+            "type": "forum",
+            "title": "StartMyCar — Hyundai Creta clutch problems and issues (hard clutch, 2017 and 2023 models)"
+          },
+          {
+            "url": "https://www.cars24.com/article/used-hyundai-creta-top-hidden-costs/",
+            "type": "article",
+            "title": "Cars24 — Top hidden costs of buying a used Hyundai Creta (premature diesel-manual clutch wear)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
