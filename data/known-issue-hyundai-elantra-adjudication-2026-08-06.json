@@ -6,10 +6,10 @@
   "generatedOn": "2026-08-06",
   "make": "Hyundai",
   "model": "Elantra",
-  "completionStatement": "This packet reconciles all 29 frozen Hyundai Elantra rows. Twelve exact same-identity official-source rewrites are proposed; seventeen rows remain byte-for-byte unchanged.",
+  "completionStatement": "This packet reconciles all 29 frozen Hyundai Elantra rows. Ten exact same-identity official-source rewrites are proposed; nineteen rows remain byte-for-byte unchanged.",
   "safetyContract": [
     "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
-    "All 29 rows remain published. Seventeen are byte-for-byte unchanged.",
+    "All 29 rows remain published. Nineteen are byte-for-byte unchanged.",
     "An unrelated campaign, component, symptom group, generation or model may never replace the issue named by an existing indexed page.",
     "Each rewrite contains zero commerce, zero cost or mileage claims, and empty trim and engine arrays.",
     "Independent row-by-row approval is required before a separate guarded apply path may be created."
@@ -32,13 +32,37 @@
       "detail": "Recall 251 and Recall 188 stay separate because their defect mechanisms, populations and remedies differ."
     },
     {
-      "code": "eps-recall-separated-from-mdps-coupler",
+      "code": "eps-identity-substitution-rejected",
       "severity": "independent-review-required",
       "recordIds": [
         "hyundai-elantra-electronic-power-steering",
         "hyundai-elantra-mdps-rubber-coupler-wear-steering-clunk-knock-loss-assist"
       ],
-      "detail": "The EPS signal-discrepancy recall and the non-safety flexible-coupler noise bulletin remain distinct same-identity pages."
+      "detail": "The EPS signal-discrepancy recall has no model-year or mechanism overlap with the frozen rubber-damper page. The EPS row is frozen; the distinct MDPS flexible-coupler row may use its exact bulletin."
+    },
+    {
+      "code": "nu-engine-identity-substitution-rejected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-elantra-nu-engine-failure"
+      ],
+      "detail": "A piston-slap warranty bulletin cannot replace the frozen connecting-rod-bearing/seizure page. The row remains byte-for-byte unchanged."
+    },
+    {
+      "code": "pretensioner-scope-corrected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-elantra-front-seat-belt-pretensioner-may-explode-project-metal-fragm"
+      ],
+      "detail": "Recall 22V354 supports 2021-2022 Elantra and Elantra HEV, not model year 2023."
+    },
+    {
+      "code": "abs-unsupported-details-removed",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-elantra-abs-module-fire"
+      ],
+      "detail": "The proposal removes an unsupported warning-light symptom and the unsupported claim that the replacement ABS fuse has lower amperage."
     },
     {
       "code": "misleading-year-slugs-frozen",
@@ -62,8 +86,8 @@
     }
   ],
   "summary": {
-    "rewrite_same_identity": 12,
-    "keep_published_pending_source": 17,
+    "rewrite_same_identity": 10,
+    "keep_published_pending_source": 19,
     "total": 29
   },
   "rows": [
@@ -76,7 +100,6 @@
       "commerceDecision": "no-commerce",
       "changedFields": [
         "years",
-        "title",
         "description",
         "solution",
         "severity",
@@ -104,7 +127,7 @@
         }
       ],
       "beforeSha256": "56ea5985cf551865ef4a21cf6944277c20f7582b7a0bb2b6504fd4da72f2c53f",
-      "proposalSha256": "07ae1d5d4f8c2060913cb1afabf5c18d33adab704739fda8ed9d7551f5a29110",
+      "proposalSha256": "70509e6a3d12a9783341731fe270cd25669638ba26a2824ff6fb1603f0d9f005",
       "before": {
         "make": "Hyundai",
         "model": "Elantra",
@@ -239,7 +262,7 @@
         "trims": [],
         "engines": [],
         "category": "transmission",
-        "title": "7-Speed DCT Low-Speed Vibration and Double-Clutch Service",
+        "title": "Dual Clutch Transmission (DCT) Shudder and Failure",
         "description": "Hyundai TSB 21-AT-013H covers certain 2017-2018 Elantra Sport 1.6L Turbo and Elantra 1.4L Turbo vehicles equipped with the 7-speed dual-clutch transmission. The bulletin states that these vehicles may exhibit abnormal vibration at low speeds and provides a GDS clutch-judder inspection procedure.",
         "solution": "Have a Hyundai dealer identify the vehicle and transmission by VIN and perform the bulletin's GDS clutch-judder measurement. If the test reports no judder, the procedure ends. If it reports that the double clutch should be replaced, the bulletin directs replacement of the double-clutch assembly and a TCU software update when applicable.",
         "severity": "medium",
@@ -286,8 +309,6 @@
       "identityRule": "The existing indexed issue stays on the same ID; an exact official same-identity scope and remedy replace unsupported claims.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "category",
-        "title",
         "description",
         "solution",
         "symptoms",
@@ -319,7 +340,7 @@
         }
       ],
       "beforeSha256": "29ada6980fc5b4a9d114bbf098d40e6fa593d17abd8208a8174a370287425bc4",
-      "proposalSha256": "af901f1f34e9279559b74f6d5db384a9388dec278ef59234667b5e094ea1f358",
+      "proposalSha256": "16469bcc3855ddee833d0110091ecc6d9cd9acef0fe3a040a0e7f200bb48ad1c",
       "before": {
         "make": "Hyundai",
         "model": "Elantra",
@@ -440,14 +461,13 @@
         ],
         "trims": [],
         "engines": [],
-        "category": "brakes",
-        "title": "ABS Module Internal Brake-Fluid Leak and Fire Risk - Recall 23V651",
+        "category": "safety",
+        "title": "ABS Module Electrical Short and Fire Risk",
         "description": "NHTSA recall 23V651 covers certain 2011-2015 Hyundai Elantra vehicles. The ABS module may leak brake fluid internally and develop an electrical short, creating an engine-compartment fire risk while the vehicle is parked or being driven.",
-        "solution": "Check the VIN for Hyundai Recall 251 and arrange the free dealer remedy. Hyundai instructs owners to park outside and away from structures until the recall is completed. Dealers replace the ABS fuse with a lower-amperage fuse.",
+        "solution": "Check the VIN for Hyundai Recall 251 and arrange the free dealer remedy. Hyundai instructs owners to park outside and away from structures until the recall is completed. Dealers replace the ABS fuse.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "ABS or malfunction-indicator warning light may illuminate",
           "Engine-compartment fire can occur while parked or driving"
         ],
         "affectedSystems": [
@@ -495,7 +515,6 @@
       "changedFields": [
         "trims",
         "engines",
-        "title",
         "description",
         "solution",
         "symptoms",
@@ -518,7 +537,7 @@
         }
       ],
       "beforeSha256": "6865c1083a9189f0def11c719fb569d534820dd98e46fd9425f17de7f2044163",
-      "proposalSha256": "46680a23d038134bec6cfb9adcf59f6290d4fd1bbcddf1110a155d10d619ea7a",
+      "proposalSha256": "3c013fe45bd731656d8125dfc0aa66502c635bd7418287c4bc544aa1dbb4789b",
       "before": {
         "make": "Hyundai",
         "model": "Elantra",
@@ -603,7 +622,7 @@
         "trims": [],
         "engines": [],
         "category": "brakes",
-        "title": "Key-Off ABS Module Short-Circuit Fire Risk - Recall 20V061",
+        "title": "ABS Module Short Circuit Causing Engine Compartment Fire (Recall 20V061)",
         "description": "NHTSA recall 20V061 covers certain 2006-2011 Hyundai Elantra and 2007-2011 Elantra Touring vehicles. Their ABS module remains energized after the vehicle is turned off; if moisture enters its electrical circuit, a short can gradually develop and cause an engine-compartment fire even with the car off.",
         "solution": "Check the VIN for Hyundai Recall 188. Hyundai dealers install a relay in the main junction box, free of charge, to prevent an ABS short circuit while the vehicle is turned off.",
         "severity": "high",
@@ -650,7 +669,6 @@
       "commerceDecision": "no-commerce",
       "changedFields": [
         "years",
-        "title",
         "description",
         "solution",
         "symptoms",
@@ -677,7 +695,7 @@
         }
       ],
       "beforeSha256": "a0d450bcc7eb1b5f9bdff0f4bdd0719e2cf843e61263b8ed58d5e5164ef08f90",
-      "proposalSha256": "b1ee6f4474249308969651b010f6276e32d32584415a2e894d54dd175bca06f2",
+      "proposalSha256": "5e2cb41cc592f737aa143c0bb33a68626fb943794ecbda89528580e511973c1f",
       "before": {
         "make": "Hyundai",
         "model": "Elantra",
@@ -803,7 +821,7 @@
         "trims": [],
         "engines": [],
         "category": "safety",
-        "title": "Passenger Weight-Sensor Connector Contamination - Recall 11V143",
+        "title": "Airbag Sensor and Control Module Malfunction",
         "description": "NHTSA recall 11V143 covers certain 2007-2009 Hyundai Elantra vehicles. Contamination can cause the electrical connector for the front-passenger weight-classification sensor to malfunction, allowing the passenger airbag to deploy regardless of occupant weight.",
         "solution": "Check the VIN for Hyundai Campaign 099. Dealers install a protective cover over the weight-classification-system connector to prevent contamination, free of charge.",
         "severity": "high",
@@ -1354,40 +1372,14 @@
     {
       "id": "hyundai-elantra-electronic-power-steering",
       "model": "Elantra",
-      "action": "rewrite_same_identity",
-      "reason": "Separated the safety recall from the unrelated rubber-coupler issue and narrowed the page to recall 15V100's exact years, signal-discrepancy mechanism and ECU-update remedy.",
-      "identityRule": "The existing indexed issue stays on the same ID; an exact official same-identity scope and remedy replace unsupported claims.",
-      "commerceDecision": "no-commerce",
-      "changedFields": [
-        "years",
-        "category",
-        "title",
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "reportCount",
-        "source",
-        "lastReportedByOwners",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary",
-        "relatedIssueIds"
-      ],
-      "evidence": [
-        {
-          "kind": "official-recall-record",
-          "url": "https://static.nhtsa.gov/odi/rcl/2015/RCAK-15V100-7257.pdf",
-          "verifiedOn": "2026-08-06",
-          "observation": "NHTSA Recall 15V100 - Electric Power Steering Assist May Be Disabled supports the proposed same-identity scope or remedy."
-        }
-      ],
+      "action": "keep_published_pending_source",
+      "reason": "The frozen row describes rubber star-damper wear, steering play and clunk across 2011-2014 and 2017-2018. Recall 15V100 covers a different 2008-2010 EPS signal-discrepancy loss-of-assist defect with no model-year or mechanism match. Substituting it would change the indexed issue identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; nearby campaigns, complaints and shared symptoms cannot replace this indexed identity.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
       "beforeSha256": "c0ccabfbfa9069a8efb895940694946c4a56aa88588c76c9c929d44d1db63563",
-      "proposalSha256": "abd9ab80260523f2bd38b971418ea63a8d6b3aae07b1663ab55bc13727692873",
+      "proposalSha256": "c0ccabfbfa9069a8efb895940694946c4a56aa88588c76c9c929d44d1db63563",
       "before": {
         "make": "Hyundai",
         "model": "Elantra",
@@ -1507,49 +1499,116 @@
         "make": "Hyundai",
         "model": "Elantra",
         "years": [
-          2008,
-          2009,
-          2010
+          2011,
+          2012,
+          2013,
+          2014,
+          2017,
+          2018
         ],
         "trims": [],
         "engines": [],
-        "category": "steering",
-        "title": "Electronic Power-Steering Assist May Be Disabled - Recall 15V100",
-        "description": "NHTSA recall 15V100 covers certain 2008-2010 Hyundai Elantra and 2009-2010 Elantra Touring vehicles. The EPS control unit may sense a discrepancy in steering-input signals and disable power assist. Manual steering remains, but greater effort is required at low speeds.",
-        "solution": "Check the VIN for Hyundai Recall 127. Dealers verify EPS operation and update the EPS control unit, free of charge.",
+        "category": "suspension",
+        "title": "Electronic Power Steering System Failure",
+        "description": "The electronic power steering (EPS) system fails due to a rubber star damper gear inside the steering column that deteriorates. This causes steering play of up to one inch before wheels respond, making the vehicle difficult to control. Over 200,000 vehicles were recalled for torque sensor signal issues.",
+        "solution": "Check for EPS recall coverage. Steering column replacement. EPS motor replacement. Software update for torque sensor calibration.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Power-steering assist may be disabled",
-          "Greater steering effort is required at low speeds"
+          "Excessive steering wheel play (1 inch or more)",
+          "Sloppy or loose steering feel",
+          "Power steering warning light",
+          "Increased steering effort required",
+          "Grinding or clicking noise when turning"
         ],
         "affectedSystems": [
-          "Electronic power steering",
-          "EPS control unit"
+          "Steering",
+          "Electrical"
         ],
         "dtcCodes": [],
-        "estimatedCostLow": null,
-        "estimatedCostHigh": null,
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 3200,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "type": "recall",
-            "title": "NHTSA Recall 15V100 - Electric Power Steering Assist May Be Disabled",
-            "url": "https://static.nhtsa.gov/odi/rcl/2015/RCAK-15V100-7257.pdf"
+            "url": "https://www.motorsafety.org/hyundai-recalls-vehicles-defective-power-steering/",
+            "type": "media",
+            "title": "MotorSafety.org: Hyundai recalls vehicles with defective power steering"
+          },
+          {
+            "url": "https://www.aboutlawsuits.com/elantra-steering-recall-78843/",
+            "type": "media",
+            "title": "AboutLawsuits: Hyundai Elantra Recall Issued Over Power Steering Problems"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/08-10-elantra-eps-recall.354050/",
+            "type": "forum",
+            "title": "Hyundai Forums: 08-10 Elantra EPS recall"
+          },
+          {
+            "url": "https://topclassactions.com/lawsuit-settlements/lawsuit-news/hyundai-class-action-alleges-elantra-accent-contain-power-steering-defect/",
+            "type": "media",
+            "title": "Top Class Actions: Hyundai Class Action - Elantra, Accent Contain Power Steering Defect"
+          },
+          {
+            "url": "https://autoservice.hyundaiusa.com/campaign127",
+            "type": "manufacturer",
+            "title": "Hyundai USA: Elantra Electronic Power Steering Service Campaign 127"
           }
         ],
-        "communityRecommendations": [],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "This is a high-severity issue - ignoring it can lead to costly repairs or safety concerns. Address it promptly.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Hyundai Elantra forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Quality replacement struts for ride comfort and handling restoration",
+            "partName": "Quick-Strut Complete Assembly",
+            "partBrand": "Monroe",
+            "affiliateUrl": "https://www.amazon.com/s?k=Monroe%20Quick-Strut%20Hyundai%20Elantra&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Strut mount and bearing for noise-free strut operation",
+            "partName": "Strut Mount Assembly",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20strut%20mount%20Hyundai%20Elantra&tag=au7o-20"
+          }
+        ],
         "fixParts": [],
         "humanApproved": false,
-        "reportCount": 0,
-        "source": "manual",
+        "reportCount": 567,
+        "source": "ai-researched",
         "status": "published",
-        "lastReportedByOwners": "",
-        "reviewedOn": "2026-08-06",
-        "contentUpdatedOn": "2026-08-06",
-        "contentUpdateSummary": "Separated the safety recall from the unrelated rubber-coupler issue and narrowed the page to recall 15V100's exact years, signal-discrepancy mechanism and ECU-update remedy.",
-        "relatedIssueIds": []
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-sonata-steering-2011"
+        ]
       }
     },
     {
@@ -1941,7 +2000,6 @@
       "commerceDecision": "no-commerce",
       "changedFields": [
         "years",
-        "title",
         "description",
         "solution",
         "symptoms",
@@ -1966,7 +2024,7 @@
         }
       ],
       "beforeSha256": "958e263300092923d8718e04e68e361ef9a9d7f6bf10dbc28256cc642ee330d4",
-      "proposalSha256": "f8be4c057ca9641ec60c2b0308fb88c5fdf432bed4674966505e9b0451a6e004",
+      "proposalSha256": "2ae97925b920678102f0a4f6a0ba00c0397d898a2199e90cb608582722568021",
       "before": {
         "make": "Hyundai",
         "model": "Elantra",
@@ -2066,7 +2124,7 @@
         "trims": [],
         "engines": [],
         "category": "suspension",
-        "title": "Salt-Belt Front Lower-Control-Arm Corrosion - Recall 09V125",
+        "title": "Front Lower Control Arm Corrosion and Possible Separation",
         "description": "NHTSA recall 09V125 covers certain 2001-2003 Hyundai Elantra vehicles originally sold in or currently registered in listed salt-belt states and the District of Columbia. Road salt can cause internal corrosion and perforation of a front lower control arm, which may fracture and reduce control of the front wheel direction.",
         "solution": "Check the VIN for Hyundai Recall 091. Dealers inspect both front lower control arms. Arms with specified corrosion damage are replaced; otherwise dealers add drainage holes and apply rust-proofing material. The recall work is free.",
         "severity": "high",
@@ -2113,9 +2171,9 @@
       "identityRule": "The existing indexed issue stays on the same ID; an exact official same-identity scope and remedy replace unsupported claims.",
       "commerceDecision": "no-commerce",
       "changedFields": [
+        "years",
         "trims",
         "engines",
-        "title",
         "description",
         "solution",
         "symptoms",
@@ -2138,7 +2196,7 @@
         }
       ],
       "beforeSha256": "3b4e172b44fcee90287e573067b29ab400ebc8d914dc87ae9f350676799cd31c",
-      "proposalSha256": "ce19474f635599841ce47432dd50a89576ea85641c53882ebed0352bf0a4520a",
+      "proposalSha256": "6566b7ac1bbbacf3833f91074c0d3a6f3521a982caacf9b6ca14ed4c5119b907",
       "before": {
         "make": "Hyundai",
         "model": "Elantra",
@@ -2209,14 +2267,13 @@
         "model": "Elantra",
         "years": [
           2021,
-          2022,
-          2023
+          2022
         ],
         "trims": [],
         "engines": [],
         "category": "safety",
-        "title": "Seat-Belt Pretensioner May Project Metal Fragments - Recall 22V354",
-        "description": "NHTSA recall 22V354 includes certain 2021-2023 Hyundai Elantra vehicles and certain 2021-2022 Elantra HEV vehicles. A driver- or passenger-side pyrotechnic pretensioner may deploy abnormally in a crash because its pipe can over-pressurize, allowing metal fragments to enter the occupant compartment and injure occupants.",
+        "title": "Front Seat Belt Pretensioner May Explode and Project Metal Fragments (Recall 229)",
+        "description": "NHTSA recall 22V354 includes certain 2021-2022 Hyundai Elantra and Elantra HEV vehicles. A driver- or passenger-side pyrotechnic pretensioner may deploy abnormally in a crash because its pipe can over-pressurize, allowing metal fragments to enter the occupant compartment and injure occupants.",
         "solution": "Check the VIN for the applicable Hyundai seat-belt recall and arrange the free dealer repair. Hyundai's remedy secures the pretensioner's micro gas generator and delivery pipe with a cap; vehicles repaired under superseded campaigns may require the newer remedy.",
         "severity": "high",
         "confidence": "high",
@@ -2784,7 +2841,6 @@
         "years",
         "trims",
         "engines",
-        "title",
         "description",
         "solution",
         "severity",
@@ -2809,7 +2865,7 @@
         }
       ],
       "beforeSha256": "4328e7f75f33dcc3e7dc8ebd492c6996b47d11aea54b793f256467bd6c7a1429",
-      "proposalSha256": "fc4b416f000a6ddcbbf9d868bc82ab7cdcb65b8d1ea031e0dc47d63f75c7158f",
+      "proposalSha256": "71656ac7ea63cf886e5bf06e91260b44e702cd549df4b207e1dcf49eb771bb8f",
       "before": {
         "make": "Hyundai",
         "model": "Elantra",
@@ -2902,7 +2958,7 @@
         "trims": [],
         "engines": [],
         "category": "steering",
-        "title": "MDPS Flexible-Coupling Wear and Steering Click or Thud - TSB 17-ST-002",
+        "title": "MDPS Rubber Coupler Wear — Steering Clunk / Knock and Loss of Assist",
         "description": "Hyundai TSB 17-ST-002 covers 2007-2010 Elantra, 2009-2012 Elantra Touring and specified-production 2011-2015 Elantra vehicles. The flexible rubber coupling in the motor-driven power-steering assembly may wear and produce a slight clicking or thud noise while the steering wheel is turned. Hyundai states that this wear does not affect steering control and is not a safety issue.",
         "solution": "Have a Hyundai dealer confirm vehicle eligibility and diagnose the noise. The bulletin extends coupling coverage to 10 years or 100,000 miles, whichever occurs first, and describes replacement of the MDPS flexible coupling when required.",
         "severity": "low",
@@ -2943,43 +2999,14 @@
     {
       "id": "hyundai-elantra-nu-engine-failure",
       "model": "Elantra",
-      "action": "rewrite_same_identity",
-      "reason": "Removed unsupported bearing, debris, KSDS, oil-change and blanket seizure claims; retained Hyundai's exact 1.8L Nu piston-slap short-block warranty scope.",
-      "identityRule": "The existing indexed issue stays on the same ID; an exact official same-identity scope and remedy replace unsupported claims.",
-      "commerceDecision": "no-commerce",
-      "changedFields": [
-        "trims",
-        "engines",
-        "title",
-        "description",
-        "solution",
-        "severity",
-        "symptoms",
-        "affectedSystems",
-        "dtcCodes",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "typicalMileageLow",
-        "typicalMileageHigh",
-        "citations",
-        "communityRecommendations",
-        "reportCount",
-        "source",
-        "lastReportedByOwners",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
-      ],
-      "evidence": [
-        {
-          "kind": "official-manufacturer-record",
-          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10186830-0001.pdf",
-          "verifiedOn": "2026-08-06",
-          "observation": "Hyundai TSB 21-EM-002H - 1.8L Nu Engine Warranty Extension supports the proposed same-identity scope or remedy."
-        }
-      ],
+      "action": "keep_published_pending_source",
+      "reason": "The frozen row describes connecting-rod bearing failure and seizure. TSB 21-EM-002H covers a different piston-slap-noise warranty condition, and its cold-weather-state list is an eligibility rule rather than a symptom. Substituting that bulletin would change the indexed issue identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; nearby campaigns, complaints and shared symptoms cannot replace this indexed identity.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
       "beforeSha256": "39cd6baad3e5ff29ac4cbed03c0433f865645ab7c493a1935cb16768f6b5e047",
-      "proposalSha256": "b2acd8c0578ea96499624d633be6fbd4612fdf8fbb317edf3a454fe3030fdc45",
+      "proposalSha256": "39cd6baad3e5ff29ac4cbed03c0433f865645ab7c493a1935cb16768f6b5e047",
       "before": {
         "make": "Hyundai",
         "model": "Elantra",
@@ -3105,45 +3132,107 @@
           2015,
           2016
         ],
-        "trims": [],
-        "engines": [],
+        "trims": [
+          "Base",
+          "Blue",
+          "GL",
+          "GLS",
+          "Limited",
+          "SE",
+          "SEL",
+          "Value Edition"
+        ],
+        "engines": [
+          "1.8L Nu"
+        ],
         "category": "engine",
-        "title": "1.8L Nu Piston-Slap Short-Block Warranty Extension",
-        "description": "Hyundai TSB 21-EM-002H covers certain 2011-2016 Elantra vehicles equipped with the 1.8L Nu engine. It extends short-block warranty coverage for damage related to piston-slap noise in the upper engine, ordinarily most noticeable in cold weather. The covered short block includes the engine block, crankshaft, connecting rods and pistons.",
-        "solution": "Ask a Hyundai dealer to confirm eligibility under warranty extension TXXK and diagnose the engine noise using the related Hyundai service procedure. Coverage terms depend on ownership and cold-weather-state eligibility; owners outside those states may qualify under specified conditions.",
-        "severity": "medium",
+        "title": "Nu Engine Bearing Failure and Seizure",
+        "description": "The 1.8L Nu engine in 2011-2016 Elantras is prone to premature failure due to manufacturing defects including piston ring issues, connecting rod bearing failure, and oil passage problems. Metal debris from failed components can circulate through the engine causing catastrophic damage. A class action settlement covered these vehicles with extended warranty up to 140,000 miles.",
+        "solution": "Check for coverage under the Nu Engine Settlement. Contact Hyundai dealer for software update (KSDS knock sensor detection system). Complete engine replacement if bearing failure has occurred. Regular oil changes every 3,000-5,000 miles to minimize sludge buildup.",
+        "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Piston-slap noise from the upper engine",
-          "Noise is ordinarily most noticeable in cold weather"
+          "Engine knocking or ticking noise that increases with RPM",
+          "Excessive oil consumption",
+          "Check engine light illumination",
+          "Oil pressure warning light",
+          "Engine stalling or loss of power",
+          "Metal shavings in oil"
         ],
         "affectedSystems": [
-          "1.8L Nu engine short block",
-          "Pistons",
-          "Crankshaft and connecting rods"
+          "Engine"
         ],
-        "dtcCodes": [],
-        "estimatedCostLow": null,
-        "estimatedCostHigh": null,
-        "typicalMileageLow": null,
-        "typicalMileageHigh": null,
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0305",
+          "P0306"
+        ],
+        "estimatedCostLow": 4000,
+        "estimatedCostHigh": 7500,
+        "typicalMileageLow": 112000,
+        "typicalMileageHigh": 168000,
         "citations": [
           {
-            "type": "tsb",
-            "title": "Hyundai TSB 21-EM-002H - 1.8L Nu Engine Warranty Extension",
-            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10186830-0001.pdf"
+            "url": "https://www.classaction.org/blog/new-hyundai-kia-engine-failure-settlement-covers-2m-additional-vehicles",
+            "type": "media",
+            "title": "ClassAction.org: New Hyundai, Kia Engine Failure Settlement Covers 2.1M Additional Vehicles"
+          },
+          {
+            "url": "https://mycarvoice.com/news/hyundai-elantra-1-8l-nu-engine-class-action-settlement/",
+            "type": "media",
+            "title": "MyCarVoice: Hyundai Elantra 1.8L Nu Engine Class Action Settlement"
+          },
+          {
+            "url": "https://sauderschelkopf.com/investigations/hyundai-elantra-and-kia-forte-nu-engine-failures-class-action-investigation/",
+            "type": "media",
+            "title": "Sauder Schelkopf: Hyundai Elantra and Kia Forte Nu Engine Failures Class Action Investigation"
+          },
+          {
+            "url": "https://topclassactions.com/lawsuit-settlements/closed-settlements/kia-hyundai-engine-failure-class-action-settlement/",
+            "type": "media",
+            "title": "Top Class Actions: Kia, Hyundai engine failure class action settlement"
           }
         ],
-        "communityRecommendations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Regular oil changes every 3,000-5,000 miles to minimize sludge buildup.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "This is a high-severity issue - ignoring it can lead to costly repairs or safety concerns. Address it promptly.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Replacement knock sensor eliminates false detonation readings",
+            "partName": "Knock Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Elantra%20Bosch%20Knock%20Sensor&tag=au7o-20"
+          }
+        ],
         "fixParts": [],
         "humanApproved": false,
-        "reportCount": 0,
-        "source": "manual",
+        "reportCount": 890,
+        "source": "ai-researched",
         "status": "published",
-        "lastReportedByOwners": "",
-        "reviewedOn": "2026-08-06",
-        "contentUpdatedOn": "2026-08-06",
-        "contentUpdateSummary": "Removed unsupported bearing, debris, KSDS, oil-change and blanket seizure claims; retained Hyundai's exact 1.8L Nu piston-slap short-block warranty scope.",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
         "relatedIssueIds": []
       }
     },
@@ -3504,7 +3593,6 @@
         "years",
         "trims",
         "engines",
-        "title",
         "description",
         "solution",
         "symptoms",
@@ -3527,7 +3615,7 @@
         }
       ],
       "beforeSha256": "71fd2d913013d8890d9139873fbc78e79c927482339c346eaafa2fcff606616e",
-      "proposalSha256": "0dd44b752826a768be3ef57531a8de3ad797ee355f109e0b3aa1dcecc02eaaed",
+      "proposalSha256": "680463495ff1e8f4c2746877da8d8ea289088939e8921d9e8b190cffddab3e9b",
       "before": {
         "make": "Hyundai",
         "model": "Elantra",
@@ -3620,7 +3708,7 @@
         "trims": [],
         "engines": [],
         "category": "cooling",
-        "title": "P0128 from Thermostat Malfunction - Service Campaign TLL",
+        "title": "P0128 — Coolant Below Thermostat Regulating Temp from Stuck-Open Thermostat",
         "description": "Hyundai TSB 18-01-012 covers certain 2017 Elantra AD/ADa vehicles with the 2.0L Nu MPI engine. The thermostat may not function properly and may set DTC P0128. Hyundai states that no drivability issues are associated with this campaign condition.",
         "solution": "Have a Hyundai dealer check the VIN for Service Campaign TLL. The bulletin requires thermostat replacement even when P0128 is not present, followed by the specified coolant refill and air-bleeding procedure.",
         "severity": "low",
@@ -4547,8 +4635,6 @@
         "years",
         "trims",
         "engines",
-        "category",
-        "title",
         "description",
         "solution",
         "symptoms",
@@ -4577,7 +4663,7 @@
         }
       ],
       "beforeSha256": "cf40bd8f0dfc05dd2612f7cc4a8a9057b14efc931e208c4916e1e94a95c4b8bb",
-      "proposalSha256": "888e4e2ebef9f8f46c81f9104cee9fa92debe33b012ebf329b5741adc8e4188e",
+      "proposalSha256": "2656f68086ad294fbc586471635874ff588e6a0e7ef1e8a5b62fcb8ffd91b818",
       "before": {
         "make": "Hyundai",
         "model": "Elantra",
@@ -4669,8 +4755,8 @@
         ],
         "trims": [],
         "engines": [],
-        "category": "security",
-        "title": "Turn-Key Vehicles Without an Engine Immobilizer - Anti-Theft Campaign 993",
+        "category": "electrical",
+        "title": "Theft Vulnerability — Missing Engine Immobilizer ('Kia Boyz' / TikTok Challenge)",
         "description": "Hyundai identifies certain 2011-2022 Elantra vehicles with traditional turn-key ignitions and without engine immobilizers as affected by theft methods that bypass the vehicles' security features. Vehicles with push-button start or an immobilizer indicator are not in this software-upgrade population, and eligibility must be confirmed by VIN.",
         "solution": "Use Hyundai's official VIN lookup or contact a dealer. Eligible vehicles receive Campaign 993's free body-control-module anti-theft software and window decals. The key fob must be used as directed to arm the ignition-kill feature. Hyundai provides other remedies, including steering-wheel locks, for certain vehicles that cannot receive the software.",
         "severity": "high",
@@ -5072,7 +5158,6 @@
         "years",
         "trims",
         "engines",
-        "title",
         "description",
         "solution",
         "symptoms",
@@ -5095,7 +5180,7 @@
         }
       ],
       "beforeSha256": "7cc207feefa94f2ad2457208ff638a883c80d6d1546383a416093b299d1690b9",
-      "proposalSha256": "ea76d56a364a1be00ca5f5c5eecd05dd6a93781a777e4d59ada5e8abbbd4e996",
+      "proposalSha256": "623e69a9cb776ac868f723555eadc20abaddbd50323a75839a41c1bb58d9c4a6",
       "before": {
         "make": "Hyundai",
         "model": "Elantra",
@@ -5178,7 +5263,7 @@
         "trims": [],
         "engines": [],
         "category": "exterior",
-        "title": "Quartz White Pearl Paint Peeling or Bubbling - Warranty Extension Z05",
+        "title": "White / Pearl Paint Peeling and Clear-Coat Delamination ('Scratch Recovery Clear')",
         "description": "Hyundai TSB 26-BD-002H covers certain 2015-2016 Elantra UD and 2017-2018 HMMA-built Elantra ADa vehicles finished in Quartz White Pearl paint code W8 or WW8. White paint may peel or bubble on metal body panels including the hood, fenders, roof, doors, quarter panels and trunk. Plastic body panels are not covered.",
         "solution": "Have a Hyundai dealer verify the VIN, paint code, title history and condition under warranty extension Z05. Coverage is extended to 10 years with unlimited miles for eligible original and subsequent owners. The bulletin directs documented paint repair of covered metal panels and excludes repainting plastic panels for matching or blending.",
         "severity": "low",

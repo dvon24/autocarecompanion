@@ -30,6 +30,7 @@ function validatePacket(packet, snapshot, expectedSnapshotSha256 = normalizedFil
     if (!equal(row.before, before) || !equal(row.proposal, expected)) errors.push(`${row.id}: proposal content drift`);
     if (row.beforeSha256 !== hashValue(before) || row.proposalSha256 !== hashValue(expected) || !equal(row.changedFields, diffFields(before, expected))) errors.push(`${row.id}: hash/change mismatch`);
     if (row.proposal.make !== 'Hyundai' || row.proposal.model !== 'Elantra' || row.proposal.status !== 'published' || /^Archived\s*-/i.test(row.proposal.title)) errors.push(`${row.id}: identity/status drift`);
+    if (row.proposal.title !== before.title || row.proposal.category !== before.category) errors.push(`${row.id}: title/category continuity drift`);
     for (const field of FULL_RECORD_FIELDS) if (!Object.prototype.hasOwnProperty.call(row.before, field) || !Object.prototype.hasOwnProperty.call(row.proposal, field)) errors.push(`${row.id}: missing ${field}`);
     if (card) {
       if (row.proposal.estimatedCostLow !== null || row.proposal.estimatedCostHigh !== null || row.proposal.typicalMileageLow !== null || row.proposal.typicalMileageHigh !== null) errors.push(`${row.id}: unsupported commerce/mileage retained`);
@@ -38,9 +39,13 @@ function validatePacket(packet, snapshot, expectedSnapshotSha256 = normalizedFil
       if (row.proposal.citations?.some((item) => !Object.values(SOURCES).includes(item.url))) errors.push(`${row.id}: non-approved citation`);
     } else if (row.beforeSha256 !== row.proposalSha256 || row.changedFields?.length !== 0) errors.push(`${row.id}: hold changed`);
   }
-  if (packet.summary?.rewrite_same_identity !== 12 || packet.summary?.keep_published_pending_source !== 17 || packet.summary?.total !== 29) errors.push('summary mismatch');
-  for (const code of ['two-distinct-abs-identities-preserved', 'eps-recall-separated-from-mdps-coupler', 'misleading-year-slugs-frozen', 'broad-diagnostics-frozen']) if (!packet.observations?.some((item) => item.code === code)) errors.push(`missing observation ${code}`);
-  for (const id of [IDS.brakeSwitch, IDS.coilSpring]) if (packet.rows?.find((row) => row.id === id)?.action !== 'keep_published_pending_source') errors.push(`${id}: misleading year slug was not frozen`);
+  if (packet.summary?.rewrite_same_identity !== 10 || packet.summary?.keep_published_pending_source !== 19 || packet.summary?.total !== 29) errors.push('summary mismatch');
+  for (const code of ['two-distinct-abs-identities-preserved', 'eps-identity-substitution-rejected', 'nu-engine-identity-substitution-rejected', 'pretensioner-scope-corrected', 'abs-unsupported-details-removed', 'misleading-year-slugs-frozen', 'broad-diagnostics-frozen']) if (!packet.observations?.some((item) => item.code === code)) errors.push(`missing observation ${code}`);
+  for (const id of [IDS.brakeSwitch, IDS.coilSpring, IDS.eps, IDS.nuEngine]) if (packet.rows?.find((row) => row.id === id)?.action !== 'keep_published_pending_source') errors.push(`${id}: identity-risk row was not frozen`);
+  const pretensioner = packet.rows?.find((row) => row.id === IDS.pretensioner)?.proposal;
+  if (!pretensioner || !equal(pretensioner.years, [2021, 2022]) || /2023/.test(pretensioner.description)) errors.push('pretensioner scope mismatch');
+  const abs251 = packet.rows?.find((row) => row.id === IDS.abs251)?.proposal;
+  if (!abs251 || /warning light|malfunction-indicator|lower-amperage/i.test(JSON.stringify(abs251))) errors.push('ABS unsupported claims retained');
   return errors;
 }
 

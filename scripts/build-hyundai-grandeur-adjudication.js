@@ -70,7 +70,7 @@ const KEEP_REASONS = {
 
 function rewriteTheta(current) {
   return fullRecord({
-    ...current, ...THETA_CARD, make: 'Hyundai', model: 'Grandeur', trims: [], engines: [],
+    ...current, ...THETA_CARD, make: 'Hyundai', model: 'Grandeur', title: current.title, category: current.category, trims: [], engines: [],
     estimatedCostLow: null, estimatedCostHigh: null, typicalMileageLow: null, typicalMileageHigh: null,
     communityRecommendations: [], fixParts: [], humanApproved: false, reportCount: 0,
     source: 'manual', status: 'published', lastReportedByOwners: '', reviewedOn: '2026-08-06',

@@ -21,6 +21,7 @@ test('all three Accent rewrites remain published and commerce-free', () => {
     assert.equal(row.proposal.status, 'published', row.id); assert.ok(row.proposal.citations.length, row.id);
     assert.deepEqual(row.proposal.trims, [], row.id); assert.deepEqual(row.proposal.engines, [], row.id);
     assert.deepEqual(row.proposal.communityRecommendations, [], row.id); assert.deepEqual(row.proposal.fixParts, [], row.id);
+    assert.equal(row.proposal.title, row.before.title, row.id); assert.equal(row.proposal.category, row.before.category, row.id);
   }
 });
 test('packet covers every frozen Accent ID exactly once', () => {
@@ -28,7 +29,8 @@ test('packet covers every frozen Accent ID exactly once', () => {
   const actual = packet.rows.map((row) => row.id).sort();
   assert.deepEqual(actual, expected); assert.equal(new Set(actual).size, 7);
 });
-test('amended pretensioner scope excludes 2019 Accent', () => {
+test('documented pretensioner scope excludes 2019 Accent without inventing an amendment', () => {
   const row = packet.rows.find((item) => item.id === 'hyundai-accent-seat-belt-pretensioner-may-explode-send-shrapnel');
   assert.deepEqual(row.proposal.years, [2020, 2021, 2022]);
+  assert.doesNotMatch(JSON.stringify(row.proposal), /amended filing|manufacturing records/i);
 });

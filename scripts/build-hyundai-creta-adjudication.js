@@ -40,30 +40,13 @@ const REWRITE_CARDS = {
     identityTerms: ['brake booster', 'diaphragm'],
     summary: 'Narrowed the existing Brazil brake-booster page to Hyundai Motor Brasil\'s exact model-year, production-period, diaphragm/vacuum mechanism, braking consequence and free booster-replacement remedy.',
   },
-  [IDS.oilPump]: {
-    years: [2023],
-    category: 'transmission',
-    severity: 'medium',
-    confidence: 'high',
-    title: 'G 1.5 IVT Electronic Oil-Pump Controller Recall - India',
-    description: 'The Society of Indian Automobile Manufacturers voluntary-recall registry lists a Hyundai Motor India campaign dated February 21, 2024 for Creta and Verna G 1.5 IVT vehicles produced from February 13 through June 6, 2023. The combined campaign covers 7,698 vehicles for a potential electronic oil-pump controller issue that may affect electronic oil-pump performance.',
-    solution: 'Enter the vehicle\'s VIN on Hyundai Motor India\'s official recall-campaign page. Hyundai states that affected customers are notified by the company or an authorized dealer and should follow the dealer\'s campaign instructions.',
-    symptoms: ['VIN is included in Hyundai Motor India\'s Creta and Verna G 1.5 IVT recall campaign'],
-    affectedSystems: ['Electronic oil-pump controller', 'Electronic oil pump'],
-    dtcCodes: [],
-    citations: [
-      { type: 'recall', title: 'SIAM Voluntary Recall Registry - Hyundai Creta and Verna G 1.5 IVT', url: SOURCES.indiaRecallRegistry },
-      { type: 'manufacturer', title: 'Hyundai Motor India - Recall Campaign VIN Lookup', url: SOURCES.indiaVinLookup },
-    ],
-    identityTerms: ['electronic oil-pump controller', 'G 1.5 IVT'],
-    summary: 'Replaced secondary recall reporting and unsupported warning, hesitation, hydraulic-pressure and replacement claims with the SIAM registry\'s exact combined population, build window, variant and controller-performance statement plus Hyundai India\'s VIN lookup.',
-  },
 };
 
 const KEEP_REASONS = {
   [IDS.dct]: 'Owner threads and secondary summaries do not establish one 2020-2023 Creta 1.4 T-GDI dry-DCT defect spanning actuator failure, even-gear loss, overheating, judder, DTC P060194, repeat repairs and the frozen replacement-cost range. No exact Hyundai campaign or service document was found, so the row remains byte-for-byte unchanged.',
   [IDS.dpf]: 'Owner reports do not establish the frozen claim that the Creta DPF lacks an active heater, one 2020-2024 failure population, a universal speed/time regeneration procedure, limp-mode progression or the stated replacement cost. No exact Hyundai primary document was found for the complete identity, so the row remains byte-for-byte unchanged.',
   [IDS.ac]: 'The frozen row combines evaporator icing, thermistor/expansion-valve control and unrelated compressor wear across multiple markets and model years using owner reports. No exact Hyundai primary document establishes one same-identity defect, mileage threshold or remedy, so the row remains byte-for-byte unchanged.',
+  [IDS.oilPump]: 'The SIAM all-manufacturer registry contains a matching Creta/Verna G 1.5 IVT row, but it is not a campaign-specific deep link. Hyundai India\'s cited page is a generic VIN lookup and does not state this campaign or its remedy. Because the remedy and exact campaign document are not publicly supported, the row remains byte-for-byte unchanged.',
   [IDS.clutch]: 'Owner reviews and a used-car cost article do not establish one 2015-2024 Creta diesel-manual clutch defect, frequency, mileage band, driving-stress mechanism, repair scope or cost. No exact Hyundai primary document was found, so the row remains byte-for-byte unchanged.',
 };
 
@@ -73,6 +56,8 @@ function rewriteProposal(current, card) {
     ...card,
     make: 'Hyundai',
     model: 'Creta',
+    title: current.title,
+    category: current.category,
     trims: [],
     engines: [],
     estimatedCostLow: null,
@@ -129,10 +114,10 @@ function main() {
     generatedOn: '2026-08-06',
     make: 'Hyundai',
     model: 'Creta',
-    completionStatement: 'This packet reconciles all six frozen Hyundai Creta rows. Two exact same-identity recall rewrites are proposed from Hyundai Brazil and the SIAM/Hyundai India recall records; four rows remain byte-for-byte unchanged.',
+    completionStatement: 'This packet reconciles all six frozen Hyundai Creta rows. One exact same-identity Hyundai Brazil recall rewrite is proposed; five rows remain byte-for-byte unchanged.',
     safetyContract: [
       'No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.',
-      'All six rows remain published. Four are byte-for-byte unchanged.',
+      'All six rows remain published. Five are byte-for-byte unchanged.',
       'An unrelated campaign, component, symptom group, generation or model may never replace the issue named by an existing indexed page.',
       'Each rewrite contains zero commerce, zero cost or mileage claims, and empty trim and engine arrays.',
       'Independent row-by-row approval is required before a separate guarded apply path may be created.',
@@ -146,8 +131,8 @@ function main() {
     },
     observations: [
       { code: 'brazil-brake-booster-scope-narrowed', severity: 'independent-review-required', recordIds: [IDS.brakeBooster], detail: 'The proposal uses Hyundai Motor Brasil\'s direct recall PDF and retains only its exact vehicle, production, diaphragm/vacuum, risk and remedy statements.' },
-      { code: 'india-oil-pump-unsupported-effects-removed', severity: 'independent-review-required', recordIds: [IDS.oilPump], detail: 'The SIAM entry confirms G 1.5 IVT, the combined 7,698 population, build dates and potential oil-pump performance effect; it does not claim warning lights, hesitation, harsh engagement or a replacement remedy.' },
-      { code: 'multi-failure-narratives-frozen', severity: 'independent-review-required', recordIds: [IDS.dct, IDS.dpf, IDS.ac, IDS.clutch], detail: 'Four owner/secondary-source narratives remain unchanged rather than being consolidated, archived or rewritten without an exact OEM source.' },
+      { code: 'india-oil-pump-generic-pages-rejected', severity: 'independent-review-required', recordIds: [IDS.oilPump], detail: 'The SIAM registry index and Hyundai India VIN lookup are not campaign-specific deep links and do not establish the claimed remedy. The row remains byte-for-byte unchanged.' },
+      { code: 'multi-failure-narratives-frozen', severity: 'independent-review-required', recordIds: [IDS.dct, IDS.dpf, IDS.ac, IDS.oilPump, IDS.clutch], detail: 'Five owner, secondary or non-specific-source narratives remain unchanged rather than being consolidated, archived or rewritten without an exact OEM source.' },
     ],
     summary,
     rows,

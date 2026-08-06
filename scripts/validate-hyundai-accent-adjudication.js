@@ -28,6 +28,7 @@ function validatePacket(packet, snapshot, expectedSnapshotSha256 = normalizedFil
     if (!equal(row.before, before) || row.beforeSha256 !== hashValue(before)) errors.push(`${row.id}: frozen before mismatch`);
     if (row.proposalSha256 !== hashValue(row.proposal)) errors.push(`${row.id}: proposal hash mismatch`);
     if (row.proposal.make !== 'Hyundai' || row.proposal.model !== 'Accent' || row.proposal.status !== 'published' || /^Archived\s*-/i.test(row.proposal.title)) errors.push(`${row.id}: identity/status drift`);
+    if (row.proposal.title !== before.title || row.proposal.category !== before.category) errors.push(`${row.id}: title/category continuity drift`);
     for (const field of FULL_RECORD_FIELDS) if (!Object.prototype.hasOwnProperty.call(row.before, field) || !Object.prototype.hasOwnProperty.call(row.proposal, field)) errors.push(`${row.id}: missing ${field}`);
     if (shouldRewrite) {
       const card = REWRITE_CARDS[row.id];
@@ -51,8 +52,8 @@ function validatePacket(packet, snapshot, expectedSnapshotSha256 = normalizedFil
   const stopLamp = packet.rows?.find((row) => row.id === IDS.stopLamp)?.proposal;
   if (!stopLamp || !equal(stopLamp.years, [2006, 2007, 2008, 2009, 2010, 2011]) || stopLamp.citations.length !== 3) errors.push('stop-lamp correction mismatch');
   const pretensioner = packet.rows?.find((row) => row.id === IDS.pretensioner)?.proposal;
-  if (!pretensioner || !equal(pretensioner.years, [2020, 2021, 2022]) || pretensioner.years.includes(2019) || !/protective cap/i.test(pretensioner.solution)) errors.push('pretensioner amended-scope mismatch');
-  for (const code of ['pretensioner-amended-scope', 'stop-lamp-overlapping-campaigns-preserved', 'abs-remedy-narrowed-to-official-record', 'unsupported-accent-narratives-frozen']) if (!packet.observations?.some((item) => item.code === code)) errors.push(`missing observation ${code}`);
+  if (!pretensioner || !equal(pretensioner.years, [2020, 2021, 2022]) || pretensioner.years.includes(2019) || !/protective cap/i.test(pretensioner.solution) || /amended filing|manufacturing records/i.test(JSON.stringify(pretensioner))) errors.push('pretensioner documented-scope mismatch');
+  for (const code of ['pretensioner-documented-scope', 'stop-lamp-overlapping-campaigns-preserved', 'abs-remedy-narrowed-to-official-record', 'unsupported-accent-narratives-frozen']) if (!packet.observations?.some((item) => item.code === code)) errors.push(`missing observation ${code}`);
   return errors;
 }
 

@@ -37,7 +37,7 @@ const REWRITE_CARDS = {
       { type: 'recall', title: 'NHTSA Campaign 23V651 - 2012-2015 Accent ABS Module Fire Risk', url: SOURCES.absApi },
       { type: 'recall', title: 'Hyundai Part 573 Report 23V651 - ABS Module Internal Leak', url: SOURCES.absReport },
     ],
-    identityTerms: ['ABS module', 'fire'],
+    identityTerms: ['ABS', 'fire'],
     summary: 'Replaced secondary sources and unsupported O-ring, warning-light, population and HECU-replacement details with recall 23V651\'s exact 2012-2015 Accent scope, internal-leak fire risk, park-outside instruction and ABS-fuse remedy.',
   },
   [IDS.stopLamp]: {
@@ -58,16 +58,16 @@ const REWRITE_CARDS = {
   [IDS.pretensioner]: {
     years: [2020, 2021, 2022], category: 'safety', severity: 'high', confidence: 'high',
     title: 'Front Seat-Belt Pretensioner Can Explode During Deployment - Recall 22V354',
-    description: 'NHTSA recall 22V354 covers certain 2020-2022 Hyundai Accent vehicles. In a crash, a front driver-side or passenger-side seat-belt pretensioner can explode when it deploys, projecting metal fragments into the passenger compartment and risking occupant injury. Hyundai\'s amended filing removed 2019 Accent vehicles after reviewing pretensioner manufacturing records.',
+    description: 'NHTSA recall 22V354 covers certain 2020-2022 Hyundai Accent vehicles. In a crash, a front driver-side or passenger-side seat-belt pretensioner can explode when it deploys, projecting metal fragments into the passenger compartment and risking occupant injury.',
     solution: 'Have a Hyundai dealer check the VIN for recall 22V354, campaign 229, including vehicles repaired under the earlier superseded campaigns. Dealers secure the affected seat-belt pretensioners with a protective cap free of charge.',
     symptoms: ['Open recall 22V354 for the VIN', 'No advance warning required before abnormal pretensioner deployment', 'Potential metal fragments during a crash deployment'],
     affectedSystems: ['Front driver-side seat-belt pretensioner', 'Front passenger-side seat-belt pretensioner'], dtcCodes: [],
     citations: [
       { type: 'recall', title: 'NHTSA Campaign 22V354 - 2020-2022 Accent Seat-Belt Pretensioners', url: SOURCES.pretensionerApi },
-      { type: 'recall', title: 'Hyundai Amended Part 573 Report 22V354 - Pretensioner Population and Remedy', url: SOURCES.pretensionerReport },
+      { type: 'recall', title: 'Hyundai Part 573 Report 22V354 - Pretensioner Population and Remedy', url: SOURCES.pretensionerReport },
     ],
     identityTerms: ['seat-belt pretensioner', 'explode'],
-    summary: 'Replaced secondary sources with the amended 22V354 record, corrected the Accent scope from stale 2019-2022 wording to 2020-2022, and retained only the documented abnormal-deployment risk and protective-cap remedy.',
+    summary: 'Replaced secondary sources with the 22V354 record, corrected the Accent scope from stale 2019-2022 wording to the documented 2020-2022 population, and retained only the documented abnormal-deployment risk and protective-cap remedy.',
   },
 };
 const KEEP_REASONS = {
@@ -79,7 +79,7 @@ const KEEP_REASONS = {
 
 function rewriteProposal(current, card) {
   return fullRecord({
-    ...current, ...card, make: 'Hyundai', model: 'Accent', trims: [], engines: [],
+    ...current, ...card, make: 'Hyundai', model: 'Accent', title: current.title, category: current.category, trims: [], engines: [],
     estimatedCostLow: null, estimatedCostHigh: null, typicalMileageLow: null, typicalMileageHigh: null,
     communityRecommendations: [], fixParts: [], humanApproved: false, reportCount: 0, source: 'manual',
     status: 'published', lastReportedByOwners: '', reviewedOn: '2026-08-06', contentUpdatedOn: '2026-08-06',
@@ -118,7 +118,7 @@ function main() {
     ],
     source: { snapshotFile: 'data/_hyundai-deeplink-snapshot-2026-08-06.json', snapshotSha256: normalizedFileHash(SNAPSHOT), snapshotGeneratedAt: snapshot.generatedAt, snapshotHash: snapshot.snapshotHash, accentRecordCount: modelRows.length },
     observations: [
-      { code: 'pretensioner-amended-scope', severity: 'independent-review-required', recordIds: [IDS.pretensioner], detail: 'The live NHTSA campaign and amended Part 573 filing cover 2020-2022 Accent. A later chronology states that 2019 vehicles were removed after manufacturing-record review.' },
+      { code: 'pretensioner-documented-scope', severity: 'independent-review-required', recordIds: [IDS.pretensioner], detail: 'The NHTSA campaign and Part 573 filing cover 2020-2022 Accent. The proposal narrows the years without inventing an explanation for excluding 2019.' },
       { code: 'stop-lamp-overlapping-campaigns-preserved', severity: 'independent-review-required', recordIds: [IDS.stopLamp], detail: '09V122, 13V113 and 15V566 overlap but collectively cover the frozen 2006-2011 stop-lamp-switch identity. They remain one existing indexed page without consolidation or redirect work.' },
       { code: 'abs-remedy-narrowed-to-official-record', severity: 'independent-review-required', recordIds: [IDS.absFire], detail: 'The proposal uses the official ABS-fuse remedy and removes unsupported assertions that a leaking HECU will also be replaced.' },
       { code: 'unsupported-accent-narratives-frozen', severity: 'independent-review-required', recordIds: Object.keys(KEEP_REASONS), detail: 'Four forum/generic-complaint narratives remain byte-for-byte unchanged rather than being archived or replaced.' },

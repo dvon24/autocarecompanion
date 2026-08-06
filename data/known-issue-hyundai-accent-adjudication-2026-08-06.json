@@ -23,12 +23,12 @@
   },
   "observations": [
     {
-      "code": "pretensioner-amended-scope",
+      "code": "pretensioner-documented-scope",
       "severity": "independent-review-required",
       "recordIds": [
         "hyundai-accent-seat-belt-pretensioner-may-explode-send-shrapnel"
       ],
-      "detail": "The live NHTSA campaign and amended Part 573 filing cover 2020-2022 Accent. A later chronology states that 2019 vehicles were removed after manufacturing-record review."
+      "detail": "The NHTSA campaign and Part 573 filing cover 2020-2022 Accent. The proposal narrows the years without inventing an explanation for excluding 2019."
     },
     {
       "code": "stop-lamp-overlapping-campaigns-preserved",
@@ -74,7 +74,6 @@
       "changedFields": [
         "trims",
         "engines",
-        "title",
         "description",
         "solution",
         "symptoms",
@@ -104,7 +103,7 @@
         }
       ],
       "beforeSha256": "91e6ed32254cf0be42e5b3613a5a0fa21cc50b751f914e748f62bfaeec992765",
-      "proposalSha256": "e2563877ebc6c30298161d77c0c1472dd1fcc2764f431aa15e51d6c5fccdfc2b",
+      "proposalSha256": "f5ac9f484aa0047a18a49c06827c41b099cdfca927ac6afd641cdf98b1361b7a",
       "before": {
         "make": "Hyundai",
         "model": "Accent",
@@ -185,7 +184,7 @@
         "trims": [],
         "engines": [],
         "category": "brakes",
-        "title": "ABS Module Internal Brake-Fluid Leak Can Cause Fire - Recall 23V651",
+        "title": "ABS/HECU Brake-Fluid Leak Causing Engine-Compartment Fire (Recall 23V-651 / Campaign 251)",
         "description": "NHTSA recall 23V651 covers certain 2012-2015 Hyundai Accent vehicles. The anti-lock brake system module can leak brake fluid internally and cause an electrical short, which can start an engine-compartment fire while the vehicle is parked or being driven.",
         "solution": "Check the VIN for recall 23V651. Until the recall repair is complete, Hyundai advises owners to park outside and away from structures. Dealers replace the ABS fuse free of charge.",
         "severity": "high",
@@ -392,7 +391,6 @@
       "changedFields": [
         "trims",
         "engines",
-        "title",
         "description",
         "solution",
         "severity",
@@ -428,7 +426,7 @@
         }
       ],
       "beforeSha256": "c6cd2d6285e0d861819881602a0dd360b67fe76f23b8fdf25e24e4ed907aea26",
-      "proposalSha256": "59b9327121ecb7782c399e5c9c5f33bc1765ab5260d171ea33e52b54e04849c3",
+      "proposalSha256": "2566e439df0d73e4da9cf8197db99b8c407fd5c6f1e1566423bb45dd8ac2f9b8",
       "before": {
         "make": "Hyundai",
         "model": "Accent",
@@ -511,7 +509,7 @@
         "trims": [],
         "engines": [],
         "category": "electrical",
-        "title": "Stop-Lamp Switch Can Malfunction - Recalls 09V122, 13V113, and 15V566",
+        "title": "Brake Light / Stop Lamp Switch Failure",
         "description": "Three overlapping NHTSA campaigns cover Accent stop-lamp switch failures: 09V122 covers certain 2006-2007 vehicles, 13V113 covers certain 2006-2009 vehicles, and 15V566 covers certain 2009-2011 vehicles. A malfunctioning switch can prevent the brake lights from illuminating, prevent cruise control from disengaging when the brake is pressed, interfere with the brake-transmission shift interlock, or illuminate the ESC malfunction indicator.",
         "solution": "Have a Hyundai dealer check the VIN for all three campaigns and verify completion. Each campaign directs dealers to replace the affected stop-lamp or brake-light switch free of charge.",
         "severity": "high",
@@ -1101,14 +1099,13 @@
       "id": "hyundai-accent-seat-belt-pretensioner-may-explode-send-shrapnel",
       "model": "Accent",
       "action": "rewrite_same_identity",
-      "reason": "Replaced secondary sources with the amended 22V354 record, corrected the Accent scope from stale 2019-2022 wording to 2020-2022, and retained only the documented abnormal-deployment risk and protective-cap remedy.",
+      "reason": "Replaced secondary sources with the 22V354 record, corrected the Accent scope from stale 2019-2022 wording to the documented 2020-2022 population, and retained only the documented abnormal-deployment risk and protective-cap remedy.",
       "identityRule": "The indexed issue identity stays on the same ID; only exact NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
       "commerceDecision": "no-commerce",
       "changedFields": [
         "years",
         "trims",
         "engines",
-        "title",
         "description",
         "solution",
         "symptoms",
@@ -1133,11 +1130,11 @@
           "kind": "government-recall-record",
           "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V354-9759.PDF",
           "verifiedOn": "2026-08-06",
-          "observation": "Hyundai Amended Part 573 Report 22V354 - Pretensioner Population and Remedy supports the proposed same-identity scope, consequence and remedy."
+          "observation": "Hyundai Part 573 Report 22V354 - Pretensioner Population and Remedy supports the proposed same-identity scope, consequence and remedy."
         }
       ],
       "beforeSha256": "835e4542349e5a4820de59226a9bb634d4fe2f86d297d5d86b39b8b0e9ff895a",
-      "proposalSha256": "654417f8ce9ad51033b471f2fbd18adfd97c4298b79159f01199b7dd7a250c64",
+      "proposalSha256": "97df5c51da207f4968614e7888f0ca65495c4dcd1437b307d4235513b7f822ba",
       "before": {
         "make": "Hyundai",
         "model": "Accent",
@@ -1213,8 +1210,8 @@
         "trims": [],
         "engines": [],
         "category": "safety",
-        "title": "Front Seat-Belt Pretensioner Can Explode During Deployment - Recall 22V354",
-        "description": "NHTSA recall 22V354 covers certain 2020-2022 Hyundai Accent vehicles. In a crash, a front driver-side or passenger-side seat-belt pretensioner can explode when it deploys, projecting metal fragments into the passenger compartment and risking occupant injury. Hyundai's amended filing removed 2019 Accent vehicles after reviewing pretensioner manufacturing records.",
+        "title": "Seat-Belt Pretensioner May Explode and Send Shrapnel (Recall 229 / NHTSA 22V-354)",
+        "description": "NHTSA recall 22V354 covers certain 2020-2022 Hyundai Accent vehicles. In a crash, a front driver-side or passenger-side seat-belt pretensioner can explode when it deploys, projecting metal fragments into the passenger compartment and risking occupant injury.",
         "solution": "Have a Hyundai dealer check the VIN for recall 22V354, campaign 229, including vehicles repaired under the earlier superseded campaigns. Dealers secure the affected seat-belt pretensioners with a protective cap free of charge.",
         "severity": "high",
         "confidence": "high",
@@ -1240,7 +1237,7 @@
           },
           {
             "type": "recall",
-            "title": "Hyundai Amended Part 573 Report 22V354 - Pretensioner Population and Remedy",
+            "title": "Hyundai Part 573 Report 22V354 - Pretensioner Population and Remedy",
             "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V354-9759.PDF"
           }
         ],
@@ -1253,7 +1250,7 @@
         "lastReportedByOwners": "",
         "reviewedOn": "2026-08-06",
         "contentUpdatedOn": "2026-08-06",
-        "contentUpdateSummary": "Replaced secondary sources with the amended 22V354 record, corrected the Accent scope from stale 2019-2022 wording to 2020-2022, and retained only the documented abnormal-deployment risk and protective-cap remedy.",
+        "contentUpdateSummary": "Replaced secondary sources with the 22V354 record, corrected the Accent scope from stale 2019-2022 wording to the documented 2020-2022 population, and retained only the documented abnormal-deployment risk and protective-cap remedy.",
         "relatedIssueIds": []
       }
     }

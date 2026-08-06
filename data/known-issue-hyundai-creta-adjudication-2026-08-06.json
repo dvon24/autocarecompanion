@@ -6,10 +6,10 @@
   "generatedOn": "2026-08-06",
   "make": "Hyundai",
   "model": "Creta",
-  "completionStatement": "This packet reconciles all six frozen Hyundai Creta rows. Two exact same-identity recall rewrites are proposed from Hyundai Brazil and the SIAM/Hyundai India recall records; four rows remain byte-for-byte unchanged.",
+  "completionStatement": "This packet reconciles all six frozen Hyundai Creta rows. One exact same-identity Hyundai Brazil recall rewrite is proposed; five rows remain byte-for-byte unchanged.",
   "safetyContract": [
     "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
-    "All six rows remain published. Four are byte-for-byte unchanged.",
+    "All six rows remain published. Five are byte-for-byte unchanged.",
     "An unrelated campaign, component, symptom group, generation or model may never replace the issue named by an existing indexed page.",
     "Each rewrite contains zero commerce, zero cost or mileage claims, and empty trim and engine arrays.",
     "Independent row-by-row approval is required before a separate guarded apply path may be created."
@@ -31,12 +31,12 @@
       "detail": "The proposal uses Hyundai Motor Brasil's direct recall PDF and retains only its exact vehicle, production, diaphragm/vacuum, risk and remedy statements."
     },
     {
-      "code": "india-oil-pump-unsupported-effects-removed",
+      "code": "india-oil-pump-generic-pages-rejected",
       "severity": "independent-review-required",
       "recordIds": [
         "hyundai-creta-ivt-electronic-oil-pump-controller-defect-official-india-rec"
       ],
-      "detail": "The SIAM entry confirms G 1.5 IVT, the combined 7,698 population, build dates and potential oil-pump performance effect; it does not claim warning lights, hesitation, harsh engagement or a replacement remedy."
+      "detail": "The SIAM registry index and Hyundai India VIN lookup are not campaign-specific deep links and do not establish the claimed remedy. The row remains byte-for-byte unchanged."
     },
     {
       "code": "multi-failure-narratives-frozen",
@@ -45,14 +45,15 @@
         "hyundai-creta-7-speed-dry-dct-failures-1-4-t-gdi",
         "hyundai-creta-diesel-particulate-filter-clogging-city-only-driving",
         "hyundai-creta-intermittent-ac-cooling-loss-premature-compressor-failure",
+        "hyundai-creta-ivt-electronic-oil-pump-controller-defect-official-india-rec",
         "hyundai-creta-premature-clutch-wear-heavy-clutch-diesel-manuals"
       ],
-      "detail": "Four owner/secondary-source narratives remain unchanged rather than being consolidated, archived or rewritten without an exact OEM source."
+      "detail": "Five owner, secondary or non-specific-source narratives remain unchanged rather than being consolidated, archived or rewritten without an exact OEM source."
     }
   ],
   "summary": {
-    "rewrite_same_identity": 2,
-    "keep_published_pending_source": 4,
+    "rewrite_same_identity": 1,
+    "keep_published_pending_source": 5,
     "total": 6
   },
   "rows": [
@@ -228,7 +229,6 @@
       "identityRule": "The existing indexed issue stays on the same ID; only the official same-identity scope, mechanism, consequence and campaign guidance replace unsupported claims.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "title",
         "description",
         "solution",
         "symptoms",
@@ -251,7 +251,7 @@
         }
       ],
       "beforeSha256": "e56e3ccecd50012b1ebd00d31b020d78df22fb16d06872cb115d528587171cde",
-      "proposalSha256": "fd74d21f1f2abcd230e520972d954122888da6c15f9c97e8d42e2e5581c37d18",
+      "proposalSha256": "df68ac089105ce4b72e013a0fd44ea439e1a97ca97a656008951e03504bc22f0",
       "before": {
         "make": "Hyundai",
         "model": "Creta",
@@ -318,7 +318,7 @@
         "trims": [],
         "engines": [],
         "category": "brakes",
-        "title": "Brake-Booster Diaphragm Can Shift and Reduce Brake Assist - Brazil Recall",
+        "title": "Brake Booster Diaphragm Defect — Official Brazil Recall (Hard Pedal, Longer Stopping Distance)",
         "description": "Hyundai Motor Brasil recalled Creta 1.0 AT Turbo vehicles from model years 2024/2024 and 2024/2025 that were manufactured from March 12 through July 16, 2024. The brake-booster diaphragm can shift, reducing vacuum in the brake-assist system. The brake pedal can become harder to press, requiring more driver effort and increasing braking time and distance.",
         "solution": "Check the chassis range in Hyundai Motor Brasil's recall notice. If the brake pedal becomes hard, Hyundai advises stopping use of the vehicle and contacting an HMB dealer immediately. Dealers replace the brake booster free of charge; the notice estimates about two hours for the service.",
         "severity": "high",
@@ -666,42 +666,14 @@
     {
       "id": "hyundai-creta-ivt-electronic-oil-pump-controller-defect-official-india-rec",
       "model": "Creta",
-      "action": "rewrite_same_identity",
-      "reason": "Replaced secondary recall reporting and unsupported warning, hesitation, hydraulic-pressure and replacement claims with the SIAM registry's exact combined population, build window, variant and controller-performance statement plus Hyundai India's VIN lookup.",
-      "identityRule": "The existing indexed issue stays on the same ID; only the official same-identity scope, mechanism, consequence and campaign guidance replace unsupported claims.",
-      "commerceDecision": "no-commerce",
-      "changedFields": [
-        "title",
-        "description",
-        "solution",
-        "severity",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
-      ],
-      "evidence": [
-        {
-          "kind": "official-recall-record",
-          "url": "https://www.siam.in/siam-voluntary-recall.aspx",
-          "verifiedOn": "2026-08-06",
-          "observation": "SIAM Voluntary Recall Registry - Hyundai Creta and Verna G 1.5 IVT supports the proposed same-identity scope or owner lookup path."
-        },
-        {
-          "kind": "manufacturer-recall-lookup",
-          "url": "https://www.hyundai.com/in/en/connect-to-service/important-customer-notification",
-          "verifiedOn": "2026-08-06",
-          "observation": "Hyundai Motor India - Recall Campaign VIN Lookup supports the proposed same-identity scope or owner lookup path."
-        }
-      ],
+      "action": "keep_published_pending_source",
+      "reason": "The SIAM all-manufacturer registry contains a matching Creta/Verna G 1.5 IVT row, but it is not a campaign-specific deep link. Hyundai India's cited page is a generic VIN lookup and does not state this campaign or its remedy. Because the remedy and exact campaign document are not publicly supported, the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; owner reports and overlapping symptoms cannot establish or replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
       "beforeSha256": "59c72bdb6e5474f5ecd9eb79a41b70d0c26cfdebbbde3c074fef9b07390dd4d7",
-      "proposalSha256": "65b1bb468c3827efe3b85c6f78d7e449d3a89f4c49027614af2ed0748bd64fca",
+      "proposalSha256": "59c72bdb6e5474f5ecd9eb79a41b70d0c26cfdebbbde3c074fef9b07390dd4d7",
       "before": {
         "make": "Hyundai",
         "model": "Creta",
@@ -771,45 +743,55 @@
         "trims": [],
         "engines": [],
         "category": "transmission",
-        "title": "G 1.5 IVT Electronic Oil-Pump Controller Recall - India",
-        "description": "The Society of Indian Automobile Manufacturers voluntary-recall registry lists a Hyundai Motor India campaign dated February 21, 2024 for Creta and Verna G 1.5 IVT vehicles produced from February 13 through June 6, 2023. The combined campaign covers 7,698 vehicles for a potential electronic oil-pump controller issue that may affect electronic oil-pump performance.",
-        "solution": "Enter the vehicle's VIN on Hyundai Motor India's official recall-campaign page. Hyundai states that affected customers are notified by the company or an authorized dealer and should follow the dealer's campaign instructions.",
-        "severity": "medium",
+        "title": "IVT (CVT) Electronic Oil Pump Controller Defect — Official India Recall",
+        "description": "In March 2024 Hyundai India voluntarily recalled 7,698 Creta and Verna cars with the 1.5L naturally-aspirated petrol engine and IVT (CVT) automatic, manufactured between February 13 and June 6, 2023. The electronic oil pump controller can fail, affecting the performance of the transmission's electric oil pump — the component that maintains hydraulic pressure (including during idle stop/start) — risking abnormal IVT operation. Affected pre-facelift Creta IVT owners are contacted by Hyundai and the controller is replaced free of charge.",
+        "solution": "Check the VIN on Hyundai India's official website or call Hyundai customer care (1800-114-645); affected vehicles get the electronic oil pump controller inspected and replaced at no cost under the recall campaign.",
+        "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "VIN is included in Hyundai Motor India's Creta and Verna G 1.5 IVT recall campaign"
+          "Vehicle VIN listed in Hyundai India's recall lookup",
+          "Transmission warning light or check engine light",
+          "Abnormal IVT behavior such as hesitation or harsh engagement",
+          "Built between February and June 2023 with 1.5 petrol IVT"
         ],
-        "affectedSystems": [
-          "Electronic oil-pump controller",
-          "Electronic oil pump"
-        ],
+        "affectedSystems": [],
         "dtcCodes": [],
-        "estimatedCostLow": null,
-        "estimatedCostHigh": null,
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
+            "url": "https://www.cardekho.com/india-car-news/hyundai-creta-and-verna-petrolcvt-units-recall-issued-32233.htm",
             "type": "recall",
-            "title": "SIAM Voluntary Recall Registry - Hyundai Creta and Verna G 1.5 IVT",
-            "url": "https://www.siam.in/siam-voluntary-recall.aspx"
+            "title": "Hyundai Creta And Hyundai Verna Recalled In India Due To Oil Pump Controller Issue (CarDekho)"
           },
           {
-            "type": "manufacturer",
-            "title": "Hyundai Motor India - Recall Campaign VIN Lookup",
-            "url": "https://www.hyundai.com/in/en/connect-to-service/important-customer-notification"
+            "url": "https://www.zigwheels.com/news-features/general-news/hyundai-verna-and-creta-pre-facelift-petrol-cvt-units-recalled/52535/",
+            "type": "recall",
+            "title": "Hyundai Verna And Creta Petrol-CVT Units Recalled To Rectify The Electronic Oil Pump (EOP) Controller (ZigWheels)"
+          },
+          {
+            "url": "https://www.91wheels.com/news/hyundai-creta-ivt-variants-voluntarily-recalled-is-your-model-on-the-list",
+            "type": "article",
+            "title": "Hyundai Creta iVT Variants Voluntarily Recalled: Is Your Model On The List? (91wheels)"
+          },
+          {
+            "url": "https://www.thedailyjagran.com/auto/hyundai-recalls-select-prefacelift-creta-ivt-models-over-oil-pump-issue-what-is-it-10151299",
+            "type": "article",
+            "title": "Hyundai Recalls Select Pre-Facelift Creta iVT Models Over Oil Pump Issue (Daily Jagran)"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
-        "humanApproved": false,
+        "humanApproved": true,
         "reportCount": 0,
-        "source": "manual",
+        "source": "ai-researched",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-08-06",
-        "contentUpdatedOn": "2026-08-06",
-        "contentUpdateSummary": "Replaced secondary recall reporting and unsupported warning, hesitation, hydraulic-pressure and replacement claims with the SIAM registry's exact combined population, build window, variant and controller-performance statement plus Hyundai India's VIN lookup.",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
         "relatedIssueIds": []
       }
     },

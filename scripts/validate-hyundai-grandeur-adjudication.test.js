@@ -26,6 +26,8 @@ test('only the Theta II row is rewritten and every other row remains byte-for-by
     if (row.id === IDS.theta) {
       assert.equal(row.action, 'rewrite_same_identity');
       assert.notEqual(row.beforeSha256, row.proposalSha256);
+      assert.equal(row.proposal.title, row.before.title);
+      assert.equal(row.proposal.category, row.before.category);
       continue;
     }
     assert.equal(row.action, 'keep_published_pending_source');
