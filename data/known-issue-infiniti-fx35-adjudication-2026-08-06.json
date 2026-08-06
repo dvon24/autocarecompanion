@@ -1,0 +1,1236 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Infiniti",
+  "model": "FX35",
+  "completionStatement": "This packet reconciles all six frozen Infiniti FX35 rows. One same-identity brake-judder rewrite clears the primary-source gate; five rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All six indexed records remain published with identical titles and categories.",
+    "Only an exact same-identity primary source may support a rewrite; partial or unrelated evidence produces a byte-for-byte hold.",
+    "The brake rewrite removes unverified search-link commerce and does not add part numbers, fitment, costs or DTCs.",
+    "Independent row-by-row approval is required before any separate correction path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_infiniti-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "d39bdd77a0557365946b551a26b951cb1a5ba81773b7b66497201347b5034f64",
+    "snapshotGeneratedAt": "2026-08-06T23:15:05.490Z",
+    "snapshotHash": "45dde736354a9dcd17a72399b0101f30373ca9c267e6cd49a2528a63a023eebd",
+    "fx35RecordCount": 6
+  },
+  "observations": [
+    {
+      "code": "brake-judder-exact-source-rewrite",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "infiniti-fx35-brake-rotor-warping-front-brake-vibration"
+      ],
+      "detail": "The visually inspected ITB00-024I supports the existing brake-judder identity, symptoms, mechanism and repair direction without changing title, category, years or status."
+    },
+    {
+      "code": "five-identities-frozen",
+      "severity": "high",
+      "recordIds": [
+        "infiniti-fx35-camshaft-crankshaft-position-sensor-failure",
+        "infiniti-fx35-front-suspension-clunk-worn-control-arm-bushings",
+        "infiniti-fx35-fuel-gauge-sending-unit-failure",
+        "infiniti-fx35-radiator-crack-and-coolant-transmission-cross-contamination",
+        "infiniti-fx35-timing-chain-guide-whine-from-front-cover"
+      ],
+      "detail": "Five rows lack an exact same-identity primary source; their content and publication state remain byte-for-byte unchanged."
+    },
+    {
+      "code": "all-fx35-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "infiniti-fx35-brake-rotor-warping-front-brake-vibration",
+        "infiniti-fx35-camshaft-crankshaft-position-sensor-failure",
+        "infiniti-fx35-front-suspension-clunk-worn-control-arm-bushings",
+        "infiniti-fx35-fuel-gauge-sending-unit-failure",
+        "infiniti-fx35-radiator-crack-and-coolant-transmission-cross-contamination",
+        "infiniti-fx35-timing-chain-guide-whine-from-front-cover"
+      ],
+      "detail": "All six indexed FX35 records remain published with the same IDs, titles, models, years and categories."
+    }
+  ],
+  "primarySources": {
+    "brake": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf"
+  },
+  "mismatchSources": {
+    "recallQueries": {
+      "2003": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2003",
+      "2004": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2004",
+      "2005": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2005",
+      "2006": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2006",
+      "2007": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2007",
+      "2008": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2008",
+      "2009": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2009",
+      "2010": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2010",
+      "2011": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2011",
+      "2012": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2012"
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 1,
+    "keep_published_pending_source": 5,
+    "total": 6
+  },
+  "rows": [
+    {
+      "id": "infiniti-fx35-brake-rotor-warping-front-brake-vibration",
+      "model": "FX35",
+      "action": "rewrite_same_identity",
+      "reason": "Infiniti ITB00-024I is an exact same-identity primary source for brake judder, rotor thickness variation/runout, the stated symptoms and repair direction.",
+      "identityRule": "The indexed title, make, model, years, category and publication state remain unchanged; only unsupported body, cost, commerce and citation claims are replaced.",
+      "commerceDecision": "removed-unverified-search-links",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-service-bulletin-exact-identity",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "documentSha256": "a76ed66b06637a80045cc7c570172419ae0c89806dd564f26c967e448dc0b939",
+          "visuallyInspectedPages": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "observation": "ITB00-024I applies to all Infiniti vehicles, defines brake judder and its symptoms, attributes it to rotor thickness variation/runout, and specifies on-car rotor machining or indexed replacement plus proper torque and burnishing."
+        }
+      ],
+      "beforeSha256": "ee73e27a506682b6888afcd9af8baa36d7f847faacf3ea543b46040fe153b388",
+      "proposalSha256": "fb956a1566169eec4b10c4e3e581b8c4fdde76f93dbaf040544af661ed1e1f62",
+      "before": {
+        "make": "Infiniti",
+        "model": "FX35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Rotor Warping / Front Brake Vibration",
+        "description": "Many FX35 owners report steering wheel shake or pedal pulsation during braking, usually traced to front rotor thickness variation and heat-related brake judder. The heavy curb weight and sporty driving style of the FX35 can accelerate front rotor wear, especially with lower-quality replacement pads and rotors.",
+        "solution": "Diagnosis includes measuring rotor runout and thickness variation, checking caliper slide movement, and inspecting pad deposits. Repair generally involves replacing front rotors and pads together, cleaning and lubricating slide pins, and torquing wheels properly to prevent repeat distortion. Typical cost is about $250-$700 depending on parts quality and whether calipers or hoses also need service.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Steering wheel shakes when braking",
+          "Brake pedal pulsation",
+          "Front-end vibration at highway speeds during braking",
+          "Reduced braking smoothness"
+        ],
+        "affectedSystems": [
+          "front brakes",
+          "rotors",
+          "calipers"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2006/INFINITI/FX35/SUV/AWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints citing brake vibration and rotor issues on Infiniti FX35"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners frequently recommend coated premium rotors for better corrosion resistance and more consistent braking feel.",
+            "upvotes": 0,
+            "partName": "QuietCast Brake Rotor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Bosch%20QuietCast%20Brake%20Rotor&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Quality ceramic pads are commonly recommended to reduce dust and improve daily-driver smoothness.",
+            "upvotes": 0,
+            "partName": "Ceramic Brake Pads",
+            "partBrand": "Akebono",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Akebono%20Ceramic%20Brake%20Pads&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Torque lug nuts evenly with a torque wrench; uneven wheel torque is a common contributor to repeat brake pulsation complaints.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx50-brake-rotor-warping-brake-judder",
+          "infiniti-m35-brake-rotor-warping-and-front-brake-vibration",
+          "infiniti-fx45-brake-rotor-warping-and-premature-front-brake-wear"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "FX35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Rotor Warping / Front Brake Vibration",
+        "description": "Infiniti service bulletin ITB00-024I applies to all Infiniti vehicles and defines brake judder as vibration felt through the vehicle, steering wheel or brake pedal while braking. The bulletin identifies rotor thickness variation and/or rotor runout as the cause; brake-pedal pulsation and, in severe cases, steering-wheel oscillation can result.",
+        "solution": "Verify the condition with the driver and a road test. Infiniti directs technicians to correct brake judder by machining the rotors with an approved on-car brake lathe. If a rotor is replaced, index it to the axle hub for minimum runout, tighten lug nuts evenly with a torque wrench, and burnish serviced brakes as specified in ITB00-024I.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle vibration while braking",
+          "Brake-pedal pulsation",
+          "Steering-wheel oscillation while braking"
+        ],
+        "affectedSystems": [
+          "Brake rotors",
+          "Brake pads and calipers",
+          "Wheel hubs and lug fasteners"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Infiniti ITB00-024I - Brake Noise/Judder/Pedal Feel Diagnosis and Repair",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed brake-judder identity and 2003-2012 scope, replaced the complaint-page and prevalence narrative with Infiniti ITB00-024I, and removed unsupported FX35-specific frequency, heat, driving-style, cost and commerce claims.",
+        "relatedIssueIds": [
+          "infiniti-fx50-brake-rotor-warping-brake-judder",
+          "infiniti-m35-brake-rotor-warping-and-front-brake-vibration",
+          "infiniti-fx45-brake-rotor-warping-and-premature-front-brake-wear"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-fx35-camshaft-crankshaft-position-sensor-failure",
+      "model": "FX35",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA complaint page does not establish one 2003-2012 FX35 camshaft/crankshaft sensor defect across both vehicle generations, the claimed heat mechanism, all four DTCs or a bundled replacement strategy. No campaign in the official model-year recall set matches this identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; generic complaint pages, absent citations and unrelated campaigns cannot replace an indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2003",
+          "verifiedOn": "2026-08-06",
+          "observation": "The 2003-2012 FX35 recall inventory contains air-bag, lighting, fuel-system, brake-caliper, transmission and steering-column campaigns, but no camshaft or crankshaft position-sensor campaign.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2005",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2012"
+          ]
+        }
+      ],
+      "beforeSha256": "6d3e1c3afe5a95b2a4fb819cde049d6d9ea309a592104537484001dfb3eb3611",
+      "proposalSha256": "6d3e1c3afe5a95b2a4fb819cde049d6d9ea309a592104537484001dfb3eb3611",
+      "before": {
+        "make": "Infiniti",
+        "model": "FX35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Camshaft / Crankshaft Position Sensor Failure",
+        "description": "The FX35 commonly develops intermittent failures of the camshaft position sensors and sometimes the crankshaft position sensor, causing stalling, hard starts, or limp operation. Heat and age degrade the sensor electronics, and this issue is widely reported across Nissan/Infiniti VQ applications of the era.",
+        "solution": "Diagnosis is done by scanning for correlation or sensor circuit codes and monitoring live RPM/cam signals during crank and road test. Repair usually involves replacing one or both cam sensors and sometimes the crank sensor, preferably with OE-quality parts because low-cost sensors often cause repeat faults. Typical repair cost is about $150-$450 depending on how many sensors are replaced and labor rates.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Check engine light",
+          "Intermittent stalling",
+          "Extended cranking before start",
+          "Reduced power or limp mode",
+          "Sudden no-start condition"
+        ],
+        "affectedSystems": [
+          "engine management",
+          "ignition timing",
+          "powertrain control"
+        ],
+        "dtcCodes": [
+          "P0340",
+          "P0345",
+          "P0335",
+          "P0725"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2005/INFINITI/FX35/SUV/AWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints mentioning stalling and cam/crank sensor faults on Infiniti FX35"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners strongly prefer OE supplier sensors because many aftermarket no-name sensors trigger repeat codes or intermittent no-starts.",
+            "upvotes": 0,
+            "partName": "Camshaft Position Sensor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Denso%20Camshaft%20Position%20Sensor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace both bank cam sensors together if mileage is high, since the second sensor often fails soon after the first.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "For crank sensor replacement, owners often choose a known OE-quality brand to avoid false RPM signal dropouts.",
+            "upvotes": 0,
+            "partName": "Crankshaft Position Sensor",
+            "partBrand": "Hitachi",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Hitachi%20Crankshaft%20Position%20Sensor&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx45-camshaft-and-crankshaft-position-sensor-failure",
+          "infiniti-m37-camshaft-crankshaft-position-sensor-failure",
+          "infiniti-m35-camshaft-and-crankshaft-position-sensor-failure",
+          "nissan-altima-crankshaft-and-camshaft-position-2002",
+          "nissan-sentra-crankshaft-and-camshaft-position-2002"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "FX35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Camshaft / Crankshaft Position Sensor Failure",
+        "description": "The FX35 commonly develops intermittent failures of the camshaft position sensors and sometimes the crankshaft position sensor, causing stalling, hard starts, or limp operation. Heat and age degrade the sensor electronics, and this issue is widely reported across Nissan/Infiniti VQ applications of the era.",
+        "solution": "Diagnosis is done by scanning for correlation or sensor circuit codes and monitoring live RPM/cam signals during crank and road test. Repair usually involves replacing one or both cam sensors and sometimes the crank sensor, preferably with OE-quality parts because low-cost sensors often cause repeat faults. Typical repair cost is about $150-$450 depending on how many sensors are replaced and labor rates.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Check engine light",
+          "Intermittent stalling",
+          "Extended cranking before start",
+          "Reduced power or limp mode",
+          "Sudden no-start condition"
+        ],
+        "affectedSystems": [
+          "engine management",
+          "ignition timing",
+          "powertrain control"
+        ],
+        "dtcCodes": [
+          "P0340",
+          "P0345",
+          "P0335",
+          "P0725"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2005/INFINITI/FX35/SUV/AWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints mentioning stalling and cam/crank sensor faults on Infiniti FX35"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners strongly prefer OE supplier sensors because many aftermarket no-name sensors trigger repeat codes or intermittent no-starts.",
+            "upvotes": 0,
+            "partName": "Camshaft Position Sensor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Denso%20Camshaft%20Position%20Sensor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace both bank cam sensors together if mileage is high, since the second sensor often fails soon after the first.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "For crank sensor replacement, owners often choose a known OE-quality brand to avoid false RPM signal dropouts.",
+            "upvotes": 0,
+            "partName": "Crankshaft Position Sensor",
+            "partBrand": "Hitachi",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Hitachi%20Crankshaft%20Position%20Sensor&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx45-camshaft-and-crankshaft-position-sensor-failure",
+          "infiniti-m37-camshaft-crankshaft-position-sensor-failure",
+          "infiniti-m35-camshaft-and-crankshaft-position-sensor-failure",
+          "nissan-altima-crankshaft-and-camshaft-position-2002",
+          "nissan-sentra-crankshaft-and-camshaft-position-2002"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-fx35-front-suspension-clunk-worn-control-arm-bushings",
+      "model": "FX35",
+      "action": "keep_published_pending_source",
+      "reason": "The generic complaint page does not establish one 2003-2012 FX35 control-arm, compression-rod and sway-link defect across both generations, nor the asserted rough-road mechanism and repair scope. No official campaign matches the indexed identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; generic complaint pages, absent citations and unrelated campaigns cannot replace an indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2003",
+          "verifiedOn": "2026-08-06",
+          "observation": "The 2003-2012 FX35 recall inventory contains no control-arm-bushing, compression-rod-bushing or sway-link campaign.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2005",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2012"
+          ]
+        }
+      ],
+      "beforeSha256": "43f52ed490243e0e715352fdf56911d1785bf787e2f9bfba307dc4dcff0b344d",
+      "proposalSha256": "43f52ed490243e0e715352fdf56911d1785bf787e2f9bfba307dc4dcff0b344d",
+      "before": {
+        "make": "Infiniti",
+        "model": "FX35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Suspension Clunk / Worn Control Arm Bushings",
+        "description": "The FX35 is well known for front-end clunks, loose steering feel, and uneven tire wear caused by worn front lower control arm bushings, compression rod bushings, and sway bar end links. The vehicle's weight and sporty suspension tuning accelerate bushing wear, especially on rough roads and higher-mileage examples.",
+        "solution": "Diagnosis involves checking for play in the lower control arms, tension/compression rods, ball joints, and sway bar links while the suspension is loaded. Repair usually means replacing the worn arm assemblies or bushings and then performing a four-wheel alignment. Typical cost is about $300-$1,000 depending on whether one side or multiple front suspension components are renewed.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clunking over bumps",
+          "Loose or wandering steering feel",
+          "Uneven front tire wear",
+          "Vibration during braking or road impacts",
+          "Knocking noise from front suspension"
+        ],
+        "affectedSystems": [
+          "front suspension",
+          "steering stability",
+          "tire wear"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2008/INFINITI/FX35/SUV/RWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints for Infiniti FX35 front suspension noise and control arm wear"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often use complete arm assemblies to save labor and restore ride quality instead of pressing in bushings only.",
+            "upvotes": 0,
+            "partName": "Front Lower Control Arm",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Moog%20Front%20Lower%20Control%20Arm&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have the suspension inspected with the vehicle at normal ride height; some worn bushings are missed when the control arms hang free.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Sway bar links are a common companion repair when chasing front-end clunks.",
+            "upvotes": 0,
+            "partName": "Sway Bar End Link",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Moog%20Sway%20Bar%20End%20Link&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx45-front-suspension-control-arm-and-bushing-wear",
+          "infiniti-m35-front-lower-control-arm-and-bushing-wear"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "FX35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Suspension Clunk / Worn Control Arm Bushings",
+        "description": "The FX35 is well known for front-end clunks, loose steering feel, and uneven tire wear caused by worn front lower control arm bushings, compression rod bushings, and sway bar end links. The vehicle's weight and sporty suspension tuning accelerate bushing wear, especially on rough roads and higher-mileage examples.",
+        "solution": "Diagnosis involves checking for play in the lower control arms, tension/compression rods, ball joints, and sway bar links while the suspension is loaded. Repair usually means replacing the worn arm assemblies or bushings and then performing a four-wheel alignment. Typical cost is about $300-$1,000 depending on whether one side or multiple front suspension components are renewed.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clunking over bumps",
+          "Loose or wandering steering feel",
+          "Uneven front tire wear",
+          "Vibration during braking or road impacts",
+          "Knocking noise from front suspension"
+        ],
+        "affectedSystems": [
+          "front suspension",
+          "steering stability",
+          "tire wear"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2008/INFINITI/FX35/SUV/RWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints for Infiniti FX35 front suspension noise and control arm wear"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often use complete arm assemblies to save labor and restore ride quality instead of pressing in bushings only.",
+            "upvotes": 0,
+            "partName": "Front Lower Control Arm",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Moog%20Front%20Lower%20Control%20Arm&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have the suspension inspected with the vehicle at normal ride height; some worn bushings are missed when the control arms hang free.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Sway bar links are a common companion repair when chasing front-end clunks.",
+            "upvotes": 0,
+            "partName": "Sway Bar End Link",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Moog%20Sway%20Bar%20End%20Link&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx45-front-suspension-control-arm-and-bushing-wear",
+          "infiniti-m35-front-lower-control-arm-and-bushing-wear"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-fx35-fuel-gauge-sending-unit-failure",
+      "model": "FX35",
+      "action": "keep_published_pending_source",
+      "reason": "The generic complaint page does not establish one 2003-2012 FX35 fuel-sender defect, contamination mechanism, sender-versus-pump-module repair boundary or all three DTCs. Fuel-system campaigns in the official recall set concern unrelated defects, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; generic complaint pages, absent citations and unrelated campaigns cannot replace an indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2003",
+          "verifiedOn": "2026-08-06",
+          "observation": "Fuel-system campaigns in the FX35 recall inventory do not concern inaccurate fuel-level readings, sender resistance or DTC P0461/P0462/P0463.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2005",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2012"
+          ]
+        }
+      ],
+      "beforeSha256": "77a00e728b9703d167f6b978c96a57b4266bd220b400237bb3b8add5d8dab00a",
+      "proposalSha256": "77a00e728b9703d167f6b978c96a57b4266bd220b400237bb3b8add5d8dab00a",
+      "before": {
+        "make": "Infiniti",
+        "model": "FX35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Gauge Sending Unit Failure",
+        "description": "A common Nissan/Infiniti issue on this era of FX35 is inaccurate fuel level readings caused by wear or contamination of the fuel level sending unit inside the tank. Owners report the gauge sticking, dropping suddenly, or showing empty with fuel still in the tank, sometimes accompanied by a check engine light.",
+        "solution": "Diagnosis involves comparing scan-tool fuel level data with actual tank fill amount and checking for sender-related codes. Repair typically requires replacing the affected fuel level sender or pump module assembly through the access panel under the rear seat/cargo area, depending on configuration. Typical cost is about $300-$800 using quality parts and new tank seal hardware.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Fuel gauge reads empty when tank is not empty",
+          "Gauge fluctuates unpredictably",
+          "Low fuel warning comes on too early",
+          "Distance-to-empty is inaccurate",
+          "Check engine light with EVAP/fuel level correlation faults"
+        ],
+        "affectedSystems": [
+          "fuel tank sender",
+          "instrument cluster fuel level display",
+          "evaporative emissions monitoring"
+        ],
+        "dtcCodes": [
+          "P0461",
+          "P0462",
+          "P0463"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2004/INFINITI/FX35/SUV/RWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints for Infiniti FX35 inaccurate fuel gauge readings"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners usually recommend OE-quality fuel level components because cheap modules can cause continued gauge inaccuracies.",
+            "upvotes": 0,
+            "partName": "Fuel Pump Module Assembly",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Denso%20Fuel%20Pump%20Module%20Assembly&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If the gauge is erratic, track mileage manually until the sender is repaired to avoid running the tank dry.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Replace the tank seal and inspect the electrical connector for heat damage whenever the module is removed.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-m35-fuel-gauge-sending-unit-failure"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "FX35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Gauge Sending Unit Failure",
+        "description": "A common Nissan/Infiniti issue on this era of FX35 is inaccurate fuel level readings caused by wear or contamination of the fuel level sending unit inside the tank. Owners report the gauge sticking, dropping suddenly, or showing empty with fuel still in the tank, sometimes accompanied by a check engine light.",
+        "solution": "Diagnosis involves comparing scan-tool fuel level data with actual tank fill amount and checking for sender-related codes. Repair typically requires replacing the affected fuel level sender or pump module assembly through the access panel under the rear seat/cargo area, depending on configuration. Typical cost is about $300-$800 using quality parts and new tank seal hardware.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Fuel gauge reads empty when tank is not empty",
+          "Gauge fluctuates unpredictably",
+          "Low fuel warning comes on too early",
+          "Distance-to-empty is inaccurate",
+          "Check engine light with EVAP/fuel level correlation faults"
+        ],
+        "affectedSystems": [
+          "fuel tank sender",
+          "instrument cluster fuel level display",
+          "evaporative emissions monitoring"
+        ],
+        "dtcCodes": [
+          "P0461",
+          "P0462",
+          "P0463"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2004/INFINITI/FX35/SUV/RWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints for Infiniti FX35 inaccurate fuel gauge readings"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners usually recommend OE-quality fuel level components because cheap modules can cause continued gauge inaccuracies.",
+            "upvotes": 0,
+            "partName": "Fuel Pump Module Assembly",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Denso%20Fuel%20Pump%20Module%20Assembly&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If the gauge is erratic, track mileage manually until the sender is repaired to avoid running the tank dry.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Replace the tank seal and inspect the electrical connector for heat damage whenever the module is removed.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-m35-fuel-gauge-sending-unit-failure"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-fx35-radiator-crack-and-coolant-transmission-cross-contamination",
+      "model": "FX35",
+      "action": "keep_published_pending_source",
+      "reason": "The generic complaint page does not establish an FX35 radiator-to-transmission-cooler cross-contamination defect, the asserted first-generation scope or a transmission-damage repair pathway. No campaign in the official model-year recall set matches this identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; generic complaint pages, absent citations and unrelated campaigns cannot replace an indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2003",
+          "verifiedOn": "2026-08-06",
+          "observation": "The 2003-2012 FX35 recall inventory contains no radiator internal-cooler breach or coolant/ATF cross-contamination campaign.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2005",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2012"
+          ]
+        }
+      ],
+      "beforeSha256": "0bffa5172cfff4858e0960b31e70b95d2c40faae3ac3d02bf9fd1a1fa28472aa",
+      "proposalSha256": "0bffa5172cfff4858e0960b31e70b95d2c40faae3ac3d02bf9fd1a1fa28472aa",
+      "before": {
+        "make": "Infiniti",
+        "model": "FX35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Radiator Crack and Coolant / Transmission Cross-Contamination",
+        "description": "On first-generation FX35 models with the automatic transmission cooler integrated into the radiator, internal radiator failure can allow coolant and ATF to mix. Owners report radiator tank cracking or internal cooler failure, which can quickly damage the transmission if not caught early.",
+        "solution": "Diagnosis includes checking the radiator and overflow bottle for oily residue, inspecting ATF for a milky appearance, and pressure-testing the cooling system. Repair typically requires replacing the radiator and thoroughly flushing the cooling and transmission systems; if contamination was severe, transmission repair or replacement may also be needed. Costs range from about $400 for early radiator replacement to $5,000+ if the transmission has been damaged.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine running hot",
+          "Milky transmission fluid or coolant",
+          "Harsh shifting",
+          "Coolant loss",
+          "Transmission slipping after overheating"
+        ],
+        "affectedSystems": [
+          "cooling system",
+          "automatic transmission",
+          "radiator integrated cooler"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 5500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/INFINITI/FX35/SUV/AWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints involving radiator failure and transmission damage on FX35"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the original radiator is still installed on a high-mileage first-gen FX35, many owners replace it preventively rather than risk transmission contamination.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners often recommend a quality replacement radiator instead of the cheapest unit because fitment and cooler reliability matter here.",
+            "upvotes": 0,
+            "partName": "Radiator",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Denso%20Radiator&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check ATF color regularly after any overheating event; catching contamination early can save the transmission.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-m35-radiator-cracking-and-coolant-leaks",
+          "infiniti-fx45-radiator-failure-causing-overheating"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "FX35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Radiator Crack and Coolant / Transmission Cross-Contamination",
+        "description": "On first-generation FX35 models with the automatic transmission cooler integrated into the radiator, internal radiator failure can allow coolant and ATF to mix. Owners report radiator tank cracking or internal cooler failure, which can quickly damage the transmission if not caught early.",
+        "solution": "Diagnosis includes checking the radiator and overflow bottle for oily residue, inspecting ATF for a milky appearance, and pressure-testing the cooling system. Repair typically requires replacing the radiator and thoroughly flushing the cooling and transmission systems; if contamination was severe, transmission repair or replacement may also be needed. Costs range from about $400 for early radiator replacement to $5,000+ if the transmission has been damaged.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine running hot",
+          "Milky transmission fluid or coolant",
+          "Harsh shifting",
+          "Coolant loss",
+          "Transmission slipping after overheating"
+        ],
+        "affectedSystems": [
+          "cooling system",
+          "automatic transmission",
+          "radiator integrated cooler"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 5500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/INFINITI/FX35/SUV/AWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints involving radiator failure and transmission damage on FX35"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the original radiator is still installed on a high-mileage first-gen FX35, many owners replace it preventively rather than risk transmission contamination.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners often recommend a quality replacement radiator instead of the cheapest unit because fitment and cooler reliability matter here.",
+            "upvotes": 0,
+            "partName": "Radiator",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Denso%20Radiator&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check ATF color regularly after any overheating event; catching contamination early can save the transmission.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-m35-radiator-cracking-and-coolant-leaks",
+          "infiniti-fx45-radiator-failure-causing-overheating"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-fx35-timing-chain-guide-whine-from-front-cover",
+      "model": "FX35",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no citation, and no exact Infiniti/NHTSA bulletin was found that supports a 2003-2007 FX35 timing-guide wear defect, supercharger-like whine, full timing-set replacement or the asserted cost range. No unrelated model bulletin may be transferred to this indexed identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; generic complaint pages, absent citations and unrelated campaigns cannot replace an indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2003",
+          "verifiedOn": "2026-08-06",
+          "observation": "The 2003-2012 FX35 recall inventory contains no VQ35DE timing-chain-guide, front-cover-whine or timing-set campaign.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2005",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX35&modelYear=2012"
+          ]
+        }
+      ],
+      "beforeSha256": "28fdb3bc082f3388216ceb2655a8daeb7a93fa8b8f794c751ee45180c0d89430",
+      "proposalSha256": "28fdb3bc082f3388216ceb2655a8daeb7a93fa8b8f794c751ee45180c0d89430",
+      "before": {
+        "make": "Infiniti",
+        "model": "FX35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Timing Chain Guide / Whine from Front Cover",
+        "description": "Early VQ35DE-equipped FX35 models are known for a whining or supercharger-like noise caused by wear in the timing chain guides and related front timing components. Infiniti issued service information for replacing the primary timing chain, guides, tensioners, and sprockets when abnormal noise is present, most commonly on earlier production years.",
+        "solution": "Diagnosis usually starts by confirming a front-engine whine that changes with RPM and ruling out accessory bearings by removing the drive belts briefly. Repair typically involves removing the front timing cover and replacing the timing chain, guides, tensioners, and often cam/crank sprockets using updated parts; labor is substantial because of front cover access. Independent shop repair commonly runs about $1,500-$3,000 depending on how many timing components are replaced.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Whining noise from front of engine",
+          "Noise increases with engine RPM",
+          "Cold-start engine whine",
+          "Persistent front cover noise after belt inspection"
+        ],
+        "affectedSystems": [
+          "timing system",
+          "valvetrain",
+          "engine front cover components"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Confirm the noise is not from an idler pulley, alternator, or A/C compressor before authorizing timing cover work.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners generally recommend using OEM-style timing components because cheap kits have mixed durability on the VQ35DE.",
+            "upvotes": 0,
+            "partName": "Timing Chain Kit",
+            "partBrand": "Cloyes",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Cloyes%20Timing%20Chain%20Kit&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If the front cover is already off, many owners replace water pump seals and inspect cam/crank seals at the same time to avoid duplicate labor.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx45-timing-chain-guide-wear-and-chain-noise",
+          "infiniti-m56-timing-chain-guide-wear-chain-noise",
+          "nissan-xterra-timing-chain-rattle-2005"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "FX35",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Timing Chain Guide / Whine from Front Cover",
+        "description": "Early VQ35DE-equipped FX35 models are known for a whining or supercharger-like noise caused by wear in the timing chain guides and related front timing components. Infiniti issued service information for replacing the primary timing chain, guides, tensioners, and sprockets when abnormal noise is present, most commonly on earlier production years.",
+        "solution": "Diagnosis usually starts by confirming a front-engine whine that changes with RPM and ruling out accessory bearings by removing the drive belts briefly. Repair typically involves removing the front timing cover and replacing the timing chain, guides, tensioners, and often cam/crank sprockets using updated parts; labor is substantial because of front cover access. Independent shop repair commonly runs about $1,500-$3,000 depending on how many timing components are replaced.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Whining noise from front of engine",
+          "Noise increases with engine RPM",
+          "Cold-start engine whine",
+          "Persistent front cover noise after belt inspection"
+        ],
+        "affectedSystems": [
+          "timing system",
+          "valvetrain",
+          "engine front cover components"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Confirm the noise is not from an idler pulley, alternator, or A/C compressor before authorizing timing cover work.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners generally recommend using OEM-style timing components because cheap kits have mixed durability on the VQ35DE.",
+            "upvotes": 0,
+            "partName": "Timing Chain Kit",
+            "partBrand": "Cloyes",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Cloyes%20Timing%20Chain%20Kit&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If the front cover is already off, many owners replace water pump seals and inspect cam/crank seals at the same time to avoid duplicate labor.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx45-timing-chain-guide-wear-and-chain-noise",
+          "infiniti-m56-timing-chain-guide-wear-chain-noise",
+          "nissan-xterra-timing-chain-rattle-2005"
+        ]
+      }
+    }
+  ]
+}
