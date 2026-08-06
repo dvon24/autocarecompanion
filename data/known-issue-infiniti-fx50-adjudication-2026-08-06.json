@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Infiniti",
+  "model": "FX50",
+  "completionStatement": "This packet reconciles all six frozen Infiniti FX50 rows. One same-identity brake-judder rewrite clears the primary-source gate; five rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All six indexed records remain published with identical titles, years and categories.",
+    "Only an exact same-identity primary source may support a rewrite; absent, partial or unrelated evidence produces a byte-for-byte hold.",
+    "The brake rewrite removes unverified search-link commerce and does not add part numbers, fitment, costs or DTCs.",
+    "Independent row-by-row approval is required before any separate correction path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_infiniti-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "d39bdd77a0557365946b551a26b951cb1a5ba81773b7b66497201347b5034f64",
+    "snapshotGeneratedAt": "2026-08-06T23:15:05.490Z",
+    "snapshotHash": "45dde736354a9dcd17a72399b0101f30373ca9c267e6cd49a2528a63a023eebd",
+    "fx50RecordCount": 6
+  },
+  "observations": [
+    {
+      "code": "brake-judder-exact-source-rewrite",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "infiniti-fx50-brake-rotor-warping-brake-judder"
+      ],
+      "detail": "The visually inspected ITB00-024I supports the existing brake-warping/judder identity without changing its indexed identity or scope."
+    },
+    {
+      "code": "five-identities-frozen",
+      "severity": "high",
+      "recordIds": [
+        "infiniti-fx50-evap-leak-check-engine-light-from-fuel-vapor-components",
+        "infiniti-fx50-premature-front-suspension-wear",
+        "infiniti-fx50-radiator-cooling-fan-related-overheating",
+        "infiniti-fx50-steering-lock-module-failure-no-start",
+        "infiniti-fx50-sunroof-drain-leak-causing-bcm-electrical-problems"
+      ],
+      "detail": "Five rows lack an exact same-identity primary source; their content and publication state remain byte-for-byte unchanged."
+    },
+    {
+      "code": "all-fx50-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "infiniti-fx50-brake-rotor-warping-brake-judder",
+        "infiniti-fx50-evap-leak-check-engine-light-from-fuel-vapor-components",
+        "infiniti-fx50-premature-front-suspension-wear",
+        "infiniti-fx50-radiator-cooling-fan-related-overheating",
+        "infiniti-fx50-steering-lock-module-failure-no-start",
+        "infiniti-fx50-sunroof-drain-leak-causing-bcm-electrical-problems"
+      ],
+      "detail": "All six indexed FX50 records remain published with the same IDs, titles, models, years and categories."
+    }
+  ],
+  "primarySources": {
+    "brake": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf"
+  },
+  "mismatchSources": {
+    "recallQueries": {
+      "2009": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2009",
+      "2010": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2010",
+      "2011": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2011",
+      "2012": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2012",
+      "2013": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2013"
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 1,
+    "keep_published_pending_source": 5,
+    "total": 6
+  },
+  "rows": [
+    {
+      "id": "infiniti-fx50-brake-rotor-warping-brake-judder",
+      "model": "FX50",
+      "action": "rewrite_same_identity",
+      "reason": "Infiniti ITB00-024I is an exact same-identity primary source for the indexed brake-warping/judder condition, symptoms and repair direction.",
+      "identityRule": "The indexed title, make, model, years, category and publication state remain unchanged; only unsupported body, cost, commerce and citation claims are replaced.",
+      "commerceDecision": "removed-unverified-search-links",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-service-bulletin-exact-identity",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "documentSha256": "a76ed66b06637a80045cc7c570172419ae0c89806dd564f26c967e448dc0b939",
+          "visuallyInspectedPages": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "observation": "ITB00-024I applies to all Infiniti vehicles, defines brake judder and its symptoms, attributes it to rotor thickness variation/runout, and specifies on-car rotor machining or indexed replacement plus proper torque and burnishing."
+        }
+      ],
+      "beforeSha256": "bd6526fbaf16bf8c802ccf37e36cfd2f8094f00793e65b48a68002990d6188fb",
+      "proposalSha256": "20ea3ffd4fe2ba102b61174487f3669e9523da95fbf37c66abb1d268634634db",
+      "before": {
+        "make": "Infiniti",
+        "model": "FX50",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Rotor Warping / Brake Judder",
+        "description": "Many owners report brake pulsation and steering wheel shake during moderate to hard braking, often attributed to rotor thickness variation or heat-related rotor distortion. The heavy FX50 and aggressive driving style can accelerate wear of front rotors and pads, especially with lower-quality replacement parts.",
+        "solution": "Diagnosis includes measuring rotor runout and thickness variation, inspecting pad deposits, and checking caliper slide operation. Repair generally means replacing front rotors and pads together, servicing caliper hardware, and flushing brake fluid if overdue; expect about $350-$900 depending on parts quality and whether rear brakes are also serviced.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Steering wheel shakes while braking",
+          "Brake pedal pulsation",
+          "Reduced braking smoothness at highway speeds",
+          "Squeal or grinding from worn pads",
+          "Vibration during downhill braking"
+        ],
+        "affectedSystems": [
+          "front brake rotors",
+          "brake pads",
+          "calipers",
+          "hydraulic brake system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 350,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.infinitiscene.com/",
+            "type": "forum",
+            "title": "Infiniti FX forum reports of brake judder and rotor replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners commonly recommend premium coated rotors and matched ceramic pads to reduce repeat pulsation and dust.",
+            "upvotes": 0,
+            "partName": "QuietCast Brake Rotor and Pad Set",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Bosch%20QuietCast%20brake%20rotor%20pad&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Torque lug nuts evenly with a torque wrench; uneven wheel torque can contribute to rotor runout complaints.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Bed in new pads and rotors properly to avoid uneven pad transfer that feels like warped rotors.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx35-brake-rotor-warping-front-brake-vibration",
+          "infiniti-m37-brake-rotor-warping-front-brake-vibration"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "FX50",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Rotor Warping / Brake Judder",
+        "description": "Infiniti service bulletin ITB00-024I applies to all Infiniti vehicles and defines brake judder as vibration felt through the vehicle, steering wheel or brake pedal while braking. The bulletin identifies rotor thickness variation and/or rotor runout as the cause; brake-pedal pulsation and, in severe cases, steering-wheel oscillation can result.",
+        "solution": "Verify the condition with the driver and a road test. Infiniti directs technicians to correct brake judder by machining the rotors with an approved on-car brake lathe. If a rotor is replaced, index it to the axle hub for minimum runout, tighten lug nuts evenly with a torque wrench, and burnish serviced brakes as specified in ITB00-024I.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle vibration while braking",
+          "Brake-pedal pulsation",
+          "Steering-wheel oscillation while braking"
+        ],
+        "affectedSystems": [
+          "Brake rotors",
+          "Brake pads and calipers",
+          "Wheel hubs and lug fasteners"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Infiniti ITB00-024I - Brake Noise/Judder/Pedal Feel Diagnosis and Repair",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed brake-warping/judder identity and 2009-2013 scope, replaced the forum-homepage and FX50 prevalence narrative with Infiniti ITB00-024I, and removed unsupported model-specific frequency, heat, driving-style, cost and commerce claims.",
+        "relatedIssueIds": [
+          "infiniti-fx35-brake-rotor-warping-front-brake-vibration",
+          "infiniti-m37-brake-rotor-warping-front-brake-vibration"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-fx50-evap-leak-check-engine-light-from-fuel-vapor-components",
+      "model": "FX50",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no citation, and no exact Infiniti/NHTSA bulletin was found that establishes one 2009-2013 FX50 EVAP leak defect, all four DTCs, the gas-cap/purge/vent/hose cause bundle or its repair costs. The official recall results contain no FX50 campaign, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; an absent citation, forum homepage, empty recall set or unrelated vehicle bulletin cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-empty-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2009",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA returns zero campaigns for every 2009-2013 FX50 model-year query; no exact primary source cleared the gate for infiniti-fx50-evap-leak-check-engine-light-from-fuel-vapor-components.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "daf3c8d4248628e3a3af5c4cad1c34a42f229ae174c683b9b27d7504edee178e",
+      "proposalSha256": "daf3c8d4248628e3a3af5c4cad1c34a42f229ae174c683b9b27d7504edee178e",
+      "before": {
+        "make": "Infiniti",
+        "model": "FX50",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "EVAP Leak / Check Engine Light from Fuel Vapor Components",
+        "description": "Owners occasionally report check-engine lights caused by EVAP system leaks, often related to the gas cap, purge control valve, vent valve, or associated hoses. These faults usually do not affect drivability much, but they can prevent emissions readiness and trigger recurring warning lights.",
+        "solution": "Diagnosis starts with reading EVAP-related codes, inspecting the fuel cap seal, and smoke-testing the EVAP system for leaks. Repairs may be as simple as replacing the gas cap or may require a purge/vent solenoid and hose replacement; typical cost runs from about $40 to $450 depending on the fault.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light on",
+          "Loose or worn gas cap",
+          "Failed emissions inspection",
+          "Occasional fuel vapor smell",
+          "No major drivability change"
+        ],
+        "affectedSystems": [
+          "fuel tank vapor system",
+          "purge valve",
+          "vent valve",
+          "fuel cap"
+        ],
+        "dtcCodes": [
+          "P0442",
+          "P0455",
+          "P0456",
+          "P0447"
+        ],
+        "estimatedCostLow": 40,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often start with a quality replacement gas cap because it is inexpensive and commonly resolves small-leak EVAP codes.",
+            "upvotes": 0,
+            "partName": "Fuel Cap",
+            "partBrand": "Gates",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Gates%20fuel%20cap&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Do a smoke test before replacing multiple EVAP parts; small hose leaks are easy to miss visually.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Clear the code only after tightening or replacing the cap and completing a few drive cycles.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "nissan-rogue-evap-vent-control-valve-2008"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "FX50",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "EVAP Leak / Check Engine Light from Fuel Vapor Components",
+        "description": "Owners occasionally report check-engine lights caused by EVAP system leaks, often related to the gas cap, purge control valve, vent valve, or associated hoses. These faults usually do not affect drivability much, but they can prevent emissions readiness and trigger recurring warning lights.",
+        "solution": "Diagnosis starts with reading EVAP-related codes, inspecting the fuel cap seal, and smoke-testing the EVAP system for leaks. Repairs may be as simple as replacing the gas cap or may require a purge/vent solenoid and hose replacement; typical cost runs from about $40 to $450 depending on the fault.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light on",
+          "Loose or worn gas cap",
+          "Failed emissions inspection",
+          "Occasional fuel vapor smell",
+          "No major drivability change"
+        ],
+        "affectedSystems": [
+          "fuel tank vapor system",
+          "purge valve",
+          "vent valve",
+          "fuel cap"
+        ],
+        "dtcCodes": [
+          "P0442",
+          "P0455",
+          "P0456",
+          "P0447"
+        ],
+        "estimatedCostLow": 40,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often start with a quality replacement gas cap because it is inexpensive and commonly resolves small-leak EVAP codes.",
+            "upvotes": 0,
+            "partName": "Fuel Cap",
+            "partBrand": "Gates",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Gates%20fuel%20cap&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Do a smoke test before replacing multiple EVAP parts; small hose leaks are easy to miss visually.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Clear the code only after tightening or replacing the cap and completing a few drive cycles.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "nissan-rogue-evap-vent-control-valve-2008"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-fx50-premature-front-suspension-wear",
+      "model": "FX50",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no citation, and no exact primary source was found for one 2009-2013 FX50 premature front-suspension-wear defect, the weight/wheel mechanism, component bundle or whole-arm repair rule. The official recall results contain no FX50 campaign, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; an absent citation, forum homepage, empty recall set or unrelated vehicle bulletin cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-empty-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2009",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA returns zero campaigns for every 2009-2013 FX50 model-year query; no exact primary source cleared the gate for infiniti-fx50-premature-front-suspension-wear.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "6936f2c8ba6e5d75097edf246d2f9a90300e7e6bde1f5475bf7fa6e73a7158c3",
+      "proposalSha256": "6936f2c8ba6e5d75097edf246d2f9a90300e7e6bde1f5475bf7fa6e73a7158c3",
+      "before": {
+        "make": "Infiniti",
+        "model": "FX50",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Premature Front Suspension Wear",
+        "description": "The FX50's weight, large wheels, and performance-oriented suspension contribute to wear in front control arm bushings, ball joints, and sway bar end links. Owners frequently report clunks over bumps, uneven tire wear, and looseness in the front end as mileage climbs.",
+        "solution": "Inspection should include checking upper and lower control arm bushings, ball joint play, sway bar links, and alignment angles. Repair commonly involves replacing worn control arms or links as complete assemblies, followed by a four-wheel alignment; typical cost is around $400-$1,500 depending on how many components are replaced.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clunking over bumps",
+          "Uneven front tire wear",
+          "Loose or wandering steering feel",
+          "Front-end vibration",
+          "Noise during low-speed turns"
+        ],
+        "affectedSystems": [
+          "control arms",
+          "ball joints",
+          "sway bar links",
+          "wheel alignment"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often choose complete aftermarket control arm assemblies to avoid pressing bushings and to restore alignment stability.",
+            "upvotes": 0,
+            "partName": "Control Arm Assembly",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Moog%20control%20arm%20assembly&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have the alignment checked immediately after replacing any front suspension part; these vehicles are sensitive to camber and toe settings.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Large aftermarket wheels and low-profile tires tend to accelerate bushing and link wear.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx45-front-suspension-control-arm-and-bushing-wear",
+          "infiniti-m37-premature-front-suspension-wear"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "FX50",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Premature Front Suspension Wear",
+        "description": "The FX50's weight, large wheels, and performance-oriented suspension contribute to wear in front control arm bushings, ball joints, and sway bar end links. Owners frequently report clunks over bumps, uneven tire wear, and looseness in the front end as mileage climbs.",
+        "solution": "Inspection should include checking upper and lower control arm bushings, ball joint play, sway bar links, and alignment angles. Repair commonly involves replacing worn control arms or links as complete assemblies, followed by a four-wheel alignment; typical cost is around $400-$1,500 depending on how many components are replaced.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clunking over bumps",
+          "Uneven front tire wear",
+          "Loose or wandering steering feel",
+          "Front-end vibration",
+          "Noise during low-speed turns"
+        ],
+        "affectedSystems": [
+          "control arms",
+          "ball joints",
+          "sway bar links",
+          "wheel alignment"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often choose complete aftermarket control arm assemblies to avoid pressing bushings and to restore alignment stability.",
+            "upvotes": 0,
+            "partName": "Control Arm Assembly",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Moog%20control%20arm%20assembly&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have the alignment checked immediately after replacing any front suspension part; these vehicles are sensitive to camber and toe settings.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Large aftermarket wheels and low-profile tires tend to accelerate bushing and link wear.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx45-front-suspension-control-arm-and-bushing-wear",
+          "infiniti-m37-premature-front-suspension-wear"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-fx50-radiator-cooling-fan-related-overheating",
+      "model": "FX50",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no citation, and no exact primary source was found for one FX50 radiator/fan/thermostat overheating defect, the four-DTC bundle or the asserted VK50VE heat mechanism and repair range. The official recall results contain no FX50 campaign, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; an absent citation, forum homepage, empty recall set or unrelated vehicle bulletin cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-empty-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2009",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA returns zero campaigns for every 2009-2013 FX50 model-year query; no exact primary source cleared the gate for infiniti-fx50-radiator-cooling-fan-related-overheating.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "9250d8d6197d76bfc8062f3ca48b9b4b4468cf2acbd04d155b24cb3e80695e7f",
+      "proposalSha256": "9250d8d6197d76bfc8062f3ca48b9b4b4468cf2acbd04d155b24cb3e80695e7f",
+      "before": {
+        "make": "Infiniti",
+        "model": "FX50",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Radiator / Cooling Fan Related Overheating",
+        "description": "As these vehicles age, cooling system issues such as radiator seepage, fan control problems, or thermostat degradation can lead to elevated engine temperatures. The VK50VE V8 runs hot under load, so any reduction in cooling efficiency can quickly cause overheating, especially in traffic or hot climates.",
+        "solution": "Diagnosis should include pressure-testing the cooling system, checking for radiator tank leaks, verifying fan operation, and monitoring live coolant temperature data. Repairs may involve replacing the radiator, thermostat, hoses, or fan assembly and refilling with the correct coolant; total cost typically ranges from $300 to $1,400 depending on the failed component.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Temperature gauge rising in traffic",
+          "Coolant smell near front of vehicle",
+          "Visible coolant loss",
+          "Cooling fans not running properly",
+          "Engine overheating warning"
+        ],
+        "affectedSystems": [
+          "radiator",
+          "cooling fans",
+          "thermostat",
+          "coolant hoses"
+        ],
+        "dtcCodes": [
+          "P0128",
+          "P0217",
+          "P0480",
+          "P0483"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often prefer OEM-supplier cooling components for reliability, especially on the V8 where overheating can become expensive quickly.",
+            "upvotes": 0,
+            "partName": "Radiator",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Denso%20radiator&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace aging upper and lower radiator hoses during major cooling work to avoid repeat labor.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Do not continue driving if the temperature climbs; the V8 can suffer major engine damage from overheating.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx45-radiator-failure-causing-overheating"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "FX50",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Radiator / Cooling Fan Related Overheating",
+        "description": "As these vehicles age, cooling system issues such as radiator seepage, fan control problems, or thermostat degradation can lead to elevated engine temperatures. The VK50VE V8 runs hot under load, so any reduction in cooling efficiency can quickly cause overheating, especially in traffic or hot climates.",
+        "solution": "Diagnosis should include pressure-testing the cooling system, checking for radiator tank leaks, verifying fan operation, and monitoring live coolant temperature data. Repairs may involve replacing the radiator, thermostat, hoses, or fan assembly and refilling with the correct coolant; total cost typically ranges from $300 to $1,400 depending on the failed component.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Temperature gauge rising in traffic",
+          "Coolant smell near front of vehicle",
+          "Visible coolant loss",
+          "Cooling fans not running properly",
+          "Engine overheating warning"
+        ],
+        "affectedSystems": [
+          "radiator",
+          "cooling fans",
+          "thermostat",
+          "coolant hoses"
+        ],
+        "dtcCodes": [
+          "P0128",
+          "P0217",
+          "P0480",
+          "P0483"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often prefer OEM-supplier cooling components for reliability, especially on the V8 where overheating can become expensive quickly.",
+            "upvotes": 0,
+            "partName": "Radiator",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Denso%20radiator&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace aging upper and lower radiator hoses during major cooling work to avoid repeat labor.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Do not continue driving if the temperature climbs; the V8 can suffer major engine damage from overheating.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx45-radiator-failure-causing-overheating"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-fx50-steering-lock-module-failure-no-start",
+      "model": "FX50",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no citation, and no exact FX50 bulletin or campaign was found for an electronic steering-lock-module no-start defect, bypass option, BCM/IPDM diagnosis or immobilizer relearn. A steering-lock program for another Nissan/Infiniti vehicle cannot be transferred to this title, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; an absent citation, forum homepage, empty recall set or unrelated vehicle bulletin cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-empty-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2009",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA returns zero campaigns for every 2009-2013 FX50 model-year query; no exact primary source cleared the gate for infiniti-fx50-steering-lock-module-failure-no-start.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "90a9a1bbcb6f403b2cb05646bf5d3183182132c63ab80b51e19657aab6ca0b07",
+      "proposalSha256": "90a9a1bbcb6f403b2cb05646bf5d3183182132c63ab80b51e19657aab6ca0b07",
+      "before": {
+        "make": "Infiniti",
+        "model": "FX50",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Steering Lock Module Failure / No-Start",
+        "description": "A known Nissan/Infiniti issue on this era is failure of the electronic steering lock (ESCL/steering lock control unit), which can prevent the vehicle from recognizing the ignition sequence and leave the FX50 in a no-start condition. Owners report the problem as an intermittent or sudden failure tied to the steering lock assembly and Intelligent Key start authorization system.",
+        "solution": "Diagnosis typically includes checking for power at the steering lock unit, confirming Intelligent Key operation, and scanning BCM/IPDM-related faults. Repair usually involves replacing or bypassing the steering lock module depending on campaign/repair status, then performing key/immobilizer relearn if needed; typical repair cost is about $400-$1,200 depending on dealer programming and parts.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Push-button start does nothing",
+          "Steering remains locked",
+          "Intermittent no-start with key recognized",
+          "Security/Intelligent Key warning messages",
+          "Vehicle stuck in ACC or LOCK mode"
+        ],
+        "affectedSystems": [
+          "starting system",
+          "body control module",
+          "immobilizer",
+          "steering lock"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the car intermittently fails to start, scan BCM/immobilizer data before replacing the battery or starter; many owners misdiagnose this as a weak battery.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners often recommend replacing the vehicle battery first if voltage is marginal, because low voltage can aggravate Intelligent Key and steering lock faults.",
+            "upvotes": 0,
+            "partName": "AGM Battery",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Bosch%20AGM%20battery&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check whether the vehicle previously received any steering lock campaign or updated part before paying for a full dealer diagnosis.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-qx50-steering-wheel-lock--2014",
+          "nissan-rogue-steering-column-lock--2008"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "FX50",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Steering Lock Module Failure / No-Start",
+        "description": "A known Nissan/Infiniti issue on this era is failure of the electronic steering lock (ESCL/steering lock control unit), which can prevent the vehicle from recognizing the ignition sequence and leave the FX50 in a no-start condition. Owners report the problem as an intermittent or sudden failure tied to the steering lock assembly and Intelligent Key start authorization system.",
+        "solution": "Diagnosis typically includes checking for power at the steering lock unit, confirming Intelligent Key operation, and scanning BCM/IPDM-related faults. Repair usually involves replacing or bypassing the steering lock module depending on campaign/repair status, then performing key/immobilizer relearn if needed; typical repair cost is about $400-$1,200 depending on dealer programming and parts.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Push-button start does nothing",
+          "Steering remains locked",
+          "Intermittent no-start with key recognized",
+          "Security/Intelligent Key warning messages",
+          "Vehicle stuck in ACC or LOCK mode"
+        ],
+        "affectedSystems": [
+          "starting system",
+          "body control module",
+          "immobilizer",
+          "steering lock"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the car intermittently fails to start, scan BCM/immobilizer data before replacing the battery or starter; many owners misdiagnose this as a weak battery.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners often recommend replacing the vehicle battery first if voltage is marginal, because low voltage can aggravate Intelligent Key and steering lock faults.",
+            "upvotes": 0,
+            "partName": "AGM Battery",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Bosch%20AGM%20battery&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check whether the vehicle previously received any steering lock campaign or updated part before paying for a full dealer diagnosis.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-qx50-steering-wheel-lock--2014",
+          "nissan-rogue-steering-column-lock--2008"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-fx50-sunroof-drain-leak-causing-bcm-electrical-problems",
+      "model": "FX50",
+      "action": "keep_published_pending_source",
+      "reason": "A forum homepage does not establish one FX50 sunroof-drain defect, drain-routing cause, BCM damage pathway or repair cost. No exact Infiniti/NHTSA bulletin or campaign was found for this model and identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; an absent citation, forum homepage, empty recall set or unrelated vehicle bulletin cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-empty-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2009",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA returns zero campaigns for every 2009-2013 FX50 model-year query; no exact primary source cleared the gate for infiniti-fx50-sunroof-drain-leak-causing-bcm-electrical-problems.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=FX50&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "5bb97d825cf40c391e3406460e9eb27f2b2128032ed887b120831ac482055d87",
+      "proposalSha256": "5bb97d825cf40c391e3406460e9eb27f2b2128032ed887b120831ac482055d87",
+      "before": {
+        "make": "Infiniti",
+        "model": "FX50",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Sunroof Drain Leak Causing BCM/Electrical Problems",
+        "description": "Clogged or poorly routed sunroof drains can allow water to enter the cabin, often soaking carpet, wiring connectors, and body control electronics. On the FX platform, owners commonly report water intrusion leading to electrical malfunctions, musty interior odor, and intermittent warning lights after heavy rain or car washes.",
+        "solution": "Diagnosis involves water testing the sunroof cassette drains, inspecting A-pillar and firewall drain routing, and checking under-carpet harnesses/modules for corrosion. Repair usually includes clearing or rerouting drains, replacing damaged connectors or modules, drying the interior thoroughly, and sometimes replacing the BCM or affected harness sections; costs range from about $150 for drain service to $1,500+ if electronics are damaged.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Wet front or rear floorboards",
+          "Musty smell inside cabin",
+          "Random electrical glitches",
+          "Warning lights after rain",
+          "Power accessories acting erratically"
+        ],
+        "affectedSystems": [
+          "sunroof drainage",
+          "body wiring",
+          "body control module",
+          "interior electronics"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.infinitiscene.com/",
+            "type": "forum",
+            "title": "Infiniti FX forum threads on sunroof drain leaks and BCM damage"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Owners recommend checking and cleaning the sunroof drains yearly, especially if the vehicle is parked under trees.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "For water-damaged cabin filtration and odor issues after a leak, owners commonly replace the cabin air filter once the drains are repaired.",
+            "upvotes": 0,
+            "partName": "Cabin Air Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Wix%20cabin%20air%20filter&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If the carpet gets wet, pull trim and dry the padding quickly; leaving it soaked often leads to connector corrosion and recurring electrical faults.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-m37-sunroof-drain-leak-causing-bcm-electrical-problems",
+          "nissan-altima-sunroof-drain-leakage-causing-2007",
+          "infiniti-qx50-sunroof-drain-hvac-2014"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "FX50",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Sunroof Drain Leak Causing BCM/Electrical Problems",
+        "description": "Clogged or poorly routed sunroof drains can allow water to enter the cabin, often soaking carpet, wiring connectors, and body control electronics. On the FX platform, owners commonly report water intrusion leading to electrical malfunctions, musty interior odor, and intermittent warning lights after heavy rain or car washes.",
+        "solution": "Diagnosis involves water testing the sunroof cassette drains, inspecting A-pillar and firewall drain routing, and checking under-carpet harnesses/modules for corrosion. Repair usually includes clearing or rerouting drains, replacing damaged connectors or modules, drying the interior thoroughly, and sometimes replacing the BCM or affected harness sections; costs range from about $150 for drain service to $1,500+ if electronics are damaged.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Wet front or rear floorboards",
+          "Musty smell inside cabin",
+          "Random electrical glitches",
+          "Warning lights after rain",
+          "Power accessories acting erratically"
+        ],
+        "affectedSystems": [
+          "sunroof drainage",
+          "body wiring",
+          "body control module",
+          "interior electronics"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.infinitiscene.com/",
+            "type": "forum",
+            "title": "Infiniti FX forum threads on sunroof drain leaks and BCM damage"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Owners recommend checking and cleaning the sunroof drains yearly, especially if the vehicle is parked under trees.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "For water-damaged cabin filtration and odor issues after a leak, owners commonly replace the cabin air filter once the drains are repaired.",
+            "upvotes": 0,
+            "partName": "Cabin Air Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Wix%20cabin%20air%20filter&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If the carpet gets wet, pull trim and dry the padding quickly; leaving it soaked often leads to connector corrosion and recurring electrical faults.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-m37-sunroof-drain-leak-causing-bcm-electrical-problems",
+          "nissan-altima-sunroof-drain-leakage-causing-2007",
+          "infiniti-qx50-sunroof-drain-hvac-2014"
+        ]
+      }
+    }
+  ]
+}
