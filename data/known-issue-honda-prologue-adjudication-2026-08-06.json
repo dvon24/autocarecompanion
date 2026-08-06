@@ -1,0 +1,786 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Honda",
+  "model": "Prologue",
+  "completionStatement": "This packet reconciles all four frozen Honda Prologue rows. Two same-identity Honda/NHTSA corrections are proposed; two rows remain byte-for-byte unchanged because the available official records establish different or narrower identities.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All four rows remain published. Two are byte-for-byte unchanged.",
+    "An unrelated investigation, narrower bulletin, component, symptom or model may never replace the issue named by an existing indexed page.",
+    "Each rewrite contains zero commerce, zero cost or mileage claims, and empty trim and engine arrays.",
+    "The axle article is labeled as an active investigation and not a final defect finding or recall.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_honda-deeplink-snapshot-2026-08-05.json",
+    "snapshotSha256": "671de2660f31c07e01610e26c13382b6d59b293fb74ecc3e3abc02d248d6dd5e",
+    "snapshotGeneratedAt": "2026-08-05T21:54:08.563Z",
+    "snapshotHash": "fcd155f1e269b1d8c691655699cc2e18f6029c3ee54c650b88df00004025729a",
+    "prologueRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "axle-condition-remains-under-investigation",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-prologue-cv-axle-clicking-2024"
+      ],
+      "detail": "Honda ATS30070 says the clicking noise does not affect normal driving when no damage is found and that the symptom is being investigated. The proposal does not call it a defect or recall."
+    },
+    {
+      "code": "display-recall-limited-to-exact-functions",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-prologue-display-blackout-2024"
+      ],
+      "detail": "Recall 26V112 establishes instrument-panel and rearview-camera display failures. It does not establish loss of infotainment, navigation or climate controls, so those claims are removed from the proposal."
+    },
+    {
+      "code": "high-voltage-bulletins-not-substituted",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-prologue-hv-system-failure-2024"
+      ],
+      "detail": "Bulletins 25-026 and 25-043 support narrower BECM/software identities. Neither is substituted for the frozen broad charging-and-performance page."
+    },
+    {
+      "code": "aeb-investigation-excludes-prologue",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-prologue-phantom-braking-2024"
+      ],
+      "detail": "EA25002 covers Insight and Passport, not Prologue. The Prologue row remains frozen rather than inheriting another model's investigation."
+    }
+  ],
+  "mismatchSources": {
+    "hvClimateBulletin": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11015699-0001.pdf",
+    "hvBatteryDischargeBulletin": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11019250-0001.pdf",
+    "aebInvestigationExcludesPrologue": "https://static.nhtsa.gov/odi/inv/2025/INOA-EA25002-10006.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 2,
+    "keep_published_pending_source": 2,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "honda-prologue-cv-axle-clicking-2024",
+      "model": "Prologue",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced complaint counts, presumed CV-joint defects, backorder and lemon-law claims with Honda Tech Line ATS30070's exact 2024-2026 all-trim scope, inspection direction and explicit under-investigation status.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2026/MC-11026973-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Tech Line Summary ATS30070 - 2024-2026 Prologue Clicking or Ratcheting When Turning supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "47f82a72cf8eb85425becde07e96139b6bce6f55076ad863ddaaeef82a7cd7d2",
+      "proposalSha256": "10a29f181cae9e99554a8704cc34cdacfe56371532e6cbbcbf4841318e69535e",
+      "before": {
+        "make": "Honda",
+        "model": "Prologue",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "CV Joint/Axle Clicking and Knocking Noise When Turning",
+        "description": "The 2024 Honda Prologue has a widespread defect causing loud clicking or knocking sounds from the front axle area, especially when making turns or accelerating from a stop. With 98 NHTSA complaints filed at an average of just 24 miles, many owners report the noise appearing within weeks of delivery. The CV joint boots or inner joint assemblies appear to be defective from the factory. Honda issued a Tech Line Summary Article on December 19, 2025, acknowledging the 'clicking or ratcheting type noise when turning' but directed dealers not to attempt repairs if no visible damage is found. Replacement axle parts have been backordered nationwide due to the volume of affected vehicles.",
+        "solution": "Document the clicking noise with video recordings and file a complaint at NHTSA.gov to support potential recall action. Visit a Honda dealer and reference the December 2025 Tech Line Summary Article for the Prologue CV axle noise. If the clicking is severe, request axle replacement under warranty — though parts may be backordered. The noise itself is not a safety hazard per Honda's assessment, but the axles should be inspected for CV boot tears or grease leakage. Consider filing a lemon law claim if the noise is not resolved after multiple dealer visits.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Loud clicking or knocking when turning at low speed",
+          "Ratcheting noise during acceleration from a stop",
+          "Noise is louder when turning the steering wheel fully left or right",
+          "Clicking increases with vehicle speed during turns",
+          "Noise may come from either front wheel area"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Honda/Prologue/2024/suspension/suspension.shtml",
+            "type": "nhtsa",
+            "title": "2024 Honda Prologue Suspension Complaints (98) — CarComplaints.com"
+          },
+          {
+            "url": "https://www.prologuedrivers.com/threads/i%E2%80%99ve-got-the-axle-issue.928/",
+            "type": "owner-report",
+            "title": "CV Axle Issue Discussion — Honda Prologue Forum"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Record video of the clicking noise with your phone and include it with your NHTSA complaint. The more documented complaints, the faster NHTSA will escalate to a formal recall investigation. Also ask the dealer to note the issue in your service record even if they say no fix is available.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Honda has confirmed the clicking is not a safety issue and the axles are safe to drive on. Do not pay out-of-pocket for axle replacement — this should be covered under the factory warranty.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "TRQ CV axle assembly — complete replacement with new joints",
+            "partName": "CV Axle Assembly",
+            "partBrand": "TRQ",
+            "affiliateUrl": "https://www.amazon.com/s?k=TRQ%20CV%20axle%20assembly&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dorman CV boot kit to prevent grease loss and joint failure",
+            "partName": "CV Boot Kit",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20CV%20boot%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 98,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prologue",
+        "years": [
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Clicking or Ratcheting From Drive Axles When Turning - Honda Tech Line ATS30070",
+        "description": "Honda Tech Line Summary Article ATS30070 applies to all trims of the 2024-2026 Prologue. Customers may report a clicking or ratcheting noise when turning. Honda directs technicians who isolate the noise to the drive axles to inspect for damage. If no damage is found, Honda says the noise does not affect normal driving and the symptom is still under investigation; the article is not a recall or a final defect determination.",
+        "solution": "Have a Honda dealer reproduce the noise, isolate it to the drive axles and inspect for damage under ATS30070. Repair damage when found. If no damage is present, Honda directs technicians not to attempt a repair while the investigation continues.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Clicking or ratcheting noise when turning"
+        ],
+        "affectedSystems": [
+          "Drive axles"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Tech Line Summary ATS30070 - 2024-2026 Prologue Clicking or Ratcheting When Turning",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2026/MC-11026973-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced complaint counts, presumed CV-joint defects, backorder and lemon-law claims with Honda Tech Line ATS30070's exact 2024-2026 all-trim scope, inspection direction and explicit under-investigation status.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prologue-display-blackout-2024",
+      "model": "Prologue",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced secondary articles and complaint counts with exact recall 26V112, limiting the page to instrument-panel and rearview-camera display failures and the Radio Control Module software remedy; removed unsupported infotainment, climate and restart claims.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "government-recall-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2026/RCAK-26V112-4017.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Recall Acknowledgment 26V112 - 2024 Prologue Display Failures supports the proposed same-identity scope, mechanism and remedy."
+        },
+        {
+          "kind": "government-recall-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V112-2534.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Part 573 Report 26V112 - Radio Control Module Software Remedy supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "0f378dd85e77a74fabf3beae67cd90ea468c4485c8bedb61791af50cdcb7c1e6",
+      "proposalSha256": "c6313fd774c5b4959ffd7aea6eab4b49caea4d39304d46c44344809b451d1ca3",
+      "before": {
+        "make": "Honda",
+        "model": "Prologue",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Instrument Panel and Infotainment Screens Go Blank While Driving",
+        "description": "Both the instrument cluster and infotainment display can suddenly go blank while driving, eliminating the speedometer, navigation, climate controls, and safety warnings. The defect is in the Radio Control Module software, which manages communication between the vehicle's display systems and other electronic components. Honda issued a safety recall in early 2026 affecting approximately 65,000 Prologue and Acura ZDX vehicles. The failure may occur intermittently and sometimes resolves temporarily after restarting the vehicle, but loss of the driver display while driving is a significant safety concern since the Prologue has no physical instrument gauges.",
+        "solution": "Contact a Honda dealer immediately to have the recall software update installed at no cost. Owner notification letters are expected to be mailed beginning April 2026. If the screens go blank while driving, pull over safely — you have no speedometer or warning indicators. Restarting the vehicle (turning off and on) may temporarily restore the displays. Do not rely on the restart as a permanent fix. Check NHTSA.gov/recalls with your VIN to confirm recall eligibility.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Both instrument panel and center screen go completely black",
+          "Speedometer and driver information display disappear",
+          "Climate controls become inaccessible (screen-only controls)",
+          "Backup camera stops working",
+          "Displays may flicker before going blank"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.valerolaw.com/news/2026/3/5/acura-zdx-and-honda-prologue-recall-instrument-panel-screens-may-go-blank",
+            "type": "recall",
+            "title": "Acura ZDX and Honda Prologue Recall: Instrument Panel Screens May Go Blank"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Honda/Prologue/2024/electrical/electrical_system.shtml",
+            "type": "nhtsa",
+            "title": "2024 Honda Prologue Electrical System Complaints (107) — CarComplaints.com"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the screens go blank while driving, safely pull over and turn the vehicle fully off (foot off the brake, press power button). Wait 30 seconds and restart. This usually restores the displays temporarily until the recall software update is applied.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Honda%20Prologue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Honda%20Prologue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Honda%20Prologue&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 107,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prologue",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Instrument Panel or Rearview Camera Display May Fail - Recall 26V112",
+        "description": "Recall 26V112 covers certain 2024 Honda Prologue vehicles. A software error can cause the instrument panel display to fail, preventing critical information such as speed or warning lights from appearing. A software error can also make the rearview camera show a blank screen in Reverse, reducing rear visibility.",
+        "solution": "Have a Honda dealer check the VIN for recall 26V112. The recall remedy updates the vehicle's Radio Control Module with improved software.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Instrument panel display may fail",
+          "Speedometer or warning information may not appear",
+          "Rearview camera may show a blank screen in Reverse"
+        ],
+        "affectedSystems": [
+          "Instrument panel display",
+          "Rearview camera display",
+          "Radio Control Module software"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Recall Acknowledgment 26V112 - 2024 Prologue Display Failures",
+            "url": "https://static.nhtsa.gov/odi/rcl/2026/RCAK-26V112-4017.pdf"
+          },
+          {
+            "type": "recall",
+            "title": "Honda Part 573 Report 26V112 - Radio Control Module Software Remedy",
+            "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V112-2534.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced secondary articles and complaint counts with exact recall 26V112, limiting the page to instrument-panel and rearview-camera display failures and the Radio Control Module software remedy; removed unsupported infotainment, climate and restart claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prologue-hv-system-failure-2024",
+      "model": "Prologue",
+      "action": "keep_published_pending_source",
+      "reason": "Honda Bulletins 25-026 and 25-043 establish narrower software conditions involving a Service High Voltage message with cabin heating/cooling loss or a specific complete DTC set with 12-volt-battery discharge. They do not establish the frozen page's DC-fast-charging disablement, reduced acceleration, onboard-charger/junction-box causes, tow instruction or blanket warranty claim. Substituting either narrower bulletin would change the indexed identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a narrower or different official condition cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "scope-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11015699-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Bulletin 25-026 covers 2024 Prologue DTC B2BAA with intermittent cabin heating/cooling loss and a BECM software update, not the frozen charging-and-performance identity."
+        },
+        {
+          "kind": "scope-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11019250-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Bulletin 25-043 covers 2024-2025 vehicles with one complete DTC set and possible 12-volt-battery discharge, not the frozen charging-and-performance identity."
+        }
+      ],
+      "beforeSha256": "8952e7385b3f41a5d1b82419b206b455bde8ede83461d1fbe6f15f90c464362d",
+      "proposalSha256": "8952e7385b3f41a5d1b82419b206b455bde8ede83461d1fbe6f15f90c464362d",
+      "before": {
+        "make": "Honda",
+        "model": "Prologue",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "High Voltage System Failure Disabling Charging and Performance",
+        "description": "The 2024 Honda Prologue can experience high-voltage electrical system failures that disable DC fast charging, limit acceleration, or disable climate control. The 'Service High Voltage System' warning appears on the dashboard, sometimes accompanied by a sudden loss of heating or cooling. The Prologue uses GM's Ultium battery platform, and the issue may involve the battery conditioning system, onboard charger module, or high-voltage junction box. Some vehicles have been rendered inoperable, requiring tow to the dealer. The issue is distinct from the display blackout recall and affects the vehicle's powertrain and charging capability.",
+        "solution": "If the Service High Voltage System warning appears, safely reduce speed and drive to the nearest Honda dealer if the vehicle is still drivable. Do not attempt to charge the vehicle until the warning has been diagnosed. The dealer will need to perform high-voltage system diagnostics, which may involve replacing the onboard charger module, battery conditioning system components, or updating software. Repairs are covered under the 8-year/100,000-mile EV powertrain warranty. If the vehicle is not drivable, request a flatbed tow (not a conventional tow) to protect the electric drive system.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Service High Voltage System warning on dashboard",
+          "Vehicle unable to DC fast charge",
+          "Sudden loss of heating or air conditioning",
+          "Reduced acceleration or power limitation mode",
+          "Vehicle will not start or enter Ready mode"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://lemberglaw.com/2024-honda-prologue-problems-complaints-lemon/",
+            "type": "nhtsa",
+            "title": "2024 Honda Prologue Problems — Lemberg Law"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2024/honda/prologue",
+            "type": "nhtsa",
+            "title": "2024 Honda Prologue NHTSA Complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Keep a record of every Service High Voltage System warning occurrence with photos. If the issue happens more than twice, this documentation supports your case under state lemon law protections and the federal Magnuson-Moss Warranty Act.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Honda%20Prologue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Honda%20Prologue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Honda%20Prologue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Honda%20Prologue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Honda%20Prologue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Honda%20Prologue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+            "partName": "Portable Level 2 EV Charger",
+            "partBrand": "Lectron",
+            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Honda%20Prologue&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 75,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prologue",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "High Voltage System Failure Disabling Charging and Performance",
+        "description": "The 2024 Honda Prologue can experience high-voltage electrical system failures that disable DC fast charging, limit acceleration, or disable climate control. The 'Service High Voltage System' warning appears on the dashboard, sometimes accompanied by a sudden loss of heating or cooling. The Prologue uses GM's Ultium battery platform, and the issue may involve the battery conditioning system, onboard charger module, or high-voltage junction box. Some vehicles have been rendered inoperable, requiring tow to the dealer. The issue is distinct from the display blackout recall and affects the vehicle's powertrain and charging capability.",
+        "solution": "If the Service High Voltage System warning appears, safely reduce speed and drive to the nearest Honda dealer if the vehicle is still drivable. Do not attempt to charge the vehicle until the warning has been diagnosed. The dealer will need to perform high-voltage system diagnostics, which may involve replacing the onboard charger module, battery conditioning system components, or updating software. Repairs are covered under the 8-year/100,000-mile EV powertrain warranty. If the vehicle is not drivable, request a flatbed tow (not a conventional tow) to protect the electric drive system.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Service High Voltage System warning on dashboard",
+          "Vehicle unable to DC fast charge",
+          "Sudden loss of heating or air conditioning",
+          "Reduced acceleration or power limitation mode",
+          "Vehicle will not start or enter Ready mode"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://lemberglaw.com/2024-honda-prologue-problems-complaints-lemon/",
+            "type": "nhtsa",
+            "title": "2024 Honda Prologue Problems — Lemberg Law"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2024/honda/prologue",
+            "type": "nhtsa",
+            "title": "2024 Honda Prologue NHTSA Complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Keep a record of every Service High Voltage System warning occurrence with photos. If the issue happens more than twice, this documentation supports your case under state lemon law protections and the federal Magnuson-Moss Warranty Act.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Honda%20Prologue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Honda%20Prologue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Honda%20Prologue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Honda%20Prologue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Honda%20Prologue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Honda%20Prologue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+            "partName": "Portable Level 2 EV Charger",
+            "partBrand": "Lectron",
+            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Honda%20Prologue&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 75,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-prologue-phantom-braking-2024",
+      "model": "Prologue",
+      "action": "keep_published_pending_source",
+      "reason": "NHTSA Engineering Analysis EA25002 covers 2019-2022 Insight and 2019-2023 Passport vehicles, not Prologue. No exact official Prologue source was found for the frozen AEB population, highway-speed claim, sensor-stack theory or suggested setting change, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a narrower or different official condition cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "model-mismatch",
+          "url": "https://static.nhtsa.gov/odi/inv/2025/INOA-EA25002-10006.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA EA25002 names Insight and Passport only; it does not include Prologue."
+        }
+      ],
+      "beforeSha256": "e28be95a8b8fec8e9197dc8c591dc03f8e6b5f95b12bb701045badcf13d5a871",
+      "proposalSha256": "e28be95a8b8fec8e9197dc8c591dc03f8e6b5f95b12bb701045badcf13d5a871",
+      "before": {
+        "make": "Honda",
+        "model": "Prologue",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "False AEB Activation and Phantom Braking",
+        "description": "The 2024 Honda Prologue's automatic emergency braking (AEB) system activates unexpectedly with no obstacle or vehicle ahead, causing sudden hard braking that risks rear-end collisions. The issue is part of a broader NHTSA investigation into Honda's Collision Mitigation Braking System across multiple models. False activations occur most frequently when reversing, at low speeds in parking lots, and occasionally at highway speeds. The Prologue shares its Ultium platform with GM but uses Honda's own ADAS sensor stack, which appears to have calibration issues. NHTSA has received reports of the AEB activating at approximately 70 mph with no visible threat.",
+        "solution": "Visit a Honda dealer to ensure the latest ADAS software calibration is installed. If phantom braking has occurred, report it to NHTSA.gov with as much detail as possible (speed, location, conditions). There is currently no official recall, but Honda is aware of the issue as part of a broader AEB investigation. Some owners have found that the forward collision warning sensitivity setting (adjustable in the settings menu) can reduce false activations when set to 'Far' instead of 'Normal.' Do not disable AEB entirely as it provides genuine safety benefits.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle brakes hard suddenly with no obstacle ahead",
+          "AEB activation warning appears on dashboard unexpectedly",
+          "Phantom braking while reversing in a clear parking lot",
+          "Sudden deceleration on the highway in clear conditions",
+          "Collision Mitigation Braking System alert without any obstruction"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://m.carcomplaints.com/Honda/Prologue/2024/brakes/service_brakes.shtml",
+            "type": "nhtsa",
+            "title": "2024 Honda Prologue Brake Complaints (40) — CarComplaints.com"
+          },
+          {
+            "url": "https://www.consumerreports.org/cars/car-recalls-defects/nhtsa-investigates-honda-unexpected-braking-complaints-a9281526240/",
+            "type": "nhtsa",
+            "title": "NHTSA Investigation Into Honda AEB System — Consumer Reports"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Set the forward collision warning sensitivity to 'Far' in the vehicle settings. While counterintuitive, this setting reportedly reduces false AEB activations by giving the system more reaction time to confirm a real obstacle before braking.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Ceramic brake pad and rotor kit for complete brake service",
+            "partName": "Z23 Evolution Sport Brake Kit",
+            "partBrand": "Power Stop",
+            "affiliateUrl": "https://www.amazon.com/s?k=Power%20Stop%20Z23%20brake%20kit%20Honda%20Prologue&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 40,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Prologue",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "False AEB Activation and Phantom Braking",
+        "description": "The 2024 Honda Prologue's automatic emergency braking (AEB) system activates unexpectedly with no obstacle or vehicle ahead, causing sudden hard braking that risks rear-end collisions. The issue is part of a broader NHTSA investigation into Honda's Collision Mitigation Braking System across multiple models. False activations occur most frequently when reversing, at low speeds in parking lots, and occasionally at highway speeds. The Prologue shares its Ultium platform with GM but uses Honda's own ADAS sensor stack, which appears to have calibration issues. NHTSA has received reports of the AEB activating at approximately 70 mph with no visible threat.",
+        "solution": "Visit a Honda dealer to ensure the latest ADAS software calibration is installed. If phantom braking has occurred, report it to NHTSA.gov with as much detail as possible (speed, location, conditions). There is currently no official recall, but Honda is aware of the issue as part of a broader AEB investigation. Some owners have found that the forward collision warning sensitivity setting (adjustable in the settings menu) can reduce false activations when set to 'Far' instead of 'Normal.' Do not disable AEB entirely as it provides genuine safety benefits.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle brakes hard suddenly with no obstacle ahead",
+          "AEB activation warning appears on dashboard unexpectedly",
+          "Phantom braking while reversing in a clear parking lot",
+          "Sudden deceleration on the highway in clear conditions",
+          "Collision Mitigation Braking System alert without any obstruction"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://m.carcomplaints.com/Honda/Prologue/2024/brakes/service_brakes.shtml",
+            "type": "nhtsa",
+            "title": "2024 Honda Prologue Brake Complaints (40) — CarComplaints.com"
+          },
+          {
+            "url": "https://www.consumerreports.org/cars/car-recalls-defects/nhtsa-investigates-honda-unexpected-braking-complaints-a9281526240/",
+            "type": "nhtsa",
+            "title": "NHTSA Investigation Into Honda AEB System — Consumer Reports"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Set the forward collision warning sensitivity to 'Far' in the vehicle settings. While counterintuitive, this setting reportedly reduces false AEB activations by giving the system more reaction time to confirm a real obstacle before braking.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Ceramic brake pad and rotor kit for complete brake service",
+            "partName": "Z23 Evolution Sport Brake Kit",
+            "partBrand": "Power Stop",
+            "affiliateUrl": "https://www.amazon.com/s?k=Power%20Stop%20Z23%20brake%20kit%20Honda%20Prologue&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 40,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
