@@ -1,0 +1,1221 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Grandeur",
+  "completionStatement": "This packet reconciles all six frozen Hyundai Grandeur rows. One same-identity Hyundai-primary rewrite is proposed; five rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All six rows remain published. Five are byte-for-byte unchanged.",
+    "POST-only official records are review evidence, not public deep links; broad registry list pages are not substituted as issue citations.",
+    "Five different campaigns in one frozen page remain frozen rather than being collapsed into one component or silently split.",
+    "The single rewrite contains zero commerce, zero cost or mileage claims, empty trim and engine arrays, and no unsupported DTC.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "grandeurRecordCount": 6
+  },
+  "observations": [
+    {
+      "code": "two-exact-post-only-campaigns-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-grandeur-2-5-gdi-engine-stalls-while-stopped-drive-ecu-neutral-contro",
+        "hyundai-grandeur-hybrid-electronic-brake-software-lets-car-roll-back-hills-of"
+      ],
+      "detail": "Records 2781 and 4726 validate the central identities but do not expose stable record-specific GET links and do not establish every frozen claim."
+    },
+    {
+      "code": "five-campaign-bundle-not-collapsed",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-grandeur-launch-year-electrical-faults-door-handle-touch-sensors-led"
+      ],
+      "detail": "DHS, LDM, BMS, PTG and parking-distance-warning records remain distinct official campaigns; no single one replaces the bundled indexed page."
+    },
+    {
+      "code": "mdps-generation-mismatch-rejected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-grandeur-c-mdps-steering-column-clunk-rattle"
+      ],
+      "detail": "Free-repair record 1173 concerns prior HG vehicles after MDPS replacement, not the frozen IG clunk identity."
+    },
+    {
+      "code": "theta-secondary-claims-removed",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-grandeur-theta-ii-2-4-gdi-connecting-rod-bearing-wear-engine-seizure"
+      ],
+      "detail": "The proposed rewrite removes P1326, oil-consumption, repair-cost, automatic-replacement and broad population claims while retaining stable Hyundai primary citations."
+    },
+    {
+      "code": "owner-only-oil-leak-row-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-grandeur-engine-front-case-oil-leak"
+      ],
+      "detail": "No exact primary record supports the model-wide front-case seal narrative."
+    }
+  ],
+  "officialRegistry": {
+    "stall": {
+      "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+      "recordType": "free-repair",
+      "recordId": "2781",
+      "retrieval": "POST /ri/grts/detail.do with gratischeckId=2781 and ctype=O",
+      "stablePublicDeepLink": false,
+      "verifiedOn": "2026-08-06",
+      "facts": {
+        "vehicle": "Grandeur (GN7) 2.5 GDI",
+        "productionPeriod": "2022-11-16 through 2023-01-02",
+        "affectedCount": 4818,
+        "campaignStart": "2023-01-09",
+        "defect": "Insufficiently robust electrical-load data in the neutral-control interval may cause a starting/running problem while stopped in Drive.",
+        "remedy": "Upgrade the ECU, including OTA delivery when Bluelink is active."
+      }
+    },
+    "brakeRollback": {
+      "indexUrl": "https://www.car.go.kr/ri/stat/list.do",
+      "recordType": "recall",
+      "recordId": "4726",
+      "retrieval": "POST /ri/stat/detail.do with recallId=4726 and ctype=O",
+      "stablePublicDeepLink": false,
+      "verifiedOn": "2026-08-06",
+      "facts": {
+        "vehicle": "Grandeur Hybrid (GN7 HEV)",
+        "productionPeriod": "2022-10-21 through 2023-03-28",
+        "affectedCount": 14316,
+        "campaignStart": "2023-05-02",
+        "defect": "Incorrect IEB controller software can provide insufficient auxiliary braking after SCC stops on an uphill grade under 5%, allowing rollback and a rear collision.",
+        "remedy": "Update the integrated electric-brake controller software."
+      }
+    },
+    "electricalBundle": [
+      {
+        "recordType": "free-repair",
+        "recordId": "2818",
+        "retrieval": "POST /ri/grts/detail.do with gratischeckId=2818 and ctype=O",
+        "vehicle": "Grandeur GN7 and GN7 HEV",
+        "affectedCount": 8475,
+        "component": "door-handle touch sensor",
+        "defect": "internal-logic malfunction",
+        "remedy": "DHS software upgrade",
+        "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+        "stablePublicDeepLink": false,
+        "verifiedOn": "2026-08-06"
+      },
+      {
+        "recordType": "free-repair",
+        "recordId": "2816",
+        "retrieval": "POST /ri/grts/detail.do with gratischeckId=2816 and ctype=O",
+        "vehicle": "Grandeur GN7",
+        "affectedCount": 1961,
+        "component": "LED driver module",
+        "defect": "cold-temperature intermittent position-lamp non-illumination",
+        "remedy": "replace both LDMs and aim the lamps",
+        "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+        "stablePublicDeepLink": false,
+        "verifiedOn": "2026-08-06"
+      },
+      {
+        "recordType": "free-repair",
+        "recordId": "2838",
+        "retrieval": "POST /ri/grts/detail.do with gratischeckId=2838 and ctype=O",
+        "vehicle": "Grandeur GN7 HEV",
+        "affectedCount": 6006,
+        "component": "battery-management system",
+        "defect": "software-variable initialization error may intermittently discharge the battery",
+        "remedy": "BMS upgrade, including OTA when Bluelink is active",
+        "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+        "stablePublicDeepLink": false,
+        "verifiedOn": "2026-08-06"
+      },
+      {
+        "recordType": "free-repair",
+        "recordId": "2839",
+        "retrieval": "POST /ri/grts/detail.do with gratischeckId=2839 and ctype=O",
+        "vehicle": "Grandeur GN7",
+        "affectedCount": 1524,
+        "component": "power trunk/tailgate",
+        "defect": "internal-logic malfunction",
+        "remedy": "PTG software upgrade",
+        "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+        "stablePublicDeepLink": false,
+        "verifiedOn": "2026-08-06"
+      },
+      {
+        "recordType": "recall",
+        "recordId": "4697",
+        "retrieval": "POST /ri/stat/detail.do with recallId=4697 and ctype=O",
+        "vehicle": "Grandeur GN7, GN7 HEV and Kona SX2",
+        "affectedCount": 11200,
+        "component": "body-domain controller and ultrasonic sensors",
+        "defect": "communication failure may disable parking-distance warning while reversing",
+        "remedy": "BDC software update",
+        "indexUrl": "https://www.car.go.kr/ri/stat/list.do",
+        "stablePublicDeepLink": false,
+        "verifiedOn": "2026-08-06"
+      }
+    ],
+    "thetaKsds": [
+      {
+        "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+        "recordType": "free-repair",
+        "recordId": "1693",
+        "retrieval": "POST /ri/grts/detail.do with gratischeckId=1693 and ctype=O",
+        "stablePublicDeepLink": false,
+        "verifiedOn": "2026-08-06",
+        "facts": {
+          "vehicle": "Grandeur HG/IG among three Hyundai nameplates",
+          "grandeurProductionPeriod": "IG: 2016-06-21 through 2018-05-09",
+          "affectedCountAllModels": 289002,
+          "defect": "Existing logic is less capable than KSDS at detecting engine noise and vibration and warning the driver.",
+          "remedy": "Install new KSDS software; the entry also states a Theta II GDI short-block lifetime-warranty policy for connecting-rod-bearing damage."
+        }
+      },
+      {
+        "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+        "recordType": "free-repair",
+        "recordId": "1692",
+        "retrieval": "POST /ri/grts/detail.do with gratischeckId=1692 and ctype=O",
+        "stablePublicDeepLink": false,
+        "verifiedOn": "2026-08-06",
+        "facts": {
+          "vehicle": "Grandeur IG among four Hyundai nameplates",
+          "grandeurProductionPeriod": "IG: 2018-04-26 through 2019-12-10",
+          "affectedCountAllModels": 87134,
+          "defect": "Existing logic is less capable than KSDS at detecting engine noise and vibration and warning the driver.",
+          "remedy": "Install the KSDS update; the entry also states a Theta II GDI short-block lifetime-warranty policy for connecting-rod-bearing damage."
+        }
+      }
+    ]
+  },
+  "publicSources": {
+    "thetaSettlement": "https://www.hyundai.com/content/dam/hyundai/kr/ko/data/ir-schedule/2019/10/11/the-settlement-of-class-action-in-us.pdf",
+    "grandeur2019": "https://www.hyundai.com/kr/ko/brand/brandstory/heritage/2019-grandeur"
+  },
+  "summary": {
+    "rewrite_same_identity": 1,
+    "keep_published_pending_source": 5,
+    "total": 6
+  },
+  "rows": [
+    {
+      "id": "hyundai-grandeur-2-5-gdi-engine-stalls-while-stopped-drive-ecu-neutral-contro",
+      "model": "Grandeur",
+      "action": "keep_published_pending_source",
+      "reason": "Official Korean free-repair record 2781 confirms the exact 4,818-car GN7 2.5 GDI ECU campaign, production period and OTA-capable ECU update. The frozen row adds a detailed hydraulic-neutral-control explanation, unstable-idle and warning-light symptoms, a twenty-minute dealer claim and launch-campaign totals not stated by the record. Because the official detail is POST-only and has no stable record-specific public URL, the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a POST-only record, different generation or one component from a multi-campaign bundle cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-registry-exact-but-post-only",
+          "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+          "recordType": "free-repair",
+          "recordId": "2781",
+          "retrieval": "POST /ri/grts/detail.do with gratischeckId=2781 and ctype=O",
+          "stablePublicDeepLink": false,
+          "verifiedOn": "2026-08-06",
+          "facts": {
+            "vehicle": "Grandeur (GN7) 2.5 GDI",
+            "productionPeriod": "2022-11-16 through 2023-01-02",
+            "affectedCount": 4818,
+            "campaignStart": "2023-01-09",
+            "defect": "Insufficiently robust electrical-load data in the neutral-control interval may cause a starting/running problem while stopped in Drive.",
+            "remedy": "Upgrade the ECU, including OTA delivery when Bluelink is active."
+          },
+          "observation": "The record confirms the central campaign but does not provide a stable record-specific GET URL or support every frozen detail."
+        }
+      ],
+      "beforeSha256": "34a3759a84c4a51c485c1aeb0c0330de60cfeca0278ead0b8555ba24f6494e07",
+      "proposalSha256": "34a3759a84c4a51c485c1aeb0c0330de60cfeca0278ead0b8555ba24f6494e07",
+      "before": {
+        "make": "Hyundai",
+        "model": "Grandeur",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "2.5 GDI engine stalls while stopped in Drive — ECU neutral-control software defect (Grandeur GN7)",
+        "description": "Shortly after the GN7 launched, Hyundai opened a free-repair campaign for 4,818 Grandeur 2.5 GDI cars built November 16, 2022 - January 2, 2023 because the engine could stall while the car sat in Drive with the brake applied. During prolonged stops the transmission's 'neutral control' releases hydraulic pressure to save fuel; the ECU software handled electrical loads in this state poorly, causing unstable idle RPM followed by the engine shutting off. Korean outlets (Motorgraph, M Today/AutoDaily) covered the campaign, which was one of roughly 20 free-repair/recall actions logged against the GN7 in its first year.",
+        "solution": "Apply Hyundai's free ECU software update — delivered over-the-air via Bluelink for connected cars, or in about 20 minutes at a Hyundai direct service center or Blue Hands branch for others. No hardware replacement is required. Any GN7 2.5 GDI from the affected production window that exhibits unstable idle or stalling at a stop should have the campaign status checked at car.go.kr or a dealer.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Unstable or fluctuating idle RPM while stopped in Drive with the brake pressed",
+          "Engine shuts off on its own during a prolonged stop",
+          "Restart required at traffic lights",
+          "Possible warning lights after the stall"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 100,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.motorgraph.com/news/articleView.html?idxno=31372",
+            "type": "article",
+            "title": "현대차 신형 그랜저, 나오자마자 '시동 꺼짐' 무상수리 (Motorgraph)"
+          },
+          {
+            "url": "https://www.autodaily.co.kr/news/articleView.html?idxno=502676",
+            "type": "article",
+            "title": "현대차, '디 올 뉴 그랜저(GN7)' 시동꺼짐 결함 무상수리 진행 (M Today/AutoDaily)"
+          },
+          {
+            "url": "https://www.heydealer.com/blog/%EC%8B%A0%ED%98%95-%EA%B7%B8%EB%9E%9C%EC%A0%80-%EA%B2%B0%ED%95%A8-%EB%B0%8F-%EB%AC%B4%EC%83%81%EC%88%98%EB%A6%AC-%EB%AA%A9%EB%A1%9D-7%EA%B0%80%EC%A7%80/",
+            "type": "article",
+            "title": "신형 그랜저 결함 및 무상수리 목록 7가지 (HeyDealer)"
+          },
+          {
+            "url": "https://economist.co.kr/article/view/ecn202301090020",
+            "type": "article",
+            "title": "[단독] 현대차, '신형 그랜저' 품질 결함으로 수리한다 (Economist Korea)"
+          },
+          {
+            "url": "https://www.nbntv.kr/news/articleView.html?idxno=66181",
+            "type": "article",
+            "title": "현대자동차 신형 그랜저, 시동 꺼짐에 4800여 대 수리 (NBNTV)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Grandeur",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "2.5 GDI engine stalls while stopped in Drive — ECU neutral-control software defect (Grandeur GN7)",
+        "description": "Shortly after the GN7 launched, Hyundai opened a free-repair campaign for 4,818 Grandeur 2.5 GDI cars built November 16, 2022 - January 2, 2023 because the engine could stall while the car sat in Drive with the brake applied. During prolonged stops the transmission's 'neutral control' releases hydraulic pressure to save fuel; the ECU software handled electrical loads in this state poorly, causing unstable idle RPM followed by the engine shutting off. Korean outlets (Motorgraph, M Today/AutoDaily) covered the campaign, which was one of roughly 20 free-repair/recall actions logged against the GN7 in its first year.",
+        "solution": "Apply Hyundai's free ECU software update — delivered over-the-air via Bluelink for connected cars, or in about 20 minutes at a Hyundai direct service center or Blue Hands branch for others. No hardware replacement is required. Any GN7 2.5 GDI from the affected production window that exhibits unstable idle or stalling at a stop should have the campaign status checked at car.go.kr or a dealer.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Unstable or fluctuating idle RPM while stopped in Drive with the brake pressed",
+          "Engine shuts off on its own during a prolonged stop",
+          "Restart required at traffic lights",
+          "Possible warning lights after the stall"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 100,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.motorgraph.com/news/articleView.html?idxno=31372",
+            "type": "article",
+            "title": "현대차 신형 그랜저, 나오자마자 '시동 꺼짐' 무상수리 (Motorgraph)"
+          },
+          {
+            "url": "https://www.autodaily.co.kr/news/articleView.html?idxno=502676",
+            "type": "article",
+            "title": "현대차, '디 올 뉴 그랜저(GN7)' 시동꺼짐 결함 무상수리 진행 (M Today/AutoDaily)"
+          },
+          {
+            "url": "https://www.heydealer.com/blog/%EC%8B%A0%ED%98%95-%EA%B7%B8%EB%9E%9C%EC%A0%80-%EA%B2%B0%ED%95%A8-%EB%B0%8F-%EB%AC%B4%EC%83%81%EC%88%98%EB%A6%AC-%EB%AA%A9%EB%A1%9D-7%EA%B0%80%EC%A7%80/",
+            "type": "article",
+            "title": "신형 그랜저 결함 및 무상수리 목록 7가지 (HeyDealer)"
+          },
+          {
+            "url": "https://economist.co.kr/article/view/ecn202301090020",
+            "type": "article",
+            "title": "[단독] 현대차, '신형 그랜저' 품질 결함으로 수리한다 (Economist Korea)"
+          },
+          {
+            "url": "https://www.nbntv.kr/news/articleView.html?idxno=66181",
+            "type": "article",
+            "title": "현대자동차 신형 그랜저, 시동 꺼짐에 4800여 대 수리 (NBNTV)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-grandeur-c-mdps-steering-column-clunk-rattle",
+      "model": "Grandeur",
+      "action": "keep_published_pending_source",
+      "reason": "The official registry result involving an MDPS column/housing concerns earlier HG vehicles after column replacement and prescribes steering-angle-sensor initialization; it does not support this 2017-2022 IG clunk, coupling/bearing wear, steering-play, goodwill or assembly-replacement narrative. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a POST-only record, different generation or one component from a multi-campaign bundle cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "generation-and-condition-mismatch",
+          "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+          "recordId": "1173",
+          "retrieval": "POST /ri/grts/detail.do with gratischeckId=1173 and ctype=O",
+          "verifiedOn": "2026-08-06",
+          "observation": "The record applies to earlier HG vehicles after MDPS column/housing replacement, not an IG coupling/bearing clunk."
+        }
+      ],
+      "beforeSha256": "660676012e84824b4b54bf01ba830559ae534b36a785c2f316e3b5ef8e218c85",
+      "proposalSha256": "660676012e84824b4b54bf01ba830559ae534b36a785c2f316e3b5ef8e218c85",
+      "before": {
+        "make": "Hyundai",
+        "model": "Grandeur",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "C-MDPS steering column clunk and rattle (Grandeur IG)",
+        "description": "Grandeur IG models (including the 2020+ facelift) with column-mounted electric power steering (C-MDPS) commonly develop a rattling, knocking or 'clunking' noise when the wheel is turned at a stop or at low speed. The noise comes from wear in the steering column's damping components — the flexible coupling and column bearing that prevent metal-to-metal contact. As the parts wear, owners also report increased steering play and a vague or notchy steering feel. The complaint is heavily documented across Korean owner communities (Bobaedream, Clien, AutoView boards) and on Namu Wiki's 6th-generation Grandeur page. Hyundai never declared it an official defect, but Blue Hands service centers perform goodwill free repairs — originally just the coupling/bearing, and more recently full MDPS assembly replacement when needed.",
+        "solution": "Take the car to a Hyundai Blue Hands or direct service center and reproduce the noise; Hyundai has been replacing the worn coupling/bearing — and in persistent cases the entire MDPS assembly — free of charge as a goodwill repair even out of warranty. If paying out of pocket at an independent shop, a coupling replacement is cheap, while a full column/MDPS unit replacement is a four-figure job in USD terms.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Rattle or knock from the steering column when turning at a standstill or low speed",
+          "Clicking/grinding felt through the steering wheel rim",
+          "Increased free play in the steering wheel",
+          "Vague or notchy steering feel as wear progresses"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.clien.net/service/board/cm_car/16428778",
+            "type": "forum",
+            "title": "Clien — 그랜저 핸들 정지 중 돌릴 경우 소음이 납니다 (2020 Grandeur steering noise at stop; chronic C-type MDPS, bearing replacement, Blue Hands)"
+          },
+          {
+            "url": "https://namu.wiki/w/%ED%98%84%EB%8C%80%20%EA%B7%B8%EB%9E%9C%EC%A0%80/6%EC%84%B8%EB%8C%80",
+            "type": "article",
+            "title": "Namu Wiki — 현대 그랜저/6세대 (IG): C-MDPS noise, flexible coupling/bearing wear, free Blue Hands repairs (live in browsers; blocks automated fetchers)"
+          },
+          {
+            "url": "https://ino1.com/car/grandeur-ig-used-buyers-guide/",
+            "type": "article",
+            "title": "ino1.com — 그랜저 IG 중고 구매 가이드: C-MDPS 소음 listed as chronic issue, highest frequency in 2017-2019 pre-facelift"
+          },
+          {
+            "url": "https://www.motorgraph.com/news/articleView.html?idxno=8634",
+            "type": "article",
+            "title": "Motorgraph (2016) — 현대차, 결국 MDPS 부품 교체…쏘나타·그랜저 등 12개 차종 (background: Hyundai's C-MDPS flexible-coupling free-replacement service action, pre-2014/HG era)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Grandeur",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "C-MDPS steering column clunk and rattle (Grandeur IG)",
+        "description": "Grandeur IG models (including the 2020+ facelift) with column-mounted electric power steering (C-MDPS) commonly develop a rattling, knocking or 'clunking' noise when the wheel is turned at a stop or at low speed. The noise comes from wear in the steering column's damping components — the flexible coupling and column bearing that prevent metal-to-metal contact. As the parts wear, owners also report increased steering play and a vague or notchy steering feel. The complaint is heavily documented across Korean owner communities (Bobaedream, Clien, AutoView boards) and on Namu Wiki's 6th-generation Grandeur page. Hyundai never declared it an official defect, but Blue Hands service centers perform goodwill free repairs — originally just the coupling/bearing, and more recently full MDPS assembly replacement when needed.",
+        "solution": "Take the car to a Hyundai Blue Hands or direct service center and reproduce the noise; Hyundai has been replacing the worn coupling/bearing — and in persistent cases the entire MDPS assembly — free of charge as a goodwill repair even out of warranty. If paying out of pocket at an independent shop, a coupling replacement is cheap, while a full column/MDPS unit replacement is a four-figure job in USD terms.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Rattle or knock from the steering column when turning at a standstill or low speed",
+          "Clicking/grinding felt through the steering wheel rim",
+          "Increased free play in the steering wheel",
+          "Vague or notchy steering feel as wear progresses"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.clien.net/service/board/cm_car/16428778",
+            "type": "forum",
+            "title": "Clien — 그랜저 핸들 정지 중 돌릴 경우 소음이 납니다 (2020 Grandeur steering noise at stop; chronic C-type MDPS, bearing replacement, Blue Hands)"
+          },
+          {
+            "url": "https://namu.wiki/w/%ED%98%84%EB%8C%80%20%EA%B7%B8%EB%9E%9C%EC%A0%80/6%EC%84%B8%EB%8C%80",
+            "type": "article",
+            "title": "Namu Wiki — 현대 그랜저/6세대 (IG): C-MDPS noise, flexible coupling/bearing wear, free Blue Hands repairs (live in browsers; blocks automated fetchers)"
+          },
+          {
+            "url": "https://ino1.com/car/grandeur-ig-used-buyers-guide/",
+            "type": "article",
+            "title": "ino1.com — 그랜저 IG 중고 구매 가이드: C-MDPS 소음 listed as chronic issue, highest frequency in 2017-2019 pre-facelift"
+          },
+          {
+            "url": "https://www.motorgraph.com/news/articleView.html?idxno=8634",
+            "type": "article",
+            "title": "Motorgraph (2016) — 현대차, 결국 MDPS 부품 교체…쏘나타·그랜저 등 12개 차종 (background: Hyundai's C-MDPS flexible-coupling free-replacement service action, pre-2014/HG era)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-grandeur-engine-front-case-oil-leak",
+      "model": "Grandeur",
+      "action": "keep_published_pending_source",
+      "reason": "Owner-community pages do not establish a model-wide 2017-2020 Grandeur IG front-case seal defect, a 50,000-km onset, both 2.4 GDI and 3.0 V6 scope, warranty practice or repair cost. No exact Hyundai or Korean-government primary document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a POST-only record, different generation or one component from a multi-campaign bundle cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "fb7d184aed87ed4286ef232c021cbc3906a7d43c33503f9f21611026985e9544",
+      "proposalSha256": "fb7d184aed87ed4286ef232c021cbc3906a7d43c33503f9f21611026985e9544",
+      "before": {
+        "make": "Hyundai",
+        "model": "Grandeur",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Engine front case (timing cover) oil leak (Grandeur IG)",
+        "description": "A chronic problem (고질병) repeatedly cited in Korean owner communities for the Grandeur IG — and its Kia K7 sibling — is engine oil seepage from the front case (timing chain cover), typically appearing after roughly 50,000 km. The sealant between the front case and the block degrades, letting oil weep down the front of the engine; documented cases on the 3.0 V6 describe undercarriage panels soaked in oil, and the issue is also widely reported on 2.4 GDI cars. CV-joint (등속조인트) grease/oil leaks are mentioned alongside it as a related underbody finding during used-car inspections. Left alone, the leak worsens, can foul the drive belt area and triggers low-oil-level conditions.",
+        "solution": "Confirm the source with a degrease-and-recheck or UV dye test, since valve cover and CV-joint leaks look similar. The fix is to remove the front timing cover, clean both surfaces, and reseal with fresh liquid gasket — a labor-intensive job (roughly 300,000-700,000 KRW at Korean shops, a few hundred USD). Cars still inside the powertrain warranty have had it resealed free at Hyundai service centers; used-car performance-guarantee insurance has also covered it. Check the oil level regularly until repaired.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil seepage or wet residue on the front of the engine block",
+          "Oil spots under the front of the car",
+          "Burning oil smell after driving",
+          "Engine oil level slowly dropping between services",
+          "Oil-soaked underbody covers found during inspection"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.teamblind.com/kr/post/%EC%A4%91%EA%B3%A0%EC%B0%A8%EC%84%B1%EB%8A%A5%EB%B3%B4%EC%A6%9D%EB%B3%B4%ED%97%98-%EC%88%98%EB%A6%AC-%ED%9B%84%EA%B8%B0feat%ED%94%84%EB%A1%A0%ED%8A%B8%EC%BC%80%EC%9D%B4%EC%8A%A4-%EB%88%84%EC%9C%A0-%EA%B7%B8%EB%9E%9C%EC%A0%80ig-JPdMhGUQ",
+            "type": "forum",
+            "title": "Blind (KR) — 중고차성능보증보험 수리 후기 (feat. 프론트케이스 누유, 그랜저IG) — IG 3.0 timing chain cover/front case oil leak at 107,000 km, ~1.45M won repair"
+          },
+          {
+            "url": "https://www.clien.net/service/board/cm_car/18500180",
+            "type": "forum",
+            "title": "Clien (KR) — 그랜저 IG 중고 구매 질문 thread — commenter: 그랜저IG/K7 프론트케이스 누유 + 등속조인트 누유 are 고질병"
+          },
+          {
+            "url": "https://www.slrclub.com/bbs/vx2.php?id=free&no=39651643",
+            "type": "forum",
+            "title": "SLR Club (KR) — 그랜저 프론트 케이스 누유 보증수리 thread (warranty repair of Grandeur front case leak)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Grandeur",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Engine front case (timing cover) oil leak (Grandeur IG)",
+        "description": "A chronic problem (고질병) repeatedly cited in Korean owner communities for the Grandeur IG — and its Kia K7 sibling — is engine oil seepage from the front case (timing chain cover), typically appearing after roughly 50,000 km. The sealant between the front case and the block degrades, letting oil weep down the front of the engine; documented cases on the 3.0 V6 describe undercarriage panels soaked in oil, and the issue is also widely reported on 2.4 GDI cars. CV-joint (등속조인트) grease/oil leaks are mentioned alongside it as a related underbody finding during used-car inspections. Left alone, the leak worsens, can foul the drive belt area and triggers low-oil-level conditions.",
+        "solution": "Confirm the source with a degrease-and-recheck or UV dye test, since valve cover and CV-joint leaks look similar. The fix is to remove the front timing cover, clean both surfaces, and reseal with fresh liquid gasket — a labor-intensive job (roughly 300,000-700,000 KRW at Korean shops, a few hundred USD). Cars still inside the powertrain warranty have had it resealed free at Hyundai service centers; used-car performance-guarantee insurance has also covered it. Check the oil level regularly until repaired.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil seepage or wet residue on the front of the engine block",
+          "Oil spots under the front of the car",
+          "Burning oil smell after driving",
+          "Engine oil level slowly dropping between services",
+          "Oil-soaked underbody covers found during inspection"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.teamblind.com/kr/post/%EC%A4%91%EA%B3%A0%EC%B0%A8%EC%84%B1%EB%8A%A5%EB%B3%B4%EC%A6%9D%EB%B3%B4%ED%97%98-%EC%88%98%EB%A6%AC-%ED%9B%84%EA%B8%B0feat%ED%94%84%EB%A1%A0%ED%8A%B8%EC%BC%80%EC%9D%B4%EC%8A%A4-%EB%88%84%EC%9C%A0-%EA%B7%B8%EB%9E%9C%EC%A0%80ig-JPdMhGUQ",
+            "type": "forum",
+            "title": "Blind (KR) — 중고차성능보증보험 수리 후기 (feat. 프론트케이스 누유, 그랜저IG) — IG 3.0 timing chain cover/front case oil leak at 107,000 km, ~1.45M won repair"
+          },
+          {
+            "url": "https://www.clien.net/service/board/cm_car/18500180",
+            "type": "forum",
+            "title": "Clien (KR) — 그랜저 IG 중고 구매 질문 thread — commenter: 그랜저IG/K7 프론트케이스 누유 + 등속조인트 누유 are 고질병"
+          },
+          {
+            "url": "https://www.slrclub.com/bbs/vx2.php?id=free&no=39651643",
+            "type": "forum",
+            "title": "SLR Club (KR) — 그랜저 프론트 케이스 누유 보증수리 thread (warranty repair of Grandeur front case leak)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-grandeur-hybrid-electronic-brake-software-lets-car-roll-back-hills-of",
+      "model": "Grandeur",
+      "action": "keep_published_pending_source",
+      "reason": "Official recall record 4726 confirms the exact 14,316-car GN7 HEV hill-rollback identity, production period and IEB software remedy. The frozen row adds launch-quality comparisons and reimbursement guidance beyond the record, and the detail is POST-only with no stable public deep link. The row remains byte-for-byte unchanged pending an independently approved citation path.",
+      "identityRule": "No content or publication-state changes; a POST-only record, different generation or one component from a multi-campaign bundle cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-registry-exact-but-post-only",
+          "indexUrl": "https://www.car.go.kr/ri/stat/list.do",
+          "recordType": "recall",
+          "recordId": "4726",
+          "retrieval": "POST /ri/stat/detail.do with recallId=4726 and ctype=O",
+          "stablePublicDeepLink": false,
+          "verifiedOn": "2026-08-06",
+          "facts": {
+            "vehicle": "Grandeur Hybrid (GN7 HEV)",
+            "productionPeriod": "2022-10-21 through 2023-03-28",
+            "affectedCount": 14316,
+            "campaignStart": "2023-05-02",
+            "defect": "Incorrect IEB controller software can provide insufficient auxiliary braking after SCC stops on an uphill grade under 5%, allowing rollback and a rear collision.",
+            "remedy": "Update the integrated electric-brake controller software."
+          },
+          "observation": "The record confirms the exact recall but does not provide a stable record-specific GET URL or support every frozen statement."
+        }
+      ],
+      "beforeSha256": "4eed72b38a7a78dd75e076d5d0e9af0bd1cace1a96d0d49d8bfd583f6163cce0",
+      "proposalSha256": "4eed72b38a7a78dd75e076d5d0e9af0bd1cace1a96d0d49d8bfd583f6163cce0",
+      "before": {
+        "make": "Hyundai",
+        "model": "Grandeur",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Hybrid electronic brake software lets car roll back on hills — official MOLIT recall (Grandeur GN7 HEV)",
+        "description": "In April 2023 Korea's Ministry of Land, Infrastructure and Transport announced an official recall of 14,316 Grandeur GN7 hybrids for a configuration error in the electronic (integrated) brake system software. When Smart Cruise Control brought the car to a stop behind another vehicle on an uphill grade, the brake system could release insufficiently and let the car roll backward, creating a collision risk with vehicles behind. This was one of two official GN7 recalls in spring 2023 — alongside roughly 20 free-repair campaigns — that drew heavy Korean press criticism of the model's launch quality.",
+        "solution": "Have the free electronic-brake software update performed; the recall campaign started May 2, 2023 at Hyundai Hi-Tech Centers and Blue Hands branches. MOLIT notes that owners who previously paid to repair this defect can claim reimbursement from Hyundai. Owners can check VIN-specific applicability on the official Korean recall site (car.go.kr).",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Car rolls backward after Smart Cruise Control stops it on an uphill slope",
+          "Insufficient brake holding force at a standstill on grades",
+          "Driver must press the brake pedal to prevent rollback"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 100,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.newstomato.com/ReadNews.aspx?no=1185407",
+            "type": "article",
+            "title": "신형 그랜저 1만4316대 '리콜'…경사로 정차, 뒤로 밀림 현상 (NewsTomato)"
+          },
+          {
+            "url": "https://imnews.imbc.com/news/2023/econo/article/6476254_36140.html",
+            "type": "article",
+            "title": "MBC뉴스 — 현대차 신형 그랜저 등 39개 차종 약 3만대 리콜 (국토교통부 발표)"
+          },
+          {
+            "url": "http://www.lawleader.co.kr/news/articleView.html?idxno=11701",
+            "type": "article",
+            "title": "그랜저 GN7 리콜·무상수리 30만대 넘어…현대차 품질경영 무색 (LawLeader)"
+          },
+          {
+            "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=208873",
+            "type": "article",
+            "title": "그랜저 GN7 결함 21건…출시 1년도 안 돼 무상수리 19회·리콜 2회 (SafeTimes)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Grandeur",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Hybrid electronic brake software lets car roll back on hills — official MOLIT recall (Grandeur GN7 HEV)",
+        "description": "In April 2023 Korea's Ministry of Land, Infrastructure and Transport announced an official recall of 14,316 Grandeur GN7 hybrids for a configuration error in the electronic (integrated) brake system software. When Smart Cruise Control brought the car to a stop behind another vehicle on an uphill grade, the brake system could release insufficiently and let the car roll backward, creating a collision risk with vehicles behind. This was one of two official GN7 recalls in spring 2023 — alongside roughly 20 free-repair campaigns — that drew heavy Korean press criticism of the model's launch quality.",
+        "solution": "Have the free electronic-brake software update performed; the recall campaign started May 2, 2023 at Hyundai Hi-Tech Centers and Blue Hands branches. MOLIT notes that owners who previously paid to repair this defect can claim reimbursement from Hyundai. Owners can check VIN-specific applicability on the official Korean recall site (car.go.kr).",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Car rolls backward after Smart Cruise Control stops it on an uphill slope",
+          "Insufficient brake holding force at a standstill on grades",
+          "Driver must press the brake pedal to prevent rollback"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 100,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.newstomato.com/ReadNews.aspx?no=1185407",
+            "type": "article",
+            "title": "신형 그랜저 1만4316대 '리콜'…경사로 정차, 뒤로 밀림 현상 (NewsTomato)"
+          },
+          {
+            "url": "https://imnews.imbc.com/news/2023/econo/article/6476254_36140.html",
+            "type": "article",
+            "title": "MBC뉴스 — 현대차 신형 그랜저 등 39개 차종 약 3만대 리콜 (국토교통부 발표)"
+          },
+          {
+            "url": "http://www.lawleader.co.kr/news/articleView.html?idxno=11701",
+            "type": "article",
+            "title": "그랜저 GN7 리콜·무상수리 30만대 넘어…현대차 품질경영 무색 (LawLeader)"
+          },
+          {
+            "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=208873",
+            "type": "article",
+            "title": "그랜저 GN7 결함 21건…출시 1년도 안 돼 무상수리 19회·리콜 2회 (SafeTimes)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-grandeur-launch-year-electrical-faults-door-handle-touch-sensors-led",
+      "model": "Grandeur",
+      "action": "keep_published_pending_source",
+      "reason": "Official registry records confirm five separate campaigns, but the frozen page combines five different components, populations, production periods and remedies into one issue identity. Replacing the bundle with any one campaign would change the indexed page; citing POST-only list pages would not provide record-specific public evidence. The row remains byte-for-byte unchanged pending an approved split or other page-preserving plan.",
+      "identityRule": "No content or publication-state changes; a POST-only record, different generation or one component from a multi-campaign bundle cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-registry-distinct-campaign",
+          "recordType": "free-repair",
+          "recordId": "2818",
+          "retrieval": "POST /ri/grts/detail.do with gratischeckId=2818 and ctype=O",
+          "vehicle": "Grandeur GN7 and GN7 HEV",
+          "affectedCount": 8475,
+          "component": "door-handle touch sensor",
+          "defect": "internal-logic malfunction",
+          "remedy": "DHS software upgrade",
+          "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+          "stablePublicDeepLink": false,
+          "verifiedOn": "2026-08-06",
+          "observation": "This is one of five separate identities combined by the frozen page."
+        },
+        {
+          "kind": "official-registry-distinct-campaign",
+          "recordType": "free-repair",
+          "recordId": "2816",
+          "retrieval": "POST /ri/grts/detail.do with gratischeckId=2816 and ctype=O",
+          "vehicle": "Grandeur GN7",
+          "affectedCount": 1961,
+          "component": "LED driver module",
+          "defect": "cold-temperature intermittent position-lamp non-illumination",
+          "remedy": "replace both LDMs and aim the lamps",
+          "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+          "stablePublicDeepLink": false,
+          "verifiedOn": "2026-08-06",
+          "observation": "This is one of five separate identities combined by the frozen page."
+        },
+        {
+          "kind": "official-registry-distinct-campaign",
+          "recordType": "free-repair",
+          "recordId": "2838",
+          "retrieval": "POST /ri/grts/detail.do with gratischeckId=2838 and ctype=O",
+          "vehicle": "Grandeur GN7 HEV",
+          "affectedCount": 6006,
+          "component": "battery-management system",
+          "defect": "software-variable initialization error may intermittently discharge the battery",
+          "remedy": "BMS upgrade, including OTA when Bluelink is active",
+          "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+          "stablePublicDeepLink": false,
+          "verifiedOn": "2026-08-06",
+          "observation": "This is one of five separate identities combined by the frozen page."
+        },
+        {
+          "kind": "official-registry-distinct-campaign",
+          "recordType": "free-repair",
+          "recordId": "2839",
+          "retrieval": "POST /ri/grts/detail.do with gratischeckId=2839 and ctype=O",
+          "vehicle": "Grandeur GN7",
+          "affectedCount": 1524,
+          "component": "power trunk/tailgate",
+          "defect": "internal-logic malfunction",
+          "remedy": "PTG software upgrade",
+          "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+          "stablePublicDeepLink": false,
+          "verifiedOn": "2026-08-06",
+          "observation": "This is one of five separate identities combined by the frozen page."
+        },
+        {
+          "kind": "official-registry-distinct-campaign",
+          "recordType": "recall",
+          "recordId": "4697",
+          "retrieval": "POST /ri/stat/detail.do with recallId=4697 and ctype=O",
+          "vehicle": "Grandeur GN7, GN7 HEV and Kona SX2",
+          "affectedCount": 11200,
+          "component": "body-domain controller and ultrasonic sensors",
+          "defect": "communication failure may disable parking-distance warning while reversing",
+          "remedy": "BDC software update",
+          "indexUrl": "https://www.car.go.kr/ri/stat/list.do",
+          "stablePublicDeepLink": false,
+          "verifiedOn": "2026-08-06",
+          "observation": "This is one of five separate identities combined by the frozen page."
+        }
+      ],
+      "beforeSha256": "3b0dc213b3a447ea360f2087fcfe7faf8f1883e44ea207437c4285f8c6ba0a1b",
+      "proposalSha256": "3b0dc213b3a447ea360f2087fcfe7faf8f1883e44ea207437c4285f8c6ba0a1b",
+      "before": {
+        "make": "Hyundai",
+        "model": "Grandeur",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Launch-year electrical faults: door-handle touch sensors, LED driver modules, hybrid battery drain, parking-sensor communication (Grandeur GN7)",
+        "description": "First-year GN7s (production roughly October 2022 - February 2023) accumulated a cluster of documented electrical defects, each with its own Hyundai free-repair or recall campaign: (1) door-handle touch sensors with faulty internal logic that fail to unlock the flush door handles (8,475 cars); (2) LED driver modules (LDM) that intermittently cut headlamp/DRL output in cold weather (1,961 cars); (3) hybrid battery management system software errors causing intermittent 12V battery discharge and no-start mornings (6,006 cars, fixed via OTA); (4) power trunk/tailgate control firmware faults (1,524 cars); and (5) an official March 2023 recall of about 11,200 vehicles for communication failure between the vehicle controller and parking sensors, disabling the rear parking-distance warning and raising back-over collision risk. Korean press tallied about 20 such actions in the model's first year, affecting over 300,000 cumulative repair targets.",
+        "solution": "All items are covered by Hyundai free-repair campaigns or the MOLIT recall: software/firmware updates for the door-handle sensors, BMS, power tailgate, and parking-sensor communication (many deliverable over-the-air via Bluelink), and physical replacement of affected LED driver modules. Check the VIN at car.go.kr or a Hyundai service center to confirm which campaigns apply; owners who paid for these repairs can seek reimbursement.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Flush door handles fail to respond to touch and won't unlock the car",
+          "LED headlights or daytime running lights flicker or go out in cold weather",
+          "Dead 12V battery / no-start after parking overnight (hybrid)",
+          "Power trunk or tailgate fails to open or close properly",
+          "Rear parking-distance warning silent or erratic when reversing"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.heydealer.com/blog/%EC%8B%A0%ED%98%95-%EA%B7%B8%EB%9E%9C%EC%A0%80-%EA%B2%B0%ED%95%A8-%EB%B0%8F-%EB%AC%B4%EC%83%81%EC%88%98%EB%A6%AC-%EB%AA%A9%EB%A1%9D-7%EA%B0%80%EC%A7%80/",
+            "type": "article",
+            "title": "신형 그랜저 결함 및 무상수리 목록 7가지 (Heydealer) — GN7 free-repair list with DHS/LDM/BMS/PTG counts"
+          },
+          {
+            "url": "https://zdnet.co.kr/view/?no=20230330085759",
+            "type": "recall",
+            "title": "그랜저GN7·레인저랩터 등 10개 차종 자발적 리콜 (ZDNet Korea) — MOLIT recall, 11,200 vehicles, parking-sensor communication failure"
+          },
+          {
+            "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=208873",
+            "type": "article",
+            "title": "현대차 그랜저 GN7, 1년도 안됐는데 무상수리·리콜 21회 (SafeTimes) — 21 actions in under a year"
+          },
+          {
+            "url": "http://www.lawleader.co.kr/news/articleView.html?idxno=11701",
+            "type": "article",
+            "title": "그랜저 GN7 리콜·무상수리 30만대 넘어 (LawLeader) — cumulative 300k+ repair targets, per-campaign counts"
+          },
+          {
+            "url": "https://edaily.co.kr/news/read?mediaCodeNo=257&newsId=01397286635548568",
+            "type": "recall",
+            "title": "현대차 그랜저 GN7, 주차거리경고 미작동…국토부 리콜조치 (Edaily) — MOLIT parking-distance-warning recall"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Grandeur",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Launch-year electrical faults: door-handle touch sensors, LED driver modules, hybrid battery drain, parking-sensor communication (Grandeur GN7)",
+        "description": "First-year GN7s (production roughly October 2022 - February 2023) accumulated a cluster of documented electrical defects, each with its own Hyundai free-repair or recall campaign: (1) door-handle touch sensors with faulty internal logic that fail to unlock the flush door handles (8,475 cars); (2) LED driver modules (LDM) that intermittently cut headlamp/DRL output in cold weather (1,961 cars); (3) hybrid battery management system software errors causing intermittent 12V battery discharge and no-start mornings (6,006 cars, fixed via OTA); (4) power trunk/tailgate control firmware faults (1,524 cars); and (5) an official March 2023 recall of about 11,200 vehicles for communication failure between the vehicle controller and parking sensors, disabling the rear parking-distance warning and raising back-over collision risk. Korean press tallied about 20 such actions in the model's first year, affecting over 300,000 cumulative repair targets.",
+        "solution": "All items are covered by Hyundai free-repair campaigns or the MOLIT recall: software/firmware updates for the door-handle sensors, BMS, power tailgate, and parking-sensor communication (many deliverable over-the-air via Bluelink), and physical replacement of affected LED driver modules. Check the VIN at car.go.kr or a Hyundai service center to confirm which campaigns apply; owners who paid for these repairs can seek reimbursement.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Flush door handles fail to respond to touch and won't unlock the car",
+          "LED headlights or daytime running lights flicker or go out in cold weather",
+          "Dead 12V battery / no-start after parking overnight (hybrid)",
+          "Power trunk or tailgate fails to open or close properly",
+          "Rear parking-distance warning silent or erratic when reversing"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.heydealer.com/blog/%EC%8B%A0%ED%98%95-%EA%B7%B8%EB%9E%9C%EC%A0%80-%EA%B2%B0%ED%95%A8-%EB%B0%8F-%EB%AC%B4%EC%83%81%EC%88%98%EB%A6%AC-%EB%AA%A9%EB%A1%9D-7%EA%B0%80%EC%A7%80/",
+            "type": "article",
+            "title": "신형 그랜저 결함 및 무상수리 목록 7가지 (Heydealer) — GN7 free-repair list with DHS/LDM/BMS/PTG counts"
+          },
+          {
+            "url": "https://zdnet.co.kr/view/?no=20230330085759",
+            "type": "recall",
+            "title": "그랜저GN7·레인저랩터 등 10개 차종 자발적 리콜 (ZDNet Korea) — MOLIT recall, 11,200 vehicles, parking-sensor communication failure"
+          },
+          {
+            "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=208873",
+            "type": "article",
+            "title": "현대차 그랜저 GN7, 1년도 안됐는데 무상수리·리콜 21회 (SafeTimes) — 21 actions in under a year"
+          },
+          {
+            "url": "http://www.lawleader.co.kr/news/articleView.html?idxno=11701",
+            "type": "article",
+            "title": "그랜저 GN7 리콜·무상수리 30만대 넘어 (LawLeader) — cumulative 300k+ repair targets, per-campaign counts"
+          },
+          {
+            "url": "https://edaily.co.kr/news/read?mediaCodeNo=257&newsId=01397286635548568",
+            "type": "recall",
+            "title": "현대차 그랜저 GN7, 주차거리경고 미작동…국토부 리콜조치 (Edaily) — MOLIT parking-distance-warning recall"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-grandeur-theta-ii-2-4-gdi-connecting-rod-bearing-wear-engine-seizure",
+      "model": "Grandeur",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced secondary and forum claims with Hyundai primary sources, retained the 2017-2019 Grandeur IG Theta II 2.4 GDI identity, and removed P1326, oil-consumption, repair-cost, replacement-entitlement and population-total claims that the stable public sources do not establish.",
+      "identityRule": "The same indexed Grandeur IG Theta II 2.4 GDI bearing/KSDS identity stays on the existing ID; unsupported claims are removed.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-manufacturer-record",
+          "url": "https://www.hyundai.com/content/dam/hyundai/kr/ko/data/ir-schedule/2019/10/11/the-settlement-of-class-action-in-us.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai Motor Company - Theta II Engine Lifetime Warranty and Settlement Disclosure supports the proposed same-identity scope, mechanism or coverage language."
+        },
+        {
+          "kind": "official-manufacturer-record",
+          "url": "https://www.hyundai.com/kr/ko/brand/brandstory/heritage/2019-grandeur",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai - 2019 Grandeur Theta II 2.4 GDi Specification supports the proposed same-identity scope, mechanism or coverage language."
+        },
+        {
+          "kind": "official-registry-corroboration",
+          "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+          "recordType": "free-repair",
+          "recordId": "1693",
+          "retrieval": "POST /ri/grts/detail.do with gratischeckId=1693 and ctype=O",
+          "stablePublicDeepLink": false,
+          "verifiedOn": "2026-08-06",
+          "facts": {
+            "vehicle": "Grandeur HG/IG among three Hyundai nameplates",
+            "grandeurProductionPeriod": "IG: 2016-06-21 through 2018-05-09",
+            "affectedCountAllModels": 289002,
+            "defect": "Existing logic is less capable than KSDS at detecting engine noise and vibration and warning the driver.",
+            "remedy": "Install new KSDS software; the entry also states a Theta II GDI short-block lifetime-warranty policy for connecting-rod-bearing damage."
+          },
+          "observation": "The POST-only registry record independently confirms KSDS and Grandeur IG production coverage; it is review metadata rather than a public citation."
+        },
+        {
+          "kind": "official-registry-corroboration",
+          "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+          "recordType": "free-repair",
+          "recordId": "1692",
+          "retrieval": "POST /ri/grts/detail.do with gratischeckId=1692 and ctype=O",
+          "stablePublicDeepLink": false,
+          "verifiedOn": "2026-08-06",
+          "facts": {
+            "vehicle": "Grandeur IG among four Hyundai nameplates",
+            "grandeurProductionPeriod": "IG: 2018-04-26 through 2019-12-10",
+            "affectedCountAllModels": 87134,
+            "defect": "Existing logic is less capable than KSDS at detecting engine noise and vibration and warning the driver.",
+            "remedy": "Install the KSDS update; the entry also states a Theta II GDI short-block lifetime-warranty policy for connecting-rod-bearing damage."
+          },
+          "observation": "The POST-only registry record independently confirms KSDS and Grandeur IG production coverage; it is review metadata rather than a public citation."
+        }
+      ],
+      "beforeSha256": "b344f77523563244d81e48f981857e05474c9972e342c2422a3f70aa4572110f",
+      "proposalSha256": "45c2680a166f9a8bb35736e13d7aa37eb43779df02f3b7ff8c54092741bbb10a",
+      "before": {
+        "make": "Hyundai",
+        "model": "Grandeur",
+        "years": [
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Theta II 2.4 GDI connecting-rod bearing wear and engine seizure (Grandeur IG 2.4)",
+        "description": "The 2.4L Theta II GDI engine offered in the pre-facelift Grandeur IG (2017-2019, before the 2.5 Smartstream replaced it) is part of the Theta II family covered by Hyundai's Korea-market recall and lifetime engine warranty. Machining debris and oil-supply problems cause connecting-rod bearing wear that progresses to rod knock, cylinder-wall scuffing, heavy oil consumption and, in the worst cases, sudden engine seizure while driving. MOLIT-supervised recalls installed the KSDS knock-sensor detection software, which puts the car in reduced-power limp mode (often with code P1326) when bearing noise is detected, and Hyundai extended a lifetime warranty on the engine for Grandeur HG/IG among roughly 520,000 Korean vehicles (4.69 million worldwide). Korean owner communities (Bobaedream, Clien) consistently report oil-consumption and knock cases on IG 2.4 cars.",
+        "solution": "Have the KSDS software recall performed and, at any sign of knock, oil consumption or a P1326 code, present the car to a Hyundai service center for the Theta II bearing inspection. Engines that fail inspection are replaced with a new short/long block free of charge under the lifetime Theta II warranty (Korea and US); Hyundai also reimburses prior out-of-pocket repairs and towing. Outside warranty coverage, a replacement engine runs several thousand dollars. Use the correct oil and check the level frequently between services.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Metallic knocking or rod-knock noise from the engine, especially at cold start",
+          "Engine oil level drops noticeably between oil changes",
+          "Check-engine light with P1326 and reduced-power limp mode",
+          "Loss of power or hesitation under acceleration",
+          "Sudden engine stall or seizure while driving in severe cases"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P1326"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 6500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carguy.kr/news/articleView.html?idxno=38209",
+            "type": "article",
+            "title": "무려 469만대 현대기아 세타2 엔진 평생보증…정말 해결 될까 (Carguy — 4.69M Theta II lifetime warranty, Grandeur HG/IG)"
+          },
+          {
+            "url": "https://www.motorgraph.com/news/articleView.html?idxno=26171",
+            "type": "article",
+            "title": "5년째 이어진 '세타II 엔진' 결함 이슈, 법정 다툼은 이제 시작 (Motorgraph — Theta II rod-bearing seizure litigation, Grandeur HG/IG)"
+          },
+          {
+            "url": "https://www.motorgraph.com/news/articleView.html?idxno=26085",
+            "type": "article",
+            "title": "현대기아차, 세타Ⅱ 엔진 49만대 평생 보증 (Motorgraph — Korea lifetime warranty model list incl. Grandeur HG/IG 2.4 GDI)"
+          },
+          {
+            "url": "https://www.bobaedream.co.kr/view?code=national&No=2215477",
+            "type": "forum",
+            "title": "Bobaedream owner thread — 2017 Grandeur IG 2.4 engine oil consumption case"
+          },
+          {
+            "url": "http://inthenews.co.kr/article-19889/",
+            "type": "article",
+            "title": "세타2 엔진 평생보증, GDI만? MPI 추가 리콜 논란 (InTheNews — 520K Korea warranty scope incl. Grandeur HG/IG)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Grandeur",
+        "years": [
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Theta II 2.4 GDI Connecting-Rod Bearing Coverage and KSDS (Grandeur IG)",
+        "description": "Hyundai identifies the Grandeur among Korea-market Theta II GDI vehicles receiving expanded Knock Sensor Detection System (KSDS) coverage and a lifetime engine warranty limited to connecting-rod-bearing seizure. Hyundai's official 2019 Grandeur specification identifies its engine as the improved Theta II 2.4 GDi. Hyundai's disclosure also provides compensation terms for eligible customers who experienced engine stoppage or fire because of the covered engine defect.",
+        "solution": "Ask a Hyundai service center to check the VIN for applicable KSDS and engine-warranty coverage. KSDS is monitoring software rather than a mechanical repair; any inspection, warranty decision or engine repair depends on the vehicle's eligibility and Hyundai's diagnosis.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Engine stoppage in a covered connecting-rod-bearing-seizure case",
+          "Engine fire in a covered engine-defect case"
+        ],
+        "affectedSystems": [
+          "Theta II 2.4 GDI engine",
+          "Connecting-rod bearings",
+          "Knock Sensor Detection System"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "manufacturer",
+            "title": "Hyundai Motor Company - Theta II Engine Lifetime Warranty and Settlement Disclosure",
+            "url": "https://www.hyundai.com/content/dam/hyundai/kr/ko/data/ir-schedule/2019/10/11/the-settlement-of-class-action-in-us.pdf"
+          },
+          {
+            "type": "manufacturer",
+            "title": "Hyundai - 2019 Grandeur Theta II 2.4 GDi Specification",
+            "url": "https://www.hyundai.com/kr/ko/brand/brandstory/heritage/2019-grandeur"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced secondary and forum claims with Hyundai primary sources, retained the 2017-2019 Grandeur IG Theta II 2.4 GDI identity, and removed P1326, oil-consumption, repair-cost, replacement-entitlement and population-total claims that the stable public sources do not establish.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
