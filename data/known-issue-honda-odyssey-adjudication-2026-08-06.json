@@ -1,0 +1,3928 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Honda",
+  "model": "Odyssey",
+  "completionStatement": "This packet reconciles all 21 frozen Honda Odyssey rows. Twelve same-identity Honda/NHTSA corrections are proposed; nine rows remain byte-for-byte unchanged pending exact evidence or independent disposition.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All 21 rows remain published. Nine are byte-for-byte unchanged.",
+    "An unrelated campaign, bulletin, component or model may never replace the issue named by an existing indexed page.",
+    "Each rewrite contains zero commerce, zero cost or mileage claims, and empty trim and engine arrays.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_honda-deeplink-snapshot-2026-08-05.json",
+    "snapshotSha256": "671de2660f31c07e01610e26c13382b6d59b293fb74ecc3e3abc02d248d6dd5e",
+    "snapshotGeneratedAt": "2026-08-05T21:54:08.563Z",
+    "snapshotHash": "fcd155f1e269b1d8c691655699cc2e18f6029c3ee54c650b88df00004025729a",
+    "odysseyRecordCount": 21
+  },
+  "observations": [
+    {
+      "code": "two-false-campaign-identities-corrected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-odyssey-9speed-transmission-2018",
+        "honda-odyssey-door-latch-recall-2018"
+      ],
+      "detail": "The frozen 9-speed card cites 17-043, which applies to 2014-2017 torque-converter judder; the frozen door card cites 20V027, an airbag-inflator recall. Exact Honda sources 19-124 and 18V795 replace them."
+    },
+    {
+      "code": "seatbelt-campaign-numbers-corrected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-odyssey-seatbelt-defects-2018"
+      ],
+      "detail": "The frozen 23V782/23V783 citations do not support Odyssey. Exact campaigns are 23V158 for 2018-2020 front buckles and 17V397 for the 2018 third-row center tongue."
+    },
+    {
+      "code": "transmission-campaign-corrected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-odyssey-transmission-failure-1999"
+      ],
+      "detail": "The frozen 99V123 citation does not support the stated Odyssey transmission issue. The exact second-gear safety campaign is 04V176 for 2002-2004 vehicles."
+    },
+    {
+      "code": "fuel-pump-scope-updated",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-odyssey-fuel-pump-recall-2018"
+      ],
+      "detail": "Honda Bulletin 24-022 for recall 23V858 supplies exact VIN-eligible 2018-2023 Odyssey scope and supersedes the frozen mixed campaign references."
+    },
+    {
+      "code": "broad-multi-mechanism-pages-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-odyssey-ac-compressor-failure-2005",
+        "honda-odyssey-battery-drain-2011",
+        "honda-odyssey-engine-mount-failure-2005",
+        "honda-odyssey-hvac-blend-door-actuator-failure",
+        "honda-odyssey-infotainment-black-screen-2014",
+        "honda-odyssey-sliding-door-failure-2005",
+        "honda-odyssey-timing-belt-2005"
+      ],
+      "detail": "These rows span many years or mechanisms without one exact primary source. None is rewritten, archived or redirected."
+    },
+    {
+      "code": "partial-spool-valve-evidence-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-odyssey-vcm-spool-valve-gasket-oil-leak-causing-repeated-alternator"
+      ],
+      "detail": "Honda Bulletin 20-023 verifies the oil-control-valve leak but not the page-defining repeated-alternator-failure consequence. The full row remains unchanged."
+    },
+    {
+      "code": "distinct-2026-rear-camera-recall-not-merged",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-odyssey-backup-camera-recall-2018"
+      ],
+      "detail": "Recall 26V423 concerns water intrusion into certain 2018-2020 rear cameras and is a distinct mechanism from the existing MOST-network card. It is not merged into this indexed issue."
+    }
+  ],
+  "mismatchSources": {
+    "frozenNineSpeedBulletin": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10129797-9999.pdf",
+    "frozenDoorCampaign": "https://static.nhtsa.gov/odi/rcl/2020/RCAK-20V027-4470.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 12,
+    "keep_published_pending_source": 9,
+    "total": 21
+  },
+  "rows": [
+    {
+      "id": "honda-odyssey-9speed-transmission-2018",
+      "model": "Odyssey",
+      "action": "rewrite_same_identity",
+      "reason": "Retained the 2018-2019 9-speed transmission identity but replaced the false 17-043 citation and unsupported shudder, dog-clutch, lawsuit and fluid-flush narrative with exact Honda Bulletin 19-124 scope, symptom, cause and TCM remedy.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10169956-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 19-124 - 2018-2019 Odyssey 9-Speed Hard Upshift / P0716 supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "075ac070296bfa6fb5feed848857ed57904d2d17cac621283a31f3b0d0e4a631",
+      "proposalSha256": "a0880568d46d418a5e6704887506eb43317664ba90c7834bb75f5629877e75db",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "ZF 9-Speed Transmission Shudder and Harsh Shifting",
+        "description": "The ZF 9HP 9-speed automatic transmission experienced severe drivability issues from programming defects. Software-controlled dog clutches proved incompatible with Honda's calibration, causing violent shaking/juddering, hesitation when accelerating from stops, and harsh downshifts at low speeds. Multiple class-action lawsuits filed against Honda.",
+        "solution": "Honda issued TSB 17-043 recommending three consecutive drain-and-fill procedures to completely refresh transmission fluid, followed by software update to recalibrate transmission control module. Fluid deteriorates faster than expected under high heat loads. 2020+ models received improved software calibration.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden violent shaking/shuddering during acceleration",
+          "Harsh downshifts between 2nd and 3rd gear",
+          "Hesitation when accelerating from stops",
+          "Jerking when merging into traffic or uphill",
+          "Rough shifting at low speeds (under 30 mph)",
+          "Transmission slipping sensation"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0741",
+          "P0742"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 17-043: Judder from the Torque Converter Lock-Up Clutch After Software Update"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HONDA/ODYSSEY/VAN/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11151668"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Demand complete triple drain-and-fill procedure per TSB 17-043 - single fluid change won't fix it",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Use only genuine Honda ATF DW-1 fluid - aftermarket fluids make shuddering worse",
+            "upvotes": 0,
+            "partName": "ATF DW-1",
+            "partBrand": "Honda OEM",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20OEM%20ATF%20DW-1&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "After TSB repair, shuddering may take 100-200 miles of driving to disappear as transmission relearns",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Avoid 2018-2019 Odyssey models if possible - 9-speed transmission has fundamental design flaws",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 2341,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-09-12",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-pilot-9speed-transmission-2016",
+          "chrysler-voyager-transmission-shudder-2020",
+          "honda-passport-9speed-transmission-problems-2019",
+          "honda-accord-9speed-zf-transmission-2018"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "9-Speed Automatic Hard Upshift / DTC P0716",
+        "description": "Honda Service Bulletin 19-124 applies to 2018-2019 Odyssey LX, EX and EX-L vehicles equipped with the 9-speed automatic transmission. Abnormal transmission-control adaptation values or a TCM software calculation error can cause intermittent harsh or jerky upshifts during steady acceleration or illuminate the malfunction indicator with DTC P0716.",
+        "solution": "Have a Honda dealer confirm the symptom and update the transmission control module software under Bulletin 19-124. Honda notes that the vehicle should have at least 500 miles before diagnosing the hard-upshift condition and that TCM adaptation may take about 500 miles after the update.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Intermittent harsh or jerky upshift during steady acceleration",
+          "Malfunction indicator may illuminate",
+          "DTC P0716 may be stored"
+        ],
+        "affectedSystems": [
+          "9-speed automatic transmission control module"
+        ],
+        "dtcCodes": [
+          "P0716"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 19-124 - 2018-2019 Odyssey 9-Speed Hard Upshift / P0716",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10169956-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Retained the 2018-2019 9-speed transmission identity but replaced the false 17-043 citation and unsupported shudder, dog-clutch, lawsuit and fluid-flush narrative with exact Honda Bulletin 19-124 scope, symptom, cause and TCM remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-ac-compressor-failure-2005",
+      "model": "Odyssey",
+      "action": "keep_published_pending_source",
+      "reason": "A blank Bulletin 09-076 citation and one generic complaint do not establish one compressor/clutch defect, cause, recurrence interval, repair path or price across 2005-2023 Odyssey vehicles. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "cb2becc8a45cfed40aad6bbf737c161bde2a377c75c643d09e0cd5309328fef3",
+      "proposalSha256": "cb2becc8a45cfed40aad6bbf737c161bde2a377c75c643d09e0cd5309328fef3",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "A/C Compressor and Clutch Failure",
+        "description": "A/C compressor clutch failure is most common issue where electromagnetic clutch coil/stator fails or clutch plate surface becomes contaminated with oil from front seal leaks. Oil leaking past compressor front seal drips onto clutch surface, causing slipping and burning. Compressor bearings can also seize. Some owners report repeated clutch failures every 12-24 months.",
+        "solution": "For clutch-only failures, replace clutch stator/coil assembly ($400-$750). For complete compressor failure, replace entire A/C compressor along with receiver/drier, evacuate and recharge system ($940-$1,760). Check for oil leaks from front seal before replacing clutch - leaking seal will cause repeat clutch failure.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "A/C blows warm air",
+          "Clicking or rattling noise when A/C is on",
+          "Compressor clutch won't engage (no clicking when A/C turned on)",
+          "Squealing noise from compressor area",
+          "A/C works intermittently",
+          "Burning smell when A/C is running",
+          "Compressor clutch cycles rapidly on/off"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 09-076: A/C Compressor Clutch Does Not Engage or Slips"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HONDA/ODYSSEY/VAN/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11439734"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Before replacing compressor, verify clutch relay and pressure switches aren't the problem - saves $1,000+",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "ACDelco and Denso compressors are reliable aftermarket options ($250-$350 vs $600+ OEM)",
+            "upvotes": 0,
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20ACDelco%20and%20Denso%20compressors%20are%20reliable%20aftermarket%20optio&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If only clutch is bad and compressor works, replace just clutch assembly - saves $500-$1,000",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "If front seal is leaking oil onto clutch, entire compressor must be replaced or clutch will fail again",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Always replace receiver/drier when opening A/C system - it absorbs moisture ($40-$60)",
+            "upvotes": 0,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20Always%20replace%20receiver%2Fdrier%20when%20opening%20A%2FC%20system%20-%20it%20a&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 1834,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-11-29",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "A/C Compressor and Clutch Failure",
+        "description": "A/C compressor clutch failure is most common issue where electromagnetic clutch coil/stator fails or clutch plate surface becomes contaminated with oil from front seal leaks. Oil leaking past compressor front seal drips onto clutch surface, causing slipping and burning. Compressor bearings can also seize. Some owners report repeated clutch failures every 12-24 months.",
+        "solution": "For clutch-only failures, replace clutch stator/coil assembly ($400-$750). For complete compressor failure, replace entire A/C compressor along with receiver/drier, evacuate and recharge system ($940-$1,760). Check for oil leaks from front seal before replacing clutch - leaking seal will cause repeat clutch failure.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "A/C blows warm air",
+          "Clicking or rattling noise when A/C is on",
+          "Compressor clutch won't engage (no clicking when A/C turned on)",
+          "Squealing noise from compressor area",
+          "A/C works intermittently",
+          "Burning smell when A/C is running",
+          "Compressor clutch cycles rapidly on/off"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 09-076: A/C Compressor Clutch Does Not Engage or Slips"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HONDA/ODYSSEY/VAN/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11439734"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Before replacing compressor, verify clutch relay and pressure switches aren't the problem - saves $1,000+",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "ACDelco and Denso compressors are reliable aftermarket options ($250-$350 vs $600+ OEM)",
+            "upvotes": 0,
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20ACDelco%20and%20Denso%20compressors%20are%20reliable%20aftermarket%20optio&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If only clutch is bad and compressor works, replace just clutch assembly - saves $500-$1,000",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "If front seal is leaking oil onto clutch, entire compressor must be replaced or clutch will fail again",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Always replace receiver/drier when opening A/C system - it absorbs moisture ($40-$60)",
+            "upvotes": 0,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20Always%20replace%20receiver%2Fdrier%20when%20opening%20A%2FC%20system%20-%20it%20a&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 1834,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-11-29",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-auto-idle-stop-failure-to-restart-unexpected-stalling",
+      "model": "Odyssey",
+      "action": "rewrite_same_identity",
+      "reason": "Narrowed the unsupported 2018-2025 litigation narrative to Honda Bulletin 23-027's exact 2018-2023 applicability, supported possible cause, restart behavior and software remedy; removed costs, workarounds and claims not stated by Honda.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "trims",
+        "engines",
+        "category",
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10240336-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 23-027 - After Idle Stop Engages, Vehicle Does Not Auto Restart supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "e85cbb470f53a7a8548e5dccb6c025e2046fa03028ab6f27a9795155d968c3d3",
+      "proposalSha256": "d53a16e2f8b681b5f4a79e4cb59f2f42160edf9530e1012b483d6e7e3b40fa05",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [
+          "EX-L",
+          "Touring",
+          "Elite"
+        ],
+        "engines": [
+          "3.5L V6 (J35)"
+        ],
+        "category": "engine",
+        "title": "Auto Idle Stop Failure to Restart / Unexpected Stalling",
+        "description": "The Auto Idle Stop (engine stop-start) system can fail to automatically restart the engine after it shuts off at a stop, leaving the van inoperable and immobile in traffic, at intersections, or while turning. NHTSA opened an investigation that was upgraded in March 2025 to cover 2018-2025 Odyssey models, with more than 1,300 idle-stop reports across affected Honda vehicles, and a class action alleges Honda knew of the defect as early as 2018. The root cause is often a 12V battery reaching end of life so the engine presents higher cranking resistance than the starter torque can overcome.",
+        "solution": "Honda Service Bulletin 23-027 addresses no-restart-after-idle-stop on 2018-19 Elite/Touring and 2020-22 Odyssey by updating the PGM-FI software. Test and replace the 12V battery if weak and verify alternator output; a healthy battery frequently restores normal idle-stop operation. Owners commonly disable Auto Idle Stop as a workaround. Software reflash is typically a no-charge dealer service; a battery replacement is ~$150-$300.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Engine does not restart when brake is released at a stop",
+          "Vehicle stalls and becomes immobile at intersections",
+          "'Idle Stop temporarily interrupted' message",
+          "Auto Idle Stop intermittently stops working"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.classaction.org/blog/honda-acura-vehicles-unexpectedly-stall-due-to-defective-auto-idle-stop-feature-class-action-alleges",
+            "type": "nhtsa",
+            "title": "Honda/Acura Vehicles Unexpectedly Stall Due to Defective Auto-Idle Stop - Class Action Alleges"
+          },
+          {
+            "url": "https://www.odyclub.com/threads/auto-idle-stop-tsbs.371814/",
+            "type": "forum",
+            "title": "Auto Idle Stop TSBs (Service Bulletin 23-027) | Honda Odyssey Forum"
+          },
+          {
+            "url": "https://lemonlawhelp.com/blog/honda-idle-stop-engine-defect-lawsuit/",
+            "type": "article",
+            "title": "Honda Idle Stop Engine Defect Lawsuit | Lemon Law Help"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Auto Idle Stop May Not Restart - Bulletin 23-027",
+        "description": "Honda Service Bulletin 23-027 covers VIN-eligible 2018-2019 Odyssey Touring and Elite vehicles, all 2020-2022 Odyssey vehicles, and a specified 2023 VIN range. Under certain conditions, the engine may not automatically restart after idle stop engages. Honda identifies an aging 12-volt battery and insufficient starter torque at a high-resistance engine position as the possible cause.",
+        "solution": "Have a Honda dealer confirm bulletin applicability and update the PGM-FI software. Honda states that selecting Park and pressing the ENGINE START/STOP button will typically restart the vehicle when the condition occurs.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Engine may not automatically restart after idle stop",
+          "Vehicle may require Park and the start/stop button to restart"
+        ],
+        "affectedSystems": [
+          "Auto Idle Stop",
+          "PGM-FI software",
+          "12-volt starting system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 23-027 - After Idle Stop Engages, Vehicle Does Not Auto Restart",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10240336-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Narrowed the unsupported 2018-2025 litigation narrative to Honda Bulletin 23-027's exact 2018-2023 applicability, supported possible cause, restart behavior and software remedy; removed costs, workarounds and claims not stated by Honda.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-backup-camera-recall-2018",
+      "model": "Odyssey",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced generic NHTSA search pages, an unsupported warranty-count claim and unrelated commerce with Honda recall 23V431's exact 2018-2023 MOST-terminal defect and remedy.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCMN-23V431-2339.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Recall 23V431 - 2018-2023 Odyssey MOST Communication Error supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "8f8b9cc3f7d84267904cb8bc280ff5d2cd4a681f5ae3d378ae450bea38bfcb8d",
+      "proposalSha256": "422a849e30eb17a070aed0e44c70a8ff604378022986b843cedf1cdbfd95a793",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Backup Camera / MOST Communication Failure",
+        "description": "Media Oriented Systems Transport (MOST) coaxial cable connector improperly designed and manufactured, causing deformed terminals and poor/lost connections between audio display unit and vehicle cable connector. When MOST communication lost for 20+ seconds, rearview camera function fails when shifted into reverse, creating serious safety hazard as driver cannot see behind vehicle.",
+        "solution": "Honda issued recall covering 2018-2023 Odyssey minivans. Dealers replace MOST cable harnesses and install straightening covers over vehicle cable connectors to prevent future deformation. Owners who paid for repairs before recall eligible for reimbursement. 273,870 warranty claims filed before recall issued.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Backup camera shows black screen when in reverse",
+          "\"Check Rear View Camera System\" message",
+          "Camera works intermittently",
+          "Camera image freezes or pixelates",
+          "Complete loss of rearview camera function"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HONDA/ODYSSEY",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2018 Honda Odyssey - Includes Complaints and Investigations"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls?searchType=quickSearch&query=2018%20Honda%20Odyssey",
+            "type": "recall",
+            "title": "NHTSA Recalls Search Results for 2018 Honda Odyssey"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Backup camera failure is serious safety issue - get recall repair done immediately",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If you paid for MOST connector or backup camera repairs before recall, keep receipts for reimbursement",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Reference the 273,870 warranty claims when requesting goodwill coverage if just outside warranty period",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Don't rely solely on backup camera - always physically check behind vehicle before reversing",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Honda%20Odyssey&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Honda%20Odyssey&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Honda%20Odyssey&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Honda%20Odyssey&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Honda%20Odyssey&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 3187,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-12-03",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "MOST Network Rearview Camera Recall 23V431",
+        "description": "Honda recall 23V431 covers VIN-eligible 2018-2023 Odyssey vehicles. A coaxial-cable terminal in the Media Oriented Systems Transport network may have been manufactured out of specification, causing poor communication that can affect audio quality and make the rearview camera work intermittently or go blank in Reverse.",
+        "solution": "Have a Honda dealer check VIN eligibility. The recall repair replaces the affected female harness terminal and installs a terminal-straightening cover.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rearview camera may work intermittently",
+          "Rearview camera may go blank in Reverse",
+          "Audio quality may be affected"
+        ],
+        "affectedSystems": [
+          "MOST bus network",
+          "Rearview camera display",
+          "Audio network"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Honda Recall 23V431 - 2018-2023 Odyssey MOST Communication Error",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCMN-23V431-2339.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced generic NHTSA search pages, an unsupported warranty-count claim and unrelated commerce with Honda recall 23V431's exact 2018-2023 MOST-terminal defect and remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-battery-drain-2011",
+      "model": "Odyssey",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen 19-140 citation has no URL and describes a 2018-2019 sliding-door rear latch rather than proving the model-wide 2011-2023 parasitic-draw mechanisms and amperage thresholds. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "d8a941804b79e7076ec7150d21e21187838af0890d1988b221efa04137037947",
+      "proposalSha256": "d8a941804b79e7076ec7150d21e21187838af0890d1988b221efa04137037947",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Parasitic Battery Drain Causing Dead Battery",
+        "description": "Parasitic battery drain caused by faulty sliding door rear latch modules with malfunctioning microswitches (most common - 0.4 amp draw), stuck A/C compressor clutch relays, faulty door switches, trunk release switches stuck on, and other electrical issues. Normal draw should be 12-30mA; over 80mA is excessive and will drain battery overnight.",
+        "solution": "Test parasitic draw with multimeter on battery negative cable (should be under 25mA). Most common fix is replacing sliding door rear latch module ($200). Check and replace A/C compressor clutch relay if stuck. Inspect all door switches, trunk release, and aftermarket accessories. Some owners spray WD-40 into latch bolt hole to free internal microswitch.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Dead battery after sitting 1-3 days",
+          "Battery dies overnight",
+          "Need to jump-start frequently",
+          "Battery replaced but still drains",
+          "Dimming lights over time when parked",
+          "Battery voltage drops to 11V or below after sitting"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "Service Bulletin 19-140: 2018-19 Odyssey Sliding Door Rear Latch Does Not Work Properly"
+          },
+          {
+            "url": "https://www.odyclub.com/threads/battery-drain-2018-odyssey-sliding-door-latch.362003/",
+            "type": "forum",
+            "title": "Odyssey Forums - 2018 Odyssey battery drain / sliding door latch 400mA parasitic draw"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Test parasitic draw yourself before paying for diagnosis - requires $20 multimeter and 10 minutes",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "To isolate source, pull fuses one at a time while monitoring multimeter until draw drops to normal",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Sliding door latch is usually the culprit - search OdyClub for part numbers by year",
+            "upvotes": 0,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20Sliding%20door%20latch%20is%20usually%20the%20culprit%20-%20search%20OdyClub%20f&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "WD-40 spray into latch bolt hole can free stuck microswitch temporarily (buys time until replacement)",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Repeated deep discharges destroy batteries - replace battery after fixing parasitic draw issue",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 1543,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-12",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Parasitic Battery Drain Causing Dead Battery",
+        "description": "Parasitic battery drain caused by faulty sliding door rear latch modules with malfunctioning microswitches (most common - 0.4 amp draw), stuck A/C compressor clutch relays, faulty door switches, trunk release switches stuck on, and other electrical issues. Normal draw should be 12-30mA; over 80mA is excessive and will drain battery overnight.",
+        "solution": "Test parasitic draw with multimeter on battery negative cable (should be under 25mA). Most common fix is replacing sliding door rear latch module ($200). Check and replace A/C compressor clutch relay if stuck. Inspect all door switches, trunk release, and aftermarket accessories. Some owners spray WD-40 into latch bolt hole to free internal microswitch.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Dead battery after sitting 1-3 days",
+          "Battery dies overnight",
+          "Need to jump-start frequently",
+          "Battery replaced but still drains",
+          "Dimming lights over time when parked",
+          "Battery voltage drops to 11V or below after sitting"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "Service Bulletin 19-140: 2018-19 Odyssey Sliding Door Rear Latch Does Not Work Properly"
+          },
+          {
+            "url": "https://www.odyclub.com/threads/battery-drain-2018-odyssey-sliding-door-latch.362003/",
+            "type": "forum",
+            "title": "Odyssey Forums - 2018 Odyssey battery drain / sliding door latch 400mA parasitic draw"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Test parasitic draw yourself before paying for diagnosis - requires $20 multimeter and 10 minutes",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "To isolate source, pull fuses one at a time while monitoring multimeter until draw drops to normal",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Sliding door latch is usually the culprit - search OdyClub for part numbers by year",
+            "upvotes": 0,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20Sliding%20door%20latch%20is%20usually%20the%20culprit%20-%20search%20OdyClub%20f&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "WD-40 spray into latch bolt hole can free stuck microswitch temporarily (buys time until replacement)",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Repeated deep discharges destroy batteries - replace battery after fixing parasitic draw issue",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 1543,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-12",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-cabinwatch-rear-entertainment-camera-system-freeze",
+      "model": "Odyssey",
+      "action": "rewrite_same_identity",
+      "reason": "Preserved the exact CabinWatch/RES identity and 2018-2019 Touring/Elite scope while removing forum, settlement, reimbursement, price and completed-fix claims not established by Honda's source.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "trims",
+        "engines",
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10158720-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Tech Line ATS190403 - RES Freezes with CabinWatch Error Message supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "a0545037cbbd6476e377c5985d59c6bfb5ceab76520925e5f1b6a4049ea3ea3c",
+      "proposalSha256": "21c1efca4551f2e1f33b64a1eaf0d0416213be1fec4249d0884709bdaf7745dd",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019
+        ],
+        "trims": [
+          "Touring",
+          "Elite"
+        ],
+        "engines": [
+          "3.5L V6 (J35)"
+        ],
+        "category": "electrical",
+        "title": "CabinWatch / Rear Entertainment Camera System Freeze (\"Image Cannot Be Displayed\")",
+        "description": "On Touring and Elite vans with CabinWatch and the rear entertainment system (RES), running RES (DVD or a streamed app) for ~10 minutes or more while using CabinWatch triggers a 'Camera System Problem. Image cannot be displayed' error on the front Display Audio screen, and the overhead RES screen freezes while audio keeps playing. Honda determined the fault is software-related. This camera/RES lockup was among the defects folded into the 2018-2019 Odyssey infotainment class action that settled in 2021 for $33M (warranty extension + reimbursements).",
+        "solution": "Honda released a software update to correct the CabinWatch/RES camera freeze; have the dealer apply the latest Display Audio/RES software. Affected owners were also covered by the infotainment settlement, which provided a 2-year/24,000-mile infotainment warranty extension and reimbursement for prior repair visits. A power-cycle (restart) temporarily clears the freeze.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "'Camera System Problem. Image cannot be displayed' error",
+          "CabinWatch image locks up after ~10 minutes",
+          "Overhead rear entertainment screen freezes (audio continues)",
+          "Cabin camera unusable for the rest of the trip until restart"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.odyclub.com/threads/am-i-the-only-one-with-rear-entertainment-and-cabin-watch-issues.312793/page-17",
+            "type": "forum",
+            "title": "Am I the only one with rear entertainment and cabin watch issues? | Honda Odyssey Forum"
+          },
+          {
+            "url": "https://topclassactions.com/lawsuit-settlements/closed-settlements/honda-infotainment-issues-class-action-settlement/",
+            "type": "article",
+            "title": "Honda Infotainment Issues Class Action Settlement | Top Class Actions"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10158720-0001.pdf",
+            "type": "tsb",
+            "title": "Honda CabinWatch/RES Software Bulletin (NHTSA TSB MC-10158720)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "CabinWatch / Rear Entertainment System Freeze",
+        "description": "Honda Tech Line article ATS190403 applies to 2018-2019 Odyssey Touring and Elite vehicles. When CabinWatch is used while the rear entertainment system streams an application or plays a DVD for about 10 minutes or more, the Display Audio screen may show “Camera System Problem. Image cannot be displayed,” while the overhead screen freezes and audio continues.",
+        "solution": "Honda identified the condition as software-related and instructed technicians not to replace components while an over-the-air software correction was being prepared. Owners should ask a Honda dealer to confirm the latest applicable software and diagnosis for their VIN.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "CabinWatch image cannot be displayed message",
+          "Rear entertainment overhead screen freezes",
+          "Audio continues while the image is frozen"
+        ],
+        "affectedSystems": [
+          "CabinWatch camera",
+          "Rear entertainment system",
+          "Display Audio software"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Tech Line ATS190403 - RES Freezes with CabinWatch Error Message",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10158720-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Preserved the exact CabinWatch/RES identity and 2018-2019 Touring/Elite scope while removing forum, settlement, reimbursement, price and completed-fix claims not established by Honda's source.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-door-latch-recall-2018",
+      "model": "Odyssey",
+      "action": "rewrite_same_identity",
+      "reason": "Corrected the false 20V027 campaign number to Honda recall 18V795 and retained the exact 2018-2019 rear-latch identity, supported risk and both-latch remedy; removed commerce and generalized advice.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2018/RCRIT-18V795-2903.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 18-128 / Recall 18V795 - Power Sliding Door Rear Latches supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "e909957385544623815753eea1fca7f335d3e4c5d5d0dd9d50f2b6af0d74d5a5",
+      "proposalSha256": "83ace27661aedf827df1684bb0722e173af8ba3d34a0244cf613af65b62e9e7e",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Power Sliding Door Latch Recall (Door Opens While Driving)",
+        "description": "Latch assemblies for power sliding doors may stick and not properly latch to door strikers. Poorly latched door can open while driving, creating serious safety hazard and risk of ejection or falling from vehicle. Affects both driver and passenger side power sliding doors.",
+        "solution": "Honda issued recall to inspect and replace faulty latch assemblies. Dealers replace rear latch assemblies on both sliding doors free of charge. This is separate from functional power sliding door failures affecting all model years - this is specific recall for safety-related latch defects.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Power sliding door doesn't latch securely",
+          "Door opens slightly after appearing to close",
+          "\"Door open\" warning light remains on",
+          "Door bounces back when closing"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls?nhtsaId=20V027000",
+            "type": "nhtsa",
+            "title": "NHTSA Campaign Number 20V027000: Power Sliding Door Rear Latching Assembly May Fail"
+          },
+          {
+            "url": "https://owners.honda.com/service-maintenance/recalls",
+            "type": "manufacturer",
+            "title": "Honda Safety Recall Y58 / NHTSA 20V-027: 2018-2019 Odyssey Power Sliding Door Rear Latch"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "This is serious safety recall - check your VIN and get it fixed ASAP",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Visually inspect both sliding doors to ensure they're fully latched before driving",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Don't rely solely on \"door open\" warning light - physically check doors are secure",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Dorman OE-replacement door latch assembly — direct fit",
+            "partName": "Door Latch Assembly",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20door%20latch%20assembly&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dorman replacement door handle — matches OEM spec",
+            "partName": "Door Handle",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20door%20handle&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 412,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-06-12",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Power Sliding Door Rear Latch Recall 18V795",
+        "description": "Honda recall 18V795 covers VIN-eligible 2018-2019 Odyssey vehicles with power sliding doors. Higher-than-normal friction can make the rear latch mechanism stick, prevent the door from fully closing and allow it to open unexpectedly while the vehicle is moving.",
+        "solution": "Have a Honda dealer check VIN eligibility and replace both left and right power-sliding-door rear latch assemblies under recall 18V795.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [
+          "Power sliding door may not fully latch",
+          "Door Open warning or beeper may remain active",
+          "Power sliding door may open unexpectedly while driving"
+        ],
+        "affectedSystems": [
+          "Power sliding door rear latch assemblies"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Honda Service Bulletin 18-128 / Recall 18V795 - Power Sliding Door Rear Latches",
+            "url": "https://static.nhtsa.gov/odi/rcl/2018/RCRIT-18V795-2903.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Corrected the false 20V027 campaign number to Honda recall 18V795 and retained the exact 2018-2019 rear-latch identity, supported risk and both-latch remedy; removed commerce and generalized advice.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-engine-mount-failure-2005",
+      "model": "Odyssey",
+      "action": "keep_published_pending_source",
+      "reason": "This uncited row combines normal wear, VCM causation, all-mount replacement advice, aftermarket durability and component-damage claims across nineteen model years. It remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "65dece9ee3e0c10b914602fd7cd35e64edb4b309e39e105f63300788095bdfa1",
+      "proposalSha256": "65dece9ee3e0c10b914602fd7cd35e64edb4b309e39e105f63300788095bdfa1",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Premature Engine Mount Failure and Vibration",
+        "description": "Premature engine mount failure caused by vibration from VCM cylinder deactivation (2005-2017), normal wear, and heavy V6 engine. Hydraulic engine mounts develop leaks and lose damping ability. Failed mounts cause excessive engine movement, vibration, clunking noises, and potential damage to other components. Front mount most commonly affected.",
+        "solution": "Replace failed engine mounts with OEM Honda parts. Most mechanics recommend replacing all mounts simultaneously if one fails due to similar age/wear. For VCM-equipped models (2005-2017), installing VCM disable device prevents future premature mount failure. Use only OEM Honda mounts - aftermarket mounts fail quickly.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Thud/clunk felt when accelerating from stop",
+          "Increased engine vibration at idle",
+          "Clunking when shifting into drive or reverse",
+          "Clunking over bumps",
+          "Visible engine movement when accelerating",
+          "Liquid dripping from mount (hydraulic fluid leak)",
+          "Misalignment visible in engine bay"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "VCM is primary cause of premature mount failure on 2005-2017 models - disable VCM to prevent recurrence",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Use ONLY OEM Honda engine mounts - aftermarket mounts fail within 10,000-20,000 miles",
+            "upvotes": 0,
+            "partBrand": "Honda OEM",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20Use%20ONLY%20OEM%20Honda%20engine%20mounts%20-%20aftermarket%20mounts%20fail%20w&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace all mounts at once even if only one failed - labor overlaps and they wear at similar rates",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Failed mounts can cause transmission mount and CV axle damage from excessive engine movement",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 2156,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-10-18",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Premature Engine Mount Failure and Vibration",
+        "description": "Premature engine mount failure caused by vibration from VCM cylinder deactivation (2005-2017), normal wear, and heavy V6 engine. Hydraulic engine mounts develop leaks and lose damping ability. Failed mounts cause excessive engine movement, vibration, clunking noises, and potential damage to other components. Front mount most commonly affected.",
+        "solution": "Replace failed engine mounts with OEM Honda parts. Most mechanics recommend replacing all mounts simultaneously if one fails due to similar age/wear. For VCM-equipped models (2005-2017), installing VCM disable device prevents future premature mount failure. Use only OEM Honda mounts - aftermarket mounts fail quickly.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Thud/clunk felt when accelerating from stop",
+          "Increased engine vibration at idle",
+          "Clunking when shifting into drive or reverse",
+          "Clunking over bumps",
+          "Visible engine movement when accelerating",
+          "Liquid dripping from mount (hydraulic fluid leak)",
+          "Misalignment visible in engine bay"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "VCM is primary cause of premature mount failure on 2005-2017 models - disable VCM to prevent recurrence",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Use ONLY OEM Honda engine mounts - aftermarket mounts fail within 10,000-20,000 miles",
+            "upvotes": 0,
+            "partBrand": "Honda OEM",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20Use%20ONLY%20OEM%20Honda%20engine%20mounts%20-%20aftermarket%20mounts%20fail%20w&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace all mounts at once even if only one failed - labor overlaps and they wear at similar rates",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Failed mounts can cause transmission mount and CV axle damage from excessive engine movement",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 2156,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-10-18",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-fuel-pump-recall-2018",
+      "model": "Odyssey",
+      "action": "rewrite_same_identity",
+      "reason": "Updated the older and mismatched campaign links to Honda Bulletin 24-022 for recall 23V858, expanded only to its exact 2018-2023 VIN-eligible scope, and removed unsupported commerce and reimbursement claims.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V858-2592.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 24-022 - 2018-2023 Odyssey Fuel Pump Motor Recall 23V858 supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "f103fb08d6948b0f7e72812bdaba6799dfdd396086405a3b946907d5637a3154",
+      "proposalSha256": "38c048ae9779955f58e9704daf447b91304f7fcee34114dd51e11a9c3d6d60b7",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Pump Impeller Failure Causing Stalling",
+        "description": "Defective fuel pumps manufactured by Denso with improperly molded low-density impellers. Over time, impeller deforms and interferes with fuel pump body, rendering pump completely inoperative. Fuel pump can suddenly fail while driving, causing engine to stall without warning and preventing restart, significantly increasing crash risk.",
+        "solution": "Honda issued multiple recalls (NHTSA 20V-374, 23V-111, 21V-215, 20V-314) expanding affected vehicle population. Dealers replace fuel pump module with improved part free of charge. Parts availability limited - Honda notifying owners in stages as parts become available. Contact Honda Customer Service 888-234-2138.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Engine stalls suddenly while driving",
+          "Engine cranks but won't start",
+          "Intermittent starting problems",
+          "Loss of power while driving",
+          "Engine sputters then dies",
+          "No fuel pressure"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0087",
+          "P0230",
+          "P0231",
+          "P0232"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls?nhtsaId=20V314000",
+            "type": "nhtsa",
+            "title": "NHTSA Recall 20V-314: Fuel Pump May Fail"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls?nhtsaId=23V111000",
+            "type": "nhtsa",
+            "title": "NHTSA Recall 23V-111: Fuel Pump Failure May Cause Engine Stall"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "This is serious safety recall - check your VIN immediately at owners.honda.com",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If experiencing symptoms, don't wait for recall notice - call Honda at 888-234-2138 for priority service",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Honda may provide loaner vehicle or rental reimbursement while waiting for parts",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Don't ignore intermittent starting issues - complete failure can happen without warning on highway",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Delphi fuel pump module — OE-quality direct replacement",
+            "partName": "Fuel Pump Module",
+            "partBrand": "Delphi",
+            "affiliateUrl": "https://www.amazon.com/s?k=Delphi%20fuel%20pump%20module&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bosch fuel pump — reliable OEM alternative",
+            "partName": "Fuel Pump",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20fuel%20pump&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 2687,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-08-22",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-crv-fuel-pump-denso-2018",
+          "honda-pilot-fuel-pump-recall-2017"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "In-Tank Fuel Pump Motor Recall 23V858",
+        "description": "Honda Service Bulletin 24-022 covers VIN-eligible 2018-2023 Odyssey vehicles. A defective fuel-pump impeller can swell, interfere with the pump body and make the pump inoperative, which may prevent the engine from starting or cause a stall and loss of motive power while driving.",
+        "solution": "Have a Honda dealer check VIN eligibility. The recall remedy is replacement of the in-tank fuel pump motor under campaign 23V858.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Difficulty starting",
+          "Engine hesitation while driving",
+          "Malfunction indicator may illuminate",
+          "Engine may stall while driving",
+          "DTC P0087 may be stored"
+        ],
+        "affectedSystems": [
+          "In-tank fuel pump motor",
+          "Fuel pump impeller"
+        ],
+        "dtcCodes": [
+          "P0087"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Honda Service Bulletin 24-022 - 2018-2023 Odyssey Fuel Pump Motor Recall 23V858",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V858-2592.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Updated the older and mismatched campaign links to Honda Bulletin 24-022 for recall 23V858, expanded only to its exact 2018-2023 VIN-eligible scope, and removed unsupported commerce and reimbursement claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-hvac-blend-door-actuator-failure",
+      "model": "Odyssey",
+      "action": "keep_published_pending_source",
+      "reason": "Repair-cost pages and forum anecdotes do not establish one blend-door actuator defect, exact year scope, module-reset remedy or pricing across 2011-2022 Odyssey vehicles. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "e286299118518be8df0f9f731cb12cf84130b6fc45c01b9f14fca124dd7e01e7",
+      "proposalSha256": "e286299118518be8df0f9f731cb12cf84130b6fc45c01b9f14fca124dd7e01e7",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [
+          "EX",
+          "EX-L",
+          "Touring",
+          "Elite"
+        ],
+        "engines": [
+          "3.5L V6 (J35)"
+        ],
+        "category": "hvac",
+        "title": "HVAC Blend Door Actuator Failure (Clicking Noise, Uneven Temperature)",
+        "description": "The HVAC blend/mode door actuators (small geared motors behind the dash and in the rear climate system) strip their internal plastic gears and fail. The classic symptom is a repetitive clicking/ticking noise from behind the dash, often paired with one side blowing hot while the other blows cold, or a complete inability to change temperature or vent mode. The driver-side blend actuator and the rear HVAC actuator are the most commonly reported failures.",
+        "solution": "Replace the failed blend/mode door actuator (driver, passenger, or rear unit) and recalibrate; the part is inexpensive (~$30-$80) but front-dash access drives labor. RepairPal-class estimates and shop quotes run roughly $200-$450 per actuator including labor; the rear actuator can cost more due to access.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Repetitive clicking/ticking noise behind the dashboard",
+          "Hot air on one side, cold on the other",
+          "Temperature knob has no effect / stuck on hot or cold",
+          "Air comes from wrong vents (mode door stuck)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://repairpal.com/estimator/honda/odyssey/hvac-blend-door-actuator-replacement-cost",
+            "type": "article",
+            "title": "Honda Odyssey HVAC Blend Door Actuator Replacement Cost | RepairPal"
+          },
+          {
+            "url": "https://www.odyclub.com/threads/10-ex-l-with-intermittent-clicking-sound-in-cab-on-drivers-side-solved-blend-door-actuator.365447/",
+            "type": "forum",
+            "title": "'10 EX-L intermittent clicking - SOLVED - Blend Door Actuator | Honda Odyssey Forum"
+          },
+          {
+            "url": "https://www.odyclub.com/threads/blend-door-issue-ac-hot-and-cold.370386/",
+            "type": "forum",
+            "title": "Blend door issue, AC hot and cold | Honda Odyssey Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [
+          "EX",
+          "EX-L",
+          "Touring",
+          "Elite"
+        ],
+        "engines": [
+          "3.5L V6 (J35)"
+        ],
+        "category": "hvac",
+        "title": "HVAC Blend Door Actuator Failure (Clicking Noise, Uneven Temperature)",
+        "description": "The HVAC blend/mode door actuators (small geared motors behind the dash and in the rear climate system) strip their internal plastic gears and fail. The classic symptom is a repetitive clicking/ticking noise from behind the dash, often paired with one side blowing hot while the other blows cold, or a complete inability to change temperature or vent mode. The driver-side blend actuator and the rear HVAC actuator are the most commonly reported failures.",
+        "solution": "Replace the failed blend/mode door actuator (driver, passenger, or rear unit) and recalibrate; the part is inexpensive (~$30-$80) but front-dash access drives labor. RepairPal-class estimates and shop quotes run roughly $200-$450 per actuator including labor; the rear actuator can cost more due to access.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Repetitive clicking/ticking noise behind the dashboard",
+          "Hot air on one side, cold on the other",
+          "Temperature knob has no effect / stuck on hot or cold",
+          "Air comes from wrong vents (mode door stuck)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://repairpal.com/estimator/honda/odyssey/hvac-blend-door-actuator-replacement-cost",
+            "type": "article",
+            "title": "Honda Odyssey HVAC Blend Door Actuator Replacement Cost | RepairPal"
+          },
+          {
+            "url": "https://www.odyclub.com/threads/10-ex-l-with-intermittent-clicking-sound-in-cab-on-drivers-side-solved-blend-door-actuator.365447/",
+            "type": "forum",
+            "title": "'10 EX-L intermittent clicking - SOLVED - Blend Door Actuator | Honda Odyssey Forum"
+          },
+          {
+            "url": "https://www.odyclub.com/threads/blend-door-issue-ac-hot-and-cold.370386/",
+            "type": "forum",
+            "title": "Blend door issue, AC hot and cold | Honda Odyssey Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-ignition-interlock-2003",
+      "model": "Odyssey",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced a generic vehicle page and fabricated-looking forum URL with Honda recall 12V573's exact 2003-2004 interlock defect, rollaway risk and repair.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2012/RCRIT-12V573-9457.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 13-011 / Recall 12V573 - Key Removable Out of Park supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "56bc9ec20ba501a052b8b69d63de23adab6621ff94de4ea48478b4b20ff1e31f",
+      "proposalSha256": "5faf830f895ae94986ad8086a70f6cf14b2ce867ddcaeb6f66aa29bb31aa5ca4",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2003,
+          2004
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Ignition Switch Interlock Failure (Rollaway Risk)",
+        "description": "Ignition interlock mechanism can become damaged or worn during normal use. When this happens, it becomes possible to remove ignition key when automatic transmission shift lever is not in Park. Creates serious safety hazard because vehicle can roll away if transmission not in Park and parking brake not engaged. Honda recalled approximately 318,000 Odyssey vehicles.",
+        "solution": "Honda issued recall to replace ignition interlock mechanism. Contact Honda dealer with VIN to confirm recall status and schedule free repair. Dealers replace faulty interlock mechanism.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Can remove key with transmission in Drive/Reverse/Neutral",
+          "Key comes out before shifting to Park",
+          "Ignition interlock mechanism feels loose",
+          "Key can be removed with engine still running"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2003/HONDA/ODYSSEY",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2003 Honda Odyssey - Complaints and Recalls"
+          },
+          {
+            "url": "https://www.hondatown.com/threads/ignition-key-removal-while-not-in-park.123456/",
+            "type": "forum",
+            "title": "HondaTown Forum Thread Discussing Ignition Key Removal While Not in Park on 2003-2004 Odyssey"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "This is serious safety recall - check your VIN at owners.honda.com immediately",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Always engage parking brake on 2003-2004 models even after recall repair",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Professional Bluetooth OBD-II scanner for reading electrical system fault codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Honda%20Odyssey&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive digital multimeter for diagnosing electrical faults and testing circuits",
+            "partName": "3340 Automotive Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%203340%20Automotive%20Digital%20Multimeter%20Honda%20Odyssey&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Electrical contact cleaner for restoring connections and preventing corrosion",
+            "partName": "QD Electronic Cleaner",
+            "partBrand": "CRC",
+            "affiliateUrl": "https://www.amazon.com/s?k=CRC%20QD%20Electronic%20Cleaner%20Honda%20Odyssey&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 234,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2022-03-08",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2003,
+          2004
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Ignition Shift-Interlock Recall 12V573",
+        "description": "Honda recall 12V573 covers certain 2003-2004 Odyssey vehicles. The ignition-switch interlock lever may deform and allow the key to be removed when the automatic transmission is not in Park. If the parking brake is not engaged, the vehicle can roll away.",
+        "solution": "Have a Honda dealer check recall eligibility and install the updated shift-interlock lever; the ignition switch is replaced if inspection shows it is necessary.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Ignition key may be removable when the selector is not in Park",
+          "Vehicle may roll away if the parking brake is not engaged"
+        ],
+        "affectedSystems": [
+          "Ignition switch interlock",
+          "Automatic-transmission shift interlock"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Honda Service Bulletin 13-011 / Recall 12V573 - Key Removable Out of Park",
+            "url": "https://static.nhtsa.gov/odi/rcl/2012/RCRIT-12V573-9457.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced a generic vehicle page and fabricated-looking forum URL with Honda recall 12V573's exact 2003-2004 interlock defect, rollaway risk and repair.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-infotainment-black-screen-2014",
+      "model": "Odyssey",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint page and fabricated-looking Reddit path do not establish one infotainment failure mechanism across 2014-2023 vehicles. The later MOST recall overlaps only part of this scope and already has its own indexed card, so no substitution is proposed.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "3e7e4c3f8f95930112ab57e8966af537eb4e75391274bc92ce3ed30039b4eeac",
+      "proposalSha256": "3e7e4c3f8f95930112ab57e8966af537eb4e75391274bc92ce3ed30039b4eeac",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment Black Screen / MOST Connector Failure",
+        "description": "Infotainment system experiences black screens, crashes, freezes, and complete failure due to faulty FAKRA connectors in MOST (Media Oriented Systems Transport) communication network. Improperly designed MOST coaxial cable causes deformed terminals and poor/lost connections. If MOST communication lost for 20+ seconds, rearview camera fails when in reverse.",
+        "solution": "Honda issued recalls and TSBs (TSB 20-049, TSB 21-013) with warranty extension. Dealers inspect wiring for MOST network components utilizing FAKRA connectors and reconfigure wiring to prevent stress on harness. Repair involves replacing MOST cable harnesses and installing straightening covers over vehicle cable connectors.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Infotainment screen goes black/blank",
+          "System freezes or crashes while driving",
+          "Screen won't turn on after starting vehicle",
+          "Rearview camera shows black screen in reverse",
+          "Radio/navigation system unresponsive",
+          "Instrument panel and infotainment reboot while driving",
+          "Crackling speakers (related to MOST bus failure)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2014/HONDA/ODYSSEY#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2014 Honda Odyssey - Infotainment System Issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/Honda/comments/9x7z7r/2014_odyssey_infotainment_black_screen_fix/",
+            "type": "forum",
+            "title": "Reddit r/Honda Thread: 2014 Odyssey Infotainment Black Screen Fix - MOST Connector Issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "When scheduling service, specifically mention \"FAKRA connector\" and \"TSB 21-013\" - some service advisors aren't aware",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Request regional Honda technical specialist if your dealer can't diagnose or says \"no problem found\"",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Don't accept \"software update only\" fix - FAKRA connector wiring must be inspected and replaced",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If out of warranty, some dealers approve goodwill coverage for this known defect - escalate to Honda corporate",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Honda%20Odyssey&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Honda%20Odyssey&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Honda%20Odyssey&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Honda%20Odyssey&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Honda%20Odyssey&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 3412,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-05",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment Black Screen / MOST Connector Failure",
+        "description": "Infotainment system experiences black screens, crashes, freezes, and complete failure due to faulty FAKRA connectors in MOST (Media Oriented Systems Transport) communication network. Improperly designed MOST coaxial cable causes deformed terminals and poor/lost connections. If MOST communication lost for 20+ seconds, rearview camera fails when in reverse.",
+        "solution": "Honda issued recalls and TSBs (TSB 20-049, TSB 21-013) with warranty extension. Dealers inspect wiring for MOST network components utilizing FAKRA connectors and reconfigure wiring to prevent stress on harness. Repair involves replacing MOST cable harnesses and installing straightening covers over vehicle cable connectors.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Infotainment screen goes black/blank",
+          "System freezes or crashes while driving",
+          "Screen won't turn on after starting vehicle",
+          "Rearview camera shows black screen in reverse",
+          "Radio/navigation system unresponsive",
+          "Instrument panel and infotainment reboot while driving",
+          "Crackling speakers (related to MOST bus failure)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2014/HONDA/ODYSSEY#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2014 Honda Odyssey - Infotainment System Issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/Honda/comments/9x7z7r/2014_odyssey_infotainment_black_screen_fix/",
+            "type": "forum",
+            "title": "Reddit r/Honda Thread: 2014 Odyssey Infotainment Black Screen Fix - MOST Connector Issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "When scheduling service, specifically mention \"FAKRA connector\" and \"TSB 21-013\" - some service advisors aren't aware",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Request regional Honda technical specialist if your dealer can't diagnose or says \"no problem found\"",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Don't accept \"software update only\" fix - FAKRA connector wiring must be inspected and replaced",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If out of warranty, some dealers approve goodwill coverage for this known defect - escalate to Honda corporate",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Honda%20Odyssey&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Honda%20Odyssey&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Honda%20Odyssey&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Honda%20Odyssey&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Honda%20Odyssey&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 3412,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-05",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-power-tailgate-sags-drops-due-to-support-strut-failure",
+      "model": "Odyssey",
+      "action": "rewrite_same_identity",
+      "reason": "Narrowed the 2018-2024 vendor/forum narrative to Honda Bulletin 22-018's exact 2018-2022 applicability, right-spring damper cause and replacement remedy; removed costs and aftermarket claims.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "trims",
+        "engines",
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10216878-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 22-018 - Power Tailgate Won’t Stay Open supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "13c2a355b6b67324e96d21046bd5995ecf75ee0c94f536851b01d3f2e8eb785a",
+      "proposalSha256": "a6c3e5b7fc1c324541d52108abea48261ecc62c03b63875167eef714a4400579",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [
+          "EX-L",
+          "Touring",
+          "Elite"
+        ],
+        "engines": [
+          "3.5L V6 (J35)"
+        ],
+        "category": "body",
+        "title": "Power Tailgate Sags or Drops Due to Support Strut Failure (TSB 22-018)",
+        "description": "The gas-charged support struts on the power tailgate lose internal pressure and can no longer hold the gate up. The tailgate then sags partway, fails to stay open, or power-closes under its own weight. Because the power liftgate motor will still open the gate even when the struts are degraded, the gate can unexpectedly drop and strike a person standing beneath it — a documented safety concern. Honda addressed it in TSB 22-018, which centers on a faulty right-side support strut.",
+        "solution": "Replace the failed support strut(s) per Honda TSB 22-018 (the right-side strut is the common culprit); both are often replaced as a pair. Verify the power tailgate control unit and latch are not also affected by a separate water-intrusion fault. Strut replacement runs roughly $150-$400 depending on one vs. both struts and labor.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Tailgate will not stay open / sags partway",
+          "Tailgate closes by itself under its own weight",
+          "Power liftgate beeps and stops mid-travel",
+          "Gate feels weak or drops faster than normal"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hondapartsonline.net/blog/odyssey-tailgate-wont-stay-open",
+            "type": "tsb",
+            "title": "Honda Odyssey Tailgate Won't Stay Open - TSB 22-018 (Hondapartsonline)"
+          },
+          {
+            "url": "https://www.odyclub.com/threads/tailgate-gas-strut-problems.40133/",
+            "type": "forum",
+            "title": "Tailgate Gas Strut Problems | Honda Odyssey Forum"
+          },
+          {
+            "url": "https://www.go-parts.com/garage/trunk-lid-pull-down-motor-honda-odyssey-2020-2025",
+            "type": "article",
+            "title": "2020-2025 Honda Odyssey Power Tailgate Motor: Diagnosing Sagging, Beeping, and Failure | Go-Parts"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Power Tailgate Sags or Closes - Bulletin 22-018",
+        "description": "Honda Service Bulletin 22-018 covers 2018-2021 Odyssey trims with a power tailgate except LX and EX, plus a specified 2022 VIN range. A damaged internal damper in the right tailgate spring may provide insufficient pressure, allowing the open tailgate to sag or causing the control unit to sound a warning and power the tailgate closed.",
+        "solution": "Have a Honda dealer confirm bulletin applicability and replace the right power-tailgate spring assembly.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Open power tailgate slowly sags down",
+          "Warning tone sounds before the tailgate powers closed"
+        ],
+        "affectedSystems": [
+          "Right power-tailgate spring assembly"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 22-018 - Power Tailgate Won’t Stay Open",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10216878-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Narrowed the 2018-2024 vendor/forum narrative to Honda Bulletin 22-018's exact 2018-2022 applicability, right-spring damper cause and replacement remedy; removed costs and aftermarket claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-seatbelt-defects-2018",
+      "model": "Odyssey",
+      "action": "rewrite_same_identity",
+      "reason": "Corrected the false 23V782/23V783 campaign numbers to 23V158 and 17V397 while retaining the existing two-part seat-belt identity and exact 2018-2020 scope; removed commerce and unsupported totals.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCAK-23V158-6827.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Recall 23V158 - 2018-2020 Odyssey Front Seat Belt Buckles supports the proposed same-identity scope, mechanism and remedy."
+        },
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2017/RCRIT-17V397-6464.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 17-055 / Recall 17V397 - 2018 Odyssey Third-Row Center Seat Belt supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "2fd732711e3416f784cd1a2f6fe923f48a619e158e8d99582091ad1af89e377a",
+      "proposalSha256": "11a99e18c3a4cf21a254011711806d1f8facac759287b049f4f411b71f1c9708",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Seatbelt Buckle and Assembly Defects",
+        "description": "Two separate seatbelt recalls: (1) Front seat belt buckles may not latch properly due to deteriorating buckle channel surface coating and release button shrinking at low temperatures. (2) Third row center seatbelt assembly may have outer seatbelt tongues mistakenly installed. Both defects increase risk of injury in crashes due to occupants not being properly restrained.",
+        "solution": "Honda issued recalls affecting nearly 500,000 vehicles including 2018-2020 Odyssey. Dealers replace faulty front seat belt buckles and inspect/replace third row center seatbelt assemblies free of charge. Owners who already paid for repairs eligible for reimbursement.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Front seatbelt buckle won't latch or requires excessive force",
+          "Seatbelt buckle difficult to release",
+          "Seatbelt buckle resistance worse in cold weather",
+          "Wrong seatbelt tongue on third row center position"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls?nhtsaId=23V782000",
+            "type": "nhtsa",
+            "title": "NHTSA Recall 23V-782: Front Seat Belt Buckle May Not Latch Properly"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls?nhtsaId=23V783000",
+            "type": "nhtsa",
+            "title": "NHTSA Recall 23V-783: Incorrectly Assembled Third-Row Center Seat Belt"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "This is critical safety recall - get it fixed immediately",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If seatbelt feels difficult to latch, don't force it - schedule recall repair ASAP",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Keep proof of any seatbelt repairs you paid for - Honda will reimburse",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Check NHTSA.gov for active recalls — repairs are performed free at authorized dealers"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 567,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-28",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Seat Belt Buckle and 2018 Third-Row Tongue Recalls",
+        "description": "Two Honda recalls affect this indexed seat-belt page. Recall 23V158 covers certain 2018-2020 Odyssey vehicles whose front buckle channel can interfere with the release button and prevent latching. Recall 17V397 covers certain 2018 Odyssey vehicles whose third-row center belt may have an incorrect tongue that will not latch in the center buckle.",
+        "solution": "Have a Honda dealer check the VIN for each campaign. Recall 23V158 replaces the front buckle release buttons or buckle assemblies as needed. Recall 17V397 inspects the third-row belts and replaces the center retractor assembly if the center belt will not latch.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [
+          "Front seat belt buckle may not latch",
+          "2018 third-row center seat belt may not latch with the center buckle"
+        ],
+        "affectedSystems": [
+          "Front seat belt buckle assemblies",
+          "Third-row center seat belt assembly"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Recall 23V158 - 2018-2020 Odyssey Front Seat Belt Buckles",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCAK-23V158-6827.pdf"
+          },
+          {
+            "type": "recall",
+            "title": "Honda Service Bulletin 17-055 / Recall 17V397 - 2018 Odyssey Third-Row Center Seat Belt",
+            "url": "https://static.nhtsa.gov/odi/rcl/2017/RCRIT-17V397-6464.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Corrected the false 23V782/23V783 campaign numbers to 23V158 and 17V397 while retaining the existing two-part seat-belt identity and exact 2018-2020 scope; removed commerce and unsupported totals.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-sliding-door-failure-2005",
+      "model": "Odyssey",
+      "action": "keep_published_pending_source",
+      "reason": "The broad 2005-2023 card merges latches, rollers, tracks, motors and control modules. Bulletin 18-031 covers a narrower 2018 latch condition that overlaps the dedicated recall card; it cannot support or replace this multi-mechanism page.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "f95cd08969d2db1749a9352b74623bcfe1a202e973f13bf653316987de6bb495",
+      "proposalSha256": "f95cd08969d2db1749a9352b74623bcfe1a202e973f13bf653316987de6bb495",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Sliding Door Failures and Latch Problems",
+        "description": "Power sliding doors experience multiple failure modes including failed rear latch assemblies, binding rollers/tracks, seized actuator motors, and faulty door control modules. Rear latch assembly is most common failure point, causing doors not latching when closing, constant beeping, doors opening 1/4-inch after closing, and \"door open\" warnings.",
+        "solution": "Start with troubleshooting: turn off power doors via dashboard, open manually, remove fuse #13 for 30 seconds, turn power back on. Inspect rollers, tracks, actuators for binding/debris/wear. Clean and lubricate tracks with silicone spray. Failed rear latch assembly requires replacement ($200 parts + 1-2 hrs labor). Use only OEM Honda latch assemblies.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Door won't latch when closing (bounces back open)",
+          "Constant beeping with \"door open\" warning light",
+          "Door closes then opens 1/4-inch",
+          "Door reverses unexpectedly while closing",
+          "Grinding noise during operation",
+          "Door opens/closes very slowly",
+          "Door doesn't respond to buttons/key fob"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2005/HONDA/ODYSSEY#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2005 Honda Odyssey - Power Sliding Door Issues"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10143497-9999.pdf",
+            "type": "tsb",
+            "title": "Honda Technical Service Bulletin 18-031 - Power Sliding Door Latch Replacement Procedure"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=4eQfZ7rJxqM",
+            "type": "video",
+            "title": "EricTheCarGuy - How to Fix Honda Odyssey Power Sliding Door Latch"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Before replacing parts, try reset procedure and clean/lubricate all rollers and tracks - fixes 30% of cases",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Use silicone-based lubricant only on tracks - NOT WD-40 or petroleum-based lubes which attract dirt",
+            "upvotes": 0,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20Use%20silicone-based%20lubricant%20only%20on%20tracks%20-%20NOT%20WD-40%20or%20p&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "For rear latch issues, spray WD-40 into one of the bolt holes to free up internal microswitch (temporary fix)",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Don't ignore grinding noises - worn rollers can damage tracks ($1,500+ repair)",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "OEM Honda latch assemblies are required - aftermarket parts don't exist and won't fit properly",
+            "upvotes": 0,
+            "partBrand": "Honda OEM",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20OEM%20Honda%20latch%20assemblies%20are%20required%20-%20aftermarket%20parts&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 5234,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-18",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Sliding Door Failures and Latch Problems",
+        "description": "Power sliding doors experience multiple failure modes including failed rear latch assemblies, binding rollers/tracks, seized actuator motors, and faulty door control modules. Rear latch assembly is most common failure point, causing doors not latching when closing, constant beeping, doors opening 1/4-inch after closing, and \"door open\" warnings.",
+        "solution": "Start with troubleshooting: turn off power doors via dashboard, open manually, remove fuse #13 for 30 seconds, turn power back on. Inspect rollers, tracks, actuators for binding/debris/wear. Clean and lubricate tracks with silicone spray. Failed rear latch assembly requires replacement ($200 parts + 1-2 hrs labor). Use only OEM Honda latch assemblies.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Door won't latch when closing (bounces back open)",
+          "Constant beeping with \"door open\" warning light",
+          "Door closes then opens 1/4-inch",
+          "Door reverses unexpectedly while closing",
+          "Grinding noise during operation",
+          "Door opens/closes very slowly",
+          "Door doesn't respond to buttons/key fob"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2005/HONDA/ODYSSEY#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2005 Honda Odyssey - Power Sliding Door Issues"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10143497-9999.pdf",
+            "type": "tsb",
+            "title": "Honda Technical Service Bulletin 18-031 - Power Sliding Door Latch Replacement Procedure"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=4eQfZ7rJxqM",
+            "type": "video",
+            "title": "EricTheCarGuy - How to Fix Honda Odyssey Power Sliding Door Latch"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Before replacing parts, try reset procedure and clean/lubricate all rollers and tracks - fixes 30% of cases",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Use silicone-based lubricant only on tracks - NOT WD-40 or petroleum-based lubes which attract dirt",
+            "upvotes": 0,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20Use%20silicone-based%20lubricant%20only%20on%20tracks%20-%20NOT%20WD-40%20or%20p&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "For rear latch issues, spray WD-40 into one of the bolt holes to free up internal microswitch (temporary fix)",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Don't ignore grinding noises - worn rollers can damage tracks ($1,500+ repair)",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "OEM Honda latch assemblies are required - aftermarket parts don't exist and won't fit properly",
+            "upvotes": 0,
+            "partBrand": "Honda OEM",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20OEM%20Honda%20latch%20assemblies%20are%20required%20-%20aftermarket%20parts&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 5234,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-18",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-timing-belt-2005",
+      "model": "Odyssey",
+      "action": "keep_published_pending_source",
+      "reason": "This is a maintenance-advice page supported only by a generic complaint page, secondary TSB listing and forum. No exact Honda primary source in this audit establishes its year limit, interval, claimed engine change, prices or DTC list.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "0376d8f46206e3b03001121c72679a2727b1121c5ab115947afef562e04a5bdb",
+      "proposalSha256": "0376d8f46206e3b03001121c72679a2727b1121c5ab115947afef562e04a5bdb",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [
+          "3.5L V6"
+        ],
+        "category": "engine",
+        "title": "Critical Timing Belt and Water Pump Service",
+        "description": "3.5L V6 engine uses interference design with timing belt (not chain). If timing belt breaks, valves collide with pistons causing catastrophic engine damage ($5,000-$8,000). Honda recommends timing belt replacement at 7 years or 105,000 miles. Water pump is driven by timing belt, making simultaneous replacement cost-effective. 2011+ Odysseys use timing chain (no replacement needed).",
+        "solution": "Replace timing belt, water pump, tensioner, pulleys, and serpentine belt as comprehensive service at 105,000 miles or 7 years. Use only OEM Honda or high-quality aftermarket parts (Gates, Aisin). Includes new coolant. This prevents catastrophic engine failure.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Squealing or chirping from timing belt area",
+          "Cracking or glazing visible on belt",
+          "Coolant leaks from water pump weep hole",
+          "Engine overheating",
+          "Ticking noise from timing cover area"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0011",
+          "P0012",
+          "P0014",
+          "P0016",
+          "P0017"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": 84000,
+        "typicalMileageHigh": 126000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2005/HONDA/ODYSSEY#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2005 Honda Odyssey"
+          },
+          {
+            "url": "https://www.automd.com/tsb/2008/honda/odyssey/engine/08-034/",
+            "type": "tsb",
+            "title": "Honda TSB 08-034: Timing Belt Replacement Interval and Water Pump Inspection"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/9y7v7o/2007_honda_odyssey_timing_belt_replacement_advice/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice Thread: 2007 Honda Odyssey Timing Belt Replacement Advice"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use Gates or Aisin timing belt kits ($200-$300) which include belt, tensioner, and pulleys - OEM quality at 50% dealer cost",
+            "upvotes": 0,
+            "partBrand": "Gates",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20Use%20Gates%20or%20Aisin%20timing%20belt%20kits%20(%24200-%24300)%20which%20includ&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "ALWAYS replace water pump with timing belt - adds $100 in parts but saves $800 in labor later",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "This is interference engine - belt failure destroys engine ($6,000+ vs $1,400 preventive service)",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Replace serpentine belt, tensioner, and pulleys at same time - front engine is already disassembled",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Don't exceed 105,000 miles or 7 years - belt degradation accelerates rapidly after this point",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 876,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-07-15",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-pilot-timing-belt-water-pump-2016",
+          "honda-accord-v6-timing-belt-water-pump-2008",
+          "chrysler-pt-cruiser-timing-belt-tensioner-2001"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [
+          "3.5L V6"
+        ],
+        "category": "engine",
+        "title": "Critical Timing Belt and Water Pump Service",
+        "description": "3.5L V6 engine uses interference design with timing belt (not chain). If timing belt breaks, valves collide with pistons causing catastrophic engine damage ($5,000-$8,000). Honda recommends timing belt replacement at 7 years or 105,000 miles. Water pump is driven by timing belt, making simultaneous replacement cost-effective. 2011+ Odysseys use timing chain (no replacement needed).",
+        "solution": "Replace timing belt, water pump, tensioner, pulleys, and serpentine belt as comprehensive service at 105,000 miles or 7 years. Use only OEM Honda or high-quality aftermarket parts (Gates, Aisin). Includes new coolant. This prevents catastrophic engine failure.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Squealing or chirping from timing belt area",
+          "Cracking or glazing visible on belt",
+          "Coolant leaks from water pump weep hole",
+          "Engine overheating",
+          "Ticking noise from timing cover area"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0011",
+          "P0012",
+          "P0014",
+          "P0016",
+          "P0017"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": 84000,
+        "typicalMileageHigh": 126000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2005/HONDA/ODYSSEY#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2005 Honda Odyssey"
+          },
+          {
+            "url": "https://www.automd.com/tsb/2008/honda/odyssey/engine/08-034/",
+            "type": "tsb",
+            "title": "Honda TSB 08-034: Timing Belt Replacement Interval and Water Pump Inspection"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/9y7v7o/2007_honda_odyssey_timing_belt_replacement_advice/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice Thread: 2007 Honda Odyssey Timing Belt Replacement Advice"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use Gates or Aisin timing belt kits ($200-$300) which include belt, tensioner, and pulleys - OEM quality at 50% dealer cost",
+            "upvotes": 0,
+            "partBrand": "Gates",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20Use%20Gates%20or%20Aisin%20timing%20belt%20kits%20(%24200-%24300)%20which%20includ&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "ALWAYS replace water pump with timing belt - adds $100 in parts but saves $800 in labor later",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "This is interference engine - belt failure destroys engine ($6,000+ vs $1,400 preventive service)",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Replace serpentine belt, tensioner, and pulleys at same time - front engine is already disassembled",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Don't exceed 105,000 miles or 7 years - belt degradation accelerates rapidly after this point",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 876,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-07-15",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-pilot-timing-belt-water-pump-2016",
+          "honda-accord-v6-timing-belt-water-pump-2008",
+          "chrysler-pt-cruiser-timing-belt-tensioner-2001"
+        ]
+      }
+    },
+    {
+      "id": "honda-odyssey-torque-converter-shudder-2011",
+      "model": "Odyssey",
+      "action": "rewrite_same_identity",
+      "reason": "Corrected the falsely labeled blank 17-043 citation and unsupported continuous 2011-2017 scope by documenting only exact 2011-2012 and 2014-2017 Honda programs, their distinct eligibility and required diagnostic/remedy paths.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2016/SB-10084344-2280.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 16-046 - 2011-2012 Odyssey Lock-Up Clutch Function supports the proposed same-identity scope, mechanism and remedy."
+        },
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10129797-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 17-043 - 2014-2017 Odyssey Torque Converter Judder supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "fedfd11a573bec626972efac6fb0a2c2cdccd1d28406c6e113d580cb46664b7c",
+      "proposalSha256": "0d1005aafeb3f982e35b1385ce3a20faa3feb3f5186585c28c6e6eaea54f755e",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Torque Converter Shudder (6-Speed Auto)",
+        "description": "Judder from torque converter lock-up clutch felt while driving between 20-60 mph. Honda determined the judder was caused by deteriorated transmission fluid exposed to intermittent high heat loads under specific driving conditions. Most noticeable during light acceleration when torque converter attempts to lock up.",
+        "solution": "Honda TSB 17-043 recommends complete transmission fluid change (drain-and-fill) followed by transmission control module software update to maintain fluid temperature within optimal range. In rare cases where torque converter is actually damaged, replacement required.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Vibration/shudder between 20-60 mph during light acceleration",
+          "Sensation of driving over rumble strips",
+          "Shudder most noticeable at 40-50 mph cruise",
+          "May feel like engine misfire but transmission-related",
+          "Worse when transmission is warm"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0740",
+          "P0741",
+          "P0742"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 17-043: 2011-13 Odyssey 6AT Judder from the Torque Converter Lock-Up Clutch"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2012/HONDA/ODYSSEY/VAN/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10890504"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Try fluid change + software update before replacing torque converter - most cases don't need converter replacement",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Use Honda ATF DW-1 fluid only - shudder will return quickly with aftermarket fluid",
+            "upvotes": 0,
+            "partName": "ATF DW-1",
+            "partBrand": "Honda OEM",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20OEM%20ATF%20DW-1&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Change transmission fluid every 30,000-40,000 miles to prevent recurrence",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Don't let dealer talk you into $2,300 torque converter replacement without trying TSB fluid change first",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 1876,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-11-08",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-crv-cvt-shudder-2015",
+          "gmc-canyon-transmission-shudder-2015",
+          "acura-mdx-torque-converter-shudder-2014",
+          "honda-crosstour-transmission-shudder-2010"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2011,
+          2012,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Torque Converter Lock-Up Clutch Judder",
+        "description": "Honda documents lock-up-clutch judder in VIN-eligible 2011-2012 Odyssey Touring and Touring Elite vehicles and in all 2014-2017 Odyssey trims. It may be felt at about 20-45 mph on the earlier vehicles or 20-60 mph on 2014-2017 vehicles. Honda attributes the later condition to transmission fluid deterioration under intermittent high heat loads.",
+        "solution": "For 2011-2012 vehicles, Honda Bulletin 16-046 calls for the applicable transmission software update and ATF replacement; a returning confirmed judder may require the Bulletin 16-052 torque-converter procedure. For 2014-2017 vehicles, Bulletin 17-043 requires diagnostic snapshot confirmation, the applicable software update and its ATF flush procedure.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Judder or vibration during light acceleration",
+          "Condition may occur between approximately 20 and 60 mph"
+        ],
+        "affectedSystems": [
+          "Torque converter lock-up clutch",
+          "Automatic-transmission software",
+          "Automatic transmission fluid"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 16-046 - 2011-2012 Odyssey Lock-Up Clutch Function",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2016/SB-10084344-2280.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 17-043 - 2014-2017 Odyssey Torque Converter Judder",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10129797-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Corrected the falsely labeled blank 17-043 citation and unsupported continuous 2011-2017 scope by documenting only exact 2011-2012 and 2014-2017 Honda programs, their distinct eligibility and required diagnostic/remedy paths.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-transmission-failure-1999",
+      "model": "Odyssey",
+      "action": "rewrite_same_identity",
+      "reason": "Narrowed the broad 1999-2004 failure and class-action narrative to the exact 2002-2004 Honda second-gear safety recall, replacing the false 99V123 citation and removing unsupported failure modes, warranty terms and commerce.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2004/RCRIT-04V176-3885.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 04-021 / Recall 04V176 - Automatic Transmission Second-Gear Inspection supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "2d9261863bbca219bcd30d43ddeb5dcd013a573ff6ef677ef32feb5dbb4aa4a2",
+      "proposalSha256": "1e70d0ca6d6b62d229e0f9cbebbad9286a03ca5bd7e5d70aca7504964628d186",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          1999,
+          2000,
+          2001,
+          2002,
+          2003,
+          2004
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Automatic Transmission Complete Failure (2nd Gen)",
+        "description": "Complete transmission failure due to faulty bearings and defective 3rd clutch components in 4-speed (1999-2001) and 5-speed (2002-2004) automatic transmissions. The 2002-2004 transmission can suddenly downshift from 5th to 2nd gear causing dangerous drivability issues. Honda recalled 1.1 million vehicles in 2004 and settled class-action lawsuit in 2006.",
+        "solution": "Complete transmission replacement or rebuild required. Honda extended transmission warranty to 93 months/109,000 miles for 1999-2001 models. For 2002-2004 models with under 15,000 miles, dealers modified oil cooler return line; over 15,000 miles showing overheating damage received complete transmission replacement.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden harsh downshifts from 5th to 2nd gear",
+          "Grinding or whining noises from transmission",
+          "Slipping between gears",
+          "Transmission overheating",
+          "Complete failure to shift",
+          "Metal fragments in transmission fluid"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0751"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": 15000,
+        "typicalMileageHigh": 22500,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1999/HONDA/ODYSSEY",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 1999 Honda Odyssey - includes complaints related to transmission failure"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls?nhtsaId=99V123000",
+            "type": "recall",
+            "title": "NHTSA Recall 99V123000 - Honda Odyssey Automatic Transmission Recall (1999-2001 models)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "This is the most serious issue affecting 2nd generation Odysseys - avoid 1999-2004 models unless transmission has been completely replaced",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Check transmission fluid regularly for metal particles and discoloration indicating overheating",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Request CarFax and maintenance records showing transmission replacement before purchasing used 1999-2004 Odyssey",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Transmission fluid should be changed every 30,000 miles on these models (not Honda's recommended 90,000) to prolong life",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Use only genuine Honda ATF-Z1 transmission fluid - aftermarket fluids can accelerate failure",
+            "upvotes": 0,
+            "partName": "ATF-Z1",
+            "partBrand": "Honda OEM",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20OEM%20ATF-Z1&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 3254,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-08-15",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-prelude-auto-transmission-failure-1997",
+          "honda-pilot-automatic-transmission-2nd-gear-overheating-2003",
+          "acura-tl-auto-trans-3rd-gear-2004"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2002,
+          2003,
+          2004
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Automatic Transmission Second-Gear Safety Recall 04V176",
+        "description": "Honda recall 04V176 covers all 2002-2003 Odyssey vehicles and specified early-production 2004 vehicles. Under certain operating conditions, insufficient oil flow can allow heat to build between the countershaft and secondary-shaft second gears, leading to heat damage, gear-tooth chipping or, rarely, gear breakage and transmission lockup.",
+        "solution": "Have a Honda dealer verify VIN eligibility. Honda's campaign installed an ATF oil-jet kit on lower-mileage or undamaged vehicles and required inspection, with remanufactured transmission replacement when the specified heat damage was found.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [
+          "Transmission noise may precede damage",
+          "Second-gear heat damage may occur",
+          "Transmission may lock in rare cases"
+        ],
+        "affectedSystems": [
+          "Automatic-transmission second gears",
+          "Transmission lubrication"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Honda Service Bulletin 04-021 / Recall 04V176 - Automatic Transmission Second-Gear Inspection",
+            "url": "https://static.nhtsa.gov/odi/rcl/2004/RCRIT-04V176-3885.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Narrowed the broad 1999-2004 failure and class-action narrative to the exact 2002-2004 Honda second-gear safety recall, replacing the false 99V123 citation and removing unsupported failure modes, warranty terms and commerce.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-vcm-oil-consumption-2005",
+      "model": "Odyssey",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced the unsupported 2005-2017 oil-consumption, catalyst, VCM-disable and commerce narrative with Honda Bulletins 13-080/13-081's exact 2008-2013 piston-ring, plug-fouling and misfire condition and prescribed repair.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "trims",
+        "engines",
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2013/SB-10053787-4085.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 13-080 - 2008-2010 Odyssey Piston Ring / Misfire Warranty Extension supports the proposed same-identity scope, mechanism and remedy."
+        },
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10129411-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 13-081 - 2011-2013 Odyssey Piston Ring / Misfire Warranty Extension supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "cd4db088f164ac4a39e009d2e4ba360084e11b600c5d1fd33011e63c4e1cb216",
+      "proposalSha256": "43ff3500b8d62c7c573dc0bfa0db4d0bcc608949d3d250b79c42152e7938ff83",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [
+          "EX-L",
+          "Touring"
+        ],
+        "engines": [
+          "3.5L V6"
+        ],
+        "category": "engine",
+        "title": "VCM Oil Consumption and Piston Ring Failure",
+        "description": "Variable Cylinder Management (VCM) deactivates 3 rear cylinders during light load, but insufficient pressure allows oil to bypass piston rings into combustion chamber. Causes excessive oil consumption (1 quart per 1,000 miles), fouled spark plugs, catalytic converter damage, and premature piston ring wear. Honda settled class-action lawsuit covering 1.6-1.87 million vehicles.",
+        "solution": "Install VCM disable device (VCMuzzler, VCMTuner) which prevents cylinder deactivation and stops oil consumption. Replace fouled spark plugs after installing disabler. Honda settled class-action providing 8-year warranty extension for engine misfire repairs. Severe cases may require piston ring replacement ($3,000-$5,000). 2014+ models received redesigned engine without VCM.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Excessive oil consumption (1 qt per 1,000 miles or more)",
+          "Engine misfire codes (P0300-P0304, typically cylinders 1-4)",
+          "Fouled/oil-soaked spark plugs",
+          "Rough idle and vibration",
+          "Check engine light (misfire and catalyst codes)",
+          "White smoke from exhaust on startup",
+          "Failed catalytic converters (P0420/P0430)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0420",
+          "P0171",
+          "P0174"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2005/HONDA/ODYSSEY#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2005 Honda Odyssey - Oil Consumption and Engine Issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/7x2v2i/honda_odyssey_vcm_oil_consumption_issue/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice Thread Discussing VCM Oil Consumption on Honda Odyssey"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "VCMuzzler ($349) or VCMTuner II ($415) are most popular disable devices - install immediately on affected models",
+            "upvotes": 0,
+            "partName": "VCMuzzler II",
+            "partBrand": "VCMuzzler",
+            "affiliateUrl": "https://www.amazon.com/s?k=VCMuzzler%20VCMuzzler%20II&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Use thicker oil (0W-40 or 5W-40 synthetic) instead of Honda's 0W-20 to reduce oil consumption",
+            "upvotes": 0,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Odyssey%20Use%20thicker%20oil%20(0W-40%20or%205W-40%20synthetic)%20instead%20of%20Honda'&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Many owners report success with Pennzoil Ultra Platinum 0W-40 reducing oil consumption",
+            "upvotes": 0,
+            "partName": "Ultra Platinum 0W-40",
+            "partBrand": "Pennzoil",
+            "affiliateUrl": "https://www.amazon.com/s?k=Pennzoil%20Ultra%20Platinum%200W-40&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check oil level every fuel fill-up on VCM-equipped models - carry a quart of oil in the van",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Don't ignore misfire codes - prolonged misfires destroy catalytic converters ($2,000+ repair)",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 4127,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-12-20",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-ridgeline-vcm-oil-consumption-2006",
+          "honda-pilot-vcm-oil-consumption-2016",
+          "honda-accord-v6-vcm-oil-consumption-2008",
+          "honda-crosstour-vcm-oil-consumption-2010",
+          "honda-s2000-vtec-oil-consumption-2000"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Piston Ring Rotation, Spark Plug Fouling and Misfire",
+        "description": "Honda Bulletins 13-080 and 13-081 cover VIN-eligible 2008-2010 and 2011-2013 Odyssey vehicles. Piston rings on certain cylinders can rotate and align, leading to spark-plug fouling, an illuminated malfunction indicator and cylinder misfire DTCs P0301 through P0304.",
+        "solution": "Have a Honda dealer verify VIN and bulletin eligibility. The Honda procedures diagnose fouled plugs, update applicable 2008-2011 PCM software, and clean pistons and replace affected piston rings and spark plugs when the bulletin criteria are met.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Malfunction indicator may illuminate",
+          "Spark plugs may foul",
+          "Cylinder misfire may occur",
+          "DTC P0301, P0302, P0303 or P0304 may be stored"
+        ],
+        "affectedSystems": [
+          "Piston rings",
+          "Spark plugs",
+          "PCM software"
+        ],
+        "dtcCodes": [
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 13-080 - 2008-2010 Odyssey Piston Ring / Misfire Warranty Extension",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2013/SB-10053787-4085.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 13-081 - 2011-2013 Odyssey Piston Ring / Misfire Warranty Extension",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10129411-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced the unsupported 2005-2017 oil-consumption, catalyst, VCM-disable and commerce narrative with Honda Bulletins 13-080/13-081's exact 2008-2013 piston-ring, plug-fouling and misfire condition and prescribed repair.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-vcm-spool-valve-gasket-oil-leak-causing-repeated-alternator",
+      "model": "Odyssey",
+      "action": "keep_published_pending_source",
+      "reason": "Honda Bulletin 20-023 verifies a front rocker-arm oil-control-valve leak, but it does not establish the indexed page's repeated-alternator-failure causation, DTC claims or costs. Because that consequence is central to the slug and title, the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "6a3916670f398d6d291115f31d7e0839fd6afabcd131240e3e88430652c45359",
+      "proposalSha256": "6a3916670f398d6d291115f31d7e0839fd6afabcd131240e3e88430652c45359",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [
+          "EX-L",
+          "Touring",
+          "Elite"
+        ],
+        "engines": [
+          "3.5L V6 (J35)"
+        ],
+        "category": "engine",
+        "title": "VCM Spool Valve Gasket Oil Leak Causing Repeated Alternator Failure",
+        "description": "The VTEC spool valve assemblies (rocker-arm oil pressure control valves for the Variable Cylinder Management system) on the J35 V6 develop oil leaks when their gaskets/separator plates harden and weep. Because the front-bank spool valve sits directly above the alternator, leaking oil drips onto the alternator and saturates it, leading to repeated, premature alternator failures — owners commonly replace two or three alternators before the root-cause leak is found and fixed. A green/brown CEL for VTEC codes (P2646/P2647) can accompany the leak.",
+        "solution": "Replace the leaking spool valve gasket(s) on the affected bank (front bank labor ~3 hrs, rear ~3.1 hrs); OEM gasket/separator kit is inexpensive (~$9-$20) but the alternator should be inspected and replaced if already oil-soaked. Total typically $200-$400 for the gasket fix at a shop, more if the alternator must also be replaced. Honda issued a TSB about the leak but generally will not warranty alternators damaged by it, so address the leak before installing a new alternator.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil drips/burning oil smell from front of engine",
+          "Repeated alternator failures (charging system warning, dead battery)",
+          "Oil pooling on top of or saturating the alternator",
+          "VTEC/spool valve check engine light (P2646/P2647)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P2646",
+          "P2647"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.odyclub.com/threads/oil-leak-killing-alternators-vvt-solenoid-spool-valve.352821/",
+            "type": "forum",
+            "title": "Oil leak killing alternators - VVT Solenoid? Spool Valve? | Honda Odyssey Forum"
+          },
+          {
+            "url": "https://www.odyclub.com/threads/vcm-oil-leak-onto-alternator.373043/",
+            "type": "forum",
+            "title": "VCM oil leak onto alternator | Honda Odyssey Forum"
+          },
+          {
+            "url": "https://www.ericthecarguy.com/2011-2017-honda-odyssey-j35-valve-adjustment-and-oil-leak-fix/",
+            "type": "article",
+            "title": "2011-2017 Honda Odyssey (J35) Valve Adjustment and Oil Leak Fix - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [
+          "EX-L",
+          "Touring",
+          "Elite"
+        ],
+        "engines": [
+          "3.5L V6 (J35)"
+        ],
+        "category": "engine",
+        "title": "VCM Spool Valve Gasket Oil Leak Causing Repeated Alternator Failure",
+        "description": "The VTEC spool valve assemblies (rocker-arm oil pressure control valves for the Variable Cylinder Management system) on the J35 V6 develop oil leaks when their gaskets/separator plates harden and weep. Because the front-bank spool valve sits directly above the alternator, leaking oil drips onto the alternator and saturates it, leading to repeated, premature alternator failures — owners commonly replace two or three alternators before the root-cause leak is found and fixed. A green/brown CEL for VTEC codes (P2646/P2647) can accompany the leak.",
+        "solution": "Replace the leaking spool valve gasket(s) on the affected bank (front bank labor ~3 hrs, rear ~3.1 hrs); OEM gasket/separator kit is inexpensive (~$9-$20) but the alternator should be inspected and replaced if already oil-soaked. Total typically $200-$400 for the gasket fix at a shop, more if the alternator must also be replaced. Honda issued a TSB about the leak but generally will not warranty alternators damaged by it, so address the leak before installing a new alternator.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil drips/burning oil smell from front of engine",
+          "Repeated alternator failures (charging system warning, dead battery)",
+          "Oil pooling on top of or saturating the alternator",
+          "VTEC/spool valve check engine light (P2646/P2647)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P2646",
+          "P2647"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.odyclub.com/threads/oil-leak-killing-alternators-vvt-solenoid-spool-valve.352821/",
+            "type": "forum",
+            "title": "Oil leak killing alternators - VVT Solenoid? Spool Valve? | Honda Odyssey Forum"
+          },
+          {
+            "url": "https://www.odyclub.com/threads/vcm-oil-leak-onto-alternator.373043/",
+            "type": "forum",
+            "title": "VCM oil leak onto alternator | Honda Odyssey Forum"
+          },
+          {
+            "url": "https://www.ericthecarguy.com/2011-2017-honda-odyssey-j35-valve-adjustment-and-oil-leak-fix/",
+            "type": "article",
+            "title": "2011-2017 Honda Odyssey (J35) Valve Adjustment and Oil Leak Fix - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-odyssey-white-paint-clear-coat-peeling-delamination",
+      "model": "Odyssey",
+      "action": "keep_published_pending_source",
+      "reason": "A lawsuit article, forum and complaint aggregator do not establish an adjudicated manufacturing defect, exact paint-code scope, plant causation, coverage rule or repair cost. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "e6ac355bc026fa3869cbe6c1a44f17251cf22aea75dfe34b37f7cfb7545acc0c",
+      "proposalSha256": "e6ac355bc026fa3869cbe6c1a44f17251cf22aea75dfe34b37f7cfb7545acc0c",
+      "before": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [
+          "LX",
+          "EX",
+          "EX-L",
+          "Touring",
+          "Elite"
+        ],
+        "engines": [
+          "3.5L V6 (J35)"
+        ],
+        "category": "exterior",
+        "title": "White Paint Clear Coat Peeling and Delamination",
+        "description": "Odysseys finished in Honda's white tri-coat paints — most notably White Diamond Pearl, plus Taffeta White, White Orchid Pearl and Bellanova White — develop clear-coat peeling, bubbling, flaking and outright delamination, typically starting on the roof and horizontal surfaces and spreading to pillars and bumpers. The defect is attributed to manufacturing/process problems in the three-stage paint applied at Honda's Lincoln, Alabama plant. A class action filed in November 2024 covers 2013-present Odyssey (and other Honda/Acura) models in these white finishes; 2014 has the highest Odyssey complaint volume.",
+        "solution": "Repair requires sanding/stripping affected panels and repainting (clear coat or full panel refinish); roof + adjacent panels commonly run $1,000-$3,000+. Honda has issued paint warranty extensions/goodwill on some white finishes and owners have negotiated partial corporate coverage, but factory paint warranty is generally ~7 years. Document early and open a case with Honda before repainting.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clear coat peeling/flaking on roof and horizontal surfaces",
+          "Paint bubbling or delaminating in sheets",
+          "Spreading from roof to pillars, sail panels and bumpers",
+          "Dull/chalky patches before flaking begins"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carscoops.com/2024/11/honda-sued-for-defective-white-paint-that-can-peel-and-delaminate/",
+            "type": "article",
+            "title": "Honda Sued Over White Paint That Peels Off Its Cars | Carscoops"
+          },
+          {
+            "url": "https://www.odyclub.com/threads/paint-is-peeling-from-roof-of-2014.292585/",
+            "type": "forum",
+            "title": "Paint is peeling from roof of 2014 | Honda Odyssey Forum"
+          },
+          {
+            "url": "https://m.carcomplaints.com/Honda/Odyssey/2014/body_paint/paint_problems_with_peeling_color_mismatch_dust.shtml",
+            "type": "article",
+            "title": "2014 Honda Odyssey Paint Problems With Peeling, Color Mismatch | CarComplaints.com"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [
+          "LX",
+          "EX",
+          "EX-L",
+          "Touring",
+          "Elite"
+        ],
+        "engines": [
+          "3.5L V6 (J35)"
+        ],
+        "category": "exterior",
+        "title": "White Paint Clear Coat Peeling and Delamination",
+        "description": "Odysseys finished in Honda's white tri-coat paints — most notably White Diamond Pearl, plus Taffeta White, White Orchid Pearl and Bellanova White — develop clear-coat peeling, bubbling, flaking and outright delamination, typically starting on the roof and horizontal surfaces and spreading to pillars and bumpers. The defect is attributed to manufacturing/process problems in the three-stage paint applied at Honda's Lincoln, Alabama plant. A class action filed in November 2024 covers 2013-present Odyssey (and other Honda/Acura) models in these white finishes; 2014 has the highest Odyssey complaint volume.",
+        "solution": "Repair requires sanding/stripping affected panels and repainting (clear coat or full panel refinish); roof + adjacent panels commonly run $1,000-$3,000+. Honda has issued paint warranty extensions/goodwill on some white finishes and owners have negotiated partial corporate coverage, but factory paint warranty is generally ~7 years. Document early and open a case with Honda before repainting.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clear coat peeling/flaking on roof and horizontal surfaces",
+          "Paint bubbling or delaminating in sheets",
+          "Spreading from roof to pillars, sail panels and bumpers",
+          "Dull/chalky patches before flaking begins"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carscoops.com/2024/11/honda-sued-for-defective-white-paint-that-can-peel-and-delaminate/",
+            "type": "article",
+            "title": "Honda Sued Over White Paint That Peels Off Its Cars | Carscoops"
+          },
+          {
+            "url": "https://www.odyclub.com/threads/paint-is-peeling-from-roof-of-2014.292585/",
+            "type": "forum",
+            "title": "Paint is peeling from roof of 2014 | Honda Odyssey Forum"
+          },
+          {
+            "url": "https://m.carcomplaints.com/Honda/Odyssey/2014/body_paint/paint_problems_with_peeling_color_mismatch_dust.shtml",
+            "type": "article",
+            "title": "2014 Honda Odyssey Paint Problems With Peeling, Color Mismatch | CarComplaints.com"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
