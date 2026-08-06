@@ -1,0 +1,802 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Genesis",
+  "completionStatement": "This packet reconciles all four frozen Hyundai Genesis sedan rows. No same-identity primary-source rewrite cleared the gate; all four remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All four rows remain published and byte-for-byte unchanged.",
+    "Hyundai Genesis sedan and later Genesis-brand G80/GV campaigns are distinct identities and may not be substituted.",
+    "Existing commerce remains frozen rather than being silently rewritten without exact repair-role evidence.",
+    "Independent row-by-row approval is required before any separate correction path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "genesisRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "hyundai-versus-genesis-brand-boundary",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-genesis-rear-differential-2009"
+      ],
+      "detail": "A newer Genesis-brand differential bulletin does not apply to the older Hyundai Genesis BH sedan."
+    },
+    {
+      "code": "official-recall-set-does-not-match",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-genesis-gdi-carbon-2012",
+        "hyundai-genesis-rear-diff-bushing-2009",
+        "hyundai-genesis-rear-differential-2009",
+        "hyundai-genesis-steering-column-2009"
+      ],
+      "detail": "The 2012 Hyundai Genesis recall set concerns wipers and HECU brake-fluid corrosion, not these four identities."
+    },
+    {
+      "code": "multi-mechanism-driveline-narratives-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-genesis-rear-diff-bushing-2009",
+        "hyundai-genesis-rear-differential-2009"
+      ],
+      "detail": "Complaint and forum evidence cannot establish distinct model-wide bushing and differential defect populations."
+    },
+    {
+      "code": "unsupported-engine-and-steering-narratives-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-genesis-gdi-carbon-2012",
+        "hyundai-genesis-steering-column-2009"
+      ],
+      "detail": "No exact Hyundai source supports the claimed carbon-cleaning interval or intermediate-shaft defect."
+    }
+  ],
+  "mismatchSources": {
+    "nhtsaRecalls2012": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Genesis&modelYear=2012",
+    "newerGenesisDifferential": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11000781-0001.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 4,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "hyundai-genesis-gdi-carbon-2012",
+      "model": "Genesis",
+      "action": "keep_published_pending_source",
+      "reason": "Forum references do not establish one 2012-2016 Hyundai Genesis 3.8L/5.0L GDI carbon defect, 40,000-60,000-mile threshold, quantified fuel-economy loss or recurring walnut-blast interval. No exact Hyundai primary document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; an unrelated recall, later Genesis-brand bulletin, complaint or shared symptom cannot replace this Hyundai Genesis identity.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-no-match",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Genesis&modelYear=2012",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA's 2012 Genesis recalls concern the wiper-motor cover and HECU brake-fluid corrosion, not this frozen issue."
+        }
+      ],
+      "beforeSha256": "cbc3fc3c50340d40cf796c6b698fd0b97cb77bf95979b480f8530d42f66a9cbc",
+      "proposalSha256": "cbc3fc3c50340d40cf796c6b698fd0b97cb77bf95979b480f8530d42f66a9cbc",
+      "before": {
+        "make": "Hyundai",
+        "model": "Genesis",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L Lambda GDI V6",
+          "5.0L Tau GDI V8"
+        ],
+        "category": "engine",
+        "title": "GDI Intake Valve Carbon Buildup",
+        "description": "The direct-injected (GDI) 3.8L and 5.0L engines in the 2012+ Genesis accumulate carbon deposits on the intake valve faces. Since fuel is injected directly into the cylinder rather than over the intake valves, there is no fuel washing action to clean the valve backs. Carbon deposits restrict airflow, cause rough idle, misfires, and reduce power output. The problem is progressive and becomes noticeable around 40,000-60,000 miles. Short-trip driving and extended idle time worsen the buildup.",
+        "solution": "Walnut shell blasting of the intake valves is the most effective cleaning method — the intake manifold is removed and crushed walnut shells are blasted through the intake ports to remove carbon. This should be done every 40,000-60,000 miles as preventive maintenance. Chemical cleaning products (CRC GDI Cleaner) provide a partial solution between blastings. Some owners install an oil catch can to reduce the PCV oil vapor contributing to carbon buildup.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Rough idle that smooths out after engine warms",
+          "Misfires at idle or low RPM",
+          "Reduced power output and throttle response",
+          "Reduced fuel economy (2-4 MPG drop)",
+          "Check engine light with random misfire codes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": 40000,
+        "typicalMileageHigh": 60000,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Genesis GDI carbon buildup walnut blasting results"
+          },
+          {
+            "source": "gencoupe.com",
+            "description": "Lambda/Tau GDI intake valve carbon cleaning"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Schedule walnut shell blasting every 50,000 miles — this is preventive maintenance on ALL GDI engines, not just when symptoms appear",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "JLT Oil Separator 3.0 catch can — reduces PCV oil vapor reaching the intake valves, slows carbon buildup between cleanings",
+            "upvotes": 0,
+            "partName": "Oil Separator 3.0",
+            "partBrand": "JLT",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=JLT+oil+separator+catch+can+Hyundai+Genesis&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Use Top Tier gasoline (Shell, Chevron, Costco) — the higher detergent levels help reduce intake tract deposits even on GDI engines",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 155,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-stinger-carbon-buildup-gdi",
+          "vw-gti-carbon-buildup-2006"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Genesis",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L Lambda GDI V6",
+          "5.0L Tau GDI V8"
+        ],
+        "category": "engine",
+        "title": "GDI Intake Valve Carbon Buildup",
+        "description": "The direct-injected (GDI) 3.8L and 5.0L engines in the 2012+ Genesis accumulate carbon deposits on the intake valve faces. Since fuel is injected directly into the cylinder rather than over the intake valves, there is no fuel washing action to clean the valve backs. Carbon deposits restrict airflow, cause rough idle, misfires, and reduce power output. The problem is progressive and becomes noticeable around 40,000-60,000 miles. Short-trip driving and extended idle time worsen the buildup.",
+        "solution": "Walnut shell blasting of the intake valves is the most effective cleaning method — the intake manifold is removed and crushed walnut shells are blasted through the intake ports to remove carbon. This should be done every 40,000-60,000 miles as preventive maintenance. Chemical cleaning products (CRC GDI Cleaner) provide a partial solution between blastings. Some owners install an oil catch can to reduce the PCV oil vapor contributing to carbon buildup.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Rough idle that smooths out after engine warms",
+          "Misfires at idle or low RPM",
+          "Reduced power output and throttle response",
+          "Reduced fuel economy (2-4 MPG drop)",
+          "Check engine light with random misfire codes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": 40000,
+        "typicalMileageHigh": 60000,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Genesis GDI carbon buildup walnut blasting results"
+          },
+          {
+            "source": "gencoupe.com",
+            "description": "Lambda/Tau GDI intake valve carbon cleaning"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Schedule walnut shell blasting every 50,000 miles — this is preventive maintenance on ALL GDI engines, not just when symptoms appear",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "JLT Oil Separator 3.0 catch can — reduces PCV oil vapor reaching the intake valves, slows carbon buildup between cleanings",
+            "upvotes": 0,
+            "partName": "Oil Separator 3.0",
+            "partBrand": "JLT",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=JLT+oil+separator+catch+can+Hyundai+Genesis&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Use Top Tier gasoline (Shell, Chevron, Costco) — the higher detergent levels help reduce intake tract deposits even on GDI engines",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 155,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-stinger-carbon-buildup-gdi",
+          "vw-gti-carbon-buildup-2006"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-genesis-rear-diff-bushing-2009",
+      "model": "Genesis",
+      "action": "keep_published_pending_source",
+      "reason": "A single complaint page does not establish one 2009-2016 Genesis 5.0L differential-mount-bushing defect, torque relationship, symptoms or polyurethane remedy. No exact Hyundai primary document was found, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; an unrelated recall, later Genesis-brand bulletin, complaint or shared symptom cannot replace this Hyundai Genesis identity.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-no-match",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Genesis&modelYear=2012",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA's 2012 Genesis recalls concern the wiper-motor cover and HECU brake-fluid corrosion, not this frozen issue."
+        }
+      ],
+      "beforeSha256": "20bc6165589bd4a25e197a72f1acde7f14d9125208def0fbac734e01b37dc41e",
+      "proposalSha256": "20bc6165589bd4a25e197a72f1acde7f14d9125208def0fbac734e01b37dc41e",
+      "before": {
+        "make": "Hyundai",
+        "model": "Genesis",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "5.0L V8"
+        ],
+        "category": "drivetrain",
+        "title": "Rear Differential Mount Bushing Deterioration",
+        "description": "Rear differential mount bushings wear out, causing a pronounced thud when shifting from park to drive/reverse and a clunking sound during deceleration. More noticeable on 5.0L V8 models due to higher torque.",
+        "solution": "Replace rear differential mount bushings. Polyurethane aftermarket bushings last longer but transmit more NVH. Inspect differential fluid level and condition while servicing.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Thud shifting into gear",
+          "Clunk during deceleration",
+          "Vibration at highway speeds",
+          "Rear-end noise over bumps"
+        ],
+        "affectedSystems": [
+          "Rear differential",
+          "Differential mounts"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2012/HYUNDAI/GENESIS/4%252520DR/RWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10635464"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Royal Purple Max-Gear differential fluid for superior protection",
+            "partName": "Max-Gear Differential Fluid",
+            "partBrand": "Royal Purple",
+            "affiliateUrl": "https://www.amazon.com/s?k=Royal%20Purple%20Max-Gear%20differential%20fluid&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dorman differential cover gasket — direct OE replacement",
+            "partName": "Differential Cover Gasket",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20differential%20cover%20gasket&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Genesis",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "5.0L V8"
+        ],
+        "category": "drivetrain",
+        "title": "Rear Differential Mount Bushing Deterioration",
+        "description": "Rear differential mount bushings wear out, causing a pronounced thud when shifting from park to drive/reverse and a clunking sound during deceleration. More noticeable on 5.0L V8 models due to higher torque.",
+        "solution": "Replace rear differential mount bushings. Polyurethane aftermarket bushings last longer but transmit more NVH. Inspect differential fluid level and condition while servicing.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Thud shifting into gear",
+          "Clunk during deceleration",
+          "Vibration at highway speeds",
+          "Rear-end noise over bumps"
+        ],
+        "affectedSystems": [
+          "Rear differential",
+          "Differential mounts"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2012/HYUNDAI/GENESIS/4%252520DR/RWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10635464"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Royal Purple Max-Gear differential fluid for superior protection",
+            "partName": "Max-Gear Differential Fluid",
+            "partBrand": "Royal Purple",
+            "affiliateUrl": "https://www.amazon.com/s?k=Royal%20Purple%20Max-Gear%20differential%20fluid&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dorman differential cover gasket — direct OE replacement",
+            "partName": "Differential Cover Gasket",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20differential%20cover%20gasket&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-genesis-rear-differential-2009",
+      "model": "Genesis",
+      "action": "keep_published_pending_source",
+      "reason": "Forum references do not establish one BH-platform differential defect combining gear whine, pinion-seal leakage, LSD clutch chatter, a 30,000-mile service interval and the proposed repair. Genesis TSB 24-DS-001G covers newer 2021+ G80/GV models, not this Hyundai Genesis, so it is not substituted.",
+      "identityRule": "No content or publication-state changes; an unrelated recall, later Genesis-brand bulletin, complaint or shared symptom cannot replace this Hyundai Genesis identity.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-no-match",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Genesis&modelYear=2012",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA's 2012 Genesis recalls concern the wiper-motor cover and HECU brake-fluid corrosion, not this frozen issue."
+        },
+        {
+          "kind": "generation-and-brand-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11000781-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "TSB 24-DS-001G is for newer Genesis-brand G80/GV70/GV80 vehicles, not the 2009-2016 Hyundai Genesis BH page."
+        }
+      ],
+      "beforeSha256": "fff97d2b209767bfc58b8067ca3c0d968ab47994b9897c47e42d31e6ef79a9fc",
+      "proposalSha256": "fff97d2b209767bfc58b8067ca3c0d968ab47994b9897c47e42d31e6ef79a9fc",
+      "before": {
+        "make": "Hyundai",
+        "model": "Genesis",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Rear Differential Whine and Pinion Seal Leak",
+        "description": "The Genesis sedan RWD rear differential develops a whining noise from ring and pinion gear wear, and the pinion seal leaks gear oil. The whine is most noticeable at 40-60 mph during steady-state cruising and changes pitch slightly during acceleration and deceleration. The pinion seal leak can be gradual enough that gear oil level drops slowly, accelerating gear wear. The limited-slip differential (when equipped) also develops chatter from worn clutch packs.",
+        "solution": "For the pinion seal leak, replace the pinion seal and crush sleeve (the crush sleeve is one-time-use). Check the gear oil level and condition. For differential whine, a gear set replacement is needed if wear is beyond shimming adjustment. For LSD chatter, drain and refill with Hyundai-approved gear oil with LSD additive. Change differential fluid every 30,000 miles as preventive maintenance.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Whining noise from rear end at 40-60 mph",
+          "Gear oil dripping from front of differential (pinion seal)",
+          "Noise changes pitch during acceleration vs coasting",
+          "LSD chatter/clunking in tight turns (LSD-equipped models)",
+          "Clunking noise from rear during quick throttle changes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": 24000,
+        "typicalMileageHigh": 36000,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Genesis rear differential noise diagnosis"
+          },
+          {
+            "source": "gencoupe.com",
+            "description": "BH platform differential service and repair"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Change differential fluid every 30,000 miles with 75W-90 GL-5 synthetic gear oil — add LSD additive if equipped with limited-slip differential",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If the diff only chatters in tight turns, a simple fluid change with fresh LSD friction modifier additive usually fixes it for $50",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Do not ignore differential whine — low gear oil from a pinion seal leak will destroy the ring and pinion gears, turning a $200 seal job into a $2,000 rebuild",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Royal Purple Max-Gear differential fluid for superior protection",
+            "partName": "Max-Gear Differential Fluid",
+            "partBrand": "Royal Purple",
+            "affiliateUrl": "https://www.amazon.com/s?k=Royal%20Purple%20Max-Gear%20differential%20fluid&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dorman differential cover gasket — direct OE replacement",
+            "partName": "Differential Cover Gasket",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20differential%20cover%20gasket&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Genesis",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Rear Differential Whine and Pinion Seal Leak",
+        "description": "The Genesis sedan RWD rear differential develops a whining noise from ring and pinion gear wear, and the pinion seal leaks gear oil. The whine is most noticeable at 40-60 mph during steady-state cruising and changes pitch slightly during acceleration and deceleration. The pinion seal leak can be gradual enough that gear oil level drops slowly, accelerating gear wear. The limited-slip differential (when equipped) also develops chatter from worn clutch packs.",
+        "solution": "For the pinion seal leak, replace the pinion seal and crush sleeve (the crush sleeve is one-time-use). Check the gear oil level and condition. For differential whine, a gear set replacement is needed if wear is beyond shimming adjustment. For LSD chatter, drain and refill with Hyundai-approved gear oil with LSD additive. Change differential fluid every 30,000 miles as preventive maintenance.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Whining noise from rear end at 40-60 mph",
+          "Gear oil dripping from front of differential (pinion seal)",
+          "Noise changes pitch during acceleration vs coasting",
+          "LSD chatter/clunking in tight turns (LSD-equipped models)",
+          "Clunking noise from rear during quick throttle changes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": 24000,
+        "typicalMileageHigh": 36000,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Genesis rear differential noise diagnosis"
+          },
+          {
+            "source": "gencoupe.com",
+            "description": "BH platform differential service and repair"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Change differential fluid every 30,000 miles with 75W-90 GL-5 synthetic gear oil — add LSD additive if equipped with limited-slip differential",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If the diff only chatters in tight turns, a simple fluid change with fresh LSD friction modifier additive usually fixes it for $50",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Do not ignore differential whine — low gear oil from a pinion seal leak will destroy the ring and pinion gears, turning a $200 seal job into a $2,000 rebuild",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Royal Purple Max-Gear differential fluid for superior protection",
+            "partName": "Max-Gear Differential Fluid",
+            "partBrand": "Royal Purple",
+            "affiliateUrl": "https://www.amazon.com/s?k=Royal%20Purple%20Max-Gear%20differential%20fluid&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dorman differential cover gasket — direct OE replacement",
+            "partName": "Differential Cover Gasket",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20differential%20cover%20gasket&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-genesis-steering-column-2009",
+      "model": "Genesis",
+      "action": "keep_published_pending_source",
+      "reason": "Forum references do not establish one 2009-2014 BH Genesis intermediate-shaft defect, needle-bearing mechanism, cold-weather pattern or updated part claim. No exact Hyundai campaign or bulletin was found, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; an unrelated recall, later Genesis-brand bulletin, complaint or shared symptom cannot replace this Hyundai Genesis identity.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-no-match",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Genesis&modelYear=2012",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA's 2012 Genesis recalls concern the wiper-motor cover and HECU brake-fluid corrosion, not this frozen issue."
+        }
+      ],
+      "beforeSha256": "348cd8e3832674121a1f5c53ad8ba3545b6b5de43a0dddce4977bd244f9e7571",
+      "proposalSha256": "348cd8e3832674121a1f5c53ad8ba3545b6b5de43a0dddce4977bd244f9e7571",
+      "before": {
+        "make": "Hyundai",
+        "model": "Genesis",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Intermediate Steering Shaft Clunk and Free Play",
+        "description": "The BH-platform Genesis sedan develops a clunking or popping noise from the steering column area when turning the wheel at low speeds, particularly in cold weather. The intermediate steering shaft universal joint develops free play from wear in the needle bearings. This creates a noticeable dead spot in the steering feel and a clunk when the wheel crosses center. The issue is worsened by the Genesis's heavy V6/V8 power steering loads on the steering system.",
+        "solution": "Replace the intermediate steering shaft assembly (Hyundai 56400-3M000 or 56400-3M100 for updated design). The shaft connects the steering column to the steering rack and is accessible from under the dashboard. Lubrication of the u-joint with white lithium grease is a temporary fix. Some owners report that the updated part (3M100) has improved needle bearings that last longer.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Clunk or pop when turning steering wheel at low speed",
+          "Dead spot or free play in steering at center position",
+          "Noise worse in cold weather",
+          "Clicking noise when turning wheel while parked",
+          "Steering feels loose or disconnected briefly when crossing center"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Genesis sedan steering clunk diagnosis and fix"
+          },
+          {
+            "source": "gencoupe.com",
+            "description": "BH platform steering shaft issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Inject white lithium grease into the intermediate shaft u-joint as a temporary fix — this eliminates the clunk for 6-12 months and costs $5",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Hyundai 56400-3M100 updated intermediate steering shaft — revised needle bearing design for longer service life",
+            "upvotes": 0,
+            "partName": "Intermediate Steering Shaft",
+            "partBrand": "Hyundai OEM",
+            "partNumber": "56400-3M100",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai+Genesis+intermediate+steering+shaft&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Do not ignore progressive steering free play — while the u-joint won't fail suddenly, the dead spot in steering is a safety issue at highway speeds",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 140,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Genesis",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Intermediate Steering Shaft Clunk and Free Play",
+        "description": "The BH-platform Genesis sedan develops a clunking or popping noise from the steering column area when turning the wheel at low speeds, particularly in cold weather. The intermediate steering shaft universal joint develops free play from wear in the needle bearings. This creates a noticeable dead spot in the steering feel and a clunk when the wheel crosses center. The issue is worsened by the Genesis's heavy V6/V8 power steering loads on the steering system.",
+        "solution": "Replace the intermediate steering shaft assembly (Hyundai 56400-3M000 or 56400-3M100 for updated design). The shaft connects the steering column to the steering rack and is accessible from under the dashboard. Lubrication of the u-joint with white lithium grease is a temporary fix. Some owners report that the updated part (3M100) has improved needle bearings that last longer.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Clunk or pop when turning steering wheel at low speed",
+          "Dead spot or free play in steering at center position",
+          "Noise worse in cold weather",
+          "Clicking noise when turning wheel while parked",
+          "Steering feels loose or disconnected briefly when crossing center"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Genesis sedan steering clunk diagnosis and fix"
+          },
+          {
+            "source": "gencoupe.com",
+            "description": "BH platform steering shaft issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Inject white lithium grease into the intermediate shaft u-joint as a temporary fix — this eliminates the clunk for 6-12 months and costs $5",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Hyundai 56400-3M100 updated intermediate steering shaft — revised needle bearing design for longer service life",
+            "upvotes": 0,
+            "partName": "Intermediate Steering Shaft",
+            "partBrand": "Hyundai OEM",
+            "partNumber": "56400-3M100",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai+Genesis+intermediate+steering+shaft&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Do not ignore progressive steering free play — while the u-joint won't fail suddenly, the dead spot in steering is a safety issue at highway speeds",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 140,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
