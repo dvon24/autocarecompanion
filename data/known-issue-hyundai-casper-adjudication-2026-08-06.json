@@ -1,0 +1,991 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Casper",
+  "completionStatement": "This packet reconciles all six frozen Hyundai Casper rows. None is changed: three primary registry records are exposed for independent review, including a material production-period and vehicle-count conflict in the coolant-hub row.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All six rows remain published and byte-for-byte unchanged.",
+    "An unsupported campaign scope, symptom, component, remedy or model may never replace the issue named by an existing indexed page.",
+    "A registry search/list page is not treated as an issue-specific deep link; POST-only record evidence is review metadata, not a proposed public citation.",
+    "Existing commerce remains frozen rather than being silently rewritten without exact repair-role evidence.",
+    "Independent row-by-row approval is required before any separate correction path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "casperRecordCount": 6
+  },
+  "observations": [
+    {
+      "code": "coolant-hub-official-scope-conflict",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-casper-casper-electric-coolant-hub-drive-module-defect-ewp-warning"
+      ],
+      "detail": "Official record 3750 covers 2,245 vehicles built 2024-07-06 through 2024-09-21; the frozen row claims 12,004 vehicles built 2024-02-28 through 2025-04-16."
+    },
+    {
+      "code": "post-only-registry-records-not-public-deep-links",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-casper-casper-electric-3-way-coolant-valve-failure-fire-risk-recall",
+        "hyundai-casper-casper-electric-coolant-hub-drive-module-defect-ewp-warning",
+        "hyundai-casper-casper-electric-iccu-failure-slow-charging-stops-working"
+      ],
+      "detail": "The registry detail records are primary evidence but require POST-backed navigation. Broad list URLs are not substituted as public citations."
+    },
+    {
+      "code": "three-way-valve-row-exceeds-official-record",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-casper-casper-electric-3-way-coolant-valve-failure-fire-risk-recall"
+      ],
+      "detail": "The official recall supports the core shaft/fire-risk identity, but several frozen history, symptom and service-detail claims remain secondary-only."
+    },
+    {
+      "code": "iccu-row-exceeds-official-record",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-casper-casper-electric-iccu-failure-slow-charging-stops-working"
+      ],
+      "detail": "The official free-repair entry supports V2L-related ICCU slow-charging malfunction but not the full frozen consequence and repair narrative."
+    },
+    {
+      "code": "three-secondary-only-rows-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-casper-1-0-t-gdi-turbocharger-defect-rpm-rises-but-car-won-t-accele",
+        "hyundai-casper-rainwater-leak-into-passenger-footwell-through-cowl-air-inta",
+        "hyundai-casper-severe-idle-vibration-when-c-rear-defroster-run-together"
+      ],
+      "detail": "No directly linkable same-identity Hyundai or Korean-government primary document was found for the complete frozen claim."
+    }
+  ],
+  "officialRegistry": {
+    "threeWayValve": {
+      "indexUrl": "https://www.car.go.kr/ri/stat/list.do",
+      "recordType": "recall",
+      "recordId": "6154",
+      "retrieval": "POST /ri/stat/detail.do with recallId=6154 and ctype=O",
+      "verifiedOn": "2026-08-06",
+      "facts": {
+        "vehicle": "Casper Electric (AX1 EV)",
+        "productionPeriod": "2024-06-21 through 2026-04-24",
+        "affectedCount": 18961,
+        "campaignStart": "2026-05-12",
+        "defect": "An inadequately designed 3-way valve can suffer an internal shaft failure, creating smoke and fire risk.",
+        "remedy": "Replace the 3-way valve and fuse; replace the connector if contamination or burning is found."
+      }
+    },
+    "coolantHub": {
+      "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+      "recordType": "free-repair",
+      "recordId": "3750",
+      "retrieval": "POST /ri/grts/detail.do with gratischeckId=3750 and ctype=O",
+      "verifiedOn": "2026-08-06",
+      "facts": {
+        "vehicle": "Casper Electric (AX EV)",
+        "productionPeriod": "2024-07-06 through 2024-09-21",
+        "affectedCount": 2245,
+        "campaignStart": "2024-10-16",
+        "defect": "Intermittent EWP operation can cause a false low-coolant diagnosis and a drive-motor coolant-system warning.",
+        "remedy": "Replace the driver-coolant hub."
+      }
+    },
+    "iccu": {
+      "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+      "recordType": "free-repair",
+      "recordId": "4279",
+      "retrieval": "POST /ri/grts/detail.do with gratischeckId=4279 and ctype=O",
+      "verifiedOn": "2026-08-06",
+      "facts": {
+        "vehicle": "Casper Electric (AX EV)",
+        "productionPeriod": "2024-07-16 through 2025-08-22",
+        "affectedCount": 13587,
+        "campaignStart": "2025-09-05",
+        "defect": "An intermittent ICCU internal failure during V2L use can cause AC slow-charging malfunction.",
+        "remedy": "Diagnose specific fault codes and test slow charging, then update ICCU software or replace the ICCU."
+      }
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 6,
+    "total": 6
+  },
+  "rows": [
+    {
+      "id": "hyundai-casper-1-0-t-gdi-turbocharger-defect-rpm-rises-but-car-won-t-accele",
+      "model": "Casper",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen row depends on Korean press and owner material for a narrow 2023 turbocharger population, complaint count, supplier investigation, warranty outcome and replacement remedy. No directly linkable Hyundai or Korean-government primary document was found that establishes the complete same-identity claim, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; unsupported facts and a different scope, component, remedy or campaign cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "ac07e85762b7b16b247b05afafe935c550c7202047eabb1204542cfff37b6b61",
+      "proposalSha256": "ac07e85762b7b16b247b05afafe935c550c7202047eabb1204542cfff37b6b61",
+      "before": {
+        "make": "Hyundai",
+        "model": "Casper",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "1.0 T-GDI Turbocharger Defect — RPM Rises but Car Won't Accelerate",
+        "description": "Casper 1.0 T-GDI (turbo) owners reported a sudden loss of acceleration, typically at 70–80 km/h: the engine revs climb but the car will not accelerate past roughly 80–85 km/h, sometimes with a check-engine light. In some cars the symptom cleared after an ignition cycle; in others it persisted. More than 10 complaints reached Korea's Automobile Recall Center within a month in late 2023, concentrated in turbo cars built around April–June 2023 (many sold through inventory-clearance promotions). According to an owner briefed on the joint investigation by Hyundai's research center and the parts supplier, the conclusion was a defective turbocharger, and replacing the turbocharger eliminated the symptom. Naturally aspirated 1.0 MPI cars were not affected.",
+        "solution": "Have the turbocharger inspected and replaced — replacement resolved the symptom in reported cases, and affected vehicles were repaired under Hyundai's 5-year/100,000 km powertrain warranty in Korea. Document the symptom (dashcam or scan-tool freeze frame helps) since it can be intermittent, and report it to the service center so the turbocharger, boost-control actuator, and related fault codes are checked rather than just clearing the warning light.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "RPM rises but speed will not increase past about 80 km/h",
+          "Noticeable loss of power during highway merging or passing",
+          "Check engine light during the episode",
+          "Symptom sometimes clears after restarting the engine",
+          "Weak or absent turbo boost feel"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 700,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.motorgraph.com/news/articleView.html?idxno=32490",
+            "type": "article",
+            "title": "캐스퍼 터보 결함? \"RPM만 오르고 속도 안 붙어\" 불만 속출 - 모터그래프 (Motorgraph, Aug 2023)"
+          },
+          {
+            "url": "https://car.withnews.kr/issue/hyundai-casper-turbo",
+            "type": "article",
+            "title": "\"소비자들 불만 속출\" 현대 캐스퍼 가속 결함 발견됐다 - 더위드카 (The WithCar)"
+          },
+          {
+            "url": "https://gall.dcinside.com/board/view/?id=car_new1&no=9640017",
+            "type": "forum",
+            "title": "캐스퍼 터보 결함 은근히 많네 - dcinside 자동차 갤러리 (owner corroboration, Jul 2024; generic, does not detail the symptom)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Casper",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "1.0 T-GDI Turbocharger Defect — RPM Rises but Car Won't Accelerate",
+        "description": "Casper 1.0 T-GDI (turbo) owners reported a sudden loss of acceleration, typically at 70–80 km/h: the engine revs climb but the car will not accelerate past roughly 80–85 km/h, sometimes with a check-engine light. In some cars the symptom cleared after an ignition cycle; in others it persisted. More than 10 complaints reached Korea's Automobile Recall Center within a month in late 2023, concentrated in turbo cars built around April–June 2023 (many sold through inventory-clearance promotions). According to an owner briefed on the joint investigation by Hyundai's research center and the parts supplier, the conclusion was a defective turbocharger, and replacing the turbocharger eliminated the symptom. Naturally aspirated 1.0 MPI cars were not affected.",
+        "solution": "Have the turbocharger inspected and replaced — replacement resolved the symptom in reported cases, and affected vehicles were repaired under Hyundai's 5-year/100,000 km powertrain warranty in Korea. Document the symptom (dashcam or scan-tool freeze frame helps) since it can be intermittent, and report it to the service center so the turbocharger, boost-control actuator, and related fault codes are checked rather than just clearing the warning light.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "RPM rises but speed will not increase past about 80 km/h",
+          "Noticeable loss of power during highway merging or passing",
+          "Check engine light during the episode",
+          "Symptom sometimes clears after restarting the engine",
+          "Weak or absent turbo boost feel"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 700,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.motorgraph.com/news/articleView.html?idxno=32490",
+            "type": "article",
+            "title": "캐스퍼 터보 결함? \"RPM만 오르고 속도 안 붙어\" 불만 속출 - 모터그래프 (Motorgraph, Aug 2023)"
+          },
+          {
+            "url": "https://car.withnews.kr/issue/hyundai-casper-turbo",
+            "type": "article",
+            "title": "\"소비자들 불만 속출\" 현대 캐스퍼 가속 결함 발견됐다 - 더위드카 (The WithCar)"
+          },
+          {
+            "url": "https://gall.dcinside.com/board/view/?id=car_new1&no=9640017",
+            "type": "forum",
+            "title": "캐스퍼 터보 결함 은근히 많네 - dcinside 자동차 갤러리 (owner corroboration, Jul 2024; generic, does not detail the symptom)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-casper-casper-electric-3-way-coolant-valve-failure-fire-risk-recall",
+      "model": "Casper",
+      "action": "keep_published_pending_source",
+      "reason": "Korea's official recall registry record 6154 confirms the central 3-way-valve fire-risk recall, production period, count and replacement remedy. The frozen row also adds a prior 2025 campaign, o-ring leaks, HVAC and coolant-leak symptoms, parts shortages and labor-time claims that the registry entry does not establish. Because the registry exposes the detail only through a POST-backed view rather than a stable record deep link, no partial rewrite or broad list citation is proposed; the row remains byte-for-byte unchanged for independent review.",
+      "identityRule": "No content or publication-state changes; unsupported facts and a different scope, component, remedy or campaign cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-registry-partial-support",
+          "indexUrl": "https://www.car.go.kr/ri/stat/list.do",
+          "recordType": "recall",
+          "recordId": "6154",
+          "retrieval": "POST /ri/stat/detail.do with recallId=6154 and ctype=O",
+          "verifiedOn": "2026-08-06",
+          "facts": {
+            "vehicle": "Casper Electric (AX1 EV)",
+            "productionPeriod": "2024-06-21 through 2026-04-24",
+            "affectedCount": 18961,
+            "campaignStart": "2026-05-12",
+            "defect": "An inadequately designed 3-way valve can suffer an internal shaft failure, creating smoke and fire risk.",
+            "remedy": "Replace the 3-way valve and fuse; replace the connector if contamination or burning is found."
+          },
+          "observation": "The primary record supports the core recall but not all frozen symptoms, prior-campaign history or service-detail claims."
+        }
+      ],
+      "beforeSha256": "c655702e5385130b4bb27cff034645c1ee3d60d63be4dbea57a74e7b5bccf121",
+      "proposalSha256": "c655702e5385130b4bb27cff034645c1ee3d60d63be4dbea57a74e7b5bccf121",
+      "before": {
+        "make": "Hyundai",
+        "model": "Casper",
+        "years": [
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Casper Electric 3-Way Coolant Valve Failure — Fire Risk Recall",
+        "description": "The Casper Electric (AX1 EV) uses a 3-way valve to switch coolant flow between the heating/cooling circuits. A design deficiency allows the valve's internal shaft to break, which can cause improper coolant circulation, intermittent air-conditioning failure, coolant leaks, and in the worst case an electrical short with smoke and fire. Hyundai first ran a free-repair campaign in 2025 covering 11,649 cars built 16 Jul 2024–10 Feb 2025, but problems persisted (including o-ring leaks after the repair), and on 12 May 2026 the company escalated to a full safety recall of all 18,961 Casper Electrics sold in Korea (production 21 Jun 2024–24 Apr 2026). Owner communities also reported parts shortages and long waits before the recall was announced.",
+        "solution": "Have the recall performed: Hyundai service centers replace the 3-way valve with an improved part free of charge (about 1 hour 40 minutes to 2 hours of work). If a coolant warning light or leak persists after the repair, return to the service center — Hyundai issued guidance to technicians about proper o-ring seating during valve replacement. Check recall eligibility at car.go.kr or a Hyundai Bluehands center using the VIN.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Coolant or EV system warning light during driving",
+          "Air conditioning or heating intermittently stops working",
+          "Coolant leak under the front of the car",
+          "Steam or burning smell from the front compartment",
+          "Smoke in severe cases"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.mt.co.kr/industry/2026/05/13/2026051314141630871",
+            "type": "article",
+            "title": "현대차 '화재 위험'에 캐스퍼EV 전량 리콜…전기차 흥행 변수되나 (Money Today, 2026-05-13)"
+          },
+          {
+            "url": "https://v.daum.net/v/BurlyDMUSI",
+            "type": "article",
+            "title": "현대 캐스퍼 일렉트릭 품질 경고등..냉각수 누출 등 문제 많아 (Carguy via Daum — 2025 free-repair campaign, 11,649 cars, o-ring leaks)"
+          },
+          {
+            "url": "https://www.greened.kr/news/articleView.html?idxno=340673",
+            "type": "article",
+            "title": "캐스퍼 EV 전량 리콜 소식에…차주들 '부품 없다 대기하라더니' 분통 (Green Economy News)"
+          },
+          {
+            "url": "https://www.mt.co.kr/industry/2026/05/14/2026051319465159607",
+            "type": "article",
+            "title": "잘 달리다 '삐끗'… 캐스퍼EV 전량 리콜 (Money Today follow-up, 2026-05-14)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Casper",
+        "years": [
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Casper Electric 3-Way Coolant Valve Failure — Fire Risk Recall",
+        "description": "The Casper Electric (AX1 EV) uses a 3-way valve to switch coolant flow between the heating/cooling circuits. A design deficiency allows the valve's internal shaft to break, which can cause improper coolant circulation, intermittent air-conditioning failure, coolant leaks, and in the worst case an electrical short with smoke and fire. Hyundai first ran a free-repair campaign in 2025 covering 11,649 cars built 16 Jul 2024–10 Feb 2025, but problems persisted (including o-ring leaks after the repair), and on 12 May 2026 the company escalated to a full safety recall of all 18,961 Casper Electrics sold in Korea (production 21 Jun 2024–24 Apr 2026). Owner communities also reported parts shortages and long waits before the recall was announced.",
+        "solution": "Have the recall performed: Hyundai service centers replace the 3-way valve with an improved part free of charge (about 1 hour 40 minutes to 2 hours of work). If a coolant warning light or leak persists after the repair, return to the service center — Hyundai issued guidance to technicians about proper o-ring seating during valve replacement. Check recall eligibility at car.go.kr or a Hyundai Bluehands center using the VIN.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Coolant or EV system warning light during driving",
+          "Air conditioning or heating intermittently stops working",
+          "Coolant leak under the front of the car",
+          "Steam or burning smell from the front compartment",
+          "Smoke in severe cases"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.mt.co.kr/industry/2026/05/13/2026051314141630871",
+            "type": "article",
+            "title": "현대차 '화재 위험'에 캐스퍼EV 전량 리콜…전기차 흥행 변수되나 (Money Today, 2026-05-13)"
+          },
+          {
+            "url": "https://v.daum.net/v/BurlyDMUSI",
+            "type": "article",
+            "title": "현대 캐스퍼 일렉트릭 품질 경고등..냉각수 누출 등 문제 많아 (Carguy via Daum — 2025 free-repair campaign, 11,649 cars, o-ring leaks)"
+          },
+          {
+            "url": "https://www.greened.kr/news/articleView.html?idxno=340673",
+            "type": "article",
+            "title": "캐스퍼 EV 전량 리콜 소식에…차주들 '부품 없다 대기하라더니' 분통 (Green Economy News)"
+          },
+          {
+            "url": "https://www.mt.co.kr/industry/2026/05/14/2026051319465159607",
+            "type": "article",
+            "title": "잘 달리다 '삐끗'… 캐스퍼EV 전량 리콜 (Money Today follow-up, 2026-05-14)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-casper-casper-electric-coolant-hub-drive-module-defect-ewp-warning",
+      "model": "Casper",
+      "action": "keep_published_pending_source",
+      "reason": "Official free-repair record 3750 materially conflicts with the frozen row: it covers 2,245 Casper EVs produced 2024-07-06 through 2024-09-21, not 12,004 vehicles produced 2024-02-28 through 2025-04-16. It describes intermittent EWP operation causing a false low-coolant diagnosis and prescribes driver-coolant-hub replacement. The current identity and scope therefore require independent correction rather than an automated substitution, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; unsupported facts and a different scope, component, remedy or campaign cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-registry-material-scope-conflict",
+          "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+          "recordType": "free-repair",
+          "recordId": "3750",
+          "retrieval": "POST /ri/grts/detail.do with gratischeckId=3750 and ctype=O",
+          "verifiedOn": "2026-08-06",
+          "facts": {
+            "vehicle": "Casper Electric (AX EV)",
+            "productionPeriod": "2024-07-06 through 2024-09-21",
+            "affectedCount": 2245,
+            "campaignStart": "2024-10-16",
+            "defect": "Intermittent EWP operation can cause a false low-coolant diagnosis and a drive-motor coolant-system warning.",
+            "remedy": "Replace the driver-coolant hub."
+          },
+          "observation": "The official count, production dates and stated failure mechanism conflict with the frozen row."
+        }
+      ],
+      "beforeSha256": "284c15c25d141cccf729dcaea30972a36dd119ae567f426735d436aaa8bb2aec",
+      "proposalSha256": "284c15c25d141cccf729dcaea30972a36dd119ae567f426735d436aaa8bb2aec",
+      "before": {
+        "make": "Hyundai",
+        "model": "Casper",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Casper Electric Coolant Hub Drive Module Defect — EWP Warning Light",
+        "description": "A separate cooling-system defect from the 3-way valve: an internal fault in the coolant hub drive module on Casper Electrics built 28 Feb 2024–16 Apr 2025 (12,004 vehicles) causes the electric water pump (EWP) warning light to illuminate while driving. The defect was announced alongside the ICCU action as part of Hyundai's ~25,600-vehicle Casper EV free-repair program in September 2025. Owner reports collected by Korean press also describe drive-motor coolant warnings and coolant loss around the motor-side water pump on some cars, so any cooling warning on a Casper Electric should be checked promptly to protect the drive motor and battery thermal management.",
+        "solution": "Hyundai replaces the coolant hub drive module free of charge under the service campaign. Owners should not ignore the EWP warning — reduced coolant circulation can affect drive-motor and battery cooling. Verify campaign eligibility by VIN at car.go.kr or a Hyundai service center, and have any coolant loss around the motor-side water pump inspected at the same visit.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Electric water pump (EWP) warning light while driving",
+          "Drive motor coolant warning message",
+          "Low coolant level without visible cause",
+          "Repeated warnings after a previous cooling-system repair"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.autodaily.co.kr/news/articleView.html?idxno=535827",
+            "type": "article",
+            "title": "ICCU 고장에 경고등 점등까지...현대차, 캐스퍼 EV 2만5천여대 무상수리 (M투데이/오토데일리)"
+          },
+          {
+            "url": "https://v.daum.net/v/9CpU0Mvar9",
+            "type": "article",
+            "title": "ICCU 고장에 경고등 점등까지...현대차, 캐스퍼 EV 2만5천여대 무상수리 (Daum mirror)"
+          },
+          {
+            "url": "https://www.clien.net/service/board/cm_car/19057383",
+            "type": "forum",
+            "title": "캐스퍼 일렉트릭 무상수리 어마어마하네요 (Clien owner thread, Sept 2025)"
+          },
+          {
+            "url": "https://www.carguy.kr/news/articleView.html?idxno=54422",
+            "type": "article",
+            "title": "현대 캐스퍼 일렉트릭 품질 경고등..냉각수 누출 등 문제 많아 (카가이 — owner-reported coolant warnings/water pump context)"
+          },
+          {
+            "url": "https://v.daum.net/v/BurlyDMUSI",
+            "type": "article",
+            "title": "Casper Electric coolant system owner reports (Daum-hosted press)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Casper",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Casper Electric Coolant Hub Drive Module Defect — EWP Warning Light",
+        "description": "A separate cooling-system defect from the 3-way valve: an internal fault in the coolant hub drive module on Casper Electrics built 28 Feb 2024–16 Apr 2025 (12,004 vehicles) causes the electric water pump (EWP) warning light to illuminate while driving. The defect was announced alongside the ICCU action as part of Hyundai's ~25,600-vehicle Casper EV free-repair program in September 2025. Owner reports collected by Korean press also describe drive-motor coolant warnings and coolant loss around the motor-side water pump on some cars, so any cooling warning on a Casper Electric should be checked promptly to protect the drive motor and battery thermal management.",
+        "solution": "Hyundai replaces the coolant hub drive module free of charge under the service campaign. Owners should not ignore the EWP warning — reduced coolant circulation can affect drive-motor and battery cooling. Verify campaign eligibility by VIN at car.go.kr or a Hyundai service center, and have any coolant loss around the motor-side water pump inspected at the same visit.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Electric water pump (EWP) warning light while driving",
+          "Drive motor coolant warning message",
+          "Low coolant level without visible cause",
+          "Repeated warnings after a previous cooling-system repair"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.autodaily.co.kr/news/articleView.html?idxno=535827",
+            "type": "article",
+            "title": "ICCU 고장에 경고등 점등까지...현대차, 캐스퍼 EV 2만5천여대 무상수리 (M투데이/오토데일리)"
+          },
+          {
+            "url": "https://v.daum.net/v/9CpU0Mvar9",
+            "type": "article",
+            "title": "ICCU 고장에 경고등 점등까지...현대차, 캐스퍼 EV 2만5천여대 무상수리 (Daum mirror)"
+          },
+          {
+            "url": "https://www.clien.net/service/board/cm_car/19057383",
+            "type": "forum",
+            "title": "캐스퍼 일렉트릭 무상수리 어마어마하네요 (Clien owner thread, Sept 2025)"
+          },
+          {
+            "url": "https://www.carguy.kr/news/articleView.html?idxno=54422",
+            "type": "article",
+            "title": "현대 캐스퍼 일렉트릭 품질 경고등..냉각수 누출 등 문제 많아 (카가이 — owner-reported coolant warnings/water pump context)"
+          },
+          {
+            "url": "https://v.daum.net/v/BurlyDMUSI",
+            "type": "article",
+            "title": "Casper Electric coolant system owner reports (Daum-hosted press)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-casper-casper-electric-iccu-failure-slow-charging-stops-working",
+      "model": "Casper",
+      "action": "keep_published_pending_source",
+      "reason": "Official free-repair record 4279 confirms 13,587 Casper EVs produced 2024-07-16 through 2025-08-22 and an intermittent V2L-related ICCU fault that can disrupt AC slow charging. The frozen row adds wider fleet inheritance, recall terminology, 12V consequences, fuse/components and repair-cost claims not established by that entry. With no stable record-specific GET link, the row remains byte-for-byte unchanged pending an independently approved scoped rewrite and citation path.",
+      "identityRule": "No content or publication-state changes; unsupported facts and a different scope, component, remedy or campaign cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-registry-partial-support",
+          "indexUrl": "https://www.car.go.kr/ri/grts/list.do",
+          "recordType": "free-repair",
+          "recordId": "4279",
+          "retrieval": "POST /ri/grts/detail.do with gratischeckId=4279 and ctype=O",
+          "verifiedOn": "2026-08-06",
+          "facts": {
+            "vehicle": "Casper Electric (AX EV)",
+            "productionPeriod": "2024-07-16 through 2025-08-22",
+            "affectedCount": 13587,
+            "campaignStart": "2025-09-05",
+            "defect": "An intermittent ICCU internal failure during V2L use can cause AC slow-charging malfunction.",
+            "remedy": "Diagnose specific fault codes and test slow charging, then update ICCU software or replace the ICCU."
+          },
+          "observation": "The primary record supports the V2L/slow-charging campaign but not every frozen consequence or repair claim."
+        }
+      ],
+      "beforeSha256": "0219ac84057f59a8f1cb5de9ff0f056ddbfd2a9c96617a96fac82c1d73b87279",
+      "proposalSha256": "0219ac84057f59a8f1cb5de9ff0f056ddbfd2a9c96617a96fac82c1d73b87279",
+      "before": {
+        "make": "Hyundai",
+        "model": "Casper",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Casper Electric ICCU Failure — Slow Charging Stops Working",
+        "description": "The Casper Electric inherited the Hyundai Motor Group ICCU (Integrated Charging Control Unit) problem already seen on the Ioniq 5/6 and Kia EV6. Internal failures occur intermittently — particularly after using the V2L (vehicle-to-load) external power function — and the car then refuses to AC slow-charge normally. Hyundai announced a recall/free-repair action covering 13,587 Casper Electrics produced 16 Jul 2024–22 Aug 2025, with service work starting 5 Sep 2025 as part of a roughly 25,600-vehicle Casper EV service push. The wider Hyundai/Kia ICCU defect has generated complaints and petitions in Korea because a failed ICCU can leave the 12V system without charge.",
+        "solution": "Under the recall, Hyundai service centers run fault-code diagnosis and a charging check, then apply an ICCU software update or replace the ICCU (and related fuse/components) free of charge. Out of warranty, ICCU replacement is an expensive repair, so affected owners should confirm campaign eligibility by VIN at car.go.kr or a Hyundai service center before paying for any repair.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "AC (slow) charging fails to start or stops mid-session",
+          "Charging works at DC fast chargers but not on a home/slow charger",
+          "Failure appears after using the V2L external power function",
+          "EV system or charging warning light on the cluster",
+          "12V battery discharge warning in severe cases"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.autodaily.co.kr/news/articleView.html?idxno=535827",
+            "type": "article",
+            "title": "ICCU 고장에 경고등 점등까지...현대차, 캐스퍼 EV 2만5천여대 무상수리 (mToday via Autodaily)"
+          },
+          {
+            "url": "https://v.daum.net/v/2PRSgqJqH0",
+            "type": "article",
+            "title": "\"충전이 안 된다?\" 현대차 ICCU 결함 캐스퍼까지 리콜 (EV-Hotissue via Daum)"
+          },
+          {
+            "url": "https://www.meconomynews.com/news/articleView.html?idxno=116786",
+            "type": "article",
+            "title": "현대·기아 전기차 ICCU 결함 — 반복 고장·국민청원·국토부 조사 (Market Economy News, wider ICCU defect context)"
+          },
+          {
+            "url": "https://insideevs.com/features/752768/hyundai-kia-genesis-iccu-failure/",
+            "type": "article",
+            "title": "Hyundai's ICCU Problem: Here's What We Know (InsideEVs)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Casper",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Casper Electric ICCU Failure — Slow Charging Stops Working",
+        "description": "The Casper Electric inherited the Hyundai Motor Group ICCU (Integrated Charging Control Unit) problem already seen on the Ioniq 5/6 and Kia EV6. Internal failures occur intermittently — particularly after using the V2L (vehicle-to-load) external power function — and the car then refuses to AC slow-charge normally. Hyundai announced a recall/free-repair action covering 13,587 Casper Electrics produced 16 Jul 2024–22 Aug 2025, with service work starting 5 Sep 2025 as part of a roughly 25,600-vehicle Casper EV service push. The wider Hyundai/Kia ICCU defect has generated complaints and petitions in Korea because a failed ICCU can leave the 12V system without charge.",
+        "solution": "Under the recall, Hyundai service centers run fault-code diagnosis and a charging check, then apply an ICCU software update or replace the ICCU (and related fuse/components) free of charge. Out of warranty, ICCU replacement is an expensive repair, so affected owners should confirm campaign eligibility by VIN at car.go.kr or a Hyundai service center before paying for any repair.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "AC (slow) charging fails to start or stops mid-session",
+          "Charging works at DC fast chargers but not on a home/slow charger",
+          "Failure appears after using the V2L external power function",
+          "EV system or charging warning light on the cluster",
+          "12V battery discharge warning in severe cases"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.autodaily.co.kr/news/articleView.html?idxno=535827",
+            "type": "article",
+            "title": "ICCU 고장에 경고등 점등까지...현대차, 캐스퍼 EV 2만5천여대 무상수리 (mToday via Autodaily)"
+          },
+          {
+            "url": "https://v.daum.net/v/2PRSgqJqH0",
+            "type": "article",
+            "title": "\"충전이 안 된다?\" 현대차 ICCU 결함 캐스퍼까지 리콜 (EV-Hotissue via Daum)"
+          },
+          {
+            "url": "https://www.meconomynews.com/news/articleView.html?idxno=116786",
+            "type": "article",
+            "title": "현대·기아 전기차 ICCU 결함 — 반복 고장·국민청원·국토부 조사 (Market Economy News, wider ICCU defect context)"
+          },
+          {
+            "url": "https://insideevs.com/features/752768/hyundai-kia-genesis-iccu-failure/",
+            "type": "article",
+            "title": "Hyundai's ICCU Problem: Here's What We Know (InsideEVs)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-casper-rainwater-leak-into-passenger-footwell-through-cowl-air-inta",
+      "model": "Casper",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen rainwater-intrusion row relies on press and owner material for complaint counts, root cause, campaign timing and component replacement. No directly linkable Hyundai or Korean-government primary document was found that establishes the same issue and remedy, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; unsupported facts and a different scope, component, remedy or campaign cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "9cb8fc4fe336240593d6e87b7db8662cdda0cbde0dc0656df1d46f151fb8c382",
+      "proposalSha256": "9cb8fc4fe336240593d6e87b7db8662cdda0cbde0dc0656df1d46f151fb8c382",
+      "before": {
+        "make": "Hyundai",
+        "model": "Casper",
+        "years": [
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Rainwater Leak Into Passenger Footwell Through Cowl Air Intake",
+        "description": "2021–2022 Caspers let rainwater into the cabin on the passenger side. The external air-intake (cowl) cover at the base of the windshield drains poorly, so in heavy rain water gets past it and enters through the cabin air filter area, soaking the filter and, in worse cases, pooling on the passenger-side floor mat — even on parked cars. Around 50 complaints reached Korea's Automobile Recall Center in just the first 12 days of August 2022, with simultaneous reports across Casper owner forums. Hyundai completed its investigation and ran a free-repair campaign from late August/September 2022, replacing the relevant components, alongside the idle-vibration campaign.",
+        "solution": "Have Hyundai's free-repair campaign performed (replacement of the air-intake/cowl components to restore drainage). After the repair, replace the cabin air filter if it was soaked and dry the carpet to prevent mold and musty odor. Owners of early cars who notice dampness on the passenger side after rain should check whether the campaign was already applied to their VIN.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Wet passenger-side floor mat after rain",
+          "Water dripping from behind the glovebox/cabin filter area",
+          "Damp or musty smell when the HVAC fan runs",
+          "Soaked cabin air filter",
+          "Water entry even while parked in heavy rain"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.motorgraph.com/news/articleView.html?idxno=30470",
+            "type": "article",
+            "title": "Motorgraph — 현대차 캐스퍼, 이번엔 물 새는 결함…비 오면 조수석 흥건해 (Casper water leak defect, passenger side soaked in rain)"
+          },
+          {
+            "url": "https://mobile.newsis.com/view.html?ar_id=NISX20220804_0001968281",
+            "type": "article",
+            "title": "Newsis — 현대차 캐스퍼, 이번엔 누수까지…\"조수석 빗물 유입\" (Casper rainwater intrusion on passenger side)"
+          },
+          {
+            "url": "https://www.clien.net/service/board/cm_car/17481730",
+            "type": "forum",
+            "title": "Clien forum — Casper cabin water leak owner reports (빗물 유입)"
+          },
+          {
+            "url": "https://www.asiatoday.co.kr/view.php?key=20220830010018923",
+            "type": "article",
+            "title": "Asia Today — 현대차 '캐스퍼', 떨림·누수 등 품질 이슈…무상 수리 진행한다 (Hyundai runs free repairs for Casper vibration and leak)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Casper",
+        "years": [
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Rainwater Leak Into Passenger Footwell Through Cowl Air Intake",
+        "description": "2021–2022 Caspers let rainwater into the cabin on the passenger side. The external air-intake (cowl) cover at the base of the windshield drains poorly, so in heavy rain water gets past it and enters through the cabin air filter area, soaking the filter and, in worse cases, pooling on the passenger-side floor mat — even on parked cars. Around 50 complaints reached Korea's Automobile Recall Center in just the first 12 days of August 2022, with simultaneous reports across Casper owner forums. Hyundai completed its investigation and ran a free-repair campaign from late August/September 2022, replacing the relevant components, alongside the idle-vibration campaign.",
+        "solution": "Have Hyundai's free-repair campaign performed (replacement of the air-intake/cowl components to restore drainage). After the repair, replace the cabin air filter if it was soaked and dry the carpet to prevent mold and musty odor. Owners of early cars who notice dampness on the passenger side after rain should check whether the campaign was already applied to their VIN.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Wet passenger-side floor mat after rain",
+          "Water dripping from behind the glovebox/cabin filter area",
+          "Damp or musty smell when the HVAC fan runs",
+          "Soaked cabin air filter",
+          "Water entry even while parked in heavy rain"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.motorgraph.com/news/articleView.html?idxno=30470",
+            "type": "article",
+            "title": "Motorgraph — 현대차 캐스퍼, 이번엔 물 새는 결함…비 오면 조수석 흥건해 (Casper water leak defect, passenger side soaked in rain)"
+          },
+          {
+            "url": "https://mobile.newsis.com/view.html?ar_id=NISX20220804_0001968281",
+            "type": "article",
+            "title": "Newsis — 현대차 캐스퍼, 이번엔 누수까지…\"조수석 빗물 유입\" (Casper rainwater intrusion on passenger side)"
+          },
+          {
+            "url": "https://www.clien.net/service/board/cm_car/17481730",
+            "type": "forum",
+            "title": "Clien forum — Casper cabin water leak owner reports (빗물 유입)"
+          },
+          {
+            "url": "https://www.asiatoday.co.kr/view.php?key=20220830010018923",
+            "type": "article",
+            "title": "Asia Today — 현대차 '캐스퍼', 떨림·누수 등 품질 이슈…무상 수리 진행한다 (Hyundai runs free repairs for Casper vibration and leak)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-casper-severe-idle-vibration-when-c-rear-defroster-run-together",
+      "model": "Casper",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen idle-vibration row relies on press and an unofficial campaign summary for complaint totals, electrical-load diagnosis and ECU remedy. No directly linkable Hyundai or Korean-government primary document was found that establishes the complete same-identity campaign, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; unsupported facts and a different scope, component, remedy or campaign cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "f928d63bd51959f94d0a8152995c923dc1d65f10eabcdf73afef33c0e0aeb1f9",
+      "proposalSha256": "f928d63bd51959f94d0a8152995c923dc1d65f10eabcdf73afef33c0e0aeb1f9",
+      "before": {
+        "make": "Hyundai",
+        "model": "Casper",
+        "years": [
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Severe Idle Vibration When A/C and Rear Defroster Run Together",
+        "description": "Early gasoline Caspers (2021–2022) shook noticeably at idle — owners described it as \"someone rocking the car\" — with engine RPM fluctuating between roughly 700 and 900 rpm. The shaking appears mainly when the air conditioner and heated rear glass (and sometimes headlights or wipers) run simultaneously, and is worse on rainy days. About 100 defect reports were filed with the Korea Transportation Safety Authority in July 2022 alone, and roughly 350 total Casper complaints landed in July–August 2022. Hyundai's investigation found the electrical system was being overloaded when multiple high-draw accessories ran at low idle (generator/battery capacity marginal for the load), and the company announced a free-repair campaign from around September 2022 using an ECU software update that rebalances electrical power distribution.",
+        "solution": "Apply Hyundai's free-repair campaign: an ECU (and related controller) software update that adjusts power-supply distribution under combined electrical loads. Any Hyundai service center can check whether the update has been applied. If severe vibration persists after the update, have the battery state of charge, alternator output, and engine mounts checked.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Car shakes strongly at idle with A/C and rear defroster on",
+          "Idle RPM fluctuates between about 700 and 900 rpm",
+          "Vibration worsens on rainy days or with headlights/wipers on",
+          "Vibration felt both stopped and at low speed"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 100,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.motorgraph.com/news/articleView.html?idxno=30409",
+            "type": "article",
+            "title": "흔들리는 현대차 캐스퍼, 에어컨·열선 켜면 떨림 증상 속출 (Motorgraph)"
+          },
+          {
+            "url": "https://www.asiatoday.co.kr/view.php?key=20220830010018923",
+            "type": "article",
+            "title": "현대차 '캐스퍼', 떨림·누수 등 품질 이슈…무상 수리 진행한다 (Asia Today)"
+          },
+          {
+            "url": "https://driveinkorea.com/%ED%98%84%EB%8C%80-%EC%BA%90%EC%8A%A4%ED%8D%BC-%EB%AC%B4%EC%83%81%EC%A0%90%EA%B2%80-%EB%AC%B4%EC%83%81%EC%88%98%EB%A6%AC-%EC%B4%9D%EC%A0%95%EB%A6%AC-24-3-18-%EA%B9%8C%EC%A7%80/",
+            "type": "article",
+            "title": "현대 캐스퍼 무상점검·무상수리 총정리 — ECU idle vibration campaign, 26,287 units, prod. 2021-04-23~2022-09-01 (driveinkorea.com)"
+          },
+          {
+            "url": "https://www.hankyung.com/article/202207315732Y",
+            "type": "article",
+            "title": "에어컨 튼 채 뒷유리 열선 켜면 덜덜…캐스퍼 결함신고 90여건 (Hankyung)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Casper",
+        "years": [
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Severe Idle Vibration When A/C and Rear Defroster Run Together",
+        "description": "Early gasoline Caspers (2021–2022) shook noticeably at idle — owners described it as \"someone rocking the car\" — with engine RPM fluctuating between roughly 700 and 900 rpm. The shaking appears mainly when the air conditioner and heated rear glass (and sometimes headlights or wipers) run simultaneously, and is worse on rainy days. About 100 defect reports were filed with the Korea Transportation Safety Authority in July 2022 alone, and roughly 350 total Casper complaints landed in July–August 2022. Hyundai's investigation found the electrical system was being overloaded when multiple high-draw accessories ran at low idle (generator/battery capacity marginal for the load), and the company announced a free-repair campaign from around September 2022 using an ECU software update that rebalances electrical power distribution.",
+        "solution": "Apply Hyundai's free-repair campaign: an ECU (and related controller) software update that adjusts power-supply distribution under combined electrical loads. Any Hyundai service center can check whether the update has been applied. If severe vibration persists after the update, have the battery state of charge, alternator output, and engine mounts checked.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Car shakes strongly at idle with A/C and rear defroster on",
+          "Idle RPM fluctuates between about 700 and 900 rpm",
+          "Vibration worsens on rainy days or with headlights/wipers on",
+          "Vibration felt both stopped and at low speed"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 100,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.motorgraph.com/news/articleView.html?idxno=30409",
+            "type": "article",
+            "title": "흔들리는 현대차 캐스퍼, 에어컨·열선 켜면 떨림 증상 속출 (Motorgraph)"
+          },
+          {
+            "url": "https://www.asiatoday.co.kr/view.php?key=20220830010018923",
+            "type": "article",
+            "title": "현대차 '캐스퍼', 떨림·누수 등 품질 이슈…무상 수리 진행한다 (Asia Today)"
+          },
+          {
+            "url": "https://driveinkorea.com/%ED%98%84%EB%8C%80-%EC%BA%90%EC%8A%A4%ED%8D%BC-%EB%AC%B4%EC%83%81%EC%A0%90%EA%B2%80-%EB%AC%B4%EC%83%81%EC%88%98%EB%A6%AC-%EC%B4%9D%EC%A0%95%EB%A6%AC-24-3-18-%EA%B9%8C%EC%A7%80/",
+            "type": "article",
+            "title": "현대 캐스퍼 무상점검·무상수리 총정리 — ECU idle vibration campaign, 26,287 units, prod. 2021-04-23~2022-09-01 (driveinkorea.com)"
+          },
+          {
+            "url": "https://www.hankyung.com/article/202207315732Y",
+            "type": "article",
+            "title": "에어컨 튼 채 뒷유리 열선 켜면 덜덜…캐스퍼 결함신고 90여건 (Hankyung)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
