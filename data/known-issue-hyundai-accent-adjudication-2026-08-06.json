@@ -1,0 +1,1261 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Accent",
+  "completionStatement": "This packet reconciles all seven frozen Hyundai Accent rows. Three same-identity NHTSA recall corrections are proposed; four rows remain byte-for-byte unchanged pending exact primary evidence or independent disposition.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All seven rows remain published. Four are byte-for-byte unchanged.",
+    "An unrelated campaign, component, generation or model may never replace the issue named by an existing indexed page.",
+    "Each rewrite contains zero commerce, zero cost or mileage claims, and empty trim and engine arrays.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "accentRecordCount": 7
+  },
+  "observations": [
+    {
+      "code": "pretensioner-amended-scope",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-accent-seat-belt-pretensioner-may-explode-send-shrapnel"
+      ],
+      "detail": "The live NHTSA campaign and amended Part 573 filing cover 2020-2022 Accent. A later chronology states that 2019 vehicles were removed after manufacturing-record review."
+    },
+    {
+      "code": "stop-lamp-overlapping-campaigns-preserved",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-accent-brake-light-stop-lamp-switch-failure"
+      ],
+      "detail": "09V122, 13V113 and 15V566 overlap but collectively cover the frozen 2006-2011 stop-lamp-switch identity. They remain one existing indexed page without consolidation or redirect work."
+    },
+    {
+      "code": "abs-remedy-narrowed-to-official-record",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-accent-abs-hecu-brake-fluid-leak-causing-engine-compartment-fire"
+      ],
+      "detail": "The proposal uses the official ABS-fuse remedy and removes unsupported assertions that a leaking HECU will also be replaced."
+    },
+    {
+      "code": "unsupported-accent-narratives-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-accent-ac-compressor",
+        "hyundai-accent-crankshaft-sensor",
+        "hyundai-accent-cvt-failure",
+        "hyundai-accent-rear-suspension-noise"
+      ],
+      "detail": "Four forum/generic-complaint narratives remain byte-for-byte unchanged rather than being archived or replaced."
+    }
+  ],
+  "summary": {
+    "rewrite_same_identity": 3,
+    "keep_published_pending_source": 4,
+    "total": 7
+  },
+  "rows": [
+    {
+      "id": "hyundai-accent-abs-hecu-brake-fluid-leak-causing-engine-compartment-fire",
+      "model": "Accent",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced secondary sources and unsupported O-ring, warning-light, population and HECU-replacement details with recall 23V651's exact 2012-2015 Accent scope, internal-leak fire risk, park-outside instruction and ABS-fuse remedy.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "trims",
+        "engines",
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "government-recall-record",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=23V651000",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Campaign 23V651 - 2012-2015 Accent ABS Module Fire Risk supports the proposed same-identity scope, consequence and remedy."
+        },
+        {
+          "kind": "government-recall-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V651-6950.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai Part 573 Report 23V651 - ABS Module Internal Leak supports the proposed same-identity scope, consequence and remedy."
+        }
+      ],
+      "beforeSha256": "91e6ed32254cf0be42e5b3613a5a0fa21cc50b751f914e748f62bfaeec992765",
+      "proposalSha256": "e2563877ebc6c30298161d77c0c1472dd1fcc2764f431aa15e51d6c5fccdfc2b",
+      "before": {
+        "make": "Hyundai",
+        "model": "Accent",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [
+          "GLS",
+          "GS",
+          "SE",
+          "Sport"
+        ],
+        "engines": [
+          "1.6L Gamma GDI I4 (G4FD)"
+        ],
+        "category": "brakes",
+        "title": "ABS/HECU Brake-Fluid Leak Causing Engine-Compartment Fire (Recall 23V-651 / Campaign 251)",
+        "description": "O-ring material inside the ABS Hydraulic Electronic Control Unit (HECU) can degrade and allow brake fluid to leak internally, causing an electrical short and overcurrent that can ignite an engine-compartment fire while parked or driving, even with the ignition off. NHTSA recall 23V-651000 covers 240,589 model-year 2012-2015 Accents (part of the larger ~1.6M-vehicle Hyundai action). Warning signs include smoke/burning odor from the engine bay and MIL/ABS light illumination.",
+        "solution": "Under recall, the dealer replaces the ABS multi-relay fuse (lower-amp fuse) free of charge regardless of warranty status as the remedy; a leaking HECU is replaced if found. Owners are advised to park outdoors and away from structures until the repair is completed.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Burning/electrical smell from engine bay",
+          "Smoke from under the hood while parked",
+          "ABS or brake warning light",
+          "Fire in engine compartment"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "C1200",
+          "C1604"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V651-6950.PDF",
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall Report 23V-651"
+          },
+          {
+            "url": "https://www.nhtsa.gov/press-releases/consumer-alert-kia-and-hyundai-park-outside",
+            "type": "recall",
+            "title": "NHTSA Consumer Alert: Kia and Hyundai Park Outside"
+          },
+          {
+            "url": "https://hyundai.oemdtc.com/951/recall-251-abs-unit-may-cause-engine-compartment-fire-2010-2015-hyundai",
+            "type": "recall",
+            "title": "Recall 251: ABS Unit May Cause Engine Compartment Fire (Hyundai)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Accent",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "ABS Module Internal Brake-Fluid Leak Can Cause Fire - Recall 23V651",
+        "description": "NHTSA recall 23V651 covers certain 2012-2015 Hyundai Accent vehicles. The anti-lock brake system module can leak brake fluid internally and cause an electrical short, which can start an engine-compartment fire while the vehicle is parked or being driven.",
+        "solution": "Check the VIN for recall 23V651. Until the recall repair is complete, Hyundai advises owners to park outside and away from structures. Dealers replace the ABS fuse free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Open recall 23V651 for the VIN",
+          "Potential smoke or fire from the engine compartment while parked or driving"
+        ],
+        "affectedSystems": [
+          "Anti-lock brake system module",
+          "ABS electrical fuse"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 23V651 - 2012-2015 Accent ABS Module Fire Risk",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=23V651000"
+          },
+          {
+            "type": "recall",
+            "title": "Hyundai Part 573 Report 23V651 - ABS Module Internal Leak",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V651-6950.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced secondary sources and unsupported O-ring, warning-light, population and HECU-replacement details with recall 23V651's exact 2012-2015 Accent scope, internal-leak fire risk, park-outside instruction and ABS-fuse remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-accent-ac-compressor",
+      "model": "Accent",
+      "action": "keep_published_pending_source",
+      "reason": "A forum home page does not establish one 2012-2020 Accent compressor-clutch, bearing and reed-valve defect, mileage range, cascading component replacement or preferred aftermarket brand. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; generic complaints, forums or unsupported overlap cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "a969615c1484c03274011de022384b0588231d087776efcb79c0ecf4888f258c",
+      "proposalSha256": "a969615c1484c03274011de022384b0588231d087776efcb79c0ecf4888f258c",
+      "before": {
+        "make": "Hyundai",
+        "model": "Accent",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "A/C Compressor Premature Failure",
+        "description": "The A/C compressor on the Accent fails prematurely, often between 50,000-80,000 miles. The compressor clutch bearing seizes or the internal reed valves break, sending metal debris through the system. When the compressor fails catastrophically, the condenser, expansion valve, and accumulator also need replacement to remove debris.",
+        "solution": "If compressor clutch is failing (noise but still cooling), replace the clutch assembly only ($150-250). For complete compressor failure, replace the compressor, condenser, expansion valve, and flush the system ($800-1,400 total). Use a Denso or SANDEN aftermarket compressor rather than cheap eBay units. Always replace the receiver drier with a new compressor.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "A/C blows warm air",
+          "Squealing noise when A/C is on",
+          "A/C cycles on and off rapidly",
+          "Grinding noise from engine belt area",
+          "Oily residue around A/C compressor"
+        ],
+        "affectedSystems": [
+          "Cooling",
+          "A/C"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": 50000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Accent A/C Compressor Failures"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso aftermarket A/C compressor is reliable and half the cost of OEM",
+            "upvotes": 0,
+            "partName": "A/C Compressor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20A%2FC%20Compressor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "When replacing the compressor, always flush the system and replace the condenser and drier - leftover debris will kill the new compressor",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 380,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-09-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Accent",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "A/C Compressor Premature Failure",
+        "description": "The A/C compressor on the Accent fails prematurely, often between 50,000-80,000 miles. The compressor clutch bearing seizes or the internal reed valves break, sending metal debris through the system. When the compressor fails catastrophically, the condenser, expansion valve, and accumulator also need replacement to remove debris.",
+        "solution": "If compressor clutch is failing (noise but still cooling), replace the clutch assembly only ($150-250). For complete compressor failure, replace the compressor, condenser, expansion valve, and flush the system ($800-1,400 total). Use a Denso or SANDEN aftermarket compressor rather than cheap eBay units. Always replace the receiver drier with a new compressor.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "A/C blows warm air",
+          "Squealing noise when A/C is on",
+          "A/C cycles on and off rapidly",
+          "Grinding noise from engine belt area",
+          "Oily residue around A/C compressor"
+        ],
+        "affectedSystems": [
+          "Cooling",
+          "A/C"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": 50000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Accent A/C Compressor Failures"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso aftermarket A/C compressor is reliable and half the cost of OEM",
+            "upvotes": 0,
+            "partName": "A/C Compressor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20A%2FC%20Compressor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "When replacing the compressor, always flush the system and replace the condenser and drier - leftover debris will kill the new compressor",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 380,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-09-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-accent-brake-light-stop-lamp-switch-failure",
+      "model": "Accent",
+      "action": "rewrite_same_identity",
+      "reason": "Preserved the indexed stop-lamp-switch identity while replacing secondary recall pages with exact NHTSA campaigns and their overlapping 2006-2011 Accent scopes, effects and free switch-replacement remedies.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "trims",
+        "engines",
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "government-recall-record",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=09V122000",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Campaign 09V122 - 2006-2007 Accent Stop-Lamp Switch supports the proposed same-identity scope, consequence and remedy."
+        },
+        {
+          "kind": "government-recall-record",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=13V113000",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Campaign 13V113 - 2006-2009 Accent Stop-Lamp Switch supports the proposed same-identity scope, consequence and remedy."
+        },
+        {
+          "kind": "government-recall-record",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=15V566000",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Campaign 15V566 - 2009-2011 Accent Brake-Light Switch supports the proposed same-identity scope, consequence and remedy."
+        }
+      ],
+      "beforeSha256": "c6cd2d6285e0d861819881602a0dd360b67fe76f23b8fdf25e24e4ed907aea26",
+      "proposalSha256": "59b9327121ecb7782c399e5c9c5f33bc1765ab5260d171ea33e52b54e04849c3",
+      "before": {
+        "make": "Hyundai",
+        "model": "Accent",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011
+        ],
+        "trims": [
+          "GL",
+          "GLS",
+          "GS",
+          "SE"
+        ],
+        "engines": [
+          "1.6L Alpha II I4",
+          "1.6L Gamma I4"
+        ],
+        "category": "electrical",
+        "title": "Brake Light / Stop Lamp Switch Failure",
+        "description": "The stop lamp (brake light) switch contacts degrade and fail, so the brake lights may not illuminate when the pedal is pressed. Because the switch also signals other systems, failure can prevent cruise control from disengaging, keep the shift interlock from releasing the shifter out of Park, and illuminate the ESC indicator. Multiple recalls covered MC-platform 2006-2011 Accents (NHTSA 09V-122, 13V-113, 15V-566).",
+        "solution": "Replace the stop lamp switch on the brake pedal bracket. Covered free under recall for included VINs; out-of-warranty the part is inexpensive and the job is quick.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Brake lights do not turn on",
+          "Cannot shift out of Park",
+          "Cruise control will not engage or disengage",
+          "Intermittent ESC/ABS warning"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 120,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://repairpal.com/recall/15V566000",
+            "type": "recall",
+            "title": "Hyundai Accent Recall 15V566000 - Brake Light Switch Failure"
+          },
+          {
+            "url": "https://repairpal.com/recall/09V122000",
+            "type": "recall",
+            "title": "Hyundai Recall 09V122000 - Brake Light Switch May Fail"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2015/RCLRPT-15V566-6510.PDF",
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall Report 15V-566 (stop lamp switch)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Accent",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Stop-Lamp Switch Can Malfunction - Recalls 09V122, 13V113, and 15V566",
+        "description": "Three overlapping NHTSA campaigns cover Accent stop-lamp switch failures: 09V122 covers certain 2006-2007 vehicles, 13V113 covers certain 2006-2009 vehicles, and 15V566 covers certain 2009-2011 vehicles. A malfunctioning switch can prevent the brake lights from illuminating, prevent cruise control from disengaging when the brake is pressed, interfere with the brake-transmission shift interlock, or illuminate the ESC malfunction indicator.",
+        "solution": "Have a Hyundai dealer check the VIN for all three campaigns and verify completion. Each campaign directs dealers to replace the affected stop-lamp or brake-light switch free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Brake lights may not illuminate when the brake pedal is pressed",
+          "Cruise control may not disengage when the brake pedal is pressed",
+          "Shifter may not move out of Park",
+          "ESC malfunction indicator may illuminate"
+        ],
+        "affectedSystems": [
+          "Stop-lamp switch",
+          "Brake lights",
+          "Cruise control disengagement",
+          "Brake-transmission shift interlock"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 09V122 - 2006-2007 Accent Stop-Lamp Switch",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=09V122000"
+          },
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 13V113 - 2006-2009 Accent Stop-Lamp Switch",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=13V113000"
+          },
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 15V566 - 2009-2011 Accent Brake-Light Switch",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=15V566000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Preserved the indexed stop-lamp-switch identity while replacing secondary recall pages with exact NHTSA campaigns and their overlapping 2006-2011 Accent scopes, effects and free switch-replacement remedies.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-accent-crankshaft-sensor",
+      "model": "Accent",
+      "action": "keep_published_pending_source",
+      "reason": "A forum home page and generic NHTSA complaint landing page do not establish one 2012-2022 Accent crankshaft-sensor defect, heat mechanism, mileage range, part number or repair cost. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; generic complaints, forums or unsupported overlap cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "c44e6f3c4245e035733bfa983413a863218c996e9f9d3078f071da12d03d1799",
+      "proposalSha256": "c44e6f3c4245e035733bfa983413a863218c996e9f9d3078f071da12d03d1799",
+      "before": {
+        "make": "Hyundai",
+        "model": "Accent",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [
+          "1.6L"
+        ],
+        "category": "electrical",
+        "title": "Crankshaft Position Sensor Failure",
+        "description": "The crankshaft position sensor on the 1.6L Gamma engine in the Accent fails prematurely, causing no-start conditions, intermittent stalling, and rough running. The sensor's internal hall-effect element degrades from heat exposure near the engine block. Common failure between 60,000-100,000 miles.",
+        "solution": "Replace the crankshaft position sensor (Hyundai part 39180-2B000). The sensor is located near the transmission bellhousing on the engine block. Parts cost $30-80, labor $80-150. This is a common DIY repair taking about 30-45 minutes. Always use an OEM sensor as aftermarket sensors have high failure rates.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Engine stalls randomly while driving",
+          "No-start with cranking but no fire",
+          "Check engine light with P0335 or P0336",
+          "Intermittent rough idle",
+          "Engine dies at red lights"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0401",
+          "P0402",
+          "P0403",
+          "P0404"
+        ],
+        "estimatedCostLow": 110,
+        "estimatedCostHigh": 230,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 100000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Accent Crank Sensor DIY Guide"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2016/HYUNDAI/ACCENT",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints - Accent Stalling"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Hyundai OEM sensor 39180-2B000 is only $35-45 and lasts much longer than aftermarket options",
+            "upvotes": 0,
+            "partBrand": "Hyundai OEM",
+            "partNumber": "39180-2B000",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2039180-2B000&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Keep a spare crank sensor in the glove box - it takes 30 minutes to replace on the side of the road and costs under $50",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 520,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-07-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-elantra-crankshaft-position-sensor"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Accent",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [
+          "1.6L"
+        ],
+        "category": "electrical",
+        "title": "Crankshaft Position Sensor Failure",
+        "description": "The crankshaft position sensor on the 1.6L Gamma engine in the Accent fails prematurely, causing no-start conditions, intermittent stalling, and rough running. The sensor's internal hall-effect element degrades from heat exposure near the engine block. Common failure between 60,000-100,000 miles.",
+        "solution": "Replace the crankshaft position sensor (Hyundai part 39180-2B000). The sensor is located near the transmission bellhousing on the engine block. Parts cost $30-80, labor $80-150. This is a common DIY repair taking about 30-45 minutes. Always use an OEM sensor as aftermarket sensors have high failure rates.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Engine stalls randomly while driving",
+          "No-start with cranking but no fire",
+          "Check engine light with P0335 or P0336",
+          "Intermittent rough idle",
+          "Engine dies at red lights"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0401",
+          "P0402",
+          "P0403",
+          "P0404"
+        ],
+        "estimatedCostLow": 110,
+        "estimatedCostHigh": 230,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 100000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Accent Crank Sensor DIY Guide"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2016/HYUNDAI/ACCENT",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints - Accent Stalling"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Hyundai OEM sensor 39180-2B000 is only $35-45 and lasts much longer than aftermarket options",
+            "upvotes": 0,
+            "partBrand": "Hyundai OEM",
+            "partNumber": "39180-2B000",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2039180-2B000&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Keep a spare crank sensor in the glove box - it takes 30 minutes to replace on the side of the road and costs under $50",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 520,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-07-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-elantra-crankshaft-position-sensor"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-accent-cvt-failure",
+      "model": "Accent",
+      "action": "keep_published_pending_source",
+      "reason": "A forum home page and a generic 2018 complaint landing page do not establish an IVT/CVT chain-and-pulley defect across the frozen 2017-2022 scope, and they do not support the 30,000-mile service interval or replacement costs. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; generic complaints, forums or unsupported overlap cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "454b44fed32cd08fb7b074b56b019ae888100cc62448cb859f4bc7fc3d6a22e9",
+      "proposalSha256": "454b44fed32cd08fb7b074b56b019ae888100cc62448cb859f4bc7fc3d6a22e9",
+      "before": {
+        "make": "Hyundai",
+        "model": "Accent",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "IVT/CVT Transmission Failure and Shudder",
+        "description": "The IVT (CVT) transmission in 2017+ Accent models can fail prematurely, with symptoms ranging from shuddering and slipping to complete loss of drive. The chain and pulley system wears, especially with aggressive driving or neglected fluid changes. Rebuilds are typically not cost-effective given the vehicle's value.",
+        "solution": "Regular IVT fluid changes every 30,000 miles (not lifetime as Hyundai suggests) using SP-CVT1 fluid. If shuddering, a fluid drain and fill may resolve mild cases. Severe cases require transmission replacement ($2,500-4,000). Given the Accent's value, a used transmission ($800-1,200 installed) may be more practical.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Shuddering at low speeds",
+          "Rubber-band effect on acceleration",
+          "Droning noise at highway speed",
+          "Complete loss of drive",
+          "Transmission warning light"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0740",
+          "P0868",
+          "P17F0",
+          "P17F1"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": 24000,
+        "typicalMileageHigh": 36000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Accent CVT Problems Thread"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HYUNDAI/ACCENT",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints - Accent Transmission"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Hyundai SP-CVT1 fluid is critical - do not use generic CVT fluid",
+            "upvotes": 0,
+            "partName": "SP-CVT1 Fluid",
+            "partBrand": "Hyundai",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20SP-CVT1%20Fluid&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Change IVT fluid every 30,000 miles regardless of what the owners manual says - this is the single best thing you can do for longevity",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "If the transmission starts slipping, get it inspected immediately - IVT damage progresses rapidly once it starts",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 350,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-forte-cvt-judder",
+          "hyundai-elantra-ivt-cvt-failure"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Accent",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "IVT/CVT Transmission Failure and Shudder",
+        "description": "The IVT (CVT) transmission in 2017+ Accent models can fail prematurely, with symptoms ranging from shuddering and slipping to complete loss of drive. The chain and pulley system wears, especially with aggressive driving or neglected fluid changes. Rebuilds are typically not cost-effective given the vehicle's value.",
+        "solution": "Regular IVT fluid changes every 30,000 miles (not lifetime as Hyundai suggests) using SP-CVT1 fluid. If shuddering, a fluid drain and fill may resolve mild cases. Severe cases require transmission replacement ($2,500-4,000). Given the Accent's value, a used transmission ($800-1,200 installed) may be more practical.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Shuddering at low speeds",
+          "Rubber-band effect on acceleration",
+          "Droning noise at highway speed",
+          "Complete loss of drive",
+          "Transmission warning light"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0740",
+          "P0868",
+          "P17F0",
+          "P17F1"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": 24000,
+        "typicalMileageHigh": 36000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Accent CVT Problems Thread"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HYUNDAI/ACCENT",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints - Accent Transmission"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Hyundai SP-CVT1 fluid is critical - do not use generic CVT fluid",
+            "upvotes": 0,
+            "partName": "SP-CVT1 Fluid",
+            "partBrand": "Hyundai",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20SP-CVT1%20Fluid&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Change IVT fluid every 30,000 miles regardless of what the owners manual says - this is the single best thing you can do for longevity",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "If the transmission starts slipping, get it inspected immediately - IVT damage progresses rapidly once it starts",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 350,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-forte-cvt-judder",
+          "hyundai-elantra-ivt-cvt-failure"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-accent-rear-suspension-noise",
+      "model": "Accent",
+      "action": "keep_published_pending_source",
+      "reason": "A forum home page does not establish one 2006-2017 Accent torsion-beam-bushing defect, part number, failure effects or replacement cost. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; generic complaints, forums or unsupported overlap cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "11da6ffc1266163cfbb696cffea679ac9f41f213a617a393f575c40c56defb3e",
+      "proposalSha256": "11da6ffc1266163cfbb696cffea679ac9f41f213a617a393f575c40c56defb3e",
+      "before": {
+        "make": "Hyundai",
+        "model": "Accent",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Rear Suspension Clunk / Torsion Beam Bushing Wear",
+        "description": "The rear torsion beam axle bushings on the Accent wear out prematurely, causing clunking over bumps, wandering at highway speeds, and uneven rear tire wear. The rubber bushings crack and deteriorate, allowing excessive movement of the rear axle. This is accelerated by rough roads and pothole impacts.",
+        "solution": "Replace rear torsion beam bushings (Hyundai part 55274-1R000 for each side). This requires pressing out the old bushings and pressing in new ones - typically done by a shop with a hydraulic press. Parts cost $40-80 for both, labor $200-400. Complete rear beam replacement is $600-1,000 if bushings are severely worn.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clunk from rear over bumps",
+          "Vehicle wanders at highway speed",
+          "Uneven rear tire wear",
+          "Loose feeling in rear end",
+          "Thud sound on rough roads"
+        ],
+        "affectedSystems": [
+          "Suspension"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 240,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Accent Rear Suspension Noise Fix"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Moog rear torsion beam bushings are a quality upgrade over OEM rubber",
+            "upvotes": 0,
+            "partName": "Rear Axle Beam Bushing",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20Rear%20Axle%20Beam%20Bushing&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have an alignment done immediately after replacing torsion beam bushings - the rear toe changes significantly with new bushings",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 410,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-05-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "dodge-charger-suspension-2011"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Accent",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Rear Suspension Clunk / Torsion Beam Bushing Wear",
+        "description": "The rear torsion beam axle bushings on the Accent wear out prematurely, causing clunking over bumps, wandering at highway speeds, and uneven rear tire wear. The rubber bushings crack and deteriorate, allowing excessive movement of the rear axle. This is accelerated by rough roads and pothole impacts.",
+        "solution": "Replace rear torsion beam bushings (Hyundai part 55274-1R000 for each side). This requires pressing out the old bushings and pressing in new ones - typically done by a shop with a hydraulic press. Parts cost $40-80 for both, labor $200-400. Complete rear beam replacement is $600-1,000 if bushings are severely worn.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clunk from rear over bumps",
+          "Vehicle wanders at highway speed",
+          "Uneven rear tire wear",
+          "Loose feeling in rear end",
+          "Thud sound on rough roads"
+        ],
+        "affectedSystems": [
+          "Suspension"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 240,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundaiforums.com",
+            "type": "forum",
+            "title": "HyundaiForums.com - Accent Rear Suspension Noise Fix"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Moog rear torsion beam bushings are a quality upgrade over OEM rubber",
+            "upvotes": 0,
+            "partName": "Rear Axle Beam Bushing",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20Rear%20Axle%20Beam%20Bushing&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have an alignment done immediately after replacing torsion beam bushings - the rear toe changes significantly with new bushings",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 410,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-05-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "dodge-charger-suspension-2011"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-accent-seat-belt-pretensioner-may-explode-send-shrapnel",
+      "model": "Accent",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced secondary sources with the amended 22V354 record, corrected the Accent scope from stale 2019-2022 wording to 2020-2022, and retained only the documented abnormal-deployment risk and protective-cap remedy.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "trims",
+        "engines",
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "government-recall-record",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=22V354000",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Campaign 22V354 - 2020-2022 Accent Seat-Belt Pretensioners supports the proposed same-identity scope, consequence and remedy."
+        },
+        {
+          "kind": "government-recall-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V354-9759.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai Amended Part 573 Report 22V354 - Pretensioner Population and Remedy supports the proposed same-identity scope, consequence and remedy."
+        }
+      ],
+      "beforeSha256": "835e4542349e5a4820de59226a9bb634d4fe2f86d297d5d86b39b8b0e9ff895a",
+      "proposalSha256": "654417f8ce9ad51033b471f2fbd18adfd97c4298b79159f01199b7dd7a250c64",
+      "before": {
+        "make": "Hyundai",
+        "model": "Accent",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [
+          "SE",
+          "SEL",
+          "Limited"
+        ],
+        "engines": [
+          "1.6L Gamma GDI I4 (G4FD)",
+          "1.6L Smartstream MPI I4"
+        ],
+        "category": "safety",
+        "title": "Seat-Belt Pretensioner May Explode and Send Shrapnel (Recall 229 / NHTSA 22V-354)",
+        "description": "The front seat-belt pretensioner micro gas generator can rupture abnormally when it deploys in a crash, projecting metal fragments into the cabin and risking occupant injury (three injuries reported). Hyundai traced it to microfractures in the delivery pipe. NHTSA campaign 22V-354 (Hyundai recall 229) recalled about 239,000 vehicles, including 2019-2022 Accents (this recall expanded/replaced earlier campaigns 21V-796, 22V-069, 22V-123, 22V-218).",
+        "solution": "Under recall, dealers secure the pretensioner's micro gas generator with a protective cap (or replace the pretensioner as needed), free of charge. Owner notification letters were mailed August 2022.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No warning until deployment",
+          "Metal fragments/shrapnel ejected during crash pretensioner firing",
+          "Airbag/seat-belt warning light (rare)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://hyundai.oemdtc.com/687/recall-229-seat-belt-pretensioners-may-explode-2019-2022-hyundai-accent-2021-2023-elantra-2021-2022-elantra-hev/",
+            "type": "recall",
+            "title": "Recall 229 - Seat Belt Pretensioners May Explode (2019-2022 Accent)"
+          },
+          {
+            "url": "https://www.npr.org/2022/05/24/1101002493/hyundai-recall-accent-elantra-exploding-seat-belt-pretensioners",
+            "type": "article",
+            "title": "Hyundai recalling 239,000 vehicles over exploding seat belt pretensioners - NPR"
+          },
+          {
+            "url": "https://www.consumerreports.org/cars/car-recalls-defects/hyundai-accent-elantra-recalled-seat-belt-pretensioner-issue-a6739563089/",
+            "type": "article",
+            "title": "Hyundai Accent and Elantra Recalled for Seat Belt Pretensioner Issue - Consumer Reports"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Accent",
+        "years": [
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Front Seat-Belt Pretensioner Can Explode During Deployment - Recall 22V354",
+        "description": "NHTSA recall 22V354 covers certain 2020-2022 Hyundai Accent vehicles. In a crash, a front driver-side or passenger-side seat-belt pretensioner can explode when it deploys, projecting metal fragments into the passenger compartment and risking occupant injury. Hyundai's amended filing removed 2019 Accent vehicles after reviewing pretensioner manufacturing records.",
+        "solution": "Have a Hyundai dealer check the VIN for recall 22V354, campaign 229, including vehicles repaired under the earlier superseded campaigns. Dealers secure the affected seat-belt pretensioners with a protective cap free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Open recall 22V354 for the VIN",
+          "No advance warning required before abnormal pretensioner deployment",
+          "Potential metal fragments during a crash deployment"
+        ],
+        "affectedSystems": [
+          "Front driver-side seat-belt pretensioner",
+          "Front passenger-side seat-belt pretensioner"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 22V354 - 2020-2022 Accent Seat-Belt Pretensioners",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=22V354000"
+          },
+          {
+            "type": "recall",
+            "title": "Hyundai Amended Part 573 Report 22V354 - Pretensioner Population and Remedy",
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V354-9759.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced secondary sources with the amended 22V354 record, corrected the Accent scope from stale 2019-2022 wording to 2020-2022, and retained only the documented abnormal-deployment risk and protective-cap remedy.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
