@@ -1,0 +1,598 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Honda",
+  "model": "CR-Z",
+  "completionStatement": "This packet reconciles all three frozen Honda CR-Z rows. One same-identity Honda correction is proposed; two rows remain byte-for-byte unchanged pending exact evidence or independent disposition.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All three rows remain published. Two are byte-for-byte unchanged.",
+    "An unrelated campaign, bulletin, component or model may never replace the issue named by an existing indexed page.",
+    "The one rewrite contains zero commerce, zero cost or mileage claims, and empty trim and engine arrays.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_honda-deeplink-snapshot-2026-08-05.json",
+    "snapshotSha256": "671de2660f31c07e01610e26c13382b6d59b293fb74ecc3e3abc02d248d6dd5e",
+    "snapshotGeneratedAt": "2026-08-05T21:54:08.563Z",
+    "snapshotHash": "fcd155f1e269b1d8c691655699cc2e18f6029c3ee54c650b88df00004025729a",
+    "crzRecordCount": 3
+  },
+  "observations": [
+    {
+      "code": "ima-memory-effect-not-permanent-degradation",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-crz-ima-battery-degradation-2011"
+      ],
+      "detail": "Honda says the 2011-2012 software-related memory effect is not permanent battery degradation. The proposed rewrite removes the unsupported 2011-2016 pack-replacement narrative."
+    },
+    {
+      "code": "ac-primary-source-gap",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-crz-ac-compressor-2011"
+      ],
+      "detail": "No CR-Z-specific Honda/NHTSA compressor-clutch or bearing defect record was verified; the row and its current commerce remain byte-equivalent pending disposition."
+    },
+    {
+      "code": "clutch-primary-source-gap",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-crz-clutch-slave-cylinder-2011"
+      ],
+      "detail": "No CR-Z-specific Honda/NHTSA clutch-slave-cylinder defect record was verified; no unrelated source is substituted."
+    }
+  ],
+  "summary": {
+    "rewrite_same_identity": 1,
+    "keep_published_pending_source": 2,
+    "total": 3
+  },
+  "rows": [
+    {
+      "id": "honda-crz-ac-compressor-2011",
+      "model": "CR-Z",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen A/C card relies on forum summaries and an Amazon search URL. No exact Honda or NHTSA record establishes a CR-Z-specific compressor clutch/bearing defect, mechanism or remedy, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic vehicle page, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "bfdba549098fe7569f15f38e432dfbb02331ad33a941fd2ba94b7e5018535011",
+      "proposalSha256": "bfdba549098fe7569f15f38e432dfbb02331ad33a941fd2ba94b7e5018535011",
+      "before": {
+        "make": "Honda",
+        "model": "CR-Z",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "A/C Compressor Clutch and Bearing Failure",
+        "description": "The CR-Z uses a compact A/C compressor that experiences clutch bearing failure and clutch plate wear. The compressor is mounted low in the engine bay where it is exposed to water splash, accelerating bearing corrosion. The small compressor works hard in the CR-Z's compact engine bay where underhood temperatures run high. A seized compressor clutch bearing creates a loud squealing noise and can shred the serpentine belt if not addressed.",
+        "solution": "Replace the compressor clutch bearing and clutch plate if caught early ($150-300). If the compressor has seized internally, replace the entire compressor assembly. Replace the A/C receiver-drier and expansion valve during the repair. Evacuate the system, pull a vacuum for 30+ minutes to remove moisture, and recharge with the correct amount of R-134a refrigerant.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Squealing noise from engine bay when A/C is on",
+          "A/C not cooling properly",
+          "Grinding noise from compressor area",
+          "Serpentine belt showing excessive wear or glazing",
+          "A/C clutch not engaging (clicking but not locking)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "source": "crzforum.com",
+            "description": "CR-Z A/C compressor bearing replacement"
+          },
+          {
+            "source": "honda-tech.com",
+            "description": "CR-Z A/C system diagnosis and repair"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso 471-7054 A/C compressor for CR-Z — OEM supplier to Honda, includes clutch assembly",
+            "upvotes": 0,
+            "partName": "A/C Compressor with Clutch",
+            "partBrand": "Denso",
+            "partNumber": "471-7054",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso+Honda+CR-Z+AC+compressor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If the bearing is squealing but the compressor still works, replace just the clutch bearing for $50-100 — this can buy years of additional compressor life",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "A seized compressor clutch can shred the serpentine belt in seconds, stranding the vehicle — do not drive with a squealing compressor",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 60,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "CR-Z",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "A/C Compressor Clutch and Bearing Failure",
+        "description": "The CR-Z uses a compact A/C compressor that experiences clutch bearing failure and clutch plate wear. The compressor is mounted low in the engine bay where it is exposed to water splash, accelerating bearing corrosion. The small compressor works hard in the CR-Z's compact engine bay where underhood temperatures run high. A seized compressor clutch bearing creates a loud squealing noise and can shred the serpentine belt if not addressed.",
+        "solution": "Replace the compressor clutch bearing and clutch plate if caught early ($150-300). If the compressor has seized internally, replace the entire compressor assembly. Replace the A/C receiver-drier and expansion valve during the repair. Evacuate the system, pull a vacuum for 30+ minutes to remove moisture, and recharge with the correct amount of R-134a refrigerant.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Squealing noise from engine bay when A/C is on",
+          "A/C not cooling properly",
+          "Grinding noise from compressor area",
+          "Serpentine belt showing excessive wear or glazing",
+          "A/C clutch not engaging (clicking but not locking)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "source": "crzforum.com",
+            "description": "CR-Z A/C compressor bearing replacement"
+          },
+          {
+            "source": "honda-tech.com",
+            "description": "CR-Z A/C system diagnosis and repair"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso 471-7054 A/C compressor for CR-Z — OEM supplier to Honda, includes clutch assembly",
+            "upvotes": 0,
+            "partName": "A/C Compressor with Clutch",
+            "partBrand": "Denso",
+            "partNumber": "471-7054",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso+Honda+CR-Z+AC+compressor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If the bearing is squealing but the compressor still works, replace just the clutch bearing for $50-100 — this can buy years of additional compressor life",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "A seized compressor clutch can shred the serpentine belt in seconds, stranding the vehicle — do not drive with a squealing compressor",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 60,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-crz-clutch-slave-cylinder-2011",
+      "model": "CR-Z",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA vehicle page and repair video do not establish a CR-Z clutch-slave-cylinder defect rate, failure mechanism or Honda remedy. No unrelated hydraulic-clutch bulletin is substituted, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic vehicle page, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "f0e838765953eaf596e52ba28c435da9eae41d0d349e40aed2e5328360568f45",
+      "proposalSha256": "f0e838765953eaf596e52ba28c435da9eae41d0d349e40aed2e5328360568f45",
+      "before": {
+        "make": "Honda",
+        "model": "CR-Z",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Manual Transmission Clutch Slave Cylinder Failure",
+        "description": "The CR-Z with the 6-speed manual transmission (the enthusiast choice) develops clutch slave cylinder failures. The internal seal deteriorates, causing hydraulic fluid to leak past the piston. This results in a spongy clutch pedal feel, difficulty getting into gear, and eventually a clutch pedal that sinks to the floor. The master cylinder can also fail but the slave cylinder is far more common. Because the slave cylinder is externally mounted on the CR-Z (not internal to the bell housing), replacement is relatively straightforward.",
+        "solution": "Replace the clutch slave cylinder with a new OEM Honda unit. Bleed the clutch hydraulic system thoroughly — use DOT 3 brake fluid as specified. Inspect the clutch master cylinder for leaks while the system is open. If the clutch fluid is dark or contaminated, flush the entire system. The clutch line from master to slave should also be inspected for deterioration. While the slave cylinder is accessible, inspect the clutch fork pivot and release bearing for wear.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Clutch pedal feels spongy or soft",
+          "Clutch pedal slowly sinks to the floor when held",
+          "Difficulty selecting gears, especially 1st and reverse",
+          "Clutch fluid level dropping in reservoir",
+          "Grinding when shifting if clutch is not fully disengaging"
+        ],
+        "affectedSystems": [
+          "transmission"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2011/HONDA/CR-Z",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2011 Honda CR-Z - Complaints and Investigations"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=ZyZq3Q6Y9fE",
+            "type": "video",
+            "title": "YouTube Repair Video: Honda CR-Z 6-Speed Manual Clutch Slave Cylinder Replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "This is a 1-hour DIY job on the CR-Z — the slave cylinder is easy to access on the passenger side of the transmission. Replace it with the OEM Honda unit, not aftermarket.",
+            "source": "CRZForum",
+            "upvotes": 167
+          },
+          {
+            "type": "part",
+            "content": "Replacement clutch slave cylinder to restore pedal feel and engagement",
+            "partName": "Clutch Slave Cylinder",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20clutch%20slave%20cylinder%20Honda%20CR-Z&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Clutch master cylinder for hydraulic clutch system repair",
+            "partName": "Clutch Master Cylinder",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20clutch%20master%20cylinder%20Honda%20CR-Z&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Complete clutch replacement kit with disc, pressure plate, and throwout bearing",
+            "partName": "OEM Replacement Clutch Kit",
+            "partBrand": "Exedy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Exedy%20clutch%20kit%20Honda%20CR-Z&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "CR-Z",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Manual Transmission Clutch Slave Cylinder Failure",
+        "description": "The CR-Z with the 6-speed manual transmission (the enthusiast choice) develops clutch slave cylinder failures. The internal seal deteriorates, causing hydraulic fluid to leak past the piston. This results in a spongy clutch pedal feel, difficulty getting into gear, and eventually a clutch pedal that sinks to the floor. The master cylinder can also fail but the slave cylinder is far more common. Because the slave cylinder is externally mounted on the CR-Z (not internal to the bell housing), replacement is relatively straightforward.",
+        "solution": "Replace the clutch slave cylinder with a new OEM Honda unit. Bleed the clutch hydraulic system thoroughly — use DOT 3 brake fluid as specified. Inspect the clutch master cylinder for leaks while the system is open. If the clutch fluid is dark or contaminated, flush the entire system. The clutch line from master to slave should also be inspected for deterioration. While the slave cylinder is accessible, inspect the clutch fork pivot and release bearing for wear.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Clutch pedal feels spongy or soft",
+          "Clutch pedal slowly sinks to the floor when held",
+          "Difficulty selecting gears, especially 1st and reverse",
+          "Clutch fluid level dropping in reservoir",
+          "Grinding when shifting if clutch is not fully disengaging"
+        ],
+        "affectedSystems": [
+          "transmission"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2011/HONDA/CR-Z",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2011 Honda CR-Z - Complaints and Investigations"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=ZyZq3Q6Y9fE",
+            "type": "video",
+            "title": "YouTube Repair Video: Honda CR-Z 6-Speed Manual Clutch Slave Cylinder Replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "This is a 1-hour DIY job on the CR-Z — the slave cylinder is easy to access on the passenger side of the transmission. Replace it with the OEM Honda unit, not aftermarket.",
+            "source": "CRZForum",
+            "upvotes": 167
+          },
+          {
+            "type": "part",
+            "content": "Replacement clutch slave cylinder to restore pedal feel and engagement",
+            "partName": "Clutch Slave Cylinder",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20clutch%20slave%20cylinder%20Honda%20CR-Z&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Clutch master cylinder for hydraulic clutch system repair",
+            "partName": "Clutch Master Cylinder",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20clutch%20master%20cylinder%20Honda%20CR-Z&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Complete clutch replacement kit with disc, pressure plate, and throwout bearing",
+            "partName": "OEM Replacement Clutch Kit",
+            "partBrand": "Exedy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Exedy%20clutch%20kit%20Honda%20CR-Z&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-crz-ima-battery-degradation-2011",
+      "model": "CR-Z",
+      "action": "rewrite_same_identity",
+      "reason": "Corrected the broad 2011-2016 permanent-degradation card to Honda's exact VIN-eligible 2011-2012 IMA memory-effect campaign, used DTC P0A7F, and removed unsupported pack replacement, pricing, vendor, recalibration and unrelated 12-volt commerce claims.",
+      "identityRule": "The indexed IMA-battery identity remains on the same ID; Honda-backed scope and mechanism replace unsupported generalizations.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "engines",
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2014/MC-10118170-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 14-064 - CR-Z IMA Battery Software Update supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "6047f68997ab03a307c2931614f873c11dcb9880e4109f264d4068ab50ac7536",
+      "proposalSha256": "f57a6362f70b86569646f16066aa0ac7cf231757a7ac64cd44f268cb6dee998f",
+      "before": {
+        "make": "Honda",
+        "model": "CR-Z",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "1.5L"
+        ],
+        "category": "electrical",
+        "title": "IMA Hybrid Battery Pack Degradation and Recalibration Issues",
+        "description": "The CR-Z uses Honda Integrated Motor Assist (IMA) system with a nickel-metal hydride (NiMH) battery pack located behind the rear seats. The battery pack degrades over time, losing capacity and causing the IMA system to become less effective at assisting acceleration and regenerating energy. The battery management system can also lose its calibration, causing incorrect state-of-charge readings and frequent IMA warning lights. In severe degradation, the IMA system shuts down entirely, leaving the car running on the 1.5L engine alone.",
+        "solution": "Perform a battery recalibration (deep discharge and full recharge cycle) using a Honda diagnostic tool. If recalibration does not resolve the issue, replace the IMA battery pack — Honda OEM replacements are available, and aftermarket rebuilt packs cost $1,000-2,000 less. Companies like Bumblebee Batteries offer refurbished IMA packs with warranties. After battery replacement, reset the battery module ECU and allow the system to relearn over 2-3 drive cycles.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "IMA warning light illuminated on dashboard",
+          "Check engine light with IMA-related codes",
+          "Battery gauge showing low charge constantly",
+          "Reduced power assist during acceleration",
+          "Auto-stop feature no longer working",
+          "Fuel economy significantly worse than rated"
+        ],
+        "affectedSystems": [
+          "electrical",
+          "engine"
+        ],
+        "dtcCodes": [
+          "P1447",
+          "P1449",
+          "P1600"
+        ],
+        "estimatedCostLow": 1000,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2012/HONDA/CR-Z",
+            "source": "NHTSA",
+            "description": "NHTSA complaints for CR-Z IMA battery issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "Bumblebee Batteries does excellent rebuilt IMA packs for the CR-Z at about half the cost of Honda OEM. They come with a solid warranty and ship nationwide.",
+            "source": "CRZForum",
+            "upvotes": 234
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Honda%20CR-Z&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Honda%20CR-Z&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Honda%20CR-Z&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Honda%20CR-Z&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Honda%20CR-Z&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-civic-hybrid-ima-battery-failure-2012"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "CR-Z",
+        "years": [
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "IMA Battery Memory Effect and Apparent Capacity Loss - Bulletin 14-064",
+        "description": "Honda Service Bulletin 14-064 applies to VIN-eligible 2011-2012 CR-Z vehicles. Incorrect IMA battery-control software can allow a memory effect that appears as reduced battery capacity, and DTC P0A7F (Battery Module Deterioration) may be stored. Honda states that this memory effect is not permanent battery degradation.",
+        "solution": "Have a Honda dealer check VIN eligibility and the IMA battery-control software. Bulletin 14-064 directs an IMA battery-control-module software update; Honda states that the apparent capacity should recover over subsequent driving cycles.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "IMA battery charge indicator may jump",
+          "Malfunction indicator lamp may illuminate",
+          "DTC P0A7F may be stored",
+          "Apparent reduction in IMA battery capacity"
+        ],
+        "affectedSystems": [
+          "IMA battery control module software",
+          "IMA battery state-of-charge management"
+        ],
+        "dtcCodes": [
+          "P0A7F"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 14-064 - CR-Z IMA Battery Software Update",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2014/MC-10118170-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Corrected the broad 2011-2016 permanent-degradation card to Honda's exact VIN-eligible 2011-2012 IMA memory-effect campaign, used DTC P0A7F, and removed unsupported pack replacement, pricing, vendor, recalibration and unrelated 12-volt commerce claims.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
