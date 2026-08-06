@@ -1,0 +1,1076 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "HB20",
+  "completionStatement": "This packet reconciles all six frozen Hyundai HB20 rows. Two exact same-identity official-recall rewrites are proposed; four broad rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All six rows remain published and all four holds remain byte-for-byte unchanged.",
+    "The two rewrites use exact record-specific official deep links and contain no secondary citations.",
+    "Both rewrites contain zero commerce, zero cost or mileage claims, empty trim and engine arrays, and no unsupported DTC.",
+    "The Hyundai recall index conflict is disclosed as review metadata; the signed-format recall PDF controls the proposed oil-pump scope.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "hb20RecordCount": 6
+  },
+  "observations": [
+    {
+      "code": "oil-pump-index-pdf-conflict-pdf-controls",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-hb20-recall-automatic-transmission-electric-oil-pump-control-modu"
+      ],
+      "detail": "Hyundai's recall index currently displays model years 2022-2023 and a production start of 2022-12-10, while its exact linked recall PDF states HB20/HB20S model years 2023-2024 and production from 2022-12-20. The proposal uses the exact PDF and does not cite the inconsistent index.",
+      "indexUrl": "https://www.hyundai.com.br/manutencao",
+      "officialPdfUrl": "https://www.hyundai.com.br/content/dam/hmb/servicos/recall/pdf/AF_Comunicado_recall_Hyundai_2023_146x246.pdf",
+      "processNumber": "08084.006071/2023-40"
+    },
+    {
+      "code": "four-broad-secondary-only-rows-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-hb20-1-0-kappa-three-cylinder-timing-chain-tensioner-rattle-cold",
+        "hyundai-hb20-1-0-tgdi-direct-injection-failure-causing-sudden-loss-power",
+        "hyundai-hb20-bluemedia-bluenav-infotainment-unit-freezing-total-failure",
+        "hyundai-hb20-clutch-judder-vibration-when-pulling-away"
+      ],
+      "detail": "Hyundai product and owner-manual pages establish equipment only. No exact recall, campaign or service document was found for the four broad narratives, so none was rewritten."
+    },
+    {
+      "code": "oil-pump-warning-symptoms-removed",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-hb20-recall-automatic-transmission-electric-oil-pump-control-modu"
+      ],
+      "detail": "The official notice does not state warning-light, burning-smell or no-warning behavior. The proposed symptom list is empty."
+    },
+    {
+      "code": "brake-booster-use-warning-preserved",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-hb20-recall-brake-booster-vacuum-control-valve-can-dry-out-harden"
+      ],
+      "detail": "The manufacturer notice explicitly advises stopping use and contacting a dealer when a whistle and unstable idle are observed."
+    },
+    {
+      "code": "dead-procon-link-removed",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-hb20-recall-brake-booster-vacuum-control-valve-can-dry-out-harden"
+      ],
+      "detail": "The previously cited PROCON-SP page returned HTTP 404 on 2026-08-06 and is not retained in the proposal. Hyundai's exact recall PDF remains live.",
+      "removedUrl": "https://www.procon.sp.gov.br/recall-hyundai-hb20-e-hb20s/"
+    }
+  ],
+  "publicSources": {
+    "oilPumpPdf": "https://www.hyundai.com.br/content/dam/hmb/servicos/recall/pdf/AF_Comunicado_recall_Hyundai_2023_146x246.pdf",
+    "brakeBoosterPdf": "https://www.hyundai.com.br/content/dam/hmb/servicos/recall/pdf/Aviso%20de%20Recall%2008012_000624_2018_37.pdf",
+    "recallIndex": "https://www.hyundai.com.br/manutencao"
+  },
+  "summary": {
+    "rewrite_same_identity": 2,
+    "keep_published_pending_source": 4,
+    "total": 6
+  },
+  "rows": [
+    {
+      "id": "hyundai-hb20-1-0-kappa-three-cylinder-timing-chain-tensioner-rattle-cold",
+      "model": "HB20",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen row generalizes a model-wide timing-chain/tensioner defect across both naturally aspirated and TGDI HB20 engines, assigns causes, prevention intervals and repair costs, and relies on articles and owner forums. No exact Hyundai recall, campaign or service document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary or owner material cannot establish a broad model-wide issue identity.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "1842b989691c6eada10316ba26edc72acf9f6a6cc2249a6021060da78e819244",
+      "proposalSha256": "1842b989691c6eada10316ba26edc72acf9f6a6cc2249a6021060da78e819244",
+      "before": {
+        "make": "Hyundai",
+        "model": "HB20",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "1.0 Kappa Three-Cylinder Timing Chain and Tensioner Rattle on Cold Start",
+        "description": "The HB20's 1.0-liter Kappa three-cylinder engine (used across both generations, including the 12v aspirated and later TGDI versions) uses a timing chain with a hydraulic tensioner that depends entirely on oil pressure and oil cleanliness. A widely documented complaint among Brazilian owners and independent mechanics is a metallic rattle from the chain side of the engine on cold start, which fades after a few seconds once oil pressure builds. Extended oil-change intervals, wrong viscosity, or low-quality oil clog the tensioner's oil passages, letting the chain slacken and slap against the cover. Left unaddressed, the chain and guides wear prematurely, the noise becomes constant, and in advanced cases timing accuracy is affected. The issue is discussed extensively on Hyundai HB20 Clube forums, the Oficina Brasil professional mechanics forum, and Brazilian automotive sites covering 2012-2024+ cars.",
+        "solution": "If the rattle lasts only a couple of seconds on a cold morning start, it is often hydraulic lifter/tensioner bleed-down and can be managed with strict 5,000-10,000 km oil changes using the correct specification oil. If the noise persists or returns when warm, have the chain, tensioner, and guides inspected. Replacement of the full timing kit (chain, tensioner, guides, gears) with quality parts runs roughly R$2,000-4,000 (parts plus labor) in Brazil. Maintaining clean oil at the correct viscosity is the primary prevention measure since the tensioner is oil-fed.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Metallic rattle from the engine for a few seconds on cold start",
+          "Chain slap noise from the timing-cover side of the engine",
+          "Noise becomes louder or constant as mileage increases",
+          "Ticking/rattle worsens when oil changes are overdue",
+          "Noise fades once the engine warms and oil pressure stabilizes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 350,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://turbonoticias.com.br/corrente-de-comando-novo-hb20-2019-2026-precisa-trocar-custo/",
+            "type": "article",
+            "title": "Corrente de Comando do Novo Hyundai HB20 (2019-2026): Precisa Trocar? Quanto Custa? — Turbonoticias"
+          },
+          {
+            "url": "https://oficinabrasil.com.br/forum/linha-leve/barulho-motor-hb20-1-0-3-cilindros",
+            "type": "forum",
+            "title": "BARULHO MOTOR HB20 1.0 3 CILINDROS — Fórum Oficina Brasil"
+          },
+          {
+            "url": "https://hb20clube.com.br/viewtopic.php?f=28&t=15517",
+            "type": "forum",
+            "title": "BARULHO NO MOTOR HB 20 COMFORT 1.0 MANUAL 2014 — Hyundai HB20 Clube"
+          },
+          {
+            "url": "https://www.hb20clube.com.br/viewtopic.php?t=18224",
+            "type": "forum",
+            "title": "Barulho no motor 1.0 TGDI na partida a frio — Hyundai HB20 Clube"
+          },
+          {
+            "url": "https://desmonte75.com.br/blog/motor-hb20-barulhento",
+            "type": "article",
+            "title": "Motor HB20 Barulhento — O Que Pode Ser? Guia Completo — Desmonte75"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "HB20",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "1.0 Kappa Three-Cylinder Timing Chain and Tensioner Rattle on Cold Start",
+        "description": "The HB20's 1.0-liter Kappa three-cylinder engine (used across both generations, including the 12v aspirated and later TGDI versions) uses a timing chain with a hydraulic tensioner that depends entirely on oil pressure and oil cleanliness. A widely documented complaint among Brazilian owners and independent mechanics is a metallic rattle from the chain side of the engine on cold start, which fades after a few seconds once oil pressure builds. Extended oil-change intervals, wrong viscosity, or low-quality oil clog the tensioner's oil passages, letting the chain slacken and slap against the cover. Left unaddressed, the chain and guides wear prematurely, the noise becomes constant, and in advanced cases timing accuracy is affected. The issue is discussed extensively on Hyundai HB20 Clube forums, the Oficina Brasil professional mechanics forum, and Brazilian automotive sites covering 2012-2024+ cars.",
+        "solution": "If the rattle lasts only a couple of seconds on a cold morning start, it is often hydraulic lifter/tensioner bleed-down and can be managed with strict 5,000-10,000 km oil changes using the correct specification oil. If the noise persists or returns when warm, have the chain, tensioner, and guides inspected. Replacement of the full timing kit (chain, tensioner, guides, gears) with quality parts runs roughly R$2,000-4,000 (parts plus labor) in Brazil. Maintaining clean oil at the correct viscosity is the primary prevention measure since the tensioner is oil-fed.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Metallic rattle from the engine for a few seconds on cold start",
+          "Chain slap noise from the timing-cover side of the engine",
+          "Noise becomes louder or constant as mileage increases",
+          "Ticking/rattle worsens when oil changes are overdue",
+          "Noise fades once the engine warms and oil pressure stabilizes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 350,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://turbonoticias.com.br/corrente-de-comando-novo-hb20-2019-2026-precisa-trocar-custo/",
+            "type": "article",
+            "title": "Corrente de Comando do Novo Hyundai HB20 (2019-2026): Precisa Trocar? Quanto Custa? — Turbonoticias"
+          },
+          {
+            "url": "https://oficinabrasil.com.br/forum/linha-leve/barulho-motor-hb20-1-0-3-cilindros",
+            "type": "forum",
+            "title": "BARULHO MOTOR HB20 1.0 3 CILINDROS — Fórum Oficina Brasil"
+          },
+          {
+            "url": "https://hb20clube.com.br/viewtopic.php?f=28&t=15517",
+            "type": "forum",
+            "title": "BARULHO NO MOTOR HB 20 COMFORT 1.0 MANUAL 2014 — Hyundai HB20 Clube"
+          },
+          {
+            "url": "https://www.hb20clube.com.br/viewtopic.php?t=18224",
+            "type": "forum",
+            "title": "Barulho no motor 1.0 TGDI na partida a frio — Hyundai HB20 Clube"
+          },
+          {
+            "url": "https://desmonte75.com.br/blog/motor-hb20-barulhento",
+            "type": "article",
+            "title": "Motor HB20 Barulhento — O Que Pode Ser? Guia Completo — Desmonte75"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-hb20-1-0-tgdi-direct-injection-failure-causing-sudden-loss-power",
+      "model": "HB20",
+      "action": "keep_published_pending_source",
+      "reason": "Individual complaints and secondary articles do not establish a single 2020-2023 HB20 TGDI defect identity, the claimed affected components, recurrence rate, warranty position or repair path. No exact Hyundai primary record was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary or owner material cannot establish a broad model-wide issue identity.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "7478632b726b78327144a778cecd874c73706719c16bf7da341357e0ffe4ebb5",
+      "proposalSha256": "7478632b726b78327144a778cecd874c73706719c16bf7da341357e0ffe4ebb5",
+      "before": {
+        "make": "Hyundai",
+        "model": "HB20",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "1.0 TGDI Direct Injection Failure Causing Sudden Loss of Power",
+        "description": "Second-generation HB20s with the 1.0 TGDI turbo direct-injection engine (Smartstream Kappa, introduced for MY2020) show a recurring complaint pattern in Brazil: the injection/check-engine light comes on, the engine loses power or shuts down entirely, and the car must be towed to a dealership — sometimes repeatedly on the same vehicle, including cars with under 30,000 km. Multiple Reclame Aqui complaints describe it as a chronic problem, with owners reporting dealerships keeping large stocks of injection components because of the failure frequency, and Brazilian automotive sites (Grupo Sentinela, Click Petróleo e Gás) list direct-injection failures, power loss, and increased fuel consumption among the most-cited HB20 II defects. Dealers frequently attribute the failures to fuel quality, which has led to warranty disputes; Hyundai has publicly characterized the cases as isolated and covered by the 5-year unlimited-mileage warranty. The direct-injection system (high-pressure pump, injectors) is more complex and more expensive to repair than the older port-injection 1.0.",
+        "solution": "If the injection warning light comes on or the car goes into reduced power, have it scanned and repaired at a Hyundai dealership under the 5-year unlimited-mileage warranty — push back on fuel-quality denials if you fuel at reputable stations, and keep fuel receipts. Repairs typically involve replacing failed injectors, the high-pressure fuel pump, or related sensors and reflashing the ECU. Using good-quality fuel from known stations reduces (but does not eliminate) the risk. Outside warranty, direct-injection component replacement is substantially more expensive than on the aspirated engine, so a pre-purchase scan of injection fault history is advisable on used TGDI cars.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Injection/check-engine warning light comes on",
+          "Sudden loss of power or limp mode while driving",
+          "Engine stalls or shuts down and will not restart",
+          "Rough running and increased fuel consumption",
+          "Failure recurs after dealership repair"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/problema-cronico-hb20-1-0-turbo-falha-injecao-perda-de-potencia-total_wCZPDDUDTQ8a3W8s/",
+            "type": "forum",
+            "title": "Problema Crônico HB20 1.0 Turbo - Falha Injeção/Perda de potencia total - Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/garantia-falha-de-injecao-hb20-tgdi-problema-cronico_OGDUyC1inEL4k83F/",
+            "type": "forum",
+            "title": "GARANTIA FALHA DE INJECAO HB20 TGDI PROBLEMA CRONICO - Reclame Aqui"
+          },
+          {
+            "url": "https://www.gruposentinela.com.br/hyundai-hb20-os-problemas-e-defeitos-mais-comuns-do-hatch/",
+            "type": "article",
+            "title": "Hyundai HB20: os problemas e defeitos mais comuns do hatch - Grupo Sentinela"
+          },
+          {
+            "url": "https://en.clickpetroleoegas.com.br/pensando-em-comprar-um-hb20-perda-de-potencia-aumento-do-consumo-de-combustivel-e-ate-apagao-no-motor-confira-os-problemas-e-defeitos-mais-citados-pelos-donos-do-hatch/",
+            "type": "article",
+            "title": "Pensando em comprar um HB20? Perda de potência, aumento do consumo e até apagão no motor - Click Petróleo e Gás"
+          },
+          {
+            "url": "https://www.autoo.com.br/hb20-sucesso-nas-ruas-mas-com-reclamacoes-dos-proprietarios-veja-as-principais/",
+            "type": "article",
+            "title": "HB20: sucesso nas ruas, mas com reclamações dos proprietários - AUTOO"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/hb20-1-0-tgdi-apresentando-problemas-desde-os-3-000-km_AwkWXWsD8BxqQVNw/",
+            "type": "forum",
+            "title": "HB20 1.0 TGDI apresentando problemas desde os 3.000 km - Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/hyundai-hb20-tgdi-com-bicos-injetores-travados_LeV08lt3hkL9W09M/",
+            "type": "forum",
+            "title": "Hyundai HB20 TGDI com Bicos Injetores travados - Reclame Aqui"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "HB20",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "1.0 TGDI Direct Injection Failure Causing Sudden Loss of Power",
+        "description": "Second-generation HB20s with the 1.0 TGDI turbo direct-injection engine (Smartstream Kappa, introduced for MY2020) show a recurring complaint pattern in Brazil: the injection/check-engine light comes on, the engine loses power or shuts down entirely, and the car must be towed to a dealership — sometimes repeatedly on the same vehicle, including cars with under 30,000 km. Multiple Reclame Aqui complaints describe it as a chronic problem, with owners reporting dealerships keeping large stocks of injection components because of the failure frequency, and Brazilian automotive sites (Grupo Sentinela, Click Petróleo e Gás) list direct-injection failures, power loss, and increased fuel consumption among the most-cited HB20 II defects. Dealers frequently attribute the failures to fuel quality, which has led to warranty disputes; Hyundai has publicly characterized the cases as isolated and covered by the 5-year unlimited-mileage warranty. The direct-injection system (high-pressure pump, injectors) is more complex and more expensive to repair than the older port-injection 1.0.",
+        "solution": "If the injection warning light comes on or the car goes into reduced power, have it scanned and repaired at a Hyundai dealership under the 5-year unlimited-mileage warranty — push back on fuel-quality denials if you fuel at reputable stations, and keep fuel receipts. Repairs typically involve replacing failed injectors, the high-pressure fuel pump, or related sensors and reflashing the ECU. Using good-quality fuel from known stations reduces (but does not eliminate) the risk. Outside warranty, direct-injection component replacement is substantially more expensive than on the aspirated engine, so a pre-purchase scan of injection fault history is advisable on used TGDI cars.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Injection/check-engine warning light comes on",
+          "Sudden loss of power or limp mode while driving",
+          "Engine stalls or shuts down and will not restart",
+          "Rough running and increased fuel consumption",
+          "Failure recurs after dealership repair"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/problema-cronico-hb20-1-0-turbo-falha-injecao-perda-de-potencia-total_wCZPDDUDTQ8a3W8s/",
+            "type": "forum",
+            "title": "Problema Crônico HB20 1.0 Turbo - Falha Injeção/Perda de potencia total - Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/garantia-falha-de-injecao-hb20-tgdi-problema-cronico_OGDUyC1inEL4k83F/",
+            "type": "forum",
+            "title": "GARANTIA FALHA DE INJECAO HB20 TGDI PROBLEMA CRONICO - Reclame Aqui"
+          },
+          {
+            "url": "https://www.gruposentinela.com.br/hyundai-hb20-os-problemas-e-defeitos-mais-comuns-do-hatch/",
+            "type": "article",
+            "title": "Hyundai HB20: os problemas e defeitos mais comuns do hatch - Grupo Sentinela"
+          },
+          {
+            "url": "https://en.clickpetroleoegas.com.br/pensando-em-comprar-um-hb20-perda-de-potencia-aumento-do-consumo-de-combustivel-e-ate-apagao-no-motor-confira-os-problemas-e-defeitos-mais-citados-pelos-donos-do-hatch/",
+            "type": "article",
+            "title": "Pensando em comprar um HB20? Perda de potência, aumento do consumo e até apagão no motor - Click Petróleo e Gás"
+          },
+          {
+            "url": "https://www.autoo.com.br/hb20-sucesso-nas-ruas-mas-com-reclamacoes-dos-proprietarios-veja-as-principais/",
+            "type": "article",
+            "title": "HB20: sucesso nas ruas, mas com reclamações dos proprietários - AUTOO"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/hb20-1-0-tgdi-apresentando-problemas-desde-os-3-000-km_AwkWXWsD8BxqQVNw/",
+            "type": "forum",
+            "title": "HB20 1.0 TGDI apresentando problemas desde os 3.000 km - Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/hyundai-hb20-tgdi-com-bicos-injetores-travados_LeV08lt3hkL9W09M/",
+            "type": "forum",
+            "title": "Hyundai HB20 TGDI com Bicos Injetores travados - Reclame Aqui"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-hb20-bluemedia-bluenav-infotainment-unit-freezing-total-failure",
+      "model": "HB20",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen row combines several BlueMedia/BlueNav symptoms, alleged nationwide acknowledgment, discontinued support, warranty terms and replacement costs without an exact Hyundai campaign or bulletin. Product pages establish equipment, not the claimed defect, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary or owner material cannot establish a broad model-wide issue identity.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "65fead28f96e4fdde39e598934634d32eb8dfd8688c9c95127023c31f277349b",
+      "proposalSha256": "65fead28f96e4fdde39e598934634d32eb8dfd8688c9c95127023c31f277349b",
+      "before": {
+        "make": "Hyundai",
+        "model": "HB20",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "BlueMedia/BlueNav Infotainment Unit Freezing and Total Failure",
+        "description": "The factory BlueMedia (and BlueNav) multimedia unit fitted to first-generation HB20 trims is the subject of a large, consistent complaint pattern on Reclame Aqui and HB20 owner forums, and Brazilian car-audio specialists have published warnings about buying used Hyundais with the original head unit. Reported failures include the screen freezing, the unit rebooting on its own while driving, switching media sources by itself, sudden volume spikes, losing paired phones and saved settings after restart, CarLink malfunction, and ultimately the unit failing to power on at all. Dealerships acknowledged nationwide defects and issued software updates, but Hyundai later discontinued software support, and the unit (supplied by Motrex) generally cannot be repaired — only replaced. Owners report replacement quotes of roughly R$3,000-6,000, while the multimedia carries a shorter separate warranty (24 months / 40,000 km) than the car's 5-year warranty, which is the core of many complaints describing it as a hidden defect.",
+        "solution": "First try the dealership software update if one is still available for the unit's version, and check for blown fuses if the unit is completely dead. If the unit has failed outside its 24-month accessory warranty, the practical fix most Brazilian owners choose is replacing the factory head unit with a quality aftermarket Android unit with a model-specific fascia kit (typically R$1,500-3,000 installed), since the original Motrex unit is unrepairable, replacement units cost R$3,000-6,000, and factory software support has been discontinued. Document the failure and complaint history if pursuing a hidden-defect (vício oculto) claim.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Touchscreen freezes and stops responding",
+          "Unit reboots by itself while driving",
+          "Media source changes or volume spikes on its own",
+          "Bluetooth pairings and settings lost after restart",
+          "Unit no longer powers on at all"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 550,
+        "estimatedCostHigh": 1100,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://reiaudio.com.br/vai-comprar-um-hyundai-com-central-multimidia-original-cuidado/",
+            "type": "article",
+            "title": "Vai comprar um Hyundai com Central Multimídia Bluenav original? Cuidado — Reiaudio"
+          },
+          {
+            "url": "https://reiaudio.com.br/assistencia-tecnica-para-central-multimidia-hyundai-kia/",
+            "type": "article",
+            "title": "Assistência técnica para central multimídia Original Hyundai e KIA (Motrex, lista BluemediaTV HB20 MTXH500HBBR) — Reiaudio"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/multimidia-bluenav-hb20-vicio-oculto-motrex-do-brasil-e-hyundai-caoa-do_Kxi_Z2617lOvK-Ou/",
+            "type": "forum",
+            "title": "Multimídia Bluenav HB20 - vício oculto - Motrex do Brasil e Hyundai Caoa do Brasil — Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/defeito-na-central-multimidia-bluemedia-hb20-spicy-2015_Ng6S356lkYv55I-k/",
+            "type": "forum",
+            "title": "DEFEITO NA CENTRAL MULTIMÍDIA BLUEMEDIA HB20 SPICY 2015 — Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/central-multimidia-bluemedia-tv-nao-liga_jgNBfmxAenlb-0LF/",
+            "type": "forum",
+            "title": "Central Multimidia BlueMedia TV não liga — Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/central-multimidia-hb20-bluemediatv-com-defeito-oculto_QhYbKv7qx_RFowgp/",
+            "type": "forum",
+            "title": "Central multimídia HB20 bluemediaTV com defeito oculto — Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/multimidia-blue-media-do-hb20-ocean-2017-nao-funciona_UotyH1DvBfeo1yID/",
+            "type": "forum",
+            "title": "Multimídia Blue Media do HB20 Ocean 2017 não funciona — Reclame Aqui"
+          },
+          {
+            "url": "https://hb20clube.com.br/viewtopic.php?f=21&t=14994",
+            "type": "forum",
+            "title": "Não Consigo Atualizar Bluemedia — Hyundai HB20 Clube"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "HB20",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "BlueMedia/BlueNav Infotainment Unit Freezing and Total Failure",
+        "description": "The factory BlueMedia (and BlueNav) multimedia unit fitted to first-generation HB20 trims is the subject of a large, consistent complaint pattern on Reclame Aqui and HB20 owner forums, and Brazilian car-audio specialists have published warnings about buying used Hyundais with the original head unit. Reported failures include the screen freezing, the unit rebooting on its own while driving, switching media sources by itself, sudden volume spikes, losing paired phones and saved settings after restart, CarLink malfunction, and ultimately the unit failing to power on at all. Dealerships acknowledged nationwide defects and issued software updates, but Hyundai later discontinued software support, and the unit (supplied by Motrex) generally cannot be repaired — only replaced. Owners report replacement quotes of roughly R$3,000-6,000, while the multimedia carries a shorter separate warranty (24 months / 40,000 km) than the car's 5-year warranty, which is the core of many complaints describing it as a hidden defect.",
+        "solution": "First try the dealership software update if one is still available for the unit's version, and check for blown fuses if the unit is completely dead. If the unit has failed outside its 24-month accessory warranty, the practical fix most Brazilian owners choose is replacing the factory head unit with a quality aftermarket Android unit with a model-specific fascia kit (typically R$1,500-3,000 installed), since the original Motrex unit is unrepairable, replacement units cost R$3,000-6,000, and factory software support has been discontinued. Document the failure and complaint history if pursuing a hidden-defect (vício oculto) claim.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Touchscreen freezes and stops responding",
+          "Unit reboots by itself while driving",
+          "Media source changes or volume spikes on its own",
+          "Bluetooth pairings and settings lost after restart",
+          "Unit no longer powers on at all"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 550,
+        "estimatedCostHigh": 1100,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://reiaudio.com.br/vai-comprar-um-hyundai-com-central-multimidia-original-cuidado/",
+            "type": "article",
+            "title": "Vai comprar um Hyundai com Central Multimídia Bluenav original? Cuidado — Reiaudio"
+          },
+          {
+            "url": "https://reiaudio.com.br/assistencia-tecnica-para-central-multimidia-hyundai-kia/",
+            "type": "article",
+            "title": "Assistência técnica para central multimídia Original Hyundai e KIA (Motrex, lista BluemediaTV HB20 MTXH500HBBR) — Reiaudio"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/multimidia-bluenav-hb20-vicio-oculto-motrex-do-brasil-e-hyundai-caoa-do_Kxi_Z2617lOvK-Ou/",
+            "type": "forum",
+            "title": "Multimídia Bluenav HB20 - vício oculto - Motrex do Brasil e Hyundai Caoa do Brasil — Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/defeito-na-central-multimidia-bluemedia-hb20-spicy-2015_Ng6S356lkYv55I-k/",
+            "type": "forum",
+            "title": "DEFEITO NA CENTRAL MULTIMÍDIA BLUEMEDIA HB20 SPICY 2015 — Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/central-multimidia-bluemedia-tv-nao-liga_jgNBfmxAenlb-0LF/",
+            "type": "forum",
+            "title": "Central Multimidia BlueMedia TV não liga — Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/central-multimidia-hb20-bluemediatv-com-defeito-oculto_QhYbKv7qx_RFowgp/",
+            "type": "forum",
+            "title": "Central multimídia HB20 bluemediaTV com defeito oculto — Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/multimidia-blue-media-do-hb20-ocean-2017-nao-funciona_UotyH1DvBfeo1yID/",
+            "type": "forum",
+            "title": "Multimídia Blue Media do HB20 Ocean 2017 não funciona — Reclame Aqui"
+          },
+          {
+            "url": "https://hb20clube.com.br/viewtopic.php?f=21&t=14994",
+            "type": "forum",
+            "title": "Não Consigo Atualizar Bluemedia — Hyundai HB20 Clube"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-hb20-clutch-judder-vibration-when-pulling-away",
+      "model": "HB20",
+      "action": "keep_published_pending_source",
+      "reason": "Technical articles and owner complaints do not establish a Hyundai-defined 2012-2019 HB20 1.0 manual clutch defect, the claimed ninety-percent cause rate, warranty treatment or repair cost. No exact Hyundai primary record was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary or owner material cannot establish a broad model-wide issue identity.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "320826c3ea42df162aadd7b8066220c631736369c14b9128477fc0fc691b8444",
+      "proposalSha256": "320826c3ea42df162aadd7b8066220c631736369c14b9128477fc0fc691b8444",
+      "before": {
+        "make": "Hyundai",
+        "model": "HB20",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Clutch Judder and Vibration When Pulling Away (1.0 Manual)",
+        "description": "Shuddering or juddering when launching from a stop is one of the most repeated complaints from first-generation HB20 owners with the 1.0 manual powertrain, documented in Revista Carro's technical Q&A column, HB20 Clube forum threads, and a recurring pattern of Reclame Aqui complaints describing it as a chronic defect. The technical consensus reported by Revista Carro is that in roughly 90% of cases the cause is a warped or contaminated clutch disc; a damaged flywheel surface can also cause the irregular engagement. Some owners report the judder returning even after a clutch kit replacement, and others report the pedal becoming stiff over time. Because Hyundai treats the clutch as a wear item with only 90 days of warranty coverage, many owners ended up paying for the repair themselves, fueling the complaint volume.",
+        "solution": "Replace the clutch kit (disc, pressure plate, release bearing) and inspect the flywheel surface for heat spots, warping, or scoring — resurface or replace it if damaged, otherwise the judder will return with the new clutch. Insist on a road test with a dealership technician if the car is still inside the 5-year vehicle warranty window, as judder on takeoff is not normal behavior. A quality clutch kit plus labor typically runs about R$1,800-3,500 in Brazil; more if the flywheel must be replaced.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Car shudders or judders when pulling away in first gear",
+          "Vibration on takeoff that worsens on uphill starts",
+          "Clutch pedal becomes stiff or sticks down over time",
+          "Judder returns shortly after a clutch replacement",
+          "Vibration felt through the floor and shift lever during engagement"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 650,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://revistacarro.com.br/correio-tecnico-hyundai-hb20-que-trepida-ao-arrancar/",
+            "type": "article",
+            "title": "Correio Técnico: Hyundai HB20 que trepida ao arrancar - Revista Carro"
+          },
+          {
+            "url": "https://revistacarro.com.br/correio-tecnico-hyundai-hb20-com-problema-na-embreagem/",
+            "type": "article",
+            "title": "Correio Técnico: Hyundai HB20 com problema na embreagem - Revista Carro"
+          },
+          {
+            "url": "https://www.hb20clube.com.br/viewtopic.php?f=24&t=9593",
+            "type": "forum",
+            "title": "Trepidação na embreagem - Hyundai HB20 Clube"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/problemas-cronicos-de-embreagem-do-hb20-1-0_aGXix6N8hXcQaqdG/",
+            "type": "forum",
+            "title": "Problemas crônicos de embreagem do HB20 1.0 - Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/tenho-um-hb20-embreagem-trepidando-na-arrancada_77OXWBrzBQBSqGad/",
+            "type": "forum",
+            "title": "Tenho um HB20 embreagem trepidando na arrancada! - Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/embreagem-hb-20-trepidando_Q8P7ryF-Q5Ct1mtU/",
+            "type": "forum",
+            "title": "Embreagem Hb 20 trepidando - Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/problema-cronico-no-hb20-cilindro-de-embreagem-facam-recall-ja_b47Ubr9INQ3y5VmG/",
+            "type": "forum",
+            "title": "Problema crônico no HB20 (cilindro de embreagem) FAÇAM RECALL JÁ!!! - Reclame Aqui"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "HB20",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Clutch Judder and Vibration When Pulling Away (1.0 Manual)",
+        "description": "Shuddering or juddering when launching from a stop is one of the most repeated complaints from first-generation HB20 owners with the 1.0 manual powertrain, documented in Revista Carro's technical Q&A column, HB20 Clube forum threads, and a recurring pattern of Reclame Aqui complaints describing it as a chronic defect. The technical consensus reported by Revista Carro is that in roughly 90% of cases the cause is a warped or contaminated clutch disc; a damaged flywheel surface can also cause the irregular engagement. Some owners report the judder returning even after a clutch kit replacement, and others report the pedal becoming stiff over time. Because Hyundai treats the clutch as a wear item with only 90 days of warranty coverage, many owners ended up paying for the repair themselves, fueling the complaint volume.",
+        "solution": "Replace the clutch kit (disc, pressure plate, release bearing) and inspect the flywheel surface for heat spots, warping, or scoring — resurface or replace it if damaged, otherwise the judder will return with the new clutch. Insist on a road test with a dealership technician if the car is still inside the 5-year vehicle warranty window, as judder on takeoff is not normal behavior. A quality clutch kit plus labor typically runs about R$1,800-3,500 in Brazil; more if the flywheel must be replaced.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Car shudders or judders when pulling away in first gear",
+          "Vibration on takeoff that worsens on uphill starts",
+          "Clutch pedal becomes stiff or sticks down over time",
+          "Judder returns shortly after a clutch replacement",
+          "Vibration felt through the floor and shift lever during engagement"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 650,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://revistacarro.com.br/correio-tecnico-hyundai-hb20-que-trepida-ao-arrancar/",
+            "type": "article",
+            "title": "Correio Técnico: Hyundai HB20 que trepida ao arrancar - Revista Carro"
+          },
+          {
+            "url": "https://revistacarro.com.br/correio-tecnico-hyundai-hb20-com-problema-na-embreagem/",
+            "type": "article",
+            "title": "Correio Técnico: Hyundai HB20 com problema na embreagem - Revista Carro"
+          },
+          {
+            "url": "https://www.hb20clube.com.br/viewtopic.php?f=24&t=9593",
+            "type": "forum",
+            "title": "Trepidação na embreagem - Hyundai HB20 Clube"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/problemas-cronicos-de-embreagem-do-hb20-1-0_aGXix6N8hXcQaqdG/",
+            "type": "forum",
+            "title": "Problemas crônicos de embreagem do HB20 1.0 - Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/tenho-um-hb20-embreagem-trepidando-na-arrancada_77OXWBrzBQBSqGad/",
+            "type": "forum",
+            "title": "Tenho um HB20 embreagem trepidando na arrancada! - Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/embreagem-hb-20-trepidando_Q8P7ryF-Q5Ct1mtU/",
+            "type": "forum",
+            "title": "Embreagem Hb 20 trepidando - Reclame Aqui"
+          },
+          {
+            "url": "https://www.reclameaqui.com.br/hyundai-motor-brasil-hb20/problema-cronico-no-hb20-cilindro-de-embreagem-facam-recall-ja_b47Ubr9INQ3y5VmG/",
+            "type": "forum",
+            "title": "Problema crônico no HB20 (cilindro de embreagem) FAÇAM RECALL JÁ!!! - Reclame Aqui"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-hb20-recall-automatic-transmission-electric-oil-pump-control-modu",
+      "model": "HB20",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the same HB20 electric-oil-pump control-module recall identity and 2023-2024 scope, replaced secondary coverage with Hyundai's exact recall PDF, and removed invented warning symptoms, secondary citations, commerce, cost and diagnostic claims.",
+      "identityRule": "The same indexed recall stays on the existing ID and year scope; only claims proven by exact official sources remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-manufacturer-recall",
+          "url": "https://www.hyundai.com.br/content/dam/hmb/servicos/recall/pdf/AF_Comunicado_recall_Hyundai_2023_146x246.pdf",
+          "verifiedOn": "2026-08-06",
+          "visualReview": "One-page Hyundai recall notice visually inspected after rendering at 160 DPI.",
+          "facts": {
+            "models": "HB20 and HB20S 2023-2024",
+            "productionPeriod": "2022-12-20 through 2023-09-27",
+            "chassis": "PP395536 through RP509630, non-sequential",
+            "defect": "Electric oil-pump control-module nonconformity may cause an internal short circuit.",
+            "risk": "Fire in an extreme case, with property damage and serious or fatal injury.",
+            "remedy": "Inspect and replace the module if necessary.",
+            "duration": "Approximately two hours",
+            "campaignStart": "2023-10-02"
+          }
+        }
+      ],
+      "beforeSha256": "5b1a0eb3be1eeb492290b1e5ec7dafeca01318ee240e44783f2e57f8107855b2",
+      "proposalSha256": "5cfaf13e03d2f34a9c2b917426791f1a3c57242c0e12c2239bf38ed49e6ce66b",
+      "before": {
+        "make": "Hyundai",
+        "model": "HB20",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Recall: Automatic Transmission Electric Oil Pump Control Module Short Circuit (Fire Risk)",
+        "description": "On October 2, 2023, Hyundai Motor Brasil announced an official recall for HB20 and HB20S (and Creta) models with the automatic transmission, produced between December 20, 2022 and September 27, 2023. A non-conformity in the control module of the transmission's electric oil pump can cause an internal short circuit; in extreme cases the short can lead to a fire, with risk of property damage and serious or fatal injuries, per the manufacturer's recall communication. The campaign was covered by the Brazilian automotive press and Hyundai published the official notice on its recall portal.",
+        "solution": "Schedule the free recall service at any Hyundai dealership — the inspection/correction of the electric oil pump control module takes about two hours. Affected owners can confirm whether their chassis is included via Hyundai Brasil's recall page (hyundai.com.br/servicos/recalls) or the customer center at 0800 770 3355. Buyers of used 2023-2024 automatic HB20/HB20S should verify the recall has been performed before purchase.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Usually no warning before failure (preventive recall)",
+          "Transmission warning light or fault message in some cases",
+          "Burning/electrical smell in extreme cases",
+          "Risk of underhood fire from module short circuit"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai.com.br/content/dam/hmb/servicos/recall/pdf/AF_Comunicado_recall_Hyundai_2023_146x246.pdf",
+            "type": "recall",
+            "title": "Hyundai Motor Brasil — Comunicado de recall: módulo de controle da bomba elétrica de óleo da transmissão automática (Creta, HB20, HB20S)"
+          },
+          {
+            "url": "https://www.conexaoautomotivabr.com/2025/07/hyundai-convoca-recall-para-hb20-hb20s.html",
+            "type": "article",
+            "title": "Conexão Automotiva — Hyundai convoca recall para HB20, HB20S e Creta por falha em módulo de bomba de óleo"
+          },
+          {
+            "url": "https://en.clickpetroleoegas.com.br/revisao-gratuita-hyundai-alerta-sobre-risco-de-curto-circuito-e-possiveis-consequencias-graves-incluindo-risco-de-incendio-em-modelos-especificos-de-creta-hb20-e-hb20s/",
+            "type": "article",
+            "title": "Click Petróleo e Gás — Hyundai alerta sobre risco de curto-circuito e incêndio em Creta, HB20 e HB20S"
+          },
+          {
+            "url": "https://www.autossegredos.com.br/marcas/hyundai/hyundai-realiza-recall-para-creta-e-hb20-por-falha-em-cambio/",
+            "type": "article",
+            "title": "Autos Segredos — Hyundai realiza recall para Creta e HB20 por falha em câmbio"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "HB20",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Recall: Automatic Transmission Electric Oil Pump Control Module Short Circuit (Fire Risk)",
+        "description": "Hyundai Motor Brasil recalled 2023-2024 HB20 and HB20S vehicles manufactured from December 20, 2022 through September 27, 2023. Hyundai says a nonconformity in the automatic transmission electric oil-pump control module can cause an internal short circuit. In an extreme case, that can cause a fire and property damage or serious or fatal injury to occupants or other people.",
+        "solution": "Schedule the free recall inspection with a Hyundai Motor Brasil dealer. Hyundai says the dealer will inspect the vehicle and replace the automatic-transmission electric oil-pump control module if necessary; the service takes about two hours. The notice identifies the non-sequential last-eight-digit chassis range PP395536 through RP509630 for HB20 and HB20S.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [
+          "Automatic-transmission electric oil-pump control module"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "manufacturer",
+            "title": "Hyundai Motor Brasil - Recall of the Automatic-Transmission Electric Oil-Pump Control Module",
+            "url": "https://www.hyundai.com.br/content/dam/hmb/servicos/recall/pdf/AF_Comunicado_recall_Hyundai_2023_146x246.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the same HB20 electric-oil-pump control-module recall identity and 2023-2024 scope, replaced secondary coverage with Hyundai's exact recall PDF, and removed invented warning symptoms, secondary citations, commerce, cost and diagnostic claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-hb20-recall-brake-booster-vacuum-control-valve-can-dry-out-harden",
+      "model": "HB20",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the same HB20 brake-booster vacuum-control-valve recall identity and 2016-2018 scope, replaced the dead regulator and secondary links with Hyundai's exact recall PDF, and removed commerce, cost and unsupported diagnostic claims.",
+      "identityRule": "The same indexed recall stays on the existing ID and year scope; only claims proven by exact official sources remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-manufacturer-recall",
+          "url": "https://www.hyundai.com.br/content/dam/hmb/servicos/recall/pdf/Aviso%20de%20Recall%2008012_000624_2018_37.pdf",
+          "verifiedOn": "2026-08-06",
+          "visualReview": "One-page Hyundai recall notice visually inspected after rendering at 160 DPI.",
+          "facts": {
+            "models": "HB20 and HB20S 1.0 Turbo, six-speed manual, 2016-2018",
+            "productionPeriod": "2016-01-28 through 2018-02-05",
+            "chassis": "561697 through 870541, non-sequential",
+            "defect": "Heat near the catalytic converter can dry the brake-booster vacuum control valve.",
+            "remedy": "Inspect; add a thermal insulator when undamaged or replace the valve and add the insulator when damaged.",
+            "duration": "Approximately 30 minutes",
+            "campaignStart": "2018-03-29"
+          }
+        }
+      ],
+      "beforeSha256": "11261b887026a6e8de6fc3fa76ee5abffd7f055d61ff2b8acfdd284659d0fb6f",
+      "proposalSha256": "68497df5e6d574befdc115a0f56e5f666c22ac5afdc5d25b87b35a6b23b941bc",
+      "before": {
+        "make": "Hyundai",
+        "model": "HB20",
+        "years": [
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Recall: Brake Booster Vacuum Control Valve Can Dry Out and Harden the Brake Pedal (1.0 Turbo)",
+        "description": "In March 2018, Hyundai Motor Brasil issued an official recall for HB20 and HB20S 1.0 Turbo models with the six-speed manual transmission, produced between January 28, 2016 and February 5, 2018 (model years 2016-2018). The brake servo's vacuum control valve is mounted close to the catalytic converter, and the resulting heat exposure can dry out the valve. Early signs are a whistling noise and fluctuating idle; continued operation can reduce vacuum assistance to the brake booster, hardening the brake pedal, requiring far greater pedal effort, and increasing stopping distances — a crash risk officially acknowledged in the recall notice published by PROCON-SP.",
+        "solution": "Take the vehicle to any Hyundai dealership for the free recall service: the valve is inspected, and if undamaged a thermal insulator is fitted to protect it; if already damaged, the valve is replaced with an updated part that includes the insulator. Owners of used 2016-2018 HB20/HB20S 1.0 Turbo manuals should verify recall completion via Hyundai Brasil (0800 770 3355 or hyundai.com.br/servicos/recalls) — the service remains free regardless of vehicle age.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Whistling/hissing noise from the engine bay",
+          "Fluctuating or unstable idle",
+          "Brake pedal becomes hard to press",
+          "Much greater pedal effort needed to brake",
+          "Longer stopping distances"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.procon.sp.gov.br/recall-hyundai-hb20-e-hb20s/",
+            "type": "recall",
+            "title": "Recall Hyundai HB20 e HB20S – PROCON-SP (29/03/2018)"
+          },
+          {
+            "url": "https://www.infomoney.com.br/consumo/hyundai-convoca-recall-do-hb20-e-hb20s-por-problema-no-freio-veja-como-agir/",
+            "type": "article",
+            "title": "Hyundai convoca recall do HB20 e HB20S por problema no freio – InfoMoney"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "HB20",
+        "years": [
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Recall: Brake Booster Vacuum Control Valve Can Dry Out and Harden the Brake Pedal (1.0 Turbo)",
+        "description": "Hyundai Motor Brasil recalled 2016-2018 HB20 and HB20S vehicles with the 1.0 Turbo engine and six-speed manual transmission, manufactured from January 28, 2016 through February 5, 2018. Hyundai says heat exposure near the catalytic converter can dry the brake-booster vacuum control valve. A whistle and unstable idle can precede reduced brake-booster vacuum, a harder brake pedal, greater required pedal force and increased stopping time and distance. The brakes continue to operate, but the condition increases crash risk.",
+        "solution": "Hyundai advises stopping use and contacting a dealer immediately if a whistle from the engine area and unstable idle occur. The free recall service inspects the brake-booster vacuum control valve. If the valve is undamaged, the dealer adds a thermal insulator; if it is damaged, the dealer replaces it and adds the insulator. Hyundai estimates about 30 minutes for the service.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Whistling noise from the engine area",
+          "Unstable or oscillating idle",
+          "Harder brake pedal",
+          "More pedal force required to stop",
+          "Increased stopping time and distance"
+        ],
+        "affectedSystems": [
+          "Brake-booster vacuum control valve",
+          "Brake-booster vacuum assistance"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "manufacturer",
+            "title": "Hyundai Motor Brasil - HB20 and HB20S Brake-Booster Vacuum Control Valve Recall",
+            "url": "https://www.hyundai.com.br/content/dam/hmb/servicos/recall/pdf/Aviso%20de%20Recall%2008012_000624_2018_37.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the same HB20 brake-booster vacuum-control-valve recall identity and 2016-2018 scope, replaced the dead regulator and secondary links with Hyundai's exact recall PDF, and removed commerce, cost and unsupported diagnostic claims.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
