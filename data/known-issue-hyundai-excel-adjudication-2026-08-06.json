@@ -1,0 +1,755 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Excel",
+  "completionStatement": "This packet reconciles all four frozen Hyundai Excel rows. No same-identity primary-source rewrite cleared the gate; all four remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All four rows remain published and byte-for-byte unchanged.",
+    "An unrelated recall, maintenance bulletin, component or shared symptom may never replace the issue named by an existing indexed page.",
+    "Existing commerce remains frozen rather than being silently rewritten without exact repair-role evidence.",
+    "Independent row-by-row approval is required before any separate correction path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "excelRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "official-recall-set-does-not-match",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-excel-automatic-trans-1990",
+        "hyundai-excel-carburetor-issues-1990",
+        "hyundai-excel-cv-joint-boot-1990",
+        "hyundai-excel-head-gasket-1990"
+      ],
+      "detail": "The 1990 NHTSA campaigns concern fuel-system crash leakage and a front-hub lock washer, neither of which supports these four pages."
+    },
+    {
+      "code": "atf-guidance-not-transmission-defect",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-excel-automatic-trans-1990"
+      ],
+      "detail": "Hyundai's ATF bulletin cannot establish premature transmission failure, a mileage rate or rebuild recommendations."
+    },
+    {
+      "code": "carburetor-and-injection-blend-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-excel-carburetor-issues-1990"
+      ],
+      "detail": "The row blends pre-1992 carburetor and later injection conditions without one exact primary source."
+    },
+    {
+      "code": "unsupported-old-model-narratives-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-excel-cv-joint-boot-1990",
+        "hyundai-excel-head-gasket-1990"
+      ],
+      "detail": "Generic repair/complaint sources do not establish model-wide CV-boot or head-gasket defects."
+    }
+  ],
+  "mismatchSources": {
+    "nhtsaRecalls1990": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Excel&modelYear=1990",
+    "hyundaiAtf": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10173554-0001.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 4,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "hyundai-excel-automatic-trans-1990",
+      "model": "Excel",
+      "action": "keep_published_pending_source",
+      "reason": "A forum home page does not establish one 1990-1994 Excel automatic-transmission defect, pre-100,000-mile rate, clutch/torque-converter mechanism, 25,000-mile interval or rebuild upgrade. Hyundai's later ATF bulletin is fluid guidance, not proof of this failure identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; an unrelated recall, maintenance bulletin, complaint or generic repair source cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-no-match",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Excel&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA lists fuel-system-integrity and front-hub lock-washer campaigns for the 1990 Excel; neither establishes this frozen issue."
+        },
+        {
+          "kind": "maintenance-guidance-not-defect-source",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10173554-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai's ATF bulletin provides fluid guidance and does not establish the frozen Excel transmission failure narrative."
+        }
+      ],
+      "beforeSha256": "7080fd329596339e888f143478bf6628845812b2a17b215afa4f0285b282da3c",
+      "proposalSha256": "7080fd329596339e888f143478bf6628845812b2a17b215afa4f0285b282da3c",
+      "before": {
+        "make": "Hyundai",
+        "model": "Excel",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Automatic Transmission Premature Failure",
+        "description": "The Excel's 4-speed automatic transmission is weak and prone to premature failure, especially when subjected to city driving. The clutch packs wear out rapidly, and the torque converter locks up harshly. The transmission often fails before 100,000 miles.",
+        "solution": "Rebuild the transmission or swap to a manual transmission. Regular fluid changes every 25,000 miles can extend life. When rebuilding, upgrade the clutch pack friction material for better durability.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Slipping between gears",
+          "Harsh downshifts",
+          "Delayed engagement",
+          "Shuddering at low speed",
+          "Transmission whine",
+          "Brown or burnt-smelling fluid"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": 30000,
+        "typicalMileageHigh": 100000,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com",
+            "source": "Hyundai Forums",
+            "description": "Excel automatic transmission durability issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Change transmission fluid every 25,000 miles — the Excel automatic cannot tolerate extended drain intervals"
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Excel%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 180,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Excel",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Automatic Transmission Premature Failure",
+        "description": "The Excel's 4-speed automatic transmission is weak and prone to premature failure, especially when subjected to city driving. The clutch packs wear out rapidly, and the torque converter locks up harshly. The transmission often fails before 100,000 miles.",
+        "solution": "Rebuild the transmission or swap to a manual transmission. Regular fluid changes every 25,000 miles can extend life. When rebuilding, upgrade the clutch pack friction material for better durability.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Slipping between gears",
+          "Harsh downshifts",
+          "Delayed engagement",
+          "Shuddering at low speed",
+          "Transmission whine",
+          "Brown or burnt-smelling fluid"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": 30000,
+        "typicalMileageHigh": 100000,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com",
+            "source": "Hyundai Forums",
+            "description": "Excel automatic transmission durability issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Change transmission fluid every 25,000 miles — the Excel automatic cannot tolerate extended drain intervals"
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Excel%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 180,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-excel-carburetor-issues-1990",
+      "model": "Excel",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint page and Reddit thread do not establish one 1990-1994 Excel carburetor/choke defect, while the row also blends later fuel-injection conditions into a page titled for pre-1992 vehicles. No exact Hyundai primary document was found, so it remains unchanged.",
+      "identityRule": "No content or publication-state changes; an unrelated recall, maintenance bulletin, complaint or generic repair source cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-no-match",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Excel&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA lists fuel-system-integrity and front-hub lock-washer campaigns for the 1990 Excel; neither establishes this frozen issue."
+        }
+      ],
+      "beforeSha256": "7fe13c02d4fff15201d9389d8534bbee7c6f17cde73aa1fcb4048eacb6518444",
+      "proposalSha256": "7fe13c02d4fff15201d9389d8534bbee7c6f17cde73aa1fcb4048eacb6518444",
+      "before": {
+        "make": "Hyundai",
+        "model": "Excel",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Carburetor Idle and Cold Start Problems (Pre-1992)",
+        "description": "Early carbureted Excel models suffer from idle instability and poor cold start performance. The automatic choke mechanism sticks, and idle speed control deteriorates. Fuel-injected 1992+ models are less affected but can develop injector clogging.",
+        "solution": "For carbureted models: clean and rebuild carburetor, replace choke pull-off diaphragm, adjust idle mixture and speed. For fuel-injected: clean injectors, replace idle air control valve if hunting idle persists.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Stalling at idle",
+          "Hard cold starts",
+          "Surging idle",
+          "Poor fuel economy",
+          "Rough running when cold"
+        ],
+        "affectedSystems": [
+          "Fuel delivery",
+          "Idle control"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1990/HYUNDAI/EXCEL",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 1990 Hyundai Excel"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/7x1a8z/hyundai_excel_carburetor_idle_issues/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice thread discussing Hyundai Excel carburetor idle issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Bosch fuel injector set — OEM replacement for precise fuel delivery",
+            "partName": "Fuel Injector",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20fuel%20injector&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Chevron Techron fuel injector cleaner — restores injector flow",
+            "partName": "Techron Fuel Injector Cleaner",
+            "partBrand": "Chevron",
+            "affiliateUrl": "https://www.amazon.com/s?k=Chevron%20Techron%20fuel%20injector%20cleaner&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Excel",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Carburetor Idle and Cold Start Problems (Pre-1992)",
+        "description": "Early carbureted Excel models suffer from idle instability and poor cold start performance. The automatic choke mechanism sticks, and idle speed control deteriorates. Fuel-injected 1992+ models are less affected but can develop injector clogging.",
+        "solution": "For carbureted models: clean and rebuild carburetor, replace choke pull-off diaphragm, adjust idle mixture and speed. For fuel-injected: clean injectors, replace idle air control valve if hunting idle persists.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Stalling at idle",
+          "Hard cold starts",
+          "Surging idle",
+          "Poor fuel economy",
+          "Rough running when cold"
+        ],
+        "affectedSystems": [
+          "Fuel delivery",
+          "Idle control"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1990/HYUNDAI/EXCEL",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 1990 Hyundai Excel"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/7x1a8z/hyundai_excel_carburetor_idle_issues/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice thread discussing Hyundai Excel carburetor idle issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Bosch fuel injector set — OEM replacement for precise fuel delivery",
+            "partName": "Fuel Injector",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20fuel%20injector&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Chevron Techron fuel injector cleaner — restores injector flow",
+            "partName": "Techron Fuel Injector Cleaner",
+            "partBrand": "Chevron",
+            "affiliateUrl": "https://www.amazon.com/s?k=Chevron%20Techron%20fuel%20injector%20cleaner&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-excel-cv-joint-boot-1990",
+      "model": "Excel",
+      "action": "keep_published_pending_source",
+      "reason": "A complaint index, implausible forum URL and generic video do not establish a model-wide Excel CV-boot defect, 50,000-mile rate, bilateral failure or replace-both-sides remedy. NHTSA's 1990 wheel-hub recall concerns a lock washer, not a CV boot or axle, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; an unrelated recall, maintenance bulletin, complaint or generic repair source cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-no-match",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Excel&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA lists fuel-system-integrity and front-hub lock-washer campaigns for the 1990 Excel; neither establishes this frozen issue."
+        }
+      ],
+      "beforeSha256": "0390fd1d39b53e7f78fb0e2410534ba787f6c21ae4136d540fa598a338c8cdcc",
+      "proposalSha256": "0390fd1d39b53e7f78fb0e2410534ba787f6c21ae4136d540fa598a338c8cdcc",
+      "before": {
+        "make": "Hyundai",
+        "model": "Excel",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "CV Joint Boot Splitting and Axle Failure",
+        "description": "CV joint boots crack and split prematurely, often before 50,000 miles. Grease loss leads to rapid CV joint wear and clicking/popping on turns. Both inner and outer joints are affected.",
+        "solution": "If caught early, replace boot and repack joint with fresh CV grease. If clicking is present, replace entire CV axle assembly (remanufactured units are cost-effective). Replace both sides together.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Clicking on turns",
+          "Grease splatter on inner fender",
+          "Vibration during acceleration",
+          "Torn rubber boot visible"
+        ],
+        "affectedSystems": [
+          "CV axles",
+          "Front drivetrain"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": 15000,
+        "typicalMileageHigh": 50000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1992/HYUNDAI/EXCEL",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 1992 Hyundai Excel"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/cv-boot-failure-on-excel.12345/",
+            "type": "forum",
+            "title": "CV Boot Failure on Hyundai Excel - Hyundai-Forums.com Thread"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=5XQ9vUQwP7w",
+            "type": "video",
+            "title": "How to Replace CV Axle and Boot on Hyundai Excel - ChrisFix"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "TRQ CV axle assembly — complete replacement with new joints",
+            "partName": "CV Axle Assembly",
+            "partBrand": "TRQ",
+            "affiliateUrl": "https://www.amazon.com/s?k=TRQ%20CV%20axle%20assembly&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dorman CV boot kit to prevent grease loss and joint failure",
+            "partName": "CV Boot Kit",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20CV%20boot%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Excel",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "CV Joint Boot Splitting and Axle Failure",
+        "description": "CV joint boots crack and split prematurely, often before 50,000 miles. Grease loss leads to rapid CV joint wear and clicking/popping on turns. Both inner and outer joints are affected.",
+        "solution": "If caught early, replace boot and repack joint with fresh CV grease. If clicking is present, replace entire CV axle assembly (remanufactured units are cost-effective). Replace both sides together.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Clicking on turns",
+          "Grease splatter on inner fender",
+          "Vibration during acceleration",
+          "Torn rubber boot visible"
+        ],
+        "affectedSystems": [
+          "CV axles",
+          "Front drivetrain"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": 15000,
+        "typicalMileageHigh": 50000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1992/HYUNDAI/EXCEL",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 1992 Hyundai Excel"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/cv-boot-failure-on-excel.12345/",
+            "type": "forum",
+            "title": "CV Boot Failure on Hyundai Excel - Hyundai-Forums.com Thread"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=5XQ9vUQwP7w",
+            "type": "video",
+            "title": "How to Replace CV Axle and Boot on Hyundai Excel - ChrisFix"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "TRQ CV axle assembly — complete replacement with new joints",
+            "partName": "CV Axle Assembly",
+            "partBrand": "TRQ",
+            "affiliateUrl": "https://www.amazon.com/s?k=TRQ%20CV%20axle%20assembly&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dorman CV boot kit to prevent grease loss and joint failure",
+            "partName": "CV Boot Kit",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20CV%20boot%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-excel-head-gasket-1990",
+      "model": "Excel",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint page and unrelated video do not establish one G4DJ/G4EK head-gasket defect, heat-cycle mechanism or the listed OBD-II codes across 1990-1994 vehicles. No exact Hyundai primary document was found, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; an unrelated recall, maintenance bulletin, complaint or generic repair source cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-no-match",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Excel&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA lists fuel-system-integrity and front-hub lock-washer campaigns for the 1990 Excel; neither establishes this frozen issue."
+        }
+      ],
+      "beforeSha256": "9b79883d54b3cdb782883666181fbf421528efeb5e27b844759981a4f46b1c24",
+      "proposalSha256": "9b79883d54b3cdb782883666181fbf421528efeb5e27b844759981a4f46b1c24",
+      "before": {
+        "make": "Hyundai",
+        "model": "Excel",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994
+        ],
+        "trims": [],
+        "engines": [
+          "G4DJ",
+          "G4EK"
+        ],
+        "category": "engine",
+        "title": "Head Gasket Failure (Mitsubishi G4DJ/G4EK)",
+        "description": "The Hyundai Excel uses Mitsubishi-derived 1.5L engines (G4DJ and G4EK) that are prone to head gasket failure. The gasket material deteriorates from heat cycling and age, causing coolant leaks, overheating, and combustion gas intrusion into the cooling system. The Excel was a budget vehicle and many owners deferred maintenance, accelerating gasket failure. While the repair is straightforward on this simple engine, the low value of the vehicle often makes head gasket replacement uneconomical.",
+        "solution": "",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine overheating",
+          "White exhaust smoke",
+          "Coolant loss without visible external leak",
+          "Milky oil on dipstick",
+          "Rough idle and misfires"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0300",
+          "P0128"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1990/HYUNDAI/EXCEL",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 1990 Hyundai Excel"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=5X9jv0r7XxA",
+            "type": "video",
+            "title": "Head Gasket Replacement on 1990 Hyundai Excel - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Multi-layer steel head gasket set for a reliable, long-lasting seal",
+            "partName": "Head Gasket Set",
+            "partBrand": "Fel-Pro",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Excel%20Fel-Pro%20Head%20Gasket%20Set&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "High-strength head studs provide even clamping force and prevent repeat failures",
+            "partName": "Head Stud Kit",
+            "partBrand": "ARP",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Excel%20ARP%20Head%20Stud%20Kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-scoupe-head-gasket-1991"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Excel",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994
+        ],
+        "trims": [],
+        "engines": [
+          "G4DJ",
+          "G4EK"
+        ],
+        "category": "engine",
+        "title": "Head Gasket Failure (Mitsubishi G4DJ/G4EK)",
+        "description": "The Hyundai Excel uses Mitsubishi-derived 1.5L engines (G4DJ and G4EK) that are prone to head gasket failure. The gasket material deteriorates from heat cycling and age, causing coolant leaks, overheating, and combustion gas intrusion into the cooling system. The Excel was a budget vehicle and many owners deferred maintenance, accelerating gasket failure. While the repair is straightforward on this simple engine, the low value of the vehicle often makes head gasket replacement uneconomical.",
+        "solution": "",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine overheating",
+          "White exhaust smoke",
+          "Coolant loss without visible external leak",
+          "Milky oil on dipstick",
+          "Rough idle and misfires"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0300",
+          "P0128"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/1990/HYUNDAI/EXCEL",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 1990 Hyundai Excel"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=5X9jv0r7XxA",
+            "type": "video",
+            "title": "Head Gasket Replacement on 1990 Hyundai Excel - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Multi-layer steel head gasket set for a reliable, long-lasting seal",
+            "partName": "Head Gasket Set",
+            "partBrand": "Fel-Pro",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Excel%20Fel-Pro%20Head%20Gasket%20Set&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "High-strength head studs provide even clamping force and prevent repeat failures",
+            "partName": "Head Stud Kit",
+            "partBrand": "ARP",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Excel%20ARP%20Head%20Stud%20Kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-scoupe-head-gasket-1991"
+        ]
+      }
+    }
+  ]
+}
